@@ -169,7 +169,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
   // Pending invite — link generated, waiting for partner
   if (!pair && inviteUrl) {
     return (
-      <div className="cf-panel rounded-[22px] border border-(--cf-accent-border) p-4">
+      <div className="cf-panel rounded-2xl border border-(--cf-accent-border) p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-accent-soft)">
             <Users className="h-5 w-5 text-(--cf-accent)" />
@@ -185,7 +185,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
           <button
             type="button"
             onClick={copyInviteUrl}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
+            className="cf-pressable inline-flex items-center gap-1.5 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
           >
             {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
             {copied ? "Copied!" : "Copy Link"}
@@ -198,7 +198,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
   // No partner, no invite yet — show invite CTA
   if (!pair) {
     return (
-      <div className="cf-panel rounded-[22px] border border-(--cf-border) p-4">
+      <div className="cf-panel rounded-2xl border border-(--cf-border) p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted)">
             <Users className="h-5 w-5 text-(--cf-text-3)" />
@@ -214,7 +214,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
           <button
             type="button"
             onClick={createInvite}
-            className="inline-flex items-center gap-1.5 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
+            className="cf-pressable inline-flex items-center gap-1.5 rounded-xl border border-(--cf-accent-border) bg-(--cf-accent-soft) px-3 py-2 text-xs font-semibold text-(--cf-info-text) transition hover:bg-(--cf-accent-muted)"
           >
             <UserPlus className="h-3.5 w-3.5" />
             Invite
@@ -227,7 +227,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
   // Confirm end partnership
   if (confirmEnd) {
     return (
-      <div className="cf-panel rounded-[22px] border border-(--cf-border) p-4">
+      <div className="cf-panel rounded-2xl border border-(--cf-border) p-4">
         <p className="text-sm font-semibold text-(--cf-text-1) mb-2">
           End partnership?
         </p>
@@ -239,14 +239,14 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
             type="button"
             onClick={endPartnership}
             disabled={ending}
-            className="flex-1 rounded-xl bg-accent-rose/15 px-3 py-2 text-xs font-semibold text-accent-rose transition hover:bg-accent-rose/25 disabled:opacity-50"
+            className="cf-pressable flex-1 rounded-xl bg-accent-rose/15 px-3 py-2 text-xs font-semibold text-accent-rose transition hover:bg-accent-rose/25 disabled:opacity-50"
           >
             {ending ? "Ending..." : "Yes, end it"}
           </button>
           <button
             type="button"
             onClick={() => setConfirmEnd(false)}
-            className="flex-1 rounded-xl border border-(--cf-border) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
+            className="cf-pressable flex-1 rounded-xl border border-(--cf-border) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-surface-muted)"
           >
             Cancel
           </button>
@@ -257,7 +257,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
 
   // Has partner
   return (
-    <div className="cf-panel rounded-[22px] border border-(--cf-accent-border) bg-(--cf-surface) p-4">
+    <div className="cf-panel rounded-2xl border border-(--cf-accent-border) bg-(--cf-surface) p-4">
       <div className="flex items-center gap-3">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-(--cf-accent-soft)">
           <Users className="h-5 w-5 text-(--cf-accent)" />
@@ -274,7 +274,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
           type="button"
           onClick={sendNudge}
           disabled={nudging || nudgeSent}
-          className="inline-flex items-center gap-1.5 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-accent-soft) disabled:opacity-50"
+          className="cf-pressable inline-flex items-center gap-1.5 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-2 text-xs font-semibold text-(--cf-text-2) transition hover:bg-(--cf-accent-soft) disabled:opacity-50"
         >
           <Bell className="h-3.5 w-3.5" />
           {nudgeSent ? "Sent!" : nudging ? "Sending..." : "Nudge"}
@@ -283,7 +283,7 @@ export function PartnerProgressCard({ enabled }: { enabled: boolean }) {
           type="button"
           onClick={() => setConfirmEnd(true)}
           title="End partnership"
-          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-(--cf-text-3) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-2)"
+          className="cf-pressable inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-(--cf-text-3) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-2)"
         >
           <X className="h-3.5 w-3.5" />
         </button>

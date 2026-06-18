@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 
 export default function AnimatedCheckmark() {
   const prefersReducedMotion = useReducedMotion();
@@ -72,7 +73,7 @@ export default function AnimatedCheckmark() {
           strokeLinecap="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ delay: 0.1, duration: 0.4, ease: "easeOut" }}
+          transition={{ delay: 0.1, duration: DUR.page, ease: "easeOut" }}
         />
         <motion.path
           d="M24 42 L34 52 L56 30"
@@ -83,7 +84,7 @@ export default function AnimatedCheckmark() {
           strokeLinejoin="round"
           initial={{ pathLength: 0 }}
           animate={{ pathLength: 1 }}
-          transition={{ delay: 0.4, duration: 0.35, ease: "easeOut" }}
+          transition={{ delay: 0.4, duration: DUR.normal, ease: "easeOut" }}
         />
       </svg>
 
@@ -93,7 +94,7 @@ export default function AnimatedCheckmark() {
         style={{ border: "2px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent)" }}
         initial={{ scale: 1, opacity: 0 }}
         animate={{ scale: 1.3, opacity: [0, 0.5, 0] }}
-        transition={{ delay: 0.85, duration: 0.6, ease: "easeOut" }}
+        transition={{ delay: 0.85, duration: DUR.slow, ease: "easeOut" }}
       />
     </motion.div>
   );

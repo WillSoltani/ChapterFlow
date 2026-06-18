@@ -85,7 +85,7 @@ export function BookCardLarge({
       <button
         type="button"
         onClick={onOpen}
-        className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-soft)"
+        className="w-full text-left cf-focus"
         aria-label={`Open details for ${entry.title}`}
       >
         <div className="cf-panel-muted relative h-72 overflow-hidden rounded-2xl border border-(--cf-border) sm:h-80">

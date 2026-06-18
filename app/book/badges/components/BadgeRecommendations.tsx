@@ -99,7 +99,7 @@ export function BadgeRecommendations({
               <button
                 type="button"
                 onClick={() => onBadgeClick(badge)}
-                className="flex flex-1 flex-col text-left"
+                className="cf-pressable flex flex-1 flex-col text-left"
               >
                 <div className="relative">
                   <span

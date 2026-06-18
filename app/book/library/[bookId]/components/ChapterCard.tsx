@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { Check, Lock, Play } from "lucide-react";
 import type { LibraryChapterSummary } from "@/app/book/_lib/library-data";
 import { StepIndicators } from "./StepIndicators";
@@ -159,10 +160,10 @@ export function ChapterCard({
             }
           : undefined
       }
-      whileTap={{ scale: 0.985, transition: { duration: 0.1 } }}
+      whileTap={{ scale: 0.97, transition: { duration: DUR.instant } }}
       className={[
         "group relative w-full rounded-2xl text-left [transform:translateZ(0)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
+        "cf-focus",
         isInProgress
           ? [
               "bg-(--cf-surface-muted) p-5 cursor-pointer overflow-hidden",

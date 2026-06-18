@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { useLibraryContext } from "./LibraryContext";
 import { type LibraryBook } from "./libraryData";
@@ -37,7 +38,7 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: DUR.page }}
       className="mt-16"
       style={{ maxWidth: 1080, margin: "64px auto 0" }}
     >
@@ -77,7 +78,7 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
             >
               <Link
                 href={`/book/library/${encodeURIComponent(book.id)}`}
-                className="block rounded-[var(--radius-md-val)] outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                className="block rounded-[var(--radius-md-val)] cf-focus"
                 aria-label={`${book.title} — completed${completedDate ? ` ${completedDate}` : ""}`}
               >
                 {/* Cover with gold border + checkmark */}
@@ -142,7 +143,7 @@ export function CompletedShelf({ books }: CompletedShelfProps) {
               <Link
                 key={book.id}
                 href={`/book/library/${encodeURIComponent(book.id)}`}
-                className="flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-left outline-none transition-all focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                className="flex cursor-pointer items-center gap-3 rounded-xl px-4 py-3 text-left transition-all cf-focus"
                 style={{
                   background: "var(--bg-glass)",
                   border: "1px solid var(--border-subtle)",

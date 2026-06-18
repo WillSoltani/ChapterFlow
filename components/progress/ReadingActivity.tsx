@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import type { ReadingActivityData } from "./progressTypes";
 import { EmptyState } from "@/components/ui/EmptyState";
 
@@ -150,7 +151,7 @@ export function ReadingActivity({
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
@@ -170,7 +171,7 @@ export function ReadingActivity({
               key={view}
               type="button"
               onClick={() => setDataView(view)}
-              className="cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium capitalize transition-colors"
+              className="cf-pressable cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium capitalize transition-colors"
               style={{
                 background: dataView === view ? "var(--cf-surface-muted)" : "transparent",
                 color: dataView === view ? "var(--text-heading)" : "var(--text-muted)",
@@ -243,8 +244,8 @@ export function ReadingActivity({
                     initial={prefersReduced ? false : { scaleY: 0 }}
                     animate={{ scaleY: 1 }}
                     transition={{
-                      duration: 0.4,
-                      ease: "easeOut",
+                      duration: DUR.page,
+                      ease: EASE.standard,
                       delay: prefersReduced ? 0 : idx * 0.015,
                     }}
                   />

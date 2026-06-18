@@ -206,7 +206,7 @@ export function SubscriptionCard({
                   role="radio"
                   aria-checked={isSelected}
                   onClick={() => setSelectedInterval(tier.interval)}
-                  className={`flex items-center justify-between rounded-lg border px-3 py-2.5 text-left transition-colors ${
+                  className={`cf-pressable flex items-center justify-between rounded-lg border px-3 py-2.5 text-left transition-colors ${
                     isSelected
                       ? "border-(--cf-accent) bg-(--cf-accent-muted)"
                       : "border-(--cf-border) bg-(--cf-surface) hover:border-(--cf-text-soft)"

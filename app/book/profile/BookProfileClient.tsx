@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import {
   Award,
   BookMarked,
@@ -778,7 +779,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
         tabIndex={-1}
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        transition={{ duration: DUR.slow, ease: EASE.standard }}
         className="mx-auto w-full max-w-450 space-y-12 px-4 pb-28 pt-7 focus:outline-none sm:px-6 lg:space-y-16 lg:px-10 lg:pt-8 xl:px-16"
       >
 
@@ -967,7 +968,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
               {/* C5: Completion by mode */}
               {(localInsights.depthCounts.simple + localInsights.depthCounts.standard + localInsights.depthCounts.deeper) > 0 ? (
-                <div className="mt-6 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                <div className="mt-6 rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <h3 className="text-sm font-semibold text-(--cf-text-1)">Completion by mode</h3>
                   <p className="mt-1 text-sm text-(--cf-text-3)">How you distribute your reading depth</p>
                   <div className="mt-4">
@@ -978,7 +979,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
 
               {/* E2: Knowledge / Category map */}
               {exploredCategories.length > 0 ? (
-                <div className="mt-6 rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                <div className="mt-6 rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <CategoryMap
                     explored={exploredCategories}
                     totalCategories={CATALOG_CATEGORY_COUNT}
@@ -997,7 +998,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
               eyebrow="Activity"
               title="Monthly summary"
               icon={<Calendar className="h-5 w-5" />}
-              right={<span className="rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
+              right={<span className="cf-pill px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
             >
               <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
                 {/* Left: Stats + D3 ring + D2 sparkline + heatmap */}
@@ -1021,7 +1022,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   </div>
 
                   {/* D1: Heatmap with today indicator */}
-                  <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+                  <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
                     <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
                     <HeatmapCalendar cells={analytics?.heatmapCells ?? []} />
                     {/* E1: This Week strip */}
@@ -1034,7 +1035,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 </div>
 
                 {/* Right: D4 Grouped activity timeline */}
-                <div className="relative rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                <div className="relative rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <div className="flex items-center justify-between gap-3">
                     <h3 className="text-sm font-semibold text-(--cf-text-1)">Activity timeline</h3>
                     <span className="text-xs text-(--cf-text-soft)">Last active {analytics?.lastActiveLabel ?? "No activity yet"}</span>
@@ -1063,7 +1064,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   </div>
                   {/* Fade-out gradient at bottom */}
                   {groupedTimeline.length > 2 ? (
-                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 rounded-b-[26px] bg-linear-to-t from-(--cf-surface-muted) to-transparent" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-12 rounded-b-3xl bg-linear-to-t from-(--cf-surface-muted) to-transparent" />
                   ) : null}
                 </div>
               </div>
@@ -1137,7 +1138,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                       </StaggeredBadgeItem>
                     ))}
                     {!profileBadgeShowcase.length && !closestLockedBadges.length ? (
-                      <div className="rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-3) sm:col-span-2 xl:col-span-3">
+                      <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-5 text-sm text-(--cf-text-3) sm:col-span-2 xl:col-span-3">
                         Complete your first chapter to start earning badges. Every reading session brings you closer to your first milestone.
                       </div>
                     ) : null}
@@ -1247,7 +1248,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 </div>
               ) : currentSnapshot || statsSummary.totalChaptersCompleted > 0 ? (
                 // G1: Inline takeaway prompt (has chapters but no notes)
-                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-6">
+                <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-6">
                   <p className="text-sm text-(--cf-text-2)">
                     {statsSummary.totalChaptersCompleted > 0
                       ? <>You&apos;ve explored {statsSummary.totalChaptersCompleted} chapter{statsSummary.totalChaptersCompleted !== 1 ? "s" : ""} but haven&apos;t saved any takeaways yet.</>
@@ -1286,7 +1287,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                   ) : null}
                 </div>
               ) : (
-                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-8 text-center">
+                <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-8 text-center">
                   <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface) text-2xl">📝</div>
                   <h3 className="text-base font-semibold text-(--cf-text-1)">Your reading journal starts here</h3>
                   <p className="mt-2 text-sm text-(--cf-text-3)">
@@ -1310,7 +1311,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
             >
               <div className="grid gap-6 lg:grid-cols-2">
                 {/* G3: Recently finished books with improved empty state */}
-                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <h3 className="text-sm font-semibold text-(--cf-text-1)">Recently finished books</h3>
                   <div className="mt-4 space-y-3">
                     {recentFinishedBooks.length > 0 ? (
@@ -1322,7 +1323,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                               Finished &bull; {new Date(snapshot.lastActivityAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                             </p>
                           </div>
-                          <span className="rounded-full border border-(--cf-success-border) bg-(--cf-success-soft) px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-success-text)">Completed</span>
+                          <span className="cf-pill cf-pill-success px-3 py-1 text-[11px] uppercase tracking-[0.18em]">Completed</span>
                         </div>
                       ))
                     ) : (
@@ -1351,7 +1352,7 @@ export function BookProfileClient({ userEmail, appVersion }: BookProfileClientPr
                 </div>
 
                 {/* G4 + 2.3: Recent quiz performance with bar chart */}
-                <div className="rounded-[26px] border border-(--cf-border) bg-(--cf-surface-muted) p-5">
+                <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-5">
                   <h3 className="text-sm font-semibold text-(--cf-text-1)">Recent quiz performance</h3>
 
                   {quizTrend && localInsights.recentQuizEntries.length >= 2 ? (

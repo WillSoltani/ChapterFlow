@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import type { ReviewData, ActiveBook } from "./progressTypes";
 
 interface KnowledgeReviewProps {
@@ -59,7 +60,7 @@ export function KnowledgeReview({
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       <h2
         className="text-base font-semibold"
@@ -77,7 +78,7 @@ export function KnowledgeReview({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR.fast }}
           >
             <span className="text-5xl">{"\u{1F9E0}\u2728"}</span>
             <p
@@ -96,7 +97,7 @@ export function KnowledgeReview({
             </p>
             <Link
               href={bookHref}
-              className="mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
+              className="cf-pressable cf-focus mt-4 inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-medium transition-colors"
               style={{
                 color: "var(--text-secondary)",
                 border: "1px solid var(--cf-border-strong)",
@@ -113,7 +114,7 @@ export function KnowledgeReview({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR.fast }}
           >
             {/* Primary counter */}
             <div className="flex items-baseline gap-2">
@@ -138,40 +139,19 @@ export function KnowledgeReview({
             {/* Breakdown badges */}
             <div className="flex flex-wrap items-center gap-2">
               {reviews.overdueCount > 0 && (
-                <span
-                  className="rounded-full px-3 py-1 text-xs font-medium"
-                  style={{
-                    background: "rgba(244,63,94,0.1)",
-                    color: "var(--cf-danger-text)",
-                    border: "1px solid rgba(244,63,94,0.2)",
-                  }}
-                >
+                <span className="cf-pill cf-pill-danger px-3 py-1 text-xs font-medium">
                   {reviews.overdueCount} overdue
                 </span>
               )}
               {reviews.dueTodayCount > 0 && (
-                <span
-                  className="rounded-full px-3 py-1 text-xs font-medium"
-                  style={{
-                    background: "rgba(245,158,11,0.1)",
-                    color: "var(--accent-amber)",
-                    border: "1px solid rgba(245,158,11,0.2)",
-                  }}
-                >
+                <span className="cf-pill cf-pill-warning px-3 py-1 text-xs font-medium">
                   {reviews.dueTodayCount === 1
                     ? "1 due today"
                     : `${reviews.dueTodayCount} due today`}
                 </span>
               )}
               {reviews.upcomingThisWeekCount > 0 && (
-                <span
-                  className="rounded-full px-3 py-1 text-xs font-medium"
-                  style={{
-                    background: "rgba(34,211,238,0.1)",
-                    color: "var(--accent-cyan)",
-                    border: "1px solid rgba(34,211,238,0.2)",
-                  }}
-                >
+                <span className="cf-pill cf-pill-info px-3 py-1 text-xs font-medium">
                   {reviews.upcomingThisWeekCount} upcoming
                 </span>
               )}
@@ -182,7 +162,7 @@ export function KnowledgeReview({
               <button
                 type="button"
                 onClick={onStartReview}
-                className="cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
+                className="cf-pressable cf-focus cursor-pointer rounded-xl px-5 py-2.5 text-sm font-semibold transition-all"
                 style={{
                   background: "var(--accent-cyan)",
                   color: "#fff",

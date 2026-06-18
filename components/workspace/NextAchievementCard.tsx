@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Trophy } from "lucide-react";
 
 interface NextAchievementCardProps {
@@ -37,7 +38,7 @@ export function NextAchievementCard({
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }
+          : { duration: DUR.slow, delay: 0.1, ease: EASE.standard }
       }
     >
       <div className="flex items-start gap-3.5">
@@ -94,7 +95,7 @@ export function NextAchievementCard({
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.8, ease: "easeOut", delay: 0.4 }
+                    : { duration: DUR.reveal, ease: "easeOut", delay: 0.4 }
                 }
               />
             </div>
@@ -110,7 +111,7 @@ export function NextAchievementCard({
 
       <Link
         href="/book/badges"
-        className="mt-4 block text-xs font-medium transition-colors hover:text-(--cf-accent) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)"
+        className="cf-focus mt-4 block text-xs font-medium transition-colors hover:text-(--cf-accent)"
         style={{ color: "var(--cf-accent)" }}
       >
         View All Achievements →

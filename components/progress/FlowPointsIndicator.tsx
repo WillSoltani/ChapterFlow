@@ -3,6 +3,7 @@
 // Implements §8.1 — IP Balance Display (header bar: compact diamond icon + number)
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 
 /** Geometric diamond/prism icon for Insight Points — §8.1 */
@@ -57,7 +58,7 @@ export function FlowPointsIndicator({
       className="flex flex-col items-end gap-0.5"
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3, delay: 0.35 }}
+      transition={{ duration: DUR.normal, delay: 0.35 }}
     >
       <div
         className="flex items-center gap-1.5"

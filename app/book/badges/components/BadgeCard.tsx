@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Lock } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
@@ -83,14 +84,15 @@ function EarnedBadgeCard({
       onClick={onClick}
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
       whileHover={reduced ? undefined : { y: -3 }}
+      whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
         "bg-(--cf-surface-muted) backdrop-blur-xl",
         "border-(--cf-border)",
         "cursor-pointer",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+        "cf-focus"
       )}
       style={{
         borderLeftWidth: 2,
@@ -148,14 +150,15 @@ function LockedBadgeCard({
       onClick={onClick}
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
       whileHover={reduced ? undefined : { y: -1, opacity: 1 }}
+      whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
         "bg-(--cf-surface-muted) backdrop-blur-md",
         "border-(--cf-border)",
         "cursor-pointer",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+        "cf-focus"
       )}
       style={{ transition: "opacity 150ms ease, transform 200ms ease" }}
       tabIndex={0}
@@ -213,12 +216,13 @@ function SecretBadgeCard({ index, onClick }: { index: number; onClick: () => voi
       onClick={onClick}
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.05, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
+      whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl p-4 text-left cursor-pointer",
         "bg-(--cf-surface-muted)",
         "border border-dashed border-(--cf-border)",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-amber/50 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+        "cf-focus"
       )}
       style={{ transition: "box-shadow 200ms ease" }}
       tabIndex={0}

@@ -33,8 +33,7 @@ export function Stepper({
         disabled={!canDecrement}
         onClick={() => onChange(Math.max(min, value - step))}
         className={cn(
-          "flex h-8 w-8 items-center justify-center rounded-lg border border-(--cf-border) transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+          "cf-pressable cf-focus flex h-8 w-8 items-center justify-center rounded-lg border border-(--cf-border) transition-colors",
           "min-h-[44px] min-w-[44px]",
           canDecrement
             ? "text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
@@ -56,8 +55,7 @@ export function Stepper({
         disabled={!canIncrement}
         onClick={() => onChange(Math.min(max, value + step))}
         className={cn(
-          "flex h-8 w-8 items-center justify-center rounded-lg border border-(--cf-border) transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+          "cf-pressable cf-focus flex h-8 w-8 items-center justify-center rounded-lg border border-(--cf-border) transition-colors",
           "min-h-[44px] min-w-[44px]",
           canIncrement
             ? "text-(--cf-text-2) hover:bg-(--cf-surface-muted)"

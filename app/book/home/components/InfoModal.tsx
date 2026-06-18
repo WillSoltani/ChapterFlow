@@ -44,7 +44,7 @@ export function InfoModal({ open, title, onClose, children }: InfoModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted)"
+            className="cf-pressable inline-flex h-9 w-9 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-2) transition hover:bg-(--cf-accent-muted)"
             aria-label="Close modal"
           >
             <X className="h-4 w-4" />

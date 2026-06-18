@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
@@ -78,7 +79,7 @@ export function BookHero({
       transition={
         prefersReducedMotion
           ? { duration: 0 }
-          : { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }
+          : { duration: DUR.slow, ease: EASE.standard, delay: 0.1 }
       }
       className="cf-panel relative overflow-hidden rounded-2xl p-6 sm:p-8 lg:rounded-3xl"
     >
@@ -94,7 +95,7 @@ export function BookHero({
           <motion.div
             initial={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.2 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.2 }}
             className="shrink-0"
           >
             <div style={{ boxShadow: "var(--shadow-book)", borderRadius: "0.75rem" }}>
@@ -116,7 +117,7 @@ export function BookHero({
             <motion.h1
               initial={prefersReducedMotion ? undefined : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.4 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.4 }}
               className="text-2xl font-bold tracking-tight text-(--cf-text-1) sm:text-3xl md:text-4xl"
               style={{ fontFamily: "var(--font-satoshi)" }}
             >
@@ -125,7 +126,7 @@ export function BookHero({
             <motion.p
               initial={prefersReducedMotion ? undefined : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.45 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.45 }}
               className="mt-1 text-base text-(--cf-text-3)"
             >
               by {entry.author}
@@ -135,12 +136,12 @@ export function BookHero({
             <motion.div
               initial={prefersReducedMotion ? undefined : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.5 }}
+              transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.5 }}
               className="mt-3 flex flex-wrap justify-center gap-2 md:justify-start"
             >
               <span className="cf-pill rounded-lg px-2.5 py-1 text-xs">{entry.category}</span>
               <span
-                className="rounded-lg px-2.5 py-1 text-xs font-medium"
+                className="cf-pill rounded-lg px-2.5 py-1 text-xs font-medium"
                 style={difficultyPillStyle(entry.difficulty)}
               >
                 {entry.difficulty}
@@ -156,7 +157,7 @@ export function BookHero({
               <motion.div
                 initial={prefersReducedMotion ? undefined : { opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.4, delay: 0.52 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.52 }}
                 className="mt-3 max-w-prose"
               >
                 <p
@@ -169,7 +170,7 @@ export function BookHero({
                     type="button"
                     onClick={() => setSynopsisExpanded((prev) => !prev)}
                     aria-expanded={synopsisExpanded}
-                    className="-mx-1 mt-0.5 inline-flex min-h-11 items-center rounded px-1 text-sm font-medium text-(--cf-accent) transition-colors hover:text-(--cf-accent-strong) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                    className="-mx-1 mt-0.5 inline-flex min-h-11 items-center rounded px-1 text-sm font-medium text-(--cf-accent) transition-colors hover:text-(--cf-accent-strong) cf-focus"
                   >
                     {synopsisExpanded ? "Less" : "More"}
                   </button>
@@ -184,14 +185,14 @@ export function BookHero({
               transition={
                 prefersReducedMotion
                   ? { duration: 0 }
-                  : { duration: 0.3, type: "spring" as const, stiffness: 300, damping: 25, delay: 0.45 }
+                  : { duration: DUR.normal, type: "spring" as const, stiffness: 300, damping: 25, delay: 0.45 }
               }
               className="mt-5 flex items-center gap-3"
             >
               {accessBlocked ? (
                 <Link
                   href="/pricing"
-                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold cf-focus"
                 >
                   <Sparkles className="h-4.5 w-4.5" />
                   <span>Upgrade to start</span>
@@ -200,7 +201,7 @@ export function BookHero({
                 <button
                   type="button"
                   onClick={onContinue}
-                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                  className="cf-btn cf-btn-primary rounded-xl px-7 py-3 text-base font-semibold cf-focus"
                 >
                   <span>{ctaText}</span>
                   {ctaIcon}

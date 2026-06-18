@@ -61,8 +61,7 @@ export function CardSelector<T extends string>({
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(
-              "relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200 overflow-hidden",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
+              "cf-focus relative flex flex-col items-start gap-1 rounded-2xl border p-4 text-left transition-all duration-200 overflow-hidden",
               "min-h-[44px] bg-(--cf-surface)",
               isSelected
                 ? cn(

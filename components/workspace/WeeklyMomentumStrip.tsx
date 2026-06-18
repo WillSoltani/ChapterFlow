@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 
 interface WeeklyMomentumStripProps {
   weeklyActivity: boolean[];
@@ -54,7 +55,7 @@ export function WeeklyMomentumStrip({
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.5, delay: 0.25, ease: [0.22, 1, 0.36, 1] }
+          : { duration: DUR.slow, delay: 0.25, ease: EASE.standard }
       }
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -77,7 +78,7 @@ export function WeeklyMomentumStrip({
                 transition={
                   prefersReducedMotion
                     ? undefined
-                    : { duration: 0.3, delay: 0.3 + i * 0.05 }
+                    : { duration: DUR.normal, delay: 0.3 + i * 0.05 }
                 }
               >
                 <span

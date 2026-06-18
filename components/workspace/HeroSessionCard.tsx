@@ -7,6 +7,7 @@ import {
   CATALOG_CATEGORY_COUNT_DISPLAY,
 } from "@/lib/catalog-stats";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
@@ -55,20 +56,40 @@ const DECORATIVE_FALLBACK_BOOKS = BOOKS_CATALOG.slice(0, 2).map((book, index) =>
   alt: "",
 }));
 
-function getStatusBadge(userState: UserState): { label: string; color: string } {
+function getStatusBadge(userState: UserState): {
+  label: string;
+  color: string;
+  textColor?: string;
+} {
+  // `color` drives the FILL (dot, pill tint/border) and stays on the bright
+  // accent. `textColor` is the readable text variant — for gold badges that's
+  // --cf-gold-text (AA on light surfaces; bright gold on dark), since the
+  // bright --accent-gold fails 1.4.3 as a label color on the light-tinted card.
   switch (userState) {
     case "active_reader":
       return { label: "CONTINUE READING", color: "var(--cf-accent)" };
     case "new_user":
       return { label: "READY TO START", color: "var(--cf-success-text)" };
     case "quiz_pending":
-      return { label: "QUIZ TIME", color: "var(--accent-gold)" };
+      return {
+        label: "QUIZ TIME",
+        color: "var(--accent-gold)",
+        textColor: "var(--cf-gold-text)",
+      };
     case "between_books":
-      return { label: "BOOK COMPLETE", color: "var(--accent-gold)" };
+      return {
+        label: "BOOK COMPLETE",
+        color: "var(--accent-gold)",
+        textColor: "var(--cf-gold-text)",
+      };
     case "returning":
       return { label: "WELCOME BACK", color: "var(--cf-accent)" };
     case "free_limit_reached":
-      return { label: "UNLOCK MORE", color: "var(--accent-gold)" };
+      return {
+        label: "UNLOCK MORE",
+        color: "var(--accent-gold)",
+        textColor: "var(--cf-gold-text)",
+      };
     default:
       return { label: "CONTINUE READING", color: "var(--cf-accent)" };
   }
@@ -162,8 +183,6 @@ function getHeroSubtitle(
   }
 }
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 export function HeroSessionCard({
   userState,
   currentBook,
@@ -223,7 +242,7 @@ export function HeroSessionCard({
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.6, delay: 0.1, ease }
+          : { duration: DUR.slow, delay: 0.1, ease: EASE.standard }
       }
     >
       <div className="flex flex-col md:flex-row">
@@ -248,7 +267,7 @@ export function HeroSessionCard({
             />
             <span
               className="text-[11px] font-semibold uppercase tracking-widest"
-              style={{ color: badge.color }}
+              style={{ color: badge.textColor ?? badge.color }}
             >
               {badge.label}
             </span>
@@ -362,7 +381,7 @@ export function HeroSessionCard({
             {bridgeToFirstChapter && (
               <Link
                 href="/book/library"
-                className="mt-3 inline-block rounded text-sm font-medium text-(--cf-accent) underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                className="cf-focus mt-3 inline-block rounded text-sm font-medium text-(--cf-accent) underline-offset-4 hover:underline"
               >
                 Browse library
               </Link>
@@ -498,7 +517,7 @@ export function HeroSessionCard({
                     transition={
                       prefersReducedMotion
                         ? undefined
-                        : { duration: 0.4, delay: 0.3 + i * 0.1, ease }
+                        : { duration: DUR.page, delay: 0.3 + i * 0.1, ease: EASE.standard }
                     }
                   >
                     <Image

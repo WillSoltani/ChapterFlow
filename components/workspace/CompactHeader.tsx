@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { StreakBadge } from "./StreakBadge";
 import { DailyGoalRing } from "./DailyGoalRing";
 
@@ -17,8 +18,6 @@ function getTimeOfDay() {
   const h = new Date().getHours();
   return h < 12 ? "morning" : h < 17 ? "afternoon" : "evening";
 }
-
-const ease = [0.22, 1, 0.36, 1] as const;
 
 export function CompactHeader({
   firstName,
@@ -49,7 +48,7 @@ export function CompactHeader({
           initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
           animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
           transition={
-            prefersReducedMotion ? undefined : { duration: 0.5, ease }
+            prefersReducedMotion ? undefined : { duration: DUR.slow, ease: EASE.standard }
           }
         >
           Good {getTimeOfDay()}, {firstName}
@@ -62,7 +61,7 @@ export function CompactHeader({
           transition={
             prefersReducedMotion
               ? undefined
-              : { duration: 0.4, delay: 0.15, ease }
+              : { duration: DUR.page, delay: 0.15, ease: EASE.standard }
           }
         >
           {subtitle}
@@ -77,7 +76,7 @@ export function CompactHeader({
         transition={
           prefersReducedMotion
             ? undefined
-            : { duration: 0.5, delay: 0.2, ease }
+            : { duration: DUR.slow, delay: 0.2, ease: EASE.standard }
         }
       >
         <Link href="/book/progress" className="inline-flex">

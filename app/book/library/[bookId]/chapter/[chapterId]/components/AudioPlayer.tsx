@@ -307,7 +307,7 @@ export function AudioPlayer({
         <audio ref={audioRef} preload="auto" />
         <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-(--cr-glass-border) bg-(--cr-bg-root)/95 backdrop-blur-lg pl-4 pr-[4.5rem] pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-4px_24px_rgba(0,0,0,0.12)] sm:pr-4">
           <div className="mx-auto flex max-w-3xl items-center gap-3">
-            <button type="button" onClick={togglePlay} className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) transition hover:brightness-110 active:scale-95" aria-label={playing ? "Pause" : "Play"}>
+            <button type="button" onClick={togglePlay} className="cf-pressable flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) transition hover:brightness-110" aria-label={playing ? "Pause" : "Play"}>
               {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
             </button>
             <div className="min-w-0 flex-1">
@@ -390,7 +390,7 @@ export function AudioPlayer({
           <div className="flex items-center justify-center gap-2 px-4 pb-3 pt-1">
             <button type="button" onClick={() => seekTo(0)} disabled={loading} className="rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Restart" title="Restart"><RotateCcw className="h-4 w-4" /></button>
             <button type="button" onClick={() => seekTo(currentTime - 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Back 10s" title="Back 10s"><span className="text-[11px] font-bold">-10s</span></button>
-            <button type="button" onClick={togglePlay} disabled={loading} className="flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_20px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] transition hover:brightness-110 active:scale-95 disabled:opacity-60" aria-label={playing ? "Pause" : "Play"}>
+            <button type="button" onClick={togglePlay} disabled={loading} className="cf-pressable flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_20px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] transition hover:brightness-110 disabled:opacity-60" aria-label={playing ? "Pause" : "Play"}>
               {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : playing ? <Pause className="h-5 w-5" /> : <Play className="ml-0.5 h-5 w-5" />}
             </button>
             <button type="button" onClick={() => seekTo(currentTime + 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Forward 10s" title="Forward 10s"><span className="text-[11px] font-bold">+10s</span></button>

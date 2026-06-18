@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import { useCallback } from "react";
+import { DUR } from "@/lib/motion";
 
 interface TappableCardProps {
   selected: boolean;
@@ -48,9 +49,9 @@ export default function TappableCard({
       whileTap={
         disabled || prefersReducedMotion
           ? {}
-          : { scale: 0.99 }
+          : { scale: 0.97 }
       }
-      transition={{ duration: 0.15 }}
+      transition={{ duration: DUR.micro }}
       className={className}
       style={{
         position: "relative",

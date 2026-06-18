@@ -20,9 +20,8 @@ export function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitc
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(
-        "relative w-11 h-6 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
+        "cf-focus relative w-11 h-6 shrink-0 cursor-pointer rounded-full transition-colors duration-200",
         "border border-transparent forced-colors:border-[ButtonText]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent)/40 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)",
         "disabled:cursor-not-allowed disabled:opacity-40",
         checked
           ? "bg-(--cf-accent) shadow-[inset_0_0_6px_var(--cf-accent-shadow)]"

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+import { DUR } from "@/lib/motion";
 
 type EmptyStateVariant = "plain" | "panel";
 
@@ -78,7 +79,7 @@ export function EmptyState({
     <button
       type="button"
       onClick={onCtaClick}
-      className="mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
+      className="cf-pressable mt-4 cursor-pointer rounded-xl px-5 py-2.5 text-sm font-medium transition-colors hover:brightness-110"
       style={{
         background: "var(--accent-cyan)",
         color: "var(--bg-base)",
@@ -130,7 +131,7 @@ export function EmptyState({
     <motion.div
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
       className={`flex flex-col items-center justify-center py-8 text-center ${className}`}
     >
       {icon != null && (

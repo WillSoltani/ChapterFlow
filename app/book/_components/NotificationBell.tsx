@@ -168,7 +168,7 @@ export function NotificationBell() {
     <div className="relative" ref={panelRef}>
       <button
         onClick={() => setOpen((v) => !v)}
-        className="relative flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-(--cf-card-hover) transition-colors"
+        className="cf-pressable relative flex min-h-11 min-w-11 items-center justify-center rounded-full hover:bg-(--cf-card-hover) transition-colors"
         aria-label={`Notifications${unreadCount > 0 ? ` (${unreadCount} unread)` : ""}`}
         aria-haspopup="true"
         aria-expanded={open}

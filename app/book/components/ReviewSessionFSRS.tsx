@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import {
   Brain,
   X,
@@ -20,8 +21,6 @@ type Props = {
   bookId?: string;
   onClose: () => void;
 };
-
-const EASE = [0.22, 1, 0.36, 1] as const;
 
 const RATING_CONFIG: Record<
   FSRSRating,
@@ -116,7 +115,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, ease: EASE }}
+          transition={{ duration: DUR.normal, ease: EASE.standard }}
           className="flex flex-col items-center gap-4"
         >
           <div className="relative flex h-14 w-14 items-center justify-center">
@@ -139,8 +138,8 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.95 }}
-          transition={{ duration: 0.4, ease: EASE }}
-          className="cf-panel mx-4 max-w-sm rounded-[26px] p-8 text-center"
+          transition={{ duration: DUR.page, ease: EASE.standard }}
+          className="cf-panel mx-4 max-w-sm rounded-4xl p-8 text-center"
         >
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-(--cf-accent-soft)">
             <Check className="h-7 w-7 text-(--cf-accent)" />
@@ -171,8 +170,8 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.5, ease: EASE }}
-          className="cf-panel relative mx-4 max-w-sm overflow-hidden rounded-[26px] p-8 text-center"
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
+          className="cf-panel relative mx-4 max-w-sm overflow-hidden rounded-4xl p-8 text-center"
         >
           {/* Ambient glow */}
           <span
@@ -202,7 +201,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.4, ease: EASE }}
+              transition={{ delay: 0.25, duration: DUR.page, ease: EASE.standard }}
               className="text-2xl font-bold text-(--cf-text-1)"
             >
               Session Complete!
@@ -211,7 +210,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.4, ease: EASE }}
+              transition={{ delay: 0.35, duration: DUR.page, ease: EASE.standard }}
               className="mt-2 text-sm leading-relaxed text-(--cf-text-3)"
             >
               You reviewed{" "}
@@ -224,7 +223,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
             <motion.button
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45, duration: 0.4, ease: EASE }}
+              transition={{ delay: 0.45, duration: DUR.page, ease: EASE.standard }}
               type="button"
               onClick={onClose}
               className="cf-btn cf-btn-primary mt-7 w-full rounded-2xl text-sm"
@@ -249,7 +248,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
       <motion.header
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: EASE }}
+        transition={{ duration: DUR.normal, ease: EASE.standard }}
         className="flex items-center justify-between border-b border-(--cf-border) px-4 py-3 sm:px-6"
       >
         <div className="flex items-center gap-3">
@@ -288,7 +287,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
           className="h-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong) shadow-[0_0_8px_var(--cf-accent-shadow)]"
           initial={{ width: 0 }}
           animate={{ width: `${progressPercent}%` }}
-          transition={{ duration: 0.5, ease: EASE }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         />
       </div>
 
@@ -301,9 +300,9 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
               initial={{ opacity: 0, x: flipped ? 0 : 60, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -60, scale: 0.97 }}
-              transition={{ duration: 0.35, ease: EASE }}
+              transition={{ duration: DUR.normal, ease: EASE.standard }}
               className={cn(
-                "cf-panel relative min-h-55 cursor-pointer overflow-hidden rounded-[22px] p-6 sm:p-8",
+                "cf-panel relative min-h-55 cursor-pointer overflow-hidden rounded-2xl p-6 sm:p-8",
                 !flipped && "cf-panel-hover",
               )}
               onClick={() => !flipped && setFlipped(true)}
@@ -356,7 +355,7 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 16 }}
-                transition={{ duration: 0.3, ease: EASE }}
+                transition={{ duration: DUR.normal, ease: EASE.standard }}
                 className="mt-4 grid grid-cols-4 gap-2"
               >
                 {([1, 2, 3, 4] as FSRSRating[]).map((rating, i) => {
@@ -368,16 +367,15 @@ export function ReviewSessionFSRS({ bookId, onClose }: Props) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
                         delay: 0.05 * i,
-                        duration: 0.3,
-                        ease: EASE,
+                        duration: DUR.normal,
+                        ease: EASE.standard,
                       }}
                       type="button"
                       onClick={() => handleRate(rating)}
                       disabled={submitting}
                       className={cn(
-                        "flex flex-col items-center gap-1 rounded-2xl border px-2 py-3 text-sm font-semibold transition-all duration-200 disabled:opacity-40",
+                        "cf-pressable flex flex-col items-center gap-1 rounded-2xl border px-2 py-3 text-sm font-semibold transition-all duration-200 disabled:opacity-40",
                         "motion-safe:hover:scale-[1.04] motion-safe:hover:-translate-y-0.5",
-                        "active:scale-[0.98]",
                         c.border,
                         c.bg,
                         c.bgHover,

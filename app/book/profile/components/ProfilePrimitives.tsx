@@ -26,6 +26,7 @@ import {
   useInView,
   animate,
 } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { BookCover } from "@/components/ui/BookCover";
@@ -61,7 +62,7 @@ export function FadeIn({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={{ duration: DUR.slow, delay, ease: EASE.standard }}
       className={className}
     >
       {children}
@@ -186,7 +187,7 @@ function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boolean; s
                 opacity: 0,
                 scale: 0.5,
               }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: DUR.reveal, ease: "easeOut" }}
             />
           ))}
         </span>
@@ -306,7 +307,7 @@ export function StatCard({
 
   return (
     <div
-      className={cn("rounded-[26px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card", bgTint)}
+      className={cn("rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card", bgTint)}
       style={isHighlight && accentColor ? { borderLeft: `3px solid ${accentColor}` } : undefined}
     >
       <div className="flex items-center justify-between gap-3">
@@ -453,8 +454,8 @@ export function IdentityHeroBanner({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative overflow-hidden rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-shadow-card sm:p-7 lg:p-8"
+      transition={{ duration: DUR.slow, ease: EASE.standard }}
+      className="relative overflow-hidden rounded-4xl border border-(--cf-border) bg-(--cf-surface-strong) p-6 shadow-shadow-card sm:p-7 lg:p-8"
     >
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_left] from-accent-cyan/22 via-accent-cyan/10 to-transparent" />
       <div className="pointer-events-none absolute -right-20 top-0 h-72 w-72 rounded-full bg-(--cf-surface-muted) blur-3xl" />
@@ -572,7 +573,7 @@ export function IdentityHeroBanner({
                   className={cn("h-full rounded-full", goalMet ? "bg-accent-emerald" : "bg-(--cf-accent)")}
                   initial={{ width: 0 }}
                   animate={{ width: `${goalPercent}%` }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+                  transition={{ duration: DUR.slow, ease: "easeOut", delay: 0.3 }}
                 />
               </div>
             </div>
@@ -619,7 +620,7 @@ export function StickyMiniHeader({
     <motion.div
       initial={false}
       animate={{ y: visible ? 0 : -60, opacity: visible ? 1 : 0 }}
-      transition={{ duration: 0.25, ease: "easeOut" }}
+      transition={{ duration: DUR.fast, ease: EASE.standard }}
       className="fixed left-0 right-0 top-[56px] z-20 border-b border-(--cf-border) bg-(--cf-surface-strong)/95"
       style={{ pointerEvents: visible ? "auto" : "none" }}
     >
@@ -736,12 +737,12 @@ export function MomentumCard({
   const fitsGoal = chapterMinutes > 0 && chapterMinutes <= dailyGoalMinutes + 5;
 
   return (
-    <div className="relative overflow-hidden rounded-[30px] border border-(--cf-accent-border) bg-linear-to-br from-(--cf-accent-soft) to-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+    <div className="relative overflow-hidden rounded-4xl border border-(--cf-accent-border) bg-linear-to-br from-(--cf-accent-soft) to-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-(--cf-accent)/8 blur-3xl" />
       <div className="relative">
         <div className="flex flex-wrap items-center gap-2">
           <span className="inline-flex rounded-full border border-(--cf-accent-border) bg-(--cf-surface) px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-(--cf-info-text)">Currently reading</span>
-          <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-2)">{mode}</span>
+          <span className="cf-pill px-3 py-1 text-[11px] uppercase tracking-[0.22em]">{mode}</span>
         </div>
         <h3 className="mt-4 text-2xl font-bold tracking-tight text-(--cf-text-1) sm:text-3xl">{title}</h3>
         <p className="mt-2 text-sm text-(--cf-text-2)">{chapterLabel}</p>
@@ -770,7 +771,7 @@ export function MomentumCard({
             className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: DUR.reveal, ease: "easeOut" }}
           />
         </motion.div>
         <p className="mt-1 text-right text-xs text-(--cf-text-soft)">{Math.round(progress)}% complete</p>
@@ -799,7 +800,7 @@ export function MomentumCard({
 
 export function MomentumEmptyState({ onBrowse }: { onBrowse: () => void }) {
   return (
-    <div className="rounded-[30px] border border-(--cf-border) bg-(--cf-surface-strong) p-8 text-center">
+    <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-strong) p-8 text-center">
       <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-3xl">
         📖✨
       </div>
@@ -826,7 +827,7 @@ export function ActiveBookCard({
   progress: number; chapterLabel: string; eta: string; onContinue: () => void;
 }) {
   return (
-    <div className="rounded-[28px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
+    <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
       <div className="flex gap-4">
         <BookCover bookId={bookId} title={title} icon={icon} coverImage={coverImage} className="h-24 w-18 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted)" fallbackClassName="text-3xl" sizes="72px" />
         <div className="min-w-0 flex-1">
@@ -861,7 +862,7 @@ export function AchievementBadgeCard({
       type="button"
       onClick={onOpen}
       className={cn(
-        "group rounded-[26px] border p-4 text-left transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        "group cf-pressable cf-focus rounded-3xl border p-4 text-left transition",
         earned ? "border-(--cf-warning-border) bg-(--cf-warning-soft)" : "border-(--cf-border) bg-(--cf-surface-muted) hover:border-(--cf-border-strong) hover:bg-(--cf-surface)"
       )}
     >
@@ -907,7 +908,7 @@ export function NotePreviewCard({
   title: string; body: string; meta: string; actionLabel?: string; onAction?: () => void;
 }) {
   return (
-    <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
+    <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface) p-4 shadow-shadow-card">
       <p className="text-sm font-semibold text-(--cf-text-1)">{title}</p>
       <p className="mt-3 line-clamp-4 text-sm leading-7 text-(--cf-text-2)">{renderInlineMarkdown(body)}</p>
       <div className="mt-4 flex items-center justify-between gap-3">
@@ -1104,7 +1105,7 @@ export function Sparkline({ data }: { data: number[] }) {
         fill="var(--cf-accent)"
         initial={{ scale: 0, opacity: 0 }}
         animate={isInView ? { scale: 1, opacity: 1 } : {}}
-        transition={{ delay: 1.2, duration: 0.3, ease: "easeOut" }}
+        transition={{ delay: 1.2, duration: DUR.normal, ease: "easeOut" }}
       />
     </svg>
   );
@@ -1155,11 +1156,11 @@ export function UpgradeCard({
 }) {
   const percent = Math.min(100, Math.round((booksUsed / Math.max(booksTotal, 1)) * 100));
   return (
-    <div className="relative overflow-hidden rounded-[30px] border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
+    <div className="relative overflow-hidden rounded-4xl border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
-          <span className="inline-flex rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em] text-(--cf-text-2)">FREE PLAN</span>
+          <span className="cf-pill px-3 py-1 text-[11px] font-medium uppercase tracking-[0.22em]">FREE PLAN</span>
           <span className="text-sm text-(--cf-text-3)">{booksUsed} of {booksTotal} books used</span>
         </div>
         <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-(--cf-border)">
@@ -1195,7 +1196,7 @@ export function ProStatusCard({
   onManage: () => void;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-[30px] border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-shadow-card">
+    <div className="relative overflow-hidden rounded-4xl border border-accent-amber/20 bg-(--cf-surface-strong) p-6 shadow-shadow-card">
       <div className="pointer-events-none absolute inset-0 bg-radial-[circle_at_top_right] from-accent-amber/8 via-transparent to-transparent" />
       <div className="relative">
         <div className="flex items-center gap-2">
@@ -1265,7 +1266,7 @@ export function CompletionByModeChart({
                 initial={{ width: 0 }}
                 whileInView={{ width: `${entry.value}%` }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: staggerDelay }}
+                transition={{ duration: DUR.reveal, ease: "easeOut", delay: staggerDelay }}
               />
             </div>
           </div>
@@ -1317,7 +1318,7 @@ export function QuizBarChart({
               className="flex-1 rounded-t bg-(--cf-accent)"
               initial={{ height: 0 }}
               animate={isInView ? { height: `${heightPct}%` } : {}}
-              transition={{ duration: 0.5, ease: "easeOut", delay: i * 0.05 }}
+              transition={{ duration: DUR.slow, ease: "easeOut", delay: i * 0.05 }}
               title={`${score}%`}
             />
           );
@@ -1380,7 +1381,7 @@ export function UpNextPreview({
           {label}: <span className="font-medium text-(--cf-text-2) group-hover:text-(--cf-text-1)">{bookTitle}</span>
         </span>
         {category ? (
-          <span className="shrink-0 rounded-full border border-(--cf-border) bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] text-(--cf-text-3)">{category}</span>
+          <span className="cf-pill shrink-0 px-2 py-0.5 text-[10px] text-(--cf-text-3)">{category}</span>
         ) : null}
         <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-0 transition group-hover:opacity-100" />
       </button>
@@ -1472,7 +1473,7 @@ export function CategoryMap({
             key={cat.name}
             type="button"
             onClick={() => onCategoryClick?.(cat.name)}
-            className="rounded-full border border-accent-cyan/10 bg-accent-cyan/10 px-2.5 py-1 text-[11px] text-accent-cyan transition hover:bg-accent-cyan/15"
+            className="cf-chip cf-chip-active px-2.5 py-1 text-[11px] transition hover:bg-accent-cyan/15"
           >
             {cat.name} · {cat.chapters}
           </button>
@@ -1498,7 +1499,7 @@ const badgeContainerVariants = {
 
 const badgeItemVariants = {
   hidden: { opacity: 0, y: 16, scale: 0.95 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: DUR.page, ease: EASE.standard } },
 };
 
 export function StaggeredBadgeGrid({ children, className }: { children: ReactNode; className?: string }) {
@@ -1554,7 +1555,7 @@ export function ProfileSkeleton() {
   return (
     <div className="mx-auto w-full max-w-450 space-y-8 px-4 pb-28 pt-7 sm:px-6 lg:px-10 lg:pt-8 xl:px-16">
       {/* Hero skeleton */}
-      <div className="rounded-[34px] border border-(--cf-border) bg-(--cf-surface-strong) p-6 sm:p-7 lg:p-8">
+      <div className="rounded-4xl border border-(--cf-border) bg-(--cf-surface-strong) p-6 sm:p-7 lg:p-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-start">
           <Shimmer className="h-20 w-20 shrink-0 !rounded-full sm:h-[100px] sm:w-[100px]" />
           <div className="flex-1 space-y-3">

@@ -20,7 +20,7 @@ export function SettingRow({
   return (
     <div
       id={id}
-      className={`flex items-center justify-between gap-4 rounded-[13px] px-3 py-3 transition-colors hover:bg-(--cf-surface-muted) ${
+      className={`flex items-center justify-between gap-4 rounded-lg px-3 py-3 transition-colors hover:bg-(--cf-surface-muted) ${
         highlighted ? "ring-1 ring-(--cf-accent-border) bg-(--cf-accent-muted)" : ""
       }`}
     >

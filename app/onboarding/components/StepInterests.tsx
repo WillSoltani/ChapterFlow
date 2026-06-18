@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
 import { staggerContainer, staggerItem } from "@/app/onboarding/utils/animations";
+import { DUR } from "@/lib/motion";
 import { Button } from "@/components/ui/button";
 
 interface StepInterestsProps {
@@ -143,7 +144,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
             initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: DUR.fast }}
             className="mb-6 rounded-full px-4 py-1.5"
             style={{
               backgroundColor: "var(--bg-glass)",

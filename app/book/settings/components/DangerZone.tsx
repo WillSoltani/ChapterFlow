@@ -82,7 +82,7 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
               setDeactivateError(null);
               setDeactivateModal(true);
             }}
-            className="flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
+            className="cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
           >
             <LogOut className="h-4 w-4 text-(--cf-danger-text)" />
             <div>
@@ -95,7 +95,7 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
           <button
             type="button"
             onClick={handleStartDelete}
-            className="flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
+            className="cf-pressable flex w-full items-center gap-2.5 rounded-xl border border-(--cf-danger-border) px-4 py-3 text-left text-sm font-medium text-(--cf-text-2) transition-colors hover:bg-(--cf-danger-bg) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-danger-border)"
           >
             <Trash2 className="h-4 w-4 text-(--cf-danger-text)" />
             <div>
@@ -167,7 +167,7 @@ export function DangerZone({ onDeactivate, onDelete }: DangerZoneProps) {
             type="button"
             onClick={() => !loading && setDeleteModal(false)}
             aria-label="Close"
-            className="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
+            className="cf-pressable absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full hover:bg-(--cf-surface-muted) text-(--cf-text-soft)"
           >
             <X className="h-4 w-4" />
           </button>

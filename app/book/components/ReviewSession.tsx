@@ -101,7 +101,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
           <button
             type="button"
             onClick={onClose}
-            className="mt-4 rounded-xl bg-(--cr-accent) px-4 py-2 text-sm font-bold text-(--cr-text-inverse)"
+            className="cf-pressable mt-4 rounded-xl bg-(--cr-accent) px-4 py-2 text-sm font-bold text-(--cr-text-inverse)"
           >
             Continue
           </button>
@@ -158,7 +158,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
           <button
             type="button"
             onClick={onClose}
-            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-(--cr-accent) px-4 py-3 text-sm font-bold text-(--cr-text-inverse)"
+            className="cf-pressable mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-(--cr-accent) px-4 py-3 text-sm font-bold text-(--cr-text-inverse)"
           >
             Continue <ArrowRight className="h-4 w-4" />
           </button>
@@ -239,7 +239,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                 <button
                   type="button"
                   onClick={() => setRevealed(true)}
-                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-(--cr-accent)/30 bg-(--cr-accent)/10 px-5 py-3 text-sm font-semibold text-(--cr-accent) transition-colors hover:bg-(--cr-accent)/20"
+                  className="cf-pressable mt-5 flex w-full items-center justify-center gap-2 rounded-xl border border-(--cr-accent)/30 bg-(--cr-accent)/10 px-5 py-3 text-sm font-semibold text-(--cr-accent) transition-colors hover:bg-(--cr-accent)/20"
                 >
                   <Eye className="h-4 w-4" />
                   Reveal Answer
@@ -260,7 +260,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                       <button
                         type="button"
                         onClick={() => handleSelfRate(false)}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-amber/30 bg-accent-amber/10 px-4 py-2.5 text-sm font-semibold text-accent-amber transition-colors hover:bg-accent-amber/20"
+                        className="cf-pressable flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-amber/30 bg-accent-amber/10 px-4 py-2.5 text-sm font-semibold text-accent-amber transition-colors hover:bg-accent-amber/20"
                       >
                         <RotateCcw className="h-3.5 w-3.5" />
                         Still learning
@@ -268,7 +268,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                       <button
                         type="button"
                         onClick={() => handleSelfRate(true)}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-emerald/30 bg-accent-emerald/10 px-4 py-2.5 text-sm font-semibold text-accent-emerald transition-colors hover:bg-accent-emerald/20"
+                        className="cf-pressable flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-accent-emerald/30 bg-accent-emerald/10 px-4 py-2.5 text-sm font-semibold text-accent-emerald transition-colors hover:bg-accent-emerald/20"
                       >
                         <Check className="h-3.5 w-3.5" />
                         Got it

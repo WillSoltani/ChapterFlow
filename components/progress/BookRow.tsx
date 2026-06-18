@@ -125,7 +125,7 @@ export function ActiveBookRow({ book }: ActiveBookRowProps) {
         </span>
         <Link
           href={href}
-          className="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
+          className="cf-pressable cf-focus inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors"
           style={{
             background: "transparent",
             color: "var(--accent-cyan)",
@@ -213,7 +213,7 @@ export function CompletedBookRow({ book }: CompletedBookRowProps) {
         <div className="flex gap-1.5">
           <Link
             href={`/book/library/${encodeURIComponent(book.id)}`}
-            className="inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors"
+            className="cf-pressable inline-flex cursor-pointer items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors"
             style={{
               background: "var(--cf-surface-muted)",
               color: "var(--text-heading)",

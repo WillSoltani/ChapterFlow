@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { Camera, ChevronDown, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { Dialog } from "@/components/ui/Dialog";
 import type { BookProfileState } from "@/app/book/hooks/useBookProfile";
 
@@ -136,7 +137,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
         <button
           type="button"
           onClick={tryClose}
-          className="absolute top-4 right-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)"
+          className="cf-pressable absolute top-4 right-4 z-10 inline-flex h-8 w-8 items-center justify-center rounded-full bg-(--cf-surface-muted) text-(--cf-text-3) transition hover:bg-(--cf-surface-strong) hover:text-(--cf-text-1)"
           aria-label="Close"
         >
           <X className="h-4 w-4" />
@@ -163,7 +164,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
               type="button"
               onClick={() => fileInputRef.current?.click()}
               aria-label="Upload profile photo"
-              className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) cursor-pointer"
+              className="absolute inset-0 flex items-center justify-center rounded-full bg-black/50 text-white opacity-0 transition-opacity hover:opacity-100 focus-visible:opacity-100 cf-focus cursor-pointer"
             >
               <Camera className="w-5 h-5" />
             </button>
@@ -314,7 +315,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: DUR.fast }}
                 className="overflow-hidden"
               >
                 <div className="grid grid-cols-2 gap-3 mt-3">
@@ -376,7 +377,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
             <button
               type="button"
               onClick={tryClose}
-              className="px-4 py-2 rounded-lg text-sm text-(--cf-text-3) hover:text-(--cf-text-1)
+              className="cf-pressable px-4 py-2 rounded-lg text-sm text-(--cf-text-3) hover:text-(--cf-text-1)
                 hover:bg-(--cf-surface-strong) transition-colors"
             >
               Cancel
@@ -385,7 +386,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
               type="button"
               onClick={submit}
               disabled={!dirty || saving}
-              className="px-5 py-2 rounded-lg text-sm font-medium
+              className="cf-pressable px-5 py-2 rounded-lg text-sm font-medium
                 bg-accent-cyan hover:bg-accent-cyan/90 text-bg-base
                 disabled:bg-(--cf-surface-muted) disabled:text-(--cf-text-soft) disabled:cursor-not-allowed
                 transition-colors"
@@ -413,7 +414,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
               ref={keepEditingRef}
               type="button"
               onClick={() => setConfirmDiscard(false)}
-              className="px-4 py-2 rounded-lg text-sm text-(--cf-text-2) hover:bg-(--cf-surface-strong) transition-colors"
+              className="cf-pressable px-4 py-2 rounded-lg text-sm text-(--cf-text-2) hover:bg-(--cf-surface-strong) transition-colors"
             >
               Keep editing
             </button>
@@ -423,7 +424,7 @@ export function EditProfileModal({ open, profile, email, onClose, onSave }: Edit
                 setConfirmDiscard(false);
                 onClose();
               }}
-              className="px-4 py-2 rounded-lg text-sm font-medium bg-accent-rose text-white hover:bg-accent-rose/90 transition-colors"
+              className="cf-pressable px-4 py-2 rounded-lg text-sm font-medium bg-accent-rose text-white hover:bg-accent-rose/90 transition-colors"
             >
               Discard
             </button>

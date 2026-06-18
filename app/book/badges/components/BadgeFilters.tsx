@@ -28,19 +28,10 @@ export function BadgeFilters({ activeFilter, onChange, badges }: BadgeFiltersPro
             type="button"
             onClick={() => onChange(opt.value as BadgeFilter)}
             className={cn(
-              "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-medium transition snap-start",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
-              isActive
-                ? "border-transparent"
-                : count === 0
-                  ? "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) opacity-50 hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
-                  : "border-(--cf-border-strong) bg-transparent text-(--cf-text-2) hover:border-(--cf-border-strong) hover:bg-(--cf-surface-muted)"
+              "cf-chip cf-pressable shrink-0 px-3.5 py-1.5 text-sm font-medium transition snap-start cf-focus",
+              isActive && "cf-chip-active",
+              !isActive && count === 0 && "opacity-50"
             )}
-            style={
-              isActive
-                ? { background: "rgba(34,211,238,0.12)", color: "var(--accent-cyan)" }
-                : undefined
-            }
           >
             {opt.label}
             {count !== null && (

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { BookCard } from "./BookCard";
 import { formatReadingTime, type LibraryBook } from "./libraryData";
 
@@ -42,7 +43,7 @@ export function CuratedSection({
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: DUR.page }}
       className="mt-16"
       style={{ maxWidth: 1080, margin: "64px auto 0" }}
     >
@@ -51,7 +52,7 @@ export function CuratedSection({
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: DUR.normal }}
       >
         <div className="flex items-end justify-between">
           <h2
@@ -106,7 +107,7 @@ export function CuratedSection({
                     visible: {
                       opacity: 1,
                       y: 0,
-                      transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
+                      transition: { duration: DUR.normal, ease: EASE.standard },
                     },
                   }
             }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { BookCardWorkspace } from "./BookCardWorkspace";
 import { MONTHLY_PRICE } from "@/lib/pricing";
 import {
@@ -26,8 +27,6 @@ interface DiscoveryRowProps {
   isPro: boolean;
 }
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
 export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -42,7 +41,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
       transition={
         prefersReducedMotion
           ? undefined
-          : { duration: 0.5, ease }
+          : { duration: DUR.slow, ease: EASE.standard }
       }
     >
       {/* Header */}
@@ -74,7 +73,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
             transition={
               prefersReducedMotion
                 ? undefined
-                : { duration: 0.4, delay: i * 0.06, ease }
+                : { duration: DUR.page, delay: i * 0.06, ease: EASE.standard }
             }
           >
             {book.reason && (
@@ -116,7 +115,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
           transition={
             prefersReducedMotion
               ? undefined
-              : { duration: 0.5, delay: 0.3, ease }
+              : { duration: DUR.slow, delay: 0.3, ease: EASE.standard }
           }
         >
           <p className="text-sm" style={{ color: "var(--cf-text-3)" }}>
@@ -134,7 +133,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
               boxShadow: "var(--cf-upgrade-accent-shadow)",
             }}
             whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-            whileTap={prefersReducedMotion ? undefined : { scale: 0.98 }}
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
           >
             Go Pro — {MONTHLY_PRICE}/mo
           </motion.span>

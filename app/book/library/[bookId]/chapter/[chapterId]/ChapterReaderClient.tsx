@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { BookLock, CheckCircle2, CloudOff, Lightbulb, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import {
   getChapterById,
   type ChapterExample,
@@ -1141,7 +1142,7 @@ export function ChapterReaderClient({
               key={`summary-${state.readingDepth}`}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: DUR.fast, ease: EASE.standard }}
               className="space-y-4"
             >
               {isV21Chapter ? (
@@ -1200,7 +1201,7 @@ export function ChapterReaderClient({
               key={`examples-${activeDepth}`}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: DUR.fast, ease: EASE.standard }}
             >
               <ExamplesList
                 examples={examples}
@@ -1235,7 +1236,7 @@ export function ChapterReaderClient({
               key={`quiz-${activeDepth}`}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: DUR.fast, ease: EASE.standard }}
             >
               <QuizPanel
               session={quiz.session}

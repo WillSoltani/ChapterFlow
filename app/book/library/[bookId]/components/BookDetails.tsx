@@ -54,7 +54,7 @@ export function BookDetails({
           onClick={() => setAboutOpen((prev) => !prev)}
           aria-expanded={aboutOpen}
           aria-controls="bd-about-panel"
-          className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+          className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) cf-focus"
         >
           <span className="inline-flex items-center gap-2 text-sm font-medium text-(--cf-text-1)">
             <BookOpen className="h-4 w-4 text-(--cf-text-3)" />
@@ -77,8 +77,7 @@ export function BookDetails({
                 {topicPills.map((topic) => (
                   <span
                     key={topic}
-                    className="rounded-full px-2.5 py-1 text-xs font-medium"
-                    style={{ background: "var(--cf-surface-strong)", color: "var(--cf-text-2)" }}
+                    className="cf-pill px-2.5 py-1 text-xs font-medium"
                   >
                     {topic}
                   </span>
@@ -92,7 +91,7 @@ export function BookDetails({
                 {estimatedDaysToFinish === 1 ? "" : "s"} at your daily goal
               </span>
               <span
-                className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium"
+                className="cf-pill px-2 py-0.5 text-xs font-medium"
                 style={difficultyPillStyle(entry.difficulty)}
               >
                 {entry.difficulty}
@@ -118,7 +117,7 @@ export function BookDetails({
           onClick={() => setSettingsOpen((prev) => !prev)}
           aria-expanded={settingsOpen}
           aria-controls="bd-settings-panel"
-          className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+          className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition hover:bg-(--cf-surface-muted) cf-focus"
         >
           <span className="inline-flex items-center gap-2 text-sm font-medium text-(--cf-text-1)">
             <Settings className="h-4 w-4 text-(--cf-text-3)" />

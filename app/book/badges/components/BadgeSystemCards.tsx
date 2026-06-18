@@ -77,8 +77,8 @@ export function FeaturedBadgeCard({
       type="button"
       onClick={onOpen}
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-[28px] p-5 text-left transition",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        "cf-pressable group relative flex h-full flex-col overflow-hidden rounded-4xl p-5 text-left transition",
+        "cf-focus",
         "hover:-translate-y-0.5 hover:shadow-[0_24px_44px_rgba(0,0,0,0.12)]",
         isLocked
           ? "border border-dashed border-(--cf-border) bg-(--cf-surface-muted)"
@@ -142,8 +142,8 @@ export function BadgeCard({
       type="button"
       onClick={onOpen}
       className={cn(
-        "group relative overflow-hidden rounded-[24px] border p-4 text-left transition",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent-border)",
+        "cf-pressable group relative overflow-hidden rounded-3xl border p-4 text-left transition",
+        "cf-focus",
         badge.earned
           ? "border-(--cf-warning-border) bg-(--cf-warning-soft) hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(251,191,36,0.12)]"
           : "border-(--cf-border) bg-(--cf-surface-muted) hover:border-(--cf-border-strong) hover:bg-(--cf-surface)"
@@ -210,7 +210,7 @@ export function BadgeCategorySection({
   const earnedIP = badges.filter((b) => b.earned).reduce((sum, b) => sum + b.flowPoints, 0);
 
   return (
-    <div className="overflow-hidden rounded-[28px] border border-(--cf-border) bg-(--cf-surface)">
+    <div className="overflow-hidden rounded-4xl border border-(--cf-border) bg-(--cf-surface)">
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
@@ -327,7 +327,7 @@ export function ProgressToNextBadgeCard({
 
 export function BadgeTimelineItem({ entry, onOpen }: { entry: BadgeTimelineEntry; onOpen?: () => void }) {
   return (
-    <div className="flex gap-4 rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5">
+    <div className="flex gap-4 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5">
       <div className="flex flex-col items-center">
         <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-2xl">
           {entry.icon}
@@ -373,7 +373,7 @@ export function BadgeDetailPanel({
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-4">
-        <div className="inline-flex h-16 w-16 items-center justify-center rounded-[22px] border border-(--cf-border) bg-(--cf-surface-muted) text-4xl">
+        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-4xl">
           <span className={cn(!badge.earned && "opacity-45 grayscale")}>{badge.icon}</span>
         </div>
         <div className="flex flex-wrap justify-end gap-2">
@@ -461,13 +461,13 @@ export function DashboardAchievementWidget({
         </Chip>
       </div>
       <div className="mt-5 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+        <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
           <div className="flex items-center gap-2 text-sm text-(--cf-text-3)">
             <Trophy className="h-4 w-4 text-(--cf-warning-text)" />
             Recent achievement
           </div>
           {recentBadge ? (
-            <button type="button" onClick={() => onOpenBadge(recentBadge)} className="mt-4 block w-full rounded-[20px] border border-(--cf-warning-border) bg-(--cf-warning-soft) p-4 text-left transition hover:border-(--cf-warning-border)">
+            <button type="button" onClick={() => onOpenBadge(recentBadge)} className="cf-pressable mt-4 block w-full rounded-2xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-4 text-left transition hover:border-(--cf-warning-border)">
               <div className="flex items-start justify-between gap-3">
                 <span className="text-3xl">{recentBadge.icon}</span>
                 <Chip tone="amber">Earned</Chip>
@@ -481,13 +481,13 @@ export function DashboardAchievementWidget({
             </p>
           )}
         </div>
-        <div className="rounded-[24px] border border-(--cf-border) bg-(--cf-surface-muted) p-4">
+        <div className="rounded-3xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
           <div className="flex items-center gap-2 text-sm text-(--cf-text-3)">
             <Sparkles className="h-4 w-4 text-(--cf-accent)" />
             Next badge
           </div>
           {nextMilestone ? (
-            <button type="button" onClick={() => onOpenBadge(nextMilestone.badge)} className="mt-4 block w-full rounded-[20px] border border-(--cf-accent-border) bg-(--cf-accent-soft) p-4 text-left transition hover:border-(--cf-accent-border)">
+            <button type="button" onClick={() => onOpenBadge(nextMilestone.badge)} className="cf-pressable mt-4 block w-full rounded-2xl border border-(--cf-accent-border) bg-(--cf-accent-soft) p-4 text-left transition hover:border-(--cf-accent-border)">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-base font-semibold text-(--cf-text-1)">{nextMilestone.badge.name}</p>

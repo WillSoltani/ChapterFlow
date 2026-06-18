@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { X } from "lucide-react";
 import type { Milestone } from "./progressTypes";
 
@@ -64,7 +65,7 @@ export function NextAchievements({
       initial={{ opacity: prefersReduced ? 1 : 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: DUR.normal }}
     >
       <h2
         className="text-base font-semibold"
@@ -86,7 +87,7 @@ export function NextAchievements({
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
             animate={{ opacity: 1, height: "auto", marginTop: 12, backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{ duration: 0.3, backgroundPosition: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
+            transition={{ duration: DUR.normal, backgroundPosition: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
           >
             <span
               className="text-xs font-medium"
@@ -97,7 +98,7 @@ export function NextAchievements({
             <button
               type="button"
               onClick={handleDismiss}
-              className="cursor-pointer p-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50 rounded"
+              className="cf-pressable cf-focus cursor-pointer p-0.5 rounded"
               aria-label="Dismiss achievement notification"
             >
               <X
@@ -130,7 +131,7 @@ export function NextAchievements({
             <Link
               key={milestone.id}
               href="/book/badges"
-              className="flex flex-1 items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-bg-glass-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan/50"
+              className="cf-pressable cf-focus flex flex-1 items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-bg-glass-hover"
               style={{
                 background: "var(--cf-surface-muted)",
                 border: "1px solid var(--cf-border)",

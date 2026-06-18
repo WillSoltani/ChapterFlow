@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
 import { ProgressRing } from "./ProgressRing";
 import {
@@ -55,11 +56,11 @@ export function ActiveReads({ books }: ActiveReadsProps) {
                 x: prefersReduced ? 0 : -20,
               }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.5 + i * 0.12 }}
+              transition={{ duration: DUR.normal, delay: 0.5 + i * 0.12 }}
             >
               <Link
                 href={`/book/library/${encodeURIComponent(book.id)}`}
-                className="group flex gap-4 overflow-hidden rounded-2xl p-4 outline-none transition-all duration-200 focus-visible:ring-2 focus-visible:ring-(--accent-cyan)"
+                className="group flex gap-4 overflow-hidden rounded-2xl p-4 transition-all duration-200 cf-focus"
                 style={{
                   background: "var(--bg-glass)",
                   backdropFilter: "blur(12px)",

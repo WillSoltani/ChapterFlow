@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
@@ -437,7 +438,7 @@ const sectionVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
+    transition: { duration: DUR.slow, ease: EASE.standard },
   },
 };
 
@@ -672,7 +673,7 @@ export function ProgressPage() {
         className="mx-auto w-full max-w-7xl space-y-6 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24"
         initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: DUR.normal }}
       >
       <motion.div
         initial="hidden"
@@ -709,7 +710,7 @@ export function ProgressPage() {
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         >
           <WeeklySummary
             week={displayData.weekSummary}
@@ -724,7 +725,7 @@ export function ProgressPage() {
             initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: DUR.slow, ease: EASE.standard }}
           >
             <ReadingActivity
               activity={displayData.readingActivity}
@@ -746,7 +747,7 @@ export function ProgressPage() {
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         >
           <KnowledgeReview
             reviews={displayData.reviews}
@@ -760,7 +761,7 @@ export function ProgressPage() {
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         >
           <YourBooks
             activeBooks={displayData.activeBooks}
@@ -773,7 +774,7 @@ export function ProgressPage() {
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         >
           <NextAchievements
             milestones={displayData.nextMilestones}
@@ -787,7 +788,7 @@ export function ProgressPage() {
           initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: DUR.slow, ease: EASE.standard }}
         >
           <ProInsightsPreview isPro={displayData.user.isPro} />
         </motion.div>

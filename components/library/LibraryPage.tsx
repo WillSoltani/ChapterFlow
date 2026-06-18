@@ -3,6 +3,7 @@
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
@@ -50,7 +51,7 @@ function CelebrationToast({
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: DUR.normal, ease: EASE.standard }}
           className="fixed right-4 top-20 z-50 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl sm:right-5 sm:max-w-sm"
           style={{
             background: "var(--bg-glass)",

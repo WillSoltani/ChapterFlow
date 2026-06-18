@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 import { Check, FileText, HelpCircle, Lightbulb, Lock } from "lucide-react";
 import type { ComponentType } from "react";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
@@ -211,7 +212,7 @@ export function PhaseStepper({
                         width: "100%",
                         background: "var(--cr-accent)",
                       }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      transition={{ duration: DUR.page, ease: EASE.standard }}
                     />
                   </div>
                 </div>

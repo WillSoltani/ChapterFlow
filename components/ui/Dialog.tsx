@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
+import { DUR } from "@/lib/motion";
 import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
 
 const FOCUSABLE =
@@ -179,12 +180,12 @@ function OverlayShell({
 
   if (!mounted) return null;
 
-  const backdropTransition = prefersReduced ? { duration: 0 } : { duration: 0.2 };
+  const backdropTransition = prefersReduced ? { duration: 0 } : { duration: DUR.fast };
   const panelTransition = prefersReduced
     ? { duration: 0 }
     : layout === "bottom"
       ? { type: "spring" as const, damping: 30, stiffness: 320 }
-      : { duration: 0.2, ease: [0.25, 0.1, 0.25, 1] as const };
+      : { duration: DUR.fast, ease: [0.25, 0.1, 0.25, 1] as const };
   const panelMotion =
     layout === "bottom"
       ? { initial: { y: "100%" }, animate: { y: 0 }, exit: { y: "100%" } }

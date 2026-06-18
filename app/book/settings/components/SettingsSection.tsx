@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
+import { DUR, EASE } from "@/lib/motion";
 
 type SettingsSectionProps = {
   icon: LucideIcon;
@@ -40,9 +41,9 @@ export function SettingsSection({
     <motion.section
       aria-label={title}
       animate={dimmed ? { opacity: 0.2 } : { opacity: 1 }}
-      transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+      transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
       className={cn(
-        "overflow-hidden rounded-[22px] border backdrop-blur-sm transition-shadow duration-300",
+        "overflow-hidden rounded-2xl border backdrop-blur-sm transition-shadow duration-300",
         "bg-(--cf-surface)",
         highlighted
           ? "border-(--cf-accent-border) shadow-[0_0_24px_var(--cf-accent-shadow)]"
@@ -82,7 +83,7 @@ export function SettingsSection({
                 initial={reducedMotion ? false : { opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={reducedMotion ? undefined : { opacity: 0, x: 8 }}
-                transition={{ duration: 0.15 }}
+                transition={{ duration: DUR.micro }}
                 className="hidden max-w-60 truncate text-xs text-(--cf-text-soft) sm:block"
               >
                 {summary}
@@ -91,7 +92,7 @@ export function SettingsSection({
           </AnimatePresence>
           <motion.div
             animate={{ rotate: expanded ? 180 : 0 }}
-            transition={reducedMotion ? { duration: 0 } : { duration: 0.2 }}
+            transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
           >
             <ChevronDown className="h-4 w-4 text-(--cf-text-soft)" />
           </motion.div>
@@ -110,7 +111,7 @@ export function SettingsSection({
             transition={
               reducedMotion
                 ? { duration: 0 }
-                : { duration: 0.25, ease: [0.22, 1, 0.36, 1] }
+                : { duration: DUR.fast, ease: EASE.standard }
             }
             className="overflow-hidden"
           >

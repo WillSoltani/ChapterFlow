@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { DUR } from "@/lib/motion";
 import { ProBadge } from "./ProBadge";
 import { BookCover } from "@/components/ui/BookCover";
 import { formatRatingsCount } from "@/app/book/data/bookRatings";
@@ -44,7 +45,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
   return (
     <Link href={`/book/library/${book.id}`} className="block flex-shrink-0">
     <motion.div
-      className="overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-accent) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+      className="overflow-hidden rounded-xl cf-focus"
       style={{
         width: 170,
         background: "var(--cf-surface-muted)",
@@ -156,7 +157,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
                 transition={
                   prefersReducedMotion
                     ? { duration: 0 }
-                    : { duration: 0.8, ease: "easeOut", delay: 0.4 }
+                    : { duration: DUR.reveal, ease: "easeOut", delay: 0.4 }
                 }
               />
             </div>
