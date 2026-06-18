@@ -93,9 +93,12 @@ export function FunnelsClient() {
       </AdminCard>
 
       <p className="mt-4 text-[11px] text-(--cf-text-soft)">
-        Note: &ldquo;First commitment&rdquo; and &ldquo;First AI feedback&rdquo; are estimated from a
-        sample of the 100 most recent users due to event-log scan cost. Full coverage requires a
-        precomputed snapshot (Phase 5+).
+        Note: the &ldquo;(est.)&rdquo; steps (first commitment, the behavior-loop tail &mdash;
+        returned / reported it helped / applied &mdash; and first AI feedback) are estimated from a
+        sample of the 100 most recent users due to event-log scan cost. The tail steps count unique
+        users (breadth, not events): &ldquo;returned&rdquo; is anyone who reported back regardless of
+        outcome, while &ldquo;reported it helped&rdquo; is the helped-only subset. Full coverage
+        requires a precomputed snapshot (Phase 5+).
       </p>
     </div>
   );
