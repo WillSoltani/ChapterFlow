@@ -109,12 +109,29 @@ export type ImplementationPlan = {
  * the hook banner, counterintuition, "try this now" directive, and memorable
  * lines. Absent for native v13 packages.
  */
+/** v21 behavior-change layer (Layer A). Sub-objects are surfaced only when
+ *  complete (the adapter drops partial/empty shapes), so the reader contract is
+ *  all-or-nothing per sub-object. Mirrors the client `V21ExperiencePlan`. */
+export type V21ExperiencePlan = {
+  failureRecovery?: {
+    normalizingLine: string;
+    cueQuestion: string;
+    options: string[];
+    repairLine: string;
+  };
+  transferPrompt?: {
+    prompt: string;
+    contexts: string[];
+  };
+};
+
 export type V21ChapterExtras = {
   hook?: string;
   counterintuition?: string;
   tryThisNow?: string;
   keyTakeaway?: string;
   memorableLines?: Array<{ text: string; location?: string; why?: string }>;
+  experiencePlan?: V21ExperiencePlan;
 };
 
 export type BookPackageChapter = {

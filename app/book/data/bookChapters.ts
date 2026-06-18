@@ -115,6 +115,7 @@ import {
   extractV21ChapterExtras,
   isV21NormalizedPackage,
   normalizeV21Package,
+  type V21ExperiencePlan,
   type V21MemorableLine,
 } from "@/app/book/lib/v21-adapter";
 
@@ -227,6 +228,9 @@ export type BookChapter = {
   reflectionAfter?: string;
   /** v21-only: 3 quotable sentences from the chapter for share/highlight. */
   memorableLines?: V21MemorableLine[];
+  /** v21-only: the behavior-change layer (failureRecovery + transferPrompt),
+   *  rendered at chapter end in the Practice phase. */
+  experiencePlan?: V21ExperiencePlan;
 };
 
 type BookChapterBundle = {
@@ -902,6 +906,7 @@ function buildBundle(
                 reflectionBefore: extras.reflectionBefore,
                 reflectionAfter: extras.reflectionAfter,
                 memorableLines: extras.memorableLines,
+                experiencePlan: extras.experiencePlan,
               };
             })()
           : {}),

@@ -281,6 +281,37 @@ Spaced-repetition cards. The reader sees the `front`, recalls, then sees the `ba
 
 ---
 
+## Step 9.5 — `experiencePlan` (OPTIONAL behavior-change layer)
+
+A small behavior-change layer that turns "I understood the idea" into "I know what to do when I slip, and where else this applies." OPTIONAL: include it when the chapter teaches a skill with a real failure mode or strong far-transfer; omit it (leave the field off entirely) otherwise. Two independent sub-objects — author one, both, or neither.
+
+```ts
+experiencePlan: {
+  failureRecovery: {            // "what to do when you slip"
+    normalizingLine: string,    // 60-160 chars; names WHY the slip is normal (the mechanism), NOT reassurance
+    cueQuestion: string,        // 30-120 chars; a question that helps the reader NOTICE the slip
+    options: string[],          // 2-4 short repair moves
+    repairLine: string          // 60-200 chars; the single "get back on track" line
+  },
+  transferPrompt: {             // FAR transfer — where ELSE this applies (NOT this chapter's plan)
+    prompt: string,             // 60-200 chars; the far-transfer question
+    contexts: string[]          // 2-5 short contexts, each a DIFFERENT domain than the chapter's
+  }
+}
+```
+
+### Rules
+
+1. **Author it fresh, per chapter. Do NOT copy a line from another chapter, the playbook, or a template.** A `normalizingLine` or `transferPrompt.prompt` reused across chapters is a book-wide convergence defect (the ship gate flags it as EXP10/EXP11). Each chapter's lines must be its own.
+2. **`normalizingLine` names the mechanism, it does not reassure.** Say *why* the slip happens ("The reach is your brain trading a hard task for a faster reward"), never a self-compassion cliché. "You're not broken", "it's not your fault", "don't beat yourself up", "be kind to yourself", and the like are BANNED (EXP3).
+3. **`options` are concrete repair moves**, not feelings. Each names an action the reader can take in the next minute.
+4. **`transferPrompt.contexts` must be genuinely different domains** from the chapter's native one — not restatements of the same scenario. If the chapter is about email, a context like "deciding which family conflict to address now vs. later" transfers; "answering messages faster" does not.
+5. No banned phrases. No em dashes. No meta-references (these apply to every string, same as the other fields).
+
+The illustrative wording above shows the SHAPE only; write your own — none of it is copyable.
+
+---
+
 ## Step 10 — `memorableLines` (exactly 3 lines)
 
 Three sentences from the breakdown (fastRead/deepRead/fullRead) that the reader could quote on a share card. Each must:
@@ -325,7 +356,8 @@ Put everything together into one object matching the `ChapterV21` schema:
   quiz: { passingScorePercent: 70, questions: [ /* step 7 */ ] },
   reviewCards: [ /* step 8 */ ],
   implementationPlan: { /* step 9 */ },
-  memorableLines: [ /* step 10 */ ]
+  memorableLines: [ /* step 10 */ ],
+  experiencePlan: { /* step 9.5 — OPTIONAL; omit the whole field if not authored */ }
 }
 ```
 

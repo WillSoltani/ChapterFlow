@@ -9,6 +9,7 @@ import type {
   ReviewCard,
   ToneKeyed,
   V21ChapterExtras,
+  V21ExperiencePlan,
   VariantKey,
 } from "./types";
 
@@ -171,6 +172,7 @@ function adaptV21Extras(ch: Record<string, unknown>): V21ChapterExtras | undefin
   const tryThisNow = asString(ch.tryThisNow);
   const keyTakeaway = asString(ch.keyTakeaway);
   const memorableLines = adaptMemorableLines(ch.memorableLines);
+  const experiencePlan = adaptExperiencePlan(ch.experiencePlan);
 
   const extras: V21ChapterExtras = {};
   if (hook) extras.hook = hook;
@@ -178,8 +180,39 @@ function adaptV21Extras(ch: Record<string, unknown>): V21ChapterExtras | undefin
   if (tryThisNow) extras.tryThisNow = tryThisNow;
   if (keyTakeaway) extras.keyTakeaway = keyTakeaway;
   if (memorableLines) extras.memorableLines = memorableLines;
+  if (experiencePlan) extras.experiencePlan = experiencePlan;
 
   return Object.keys(extras).length > 0 ? extras : undefined;
+}
+
+/** Behavior-change layer. `asString` returns "" and `asStringArray` keeps empty
+ *  strings, so each field is trimmed and a sub-object is surfaced ONLY when
+ *  complete — never `{ normalizingLine: "" }`. Mirrors the client extractor. */
+function adaptExperiencePlan(raw: unknown): V21ExperiencePlan | undefined {
+  if (!isRecord(raw)) return undefined;
+  const result: V21ExperiencePlan = {};
+
+  const fr = isRecord(raw.failureRecovery) ? raw.failureRecovery : undefined;
+  if (fr) {
+    const normalizingLine = asString(fr.normalizingLine).trim();
+    const cueQuestion = asString(fr.cueQuestion).trim();
+    const repairLine = asString(fr.repairLine).trim();
+    const options = asStringArray(fr.options).map((s) => s.trim()).filter(Boolean);
+    if (normalizingLine && cueQuestion && repairLine && options.length > 0) {
+      result.failureRecovery = { normalizingLine, cueQuestion, options, repairLine };
+    }
+  }
+
+  const tp = isRecord(raw.transferPrompt) ? raw.transferPrompt : undefined;
+  if (tp) {
+    const prompt = asString(tp.prompt).trim();
+    const contexts = asStringArray(tp.contexts).map((s) => s.trim()).filter(Boolean);
+    if (prompt && contexts.length > 0) {
+      result.transferPrompt = { prompt, contexts };
+    }
+  }
+
+  return result.failureRecovery || result.transferPrompt ? result : undefined;
 }
 
 function adaptChapter(raw: unknown): BookPackageChapter {

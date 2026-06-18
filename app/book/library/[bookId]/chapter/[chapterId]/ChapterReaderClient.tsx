@@ -1360,6 +1360,8 @@ export function ChapterReaderClient({
             }}
             onCommit={handleCommitment}
             hasActiveCommitment={committedToChapter}
+            failureRecovery={chapter.experiencePlan?.failureRecovery}
+            transferPrompt={chapter.experiencePlan?.transferPrompt}
             hideContinueCta
           />
         </ChapterCompleteModal>

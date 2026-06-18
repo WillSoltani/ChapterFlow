@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { normalizeV21Package } from "./v21-adapter";
+import { buildBookChapterFromRawV21 } from "../data/bookChapters";
+import { adaptApiChapterToBookChapter } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 
 // Run from the repo root (npm test), so process.cwd() is the project root.
 const rawPkg = JSON.parse(
@@ -11,6 +13,30 @@ const rawPkg = JSON.parse(
     "utf8",
   ),
 ) as unknown;
+
+const sampleRawChapter = (rawPkg as { chapters: Record<string, unknown>[] }).chapters[0];
+
+const EXPERIENCE_PLAN = {
+  failureRecovery: {
+    normalizingLine:
+      "Reaching for the feed is your focus trading a hard task for a quicker, surer reward.",
+    cueQuestion: "What pressure pushed you toward the distraction just now?",
+    options: [
+      "Move the phone an arm's length away before the next work block begins.",
+      "Say the task out loud, then write its very first line.",
+    ],
+    repairLine:
+      "Close the app, set a short timer, and reopen the work where you left it before the pull took over.",
+  },
+  transferPrompt: {
+    prompt:
+      "Where else does trading a hard task for a quick reward quietly cost you over a week?",
+    contexts: [
+      "Choosing which overdue bill to open first",
+      "Deciding when to start a hard conversation at home",
+    ],
+  },
+};
 
 /**
  * Regression guard for the C1 "blank Summary" class of bug: v21 chapter prose
@@ -49,4 +75,81 @@ test("normalizeV21Package fills non-empty Summary content for every chapter (gua
 
 test("normalizeV21Package rejects a non-v21 package", () => {
   assert.throws(() => normalizeV21Package({ schemaVersion: "nstd" }));
+});
+
+/**
+ * experiencePlan must survive the full raw → BookChapter pipeline
+ * (extractV21ChapterExtras + the merge-spread in buildBundle). Wiring the
+ * adapter but forgetting the merge-spread silently drops the field — this is
+ * the regression guard for that.
+ */
+test("experiencePlan survives raw → BookChapter (adapter + merge-spread)", () => {
+  const withPlan = { ...sampleRawChapter, experiencePlan: EXPERIENCE_PLAN };
+  const chapter = buildBookChapterFromRawV21(withPlan, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+    author: "James Clear",
+  });
+  assert.ok(chapter.experiencePlan, "experiencePlan must reach the reader BookChapter");
+  assert.equal(
+    chapter.experiencePlan!.failureRecovery?.normalizingLine,
+    EXPERIENCE_PLAN.failureRecovery.normalizingLine,
+  );
+  assert.deepEqual(
+    chapter.experiencePlan!.failureRecovery?.options,
+    EXPERIENCE_PLAN.failureRecovery.options,
+  );
+  assert.deepEqual(
+    chapter.experiencePlan!.transferPrompt?.contexts,
+    EXPERIENCE_PLAN.transferPrompt.contexts,
+  );
+});
+
+test("a chapter without experiencePlan yields undefined (graceful absence)", () => {
+  const chapter = buildBookChapterFromRawV21(sampleRawChapter, { bookId: "atomic-habits" });
+  assert.equal(chapter.experiencePlan, undefined);
+});
+
+test("a partial/empty experiencePlan is dropped, not surfaced as empty strings", () => {
+  const partial = {
+    ...sampleRawChapter,
+    experiencePlan: {
+      failureRecovery: { normalizingLine: "present", cueQuestion: "", options: [], repairLine: "" },
+    },
+  };
+  const chapter = buildBookChapterFromRawV21(partial, { bookId: "atomic-habits" });
+  assert.equal(chapter.experiencePlan, undefined, "an incomplete failureRecovery must not surface");
+});
+
+/**
+ * The production reader loads chapters via the API and reconstructs them through
+ * chapterFromApi. experiencePlan must survive THAT path too (it lives in
+ * v21Extras), or the cards render only in local-bundled mode. Regression guard.
+ */
+test("experiencePlan survives the API-backed path (chapterFromApi.v21Extras → BookChapter)", () => {
+  const apiChapter = {
+    chapterId: "atomic-habits-ch01",
+    number: 1,
+    title: "Test chapter",
+    readingTimeMinutes: 8,
+    contentVariants: {
+      easy: { chapterBreakdown: { direct: "Fast-read prose, long enough for the reader to render." } },
+      medium: { chapterBreakdown: { direct: "Deep-read prose, long enough for the reader to render." } },
+      hard: { chapterBreakdown: { direct: "Full-read prose, long enough for the reader to render." } },
+    },
+    v21Extras: { hook: "A hook.", experiencePlan: EXPERIENCE_PLAN },
+  };
+  const chapter = adaptApiChapterToBookChapter(apiChapter, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+  });
+  assert.ok(chapter.experiencePlan, "API path must carry experiencePlan onto the reader BookChapter");
+  assert.equal(
+    chapter.experiencePlan!.failureRecovery?.normalizingLine,
+    EXPERIENCE_PLAN.failureRecovery.normalizingLine,
+  );
+  assert.deepEqual(
+    chapter.experiencePlan!.transferPrompt?.contexts,
+    EXPERIENCE_PLAN.transferPrompt.contexts,
+  );
 });

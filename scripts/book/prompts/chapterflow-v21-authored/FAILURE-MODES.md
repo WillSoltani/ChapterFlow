@@ -91,6 +91,18 @@ Anything not in this catalog is not a known v13 failure mode. If a new failure m
 | F2 | Stock phrases recurred across books with no library-wide accounting | Library state ledger tracks signature phrases | MINOR | [librarian/libraryState.ts](src/librarian/libraryState.ts) |
 | F3 | Library-wide answer-position drift | Library state ledger tracks cumulative position counts | MINOR (advisory; book-level gate could enforce) | [librarian/libraryState.ts](src/librarian/libraryState.ts) |
 
+## EXP. Behavior-change layer (experiencePlan)
+
+The optional `experiencePlan` field (Layer A: `failureRecovery` + `transferPrompt`) is authored per-chapter — **never** dealt as a card with a copyable example (that is the card-seed convergence vector, PRs #144/#153). Every EXP check runs only when the field is present, so all fire **zero** on the current corpus. EXP1–EXP3 are chapter-level (finalGate); EXP10/EXP11 are cross-chapter (bookGate). Register hygiene (meta-reference B1, chapter-number B2, em-dash B5, banned phrases B4) is applied to every authored experiencePlan string via the shared `runRegisterChecks`.
+
+| ID | Failure | Enforcement | Severity | Code |
+|----|---------|-------------|----------|------|
+| EXP1.structure | A populated `failureRecovery`/`transferPrompt` is malformed: an empty required subfield, or wrong array cardinality (`options` not 2–4, `contexts` not 2–5). A half-formed surface is worse than none. | `checkExperiencePlanStructure` validates non-emptiness + array bounds when the sub-object is present. | BLOCKER | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| EXP2.length | A subfield is outside its char bounds (normalizingLine 60–160, cueQuestion 30–120, option 15–120, repairLine 60–200, prompt 60–200, context 10–80). Advisory — a too-short normalizing line is weak, not broken. | `checkExperiencePlanLengths` length-bounds each non-empty subfield. | MINOR | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| EXP3.normalizing_cliche | `normalizingLine`/`repairLine` reaches for a self-compassion cliché ("you're not broken", "it's not your fault", "don't beat yourself up", …) instead of naming the mechanism — the relatedness surface degrades into reassurance. Clichés kept LOCAL to the critic (not in banned-phrases.json) so they are scoped to this field and never fire on existing prose. | `checkNormalizingCliche` substring-matches a local cliché list on the two reframe lines. | MAJOR | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| EXP10.normalizing_line_convergence | The card-seed convergence failure mode applied to recovery: ≥2 chapters share the same `failureRecovery.normalizingLine` after normalization (verbatim copy). | `runBookGate` groups chapters by `normalizeConvergenceKey(normalizingLine)`; any group of 2+ is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
+| EXP11.transfer_prompt_convergence | Same convergence applied to transfer: ≥2 chapters share the same `transferPrompt.prompt` after normalization. | `runBookGate` groups chapters by `normalizeConvergenceKey(prompt)`; any group of 2+ is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
+
 ## BP. Book-level pattern audit
 
 These IDs are produced by the deterministic book-level pattern audit and surface in `score-chapters` as score caps. They do not run at chapter time; they run when scoring or validating a whole package.

@@ -5,7 +5,10 @@ import { ArrowRight, Bookmark, BookmarkCheck, Trophy } from "lucide-react";
 import { ImplementationPlanCard } from "./ImplementationPlanCard";
 import { ReviewCardsPanel } from "./ReviewCardsPanel";
 import { CommitmentPrompt } from "./CommitmentPrompt";
+import { FailureRecoveryCard } from "./FailureRecoveryCard";
+import { TransferPromptCard } from "./TransferPromptCard";
 import type { ImplementationPlanItem, ReviewCardItem } from "@/app/book/data/bookChapters";
+import type { V21ExperiencePlan } from "@/app/book/lib/v21-adapter";
 
 type PracticePhaseProps = {
   keyTakeawayCard?: string;
@@ -30,6 +33,9 @@ type PracticePhaseProps = {
     followUpDays: 3 | 7;
   }) => Promise<void>;
   hasActiveCommitment?: boolean;
+  /** v21-only behavior-change layer (Layer A). Rendered at chapter end. */
+  failureRecovery?: V21ExperiencePlan["failureRecovery"];
+  transferPrompt?: V21ExperiencePlan["transferPrompt"];
   /** When true, hide the trailing "Continue to next chapter" CTA — used
    *  when this component is embedded inside ChapterCompleteModal which
    *  renders its own primary CTA below the content. */
@@ -51,6 +57,8 @@ export function PracticePhase({
   onBookmarkStep,
   onCommit,
   hasActiveCommitment = false,
+  failureRecovery,
+  transferPrompt,
   hideContinueCta = false,
 }: PracticePhaseProps) {
   // Implementation plan checkbox state (persisted per chapter)
@@ -216,6 +224,9 @@ export function PracticePhase({
         />
       )}
 
+      {/* When you slip — failure-recovery (v21 behavior-change layer) */}
+      <FailureRecoveryCard failureRecovery={failureRecovery} />
+
       {/* Predict the Next Chapter */}
       {predictionPrompt && (
         <section className="rounded-xl border border-(--cr-info)/20 bg-(--cr-info)/5 px-5 py-4">
@@ -232,6 +243,9 @@ export function PracticePhase({
       {reviewCards && reviewCards.length > 0 && (
         <ReviewCardsPanel cards={reviewCards} fontScaleClass={fontScaleClass} />
       )}
+
+      {/* Where else this applies — far-transfer (v21 behavior-change layer) */}
+      <TransferPromptCard transferPrompt={transferPrompt} />
 
       {/* Continue to Next Chapter */}
       {!hideContinueCta && (

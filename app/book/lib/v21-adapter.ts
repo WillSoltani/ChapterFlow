@@ -30,6 +30,22 @@ export type V21MemorableLine = {
   why?: string;
 };
 
+/** v21 behavior-change layer (Layer A). Both sub-objects are optional and
+ *  independent; the extractor only surfaces a sub-object when it is COMPLETE,
+ *  so the reader never has to defend against half-populated shapes. */
+export type V21ExperiencePlan = {
+  failureRecovery?: {
+    normalizingLine: string;
+    cueQuestion: string;
+    options: string[];
+    repairLine: string;
+  };
+  transferPrompt?: {
+    prompt: string;
+    contexts: string[];
+  };
+};
+
 export type V21ChapterExtras = {
   schemaVersion: typeof V21_SCHEMA_VERSION;
   hook?: string;
@@ -45,6 +61,7 @@ export type V21ChapterExtras = {
   reflectionAfter?: string;
   keyTakeaway?: string;
   memorableLines?: V21MemorableLine[];
+  experiencePlan?: V21ExperiencePlan;
 };
 
 function asRecord(value: unknown): Record<string, unknown> | null {
@@ -219,6 +236,37 @@ export function adaptV21Chapter(rawChapter: unknown): PackageChapter {
   };
 }
 
+/** Pull the behavior-change layer off a raw chapter. A sub-object is surfaced
+ *  ONLY when complete (all required strings non-empty, arrays non-empty), so a
+ *  partial/garbage shape collapses to `undefined` rather than rendering broken. */
+function extractExperiencePlan(raw: unknown): V21ExperiencePlan | undefined {
+  const ep = asRecord(raw);
+  if (!ep) return undefined;
+  const result: V21ExperiencePlan = {};
+
+  const fr = asRecord(ep.failureRecovery);
+  if (fr) {
+    const normalizingLine = asStringOrUndefined(fr.normalizingLine);
+    const cueQuestion = asStringOrUndefined(fr.cueQuestion);
+    const repairLine = asStringOrUndefined(fr.repairLine);
+    const options = asStringArray(fr.options);
+    if (normalizingLine && cueQuestion && repairLine && options.length > 0) {
+      result.failureRecovery = { normalizingLine, cueQuestion, options, repairLine };
+    }
+  }
+
+  const tp = asRecord(ep.transferPrompt);
+  if (tp) {
+    const prompt = asStringOrUndefined(tp.prompt);
+    const contexts = asStringArray(tp.contexts);
+    if (prompt && contexts.length > 0) {
+      result.transferPrompt = { prompt, contexts };
+    }
+  }
+
+  return result.failureRecovery || result.transferPrompt ? result : undefined;
+}
+
 /** Extract v21-only chapter fields for rendering hooks, reflections, memorable lines. */
 export function extractV21ChapterExtras(rawChapter: unknown): V21ChapterExtras {
   const ch = asRecord(rawChapter) ?? {};
@@ -245,6 +293,7 @@ export function extractV21ChapterExtras(rawChapter: unknown): V21ChapterExtras {
     reflectionAfter: asStringOrUndefined(ch.reflectionAfter),
     keyTakeaway: asStringOrUndefined(ch.keyTakeaway),
     memorableLines: memorableLines.length > 0 ? memorableLines : undefined,
+    experiencePlan: extractExperiencePlan(ch.experiencePlan),
   };
 }
 

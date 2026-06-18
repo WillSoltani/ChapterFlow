@@ -18,6 +18,7 @@ import {
 } from "./quizQuality.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
+import { normalizeConvergenceKey } from "./experiencePlan.js";
 import {
   checkBookActionContainerReuse,
   checkBookCallbackFrameReuse,
@@ -196,6 +197,48 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
       });
     }
   }
+
+  // ── experiencePlan convergence (EXP10/EXP11) ─────────────────────────────
+  // The card-seed convergence failure mode (PRs #144/#153) applied to the
+  // behavior-change layer: a writer copying the same normalizing line / transfer
+  // prompt across chapters. A verbatim-after-normalization match across 2+
+  // chapters is a major (surfaced at the write barrier; QC REVISEs on any major).
+  // Fires zero on books without the field. Mirrors hook-opener duplication above.
+  const flagExperienceConvergence = (
+    getter: (ch: ChapterV21) => string | undefined,
+    label: string,
+    catalogId: string,
+  ) => {
+    const keyToChapters = new Map<string, number[]>();
+    for (const ch of chapters) {
+      const raw = getter(ch);
+      if (!raw?.trim()) continue;
+      const key = normalizeConvergenceKey(raw);
+      if (!key) continue;
+      if (!keyToChapters.has(key)) keyToChapters.set(key, []);
+      keyToChapters.get(key)!.push(ch.number);
+    }
+    for (const [, chs] of keyToChapters) {
+      if (chs.length > 1) {
+        findings.push({
+          catalogId,
+          severity: "major",
+          message: `${chs.length} chapters share the same ${label} (chapters ${chs.join(", ")}). Re-author so each chapter's line is distinct. Verbatim reuse is the card-seed convergence failure mode.`,
+          chapters: chs,
+        });
+      }
+    }
+  };
+  flagExperienceConvergence(
+    (ch) => ch.experiencePlan?.failureRecovery?.normalizingLine,
+    "failureRecovery.normalizingLine",
+    "EXP10.normalizing_line_convergence",
+  );
+  flagExperienceConvergence(
+    (ch) => ch.experiencePlan?.transferPrompt?.prompt,
+    "transferPrompt.prompt",
+    "EXP11.transfer_prompt_convergence",
+  );
 
   // ── Voice charter sanity: every breakdown should sound like the book ─────
   // Crude check: average sentence length variance across chapters. If one
