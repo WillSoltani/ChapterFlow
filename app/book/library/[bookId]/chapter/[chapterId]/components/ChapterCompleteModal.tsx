@@ -20,6 +20,8 @@ import {
 import { Dialog } from "@/components/ui/Dialog";
 import { Confetti } from "@/components/ui/Confetti";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
+import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
+import { getApplicationAxisView } from "@/app/book/_lib/application-axis";
 
 interface Props {
   open: boolean;
@@ -34,6 +36,13 @@ interface Props {
   onNext: () => void;
   onLibrary: () => void;
   onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void;
+  /** Two-axis completion (feedback #4): the chapter's DERIVED application state.
+   *  Display/celebration only — gates nothing, awards no IP. Defaults to "none". */
+  applicationState?: ChapterApplicationState | null;
+  /** Whether a CommitmentPrompt will actually render below (children). The "none"
+   *  invitation points at that prompt, so it's suppressed when none exists (a chapter
+   *  without if-then plans) to avoid copy that dangles. Defaults to true. */
+  commitmentAvailable?: boolean;
   children?: React.ReactNode;
 }
 
@@ -85,8 +94,13 @@ export function ChapterCompleteModal({
   onNext,
   onLibrary,
   onShare,
+  applicationState,
+  commitmentAvailable = true,
   children,
 }: Props) {
+  // Default-guard: a missing/null prop reads as "none" (the invitation), never undefined.
+  const appState: ChapterApplicationState = applicationState ?? "none";
+  const appView = getApplicationAxisView(appState);
   const [shareFeedback, setShareFeedback] = useState(false);
   const [ledgerOpen, setLedgerOpen] = useState(false);
   // The one motion guard the receipt never had: reduced motion renders the final
@@ -310,6 +324,91 @@ export function ChapterCompleteModal({
               )}
             </div>
           )}
+
+          {/* Two-axis completion (feedback #4): pair "Learned" (this quiz pass) with
+           *  "Applied" (followed-through commitment), so applying the chapter reads as
+           *  the real finish line. The application axis is DERIVED / read-only — it
+           *  gates nothing and the quiz pass already unlocked what's next. The "none"
+           *  invitation points at the CommitmentPrompt rendered just below in children;
+           *  it hides once a commitment exists, so it's correct under either ordering. */}
+          <div className="mb-5 flex flex-col gap-2" role="group" aria-label="Completion status">
+            <div
+              className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-heading)"
+              style={{
+                background: "color-mix(in srgb, var(--accent-emerald) 10%, transparent)",
+                border: "1px solid color-mix(in srgb, var(--accent-emerald) 24%, transparent)",
+              }}
+            >
+              <Check
+                className="h-4 w-4 shrink-0"
+                aria-hidden="true"
+                style={{ color: "var(--accent-emerald)" }}
+              />
+              <span>
+                <strong className="font-semibold">Learned</strong> — you understood it (quiz passed).
+              </span>
+            </div>
+
+            {/* The "none" invitation (isInvitation) points at the CommitmentPrompt
+             *  rendered below in children; show it only when that prompt will actually
+             *  render (commitmentAvailable). committed/applied always show. */}
+            {(!appView.isInvitation || commitmentAvailable) &&
+              (appView.tone === "applied" ? (
+              <div
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] font-medium"
+                style={{
+                  background: "color-mix(in srgb, var(--accent-gold) 12%, transparent)",
+                  border: "1px solid color-mix(in srgb, var(--accent-gold) 30%, transparent)",
+                  color: "var(--cf-gold-text)",
+                }}
+                aria-label={`${appView.label} — ${appView.description}`}
+              >
+                <span className="flex shrink-0" aria-hidden="true">
+                  <Check className="h-4 w-4" />
+                  <Check className="-ml-2 h-4 w-4" />
+                </span>
+                <span>
+                  <strong className="font-semibold">{appView.label}</strong> — {appView.description}
+                </span>
+              </div>
+            ) : appView.tone === "committed" ? (
+              <div
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-secondary)"
+                style={{
+                  background: "color-mix(in srgb, var(--cr-accent) 10%, transparent)",
+                  border: "1px solid color-mix(in srgb, var(--cr-accent) 24%, transparent)",
+                }}
+              >
+                <Check
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                  style={{ color: "var(--cr-accent)" }}
+                />
+                <span>
+                  <strong className="font-semibold text-(--cr-text-heading)">{appView.label}</strong>{" "}
+                  — {appView.description}
+                </span>
+              </div>
+            ) : (
+              <div
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-secondary)"
+                style={{
+                  background: "var(--cr-bg-surface-3)",
+                  border: "1px dashed color-mix(in srgb, var(--cr-accent) 30%, transparent)",
+                }}
+              >
+                <ChevronDown
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                  style={{ color: "var(--cr-accent)" }}
+                />
+                <span>
+                  <strong className="font-semibold text-(--cr-text-heading)">{appView.label}</strong>{" "}
+                  — {appView.description}
+                </span>
+              </div>
+            ))}
+          </div>
 
           {children && (
             <div className="mb-6 mt-2 border-t border-(--cr-glass-border) pt-6">{children}</div>

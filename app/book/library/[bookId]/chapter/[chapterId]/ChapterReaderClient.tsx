@@ -21,6 +21,8 @@ import { getMotivationMessage } from "@/app/book/_lib/motivation-messages";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useCommitments } from "@/app/book/hooks/useCommitments";
+import { deriveChapterApplicationState } from "@/app/app/api/book/_lib/commitment-application-core";
+import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
 import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader";
 import { AutoCollapsingHookBanner } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/HookBanner";
@@ -651,6 +653,7 @@ export function ChapterReaderClient({
   // so navigating between chapters re-resolves the flag from server truth.
   const commitmentsEnabled = Boolean(chapterNumber) && Boolean(viewerIdentity?.sub);
   const {
+    commitments,
     activeCommitments,
     loading: commitmentsLoading,
     refresh: refreshCommitments,
@@ -662,6 +665,21 @@ export function ChapterReaderClient({
         (c) => c.bookId === bookId && c.chapterNumber === chapter.order && c.status === "active",
       )
     : undefined;
+  // Two-axis completion (feedback #4): the current chapter's DERIVED application
+  // state, read from the FULL live commitment list so it is correct under either
+  // ordering — commit-in-modal (today) or commit-before-quiz (Phase 2). Drives the
+  // celebration's "Learned / Applied" framing only; it gates nothing and awards no
+  // IP. `applied` essentially never shows at first-pass modal time (follow-through
+  // happens days later) — it surfaces on re-entry and in the library.
+  const chapterApplicationState: ChapterApplicationState = chapter
+    ? deriveChapterApplicationState(commitments, bookId, chapter.order)
+    : "none";
+  // Whether the modal's CommitmentPrompt (rendered in children) will actually show —
+  // it's gated on the chapter having if-then plans. Drives whether the celebration's
+  // "none" invitation appears (don't say "commit below" when nothing is below).
+  const commitmentAvailable = Boolean(
+    chapter?.implementationPlan?.ifThenPlans?.length,
+  );
   useEffect(() => {
     if (!chapter) return;
     const hasActive = activeCommitments.some(
@@ -1524,6 +1542,8 @@ export function ChapterReaderClient({
           chapterNumber={chapter.order}
           quizScore={quiz.session?.result?.scorePercent ?? 0}
           loopPipeline={quiz.lastLoopPipeline}
+          applicationState={chapterApplicationState}
+          commitmentAvailable={commitmentAvailable}
           hasNextChapter={Boolean(nextChapter)}
           onNext={handleChapterCompleteNext}
           onLibrary={handleChapterCompleteLibrary}
