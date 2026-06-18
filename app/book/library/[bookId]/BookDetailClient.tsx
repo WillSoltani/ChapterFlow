@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronRight, Search, Sparkles } from "lucide-react";
+import { ChevronRight, Lock, Search, Sparkles } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
@@ -246,6 +246,14 @@ export function BookDetailClient({
 
   const showSearch = chapters.length >= 20;
 
+  // Access-blocked: collapse the 20-row wall of identical locked rows into a
+  // single chapter-1 "hook" + one condensed "+ N more chapters" affordance, so
+  // the eye lands on the one upgrade CTA instead of scanning a flat dim wall.
+  // When the book is unlocked, lockedPreview === chapters → the normal 4-state
+  // journey list renders byte-for-byte unchanged.
+  const lockedPreview = accessBlocked ? chapters.slice(0, 1) : chapters;
+  const lockedRemainder = accessBlocked ? Math.max(0, chapters.length - 1) : 0;
+
   /* ── Loading state — same skeleton as the route-level loading.tsx ── */
   if (
     !onboardingHydrated ||
@@ -258,6 +266,21 @@ export function BookDetailClient({
 
   return (
     <main className="cf-app-shell relative">
+      {/* Skip to main content (WCAG 2.4.1) — first focusable element, ahead of
+          TopNav's controls. Targets the content section after the nav (#main),
+          NOT this shell wrapper (which contains TopNav, so jumping to it would
+          re-enter the nav). */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        style={{
+          background: "var(--accent-cyan)",
+          color: "var(--primary-foreground)",
+        }}
+      >
+        Skip to main content
+      </a>
+
       <BackgroundOrbs />
 
       <TopNav
@@ -273,7 +296,7 @@ export function BookDetailClient({
 
       {/* All content in relative z-10 to sit above gradient orbs */}
       <PageTransition>
-      <section className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 sm:px-6 md:pb-24 lg:px-10 xl:px-16">
+      <section id="main" tabIndex={-1} className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 focus:outline-none sm:px-6 md:pb-24 lg:px-10 xl:px-16">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-sm">
           <Link
@@ -409,7 +432,7 @@ export function BookDetailClient({
             role="tabpanel"
             aria-label="Chapter list"
           >
-            {chapters.map((chapter, index) => {
+            {lockedPreview.map((chapter, index) => {
               const status = getCardStatus(chapter);
               const isCurrent = status === "in-progress";
               const isVisible = matchesFilter(chapter);
@@ -460,6 +483,24 @@ export function BookDetailClient({
                 </div>
               );
             })}
+
+            {/* Access-blocked: one quiet condensed signal for the locked
+                remainder. Carries NO competing button — the upgrade action
+                stays in the paywall banner / hero so there is one clear CTA. */}
+            {accessBlocked && lockedRemainder > 0 && (
+              <div className="relative mt-3">
+                <div
+                  className="pointer-events-none absolute inset-x-0 -top-8 h-8 bg-linear-to-b from-transparent to-(--cf-page-bg)"
+                  aria-hidden="true"
+                />
+                <div className="flex items-center justify-center gap-2 rounded-2xl border border-dashed border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 py-4 text-center">
+                  <Lock className="h-4 w-4 shrink-0 text-(--cf-text-3)" aria-hidden="true" />
+                  <span className="text-sm font-medium text-(--cf-text-2)">
+                    + {lockedRemainder} more chapter{lockedRemainder === 1 ? "" : "s"} — unlock with Pro to read the rest
+                  </span>
+                </div>
+              </div>
+            )}
 
             {/* Empty state: book published without chapters yet */}
             {chapters.length === 0 && (

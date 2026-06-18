@@ -15,6 +15,9 @@ interface BookCoverProps {
   className?: string;
   /** Responsive `sizes` hint for next/image. */
   sizes?: string;
+  /** Eager-load via next/image `priority` (drops loading="lazy"). Set ONLY on
+   *  the LCP hero cover; grid/shelf covers stay lazy (default false). */
+  priority?: boolean;
 
   // --- fallback mode selectors (mutually-exclusive data sources) ---
   /** library variant: gradient bg + white title fallback. */
@@ -73,6 +76,7 @@ export function BookCover({
   coverImage,
   className,
   sizes,
+  priority = false,
   coverGradient,
   icon,
   fill = false,
@@ -111,7 +115,7 @@ export function BookCover({
         alt=""
         fill
         sizes={resolvedSizes}
-        loading="lazy"
+        {...(priority ? { priority: true } : { loading: "lazy" as const })}
         className={`object-cover ${className ?? ""}`}
         onError={onError}
         loader={loader}
@@ -173,7 +177,7 @@ export function BookCover({
           alt=""
           fill
           sizes={tileSizes}
-          loading="lazy"
+          {...(priority ? { priority: true } : { loading: "lazy" as const })}
           className={imageClasses}
           onError={onError}
           loader={loader}
