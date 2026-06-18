@@ -11,6 +11,7 @@ import {
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getCommitment,
+  listCommitments,
   updateCommitmentStatus,
 } from "@/app/app/api/book/_lib/commitment-repo";
 import { analyticsTrackCommitment } from "@/app/app/api/book/_lib/analytics-repo";
@@ -90,6 +91,33 @@ export async function PATCH(req: Request, ctx: Params) {
         .then((analyticsTable) => {
           if (!analyticsTable) return;
           return analyticsTrackCommitment(analyticsTable, user.sub, "followup_completed", {
+            commitmentId,
+            bookId: existing.bookId,
+            chapterNumber: existing.chapterNumber,
+            followUpDays: existing.followUpDays,
+            helped: outcome,
+          });
+        })
+        .catch(() => {});
+
+      // Two-axis completion (feedback #4): fire an `application_complete` funnel event
+      // the FIRST time this chapter becomes "applied". Dedupe against any OTHER prior
+      // follow-through for the same (bookId, chapterNumber) — exclude the just-completed
+      // commitment, which now also has followThroughSubmittedAt set — so a re-applied
+      // chapter isn't double-counted. Read-only, fire-and-forget; gates nothing.
+      getBookAnalyticsTableName()
+        .then(async (analyticsTable) => {
+          if (!analyticsTable) return;
+          const all = await listCommitments(tableName, user.sub);
+          const alreadyApplied = all.some(
+            (c) =>
+              c.commitmentId !== commitmentId &&
+              c.bookId === existing.bookId &&
+              c.chapterNumber === existing.chapterNumber &&
+              c.followThroughSubmittedAt != null,
+          );
+          if (alreadyApplied) return;
+          return analyticsTrackCommitment(analyticsTable, user.sub, "application_complete", {
             commitmentId,
             bookId: existing.bookId,
             chapterNumber: existing.chapterNumber,

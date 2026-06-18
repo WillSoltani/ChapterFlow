@@ -189,6 +189,15 @@ export const INSIGHT_POINTS_EARNING_RULES: InsightPointsEarningRule[] = [
     note: "One-time per example. Write a real answer (at least 20 characters) — empty or one-word submissions don't count.",
   },
   {
+    sourceType: "commitment_follow_through",
+    label: "Follow through on a commitment",
+    amount: INSIGHT_POINTS_AMOUNTS.commitmentFollowThrough,
+    displayValue: "+25 IP",
+    detail: "Make an if-then plan after a chapter, then come back days later and report how it went.",
+    cadence: "per_chapter",
+    note: "Awarded once when you complete a commitment's check-in. The outcome (helped / partly / didn't) does not change the award — it's +25 IP either way.",
+  },
+  {
     sourceType: "streak_day",
     label: "Maintain your streak",
     amount: INSIGHT_POINTS_AMOUNTS.streakDayBonus,
