@@ -7,6 +7,11 @@ import {
   getBookProgressStorageKey,
 } from "@/app/book/_lib/reader-storage";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
+import {
+  normalizeApplicationStates,
+  countAppliedChapters,
+} from "@/app/book/_lib/application-display";
+import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
 
 // Mirror of usePhaseCompletion.ts STORAGE_KEY_PREFIX. Duplicated here (rather than
 // imported) because that constant lives in the chapter-reader tree; keep in sync.
@@ -196,6 +201,13 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     initialProgress(chapters)
   );
   const [serverReady, setServerReady] = useState(false);
+  // Two-axis completion (feedback #4): the application axis is SERVER-ONLY and
+  // read-only. It lives in its OWN state — never merged into `progress`, never
+  // reconstructed from local data — so the progress union-merge below cannot clobber
+  // it, and it cannot clobber completion/scores. Keyed by chapterId.
+  const [applicationStates, setApplicationStates] = useState<
+    Record<string, ChapterApplicationState>
+  >({});
 
   useEffect(() => {
     const parsed = parseStored(window.localStorage.getItem(storageKey), chapters);
@@ -205,11 +217,16 @@ export function useBookProgress<TChapter extends ProgressChapter>(
 
   useEffect(() => {
     let mounted = true;
-    fetchBookJson<{ state: PersistedBookProgress | null }>(
-      `/app/api/book/me/books/${encodeURIComponent(bookId)}/state`
-    )
+    fetchBookJson<{
+      state: PersistedBookProgress | null;
+      applicationStates?: Record<string, ChapterApplicationState>;
+    }>(`/app/api/book/me/books/${encodeURIComponent(bookId)}/state`)
       .then((payload) => {
-        if (!mounted || !payload.state) return;
+        if (!mounted) return;
+        // Server-only, read-only: set straight from the (sanitized) payload, never
+        // merged with local progress. Independent of the `state` early-return below.
+        setApplicationStates(normalizeApplicationStates(payload.applicationStates));
+        if (!payload.state) return;
         const serverState = normalizeProgress(payload.state, initialProgress(chapters), chapters);
         // Merge server state with local state: take the union of completed/unlocked
         // IDs so a locally-recorded unlock is never overwritten by stale server data.
@@ -315,6 +332,14 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     const total = values.reduce((sum, value) => sum + Number(value), 0);
     return Math.round(total / values.length);
   })();
+
+  // Two-axis completion (feedback #4): chapters the reader has APPLIED (followed
+  // through). Derived purely from the server-only applicationStates — never gates
+  // anything; it's a display stat for the rollup.
+  const appliedCount = useMemo(
+    () => countAppliedChapters(applicationStates),
+    [applicationStates]
+  );
 
   const getChapterState = useCallback(
     (chapterId: string): ChapterState => {
@@ -438,6 +463,8 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   return {
     hydrated,
     progress,
+    applicationStates,
+    appliedCount,
     currentChapter,
     lastReadChapter,
     completedCount,

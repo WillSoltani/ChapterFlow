@@ -5,6 +5,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { Check, Lock, Play } from "lucide-react";
 import type { LibraryChapterSummary } from "@/app/book/_lib/library-data";
+import type { ChapterApplicationState } from "@/app/app/api/book/_lib/types";
+import { getChapterApplicationBadge } from "@/app/book/_lib/application-display";
 import { StepIndicators } from "./StepIndicators";
 
 export type ChapterCardStatus =
@@ -18,6 +20,9 @@ type ChapterCardProps = {
   status: ChapterCardStatus;
   score?: number;
   stepsCompleted: number;
+  /** Two-axis completion (feedback #4): derived application state for this chapter.
+   *  Display-only; defaults to "none" (renders nothing extra). */
+  applicationState?: ChapterApplicationState;
   onClick: () => void;
   onLockedClick?: () => void;
   onMouseEnter?: () => void;
@@ -29,6 +34,7 @@ export function ChapterCard({
   status,
   score,
   stepsCompleted,
+  applicationState = "none",
   onClick,
   onLockedClick,
   onMouseEnter,
@@ -41,6 +47,9 @@ export function ChapterCard({
   const isCompleted = status === "completed";
   const isInProgress = status === "in-progress";
   const isNextUnlockable = status === "next-unlockable";
+  // Two-axis completion (feedback #4): the compact applied/committed indicator.
+  // null for "none" → nothing extra is rendered (locked cards never reach here).
+  const appBadge = getChapterApplicationBadge(applicationState);
 
   const handleClick = useCallback(() => {
     if (isLocked) {
@@ -182,9 +191,9 @@ export function ChapterCard({
             : undefined
       }
       aria-label={
-        isCompleted && typeof score === "number"
+        (isCompleted && typeof score === "number"
           ? `Chapter ${chapter.number} - ${chapter.title} - Completed with ${Math.round(score)}% score`
-          : `Chapter ${chapter.number} - ${chapter.title}`
+          : `Chapter ${chapter.number} - ${chapter.title}`) + (appBadge?.srSuffix ?? "")
       }
     >
       <div className="relative z-10 flex items-start justify-between gap-3">
@@ -237,6 +246,34 @@ export function ChapterCard({
               Continue →
             </span>
           ) : null}
+          {appBadge && (
+            <span
+              aria-hidden="true"
+              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-medium"
+              style={
+                appBadge.tone === "applied"
+                  ? {
+                      background: "color-mix(in srgb, var(--accent-gold) 14%, transparent)",
+                      color: "var(--cf-gold-text)",
+                    }
+                  : {
+                      background: "color-mix(in srgb, var(--accent-cyan) 12%, transparent)",
+                      color: "var(--cf-text-2)",
+                    }
+              }
+            >
+              {appBadge.tone === "applied" ? (
+                <Check className="h-3 w-3" aria-hidden="true" style={{ color: "var(--accent-gold)" }} />
+              ) : (
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  aria-hidden="true"
+                  style={{ background: "var(--accent-cyan)" }}
+                />
+              )}
+              {appBadge.label}
+            </span>
+          )}
           <span className={`whitespace-nowrap text-xs ${minutesClass}`}>
             {chapter.minutes} min
           </span>
