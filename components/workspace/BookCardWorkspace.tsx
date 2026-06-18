@@ -6,6 +6,7 @@ import { DUR } from "@/lib/motion";
 import { ProBadge } from "./ProBadge";
 import { BookCover } from "@/components/ui/BookCover";
 import { formatRatingsCount } from "@/app/book/data/bookRatings";
+import { Star } from "lucide-react";
 
 interface UserBookData {
   id: string;
@@ -179,7 +180,12 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
           >
             {(book as ProBookData).rating > 0 ? (
               <>
-                <span style={{ color: "var(--accent-gold)" }}>★</span>
+                <Star
+                  size={11}
+                  strokeWidth={0}
+                  aria-hidden
+                  style={{ color: "var(--accent-gold)", fill: "var(--accent-gold)" }}
+                />
                 <span className="tabular-nums">
                   {(book as ProBookData).rating.toFixed(1)}
                 </span>
