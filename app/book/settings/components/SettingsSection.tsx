@@ -75,7 +75,7 @@ export function SettingsSection({
             </span>
           )}
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-3">
           {/* Collapsed summary — desktop only */}
           <AnimatePresence>
             {summary && !expanded && (
@@ -84,7 +84,7 @@ export function SettingsSection({
                 animate={{ opacity: 1, x: 0 }}
                 exit={reducedMotion ? undefined : { opacity: 0, x: 8 }}
                 transition={{ duration: DUR.micro }}
-                className="hidden max-w-60 truncate text-xs text-(--cf-text-soft) sm:block"
+                className="hidden min-w-0 truncate text-right text-xs text-(--cf-text-soft) sm:block"
               >
                 {summary}
               </motion.span>
