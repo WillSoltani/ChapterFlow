@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -174,6 +174,13 @@ function ImmediateQuestionCard({
   const cardRef = useRef<HTMLElement>(null);
   const resolved = feedbackState === "correct" || feedbackState === "incorrect-final";
 
+  // ARIA APG radiogroup wiring: a stable id to label the group by the question
+  // prompt, per-option refs for roving focus, and a focused-index so the single
+  // tab stop follows arrow navigation.
+  const promptId = useId();
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
   useEffect(() => {
     if (!resolved) return;
     const delay = feedbackState === "correct"
@@ -190,6 +197,38 @@ function ImmediateQuestionCard({
   // Find correct choice letter for the simple fallback message
   const correctChoiceIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
   const correctLetter = OPTION_LABELS[correctChoiceIndex] ?? "?";
+
+  // Roving tabindex over the non-disabled options. Selection does NOT follow
+  // focus: picking a quiz answer is consequential (it grades the attempt and can
+  // burn a retry), so arrow keys only MOVE focus — Space/Enter (native <button>
+  // activation) and the 1-5 hotkeys are what actually select an answer.
+  const focusableIndices = question.choices
+    .map((c, i) => ({ i, blocked: resolved || disabledChoices.has(c.choiceId) }))
+    .filter((o) => !o.blocked)
+    .map((o) => o.i);
+  const selectedIndex = question.choices.findIndex((c) => c.choiceId === answerChoiceId);
+  const preferredStop = selectedIndex >= 0 ? selectedIndex : (focusableIndices[0] ?? 0);
+  // The single option in the tab order: the focused one (after arrowing), else
+  // the selected answer, else the first focusable option.
+  const tabbableIndex =
+    focusedIndex != null && focusableIndices.includes(focusedIndex) ? focusedIndex : preferredStop;
+
+  function moveFocus(e: KeyboardEvent<HTMLButtonElement>, optionIndex: number) {
+    if (focusableIndices.length === 0) return;
+    const pos = focusableIndices.indexOf(optionIndex);
+    let next: number | undefined;
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      next = focusableIndices[(pos + 1) % focusableIndices.length];
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      next = focusableIndices[(pos - 1 + focusableIndices.length) % focusableIndices.length];
+    } else {
+      return;
+    }
+    if (next === undefined) return;
+    e.preventDefault();
+    setFocusedIndex(next);
+    optionRefs.current[next]?.focus();
+  }
 
   return (
     <article ref={cardRef} className="cr-glass-reading p-6 scroll-mt-24"
@@ -210,13 +249,14 @@ function ImmediateQuestionCard({
             </span>
           )}
         </div>
-        <p className="flex-1 text-lg font-semibold leading-snug text-(--cr-text-heading)">
+        <p id={promptId} className="flex-1 text-lg font-semibold leading-snug text-(--cr-text-heading)">
           {question.prompt}
         </p>
       </div>
 
       {/* Answer options — FIX 4: pulse on auto-revealed correct */}
-      <div className="space-y-2">
+      {/* ARIA radiogroup labelled by the prompt; each choice is a role=radio. */}
+      <div role="radiogroup" aria-labelledby={promptId} className="space-y-2">
         {question.choices.map((choice, optionIndex) => {
           const selected = answerChoiceId === choice.choiceId;
           const isDisabledChoice = disabledChoices.has(choice.choiceId);
@@ -237,8 +277,15 @@ function ImmediateQuestionCard({
 
           return (
             <button key={choice.choiceId} type="button"
+              ref={(el) => { optionRefs.current[optionIndex] = el; }}
+              role="radio"
+              aria-checked={selected}
+              aria-label={`Option ${optionIndex + 1} of ${question.choices.length}: ${choice.text}`}
+              tabIndex={optionIndex === tabbableIndex ? 0 : -1}
               disabled={resolved || isDisabledChoice}
               onClick={() => onAnswer(choice.choiceId)}
+              onKeyDown={(e) => moveFocus(e, optionIndex)}
+              onFocus={() => setFocusedIndex(optionIndex)}
               className={[
                 "cr-answer-option w-full text-left",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)",
@@ -730,10 +777,21 @@ export function QuizPanel({
   );
 
   if (loading && !session) {
+    // Layout-matched skeleton (prompt bar + 4 option rows) inside the same
+    // cr-glass-reading card — matches the app-wide skeleton loading language
+    // instead of a lone spinner. animate-shimmer is theme-aware and
+    // reduced-motion-guarded in globals.css; the sr-only status keeps the
+    // textual loading cue the bare spinner conveyed only visually.
     return (
-      <section className="cr-glass-reading p-6">
-        <div className="flex items-center gap-2 text-sm text-(--cr-text-secondary)">
-          <LoaderCircle className="h-4 w-4 animate-spin" /> Loading quiz...
+      <section className="cr-glass-reading p-6" aria-busy="true">
+        <p role="status" className="sr-only">{"Loading quiz…"}</p>
+        {/* prompt bar */}
+        <div className="mb-6 h-6 w-3/4 rounded-md animate-shimmer" />
+        {/* answer-option rows — mirror .cr-answer-option min-height (56px = h-14) */}
+        <div className="space-y-2" aria-hidden="true">
+          {[0, 1, 2, 3].map((i) => (
+            <div key={i} className="h-14 w-full rounded-[var(--radius-md-val)] animate-shimmer" />
+          ))}
         </div>
       </section>
     );
