@@ -103,6 +103,18 @@ The optional `experiencePlan` field (Layer A: `failureRecovery` + `transferPromp
 | EXP10.normalizing_line_convergence | The card-seed convergence failure mode applied to recovery: ≥2 chapters share the same `failureRecovery.normalizingLine` after normalization (verbatim copy). | `runBookGate` groups chapters by `normalizeConvergenceKey(normalizingLine)`; any group of 2+ is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 | EXP11.transfer_prompt_convergence | Same convergence applied to transfer: ≥2 chapters share the same `transferPrompt.prompt` after normalization. | `runBookGate` groups chapters by `normalizeConvergenceKey(prompt)`; any group of 2+ is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
 
+### `experiencePlan.behaviorLoop.readerPatterns` (RDRP) — the optional "which pattern fits you?" personalization layer
+
+A nested, optional sub-surface of `experiencePlan`: a small library of concrete reader *situations* the reader self-selects to route the recommended example + commitment plan. Same zero-fire-when-absent calibration as EXP*. Labels are reader-facing prose (run through the shared register hygiene via `experiencePlanStrings`); the archetype-cliché list is **LOCAL** to the critic, never in `banned-phrases.json`. RDRP1–RDRP3 are chapter-level (finalGate); RDRP10/RDRP11 are cross-chapter (bookGate).
+
+| Catalog id | Failure mode | Detection | Severity | Source |
+| --- | --- | --- | --- | --- |
+| RDRP1.structure | A populated `behaviorLoop.readerPatterns` is malformed: more than 8 patterns, an empty or duplicate `id`, an empty `label`, or a `mapsToPlanIndex`/`mapsToExampleIndex` outside `[0, len)` of the UNFILTERED `implementationPlan.ifThenPlans` / `examples` arrays. | `checkReaderPatternStructure` validates cardinality, id uniqueness/non-emptiness, label non-emptiness, and index bounds (drawn from the chapter) when present. | BLOCKER | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| RDRP2.label_length | A `label` is outside 20–60 chars. Advisory — a too-short label is a weak affordance, not broken. | `checkReaderPatternLabelLength` length-bounds each non-empty label. | MINOR | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| RDRP3.label_hygiene | A `label` reaches for a vague personality archetype ("the procrastinator", "type a personality", "the perfectionist", …) instead of naming a concrete reader situation — the pattern stops being recognizable. Archetype list kept LOCAL to the critic. | `checkReaderPatternLabelHygiene` substring-matches a local archetype list on each label. | MAJOR | [src/critics/experiencePlan.ts](src/critics/experiencePlan.ts) |
+| RDRP10.label_convergence | The card-seed convergence failure mode applied to the pattern library: ≥2 chapters share the same readerPattern `label` after normalization (verbatim copy). | `runBookGate` groups every chapter's pattern labels by `normalizeConvergenceKey(label)`; any group spanning 2+ chapters is a major. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
+| RDRP11.index_validity | A `mapsTo*Index` out of range — a defensive book-level net behind RDRP1's per-chapter blocker. | `runBookGate` re-checks each pattern's indices against that chapter's `ifThenPlans`/`examples` lengths. | MAJOR (book) | [src/critics/bookGate.ts](src/critics/bookGate.ts) |
+
 ## BP. Book-level pattern audit
 
 These IDs are produced by the deterministic book-level pattern audit and surface in `score-chapters` as score caps. They do not run at chapter time; they run when scoring or validating a whole package.

@@ -25,6 +25,7 @@ const ALLOWED_EVENTS: ReadonlySet<ReaderFunnelEvent> = new Set([
   "commitment_reached",
   "next_chapter_started",
   "time_to_first_action",
+  "pattern_picked",
 ]);
 
 export async function POST(req: Request) {
@@ -62,6 +63,9 @@ export async function POST(req: Request) {
     }
     if (typeof body.nextChapterNumber === "number" && Number.isFinite(body.nextChapterNumber)) {
       payload.nextChapterNumber = body.nextChapterNumber;
+    }
+    if (typeof body.patternId === "string" && body.patternId.length > 0 && body.patternId.length <= 120) {
+      payload.patternId = body.patternId;
     }
 
     // Fire-and-forget so analytics never blocks the response. Absent table = no-op.

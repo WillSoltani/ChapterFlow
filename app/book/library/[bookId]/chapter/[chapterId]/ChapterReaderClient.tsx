@@ -46,6 +46,8 @@ import { AudioPlayer } from "@/app/book/library/[bookId]/chapter/[chapterId]/com
 import { AskBookDrawer } from "@/app/book/components/AskBookDrawer";
 import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
 import { CommitmentPrompt } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/CommitmentPrompt";
+import { PatternSelector } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PatternSelector";
+import type { V21ReaderPattern } from "@/app/book/lib/v21-adapter";
 import { ChapterCompleteModal } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal";
 import { Confetti } from "@/components/ui/Confetti";
 import { Dialog } from "@/components/ui/Dialog";
@@ -712,6 +714,48 @@ export function ChapterReaderClient({
     }
   }, [state.activeTab, chapter, bookId]);
 
+  // ── Reader-pattern personalization (Phase 3, RDRP) ───────────────────────
+  // Net-new + gated. PatternSelector only renders when the env flag is on AND a
+  // chapter actually carries readerPatterns (none do yet → dark by default).
+  const patternSelectorEnabled =
+    process.env.NEXT_PUBLIC_BOOK_ENABLE_PATTERN_SELECTOR === "1" ||
+    process.env.NEXT_PUBLIC_BOOK_ENABLE_PATTERN_SELECTOR === "true";
+  const readerPatterns = chapter?.experiencePlan?.behaviorLoop?.readerPatterns ?? [];
+  const [selectedPatternId, setSelectedPatternId] = useState<string | null>(null);
+  const [pinnedExampleId, setPinnedExampleId] = useState<string | null>(null);
+  const [planFromPattern, setPlanFromPattern] = useState<string | null>(null);
+
+  const handlePatternPick = useCallback(
+    (pattern: V21ReaderPattern) => {
+      setSelectedPatternId(pattern.id);
+      // Route the recommended example. mapsToExampleIndex is 0-based into the
+      // UNFILTERED authored examples (chapter.examplesDetailed), so resolve there;
+      // out-of-range / missing → no pin (the default first example shows).
+      const authored = chapter?.examplesDetailed ?? [];
+      const exIdx = pattern.mapsToExampleIndex;
+      if (exIdx !== undefined && exIdx >= 0 && exIdx < authored.length) {
+        setPinnedExampleId(authored[exIdx].id);
+        // Never let the active scope filter hide the routed example.
+        if (state.exampleFilter !== "all") setExampleFilter("all");
+      } else {
+        if (exIdx !== undefined) console.warn(`[PatternSelector] mapsToExampleIndex ${exIdx} out of range; showing the default example`);
+        setPinnedExampleId(null);
+      }
+      // Pre-select the matching commitment plan (0-based into ifThenPlans);
+      // out-of-range / missing → no pre-fill (all plans remain selectable).
+      const plans = chapter?.implementationPlan?.ifThenPlans ?? [];
+      const planIdx = pattern.mapsToPlanIndex;
+      if (planIdx !== undefined && planIdx >= 0 && planIdx < plans.length) {
+        setPlanFromPattern(plans[planIdx].plan);
+      } else {
+        if (planIdx !== undefined) console.warn(`[PatternSelector] mapsToPlanIndex ${planIdx} out of range; leaving plans unselected`);
+        setPlanFromPattern(null);
+      }
+      trackReaderFunnel("pattern_picked", { bookId, chapterNumber: chapter?.order, patternId: pattern.id });
+    },
+    [chapter, state.exampleFilter, setExampleFilter, bookId],
+  );
+
   // The content fetch has settled but there is genuinely no chapter to show
   // (e.g. the API failed and there's no local fallback). Render an in-place
   // error card instead of silently ejecting to the library — the user keeps
@@ -1314,6 +1358,19 @@ export function ChapterReaderClient({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: DUR.fast, ease: EASE.standard }}
             >
+              {/* "Which sounds like you?" — gated, net-new, dark by default. Picking a
+               *  pattern routes the recommended example + pre-fills the commitment plan. */}
+              {patternSelectorEnabled && readerPatterns.length > 0 && (
+                <div className="mb-6">
+                  <PatternSelector
+                    patterns={readerPatterns}
+                    selectedId={selectedPatternId}
+                    onSelect={handlePatternPick}
+                    fontScaleClass={textScaleClass}
+                  />
+                </div>
+              )}
+
               <ExamplesList
                 examples={examples}
                 filter={state.exampleFilter}
@@ -1331,6 +1388,7 @@ export function ChapterReaderClient({
                     revealedCount,
                   })
                 }
+                pinnedExampleId={pinnedExampleId}
                 chapterId={chapterId}
                 bookId={bookId}
                 chapterNumber={chapter.order}
@@ -1357,6 +1415,7 @@ export function ChapterReaderClient({
                       onCommit={handleCommitment}
                       hasActiveCommitment={committedToChapter}
                       activeFollowUpDays={activeChapterCommitment?.followUpDays}
+                      defaultSelectedPlan={planFromPattern ?? undefined}
                     />
                   </div>
                 )}

@@ -240,6 +240,65 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
     "EXP11.transfer_prompt_convergence",
   );
 
+  // ── readerPattern convergence + index validity (RDRP10/RDRP11) ───────────
+  // RDRP10: a readerPattern LABEL reused verbatim (after normalization) across
+  // 2+ chapters — the card-seed convergence failure mode applied to the pattern
+  // library. Iterates the per-chapter pattern arrays (multiple labels/chapter)
+  // rather than a single getter, so it can't reuse flagExperienceConvergence.
+  {
+    const keyToChapters = new Map<string, Set<number>>();
+    for (const ch of chapters) {
+      for (const p of ch.experiencePlan?.behaviorLoop?.readerPatterns ?? []) {
+        const raw = p?.label;
+        if (!raw?.trim()) continue;
+        const key = normalizeConvergenceKey(raw);
+        if (!key) continue;
+        if (!keyToChapters.has(key)) keyToChapters.set(key, new Set());
+        keyToChapters.get(key)!.add(ch.number);
+      }
+    }
+    for (const [, chSet] of keyToChapters) {
+      if (chSet.size > 1) {
+        const chs = Array.from(chSet).sort((a, b) => a - b);
+        findings.push({
+          catalogId: "RDRP10.label_convergence",
+          severity: "major",
+          message: `${chs.length} chapters share the same readerPattern label (chapters ${chs.join(", ")}). Re-author so each chapter's patterns are distinct. Verbatim reuse is the card-seed convergence failure mode.`,
+          chapters: chs,
+        });
+      }
+    }
+  }
+
+  // RDRP11: a mapsTo*Index out of range. A defensive book-level net behind RDRP1's
+  // per-chapter blocker (which would already fail the ship gate). 0-based indices
+  // reference the UNFILTERED authored arrays.
+  for (const ch of chapters) {
+    const patterns = ch.experiencePlan?.behaviorLoop?.readerPatterns;
+    if (!patterns) continue;
+    const planLen = ch.implementationPlan?.ifThenPlans?.length ?? 0;
+    const exLen = ch.examples?.length ?? 0;
+    patterns.forEach((p, i) => {
+      const bad: string[] = [];
+      const pi = p?.mapsToPlanIndex;
+      const ei = p?.mapsToExampleIndex;
+      if (pi !== undefined && (!Number.isInteger(pi) || pi < 0 || pi >= planLen)) {
+        bad.push(`mapsToPlanIndex ${pi} (ifThenPlans: ${planLen})`);
+      }
+      if (ei !== undefined && (!Number.isInteger(ei) || ei < 0 || ei >= exLen)) {
+        bad.push(`mapsToExampleIndex ${ei} (examples: ${exLen})`);
+      }
+      if (bad.length > 0) {
+        findings.push({
+          catalogId: "RDRP11.index_validity",
+          severity: "major",
+          message: `Chapter ${ch.number} readerPatterns[${i}] has out-of-range ${bad.join(", ")}.`,
+          chapters: [ch.number],
+        });
+      }
+    });
+  }
+
   // ── Voice charter sanity: every breakdown should sound like the book ─────
   // Crude check: average sentence length variance across chapters. If one
   // chapter is wildly different from the others, voice has drifted.

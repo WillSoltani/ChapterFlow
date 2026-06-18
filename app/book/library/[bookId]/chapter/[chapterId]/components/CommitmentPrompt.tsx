@@ -21,6 +21,12 @@ type CommitmentPromptProps = {
    *  the server), so the "Committed" view shows the real value rather than the
    *  local default. Undefined until known / for a not-yet-committed chapter. */
   activeFollowUpDays?: 3 | 7;
+  /** A plan pre-selected by a picked reader pattern (Phase 3). Applied as the
+   *  default selection ONLY until the user manually picks a plan — a manual click
+   *  always wins (autonomy preserved), and STAYS won even if the reader later
+   *  switches to a different pattern (the manual choice is sticky for the session;
+   *  only the routed example re-pins). */
+  defaultSelectedPlan?: string;
 };
 
 export function CommitmentPrompt({
@@ -31,12 +37,22 @@ export function CommitmentPrompt({
   onCommit,
   hasActiveCommitment,
   activeFollowUpDays,
+  defaultSelectedPlan,
 }: CommitmentPromptProps) {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
+  const [manuallyPicked, setManuallyPicked] = useState(false);
   const [followUpDays, setFollowUpDays] = useState<3 | 7>(3);
   const [submitting, setSubmitting] = useState(false);
   const [committed, setCommitted] = useState(hasActiveCommitment);
   const [error, setError] = useState<string | null>(null);
+
+  // Derive the effective selection during render (no set-state-in-effect): a
+  // pattern-routed default applies until the user manually picks a plan, after
+  // which their choice wins. Validate the default is still a real plan.
+  const defaultIsValid =
+    !!defaultSelectedPlan && ifThenPlans.some((p) => p.plan === defaultSelectedPlan);
+  const effectiveSelectedPlan =
+    manuallyPicked ? selectedPlan : (defaultIsValid ? defaultSelectedPlan! : selectedPlan);
 
   // The committed flag is hydrated asynchronously by the parent (server truth via
   // useCommitments), so the prop can flip from false→true after mount. Mirror it
@@ -46,11 +62,11 @@ export function CommitmentPrompt({
   }, [hasActiveCommitment]);
 
   const handleCommit = useCallback(async () => {
-    if (!selectedPlan || submitting) return;
+    if (!effectiveSelectedPlan || submitting) return;
     setSubmitting(true);
     setError(null);
     try {
-      await onCommit({ bookId, chapterNumber, ifThenPlan: selectedPlan, followUpDays });
+      await onCommit({ bookId, chapterNumber, ifThenPlan: effectiveSelectedPlan, followUpDays });
       setCommitted(true);
     } catch (e) {
       console.error("Failed to create commitment:", e);
@@ -58,7 +74,7 @@ export function CommitmentPrompt({
     } finally {
       setSubmitting(false);
     }
-  }, [selectedPlan, submitting, onCommit, bookId, chapterNumber, followUpDays]);
+  }, [effectiveSelectedPlan, submitting, onCommit, bookId, chapterNumber, followUpDays]);
 
   if (committed) {
     return (
@@ -92,12 +108,17 @@ export function CommitmentPrompt({
 
       <ul className="space-y-2.5">
         {ifThenPlans.map((plan, i) => {
-          const isSelected = selectedPlan === plan.plan;
+          const isSelected = effectiveSelectedPlan === plan.plan;
           return (
             <li key={i}>
               <button
                 type="button"
-                onClick={() => setSelectedPlan(isSelected ? null : plan.plan)}
+                aria-pressed={isSelected}
+                onClick={() => {
+                  // A manual pick always wins over the pattern-routed default.
+                  setManuallyPicked(true);
+                  setSelectedPlan(isSelected ? null : plan.plan);
+                }}
                 className={`w-full text-left rounded-lg border px-4 py-3 transition ${
                   isSelected
                     ? "border-(--cr-accent)/50 bg-(--cr-accent)/10"
@@ -115,7 +136,7 @@ export function CommitmentPrompt({
         })}
       </ul>
 
-      {selectedPlan && (
+      {effectiveSelectedPlan && (
         <div className="mt-4 flex items-center gap-3">
           <div className="flex items-center gap-1.5 text-[12px] text-(--cr-text-disabled)">
             <Clock className="h-3.5 w-3.5" />

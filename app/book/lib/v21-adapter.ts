@@ -33,6 +33,13 @@ export type V21MemorableLine = {
 /** v21 behavior-change layer (Layer A). Both sub-objects are optional and
  *  independent; the extractor only surfaces a sub-object when it is COMPLETE,
  *  so the reader never has to defend against half-populated shapes. */
+export type V21ReaderPattern = {
+  id: string;
+  label: string;
+  mapsToPlanIndex?: number;
+  mapsToExampleIndex?: number;
+};
+
 export type V21ExperiencePlan = {
   failureRecovery?: {
     normalizingLine: string;
@@ -43,6 +50,10 @@ export type V21ExperiencePlan = {
   transferPrompt?: {
     prompt: string;
     contexts: string[];
+  };
+  /** Optional "which pattern fits you?" personalization layer (RDRP*). */
+  behaviorLoop?: {
+    readerPatterns?: V21ReaderPattern[];
   };
 };
 
@@ -264,7 +275,33 @@ function extractExperiencePlan(raw: unknown): V21ExperiencePlan | undefined {
     }
   }
 
-  return result.failureRecovery || result.transferPrompt ? result : undefined;
+  const bl = asRecord(ep.behaviorLoop);
+  if (bl) {
+    const rawPatterns = Array.isArray(bl.readerPatterns) ? bl.readerPatterns : [];
+    const patterns: V21ReaderPattern[] = [];
+    for (const rp of rawPatterns) {
+      const rec = asRecord(rp);
+      if (!rec) continue;
+      const id = asStringOrUndefined(rec.id);
+      const label = asStringOrUndefined(rec.label);
+      if (!id || !label) continue; // surface only complete patterns
+      const pattern: V21ReaderPattern = { id, label };
+      if (typeof rec.mapsToPlanIndex === "number" && Number.isInteger(rec.mapsToPlanIndex)) {
+        pattern.mapsToPlanIndex = rec.mapsToPlanIndex;
+      }
+      if (typeof rec.mapsToExampleIndex === "number" && Number.isInteger(rec.mapsToExampleIndex)) {
+        pattern.mapsToExampleIndex = rec.mapsToExampleIndex;
+      }
+      patterns.push(pattern);
+    }
+    if (patterns.length > 0) {
+      result.behaviorLoop = { readerPatterns: patterns };
+    }
+  }
+
+  return result.failureRecovery || result.transferPrompt || result.behaviorLoop
+    ? result
+    : undefined;
 }
 
 /** Extract v21-only chapter fields for rendering hooks, reflections, memorable lines. */

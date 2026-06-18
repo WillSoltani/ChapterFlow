@@ -153,3 +153,68 @@ test("experiencePlan survives the API-backed path (chapterFromApi.v21Extras → 
     EXPERIENCE_PLAN.transferPrompt.contexts,
   );
 });
+
+/**
+ * behaviorLoop.readerPatterns (RDRP / Phase 3) must survive BOTH reader paths —
+ * the local extract+merge-spread AND the API v21Extras reconstruction — including
+ * the optional 0-based mapsTo*Index fields. If the carry is wired on only one path,
+ * pattern personalization silently vanishes for half the readers.
+ */
+const READER_PATTERNS = {
+  behaviorLoop: {
+    readerPatterns: [
+      {
+        id: "morning-phone-reach",
+        label: "When you reach for the phone first thing",
+        mapsToPlanIndex: 0,
+        mapsToExampleIndex: 1,
+      },
+      {
+        id: "midtask-drift",
+        label: "When focus drifts toward the feed mid task",
+        mapsToExampleIndex: 2,
+      },
+    ],
+  },
+};
+
+test("behaviorLoop.readerPatterns survives raw → BookChapter (local adapter + merge-spread)", () => {
+  const withPatterns = { ...sampleRawChapter, experiencePlan: { ...EXPERIENCE_PLAN, ...READER_PATTERNS } };
+  const chapter = buildBookChapterFromRawV21(withPatterns, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+    author: "James Clear",
+  });
+  const patterns = chapter.experiencePlan?.behaviorLoop?.readerPatterns;
+  assert.ok(patterns, "behaviorLoop.readerPatterns must reach the reader BookChapter (local path)");
+  assert.equal(patterns!.length, 2);
+  assert.equal(patterns![0].label, "When you reach for the phone first thing");
+  assert.equal(patterns![0].mapsToPlanIndex, 0);
+  assert.equal(patterns![0].mapsToExampleIndex, 1);
+  assert.equal(patterns![1].mapsToExampleIndex, 2);
+  assert.equal(patterns![1].mapsToPlanIndex, undefined, "an omitted index stays omitted");
+});
+
+test("behaviorLoop.readerPatterns survives the API-backed path (chapterFromApi.v21Extras → BookChapter)", () => {
+  const apiChapter = {
+    chapterId: "atomic-habits-ch01",
+    number: 1,
+    title: "Test chapter",
+    readingTimeMinutes: 8,
+    contentVariants: {
+      easy: { chapterBreakdown: { direct: "Fast-read prose, long enough for the reader to render." } },
+      medium: { chapterBreakdown: { direct: "Deep-read prose, long enough for the reader to render." } },
+      hard: { chapterBreakdown: { direct: "Full-read prose, long enough for the reader to render." } },
+    },
+    v21Extras: { hook: "A hook.", experiencePlan: { ...EXPERIENCE_PLAN, ...READER_PATTERNS } },
+  };
+  const chapter = adaptApiChapterToBookChapter(apiChapter, {
+    bookId: "atomic-habits",
+    title: "Atomic Habits",
+  });
+  const patterns = chapter.experiencePlan?.behaviorLoop?.readerPatterns;
+  assert.ok(patterns, "API path must carry behaviorLoop.readerPatterns onto the reader BookChapter");
+  assert.equal(patterns!.length, 2);
+  assert.equal(patterns![0].id, "morning-phone-reach");
+  assert.equal(patterns![1].mapsToExampleIndex, 2);
+});

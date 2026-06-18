@@ -790,6 +790,12 @@ function parseChapter(chapterRaw: unknown, path: string, issues: ValidationIssue
  */
 function parseV21Extras(value: unknown): V21ChapterExtras | undefined {
   if (!isRecord(value)) return undefined;
+  // NOTE: this intentionally omits `experiencePlan` (failureRecovery / transferPrompt
+  // / behaviorLoop.readerPatterns). v21 packages NEVER reach here — validateBookPackage
+  // dispatches them to adaptV21ToV13 (which carries experiencePlan via adaptV21Extras),
+  // and native-v13 packages have no experiencePlan. If a v21-extras-bearing chapter is
+  // ever routed through this parser, add an experiencePlan passthrough here or it will
+  // be silently dropped. See adaptV21ToV13's docstring.
   const extras: V21ChapterExtras = {};
   if (typeof value.hook === "string" && value.hook.trim()) extras.hook = value.hook;
   if (typeof value.counterintuition === "string" && value.counterintuition.trim()) {
