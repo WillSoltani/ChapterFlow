@@ -211,6 +211,8 @@ export async function analyticsTrackQuizInteraction(
  *   commitment_created   — user saved an if-then plan (POST /me/commitments)
  *   followup_completed   — user reported the outcome (PATCH action=complete)
  *   followup_skipped     — user skipped the check-in (PATCH action=skip)
+ *   application_complete — a chapter first became "applied" (feedback #4 two-axis
+ *                          completion); deduped per (bookId, chapterNumber)
  *
  * These are REQUIRED product events, written directly to the analytics table the
  * same way `quiz_attempt` is — they are NOT gated on the opt-in `analyticsParticipation`
@@ -222,7 +224,11 @@ export async function analyticsTrackQuizInteraction(
 export async function analyticsTrackCommitment(
   table: string,
   userId: string,
-  eventType: "commitment_created" | "followup_completed" | "followup_skipped",
+  eventType:
+    | "commitment_created"
+    | "followup_completed"
+    | "followup_skipped"
+    | "application_complete",
   payload: {
     commitmentId: string;
     bookId: string;
