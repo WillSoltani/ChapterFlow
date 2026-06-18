@@ -6,7 +6,9 @@ import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { OnboardingFlow } from "@/app/onboarding/components/OnboardingFlow";
 
 export default async function BookOnboardingPage() {
-  await requireDashboardAccess();
+  // This route IS the onboarding funnel, so it must opt out of the helper's
+  // un-onboarded redirect (which targets "/book") to avoid an infinite loop.
+  await requireDashboardAccess({ allowUnonboarded: true });
 
   // Server-side check: if the user has already completed onboarding,
   // redirect straight to the workspace. No client-side flash.
