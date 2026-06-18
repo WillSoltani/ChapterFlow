@@ -51,7 +51,7 @@ export function JourneysClient() {
           showSearch={false}
           logoVariant="dashboard"
         />
-        <section className="mx-auto w-full max-w-450 animate-pulse px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+        <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 animate-pulse px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
           <div className="h-9 w-48 rounded-xl bg-(--cf-surface-muted)" />
           <div className="mt-2 h-5 w-72 rounded-xl bg-(--cf-surface-muted)" />
           <div className="mt-6 space-y-4">
@@ -76,7 +76,7 @@ export function JourneysClient() {
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
+      <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
         <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1)">
           Learning Journeys
         </h1>

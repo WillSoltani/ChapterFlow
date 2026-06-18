@@ -116,7 +116,7 @@ export function NotebookClient() {
         logoVariant="dashboard"
       />
 
-      <section className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
+      <section id="main" tabIndex={-1} className="mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 lg:px-10 xl:px-16">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-(--cf-text-1)">
