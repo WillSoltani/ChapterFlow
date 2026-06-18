@@ -16,8 +16,15 @@ import {
   getUserProgress,
   putUserBookState,
 } from "@/app/app/api/book/_lib/repo";
+import {
+  getBookApplicationStates,
+  toChapterIdKeyedApplicationStates,
+} from "@/app/app/api/book/_lib/commitment-application";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import type { BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
+import type {
+  BookUserBookStateItem,
+  ChapterApplicationState,
+} from "@/app/app/api/book/_lib/types";
 import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
@@ -48,21 +55,43 @@ export async function GET(
       getBookTableName(),
       getBookContentBucket(),
     ]);
-    const [bookState, progress, published] = await Promise.all([
+    const [bookState, progress, published, appByNumber] = await Promise.all([
       getUserBookState(tableName, user.sub, bookId),
       getUserProgress(tableName, user.sub, bookId),
       getPublishedBookManifest({ tableName, contentBucket, bookId }),
+      // The application axis is DERIVED and display-only, so it must NEVER take down
+      // the essential progress read: on failure, degrade to {} (the client already
+      // tolerates a missing map) and log — do not 500. (Deliberate deviation from the
+      // spec's "let it 500": an adversarial review flagged that coupling — a transient
+      // commitments-table error failing the whole /state read — as a robustness
+      // regression that contradicts the feature's graceful-degradation guardrail.)
+      getBookApplicationStates(tableName, user.sub, bookId).catch((err) => {
+        console.error(
+          `[state] getBookApplicationStates failed for book ${bookId}; degrading applicationStates to {}`,
+          err,
+        );
+        return {} as Record<number, ChapterApplicationState>;
+      }),
     ]);
 
-    if (bookState) {
-      return bookOk({ state: bookState });
-    }
-
+    // Two-axis completion (feedback #4): the application axis is DERIVED and
+    // read-only — it gates nothing and awards no IP. Build it once (keyed by
+    // chapterId, to match the sibling completedChapterIds / chapterScores fields)
+    // and return it on BOTH branches, so it never silently drops for the
+    // persisted-state majority. It is intentionally NOT part of the persisted
+    // BookUserBookStateItem.
     const chapters = published.manifest.chapters;
-    const firstChapterId = chapters[0]?.chapterId ?? "";
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])
     );
+    const applicationStates: Record<string, ChapterApplicationState> =
+      toChapterIdKeyedApplicationStates(appByNumber, chapterIdByNumber);
+
+    if (bookState) {
+      return bookOk({ state: bookState, applicationStates });
+    }
+
+    const firstChapterId = chapters[0]?.chapterId ?? "";
     const completedChapterIds = (progress?.completedChapters ?? [])
       .map((number) => chapterIdByNumber.get(number) ?? "")
       .filter(Boolean);
@@ -93,7 +122,7 @@ export async function GET(
       updatedAt: progress?.updatedAt ?? nowIso(),
     };
 
-    return bookOk({ state: fallbackState });
+    return bookOk({ state: fallbackState, applicationStates });
   });
 }
 
