@@ -2,6 +2,7 @@
 
 import { useRef, useSyncExternalStore } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { DUR, EASE } from "@/lib/motion";
 
 // Client-only "mounted" flag without setState-in-effect: returns false during
 // SSR + the first hydration render, then true on the client after hydration.
@@ -73,7 +74,7 @@ export function SectionReveal({
       animate={target}
       transition={
         revealing
-          ? { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }
+          ? { duration: DUR.reveal, delay, ease: EASE.standard }
           : { duration: 0 }
       }
     >
