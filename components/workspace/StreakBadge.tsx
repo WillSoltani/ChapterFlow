@@ -1,5 +1,7 @@
 "use client";
 
+import { Flame } from "lucide-react";
+
 interface StreakBadgeProps {
   count: number;
 }
@@ -21,9 +23,12 @@ export function StreakBadge({ count }: StreakBadgeProps) {
   return (
     <div className="flex items-center gap-1.5" aria-label={`${count} day streak`}>
       <span className="relative inline-flex" aria-hidden="true">
-        <span className="text-lg leading-none" style={{ color: "var(--accent-gold)" }}>
-          🔥
-        </span>
+        <Flame
+          size={18}
+          strokeWidth={2.25}
+          className="leading-none"
+          style={{ color: "var(--cf-gold-text)" }}
+        />
         {/* Glow behind flame */}
         <span
           className="absolute inset-0 rounded-full blur-[6px]"
