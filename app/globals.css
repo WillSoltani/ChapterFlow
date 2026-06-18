@@ -351,6 +351,9 @@ body {
   --cf-teal-border: rgba(34, 211, 238, 0.24);
   --cf-gold-soft: rgba(232, 185, 49, 0.1);
   --cf-gold-border: rgba(232, 185, 49, 0.24);
+  /* Gold TEXT/NUMBERS only (NOT fills/seals/borders — those keep --accent-gold).
+     Dark surface: bright gold #E8B931 reads ~9.64:1 on #111827, keep it. */
+  --cf-gold-text: #E8B931;
   /* Pro-CTA single treatment (canonical = DiscoveryRow amber→gold).
      Consumed by batches 07/08/09/10/11 — CTAs set
      background: var(--cf-upgrade-accent); box-shadow: var(--cf-upgrade-accent-shadow); */
@@ -534,9 +537,14 @@ html:not(.dark) {
   --cf-teal-border: rgba(8, 145, 178, 0.2);
   --cf-gold-soft: rgba(180, 83, 9, 0.06);
   --cf-gold-border: rgba(180, 83, 9, 0.2);
+  /* Gold TEXT/NUMBERS only (NOT fills/seals/borders — those keep --accent-gold).
+     Bright gold #E8B931 is 1.84:1 on white → use amber-700 #B45309 = 5.02:1 (AA). */
+  --cf-gold-text: #B45309;
   /* Pro-CTA single treatment (amber→gold) — light-theme amber/gold resolve here.
-     Consumed by batches 07/08/09/10/11. */
-  --cf-upgrade-accent: linear-gradient(to right, var(--accent-amber), var(--accent-gold));
+     Consumed by batches 07/08/09/10/11. Start is lifted from the shared
+     --accent-amber (#B45309, black-on-it 4.18:1) to #C2620A so a BLACK CTA label
+     clears AA (black-on-#C2620A = 5.05:1); gold end #E8B931 unchanged. */
+  --cf-upgrade-accent: linear-gradient(to right, #C2620A, var(--accent-gold));
   --cf-upgrade-accent-shadow: 0 4px 16px var(--accent-amber-glow), 0 1px 3px var(--accent-amber-glow);
   /* Soft cyan onboarding field wash — consumed by batch 13. */
   --cf-onboarding-warm: color-mix(in srgb, var(--accent-cyan) 6%, transparent);
