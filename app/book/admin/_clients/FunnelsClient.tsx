@@ -7,7 +7,17 @@ import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 
-type Step = { key: string; label: string; count: number; pct: number };
+type Step = {
+  key: string;
+  label: string;
+  count: number;
+  pct: number;
+  // Optional conversion-denominator override (the behavior-loop tail isn't a linear
+  // chain — see the route). When `prevKey` is set, the conversion is measured against
+  // that step instead of the visual predecessor, and `convLabel` replaces "from prev".
+  prevKey?: string;
+  convLabel?: string;
+};
 type FunnelsResponse = {
   generatedAt: string;
   total: number;
@@ -54,7 +64,7 @@ export function FunnelsClient() {
       <AdminCard title="Activation funnel" description="Of all users who ever signed up">
         {loading && !data ? (
           <div className="space-y-2">
-            {Array.from({ length: 7 }).map((_, i) => (
+            {Array.from({ length: 10 }).map((_, i) => (
               <div key={i} className="h-12 animate-pulse rounded-lg bg-(--cf-surface-muted)" />
             ))}
           </div>
@@ -63,9 +73,15 @@ export function FunnelsClient() {
         ) : (
           <div className="space-y-2.5">
             {data?.steps.map((s, i) => {
-              const prev = i > 0 ? data.steps[i - 1] : null;
+              // Default denominator = the visual predecessor; tail steps override it
+              // with `prevKey` (their true superset) so conversion never exceeds 100%.
+              const base = s.prevKey
+                ? (data.steps.find((st) => st.key === s.prevKey) ?? null)
+                : i > 0
+                  ? data.steps[i - 1]
+                  : null;
               const conversionFromPrev =
-                prev && prev.count > 0 ? Math.round((s.count / prev.count) * 100) : 100;
+                base && base.count > 0 ? Math.round((s.count / base.count) * 100) : 100;
               return (
                 <div key={s.key}>
                   <div className="mb-1 flex flex-col gap-0.5 text-[12px] sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
@@ -75,7 +91,7 @@ export function FunnelsClient() {
                     <span className="shrink-0 whitespace-nowrap tabular-nums text-(--cf-text-3)">
                       {s.count.toLocaleString()}{" "}
                       <span className="text-(--cf-text-soft)">
-                        ({s.pct}% of total · {conversionFromPrev}% from prev)
+                        ({s.pct}% of total · {conversionFromPrev}% {s.convLabel ?? "from prev"})
                       </span>
                     </span>
                   </div>

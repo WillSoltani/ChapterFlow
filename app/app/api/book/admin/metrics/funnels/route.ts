@@ -16,6 +16,14 @@ type FunnelStep = {
   label: string;
   count: number;
   pct: number;
+  // Conversion denominator overrides. The head funnel is a linear chain, so each
+  // step's "conversion from prev" defaults to the step immediately above it. The
+  // behavior-loop tail is NOT linear — returned/reported_helped/applied are all
+  // outcomes of `first_commitment` (siblings, not a chain), so `applied` (any
+  // outcome) can exceed `reported_helped` (helped-only) and a naive prev-ratio
+  // would render a nonsensical >100%. These pin the true superset denominator.
+  prevKey?: string; // count is measured against the step with this key, not the visual prev
+  convLabel?: string; // wording for the conversion (default "from prev")
 };
 
 export async function GET(req: Request) {
@@ -115,9 +123,13 @@ export async function GET(req: Request) {
       { key: "first_pass", label: "First quiz pass", count: firstQuizPass, pct: pct(firstQuizPass, total) },
       { key: "first_commitment", label: "First commitment (est.)", count: firstCommitment, pct: pct(firstCommitment, total) },
       // Behavior-loop tail (feedback #8). Per-USER (breadth), same scale factor as above.
-      { key: "returned", label: "Returned & reported (est.)", count: returned, pct: pct(returned, total) },
-      { key: "reported_helped", label: "Reported it helped (est.)", count: reportedHelped, pct: pct(reportedHelped, total) },
-      { key: "applied", label: "Applied a chapter (est.)", count: applied, pct: pct(applied, total) },
+      // All three are outcomes of first_commitment (returned/applied ⊆ committed,
+      // reported_helped ⊆ returned), so their conversion is shown "of committed" —
+      // never the prev-step ratio, which would render >100% (applied can exceed the
+      // helped-only reported_helped).
+      { key: "returned", label: "Returned & reported (est.)", count: returned, pct: pct(returned, total), prevKey: "first_commitment", convLabel: "of committed" },
+      { key: "reported_helped", label: "Reported it helped (est.)", count: reportedHelped, pct: pct(reportedHelped, total), prevKey: "first_commitment", convLabel: "of committed" },
+      { key: "applied", label: "Applied a chapter (est.)", count: applied, pct: pct(applied, total), prevKey: "first_commitment", convLabel: "of committed" },
       { key: "first_ai_fb", label: "First AI feedback (est.)", count: firstAiFeedback, pct: pct(firstAiFeedback, total) },
     ];
 
