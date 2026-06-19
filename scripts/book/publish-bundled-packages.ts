@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import { createRequire } from "node:module";
 import path from "node:path";
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { BOOK_PACKAGES } from "@/app/book/data/bookPackages";
 
 const REGION =
   process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
@@ -102,6 +103,17 @@ async function main() {
     .filter(isJsonFilename)
     .sort((left, right) => left.localeCompare(right));
 
+  // Allowlist: the seed may publish ONLY books wired into the curated
+  // presentation catalog (BOOK_PACKAGES — the same source publish-library-assets.ts
+  // uses). On-disk packages that are NOT in the catalog have no cover, synopsis,
+  // search entry, or reader fallback, so auto-publishing them leaks unreviewed
+  // books to prod with no easy un-publish (PAR-1). Derived from BOOK_PACKAGES so
+  // the publish set can never silently drift from what the app presents.
+  const curatedBookIds = new Set(BOOK_PACKAGES.map((pkg) => pkg.book.bookId));
+  console.log(
+    `Curated allowlist: ${curatedBookIds.size} books (filtering ${files.length} on-disk packages).`
+  );
+
   const existing = await listPublishedCatalogItems(args.tableName);
   const publishedBookIds = new Set(
     existing
@@ -111,6 +123,7 @@ async function main() {
 
   let publishedCount = 0;
   let skippedCount = 0;
+  let notCuratedCount = 0;
 
   for (const filename of files) {
     const absolutePath = path.join(packagesDir, filename);
@@ -122,6 +135,12 @@ async function main() {
     const bookId = parsed?.book?.bookId;
     if (!bookId) {
       console.warn(`Skipping ${filename}: missing book.bookId`);
+      continue;
+    }
+
+    if (!curatedBookIds.has(bookId)) {
+      notCuratedCount += 1;
+      console.log(`Skipping ${bookId}: not in curated catalog (allowlist)`);
       continue;
     }
 
@@ -162,7 +181,9 @@ async function main() {
   }
 
   console.log(
-    `Bundled package publish complete. Published: ${publishedCount}. Skipped: ${skippedCount}.`
+    `Bundled package publish complete. Published: ${publishedCount}. ` +
+      `Already-published skipped: ${skippedCount}. ` +
+      `Not-curated skipped (allowlist): ${notCuratedCount}.`
   );
 }
 

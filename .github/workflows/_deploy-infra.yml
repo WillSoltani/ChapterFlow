@@ -132,6 +132,23 @@ jobs:
         if: ${{ inputs.seed }}
         run: npx tsx scripts/book/publish-library-assets.ts
 
+      # Must run LAST: reads the now-current published catalog from DynamoDB and
+      # rewrites book-content/library/search-index.json. Without this, a seed
+      # leaves the prod search index stale (e.g. readable-but-unsearchable books).
+      # Uses BOOK_TABLE_NAME / BOOK_CONTENT_BUCKET resolved from SSM above.
+      #
+      # Non-blocking (continue-on-error): unlike the two publish steps above, this
+      # commits no durable catalog/content state — it only derives a search index
+      # from data already published. The app treats the identical rebuildSearchIndex()
+      # call as non-blocking ("publish succeeds even if this fails"), so a transient
+      # S3/DynamoDB blip here must not fail an otherwise-correct prod deploy. The
+      # step still surfaces as failed in the Actions UI, and the rebuild is
+      # idempotent — safe to re-run on its own.
+      - name: Rebuild search index
+        if: ${{ inputs.seed }}
+        continue-on-error: true
+        run: npx tsx scripts/book/rebuild-search-index.ts
+
       - name: Summary
         if: always()
         run: |
