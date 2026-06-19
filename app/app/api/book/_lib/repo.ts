@@ -900,6 +900,63 @@ export async function createProgressIfMissing(
   }
 }
 
+/**
+ * PAR-2 — advance a started reader's pinned version fields (pinnedBookVersion,
+ * contentPrefix, manifestKey) to a newer published version, leaving every other
+ * progress field untouched. A field-scoped, conditional `UpdateCommand` (rather
+ * than a full-item Put) guarantees this can never:
+ *   - clobber a concurrent interaction write (lastOpenedAt / currentChapterNumber
+ *     / a quiz outcome) — those fields are simply not in the update, and
+ *   - downgrade a row another request advanced further — the
+ *     `pinnedBookVersion = :expected` guard makes a stale upgrade a no-op.
+ * This is sound ONLY because the caller upgrades exclusively under the
+ * prefix-identity gate (see version-upgrade-core.ts), where the chapter-number
+ * remap is the identity and no progress number changes. If that gate is ever
+ * relaxed to renumber chapters, this must become a full-row write.
+ *
+ * Returns true when applied, false when the guard no longer holds (already
+ * advanced / changed concurrently). Throws on unexpected DDB errors so the
+ * caller's fail-safe can keep the reader on their existing content.
+ */
+export async function repointProgressVersion(
+  tableName: string,
+  params: {
+    userId: string;
+    bookId: string;
+    expectedPinnedVersion: number;
+    pinnedBookVersion: number;
+    contentPrefix: string;
+    manifestKey: string;
+    updatedAt: string;
+  }
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(params.userId),
+          SK: progressSk(params.bookId),
+        },
+        UpdateExpression:
+          "SET pinnedBookVersion = :version, contentPrefix = :prefix, manifestKey = :manifestKey, updatedAt = :updatedAt",
+        ConditionExpression: "attribute_exists(PK) AND pinnedBookVersion = :expected",
+        ExpressionAttributeValues: {
+          ":version": params.pinnedBookVersion,
+          ":prefix": params.contentPrefix,
+          ":manifestKey": params.manifestKey,
+          ":updatedAt": params.updatedAt,
+          ":expected": params.expectedPinnedVersion,
+        },
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
 export async function getUserProgress(
   tableName: string,
   userId: string,
