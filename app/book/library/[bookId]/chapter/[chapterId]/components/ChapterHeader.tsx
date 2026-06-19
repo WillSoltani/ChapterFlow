@@ -11,7 +11,7 @@ import {
   NotebookPen,
   Settings,
 } from "lucide-react";
-import type { LearningMode, ContentTone, FontFamily } from "@/app/book/settings/types/settings";
+import type { LearningMode, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
 import { ReaderSettingsMenu, type LineSpacingPref } from "./ReaderSettingsMenu";
@@ -37,8 +37,6 @@ type ChapterHeaderProps = {
   trackedMinutesToday?: number;
   learningMode?: LearningMode;
   onChangeLearningMode?: (mode: LearningMode) => void;
-  contentTone?: ContentTone;
-  onChangeContentTone?: (tone: ContentTone) => void;
   showProgressBar?: boolean;
   showEstimatedReadingTime?: boolean;
   showReadingSessionTimer?: boolean;
@@ -75,8 +73,6 @@ export function ChapterHeader({
   trackedMinutesToday: _trackedMinutesToday = 0,
   learningMode = "standard",
   onChangeLearningMode,
-  contentTone = "gentle",
-  onChangeContentTone,
   showProgressBar: _showProgressBar = true,
   showEstimatedReadingTime = true,
   showReadingSessionTimer: _showReadingSessionTimer = true,
@@ -316,10 +312,6 @@ export function ChapterHeader({
               learningMode={learningMode}
               onChangeLearningMode={(m) => {
                 onChangeLearningMode?.(m);
-              }}
-              contentTone={contentTone}
-              onChangeContentTone={(t) => {
-                onChangeContentTone?.(t);
               }}
               showDepthSelector={showDepthSelector}
               readingDepth={readingDepth}

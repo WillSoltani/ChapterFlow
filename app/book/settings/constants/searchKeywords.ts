@@ -124,13 +124,6 @@ export const SETTINGS_SEARCH_INDEX: SettingSearchItem[] = [
     keywords: ["motivation", "encouragement", "coach", "rival", "nudge"],
   },
   {
-    id: "content-tone",
-    section: "reading",
-    label: "Content tone",
-    description: "How chapter summaries, scenarios, and quiz feedback are written",
-    keywords: ["tone", "gentle", "direct", "competitive", "voice", "writing", "style", "content"],
-  },
-  {
     id: "spaced-repetition",
     section: "goals",
     label: "Review retention target",

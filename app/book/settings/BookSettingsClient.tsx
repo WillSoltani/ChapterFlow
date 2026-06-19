@@ -73,7 +73,6 @@ import type {
   ReadingProfile,
   QuizStyle,
   MotivationPersona,
-  ContentTone,
   DailyGoalPreset,
   CelebrationEvent,
   StreakMode,
@@ -417,14 +416,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     triggerToast();
   }
 
-  // --- Content tone (independent of motivation persona) ---
-  function handleContentToneChange(tone: ContentTone) {
-    patchExt({ contentTone: tone, profileCustomized: true });
-    const labels = { gentle: "Gentle", direct: "Direct", competitive: "Competitive" };
-    announce(`Content tone changed to ${labels[tone]}`);
-    triggerToast();
-  }
-
   // --- Daily goal mapping ---
   function handleDailyGoalChange(preset: DailyGoalPreset) {
     const prev = ext.dailyGoalPreset;
@@ -486,8 +477,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
   function getGoalsSummary() {
     const daily = ext.dailyGoalPreset;
     const streak = ext.streakMode === "off" ? "Off" : ext.streakMode === "standard" ? "Standard" : "Flexible";
-    const tone = ext.contentTone.charAt(0).toUpperCase() + ext.contentTone.slice(1);
-    return `${daily} min/day · ${streak} · ${tone}`;
+    return `${daily} min/day · ${streak}`;
   }
 
   function getAppearanceSummary() {
@@ -699,50 +689,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   Your settings have been customized
                 </p>
               )}
-            </div>
-
-            <Divider />
-
-            {/* 1B. Content Tone */}
-            <div className="px-3 py-3" id="content-tone">
-              <p className="text-sm font-medium text-(--cf-text-1)">Content tone</p>
-              <p className="mt-0.5 text-xs text-(--cf-text-3)">
-                How chapter summaries, scenarios, and quiz feedback are written for you.
-              </p>
-              <div className="mt-3">
-                <CardSelector
-                  options={[
-                    {
-                      value: "gentle",
-                      emoji: "\uD83C\uDF3F",
-                      label: "Gentle",
-                      description: "Warm and encouraging. Concepts explained with patience and care.",
-                      tint: "from-accent-emerald/[0.07] to-accent-emerald/[0.03]",
-                      selectedTint: "border-accent-emerald/30 shadow-[0_0_20px_rgba(52,211,153,0.12)]",
-                    },
-                    {
-                      value: "direct",
-                      emoji: "\uD83C\uDFAF",
-                      label: "Direct",
-                      description: "Clear and efficient. Straight to the point, no fluff.",
-                      tint: "from-accent-cyan/[0.07] to-accent-cyan/[0.03]",
-                      selectedTint: "border-(--cf-accent)/30 shadow-[0_0_20px_var(--cf-accent-shadow)]",
-                    },
-                    {
-                      value: "competitive",
-                      emoji: "\u26A1",
-                      label: "Competitive",
-                      description: "Bold and challenging. Pushes you to think harder.",
-                      tint: "from-accent-amber/[0.07] to-accent-amber/[0.03]",
-                      selectedTint: "border-accent-amber/30 shadow-[0_0_20px_rgba(251,191,36,0.12)]",
-                    },
-                  ]}
-                  value={ext.contentTone}
-                  onChange={(v) => handleContentToneChange(v as ContentTone)}
-                  label="Content tone"
-                  columns={3}
-                />
-              </div>
             </div>
 
             <Divider />
