@@ -1,4 +1,9 @@
 import { test, expect, type Page } from "@playwright/test";
+import {
+  ORPHAN_BOOK_SLUGS,
+  CANONICAL_BOOK_SLUGS,
+  resolveCanonicalBookSlug,
+} from "../lib/book-slug-aliases";
 
 // Smoke suite: confirms the critical funnels and the authed app shell actually
 // render in a real browser — not that specific seeded content exists. Catches
@@ -57,6 +62,74 @@ test.describe("app shell (dev-auth-bypass)", () => {
       await expect(page).toHaveURL(new RegExp(escapeRegex(path)));
       await expectNoErrorOverlay(page);
       await expectNotBlank(page);
+    });
+  }
+});
+
+// PROD-DUP: retired book slugs must 308-redirect to their canonical slug. The
+// redirect lives in middleware.ts (NOT next.config redirects(), which match
+// case-INSENSITIVELY and would loop the case-only Getting-Things-Done rename onto
+// the live canonical) and runs before the auth bounce, so the first hop is the
+// canonical redirect — verifiable in dev mode. maxRedirects:0 stops at that hop
+// so we assert the 308 + canonical Location exactly, and that no canonical
+// self-redirects (the loop-bug regression guard).
+test.describe("orphan book-slug redirects (PROD-DUP)", () => {
+  const BASE = "http://127.0.0.1:3000";
+
+  // Cover EVERY retired slug — including the uppercase `Getting-Things-Done` and
+  // the apostrophe `you-can't-hurt-me`, the two with non-trivial matching
+  // semantics — so the suite can't go green while a case-only or encoding edge
+  // silently breaks. encodeURIComponent leaves these slugs' chars untouched, so
+  // each is requested in its literal form.
+  for (const orphan of ORPHAN_BOOK_SLUGS) {
+    const canonical = resolveCanonicalBookSlug(orphan);
+    test(`detail: ${orphan} → ${canonical}`, async ({ request }) => {
+      const res = await request.get(
+        `/book/library/${encodeURIComponent(orphan)}`,
+        { maxRedirects: 0 },
+      );
+      expect(res.status(), `${orphan} should 308`).toBe(308);
+      const loc = new URL(res.headers()["location"], BASE);
+      expect(loc.pathname).toBe(`/book/library/${canonical}`);
+    });
+  }
+
+  test("reader subtree is preserved", async ({ request }) => {
+    const res = await request.get(
+      "/book/library/art-of-war/chapter/laying-plans",
+      { maxRedirects: 0 },
+    );
+    expect(res.status()).toBe(308);
+    const loc = new URL(res.headers()["location"], BASE);
+    expect(loc.pathname).toBe(
+      "/book/library/the-art-of-war/chapter/laying-plans",
+    );
+  });
+
+  test("percent-encoded apostrophe resolves (you-can%27t-hurt-me)", async ({
+    request,
+  }) => {
+    const res = await request.get("/book/library/you-can%27t-hurt-me", {
+      maxRedirects: 0,
+    });
+    expect(res.status()).toBe(308);
+    const loc = new URL(res.headers()["location"], BASE);
+    expect(loc.pathname).toBe("/book/library/you-cant-hurt-me");
+  });
+
+  // No canonical slug may redirect to itself — the failure mode of a
+  // case-insensitive next.config redirect on the case-only rename
+  // (Getting-Things-Done). This is the regression guard for the loop bug.
+  for (const canonical of CANONICAL_BOOK_SLUGS) {
+    test(`canonical ${canonical} does not self-redirect`, async ({ request }) => {
+      const path = `/book/library/${canonical}`;
+      const res = await request.get(path, { maxRedirects: 0 });
+      if (res.status() >= 300 && res.status() < 400) {
+        const loc = new URL(res.headers()["location"], BASE);
+        expect(loc.pathname, `${path} must not redirect to itself`).not.toBe(
+          path,
+        );
+      }
     });
   }
 });

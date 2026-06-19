@@ -22,11 +22,13 @@ import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
 import {
   createBookVersionDraft,
   deleteBookVersion,
+  getCatalogBook,
   getNextVersionNumber,
   listBookVersions,
   publishBookVersion,
   upsertBookMetaAndCatalog,
 } from "./repo";
+import { evaluatePublishGuard } from "@/lib/book-slug-aliases";
 
 export async function ingestBookPackageFromS3(params: {
   tableName: string;
@@ -84,6 +86,16 @@ export async function ingestBookPackageFromS3(params: {
       ]);
     }
     throw error;
+  }
+
+  // PROD-DUP dedupe guard: a slug rename keys a brand-new catalog record, so the
+  // OLD slug is left live serving a degraded duplicate. Never (re)publish under a
+  // known retired slug — only the canonical slug may go live, so an orphan record
+  // can't be forked again. (lib/book-slug-aliases.ts is the single source of
+  // truth, shared with the orphan→canonical redirects + the reconcile script.)
+  const guard = evaluatePublishGuard(pkg.book.bookId);
+  if (guard.action === "reject") {
+    throw new BookApiError(409, guard.code, guard.message);
   }
 
   const { manifest, chapterPayloads, quizPayloads } = buildArtifacts(pkg);
@@ -215,6 +227,18 @@ export async function ingestBookPackageFromS3(params: {
 
   if (params.publishNow) {
     await publishBookVersion(params.tableName, pkg.book.bookId, version, params.createdBy);
+    // PROD-DUP: now that the canonical slug is live, retire any stale records
+    // still published under this book's OLD slugs so the catalog stops serving
+    // the degraded duplicate (a rename retires the old record instead of forking
+    // a second one).
+    if (guard.supersedeSlugs.length > 0) {
+      await archiveSupersededOrphans(
+        params.tableName,
+        pkg.book.bookId,
+        guard.supersedeSlugs,
+        params.createdBy
+      );
+    }
   }
 
   return {
@@ -252,6 +276,47 @@ async function deleteContentPrefix(bucket: string, prefix: string): Promise<void
     }
     continuationToken = listed.IsTruncated ? listed.NextContinuationToken : undefined;
   } while (continuationToken);
+}
+
+// PROD-DUP: archive (status -> ARCHIVED) any catalog records still PUBLISHED
+// under a book's old/orphan slugs once it republishes under the canonical slug.
+// ARCHIVE — not delete — so the record and every reader's progress row (keyed by
+// the old bookId) survive; the orphan→canonical redirect + PAR-2 version-upgrade
+// carry readers forward. Best-effort: the publish has already committed and the
+// reconcile script (scripts/book/reconcile-prod-catalog.ts) is the authoritative
+// backstop, so a transient failure here is logged, not thrown.
+async function archiveSupersededOrphans(
+  tableName: string,
+  canonicalBookId: string,
+  orphanBookIds: string[],
+  actor: string
+): Promise<void> {
+  for (const orphanBookId of orphanBookIds) {
+    try {
+      const orphan = await getCatalogBook(tableName, orphanBookId);
+      if (!orphan || orphan.status !== "PUBLISHED") continue;
+      await upsertBookMetaAndCatalog(tableName, {
+        bookId: orphan.bookId,
+        title: orphan.title,
+        author: orphan.author,
+        categories: orphan.categories,
+        tags: orphan.tags,
+        cover: orphan.cover,
+        variantFamily: orphan.variantFamily,
+        latestVersion: orphan.latestVersion,
+        currentPublishedVersion: orphan.currentPublishedVersion,
+        status: "ARCHIVED",
+      });
+      console.log(
+        `[prod-dup] archived orphan catalog record "${orphanBookId}" superseded by "${canonicalBookId}" (publish by ${actor}).`
+      );
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(
+        `[prod-dup] could not archive orphan "${orphanBookId}" superseded by "${canonicalBookId}": ${message}`
+      );
+    }
+  }
 }
 
 function buildArtifacts(pkg: BookPackage): {

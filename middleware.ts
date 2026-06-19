@@ -1,7 +1,44 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isDevAuthBypassEnabled } from "@/app/app/_lib/dev-auth-bypass";
+import {
+  isOrphanBookSlug,
+  resolveCanonicalBookSlug,
+} from "@/lib/book-slug-aliases";
 
 let missingConfigWarned = false;
+
+// PROD-DUP: redirect a retired book slug to its canonical slug (308). This lives
+// in middleware rather than next.config redirects() on purpose: Next compiles
+// redirect `source` strings case-INSENSITIVELY (experimental.caseSensitiveRoutes
+// defaults off), so a source for the case-only rename `Getting-Things-Done` would
+// also match the LIVE lowercase canonical `getting-things-done` and 308 it onto
+// itself — an infinite redirect loop that bricks a shipping book. Matching here
+// is EXACT-CASE, and we decode the slug first so a percent-encoded inbound path
+// (e.g. `%27` for the apostrophe in `you-can't-hurt-me`) still resolves. Only the
+// first path segment after /book/library/ is treated as the slug; the chapter
+// subtree and query string are preserved.
+function orphanSlugRedirect(req: NextRequest): NextResponse | null {
+  const { pathname } = req.nextUrl;
+  const prefix = "/book/library/";
+  if (!pathname.startsWith(prefix)) return null;
+  const afterPrefix = pathname.slice(prefix.length);
+  const slashIndex = afterPrefix.indexOf("/");
+  const rawSlug = slashIndex === -1 ? afterPrefix : afterPrefix.slice(0, slashIndex);
+  const rest = slashIndex === -1 ? "" : afterPrefix.slice(slashIndex);
+  if (rawSlug.length === 0) return null;
+
+  let slug = rawSlug;
+  try {
+    slug = decodeURIComponent(rawSlug);
+  } catch {
+    // Malformed %-sequence: fall back to the raw segment.
+  }
+  if (!isOrphanBookSlug(slug)) return null;
+
+  const url = req.nextUrl.clone();
+  url.pathname = `${prefix}${resolveCanonicalBookSlug(slug)}${rest}`;
+  return NextResponse.redirect(url, 308);
+}
 
 function firstForwardedValue(value: string | null): string | null {
   if (!value) return null;
@@ -88,6 +125,12 @@ export function middleware(req: NextRequest) {
   if (pathname.startsWith("/app/api/")) {
     return NextResponse.next();
   }
+
+  // PROD-DUP: send retired book slugs to their canonical slug before the auth
+  // check, so crawlers/bookmarks for an old slug land on the real book without a
+  // login bounce (and keep working once the orphan record is archived).
+  const orphanRedirect = orphanSlugRedirect(req);
+  if (orphanRedirect) return orphanRedirect;
 
   const protectedSurface =
     pathname.startsWith("/app") ||
