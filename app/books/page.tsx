@@ -9,7 +9,7 @@ import { getChapterFlowSiteUrl } from "@/app/_lib/chapterflow-brand";
 
 export const metadata: Metadata = {
   title: `Library | ChapterFlow — ${CATALOG_BOOK_COUNT_DISPLAY} Non-Fiction Books`,
-  description: `Browse ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books structured for real retention. Each title includes chapter summaries, real-world examples, and quizzes. Psychology, productivity, leadership, and more.`,
+  description: `Browse ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books structured for real retention. Each title includes chapter summaries, real-world scenarios, and quizzes. Psychology, productivity, leadership, and more.`,
 };
 
 // Revalidate every hour — catalog changes only on book publish events
