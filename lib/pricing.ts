@@ -122,7 +122,7 @@ export const TRIAL_CTA_LABEL = `Start ${PRICING.trialDays}-day free trial`;
  * facing surface (Hero, SocialProof, Pricing, BrowseLibraryPage) so the
  * permanent free tier is described one way in a single visit.
  */
-export const FREE_OFFER_LABEL = "2 free books";
+export const FREE_OFFER_LABEL = `${PRICING.freeBookLimit} free books`;
 
 /**
  * Canonical Pro feature list — the single source of truth so the marketing
