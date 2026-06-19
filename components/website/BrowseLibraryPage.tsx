@@ -428,7 +428,7 @@ function LibraryHero({
                 style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
               >
                 {CATALOG_BOOK_COUNT_DISPLAY} non-fiction titles across psychology, productivity, leadership, and more.
-                Each one broken into chapter summaries, real-world scenarios, and retention quizzes.
+                Each one broken into chapter summaries, real-world examples, and retention quizzes.
               </p>
               <div className="mt-5">
                 <SearchBar query={searchQuery} onChange={onSearchChange} books={ALL_BOOKS} onRequestBook={onRequestBook} />
@@ -1031,7 +1031,7 @@ function BottomCTA() {
             style={{ color: "var(--text-secondary)", fontFamily: "var(--font-body)" }}
           >
             Read the summary. See it applied in real life. Prove you understood it.
-            Unlock the next chapter.
+            Practice what you learned.
           </p>
 
           <div className="mt-6">

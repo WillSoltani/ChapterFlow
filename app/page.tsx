@@ -25,12 +25,12 @@ import {
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
   description:
-    `ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world scenarios, prove retention with quizzes, and unlock the next chapter. ${CATALOG_BOOK_COUNT_DISPLAY} books, free to start.`,
+    `ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world examples, prove retention with quizzes, and practice what you learned. ${CATALOG_BOOK_COUNT_DISPLAY} books, free to start.`,
   metadataBase: new URL(getChapterFlowSiteUrl()),
   openGraph: {
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. Summaries, scenarios, quizzes, and real progress. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books.`,
+      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. Summaries, examples, quizzes, and real progress. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books.`,
     url: getChapterFlowSiteUrl(),
     siteName: CHAPTERFLOW_NAME,
     type: "website",
@@ -62,7 +62,7 @@ export default function Home() {
       url: siteUrl,
       logo: `${siteUrl}/og`,
       description:
-        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, scenarios, and quizzes.",
+        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, and quizzes.",
     },
     {
       "@context": "https://schema.org",
@@ -80,7 +80,7 @@ export default function Home() {
       "@type": "Product",
       name: `${CHAPTERFLOW_NAME} Pro`,
       description:
-        "Unlimited access to a structured non-fiction reading library with summaries, scenarios, quizzes, and spaced-repetition retention.",
+        "Unlimited access to a structured non-fiction reading library with summaries, examples, quizzes, and spaced-repetition retention.",
       offers: {
         "@type": "AggregateOffer",
         lowPrice: PRICING.annualMonthlyAmount.toFixed(2),
