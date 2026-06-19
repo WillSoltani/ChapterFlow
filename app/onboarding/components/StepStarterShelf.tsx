@@ -17,6 +17,7 @@ import type { OnboardingBook } from "@/app/onboarding/data/books";
 import { getBookCoverPath } from "@/app/onboarding/data/books";
 import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
 import { DUR, EASE } from "@/lib/motion";
+import { PRICING } from "@/lib/pricing";
 import { Button } from "@/components/ui/button";
 import { MicroCelebration } from "@/app/book/settings/components/MicroCelebration";
 import type { CelebrationEvent } from "@/app/book/settings/types/settings";
@@ -948,7 +949,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           lineHeight: 1.5,
         }}
       >
-        Your 2 free books are included.{" "}
+        Your {PRICING.freeBookLimit} free books are included.{" "}
         <button
           type="button"
           onClick={() => router.push("/pricing")}

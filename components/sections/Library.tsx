@@ -11,10 +11,13 @@ import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { track } from "@/lib/analytics";
+import { PRICING } from "@/lib/pricing";
 
 // Source the count from the shared catalog-stats module (single source of truth).
 const BOOK_COUNT = CATALOG_BOOK_COUNT;
-const FREE_TO_START_COUNT: number = 2;
+// Source the free-tier count from the pricing single source of truth so this
+// counter can never drift from the pricing cards / legal / onboarding copy.
+const FREE_TO_START_COUNT: number = PRICING.freeBookLimit;
 
 // Always link straight to the book. The server (requireDashboardAccess) carries
 // intent through the login wall via returnTo for logged-out readers, so we never

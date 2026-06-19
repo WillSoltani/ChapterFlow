@@ -100,7 +100,7 @@ const faqs = [
       "Yes \u2014 cancel anytime from your account settings, with no penalties or lock-in. Cancel during your 14-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.",
   },
   {
-    question: "What happens after my 2 free books?",
+    question: `What happens after my ${PRICING.freeBookLimit} free books?`,
     answer:
       "You can still browse summaries and access your completed books. To unlock new books, upgrade to Pro.",
   },
@@ -150,7 +150,7 @@ export function Pricing() {
   /* ---- Free features ---- */
   const freeFeatures = [
     "Access to the full book library",
-    "Finish up to 2 books",
+    `Finish up to ${PRICING.freeBookLimit} books`,
     "Lite and Standard depth modes",
     "Chapter summaries and examples",
     "Chapter quizzes",
