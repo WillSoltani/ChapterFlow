@@ -82,9 +82,38 @@ function meanRevert(init: number, current: number): number {
   return DEFAULT_W[7] * init + (1 - DEFAULT_W[7]) * current;
 }
 
-// ── Public API ───────────────────────────────────────────────────────────────
+// ── Desired-retention target ─────────────────────────────────────────────────
+//
+// FSRS schedules each card so its predicted retrievability has decayed to
+// `desiredRetention` by the moment it next comes due: a HIGHER target ⇒ SHORTER
+// intervals ⇒ more frequent reviews. 0.9 is the algorithm's proven default and
+// the value every existing card was scheduled under.
+//
+// SET-3: the Pro "Review retention target" slider (70–95%, app/book/settings)
+// lets a paying user personalize this. `retentionFromTargetPercent` converts the
+// stored percentage into the fraction `scheduleCard` consumes; `recordReview`
+// (fsrs-repo.ts) loads it per review and applies it only for effective-PRO users
+// — see that file for why the effect is Pro-gated. Absent / invalid ⇒ DEFAULT,
+// so a free user (or anyone without a stored target) keeps the unchanged 0.9.
+export const DEFAULT_DESIRED_RETENTION = 0.9;
+export const MIN_DESIRED_RETENTION = 0.7;
+export const MAX_DESIRED_RETENTION = 0.95;
 
-const DESIRED_RETENTION = 0.9;
+/**
+ * Convert the stored "Review retention target" percentage (70–95, the Pro
+ * settings slider) into an FSRS `desiredRetention` fraction. A non-finite /
+ * absent value falls back to DEFAULT_DESIRED_RETENTION; any number is clamped to
+ * the slider's [70, 95] band (expressed as a fraction) so a corrupt or legacy
+ * value can never push the scheduler to an extreme.
+ */
+export function retentionFromTargetPercent(targetPercent: unknown): number {
+  if (typeof targetPercent !== "number" || !Number.isFinite(targetPercent)) {
+    return DEFAULT_DESIRED_RETENTION;
+  }
+  return clamp(targetPercent / 100, MIN_DESIRED_RETENTION, MAX_DESIRED_RETENTION);
+}
+
+// ── Public API ───────────────────────────────────────────────────────────────
 
 export function createNewCard(
   cardId: string,
@@ -119,7 +148,10 @@ export function createNewCard(
 export function scheduleCard(
   card: FSRSCardState,
   rating: FSRSRating,
-  now: Date = new Date()
+  now: Date = new Date(),
+  // SET-3: per-user retention target (fraction). Defaults to the proven 0.9 so
+  // existing callers / tests keep their current scheduling unchanged.
+  desiredRetention: number = DEFAULT_DESIRED_RETENTION
 ): FSRSCardState {
   const elapsedDays =
     card.state === "new"
@@ -158,7 +190,7 @@ export function scheduleCard(
     }
   }
 
-  const interval = nextInterval(newStability, DESIRED_RETENTION);
+  const interval = nextInterval(newStability, desiredRetention);
   const dueAt = new Date(now.getTime() + interval * 86400000);
 
   return {
