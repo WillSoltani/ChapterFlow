@@ -25,13 +25,12 @@
 import { spawn } from "child_process";
 import { existsSync } from "fs";
 
-/** Strict env every pipeline agent session runs under (mirrors the `## Setup`
- *  block baked into the entry prompts). The conductor adds CHAPTERFLOW_SESSION_ID. */
-export const STRICT_AGENT_ENV: Record<string, string> = {
-  CHAPTERFLOW_NO_API_CODEX_QC: "1",
-  CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1",
-  CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE: "1",
-};
+import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
+
+/** Strict env every pipeline agent session runs under (canonical list in
+ *  lib/strictEnv, shared with runbook + the conductor's CLI runner so it can't
+ *  drift). The conductor adds CHAPTERFLOW_SESSION_ID. */
+export const STRICT_AGENT_ENV: Record<string, string> = { ...STRICT_PIPELINE_ENV };
 
 export type CodexSandbox = "read-only" | "workspace-write" | "danger-full-access";
 
@@ -143,12 +142,15 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
   const timeoutMs = opts.timeoutMs ?? 1_800_000;
   const runner = opts.runner ?? defaultCodexRunner;
   const argv = codexExecArgv(opts.task, sandbox);
-  // CHAPTERFLOW_SESSION_ID is set LAST so a caller's env map can never clobber the
-  // distinct per-spawn identity the independence checks depend on.
+  // Fail-closed env: STRICT_AGENT_ENV is spread AFTER opts.env so a caller's env map
+  // can never DISABLE a strict invariant (the enforcement they gate is absence-safe,
+  // i.e. silently OFF without these vars). CHAPTERFLOW_SESSION_ID is set LAST of all,
+  // so it's always the distinct per-spawn identity the independence checks depend on
+  // (it is not a strict var, so the PR2 broker can still set it per reviewer).
   const env: NodeJS.ProcessEnv = {
     ...process.env,
-    ...STRICT_AGENT_ENV,
     ...(opts.env ?? {}),
+    ...STRICT_AGENT_ENV,
     CHAPTERFLOW_SESSION_ID: opts.sessionId,
   };
   const startedAt = Date.now();
