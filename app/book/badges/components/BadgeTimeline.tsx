@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 import { TIER_BORDER_COLORS } from "../lib/badge-utils";
 
 type BadgeTimelineProps = {
@@ -62,6 +63,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
               const isRecent = badge.earnedDate
                 ? (now - new Date(badge.earnedDate).getTime()) < 7 * 24 * 60 * 60 * 1000
                 : false;
+              const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
               return (
                 <motion.div
@@ -87,8 +89,8 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                     />
 
                     {/* Badge icon */}
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) text-lg">
-                      {badge.icon}
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-(--cf-border) bg-(--cf-surface-muted)">
+                      <Icon className="h-5 w-5" style={{ color: "var(--accent-amber)" }} aria-hidden />
                     </div>
 
                     <div className="min-w-0 flex-1">

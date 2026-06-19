@@ -5,6 +5,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { Lock } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, TIER_PILL_STYLES, getProgressText } from "../lib/badge-utils";
 
 type BadgeCardProps = {
@@ -77,6 +78,7 @@ function EarnedBadgeCard({
 }) {
   const borderColor = TIER_BORDER_COLORS[badge.tier] ?? TIER_BORDER_COLORS.unique;
   const glowStyle = TIER_GLOW_STYLES[badge.tier] ?? TIER_GLOW_STYLES.unique;
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   return (
     <motion.button
@@ -104,11 +106,11 @@ function EarnedBadgeCard({
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } }}
     >
       <div className="flex items-start justify-between gap-2">
-        <span
-          className={`text-[48px] leading-none ${reduced ? "" : "badge-icon-pulse"}`}
-        >
-          {badge.icon}
-        </span>
+        <Icon
+          className={cn("h-12 w-12 shrink-0", !reduced && "badge-icon-pulse")}
+          style={{ color: "var(--accent-amber)" }}
+          aria-hidden
+        />
         <TierPill tier={badge.tier} earned />
       </div>
 
@@ -143,6 +145,7 @@ function LockedBadgeCard({
   reduced: boolean;
 }) {
   const progressText = getProgressText(badge);
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   return (
     <motion.button
@@ -166,9 +169,7 @@ function LockedBadgeCard({
     >
       <div className="flex items-start justify-between gap-2">
         <div className="relative">
-          <span className="text-[48px] leading-none grayscale opacity-35">
-            {badge.icon}
-          </span>
+          <Icon className="h-12 w-12 shrink-0 text-(--cf-text-soft) opacity-35" aria-hidden />
           <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-(--cf-surface)/80 text-[10px]">
             <Lock className="h-3 w-3 text-(--cf-text-soft)" />
           </span>

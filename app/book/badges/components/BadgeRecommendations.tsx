@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 
 type BadgeRecommendationsProps = {
   recommendations: BadgeWithProgress[];
@@ -80,6 +81,7 @@ export function BadgeRecommendations({
         {recommendations.map((badge) => {
           const message = getProgressMessage(badge);
           const ctaHref = getCtaHref(badge);
+          const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
           return (
             <div
@@ -102,15 +104,15 @@ export function BadgeRecommendations({
                 className="cf-pressable flex flex-1 flex-col text-left"
               >
                 <div className="relative">
-                  <span
-                    className="text-[48px] leading-none"
+                  <Icon
+                    className="h-12 w-12"
                     style={{
+                      color: "var(--accent-amber)",
                       maskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
                       WebkitMaskImage: "linear-gradient(to bottom, black 60%, transparent 100%)",
                     }}
-                  >
-                    {badge.icon}
-                  </span>
+                    aria-hidden
+                  />
                 </div>
 
                 <h3 className="mt-2 text-sm font-semibold" style={{ color: "var(--accent-amber)" }}>{badge.name}</h3>

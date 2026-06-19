@@ -27,6 +27,7 @@ export type Badge = {
   narrative: string;
   category: BadgeCategory;
   tier: BadgeTier;
+  /** lucide-react icon name (carried from BadgeDefinition.icon); resolved via BADGE_ICONS. */
   icon: string;
   fpValue: number;
   isSecret: boolean;
@@ -66,6 +67,9 @@ export type SeasonalChallenge = {
   id: string;
   title: string;
   description: string;
+  /** Admin-authored event badge glyph (an emoji from EventDefinition.badge.icon),
+   *  NOT a catalog badge — intentionally left as emoji, separate from the lucide
+   *  achievements catalog. */
   badgeIcon: string;
   startDate: string;
   endDate: string;

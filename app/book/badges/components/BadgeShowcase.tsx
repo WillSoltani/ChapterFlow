@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 
 type BadgeShowcaseProps = {
   badges: BadgeWithProgress[];
@@ -34,6 +35,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
           const badge = pinnedBadges[i];
 
           if (badge) {
+            const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
             return (
               <div
                 key={badge.id}
@@ -55,10 +57,11 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
                 <button
                   type="button"
                   onClick={() => onBadgeClick(badge)}
+                  aria-label={`Open ${badge.name}`}
                   className="cf-pressable flex h-18 w-18 items-center justify-center rounded-2xl border border-accent-amber/20 bg-accent-amber/5 transition hover:border-accent-amber/30 cf-focus"
                   tabIndex={0}
                 >
-                  <span className="text-[48px] leading-none">{badge.icon}</span>
+                  <Icon className="h-12 w-12" style={{ color: "var(--accent-amber)" }} aria-hidden />
                 </button>
                 <div className="max-w-20">
                   <p className="truncate text-xs font-medium text-(--accent-amber)">{badge.name}</p>
