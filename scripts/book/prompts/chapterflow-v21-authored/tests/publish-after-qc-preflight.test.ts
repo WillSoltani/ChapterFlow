@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { test } from "./harness.js";
+import { test, skip } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
@@ -22,6 +22,14 @@ const ROUND = "r-publish";
 const RUN = "20260613T000000Z";
 const SOURCE_BOOK = "stillness-is-the-key";
 const SOURCE_CHAPTER_NUMBER = 5;
+
+// Gold-corpus fixtures (clone a real chapter + its uncommitted source sidecar): run on the
+// authoring box, SKIP (loudly) where .chapterflow/runs is absent (CI / fresh checkout), per
+// the fixture policy. The no-fixture tests (env guard, formatPreflightChecklist) stay live.
+const goldTest: (name: string, fn: () => void | Promise<void>) => void =
+  sourceSidecarPathFor(SOURCE_BOOK, SOURCE_CHAPTER_NUMBER)
+    ? test
+    : (name) => skip(name, `gold source sidecar for ${SOURCE_BOOK} ch${SOURCE_CHAPTER_NUMBER} (.chapterflow/runs) not present`);
 
 function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
   for (const bookId of bookIds) {
@@ -272,7 +280,7 @@ test("publish-after-qc fails when CHAPTERFLOW_NO_API_CODEX_QC is missing", () =>
   }
 });
 
-test("publish-after-qc fails on missing book or missing round before publish", () => {
+goldTest("publish-after-qc fails on missing book or missing round before publish", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -291,7 +299,7 @@ test("publish-after-qc fails on missing book or missing round before publish", (
   }
 });
 
-test("publish-after-qc blocks incomplete QC and reports repair prompt resume path", () => {
+goldTest("publish-after-qc blocks incomplete QC and reports repair prompt resume path", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -311,7 +319,7 @@ test("publish-after-qc blocks incomplete QC and reports repair prompt resume pat
   }
 });
 
-test("publish-after-qc blocks REVISE evidence and prints repair prompt path", () => {
+goldTest("publish-after-qc blocks REVISE evidence and prints repair prompt path", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -341,7 +349,7 @@ test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ wit
   assert.match(out, /✓ majors/);
 });
 
-test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
+goldTest("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   // Hermetic: this fixture is a synthetic green book with no source-verify record, so an
   // ambient CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (the operator's publish env, which the

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { test } from "./harness.js";
+import { test, skip } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, runCli, writeFixtureBook } from "./helpers.js";
 import { checkQcAttestation, attestationPath, chapterContentHash, loadAttestation, writeAttestation } from "../src/critics/qcAttestation.js";
 import { runBookGate } from "../src/critics/bookGate.js";
@@ -39,6 +39,17 @@ const ROUND = "r-finalize";
 const RUN = "20260612T000000Z";
 const SOURCE_BOOK = "stillness-is-the-key";
 const SOURCE_CHAPTER_NUMBER = 5;
+
+// These tests CLONE a real gold chapter + its SOURCE SIDECAR (.chapterflow/runs), which is
+// generated research data — never committed (fixture policy: no copyrighted source text in
+// git). On the authoring box the sidecar is present and they run; in CI / a fresh checkout
+// it's absent, so they SKIP (loudly) instead of hard-failing on the missing dependency —
+// same contract as the gold-chapter tests. The hermetic (synthetic-fixture) tests below
+// keep running everywhere.
+const goldTest: (name: string, fn: () => void | Promise<void>) => void =
+  sourceSidecarPathFor(SOURCE_BOOK, SOURCE_CHAPTER_NUMBER)
+    ? test
+    : (name) => skip(name, `gold source sidecar for ${SOURCE_BOOK} ch${SOURCE_CHAPTER_NUMBER} (.chapterflow/runs) not present`);
 
 function cleanup(): void {
   for (const bookId of [BOOK, GREEN_BOOK, MAJOR_BOOK]) {
@@ -284,7 +295,7 @@ test("finalize marks missing evidence NEEDS_MORE_QC and writes no PUBLISHABLE at
   }
 });
 
-test("finalize writes PUBLISHABLE attestation with evidence paths when all no-api QC evidence is green", () => {
+goldTest("finalize writes PUBLISHABLE attestation with evidence paths when all no-api QC evidence is green", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -311,7 +322,7 @@ test("finalize writes PUBLISHABLE attestation with evidence paths when all no-ap
   }
 });
 
-test("finalize dryRun computes the same verdict but writes NOTHING durable (a preflight must not mutate QC state)", () => {
+goldTest("finalize dryRun computes the same verdict but writes NOTHING durable (a preflight must not mutate QC state)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -345,7 +356,7 @@ test("finalize dryRun computes the same verdict but writes NOTHING durable (a pr
   }
 });
 
-test("finalize and qc-auto refuse PASS when a current major is unresolved", () => {
+goldTest("finalize and qc-auto refuse PASS when a current major is unresolved", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     cleanup();
@@ -375,7 +386,7 @@ test("finalize and qc-auto refuse PASS when a current major is unresolved", () =
   }
 });
 
-test("finalize turns author-check REVISE into finalizer repair findings and prompt causes", () => {
+goldTest("finalize turns author-check REVISE into finalizer repair findings and prompt causes", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -400,7 +411,7 @@ test("finalize turns author-check REVISE into finalizer repair findings and prom
   }
 });
 
-test("confirm-candidates writes confirm cards only for green candidates", () => {
+goldTest("confirm-candidates writes confirm cards only for green candidates", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -447,7 +458,7 @@ function setupCarriedChapter(opts: { attestationContentHash?: string } = {}): Ch
   return chapter;
 }
 
-test("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter without a fresh bar/confirm read", () => {
+goldTest("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter without a fresh bar/confirm read", () => {
   try {
     cleanup();
     setupCarriedChapter();
@@ -460,7 +471,7 @@ test("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter without 
   }
 });
 
-test("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new cross-chapter collision can't ship green)", () => {
+goldTest("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new cross-chapter collision can't ship green)", () => {
   try {
     cleanup();
     setupCarriedChapter();
@@ -493,7 +504,7 @@ test("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new cross
   }
 });
 
-test("P2: a carried chapter whose content CHANGED since its attestation is NOT carried (re-reviewed)", () => {
+goldTest("P2: a carried chapter whose content CHANGED since its attestation is NOT carried (re-reviewed)", () => {
   try {
     cleanup();
     // Attestation hash deliberately does not match the current content → stale →
@@ -506,7 +517,7 @@ test("P2: a carried chapter whose content CHANGED since its attestation is NOT c
   }
 });
 
-test("P1.4: a complete fresh positive read supersedes a STALE prior-round REVISE on identical content", () => {
+goldTest("P1.4: a complete fresh positive read supersedes a STALE prior-round REVISE on identical content", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -540,7 +551,7 @@ test("P1.4: a complete fresh positive read supersedes a STALE prior-round REVISE
   }
 });
 
-test("P1.4: a SAME-reviewer confirm does NOT supersede a stale REVISE (author≠reviewer preserved)", () => {
+goldTest("P1.4: a SAME-reviewer confirm does NOT supersede a stale REVISE (author≠reviewer preserved)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -587,7 +598,7 @@ function writeShapePlan(bookId: string, chapterNumber: number, allocation: strin
   writeFileSync(resolve(dir, `${bookId}.shape-plan.json`), JSON.stringify({ schemaVersion: "shape-plan-v1", bookId, allocation: { [chapterNumber]: allocation }, carriedChapters: [] }, null, 2), "utf8");
 }
 
-test("WS-1: a chapter that violates its dealt SHAPE plan REVISEs at finalize (SP2 shifted left from publish)", () => {
+goldTest("WS-1: a chapter that violates its dealt SHAPE plan REVISEs at finalize (SP2 shifted left from publish)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -615,7 +626,7 @@ test("WS-1: a chapter that violates its dealt SHAPE plan REVISEs at finalize (SP
   }
 });
 
-test("WS-1: a clean green chapter passes the new planEnforcement check (no false-REVISE)", () => {
+goldTest("WS-1: a clean green chapter passes the new planEnforcement check (no false-REVISE)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
@@ -629,7 +640,7 @@ test("WS-1: a clean green chapter passes the new planEnforcement check (no false
   }
 });
 
-test("P1.5: finalize REVISEs a sub-0.6 bar axis even when it cited no hit (synthesises a repair target)", () => {
+goldTest("P1.5: finalize REVISEs a sub-0.6 bar axis even when it cited no hit (synthesises a repair target)", () => {
   try {
     cleanup();
     const chapter = clonedCleanChapter(GREEN_BOOK);
