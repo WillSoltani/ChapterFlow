@@ -44,6 +44,96 @@ function json(value: unknown): string {
   return "```json\n" + JSON.stringify(value, null, 2) + "\n```";
 }
 
+// ── Submission SKELETON builders ───────────────────────────────────────────────
+// One per role; the prefilled structural fields (schemaVersion/ids/contentHash/packHash/
+// question count) are derived, the judgment fields are FILL_ME / null sentinels. Extracted
+// from writeReviewPacket so the autopilot's read-only reviewer broker can inject the SAME
+// prefilled skeleton into a self-contained prompt (no REVIEW-PACKET archaeology) — the
+// packet renders `json(buildX(...))` at the same sites, so its bytes are unchanged.
+
+export function buildSweepSkeleton(bookId: string, roundId: string) {
+  return {
+    schemaVersion: "qc-sweep-submission-v1",
+    bookId,
+    roundId,
+    role: "sweep",
+    reviewer: qcReviewerId(roundId, "sweep"),
+    verdict: "FILL_ME",
+    checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+    findings: [],
+  };
+}
+
+export function buildKeySkeleton(bookId: string, roundId: string, role: "keyA" | "keyB", chapters: ChapterV21[]) {
+  return {
+    schemaVersion: "qc-key-derive-v2",
+    bookId,
+    roundId,
+    role,
+    reviewer: qcReviewerId(roundId, role),
+    chapters: chapters.map((ch) => {
+      const pack = loadKeyPack(bookId, roundId, ch.number);
+      const qCount = pack?.questions.length ?? ch.quiz?.questions?.length ?? 0;
+      return {
+        chapterNumber: ch.number,
+        chapterId: ch.chapterId,
+        packHash: pack?.packHash ?? "<copy from key-pack>",
+        answers: Array.from({ length: qCount }, (_, i) => ({
+          questionIndex: i,
+          choiceIndex: null,
+          confidence: "FILL_ME",
+          reason: "",
+          sourceFactIds: [],
+        })),
+      };
+    }),
+  };
+}
+
+export function buildBarSkeleton(bookId: string, roundId: string, ch: ChapterV21) {
+  return {
+    schemaVersion: "qc-bar-read-v2",
+    bookId,
+    roundId,
+    role: "bar",
+    reviewer: qcReviewerId(roundId, "bar", ch.number),
+    chapterNumber: ch.number,
+    chapterId: ch.chapterId,
+    contentHash: chapterContentHash(ch),
+    sourceHash: sourceHashFor(bookId, ch.number) ?? null,
+    notes: "",
+    axes: NON_KEY_AXES.map((axis) => ({ axis, score: null, tier: "PUBLISHABLE", hits: [] })),
+  };
+}
+
+export function buildConfirmSkeleton(bookId: string, roundId: string, ch: ChapterV21) {
+  return {
+    schemaVersion: "qc-confirm-read-v1",
+    bookId,
+    roundId,
+    role: "confirm",
+    reviewer: qcReviewerId(roundId, "confirm", ch.number),
+    chapterNumber: ch.number,
+    chapterId: ch.chapterId,
+    contentHash: chapterContentHash(ch),
+    decision: "FILL_ME",
+    reason: "",
+    findings: [],
+  };
+}
+
+export function buildMajorSkeleton(bookId: string, roundId: string) {
+  return {
+    schemaVersion: "qc-major-triage-v1",
+    bookId,
+    roundId,
+    role: "major",
+    reviewer: qcReviewerId(roundId, "major"),
+    findings: [],
+    dispositions: [],
+  };
+}
+
 function ch2(n: number): string {
   return `ch${String(n).padStart(2, "0")}`;
 }
@@ -112,16 +202,7 @@ export function writeReviewPacket(
   L.push("  - Two chapters that happen to share a venue or a card frame are fine; the defect is a SHELL spanning many chapters. Rule of thumb: REVISE the whole book only when ≥3 families each span ≥1/3 of the chapters, or any single shell saturates the book.");
   L.push(`Set verdict to PASS / REVISE / CORRUPTION (replace FILL_ME). REVISE/CORRUPTION need ≥1 quote-backed finding citing the SPECIFIC chapters and the shared shell.`);
   L.push(submitCmd(bookId, roundId, "sweep", tokens.sweep, "<sweep.json>"));
-  L.push(json({
-    schemaVersion: "qc-sweep-submission-v1",
-    bookId,
-    roundId,
-    role: "sweep",
-    reviewer: qcReviewerId(roundId, "sweep"),
-    verdict: "FILL_ME",
-    checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
-    findings: [],
-  }));
+  L.push(json(buildSweepSkeleton(bookId, roundId)));
   L.push("");
 
   // ── keyA / keyB (blind independent quiz-key derivations) ───────────────────
@@ -130,29 +211,7 @@ export function writeReviewPacket(
     L.push(`Derive each answer YOURSELF from the prompt + choices + source facts BEFORE looking at any key.`);
     L.push(`choiceIndex = your derived answer; reason ≥40 chars; sourceFactIds ≥1. keyA and keyB MUST be independent derivations.`);
     L.push(submitCmd(bookId, roundId, role, tokens[role], `<${role}.json>`));
-    L.push(json({
-      schemaVersion: "qc-key-derive-v2",
-      bookId,
-      roundId,
-      role,
-      reviewer: qcReviewerId(roundId, role),
-      chapters: chapters.map((ch) => {
-        const pack = loadKeyPack(bookId, roundId, ch.number);
-        const qCount = pack?.questions.length ?? ch.quiz?.questions?.length ?? 0;
-        return {
-          chapterNumber: ch.number,
-          chapterId: ch.chapterId,
-          packHash: pack?.packHash ?? "<copy from key-pack>",
-          answers: Array.from({ length: qCount }, (_, i) => ({
-            questionIndex: i,
-            choiceIndex: null,
-            confidence: "FILL_ME",
-            reason: "",
-            sourceFactIds: [],
-          })),
-        };
-      }),
-    }));
+    L.push(json(buildKeySkeleton(bookId, roundId, role, chapters)));
     L.push("");
   }
 
@@ -163,19 +222,7 @@ export function writeReviewPacket(
   for (const ch of chapters) {
     L.push(`### bar ${ch2(ch.number)} — ${ch.chapterId}`);
     L.push(submitCmd(bookId, roundId, "bar", tokens.bar, `<bar-${ch2(ch.number)}.json>`));
-    L.push(json({
-      schemaVersion: "qc-bar-read-v2",
-      bookId,
-      roundId,
-      role: "bar",
-      reviewer: qcReviewerId(roundId, "bar", ch.number),
-      chapterNumber: ch.number,
-      chapterId: ch.chapterId,
-      contentHash: chapterContentHash(ch),
-      sourceHash: sourceHashFor(bookId, ch.number) ?? null,
-      notes: "",
-      axes: NON_KEY_AXES.map((axis) => ({ axis, score: null, tier: "PUBLISHABLE", hits: [] })),
-    }));
+    L.push(json(buildBarSkeleton(bookId, roundId, ch)));
     L.push("");
   }
 
@@ -196,19 +243,7 @@ export function writeReviewPacket(
   for (const ch of chapters) {
     L.push(`### confirm ${ch2(ch.number)} — ${ch.chapterId}`);
     L.push(submitCmd(bookId, roundId, "confirm", tokens.confirm, `<confirm-${ch2(ch.number)}.json>`));
-    L.push(json({
-      schemaVersion: "qc-confirm-read-v1",
-      bookId,
-      roundId,
-      role: "confirm",
-      reviewer: qcReviewerId(roundId, "confirm", ch.number),
-      chapterNumber: ch.number,
-      chapterId: ch.chapterId,
-      contentHash: chapterContentHash(ch),
-      decision: "FILL_ME",
-      reason: "",
-      findings: [],
-    }));
+    L.push(json(buildConfirmSkeleton(bookId, roundId, ch)));
     L.push("");
   }
 
@@ -224,15 +259,7 @@ export function writeReviewPacket(
   L.push("authorized `major-disposition` command, never from this submission. Empty findings + dispositions");
   L.push("arrays mean 'no current majors'.");
   L.push(submitCmd(bookId, roundId, "major", tokens.major, "<major.json>"));
-  L.push(json({
-    schemaVersion: "qc-major-triage-v1",
-    bookId,
-    roundId,
-    role: "major",
-    reviewer: qcReviewerId(roundId, "major"),
-    findings: [],
-    dispositions: [],
-  }));
+  L.push(json(buildMajorSkeleton(bookId, roundId)));
   L.push("");
 
   const path = reviewPacketPath(bookId, roundId);
