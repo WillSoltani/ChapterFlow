@@ -217,6 +217,21 @@ function toRecommendationCard(
   };
 }
 
+/**
+ * "New user" for shelf/hero purposes: the reader has no engaged books, or every
+ * engaged book is still untouched. This is the exact predicate deriveUserState()
+ * uses for its first "new_user" branch — and the only state in which
+ * HeroSessionCard surfaces the onboarding starter shelf (its `hasPersonalizedShelf`
+ * is `userState === "new_user"`). Kept as one helper so the dashboard's
+ * "brand-new reader?" answer can't drift between the mapper and the state machine.
+ */
+function isNewUserShelf(userBooks: WorkspaceData["userBooks"]): boolean {
+  return (
+    userBooks.length === 0 ||
+    userBooks.every((b) => b.progressPercent === 0 && b.status === "not_started")
+  );
+}
+
 function mapAnalyticsToWorkspaceData(
   analytics: AnalyticsState,
   firstName: string,
@@ -291,9 +306,62 @@ function mapAnalyticsToWorkspaceData(
 
   const weeklyChapters = last7.reduce((sum, cell) => sum + cell.chapters, 0);
 
+  // ── DN-2: dedupe the dashboard's book lists by canonical id ──────────────
+  // The prod catalog can carry duplicate records for one logical book
+  // (PROD-DUP), and the same book can surface as both an "engaged" shelf book
+  // and a "not_started" recommendation. Without deduping here, "Build your
+  // bookshelf" showed a book twice with contradictory Pro badges (one no-badge
+  // "your book" card, one PRO "recommended" card). This is the client-side
+  // defensive layer; the catalog cleanup itself is PROD-DUP (separate files).
+
+  // One card per canonical book on the user's shelf. engagedBookSnapshots is
+  // already sorted most-recent-first upstream, so keeping the first occurrence
+  // wins the most recently active copy. (Deduping here also makes deriveUserState
+  // count distinct books, so a single duplicated record can no longer push a free
+  // reader past the free_limit_reached gate.)
+  const seenUserBookIds = new Set<string>();
+  const userBooks = analytics.engagedBookSnapshots
+    .filter((snap) => {
+      if (seenUserBookIds.has(snap.book.id)) return false;
+      seenUserBookIds.add(snap.book.id);
+      return true;
+    })
+    .map((snap) => ({
+      id: snap.book.id,
+      title: snap.book.title,
+      author: snap.book.author ?? "",
+      coverUrl: getBookCoverPath(snap.book.id),
+      progressPercent: snap.progressPercent,
+      status: snap.status === "completed"
+        ? ("completed" as const)
+        : snap.status === "in_progress"
+          ? ("in_progress" as const)
+          : ("not_started" as const),
+    }));
+
+  // Recommendations must never repeat a book already on the user's shelf (the
+  // overlap that produced the inconsistent Pro badge) and never list the same
+  // canonical book twice. They must also not repeat a book shown in the hero's
+  // starter shelf (3a — so the hero and the "Build your bookshelf" row can't push
+  // the same book with different framing) — but the hero only surfaces the starter
+  // shelf for brand-new readers, so gate that exclusion on the same condition;
+  // otherwise a returning reader would lose up to 3 interest-matched
+  // recommendations to a shelf the hero no longer shows.
+  const excludedRecommendationIds = new Set<string>(seenUserBookIds);
+  if (isNewUserShelf(userBooks)) {
+    for (const b of starterShelfBooks) excludedRecommendationIds.add(b.id);
+  }
+  const seenRecIds = new Set<string>();
+  const dedupedRecommendations = rankedRecommendations.filter(({ snap }) => {
+    if (excludedRecommendationIds.has(snap.book.id)) return false;
+    if (seenRecIds.has(snap.book.id)) return false;
+    seenRecIds.add(snap.book.id);
+    return true;
+  });
+
   const recommendedProBooks = analytics.isPro
     ? []
-    : rankedRecommendations
+    : dedupedRecommendations
         .slice(0, 3)
         .map(({ snap, reason }) => toRecommendationCard(snap, reason));
   const recommendedProBookIds = new Set(recommendedProBooks.map((b) => b.id));
@@ -324,20 +392,9 @@ function mapAnalyticsToWorkspaceData(
       chaptersCompleted: weeklyChapters,
       quizAverage: analytics.avgQuizScore || null,
     },
-    userBooks: analytics.engagedBookSnapshots.map((snap) => ({
-      id: snap.book.id,
-      title: snap.book.title,
-      author: snap.book.author ?? "",
-      coverUrl: getBookCoverPath(snap.book.id),
-      progressPercent: snap.progressPercent,
-      status: snap.status === "completed"
-        ? ("completed" as const)
-        : snap.status === "in_progress"
-          ? ("in_progress" as const)
-          : ("not_started" as const),
-    })),
+    userBooks,
     recommendedProBooks,
-    discoveryBooks: rankedRecommendations
+    discoveryBooks: dedupedRecommendations
       .filter(({ snap }) => !recommendedProBookIds.has(snap.book.id))
       .slice(0, 4)
       .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
@@ -479,12 +536,7 @@ function DashboardSkeleton() {
 function deriveUserState(data: WorkspaceData): UserState {
   const { currentBook, userBooks, user } = data;
 
-  if (
-    userBooks.length === 0 ||
-    userBooks.every(
-      (b) => b.progressPercent === 0 && b.status === "not_started"
-    )
-  ) {
+  if (isNewUserShelf(userBooks)) {
     return "new_user";
   }
 
