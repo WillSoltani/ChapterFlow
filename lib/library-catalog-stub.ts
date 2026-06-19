@@ -73,3 +73,93 @@ export function assertNoStubCatalogEntries(entries: readonly CatalogStubCandidat
       `before it can be published.`
   );
 }
+
+// ---------------------------------------------------------------------------
+// Boilerplate-synopsis guard (DETAIL-BOILERPLATE-SYNOPSIS).
+//
+// The OTHER load-bearing "un-backfilled record" signal DI-4's count guard above
+// deliberately scoped out. The list endpoint (`buildLibraryCatalogBook` in
+// app/app/api/book/_lib/library-catalog.ts) renders a single canned synopsis —
+// "<Title> taught through chapter summaries, real-world scenarios, and quizzes
+// you can apply right away." — whenever a published book's presentation-index
+// entry has no authored short description. Side by side with books that carry a
+// real description, that boilerplate makes paid catalog entries look templated.
+//
+// The runtime `fallbackSynopsis` in library-catalog.ts DELEGATES to
+// `boilerplateSynopsis` below so the live fallback and this detector share one
+// template and can never drift. The fallback itself is intentionally KEPT — an
+// empty synopsis would be worse than the canned line; the real fix is authoring
+// per-book synopses (content/prod-data work owned by 7A / the prod re-seed).
+// ---------------------------------------------------------------------------
+
+/** Minutes the list endpoint floors a presentation-index-less book to. */
+export const STUB_ESTIMATED_MINUTES = 24;
+
+/**
+ * The list endpoint's last-resort synopsis when a published book has no authored
+ * short description. Single source of truth: `fallbackSynopsis` in
+ * app/app/api/book/_lib/library-catalog.ts calls this, and the QA detectors
+ * below recognise it, so the template lives in exactly one place.
+ */
+export function boilerplateSynopsis(title: string): string {
+  return `${title} taught through chapter summaries, real-world scenarios, and quizzes you can apply right away.`;
+}
+
+/**
+ * Title-agnostic tail of the canned line, so the boilerplate is still detected
+ * when a title was edited after the synopsis was generated (the stored synopsis
+ * no longer exactly equals `boilerplateSynopsis(currentTitle)`).
+ */
+export const BOILERPLATE_SYNOPSIS_PATTERN =
+  /taught through chapter summaries, real-world scenarios, and quizzes you can apply right away\.?$/i;
+
+/**
+ * True when a synopsis is the canned fallback rather than an authored
+ * description. An empty/whitespace synopsis is a DIFFERENT defect (no fallback
+ * applied at all) and is intentionally NOT flagged here.
+ */
+export function isBoilerplateSynopsis(
+  synopsis: string | null | undefined,
+  title?: string
+): boolean {
+  const value = (synopsis ?? "").trim();
+  if (!value) return false;
+  if (title && value === boilerplateSynopsis(title)) return true;
+  return BOILERPLATE_SYNOPSIS_PATTERN.test(value);
+}
+
+export type UnbackfilledCatalogCandidate = {
+  title: string;
+  synopsis?: string | null;
+  chapterCount?: number;
+  estimatedMinutes?: number;
+};
+
+/**
+ * DETAIL-BOILERPLATE-SYNOPSIS / DI-1's three-signal detector: a record that
+ * carries the boilerplate synopsis AND floored to one chapter AND the ~24-minute
+ * default is almost certainly a published-but-never-curated book with no
+ * presentation-index entry. The synopsis match is the load-bearing signal; the
+ * count/minutes floors (reusing DI-4's `isStubChapterCount`) raise confidence.
+ *
+ * Deliberately UNWIRED from the publish-time index build: that build only sees
+ * the curated set, whose synopses are always authored (DI-4's header notes the
+ * same), so this would never fire there. It is the detector for the LIVE
+ * published set — used to audit which prod-only books still render the canned
+ * line (the 7A + prod-reseed reconciliation that owns that data). Retained as a
+ * tested building block for that reconciliation, not as dead code.
+ */
+export function isUnbackfilledCatalogEntry(entry: UnbackfilledCatalogCandidate): boolean {
+  return (
+    isBoilerplateSynopsis(entry.synopsis, entry.title) &&
+    isStubChapterCount(entry.chapterCount ?? 0) &&
+    entry.estimatedMinutes === STUB_ESTIMATED_MINUTES
+  );
+}
+
+/** Catalog rows (any shape with a title + synopsis) whose synopsis is the canned line. */
+export function findBoilerplateSynopsisEntries<
+  T extends { title: string; synopsis?: string | null }
+>(entries: readonly T[]): T[] {
+  return entries.filter((entry) => isBoilerplateSynopsis(entry.synopsis, entry.title));
+}
