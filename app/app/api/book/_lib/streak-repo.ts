@@ -23,6 +23,11 @@ import {
   awardFlowPoints,
   getUserFlowPointsState,
 } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  DEFAULT_STREAK_MODE,
+  type StreakMode,
+} from "@/app/app/api/book/_lib/streak-mode";
+import { decideStreakOnActiveDay } from "@/app/app/api/book/_lib/streak-policy";
 
 // ── Streak milestone thresholds and IP awards (§2.4) ────────────────────────
 
@@ -81,13 +86,6 @@ export function getTodayInTimezone(timezone: string): string {
     // Fallback to UTC if invalid timezone
     return new Date().toISOString().slice(0, 10);
   }
-}
-
-/** Count calendar days between two YYYY-MM-DD date strings */
-function daysBetween(dateA: string, dateB: string): number {
-  const a = new Date(dateA + "T00:00:00Z");
-  const b = new Date(dateB + "T00:00:00Z");
-  return Math.round(Math.abs(b.getTime() - a.getTime()) / (24 * 60 * 60 * 1000));
 }
 
 function parseStreakItem(
@@ -205,6 +203,8 @@ export type StreakUpdateResult = {
   milestonesAwarded: Array<{ days: number; ip: number }>;
   shieldsConsumed: number;
   streakReset: boolean;
+  /** True when flexible-mode skip tolerance forgave a gap (no shield consumed). */
+  flexibleSkipApplied: boolean;
   /** Days since last active date (0 = same day, 1 = consecutive). Used for second-wind detection. */
   gapDays: number;
 };
@@ -212,7 +212,15 @@ export type StreakUpdateResult = {
 export async function updateStreakOnLoopComplete(
   tableName: string,
   userId: string,
-  userTimezone: string
+  userTimezone: string,
+  /**
+   * SET-7 — streak-mode options, resolved server-side from stored settings
+   * (streak-mode.ts) to keep the streak/IP economy un-gameable. Optional and
+   * defaulting to `standard` with no skip tolerance, so existing callers and the
+   * onboarding first-day path (mode-invariant — it is always day 1) keep their
+   * exact prior behavior.
+   */
+  options?: { mode?: StreakMode; skipDays?: number },
 ): Promise<StreakUpdateResult> {
   const streak = await getOrCreateStreak(tableName, userId);
   const today = getTodayInTimezone(userTimezone);
@@ -225,6 +233,7 @@ export async function updateStreakOnLoopComplete(
     milestonesAwarded: [],
     shieldsConsumed: 0,
     streakReset: false,
+    flexibleSkipApplied: false,
     gapDays: 0,
   };
 
@@ -233,46 +242,29 @@ export async function updateStreakOnLoopComplete(
     return result;
   }
 
-  let newCurrentStreak = streak.currentStreak;
-  let newShieldsHeld = streak.streakShieldsHeld;
-  const newShieldUsedDates = [...streak.shieldUsedDates];
-  let gapDays = 0;
+  // Pure decision (calendar math + state transition) — see streak-policy.ts.
+  const decision = decideStreakOnActiveDay({
+    lastActiveDate: streak.lastActiveDate,
+    today,
+    currentStreak: streak.currentStreak,
+    shieldsHeld: streak.streakShieldsHeld,
+    mode: options?.mode ?? DEFAULT_STREAK_MODE,
+    // Fail SAFE when a caller omits skipDays: 0 = no tolerance (degrades to
+    // standard reset), never inflates a streak. This is deliberately distinct
+    // from streak-mode.ts DEFAULT_STREAK_SKIP_DAYS (the product default applied
+    // by resolveStreakSkipDays when the *user setting* is absent); the engine
+    // must not assume a tolerance the caller didn't resolve from settings.
+    skipDays: options?.skipDays ?? 0,
+  });
 
-  if (streak.lastActiveDate) {
-    gapDays = daysBetween(streak.lastActiveDate, today);
+  const newCurrentStreak = decision.newCurrentStreak;
+  const newShieldsHeld = decision.newShieldsHeld;
+  const newShieldUsedDates = [...streak.shieldUsedDates, ...decision.appendedShieldDates];
+  const gapDays = decision.gapDays;
 
-    if (gapDays === 1) {
-      // Consecutive day — streak continues
-      newCurrentStreak += 1;
-    } else if (gapDays > 1) {
-      const missedDays = gapDays - 1;
-
-      // §2.2 — Auto-activate shields
-      if (missedDays <= newShieldsHeld) {
-        // Shields cover the gap
-        result.shieldsConsumed = missedDays;
-        newShieldsHeld -= missedDays;
-        newCurrentStreak += gapDays; // streak continues through shielded days + today
-        // Record shield used dates
-        for (let i = 1; i <= missedDays; i++) {
-          const shieldDate = new Date(
-            new Date(streak.lastActiveDate + "T00:00:00Z").getTime() + i * 24 * 60 * 60 * 1000
-          );
-          newShieldUsedDates.push(shieldDate.toISOString().slice(0, 10));
-        }
-      } else {
-        // Shields don't cover the gap — streak resets
-        result.streakReset = true;
-        result.shieldsConsumed = newShieldsHeld;
-        newShieldsHeld = 0;
-        newCurrentStreak = 1; // Today counts as day 1 of new streak
-      }
-    }
-  } else {
-    // First ever active day
-    newCurrentStreak = 1;
-  }
-
+  result.shieldsConsumed = decision.shieldsConsumed;
+  result.streakReset = decision.streakReset;
+  result.flexibleSkipApplied = decision.flexibleSkipApplied;
   result.gapDays = gapDays;
 
   const newLongestStreak = Math.max(streak.longestStreak, newCurrentStreak);
