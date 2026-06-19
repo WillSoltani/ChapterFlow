@@ -9,6 +9,7 @@ import {
   type LibrarySortOption,
   type LibraryStatusFilter,
 } from "@/app/book/_lib/library-data";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 type LibraryFilterState = {
   searchQuery: string;
@@ -32,9 +33,18 @@ function parseStoredFilters(raw: string | null): LibraryFilterState | null {
   if (!raw) return null;
   try {
     const parsed = JSON.parse(raw) as Partial<LibraryFilterState>;
-    return {
+    const merged = {
       ...defaultFilters,
       ...parsed,
+    };
+    // A category persisted before D4/LM-4 canonicalization (e.g. "Self-Help")
+    // would no longer match any pill or any canonicalized entry.category, leaving
+    // the library empty. Map it forward to the canonical label; the "All"
+    // sentinel passes through unchanged. See lib/category-taxonomy.ts.
+    return {
+      ...merged,
+      category:
+        merged.category === "All" ? "All" : canonicalizeCategory(merged.category),
     };
   } catch {
     return null;

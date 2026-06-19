@@ -16,6 +16,7 @@ import {
   BOOKS_CATALOG,
   BOOKS_CATALOG_METADATA,
 } from "@/app/book/data/booksCatalog";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 /** Round DOWN to the nearest `step` and suffix "+", e.g. 67 → "60+". */
 function displayFloor(count: number, step = 10): string {
@@ -35,9 +36,14 @@ function median(values: number[]): number {
 /** Exact number of published books in the live catalog (67 today). */
 export const CATALOG_BOOK_COUNT = BOOKS_CATALOG.length;
 
-/** Exact number of distinct primary categories (deduped by the `category` field). */
+/**
+ * Exact number of distinct primary categories, deduped by the CANONICAL form of
+ * the `category` field — so near-duplicate authored strings (e.g. "Self-Help" vs
+ * "Self Improvement") count as one topic instead of inflating the figure that
+ * reaches the profile "X of N categories" surface. See lib/category-taxonomy.ts.
+ */
 export const CATALOG_CATEGORY_COUNT = new Set(
-  BOOKS_CATALOG.map((book) => book.category),
+  BOOKS_CATALOG.map((book) => canonicalizeCategory(book.category)),
 ).size;
 
 /**

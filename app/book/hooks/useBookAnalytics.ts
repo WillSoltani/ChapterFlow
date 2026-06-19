@@ -17,6 +17,7 @@ import {
   type ReadingDepth,
 } from "@/app/book/_lib/badge-stats";
 import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
 import {
   toDayKey,
@@ -257,7 +258,11 @@ function catalogToEntries(catalog: LibraryCatalogBook[]): LibraryBookEntry[] {
     coverImage: book.coverImage,
     title: book.title,
     author: book.author,
-    category: book.category,
+    // Canonicalize so the profile's "categories explored" map/count (which groups
+    // bookSnapshots by book.category) dedupes near-duplicate authored strings the
+    // same way CATALOG_CATEGORY_COUNT (the "X of N" denominator) now does —
+    // otherwise X (raw) and N (canonical) drift apart. See lib/category-taxonomy.ts.
+    category: canonicalizeCategory(book.category),
     categories: book.categories,
     difficulty: book.difficulty,
     estimatedMinutes: book.estimatedMinutes,

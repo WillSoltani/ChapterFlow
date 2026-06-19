@@ -4,6 +4,7 @@ import {
   BOOKS_CATALOG,
 } from "@/app/book/data/booksCatalog";
 import { getBookChaptersBundle } from "@/app/book/data/bookChapters";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 export type LibraryBookStatus = "in_progress" | "completed" | "not_started";
 
@@ -53,6 +54,10 @@ function initialChaptersTotal(book: BookCatalogItem): number {
 export function buildLibraryCatalog(): LibraryBookEntry[] {
   return BOOKS_CATALOG.map((book) => ({
     ...book,
+    // Canonicalize the category at this entry-construction boundary (the no-data
+    // fallback source for useBookAnalytics) so snapshot.book.category is always
+    // canonical — symmetric with catalogToEntries and useLibraryCatalogData. D4/LM-4.
+    category: canonicalizeCategory(book.category),
     status: "not_started",
     progressPercent: 0,
     chaptersTotal: initialChaptersTotal(book),
@@ -73,7 +78,8 @@ function rankLibraryCategories(categories: string[]) {
   const categoryCount = new Map<string, number>();
 
   for (const book of BOOKS_CATALOG) {
-    categoryCount.set(book.category, (categoryCount.get(book.category) ?? 0) + 1);
+    const category = canonicalizeCategory(book.category);
+    categoryCount.set(category, (categoryCount.get(category) ?? 0) + 1);
   }
 
   return [...categories].sort((left, right) => {
@@ -97,7 +103,7 @@ function rankLibraryCategories(categories: string[]) {
 }
 
 const derivedCategories = rankLibraryCategories(
-  Array.from(new Set(BOOKS_CATALOG.map((book) => book.category)))
+  Array.from(new Set(BOOKS_CATALOG.map((book) => canonicalizeCategory(book.category))))
 );
 const derivedDifficulties = Array.from(new Set(BOOKS_CATALOG.map((book) => book.difficulty)));
 

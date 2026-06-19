@@ -9,6 +9,7 @@ import {
   type LibraryCatalogBook,
 } from "@/app/book/_lib/library-data";
 import { BOOK_STORAGE_EVENT } from "@/app/book/hooks/bookStorageEvents";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 type DashboardCatalogPayload = {
   catalog: LibraryCatalogBook[];
@@ -70,6 +71,14 @@ export function buildEntries(payload: DashboardCatalogPayload): LibraryBookEntry
 
     return {
       ...book,
+      // Canonicalize the runtime catalog's category at this entry-construction
+      // boundary so the options (buildLibraryCategoryOptions), the filter match
+      // (useLibraryFilters: entry.category === filters.category) and the per-card
+      // tag of THIS library-data surface stay internally consistent. (This
+      // surface currently has no live consumer — the shipped in-app library uses
+      // the closed-enum components/library path — so the edit is drift-proofing,
+      // not load-bearing; kept for the named LM-4 builder.) See lib/category-taxonomy.ts.
+      category: canonicalizeCategory(book.category),
       status,
       progressPercent,
       chaptersTotal,
