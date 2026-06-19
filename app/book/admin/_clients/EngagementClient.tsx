@@ -18,7 +18,7 @@ import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { ChartSkeleton } from "@/app/book/admin/_components/Skeleton";
+import { ChartSkeleton, StatBoxSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { StatBox } from "@/app/book/admin/_components/StatBox";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
 import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
@@ -135,15 +135,23 @@ export function EngagementClient() {
         </AdminCard>
 
         <AdminCard title="Stickiness" description="DAU / WAU / MAU and ratios">
-          <div className="space-y-2.5">
-            <StatBox large label="DAU (today)" value={wauMau.dauToday.toLocaleString()} />
-            <StatBox large label="WAU (7d unique)" value={wauMau.wau.toLocaleString()} />
-            <StatBox large label="MAU (30d unique)" value={wauMau.mau.toLocaleString()} />
-            <div className="grid grid-cols-2 gap-2">
-              <StatBox label="DAU/WAU" value={`${(wauMau.dauWau * 100).toFixed(0)}%`} />
-              <StatBox label="DAU/MAU" value={`${(wauMau.dauMau * 100).toFixed(0)}%`} />
+          {loading && !data ? (
+            <div className="space-y-2.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <StatBoxSkeleton key={i} />
+              ))}
             </div>
-          </div>
+          ) : (
+            <div className="space-y-2.5">
+              <StatBox large label="DAU (today)" value={wauMau.dauToday.toLocaleString()} />
+              <StatBox large label="WAU (7d unique)" value={wauMau.wau.toLocaleString()} />
+              <StatBox large label="MAU (30d unique)" value={wauMau.mau.toLocaleString()} />
+              <div className="grid grid-cols-2 gap-2">
+                <StatBox label="DAU/WAU" value={`${(wauMau.dauWau * 100).toFixed(0)}%`} />
+                <StatBox label="DAU/MAU" value={`${(wauMau.dauMau * 100).toFixed(0)}%`} />
+              </div>
+            </div>
+          )}
         </AdminCard>
       </div>
 

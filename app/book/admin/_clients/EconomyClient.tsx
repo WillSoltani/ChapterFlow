@@ -19,7 +19,7 @@ import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
-import { ChartSkeleton, KPITileSkeleton } from "@/app/book/admin/_components/Skeleton";
+import { ChartSkeleton, KPITileSkeleton, StatBoxSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { StatBox } from "@/app/book/admin/_components/StatBox";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
 import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
@@ -202,14 +202,18 @@ export function EconomyClient() {
         </AdminCard>
 
         <AdminCard title="Active users" description="Earned or spent in range">
-          <div className="space-y-3">
-            <StatBox
-              large
-              label="Active"
-              value={data?.metrics.activeUsers.toLocaleString() ?? "—"}
-              hint={`of ${data?.metrics.totalUsers.toLocaleString() ?? "—"} total (${pct(data?.metrics.activeUsers, data?.metrics.totalUsers)})`}
-            />
-          </div>
+          {loading && !data ? (
+            <StatBoxSkeleton />
+          ) : (
+            <div className="space-y-3">
+              <StatBox
+                large
+                label="Active"
+                value={data?.metrics.activeUsers.toLocaleString() ?? "—"}
+                hint={`of ${data?.metrics.totalUsers.toLocaleString() ?? "—"} total (${pct(data?.metrics.activeUsers, data?.metrics.totalUsers)})`}
+              />
+            </div>
+          )}
         </AdminCard>
       </div>
 
