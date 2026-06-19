@@ -28,7 +28,7 @@
 import { spawn } from "child_process";
 import { randomBytes } from "crypto";
 import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync } from "fs";
-import { hostname } from "os";
+import { hostname, tmpdir } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -36,6 +36,9 @@ import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
+import { driveQcRoundCore, type ReviewerWave } from "../qc/auto/driver.js";
+import { reviewPacketPath } from "../qc/orchestrator/reviewPacket.js";
+import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -94,6 +97,12 @@ export type AutopilotDeps = {
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
   /** Persist one agent session's outcome (durable per-agent log) for walk-away forensics. */
   logSession: (bookId: string, label: string, r: CodexAgentResult) => void;
+  /** Read the round's REVIEW-PACKET.md text (holds the plaintext per-role tokens the
+   *  broker needs to record a read-only reviewer's submission). "" if absent. */
+  readReviewPacket: (bookId: string, roundId: string) => string;
+  /** Write a brokered submission JSON to a temp file (OUTSIDE the book state) and
+   *  return its path, for `qc-submit --file`. */
+  writeTempSubmission: (bookId: string, roundId: string, label: string, json: string) => string;
   /** Acquire a same-book run lock so two autopilots can't race the same book.
    *  release() is idempotent; refresh() is the optional heartbeat; heldBy is set
    *  when acquisition FAILS. */
@@ -355,6 +364,20 @@ function logSessionToDisk(bookId: string, label: string, r: CodexAgentResult): v
  *  heartbeat the conductor calls each loop iteration to keep a live lock fresh. */
 export type BookLock = { ok: boolean; release: () => void; refresh?: () => boolean; heldBy?: string };
 
+function defaultReadReviewPacket(bookId: string, roundId: string): string {
+  try { const p = reviewPacketPath(bookId, roundId); return existsSync(p) ? readFileSync(p, "utf8") : ""; } catch { return ""; }
+}
+
+function defaultWriteTempSubmission(bookId: string, roundId: string, label: string, json: string): string {
+  // OUTSIDE the book state (os tmp) so a brokered submission can never be mistaken for
+  // tracked content; qc-submit --file reads it from there.
+  const dir = resolve(tmpdir(), "cf-broker", bookId, roundId);
+  mkdirSync(dir, { recursive: true });
+  const p = resolve(dir, `${label}.json`);
+  writeFileSync(p, json, "utf8");
+  return p;
+}
+
 type LockRecord = { pid: number; host: string; at: string; owner: string };
 
 /** Cross-host / heartbeat-silent fallback: a lock whose `at` is older than this is
@@ -464,7 +487,7 @@ export function acquireBookLock(lockDir: string, bookId: string, staleMs = LOCK_
   };
 }
 
-function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
+export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
   return {
     statusOf: d?.statusOf ?? computeBookStatus,
     runVerb: d?.runVerb ?? defaultRunVerb(),
@@ -478,6 +501,8 @@ function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
+    readReviewPacket: d?.readReviewPacket ?? defaultReadReviewPacket,
+    writeTempSubmission: d?.writeTempSubmission ?? defaultWriteTempSubmission,
     acquireLock: d?.acquireLock ?? ((bookId) => acquireBookLock(resolve(PIPELINE_DIR, "state", "autopilot-locks"), bookId)),
     log: d?.log ?? ((m) => console.log(m)),
   };
@@ -628,7 +653,11 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): P
 async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
-    const round = await driveQcRound(bookId, maxParallel, deps);
+    // First round is full; repair rounds (attempt>0) re-review only the chapters the
+    // repair changed (incremental — book-wide sweep + gates still run over the whole
+    // book) and gather extra bar reads for borderline chapters (tiebreak). This is the
+    // subscription/time saving the convergence work is meant to deliver.
+    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0, tiebreak: attempt > 0 });
     if (round.verdict === "ERROR" || !round.roundId) {
       return mkHalt(bookId, "qc", "infra", `could not open/finalize a QC round (${round.note})`);
     }
@@ -681,84 +710,172 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
 
 type QcRoundResult = { roundId: string | null; verdict: "PASS" | "REVISE" | "INCOMPLETE" | "INTEGRITY" | "ERROR"; note: string };
 
-/** Drive ONE headless QC round: open → first-wave reviewers → collect →
- *  confirm-candidates → confirm reviewers → finalize. Each reviewer is a fresh
- *  codex session with a distinct session id (independence by construction), fenced
- *  by chapter-content hashes (reviewers must not edit chapters). */
-async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps): Promise<QcRoundResult> {
+/** Drive ONE headless QC round via the SHARED qc round-driver (same sequence qc-auto
+ *  runs), injecting runVerb (CLI subprocess) step adapters so the strict-env
+ *  invariants stay FORCE-SET on every gate subprocess (the PR1 fail-closed fix), plus
+ *  a fenced codex reviewer spawner. Maps the driver's structured outcome → QcRoundResult.
+ *  `incremental` (repair rounds) re-reviews only changed chapters; `tiebreak` gathers
+ *  extra bar reads for borderline chapters. */
+async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps, opts: { incremental: boolean; tiebreak: boolean }): Promise<QcRoundResult> {
   // Open the round + write first-wave task cards (also runs the deterministic preflight).
-  const create = await deps.runVerb(["qc-orchestrate", bookId, "--create"]);
+  const createArgs = ["qc-orchestrate", bookId, "--create"];
+  if (opts.incremental) createArgs.push("--incremental");
+  if (opts.tiebreak) createArgs.push("--tiebreak");
+  const create = await deps.runVerb(createArgs);
   const roundId = parseRoundId(create.stdout) ?? parseRoundId(create.stderr);
   if (!roundId) return { roundId: null, verdict: "ERROR", note: `--create produced no round id (preflight may have blocked): ${(create.stderr || create.stdout).slice(0, 300)}` };
   // A nonzero --create that still printed a round id means "created-with-errors" —
   // require exit 0 before spending reviewer sessions on a malformed round.
   if (create.code !== 0) return { roundId, verdict: "ERROR", note: `--create exited ${create.code} (created-with-errors): ${(create.stderr || create.stdout).slice(0, 300)}` };
-  deps.log(`[autopilot] QC round ${roundId} opened`);
+  deps.log(`[autopilot] QC round ${roundId} opened${opts.incremental ? " (incremental)" : ""}${opts.tiebreak ? " (tiebreak)" : ""}`);
 
-  const firstWave = deps.listTaskCards(bookId, roundId);
-  const v1 = await fencedReviewers(bookId, roundId, firstWave, maxParallel, deps);
-  if (v1) return { roundId, verdict: "INTEGRITY", note: v1 };
-
-  await deps.runVerb(["qc-orchestrate", bookId, "--collect", "--round", roundId]);
-  await deps.runVerb(["qc-orchestrate", bookId, "--confirm-candidates", "--round", roundId]);
-
-  const confirmCards = deps.listTaskCards(bookId, roundId, "confirm");
-  if (confirmCards.length) {
-    const v2 = await fencedReviewers(bookId, roundId, confirmCards, maxParallel, deps);
-    if (v2) return { roundId, verdict: "INTEGRITY", note: v2 };
-  }
-
-  let finalize = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId]);
-  // Narrow retry: INCOMPLETE (exit 3) usually means ONE reviewer agent didn't submit.
-  // Re-spawn ONLY the cards still missing a submission, once, then re-finalize (the
-  // finalize verb re-collects) — rather than halting the whole book on one flaky agent.
-  if (finalize.code === 3) {
-    const allCards = [...firstWave, ...confirmCards];
-    const missing = allCards.filter((c) => !deps.submissionPresent(bookId, roundId, c));
-    if (missing.length > 0 && missing.length < allCards.length) {
-      deps.log(`[autopilot] QC INCOMPLETE — narrow retry of ${missing.length}/${allCards.length} missing reviewer card(s)`);
-      const v3 = await fencedReviewers(bookId, roundId, missing, maxParallel, deps);
-      if (v3) return { roundId, verdict: "INTEGRITY", note: v3 };
-      finalize = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId]);
+  // A reviewer wave = fence chapter hashes around a parallel codex spawn (the
+  // read-only contract is enforced by detection; the PR2 broker in spawnReviewers
+  // makes it prevention). Any chapter change across the wave voids the round.
+  const spawnFenced = async (cards: string[], _wave: ReviewerWave): Promise<{ integrityViolation?: string }> => {
+    if (!cards.length) return {};
+    const before = deps.chapterHashes(bookId);
+    await spawnReviewers(bookId, roundId, cards, maxParallel, deps);
+    const after = deps.chapterHashes(bookId);
+    const changed = Object.keys(before).filter((k) => after[k] !== before[k]);
+    const appeared = Object.keys(after).filter((k) => !(k in before));
+    if (changed.length || appeared.length) {
+      const which = [...changed, ...appeared.map((a) => `+${a}`)].join(", ");
+      return { integrityViolation: `reviewer(s) MUTATED chapter content during round ${roundId} (chapters: ${which}) — reviewers are read-only; this round is void.` };
     }
+    return {};
+  };
+
+  const result = await driveQcRoundCore({
+    spawnReviewers: spawnFenced,
+    firstWaveCards: () => deps.listTaskCards(bookId, roundId),
+    confirmCards: () => deps.listTaskCards(bookId, roundId, "confirm"),
+    countSubmissions: () => deps.listTaskCards(bookId, roundId).filter((c) => deps.submissionPresent(bookId, roundId, c)).length,
+    submissionPresent: (card) => deps.submissionPresent(bookId, roundId, card),
+    collect: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--collect", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
+    generateConfirmCandidates: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--confirm-candidates", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
+    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId]); return parseFinalizeResult(r.stdout, r.code); },
+    ledgerOpenCount: () => 0,
+    recordMetrics: () => { /* autopilot run-telemetry deferred to the eval layer; qc-auto records metrics */ },
+    verifyFullBook: async () => (await deps.runVerb(["qc-status", bookId])).code === 0,
+    log: deps.log,
+  }, { isSubset: false, narrowRetryOnIncomplete: true });
+
+  switch (result.outcome) {
+    case "PASS":
+    case "PASS_SUBSET":
+      return { roundId, verdict: "PASS", note: "" };
+    case "INTEGRITY":
+      return { roundId, verdict: "INTEGRITY", note: result.reason ?? "a reviewer mutated chapter content" };
+    case "QC_STATUS_FAIL":
+      return { roundId, verdict: "INCOMPLETE", note: "qc-status did not confirm all chapters fresh + PUBLISHABLE after finalize" };
+    case "INCOMPLETE":
+      return { roundId, verdict: "INCOMPLETE", note: result.reason ?? "missing/stale evidence" };
+    case "REPAIR":
+      return { roundId, verdict: "REVISE", note: "" };
   }
-  if (finalize.code === 0) return { roundId, verdict: "PASS", note: "" };
-  if (finalize.code === 3) return { roundId, verdict: "INCOMPLETE", note: "missing/stale evidence" };
-  return { roundId, verdict: "REVISE", note: (finalize.stdout || "").slice(0, 200) };
+  return { roundId, verdict: "INCOMPLETE", note: `unrecognized driver outcome: ${result.outcome}` };
 }
 
-/** Spawn a reviewer wave fenced by chapter-content hashes: reviewers must NOT edit
- *  chapters. Returns a violation message if any chapter changed across the wave
- *  (read-only contract broken → the round is void), else null. Wave-level because
- *  reviewers run in parallel (per-reviewer attribution isn't possible here). */
-async function fencedReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<string | null> {
-  if (!cards.length) return null;
-  const before = deps.chapterHashes(bookId);
-  await spawnReviewers(bookId, roundId, cards, maxParallel, deps);
-  const after = deps.chapterHashes(bookId);
-  const changed = Object.keys(before).filter((k) => after[k] !== before[k]);
-  const appeared = Object.keys(after).filter((k) => !(k in before));
-  if (changed.length || appeared.length) {
-    const which = [...changed, ...appeared.map((a) => `+${a}`)].join(", ");
-    return `reviewer(s) MUTATED chapter content during round ${roundId} (chapters: ${which}) — reviewers are read-only; this round is void.`;
+/** Parse `qc-orchestrate --finalize` JSON stdout into a FinalizeQcRoundResult. Falls
+ *  back to inferring the verdict from the exit code (0 PASS / 1 REPAIR / 3 INCOMPLETE)
+ *  when stdout isn't the expected JSON — keeps the conductor robust. */
+function parseFinalizeResult(stdout: string, code: number): FinalizeQcRoundResult {
+  try {
+    const j = JSON.parse(stdout) as Partial<FinalizeQcRoundResult>;
+    if (j && typeof j.allPublishable === "boolean" && Array.isArray(j.chapters)) return j as FinalizeQcRoundResult;
+  } catch { /* fall through to exit-code inference */ }
+  return {
+    ok: code === 0, allPublishable: code === 0, repairRequired: code === 1, incomplete: code === 3,
+    evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "",
+    attestationsWritten: 0, chapters: [], errors: [],
+  } as unknown as FinalizeQcRoundResult;
+}
+
+// ── Submission broker (PR2 C2): reviewers run READ-ONLY and can neither edit a
+//    chapter nor write a submission. Each emits its submission JSON on stdout; the
+//    conductor records it via `qc-submit --file` under THAT reviewer's distinct
+//    session id, so finalize's author≠reviewer check still holds and submitQcArtifact
+//    re-validates the brokered payload (schema + cross-field). Prevention on top of
+//    the hash-fence's detection. ──────────────────────────────────────────────────
+
+function isParseableObject(s: string): boolean {
+  try { const v = JSON.parse(s); return !!v && typeof v === "object"; } catch { return false; }
+}
+
+function lastBalancedObject(text: string): string | null {
+  let depth = 0, start = -1, last: string | null = null;
+  for (let i = 0; i < text.length; i++) {
+    if (text[i] === "{") { if (depth === 0) start = i; depth++; }
+    else if (text[i] === "}") { depth--; if (depth === 0 && start >= 0) { last = text.slice(start, i + 1); start = -1; } }
   }
-  return null;
+  return last;
+}
+
+/** Extract the submission JSON a read-only reviewer printed: the LAST ```json fenced
+ *  block (the prompt asks for exactly one), else the last balanced {...}. null if none parses. */
+export function extractSubmissionJson(text: string): string | null {
+  if (!text) return null;
+  const fences = [...text.matchAll(/```(?:json)?\s*([\s\S]*?)```/gi)];
+  for (let i = fences.length - 1; i >= 0; i--) {
+    const body = fences[i][1].trim();
+    if (isParseableObject(body)) return body;
+  }
+  const obj = lastBalancedObject(text);
+  return obj && isParseableObject(obj) ? obj : null;
+}
+
+/** Parse role→plaintext-token from a REVIEW-PACKET.md (its submit commands embed the
+ *  live round tokens: `… --role <role> [--variant <v>] --token <token> --file …`). */
+export function parseRoundTokens(reviewPacket: string): Record<string, string> {
+  const tokens: Record<string, string> = {};
+  for (const m of reviewPacket.matchAll(/--role\s+(\S+)\s+(?:--variant\s+\S+\s+)?--token\s+(\S+)/g)) {
+    if (!tokens[m[1]]) tokens[m[1]] = m[2];
+  }
+  return tokens;
+}
+
+/** A brokered card's QC role (+ bar self-consistency variant t2/t3 for tiebreak cards). */
+export function brokerCardTarget(card: string): { role: string; variant?: "t2" | "t3" } {
+  const p = card.replace(/\\/g, "/").toLowerCase();
+  const vm = p.match(/-(t[23])\.md$/);
+  if (vm) return { role: "bar", variant: vm[1] as "t2" | "t3" };
+  if (p.includes("bar-tiebreak") || p.includes("/bar/")) return { role: "bar" };
+  if (p.includes("/confirm/")) return { role: "confirm" };
+  if (p.includes("keya")) return { role: "keyA" };
+  if (p.includes("keyb")) return { role: "keyB" };
+  if (p.includes("major")) return { role: "major" };
+  if (p.includes("sweep")) return { role: "sweep" };
+  return { role: roleFromCard(card).role };
+}
+
+/** Spawn ONE read-only reviewer and broker its submission. Exported for tests. */
+export async function brokerReviewer(bookId: string, roundId: string, card: string, tokens: Record<string, string>, deps: AutopilotDeps): Promise<CodexAgentResult> {
+  const label = roleLabelFromCard(card);
+  const { role, variant } = brokerCardTarget(card);
+  // Distinct per-spawn id — qc-submit runs under THIS id so reviewer≠author holds.
+  const sessionId = deps.mkSessionId(`qc-${label}`);
+  const task = `${deps.readTask(card)}\n\n---\nYou are a fresh QC reviewer subagent (round ${roundId}) in a READ-ONLY sandbox. Do ONLY this card's review. Output ONLY the completed submission JSON for this card as your FINAL message — a single \`\`\`json fenced block, nothing else. Do NOT run qc-submit. Do NOT edit any file.`;
+  const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox }, deps);
+  if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return r; }
+  const json = extractSubmissionJson(r.finalMessage || r.stdout);
+  if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return r; }
+  const token = tokens[role];
+  if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return r; }
+  const file = deps.writeTempSubmission(bookId, roundId, label, json);
+  const submitArgs = ["qc-submit", bookId, "--round", roundId, "--role", role, "--token", token, "--file", file];
+  if (variant) submitArgs.push("--variant", variant);
+  // CHAPTERFLOW_SESSION_ID = the REVIEWER's id (not the conductor's): submitQcArtifact
+  // stamps it as reviewerSessionId, so independence enforcement is preserved.
+  const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sessionId });
+  if (submit.code !== 0) deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`);
+  return r;
 }
 
 async function spawnReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<void> {
-  deps.log(`[autopilot] QC: dispatching ${cards.length} reviewer session(s) (parallel ≤${maxParallel})`);
-  await mapWithConcurrency(cards, maxParallel, async (card) => {
-    const label = roleLabelFromCard(card);
-    // PR1: reviewers run workspace-write because qc-submit writes its submission via
-    // the CLI; the "do NOT edit chapters" contract is enforced by the caller's
-    // hash-fence (detection), NOT by the sandbox. PR2 flips this to a read-only
-    // sandbox + a submission broker (prevention) — don't let this prose imply the
-    // sandbox is read-only today.
-    const task = `${deps.readTask(card)}\n\n---\nYou are a fresh QC reviewer subagent (round ${roundId}). Do ONLY this card's review and run its qc-submit. Do not edit chapters.`;
-    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`qc-${label}`), cwd: PIPELINE_DIR, sandbox: "workspace-write" as CodexSandbox }, deps);
-    if (!r.ok) deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`);
-    return r;
-  });
+  deps.log(`[autopilot] QC: dispatching ${cards.length} read-only reviewer session(s), brokered (parallel ≤${maxParallel})`);
+  const tokens = parseRoundTokens(deps.readReviewPacket(bookId, roundId));
+  await mapWithConcurrency(cards, maxParallel, (card) => brokerReviewer(bookId, roundId, card, tokens, deps));
 }
 
 // ── Phase: ready-to-publish (gated) ──────────────────────────────────────────

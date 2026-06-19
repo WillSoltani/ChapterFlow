@@ -355,6 +355,12 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   const source = checkSourceV2Gate(bookId, chapters.map((ch) => ch.number));
   const sweep = loadSweepRecord(bookId);
   const bookGate = runBookGate(bookId, allChapters);
+  // Plan-enforcement is part of the deterministic battery finalize runs (and
+  // evaluateDeterministic / qc-converge). Without it here, a chapter could be picked
+  // as a confirm candidate, get confirmed, then FAIL finalize on a plan-enforcement
+  // finding — wasted confirm reviews + a candidate set that disagrees with finalize.
+  // Use the SAME checkPlanEnforcement finalize calls (shared gate fn); block per chapter below.
+  const planFindings = checkPlanEnforcement(bookId, allChapters);
   const majorFindings = unresolvedMajors(bookId, chapters, true);
   const taskCards: string[] = [];
   const candidates: number[] = [];
@@ -384,6 +390,7 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     if (authorFindings.length > 0) blockers.push("authorCheck");
     if (intraFindings.some((f) => f.severity === "blocker")) blockers.push("intraBook");
     if (!bookGate.passed) blockers.push("bookGate");
+    if (planFindings.some((f) => f.chapterNumber === ch.number)) blockers.push("planEnforcement");
     if (sweepChapterStatus(sweep, ch.number, contentHash, roundId) !== "PASS") blockers.push("sweep");
     if (!keyJudge || keyJudge.contentHash !== contentHash || keyJudge.sourceHash !== (sourceHashFor(bookId, ch.number) ?? "") || keyJudge.status !== "PASS") blockers.push("manualKeyJudge");
     if (!bar || bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) {

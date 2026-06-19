@@ -14,6 +14,11 @@ import {
   conductorVerbEnv,
   acquireBookLock,
   mapWithConcurrency,
+  extractSubmissionJson,
+  parseRoundTokens,
+  brokerCardTarget,
+  brokerReviewer,
+  resolveDeps,
   type AutopilotDeps,
 } from "../src/orchestrator/autopilot.js";
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
@@ -63,6 +68,8 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
     chapterHashes: () => ({}),
     submissionPresent: () => true,
     logSession: () => {},
+    readReviewPacket: () => "",
+    writeTempSubmission: () => "/tmp/cf-broker-test.json",
     acquireLock: () => ({ ok: true, release: () => {} }),
     log: () => {},
     ...over,
@@ -492,4 +499,63 @@ test("every agent spawn is recorded via logSession (durable per-agent log wiring
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.length > 0, "the happy path spawns agents");
   assert.equal(logged.length, spawns.length, "logSession is invoked exactly once per spawn");
+});
+
+// ── PR2 D/C2: shared driver + submission broker ───────────────────────────────
+
+test("broker helpers: extract submission JSON, parse round tokens, resolve card target", () => {
+  assert.equal(extractSubmissionJson('analysis…\n```json\n{"verdict":"PASS"}\n```\ntrailing'), '{"verdict":"PASS"}');
+  assert.equal(extractSubmissionJson("no json here at all"), null);
+  assert.equal(extractSubmissionJson('prefix {"a":1} suffix'), '{"a":1}');
+  const packet = [
+    "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-submit zz --round r1 --role sweep --token SWEEPTOK --file <sweep.json>",
+    "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-submit zz --round r1 --role bar --token BARTOK --file <bar.json>",
+    "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-submit zz --round r1 --role confirm --token CONFTOK --file <confirm.json>",
+  ].join("\n");
+  const toks = parseRoundTokens(packet);
+  assert.equal(toks.sweep, "SWEEPTOK");
+  assert.equal(toks.bar, "BARTOK");
+  assert.equal(toks.confirm, "CONFTOK");
+  assert.deepEqual(brokerCardTarget("/t/bar/ch03.md"), { role: "bar" });
+  assert.deepEqual(brokerCardTarget("/t/bar-tiebreak/ch03-t2.md"), { role: "bar", variant: "t2" });
+  assert.deepEqual(brokerCardTarget("/t/confirm/ch01.md"), { role: "confirm" });
+  assert.deepEqual(brokerCardTarget("/t/00-sweep.md"), { role: "sweep" });
+});
+
+test("broker records a read-only reviewer's JSON via qc-submit under the REVIEWER's own session id", async () => {
+  const submits: Array<{ args: string[]; env?: Record<string, string> }> = [];
+  let spawnSandbox = "";
+  const deps = resolveDeps({
+    mkSessionId: (label) => `${label}#1`,
+    readTask: () => "review this card",
+    logSession: () => {},
+    log: () => {},
+    writeTempSubmission: () => "/tmp/sub.json",
+    spawn: (async (o: { sessionId: string; sandbox?: string }) => {
+      spawnSandbox = o.sandbox ?? "";
+      return { ok: true, exitCode: 0, finalMessage: '```json\n{"role":"bar","verdict":"GREEN"}\n```', stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+    runVerb: async (args, env) => { if (args[0] === "qc-submit") submits.push({ args, env }); return { code: 0, stdout: "", stderr: "" }; },
+  });
+  await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
+
+  assert.equal(spawnSandbox, "read-only", "reviewer runs in a read-only sandbox (cannot edit chapters or write submissions)");
+  assert.equal(submits.length, 1, "the brokered submission is recorded exactly once");
+  const s = submits[0];
+  assert.ok(s.args.includes("--role") && s.args.includes("bar"));
+  assert.ok(s.args.includes("--token") && s.args.includes("BARTOK"));
+  assert.ok(s.args.includes("--file") && s.args.includes("/tmp/sub.json"));
+  assert.equal(s.env?.CHAPTERFLOW_SESSION_ID, "qc-bar-ch03#1", "qc-submit runs under the REVIEWER's distinct session id (independence preserved), not the conductor's");
+});
+
+test("broker skips qc-submit when the reviewer emits no parseable JSON (no forged submission)", async () => {
+  const submits: string[][] = [];
+  const deps = resolveDeps({
+    mkSessionId: (label) => `${label}#1`,
+    readTask: () => "card", logSession: () => {}, log: () => {},
+    spawn: (async (o: { sessionId: string }) => ({ ok: true, exitCode: 0, finalMessage: "I could not complete the review.", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId })) as unknown as AutopilotDeps["spawn"],
+    runVerb: async (args) => { if (args[0] === "qc-submit") submits.push(args); return { code: 0, stdout: "", stderr: "" }; },
+  });
+  await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
+  assert.equal(submits.length, 0, "no JSON ⇒ no submission recorded (the round surfaces this as INCOMPLETE)");
 });

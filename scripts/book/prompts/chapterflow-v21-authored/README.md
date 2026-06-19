@@ -114,7 +114,8 @@ npx tsx src/cli.ts book-autopilot <bookId>
 Invariants the conductor enforces **in code** (not prose):
 - **No API metering** — every model call is a `codex exec` session, never a billed provider.
 - **Strict env, fail-closed** — `CHAPTERFLOW_NO_API_CODEX_QC` / `_REQUIRE_SOURCE_VERIFY` / `_ENFORCE_SESSION_INDEPENDENCE` are force-set on every subprocess (canonical list in `src/lib/strictEnv.ts`), so finalize's author≠reviewer collision check and the source-verify gate can't silently no-op when the shell didn't export them.
-- **Reviewer integrity** — a chapter-content hash fence voids a round if any reviewer mutates a chapter.
+- **Reviewer integrity** — reviewers run in a read-only sandbox behind a submission broker (they emit their submission JSON; the conductor records it under the reviewer's own session id), with a chapter-content hash fence as a backstop that voids a round if a chapter changes.
+- **One QC engine** — `qc-auto` (human-driven) and the conductor share a single round-driver (`src/qc/auto/driver.ts`); the conductor adds `--incremental` repair rounds, `--tiebreak`, and full-book `qc-status` verification.
 - **Typed halts** — every stop carries a category (`infra` / `content` / `governance` / `progress` / `integrity`) + durable per-agent logs under `state/autopilot-logs/<bookId>/`.
 
 See **G6** (qc-converge) and **G7** (book-autopilot) in `FAILURE-MODES.md`.

@@ -386,6 +386,29 @@ goldTest("finalize and qc-auto refuse PASS when a current major is unresolved", 
   }
 });
 
+goldTest("qc-auto reaches a genuine PASS end-to-end through the shared driver (confirm reads present)", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter], { rawSweepSubmission: true });
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const cli = runCli(["qc-auto", GREEN_BOOK, "--pass", "--round", ROUND, "--chapters", String(SOURCE_CHAPTER_NUMBER)]);
+    assert.equal(cli.status, 0, cli.out);
+    assert.match(cli.out, /QC AUTO PASS/);
+    // Driver-rewire regression guard: confirm reads ARE on disk, so the dynamic-wave loop
+    // being a no-op for qc-auto (submissionPresent:()=>true ⇒ 0 waves) must NOT falsely
+    // demote a PUBLISHABLE chapter to NEEDS_MORE_QC — confirm reads come from the batch on
+    // disk, and finalize reads ARTIFACTS, not cards.
+    assert.doesNotMatch(cli.out, /NEEDS_MORE_QC/);
+    assert.doesNotMatch(cli.out, /missing a fresh confirm/i);
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanup();
+  }
+});
+
 goldTest("finalize turns author-check REVISE into finalizer repair findings and prompt causes", () => {
   try {
     cleanup();
@@ -425,6 +448,32 @@ goldTest("confirm-candidates writes confirm cards only for green candidates", ()
     // The card must POINT to the real token in REVIEW-PACKET.md (the round persists only
     // salted hashes), not ship a bare placeholder that fails qc-submit verbatim.
     assert.match(card, /confirm token from REVIEW-PACKET\.md/i);
+  } finally {
+    cleanup();
+  }
+});
+
+// E (PR2): confirm-candidate eligibility must be a SUBSET of finalize-publishable on
+// the deterministic layer. Plan-enforcement is part of finalize's battery but was
+// MISSING from confirm-candidates, so a chapter could be confirmed then REVISE at
+// finalize on the same SP2. Non-vacuous: before the fix this chapter was a candidate.
+goldTest("confirm-candidates SKIPS a plan-enforcement-failing chapter (parity with finalize; was the gap)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    // Same mismatched shape plan the WS-1 finalize test uses → exactly one SP2
+    // plan-enforcement violation that finalize would REVISE on.
+    const realFormats = chapter.examples.map((ex: any) => String(ex.planSpec.format));
+    const allocation = [...realFormats];
+    allocation[0] = realFormats[0] === "dialogue" ? "vignette" : "dialogue";
+    writeShapePlan(GREEN_BOOK, SOURCE_CHAPTER_NUMBER, allocation);
+
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(result.candidates, [], "a plan-enforcement-failing chapter must NOT be a confirm candidate");
+    const skip = result.skipped.find((s) => s.chapterNumber === SOURCE_CHAPTER_NUMBER);
+    assert.ok(skip, "the chapter must be in the skipped list");
+    assert.ok(skip!.blockers.includes("planEnforcement"), `expected a planEnforcement blocker, got ${JSON.stringify(skip?.blockers)}`);
   } finally {
     cleanup();
   }

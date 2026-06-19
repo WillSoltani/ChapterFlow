@@ -2937,9 +2937,57 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     return flags["dry-run"] === true ? 0 : 3;
   }
 
-  const collected = orch.collectQcRound(bookId, roundId);
-  if (!collected.ok) {
-    for (const e of collected.errors) console.error(e);
+  // The shared QC round-driver runs the SAME sequence as the autopilot conductor;
+  // qc-auto injects IN-PROCESS orchestrator calls (its long-standing behavior, so the
+  // output + exit codes below stay byte-for-byte identical) and a NO-OP reviewer
+  // spawner (submissions are already on disk, filled by the human between runs).
+  const isSubset = !!chapters?.length;
+  const attest = flags["no-attest"] !== true && !staleDiagnosticsOnly;
+  const { loadBarReadArtifact } = await import("./qc/orchestrator/artifacts.js");
+  const { buildQcFinalizationMetric, appendQcFinalizationMetric } = await import("./qc/metrics.js");
+  const { driveQcRoundCore } = await import("./qc/auto/driver.js");
+  const result = await driveQcRoundCore(
+    {
+      spawnReviewers: async () => ({}), // human/agent fills submissions between runs — no auto-spawn (matches the prior qc-auto)
+      firstWaveCards: () => taskCards,
+      // The confirm cards generateConfirmCandidates just wrote. Inert for qc-auto's
+      // no-op spawner, but kept honest to the driver contract + future-proof.
+      confirmCards: () => listMarkdownFiles(resolve(artifacts.taskCardsDir(bookId, roundId), "confirm")),
+      countSubmissions: () => countSubmissionFiles(artifacts.submissionsDir(bookId, roundId)),
+      submissionPresent: () => true, // moot: qc-auto runs with narrowRetryOnIncomplete=false
+
+      collect: () => { const r = orch.collectQcRound(bookId, roundId); return { ok: r.ok, errors: r.errors }; },
+      generateConfirmCandidates: () => { const r = orch.generateConfirmCandidates(bookId, roundId, { chapters }); return { ok: r.ok, errors: r.errors }; },
+      finalize: () => orch.finalizeQcRound(bookId, roundId, { chapters, attest }),
+      ledgerOpenCount: () => orch.ledgerStatus(bookId, roundId).summary.open ?? 0,
+      recordMetrics: (finalized) => {
+        // Best-effort telemetry — one append-only row per finalization (see `qc-metrics`).
+        // A failure here NEVER breaks the QC run.
+        try {
+          const failingBarAxes: string[] = [];
+          for (const d of finalized.chapters) {
+            if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
+            const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
+            for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
+          }
+          appendQcFinalizationMetric(buildQcFinalizationMetric({
+            bookId, roundId, timestamp: new Date().toISOString(),
+            mode: chapters?.length ? "subset" : "full",
+            incremental: flags["incremental"] === true,
+            tiebreak: flags["tiebreak"] === true,
+            decisions: finalized.chapters, failingBarAxes,
+          }));
+        } catch { /* telemetry is best-effort — never break QC */ }
+      },
+      // Full-book qc-status verification on a clean pass — skipped on a subset (never a
+      // book-level pass) and in stale-diagnostics mode (the stale override fires below).
+      verifyFullBook: (isSubset || staleDiagnosticsOnly) ? undefined : async () => (await runQcStatus([bookId])) === 0,
+    },
+    { isSubset, narrowRetryOnIncomplete: false },
+  );
+
+  if (result.outcome === "INCOMPLETE" && result.reason === "collect-failed") {
+    for (const e of result.collectErrors) console.error(e);
     console.log(`QC AUTO INCOMPLETE — ${bookId}`);
     console.log(`round: ${roundId}`);
     console.log("missing:");
@@ -2949,9 +2997,8 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
     return 3;
   }
-  const confirmCandidates = orch.generateConfirmCandidates(bookId, roundId, { chapters });
-  if (!confirmCandidates.ok) {
-    for (const e of confirmCandidates.errors) console.error(e);
+  if (result.outcome === "INCOMPLETE" && result.reason === "confirm-failed") {
+    for (const e of result.collectErrors) console.error(e);
     console.log(`QC AUTO INCOMPLETE — ${bookId}`);
     console.log(`round: ${roundId}`);
     console.log("missing:");
@@ -2959,43 +3006,13 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     console.log("no fake pass was written.");
     return 3;
   }
-  const finalized = orch.finalizeQcRound(bookId, roundId, {
-    chapters,
-    attest: flags["no-attest"] !== true && !staleDiagnosticsOnly,
-  });
-  if (collected.errors.length) for (const e of collected.errors) console.error(e);
+
+  // From here a finalize ran (driver guarantees result.finalized is set).
+  const finalized = result.finalized!;
+  if (result.collectErrors.length) for (const e of result.collectErrors) console.error(e);
   if (finalized.errors.length) for (const e of finalized.errors) console.error(e);
-  const counts = {
-    publishable: finalized.chapters.filter((d) => d.finalVerdict === "PUBLISHABLE").length,
-    revise: finalized.chapters.filter((d) => d.finalVerdict === "REVISE").length,
-    corruption: finalized.chapters.filter((d) => d.finalVerdict === "CORRUPTION").length,
-    incomplete: finalized.chapters.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
-  };
 
-  // Best-effort quality telemetry — one append-only row per finalization (see `qc-metrics`).
-  // Observability only: read back into no verdict, and a failure here NEVER breaks the QC run.
-  try {
-    const { loadBarReadArtifact } = await import("./qc/orchestrator/artifacts.js");
-    const { buildQcFinalizationMetric, appendQcFinalizationMetric } = await import("./qc/metrics.js");
-    const failingBarAxes: string[] = [];
-    for (const d of finalized.chapters) {
-      if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
-      const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
-      for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
-    }
-    appendQcFinalizationMetric(buildQcFinalizationMetric({
-      bookId,
-      roundId,
-      timestamp: new Date().toISOString(),
-      mode: chapters?.length ? "subset" : "full",
-      incremental: flags["incremental"] === true,
-      tiebreak: flags["tiebreak"] === true,
-      decisions: finalized.chapters,
-      failingBarAxes,
-    }));
-  } catch { /* telemetry is best-effort — never break QC */ }
-
-  if (finalized.allPublishable) {
+  if (result.outcome === "PASS" || result.outcome === "PASS_SUBSET") {
     if (staleDiagnosticsOnly) {
       console.log(`QC AUTO INCOMPLETE — ${bookId}`);
       console.log(`round: ${roundId}`);
@@ -3005,23 +3022,10 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
       return 3;
     }
-    const isSubset = !!chapters?.length;
-    let qcStatusLabel = "selected chapters PASS (subset — book not fully verified)";
-    if (!isSubset) {
-      const qcStatusCode = await runQcStatus([bookId]);
-      if (qcStatusCode !== 0) {
-        console.log(`QC AUTO INCOMPLETE — ${bookId}`);
-        console.log(`round: ${roundId}`);
-        console.log("missing:");
-        console.log("  qc-status did not report all chapters as PASS after finalization");
-        console.log("no fake pass was written.");
-        return 3;
-      }
-      qcStatusLabel = "PASS (all chapters fresh + PUBLISHABLE)";
-    }
     // A subset run verifies only the named chapters; it is NOT a book-level pass.
     // (Keep the literal "QC AUTO PASS" intact — qc-auto-output.test.ts source-scans for it.)
     const passLabel = isSubset ? "QC AUTO PASS (SUBSET)" : "QC AUTO PASS";
+    const qcStatusLabel = isSubset ? "selected chapters PASS (subset — book not fully verified)" : "PASS (all chapters fresh + PUBLISHABLE)";
     console.log(`${passLabel} — ${bookId}`);
     console.log(`round: ${roundId}`);
     console.log(`chapters selected: ${finalized.chapters.length}${isSubset ? " (subset)" : " (full book)"}`);
@@ -3038,11 +3042,19 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(titleArg)} --author "..." --dry-run`);
       console.log("  add --commit --push after checking the dry-run");
     }
-
     return 0;
   }
 
-  if (finalized.incomplete) {
+  if (result.outcome === "QC_STATUS_FAIL") {
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log("missing:");
+    console.log("  qc-status did not report all chapters as PASS after finalization");
+    console.log("no fake pass was written.");
+    return 3;
+  }
+
+  if (result.outcome === "INCOMPLETE") {
     console.log(`QC AUTO INCOMPLETE — ${bookId}`);
     console.log(`round: ${roundId}`);
     console.log("missing:");
@@ -3055,12 +3067,13 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     return 3;
   }
 
+  // REPAIR
   console.log(`QC AUTO REPAIR REQUIRED — ${bookId}`);
   console.log(`round: ${roundId}`);
-  console.log(`PUBLISHABLE attested: ${counts.publishable}`);
-  console.log(`REVISE attested: ${counts.revise}`);
-  console.log(`CORRUPTION attested: ${counts.corruption}`);
-  console.log(`open repair findings: ${orch.ledgerStatus(bookId, roundId).summary.open ?? 0}`);
+  console.log(`PUBLISHABLE attested: ${result.counts.publishable}`);
+  console.log(`REVISE attested: ${result.counts.revise}`);
+  console.log(`CORRUPTION attested: ${result.counts.corruption}`);
+  console.log(`open repair findings: ${result.openRepairFindings}`);
   console.log("repair prompt:");
   console.log(`  ${finalized.repairPromptPath}`);
   console.log("");
