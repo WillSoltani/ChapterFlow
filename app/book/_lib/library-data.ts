@@ -1,3 +1,5 @@
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
+
 export type BookDifficulty = "Easy" | "Medium" | "Hard";
 
 export type LibraryCategoryFilter = string;
@@ -104,11 +106,18 @@ export function buildLibraryCategoryOptions(
   );
   const categoryCount = new Map<string, number>();
 
+  // Canonicalize so the runtime catalog's un-normalized category strings (the
+  // live prod data, pending the DI-3 backfill) collapse into one filter option
+  // each. Defensive/idempotent: buildEntries already canonicalizes, so this also
+  // guards any other caller that passes raw entries. See lib/category-taxonomy.ts.
   for (const entry of entries) {
-    categoryCount.set(entry.category, (categoryCount.get(entry.category) ?? 0) + 1);
+    const category = canonicalizeCategory(entry.category);
+    categoryCount.set(category, (categoryCount.get(category) ?? 0) + 1);
   }
 
-  const derivedCategories = Array.from(new Set(entries.map((entry) => entry.category))).sort(
+  const derivedCategories = Array.from(
+    new Set(entries.map((entry) => canonicalizeCategory(entry.category)))
+  ).sort(
     (left, right) => {
       const leftRank = fallbackRank.get(left) ?? Number.MAX_SAFE_INTEGER;
       const rightRank = fallbackRank.get(right) ?? Number.MAX_SAFE_INTEGER;

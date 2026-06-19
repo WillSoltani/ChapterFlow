@@ -8,6 +8,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 import { BookCover } from "@/components/ui/BookCover";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import {
   CATALOG_BOOK_COUNT,
   CATALOG_MEDIAN_CHAPTER_MINUTES,
@@ -30,10 +31,20 @@ function bookHref(id: string): string {
   return `/book/library/${id}`;
 }
 
+// Canonicalize each book's category once so near-duplicate authored strings
+// (e.g. "Self-Help" → "Self Improvement", "Decision-Making" → "Decision Making")
+// collapse into a single filter pill instead of splitting one topic across two.
+// All category reads below use CANONICAL_CATALOG so the pills, the filter, the
+// counts, and the per-card tag stay consistent. See lib/category-taxonomy.ts (D4/LM-4).
+const CANONICAL_CATALOG = BOOKS_CATALOG.map((b) => ({
+  ...b,
+  category: canonicalizeCategory(b.category),
+}));
+
 // Derive ordered categories from full catalog (by count, descending)
 const ALL_CATEGORY_COUNTS = (() => {
   const counts = new Map<string, number>();
-  BOOKS_CATALOG.forEach((b) => counts.set(b.category, (counts.get(b.category) || 0) + 1));
+  CANONICAL_CATALOG.forEach((b) => counts.set(b.category, (counts.get(b.category) || 0) + 1));
   return Array.from(counts.entries()).sort((a, b) => b[1] - a[1]);
 })();
 
@@ -63,8 +74,8 @@ export function Library() {
   // Show up to 8 books — from the full catalog filtered by category
   const filteredBooks =
     activeCategory === "All"
-      ? BOOKS_CATALOG.slice(0, 8)
-      : BOOKS_CATALOG.filter((b) => b.category === activeCategory).slice(0, 8);
+      ? CANONICAL_CATALOG.slice(0, 8)
+      : CANONICAL_CATALOG.filter((b) => b.category === activeCategory).slice(0, 8);
 
   return (
     <section id="library" className="py-14 lg:py-20">
@@ -92,7 +103,7 @@ export function Library() {
                 <span style={{ color: "var(--accent-cyan)" }}>
                   {activeCategory === "All"
                     ? `Showing ${filteredBooks.length} of ${BOOK_COUNT}.`
-                    : `Showing ${filteredBooks.length} of ${BOOKS_CATALOG.filter((b) => b.category === activeCategory).length} in ${activeCategory}.`}
+                    : `Showing ${filteredBooks.length} of ${CANONICAL_CATALOG.filter((b) => b.category === activeCategory).length} in ${activeCategory}.`}
                 </span>
               </p>
             </div>
@@ -139,7 +150,7 @@ export function Library() {
                     {category}
                     {isActive && category !== "All" && (
                       <span className="ml-1 text-[10px] opacity-75">
-                        ({BOOKS_CATALOG.filter((b) => b.category === category).length})
+                        ({CANONICAL_CATALOG.filter((b) => b.category === category).length})
                       </span>
                     )}
                   </button>

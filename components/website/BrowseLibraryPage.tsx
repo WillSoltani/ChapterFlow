@@ -21,6 +21,7 @@ import {
   getBookChapterCount,
 } from "@/app/book/data/booksCatalog";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
@@ -89,7 +90,10 @@ const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
     id: cat.id,
     title: cat.title,
     author: cat.author,
-    category: cat.category,
+    // Canonicalize at the single map choke point so the pills, the category
+    // filter, the search match, the topic rows, and the per-card tag all read
+    // one merged label (e.g. "Self-Help" → "Self Improvement"). D4/LM-4.
+    category: canonicalizeCategory(cat.category),
     chapters: getBookChapterCount(cat.id) || 6,
     difficulty: cat.difficulty.toLowerCase() as "easy" | "medium" | "hard",
     estimatedHours: Math.round((cat.estimatedMinutes / 60) * 10) / 10,
