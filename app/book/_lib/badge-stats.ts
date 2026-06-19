@@ -1,4 +1,5 @@
 import type { BadgeProgressStats } from "@/app/book/badges/lib/badge-ui-definitions";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 /**
  * Source-agnostic badge-stats computation.
@@ -65,10 +66,6 @@ function getWeekKey(dayKey: string): string {
   const yearStart = new Date(date.getFullYear(), 0, 1);
   const week = Math.ceil(((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
   return `${date.getFullYear()}-W${String(week).padStart(2, "0")}`;
-}
-
-function normalizeCategory(value: string): string {
-  return value.trim().toLowerCase();
 }
 
 function splitNotes(notes: string): string[] {
@@ -165,17 +162,22 @@ export function computeBadgeProgressStats(args: {
   const usedReadingModes = new Set<ReadingDepth>();
 
   for (const book of books) {
+    // DI-3: count distinct categories on the controlled vocabulary so an
+    // un-normalized catalog string (e.g. "Self-Help" vs "Self Improvement")
+    // reaching the dashboard before the prod backfill still merges into one
+    // explored/completed category instead of inflating the count.
+    const canonicalCategory = canonicalizeCategory(book.category);
     if (book.isStarted) {
       startedBooks += 1;
-      startedCategories.add(normalizeCategory(book.category));
+      startedCategories.add(canonicalCategory);
       if (book.difficulty === "Hard") challengingBooksStarted += 1;
     }
     if (book.isCompleted) {
-      completedCategories.add(normalizeCategory(book.category));
+      completedCategories.add(canonicalCategory);
       if (book.difficulty === "Hard") challengingBooksCompleted += 1;
-      const category = normalizeCategory(book.category);
-      if (category.includes("strategy")) strategyBooksCompleted += 1;
-      if (category.includes("psychology")) psychologyBooksCompleted += 1;
+      const categoryLower = canonicalCategory.toLowerCase();
+      if (categoryLower.includes("strategy")) strategyBooksCompleted += 1;
+      if (categoryLower.includes("psychology")) psychologyBooksCompleted += 1;
     }
 
     let allCompletedInDeeperMode = book.isCompleted;
