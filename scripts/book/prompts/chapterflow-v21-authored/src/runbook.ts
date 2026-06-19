@@ -8,19 +8,15 @@
  * minimal to limit drift). The helpers here are pure; the CLI gathers the live state.
  */
 
-/** The strict env, as `NAME=1` assignments — threaded verbatim into the next command. */
-export const STRICT_ENV = [
-  "CHAPTERFLOW_NO_API_CODEX_QC=1",
-  "CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1",
-  "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1",
-];
+import { STRICT_ENV_ASSIGNMENTS, STRICT_ENV_VAR_NAMES } from "./lib/strictEnv.js";
+
+/** The strict env, as `NAME=1` assignments — threaded verbatim into the next command.
+ *  Canonical list lives in lib/strictEnv (shared with the codex worker spawn + the
+ *  autopilot conductor's CLI runner) so what we DISPLAY can't drift from what we SET. */
+export const STRICT_ENV = STRICT_ENV_ASSIGNMENTS;
 
 /** The same three, as bare variable names — for live presence checks. Order matches STRICT_ENV. */
-export const STRICT_ENV_VARS = [
-  "CHAPTERFLOW_NO_API_CODEX_QC",
-  "CHAPTERFLOW_REQUIRE_SOURCE_VERIFY",
-  "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE",
-] as const;
+export const STRICT_ENV_VARS = STRICT_ENV_VAR_NAMES;
 
 const STRICT = STRICT_ENV.join(" ");
 

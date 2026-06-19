@@ -52,7 +52,10 @@ package to `book-packages/<bookId>.v21.json`.
 
 ## Model access: three providers
 
-v21 supports three providers behind a single interface. Switch by env var.
+These are the **paid, mass-production** paths. The **default operating model needs
+no funded API** — generation and QC run as `codex exec` sessions on a Codex/Max
+**subscription** (see [Autopilot](#autopilot--the-codex-control-plane-no-api-metering)
+below). v21 supports three providers behind a single interface. Switch by env var.
 
 ### 1. Anthropic Code CLI (default — runs on Max subscription, free at usage)
 
@@ -86,6 +89,35 @@ export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
 
 **Critic agents are deterministic code** — they don't call any model — so they
 behave identically regardless of provider. Only writer/researcher calls vary.
+
+## Autopilot — the Codex control plane (no API metering)
+
+The three providers above are the paid path. The **default** needs no funded API:
+generation and QC run as `codex exec` sessions on a Codex/Max **subscription**,
+driven by a deterministic conductor — the pipeline emits prompts and spawns agentic
+sessions, it does **not** make billed API calls on its own.
+
+`book-autopilot <bookId>` runs a book end-to-end — research → write → gate →
+QC(+bounded repair) → ready-to-publish — by looping the `bookStatus` phase machine
+and spawning one fresh `codex exec` session per unit of work (research, per-chapter
+authoring, QC review, repair). DECISIONS stay in code (phase sequencing, the ≤3
+repair loop, gate reading, publish gating); agents only do the work. Publishing is
+human-gated by default (`--auto-publish` opts in).
+
+```bash
+# preview the spawn plan + session-count estimate, take no action:
+npx tsx src/cli.ts book-autopilot <bookId> --plan
+# real run (subscription; halts at "ready to publish"):
+npx tsx src/cli.ts book-autopilot <bookId>
+```
+
+Invariants the conductor enforces **in code** (not prose):
+- **No API metering** — every model call is a `codex exec` session, never a billed provider.
+- **Strict env, fail-closed** — `CHAPTERFLOW_NO_API_CODEX_QC` / `_REQUIRE_SOURCE_VERIFY` / `_ENFORCE_SESSION_INDEPENDENCE` are force-set on every subprocess (canonical list in `src/lib/strictEnv.ts`), so finalize's author≠reviewer collision check and the source-verify gate can't silently no-op when the shell didn't export them.
+- **Reviewer integrity** — a chapter-content hash fence voids a round if any reviewer mutates a chapter.
+- **Typed halts** — every stop carries a category (`infra` / `content` / `governance` / `progress` / `integrity`) + durable per-agent logs under `state/autopilot-logs/<bookId>/`.
+
+See **G6** (qc-converge) and **G7** (book-autopilot) in `FAILURE-MODES.md`.
 
 ## Mass-production cost projection
 
