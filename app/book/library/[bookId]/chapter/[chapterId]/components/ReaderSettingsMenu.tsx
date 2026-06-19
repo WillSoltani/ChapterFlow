@@ -218,18 +218,24 @@ export function ReaderSettingsMenu({
                 value={learningMode}
                 onChange={onChangeLearningMode}
               />
-              <p className="mt-2 text-[11px] leading-snug text-(--cr-text-disabled)">
-                Difficulty is set during onboarding.{" "}
-                <button
-                  type="button"
-                  onClick={() => setAdvancedOpen((v) => !v)}
-                  className="font-semibold text-(--cr-accent) underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] rounded"
-                  aria-expanded={advancedOpen}
-                >
-                  Customize it
-                </button>
-                .
-              </p>
+              {/* RF-2 / D8: the Mode RadioGroup above is the single depth lever.
+                  The "Customize it" disclosure only makes sense when a separate
+                  depth selector exists (showDepthSelector) — otherwise it would
+                  expand to nothing, so hide the helper alongside the selector. */}
+              {showDepthSelector && (
+                <p className="mt-2 text-[11px] leading-snug text-(--cr-text-disabled)">
+                  Difficulty is set during onboarding.{" "}
+                  <button
+                    type="button"
+                    onClick={() => setAdvancedOpen((v) => !v)}
+                    className="font-semibold text-(--cr-accent) underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] rounded"
+                    aria-expanded={advancedOpen}
+                  >
+                    Customize it
+                  </button>
+                  .
+                </p>
+              )}
             </SettingsSection>
 
             <AnimatePresence initial={false}>
