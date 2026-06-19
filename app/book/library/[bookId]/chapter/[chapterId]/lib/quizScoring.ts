@@ -10,6 +10,36 @@ import type { QuizSessionView } from "../hooks/useQuizSession";
  */
 
 /**
+ * A server `/check` verdict captured while the reader was answering a question,
+ * keyed by questionId. After H3 (SEC-QUIZ-LEAK) the GET quiz payload no longer
+ * ships `correctChoiceId` for a "ready" attempt, so offline provisional scoring
+ * can't compare against a key — it uses these captured verdicts instead.
+ *
+ * `correctChoiceId` is present ONLY when the client already legitimately knows
+ * the correct choice (the user picked it, or an offline local-bundle grade
+ * supplied it). The server `/check` endpoint NEVER returns the key.
+ */
+export type CheckedAnswerResult = {
+  /** The choice this verdict was computed for. Offline scoring ignores a stale
+   *  verdict whose choice no longer matches the user's committed answer. */
+  selectedChoiceId: string;
+  isCorrect: boolean;
+  correctChoiceId?: string;
+};
+
+export type CheckedResults = Record<string, CheckedAnswerResult>;
+
+/** Classify a choiceId by its scheme: the server uses `${qid}::choice::${n}` and
+ *  the offline local bundle uses `${qid}-choice-${n}`. Carrying an answer from one
+ *  scheme into a session of the other yields an id that never matches a choice. */
+function choiceIdScheme(choiceId: string | undefined): "server" | "local" | "unknown" {
+  if (!choiceId) return "unknown";
+  if (choiceId.includes("::choice::")) return "server";
+  if (/-choice-\d+$/.test(choiceId)) return "local";
+  return "unknown";
+}
+
+/**
  * Build the carry-forward answer seed for a retake: for every question the user
  * already answered correctly in `graded`, seed the correct choice of the SAME
  * question in `target` (the session that will actually be displayed/submitted).
@@ -26,22 +56,45 @@ import type { QuizSessionView } from "../hooks/useQuizSession";
  * choiceId across that boundary would seed ids that don't match the displayed
  * session's correctChoiceId, re-introducing the score drop. Because a carried
  * question is one the user got right, its carried answer is simply the correct
- * choice — so we read it from `target.correctChoiceId`, which is always in the
- * right scheme.
+ * choice, which we prefer to read from `target.correctChoiceId` (always in the
+ * right scheme).
+ *
+ * After H3 a server "ready" `target` no longer ships `correctChoiceId`. In that
+ * case `graded` and `target` are both server sessions in the SAME scheme, so the
+ * user's prior correct selection (`graded.selectedChoiceId` for that question)
+ * is a valid carry and we fall back to it. The offline local-bundle `target`
+ * still carries its own key, so the preferred branch keeps it scheme-correct.
  */
 export function buildCarryForwardAnswers(
   graded: Pick<QuizSessionView, "questions">,
   target: Pick<QuizSessionView, "questions">,
 ): Record<string, string> {
-  const previouslyCorrect = new Set(
-    graded.questions
-      .filter((q) => q.isCorrect && q.selectedChoiceId)
-      .map((q) => q.questionId),
-  );
+  // For each previously-correct question, the user's own (correct) selection —
+  // in the prior session's scheme. Used only as the scheme-compatible fallback
+  // when `target` doesn't ship a key (see below).
+  const correctSelectionByQuestion = new Map<string, string>();
+  for (const q of graded.questions) {
+    if (q.isCorrect && q.selectedChoiceId) {
+      correctSelectionByQuestion.set(q.questionId, q.selectedChoiceId);
+    }
+  }
   const seed: Record<string, string> = {};
   for (const question of target.questions) {
-    if (previouslyCorrect.has(question.questionId) && question.correctChoiceId) {
+    const priorSelection = correctSelectionByQuestion.get(question.questionId);
+    if (priorSelection === undefined) continue;
+    if (question.correctChoiceId) {
+      // Target ships its own key (offline local bundle) — always in target scheme.
       seed[question.questionId] = question.correctChoiceId;
+      continue;
+    }
+    // Post-H3 server "ready" target ships no key. Carry the user's prior correct
+    // selection ONLY when it is already in the target's choiceId scheme. Carrying
+    // a foreign-scheme id (e.g. a local `-choice-` answer onto a server
+    // `::choice::` session) would seed an id the server rejects as invalid and
+    // local scoring counts wrong — re-introducing the score-drop regression.
+    const targetScheme = choiceIdScheme(question.choices?.[0]?.choiceId);
+    if (targetScheme !== "unknown" && choiceIdScheme(priorSelection) === targetScheme) {
+      seed[question.questionId] = priorSelection;
     }
   }
   return seed;
@@ -49,21 +102,46 @@ export function buildCarryForwardAnswers(
 
 /**
  * Score an answer map against a session's questions locally. Used as the
- * provisional fallback when the submit API is unreachable; mirrors the server's
- * grading (a question is correct iff its answer matches `correctChoiceId`).
- * Returns `null` when there are no questions to score.
+ * provisional fallback when the submit API is unreachable (RF-4 D5:
+ * celebrate-then-reconcile — show an optimistic result now, let the
+ * authoritative /submit reconcile on reconnect). Returns `null` when there are
+ * no questions to score.
+ *
+ * A question is correct iff: a captured server `/check` verdict says so
+ * (preferred — the canonical answer is no longer shipped for "ready" sessions
+ * after H3), else its answer matches the session's own `correctChoiceId` (the
+ * offline local bundle still carries the key). With neither signal the answer
+ * can't be verified and is counted wrong; /submit fixes the real score later.
  */
 export function scoreSessionLocally(
   session: QuizSessionView,
   answers: Record<string, string>,
+  checkedResults: CheckedResults = {},
   now: () => string = () => new Date().toISOString(),
 ): QuizSessionView | null {
   let correct = 0;
   const scoredQuestions = session.questions.map((question) => {
     const selectedId = answers[question.questionId] ?? null;
-    const isCorrect = selectedId === question.correctChoiceId;
+    const checked = checkedResults[question.questionId];
+    // Only trust a captured verdict that was computed for the SAME choice the
+    // user has committed; otherwise it's stale (e.g. carried over from a prior
+    // attempt) and we fall back to the session's own key.
+    const checkedMatches =
+      checked != null && selectedId != null && checked.selectedChoiceId === selectedId;
+    const isCorrect = checkedMatches
+      ? checked.isCorrect
+      : question.correctChoiceId != null && selectedId === question.correctChoiceId;
     if (isCorrect) correct += 1;
-    return { ...question, selectedChoiceId: selectedId, isCorrect };
+    // Resolve the correct key for the review screen / spaced-repetition enrolment:
+    // the session's own key if present, else a matching captured reveal, else
+    // (for a correct answer) the user's own selection. Stays undefined for a
+    // wrong answer with no known key — that question simply isn't enrolled
+    // offline; /submit enrols it with the real key on reconnect.
+    const correctChoiceId =
+      question.correctChoiceId ??
+      (checkedMatches ? checked.correctChoiceId : undefined) ??
+      (isCorrect ? selectedId ?? undefined : undefined);
+    return { ...question, selectedChoiceId: selectedId, isCorrect, correctChoiceId };
   });
   if (scoredQuestions.length === 0) return null;
   const scorePercent = Math.round((correct / scoredQuestions.length) * 100);

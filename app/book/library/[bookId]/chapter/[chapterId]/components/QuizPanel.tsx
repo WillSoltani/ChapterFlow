@@ -42,6 +42,9 @@ type QuizPanelProps = {
   error: string | null;
   cooldownSeconds: number;
   onAnswer: (questionId: string, choiceId: string) => void;
+  /** Grade a single in-progress answer server-side. Returns ONLY correctness —
+   *  the answer key is never shipped to the client (H3 / SEC-QUIZ-LEAK). */
+  onCheckAnswer: (questionId: string, choiceId: string) => Promise<{ isCorrect: boolean }>;
   onSubmit: () => void;
   onReviewSummary: () => void;
   onRetry: () => void;
@@ -154,13 +157,17 @@ function ProgressDots({
 // ─── Immediate Feedback Question Card ────────────────────────────────────────
 
 function ImmediateQuestionCard({
-  index, question, answerChoiceId, learningMode, onAnswer,
+  index, question, answerChoiceId, correctChoiceId, learningMode, onAnswer,
   onToggleExplanation, explanationOpen, feedbackState, disabledChoices,
   retriesLeft, isLast, onSeeResults, totalQuestions,
 }: {
   index: number;
   question: QuizQuestionView;
   answerChoiceId: string | undefined;
+  /** The correct choiceId, known to the client ONLY after the user picks it
+   *  correctly. Undefined while unanswered and on a final-wrong question (the
+   *  answer key is never shipped pre-submit — H3). Drives the correct highlight. */
+  correctChoiceId: string | undefined;
   learningMode: LearningMode;
   onAnswer: (choiceId: string) => void;
   onToggleExplanation: () => void;
@@ -195,16 +202,15 @@ function ImmediateQuestionCard({
     return () => clearTimeout(timer);
   }, [resolved, feedbackState, learningMode, isLast]);
 
-  // Find correct choice letter for the simple fallback message
-  const correctChoiceIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
-  const correctLetter = OPTION_LABELS[correctChoiceIndex] ?? "?";
-
   // Roving tabindex over the non-disabled options. Selection does NOT follow
   // focus: picking a quiz answer is consequential (it grades the attempt and can
   // burn a retry), so arrow keys only MOVE focus — Space/Enter (native <button>
   // activation) and the 1-5 hotkeys are what actually select an answer.
   const focusableIndices = question.choices
-    .map((c, i) => ({ i, blocked: resolved || disabledChoices.has(c.choiceId) }))
+    .map((c, i) => ({
+      i,
+      blocked: resolved || feedbackState === "pending" || disabledChoices.has(c.choiceId),
+    }))
     .filter((o) => !o.blocked)
     .map((o) => o.i);
   const selectedIndex = question.choices.findIndex((c) => c.choiceId === answerChoiceId);
@@ -255,16 +261,20 @@ function ImmediateQuestionCard({
         </p>
       </div>
 
-      {/* Answer options — FIX 4: pulse on auto-revealed correct */}
+      {/* Answer options */}
       {/* ARIA radiogroup labelled by the prompt; each choice is a role=radio. */}
       <div role="radiogroup" aria-labelledby={promptId} className="space-y-2">
         {question.choices.map((choice, optionIndex) => {
           const selected = answerChoiceId === choice.choiceId;
           const isDisabledChoice = disabledChoices.has(choice.choiceId);
-          const isCorrectChoice = question.correctChoiceId === choice.choiceId;
+          // The correct choice is highlighted only once the client legitimately
+          // knows it — i.e. the user PICKED it correctly. On a final-wrong
+          // question the key is unknown (never shipped pre-submit), so no choice
+          // is auto-revealed as correct; the full answer appears in the post-
+          // submit review instead.
+          const isCorrectChoice = correctChoiceId != null && correctChoiceId === choice.choiceId;
           const showAsCorrect = resolved && isCorrectChoice;
           const showAsWrong = isDisabledChoice && !isCorrectChoice;
-          const autoRevealed = showAsCorrect && feedbackState === "incorrect-final";
           const optionLabel = OPTION_LABELS[optionIndex] ?? String(optionIndex + 1);
 
           const stateClass = (() => {
@@ -283,7 +293,7 @@ function ImmediateQuestionCard({
               aria-checked={selected}
               aria-label={`Option ${optionIndex + 1} of ${question.choices.length}: ${choice.text}`}
               tabIndex={optionIndex === tabbableIndex ? 0 : -1}
-              disabled={resolved || isDisabledChoice}
+              disabled={resolved || isDisabledChoice || feedbackState === "pending"}
               onClick={() => onAnswer(choice.choiceId)}
               onKeyDown={(e) => moveFocus(e, optionIndex)}
               onFocus={() => setFocusedIndex(optionIndex)}
@@ -291,8 +301,7 @@ function ImmediateQuestionCard({
                 "cr-answer-option w-full text-left",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)",
                 stateClass,
-              ].join(" ")}
-              style={autoRevealed ? { animation: "cr-pulse-glow 600ms ease-in-out 2" } : undefined}>
+              ].join(" ")}>
               <span className={[
                 "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold",
                 showAsCorrect ? "bg-(--cr-success) text-(--cr-text-inverse)"
@@ -329,11 +338,13 @@ function ImmediateQuestionCard({
         </div>
       )}
 
-      {/* FIX 4+10: incorrect-final — neutral banner + smart explanation (always rendered) */}
+      {/* incorrect-final — neutral banner + smart explanation (always rendered).
+       *  The specific correct answer is intentionally NOT named here: the key is
+       *  never shipped before submit (H3). It appears in the post-submit review. */}
       {feedbackState === "incorrect-final" && (
         <div className="mt-3 space-y-3" style={{ animation: "cr-card-enter 200ms ease-out" }}>
           <div className="rounded-lg border-l-3 border-(--cr-text-secondary) bg-(--cr-fill-subtle) px-4 py-2.5 text-sm text-(--cr-text-secondary)">
-            The correct answer is {correctLetter}.
+            Not quite. Here&apos;s why the right answer works:
           </div>
           <div className="rounded-xl border border-(--cr-glass-border) bg-(--cr-bg-surface-3) px-4 py-3">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-(--cr-text-secondary)">
@@ -584,19 +595,24 @@ function ResultsScreen({
 
 export function QuizPanel({
   session, answers, explanationOpen, loading, submitting, error, cooldownSeconds,
-  onAnswer, onSubmit, onReviewSummary, onRetry, onContinueToPractice, onToggleExplanation,
+  onAnswer, onCheckAnswer, onSubmit, onReviewSummary, onRetry, onContinueToPractice, onToggleExplanation,
   learningMode = "standard",
   questionFlow = "all-at-once",
   shuffleQuestions = false,
   retryIncorrectOnly = false,
 }: QuizPanelProps) {
   const [questionFeedback, setQuestionFeedback] = useState<
-    Record<string, "correct" | "incorrect-retry" | "incorrect-final">
+    Record<string, "pending" | "correct" | "incorrect-retry" | "incorrect-final">
   >({});
   const [disabledChoices, setDisabledChoices] = useState<Record<string, Set<string>>>({});
   const [retriesUsed, setRetriesUsed] = useState<Record<string, number>>({});
   const [resultView, setResultView] = useState<"results" | "review-mistakes">("results");
   const [previousIncorrectIds, setPreviousIncorrectIds] = useState<Set<string>>(new Set());
+  // The correct choiceId per question, learned ONLY when the user picks it
+  // correctly (server /check confirms; the choice IS the key). Never populated
+  // for a wrong answer — the key isn't shipped pre-submit (H3). Drives the
+  // green "correct" highlight on the resolved card.
+  const [correctByQuestion, setCorrectByQuestion] = useState<Record<string, string>>({});
   // Polite SR announcement for per-question grading + final score (WCAG 4.1.3).
   // The live region is always mounted (below); only its text changes.
   const [liveMessage, setLiveMessage] = useState("");
@@ -652,6 +668,7 @@ export function QuizPanel({
       setQuestionFeedback({});
       setDisabledChoices({});
       setRetriesUsed({});
+      setCorrectByQuestion({});
       setResultView("results");
       setOneByOneIndex(0);
     }
@@ -675,15 +692,40 @@ export function QuizPanel({
   }, [session?.result, announce]);
 
   const handleAnswer = useCallback(
-    (questionId: string, choiceId: string) => {
+    async (questionId: string, choiceId: string) => {
       if (!session) return;
       const question = session.questions.find((q) => q.questionId === questionId);
-      if (!question || questionFeedback[questionId] === "correct" || questionFeedback[questionId] === "incorrect-final") return;
+      // Grading is now an async server round-trip (/check). Ignore a click on a
+      // question that is already resolved OR mid-check — the transient "pending"
+      // state also disables the choices, so this only guards a same-tick double
+      // click before the disable takes effect.
+      const current = questionFeedback[questionId];
+      if (!question || current === "pending" || current === "correct" || current === "incorrect-final") return;
+      // Don't re-grade a choice the user already tried — keeps the keyboard 1-5
+      // path consistent with the disabled mouse buttons (and avoids burning an
+      // extra retry on the same wrong answer).
+      if (disabledChoices[questionId]?.has(choiceId)) return;
+      setQuestionFeedback((prev) => ({ ...prev, [questionId]: "pending" }));
 
-      const isCorrect = question.correctChoiceId === choiceId;
+      let isCorrect = false;
+      try {
+        ({ isCorrect } = await onCheckAnswer(questionId, choiceId));
+      } catch {
+        // onCheckAnswer is designed never to throw (it degrades to a local grade
+        // offline); if it ever does, clear the pending state so the question is
+        // answerable again rather than stuck.
+        setQuestionFeedback((prev) => {
+          const next = { ...prev };
+          delete next[questionId];
+          return next;
+        });
+        return;
+      }
 
       if (isCorrect) {
         onAnswer(questionId, choiceId);
+        // The picked choice IS the correct one — safe to highlight it green.
+        setCorrectByQuestion((prev) => ({ ...prev, [questionId]: choiceId }));
         setQuestionFeedback((prev) => ({ ...prev, [questionId]: "correct" }));
         announce("Correct.");
       } else {
@@ -698,9 +740,9 @@ export function QuizPanel({
         if (used >= maxRetries + 1) {
           onAnswer(questionId, choiceId);
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-final" }));
-          const correctIndex = question.choices.findIndex((c) => c.choiceId === question.correctChoiceId);
-          const correctLetter = OPTION_LABELS[correctIndex] ?? "?";
-          announce(`Incorrect. The correct answer is ${correctLetter}.`);
+          // The correct answer is NOT named (key not shipped pre-submit, H3);
+          // an explanation of why the right answer works is rendered just below.
+          announce("Incorrect. An explanation follows.");
         } else {
           setQuestionFeedback((prev) => ({ ...prev, [questionId]: "incorrect-retry" }));
           const retriesLeft = maxRetries - used;
@@ -712,7 +754,7 @@ export function QuizPanel({
         }
       }
     },
-    [session, questionFeedback, retriesUsed, maxRetries, onAnswer, announce]
+    [session, questionFeedback, disabledChoices, retriesUsed, maxRetries, onAnswer, onCheckAnswer, announce]
   );
 
   const handleSeeResults = useCallback(() => {
@@ -744,10 +786,11 @@ export function QuizPanel({
       const choice = activeQuestionForKeys.choices[zeroBasedIndex];
       if (!choice) return;
       const fb = questionFeedback[activeQuestionForKeys.questionId];
-      if (fb === "correct" || fb === "incorrect-final") return;
-      handleAnswer(activeQuestionForKeys.questionId, choice.choiceId);
+      if (fb === "correct" || fb === "incorrect-final" || fb === "pending") return;
+      if (disabledChoices[activeQuestionForKeys.questionId]?.has(choice.choiceId)) return;
+      void handleAnswer(activeQuestionForKeys.questionId, choice.choiceId);
     },
-    [activeQuestionForKeys, questionFeedback, handleAnswer]
+    [activeQuestionForKeys, questionFeedback, disabledChoices, handleAnswer]
   );
 
   useKeyboardShortcut("1", (e) => { e.preventDefault(); pickChoiceByIndex(0); }, { ignoreWhenTyping: true });
@@ -904,6 +947,7 @@ export function QuizPanel({
                 <ImmediateQuestionCard key={displayQuestions[oneByOneIndex].questionId}
                   index={oneByOneIndex} question={displayQuestions[oneByOneIndex]}
                   answerChoiceId={answers[displayQuestions[oneByOneIndex].questionId]}
+                  correctChoiceId={correctByQuestion[displayQuestions[oneByOneIndex].questionId]}
                   learningMode={learningMode}
                   onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex].questionId, choiceId)}
                   onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex].questionId)}
@@ -934,6 +978,7 @@ export function QuizPanel({
             displayQuestions.map((question, index) => (
               <ImmediateQuestionCard key={question.questionId}
                 index={index} question={question} answerChoiceId={answers[question.questionId]}
+                correctChoiceId={correctByQuestion[question.questionId]}
                 learningMode={learningMode} onAnswer={(choiceId) => handleAnswer(question.questionId, choiceId)}
                 onToggleExplanation={() => onToggleExplanation(question.questionId)}
                 explanationOpen={Boolean(explanationOpen[question.questionId])}

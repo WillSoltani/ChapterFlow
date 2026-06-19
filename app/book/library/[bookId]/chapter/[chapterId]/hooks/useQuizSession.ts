@@ -6,7 +6,7 @@ import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
-import { buildCarryForwardAnswers, scoreSessionLocally } from "../lib/quizScoring";
+import { buildCarryForwardAnswers, scoreSessionLocally, type CheckedResults } from "../lib/quizScoring";
 
 type QuizSubmitResponse = {
   quiz: QuizSessionView;
@@ -65,6 +65,26 @@ function remainingCooldown(nextAttemptAvailableAt: string | null): number {
   if (!nextAttemptAvailableAt) return 0;
   const deltaMs = new Date(nextAttemptAvailableAt).getTime() - Date.now();
   return Math.max(0, Math.ceil(deltaMs / 1000));
+}
+
+/** Extract the trailing canonical choice index from a server (`::choice::N`) or
+ *  local (`-choice-N`) choiceId — used to resolve the offline answer key from
+ *  the local quiz bundle when the server `/check` is unreachable. */
+function trailingChoiceIndex(choiceId: string): number | null {
+  const match = /(?:::choice::|-choice-)(\d+)$/.exec(choiceId);
+  return match ? Number(match[1]) : null;
+}
+
+/** Build a captured-verdict map for carried-forward (previously-correct) answers
+ *  on a retake, so an offline provisional score counts them correct without a
+ *  re-grade. Keyed by questionId; the carried choice is recorded as the one
+ *  graded so the verdict matches the committed answer. */
+function seedCheckedFromCarry(carry: Record<string, string>): CheckedResults {
+  const seeded: CheckedResults = {};
+  for (const [questionId, choiceId] of Object.entries(carry)) {
+    seeded[questionId] = { selectedChoiceId: choiceId, isCorrect: true, correctChoiceId: choiceId };
+  }
+  return seeded;
 }
 
 function draftAnswersKey(bookId: string, chapterNumber: number, difficulty: ReadingDepth): string {
@@ -147,6 +167,11 @@ export function useQuizSession(params: {
   const [lastLoopPipeline, setLastLoopPipeline] = useState<LoopPipelineResult | null>(null);
   const startedAtRef = useRef<number | null>(null);
   const trackedExplanationIds = useRef<Set<string>>(new Set());
+  // Server /check verdicts captured while the user answers, keyed by questionId
+  // (the verdict records the exact choice it graded). Lets an offline provisional
+  // score (submit unreachable) grade WITHOUT the answer key — which the GET
+  // payload no longer ships for a "ready" attempt (H3 / SEC-QUIZ-LEAK).
+  const checkedResultsRef = useRef<CheckedResults>({});
   // Per-invocation request token. Each load() captures the current value and
   // only writes its response into state if the token still matches — so an
   // in-flight load() for a previous chapter/difficulty (or one that resolves
@@ -277,6 +302,7 @@ export function useQuizSession(params: {
     setLastLoopPipeline(null);
     startedAtRef.current = null;
     trackedExplanationIds.current = new Set();
+    checkedResultsRef.current = {};
   }, [bookId, chapterNumber, difficulty, contentTone]);
 
   // Invalidate any in-flight load() on unmount so it can't setState afterward.
@@ -319,9 +345,98 @@ export function useQuizSession(params: {
     [bookId, chapterNumber, difficulty, session]
   );
 
+  // Resolve a question's correct choiceId from the offline local quiz bundle, in
+  // the CURRENT session's choiceId scheme, by matching canonical index. Used only
+  // when /check is unreachable AND the session itself has no key (a server "ready"
+  // session post-H3). The local-fallback session built by buildLocalSession
+  // already carries its own key, so this is the rarer server-then-offline path.
+  const resolveLocalCorrectChoiceId = useCallback(
+    (questionId: string, sessionChoices: ReadonlyArray<{ choiceId: string }>): string | undefined => {
+      const bundle = localQuizRef.current?.questions.find((q) => q.id === questionId);
+      if (!bundle) return undefined;
+      const match = sessionChoices.find(
+        (choice) => trailingChoiceIndex(choice.choiceId) === bundle.correctIndex
+      );
+      return match?.choiceId;
+    },
+    []
+  );
+
+  // Grade a single in-progress answer via the server, which returns ONLY
+  // correctness — never the answer key (H3 / SEC-QUIZ-LEAK). The inline quiz UX
+  // (QuizPanel) calls this instead of comparing against a shipped key. The
+  // captured verdict also feeds offline provisional scoring. Falls back to a
+  // local-key grade when the endpoint is unreachable so the inline UX and the
+  // dev/offline local-bundle path keep working.
+  const checkAnswer = useCallback(
+    async (questionId: string, choiceId: string): Promise<{ isCorrect: boolean }> => {
+      const current = session;
+      const sessionQuestion = current?.questions.find((q) => q.questionId === questionId);
+      const record = (isCorrect: boolean, correctChoiceId?: string) => {
+        checkedResultsRef.current = {
+          ...checkedResultsRef.current,
+          [questionId]: { selectedChoiceId: choiceId, isCorrect, correctChoiceId },
+        };
+      };
+
+      // If the displayed session already carries the answer key on the client, it
+      // is a LOCAL/offline session (buildLocalSession) whose choiceIds use the
+      // local `-choice-` scheme. The server /check rebuilds questions in the
+      // `::choice::` scheme and would grade a CORRECT local pick as wrong, so
+      // grade locally against the session's own key. /check is reserved for the
+      // keyless server "ready" session (the H3 case) whose key is withheld.
+      const sessionKey = sessionQuestion?.correctChoiceId;
+      if (sessionKey != null) {
+        const isCorrect = choiceId === sessionKey;
+        record(isCorrect, sessionKey);
+        return { isCorrect };
+      }
+
+      try {
+        const payload = await fetchBookJson<{
+          results: Array<{ questionId: string; isCorrect: boolean }>;
+        }>(
+          `/app/api/book/me/quiz/${encodeURIComponent(bookId)}/${chapterNumber}/check`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              attemptNumber: current?.attemptNumber ?? 1,
+              difficulty,
+              tone: contentTone,
+              responses: [{ questionId, selectedChoiceId: choiceId }],
+            }),
+          }
+        );
+        const result =
+          payload.results.find((r) => r.questionId === questionId) ?? payload.results[0];
+        const isCorrect = Boolean(result?.isCorrect);
+        // We only legitimately know the key when the user picked correctly
+        // (it's their own choice). A wrong guess yields no key — by design.
+        record(isCorrect, isCorrect ? choiceId : undefined);
+        return { isCorrect };
+      } catch {
+        // Server "ready" session but /check unreachable: resolve the key from the
+        // local quiz bundle by canonical index — which returns a choiceId in the
+        // CURRENT (server) session's scheme — so the inline UX + offline scoring
+        // keep working (RF-4: celebrate-then-reconcile).
+        const localKey = resolveLocalCorrectChoiceId(questionId, sessionQuestion?.choices ?? []);
+        if (localKey != null) {
+          const isCorrect = choiceId === localKey;
+          record(isCorrect, localKey);
+          return { isCorrect };
+        }
+        // No key available at all — can't verify. Count it wrong; the
+        // authoritative /submit reconciles the real score on reconnect.
+        record(false, undefined);
+        return { isCorrect: false };
+      }
+    },
+    [bookId, chapterNumber, difficulty, contentTone, session, resolveLocalCorrectChoiceId]
+  );
+
   const scoreLocally = useCallback((): QuizSessionView | null => {
     if (!session) return null;
-    return scoreSessionLocally(session, answers);
+    return scoreSessionLocally(session, answers, checkedResultsRef.current);
   }, [answers, session]);
 
   const submit = useCallback(async () => {
@@ -402,10 +517,14 @@ export function useQuizSession(params: {
         // choiceId scheme (here `fresh`), then re-seated against the server
         // session below, so it never crosses the server/local scheme boundary.
         const carriedAnswers = retryIncorrectOnly ? buildCarryForwardAnswers(graded, fresh) : {};
-        const hasCarry = Object.keys(carriedAnswers).length > 0;
-        if (hasCarry) {
+        const localCarryCount = Object.keys(carriedAnswers).length;
+        if (localCarryCount > 0) {
           saveDraftAnswers(bookId, chapterNumber, difficulty, nextAttempt, carriedAnswers);
         }
+        // Fresh attempt: start the captured-verdict map from the carried
+        // (known-correct) answers; the newly-shown questions get graded via
+        // checkAnswer as the user answers them.
+        checkedResultsRef.current = seedCheckedFromCarry(carriedAnswers);
         setSession(fresh);
         syncFromSession(fresh);
         // Refresh from server in the background — if it succeeds and returns
@@ -416,12 +535,26 @@ export function useQuizSession(params: {
           if (server && !server.result) {
             // Re-seat the carry-forward under the SERVER session's choiceId
             // scheme + attempt number so it keeps the previously-correct answers.
-            if (retryIncorrectOnly) {
-              const serverCarry = buildCarryForwardAnswers(graded, server);
-              if (Object.keys(serverCarry).length > 0) {
-                saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, serverCarry);
-              }
+            const serverCarry = retryIncorrectOnly ? buildCarryForwardAnswers(graded, server) : {};
+            // If swapping to the server session would DROP carried answers — the
+            // prior attempt was graded in a different choiceId scheme (e.g. an
+            // offline LOCAL session), so its correct answers can't be expressed in
+            // the server scheme — keep the local `fresh` session instead. It holds
+            // the complete carry and submits via the provisional/offline path
+            // (RF-4 celebrate-then-reconcile); a later genuine load reconciles.
+            // Without this guard the carried questions would submit unanswered and
+            // an improving score would paradoxically DROP.
+            if (
+              retryIncorrectOnly &&
+              localCarryCount > 0 &&
+              Object.keys(serverCarry).length < localCarryCount
+            ) {
+              return;
             }
+            if (Object.keys(serverCarry).length > 0) {
+              saveDraftAnswers(bookId, chapterNumber, difficulty, server.attemptNumber, serverCarry);
+            }
+            checkedResultsRef.current = seedCheckedFromCarry(serverCarry);
             setSession(server);
             syncFromSession(server);
           }
@@ -478,6 +611,7 @@ export function useQuizSession(params: {
     cooldownSeconds,
     canSubmit,
     answerQuestion,
+    checkAnswer,
     submit,
     retry,
     lastLoopPipeline,
