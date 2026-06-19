@@ -1465,6 +1465,7 @@ export function ChapterReaderClient({
               error={quiz.error}
               cooldownSeconds={quiz.cooldownSeconds}
               onAnswer={quiz.answerQuestion}
+              onCheckAnswer={quiz.checkAnswer}
               onSubmit={handleSubmitQuiz}
               onReviewSummary={() => setActiveTab("summary")}
               onRetry={handleRetryQuiz}

@@ -72,15 +72,17 @@ test("correctIndex is NOT emitted to the client (dead, answer-revealing field �
   assert.equal(session.questions[0].correctIndex, undefined);
 });
 
-test("KNOWN H3 LEAK (documents current behavior until approach (a) lands): correctChoiceId is still emitted on a ready attempt", () => {
-  // correctChoiceId is the canonical answer (its string encodes the index), yet
-  // it is sent for an unanswered quiz because the inline-feedback UX grades
-  // clicks client-side. Closing the leak (server /check round-trip) MUST flip
-  // this assertion to `assert.equal(session.questions[0].correctChoiceId,
-  // undefined)` and gate the field to non-ready states in buildQuizClientSession.
+test("H3 CLOSED: correctChoiceId is NOT emitted on a ready attempt (the answer key never ships pre-submit)", () => {
+  // correctChoiceId is the canonical answer (its string encodes the index). It is
+  // now withheld for an unanswered ("ready") attempt — the reader grades each
+  // click via the server /check endpoint, which returns only correctness. The
+  // key is revealed only in the post-submit review projection (asserted below).
   const session = readySession();
-  assert.equal(session.questions[0].correctChoiceId, "q1::choice::2");
-  assert.equal(session.questions[1].correctChoiceId, "q2::choice::0");
+  assert.equal(session.questions[0].correctChoiceId, undefined);
+  assert.equal(session.questions[1].correctChoiceId, undefined);
+  // And the redundant index copy must likewise never appear on a ready question.
+  assert.equal(session.questions[0].correctIndex, undefined);
+  assert.ok(!("correctIndex" in session.questions[0]));
 });
 
 // ─── post-submit (review) projection ──────────────────────────────────────────
@@ -153,5 +155,9 @@ test("passed review: selectedChoiceId/isCorrect come from the attempt, correctCh
   assert.equal(session.questions[0].isCorrect, true);
   assert.equal(session.questions[1].selectedChoiceId, "q2::choice::1");
   assert.equal(session.questions[1].isCorrect, false);
+  // The MISSED question must ALSO carry the key here — this is the field the
+  // post-submit spaced-repetition enrolment (ChapterReaderClient) reads to
+  // enroll wrong answers. Gating it to non-ready states must not drop it.
+  assert.equal(session.questions[1].correctChoiceId, "q2::choice::0");
   assert.ok(!("correctIndex" in session.questions[0]), "passed");
 });
