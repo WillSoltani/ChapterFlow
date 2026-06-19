@@ -17,6 +17,7 @@ import type {
   ChapterSummaryPayload,
 } from "./types";
 import { validateBookPackage } from "./validate-book-package";
+import { CategoryTaxonomyError, enforceCanonicalCategories } from "@/lib/category-taxonomy";
 import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
 import {
   createBookVersionDraft,
@@ -63,6 +64,26 @@ export async function ingestBookPackageFromS3(params: {
         },
       ]
     );
+  }
+
+  // Category taxonomy gate (DI-3, owner decision D4). Authored categories are
+  // free text, which historically let one topic fork into near-duplicate strings
+  // ("Self-Help" vs "Self Improvement", "Decision-Making" vs "Decision Making")
+  // that silently split the catalog's filter pills. Reject any category with no
+  // canonical mapping so a new synonym can never enter the catalog silently, then
+  // normalize the rest onto the controlled vocabulary BEFORE buildArtifacts so the
+  // canonical categories flow into the manifest, book.json, the catalog item and
+  // the search index alike. (ingestBookPackageFromS3 -> upsertBookMetaAndCatalog
+  // is the sole live publish/write path for catalog categories.)
+  try {
+    pkg.book.categories = enforceCanonicalCategories(pkg.book.categories);
+  } catch (error: unknown) {
+    if (error instanceof CategoryTaxonomyError) {
+      throw new BookApiError(422, "invalid_package", "Book package validation failed.", [
+        { path: "book.categories", message: error.message },
+      ]);
+    }
+    throw error;
   }
 
   const { manifest, chapterPayloads, quizPayloads } = buildArtifacts(pkg);

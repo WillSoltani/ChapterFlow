@@ -9,6 +9,7 @@ import {
   parseStoredReaderState,
 } from "@/app/book/_lib/reader-storage";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import {
   BADGE_DEFINITIONS,
   evaluateBadges,
@@ -144,10 +145,6 @@ function formatEarnedDate(value: string): string {
   });
 }
 
-function normalizeCategory(value: string): string {
-  return value.trim().toLowerCase();
-}
-
 function deriveBadgeStats(
   analytics: NonNullable<UseBadgeSystemResult["analytics"]>,
   dailyGoalMinutes: number,
@@ -223,16 +220,22 @@ function deriveBadgeStats(
       stored.lastOpenedAt !== new Date(0).toISOString();
     const isCompleted = chapterIds.length > 0 && completedChapterIds.size >= chapterIds.length;
 
+    // DI-3: canonicalize so this client (localStorage) deriver counts distinct
+    // categories on the SAME controlled vocabulary as the server badge-stats
+    // deriver. The two are combined via mergeBadgeProgressStats (Math.max), so
+    // they must agree — otherwise an un-canonicalized count here could re-inflate
+    // the explored/completed-category metric the server path just normalized.
+    const canonicalCategory = canonicalizeCategory(book.category);
     if (isStarted) {
-      startedCategories.add(normalizeCategory(book.category));
+      startedCategories.add(canonicalCategory);
       if (book.difficulty === "Hard") challengingBooksStarted += 1;
     }
     if (isCompleted) {
-      completedCategories.add(normalizeCategory(book.category));
+      completedCategories.add(canonicalCategory);
       if (book.difficulty === "Hard") challengingBooksCompleted += 1;
-      const category = normalizeCategory(book.category);
-      if (category.includes("strategy")) strategyBooksCompleted += 1;
-      if (category.includes("psychology")) psychologyBooksCompleted += 1;
+      const categoryLower = canonicalCategory.toLowerCase();
+      if (categoryLower.includes("strategy")) strategyBooksCompleted += 1;
+      if (categoryLower.includes("psychology")) psychologyBooksCompleted += 1;
     }
 
     const passedQuizChapters = new Set<string>();
