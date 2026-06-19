@@ -211,10 +211,15 @@ function deriveBadgeStats(
 
     const completedChapterIds = new Set(stored.completedChapterIds);
     const chapterIds = getBookChaptersBundle(book.id).chapters.map((chapter) => chapter.id);
+    // "Started" = real reading engagement, not a mere browse. A book-progress
+    // entry is created (with currentChapterId pre-set to the first chapter and an
+    // epoch lastOpenedAt) the moment a book DETAIL page hydrates — so
+    // currentChapterId can't distinguish "opened the reader" from "looked at the
+    // detail page". lastOpenedAt only becomes a real timestamp once the reader is
+    // actually opened, so it (plus completions/scores) is the honest signal.
     const isStarted =
       completedChapterIds.size > 0 ||
       Object.keys(stored.chapterScores).length > 0 ||
-      Boolean(stored.currentChapterId) ||
       stored.lastOpenedAt !== new Date(0).toISOString();
     const isCompleted = chapterIds.length > 0 && completedChapterIds.size >= chapterIds.length;
 
@@ -262,7 +267,12 @@ function deriveBadgeStats(
       if (quizScore >= 100) perfectQuizCount += 1;
       if (reader?.showRecap && quizPassed) recapCompletions += 1;
 
-      if (reader?.activeTab === "examples" || reader?.exampleFilter !== "all") {
+      // Only count a chapter as "examples viewed" when persisted reader state
+      // actually exists. Without the `reader` guard, an untouched chapter (null
+      // reader → `reader?.exampleFilter !== "all"` is `undefined !== "all"` =
+      // true) is falsely counted, inflating Applied Reading for zero-read
+      // accounts. Mirrors the server deriver in badge-stats.ts.
+      if (reader && (reader.activeTab === "examples" || reader.exampleFilter !== "all")) {
         examplesViewedChapters += 1;
       }
       if (reader?.exampleFilter === "personal") {
@@ -317,11 +327,14 @@ function deriveBadgeStats(
   return {
     totalCompletedChapters: analytics.totalCompletedChapters,
     completedBooks: analytics.booksCompleted,
+    // Mirror the `isStarted` predicate above: a book counts as started only on
+    // real reading engagement, not a browsed detail page (which pre-sets
+    // currentChapterId but leaves lastOpenedAt at the epoch). This is what feeds
+    // the "Book in Motion" badge.
     startedBooks: bookProgressEntries.filter(({ stored }) => {
       if (!stored) return false;
       return (
         stored.completedChapterIds.length > 0 ||
-        Boolean(stored.currentChapterId) ||
         Object.keys(stored.chapterScores).length > 0 ||
         stored.lastOpenedAt !== new Date(0).toISOString()
       );
