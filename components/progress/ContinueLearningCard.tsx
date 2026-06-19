@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight } from "lucide-react";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
 import type { ActiveBook, LearningStep } from "./progressTypes";
 import { StepIndicator } from "./StepIndicator";
 import { ChapterProgressBar } from "./ChapterProgressBar";
@@ -41,6 +42,10 @@ export function ContinueLearningCard({
   const prefersReduced = useReducedMotion();
   const ctaText = STEP_CTA[primaryBook.currentStep];
   const bookHref = getBookHref(primaryBook);
+  // UF-4: nextMilestone.icon is a lucide-react icon NAME; resolve it via the shared map.
+  const NextMilestoneIcon = nextMilestone
+    ? BADGE_ICONS[nextMilestone.icon] ?? FALLBACK_BADGE_ICON
+    : null;
 
   return (
     <motion.div
@@ -171,10 +176,11 @@ export function ContinueLearningCard({
       </Link>
 
       {/* Next milestone — the user's real closest badge, or nothing */}
-      {nextMilestone && (
-        <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
-          Keep going to earn{" "}
-          <span aria-hidden="true">{nextMilestone.icon}</span> {nextMilestone.name}
+      {nextMilestone && NextMilestoneIcon && (
+        <p className="mt-3 inline-flex items-center gap-1 text-xs" style={{ color: "var(--text-muted)" }}>
+          Keep going to earn
+          <NextMilestoneIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          {nextMilestone.name}
         </p>
       )}
 
