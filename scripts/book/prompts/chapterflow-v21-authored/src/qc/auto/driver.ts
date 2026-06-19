@@ -224,8 +224,16 @@ export async function driveQcRoundCore(steps: QcDriveSteps, opts: QcDriveOptions
     }
     return { outcome: "PASS", ...base };
   }
-  if (finalized.incomplete) return { outcome: "INCOMPLETE", reason: "needs-more-qc", ...base };
+  // ACTIONABLE findings take precedence over incompleteness. A chapter flagged REVISE/
+  // CORRUPTION (or with open repair-ledger findings) is a definitive repair signal — even
+  // when OTHER chapters are still NEEDS_MORE_QC because they're blocked from confirm-
+  // candidacy by their own open findings (the repair clears them; a fresh round then
+  // re-QCs everything). Checking `incomplete` first here misclassified such a mixed round
+  // as INCOMPLETE → the autopilot halted INFRA ("a reviewer likely failed") instead of
+  // running its repair loop. Only a round with NO actionable findings + genuinely missing
+  // reads is INCOMPLETE.
   if (finalized.repairRequired || counts.revise > 0 || counts.corruption > 0) return { outcome: "REPAIR", ...base };
+  if (finalized.incomplete) return { outcome: "INCOMPLETE", reason: "needs-more-qc", ...base };
   // Neither publishable, incomplete, nor repair-required: finalize returned no actionable
   // verdict. A well-formed finalize is always one of those three — this only arises from
   // the autopilot adapter's exit-code fallback on an UNEXPECTED finalize exit (a tool/infra

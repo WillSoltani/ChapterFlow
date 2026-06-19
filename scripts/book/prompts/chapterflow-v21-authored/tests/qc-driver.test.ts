@@ -66,6 +66,16 @@ test("driver: subset clean round → PASS_SUBSET (never runs full-book qc-status
   assert.equal(verified, false, "a subset is not a book-level pass — qc-status must not run");
 });
 
+test("driver: a MIXED round (REVISE + a NEEDS_MORE_QC chapter) → REPAIR, not INCOMPLETE (actionable findings beat incompleteness → repair loop, not a false INFRA halt)", async () => {
+  // The first-real-run case: sweep flagged some chapters (REVISE) while others were blocked
+  // from confirm-candidacy by their own open findings (NEEDS_MORE_QC). finalize.incomplete
+  // AND finalize.repairRequired are both true; the round must route to REPAIR (the autopilot
+  // maps REPAIR→REVISE→its repair loop), never INCOMPLETE (which it halts on as INFRA).
+  const { steps } = makeSteps({ finalize: () => finalized(["REVISE", "NEEDS_MORE_QC", "PUBLISHABLE"]) });
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: false });
+  assert.equal(r.outcome, "REPAIR", "genuine REVISE findings win over a still-pending confirm read");
+});
+
 test("driver: a REVISE chapter → REPAIR with counts", async () => {
   const { steps } = makeSteps({ finalize: () => finalized(["PUBLISHABLE", "REVISE"]) });
   const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: false });
