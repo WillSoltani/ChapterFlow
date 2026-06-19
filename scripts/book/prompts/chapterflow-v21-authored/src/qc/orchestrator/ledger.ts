@@ -5,7 +5,7 @@ import { dirname } from "path";
 import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
-import { citesNonexistentField } from "./findingValidity.js";
+import { citesNonexistentField, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
 
 export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
@@ -171,9 +171,16 @@ export function appendFindings(args: {
   findings: SubmissionFinding[];
 }): { appended: number; duplicates: number; findingIds: string[] } {
   if (args.findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
-  // Drop fabricated findings (a model reviewer that cites a chapter field which
-  // does not exist) before they can pollute the repair ledger / repair prompt.
-  const findings = args.findings.filter((f) => citesNonexistentField(f) === null);
+  // Drop fabricated findings before they can pollute the repair ledger / repair prompt:
+  // a model reviewer that cites a chapter field which does not exist, OR a sweep finding
+  // whose quote appears in none of the chapters it names (a paraphrased composite). The
+  // ledger filter must mirror finalize's gate, or finalize clears REVISE while the ledger
+  // keeps carrying the same finding OPEN and REVISE persists.
+  const ledgerChapterText = new Map<number, string>();
+  for (const ch of loadBookChapters(args.bookId)) ledgerChapterText.set(ch.number, searchableChapterText(ch));
+  const findings = args.findings.filter(
+    (f) => citesNonexistentField(f, { getChapterText: (n) => ledgerChapterText.get(n) }) === null,
+  );
   if (findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
   const existing = new Set(effectiveLedger(args.bookId, args.roundId).map((f) => f.findingId));
   const chapterHashes = hashByChapter(args.bookId);

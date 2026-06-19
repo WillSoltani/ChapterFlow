@@ -14,8 +14,19 @@
  * but the field does NOT exist is fabricated. Conservative by design — it only
  * inspects KNOWN containers, so a finding that doesn't name a dotted field path
  * (or names an unknown container) is never rejected.
+ *
+ * A SECOND fabrication class (the-power-of-full-engagement): a cross-chapter SWEEP
+ * finding can describe a real-sounding pattern but QUOTE a PARAPHRASED COMPOSITE
+ * that exists in none of the chapters it names (R3 scene_skeleton quoted "Halfway
+ * through, she sees the error" — 0 occurrences in the named chapters). The
+ * path-based guard can't see it (the quote names no dotted field), so an
+ * un-checkable book-wide finding gates the whole book and re-demotes content-
+ * unchanged carried chapters. `quoteUnverifiableAgainstChapters` closes it by
+ * substring-verifying the quote against the named chapters' actual text — but only
+ * when the caller supplies that text, and only for sweep families.
  */
 
+import { SWEEP_FAMILIES } from "./schemas.js";
 import type { SubmissionFinding } from "./schemas.js";
 
 /** Real fields per ChapterV21 container. A `<container>.<field>` reference whose
@@ -42,10 +53,19 @@ const CONTAINER_FIELDS: Record<string, ReadonlySet<string>> = {
 // preserved.
 const PATH_RE = /\b([a-zA-Z]+)\.(?:(?:\d+|[a-zA-Z]+\d+)\.)?([a-zA-Z][a-zA-Z0-9]*)\b/g;
 
-/** The first `container.field` reference in the finding that names a field which
- *  does NOT exist on a known container, or null when the finding is clean. */
+/** Finding fields the fabrication checks read. unitId/quote/problem/expectedFix
+ *  drive the field-path check; repairClass/chapters (optional) drive the sweep
+ *  quote-verification check. */
+export type FabricationCheckFinding =
+  Pick<SubmissionFinding, "unitId" | "quote" | "problem" | "expectedFix">
+  & Partial<Pick<SubmissionFinding, "repairClass" | "chapters">>;
+
+/** A reason string when the finding is fabricated (cites a non-existent field, OR —
+ *  when `opts.getChapterText` is supplied — is a sweep finding whose quote appears in
+ *  none of the chapters it names), else null. */
 export function citesNonexistentField(
-  finding: Pick<SubmissionFinding, "unitId" | "quote" | "problem" | "expectedFix">,
+  finding: FabricationCheckFinding,
+  opts?: { getChapterText?: (chapterNumber: number) => string | undefined },
 ): string | null {
   const text = [finding.unitId, finding.quote, finding.problem, finding.expectedFix].filter(Boolean).join("  ");
   PATH_RE.lastIndex = 0;
@@ -60,11 +80,80 @@ export function citesNonexistentField(
     if (/^[a-zA-Z]+\d+$/.test(field)) continue;
     if (!allowed.has(field)) return `${container}.${field}`;
   }
+  // Paraphrased-composite sweep finding: the quote names no dotted field but cannot
+  // be located in any chapter it names. Only runs when the caller passes chapter text.
+  if (opts?.getChapterText && quoteUnverifiableAgainstChapters(finding, opts.getChapterText)) {
+    return `unverifiable-quote:${finding.unitId || finding.repairClass || "sweep"}`;
+  }
   return null;
 }
 
-/** True when EVERY finding is fabricated (cites a non-existent field) — i.e. the
- *  submission provides no valid evidence. Empty list → false (no claim made). */
-export function allFindingsFabricated(findings: ReadonlyArray<Pick<SubmissionFinding, "unitId" | "quote" | "problem" | "expectedFix">>): boolean {
-  return findings.length > 0 && findings.every((f) => citesNonexistentField(f) !== null);
+/** True when EVERY finding is fabricated (cites a non-existent field, or — with
+ *  `opts.getChapterText` — an unverifiable sweep quote) — i.e. the submission provides
+ *  no valid evidence. Empty list → false (no claim made). */
+export function allFindingsFabricated(
+  findings: ReadonlyArray<FabricationCheckFinding>,
+  opts?: { getChapterText?: (chapterNumber: number) => string | undefined },
+): boolean {
+  return findings.length > 0 && findings.every((f) => citesNonexistentField(f, opts) !== null);
+}
+
+const SWEEP_FAMILY_SET: ReadonlySet<string> = new Set<string>(SWEEP_FAMILIES);
+
+/** Minimum normalized length for a quote segment to count as DISCRIMINATING. Shorter
+ *  fragments (a bare character name like "genevieve") neither prove nor disprove a
+ *  finding, so they are ignored — only substantial phrases are tested. */
+const MIN_DISCRIMINATING_SEGMENT = 20;
+
+/** Lowercase + reduce every run of non-alphanumerics to a single space. Punctuation
+ *  and quote style are erased on BOTH sides, so a real verbatim cite still matches
+ *  while a paraphrased composite does not. */
+function normalizeForMatch(s: string): string {
+  return String(s).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+/** Collect every string VALUE (never keys) from a nested object/array. */
+function collectStrings(node: unknown, out: string[]): void {
+  if (typeof node === "string") { out.push(node); return; }
+  if (Array.isArray(node)) { for (const v of node) collectStrings(v, out); return; }
+  if (node && typeof node === "object") { for (const v of Object.values(node)) collectStrings(v, out); }
+}
+
+/** All reader-facing text of a chapter, normalized for substring matching.
+ *  Schema-agnostic (walks every string value) so it never drifts with ChapterV21. */
+export function searchableChapterText(chapter: unknown): string {
+  const parts: string[] = [];
+  collectStrings(chapter, parts);
+  return normalizeForMatch(parts.join("  "));
+}
+
+/** True when a CROSS-CHAPTER SWEEP finding's quote cannot be verified against ANY chapter
+ *  it names — every discriminating (>= MIN length) ' / '-separated segment is absent (not
+ *  a normalized substring) from every named chapter. Deliberately conservative: returns
+ *  false (finding STANDS) for non-sweep findings, findings naming FEWER THAN 2 chapters
+ *  (a single-chapter sweep finding is the chapter's own concern, never a book-wide
+ *  membership-clobber — it gates normally), a quote with no long-enough segment, or when
+ *  the named chapters can't be loaded — and a SINGLE real verbatim segment anywhere keeps
+ *  the finding. It tests whole PHRASES (not tokens), so an incidental character-name match
+ *  never blesses a fabricated finding. Scope = exactly the paraphrased book-wide composites
+ *  that hold many chapters hostage (R3 scene_skeleton named 5, repeated_unit named 6). */
+export function quoteUnverifiableAgainstChapters(
+  finding: { repairClass?: string; chapters?: number[]; quote?: string },
+  getChapterText: (chapterNumber: number) => string | undefined,
+): boolean {
+  if (!finding.repairClass || !SWEEP_FAMILY_SET.has(finding.repairClass)) return false;
+  const chapters = finding.chapters ?? [];
+  // Only book-wide (>= 2 named chapters) findings — the membership-clobber class. A
+  // single-chapter sweep finding demotes only its own chapter and is left untouched.
+  if (chapters.length < 2) return false;
+  const segments = String(finding.quote ?? "")
+    .split(/\s*\/\s*/)
+    .map(normalizeForMatch)
+    .filter((s) => s.length >= MIN_DISCRIMINATING_SEGMENT);
+  if (segments.length === 0) return false;
+  const texts = chapters
+    .map((n) => getChapterText(n))
+    .filter((t): t is string => typeof t === "string" && t.length > 0);
+  if (texts.length === 0) return false;
+  return !segments.some((seg) => texts.some((t) => t.includes(seg)));
 }
