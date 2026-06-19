@@ -32,7 +32,9 @@ export function usePersonalizationScore(
       [preferences.notifications.streakReminderEnabled, defaultBookPreferencesState.notifications.streakReminderEnabled],
       [preferences.accessibility.highContrastMode, defaultBookPreferencesState.accessibility.highContrastMode],
       [preferences.accessibility.dyslexiaFriendlyFont, defaultBookPreferencesState.accessibility.dyslexiaFriendlyFont],
-      [preferences.goals.weeklyChapterGoal, defaultBookPreferencesState.goals.weeklyChapterGoal],
+      // NOTE (SET-5): weeklyChapterGoal removed from the personalization meter — the
+      // "We'll celebrate when you hit it" promise was never wired (no client-side weekly
+      // count exists in the reader), so the meter shouldn't credit a setting with no payoff.
     ];
 
     // Check extended settings against defaults
