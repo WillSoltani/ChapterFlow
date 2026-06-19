@@ -208,7 +208,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                   : "bg-(--cr-error)"
                 : i === currentIndex
                   ? "bg-(--cr-accent) shadow-[0_0_0_3px_var(--cr-accent-glow)]"
-                  : "bg-[rgba(255,255,255,0.2)]",
+                  : "bg-(--cr-track)",
             ].join(" ")}
           />
         ))}
@@ -336,7 +336,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                             ? "bg-(--cr-success) text-(--cr-text-inverse)"
                             : showWrong
                               ? "bg-(--cr-error) text-(--cr-text-inverse)"
-                              : "bg-[rgba(255,255,255,0.08)] text-(--cr-text-secondary)",
+                              : "bg-(--cr-fill-muted) text-(--cr-text-secondary)",
                         ].join(" ")}
                       >
                         {showCorrect ? <Check className="h-3.5 w-3.5" /> : showWrong ? <X className="h-3.5 w-3.5" /> : OPTION_LABELS[i]}
