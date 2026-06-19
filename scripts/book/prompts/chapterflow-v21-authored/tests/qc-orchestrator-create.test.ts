@@ -8,6 +8,8 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { createQcOrchestrationRound } from "../src/qc/orchestrator/index.js";
 import { orchestratorRoundDir, roundRecordPath, taskCardsDir } from "../src/qc/orchestrator/artifacts.js";
+import { reviewPacketPath } from "../src/qc/orchestrator/reviewPacket.js";
+import { parseRoundTokens } from "../src/orchestrator/autopilot.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { qcRoundPath } from "../src/qc/qcRound.js";
 
@@ -88,6 +90,14 @@ test("qc orchestrator create writes round layout, packs, and role task cards", (
     const round = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
     assert.deepEqual(round.chapters, [1]);
     assert.equal(round.schemaVersion, "qc-orchestrator-round-v1");
+    // M1: the REVIEW-PACKET must carry a plaintext `major` token (it didn't — only the
+    // majors.md card did). The autopilot broker parses tokens from HERE, so without it the
+    // major reviewer's triage was silently dropped. parseRoundTokens must now find all six.
+    const packet = readFileSync(reviewPacketPath(BOOK, ROUND), "utf8");
+    const toks = parseRoundTokens(packet);
+    for (const role of ["sweep", "keyA", "keyB", "bar", "confirm", "major"]) {
+      assert.ok(toks[role], `REVIEW-PACKET must expose a plaintext ${role} token for the broker`);
+    }
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

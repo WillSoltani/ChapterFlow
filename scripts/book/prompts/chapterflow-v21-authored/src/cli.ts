@@ -2950,11 +2950,17 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     {
       spawnReviewers: async () => ({}), // human/agent fills submissions between runs — no auto-spawn (matches the prior qc-auto)
       firstWaveCards: () => taskCards,
-      // The confirm cards generateConfirmCandidates just wrote. Inert for qc-auto's
-      // no-op spawner, but kept honest to the driver contract + future-proof.
-      confirmCards: () => listMarkdownFiles(resolve(artifacts.taskCardsDir(bookId, roundId), "confirm")),
+      // The review work generateConfirmCandidates writes mid-round: confirm cards +
+      // bar-tiebreak t2/t3 cards. Inert for qc-auto's no-op spawner (submissionPresent
+      // below returns true ⇒ the driver's dynamic-wave loop never spawns), but kept honest
+      // to the driver contract — qc-auto instead relies on the human re-running between
+      // invocations to fill these, preserving its exact single-pass behavior.
+      pendingReviewCards: () => [
+        ...listMarkdownFiles(resolve(artifacts.taskCardsDir(bookId, roundId), "confirm")),
+        ...listMarkdownFiles(resolve(artifacts.taskCardsDir(bookId, roundId), "bar-tiebreak")),
+      ],
       countSubmissions: () => countSubmissionFiles(artifacts.submissionsDir(bookId, roundId)),
-      submissionPresent: () => true, // moot: qc-auto runs with narrowRetryOnIncomplete=false
+      submissionPresent: () => true, // moot: qc-auto runs with narrowRetryOnIncomplete=false + no-op spawner
 
       collect: () => { const r = orch.collectQcRound(bookId, roundId); return { ok: r.ok, errors: r.errors }; },
       generateConfirmCandidates: () => { const r = orch.generateConfirmCandidates(bookId, roundId, { chapters }); return { ok: r.ok, errors: r.errors }; },
@@ -3064,6 +3070,18 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     console.log("no fake pass was written.");
     console.log("rerun or resume:");
     console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass --round ${roundId}`);
+    return 3;
+  }
+
+  // INTEGRITY / INFRA: NOT content problems — never fall through to REPAIR (which would
+  // tell a writer to edit chapters). INTEGRITY can't arise under qc-auto's no-op spawner;
+  // INFRA covers a missing role token or a finalize that returned no actionable verdict.
+  if (result.outcome === "INTEGRITY" || result.outcome === "INFRA") {
+    console.log(`QC AUTO INCOMPLETE — ${bookId}`);
+    console.log(`round: ${roundId}`);
+    console.log(`status: ${result.outcome}`);
+    console.log(`  ${result.reason ?? (result.outcome === "INTEGRITY" ? "a reviewer mutated chapter content (round void)" : "a tool/config error during the round")}`);
+    console.log("no fake pass was written; this is NOT a content-repair instruction.");
     return 3;
   }
 

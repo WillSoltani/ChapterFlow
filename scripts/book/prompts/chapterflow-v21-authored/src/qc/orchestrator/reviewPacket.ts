@@ -212,6 +212,29 @@ export function writeReviewPacket(
     L.push("");
   }
 
+  // ── Major triage (book-level) ──────────────────────────────────────────────
+  // Without this section the autopilot's read-only submission broker has no plaintext
+  // `major` token to record the triage with (it parses tokens from THIS packet), so the
+  // major reviewer's output was silently dropped. A brokered major triage is SAFE: it
+  // only records findings — a WAIVER (status waived_*) never takes effect from a
+  // submission; it requires the separate, authorized `major-disposition` command.
+  L.push("## 5. Major triage — book-level (triage the current major findings)");
+  L.push("Triage every CURRENT major finding. status = open | waived_false_positive | waived_accepted_debt");
+  L.push("(reason ≥20 chars). Recording a triage NEVER waives a major — a waiver only takes effect via the");
+  L.push("authorized `major-disposition` command, never from this submission. Empty findings + dispositions");
+  L.push("arrays mean 'no current majors'.");
+  L.push(submitCmd(bookId, roundId, "major", tokens.major, "<major.json>"));
+  L.push(json({
+    schemaVersion: "qc-major-triage-v1",
+    bookId,
+    roundId,
+    role: "major",
+    reviewer: qcReviewerId(roundId, "major"),
+    findings: [],
+    dispositions: [],
+  }));
+  L.push("");
+
   const path = reviewPacketPath(bookId, roundId);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, L.join("\n") + "\n", "utf8");
