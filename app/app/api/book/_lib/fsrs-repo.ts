@@ -5,7 +5,15 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, fsrsCardSk, fsrsReviewLogSk, nowIso } from "./keys";
-import { createNewCard, scheduleCard, isDue, getRetrievability } from "./fsrs";
+import {
+  createNewCard,
+  scheduleCard,
+  isDue,
+  getRetrievability,
+  retentionFromTargetPercent,
+  DEFAULT_DESIRED_RETENTION,
+} from "./fsrs";
+import { getUserEntitlement, getUserSettingsItem } from "./repo";
 import type {
   FSRSCardState,
   FSRSRating,
@@ -138,6 +146,46 @@ export async function getAllCards(
   return allItems;
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/**
+ * SET-3 — resolve the FSRS `desiredRetention` fraction for this review.
+ *
+ * The "Review retention target" slider (app/book/settings) is a **Pro** control:
+ * free users see a locked card and cannot change it. The client persists the
+ * whole `extended` settings blob on every save — including the default
+ * `spacedRepetitionTarget: 85` — so reading the stored value unconditionally
+ * would silently re-schedule *every* free user who ever opened settings (0.9 →
+ * 0.85), an unintended behavior change for the non-paying majority who can't even
+ * see the control. So the target only drives the scheduler for effective-PRO
+ * users; everyone else keeps the proven 0.9 default.
+ *
+ * Fail-safe: any read error (or a missing entitlement / settings item) degrades
+ * to DEFAULT_DESIRED_RETENTION rather than failing the review submit — scheduling
+ * a card must never break because we couldn't load a preference.
+ */
+async function resolveDesiredRetentionForUser(
+  tableName: string,
+  userId: string
+): Promise<number> {
+  try {
+    const entitlement = await getUserEntitlement(tableName, userId);
+    // Effective plan (getUserEntitlement downgrades expired grants inline).
+    if (entitlement?.plan !== "PRO") return DEFAULT_DESIRED_RETENTION;
+
+    const settingsItem = await getUserSettingsItem(tableName, userId);
+    const extended =
+      settingsItem && isRecord(settingsItem.settings.extended)
+        ? settingsItem.settings.extended
+        : undefined;
+    return retentionFromTargetPercent(extended?.spacedRepetitionTarget);
+  } catch {
+    return DEFAULT_DESIRED_RETENTION;
+  }
+}
+
 export async function recordReview(
   tableName: string,
   userId: string,
@@ -157,7 +205,8 @@ export async function recordReview(
   }
 
   const now = new Date();
-  const updated = scheduleCard(card, rating, now);
+  const desiredRetention = await resolveDesiredRetentionForUser(tableName, userId);
+  const updated = scheduleCard(card, rating, now, desiredRetention);
 
   await ddbDoc.send(
     new PutCommand({
