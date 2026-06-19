@@ -190,7 +190,7 @@ function SearchIcon() {
 
 function ChevronLeft() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M15 18l-6-6 6-6" />
     </svg>
   );
@@ -198,7 +198,7 @@ function ChevronLeft() {
 
 function ChevronRight() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M9 18l6-6-6-6" />
     </svg>
   );
@@ -791,9 +791,10 @@ function BookRow({
             onClick={() => scroll("left")}
             className="absolute left-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
             style={{
-              background: "rgba(17, 24, 39, 0.85)",
+              background: "var(--bg-glass)",
               backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid var(--border-subtle)",
+              color: "var(--text-heading)",
             }}
             aria-label="Scroll left"
           >
@@ -843,9 +844,10 @@ function BookRow({
             onClick={() => scroll("right")}
             className="absolute right-2 top-[38%] -translate-y-1/2 z-10 w-10 h-10 rounded-full hidden md:flex items-center justify-center opacity-40 group-hover/row:opacity-100 transition-opacity duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60"
             style={{
-              background: "rgba(17, 24, 39, 0.85)",
+              background: "var(--bg-glass)",
               backdropFilter: "blur(8px)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid var(--border-subtle)",
+              color: "var(--text-heading)",
             }}
             aria-label="Scroll right"
           >
