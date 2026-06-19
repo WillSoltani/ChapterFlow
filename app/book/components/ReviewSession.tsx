@@ -140,7 +140,7 @@ export function ReviewSession({ onClose }: ReviewSessionProps) {
                 ) : (
                   <X className="h-3.5 w-3.5 shrink-0 text-(--cr-error)" />
                 )}
-                <span className="flex-1 text-(--cr-text-secondary) truncate">
+                <span className="min-w-0 flex-1 text-(--cr-text-secondary) truncate">
                   {getItemDisplayText(item).slice(0, 60)}
                   {getItemDisplayText(item).length > 60 ? "..." : ""}
                 </span>

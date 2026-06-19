@@ -165,7 +165,7 @@ function ReferralSection({ referral }: { referral: InsightPointsPayload["referra
       </p>
 
       <div className="flex items-center gap-2">
-        <div className="flex-1 truncate rounded-lg border border-(--cf-border) bg-(--cf-page-bg) px-3 py-2 font-mono text-[13px] text-(--cf-text-2)">
+        <div className="min-w-0 flex-1 truncate rounded-lg border border-(--cf-border) bg-(--cf-page-bg) px-3 py-2 font-mono text-[13px] text-(--cf-text-2)">
           {fullUrl}
         </div>
         <button
