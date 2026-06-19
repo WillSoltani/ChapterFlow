@@ -69,8 +69,16 @@ export async function GET(request: Request) {
       };
     });
 
+    // UF-3: the next-goal picker must be plan-aware. Pick the next reward the
+    // user can still pursue ("locked" or "available") and skip "unavailable"
+    // ones as well as already-"claimed" ones. Every reward is freeOnly (and
+    // Bonus Book Unlock is a book_slot Pro already includes), so a Pro
+    // subscriber has every reward marked "unavailable" → nextReward is null and
+    // RewardsPageClient suppresses the hero band rather than nudging the user
+    // toward a goal they literally cannot use.
     const nextReward =
-      rewards.find((reward) => reward.status !== "claimed") ?? null;
+      rewards.find((reward) => reward.status === "locked" || reward.status === "available") ??
+      null;
 
     return bookOk({
       summary: {

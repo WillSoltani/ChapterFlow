@@ -113,7 +113,7 @@ interface WorkspaceData {
     name: string;
     pointsRequired: number;
     currentPoints: number;
-  };
+  } | null;
   nextAchievement: {
     name: string;
     description: string;
@@ -371,9 +371,18 @@ function mapAnalyticsToWorkspaceData(
   // progress bar keeps advancing past the first tier; once every reward is
   // affordable, fall back to the highest tier (bar stays at 100%, but the label
   // points at the top reward rather than the cheapest one).
+  //
+  // UF-3: the picker must be plan-aware. Every IP reward is freeOnly (and Bonus
+  // Book Unlock is a book_slot Pro already includes), so a Pro subscriber has no
+  // meaningful "next reward" — surfacing one nudges them toward something they
+  // literally can't use. Filter those out for Pro; the dashboard then renders no
+  // progress goal (see the null handling below + RewardsCard guard).
+  const eligibleRewards = INSIGHT_POINTS_REWARDS.filter(
+    (r) => !(analytics.isPro && (r.freeOnly || r.type === "book_slot"))
+  );
   const nextReward =
-    INSIGHT_POINTS_REWARDS.find((r) => r.costPoints > analytics.insightPoints) ??
-    INSIGHT_POINTS_REWARDS.at(-1);
+    eligibleRewards.find((r) => r.costPoints > analytics.insightPoints) ??
+    eligibleRewards.at(-1);
 
   return {
     user: {
@@ -398,11 +407,13 @@ function mapAnalyticsToWorkspaceData(
       .filter(({ snap }) => !recommendedProBookIds.has(snap.book.id))
       .slice(0, 4)
       .map(({ snap, reason }) => toRecommendationCard(snap, reason)),
-    nextReward: {
-      name: nextReward?.name ?? "Bonus Book Unlock",
-      pointsRequired: nextReward?.costPoints ?? 900,
-      currentPoints: analytics.insightPoints,
-    },
+    nextReward: nextReward
+      ? {
+          name: nextReward.name,
+          pointsRequired: nextReward.costPoints,
+          currentPoints: analytics.insightPoints,
+        }
+      : null,
     nextAchievement: deriveNextAchievement(analytics),
   };
 }
@@ -963,8 +974,8 @@ function DashboardContent({
         <div className="mt-9 flex flex-col gap-4 md:flex-row">
           <RewardsCard
             insightPoints={data.user.insightPoints}
-            nextRewardName={data.nextReward.name}
-            pointsRequired={data.nextReward.pointsRequired}
+            nextRewardName={data.nextReward?.name}
+            pointsRequired={data.nextReward?.pointsRequired}
           />
           {data.nextAchievement && (
             <NextAchievementCard
