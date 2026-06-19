@@ -66,7 +66,7 @@ import {
   QUIZ_QUESTION_COUNTS,
   type LoopPipelineResult,
 } from "@/app/book/_lib/flow-points-economy";
-import type { LearningMode } from "@/app/book/settings/types/settings";
+import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 
@@ -218,12 +218,13 @@ export async function POST(
     ]);
 
     // Resolve learning mode from server-stored settings (not client request body)
-    // to prevent gaming (e.g., submitting with "guided" mode for lower threshold)
-    const rawMode = userSettings?.settings?.learningMode;
-    const learningMode: LearningMode =
-      rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
-        ? rawMode
-        : "standard";
+    // to prevent gaming (e.g., submitting with "guided" mode for a lower threshold).
+    // SET-1: the shared resolver reads canonical top-level settings.learningMode
+    // (self-healing back to settings.extended) so a non-Standard reader is graded
+    // and paid (CHAPTER_FP / LOOP_COMPLETE_IP, stamped onto the LOOP record below)
+    // on the mode they chose, not always "standard". Identical to the GET + /check
+    // routes by construction. See docs/audit-fixes/SET-1.md.
+    const learningMode = resolveLearningMode(userSettings?.settings);
     const tone = parseTone(body.tone ?? readSavedTone(userSettings?.settings));
     // Prefer quiz questions from local book-package JSON over stale S3 data.
     const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);

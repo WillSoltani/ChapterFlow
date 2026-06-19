@@ -2,6 +2,7 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
+import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import { bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
@@ -368,12 +369,10 @@ export async function GET(req: Request, ctx: Params) {
       daysSinceLastSession,
       totalChaptersCompleted: tier.totalLoopsCompleted,
       booksCompleted,
-      learningMode: (() => {
-        const mode = (userSettings?.settings as Record<string, unknown> | undefined)?.learningMode;
-        if (mode === "guided") return "guided" as const;
-        if (mode === "challenge") return "challenge" as const;
-        return "standard" as const;
-      })(),
+      // SET-1: resolve through the shared core so narration context
+      // (ctx-guided / ctx-challenge) reflects the chosen mode, self-healing for
+      // users whose mode lives only under settings.extended. See docs/audit-fixes/SET-1.md.
+      learningMode: resolveLearningMode(userSettings?.settings),
       isFirstEverChapter: tier.totalLoopsCompleted === 0 && chapterNumber === 1,
       isFirstChapterOfBook: chapterNumber === 1,
       isLastChapterOfBook: chapterNumber === totalChapters,

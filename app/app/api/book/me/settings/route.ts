@@ -7,6 +7,7 @@ import {
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { isValidLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserSettingsItem,
@@ -26,6 +27,10 @@ const ALLOWED_SETTINGS_KEYS = new Set([
   "privacy",
   "extended",
   "whatsNewSeenAt",
+  // SET-1: canonical top-level mirror of settings.extended.learningMode. The
+  // IP-economy reads (quiz/check/submit/audio) read this key; the PATCH handler
+  // mirrors extended.learningMode → here on every save. See docs/audit-fixes/SET-1.md.
+  "learningMode",
 ]);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -112,6 +117,25 @@ export async function PATCH(req: Request) {
 
     if (settings.notifications !== undefined) {
       validateNotificationPreferences(settings.notifications);
+    }
+
+    // SET-1: learningMode drives the Insight-Point economy (CHAPTER_FP /
+    // LOOP_COMPLETE_IP) and the quiz depth/threshold, read server-side from
+    // canonical top-level settings.learningMode. The reader/settings UI persist
+    // it under settings.extended.learningMode (the client's source of truth), so
+    // mirror extended → top-level on every save so a non-Standard reader is paid
+    // and graded on the mode they actually picked. See docs/audit-fixes/SET-1.md.
+    const incomingExtended = isRecord(settings.extended) ? settings.extended : undefined;
+    const extendedMode = incomingExtended?.learningMode;
+    if (isValidLearningMode(extendedMode)) {
+      settings.learningMode = extendedMode;
+    }
+    if (settings.learningMode !== undefined && !isValidLearningMode(settings.learningMode)) {
+      throw new BookApiError(
+        400,
+        "invalid_learning_mode",
+        `Unknown learning mode: ${String(settings.learningMode)}`,
+      );
     }
 
     // Read-modify-write under optimistic concurrency so a concurrent write
