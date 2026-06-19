@@ -71,6 +71,39 @@ import auto_digital_minimalism_Json from "@/book-packages/digital-minimalism.v21
 import auto_hyperfocus_Json from "@/book-packages/hyperfocus.v21.json";
 import auto_eat_that_frog_Json from "@/book-packages/eat-that-frog.v21.json";
 import auto_the_power_of_full_engagement_Json from "@/book-packages/the-power-of-full-engagement.v21.json";
+// --- 7A launch wire-in: 32 previously-orphaned book packages (already authored + live in prod S3) ---
+import auto_blink_Json from "@/book-packages/blink.v21.json";
+import auto_contagious_Json from "@/book-packages/contagious.v21.json";
+import auto_daring_greatly_Json from "@/book-packages/daring-greatly.v21.json";
+import auto_drive_Json from "@/book-packages/drive.v21.json";
+import auto_flow_Json from "@/book-packages/flow.v21.json";
+import auto_good_strategy_bad_strategy_Json from "@/book-packages/good-strategy-bad-strategy.v21.json";
+import auto_grit_Json from "@/book-packages/grit.v21.json";
+import auto_hooked_Json from "@/book-packages/hooked.v21.json";
+import auto_mans_search_for_meaning_Json from "@/book-packages/mans-search-for-meaning.v21.json";
+import auto_meditations_Json from "@/book-packages/meditations.v21.json";
+import auto_mindset_Json from "@/book-packages/mindset.v21.json";
+import auto_never_eat_alone_Json from "@/book-packages/never-eat-alone.v21.json";
+import auto_noise_Json from "@/book-packages/noise.v21.json";
+import auto_on_becoming_a_person_Json from "@/book-packages/on-becoming-a-person.v21.json";
+import auto_skin_in_the_game_Json from "@/book-packages/skin-in-the-game.v21.json";
+import auto_start_with_why_Json from "@/book-packages/start-with-why.v21.json";
+import auto_the_12_week_year_Json from "@/book-packages/the-12-week-year.v21.json";
+import auto_the_48_laws_of_power_Json from "@/book-packages/the-48-laws-of-power.v21.json";
+import auto_the_5_am_club_Json from "@/book-packages/the-5-am-club.v21.json";
+import auto_the_7_habits_of_highly_effective_people_Json from "@/book-packages/the-7-habits-of-highly-effective-people.v21.json";
+import auto_the_courage_to_be_disliked_Json from "@/book-packages/the-courage-to-be-disliked.v21.json";
+import auto_the_denial_of_death_Json from "@/book-packages/the-denial-of-death.v21.json";
+import auto_the_elephant_in_the_brain_Json from "@/book-packages/the-elephant-in-the-brain.v21.json";
+import auto_the_gift_of_fear_Json from "@/book-packages/the-gift-of-fear.v21.json";
+import auto_the_great_mental_models_vol_2_Json from "@/book-packages/the-great-mental-models-vol-2.v21.json";
+import auto_the_let_them_theory_Json from "@/book-packages/the-let-them-theory.v21.json";
+import auto_the_obstacle_is_the_way_Json from "@/book-packages/the-obstacle-is-the-way.v21.json";
+import auto_the_pyramid_principle_Json from "@/book-packages/the-pyramid-principle.v21.json";
+import auto_the_righteous_mind_Json from "@/book-packages/the-righteous-mind.v21.json";
+import auto_the_tipping_point_Json from "@/book-packages/the-tipping-point.v21.json";
+import auto_unreasonable_hospitality_Json from "@/book-packages/unreasonable-hospitality.v21.json";
+import auto_zero_to_one_Json from "@/book-packages/zero-to-one.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -1997,4 +2030,228 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_power_of_full_engagement_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-power-of-full-engagement"] = (tone) => normalizeAnyPackage(auto_the_power_of_full_engagement_Json, tone);
+}
+
+// --- auto-registered for "blink" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_blink_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["blink"] = (tone) => normalizeAnyPackage(auto_blink_Json, tone);
+}
+
+// --- auto-registered for "contagious" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_contagious_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["contagious"] = (tone) => normalizeAnyPackage(auto_contagious_Json, tone);
+}
+
+// --- auto-registered for "daring-greatly" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_daring_greatly_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["daring-greatly"] = (tone) => normalizeAnyPackage(auto_daring_greatly_Json, tone);
+}
+
+// --- auto-registered for "drive" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_drive_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["drive"] = (tone) => normalizeAnyPackage(auto_drive_Json, tone);
+}
+
+// --- auto-registered for "flow" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_flow_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["flow"] = (tone) => normalizeAnyPackage(auto_flow_Json, tone);
+}
+
+// --- auto-registered for "good-strategy-bad-strategy" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_good_strategy_bad_strategy_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["good-strategy-bad-strategy"] = (tone) => normalizeAnyPackage(auto_good_strategy_bad_strategy_Json, tone);
+}
+
+// --- auto-registered for "grit" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_grit_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["grit"] = (tone) => normalizeAnyPackage(auto_grit_Json, tone);
+}
+
+// --- auto-registered for "hooked" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_hooked_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["hooked"] = (tone) => normalizeAnyPackage(auto_hooked_Json, tone);
+}
+
+// --- auto-registered for "mans-search-for-meaning" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_mans_search_for_meaning_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["mans-search-for-meaning"] = (tone) => normalizeAnyPackage(auto_mans_search_for_meaning_Json, tone);
+}
+
+// --- auto-registered for "meditations" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_meditations_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["meditations"] = (tone) => normalizeAnyPackage(auto_meditations_Json, tone);
+}
+
+// --- auto-registered for "mindset" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_mindset_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["mindset"] = (tone) => normalizeAnyPackage(auto_mindset_Json, tone);
+}
+
+// --- auto-registered for "never-eat-alone" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_never_eat_alone_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["never-eat-alone"] = (tone) => normalizeAnyPackage(auto_never_eat_alone_Json, tone);
+}
+
+// --- auto-registered for "noise" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_noise_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["noise"] = (tone) => normalizeAnyPackage(auto_noise_Json, tone);
+}
+
+// --- auto-registered for "on-becoming-a-person" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_on_becoming_a_person_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["on-becoming-a-person"] = (tone) => normalizeAnyPackage(auto_on_becoming_a_person_Json, tone);
+}
+
+// --- auto-registered for "skin-in-the-game" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_skin_in_the_game_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["skin-in-the-game"] = (tone) => normalizeAnyPackage(auto_skin_in_the_game_Json, tone);
+}
+
+// --- auto-registered for "start-with-why" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_start_with_why_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["start-with-why"] = (tone) => normalizeAnyPackage(auto_start_with_why_Json, tone);
+}
+
+// --- auto-registered for "the-12-week-year" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_12_week_year_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-12-week-year"] = (tone) => normalizeAnyPackage(auto_the_12_week_year_Json, tone);
+}
+
+// --- auto-registered for "the-48-laws-of-power" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_48_laws_of_power_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-48-laws-of-power"] = (tone) => normalizeAnyPackage(auto_the_48_laws_of_power_Json, tone);
+}
+
+// --- auto-registered for "the-5-am-club" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_5_am_club_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-5-am-club"] = (tone) => normalizeAnyPackage(auto_the_5_am_club_Json, tone);
+}
+
+// --- auto-registered for "the-7-habits-of-highly-effective-people" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_7_habits_of_highly_effective_people_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-7-habits-of-highly-effective-people"] = (tone) => normalizeAnyPackage(auto_the_7_habits_of_highly_effective_people_Json, tone);
+}
+
+// --- auto-registered for "the-courage-to-be-disliked" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_courage_to_be_disliked_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-courage-to-be-disliked"] = (tone) => normalizeAnyPackage(auto_the_courage_to_be_disliked_Json, tone);
+}
+
+// --- auto-registered for "the-denial-of-death" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_denial_of_death_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-denial-of-death"] = (tone) => normalizeAnyPackage(auto_the_denial_of_death_Json, tone);
+}
+
+// --- auto-registered for "the-elephant-in-the-brain" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_elephant_in_the_brain_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-elephant-in-the-brain"] = (tone) => normalizeAnyPackage(auto_the_elephant_in_the_brain_Json, tone);
+}
+
+// --- auto-registered for "the-gift-of-fear" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_gift_of_fear_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-gift-of-fear"] = (tone) => normalizeAnyPackage(auto_the_gift_of_fear_Json, tone);
+}
+
+// --- auto-registered for "the-great-mental-models-vol-2" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_great_mental_models_vol_2_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-great-mental-models-vol-2"] = (tone) => normalizeAnyPackage(auto_the_great_mental_models_vol_2_Json, tone);
+}
+
+// --- auto-registered for "the-let-them-theory" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_let_them_theory_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-let-them-theory"] = (tone) => normalizeAnyPackage(auto_the_let_them_theory_Json, tone);
+}
+
+// --- auto-registered for "the-obstacle-is-the-way" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_obstacle_is_the_way_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-obstacle-is-the-way"] = (tone) => normalizeAnyPackage(auto_the_obstacle_is_the_way_Json, tone);
+}
+
+// --- auto-registered for "the-pyramid-principle" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_pyramid_principle_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-pyramid-principle"] = (tone) => normalizeAnyPackage(auto_the_pyramid_principle_Json, tone);
+}
+
+// --- auto-registered for "the-righteous-mind" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_righteous_mind_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-righteous-mind"] = (tone) => normalizeAnyPackage(auto_the_righteous_mind_Json, tone);
+}
+
+// --- auto-registered for "the-tipping-point" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_tipping_point_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-tipping-point"] = (tone) => normalizeAnyPackage(auto_the_tipping_point_Json, tone);
+}
+
+// --- auto-registered for "unreasonable-hospitality" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_unreasonable_hospitality_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["unreasonable-hospitality"] = (tone) => normalizeAnyPackage(auto_unreasonable_hospitality_Json, tone);
+}
+
+// --- auto-registered for "zero-to-one" (7A catalog wire-in) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_zero_to_one_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["zero-to-one"] = (tone) => normalizeAnyPackage(auto_zero_to_one_Json, tone);
 }
