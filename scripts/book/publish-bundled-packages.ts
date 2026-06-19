@@ -124,12 +124,13 @@ async function main() {
   let publishedCount = 0;
   let skippedCount = 0;
   let notCuratedCount = 0;
+  let contentLessCount = 0;
 
   for (const filename of files) {
     const absolutePath = path.join(packagesDir, filename);
     const raw = await fs.readFile(absolutePath, "utf8");
     const parsed = JSON.parse(raw) as {
-      book?: { bookId?: string };
+      book?: { bookId?: string; chapters?: unknown[] };
       chapters?: unknown[];
     };
     const bookId = parsed?.book?.bookId;
@@ -147,6 +148,30 @@ async function main() {
     if (!args.force && publishedBookIds.has(bookId)) {
       skippedCount += 1;
       console.log(`Skipping ${bookId}: already published`);
+      continue;
+    }
+
+    // Publish gate (DI-2): never publish a content-less catalog row. A package
+    // with an empty `chapters` array passes validateBookPackage — it only checks
+    // the field IS an array, not that it holds any items — so without this guard
+    // ingestBookPackageFromS3({ publishNow: true }) would write a PUBLISHED
+    // catalog row (later given a `type=book` search doc on the next index
+    // rebuild) with ZERO chapter docs: a book that shows up in the catalog,
+    // recommendations and search yet reads as empty/broken when opened. That was
+    // the prod state DI-2 found for ~14 books. Require >=1 chapter before we
+    // publish, mirroring validateBookPackage's top-level-or-book.chapters lookup.
+    // Skip + warn (consistent with the per-book try/catch below) so one malformed
+    // package can't publish a ghost row or abort the rest of the run.
+    const chapterCount = Array.isArray(parsed?.chapters)
+      ? parsed.chapters.length
+      : Array.isArray(parsed?.book?.chapters)
+        ? parsed.book.chapters.length
+        : 0;
+    if (chapterCount < 1) {
+      contentLessCount += 1;
+      console.warn(
+        `Skipping ${bookId}: refusing to publish a content-less book (0 chapters)`
+      );
       continue;
     }
 
@@ -183,7 +208,8 @@ async function main() {
   console.log(
     `Bundled package publish complete. Published: ${publishedCount}. ` +
       `Already-published skipped: ${skippedCount}. ` +
-      `Not-curated skipped (allowlist): ${notCuratedCount}.`
+      `Not-curated skipped (allowlist): ${notCuratedCount}. ` +
+      `Content-less skipped (no chapters): ${contentLessCount}.`
   );
 }
 
