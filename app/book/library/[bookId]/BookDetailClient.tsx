@@ -299,7 +299,7 @@ export function BookDetailClient({
 
       {/* All content in relative z-10 to sit above gradient orbs */}
       <PageTransition>
-      <section id="main" tabIndex={-1} className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-6 focus:outline-none sm:px-6 md:pb-24 lg:px-10 xl:px-16">
+      <section id="main" tabIndex={-1} className="relative z-10 mx-auto w-full max-w-450 px-4 pb-28 pt-7 focus:outline-none sm:px-6 sm:pt-8 md:pb-24 lg:px-10 xl:px-16">
         {/* Breadcrumb */}
         <nav className="mb-6 flex items-center gap-2 text-sm">
           <Link
