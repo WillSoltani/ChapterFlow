@@ -1127,11 +1127,11 @@ export function WorkspacePage() {
             />
           )}
 
-          {/* Spacer so content clears TopNav's fixed mobile bottom bar (~4.5rem + safe-area) */}
+          {/* Spacer so content clears TopNav's fixed mobile bottom bar (bar ≈ 4.375rem + safe-area; add slack) */}
           <div
             aria-hidden="true"
             className="md:hidden"
-            style={{ height: "calc(4.5rem + env(safe-area-inset-bottom, 0px))" }}
+            style={{ height: "calc(5.5rem + env(safe-area-inset-bottom, 0px))" }}
           />
         </main>
       </div>
