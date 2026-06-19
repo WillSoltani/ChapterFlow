@@ -1,19 +1,14 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { checkAuthoringContract } from "../../critics/authoringContract.js";
-import { runBookGate } from "../../critics/bookGate.js";
-import { runShipGate } from "../../critics/finalGate.js";
-import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
 import { combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
-import { runIntraBookChecks } from "../../critics/intraBook.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
-import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
-import { checkPlanEnforcement, type PlanFinding } from "../planEnforcement.js";
+import { sourceHashFor } from "../sourceV2Gate.js";
 import { loadSweepRecord, sweepChapterStatus, sweepRecordPath, writeSweepRecordFromSubmission } from "../sweep.js";
+import { evaluateDeterministic } from "./deterministicGate.js";
 import {
   barArtifactPath,
   confirmArtifactPath,
@@ -291,12 +286,16 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     ? new Set(roundRecord.carriedChapters.map((n: unknown) => Number(n)))
     : null;
   const unresolvedMajorFindings = unresolvedMajors(bookId, chapters, true);
-  const bookGate = runBookGate(bookId, allChapters);
-  const bookGateStatus: EvidenceStatus = bookGate.passed ? "PASS" : "FAIL";
-  // SP plan-conformance, computed once over the whole book (exemplar ownership is
-  // cross-chapter) and filtered per chapter below. Same deterministic tier as
-  // ship-gate/book-gate — shifted left from publish so a clean QC predicts publish.
-  const planFindingsAll = checkPlanEnforcement(bookId, allChapters);
+  // The six DETERMINISTIC checks (source-v2, ship-gate, author-check, intra-book,
+  // book-gate, plan-enforcement) come from the SHARED evaluator that `qc-converge`
+  // also calls — so a clean qc-converge provably predicts that finalize raises no
+  // deterministic finding (this is what ends the stale-round treadmill on a
+  // mechanical nit). The semantic + round-state checks (sweep, key, bar, confirm,
+  // repair-ledger, majors) are still computed per-chapter below. Book-gate +
+  // plan-enforcement are evaluated once over the whole book inside the evaluator
+  // (exemplar ownership + cross-chapter patterns are book-wide).
+  const det = evaluateDeterministic(bookId, chapters, allChapters);
+  const bookGate = det.bookGate;
   const sweepRecord = loadSweepRecord(bookId);
   const briefPath = repairBriefPath(bookId, roundId);
   const promptPath = repairPromptPath(bookId, roundId);
@@ -307,10 +306,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   for (const ch of chapters) {
     const contentHash = chapterContentHash(ch);
     const sourceHash = sourceHashFor(bookId, ch.number);
-    const source = checkSourceV2Gate(bookId, [ch.number]);
-    const shipGate = runShipGate(ch);
-    const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` });
-    const intraFindings = runIntraBookChecks(ch, allChapters.filter((other) => other.number < ch.number));
+    // Deterministic checks + their raw gate outputs from the shared evaluator.
+    const dch = det.perChapter.get(ch.number)!;
+    const { source, shipGate, authorFindings, intraFindings, planFindings: chapterPlanFindings } = dch.raw;
     const keyJudge = loadManualKeyJudge(bookId, ch.number);
     const bar = loadBarReadArtifact(bookId, roundId, ch.number);
     const confirm = loadConfirmReadArtifact(bookId, roundId, ch.number);
@@ -318,21 +316,20 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const needsQcRerun = ledgerFindings.some((f) => f.status === "needs_qc_rerun");
     const openSerious = ledgerFindings.some((f) => f.severity === "blocker" || f.severity === "major");
     const majorStatus = unresolvedMajorsForChapter(unresolvedMajorFindings, ch.number);
-    const chapterPlanFindings = planFindingsAll.filter((f) => f.chapterNumber === ch.number);
 
     const checks: EvidenceChapterDecision["checks"] = {
-      sourceV2: source.passed ? "PASS" : "FAIL",
-      shipGate: shipGate.blockers.length === 0 ? "PASS" : "FAIL",
-      authorCheck: authorFindings.length === 0 ? "PASS" : "FAIL",
-      intraBook: intraFindings.some((f) => f.severity === "blocker") ? "FAIL" : "PASS",
-      bookGate: bookGateStatus,
+      sourceV2: dch.checks.sourceV2,
+      shipGate: dch.checks.shipGate,
+      authorCheck: dch.checks.authorCheck,
+      intraBook: dch.checks.intraBook,
+      bookGate: dch.checks.bookGate,
       sweep: "MISSING",
       manualKeyJudge: "MISSING",
       barRead: "MISSING",
       confirmRead: "MISSING",
       repairLedger: needsQcRerun ? "NEEDS_QC_RERUN" : openSerious ? "OPEN_FINDINGS" : "NO_OPEN_BLOCKERS",
       majors: majorStatus.status,
-      planEnforcement: chapterPlanFindings.length === 0 ? "PASS" : "FAIL",
+      planEnforcement: dch.checks.planEnforcement,
     };
 
     {
