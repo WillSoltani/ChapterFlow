@@ -169,7 +169,7 @@ export function GlobalSearchPanel({
   };
 
   return (
-    <div className="absolute inset-x-0 top-12 z-40">
+    <div className="absolute inset-x-0 top-12 z-40 lg:left-auto lg:w-[min(640px,calc(100vw-2rem))]">
       <div className="cf-panel-strong rounded-2xl p-3">
         {!hasQuery ? (
           <p className="px-2 py-6 text-center text-sm text-(--cf-text-3)">
