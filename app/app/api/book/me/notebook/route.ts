@@ -6,6 +6,7 @@ import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk } from "@/app/app/api/book/_lib/keys";
+import { buildChapterStateNotebookEntries } from "@/app/app/api/book/_lib/notebook-entries";
 import type { NotebookEntry } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -46,41 +47,19 @@ export async function GET(req: Request) {
 
       if (bookIdFilter && bookId !== bookIdFilter) continue;
 
-      // Extract notes
-      const notes = state.notes;
-      if (typeof notes === "string" && notes.trim()) {
-        entries.push({
-          id: `note:${bookId}:${chapterNumber}`,
-          type: "note",
+      // Notes + bookmarked takeaways. Bookmarks read the takeaway TEXT map
+      // (bookmarkedTakeawayTexts), not the numeric-index array, which the route
+      // previously mis-read as strings and silently dropped. See
+      // notebook-entries.ts for the projection + back-compat notes.
+      entries.push(
+        ...buildChapterStateNotebookEntries(state, {
           bookId,
           bookTitle,
           chapterNumber,
           chapterTitle,
-          content: notes,
-          tags: [],
           createdAt: (item.updatedAt as string) || (item.createdAt as string) || "",
-        });
-      }
-
-      // Extract bookmarked takeaways
-      const bookmarks = state.bookmarkedTakeaways;
-      if (Array.isArray(bookmarks)) {
-        for (let i = 0; i < bookmarks.length; i++) {
-          const text = bookmarks[i];
-          if (typeof text !== "string" || !text.trim()) continue;
-          entries.push({
-            id: `bookmark:${bookId}:${chapterNumber}:${i}`,
-            type: "bookmark",
-            bookId,
-            bookTitle,
-            chapterNumber,
-            chapterTitle,
-            content: text,
-            tags: [],
-            createdAt: (item.updatedAt as string) || (item.createdAt as string) || "",
-          });
-        }
-      }
+        }),
+      );
     }
 
     // Query commitments for follow-through reflections

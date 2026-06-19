@@ -26,6 +26,9 @@ const MAX_QUIZ_ANSWERS = 200;
 const MAX_EXPLANATION_ENTRIES = 200;
 const MAX_BOOKMARKED_TAKEAWAYS = 200;
 const MAX_KEY_LENGTH = 200;
+// A single takeaway is a sentence or two; cap generously but bounded so the
+// bookmark text map can't be used to store an unbounded blob per chapter.
+const MAX_BOOKMARK_TEXT_LENGTH = 2_000;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
@@ -131,6 +134,32 @@ function sanitizeChapterState(input: unknown): Record<string, unknown> {
           invalidState("state.bookmarkedTakeaways has too many entries.");
         }
         next[key] = value;
+        break;
+      }
+      case "bookmarkedTakeawayTexts": {
+        // index (string) -> takeaway text. Sanitize to a plain record of
+        // bounded strings so the notebook/export readers get clean data and a
+        // caller cannot store an unbounded or arbitrarily-nested object.
+        if (!isRecord(value)) {
+          invalidState("state.bookmarkedTakeawayTexts must be an object.");
+        }
+        const sanitizedTexts: Record<string, string> = {};
+        for (const [textKey, textValue] of Object.entries(value)) {
+          if (textKey.length > MAX_KEY_LENGTH) {
+            invalidState("state.bookmarkedTakeawayTexts has an oversized key.");
+          }
+          if (typeof textValue !== "string") {
+            invalidState("state.bookmarkedTakeawayTexts values must be strings.");
+          }
+          if (textValue.length > MAX_BOOKMARK_TEXT_LENGTH) {
+            invalidState("state.bookmarkedTakeawayTexts has an oversized value.");
+          }
+          sanitizedTexts[textKey] = textValue;
+        }
+        if (Object.keys(sanitizedTexts).length > MAX_BOOKMARKED_TAKEAWAYS) {
+          invalidState("state.bookmarkedTakeawayTexts has too many entries.");
+        }
+        next[key] = sanitizedTexts;
         break;
       }
       default:

@@ -31,9 +31,28 @@ type PersistedChapterState = {
   showRecap: boolean;
   explanationOpen: Record<string, boolean>;
   bookmarkedTakeaways: number[];
+  // Takeaway text keyed by its bookmarked index. Parallel companion to
+  // bookmarkedTakeaways (the indices drive the SummaryCard highlight + the
+  // save-to-notes / practice resolution); this captures the text the reader
+  // actually saw so the /me/notebook feed can render the bookmark without
+  // loading chapter content. Keyed by index (not a positional array) so it
+  // stays robust across the union-merge and legacy data.
+  //
+  // The text is a SNAPSHOT at the reading depth active when bookmarking. Because
+  // the index points at different prose per depth (takeawaysByDepth[depth]), the
+  // notebook shows the depth-phrasing the reader saw when they bookmarked, which
+  // can differ from the live in-reader Practice list at another depth. That is
+  // intentional — the notebook reflects what was bookmarked.
+  bookmarkedTakeawayTexts: Record<string, string>;
 };
 
 const PREFS_KEY = "book-accelerator:reader-prefs:v1";
+
+// Mirror the server cap (state/route.ts MAX_BOOKMARK_TEXT_LENGTH) so the client
+// never stores a takeaway text the PATCH validator would reject — a rejection
+// 400s the WHOLE state save (notes, quiz progress, everything), silently. The
+// longest authored takeaway is ~300 chars, so this is generous headroom.
+const MAX_BOOKMARK_TEXT_LENGTH = 2000;
 
 type ReaderPrefs = {
   focusMode: boolean;
@@ -56,6 +75,7 @@ const defaultState: PersistedChapterState = {
   showRecap: false,
   explanationOpen: {},
   bookmarkedTakeaways: [],
+  bookmarkedTakeawayTexts: {},
 };
 
 function isTab(value: unknown): value is ChapterTab {
@@ -157,6 +177,18 @@ function parseStored(value: string | null): PersistedChapterState | null {
               typeof v === "number" && Number.isFinite(v) && v >= 0 && Number.isInteger(v)
           )
         : [],
+      bookmarkedTakeawayTexts:
+        parsed.bookmarkedTakeawayTexts &&
+        typeof parsed.bookmarkedTakeawayTexts === "object" &&
+        !Array.isArray(parsed.bookmarkedTakeawayTexts)
+          ? Object.fromEntries(
+              Object.entries(parsed.bookmarkedTakeawayTexts as Record<string, unknown>)
+                .filter(
+                  ([, text]) => typeof text === "string" && text.trim().length > 0
+                )
+                .map(([index, text]) => [index, (text as string).trim()])
+            )
+          : {},
     };
   } catch {
     return null;
@@ -253,6 +285,11 @@ function mergeServerChapterState(
   }
   // (local timestamped, server not) → keep the newer local notes as-is.
 
+  const mergedBookmarks = uniqueInts([
+    ...local.bookmarkedTakeaways,
+    ...server.bookmarkedTakeaways,
+  ]);
+
   return {
     // UI preferences: the server fills in only where local is still at default.
     activeTab:
@@ -284,10 +321,24 @@ function mergeServerChapterState(
     // User-authored content.
     notes,
     notesUpdatedAt,
-    bookmarkedTakeaways: uniqueInts([
-      ...local.bookmarkedTakeaways,
-      ...server.bookmarkedTakeaways,
-    ]),
+    bookmarkedTakeaways: mergedBookmarks,
+    // Keep the text map aligned with the merged index set: union the texts
+    // (local wins on a key collision, matching the notes last-write-wins bias)
+    // then prune to the MERGED index set so the map never carries a text for an
+    // index that isn't bookmarked. NOTE: like all union-merges here, this can't
+    // propagate a removal — an index the user un-bookmarked locally is re-added
+    // (with its text) from the server copy on the next merge; that pre-existing
+    // can't-delete behavior is unchanged by this fix.
+    bookmarkedTakeawayTexts: Object.fromEntries(
+      mergedBookmarks
+        .map((index) => {
+          const key = String(index);
+          const text =
+            local.bookmarkedTakeawayTexts[key] ?? server.bookmarkedTakeawayTexts[key];
+          return [key, text] as const;
+        })
+        .filter(([, text]) => typeof text === "string" && text.trim().length > 0)
+    ),
   };
 }
 
@@ -547,14 +598,28 @@ export function useChapterState(
     }));
   }, []);
 
-  const toggleBookmarkedTakeaway = useCallback((index: number) => {
+  // `text` is the takeaway copy the reader is looking at (resolved by the call
+  // site from the active-depth takeaways). Persisted alongside the index so the
+  // notebook can render the bookmark without loading chapter content.
+  const toggleBookmarkedTakeaway = useCallback((index: number, text: string = "") => {
     setState((prev) => {
       const exists = prev.bookmarkedTakeaways.includes(index);
+      if (exists) {
+        const nextTexts = { ...prev.bookmarkedTakeawayTexts };
+        delete nextTexts[index];
+        return {
+          ...prev,
+          bookmarkedTakeaways: prev.bookmarkedTakeaways.filter((i) => i !== index),
+          bookmarkedTakeawayTexts: nextTexts,
+        };
+      }
+      const trimmed = text.trim().slice(0, MAX_BOOKMARK_TEXT_LENGTH);
       return {
         ...prev,
-        bookmarkedTakeaways: exists
-          ? prev.bookmarkedTakeaways.filter((i) => i !== index)
-          : [...prev.bookmarkedTakeaways, index],
+        bookmarkedTakeaways: [...prev.bookmarkedTakeaways, index],
+        bookmarkedTakeawayTexts: trimmed
+          ? { ...prev.bookmarkedTakeawayTexts, [index]: trimmed }
+          : prev.bookmarkedTakeawayTexts,
       };
     });
   }, []);
