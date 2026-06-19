@@ -1451,7 +1451,9 @@ export function ChapterReaderClient({
                 bookmarkedTakeaways={new Set(state.bookmarkedTakeaways)}
                 onToggleBookmarkTakeaway={(index) => {
                   const removing = state.bookmarkedTakeaways.includes(index);
-                  toggleBookmarkedTakeaway(index);
+                  // Pass the takeaway text (at the active depth) so the bookmark
+                  // surfaces in /book/notebook, which can't resolve an index.
+                  toggleBookmarkedTakeaway(index, activeTakeaways[index] ?? "");
                   setToast(removing ? "Bookmark removed." : "Takeaway bookmarked.");
                 }}
                 fontScaleClass={textScaleClass}

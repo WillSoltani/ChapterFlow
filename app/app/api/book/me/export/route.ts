@@ -412,6 +412,10 @@ export async function GET(req: Request) {
         notes: (cs.state as Record<string, unknown>)?.notes ?? null,
         bookmarkedTakeaways:
           (cs.state as Record<string, unknown>)?.bookmarkedTakeaways ?? [],
+        // Index -> takeaway text, so the export shows the actual bookmarked copy
+        // rather than opaque indices (legacy states have only the indices).
+        bookmarkedTakeawayTexts:
+          (cs.state as Record<string, unknown>)?.bookmarkedTakeawayTexts ?? {},
         quizAnswers: (cs.state as Record<string, unknown>)?.quizAnswers ?? {},
         quizResult: (cs.state as Record<string, unknown>)?.quizResult ?? null,
         updatedAt: cs.updatedAt,
@@ -492,6 +496,21 @@ function csvSection(title: string, headers: string[], rows: unknown[][]): string
   return lines.join("\n");
 }
 
+// Bookmarked takeaways for one chapter-state record. Prefer the persisted text
+// (bookmarkedTakeawayTexts); fall back to the bare numeric indices for legacy
+// states that predate the text map.
+function bookmarkDisplayValues(cs: Record<string, unknown>): string[] {
+  const texts = cs.bookmarkedTakeawayTexts;
+  if (texts && typeof texts === "object" && !Array.isArray(texts)) {
+    const values = Object.values(texts as Record<string, unknown>).filter(
+      (v): v is string => typeof v === "string" && v.trim().length > 0
+    );
+    if (values.length > 0) return values;
+  }
+  const indices = cs.bookmarkedTakeaways;
+  return Array.isArray(indices) ? indices.map((i) => String(i)) : [];
+}
+
 function exportToCsv(data: ExportData): string {
   const sections: string[] = [];
 
@@ -536,7 +555,7 @@ function exportToCsv(data: ExportData): string {
           cs.bookId,
           cs.chapterNumber,
           cs.notes,
-          JSON.stringify(cs.bookmarkedTakeaways),
+          JSON.stringify(bookmarkDisplayValues(cs)),
           cs.updatedAt,
         ])
       )
@@ -668,8 +687,13 @@ function exportToMarkdown(data: ExportData): string {
       if (cs.notes) {
         lines.push("**Notes:**", "", String(cs.notes), "");
       }
-      if (Array.isArray(cs.bookmarkedTakeaways) && (cs.bookmarkedTakeaways as unknown[]).length > 0) {
-        lines.push(`**Bookmarked Takeaways:** ${JSON.stringify(cs.bookmarkedTakeaways)}`, "");
+      const bookmarkValues = bookmarkDisplayValues(cs);
+      if (bookmarkValues.length > 0) {
+        lines.push("**Bookmarked Takeaways:**", "");
+        for (const value of bookmarkValues) {
+          lines.push(`- ${value}`);
+        }
+        lines.push("");
       }
     }
   }
