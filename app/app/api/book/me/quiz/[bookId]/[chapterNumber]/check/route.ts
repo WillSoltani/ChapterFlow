@@ -10,6 +10,7 @@ import {
   isLocalV12Package,
 } from "@/app/app/api/book/_lib/content-service";
 import { buildQuizAttemptQuestions } from "@/app/app/api/book/_lib/quiz-session";
+import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
@@ -183,12 +184,9 @@ export async function POST(
     // Resolve learning mode / tone / maxQuestions exactly as the GET route does,
     // from server-stored settings (never the request body) so the rebuilt
     // question set — and therefore the choiceId scheme — matches what was served.
-    const rawMode = userSettings?.settings?.learningMode;
-    type LearningMode = "guided" | "standard" | "challenge";
-    const learningMode: LearningMode =
-      rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
-        ? rawMode
-        : "standard";
+    // SET-1: the shared resolver guarantees this stays identical to the GET +
+    // submit routes (a divergence here would mis-grade).
+    const learningMode = resolveLearningMode(userSettings?.settings);
     const difficulty = parseDifficulty(body.difficulty);
     const tone = parseTone(body.tone ?? readSavedTone(userSettings?.settings));
     const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);

@@ -8,6 +8,7 @@ import {
 } from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import {
   getLocalQuizQuestions,
   getUserAccessibleQuiz,
@@ -96,12 +97,12 @@ export async function GET(
       getUserSettingsItem(tableName, user.sub),
     ]);
 
-    const rawMode = userSettings?.settings?.learningMode;
-    type LearningMode = "guided" | "standard" | "challenge";
-    const learningMode: LearningMode =
-      rawMode === "guided" || rawMode === "standard" || rawMode === "challenge"
-        ? rawMode
-        : "standard";
+    // SET-1: resolve through the shared core so the question set + choiceId
+    // scheme stay identical to the /check and submit routes (a divergence here
+    // silently mis-grades). The resolver reads canonical top-level
+    // settings.learningMode and self-heals users whose mode lives only under
+    // settings.extended. See docs/audit-fixes/SET-1.md.
+    const learningMode = resolveLearningMode(userSettings?.settings);
     const tone = parseTone(searchParams.get("tone") ?? readSavedTone(userSettings?.settings));
     // Prefer quiz questions from the local book-package JSON over stale S3 data.
     const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);
