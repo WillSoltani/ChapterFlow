@@ -729,11 +729,14 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
             id: entry.id,
             category: entry.category,
             difficulty: entry.difficulty,
-            // "Started" = any real engagement (opened/scored/has reader state),
-            // not just a fully-completed chapter — matches the original
-            // localStorage deriver so browsed books still count.
+            // "Started" = real reading engagement: a completed chapter, a quiz
+            // score, or persisted per-chapter reader state (the reader was
+            // actually opened) — NOT a mere browse. A book-progress entry is
+            // auto-PATCHed to the server the moment a detail page is viewed, so
+            // `Boolean(state)` alone falsely marks browsed-but-unread books as
+            // started, inflating "Book in Motion" and the level for zero-read
+            // accounts. Mirrors the localStorage deriver in useBadgeSystem.ts.
             isStarted:
-              Boolean(state) ||
               completedIds.size > 0 ||
               Object.keys(chapterScores).length > 0 ||
               stateByChapterId.size > 0,
