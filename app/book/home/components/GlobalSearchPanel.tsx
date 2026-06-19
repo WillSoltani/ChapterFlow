@@ -131,7 +131,7 @@ export function GlobalSearchPanel({
   };
 
   return (
-    <div className="absolute inset-x-0 top-12 z-40">
+    <div className="absolute inset-x-0 top-12 z-40 lg:left-auto lg:w-[min(640px,calc(100vw-2rem))]">
       <div className="cf-panel-strong rounded-2xl p-3">
         {!hasQuery ? (
           <p className="px-2 py-6 text-center text-sm text-(--cf-text-3)">
@@ -164,7 +164,7 @@ export function GlobalSearchPanel({
                         className={optionBase + optionState(active)}
                       >
                         <BookText className="h-4 w-4 text-(--cf-accent)" />
-                        <span className="flex-1 truncate">{r.bookTitle}</span>
+                        <span className="min-w-0 flex-1 truncate">{r.bookTitle}</span>
                         <span className="text-xs text-(--cf-text-3)">{r.author}</span>
                       </button>
                     );
