@@ -86,7 +86,7 @@ export function Library() {
                 className="mt-3 max-w-[550px] text-(--text-secondary)"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                Every title is broken into chapters with summaries, scenarios,
+                Every title is broken into chapters with summaries, examples,
                 and quizzes. Browse by topic, pick a book, start reading with
                 structure.{" "}
                 <span style={{ color: "var(--accent-cyan)" }}>
