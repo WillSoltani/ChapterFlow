@@ -218,6 +218,12 @@ Commands:
                                      Render and print only the pasteable Writer Codex repair prompt path.
   source-v2-gate <bookId>            Strict no-api source gate: every chapter sidecar must be source-v2
                                      with centralConcept, namedExamples, hardSpecifics, and testableFacts.
+  qc-converge <bookId> [--chapters 1,2] [--json] [--out <path>]
+                                     Deterministic preflight. Runs the FULL deterministic battery (source-v2,
+                                     ship-gate, author-check, intra-book, book-gate, plan-enforcement) and
+                                     reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
+                                     Run after every repair until CLEAN, THEN qc-auto — so a formal round
+                                     never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
   key-pack <bookId> --round <id>     Write blind manual quiz-key packs under state/qc-packs/.
   key-derive <bookId> --round <id> --role keyA|keyB --token X --answers-file path
                                      Validate and store a blind key reader's answers.
@@ -2865,6 +2871,27 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     if (!roundId) return 3;
   }
 
+  // Treadmill guard (soft, advisory): a formal round that opens while deterministic
+  // gates are dirty will rediscover those nits INSIDE the round and waste reviewer
+  // submissions (15-36/round). createQcOrchestrationRound's preflight already blocks
+  // on source-v2/book-gate, so this mostly surfaces ship-gate/author-check/intra-book/
+  // plan-enforcement. Never blocks — the operator may have a reason; just warn + point
+  // at qc-converge. Skipped on --dry-run (derive-artifacts is skipped there too).
+  if (flags["dry-run"] !== true) {
+    try {
+      const { evaluateDeterministic } = await import("./qc/orchestrator/deterministicGate.js");
+      const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+      const allCh = loadBookChapters(bookId);
+      const selCh = chapters && chapters.length ? allCh.filter((c) => chapters.includes(c.number)) : allCh;
+      const det = evaluateDeterministic(bookId, selCh, allCh);
+      if (!det.clean) {
+        const n = [...det.perChapter.values()].reduce((a, c) => a + c.findings.length, 0) + det.bookFindings.length;
+        console.log(`⚠ WARN: opening a formal QC round while ${n} deterministic finding(s) remain — they will resurface INSIDE the round and waste reviewer submissions (15-36/round).`);
+        console.log(`    Converge first:  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-converge ${bookId}   # fix to DETERMINISTIC-CLEAN, then re-run qc-auto`);
+      }
+    } catch { /* advisory only — never let the warn break qc-auto */ }
+  }
+
   const freshness = orch.checkRoundFreshness(bookId, roundId, chapters);
   const staleDiagnosticsOnly = !freshness.fresh && flags["allow-stale-round"] === true;
   if (!freshness.fresh && !staleDiagnosticsOnly) {
@@ -3159,6 +3186,47 @@ async function runSourceV2Gate(args: string[]): Promise<number> {
   const report = checkSourceV2Gate(bookId);
   console.log(formatSourceV2GateReport(report));
   return report.passed ? 0 : 1;
+}
+
+/** `qc-converge <bookId>` — the deterministic-convergence preflight. Runs the full
+ *  deterministic battery (the SAME six gates finalize uses, via the shared
+ *  evaluator) over the book WITHOUT opening a formal QC round, and reports
+ *  DETERMINISTIC-CLEAN / DIRTY. The operator loops it after each repair until CLEAN,
+ *  then spends ONE formal round on the irreducibly-semantic layer — ending the
+ *  stale-round treadmill where each mechanical nit cost a full 15-36 submission
+ *  round. Read-only: writes no round/ledger/attestation state. */
+async function runQcConverge(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: qc-converge <bookId> [--chapters 1,2] [--json] [--out <path>]");
+    return 2;
+  }
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+  const { parseChapterList } = await import("./qc/orchestrator/index.js");
+  const { evaluateDeterministic, renderConvergeReport, convergeReportJson } = await import("./qc/orchestrator/deterministicGate.js");
+  const all = loadBookChapters(bookId);
+  if (all.length === 0) {
+    console.error(`qc-converge: no chapters on disk for ${bookId} (looked in state/chapters/).`);
+    return 2;
+  }
+  const sel = parseChapterList(flags["chapters"]);
+  const chapters = sel && sel.length ? all.filter((ch) => sel.includes(ch.number)) : all;
+  if (chapters.length === 0) {
+    console.error(`qc-converge: --chapters selected none of ${bookId}'s ${all.length} chapters.`);
+    return 2;
+  }
+  const report = evaluateDeterministic(bookId, chapters, all);
+  if (flags["json"] === true) {
+    console.log(JSON.stringify(convergeReportJson(report), null, 2));
+    return report.clean ? 0 : 1;
+  }
+  const text = renderConvergeReport(report);
+  console.log(text);
+  if (typeof flags["out"] === "string" && flags["out"]) {
+    writeFileSync(flags["out"], text, "utf8");
+    console.log(`(written to ${flags["out"]})`);
+  }
+  return report.clean ? 0 : 1;
 }
 
 async function runKeyPack(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -4429,6 +4497,8 @@ async function main() {
       return runQcMetrics(flags);
     case "source-v2-gate":
       return runSourceV2Gate(args);
+    case "qc-converge":
+      return runQcConverge(args, flags);
     case "key-pack":
       return runKeyPack(args, flags);
     case "key-derive":

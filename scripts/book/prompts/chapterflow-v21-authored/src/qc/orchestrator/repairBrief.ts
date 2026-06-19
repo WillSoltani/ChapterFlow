@@ -3,6 +3,7 @@ import { dirname } from "path";
 
 import { evidenceMatrixPath, repairBriefPath, repairPromptPath } from "./artifacts.js";
 import { effectiveLedger, type EffectiveLedgerFinding } from "./ledger.js";
+import { classDefectBanner, unitContainer } from "./findingGrouping.js";
 
 const SEVERITY_RANK: Record<string, number> = { blocker: 0, major: 1, minor: 2, advisory: 3 };
 
@@ -24,6 +25,8 @@ function validationCommands(bookId: string, findings: EffectiveLedgerFinding[], 
     lines.push(`npx tsx src/cli.ts gate-chapter ${chapterPath(bookId, n)}`);
   }
   lines.push(`npx tsx src/cli.ts book-gate ${bookId}`);
+  // The convergence gate — repair is done only when this reports DETERMINISTIC-CLEAN.
+  lines.push(`npx tsx src/cli.ts qc-converge ${bookId}`);
   return lines;
 }
 
@@ -134,7 +137,7 @@ export function renderRepairBriefMarkdown(bookId: string, roundId: string, findi
   lines.push("- Do not run `qc-attest`, `bar-attest`, `sweep-attest`, `key-resolve`, `major-disposition`, `promote-book`, or any command that certifies publishability.");
   lines.push("- Do not mark findings closed. Only repair chapter content.");
   lines.push("- Preserve quiz keys unless a finding explicitly identifies a wrong key and the source facts support the correction.");
-  lines.push("- After edits, run the validation commands below: `author-check`, `gate-chapter`, and `book-gate`.");
+  lines.push("- After edits, run the validation commands below: `author-check`, `gate-chapter`, `book-gate`, then `qc-converge` — do NOT hand off until `qc-converge` reports DETERMINISTIC-CLEAN (fix everything it lists in ONE pass, so the next QC round can't bounce on a mechanical nit).");
   lines.push("- Final publishability always requires a fresh QC round after repair.");
   lines.push("");
   lines.push("## Validation commands");
@@ -191,12 +194,6 @@ export function writeRepairBrief(bookId: string, roundId: string): string {
   return path;
 }
 
-/** The unit "container" — the unitId with any trailing array subscript removed, so
- *  `implementationPlan.ifThenPlans[2]` and `[3]` (or `chapter:8:example[4]` and `[5]`)
- *  collapse to one container. Used to detect a defect repeated across sibling units. */
-function unitContainer(unitId: string): string {
-  return unitId.replace(/\[\d+\]\s*$/, "");
-}
 
 export function renderRepairPromptMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
@@ -227,6 +224,7 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
   lines.push("Preserve source-v2 provenance.");
   lines.push("After each edited chapter, run author-check and gate-chapter.");
   lines.push("After all edits, run book-gate.");
+  lines.push(`Do NOT hand off until \`qc-converge ${bookId}\` reports DETERMINISTIC-CLEAN — it runs the SAME deterministic battery QC finalize uses, so a clean result means the next QC round won't bounce on a mechanical nit (em-dash, >34-word sentence, shape-plan slot, dangling anchor). Fix EVERYTHING it lists in ONE pass; do not stop at the first finding.`);
   lines.push("Report changed files and validation output.");
   lines.push("");
   lines.push(`bookId: ${bookId}`);
@@ -273,7 +271,7 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
     for (const group of orderedGroups) {
       if (group.length >= 2) {
         lines.push("");
-        lines.push(`- CLASS DEFECT: ${group[0].repairClass} × ${group.length} on \`${unitContainer(group[0].unitId)}\` — fix ALL instances of this pattern at the source, not only the units quoted below. The findings are EVIDENCE of ONE defect; re-authoring just the quoted units leaves the siblings to re-fail next round.`);
+        lines.push(`- ${classDefectBanner(group[0].repairClass, group.length, unitContainer(group[0].unitId))}`);
       }
       for (const f of group.slice().sort(bySeverity)) {
         lines.push("");

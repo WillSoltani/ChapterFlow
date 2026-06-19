@@ -49,8 +49,14 @@ through. A REVISE you dispatch back is the system working, not a failure.
 - **`NEEDS_MORE_QC`** → a unit's submission is missing/stale (e.g. a bar subagent didn't submit).
   Re-spawn ONLY that unit against the SAME round; never fabricate a submission or force a pass.
 - **`STALE_ROUND`** → chapters changed after the round opened. Start a FRESH round.
-- After any repair, the round is stale → re-QC as a fresh **`--incremental`** round (only changed
-  chapters are re-reviewed; already-PUBLISHABLE ones carry forward; the book-wide sweep still runs).
+- After any repair, **run `qc-converge <bookId>` and fix everything it lists, in ONE pass, until it
+  reports DETERMINISTIC-CLEAN** — it runs the SAME deterministic battery this finalize uses
+  (source-v2, ship-gate, author-check, intra-book, book-gate, plan-enforcement) WITHOUT opening a
+  round, so converging it locally means the next round can't bounce on a mechanical nit (em-dash,
+  >34-word sentence, shape-plan slot, dangling anchor). THEN re-QC as a fresh **`--incremental`**
+  round (only changed chapters are re-reviewed; already-PUBLISHABLE ones carry forward; the
+  book-wide sweep still runs). Converging deterministically BEFORE the round is what keeps the
+  repair loop from becoming a one-nit-per-round treadmill.
 
 ## 0. Setup
 ```bash
@@ -150,8 +156,10 @@ Branch on the headline:
   fresh **Writer** session (NOT this one, NOT a subagent — one session reviews OR edits,
   never both). The repair-prompt's `affected chapters:` line is bucketed: re-author the
   `[edit]` chapters, fix `[book-wide status]` patterns at their source (don't re-author each),
-  and leave `[re-QC only]` chapters untouched. After the writer edits, the round is stale →
-  start a FRESH **`--incremental`** round (step 1).
+  and leave `[re-QC only]` chapters untouched. After the writer edits, run **`qc-converge <bookId>`
+  until it reports DETERMINISTIC-CLEAN** (fix every finding in one pass — it mirrors finalize's
+  deterministic gates, so a clean result means the next round won't bounce on a mechanical nit),
+  THEN start a FRESH **`--incremental`** round (step 1).
 
 ## 6. On a full-book PASS — hand off (do NOT publish here)
 Report the **round id** and `qc-status: PASS`, then tell the operator to open a NEW
