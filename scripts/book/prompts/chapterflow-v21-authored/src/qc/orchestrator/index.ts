@@ -4,6 +4,7 @@ import { basename, dirname, resolve } from "path";
 import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
 import { checkPlanEnforcement } from "../planEnforcement.js";
+import { evaluateDeterministic } from "./deterministicGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
 import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
@@ -352,9 +353,16 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   resolveManualKeyJudges(bookId, roundId);
   const roundRecord = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
   const tiebreakOn = roundRecord?.tiebreak === true;
-  const source = checkSourceV2Gate(bookId, chapters.map((ch) => ch.number));
   const sweep = loadSweepRecord(bookId);
-  const bookGate = runBookGate(bookId, allChapters);
+  // E1: the SIX deterministic gates (source-v2, ship-gate, author-check, intra-book,
+  // book-gate, plan-enforcement) come from the SHARED evaluator that finalize + qc-converge
+  // use, so a chapter's confirm-candidate eligibility can't DRIFT from finalize's
+  // deterministic battery — the plan-enforcement gap this once had (a candidate confirmed
+  // then REVISE'd at finalize on a plan it failed) cannot recur. The round-specific SEMANTIC
+  // evidence (sweep, manual-key-judge, bar/tiebreak, ledger, majors) is checked per chapter
+  // below; evaluateDeterministic does NOT cover those.
+  const detReport = evaluateDeterministic(bookId, chapters, allChapters);
+  const DET_GATES = ["sourceV2", "shipGate", "authorCheck", "intraBook", "bookGate", "planEnforcement"] as const;
   const majorFindings = unresolvedMajors(bookId, chapters, true);
   const taskCards: string[] = [];
   const candidates: number[] = [];
@@ -368,9 +376,6 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     // WS-1: combine the primary read with any matching tiebreak variants (t2/t3) so the
     // GREEN check uses the variance-smoothed per-axis median, not one noisy sample.
     const barReads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === chapterContentHash(ch));
-    const shipGate = runShipGate(ch);
-    const authorFindings = checkAuthoringContract(ch, { sidecar: loadChapterSidecar(ch.chapterId), filePath: `state/chapters/${ch.chapterId}.v21-native.chapter.json` });
-    const intraFindings = runIntraBookChecks(ch, allChapters.filter((other) => other.number < ch.number));
     const ledgerFindings = effectiveLedger(bookId, roundId).filter((f) => {
       if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
       if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
@@ -379,11 +384,10 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     });
     const chapterMajorFindings = majorFindings.filter((f) => f.scope === "book" || f.scope.startsWith(`chapter:${ch.number}:`));
 
-    if (source.findings.some((f) => f.chapterNumber === undefined || f.chapterNumber === ch.number)) blockers.push("sourceV2");
-    if (shipGate.blockers.length > 0) blockers.push("shipGate");
-    if (authorFindings.length > 0) blockers.push("authorCheck");
-    if (intraFindings.some((f) => f.severity === "blocker")) blockers.push("intraBook");
-    if (!bookGate.passed) blockers.push("bookGate");
+    // The six DETERMINISTIC gates, sourced from the shared evaluator (drift-proof; matches
+    // finalize by construction). The semantic round-evidence gates follow.
+    const det = detReport.perChapter.get(ch.number);
+    for (const gate of DET_GATES) if (det && det.checks[gate] !== "PASS") blockers.push(gate);
     if (sweepChapterStatus(sweep, ch.number, contentHash, roundId) !== "PASS") blockers.push("sweep");
     if (!keyJudge || keyJudge.contentHash !== contentHash || keyJudge.sourceHash !== (sourceHashFor(bookId, ch.number) ?? "") || keyJudge.status !== "PASS") blockers.push("manualKeyJudge");
     if (!bar || bar.chapterId !== ch.chapterId || bar.contentHash !== contentHash) {
