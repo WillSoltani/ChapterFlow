@@ -7,6 +7,7 @@ import {
   BOOK_PACKAGES,
   getBookPackagePresentation,
 } from "@/app/book/data/bookPackages";
+import { assertNoStubCatalogEntries } from "@/lib/library-catalog-stub";
 
 const REGION =
   process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
@@ -154,6 +155,12 @@ async function main() {
       `⚠ ${missingCovers.length} cover file(s) missing on disk — publishing those entries without a cover: ${missingCovers.join(", ")}`
     );
   }
+
+  // DI-4 invariant: never publish a presentation index in which a book would
+  // render as a 1-chapter, ~24-minute placeholder. Runs before any upload (and
+  // in --dry-run) so a metadata-less stub fails the seed loudly instead of
+  // silently shipping to the live storefront.
+  assertNoStubCatalogEntries(catalog);
 
   const usedCoverFiles = new Set(
     catalog
