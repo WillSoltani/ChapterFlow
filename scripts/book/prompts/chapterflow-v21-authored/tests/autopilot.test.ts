@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { tmpdir, hostname } from "node:os";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
@@ -202,6 +202,78 @@ test("acquireBookLock blocks a second concurrent acquire and frees on release", 
   c.release();
 });
 
+test("acquireBookLock release is token-checked — never deletes a SUCCESSOR's lock", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-owner-"));
+  const path = join(dir, "zz.lock");
+  const a = acquireBookLock(dir, "zz");
+  assert.equal(a.ok, true);
+  // Simulate a successor that legitimately took over (different owner token) — e.g.
+  // after a's lock went stale and another run stole it.
+  writeFileSync(path, JSON.stringify({ pid: 4242, host: "other-host", at: new Date().toISOString(), owner: "successor-token" }));
+  a.release(); // a no longer owns the file
+  assert.equal(existsSync(path), true, "release must NOT delete a lock owned by someone else");
+});
+
+test("acquireBookLock time-steals a CROSS-host stale lock atomically but respects a fresh one", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-stale-"));
+  const path = join(dir, "zz.lock");
+  // Cross-host (can't probe liveness) + heartbeat 60s silent + 1s window → stale → stolen.
+  writeFileSync(path, JSON.stringify({ pid: 4242, host: "other-host", at: new Date(Date.now() - 60_000).toISOString(), owner: "ghost" }));
+  const stolen = acquireBookLock(dir, "zz", 1_000);
+  assert.equal(stolen.ok, true, "a cross-host lock older than the stale window is taken over");
+  assert.notEqual(JSON.parse(readFileSync(path, "utf8")).owner, "ghost", "the lock now carries OUR owner token");
+  stolen.release();
+  // Cross-host but recent heartbeat → respected.
+  writeFileSync(path, JSON.stringify({ pid: 4242, host: "other-host", at: new Date().toISOString(), owner: "live" }));
+  assert.equal(acquireBookLock(dir, "zz", 1_000).ok, false, "a fresh cross-host lock is respected");
+});
+
+test("acquireBookLock never time-steals a SAME-host LIVE owner (liveness is authoritative — no double-ownership race)", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-livehost-"));
+  const path = join(dir, "zz.lock");
+  // Same host, OUR (alive) pid, heartbeat silent for an hour, tiny window: still NOT stale —
+  // a live owner blocked in a long phase must never be stolen out from under itself.
+  writeFileSync(path, JSON.stringify({ pid: process.pid, host: hostname(), at: new Date(Date.now() - 3_600_000).toISOString(), owner: "busy-but-alive" }));
+  assert.equal(acquireBookLock(dir, "zz", 1).ok, false, "a same-host live owner is never time-stolen, however stale its heartbeat");
+});
+
+test("acquireBookLock steals a same-host DEAD-pid lock via liveness, even when recent", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-deadpid-"));
+  const path = join(dir, "zz.lock");
+  // Recent heartbeat but a pid that cannot exist on this host → owner is gone.
+  writeFileSync(path, JSON.stringify({ pid: 2_000_000_000, host: hostname(), at: new Date().toISOString(), owner: "dead" }));
+  const stolen = acquireBookLock(dir, "zz");
+  assert.equal(stolen.ok, true, "a same-host dead-pid lock is stale regardless of age");
+  stolen.release();
+});
+
+test("acquireBookLock refresh() detects a lost lock (stolen by a successor) and refuses to clobber it", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-lost-"));
+  const path = join(dir, "zz.lock");
+  const a = acquireBookLock(dir, "zz");
+  assert.equal(a.ok, true);
+  // A successor legitimately took over (different owner token).
+  writeFileSync(path, JSON.stringify({ pid: 4242, host: "other-host", at: new Date().toISOString(), owner: "successor" }));
+  assert.equal(a.refresh?.(), false, "refresh detects we no longer own the lock");
+  assert.equal(JSON.parse(readFileSync(path, "utf8")).owner, "successor", "refresh must NOT overwrite the successor's lock");
+  a.release();
+  assert.equal(JSON.parse(readFileSync(path, "utf8")).owner, "successor", "release must NOT delete the successor's lock either");
+});
+
+test("acquireBookLock refresh() heartbeat keeps the SAME owner and advances the timestamp", () => {
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-hb-"));
+  const path = join(dir, "zz.lock");
+  const a = acquireBookLock(dir, "zz");
+  assert.equal(a.ok, true);
+  const before = JSON.parse(readFileSync(path, "utf8"));
+  a.refresh?.();
+  const after = JSON.parse(readFileSync(path, "utf8"));
+  assert.equal(after.owner, before.owner, "heartbeat must keep the same owner token (else release breaks)");
+  assert.ok(Date.parse(after.at) >= Date.parse(before.at), "heartbeat advances `at`");
+  a.release();
+  assert.equal(existsSync(path), false, "release unlinks OUR own lock");
+});
+
 test("autopilot HALTs (infra) when another run holds the lock", async () => {
   const { deps } = happyDeps([makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })], {
     acquireLock: () => ({ ok: false, release: () => {}, heldBy: "pid 999@host since 2026-06-19T00:00:00.000Z" }),
@@ -211,6 +283,20 @@ test("autopilot HALTs (infra) when another run holds the lock", async () => {
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /could not acquire the run lock/); }
 });
 
+test("autopilot HALTs (infra) if it LOSES the run lock mid-run (heartbeat detects a steal)", async () => {
+  let refreshCalls = 0;
+  const { deps } = happyDeps([
+    makeStatus({ writtenChapters: 0, expectedChapters: null, stage: "research-bibliography" }), // iter 1
+    makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" }),             // iter 2 (never reached)
+  ], {
+    acquireLock: () => ({ ok: true, release: () => {}, refresh: () => { refreshCalls++; return refreshCalls < 2; } }),
+  });
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /lost the run lock/); }
+  assert.ok(refreshCalls >= 2, "heartbeat ran on each loop iteration until it reported the loss");
+});
+
 test("autopilot normalizes a codex spawn rejection into an infra halt (no unhandled rejection)", async () => {
   const { deps } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })], {
     spawn: (async () => { throw new Error("codex exec timed out after 1800000ms"); }) as unknown as AutopilotDeps["spawn"],
@@ -218,6 +304,24 @@ test("autopilot normalizes a codex spawn rejection into an infra halt (no unhand
   const outcome = await runAutopilot({ bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /unexpected failure/i); }
+});
+
+test("parallel writer fan-out WAITS for all siblings to settle before the infra halt (no orphan outlives the lock)", async () => {
+  let settled = 0;
+  const { deps } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })], {
+    spawn: (async (o: { sessionId: string }) => {
+      if (o.sessionId.startsWith("write-ch1")) throw new Error("codex spawn ENOENT"); // one sibling rejects FAST
+      await new Promise((r) => setTimeout(r, 30)); // the surviving sibling resolves LATER
+      settled++;
+      return { ok: true, exitCode: 0, finalMessage: "", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+  });
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") assert.equal(outcome.category, "infra");
+  // Promise.all would have abandoned the in-flight sibling the instant write-ch1 rejected
+  // (settled === 0) → the run lock would release while a workspace-write child kept going.
+  assert.equal(settled, 1, "the surviving writer fully settled BEFORE the failure propagated");
 });
 
 test("autopilot HALTs (infra) when --create exits nonzero (created-with-errors) — no reviewers spawned", async () => {

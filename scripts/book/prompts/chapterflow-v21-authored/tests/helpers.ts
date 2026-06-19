@@ -7,7 +7,7 @@
  */
 
 import { execFileSync, spawnSync } from "child_process";
-import { mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from "fs";
+import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, existsSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -288,6 +288,22 @@ export function goldChapterFiles(): { bookId: string; files: string[] }[] {
       resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
     ).filter((p) => existsSync(p)),
   }));
+}
+
+/** The research run lives at the REPO ROOT, `.chapterflow/runs/<bookId>/` (anchored
+ *  exactly like src/critics/sourceGrounding.ts's REPO). It is GENERATED, not committed,
+ *  so it is absent in CI and most checkouts even when the committed gold chapter files
+ *  ARE present. */
+export const RUNS_DIR = resolve(PIPELINE_DIR, "../../../..", ".chapterflow/runs");
+
+/** True iff a gold book's research run exists on disk. The committed chapter files are
+ *  NOT sufficient for `book-gate`: it auto-derives brief/plan artifacts from the research
+ *  run and aborts ("No research run … derive-artifacts failed") without it. Book-LEVEL
+ *  gold tests must gate on THIS (not just chapter-file presence), so they skip cleanly
+ *  where the run is absent instead of failing a required CI job on a missing dependency. */
+export function goldBookHasResearchRun(bookId: string): boolean {
+  const dir = resolve(RUNS_DIR, bookId);
+  try { return existsSync(dir) && readdirSync(dir).length > 0; } catch { return false; }
 }
 
 /** Shipped books used to calibrate the NEW book-gate cross-chapter detectors

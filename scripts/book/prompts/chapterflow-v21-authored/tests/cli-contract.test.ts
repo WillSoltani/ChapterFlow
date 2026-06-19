@@ -17,6 +17,7 @@ import { test, skip } from "./harness.js";
 import {
   cleanTmp,
   goldChapterFiles,
+  goldBookHasResearchRun,
   makeChapter,
   restoreGateAttempts,
   runCli,
@@ -72,8 +73,16 @@ test("cli: gate-chapter loads siblings from disk and blocks on AS7 card reuse en
   }
 });
 
+// book-gate needs the GENERATED research run (it auto-derives brief/plan artifacts and
+// aborts "No research run … derive-artifacts failed" without it). The committed gold
+// CHAPTER files aren't enough, so gate on the research run too — otherwise this required
+// CI job is born red on every machine that lacks the (uncommitted) run. Skip on the
+// missing dependency, never on failure (no masking): where the run IS present (the
+// authoring box), the test still runs and asserts PASS.
 if (!gold) {
   skip("cli: book-gate exits 0 on a gold book", "no gold corpus on this machine");
+} else if (!goldBookHasResearchRun(gold.bookId)) {
+  skip(`cli: book-gate exits 0 on gold book (${gold.bookId})`, "gold-book research run (.chapterflow/runs) not present on this machine");
 } else {
   test(`cli: book-gate exits 0 on gold book (${gold.bookId})`, () => {
     const { status, out } = runCli(["book-gate", gold.bookId]);

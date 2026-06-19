@@ -26,7 +26,8 @@
  */
 
 import { spawn } from "child_process";
-import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync } from "fs";
+import { randomBytes } from "crypto";
+import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync } from "fs";
 import { hostname } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -94,8 +95,9 @@ export type AutopilotDeps = {
   /** Persist one agent session's outcome (durable per-agent log) for walk-away forensics. */
   logSession: (bookId: string, label: string, r: CodexAgentResult) => void;
   /** Acquire a same-book run lock so two autopilots can't race the same book.
-   *  release() is idempotent; heldBy is set when acquisition FAILS. */
-  acquireLock: (bookId: string) => { ok: boolean; release: () => void; heldBy?: string };
+   *  release() is idempotent; refresh() is the optional heartbeat; heldBy is set
+   *  when acquisition FAILS. */
+  acquireLock: (bookId: string) => BookLock;
   log: (m: string) => void;
 };
 
@@ -151,15 +153,27 @@ function roleLabelFromCard(path: string): string {
 
 async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
   const out: R[] = new Array(items.length);
+  let firstError: unknown;
   let cursor = 0;
   async function worker() {
     while (true) {
       const i = cursor++;
       if (i >= items.length) return;
-      out[i] = await fn(items[i], i);
+      // Catch INSIDE the worker so one item's failure never abandons the in-flight
+      // siblings: a spawn rejection (codex timeout/ENOENT) would otherwise reject the
+      // enclosing Promise.all immediately and let runAutopilot's `finally` release the
+      // run lock while other workspace-write children are still writing the book. We
+      // drain every item, THEN surface the first error.
+      try { out[i] = await fn(items[i], i); }
+      catch (err) { if (firstError === undefined) firstError = err; }
     }
   }
+  // This never hangs FOREVER on a stuck child: every real spawn goes through
+  // spawnCodexAgent, whose runner rejects UNCONDITIONALLY at timeoutMs (default 30m) —
+  // the timeout callback calls rejectPromise right after kill, independent of whether
+  // SIGKILL lands or the child emits 'close' — so each worker settles within that bound.
   await Promise.all(Array.from({ length: Math.max(1, Math.min(limit, items.length)) }, () => worker()));
+  if (firstError !== undefined) throw firstError; // → runAutopilot try/catch → infra halt, AFTER all settle
   return out;
 }
 
@@ -319,38 +333,112 @@ function logSessionToDisk(bookId: string, label: string, r: CodexAgentResult): v
 
 /** Single-shape (not a discriminated union): the pipeline tsconfig runs strict:false,
  *  which widens boolean-literal discriminants and defeats union narrowing — so heldBy
- *  is just an optional field, always safe to read. */
-export type BookLock = { ok: boolean; release: () => void; heldBy?: string };
+ *  and refresh are just optional fields, always safe to read. `refresh()` is the
+ *  heartbeat the conductor calls each loop iteration to keep a live lock fresh. */
+export type BookLock = { ok: boolean; release: () => void; refresh?: () => boolean; heldBy?: string };
 
-/** Acquire an advisory per-book run lock under `lockDir` so two autopilots (or an
- *  autopilot + a manual run) can't race the same book. A lock younger than staleMs
- *  blocks; a malformed or older one is taken over. release() is idempotent.
- *  Exported (and dir-parameterized) so it's unit-testable against a temp dir. */
-export function acquireBookLock(lockDir: string, bookId: string, staleMs = 2 * 60 * 60 * 1000): BookLock {
-  const path = resolve(lockDir, `${bookId}.lock`);
-  if (existsSync(path)) {
-    try {
-      const cur = JSON.parse(readFileSync(path, "utf8")) as { pid?: number; host?: string; at?: string };
-      const ageMs = cur.at ? Date.now() - Date.parse(cur.at) : NaN;
-      if (Number.isFinite(ageMs) && ageMs >= 0 && ageMs < staleMs) {
-        return { ok: false, release: () => {}, heldBy: `pid ${cur.pid ?? "?"}@${cur.host ?? "?"} since ${cur.at}` };
-      }
-    } catch { /* malformed → treat as stale, take over */ }
+type LockRecord = { pid: number; host: string; at: string; owner: string };
+
+/** Cross-host / heartbeat-silent fallback: a lock whose `at` is older than this is
+ *  assumed dead. The conductor refreshes `at` every loop iteration, so this only
+ *  fires when the owner crashed or hung past the window (NOT a fixed run-length cap). */
+const LOCK_FALLBACK_STALE_MS = 2 * 60 * 60 * 1000;
+
+function readLockRecord(path: string): LockRecord | null {
+  try { return JSON.parse(readFileSync(path, "utf8")) as LockRecord; } catch { return null; }
+}
+
+/** Is a SAME-HOST lock's owner process definitely gone? process.kill(pid,0) throws
+ *  ESRCH when the pid is dead, EPERM when it's alive under another user (→ alive).
+ *  A cross-host lock can't be probed, so it relies on the time fallback instead. */
+function ownerProcessDead(rec: LockRecord): boolean {
+  if (rec.host !== hostname() || typeof rec.pid !== "number") return false;
+  try { process.kill(rec.pid, 0); return false; } catch (err) { return (err as NodeJS.ErrnoException)?.code === "ESRCH"; }
+}
+
+function lockIsStale(rec: LockRecord | null, staleMs: number): boolean {
+  if (!rec || !rec.owner) return true; // malformed / torn / pre-owner-token → stealable
+  if (rec.host === hostname()) {
+    // SAME host: PID-liveness is authoritative — a LIVE owner is never stale, even when
+    // it's blocked for hours inside a long codex phase (its heartbeat merely paused). This
+    // is what makes the steal safe: a sibling cannot time-steal a lock whose owner is still
+    // running, so the only same-host steal is of a genuinely dead owner (which can't race
+    // us back). Eliminates the refresh-overwrite double-ownership window same-host.
+    return ownerProcessDead(rec);
   }
-  // Never throw: a write failure (disk full / permission) returns ok:false so the
-  // conductor halts cleanly via its `if (!lock.ok)` guard — it must NOT escape as an
-  // exception, which (the acquire happens before runAutopilot's try) would crash the
-  // run instead of producing a structured infra halt.
+  // CROSS host: can't probe liveness → time fallback (heartbeat silent past the window).
+  const ageMs = rec.at ? Date.now() - Date.parse(rec.at) : NaN;
+  return Number.isFinite(ageMs) && ageMs >= staleMs;
+}
+
+/** Acquire an advisory per-book run lock under `lockDir` so two AUTOPILOT runs can't
+ *  race the same book's state. NOTE: only runAutopilot acquires this — a manual
+ *  fanout/author/qc verb does NOT honor it, so this is an autopilot-vs-autopilot lock,
+ *  not a whole book-state lock (a full book-state mutex is a separate, larger change).
+ *
+ *  TOCTOU-safe: atomic `wx` create (no check-then-act); a stale lock is stolen
+ *  ATOMICALLY by renaming it aside (exactly one racer wins the rename — losers get
+ *  ENOENT and back off), never unlink-then-recreate (which let two racers both steal).
+ *  The lock carries a random owner token: release()/refresh() only touch the file if
+ *  WE still own it, so a process that lost a steal can never delete the winner's lock.
+ *  Synchronous and NON-BLOCKING by design (it runs before runAutopilot's try/catch and
+ *  must never throw or wait): a held-fresh lock fails fast with heldBy.
+ *  Exported (and dir-parameterized) so it's unit-testable against a temp dir. */
+export function acquireBookLock(lockDir: string, bookId: string, staleMs = LOCK_FALLBACK_STALE_MS): BookLock {
+  const path = resolve(lockDir, `${bookId}.lock`);
+  const owner = `${process.pid}-${hostname()}-${randomBytes(6).toString("hex")}`;
+  const mkRecord = (): string => JSON.stringify({ pid: process.pid, host: hostname(), at: new Date().toISOString(), owner } satisfies LockRecord);
+  const ownsCurrent = (): boolean => readLockRecord(path)?.owner === owner;
+  // Atomic create-exclusive: true on success, false on EEXIST, rethrow other fs errors.
+  const tryCreate = (): boolean => {
+    try { writeFileSync(path, mkRecord(), { flag: "wx" }); return true; }
+    catch (err) { if ((err as NodeJS.ErrnoException)?.code === "EEXIST") return false; throw err; }
+  };
+
+  // Never throw: a write failure (disk full / permission) or a lost steal returns
+  // ok:false so the conductor halts cleanly via its `if (!lock.ok)` guard — the acquire
+  // runs BEFORE runAutopilot's try/catch, so an escaping exception would crash the
+  // walk-away run instead of producing a structured infra halt.
   try {
     mkdirSync(lockDir, { recursive: true });
-    writeFileSync(path, JSON.stringify({ pid: process.pid, host: hostname(), at: new Date().toISOString() }), "utf8");
+    if (!tryCreate()) {
+      const held = readLockRecord(path);
+      if (!lockIsStale(held, staleMs)) {
+        return { ok: false, release: () => {}, heldBy: held ? `pid ${held.pid}@${held.host} (owner ${held.owner}) since ${held.at}` : "an unreadable lock" };
+      }
+      // Stale → steal atomically: only the racer whose rename succeeds proceeds.
+      const aside = `${path}.steal-${owner}`;
+      try { renameSync(path, aside); } catch (err) {
+        return { ok: false, release: () => {}, heldBy: `lost the steal race for a stale lock (${(err as NodeJS.ErrnoException)?.code ?? "?"})` };
+      }
+      try { unlinkSync(aside); } catch { /* best-effort: drop the stolen lock */ }
+      if (!tryCreate()) {
+        const now = readLockRecord(path);
+        return { ok: false, release: () => {}, heldBy: now ? `raced after a steal — pid ${now.pid}@${now.host}` : "raced after a steal" };
+      }
+    }
   } catch (err) {
     return { ok: false, release: () => {}, heldBy: `lock-file write failed (${(err as Error)?.message ?? String(err)})` };
   }
+
   let released = false;
   return {
     ok: true,
-    release: () => { if (released) return; released = true; try { if (existsSync(path)) unlinkSync(path); } catch { /* best-effort */ } },
+    // Heartbeat: rewrite `at` (SAME owner) via write-temp-then-rename so a racing reader
+    // never sees a torn/empty file. Returns false (and stops touching the lock) the moment
+    // we DON'T own it — a successor stole it — so we never clobber or delete the winner's
+    // lock. The conductor halts on a false, bounding any double-run to one loop iteration.
+    refresh: (): boolean => {
+      if (released) return false;
+      if (!ownsCurrent()) { released = true; return false; }
+      try { const tmp = `${path}.hb-${owner}`; writeFileSync(tmp, mkRecord(), "utf8"); renameSync(tmp, path); } catch { /* best-effort */ }
+      return true;
+    },
+    // Token-checked release: only unlink if WE still own it (never delete a successor's).
+    release: () => {
+      if (released) return; released = true;
+      try { if (ownsCurrent()) unlinkSync(path); } catch { /* best-effort */ }
+    },
   };
 }
 
@@ -397,6 +485,12 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   try {
     let lastSignature = "";
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
+      // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no
+      // longer own it (a successor took over after our heartbeat went stale), HALT rather
+      // than keep conducting — never two conductors driving the same book.
+      if (lock.refresh && !lock.refresh()) {
+        return mkHalt(bookId, safePhase(bookId, deps), "infra", `lost the run lock for ${bookId} mid-run (another run took it over) — halting to avoid two conductors on the same book.`);
+      }
       const status = deps.statusOf(bookId);
       const phase = decidePhase(status);
       const sig = `${phase}:${status.writtenChapters}/${status.expectedChapters ?? "?"}:${status.gatedChapters}:${status.qcdChapters}`;
