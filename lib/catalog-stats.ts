@@ -12,11 +12,24 @@
  *
  * Client-safe: booksCatalog only imports the metadata JSON + lib/book-covers.
  */
-import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import {
+  BOOKS_CATALOG,
+  BOOKS_CATALOG_METADATA,
+} from "@/app/book/data/booksCatalog";
 
 /** Round DOWN to the nearest `step` and suffix "+", e.g. 67 → "60+". */
 function displayFloor(count: number, step = 10): string {
   return `${Math.floor(count / step) * step}+`;
+}
+
+/** Median of a numeric list, rounded to an integer (even length → the two middles averaged, rounded). */
+function median(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1
+    ? sorted[mid]
+    : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
 }
 
 /** Exact number of published books in the live catalog (67 today). */
@@ -26,6 +39,19 @@ export const CATALOG_BOOK_COUNT = BOOKS_CATALOG.length;
 export const CATALOG_CATEGORY_COUNT = new Set(
   BOOKS_CATALOG.map((book) => book.category),
 ).size;
+
+/**
+ * Median minutes to read one chapter, DERIVED from the live catalog
+ * (round(estimatedMinutes / chapterCount) per book). This is the same honest
+ * per-chapter figure the in-app library already shows via getPerChapterMinutes
+ * — exposed here so marketing copy tracks the real number instead of an
+ * inflated literal. ~12 today; recomputes as the catalog changes.
+ */
+export const CATALOG_MEDIAN_CHAPTER_MINUTES = median(
+  BOOKS_CATALOG_METADATA.filter((book) => book.chapterCount > 0).map((book) =>
+    Math.round(book.estimatedMinutes / book.chapterCount),
+  ),
+);
 
 /**
  * Conservative display floor for the book count, e.g. "60+".
