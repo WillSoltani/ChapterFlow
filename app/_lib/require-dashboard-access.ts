@@ -5,7 +5,11 @@ import { redirect } from "next/navigation";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { isDevAuthBypassEnabled } from "@/app/app/_lib/dev-auth-bypass";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getAccountStatus, setAccountStatus } from "@/app/app/api/book/_lib/repo";
+import {
+  getAccountStatus,
+  setAccountStatus,
+  getUserSettingsItem,
+} from "@/app/app/api/book/_lib/repo";
 
 let warnedLocalBypass = false;
 
@@ -46,7 +50,21 @@ async function resolveReturnTo(): Promise<string> {
   }
 }
 
-export async function requireDashboardAccess() {
+/**
+ * Server-side gate for every in-app route. Enforces (in order): authentication,
+ * account lifecycle status, and onboarding completion. Un-onboarded signed-in
+ * users are hard-redirected into the onboarding funnel (served at "/book") so
+ * deep-linking past onboarding can't land them on a half-initialized page.
+ *
+ * @param options.allowUnonboarded - Set by the onboarding funnel pages
+ *   themselves ("/book", "/onboarding"). They render the onboarding flow AND
+ *   call this helper for the auth/account checks, so they must opt out of the
+ *   un-onboarded redirect — otherwise the redirect target ("/book") would
+ *   re-enter this helper and infinite-loop.
+ */
+export async function requireDashboardAccess(options?: {
+  allowUnonboarded?: boolean;
+}) {
   if (
     process.env.NODE_ENV !== "production" &&
     (isDevAuthBypassEnabled() ||
@@ -95,5 +113,31 @@ export async function requireDashboardAccess() {
     if (error && typeof error === "object" && "digest" in error) throw error;
     // For DynamoDB errors, don't block the user — fail open
     console.error("account_status_check_error", error);
+  }
+
+  // Onboarding funnel gate — route signed-in-but-un-onboarded users into the
+  // onboarding flow (served at "/book") rather than letting them deep-link onto
+  // a half-initialized dashboard/library/settings page. This replaces the
+  // fragile per-client-component `router.replace("/book")` convention with one
+  // shared server-side check that every in-app route inherits. The funnel pages
+  // themselves opt out via `allowUnonboarded` (see the doc comment).
+  if (!options?.allowUnonboarded) {
+    try {
+      const tableName = await getBookTableName();
+      const settingsItem = await getUserSettingsItem(tableName, userId);
+      const onboarding = settingsItem?.settings?.onboarding as
+        | { onboardingCompleted?: boolean }
+        | undefined;
+      if (!onboarding?.onboardingCompleted) {
+        redirect("/book");
+      }
+    } catch (error: unknown) {
+      // Re-throw the Next.js redirect (it's thrown, not returned).
+      if (error && typeof error === "object" && "digest" in error) throw error;
+      // Fail open on a DynamoDB/network hiccup — don't trap a legitimate user
+      // out of the app over a transient backend error (mirrors the
+      // account-status block above).
+      console.error("onboarding_status_check_error", error);
+    }
   }
 }

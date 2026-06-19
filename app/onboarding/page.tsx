@@ -6,7 +6,10 @@ import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { OnboardingFlow } from "./components/OnboardingFlow";
 
 export default async function OnboardingPage() {
-  await requireDashboardAccess();
+  // This route renders the onboarding flow, so it must opt out of the helper's
+  // un-onboarded redirect (which targets "/book") — otherwise an un-onboarded
+  // user here would be bounced away from onboarding.
+  await requireDashboardAccess({ allowUnonboarded: true });
 
   // Server-side guard: a user who has already completed onboarding should never
   // see the flow again — send them straight to the dashboard, no client flash.
