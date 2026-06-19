@@ -328,9 +328,34 @@ ${bookContext}`,
           streamSuccess = true;
           controller.enqueue(encoder.encode(`data: ${JSON.stringify({ type: "done" })}\n\n`));
           controller.close();
-        } catch {
+        } catch (err) {
+          // Log the real cause so prod CloudWatch shows WHY Ask-Book failed
+          // (invalid/revoked key, no credit, rate limit, bad model id) instead of
+          // a blind "AI response failed". Status comes from the SDK's APIError.
+          const status =
+            err && typeof err === "object" && "status" in err
+              ? (err as { status?: number }).status
+              : undefined;
+          console.error("[ask-book] Anthropic stream failed:", {
+            status,
+            name: err instanceof Error ? err.name : typeof err,
+            message: err instanceof Error ? err.message : String(err),
+          });
+
+          // User-facing message: actionable, not a dead end. Never echo the raw
+          // provider error (it can leak account/model details) — categorize by status.
+          let userMessage = "Something went wrong reaching the assistant. Please try again.";
+          if (status === 429) {
+            userMessage = "The assistant is busy right now. Please wait a moment and try again.";
+          } else if (status === 401 || status === 403) {
+            // Misconfiguration on our side — honest but generic.
+            userMessage = "The assistant is temporarily unavailable. We're on it — please try later.";
+          }
+
           controller.enqueue(
-            encoder.encode(`data: ${JSON.stringify({ type: "error", message: "AI response failed" })}\n\n`),
+            encoder.encode(
+              `data: ${JSON.stringify({ type: "error", message: userMessage, retryable: true })}\n\n`,
+            ),
           );
           controller.close();
         } finally {

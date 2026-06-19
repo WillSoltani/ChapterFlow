@@ -77,9 +77,20 @@ export async function validateScenario(params: {
     const text =
       response.content[0]?.type === "text" ? response.content[0].text : "";
     return parseScenarioValidation(text, model);
-  } catch {
+  } catch (err) {
     // Request failure (network/timeout/rate-limit/4xx) — never auto-decide; queue
-    // for a human and surface the failure on the cost/error dashboard.
+    // for a human and surface the failure on the cost/error dashboard. Log the real
+    // cause too: this shares ANTHROPIC_API_KEY with Ask-Book, so a bad/unfunded key
+    // shows up here as a silent, perpetual queue-for-review unless we record WHY.
+    const status =
+      err && typeof err === "object" && "status" in err
+        ? (err as { status?: number }).status
+        : undefined;
+    console.error("[scenario-validation] Anthropic request failed:", {
+      status,
+      name: err instanceof Error ? err.name : typeof err,
+      message: err instanceof Error ? err.message : String(err),
+    });
     recordAiUsage({
       feature: "scenario_validation",
       model,
@@ -139,9 +150,22 @@ export async function* streamReflectionFeedback(params: {
         yield event.delta.text;
       }
     }
-  } catch {
+  } catch (err) {
     threw = true;
-    throw new Error("AI feedback failed");
+    // Log the real cause (shares ANTHROPIC_API_KEY with Ask-Book) and propagate the
+    // status so the route can return a category-aware message instead of a dead-end.
+    const status =
+      err && typeof err === "object" && "status" in err
+        ? (err as { status?: number }).status
+        : undefined;
+    console.error("[reflection-feedback] Anthropic stream failed:", {
+      status,
+      name: err instanceof Error ? err.name : typeof err,
+      message: err instanceof Error ? err.message : String(err),
+    });
+    const wrapped = new Error("AI feedback failed") as Error & { status?: number };
+    wrapped.status = status;
+    throw wrapped;
   } finally {
     // Runs on normal completion, an upstream error, and consumer disconnect
     // (the runtime calls .return() on the suspended generator). Best-effort —
