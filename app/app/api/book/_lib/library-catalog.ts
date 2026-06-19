@@ -9,6 +9,7 @@ import type {
   LibraryCatalogBook,
   LibraryChapterSummary,
 } from "@/app/book/_lib/library-data";
+import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import { getCatalogBook, listPublishedCatalogItems } from "./repo";
@@ -59,8 +60,14 @@ function safeDifficulty(
   return variantFamily === "PBC" ? "Hard" : "Medium";
 }
 
+// Last-resort synopsis for a published book whose presentation-index entry has
+// no authored short description. Delegates to the shared template in
+// lib/library-catalog-stub.ts so this live fallback and the catalog-QA detector
+// there (isBoilerplateSynopsis) can never drift. Intentionally kept: an empty
+// synopsis would be worse than the canned line — the real fix is authoring
+// per-book synopses (content/prod-data work, 7A + prod re-seed).
 function fallbackSynopsis(title: string): string {
-  return `${title} taught through chapter summaries, real-world scenarios, and quizzes you can apply right away.`;
+  return boilerplateSynopsis(title);
 }
 
 function buildLibraryCatalogBook(params: {
