@@ -12,9 +12,15 @@ const MAX_ATTEMPTS = 3;
 const delay = (attempt: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, attempt * RETRY_DELAY_MS));
 
-export function useAuthStatus() {
+export function useAuthStatus(options?: { withPlan?: boolean }) {
+  // The plan lookup is opt-in so the shared session hook stays cheap for
+  // consumers that only need login state (e.g. Navbar, which mounts on every
+  // marketing page). Only callers that render plan-gated UI (Pricing) pass
+  // `withPlan` and pay for the extra authenticated entitlements request.
+  const withPlan = options?.withPlan ?? false;
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
   const [user, setUser] = useState<AuthUser | null>(null);
+  const [isPro, setIsPro] = useState<boolean>(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -64,6 +70,21 @@ export function useAuthStatus() {
               email: data.user.email ?? null,
             });
           }
+          if (v && withPlan) {
+            // The session endpoint doesn't carry the plan, so fetch it from the
+            // authenticated entitlements endpoint as a best-effort signal. A
+            // 401 / !ok / network failure leaves isPro=false (the safe default),
+            // so any consumer's plan-gated UI degrades to its logged-in-but-
+            // unknown-plan behaviour. Guarded by `cancelled` like the rest.
+            fetch("/app/api/book/me/entitlements", { cache: "no-store" })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((d) => {
+                if (!cancelled && d?.entitlement?.plan === "PRO") setIsPro(true);
+              })
+              .catch(() => {
+                /* not-Pro / not-reachable — leave isPro=false */
+              });
+          }
         }
         return;
       }
@@ -73,7 +94,7 @@ export function useAuthStatus() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [withPlan]);
 
-  return { loggedIn, loading: loggedIn === null, user };
+  return { loggedIn, loading: loggedIn === null, user, isPro };
 }
