@@ -1047,15 +1047,15 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
                 >
                   <SettingRow
-                    label="Skip days per week"
-                    description="Days you can skip without breaking your streak."
+                    label="Skip days in a row"
+                    description="Days you can miss in a row without losing your streak."
                   >
                     <Stepper
                       value={ext.streakSkipDays}
-                      onChange={(v) => { patchExt({ streakSkipDays: v }); announce(`Skip days per week changed to ${v}`); triggerToast(); }}
+                      onChange={(v) => { patchExt({ streakSkipDays: v }); announce(`Skip days in a row changed to ${v}`); triggerToast(); }}
                       min={1}
                       max={3}
-                      label="Skip days per week"
+                      label="Skip days in a row"
                     />
                   </SettingRow>
                 </motion.div>

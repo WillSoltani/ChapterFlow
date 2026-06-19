@@ -67,6 +67,7 @@ import {
   type LoopPipelineResult,
 } from "@/app/book/_lib/flow-points-economy";
 import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
+import { resolveStreakMode, resolveStreakSkipDays } from "@/app/app/api/book/_lib/streak-mode";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/bookPackages";
 
@@ -645,7 +646,14 @@ export async function POST(
       // ── Step 2: Update streak ────────────────────────────────────────
       let streakResult: Awaited<ReturnType<typeof updateStreakOnLoopComplete>> | null = null;
       try {
-        streakResult = await updateStreakOnLoopComplete(tableName, user.sub, timezone);
+        // SET-7: resolve streak mode + skip-day tolerance from server-stored
+        // settings (not the request body) so a "flexible" reader keeps their
+        // streak across short gaps without it being claimable per-request. Reads
+        // the same userSettings already loaded above for learning mode.
+        streakResult = await updateStreakOnLoopComplete(tableName, user.sub, timezone, {
+          mode: resolveStreakMode(userSettings?.settings),
+          skipDays: resolveStreakSkipDays(userSettings?.settings),
+        });
         await markLoopStep("streakUpdatedAt");
       } catch (e) {
         pipelineErrors.push("streak");
