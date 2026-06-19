@@ -18,6 +18,7 @@ import {
   parseRoundTokens,
   brokerCardTarget,
   brokerReviewer,
+  roleFromCard,
   resolveDeps,
   type AutopilotDeps,
 } from "../src/orchestrator/autopilot.js";
@@ -68,7 +69,11 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
     chapterHashes: () => ({}),
     submissionPresent: () => true,
     logSession: () => {},
-    readReviewPacket: () => "",
+    // A valid review packet: the broker parses per-role tokens from here, and the
+    // conductor's token preflight refuses to spawn a wave whose role has no token.
+    readReviewPacket: () => ["sweep", "keyA", "keyB", "bar", "confirm", "major"]
+      .map((role) => `npx tsx src/cli.ts qc-submit zz --round r --role ${role} --token tok-${role} --file <x>`)
+      .join("\n"),
     writeTempSubmission: () => "/tmp/cf-broker-test.json",
     acquireLock: () => ({ ok: true, release: () => {} }),
     log: () => {},
@@ -558,4 +563,61 @@ test("broker skips qc-submit when the reviewer emits no parseable JSON (no forge
   });
   await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
   assert.equal(submits.length, 0, "no JSON ⇒ no submission recorded (the round surfaces this as INCOMPLETE)");
+});
+
+test("broker extracts a MULTILINE fenced submission through the REAL spawnCodexAgent (regression: finalMessage is only the last line)", async () => {
+  // The representative path: route deps.spawn through the ACTUAL spawnCodexAgent (with an
+  // injected runner) so its lastNonEmptyLine transform runs. A normal fenced ```json block
+  // is multiline ⇒ finalMessage is just the closing ``` ⇒ `finalMessage || stdout` would
+  // extract nothing. The fix extracts from FULL stdout first. (The older broker tests stub
+  // deps.spawn and bypass this transform — that's exactly why the bug slipped through.)
+  const multiline = 'Here is my review of the chapter.\n```json\n{\n  "role": "bar",\n  "verdict": "GREEN",\n  "axes": []\n}\n```\n';
+  const submits: Array<{ args: string[]; env?: Record<string, string> }> = [];
+  const deps = resolveDeps({
+    mkSessionId: (label) => `${label}#1`,
+    readTask: () => "review this card", logSession: () => {}, log: () => {},
+    writeTempSubmission: () => "/tmp/sub.json",
+    spawn: ((o: Parameters<AutopilotDeps["spawn"]>[0]) =>
+      spawnCodexAgent({ ...o, runner: async () => ({ stdout: multiline, stderr: "", code: 0 }) })) as AutopilotDeps["spawn"],
+    runVerb: async (args, env) => { if (args[0] === "qc-submit") submits.push({ args, env }); return { code: 0, stdout: "", stderr: "" }; },
+  });
+  const res = await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
+  assert.equal(res.agentOk, true);
+  assert.equal(res.extractionOk, true, "the multiline fenced JSON was extracted from full stdout, not the closing-fence finalMessage");
+  assert.equal(res.submissionOk, true, "and recorded via qc-submit");
+  assert.equal(submits.length, 1, "exactly one brokered submission");
+  assert.equal(submits[0].env?.CHAPTERFLOW_SESSION_ID, res.sessionId, "recorded under the reviewer's distinct session id");
+});
+
+test("broker records a MAJOR triage under the reviewer's session id and NEVER runs major-disposition (no silent waiver)", async () => {
+  // M1: with the major token now in the review packet, the major reviewer can be brokered.
+  // Safety: a brokered triage records FINDINGS only — a waiver (status waived_*) can never
+  // take effect from a submission; only the authorized `major-disposition` command writes one.
+  const verbs: string[][] = [];
+  const deps = resolveDeps({
+    mkSessionId: (label) => `${label}#1`,
+    readTask: () => "triage majors", logSession: () => {}, log: () => {},
+    writeTempSubmission: () => "/tmp/major.json",
+    spawn: (async (o: { sessionId: string }) => ({ ok: true, exitCode: 0, finalMessage: "```", stdout: 'Triage.\n```json\n{\n  "role": "major",\n  "findings": [],\n  "dispositions": [{ "findingId": "qcf-1", "status": "waived_false_positive", "reason": "looks like a gold-book false positive here" }]\n}\n```\n', stderr: "", durationMs: 1, sessionId: o.sessionId })) as unknown as AutopilotDeps["spawn"],
+    runVerb: async (args) => { verbs.push(args); return { code: 0, stdout: "", stderr: "" }; },
+  });
+  const res = await brokerReviewer("zz", "r1", "/t/majors.md", { major: "MAJTOK" }, deps);
+  assert.equal(res.role, "major");
+  assert.equal(res.submissionOk, true, "the major triage is recorded via qc-submit");
+  const submit = verbs.find((v) => v[0] === "qc-submit");
+  assert.ok(submit && submit.includes("--role") && submit.includes("major") && submit.includes("MAJTOK"), "qc-submit --role major --token MAJTOK");
+  assert.ok(!verbs.some((v) => v[0] === "major-disposition"), "the broker NEVER invokes major-disposition — a reviewer can't waive a major");
+});
+
+test("roleFromCard is variant-aware: bar-tiebreak maps to bar+variant (NOT 'unknown'), primary bar has no variant", () => {
+  // D1a load-bearing: the OLD roleFromCard matched only '/bar/' so a '/bar-tiebreak/' card
+  // fell through to 'unknown' → its submission was reported missing forever → the dynamic
+  // loop could never converge. It must map to bar + the t2/t3 variant.
+  assert.deepEqual(roleFromCard("/s/qc/zz/r1/task-cards/bar-tiebreak/ch03-t2.md"), { role: "bar", chapter: 3, variant: "t2" });
+  assert.deepEqual(roleFromCard("/s/qc/zz/r1/task-cards/bar-tiebreak/ch03-t3.md"), { role: "bar", chapter: 3, variant: "t3" });
+  const primary = roleFromCard("/s/qc/zz/r1/task-cards/bar/ch03.md");
+  assert.equal(primary.role, "bar");
+  assert.equal(primary.chapter, 3);
+  assert.equal(primary.variant, undefined, "the PRIMARY bar read has no variant (so its presence check ≠ a t2 card's)");
+  assert.equal(roleFromCard("/s/qc/zz/r1/task-cards/confirm/ch01.md").role, "confirm");
 });

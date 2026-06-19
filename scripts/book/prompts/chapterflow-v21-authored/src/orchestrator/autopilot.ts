@@ -36,8 +36,9 @@ import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
-import { driveQcRoundCore, type ReviewerWave } from "../qc/auto/driver.js";
+import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
 import { reviewPacketPath } from "../qc/orchestrator/reviewPacket.js";
+import { barArtifactPath, confirmArtifactPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 
@@ -271,10 +272,10 @@ function defaultListTaskCards(bookId: string, roundId: string, subdir?: string):
   const walk = (dir: string) => {
     for (const e of readdirSync(dir, { withFileTypes: true })) {
       const p = resolve(dir, e.name);
-      // First wave excludes the confirm/ subtree (generated later); callers ask
-      // for it explicitly via subdir="confirm".
+      // First wave excludes the DYNAMICALLY-generated subtrees (confirm/ + bar-tiebreak/,
+      // emitted later by confirm-candidates); callers ask for those explicitly via subdir.
       if (e.isDirectory()) {
-        if (!subdir && e.name === "confirm") continue;
+        if (!subdir && (e.name === "confirm" || e.name === "bar-tiebreak")) continue;
         walk(p);
       } else if (e.name.endsWith(".md")) out.push(p);
     }
@@ -318,10 +319,15 @@ function defaultChapterHashes(bookId: string): Record<string, string> {
   return out;
 }
 
-/** Map a task-card path → its QC role + chapter (for narrow-retry presence checks). */
-function roleFromCard(card: string): { role: string; chapter: number | null } {
+/** Map a task-card path → its QC role + chapter + (for tiebreak cards) the bar-read
+ *  variant. MUST recognize bar-tiebreak/chNN-t2.md (path is "/bar-tiebreak/", NOT "/bar/")
+ *  so its presence check is variant-aware — else the dynamic-wave loop never converges.
+ *  Exported for tests. */
+export function roleFromCard(card: string): { role: string; chapter: number | null; variant?: BarReadVariant } {
   const p = card.replace(/\\/g, "/").toLowerCase();
-  if (p.includes("/bar/")) return { role: "bar", chapter: chapterNumberFromCard(card) };
+  const vm = p.match(/-(t[23])\.md$/);
+  if (vm) return { role: "bar", chapter: chapterNumberFromCard(card), variant: vm[1] as BarReadVariant };
+  if (p.includes("/bar-tiebreak/") || p.includes("/bar/")) return { role: "bar", chapter: chapterNumberFromCard(card) };
   if (p.includes("/confirm/")) return { role: "confirm", chapter: chapterNumberFromCard(card) };
   if (p.includes("keya")) return { role: "keyA", chapter: null };
   if (p.includes("keyb")) return { role: "keyB", chapter: null };
@@ -331,15 +337,16 @@ function roleFromCard(card: string): { role: string; chapter: number | null } {
 }
 
 function submissionPresentOnDisk(bookId: string, roundId: string, card: string): boolean {
-  const base = resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId, roundId, "submissions");
-  const { role, chapter } = roleFromCard(card);
-  if ((role === "bar" || role === "confirm") && chapter != null) {
-    const dir = resolve(base, role);
-    if (!existsSync(dir)) return false;
-    const tok = `ch${String(chapter).padStart(2, "0")}`;
-    return readdirSync(dir).some((f) => f.includes(tok) && f.endsWith(".json"));
-  }
-  const dir = resolve(base, role);
+  const { role, chapter, variant } = roleFromCard(card);
+  // bar (incl. t2/t3 tiebreak variants) + confirm derive a VARIANT-SPECIFIC artifact at a
+  // deterministic path — the reliable presence signal. The old "any json containing chNN
+  // under submissions/bar/" reported a t2 card present the moment the PRIMARY bar read
+  // landed (both match chNN), so the tiebreak wave never ran. submitQcArtifact writes the
+  // derived artifact at submit time, so this flips true as soon as the broker records it.
+  if (role === "bar" && chapter != null) return existsSync(barArtifactPath(bookId, roundId, chapter, variant));
+  if (role === "confirm" && chapter != null) return existsSync(confirmArtifactPath(bookId, roundId, chapter));
+  // Book-level roles (sweep/keyA/keyB/major): any submission JSON in the role dir.
+  const dir = submissionsDir(bookId, roundId, role);
   return existsSync(dir) && readdirSync(dir).some((f) => f.endsWith(".json"));
 }
 
@@ -655,9 +662,11 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
     // First round is full; repair rounds (attempt>0) re-review only the chapters the
     // repair changed (incremental — book-wide sweep + gates still run over the whole
-    // book) and gather extra bar reads for borderline chapters (tiebreak). This is the
-    // subscription/time saving the convergence work is meant to deliver.
-    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0, tiebreak: attempt > 0 });
+    // book). Tiebreak is ON for EVERY round: it only costs extra reads for BORDERLINE
+    // chapters, and the driver's dynamic-wave loop now actually reviews the t2/t3 cards —
+    // so a borderline INITIAL round smooths the variance instead of forcing a needless
+    // repair (it used to be repair-only, which was a no-op since the cards never ran).
+    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0, tiebreak: true });
     if (round.verdict === "ERROR" || !round.roundId) {
       return mkHalt(bookId, "qc", "infra", `could not open/finalize a QC round (${round.note})`);
     }
@@ -732,8 +741,15 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
   // A reviewer wave = fence chapter hashes around a parallel codex spawn (the
   // read-only contract is enforced by detection; the PR2 broker in spawnReviewers
   // makes it prevention). Any chapter change across the wave voids the round.
-  const spawnFenced = async (cards: string[], _wave: ReviewerWave): Promise<{ integrityViolation?: string }> => {
+  const spawnFenced = async (cards: string[], _wave: ReviewerWave): Promise<ReviewerWaveResult> => {
     if (!cards.length) return {};
+    // Token preflight: the broker records each reviewer via `qc-submit --token <t>`,
+    // parsing per-role tokens from REVIEW-PACKET.md. If a card's role has no token there,
+    // the reviewer can't be recorded — fail FAST as infra (don't spend codex sessions on a
+    // round we couldn't finalize anyway).
+    const tokens = parseRoundTokens(deps.readReviewPacket(bookId, roundId));
+    const missingTok = [...new Set(cards.map((c) => brokerCardTarget(c).role))].filter((role) => !tokens[role]);
+    if (missingTok.length) return { infraError: `REVIEW-PACKET (round ${roundId}) has no plaintext token for role(s): ${missingTok.join(", ")} — can't broker these reviewers.` };
     const before = deps.chapterHashes(bookId);
     await spawnReviewers(bookId, roundId, cards, maxParallel, deps);
     const after = deps.chapterHashes(bookId);
@@ -749,7 +765,8 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
   const result = await driveQcRoundCore({
     spawnReviewers: spawnFenced,
     firstWaveCards: () => deps.listTaskCards(bookId, roundId),
-    confirmCards: () => deps.listTaskCards(bookId, roundId, "confirm"),
+    // The review work GENERATED mid-round: confirm cards + bar-tiebreak t2/t3 cards.
+    pendingReviewCards: () => [...deps.listTaskCards(bookId, roundId, "confirm"), ...deps.listTaskCards(bookId, roundId, "bar-tiebreak")],
     countSubmissions: () => deps.listTaskCards(bookId, roundId).filter((c) => deps.submissionPresent(bookId, roundId, c)).length,
     submissionPresent: (card) => deps.submissionPresent(bookId, roundId, card),
     collect: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--collect", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
@@ -771,6 +788,8 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
       return { roundId, verdict: "INCOMPLETE", note: "qc-status did not confirm all chapters fresh + PUBLISHABLE after finalize" };
     case "INCOMPLETE":
       return { roundId, verdict: "INCOMPLETE", note: result.reason ?? "missing/stale evidence" };
+    case "INFRA":
+      return { roundId, verdict: "ERROR", note: result.reason ?? "infra error during the QC round" };
     case "REPAIR":
       return { roundId, verdict: "REVISE", note: "" };
   }
@@ -849,33 +868,58 @@ export function brokerCardTarget(card: string): { role: string; variant?: "t2" |
   return { role: roleFromCard(card).role };
 }
 
+/** The structured outcome of brokering ONE reviewer — NOT the bare agent result. Every
+ *  failure mode is distinguishable (agent crash / no parseable JSON / missing token /
+ *  qc-submit rejection) so a brokered-submit failure is diagnosable from the logs instead
+ *  of surfacing only later as an opaque INCOMPLETE round. */
+export type BrokerResult = {
+  card: string;
+  role: string;
+  sessionId: string;
+  agentOk: boolean;       // the read-only codex session exited 0
+  extractionOk: boolean;  // a submission JSON was parsed out of its stdout
+  submissionOk: boolean;  // qc-submit recorded it under the reviewer's session id
+  error?: string;         // why it didn't submit (missing-token errors are infra, not content)
+};
+
 /** Spawn ONE read-only reviewer and broker its submission. Exported for tests. */
-export async function brokerReviewer(bookId: string, roundId: string, card: string, tokens: Record<string, string>, deps: AutopilotDeps): Promise<CodexAgentResult> {
+export async function brokerReviewer(bookId: string, roundId: string, card: string, tokens: Record<string, string>, deps: AutopilotDeps): Promise<BrokerResult> {
   const label = roleLabelFromCard(card);
   const { role, variant } = brokerCardTarget(card);
   // Distinct per-spawn id — qc-submit runs under THIS id so reviewer≠author holds.
   const sessionId = deps.mkSessionId(`qc-${label}`);
+  const base: BrokerResult = { card, role, sessionId, agentOk: false, extractionOk: false, submissionOk: false };
   const task = `${deps.readTask(card)}\n\n---\nYou are a fresh QC reviewer subagent (round ${roundId}) in a READ-ONLY sandbox. Do ONLY this card's review. Output ONLY the completed submission JSON for this card as your FINAL message — a single \`\`\`json fenced block, nothing else. Do NOT run qc-submit. Do NOT edit any file.`;
   const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox }, deps);
-  if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return r; }
-  const json = extractSubmissionJson(r.finalMessage || r.stdout);
-  if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return r; }
+  if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { ...base, error: `agent exited ${r.exitCode}` }; }
+  // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
+  // non-empty line (the closing ``` of a fenced block, or `}`), so `finalMessage || stdout`
+  // would feed extraction just that fragment and silently drop EVERY multiline submission.
+  const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
+  if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return { ...base, agentOk: true, error: "no parseable submission JSON in agent output" }; }
   const token = tokens[role];
-  if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return r; }
-  const file = deps.writeTempSubmission(bookId, roundId, label, json);
+  if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return { ...base, agentOk: true, extractionOk: true, error: `no ${role} token in REVIEW-PACKET` }; }
+  let file: string;
+  try { file = deps.writeTempSubmission(bookId, roundId, label, json); }
+  catch (err) { deps.log(`[autopilot] reviewer ${label}: temp submission write failed`); return { ...base, agentOk: true, extractionOk: true, error: `temp write failed: ${(err as Error)?.message ?? String(err)}` }; }
   const submitArgs = ["qc-submit", bookId, "--round", roundId, "--role", role, "--token", token, "--file", file];
   if (variant) submitArgs.push("--variant", variant);
   // CHAPTERFLOW_SESSION_ID = the REVIEWER's id (not the conductor's): submitQcArtifact
   // stamps it as reviewerSessionId, so independence enforcement is preserved.
   const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sessionId });
-  if (submit.code !== 0) deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`);
-  return r;
+  if (submit.code !== 0) { deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`); return { ...base, agentOk: true, extractionOk: true, error: `qc-submit exited ${submit.code}: ${(submit.stderr || submit.stdout).slice(0, 200)}` }; }
+  return { ...base, agentOk: true, extractionOk: true, submissionOk: true };
 }
 
-async function spawnReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<void> {
+/** Broker a whole wave of read-only reviewers. Returns the structured per-card outcomes
+ *  (the driver inspects them for a fatal MISSING-TOKEN, which is infra, not content). */
+async function spawnReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<BrokerResult[]> {
   deps.log(`[autopilot] QC: dispatching ${cards.length} read-only reviewer session(s), brokered (parallel ≤${maxParallel})`);
   const tokens = parseRoundTokens(deps.readReviewPacket(bookId, roundId));
-  await mapWithConcurrency(cards, maxParallel, (card) => brokerReviewer(bookId, roundId, card, tokens, deps));
+  const results = await mapWithConcurrency(cards, maxParallel, (card) => brokerReviewer(bookId, roundId, card, tokens, deps));
+  const failed = results.filter((b) => !b.submissionOk);
+  if (failed.length) deps.log(`[autopilot] QC: ${failed.length}/${results.length} reviewer(s) did not record a submission — ${failed.map((b) => `${roleLabelFromCard(b.card)}:${b.error ?? "?"}`).join("; ")}`);
+  return results;
 }
 
 // ── Phase: ready-to-publish (gated) ──────────────────────────────────────────

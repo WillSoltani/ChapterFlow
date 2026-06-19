@@ -19,14 +19,19 @@ function finalized(verdicts: Verdict[]): FinalizeQcRoundResult {
   };
 }
 
-function makeSteps(over: Partial<QcDriveSteps> = {}): { steps: QcDriveSteps; calls: { waves: string[]; metrics: number } } {
+function makeSteps(over: Partial<QcDriveSteps> = {}): { steps: QcDriveSteps; calls: { waves: string[]; metrics: number }; filled: Set<string> } {
   const calls = { waves: [] as string[], metrics: 0 };
+  // Models the broker filling a card's submission: the DEFAULT spawnReviewers records the
+  // wave AND marks every spawned card present, so the dynamic-wave loop converges (a card
+  // is "pending" until a wave fills it). Tests that need a flaky/no-op reviewer override
+  // spawnReviewers (which then does NOT fill) + submissionPresent.
+  const filled = new Set<string>();
   const steps: QcDriveSteps = {
-    spawnReviewers: async (_cards, wave) => { calls.waves.push(wave); return {}; },
+    spawnReviewers: async (cards, wave) => { calls.waves.push(wave); for (const c of cards) filled.add(c); return {}; },
     firstWaveCards: () => ["/t/00-sweep.md", "/t/bar/ch01.md"],
-    confirmCards: () => ["/t/confirm/ch01.md"],
+    pendingReviewCards: () => ["/t/confirm/ch01.md"],
     countSubmissions: () => 3,
-    submissionPresent: () => true,
+    submissionPresent: (c) => filled.has(c),
     collect: () => ({ ok: true, errors: [] }),
     generateConfirmCandidates: () => ({ ok: true, errors: [] }),
     finalize: () => finalized(["PUBLISHABLE"]),
@@ -36,7 +41,7 @@ function makeSteps(over: Partial<QcDriveSteps> = {}): { steps: QcDriveSteps; cal
     log: () => {},
     ...over,
   };
-  return { steps, calls };
+  return { steps, calls, filled };
 }
 
 test("driver: clean full-book round → PASS (verifies qc-status, records metrics, both waves)", async () => {
@@ -44,7 +49,7 @@ test("driver: clean full-book round → PASS (verifies qc-status, records metric
   const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: true });
   assert.equal(r.outcome, "PASS");
   assert.equal(calls.metrics, 1, "metrics recorded exactly once");
-  assert.deepEqual(calls.waves, ["first", "confirm"], "first + confirm waves run, no retry");
+  assert.deepEqual(calls.waves, ["first", "dynamic"], "first wave + one dynamic wave (confirm), no retry");
 });
 
 test("driver: all-publishable but qc-status disagrees → QC_STATUS_FAIL", async () => {
@@ -138,4 +143,105 @@ test("driver: NARROW retry re-spawns only the missing cards, then PASSes", async
   assert.equal(finalizeCalls, 2, "re-finalized after the narrow retry");
   assert.equal(retried.length, 1, "exactly one retry wave");
   assert.ok(retried[0].length > 0 && retried[0].every((c) => c.includes("ch01")), "only the missing ch01 cards were re-spawned");
+});
+
+test("driver e2e: borderline bar → t2/t3 tiebreak → confirm → PASS (the dynamic-wave loop reviews generated work)", async () => {
+  // The reviewer's blocker-2: confirm-candidates emits bar-tiebreak t2/t3 cards for a
+  // borderline chapter (and BLOCKS it); only after they're reviewed + regenerated does the
+  // confirm card appear. The loop must drive all of that to a PASS.
+  const filled = new Set<string>();
+  let genCalls = 0;
+  const waves: { wave: string; cards: string[] }[] = [];
+  const steps: QcDriveSteps = {
+    spawnReviewers: async (cards, wave) => { waves.push({ wave, cards }); for (const c of cards) filled.add(c); return {}; },
+    firstWaveCards: () => ["/t/bar/ch01.md"],
+    pendingReviewCards: () => {
+      const out: string[] = [];
+      if (genCalls >= 1) out.push("/t/bar-tiebreak/ch01-t2.md", "/t/bar-tiebreak/ch01-t3.md"); // borderline → tiebreak first
+      if (genCalls >= 2 && filled.has("/t/bar-tiebreak/ch01-t2.md") && filled.has("/t/bar-tiebreak/ch01-t3.md")) out.push("/t/confirm/ch01.md"); // then confirm
+      return out;
+    },
+    countSubmissions: () => 1,
+    submissionPresent: (c) => filled.has(c),
+    collect: () => ({ ok: true, errors: [] }),
+    generateConfirmCandidates: () => { genCalls++; return { ok: true, errors: [] }; },
+    finalize: () => finalized(["PUBLISHABLE"]),
+    ledgerOpenCount: () => 0, recordMetrics: () => {}, verifyFullBook: async () => true, log: () => {},
+  };
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: true });
+  assert.equal(r.outcome, "PASS");
+  const spawned = waves.flatMap((w) => w.cards);
+  assert.ok(spawned.includes("/t/bar-tiebreak/ch01-t2.md") && spawned.includes("/t/bar-tiebreak/ch01-t3.md"), "both tiebreak reads were reviewed (not stranded)");
+  assert.ok(spawned.includes("/t/confirm/ch01.md"), "the confirm card generated AFTER the tiebreak was reviewed");
+});
+
+test("driver e2e: a flaky first-wave bar that lands in the LOOP → confirm regenerates → confirm → PASS (blocker-3)", async () => {
+  // The reviewer's blocker-3: a missing first-wave bar gates its chapter's confirm card.
+  // The loop re-spawns the bar, re-collects, REGENERATES the (now-eligible) confirm card,
+  // and reviews it — instead of jumping straight to finalize.
+  const filled = new Set<string>();
+  let barAttempts = 0;
+  let genCalls = 0;
+  const waves: { wave: string; cards: string[] }[] = [];
+  const steps: QcDriveSteps = {
+    spawnReviewers: async (cards, wave) => {
+      waves.push({ wave, cards });
+      for (const c of cards) {
+        if (c.includes("/bar/")) { barAttempts++; if (barAttempts < 2) continue; } // bar fails the 1st spawn, lands the 2nd
+        filled.add(c);
+      }
+      return {};
+    },
+    firstWaveCards: () => ["/t/00-sweep.md", "/t/bar/ch01.md"],
+    pendingReviewCards: () => (filled.has("/t/bar/ch01.md") && genCalls >= 1 ? ["/t/confirm/ch01.md"] : []),
+    countSubmissions: () => filled.size, // sweep lands on the first wave ⇒ >0 even with the bar missing
+    submissionPresent: (c) => filled.has(c),
+    collect: () => ({ ok: true, errors: [] }),
+    generateConfirmCandidates: () => { genCalls++; return { ok: true, errors: [] }; },
+    finalize: () => (filled.has("/t/confirm/ch01.md") ? finalized(["PUBLISHABLE"]) : finalized(["NEEDS_MORE_QC"])),
+    ledgerOpenCount: () => 0, recordMetrics: () => {}, verifyFullBook: async () => true, log: () => {},
+  };
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: true });
+  assert.equal(r.outcome, "PASS");
+  const spawned = waves.flatMap((w) => w.cards);
+  assert.ok(spawned.filter((c) => c.includes("/bar/ch01")).length >= 2, "the flaky bar was re-spawned in the loop (not abandoned)");
+  assert.ok(spawned.includes("/t/confirm/ch01.md"), "the confirm candidate regenerated after the bar landed was reviewed");
+});
+
+test("driver: a wave that can't be brokered (missing role token) → INFRA, not a content verdict", async () => {
+  const { steps } = makeSteps({ spawnReviewers: async () => ({ infraError: "no bar token in REVIEW-PACKET" }) });
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: false });
+  assert.equal(r.outcome, "INFRA");
+  assert.match(r.reason ?? "", /token/);
+});
+
+test("driver: the dynamic-wave loop TERMINATES (no spin) when a generated card never fills", async () => {
+  // Disproves the 'zero-progress guard could spin' concern: a dynamic wave that fills
+  // NOTHING breaks the loop immediately (the guard), so a permanently-stuck reviewer
+  // ends the round INCOMPLETE rather than looping. Nothing ever fills here.
+  let dynamicWaves = 0;
+  const steps: QcDriveSteps = {
+    spawnReviewers: async (_cards, wave) => { if (wave === "dynamic") dynamicWaves++; return {}; }, // never fills
+    firstWaveCards: () => ["/t/bar/ch01.md"],
+    pendingReviewCards: () => ["/t/confirm/ch01.md"],
+    countSubmissions: () => 1, // a first-wave submission exists, so we get past the no-submissions gate
+    submissionPresent: () => false, // nothing is ever present → every wave makes zero progress
+    collect: () => ({ ok: true, errors: [] }),
+    generateConfirmCandidates: () => ({ ok: true, errors: [] }),
+    finalize: () => finalized(["NEEDS_MORE_QC"]),
+    ledgerOpenCount: () => 0, recordMetrics: () => {}, verifyFullBook: async () => true, log: () => {},
+  };
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: false });
+  assert.equal(r.outcome, "INCOMPLETE");
+  assert.equal(dynamicWaves, 1, "exactly ONE dynamic wave ran, then the zero-progress guard broke the loop (no spin)");
+});
+
+test("driver: a finalize with NO actionable verdict (unexpected tool exit) → INFRA, never REPAIR", async () => {
+  // parseFinalizeResult's exit-code fallback on an UNEXPECTED finalize exit (e.g. 2) yields
+  // a result that's neither publishable, incomplete, nor repair-required. That must NOT be
+  // mislabeled REPAIR (which would send a writer to edit content on a tool error).
+  const neither = { ok: false, allPublishable: false, repairRequired: false, incomplete: false, chapters: [], errors: [], evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "", attestationsWritten: 0 } as unknown as FinalizeQcRoundResult;
+  const { steps } = makeSteps({ finalize: () => neither });
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: false });
+  assert.equal(r.outcome, "INFRA");
 });
