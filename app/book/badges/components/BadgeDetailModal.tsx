@@ -8,6 +8,7 @@ import Link from "next/link";
 import { cn } from "@/app/book/components/ui/cn";
 import { Dialog } from "@/components/ui/Dialog";
 import type { BadgeWithProgress } from "../lib/badge-types";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 import { METALLIC_GRADIENTS } from "./BadgeCard";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { buildShareCardUrl, buildShareText, performShare } from "@/app/book/_lib/share-card-url";
@@ -117,16 +118,17 @@ function EarnedModalContent({
 }) {
   const isPinned = showcaseBadgeIds.includes(badge.id);
   const showcaseFull = showcaseBadgeIds.length >= 5 && !isPinned;
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   return (
     <div className="flex flex-col items-center text-center">
       <motion.span
-        className="text-[96px] leading-none"
+        className="inline-flex"
         initial={!reduced ? { scale: 0.8, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
       >
-        {badge.icon}
+        <Icon className="h-24 w-24" style={{ color: "var(--accent-amber)" }} aria-hidden />
       </motion.span>
 
       <TierPillDisplay tier={badge.tier} earned className="mt-4" />
@@ -200,6 +202,7 @@ function LockedModalContent({
   reduced: boolean;
 }) {
   const remaining = badge.target - badge.current;
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   const ctaHref =
     badge.category === "Books" || badge.category === "Exploration" || badge.category === "Examples"
@@ -209,13 +212,13 @@ function LockedModalContent({
   return (
     <div className="flex flex-col items-center text-center">
       <motion.span
-        className="text-[96px] leading-none"
+        className="inline-flex"
         initial={!reduced ? { scale: 0.95, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: DUR.normal }}
-        style={{ filter: "grayscale(100%) opacity(0.4)" }}
+        style={{ opacity: 0.4 }}
       >
-        {badge.icon}
+        <Icon className="h-24 w-24 text-(--cf-text-soft)" aria-hidden />
       </motion.span>
 
       <TierPillDisplay tier={badge.tier} earned={false} className="mt-4" />

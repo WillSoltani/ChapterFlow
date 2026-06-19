@@ -6,7 +6,7 @@ import { Button } from "@/app/book/components/ui/Button";
 import { Card } from "@/app/book/components/ui/Card";
 import { Chip, ChipButton } from "@/app/book/components/ui/Chip";
 import { cn } from "@/app/book/components/ui/cn";
-import type { BadgeFilter, BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON, type BadgeFilter, type BadgeState } from "@/app/book/badges/lib/badge-ui-definitions";
 
 type NextMilestone = {
   badge: BadgeState;
@@ -71,6 +71,7 @@ export function FeaturedBadgeCard({
   onOpen: () => void;
 }) {
   const isLocked = !badge.earned;
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   return (
     <button
@@ -93,13 +94,18 @@ export function FeaturedBadgeCard({
       ) : null}
       {/* Top row: icon + status */}
       <div className="relative flex items-start justify-between gap-4">
-        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-3xl shadow-shadow-card">
-          <span className={cn(isLocked && "opacity-30 grayscale")}>{badge.icon}</span>
+        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) shadow-shadow-card">
+          <Icon
+            className={cn("h-7 w-7", isLocked && "text-(--cf-text-soft) opacity-30")}
+            style={isLocked ? undefined : { color: "var(--accent-amber)" }}
+            aria-hidden
+          />
         </div>
         <div className="flex flex-col items-end gap-2">
           {isLocked ? (
             <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-(--cf-surface-strong) px-2 py-0.5 text-[10px] text-(--cf-text-soft)">
-              🔒 Locked
+              <Lock className="h-3 w-3" aria-hidden />
+              Locked
             </span>
           ) : (
             <Chip tone="amber" className="shrink-0">Earned</Chip>
@@ -137,6 +143,7 @@ export function BadgeCard({
   compact?: boolean;
   onOpen: () => void;
 }) {
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
   return (
     <button
       type="button"
@@ -150,9 +157,11 @@ export function BadgeCard({
       )}
     >
       <div className="flex items-start justify-between gap-3">
-        <span className={cn("text-3xl transition", !badge.earned && "opacity-40 grayscale")}>
-          {badge.icon}
-        </span>
+        <Icon
+          className={cn("h-7 w-7 transition", !badge.earned && "text-(--cf-text-soft) opacity-40")}
+          style={badge.earned ? { color: "var(--accent-amber)" } : undefined}
+          aria-hidden
+        />
         <div className="flex items-center gap-2">
           {badge.tier ? <Chip tone="neutral">{badge.tier}</Chip> : null}
           {!badge.earned ? <Lock className="h-4 w-4 text-(--cf-text-soft)" /> : null}
@@ -279,6 +288,7 @@ export function ProgressToNextBadgeCard({
     );
   }
 
+  const Icon = BADGE_ICONS[milestone.badge.icon] ?? FALLBACK_BADGE_ICON;
   return (
     <Card className="overflow-hidden border-(--cf-warning-border) bg-(--cf-warning-soft)">
       <div className="flex items-start justify-between gap-4">
@@ -288,8 +298,8 @@ export function ProgressToNextBadgeCard({
           <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{milestone.badge.description}</p>
         </div>
         <div className="flex flex-col items-end gap-2">
-          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-surface) text-3xl">
-            <span className="opacity-85">{milestone.badge.icon}</span>
+          <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl border border-(--cf-warning-border) bg-(--cf-surface)">
+            <Icon className="h-7 w-7 opacity-85" style={{ color: "var(--accent-amber)" }} aria-hidden />
           </div>
           <span className="inline-flex items-center gap-1 text-xs text-(--cf-warning-text)">
             <Zap className="h-3 w-3" />
@@ -326,11 +336,12 @@ export function ProgressToNextBadgeCard({
 }
 
 export function BadgeTimelineItem({ entry, onOpen }: { entry: BadgeTimelineEntry; onOpen?: () => void }) {
+  const Icon = BADGE_ICONS[entry.icon] ?? FALLBACK_BADGE_ICON;
   return (
     <div className="flex gap-4 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5">
       <div className="flex flex-col items-center">
-        <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-2xl">
-          {entry.icon}
+        <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted)">
+          <Icon className="h-6 w-6" style={{ color: "var(--accent-amber)" }} aria-hidden />
         </span>
         <span className="mt-2 h-full w-px bg-(--cf-border)" />
       </div>
@@ -369,12 +380,17 @@ export function BadgeDetailPanel({
     badge.targetValue > 0
       ? Math.max(0, Math.min(100, Math.round((badge.progressValue / badge.targetValue) * 100)))
       : 0;
+  const Icon = BADGE_ICONS[badge.icon] ?? FALLBACK_BADGE_ICON;
 
   return (
     <div className="space-y-4">
       <div className="flex items-start justify-between gap-4">
-        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) text-4xl">
-          <span className={cn(!badge.earned && "opacity-45 grayscale")}>{badge.icon}</span>
+        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted)">
+          <Icon
+            className={cn("h-9 w-9", !badge.earned && "text-(--cf-text-soft) opacity-45")}
+            style={badge.earned ? { color: "var(--accent-amber)" } : undefined}
+            aria-hidden
+          />
         </div>
         <div className="flex flex-wrap justify-end gap-2">
           <Chip tone={badge.earned ? "amber" : "neutral"}>{badge.earned ? "Earned" : "Locked"}</Chip>
@@ -446,6 +462,8 @@ export function DashboardAchievementWidget({
   onOpenBadge: (badge: BadgeState) => void;
   onViewAll: () => void;
 }) {
+  const RecentIcon = recentBadge ? (BADGE_ICONS[recentBadge.icon] ?? FALLBACK_BADGE_ICON) : FALLBACK_BADGE_ICON;
+  const NextIcon = nextMilestone ? (BADGE_ICONS[nextMilestone.badge.icon] ?? FALLBACK_BADGE_ICON) : FALLBACK_BADGE_ICON;
   return (
     <Card className="overflow-hidden">
       <div className="flex flex-wrap items-start justify-between gap-4">
@@ -469,7 +487,7 @@ export function DashboardAchievementWidget({
           {recentBadge ? (
             <button type="button" onClick={() => onOpenBadge(recentBadge)} className="cf-pressable mt-4 block w-full rounded-2xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-4 text-left transition hover:border-(--cf-warning-border)">
               <div className="flex items-start justify-between gap-3">
-                <span className="text-3xl">{recentBadge.icon}</span>
+                <RecentIcon className="h-7 w-7" style={{ color: "var(--accent-amber)" }} aria-hidden />
                 <Chip tone="amber">Earned</Chip>
               </div>
               <p className="mt-3 text-base font-semibold text-(--cf-text-1)">{recentBadge.name}</p>
@@ -493,7 +511,7 @@ export function DashboardAchievementWidget({
                   <p className="text-base font-semibold text-(--cf-text-1)">{nextMilestone.badge.name}</p>
                   <p className="mt-2 text-sm leading-6 text-(--cf-text-2)">{nextMilestone.badge.description}</p>
                 </div>
-                <span className="text-3xl opacity-80">{nextMilestone.badge.icon}</span>
+                <NextIcon className="h-7 w-7 opacity-80" style={{ color: "var(--accent-amber)" }} aria-hidden />
               </div>
               <div className="mt-4 h-2 overflow-hidden rounded-full bg-(--cf-border)">
                 <div className="h-full rounded-full bg-linear-to-r from-(--cf-accent) to-(--cf-accent-strong)" style={{ width: `${Math.max(6, nextMilestone.progressPercent)}%` }} />

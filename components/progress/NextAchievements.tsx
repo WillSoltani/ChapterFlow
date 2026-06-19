@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { X } from "lucide-react";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
 import type { Milestone } from "./progressTypes";
 
 interface NextAchievementsProps {
@@ -126,6 +127,9 @@ export function NextAchievements({
             "var(--accent-emerald)",
           ];
           const barColor = tierColors[idx % tierColors.length];
+          // UF-4: milestone.icon is a lucide-react icon NAME; resolve it to a
+          // component via the shared badge map (same pattern as the badges page).
+          const Icon = BADGE_ICONS[milestone.icon] ?? FALLBACK_BADGE_ICON;
 
           return (
             <Link
@@ -137,16 +141,16 @@ export function NextAchievements({
                 border: "1px solid var(--cf-border)",
               }}
             >
-              {/* Badge icon */}
-              <span
-                className="shrink-0 text-3xl"
+              {/* Badge icon (lucide, tier-accented) */}
+              <Icon
+                className="h-7 w-7 shrink-0"
                 style={{
+                  color: barColor,
                   filter: progressPct === 0 ? "grayscale(0.7)" : "none",
                   opacity: progressPct === 0 ? 0.5 : 0.8,
                 }}
-              >
-                {milestone.icon}
-              </span>
+                aria-hidden
+              />
 
               {/* Info */}
               <div className="min-w-0 flex-1">
