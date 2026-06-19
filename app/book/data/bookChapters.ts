@@ -121,7 +121,6 @@ import {
 
 export type ReadingDepth = "simple" | "standard" | "deeper";
 export type ExampleScope = "work" | "school" | "personal";
-export type ChapterMotivationStyle = "gentle" | "direct" | "competitive";
 
 export type ChapterQuizQuestion = {
   id: string;
@@ -1235,90 +1234,4 @@ export function getBookPackageEdition(bookId: string): string | undefined {
   if (typeof edition === "string") return edition;
   const year = typeof edition.publishedYear === "number" ? ` (${edition.publishedYear})` : "";
   return `${edition.name}${year}`;
-}
-
-function toneTail(
-  style: ChapterMotivationStyle,
-  role: "summary" | "bullet" | "action" | "meaning" | "quiz"
-): string {
-  if (style === "gentle") {
-    if (role === "summary") return " Hold the point calmly and let the facts do their work.";
-    if (role === "bullet") return " That usually keeps the situation clearer and easier to handle.";
-    if (role === "action") return " Keep the move calm, clear, and proportionate.";
-    if (role === "meaning") return " That helps prevent avoidable damage and unnecessary escalation.";
-    return " It follows the principle without adding extra friction.";
-  }
-
-  if (style === "direct") {
-    if (role === "summary") return " Do the comparison before you commit.";
-    if (role === "bullet") return " That is the standard to hold.";
-    if (role === "action") return " Do it plainly and do it early.";
-    if (role === "meaning") return " That stops a small problem from turning into an expensive one.";
-    return " It matches the principle and avoids the common mistake.";
-  }
-
-  if (role === "summary") return " Miss this and you hand away position before the contest starts.";
-  if (role === "bullet") return " That is where disciplined people keep the edge.";
-  if (role === "action") return " That is how you keep initiative instead of reacting late.";
-  if (role === "meaning") return " That keeps weakness from turning into a real loss.";
-  return " It protects position and creates leverage instead of giving it away.";
-}
-
-function appendTone(text: string, style: ChapterMotivationStyle, role: "summary" | "bullet" | "action" | "meaning" | "quiz"): string {
-  const normalized = cleanText(text);
-  if (!normalized) return normalized;
-  if (style === "gentle") {
-    if (role === "quiz") return normalized;
-  }
-  return `${normalized}${toneTail(style, role)}`;
-}
-
-function personalizeSummaryBlocks(
-  chapter: BookChapter,
-  blocks: ChapterSummaryBlock[],
-  style: ChapterMotivationStyle
-): ChapterSummaryBlock[] {
-  return blocks.map((block) =>
-    block.type === "paragraph"
-      ? { ...block, text: appendTone(block.text, style, "summary") }
-      : { ...block, detail: block.detail ? appendTone(block.detail, style, "bullet") : undefined }
-  );
-}
-
-function personalizeQuestions(
-  chapter: BookChapter,
-  questions: ChapterQuizQuestion[],
-  style: ChapterMotivationStyle
-): ChapterQuizQuestion[] {
-  return questions.map((question) => ({
-    ...question,
-    explanation: appendTone(question.explanation, style, "quiz"),
-  }));
-}
-
-export function personalizeChapterForMotivation(
-  chapter: BookChapter,
-  style: ChapterMotivationStyle
-): BookChapter {
-  return {
-    ...chapter,
-    summaryByDepth: {
-      simple: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.simple, style),
-      standard: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.standard, style),
-      deeper: personalizeSummaryBlocks(chapter, chapter.summaryByDepth.deeper, style),
-    },
-    recap: chapter.recap ? appendTone(chapter.recap, style, "action") : chapter.recap,
-    examplesDetailed: chapter.examplesDetailed.map((example) => ({
-      ...example,
-      whatToDo: appendTone(example.whatToDo, style, "action"),
-      whyItMatters: appendTone(example.whyItMatters, style, "meaning"),
-    })),
-    quiz: personalizeQuestions(chapter, chapter.quiz, style),
-    quizByDepth: {
-      simple: personalizeQuestions(chapter, chapter.quizByDepth.simple, style),
-      standard: personalizeQuestions(chapter, chapter.quizByDepth.standard, style),
-      deeper: personalizeQuestions(chapter, chapter.quizByDepth.deeper, style),
-    },
-    quizRetryPool: personalizeQuestions(chapter, chapter.quizRetryPool, style),
-  };
 }
