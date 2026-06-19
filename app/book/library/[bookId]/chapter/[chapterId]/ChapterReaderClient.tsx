@@ -60,6 +60,7 @@ import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/
 import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/quizReconcile";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
+import { useBreakReminder } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useBreakReminder";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
@@ -745,6 +746,26 @@ export function ChapterReaderClient({
       setToast(msg);
     }
   }, [readingSession.dailyGoalReached, dailyGoalMinutes, bookPrefs.extended.motivationPersona]);
+
+  // Break reminders (SET-4) — the settings toggle promises "a gentle reminder to
+  // rest your eyes during long reading sessions". This is the in-session consumer
+  // of `extended.breakReminders` / `breakReminderMinutes`. It fires once per
+  // interval of *engaged* reading (idle/backgrounded/mid-quiz time does not
+  // count), never on the quiz tab, via the same non-animated toast lane as the
+  // daily-goal nudge — so it inherently respects reduced motion (no animation).
+  useBreakReminder({
+    enabled:
+      bookPrefs.extended.breakReminders &&
+      onboardingHydrated &&
+      hydrated &&
+      chapterHydrated &&
+      onboarding.setupComplete &&
+      bookAccessStatus === "ready" &&
+      !isLocked,
+    intervalMinutes: bookPrefs.extended.breakReminderMinutes,
+    paused: showQuiz,
+    onBreak: () => setToast("Time for a quick break — rest your eyes for a moment."),
+  });
 
   const [committedToChapter, setCommittedToChapter] = useState(false);
 
