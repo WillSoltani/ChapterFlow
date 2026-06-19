@@ -123,7 +123,7 @@ const faqs = [
 export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [isAnnual, setIsAnnual] = useState(false);
-  const { loggedIn } = useAuthStatus();
+  const { loggedIn, isPro } = useAuthStatus({ withPlan: true });
   const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
   // The Pro CTA advertises "Start 14-day free trial" with a "card required,
   // charged when the trial ends" promise — so it must land on the trial-start
@@ -131,7 +131,16 @@ export function Pricing() {
   // Billing tab (upgrade action). Logged-out: login → that same surface via
   // returnTo, instead of AUTH_LOGIN_BOOK_URL which dumped new visitors in /book
   // (the reader) with no checkout.
-  const proHref = loggedIn ? UPGRADE_RETURN_PATH : UPGRADE_LOGIN_URL;
+  // A user who is ALREADY Pro must NOT be sent toward a second checkout
+  // (CHECKOUT-DOUBLE): relabel to "Manage subscription" and route them to
+  // settings. isPro defaults false, so the CTA degrades to the trial flow if the
+  // plan can't be resolved.
+  const proHref = isPro
+    ? "/book/settings"
+    : loggedIn
+      ? UPGRADE_RETURN_PATH
+      : UPGRADE_LOGIN_URL;
+  const proCtaLabel = isPro ? "Manage subscription" : TRIAL_CTA_LABEL;
   const perMonthAmount = isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount;
 
   const toggleFaq = (index: number) => {
@@ -380,24 +389,29 @@ export function Pricing() {
                 ))}
               </ul>
 
-              <p
-                className="mt-6 mb-3 text-[12px] text-(--text-muted) text-center leading-[1.6]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {PRICING.trialDays}-day free trial, then{" "}
-                {isAnnual
-                  ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year (${formatAmount(PRICING.annualMonthlyAmount)} ${PRICING.currency}/month)`
-                  : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}
-                . A card is required; you won&apos;t be charged until the trial ends, and you can
-                cancel anytime before then.{" "}
-                <Link
-                  href="/legal/refund"
-                  className="underline hover:text-(--text-secondary)"
+              {/* Trial terms are a broken promise to someone already paying, so
+                  hide them for Pro users (the CTA above is now "Manage
+                  subscription"). Everyone else sees the full disclosure. */}
+              {!isPro && (
+                <p
+                  className="mt-6 mb-3 text-[12px] text-(--text-muted) text-center leading-[1.6]"
+                  style={{ fontFamily: "var(--font-body)" }}
                 >
-                  Refund policy
-                </Link>
-                .
-              </p>
+                  {PRICING.trialDays}-day free trial, then{" "}
+                  {isAnnual
+                    ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year (${formatAmount(PRICING.annualMonthlyAmount)} ${PRICING.currency}/month)`
+                    : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}
+                  . A card is required; you won&apos;t be charged until the trial ends, and you can
+                  cancel anytime before then.{" "}
+                  <Link
+                    href="/legal/refund"
+                    className="underline hover:text-(--text-secondary)"
+                  >
+                    Refund policy
+                  </Link>
+                  .
+                </p>
+              )}
 
               {/* CTA — upgrade = "the win", so it carries the single canonical
                   gold Pro-CTA accent (--cf-upgrade-accent, from batch 01), the
@@ -405,7 +419,7 @@ export function Pricing() {
                   ≥4.5:1 on gold. NOT the cyan product accent (cyan = "the work"). */}
               <Link
                 href={proHref}
-                onClick={() => track("cta_click", { source: "pricing_pro" })}
+                onClick={() => track("cta_click", { source: isPro ? "pricing_manage" : "pricing_pro" })}
                 className="block w-full text-center rounded-xl py-3.5 font-semibold text-black transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                 style={{
                   fontFamily: "var(--font-display)",
@@ -413,7 +427,7 @@ export function Pricing() {
                   boxShadow: "var(--cf-upgrade-accent-shadow)",
                 }}
               >
-                {TRIAL_CTA_LABEL}
+                {proCtaLabel}
               </Link>
             </div>
           </SectionReveal>

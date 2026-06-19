@@ -58,6 +58,22 @@ export async function POST(req: Request) {
     ]);
 
     const entitlement = await getUserEntitlement(tableName, user.sub);
+
+    // Money-path guard (CHECKOUT-DOUBLE): refuse a NEW subscription for anyone
+    // who is already Pro by ANY source — Stripe, license, gift_code,
+    // flow_points, admin. getUserEntitlement returns the EFFECTIVE plan (expired
+    // license/gift/flow grants already read back as FREE), so this is
+    // expiry-aware. The Stripe-subscription lookup below only catches Stripe-Pro
+    // users (customerExisted); this catches the rest, BEFORE we mint a Stripe
+    // customer or build a checkout session.
+    if (entitlement?.plan === "PRO") {
+      throw new BookApiError(
+        409,
+        "already_pro",
+        "You already have Pro access. Manage your plan from your account settings."
+      );
+    }
+
     let customerId = entitlement?.stripeCustomerId;
     const customerExisted = Boolean(customerId);
 
