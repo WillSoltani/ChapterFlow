@@ -2,6 +2,7 @@ import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { FinalCTALinks } from "@/components/landing/FinalCTALinks";
 import { LEARNING_LOOP_STEPS } from "@/lib/learning-loop";
+import { CATALOG_MEDIAN_CHAPTER_MINUTES } from "@/lib/catalog-stats";
 
 export function FinalCTA() {
   return (
@@ -37,7 +38,8 @@ export function FinalCTA() {
               color: "var(--text-secondary)",
             }}
           >
-            Every chapter is a 20-minute loop: {LEARNING_LOOP_STEPS.join(", ")}.
+            Every chapter is a ~{CATALOG_MEDIAN_CHAPTER_MINUTES}-minute loop:{" "}
+            {LEARNING_LOOP_STEPS.join(", ")}.
             Start free &mdash; no credit card, no commitment.
           </p>
 

@@ -8,7 +8,10 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CounterAnimation } from "@/components/ui/CounterAnimation";
 import { BookCover } from "@/components/ui/BookCover";
 import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
-import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
+import {
+  CATALOG_BOOK_COUNT,
+  CATALOG_MEDIAN_CHAPTER_MINUTES,
+} from "@/lib/catalog-stats";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { track } from "@/lib/analytics";
 import { PRICING } from "@/lib/pricing";
@@ -38,7 +41,12 @@ const CATEGORIES = ["All", ...ALL_CATEGORY_COUNTS.map(([name]) => name)];
 
 const STATS = [
   { label: "Books available", target: BOOK_COUNT, suffix: "", prefix: "" },
-  { label: "Minutes per chapter", target: 20, suffix: " min", prefix: "~" },
+  {
+    label: "Minutes per chapter",
+    target: CATALOG_MEDIAN_CHAPTER_MINUTES,
+    suffix: " min",
+    prefix: "~",
+  },
   {
     label: "Free to start",
     target: FREE_TO_START_COUNT,
