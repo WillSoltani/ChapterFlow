@@ -7,8 +7,10 @@ import { INSIGHT_POINTS_EARNING_RULES } from "@/app/book/_lib/flow-points-econom
 
 interface RewardsCardProps {
   insightPoints: number;
-  nextRewardName: string;
-  pointsRequired: number;
+  // UF-3: a Pro subscriber has no plan-relevant "next reward" goal, so the
+  // dashboard passes these as undefined and the progress sub-block is hidden.
+  nextRewardName?: string;
+  pointsRequired?: number;
 }
 
 export function RewardsCard({
@@ -17,7 +19,8 @@ export function RewardsCard({
   pointsRequired,
 }: RewardsCardProps) {
   const prefersReducedMotion = useReducedMotion();
-  const progress = Math.min((insightPoints / pointsRequired) * 100, 100);
+  const progress =
+    pointsRequired != null ? Math.min((insightPoints / pointsRequired) * 100, 100) : 0;
 
   const quizRule = INSIGHT_POINTS_EARNING_RULES.find((r) => r.sourceType === "quiz_pass");
   const bookRule = INSIGHT_POINTS_EARNING_RULES.find((r) => r.sourceType === "book_complete");
@@ -74,40 +77,44 @@ export function RewardsCard({
         Earned when you pass a quiz or finish a book. Spend them on bonus books.
       </p>
 
-      {/* Progress to next reward */}
-      <div className="mt-3">
-        <div
-          className="h-1.5 overflow-hidden rounded-full"
-          style={{ background: "var(--cf-progress-track)" }}
-          role="progressbar"
-          aria-valuenow={insightPoints}
-          aria-valuemin={0}
-          aria-valuemax={pointsRequired}
-          aria-label={`${insightPoints} of ${pointsRequired} points toward ${nextRewardName}`}
-        >
-          <motion.div
-            className="h-full rounded-full"
-            style={{
-              background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
-            }}
-            initial={prefersReducedMotion ? undefined : { width: 0 }}
-            whileInView={{ width: `${progress}%` }}
-            viewport={{ once: true }}
-            transition={
-              prefersReducedMotion
-                ? { duration: 0 }
-                : { duration: DUR.reveal, ease: "easeOut", delay: 0.4 }
-            }
-          />
+      {/* Progress to next reward — hidden when there is no plan-relevant goal
+          (e.g. a Pro subscriber, UF-3); the IP balance + quick-earn rows below
+          still render and stay useful. */}
+      {nextRewardName != null && pointsRequired != null && (
+        <div className="mt-3">
+          <div
+            className="h-1.5 overflow-hidden rounded-full"
+            style={{ background: "var(--cf-progress-track)" }}
+            role="progressbar"
+            aria-valuenow={insightPoints}
+            aria-valuemin={0}
+            aria-valuemax={pointsRequired}
+            aria-label={`${insightPoints} of ${pointsRequired} points toward ${nextRewardName}`}
+          >
+            <motion.div
+              className="h-full rounded-full"
+              style={{
+                background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
+              }}
+              initial={prefersReducedMotion ? undefined : { width: 0 }}
+              whileInView={{ width: `${progress}%` }}
+              viewport={{ once: true }}
+              transition={
+                prefersReducedMotion
+                  ? { duration: 0 }
+                  : { duration: DUR.reveal, ease: "easeOut", delay: 0.4 }
+              }
+            />
+          </div>
+          <p className="mt-1.5 text-xs" style={{ color: "var(--cf-text-soft)" }}>
+            <span className="tabular-nums" style={{ color: "var(--cf-text-3)" }}>
+              {insightPoints}
+            </span>{" "}
+            / {pointsRequired} →{" "}
+            <span style={{ color: "var(--cf-text-3)" }}>{nextRewardName}</span>
+          </p>
         </div>
-        <p className="mt-1.5 text-xs" style={{ color: "var(--cf-text-soft)" }}>
-          <span className="tabular-nums" style={{ color: "var(--cf-text-3)" }}>
-            {insightPoints}
-          </span>{" "}
-          / {pointsRequired} →{" "}
-          <span style={{ color: "var(--cf-text-3)" }}>{nextRewardName}</span>
-        </p>
-      </div>
+      )}
 
       {/* Quick-earn actions */}
       <div className="mt-4 flex flex-col gap-2">
