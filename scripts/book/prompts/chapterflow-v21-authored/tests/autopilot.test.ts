@@ -18,9 +18,12 @@ import {
   parseRoundTokens,
   brokerCardTarget,
   brokerReviewer,
+  spawnReviewers,
+  sliceBarPackToChapter,
   roleFromCard,
   resolveDeps,
   type AutopilotDeps,
+  type BrokerResult,
 } from "../src/orchestrator/autopilot.js";
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
 import { STRICT_ENV_VAR_NAMES } from "../src/lib/strictEnv.js";
@@ -69,6 +72,9 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
     chapterHashes: () => ({}),
     submissionPresent: () => true,
     logSession: () => {},
+    logBroker: () => {},
+    reviewerSkeleton: () => null,
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind-test", inputs: [], cleanup: () => {} }),
     // A valid review packet: the broker parses per-role tokens from here, and the
     // conductor's token preflight refuses to spawn a wave whose role has no token.
     readReviewPacket: () => ["sweep", "keyA", "keyB", "bar", "confirm", "major"]
@@ -607,6 +613,122 @@ test("broker records a MAJOR triage under the reviewer's session id and NEVER ru
   const submit = verbs.find((v) => v[0] === "qc-submit");
   assert.ok(submit && submit.includes("--role") && submit.includes("major") && submit.includes("MAJTOK"), "qc-submit --role major --token MAJTOK");
   assert.ok(!verbs.some((v) => v[0] === "major-disposition"), "the broker NEVER invokes major-disposition — a reviewer can't waive a major");
+});
+
+// ── Q4: self-contained reviewer prompts ───────────────────────────────────────
+function captureTaskDeps(over: Partial<AutopilotDeps>): { deps: AutopilotDeps; taskOf: () => string } {
+  let task = "";
+  const deps = resolveDeps({
+    mkSessionId: (l) => `${l}#1`,
+    readTask: () => "CARD-TEXT",
+    logSession: () => {}, log: () => {},
+    reviewerSkeleton: () => '{"schemaVersion":"qc-bar-read-v2","reviewer":"codex-qc:r1:bar:ch03"}',
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind/zz", inputs: ["bar-pack.json"], cleanup: () => {} }),
+    writeTempSubmission: () => "/tmp/sub.json",
+    spawn: (async (o: { sessionId: string; task: string }) => { task = o.task; return { ok: true, exitCode: 0, finalMessage: "```", stdout: '```json\n{"role":"bar"}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
+    runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
+    ...over,
+  });
+  return { deps, taskOf: () => task };
+}
+
+test("broker prompt is SELF-CONTAINED: card text + role JSON Schema + prefilled skeleton + blind-input list", async () => {
+  const { deps, taskOf } = captureTaskDeps({});
+  await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
+  const task = taskOf();
+  assert.match(task, /CARD-TEXT/, "keeps the task-card text");
+  assert.match(task, /qc-bar-read-v2/, "injects the bar role's JSON Schema (schemaVersion), so the reviewer needs no packet archaeology");
+  assert.match(task, /codex-qc:r1:bar:ch03/, "injects the prefilled submission skeleton");
+  assert.match(task, /bar-pack\.json/, "names the blind-workspace inputs and tells the reviewer to read ONLY them");
+  assert.match(task, /READ-ONLY sandbox/);
+});
+
+test("broker injects the CORRECT role schema per card (confirm / keyA / sweep / major)", async () => {
+  for (const [card, tokenRole, schemaVersion] of [
+    ["/t/confirm/ch02.md", "confirm", "qc-confirm-read-v1"],
+    ["/t/01-keyA.md", "keyA", "qc-key-derive-v2"],
+    ["/t/00-sweep.md", "sweep", "qc-sweep-submission-v1"],
+    ["/t/majors.md", "major", "qc-major-triage-v1"],
+  ] as const) {
+    const { deps, taskOf } = captureTaskDeps({ reviewerSkeleton: () => null });
+    await brokerReviewer("zz", "r1", card, { [tokenRole]: "TOK" }, deps);
+    assert.match(taskOf(), new RegExp(schemaVersion), `${card} → ${schemaVersion}`);
+  }
+});
+
+// ── Q5: blind reviewer workspaces ─────────────────────────────────────────────
+test("broker runs the reviewer in its BLIND-workspace cwd and tears it down after (every path)", async () => {
+  let spawnCwd = "";
+  let cleaned = 0;
+  const { deps } = captureTaskDeps({
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind/zz/r1/sess", inputs: ["bar-pack.json"], cleanup: () => { cleaned++; } }),
+    spawn: (async (o: { sessionId: string; cwd: string }) => { spawnCwd = o.cwd; return { ok: true, exitCode: 0, finalMessage: "```", stdout: '```json\n{"role":"bar"}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
+  });
+  await brokerReviewer("zz", "r1", "/t/bar/ch03.md", { bar: "BARTOK" }, deps);
+  assert.equal(spawnCwd, "/tmp/cf-blind/zz/r1/sess", "reviewer spawned in its blind workspace cwd, NOT PIPELINE_DIR");
+  assert.equal(cleaned, 1, "the blind workspace is torn down after the reviewer finishes");
+});
+
+test("sliceBarPackToChapter keeps ONLY the reviewed chapter (a blind bar workspace can't leak siblings)", () => {
+  const pack = JSON.stringify({
+    schemaVersion: "qc-bar-pack-v1",
+    rubric: "…",
+    chapters: [
+      { chapterNumber: 1, contentHash: "h1", chapter: { title: "one", body: "secret1" } },
+      { chapterNumber: 2, contentHash: "h2", chapter: { title: "two", body: "secret2" } },
+      { chapterNumber: 3, contentHash: "h3", chapter: { title: "three", body: "secret3" } },
+    ],
+  });
+  const sliced = JSON.parse(sliceBarPackToChapter(pack, 2));
+  assert.equal(sliced.chapters.length, 1, "exactly one chapter survives");
+  assert.equal(sliced.chapters[0].chapterNumber, 2, "and it's the reviewed one");
+  assert.equal(sliced.schemaVersion, "qc-bar-pack-v1", "non-chapter fields (rubric/meta) preserved");
+  assert.ok(!sliceBarPackToChapter(pack, 2).includes("secret1") && !sliceBarPackToChapter(pack, 2).includes("secret3"), "sibling chapter CONTENT is gone");
+  assert.deepEqual(JSON.parse(sliceBarPackToChapter(pack, 99)).chapters, [], "an unknown chapter slices to empty (caller falls open)");
+});
+
+test("default blind workspace falls OPEN to the pipeline dir when a role's packs are absent (never starves a reviewer)", async () => {
+  let spawnCwd = "";
+  // reviewerWorkspace NOT stubbed → the real default runs; with no packs on disk for this
+  // book it must fall open to PIPELINE_DIR rather than hand the reviewer an empty cwd.
+  const deps = resolveDeps({
+    mkSessionId: (l) => `${l}#1`, readTask: () => "card", logSession: () => {}, log: () => {},
+    reviewerSkeleton: () => null,
+    writeTempSubmission: () => "/tmp/sub.json",
+    spawn: (async (o: { sessionId: string; cwd: string }) => { spawnCwd = o.cwd; return { ok: true, exitCode: 0, finalMessage: "```", stdout: '```json\n{"role":"sweep"}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
+    runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
+  });
+  await brokerReviewer("zz-no-such-book", "r1", "/t/00-sweep.md", { sweep: "SW" }, deps);
+  assert.ok(spawnCwd.endsWith("chapterflow-v21-authored"), "no packs on disk → cwd falls open to the pipeline dir");
+});
+
+// ── Q6b: durable broker logging ───────────────────────────────────────────────
+test("a brokered wave durably logs each outcome (codex exit-0 but qc-submit REJECTED → submissionOk:false)", async () => {
+  const brokerLog: BrokerResult[] = [];
+  const deps = resolveDeps({
+    mkSessionId: (l) => `${l}#1`, readTask: () => "card", logSession: () => {}, log: () => {},
+    reviewerSkeleton: () => null,
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind", inputs: [], cleanup: () => {} }),
+    writeTempSubmission: () => "/tmp/sub.json",
+    logBroker: (_b, r) => brokerLog.push(r),
+    readReviewPacket: () => "npx tsx src/cli.ts qc-submit zz --round r1 --role bar --token BARTOK --file <x>",
+    spawn: (async (o: { sessionId: string }) => ({ ok: true, exitCode: 0, finalMessage: "```", stdout: '```json\n{"role":"bar"}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId })) as unknown as AutopilotDeps["spawn"],
+    runVerb: async (args) => (args[0] === "qc-submit" ? { code: 1, stdout: "", stderr: "rejected: axis <0.6 needs a cited hit" } : { code: 0, stdout: "", stderr: "" }),
+  });
+  await spawnReviewers("zz", "r1", ["/t/bar/ch03.md"], 2, deps);
+  assert.equal(brokerLog.length, 1, "the broker outcome was durably logged");
+  assert.equal(brokerLog[0].agentOk, true, "the codex session itself succeeded");
+  assert.equal(brokerLog[0].submissionOk, false, "but qc-submit REJECTED it — recorded as submissionOk:false (sessions.jsonl would look healthy)");
+  assert.match(brokerLog[0].error ?? "", /rejected/);
+});
+
+test("a throwing logBroker does NOT change the wave outcome (best-effort)", async () => {
+  const { deps } = captureTaskDeps({
+    logBroker: () => { throw new Error("disk full"); },
+    readReviewPacket: () => "npx tsx src/cli.ts qc-submit zz --round r1 --role bar --token BARTOK --file <x>",
+  });
+  const results = await spawnReviewers("zz", "r1", ["/t/bar/ch03.md"], 2, deps);
+  assert.equal(results.length, 1, "the wave still returns its results despite a logBroker failure");
 });
 
 test("roleFromCard is variant-aware: bar-tiebreak maps to bar+variant (NOT 'unknown'), primary bar has no variant", () => {

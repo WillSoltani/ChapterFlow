@@ -145,6 +145,42 @@ test("driver: NARROW retry re-spawns only the missing cards, then PASSes", async
   assert.ok(retried[0].length > 0 && retried[0].every((c) => c.includes("ch01")), "only the missing ch01 cards were re-spawned");
 });
 
+test("driver: a SUCCESSFUL narrow retry RE-ENTERS converge+finalize so a newly-eligible confirm card is generated and reviewed (no false-INCOMPLETE halt)", async () => {
+  // The hard case: a bar read is flaky through the first + dynamic waves (zero-progress
+  // stop) and lands ONLY on the narrow retry. That makes its chapter a fresh publishable
+  // candidate whose CONFIRM card hasn't been generated yet. A bare re-finalize would strand
+  // it → false INCOMPLETE. The re-entry must regenerate + review the confirm card → PASS.
+  const filled = new Set<string>(["/t/00-sweep.md"]); // sweep already in from a prior fill
+  let genCalls = 0;
+  let finalizeCalls = 0;
+  const waves: string[] = [];
+  const { steps, calls } = makeSteps({
+    firstWaveCards: () => ["/t/00-sweep.md", "/t/bar/ch01.md"],
+    // The bar read is FLAKY: it fills only on the "retry" wave, never on first/dynamic.
+    spawnReviewers: async (cards, wave) => {
+      waves.push(wave);
+      for (const c of cards) {
+        if (c === "/t/bar/ch01.md" && wave !== "retry") continue; // flaky until the retry
+        filled.add(c);
+      }
+      return {};
+    },
+    countSubmissions: () => filled.size,
+    submissionPresent: (c) => filled.has(c),
+    // The confirm card becomes eligible ONLY after the bar landed AND confirm-candidates has
+    // regenerated post-retry (genCalls ≥ 2: once in the first pass, once in the re-entry).
+    pendingReviewCards: () => (filled.has("/t/bar/ch01.md") && genCalls >= 2 ? ["/t/confirm/ch01.md"] : []),
+    generateConfirmCandidates: () => { genCalls++; return { ok: true, errors: [] }; },
+    finalize: () => { finalizeCalls++; return filled.has("/t/confirm/ch01.md") ? finalized(["PUBLISHABLE"]) : finalized(["NEEDS_MORE_QC"]); },
+  });
+  const r = await driveQcRoundCore(steps, { isSubset: false, narrowRetryOnIncomplete: true });
+  assert.equal(r.outcome, "PASS", "re-entry generated + reviewed the confirm card; pre-fix this was a false INCOMPLETE");
+  assert.equal(calls.metrics, 1, "metrics recorded exactly once across the re-entry");
+  assert.ok(waves.includes("retry"), "the narrow retry ran");
+  assert.ok(filled.has("/t/confirm/ch01.md"), "the newly-eligible confirm card was generated AND reviewed (filled)");
+  assert.ok(finalizeCalls <= 2, "bounded: first-pass finalize + exactly one of {re-entry, bare} finalize");
+});
+
 test("driver e2e: borderline bar → t2/t3 tiebreak → confirm → PASS (the dynamic-wave loop reviews generated work)", async () => {
   // The reviewer's blocker-2: confirm-candidates emits bar-tiebreak t2/t3 cards for a
   // borderline chapter (and BLOCKS it); only after they're reviewed + regenerated does the

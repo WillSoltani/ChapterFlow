@@ -27,7 +27,7 @@
 
 import { spawn } from "child_process";
 import { randomBytes } from "crypto";
-import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync } from "fs";
+import { existsSync, readdirSync, readFileSync, mkdirSync, writeFileSync, unlinkSync, appendFileSync, renameSync, copyFileSync, rmSync } from "fs";
 import { hostname, tmpdir } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -35,9 +35,19 @@ import { fileURLToPath } from "url";
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { loadBookChapters } from "../qc/manualKeyJudge.js";
+import { loadBookChapters, keyPackDir } from "../qc/manualKeyJudge.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
-import { reviewPacketPath } from "../qc/orchestrator/reviewPacket.js";
+import {
+  reviewPacketPath,
+  buildSweepSkeleton,
+  buildKeySkeleton,
+  buildBarSkeleton,
+  buildConfirmSkeleton,
+  buildMajorSkeleton,
+} from "../qc/orchestrator/reviewPacket.js";
+import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
+import { sweepPackPath } from "../qc/sweep.js";
+import { barPackPath } from "../qc/barReview.js";
 import { barArtifactPath, confirmArtifactPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
@@ -98,6 +108,19 @@ export type AutopilotDeps = {
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
   /** Persist one agent session's outcome (durable per-agent log) for walk-away forensics. */
   logSession: (bookId: string, label: string, r: CodexAgentResult) => void;
+  /** Persist one BROKERED reviewer's structured outcome (agent/extract/submit success) to a
+   *  durable sibling log, so a codex-exit-0-but-qc-submit-rejected reviewer is diagnosable
+   *  (the session log alone would look healthy). Best-effort: must not throw. */
+  logBroker: (bookId: string, r: BrokerResult) => void;
+  /** The prefilled submission SKELETON for a reviewer card (role-specific, judgment fields
+   *  as sentinels), injected into the broker prompt so the reviewer doesn't hunt the packet.
+   *  null when it can't be built (e.g. a chapter isn't on disk) — the schema alone suffices. */
+  reviewerSkeleton: (bookId: string, roundId: string, card: string) => string | null;
+  /** Build a per-reviewer BLIND working directory holding ONLY that role's authorized inputs,
+   *  used as the reviewer's cwd (constructive isolation — read-only ≠ blind, and codex
+   *  read-only can't OS-jail reads, so this narrows what's IN REACH, not what's readable).
+   *  `inputs` names the copied files for the prompt; cleanup removes the dir. */
+  reviewerWorkspace: (bookId: string, roundId: string, card: string, sessionId: string) => { cwd: string; inputs: string[]; cleanup: () => void };
   /** Read the round's REVIEW-PACKET.md text (holds the plaintext per-role tokens the
    *  broker needs to record a read-only reviewer's submission). "" if absent. */
   readReviewPacket: (bookId: string, roundId: string) => string;
@@ -365,10 +388,92 @@ function logSessionToDisk(bookId: string, label: string, r: CodexAgentResult): v
   } catch { /* best-effort */ }
 }
 
-/** Single-shape (not a discriminated union): the pipeline tsconfig runs strict:false,
- *  which widens boolean-literal discriminants and defeats union narrowing — so heldBy
- *  and refresh are just optional fields, always safe to read. `refresh()` is the
- *  heartbeat the conductor calls each loop iteration to keep a live lock fresh. */
+function logBrokerToDisk(bookId: string, r: BrokerResult): void {
+  // Durable per-broker log, sibling to sessions.jsonl: records the STRUCTURED submit outcome
+  // the session log can't show (a codex exit-0 reviewer whose qc-submit was REJECTED looks
+  // healthy in sessions.jsonl). Best-effort: never break a run on a log-write failure.
+  try {
+    const dir = resolve(PIPELINE_DIR, "state", "autopilot-logs", bookId);
+    mkdirSync(dir, { recursive: true });
+    const line = JSON.stringify({
+      schemaVersion: "autopilot-broker-v1", at: new Date().toISOString(),
+      card: r.card, role: r.role, sessionId: r.sessionId,
+      agentOk: r.agentOk, extractionOk: r.extractionOk, submissionOk: r.submissionOk,
+      error: r.error ?? null,
+    });
+    appendFileSync(resolve(dir, "broker.jsonl"), line + "\n", "utf8");
+  } catch { /* best-effort */ }
+}
+
+/** Default: the prefilled skeleton for a card's role, built from the SAME functions the
+ *  REVIEW-PACKET renders (so the brokered prompt and the packet can't drift). Returns null
+ *  when it can't be built (book/chapter not on disk) — the injected schema alone still
+ *  guides the reviewer's output shape. */
+function defaultReviewerSkeleton(bookId: string, roundId: string, card: string): string | null {
+  try {
+    const { role } = brokerCardTarget(card);
+    if (role === "sweep") return JSON.stringify(buildSweepSkeleton(bookId, roundId), null, 2);
+    if (role === "major") return JSON.stringify(buildMajorSkeleton(bookId, roundId), null, 2);
+    const chapters = loadBookChapters(bookId);
+    if (role === "keyA" || role === "keyB") return JSON.stringify(buildKeySkeleton(bookId, roundId, role, chapters), null, 2);
+    const n = chapterNumberFromCard(card);
+    const ch = n == null ? undefined : chapters.find((c) => c.number === n);
+    if (!ch) return null;
+    if (role === "bar") return JSON.stringify(buildBarSkeleton(bookId, roundId, ch), null, 2);
+    if (role === "confirm") return JSON.stringify(buildConfirmSkeleton(bookId, roundId, ch), null, 2);
+    return null;
+  } catch { return null; }
+}
+
+/** Slice a bar pack down to a single reviewed chapter. The full pack embeds EVERY chapter's
+ *  content, so a single-chapter bar/confirm reviewer must get only its own — else the blind
+ *  workspace would leak siblings. Pure (text→text) so it's directly unit-tested. */
+export function sliceBarPackToChapter(packText: string, chapterNumber: number): string {
+  const pack = JSON.parse(packText) as { chapters?: Array<{ chapterNumber?: number }> };
+  if (Array.isArray(pack.chapters)) pack.chapters = pack.chapters.filter((c) => Number(c?.chapterNumber) === chapterNumber);
+  return JSON.stringify(pack, null, 2);
+}
+
+/** Default: a per-reviewer BLIND cwd holding ONLY the role's authorized inputs. This is
+ *  CONSTRUCTIVE isolation — codex `read-only` permits filesystem reads, so it narrows what
+ *  the reviewer is HANDED (and what a relative read resolves), NOT what is reachable by an
+ *  absolute path; the chapter-hash fence remains the mutation backstop. Fails OPEN to
+ *  PIPELINE_DIR (today's behavior) on any build error so a reviewer is never starved of its
+ *  inputs. qc-submit runs later in the conductor's PIPELINE_DIR, so the workspace only needs
+ *  the reviewer's READ inputs. */
+function defaultReviewerWorkspace(bookId: string, roundId: string, card: string, sessionId: string): { cwd: string; inputs: string[]; cleanup: () => void } {
+  const open = { cwd: PIPELINE_DIR, inputs: [] as string[], cleanup: () => {} };
+  try {
+    const { role } = brokerCardTarget(card);
+    const dir = resolve(tmpdir(), "cf-blind", bookId, roundId, sessionId.replace(/[^a-zA-Z0-9_-]/g, "-"));
+    mkdirSync(dir, { recursive: true });
+    const inputs: string[] = [];
+    const copyInto = (src: string, asName: string): void => { if (existsSync(src)) { copyFileSync(src, resolve(dir, asName)); inputs.push(asName); } };
+    if (role === "sweep") {
+      copyInto(sweepPackPath(bookId, roundId), "sweep-pack.json");
+    } else if (role === "keyA" || role === "keyB") {
+      const kdir = keyPackDir(bookId, roundId);
+      if (existsSync(kdir)) for (const f of readdirSync(kdir)) if (f.endsWith(".key-pack.json")) copyInto(resolve(kdir, f), f);
+    } else if (role === "bar" || role === "confirm") {
+      const n = chapterNumberFromCard(card);
+      const bp = barPackPath(bookId, roundId);
+      if (n != null && existsSync(bp)) {
+        // SLICE the bar pack to the reviewed chapter (see sliceBarPackToChapter).
+        writeFileSync(resolve(dir, "bar-pack.json"), sliceBarPackToChapter(readFileSync(bp, "utf8"), n), "utf8");
+        inputs.push("bar-pack.json");
+      }
+    }
+    // Nothing assembled (e.g. major triage, or the packs aren't on disk) → fall OPEN rather
+    // than starve the reviewer; isolation is best-effort, correctness is never sacrificed.
+    if (inputs.length === 0) { try { rmSync(dir, { recursive: true, force: true }); } catch { /* ignore */ } return open; }
+    return { cwd: dir, inputs, cleanup: () => { try { rmSync(dir, { recursive: true, force: true }); } catch { /* best-effort */ } } };
+  } catch { return open; }
+}
+
+/** Single-shape (not a discriminated union) for simplicity: heldBy and refresh are just
+ *  optional fields, always safe to read regardless of `ok`. `refresh()` is the heartbeat
+ *  the conductor calls each loop iteration to keep a live lock fresh (and to detect a
+ *  steal / a heartbeat it couldn't persist → it returns false and the conductor halts). */
 export type BookLock = { ok: boolean; release: () => void; refresh?: () => boolean; heldBy?: string };
 
 function defaultReadReviewPacket(bookId: string, roundId: string): string {
@@ -508,6 +613,9 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
+    logBroker: d?.logBroker ?? logBrokerToDisk,
+    reviewerSkeleton: d?.reviewerSkeleton ?? defaultReviewerSkeleton,
+    reviewerWorkspace: d?.reviewerWorkspace ?? defaultReviewerWorkspace,
     readReviewPacket: d?.readReviewPacket ?? defaultReadReviewPacket,
     writeTempSubmission: d?.writeTempSubmission ?? defaultWriteTempSubmission,
     acquireLock: d?.acquireLock ?? ((bookId) => acquireBookLock(resolve(PIPELINE_DIR, "state", "autopilot-locks"), bookId)),
@@ -882,6 +990,19 @@ export type BrokerResult = {
   error?: string;         // why it didn't submit (missing-token errors are infra, not content)
 };
 
+/** Assemble the SELF-CONTAINED reviewer prompt: the task card + the role's authoritative
+ *  JSON Schema + a prefilled submission skeleton + the blind-workspace input list, so the
+ *  live reviewer needs no REVIEW-PACKET archaeology and fills only its judgment fields. */
+function buildReviewerTask(cardText: string, roundId: string, role: string, skeleton: string | null, inputs: string[]): string {
+  const schema = submissionJsonSchemaForRole(role);
+  const parts = [cardText, "\n---", `You are a fresh QC reviewer subagent (round ${roundId}) in a READ-ONLY sandbox.`];
+  if (inputs.length) parts.push(`Your authorized inputs are the files in your CURRENT WORKING DIRECTORY: ${inputs.join(", ")}. Read ONLY these — do not open any other path.`);
+  if (schema) parts.push(`Your submission MUST validate against this JSON Schema (schemaVersion ${schema.schemaVersion}):\n\`\`\`json\n${JSON.stringify(schema.schema)}\n\`\`\``);
+  if (skeleton) parts.push(`Fill ONLY the judgment fields of this prefilled skeleton; keep every prefilled structural field (ids, hashes, counts) UNCHANGED:\n\`\`\`json\n${skeleton}\n\`\`\``);
+  parts.push("Do ONLY this card's review. Output ONLY the completed submission JSON for this card as your FINAL message — a single ```json fenced block, nothing else. Do NOT run qc-submit. Do NOT edit any file.");
+  return parts.join("\n");
+}
+
 /** Spawn ONE read-only reviewer and broker its submission. Exported for tests. */
 export async function brokerReviewer(bookId: string, roundId: string, card: string, tokens: Record<string, string>, deps: AutopilotDeps): Promise<BrokerResult> {
   const label = roleLabelFromCard(card);
@@ -889,34 +1010,45 @@ export async function brokerReviewer(bookId: string, roundId: string, card: stri
   // Distinct per-spawn id — qc-submit runs under THIS id so reviewer≠author holds.
   const sessionId = deps.mkSessionId(`qc-${label}`);
   const base: BrokerResult = { card, role, sessionId, agentOk: false, extractionOk: false, submissionOk: false };
-  const task = `${deps.readTask(card)}\n\n---\nYou are a fresh QC reviewer subagent (round ${roundId}) in a READ-ONLY sandbox. Do ONLY this card's review. Output ONLY the completed submission JSON for this card as your FINAL message — a single \`\`\`json fenced block, nothing else. Do NOT run qc-submit. Do NOT edit any file.`;
-  const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox }, deps);
-  if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { ...base, error: `agent exited ${r.exitCode}` }; }
-  // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
-  // non-empty line (the closing ``` of a fenced block, or `}`), so `finalMessage || stdout`
-  // would feed extraction just that fragment and silently drop EVERY multiline submission.
-  const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
-  if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return { ...base, agentOk: true, error: "no parseable submission JSON in agent output" }; }
-  const token = tokens[role];
-  if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return { ...base, agentOk: true, extractionOk: true, error: `no ${role} token in REVIEW-PACKET` }; }
-  let file: string;
-  try { file = deps.writeTempSubmission(bookId, roundId, label, json); }
-  catch (err) { deps.log(`[autopilot] reviewer ${label}: temp submission write failed`); return { ...base, agentOk: true, extractionOk: true, error: `temp write failed: ${(err as Error)?.message ?? String(err)}` }; }
-  const submitArgs = ["qc-submit", bookId, "--round", roundId, "--role", role, "--token", token, "--file", file];
-  if (variant) submitArgs.push("--variant", variant);
-  // CHAPTERFLOW_SESSION_ID = the REVIEWER's id (not the conductor's): submitQcArtifact
-  // stamps it as reviewerSessionId, so independence enforcement is preserved.
-  const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sessionId });
-  if (submit.code !== 0) { deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`); return { ...base, agentOk: true, extractionOk: true, error: `qc-submit exited ${submit.code}: ${(submit.stderr || submit.stdout).slice(0, 200)}` }; }
-  return { ...base, agentOk: true, extractionOk: true, submissionOk: true };
+  // Per-reviewer BLIND workspace (constructive isolation) + a self-contained prompt.
+  const ws = deps.reviewerWorkspace(bookId, roundId, card, sessionId);
+  const task = buildReviewerTask(deps.readTask(card), roundId, role, deps.reviewerSkeleton(bookId, roundId, card), ws.inputs);
+  try {
+    const r = await spawnAndLog(bookId, { task, sessionId, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox }, deps);
+    if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { ...base, error: `agent exited ${r.exitCode}` }; }
+    // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
+    // non-empty line (the closing ``` of a fenced block, or `}`), so `finalMessage || stdout`
+    // would feed extraction just that fragment and silently drop EVERY multiline submission.
+    const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
+    if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return { ...base, agentOk: true, error: "no parseable submission JSON in agent output" }; }
+    const token = tokens[role];
+    if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return { ...base, agentOk: true, extractionOk: true, error: `no ${role} token in REVIEW-PACKET` }; }
+    let file: string;
+    try { file = deps.writeTempSubmission(bookId, roundId, label, json); }
+    catch (err) { deps.log(`[autopilot] reviewer ${label}: temp submission write failed`); return { ...base, agentOk: true, extractionOk: true, error: `temp write failed: ${(err as Error)?.message ?? String(err)}` }; }
+    const submitArgs = ["qc-submit", bookId, "--round", roundId, "--role", role, "--token", token, "--file", file];
+    if (variant) submitArgs.push("--variant", variant);
+    // CHAPTERFLOW_SESSION_ID = the REVIEWER's id (not the conductor's): submitQcArtifact
+    // stamps it as reviewerSessionId, so independence enforcement is preserved.
+    const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sessionId });
+    if (submit.code !== 0) { deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`); return { ...base, agentOk: true, extractionOk: true, error: `qc-submit exited ${submit.code}: ${(submit.stderr || submit.stdout).slice(0, 200)}` }; }
+    return { ...base, agentOk: true, extractionOk: true, submissionOk: true };
+  } finally {
+    ws.cleanup(); // always tear down the blind workspace, on every return/throw path
+  }
 }
 
 /** Broker a whole wave of read-only reviewers. Returns the structured per-card outcomes
- *  (the driver inspects them for a fatal MISSING-TOKEN, which is infra, not content). */
-async function spawnReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<BrokerResult[]> {
+ *  (the driver inspects them for a fatal MISSING-TOKEN, which is infra, not content).
+ *  Exported for tests. */
+export async function spawnReviewers(bookId: string, roundId: string, cards: string[], maxParallel: number, deps: AutopilotDeps): Promise<BrokerResult[]> {
   deps.log(`[autopilot] QC: dispatching ${cards.length} read-only reviewer session(s), brokered (parallel ≤${maxParallel})`);
   const tokens = parseRoundTokens(deps.readReviewPacket(bookId, roundId));
   const results = await mapWithConcurrency(cards, maxParallel, (card) => brokerReviewer(bookId, roundId, card, tokens, deps));
+  // Durably record each broker outcome (a spawn rejection that THREW never reaches here —
+  // spawnAndLog already logged it at the session level before rethrowing). Best-effort: a
+  // logging failure must never sink a completed wave.
+  for (const b of results) { try { deps.logBroker(bookId, b); } catch { /* best-effort */ } }
   const failed = results.filter((b) => !b.submissionOk);
   if (failed.length) deps.log(`[autopilot] QC: ${failed.length}/${results.length} reviewer(s) did not record a submission — ${failed.map((b) => `${roleLabelFromCard(b.card)}:${b.error ?? "?"}`).join("; ")}`);
   return results;
@@ -953,19 +1085,25 @@ function planOnly(bookId: string, deps: AutopilotDeps): AutopilotOutcome {
   const written = new Set(status.chapters.filter((c) => c.written).map((c) => c.number));
   const toWrite = expected.filter((n) => !written.has(n)).length || Math.max(0, (status.expectedChapters ?? 0) - status.writtenChapters);
   // Real first wave = sweep + keyA + keyB + major-triage + one bar per reviewed
-  // chapter (N+4), THEN up to one confirm reviewer per publishable-candidate chapter
-  // (≤N). The old "~N+3 per round" under-counted: it omitted the major-triage card
-  // and didn't separate the confirm wave.
+  // chapter (N+4). THEN the round can dynamically add, per chapter: up to 2 bar-tiebreak
+  // reads if its bar lands BORDERLINE (≤2N — tiebreak is on for EVERY round now), and up
+  // to one confirm read if it becomes a publishable candidate (≤N). So the per-round
+  // WORST case is N+4 + 2N + N = 4N+4; the EXPECTED case is far lower (most chapters are
+  // neither borderline nor regenerated). The old estimate counted only N+4 + ≤N confirm
+  // and silently omitted the tiebreak reads T3 enabled.
   const N = status.expectedChapters ?? status.writtenChapters ?? 0;
   const firstWave = N + 4;
-  const perRoundMax = firstWave + N;
+  const perRoundMax = firstWave + 2 * N + N; // base + tiebreak + confirm
   const lines = [
     `AUTOPILOT PLAN — ${bookId}`,
     `  current phase: ${phase}`,
     `  codex sessions that WOULD spawn from here (estimate):`,
     `    research: ${phase === "research" ? 1 : 0}`,
     `    write:    ${phase === "research" || phase === "write" ? toWrite : 0} (one per remaining chapter)`,
-    `    qc round: ~${firstWave} first-wave (sweep + keyA + keyB + major-triage + ${N}×bar) + ≤${N} confirm = ≤${perRoundMax} sessions/round`,
+    `    qc round: base ~${firstWave} (sweep + keyA + keyB + major-triage + ${N}×bar)`,
+    `              + up to 2 tiebreak reads per BORDERLINE chapter (≤${2 * N})`,
+    `              + up to 1 confirm read per publishable candidate (≤${N})`,
+    `              = ≤${perRoundMax} sessions/round worst case (typical: far lower)`,
     `              ×(1 initial + up to 3 repair rounds)`,
     `  publish: gated (stops at "ready to publish" unless --auto-publish)`,
     `  no API metering — every session runs via codex exec on the subscription.`,

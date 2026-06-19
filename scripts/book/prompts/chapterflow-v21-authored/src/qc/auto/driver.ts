@@ -119,58 +119,90 @@ export async function driveQcRoundCore(steps: QcDriveSteps, opts: QcDriveOptions
   // 2. Submissions must exist before collect (qc-auto: human fills between runs).
   if (steps.countSubmissions() === 0) return fail("INCOMPLETE", "no-submissions");
 
-  // 3. Collect + validate stored submissions.
-  const collected = await steps.collect();
-  if (!collected.ok) return fail("INCOMPLETE", "collect-failed", collected.errors);
+  // Steps 3-6 as a RE-ENTERABLE unit: collect → generate confirm-candidates → drive the
+  // dynamic-wave loop to a fixpoint → finalize. Factored into a closure so a SUCCESSFUL
+  // post-finalize narrow-retry (step 7) can re-run the WHOLE unit: a reviewer card that
+  // lands only on the retry can make a chapter newly publishable, which needs a freshly
+  // GENERATED confirm card reviewed before finalize — a bare re-finalize would strand that
+  // card (an avoidable false-INCOMPLETE halt; never a false pass).
+  type ConvergeResult =
+    | { kind: "fail"; result: QcDriveResult }
+    | { kind: "ok"; finalized: FinalizeQcRoundResult; collectErrors: string[] };
+  const runConvergeAndFinalize = async (): Promise<ConvergeResult> => {
+    // 3. Collect + validate stored submissions.
+    const collected = await steps.collect();
+    if (!collected.ok) return { kind: "fail", result: fail("INCOMPLETE", "collect-failed", collected.errors) };
+    let collectErrors = collected.errors;
 
-  // 4. Generate confirm-candidate (+ bar-tiebreak) cards.
-  const confirm = await steps.generateConfirmCandidates();
-  if (!confirm.ok) return fail("INCOMPLETE", "confirm-failed", confirm.errors);
+    // 4. Generate confirm-candidate (+ bar-tiebreak) cards.
+    const confirm = await steps.generateConfirmCandidates();
+    if (!confirm.ok) return { kind: "fail", result: fail("INCOMPLETE", "confirm-failed", confirm.errors) };
 
-  // 5. Dynamic-wave loop. confirm-candidates GENERATES new review work: confirm cards
-  //    (publishable chapters) and bar-tiebreak t2/t3 cards (borderline chapters, which
-  //    confirm-candidates BLOCKS until the extra reads land). A FIRST-WAVE card can also
-  //    still be missing (a flaky reviewer), and its absence gates the confirm card for its
-  //    chapter — so the pending set is EVERY still-missing card (first-wave + generated).
-  //    Spawn them, re-collect, regenerate — to a fixpoint. Stop when no work remains OR a
-  //    wave makes ZERO progress (a no-op spawner, i.e. qc-auto; or a genuinely stuck
-  //    reviewer). qc-auto's submissionPresent:()=>true ⇒ `pending` is empty ⇒ 0 waves ⇒
-  //    byte-identical single-pass behavior (it relies on the human re-running instead).
-  for (let wave = 0; wave < maxWaves; wave++) {
-    const pending = [...steps.firstWaveCards(), ...steps.pendingReviewCards()].filter((c) => !steps.submissionPresent(c));
-    if (pending.length === 0) break;
-    const vd = await steps.spawnReviewers(pending, "dynamic");
-    if (vd.integrityViolation) return fail("INTEGRITY", vd.integrityViolation, collected.errors);
-    if (vd.infraError) return fail("INFRA", vd.infraError, collected.errors);
-    // Zero-progress guard: break if THIS wave filled nothing in the current pending set
-    // (a no-op spawner, or a genuinely stuck reviewer). The loop only continues while a
-    // wave makes progress (≥1 card fills), and `pending` is rebuilt each iteration from
-    // ALL still-missing cards — so it converges (≤3 waves for the worst chapter: bar →
-    // t2+t3 → confirm) and can NEVER spin; maxWaves is the backstop, not the terminator.
-    if (pending.every((c) => !steps.submissionPresent(c))) break;
-    const c2 = await steps.collect();
-    if (!c2.ok) return fail("INCOMPLETE", "collect-failed", c2.errors);
-    const cc2 = await steps.generateConfirmCandidates();
-    if (!cc2.ok) return fail("INCOMPLETE", "confirm-failed", cc2.errors);
-  }
+    // 5. Dynamic-wave loop. confirm-candidates GENERATES new review work: confirm cards
+    //    (publishable chapters) and bar-tiebreak t2/t3 cards (borderline chapters, which
+    //    confirm-candidates BLOCKS until the extra reads land). A FIRST-WAVE card can also
+    //    still be missing (a flaky reviewer), and its absence gates the confirm card for its
+    //    chapter — so the pending set is EVERY still-missing card (first-wave + generated).
+    //    Spawn them, re-collect, regenerate — to a fixpoint. Stop when no work remains OR a
+    //    wave makes ZERO progress (a no-op spawner, i.e. qc-auto; or a genuinely stuck
+    //    reviewer). qc-auto's submissionPresent:()=>true ⇒ `pending` is empty ⇒ 0 waves ⇒
+    //    byte-identical single-pass behavior (it relies on the human re-running instead).
+    for (let wave = 0; wave < maxWaves; wave++) {
+      const pending = [...steps.firstWaveCards(), ...steps.pendingReviewCards()].filter((c) => !steps.submissionPresent(c));
+      if (pending.length === 0) break;
+      const vd = await steps.spawnReviewers(pending, "dynamic");
+      if (vd.integrityViolation) return { kind: "fail", result: fail("INTEGRITY", vd.integrityViolation, collectErrors) };
+      if (vd.infraError) return { kind: "fail", result: fail("INFRA", vd.infraError, collectErrors) };
+      // Zero-progress guard: break if THIS wave filled nothing in the current pending set
+      // (a no-op spawner, or a genuinely stuck reviewer). The loop only continues while a
+      // wave makes progress (≥1 card fills), and `pending` is rebuilt each iteration from
+      // ALL still-missing cards — so it converges (≤3 waves for the worst chapter: bar →
+      // t2+t3 → confirm) and can NEVER spin; maxWaves is the backstop, not the terminator.
+      if (pending.every((c) => !steps.submissionPresent(c))) break;
+      const c2 = await steps.collect();
+      if (!c2.ok) return { kind: "fail", result: fail("INCOMPLETE", "collect-failed", c2.errors) };
+      collectErrors = c2.errors;
+      const cc2 = await steps.generateConfirmCandidates();
+      if (!cc2.ok) return { kind: "fail", result: fail("INCOMPLETE", "confirm-failed", cc2.errors) };
+    }
 
-  // 6. Finalize (writes attestations + evidence matrix + repair brief unless attest off).
-  let finalized = await steps.finalize();
+    // 6. Finalize (writes attestations + evidence matrix + repair brief unless attest off).
+    const finalized = await steps.finalize();
+    return { kind: "ok", finalized, collectErrors };
+  };
+
+  const firstPass = await runConvergeAndFinalize();
+  if (firstPass.kind === "fail") return firstPass.result;
+  let finalized = firstPass.finalized;
+  let collectErrors = firstPass.collectErrors;
 
   // 7. Narrow retry: a submission can be present-but-INVALID (the file exists so the
   //    pre-finalize loop counts it, but it FAILS validation in collect/finalize) → finalize
   //    INCOMPLETE even though every card was spawned. Re-spawn ONLY the still-missing cards
-  //    once, then re-finalize (finalize re-collects). Covers the flaky-reviewer case the
-  //    presence-gated loop above cannot see — a DISJOINT failure mode, so both are kept.
+  //    once. Covers the flaky-reviewer case the presence-gated loop above cannot see — a
+  //    DISJOINT failure mode, so both are kept.
   if (finalized.incomplete && opts.narrowRetryOnIncomplete) {
     const allCards = [...steps.firstWaveCards(), ...steps.pendingReviewCards()];
     const missing = allCards.filter((c) => !steps.submissionPresent(c));
     if (missing.length > 0 && missing.length < allCards.length) {
       log(`[qc-driver] INCOMPLETE — narrow retry of ${missing.length}/${allCards.length} missing reviewer card(s)`);
       const v3 = await steps.spawnReviewers(missing, "retry");
-      if (v3.integrityViolation) return fail("INTEGRITY", v3.integrityViolation, collected.errors);
-      if (v3.infraError) return fail("INFRA", v3.infraError, collected.errors);
-      finalized = await steps.finalize();
+      if (v3.integrityViolation) return fail("INTEGRITY", v3.integrityViolation, collectErrors);
+      if (v3.infraError) return fail("INFRA", v3.infraError, collectErrors);
+      if (missing.some((c) => steps.submissionPresent(c))) {
+        // The retry LANDED a card → a chapter may now be a fresh publishable candidate whose
+        // confirm card hasn't been generated + reviewed. RE-ENTER the converge+finalize unit
+        // (bounded: this fires at most once; the inner loop is itself maxWaves-bounded), so
+        // the newly-eligible confirm card is generated and reviewed before the final verdict.
+        const again = await runConvergeAndFinalize();
+        if (again.kind === "fail") return again.result;
+        finalized = again.finalized;
+        collectErrors = again.collectErrors;
+      } else {
+        // Retry spawned but nothing landed (the disjoint present-but-invalid case) → a bare
+        // re-finalize is enough; no new card was created to generate + review.
+        finalized = await steps.finalize();
+      }
     }
   }
 
@@ -181,7 +213,7 @@ export async function driveQcRoundCore(steps: QcDriveSteps, opts: QcDriveOptions
     incomplete: finalized.chapters.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
   };
   steps.recordMetrics(finalized);
-  const base = { finalized, counts, openRepairFindings: steps.ledgerOpenCount(), collectErrors: collected.errors };
+  const base = { finalized, counts, openRepairFindings: steps.ledgerOpenCount(), collectErrors };
 
   // 8. Verdict.
   if (finalized.allPublishable) {
