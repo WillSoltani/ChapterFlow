@@ -224,6 +224,15 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
+  book-autopilot <bookId> [--plan] [--auto-publish] [--max-repair N] [--max-parallel N]
+                                     END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
+                                     → ready-to-publish, spawning codex exec agentic sub-sessions for the
+                                     WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
+                                     the DECISIONS. Runs on the Codex subscription (NO API metering). HALTS at
+                                     "ready to publish" unless --auto-publish. --plan previews the spawn plan.
+  codex-agent-run <task-file> [--session <id>] [--sandbox ...] [--timeout-ms N]
+                                     Debug: spawn ONE headless codex exec agent with a task file as its
+                                     instruction; prints the result. Proves codex exec works before autopilot.
   key-pack <bookId> --round <id>     Write blind manual quiz-key packs under state/qc-packs/.
   key-derive <bookId> --round <id> --role keyA|keyB --token X --answers-file path
                                      Validate and store a blind key reader's answers.
@@ -3229,6 +3238,56 @@ async function runQcConverge(args: string[], flags: Record<string, string | bool
   return report.clean ? 0 : 1;
 }
 
+/** `book-autopilot <bookId>` — the end-to-end conductor. Runs research → write →
+ *  gate → QC(+≤3 repair) → ready-to-publish by spawning `codex exec` agentic
+ *  sub-sessions for the WORK while deterministic code owns every DECISION. Halts
+ *  at "ready to publish" (review then ship) unless --auto-publish. Runs entirely
+ *  on the Codex subscription — no API metering. `--plan` previews the spawn plan. */
+async function runBookAutopilot(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: book-autopilot <bookId> [--plan] [--auto-publish] [--max-repair N] [--max-parallel N]");
+    return 2;
+  }
+  const { runAutopilot, formatOutcome } = await import("./orchestrator/autopilot.js");
+  const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
+  const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
+  const outcome = await runAutopilot({
+    bookId,
+    plan: flags["plan"] === true,
+    autoPublish: flags["auto-publish"] === true,
+    maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
+    maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
+  });
+  console.log(formatOutcome(outcome));
+  return outcome.status === "halt" ? 1 : 0;
+}
+
+/** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
+ *  a task file as its instruction and print the result. Proves `codex exec` works
+ *  in-environment before relying on the autopilot. Needs a real codex binary. */
+async function runCodexAgentRun(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const taskFile = args[0] ?? (typeof flags["task-file"] === "string" ? flags["task-file"] : "");
+  if (!taskFile) {
+    console.error("Usage: codex-agent-run <task-file> [--session <id>] [--sandbox read-only|workspace-write] [--timeout-ms N]");
+    return 2;
+  }
+  const { spawnCodexAgent, codexAvailable } = await import("./orchestrator/codexAgent.js");
+  if (!codexAvailable()) {
+    console.error("codex binary not found. Install codex or set CHAPTERFLOW_CODEX_BIN (this debug verb needs a real codex).");
+    return 2;
+  }
+  const task = readFileSync(taskFile, "utf8");
+  const sessionId = typeof flags["session"] === "string" ? flags["session"] : `debug-${Date.now().toString(36)}`;
+  const sandbox = (typeof flags["sandbox"] === "string" ? flags["sandbox"] : "workspace-write") as "read-only" | "workspace-write" | "danger-full-access";
+  const timeoutMs = typeof flags["timeout-ms"] === "string" ? parseInt(flags["timeout-ms"], 10) : undefined;
+  const r = await spawnCodexAgent({ task, sessionId, cwd: process.cwd(), sandbox, timeoutMs });
+  console.log(`codex-agent-run: exit ${r.exitCode} (${r.durationMs}ms), session ${r.sessionId}`);
+  console.log(`--- final message ---\n${r.finalMessage}`);
+  if (!r.ok && r.stderr) console.error(r.stderr.slice(0, 1000));
+  return r.ok ? 0 : 1;
+}
+
 async function runKeyPack(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
@@ -4499,6 +4558,10 @@ async function main() {
       return runSourceV2Gate(args);
     case "qc-converge":
       return runQcConverge(args, flags);
+    case "book-autopilot":
+      return runBookAutopilot(args, flags);
+    case "codex-agent-run":
+      return runCodexAgentRun(args, flags);
     case "key-pack":
       return runKeyPack(args, flags);
     case "key-derive":
