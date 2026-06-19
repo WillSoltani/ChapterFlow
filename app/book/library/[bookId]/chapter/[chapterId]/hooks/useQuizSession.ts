@@ -61,6 +61,61 @@ export type QuizSessionView = {
   provisional?: boolean;
 };
 
+/** Shape of the bundled local quiz data passed for the offline/dev fallback. */
+export type LocalQuizData = {
+  chapterId: string;
+  questions: Array<{
+    id: string;
+    prompt: string;
+    options: string[];
+    correctIndex: number;
+    explanation: string;
+  }>;
+  passingScorePercent: number;
+};
+
+/** Build a fully-offline quiz session from the bundled local quiz, or `null` when
+ *  there is no USABLE local quiz. A local quiz with ZERO questions is treated the
+ *  same as no quiz at all: on the API (prod) content path the chapter adapter
+ *  ships an EMPTY quiz (`{ questions: [] }`) because the real quiz is fetched
+ *  separately — so a failed quiz fetch must fall through to a RETRYABLE error,
+ *  not a 0-question "ready" session the reader renders as the terminal
+ *  "No quiz questions available for this chapter." (RF-1) */
+export function buildLocalQuizSession(
+  quiz: LocalQuizData | undefined,
+  chapterNumber: number
+): QuizSessionView | null {
+  if (!quiz || quiz.questions.length === 0) return null;
+  return {
+    chapterId: quiz.chapterId,
+    chapterNumber,
+    title: "",
+    passingScorePercent: quiz.passingScorePercent,
+    status: "ready",
+    attemptNumber: 1,
+    nextAttemptNumber: null,
+    attemptsCount: 0,
+    failureStreak: 0,
+    cooldownSeconds: 0,
+    nextAttemptAvailableAt: null,
+    highestScorePercent: 0,
+    unlockedNextChapter: false,
+    questions: quiz.questions.map((q) => ({
+      questionId: q.id,
+      prompt: q.prompt,
+      choices: q.options.map((opt, idx) => ({
+        choiceId: `${q.id}-choice-${idx}`,
+        text: opt.replace(/^[A-Z]\)\s*/, ""),
+      })),
+      explanation: q.explanation,
+      correctChoiceId: `${q.id}-choice-${q.correctIndex}`,
+      correctIndex: q.correctIndex,
+    })),
+    result: null,
+    history: [],
+  };
+}
+
 function remainingCooldown(nextAttemptAvailableAt: string | null): number {
   if (!nextAttemptAvailableAt) return 0;
   const deltaMs = new Date(nextAttemptAvailableAt).getTime() - Date.now();
@@ -136,17 +191,7 @@ export function useQuizSession(params: {
   contentTone: ToneKey;
   enabled: boolean;
   /** Local quiz data from bookChapters for offline/dev fallback */
-  localQuiz?: {
-    chapterId: string;
-    questions: Array<{
-      id: string;
-      prompt: string;
-      options: string[];
-      correctIndex: number;
-      explanation: string;
-    }>;
-    passingScorePercent: number;
-  };
+  localQuiz?: LocalQuizData;
   /** Whether the retake only re-shows previously-missed questions (the default).
    *  Only in this mode are previously-correct answers hidden and thus carried
    *  forward; a full retake re-asks everything and must start from a clean map. */
@@ -214,38 +259,14 @@ export function useQuizSession(params: {
     startedAtRef.current = nextSession.result ? null : Date.now();
   }, [bookId, chapterNumber, difficulty]);
 
-  const buildLocalSession = useCallback((): QuizSessionView | null => {
-    const quiz = localQuizRef.current;
-    if (!quiz) return null;
-    return {
-      chapterId: quiz.chapterId,
-      chapterNumber,
-      title: "",
-      passingScorePercent: quiz.passingScorePercent,
-      status: "ready",
-      attemptNumber: 1,
-      nextAttemptNumber: null,
-      attemptsCount: 0,
-      failureStreak: 0,
-      cooldownSeconds: 0,
-      nextAttemptAvailableAt: null,
-      highestScorePercent: 0,
-      unlockedNextChapter: false,
-      questions: quiz.questions.map((q) => ({
-        questionId: q.id,
-        prompt: q.prompt,
-        choices: q.options.map((opt, idx) => ({
-          choiceId: `${q.id}-choice-${idx}`,
-          text: opt.replace(/^[A-Z]\)\s*/, ""),
-        })),
-        explanation: q.explanation,
-        correctChoiceId: `${q.id}-choice-${q.correctIndex}`,
-        correctIndex: q.correctIndex,
-      })),
-      result: null,
-      history: [],
-    };
-  }, [chapterNumber]);
+  // Returns null when there is no usable local quiz — including a present-but-EMPTY
+  // one (the API content path ships `{ questions: [] }` because the quiz loads
+  // separately). That null makes the load() catch and retry() below fall through
+  // to the retryable error state instead of a terminal 0-question session. (RF-1)
+  const buildLocalSession = useCallback(
+    (): QuizSessionView | null => buildLocalQuizSession(localQuizRef.current, chapterNumber),
+    [chapterNumber]
+  );
 
   const load = useCallback(async () => {
     if (!enabled) return null;

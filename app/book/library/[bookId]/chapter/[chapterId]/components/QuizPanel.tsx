@@ -842,9 +842,21 @@ export function QuizPanel({
   }
 
   if (!session) {
+    // Failed to load the quiz (e.g. a transient quiz-API blip on the prod content
+    // path, where the bundled quiz is empty because it's fetched separately).
+    // Surface a RETRYABLE error — not the terminal "No quiz questions available"
+    // empty-state below, which would falsely claim the chapter has no quiz and
+    // strand the reader with no way to complete the chapter. (RF-1)
     return (
-      <section className="cr-glass-reading border-(--cr-error)/30 p-6">
+      <section role="alert" className="cr-glass-reading border-(--cr-error)/30 p-6 text-center">
         <p className="text-sm text-(--cr-error)">{error || "We couldn't load this quiz right now."}</p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="mt-4 inline-flex min-h-11 items-center justify-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-bold text-(--cr-text-inverse) transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cr-accent-glow)"
+        >
+          Try again
+        </button>
       </section>
     );
   }
