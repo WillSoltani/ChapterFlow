@@ -28,7 +28,6 @@ import { ChapterHeader } from "@/app/book/library/[bookId]/chapter/[chapterId]/c
 import { AutoCollapsingHookBanner } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/HookBanner";
 import { TryThisNow } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/TryThisNow";
 import { MemorableLines } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/MemorableLines";
-import { ReadingDepthSwitch } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ReadingDepthSwitch";
 import { V21_SCHEMA_VERSION } from "@/app/book/lib/v21-adapter";
 import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
 import { PhaseInterstitial } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseInterstitial";
@@ -177,11 +176,11 @@ export function ChapterReaderClient({
   // starts on Fast (simple depth → the shortest existing quiz, 5 questions). Any
   // saved preference is respected (profileCustomized flips this off). Gated on
   // hydration so a same-device returning/customized reader (localStorage prefs)
-  // never flips. NOTE: on a fresh device whose newer settings arrive only via the
-  // async server-settings load, a customized reader can paint Fast first and then
-  // reconcile to their saved depth once that resolves — for v21 chapters this is a
-  // no-op (their activeDepth reads state.readingDepth, not this flag); for legacy
-  // non-v21 chapters it is a one-time content reconcile to the CORRECT saved depth.
+  // never flips. NOTE: since RF-2, activeDepth reads this flag for ALL chapters
+  // (defaultToFastPath ? "simple" : modeToDepth(learningMode)), so on a fresh
+  // device whose newer settings arrive only via the async server-settings load,
+  // a customized reader can paint Fast first and then do a one-time content
+  // reconcile to their mode's depth once profileCustomized resolves true.
   // Per the owner decision, this lightens the DEFAULT path only — it does NOT change
   // the server-resolved pass threshold or any global setting.
   const defaultToFastPath = bookPrefsHydrated && !bookPrefs.extended.profileCustomized;
@@ -323,11 +322,16 @@ export function ChapterReaderClient({
   const isLocked = chapterState === "locked";
 
   const showQuiz = state.activeTab === "quiz";
-  const activeDepth: ReadingDepth = chapter?.isStrictV12
-    ? state.readingDepth
-    : defaultToFastPath
-      ? "simple"
-      : modeToDepth(learningMode);
+  // RF-2 / D8: learning mode is the single lever that drives content depth.
+  // A fresh, un-customized reader stays on the Fast short-path ("simple"); once
+  // they pick a mode it maps guided→simple, standard→standard, challenge→deeper.
+  // (Previously strict-v21 books read state.readingDepth instead, which let a
+  // separate explicit depth switch diverge from the chosen mode — the duplicate
+  // control this fix removes.) Note the possible values are unchanged, so every
+  // *ByDepth surface keeps rendering exactly as before; only the source changes.
+  const activeDepth: ReadingDepth = defaultToFastPath
+    ? "simple"
+    : modeToDepth(learningMode);
   const quiz = useQuizSession({
     bookId,
     chapterNumber: chapter?.order ?? baseChapter?.order ?? 1,
@@ -1254,27 +1258,38 @@ export function ChapterReaderClient({
           learningMode={learningMode}
           onChangeLearningMode={(mode) => {
             if (mode === learningMode) return;
-            // Mode presets: each mode sets a depth (which actually changes the
-            // content) plus a stored contentTone the quiz/audio endpoints still
-            // read. Depth stays overridable via the "Customize" disclosure in
-            // the settings menu; tone is no longer a user control — the live v21
-            // catalog is tone-invariant (a single canonical voice).
-            const presets: Record<LearningMode, { depth: ReadingDepth; tone: ContentTone }> = {
-              guided: { depth: "simple", tone: "gentle" },
-              standard: { depth: "standard", tone: "gentle" },
-              challenge: { depth: "deeper", tone: "competitive" },
+            // RF-2 / D8: learning mode is the single content-depth lever (no
+            // separate depth switch). Picking a mode marks the profile customized
+            // (so it escapes the Fast short-path default) and maps to a content
+            // depth via modeToDepth — guided→simple, standard→standard,
+            // challenge→deeper — which `activeDepth` reads directly. We also keep
+            // the per-chapter readingDepth and the stored contentTone in sync: the
+            // quiz/audio endpoints still read tone, and useChapterState persists/
+            // merges readingDepth (tone is no longer a user control — the live v21
+            // catalog is tone-invariant, a single canonical voice).
+            const toneByMode: Record<LearningMode, ContentTone> = {
+              guided: "gentle",
+              standard: "gentle",
+              challenge: "competitive",
             };
-            const preset = presets[mode];
+            const nextDepth = modeToDepth(mode);
+            if (nextDepth !== activeDepth) {
+              trackReaderFunnel("depth_changed", {
+                bookId,
+                chapterNumber: chapter.order,
+                depth: nextDepth,
+              });
+            }
             patchBookPrefs("extended", {
               learningMode: mode,
-              contentTone: preset.tone,
+              contentTone: toneByMode[mode],
+              profileCustomized: true,
             });
-            // readingDepth lives on per-chapter state (drives strict-v12 content)
-            setReadingDepth(preset.depth);
+            setReadingDepth(nextDepth);
             const messages: Record<string, string> = {
-              guided: "Switched to Guided. More pacing support and feedback.",
-              standard: "Switched to Standard. Balanced pacing and feedback.",
-              challenge: "Switched to Challenge. Faster pace, fewer interruptions.",
+              guided: "Switched to Guided. Shorter summaries, more pacing support.",
+              standard: "Switched to Standard. Balanced depth and pacing.",
+              challenge: "Switched to Challenge. Deeper summaries, faster pace.",
             };
             setToast(messages[mode] ?? `Switched to ${mode}.`);
           }}
@@ -1283,7 +1298,10 @@ export function ChapterReaderClient({
           showReadingSessionTimer={bookPrefs.reading.showReadingSessionTimer}
           readingDepth={state.readingDepth}
           onChangeReadingDepth={setReadingDepth}
-          showDepthSelector={chapter.isStrictV12}
+          // RF-2 / D8: depth is driven by learning mode now, so the separate
+          // gear-menu depth selector is the duplicate control we remove. The
+          // Learning Mode switch above is the single depth lever.
+          showDepthSelector={false}
           onOpenShortcuts={() => setShowShortcuts(true)}
           fontSize={bookPrefs.reading.fontSize}
           onChangeFontSize={(px) => patchBookPrefs("reading", { fontSize: px })}
@@ -1324,9 +1342,10 @@ export function ChapterReaderClient({
         )}
 
         {/* First-chapter loop coachmark — one-time, dismiss-once (chapter 1 only).
-         *  Explains the Summary → Examples → Quiz loop + the READ time tiers, the
-         *  way Apple Books / Headspace introduce a novel reading mechanic with a
-         *  single first-use hint. Ties to the cyan "work" channel via
+         *  Explains the Summary → Examples → Quiz loop + how the learning mode sets
+         *  the detail level, the way Apple Books / Headspace introduce a novel
+         *  reading mechanic with a single first-use hint. Ties to the cyan "work"
+         *  channel via
          *  --cr-accent-active; static (no ambient animation). Canonical phase
          *  names match the live PhaseStepper. */}
         {showLoopCoachmark && !state.focusMode && (
@@ -1336,7 +1355,7 @@ export function ChapterReaderClient({
               <p className="text-sm font-semibold text-(--cr-text-heading)">The same loop you just tried</p>
               <p className="mt-0.5 text-[13px] text-(--cr-text-secondary)">
                 Read the <strong>Summary</strong>, see it in <strong>Examples</strong>, then prove it stuck in the{" "}
-                <strong>Quiz</strong> to unlock the next chapter. The READ chips (Fast / Deep / Full) set how much detail you get.
+                <strong>Quiz</strong> to unlock the next chapter. Pick Guided, Standard, or Challenge in Reading settings to set how much detail you get.
               </p>
             </div>
             <button
@@ -1390,27 +1409,12 @@ export function ChapterReaderClient({
         >
           {showSummary && (
             <motion.div
-              key={`summary-${state.readingDepth}`}
+              key={`summary-${activeDepth}`}
               initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: DUR.fast, ease: EASE.standard }}
               className="space-y-4"
             >
-              {isV21Chapter ? (
-                <ReadingDepthSwitch
-                  value={state.readingDepth}
-                  onChange={(depth) => {
-                    if (depth !== state.readingDepth) {
-                      trackReaderFunnel("depth_changed", {
-                        bookId,
-                        chapterNumber: chapter.order,
-                        depth,
-                      });
-                    }
-                    setReadingDepth(depth);
-                  }}
-                />
-              ) : null}
               <SummaryCard
                 blocks={summaryBlocks}
                 takeaways={activeTakeaways}
