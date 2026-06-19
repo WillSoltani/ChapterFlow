@@ -645,6 +645,25 @@ export function ChapterReaderClient({
           );
           return;
         }
+        // Deliberate FAIL-OPEN (availability-first): a non-paywall /start error
+        // (500 / timeout / offline) resolves to "ready" so a transient backend
+        // hiccup doesn't lock a legitimate reader out mid-session. Accepted
+        // posture per owner decision D5 (docs/audit-fixes/02-DECISIONS.md →
+        // AUTH-4) — intentionally NOT a hold-until-verified gate. The clean 402 /
+        // email-verification / review branches above still block correctly.
+        //
+        // The leak is bounded and grants NO server-recorded benefit:
+        //   - Gated SERVER content stays enforced: GET .../chapters/[n] re-runs
+        //     ensureUserBookStarted() and 402s a paywalled-out user, so "ready"
+        //     can only fall back to LOCAL bundle prose/examples
+        //     (useChapterContent.ts), never to server-gated content.
+        //   - Completion / IP / streak / unlock all flow through endpoints that
+        //     independently re-check entitlement (quiz /submit, chapter /state,
+        //     /unlock -> ensureUserBookStarted -> 402), so nothing is recorded
+        //     for a book the user isn't entitled to. A bundled quiz grades
+        //     locally only (provisional, never auto-synced).
+        // So a transient outage can at most re-show already-bundled reading
+        // material; it cannot unlock, grade, or pay out anything server-side.
         setBookAccessStatus("ready");
       });
     return () => {
