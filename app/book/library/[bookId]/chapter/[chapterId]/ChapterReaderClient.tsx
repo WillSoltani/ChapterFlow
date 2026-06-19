@@ -1158,10 +1158,11 @@ export function ChapterReaderClient({
           learningMode={learningMode}
           onChangeLearningMode={(mode) => {
             if (mode === learningMode) return;
-            // Mode presets: each mode bundles a depth + tone so the content
-            // actually changes when the user picks a different mode. Users
-            // can still override depth/tone individually via the "Customize"
-            // disclosure in the settings menu.
+            // Mode presets: each mode sets a depth (which actually changes the
+            // content) plus a stored contentTone the quiz/audio endpoints still
+            // read. Depth stays overridable via the "Customize" disclosure in
+            // the settings menu; tone is no longer a user control — the live v21
+            // catalog is tone-invariant (a single canonical voice).
             const presets: Record<LearningMode, { depth: ReadingDepth; tone: ContentTone }> = {
               guided: { depth: "simple", tone: "gentle" },
               standard: { depth: "standard", tone: "gentle" },
@@ -1180,16 +1181,6 @@ export function ChapterReaderClient({
               challenge: "Switched to Challenge. Faster pace, fewer interruptions.",
             };
             setToast(messages[mode] ?? `Switched to ${mode}.`);
-          }}
-          contentTone={contentTone}
-          onChangeContentTone={(tone) => {
-            if (tone === contentTone) return;
-            // Persist the preference (it still parameterizes the quiz endpoint's
-            // tone) but show no "tone changed" toast: the live catalog is all
-            // v21, whose prose is tone-invariant (a single canonical voice), so
-            // the chapter text does not actually change. The old toast claimed
-            // a prose change that never happened.
-            patchBookPrefs("extended", { contentTone: tone });
           }}
           showProgressBar={bookPrefs.reading.showProgressBar}
           showEstimatedReadingTime={bookPrefs.reading.showEstimatedReadingTime}
@@ -1649,7 +1640,7 @@ export function ChapterReaderClient({
       {/* Bottom-CENTER lane (sync pill above the toast) — kept clear of the
        *  bottom-right FAB column and padded for the iOS home indicator.
        *  Both surfaces are wrapped in a PERSISTENT live region (mounted at all
-       *  times; text flows in via state) so screen readers announce mode/tone
+       *  times; text flows in via state) so screen readers announce mode
        *  switches, bookmark/notes/step confirmations, daily-goal, quiz-fail
        *  coaching and the offline sync pill as they appear. */}
       <div role="status" aria-live="polite" aria-atomic="true">

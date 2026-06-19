@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { X } from "lucide-react";
-import type { LearningMode, ContentTone, FontFamily } from "@/app/book/settings/types/settings";
+import type { LearningMode, FontFamily } from "@/app/book/settings/types/settings";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 const MODE_OPTIONS: Array<{
@@ -33,17 +33,6 @@ const MODE_OPTIONS: Array<{
     label: "Challenge",
     description: "Faster pace with fewer interruptions",
   },
-];
-
-const TONE_OPTIONS: Array<{
-  id: ContentTone;
-  icon: string;
-  label: string;
-  description: string;
-}> = [
-  { id: "gentle", icon: "\u2615", label: "Gentle", description: "Warm and invitational" },
-  { id: "direct", icon: "\u26A1", label: "Direct", description: "Clean, efficient language" },
-  { id: "competitive", icon: "\uD83D\uDD25", label: "Competitive", description: "Energizing, edge-driven" },
 ];
 
 const DEPTH_OPTIONS: Array<{
@@ -89,8 +78,6 @@ export type ReaderSettingsMenuProps = {
   anchorClassName?: string;
   learningMode: LearningMode;
   onChangeLearningMode: (mode: LearningMode) => void;
-  contentTone: ContentTone;
-  onChangeContentTone: (tone: ContentTone) => void;
   showDepthSelector: boolean;
   readingDepth?: ReadingDepth;
   onChangeReadingDepth?: (depth: ReadingDepth) => void;
@@ -116,8 +103,6 @@ export function ReaderSettingsMenu({
   anchorClassName,
   learningMode,
   onChangeLearningMode,
-  contentTone,
-  onChangeContentTone,
   showDepthSelector,
   readingDepth,
   onChangeReadingDepth,
@@ -234,14 +219,14 @@ export function ReaderSettingsMenu({
                 onChange={onChangeLearningMode}
               />
               <p className="mt-2 text-[11px] leading-snug text-(--cr-text-disabled)">
-                Tone and difficulty are set during onboarding.{" "}
+                Difficulty is set during onboarding.{" "}
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
                   className="font-semibold text-(--cr-accent) underline-offset-2 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] rounded"
                   aria-expanded={advancedOpen}
                 >
-                  Customize them
+                  Customize it
                 </button>
                 .
               </p>
@@ -257,14 +242,6 @@ export function ReaderSettingsMenu({
                   transition={{ duration: DUR.fast, ease: EASE.standard }}
                   className="space-y-4 overflow-hidden"
                 >
-                  <SettingsSection label="Tone">
-                    <RadioGroup
-                      options={TONE_OPTIONS}
-                      value={contentTone}
-                      onChange={onChangeContentTone}
-                    />
-                  </SettingsSection>
-
                   {showDepthSelector && readingDepth && onChangeReadingDepth && (
                     <SettingsSection label="Difficulty">
                       <RadioGroup
