@@ -931,7 +931,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
             <SettingRow
               id="weekly-chapter-goal"
               label="Weekly chapter goal"
-              description="Chapters to complete each week. We'll celebrate when you hit it."
+              description="Set a weekly chapter target to aim for."
             >
               <Stepper
                 value={hydrated ? preferences.goals.weeklyChapterGoal : 3}

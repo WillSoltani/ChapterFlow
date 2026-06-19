@@ -67,7 +67,8 @@ export type BookPreferencesState = {
   };
   goals: {
     weeklyChapterGoal: number;
-    weeklyQuizGoal: number;
+    // NOTE (SET-5): weeklyQuizGoal removed — it had no Settings control and no consumer
+    // anywhere (pure dead schema). Stored values are dropped on next load.
     streakTrackingEnabled: boolean;
     showStreakOnHomeScreen: boolean;
     milestoneCelebration: boolean;
@@ -189,7 +190,6 @@ export const defaultBookPreferencesState: BookPreferencesState = {
   },
   goals: {
     weeklyChapterGoal: 3,
-    weeklyQuizGoal: 5,
     streakTrackingEnabled: true,
     showStreakOnHomeScreen: true,
     milestoneCelebration: true,
@@ -499,12 +499,6 @@ function parseStored(raw: string | null): BookPreferencesState | null {
           defaultBookPreferencesState.goals.weeklyChapterGoal,
           0,
           14
-        ),
-        weeklyQuizGoal: parseNumber(
-          goals.weeklyQuizGoal,
-          defaultBookPreferencesState.goals.weeklyQuizGoal,
-          0,
-          21
         ),
         streakTrackingEnabled: parseBoolean(
           goals.streakTrackingEnabled,
