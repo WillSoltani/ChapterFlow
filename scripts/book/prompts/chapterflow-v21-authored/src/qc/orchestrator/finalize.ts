@@ -30,7 +30,7 @@ import {
   submissionsDir,
 } from "./artifacts.js";
 import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
-import { allFindingsFabricated } from "./findingValidity.js";
+import { allFindingsFabricated, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
 import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
@@ -262,13 +262,19 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
 
   const sweepSubmission = latestValidSubmission<ValidatedSweepSubmission>(bookId, roundId, "sweep");
   if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission);
-  // A sweep whose findings ALL cite non-existent chapter fields is fabricated and
-  // provides no valid evidence — it must not gate the book as REVISE.
-  const sweepAllFabricated = !!sweepSubmission && allFindingsFabricated(sweepSubmission.findings);
-  const keyResolution = resolveManualKeyJudges(bookId, roundId);
-  if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
 
   const allChapters = loadBookChapters(bookId);
+  // Chapter text lookup so the fabrication guard can substring-verify a sweep finding's
+  // quote against the chapters it names (the paraphrased-composite guard).
+  const chapterTextByNumber = new Map<number, string>();
+  for (const ch of allChapters) chapterTextByNumber.set(ch.number, searchableChapterText(ch));
+  const getChapterText = (n: number) => chapterTextByNumber.get(n);
+  // A sweep whose findings ALL cite non-existent chapter fields, OR whose quotes appear
+  // in none of the chapters they name, is fabricated and provides no valid evidence —
+  // it must not gate the book as REVISE.
+  const sweepAllFabricated = !!sweepSubmission && allFindingsFabricated(sweepSubmission.findings, { getChapterText });
+  const keyResolution = resolveManualKeyJudges(bookId, roundId);
+  if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
   // NOTE: we deliberately do NOT backfill round.chapterContentHashes from
   // current content here. Doing so blessed already-edited content as the
   // freshness baseline (the highest-risk edit lands between round creation and
