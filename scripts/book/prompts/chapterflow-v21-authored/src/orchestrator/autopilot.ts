@@ -151,7 +151,8 @@ function roleLabelFromCard(path: string): string {
   return base.replace(/[^a-zA-Z0-9_-]+/g, "-");
 }
 
-async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
+/** Bounded-parallel map with a drain-then-throw failure model. Exported for tests. */
+export async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T, i: number) => Promise<R>): Promise<R[]> {
   const out: R[] = new Array(items.length);
   let firstError: unknown;
   let cursor = 0;
@@ -159,6 +160,11 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
     while (true) {
       const i = cursor++;
       if (i >= items.length) return;
+      // Early-stop: once ANY item has failed, stop CLAIMING new work. Already-started
+      // siblings still finish their in-flight await (so drain-then-throw and the
+      // no-orphaned-workspace-write-child invariant below are preserved) — we just
+      // don't kick off MORE codex sessions for a phase that's already destined to halt.
+      if (firstError !== undefined) return;
       // Catch INSIDE the worker so one item's failure never abandons the in-flight
       // siblings: a spawn rejection (codex timeout/ENOENT) would otherwise reject the
       // enclosing Promise.all immediately and let runAutopilot's `finally` release the
@@ -178,9 +184,21 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
 }
 
 /** The single spawn choke point: run one agent and persist its outcome (durable log).
- *  A spawn rejection (timeout/ENOENT) propagates to runAutopilot's try/catch → infra halt. */
+ *  A spawn rejection (timeout/ENOENT) propagates to runAutopilot's try/catch → infra halt
+ *  — but is RECORDED first: without this, a rejection threw before logSession, so a
+ *  timed-out/ENOENT session left no trace in the durable walk-away log. */
 async function spawnAndLog(bookId: string, opts: Parameters<SpawnAgent>[0], deps: AutopilotDeps): Promise<CodexAgentResult> {
-  const r = await deps.spawn(opts);
+  let r: CodexAgentResult;
+  try {
+    r = await deps.spawn(opts);
+  } catch (err) {
+    const failed: CodexAgentResult = {
+      ok: false, exitCode: -1, finalMessage: "", stdout: "",
+      stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId: opts.sessionId,
+    };
+    try { deps.logSession(bookId, opts.sessionId, failed); } catch { /* best-effort: never convert a spawn error into a log error */ }
+    throw err; // preserve drain-then-throw + infra-halt behavior
+  }
   deps.logSession(bookId, opts.sessionId, r);
   return r;
 }
@@ -431,7 +449,11 @@ export function acquireBookLock(lockDir: string, bookId: string, staleMs = LOCK_
     refresh: (): boolean => {
       if (released) return false;
       if (!ownsCurrent()) { released = true; return false; }
-      try { const tmp = `${path}.hb-${owner}`; writeFileSync(tmp, mkRecord(), "utf8"); renameSync(tmp, path); } catch { /* best-effort */ }
+      // Fail-closed: if we cannot PERSIST the heartbeat we cannot prove the lease is
+      // still ours, so report unhealthy and let the conductor halt. Do NOT set
+      // `released` here — a transient FS blip is not loss of ownership, and leaving it
+      // false keeps release()'s token-checked cleanup running in the `finally`.
+      try { const tmp = `${path}.hb-${owner}`; writeFileSync(tmp, mkRecord(), "utf8"); renameSync(tmp, path); } catch { return false; }
       return true;
     },
     // Token-checked release: only unlink if WE still own it (never delete a successor's).
@@ -489,7 +511,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
       // than keep conducting — never two conductors driving the same book.
       if (lock.refresh && !lock.refresh()) {
-        return mkHalt(bookId, safePhase(bookId, deps), "infra", `lost the run lock for ${bookId} mid-run (another run took it over) — halting to avoid two conductors on the same book.`);
+        return mkHalt(bookId, safePhase(bookId, deps), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
       }
       const status = deps.statusOf(bookId);
       const phase = decidePhase(status);

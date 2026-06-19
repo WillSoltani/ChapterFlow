@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, readFileSync, existsSync } from "node:fs";
+import { mkdtempSync, writeFileSync, readFileSync, existsSync, chmodSync } from "node:fs";
 import { tmpdir, hostname } from "node:os";
 import { join } from "node:path";
 
@@ -13,6 +13,7 @@ import {
   runAutopilot,
   conductorVerbEnv,
   acquireBookLock,
+  mapWithConcurrency,
   type AutopilotDeps,
 } from "../src/orchestrator/autopilot.js";
 import { spawnCodexAgent } from "../src/orchestrator/codexAgent.js";
@@ -274,6 +275,24 @@ test("acquireBookLock refresh() heartbeat keeps the SAME owner and advances the 
   assert.equal(existsSync(path), false, "release unlinks OUR own lock");
 });
 
+test("acquireBookLock refresh() FAILS CLOSED when it cannot persist the heartbeat", () => {
+  // root bypasses dir perms, so a chmod-based write-failure can't be simulated as root.
+  if (typeof process.getuid === "function" && process.getuid() === 0) return; // skip under root
+  const dir = mkdtempSync(join(tmpdir(), "cf-lock-hbfail-"));
+  const path = join(dir, "zz.lock");
+  const a = acquireBookLock(dir, "zz");
+  assert.equal(a.ok, true);
+  // Make the lock DIR read-only: the existing lock file stays readable (so ownsCurrent()
+  // is still true → we isolate the WRITE-failure branch, not ownership-loss), but creating
+  // the `.hb-<owner>` temp file throws EACCES.
+  chmodSync(dir, 0o500);
+  try {
+    assert.equal(a.refresh?.(), false, "a heartbeat we cannot write must report unhealthy (fail-closed), not true");
+  } finally {
+    chmodSync(dir, 0o700); // restore so cleanup works
+  }
+});
+
 test("autopilot HALTs (infra) when another run holds the lock", async () => {
   const { deps } = happyDeps([makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })], {
     acquireLock: () => ({ ok: false, release: () => {}, heldBy: "pid 999@host since 2026-06-19T00:00:00.000Z" }),
@@ -306,6 +325,19 @@ test("autopilot normalizes a codex spawn rejection into an infra halt (no unhand
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /unexpected failure/i); }
 });
 
+test("a codex spawn rejection is RECORDED in the durable log before it propagates", async () => {
+  // Without spawnAndLog's log-then-rethrow, a timed-out/ENOENT session threw before
+  // logSession ran → it left NO trace in the walk-away forensics log.
+  const logged: { ok: boolean; stderr: string; sessionId: string }[] = [];
+  const { deps } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })], {
+    spawn: (async () => { throw new Error("codex exec timed out after 1800000ms"); }) as unknown as AutopilotDeps["spawn"],
+    logSession: (_b: string, _label: string, r: { ok: boolean; stderr: string; sessionId: string }) => logged.push(r),
+  });
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "halt"); // still halts (rethrow preserved)
+  assert.ok(logged.some((r) => r.ok === false && /timed out/.test(r.stderr)), "the rejected spawn was logged with ok:false + the error");
+});
+
 test("parallel writer fan-out WAITS for all siblings to settle before the infra halt (no orphan outlives the lock)", async () => {
   let settled = 0;
   const { deps } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })], {
@@ -322,6 +354,41 @@ test("parallel writer fan-out WAITS for all siblings to settle before the infra 
   // Promise.all would have abandoned the in-flight sibling the instant write-ch1 rejected
   // (settled === 0) → the run lock would release while a workspace-write child kept going.
   assert.equal(settled, 1, "the surviving writer fully settled BEFORE the failure propagated");
+});
+
+test("mapWithConcurrency early-stops claiming new work after the first failure (but still drains in-flight)", async () => {
+  // limit=1 forces serial claiming so ordering is deterministic: the single worker
+  // fails item 0, then must NOT claim items 1-4.
+  const started: number[] = [];
+  await assert.rejects(
+    mapWithConcurrency([0, 1, 2, 3, 4], 1, async (item) => {
+      started.push(item);
+      if (item === 0) { await new Promise((r) => setTimeout(r, 5)); throw new Error("boom"); }
+      return item;
+    }),
+    /boom/,
+  );
+  assert.deepEqual(started, [0], "items 1-4 are never claimed once item 0 has failed");
+});
+
+test("mapWithConcurrency drains an already-started sibling but starts no NEW work after a failure", async () => {
+  // limit=2: items 0 and 1 are both claimed on the first pass (before any failure).
+  // Item 0 fails fast; the in-flight item 1 must still complete; items 2-4 never start.
+  const started: number[] = [];
+  let oneCompleted = false;
+  await assert.rejects(
+    mapWithConcurrency([0, 1, 2, 3, 4], 2, async (item) => {
+      started.push(item);
+      if (item === 0) { await new Promise((r) => setTimeout(r, 2)); throw new Error("boom"); }
+      await new Promise((r) => setTimeout(r, 20));
+      if (item === 1) oneCompleted = true;
+      return item;
+    }),
+    /boom/,
+  );
+  assert.ok(started.includes(0) && started.includes(1), "the two initial workers both started");
+  assert.ok(!started.includes(2) && !started.includes(3) && !started.includes(4), "no NEW work started after the failure");
+  assert.ok(oneCompleted, "the in-flight sibling fully settled (drain-then-throw preserved)");
 });
 
 test("autopilot HALTs (infra) when --create exits nonzero (created-with-errors) — no reviewers spawned", async () => {
