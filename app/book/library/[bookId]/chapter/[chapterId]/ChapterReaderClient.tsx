@@ -58,6 +58,8 @@ import { SessionModeOverlay } from "@/app/book/library/[bookId]/chapter/[chapter
 import { useChapterState, type ChapterTab, type FontScale } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { useChapterContent } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterContent";
 import { useQuizSession } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
+import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/quizReconcile";
+import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
@@ -389,6 +391,83 @@ export function ChapterReaderClient({
       bookAccessStatus === "ready",
     quizPassed,
   });
+
+  // §1.1 — Claim the loop-complete IP (deferred from quiz submit). Idempotent
+  // server-side (grant key), so re-firing is safe. Defined here (above the
+  // render guards) so it is a hook-order-stable reference for both the
+  // "Continue to Practice" handler and the RF-4 reconcile effect below. The
+  // null-order guard is purely defensive — both callers run only after a real
+  // session exists (chapter resolved) — so a future caller can't POST `.../
+  // undefined/unlock`.
+  const claimLoopCompleteIP = useCallback(() => {
+    const order = chapter?.order;
+    if (order == null) return Promise.resolve();
+    return fetchBookJson(
+      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${order}/unlock`,
+      { method: "POST" }
+    );
+  }, [bookId, chapter?.order]);
+
+  // ── RF-4 (D5 celebrate-then-reconcile): reconcile an offline quiz pass ──────
+  // A pass graded while `/submit` was unreachable is shown optimistically
+  // (chapter complete + next unlocked + celebration) but never reached the
+  // server — no Insight Points / streak / tier / achievements, no entitlement
+  // advance. While the reader stays open, re-submit the provisional pass when
+  // connectivity returns (the server records it, advancing entitlement +
+  // awarding the loop pipeline that drives the modal's IP breakdown), then claim
+  // the deferred loop-complete IP, then confirm to the reader so it never reads
+  // as lost. Scope: in-session only — the `provisional` flag is in-memory, so a
+  // tab closed/reloaded before reconnecting is reconciled by an app-level
+  // pending-pass reconciler (follow-up), not here. See lib/quizReconcile.ts.
+  const reconcileInFlightRef = useRef(false);
+  const reconcileKeyRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (!needsReconcile(quiz.session)) return;
+    const attemptKey = `${chapterId}:${quiz.session?.attemptNumber}`;
+    let active = true;
+
+    const run = async () => {
+      if (reconcileInFlightRef.current) return;
+      reconcileInFlightRef.current = true;
+      try {
+        const outcome = await reconcileProvisionalPass({
+          isOnline: () => typeof navigator === "undefined" || navigator.onLine,
+          submit: quiz.submit,
+          claimLoopCompleteIP,
+        });
+        if (outcome === "confirmed") {
+          // submit() already emits on a pipeline-bearing success; emit again so
+          // the navbar balance also refreshes on the rare path where the first
+          // submit reached the server and only its RESPONSE was lost (the
+          // resubmit then returns no pipeline, so it wouldn't emit). Harmless
+          // double-emit otherwise — the listener just refetches.
+          emitBookStorageChanged("insight-points");
+          if (active) {
+            setToast("Back online — your results synced and your points were awarded.");
+          }
+        }
+      } finally {
+        reconcileInFlightRef.current = false;
+      }
+    };
+
+    // One eager attempt per provisional attempt (covers a transient failure that
+    // happened while already online). After that only a genuine reconnect
+    // retries, so a server that keeps rejecting can't spin a retry loop.
+    if (reconcileKeyRef.current !== attemptKey) {
+      reconcileKeyRef.current = attemptKey;
+      void run();
+    }
+    const onOnline = () => {
+      reconcileKeyRef.current = attemptKey;
+      void run();
+    };
+    window.addEventListener("online", onOnline);
+    return () => {
+      active = false;
+      window.removeEventListener("online", onOnline);
+    };
+  }, [quiz.session, quiz.submit, chapterId, claimLoopCompleteIP]);
 
   // Wrapped setActiveTab that enforces gating and shows interstitial
   const setActiveTab = useCallback(
@@ -1038,12 +1117,10 @@ export function ChapterReaderClient({
     markChapterComplete(chapter.id, score);
     setShowCompleteModal(true);
 
-    // §1.1 — Claim the loop-complete IP (deferred from quiz submit).
-    // Fire-and-forget; idempotent server-side so retries are safe.
-    fetchBookJson(
-      `/app/api/book/me/chapters/${encodeURIComponent(bookId)}/${chapter.order}/unlock`,
-      { method: "POST" }
-    ).catch(() => {});
+    // §1.1 — Fire-and-forget; idempotent server-side so retries are safe. When
+    // this POST is made offline (a provisional pass), it is lost — the RF-4
+    // reconcile re-claims it on reconnect after the resubmit records the pass.
+    claimLoopCompleteIP().catch(() => {});
   };
 
   const handleChapterCompleteNext = () => {
