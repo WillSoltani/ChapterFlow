@@ -70,6 +70,7 @@ import auto_the_gifts_of_imperfection_Json from "@/book-packages/the-gifts-of-im
 import auto_digital_minimalism_Json from "@/book-packages/digital-minimalism.v21.json";
 import auto_hyperfocus_Json from "@/book-packages/hyperfocus.v21.json";
 import auto_eat_that_frog_Json from "@/book-packages/eat-that-frog.v21.json";
+import auto_the_power_of_full_engagement_Json from "@/book-packages/the-power-of-full-engagement.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { isV21RawPackage, normalizeV21Package } from "@/app/book/lib/v21-adapter";
 
@@ -1989,4 +1990,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_eat_that_frog_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["eat-that-frog"] = (tone) => normalizeAnyPackage(auto_eat_that_frog_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-power-of-full-engagement" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_power_of_full_engagement_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-power-of-full-engagement"] = (tone) => normalizeAnyPackage(auto_the_power_of_full_engagement_Json, tone);
 }
