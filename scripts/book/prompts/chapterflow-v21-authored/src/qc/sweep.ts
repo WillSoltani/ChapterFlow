@@ -130,7 +130,11 @@ export function writeSweepPack(bookId: string, roundId: string): string {
       })),
       implementationPlan: {
         coreSkill: ch.implementationPlan?.coreSkill,
-        challenge: (ch.implementationPlan as any)?.challenge ?? ch.implementationPlan?.twentyFourHourChallenge,
+        // Only emit a REAL `challenge` (no v21 chapter has one). The old `?? twentyFourHourChallenge`
+        // fallback duplicated the 24h-challenge text into a SECOND pack field, and the sweep correctly
+        // flagged that self-duplication as repeated_unit ("challenge == twentyFourHourChallenge verbatim")
+        // on EVERY chapter — a pack artifact, not a content defect, that false-gated the whole book.
+        challenge: (ch.implementationPlan as any)?.challenge,
         twentyFourHourChallenge: ch.implementationPlan?.twentyFourHourChallenge,
         weeklyPractice: ch.implementationPlan?.weeklyPractice,
         ifThenPlans: (ch.implementationPlan?.ifThenPlans ?? []).map((plan) => ({ context: plan.context ?? "", plan: plan.plan ?? "" })),
