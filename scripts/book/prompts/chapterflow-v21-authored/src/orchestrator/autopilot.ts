@@ -1060,8 +1060,12 @@ export async function brokerReviewer(bookId: string, roundId: string, card: stri
   /** One reviewer attempt: spawn (read-only, blind cwd) → extract JSON → qc-submit under
    *  THIS session id (so reviewer≠author holds). Returns the extracted json (for a
    *  corrective retry) + a rejection reason when it didn't record. */
+  // The cross-chapter sweep is the noisiest, most stochastic reviewer (its one book-wide read
+  // gates the whole book). Give it a higher-effort, more stable read so a single over-eager
+  // pass can't emit a flickering blocking finding. Other roles keep the codex default.
+  const reasoningEffort: "high" | undefined = role === "sweep" ? "high" : undefined;
   const attempt = async (taskText: string, sid: string, fileLabel: string): Promise<{ agentOk: boolean; json: string | null; submitOk: boolean; rejection?: string }> => {
-    const r = await spawnAndLog(bookId, { task: taskText, sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true }, deps);
+    const r = await spawnAndLog(bookId, { task: taskText, sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort }, deps);
     if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { agentOk: false, json: null, submitOk: false, rejection: `agent exited ${r.exitCode}` }; }
     // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
     // non-empty line (the closing ``` of a fenced block), so `finalMessage || stdout` would

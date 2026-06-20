@@ -29,3 +29,11 @@ test("codexExecArgv: --skip-git-repo-check is emitted (before the prompt) when s
   // default stays off
   assert.ok(!codexExecArgv("X", "read-only").includes("--skip-git-repo-check"));
 });
+
+test("codexExecArgv: reasoningEffort binds `-c model_reasoning_effort=<level>` before the prompt", () => {
+  const argv = codexExecArgv("REVIEW", "read-only", [], true, "high");
+  assert.deepEqual(argv, ["exec", "--sandbox", "read-only", "--skip-git-repo-check", "-c", "model_reasoning_effort=high", "REVIEW"]);
+  assert.equal(argv[argv.length - 1], "REVIEW", "the prompt is still the final positional arg");
+  // omitted → no flag (codex default), unchanged behaviour
+  assert.ok(!codexExecArgv("X", "read-only").join(" ").includes("model_reasoning_effort"));
+});
