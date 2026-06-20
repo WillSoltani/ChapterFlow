@@ -25,7 +25,7 @@ import {
   submissionsDir,
 } from "./artifacts.js";
 import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
-import { allFindingsFabricated, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
+import { allFindingsFabricated, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
 import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
@@ -386,27 +386,25 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       }
     }
 
-    // FIX 2a — a carried chapter holds a fresh PUBLISHABLE attestation at byte-IDENTICAL
-    // content (it was independently swept clean at this exact hash). The fresh sweep above may
-    // legitimately demote it when a sibling's repair creates a REAL cross-chapter collision —
-    // but ONLY when the finding's quote is textually GROUNDED in the chapter(s) it names. A
-    // stochastic / paraphrased sweep mention whose quote appears NOWHERE in the chapter must
-    // not clobber a banked high-water-mark. Re-validate per-chapter: the carried chapter is
-    // banked by its OWN attestation, so it re-banks unless ITS OWN text contains the blocker's
-    // quote — `quoteGroundedInChapter` is fail-closed (a quote with no discriminating ≥20-char
-    // segment counts as grounded), so a real blocker grounded in THIS chapter STILL demotes
-    // (floor preserved). For a finding naming ≥2 chapters we test this chapter's membership the
-    // SAME way as a single-chapter finding (a sibling-only quote no longer keeps a clean carried
-    // chapter demoted). Advisories were already dropped by sweepChapterStatus.
-    if (carriedSet?.has(ch.number) && checks.sweep === "FAIL" && sweepRecord) {
-      const carried = loadAttestation(bookId, ch.number);
-      if (carried && carried.verdict === "PUBLISHABLE" && isAttestationFresh(carried, ch)) {
-        const naming = (sweepRecord.findings ?? []).filter(
-          (f) => f.severity !== "advisory" && (f.chapters ?? []).includes(ch.number),
-        );
-        const grounded = naming.some((f) => quoteGroundedInChapter(f.quote, getChapterText(ch.number) ?? ""));
-        if (naming.length > 0 && !grounded) checks.sweep = "PASS";
-      }
+    // FIX 2a (generalized) — a cross-chapter sweep finding legitimately demotes a chapter ONLY when
+    // its quote is textually GROUNDED in THAT chapter. The stochastic sweep reviewer can OVER-NAME:
+    // the-undoing-project r20260620134645 flagged scene_skeleton 'in the Hebrew University seminar
+    // room' across ALL 12 chapters when the phrase appears in exactly ONE, collapsing the book
+    // 11/12 -> 0/12. A finding whose quote appears NOWHERE in a chapter cannot implicate it — so
+    // clear the sweep FAIL for ANY chapter (carried OR freshly reviewed) whose every gating finding
+    // is ungrounded in it. This used to protect only CARRIED chapters (a banked high-water-mark);
+    // a fabricated finding demotes a fresh chapter just as wrongly, so the guard now applies to all.
+    // `quoteGroundedInChapter` is fail-closed (a non-discriminating short quote, or unreadable
+    // chapter text, counts as grounded), so a real blocker grounded in THIS chapter STILL demotes
+    // (floor preserved) — only a verifiable ABSENCE clears. Non-distinctive repetition quotes and
+    // advisories are already non-gating in sweepChapterStatus, so they are excluded from `naming`
+    // here too (else a fail-closed short quote would spuriously keep the FAIL).
+    if (checks.sweep === "FAIL" && sweepRecord) {
+      const naming = (sweepRecord.findings ?? []).filter(
+        (f) => f.severity !== "advisory" && !nondistinctiveRepetitionQuote(f) && (f.chapters ?? []).includes(ch.number),
+      );
+      const grounded = naming.some((f) => quoteGroundedInChapter(f.quote, getChapterText(ch.number) ?? ""));
+      if (naming.length > 0 && !grounded) checks.sweep = "PASS";
     }
 
     const missingRequired = [checks.sweep, checks.manualKeyJudge, checks.sourceV2, checks.barRead].some((s) => s === "MISSING" || s === "STALE");

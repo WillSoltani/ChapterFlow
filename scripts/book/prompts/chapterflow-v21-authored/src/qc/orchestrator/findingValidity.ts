@@ -153,6 +153,38 @@ export function quoteGroundedInChapter(quote: string, chapterText: string): bool
   return segments.some((seg) => text.includes(seg));
 }
 
+/** Repetition families whose finding CLAIM is "a DISTINCTIVE unit is reused across chapters."
+ *  Scoped deliberately: persona_drift (a reused character NAME) and location_stamping (a reused
+ *  VENUE) legitimately anchor on short quotes, so they are excluded. */
+const DISTINCTIVENESS_REQUIRED_FAMILIES: ReadonlySet<string> = new Set(["scene_skeleton", "repeated_unit"]);
+
+/** True when a scene_skeleton / repeated_unit finding is anchored on a NON-DISTINCTIVE quote — one
+ *  with no discriminating (>= MIN_DISCRIMINATING_SEGMENT normalized chars) segment. Such a quote is a
+ *  short, common phrase (a tense auxiliary like "had already", a bare connective) that recurs across
+ *  ANY corpus without indicating templating, so it is structurally incapable of proving distinctive
+ *  reuse — a finding anchored on it must be surfaced but must NOT gate.
+ *
+ *  the-undoing-project r20260620130507-d0c017: three blocker repeated_unit findings quoting
+ *  "had already" / "has already" / "was already" demoted 7/12 -> 1/12 — a book of entirely distinct
+ *  scenes that merely share English past-perfect tense. NOT a QC loosening: a genuine >= 20-char
+ *  distinctive reuse (real templating, a copy-pasted scene shell) still gates fully; this rejects only
+ *  evidence that cannot support the claim it is attached to. Accepts the record (`family`) or repair
+ *  (`repairClass`) shape. */
+export function nondistinctiveRepetitionQuote(finding: { family?: string; repairClass?: string; quote?: string; chapters?: number[] }): boolean {
+  const family = finding.family ?? finding.repairClass;
+  if (!family || !DISTINCTIVENESS_REQUIRED_FAMILIES.has(family)) return false;
+  // A repetition finding is a CROSS-CHAPTER reuse claim — it must name >= 2 chapters. A single-chapter
+  // finding (or one with no chapter list) is a LOCAL defect, not a reuse claim; its quote length is
+  // irrelevant to validity, so it is never "non-distinctive". (Guards against the sweep's repeated_unit
+  // DEFAULT bucket swallowing a real single-chapter quiz/behavioral finding with a short quote.)
+  if (!Array.isArray(finding.chapters) || finding.chapters.length < 2) return false;
+  const hasDiscriminatingSegment = String(finding.quote ?? "")
+    .split(/\s*\/\s*/)
+    .map(normalizeForMatch)
+    .some((seg) => seg.length >= MIN_DISCRIMINATING_SEGMENT);
+  return !hasDiscriminatingSegment;
+}
+
 export function quoteUnverifiableAgainstChapters(
   finding: { repairClass?: string; chapters?: number[]; quote?: string },
   getChapterText: (chapterNumber: number) => string | undefined,

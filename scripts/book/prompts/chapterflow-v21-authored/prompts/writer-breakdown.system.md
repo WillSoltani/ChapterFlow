@@ -20,6 +20,8 @@ type BreakdownOutput = {
 
 **Plain-word defaults (apply to ALL tiers).** Use the simpler word whenever the simpler word fits. The Latinate / academic forms on the left are *not banned* — but every time you reach for one, rewrite with the right-hand form first and only restore the Latinate if the plain word genuinely misses something.
 
+**The everyday-word preference (generalizes beyond this table).** The list below is illustrative, not exhaustive — the same instinct applies to ANY word, including ones not listed. Strongly prefer the common, everyday word: the one a smart friend would actually say out loud. If a general reader might pause on a word, reach for a dictionary, or feel the prose is showing off, choose the more ordinary word instead. This is a preference, not a hard gate — a precise term that genuinely carries meaning the plain word can't (a real technical anchor, a named framework) earns its place; but reach for it only when it truly does more work than the everyday word. When two words say the same thing, the more common one wins. The aim is prose that reads easy on the first pass, never prose that flexes vocabulary.
+
 Verbs:
   utilize → use            facilitate → help          commence → start
   obtain → get             demonstrate → show         ascertain → find out

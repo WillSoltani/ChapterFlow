@@ -7,6 +7,7 @@ import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
 import type { ValidatedSweepSubmission } from "./orchestrator/schemas.js";
+import { nondistinctiveRepetitionQuote } from "./orchestrator/findingValidity.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 export const SWEEP_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
@@ -335,6 +336,17 @@ export function loadSweepRecord(bookId: string): SweepRecord | null {
  * blocks). Returns MISSING when the record is absent or from another round, STALE when
  * the chapter's content moved under the sweep.
  */
+/** A sweep finding GATES the chapters it names iff it is non-advisory AND, for the
+ *  distinctiveness-required repetition families (scene_skeleton / repeated_unit), anchored on a
+ *  discriminating quote. A repetition finding quoting a non-distinctive common phrase (e.g. the
+ *  tense auxiliary "had already") cannot prove structural reuse, so it is surfaced but never gates
+ *  — same non-gating contract as an advisory. Both the per-chapter gate (sweepChapterStatus) and the
+ *  publish gate (checkSweep) route their blocker filter through this ONE predicate so they can never
+ *  drift. See `nondistinctiveRepetitionQuote`. */
+function sweepFindingGates(f: SweepRecord["findings"][number]): boolean {
+  return f.severity !== "advisory" && !nondistinctiveRepetitionQuote(f);
+}
+
 export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: number, contentHash: string, roundId: string): "PASS" | "FAIL" | "STALE" | "MISSING" {
   if (!rec || rec.roundId !== roundId) return "MISSING";
   if (rec.contentHashes?.[String(chapterNumber)] !== contentHash) return "STALE";
@@ -345,7 +357,7 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   // chapter — this mirrors finalize's `openSerious` ledger gate so the sweep can't be a
   // STRICTER gate than the publish decision it feeds. A finding with no severity (a legacy,
   // pre-severity record) is treated as a blocker (fail-closed).
-  const blockers = findings.filter((f) => f.severity !== "advisory");
+  const blockers = findings.filter(sweepFindingGates);
   if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
   // A blocker exists but does not name THIS chapter → this chapter passes (a global verdict
   // must not strand a clean, unnamed chapter).
@@ -375,7 +387,7 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   // loosening); an uncited CORRUPTION or an unexplained non-PASS (no findings) still blocks.
   if (rec.verdict !== "PASS") {
     const findings = rec.findings ?? [];
-    const blockers = findings.filter((f) => f.severity !== "advisory");
+    const blockers = findings.filter(sweepFindingGates);
     if (blockers.length > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
       return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${blockers.length} blocking finding(s).` }];
     }

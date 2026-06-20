@@ -5,8 +5,9 @@ import { dirname } from "path";
 import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
-import { citesNonexistentField, searchableChapterText } from "./findingValidity.js";
+import { citesNonexistentField, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
+import { sweepFamilyForRepairClass } from "../sweep.js";
 
 export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
 
@@ -178,9 +179,34 @@ export function appendFindings(args: {
   // keeps carrying the same finding OPEN and REVISE persists.
   const ledgerChapterText = new Map<number, string>();
   for (const ch of loadBookChapters(args.bookId)) ledgerChapterText.set(ch.number, searchableChapterText(ch));
-  const findings = args.findings.filter(
-    (f) => citesNonexistentField(f, { getChapterText: (n) => ledgerChapterText.get(n) }) === null,
-  );
+  const getChapterText = (n: number) => ledgerChapterText.get(n);
+  // A sweep submission finding reaches the ledger with its repairClass remapped to a remediation VERB
+  // ("vary_scene_engine"), losing the family the gate guards key on. Recover it the way the sweep
+  // record does — but ONLY for role "sweep": sweepFamilyForRepairClass DEFAULTS to repeated_unit, so
+  // calling it on a bar/key finding would misclassify it and could drop a legitimate short-quote bar
+  // finding. The finalizer path re-emits sweep findings only when checks.sweep === "FAIL", which the
+  // sweep gate + finalize groundedness already suppress for non-distinctive / ungrounded findings.
+  const sweepFamilyOf = (f: SubmissionFinding) => (args.role === "sweep" ? sweepFamilyForRepairClass(f.repairClass) : null);
+  const findings = args.findings
+    // Drop field-path fabrications + sweep findings whose quote appears in NONE of the named chapters.
+    .filter((f) => citesNonexistentField(f, { getChapterText }) === null)
+    // Mirror the sweep GATE (sweepChapterStatus / checkSweep): a non-distinctive repetition quote
+    // (e.g. the tense auxiliary "had already") is non-gating everywhere, so it must never be dispatched
+    // for repair. Without this the finding is cleared at the sweep gate yet kept OPEN in the ledger,
+    // and ledger=OPEN_FINDINGS keeps the chapter REVISE forever (the-undoing-project run #3: a sweep
+    // 'has already' demoted exactly the 7 chapters it named, all sweep=PASS).
+    .filter((f) => { const fam = sweepFamilyOf(f); return !fam || !nondistinctiveRepetitionQuote({ family: fam, quote: f.quote, chapters: f.chapters }); })
+    // Mirror finalize's per-chapter GROUNDEDNESS: a cross-chapter sweep finding is only carried OPEN
+    // for the chapters its quote is actually grounded in. An over-named finding ('in the Hebrew
+    // University seminar room' claimed across 12, present in 1) must not keep the 11 ungrounded
+    // chapters REVISE after finalize's sweep gate cleared them. quoteGroundedInChapter is fail-closed,
+    // so short quotes (persona NAMES, venues) trim nothing and behave as before.
+    .map((f) => {
+      if (!sweepFamilyOf(f) || !Array.isArray(f.chapters) || f.chapters.length === 0) return f;
+      const grounded = f.chapters.filter((n) => quoteGroundedInChapter(f.quote ?? "", getChapterText(n) ?? ""));
+      return grounded.length === f.chapters.length ? f : { ...f, chapters: grounded };
+    })
+    .filter((f) => { const fam = sweepFamilyOf(f); return !fam || !Array.isArray(f.chapters) || f.chapters.length > 0; });
   if (findings.length === 0) return { appended: 0, duplicates: 0, findingIds: [] };
   const existing = new Set(effectiveLedger(args.bookId, args.roundId).map((f) => f.findingId));
   const chapterHashes = hashByChapter(args.bookId);
