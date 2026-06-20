@@ -25,7 +25,7 @@ import {
   submissionsDir,
 } from "./artifacts.js";
 import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
-import { allFindingsFabricated, searchableChapterText } from "./findingValidity.js";
+import { allFindingsFabricated, quoteGroundedInChapter, quoteUnverifiableAgainstChapters, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
 import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
@@ -386,6 +386,30 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       }
     }
 
+    // FIX 2a — a carried chapter holds a fresh PUBLISHABLE attestation at byte-IDENTICAL
+    // content (it was independently swept clean at this exact hash). The fresh sweep above may
+    // legitimately demote it when a sibling's repair creates a REAL cross-chapter collision —
+    // but ONLY when the finding's quote is textually GROUNDED in the chapter(s) it names. A
+    // stochastic / paraphrased sweep mention whose quote appears NOWHERE in the chapter must
+    // not clobber a banked high-water-mark. Re-validate with the SAME bar the non-banked
+    // submission path already uses (allFindingsFabricated / quoteUnverifiableAgainstChapters);
+    // a grounded blocker STILL demotes (floor preserved). Advisories were already dropped by
+    // sweepChapterStatus; we re-scan blocker findings here only to check their quote presence.
+    if (carriedSet?.has(ch.number) && checks.sweep === "FAIL" && sweepRecord) {
+      const carried = loadAttestation(bookId, ch.number);
+      if (carried && carried.verdict === "PUBLISHABLE" && isAttestationFresh(carried, ch)) {
+        const naming = (sweepRecord.findings ?? []).filter(
+          (f) => f.severity !== "advisory" && (f.chapters ?? []).includes(ch.number),
+        );
+        const grounded = naming.some((f) =>
+          (f.chapters ?? []).length >= 2
+            ? !quoteUnverifiableAgainstChapters({ repairClass: f.family, chapters: f.chapters, quote: f.quote }, getChapterText)
+            : quoteGroundedInChapter(f.quote, getChapterText(ch.number) ?? ""),
+        );
+        if (naming.length > 0 && !grounded) checks.sweep = "PASS";
+      }
+    }
+
     const missingRequired = [checks.sweep, checks.manualKeyJudge, checks.sourceV2, checks.barRead].some((s) => s === "MISSING" || s === "STALE");
     const publishableCandidate = checks.manualKeyJudge === "PASS" &&
       checks.barRead === "GREEN" &&
@@ -577,8 +601,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       // (and that round's still-valid, same-hash bar/confirm artifacts, which
       // promote re-verifies). Re-attesting here would stamp THIS round, which has
       // no fresh bar/confirm for a carried chapter, and promote would then reject
-      // it (QC0.bar_read_missing). A carried chapter that was DEMOTED this round
-      // falls through and overwrites its stale PUBLISHABLE as normal.
+      // it (QC0.bar_read_missing). A carried chapter that was genuinely DEMOTED this
+      // round (a GROUNDED defect survived Fix 2a's re-validation) falls through and
+      // overwrites its prior PUBLISHABLE — a real defect must lose its high-water-mark
+      // so it is re-reviewed next round, never carried/promoted on a stale pass.
       if (carriedSet?.has(decision.chapterNumber) && decision.finalVerdict === "PUBLISHABLE") continue;
       const ch = chapterByNumber.get(decision.chapterNumber);
       if (!ch) continue;

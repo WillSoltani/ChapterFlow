@@ -137,6 +137,22 @@ export function searchableChapterText(chapter: unknown): string {
  *  the finding. It tests whole PHRASES (not tokens), so an incidental character-name match
  *  never blesses a fabricated finding. Scope = exactly the paraphrased book-wide composites
  *  that hold many chapters hostage (R3 scene_skeleton named 5, repeated_unit named 6). */
+/** True when a quote has at least one DISCRIMINATING (>= MIN length) ' / '-separated
+ *  segment present (as a normalized substring) in the given chapter text. Decides whether a
+ *  SINGLE-chapter sweep finding is textually grounded in the chapter it names (the >= 2-chapter
+ *  membership-clobber case is handled by quoteUnverifiableAgainstChapters). Fail-closed: a quote
+ *  with no long-enough segment returns TRUE (grounded — we cannot disprove it, so it stands).
+ *  Uses the SAME normalizer/threshold as the fabrication guard so the bar is identical. */
+export function quoteGroundedInChapter(quote: string, chapterText: string): boolean {
+  const segments = String(quote ?? "")
+    .split(/\s*\/\s*/)
+    .map(normalizeForMatch)
+    .filter((s) => s.length >= MIN_DISCRIMINATING_SEGMENT);
+  if (segments.length === 0) return true; // cannot disprove → grounded (fail-closed)
+  const text = normalizeForMatch(chapterText);
+  return segments.some((seg) => text.includes(seg));
+}
+
 export function quoteUnverifiableAgainstChapters(
   finding: { repairClass?: string; chapters?: number[]; quote?: string },
   getChapterText: (chapterNumber: number) => string | undefined,
