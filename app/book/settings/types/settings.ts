@@ -22,8 +22,6 @@ export type ContentTone = "gentle" | "direct" | "competitive";
 
 export type ColorBlindMode = "off" | "protanopia" | "deuteranopia" | "tritanopia";
 
-export type TTSVoice = "clara" | "james" | "aria";
-
 export type ExportFormat = "csv" | "markdown" | "json";
 
 export type DailyGoalPreset = 5 | 10 | 20 | 30;
@@ -36,10 +34,11 @@ export type ExtendedSettings = {
   lineSpacing: LineSpacing;
   letterSpacing: LetterSpacing;
 
-  // Text-to-Speech (Pro)
-  ttsVoice: TTSVoice;
+  // Text-to-Speech (Pro). ttsSpeed seeds + persists the reader AudioPlayer's
+  // playback speed (SET-2). ttsVoice / ttsAutoAdvance were removed: there is no
+  // multi-voice narration backend (one hardcoded voice, no voice param) and
+  // auto-advance conflicts with quiz-gated chapter unlocks.
   ttsSpeed: number;
-  ttsAutoAdvance: boolean;
 
   // Learning Mode
   learningMode: LearningMode;

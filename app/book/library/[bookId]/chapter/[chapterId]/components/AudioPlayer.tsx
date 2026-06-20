@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
+import { TTS_SPEED_OPTIONS, snapTtsSpeedToOption } from "@/app/book/settings/constants/tts";
 import {
   Headphones,
   Loader2,
@@ -20,9 +21,12 @@ type AudioPlayerProps = {
   chapterTitle: string;
   tone: string;
   variant: string;
+  // SET-2: the reader's persisted TTS playback speed (settings.extended.ttsSpeed).
+  // Seeds the player's initial speed and keeps it in sync until the listener
+  // adjusts speed here, at which point onSpeedChange persists their choice back.
+  initialSpeed?: number;
+  onSpeedChange?: (speed: number) => void;
 };
-
-const SPEED_OPTIONS = [0.75, 1, 1.25, 1.5, 2] as const;
 
 export function AudioPlayer({
   bookId,
@@ -30,6 +34,8 @@ export function AudioPlayer({
   chapterTitle,
   tone,
   variant,
+  initialSpeed,
+  onSpeedChange,
 }: AudioPlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
@@ -42,6 +48,9 @@ export function AudioPlayer({
   // updated alongside every ref write so the "settings changed" prompt can be
   // derived during render without reading the ref (react-hooks/refs).
   const speedRef = useRef(1);
+  // SET-2: once the listener picks a speed here, stop syncing from the persisted
+  // pref (initialSpeed) so a late prefs hydration can't override their choice.
+  const userAdjustedSpeedRef = useRef(false);
 
   const [open, setOpen] = useState(false);
   const [minimized, setMinimized] = useState(false);
@@ -49,7 +58,9 @@ export function AudioPlayer({
   const [playing, setPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(() =>
+    typeof initialSpeed === "number" ? snapTtsSpeedToOption(initialSpeed) : 1,
+  );
   const [error, setError] = useState<string | null>(null);
   const [audioReady, setAudioReady] = useState(false);
   const [loadedParams, setLoadedParams] = useState("");
@@ -59,10 +70,21 @@ export function AudioPlayer({
   const audioUrl = `/app/api/book/books/${encodeURIComponent(bookId)}/chapters/${chapterNumber}/audio?tone=${encodeURIComponent(tone)}&variant=${encodeURIComponent(variant)}`;
 
   // Keep a ref in sync so the audio-events effect (deps [open]) reads the
-  // latest speed after each (re)load instead of a stale closure value.
+  // latest speed after each (re)load instead of a stale closure value. Also
+  // push the rate onto the live element so an initialSpeed adoption (below)
+  // takes effect mid-playback, not only on the next load.
   useEffect(() => {
     speedRef.current = speed;
+    if (audioRef.current) audioRef.current.playbackRate = speed;
   }, [speed]);
+
+  // SET-2: adopt the listener's persisted TTS speed once prefs hydrate (state
+  // seeds from defaults first, then localStorage / server settings arrive
+  // async). Stops once they adjust speed here so their in-session choice wins.
+  useEffect(() => {
+    if (userAdjustedSpeedRef.current || typeof initialSpeed !== "number") return;
+    setSpeed(snapTtsSpeedToOption(initialSpeed));
+  }, [initialSpeed]);
 
   // ── Load audio ─────────────────────────────────────────────────────
   const loadAudio = useCallback(async () => {
@@ -235,11 +257,13 @@ export function AudioPlayer({
   }, [playing, audioReady]);
 
   const cycleSpeed = useCallback(() => {
-    const idx = SPEED_OPTIONS.indexOf(speed as typeof SPEED_OPTIONS[number]);
-    const next = SPEED_OPTIONS[(idx + 1) % SPEED_OPTIONS.length];
+    userAdjustedSpeedRef.current = true;
+    const idx = TTS_SPEED_OPTIONS.indexOf(speed as typeof TTS_SPEED_OPTIONS[number]);
+    const next = TTS_SPEED_OPTIONS[(idx + 1) % TTS_SPEED_OPTIONS.length];
     setSpeed(next);
     if (audioRef.current) audioRef.current.playbackRate = next;
-  }, [speed]);
+    onSpeedChange?.(next);
+  }, [speed, onSpeedChange]);
 
   const handleProgressClick = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {

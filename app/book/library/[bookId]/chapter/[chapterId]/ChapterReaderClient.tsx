@@ -1278,6 +1278,8 @@ export function ChapterReaderClient({
             chapterTitle={`Chapter ${chapter.order}: ${chapter.title}`}
             tone={contentTone}
             variant={activeDepth === "simple" ? "easy" : activeDepth === "deeper" ? "hard" : "medium"}
+            initialSpeed={bookPrefs.extended.ttsSpeed}
+            onSpeedChange={(s) => patchBookPrefs("extended", { ttsSpeed: s })}
           />
         </div>
       </div>
