@@ -41,3 +41,45 @@ export const EASE = {
   /** Plain easeOut — cubic-bezier(0.25,0.1,0.25,1) = --ease-out (globals.css:306). Legacy; prefer `standard` for reveals. */
   out: [0.25, 0.1, 0.25, 1] as Bezier,
 } as const;
+
+/**
+ * Stagger timings for cascade reveals (a list/grid of children entering in
+ * sequence). ONE source so every cascade on the marketing page shares the same
+ * rhythm — the "calm/intentional" orchestration the landing redesign enforces.
+ * `childDelay` is the per-child offset; `viewportAmount` is how much of the
+ * container must be in view before the cascade arms (matches SectionReveal's
+ * 0.15) so a fast scroll doesn't fire every section's cascade at once.
+ */
+export const STAGGER = {
+  childDelay: 0.08, // seconds between consecutive children
+  viewportAmount: 0.15, // fraction of the container visible before arming
+} as const;
+
+/**
+ * Spring presets for framer-motion `useSpring` / `transition: { type: "spring" }`.
+ * `progress` smooths a scroll-linked MotionValue (e.g. the page progress bar) so
+ * it eases rather than tracking 1:1; `magnetic` is the soft pull-back used by the
+ * primary CTA hover. Kept here so scroll/CTA motion stays retunable from one place.
+ */
+export const SPRING = {
+  /** Smooths a scroll-progress MotionValue (low stiffness, well damped, no overshoot). */
+  progress: { stiffness: 120, damping: 30, restDelta: 0.001 },
+  /** Magnetic CTA pull — a touch of overshoot for a tactile "snap". */
+  magnetic: { stiffness: 300, damping: 20, mass: 0.6 },
+} as const;
+
+/**
+ * `useScroll({ offset })` presets for element-relative scroll tracking. The
+ * tuple maps [target-edge meets container-edge] start -> end; progress runs 0->1
+ * between them. `coverViewport` tracks an element from when its top reaches the
+ * viewport top to when its bottom reaches the viewport bottom — the right window
+ * for a tall pinned/sticky section. NOTE: the page-wide progress bar must use the
+ * DEFAULT document `useScroll()` (no target), which auto-accounts for total page
+ * height — so it never desyncs when a tall pinned section changes that height.
+ */
+export const SCROLL_OFFSET = {
+  /** A tall section pinned across the viewport: progress 0 at top-aligned, 1 at bottom-aligned. */
+  pinnedSection: ["start start", "end end"] as const,
+  /** An element entering then leaving the viewport: 0 as it enters bottom, 1 as it exits top. */
+  enterLeave: ["start end", "end start"] as const,
+} as const;

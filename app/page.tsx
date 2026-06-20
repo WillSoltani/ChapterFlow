@@ -16,6 +16,8 @@ import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Footer } from "@/components/sections/Footer";
 import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
+import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
+import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
 import { PRICING } from "@/lib/pricing";
 import {
   CATALOG_BOOK_COUNT_DISPLAY,
@@ -127,24 +129,30 @@ export default function Home() {
         Skip to main content
       </a>
 
-      <Navbar />
-      <Suspense fallback={null}>
-        <AuthErrorBanner />
-      </Suspense>
+      {/* ONE LazyMotion provider for the whole marketing tree (see
+          LandingMotionProvider). Sections inside use the lightweight `m`. */}
+      <LandingMotionProvider>
+        <ScrollProgressBar />
 
-      <main id="main" tabIndex={-1} className="focus:outline-none">
-        <Hero />
-        <Problem />
-        <HowItWorks />
-        <InteractiveDemo />
-        <Library />
-        <SocialProof />
-        <Pricing />
-        <FinalCTA />
-      </main>
+        <Navbar />
+        <Suspense fallback={null}>
+          <AuthErrorBanner />
+        </Suspense>
 
-      <Footer />
-      <MobileStickyBar />
+        <main id="main" tabIndex={-1} className="focus:outline-none">
+          <Hero />
+          <Problem />
+          <HowItWorks />
+          <InteractiveDemo />
+          <Library />
+          <SocialProof />
+          <Pricing />
+          <FinalCTA />
+        </main>
+
+        <Footer />
+        <MobileStickyBar />
+      </LandingMotionProvider>
     </div>
   );
 }
