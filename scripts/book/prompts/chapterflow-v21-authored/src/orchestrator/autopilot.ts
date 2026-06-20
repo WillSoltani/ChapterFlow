@@ -48,6 +48,8 @@ import {
   buildMajorSkeleton,
 } from "../qc/orchestrator/reviewPacket.js";
 import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
+import { runShipGate } from "../critics/finalGate.js";
+import { runBookGate } from "../critics/bookGate.js";
 import { sweepPackPath } from "../qc/sweep.js";
 import { barPackPath } from "../qc/barReview.js";
 import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
@@ -116,6 +118,13 @@ export type AutopilotDeps = {
    *  across rounds (the convergence fix) instead of oscillating. Fail-safe → false
    *  (a full round is always correct), so a read error never forces an incremental carry. */
   anyCarryable: (bookId: string) => boolean;
+  /** The stable keys of every MAJOR-tier deterministic finding over the whole book
+   *  (ship-gate majors + book-gate majors: A13 commas, C23 dup protagonist, BP28/29/31
+   *  templating, …). These are INVISIBLE to qc-converge (it gates on blockers only), so a
+   *  repair can clear qc-converge yet introduce one of these — a new finding the next round's
+   *  sweep/bar would flag. The post-repair scan diffs this pre vs post to catch that regression.
+   *  Fail-safe → empty set (no false regression signal on an unreadable book). */
+  majorFindingKeys: (bookId: string) => Set<string>;
   /** True iff the reviewer card already produced a submission on disk — used to
    *  re-spawn ONLY the missing reviewers on an INCOMPLETE round, not the whole wave. */
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
@@ -376,6 +385,28 @@ function defaultAnyCarryable(bookId: string): boolean {
   } catch {
     return false;
   }
+}
+
+/** All MAJOR-tier deterministic finding keys for the book — ship-gate majors (per-chapter,
+ *  e.g. A13/C23) keyed by chapter+catalogId+unit, plus book-gate majors (e.g. BP28/29/31)
+ *  keyed by catalogId+named-chapters. Fail-safe → empty set. The keys must be STABLE across
+ *  calls so a pre/post diff reflects only what the repair changed. */
+function defaultMajorFindingKeys(bookId: string): Set<string> {
+  const keys = new Set<string>();
+  try {
+    const chapters = loadBookChapters(bookId);
+    for (const ch of chapters) {
+      for (const f of runShipGate(ch).majors) keys.add(`ship:ch${ch.number}:${f.catalogId}:${f.unit}`);
+    }
+    for (const f of runBookGate(bookId, chapters).findings) {
+      if (f.severity !== "major") continue;
+      const named = f.chapters ?? [];
+      keys.add(`book:${f.catalogId}:${named.length ? [...named].sort((a, b) => a - b).join(",") : "book"}`);
+    }
+  } catch {
+    /* unreadable book → empty set; no false regression signal */
+  }
+  return keys;
 }
 
 /** Map a task-card path → its QC role + chapter + (for tiebreak cards) the bar-read
@@ -648,6 +679,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     mkSessionId: d?.mkSessionId ?? defaultMkSessionId,
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
     anyCarryable: d?.anyCarryable ?? defaultAnyCarryable,
+    majorFindingKeys: d?.majorFindingKeys ?? defaultMajorFindingKeys,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
     logBroker: d?.logBroker ?? logBrokerToDisk,
@@ -663,6 +695,10 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
 // ── The conductor ────────────────────────────────────────────────────────────
 
 const MAX_LOOP_ITERS = 40; // safety backstop; real phases advance well under this
+// R3 — how many times, per repair attempt, to re-dispatch a TARGETED fix for a major the repair
+// itself introduced (qc-converge can't see majors). Small + separate from the outer maxRepair
+// round budget; the outer loop + noProgress halt are the global anti-spin backstop.
+const REGRESSION_REDISPATCH_CAP = 2;
 
 export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOutcome> {
   const deps = resolveDeps(opts.deps);
@@ -849,34 +885,47 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     // Spawn ONE repair writer with the generated repair prompt, then converge
     // deterministically before the next (fresh) round — the treadmill-killer.
     const repairPromptPath = resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId, round.roundId, "repair-prompt.md");
-    // Re-attach the DEALT authoring card for each flagged chapter. The repair brief gives the
-    // per-unit WHAT (quote + expected fix); the card gives the per-slot HOW — the distinct
-    // shape/venue/opener slots the deal computed. Without it a repair re-authors blind and
-    // collapses sibling scenes onto a NEW shared shell (the documented homogenization that
-    // feeds the templating the sweep then flags). Attaching it lets the writer restage onto
-    // the variety that was already designed in.
+    // The DEALT authoring card gives the per-slot HOW — the distinct shape/venue/opener slots the
+    // deal computed; re-attaching it per chapter lets the writer restage onto the variety already
+    // designed in, instead of collapsing onto a new shared frame.
     const flagged = flaggedChapterNumbers(bookId, round.roundId);
-    const dealtCards = flagged.size
-      ? deps.listWriteCards(bookId)
-          .filter((c) => { const n = chapterNumberFromCard(c); return n != null && flagged.has(n); })
-          .map((c) => `\n\n--- DEALT AUTHORING CARD ch${chapterNumberFromCard(c)} (restage onto THESE dealt shape/venue/opener slots — do NOT collapse the scenes onto a new shared frame) ---\n${deps.readTask(c)}`)
-          .join("")
-      : "";
-    const repairTask = (existsSync(repairPromptPath)
+    const wholePrompt = existsSync(repairPromptPath)
       ? deps.readTask(repairPromptPath)
-      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`) + dealtCards;
-    deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}`);
-    // Collateral-edit guard: snapshot the GREEN (non-flagged) chapters' hashes. A repair that
-    // edits a chapter carrying a passing review invalidates its attestation → forced re-review
-    // → possible regression (the green->regress half of the 7->1 divergence). Warn loudly.
+      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`;
+    const writeCards = deps.listWriteCards(bookId);
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const dealtCardFor = (n: number): string => {
+      const c = writeCards.find((c) => chapterNumberFromCard(c) === n);
+      return c ? `\n\n--- DEALT AUTHORING CARD ch${pad(n)} (restage onto THESE dealt shape/venue/opener slots — do NOT collapse the scenes onto a new shared frame) ---\n${deps.readTask(c)}` : "";
+    };
+    // R4 — SURGICAL per-chapter repair. A SINGLE batch session re-authoring several chapters in one
+    // context collapses their scenes onto a shared frame (the documented homogenization that FEEDS
+    // the templating the sweep then flags). Run ONE session PER flagged chapter, each scoped to edit
+    // ONLY its chapter — so no session ever re-authors siblings together. Cross-chapter residue (an
+    // F1 collision, a BP* templating echo) is caught reactively by the qc-converge loop (blockers)
+    // and the R3 major scan below. Sequential = no two sessions race a shared cross-chapter signal.
+    // No matrix yet (empty `flagged`) → ONE session over the whole prompt (unchanged fallback).
+    const repairTargets: Array<number | null> = flagged.size ? [...flagged].sort((a, b) => a - b) : [null];
+    deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}${flagged.size ? ` — ${flagged.size} surgical chapter session(s)` : ""}`);
+    // Collateral-edit guard: snapshot the GREEN (non-flagged) chapters' hashes around the WHOLE
+    // fan-out. A repair that edits a chapter carrying a passing review invalidates its attestation.
     const preHashes = deps.chapterHashes(bookId);
-    const r = await spawnAndLog(bookId, { task: repairTask, sessionId: deps.mkSessionId(`qc-repair-${attempt + 1}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
-    if (!r.ok) deps.log(`[autopilot] repair session exited ${r.exitCode}`);
+    // R3 — snapshot the FULL major set BEFORE the repair, so the post-repair scan can tell a
+    // repair-INTRODUCED major (A13/C23/BP28-31 — all invisible to qc-converge) from a pre-existing one.
+    const preMajors = deps.majorFindingKeys(bookId);
+    for (const n of repairTargets) {
+      const task = n == null
+        ? wholePrompt
+        : `REPAIR SCOPE: this session repairs ONLY ch${pad(n)}. Edit ONLY state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json — do NOT edit any other chapter (a sibling session handles those) and do NOT copy another chapter's scenes, names, or phrasing (that re-creates the templating the sweep flags). Fix every finding scoped to ch${pad(n)} below; ignore findings scoped to other chapters.\n\n${wholePrompt}${dealtCardFor(n)}`;
+      const sid = n == null ? `qc-repair-${attempt + 1}` : `qc-repair-${attempt + 1}-ch${n}`;
+      const rr = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(sid), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      if (!rr.ok) deps.log(`[autopilot] repair session ${sid} exited ${rr.exitCode}`);
+    }
     const postHashes = deps.chapterHashes(bookId);
     const collateral = Object.keys(postHashes).filter((n) => !flagged.has(Number(n)) && preHashes[n] !== undefined && preHashes[n] !== postHashes[n]);
     // Only warn when we actually know the flagged set (a found matrix); an empty `flagged`
     // means the matrix wasn't readable, and we can't distinguish collateral from intended.
-    if (flagged.size && collateral.length) deps.log(`[autopilot] WARNING: repair collaterally edited non-flagged chapter(s) ${collateral.map((n) => `ch${n}`).join(", ")} — they carried a passing review and will be re-reviewed next round (possible regression). The repair brief scopes edits to the flagged chapters only.`);
+    if (flagged.size && collateral.length) deps.log(`[autopilot] WARNING: repair collaterally edited non-flagged chapter(s) ${collateral.map((n) => `ch${n}`).join(", ")} — they carried a passing review and will be re-reviewed next round (possible regression). Each repair session is scoped to a single flagged chapter.`);
     // Converge deterministic gates so the NEXT formal round won't bounce on a nit.
     for (let c = 0; c < maxRepair; c++) {
       const cv = await deps.runVerb(["qc-converge", bookId]);
@@ -884,6 +933,22 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during repair convergence — not a content problem; inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
       const cr = await spawnAndLog(bookId, { task: `Fix the remaining deterministic findings for ${bookId}, then qc-converge until CLEAN.\n\n${cv.stdout}`, sessionId: deps.mkSessionId(`qc-converge-fix-${attempt + 1}-${c}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!cr.ok) break;
+    }
+    // R3 — post-repair regression scan. qc-converge gates on BLOCKERS only, so a repair can be
+    // DETERMINISTIC-CLEAN yet have introduced a MAJOR (A13 commas / C23 dup protagonist / BP28-31
+    // templating) the next round's sweep/bar would flag → another round. Diff the full major set
+    // post-repair vs pre-repair and fix any NEW major in place, bounded, before spending a fresh
+    // round. The outer maxRepair loop + noProgress halt remain the global anti-spin backstop.
+    for (let rc = 0; rc < REGRESSION_REDISPATCH_CAP; rc++) {
+      const newMajors = [...deps.majorFindingKeys(bookId)].filter((k) => !preMajors.has(k));
+      if (!newMajors.length) break;
+      deps.log(`[autopilot] WARNING: the repair introduced ${newMajors.length} NEW major(s) invisible to qc-converge: ${newMajors.join("; ")} — re-dispatching a targeted fix (${rc + 1}/${REGRESSION_REDISPATCH_CAP}).`);
+      const fixTask = `Your previous repair of ${bookId} introduced NEW major findings that \`qc-converge\` does NOT catch (they are major-tier, not blockers — templating, commas, or a duplicate protagonist). Fix EACH below by editing ONLY chapter CONTENT under state/chapters/, preserving every number / proper noun / source anchor, then re-run \`gate-chapter\` and \`book-gate\`. Do NOT introduce any further templating / banned-name / comma defect.\n\nNEW majors (key = scope:chapter:catalogId:location):\n${newMajors.map((k) => `- ${k}`).join("\n")}`;
+      const rr = await spawnAndLog(bookId, { task: fixTask, sessionId: deps.mkSessionId(`qc-regression-fix-${attempt + 1}-${rc}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      if (!rr.ok) { deps.log(`[autopilot] regression-fix session exited ${rr.exitCode}`); break; }
+      // A regression fix is a content edit → re-converge the deterministic gates before re-scanning.
+      const cv = await deps.runVerb(["qc-converge", bookId]);
+      if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during regression-fix convergence — inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
     }
     // loop → drive a FRESH round (a repair invalidates the prior one)
   }

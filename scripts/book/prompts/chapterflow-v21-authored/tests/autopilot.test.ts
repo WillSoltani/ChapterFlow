@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, readFileSync, existsSync, chmodSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, existsSync, chmodSync, rmSync } from "node:fs";
 import { tmpdir, hostname } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 
 import { test } from "./harness.js";
+import { evidenceMatrixPath } from "../src/qc/orchestrator/artifacts.js";
 import {
   decidePhase,
   parseRoundId,
@@ -201,6 +202,85 @@ test("autopilot HALTs (never auto-waives) when a major needs disposition", async
   const outcome = await runAutopilot({ bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") assert.match(outcome.reason, /MAJOR/);
+});
+
+test("R3: a repair that introduces a NEW major (invisible to qc-converge) triggers ONE targeted regression-fix", async () => {
+  let finalizeCalls = 0;
+  let majorCalls = 0;
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  const { deps, spawns } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args.includes("--finalize")) return finalizeCalls++ === 0 ? { code: 1, stdout: "REVISE", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" };
+      if (args[0] === "qc-diagnose") return { code: 0, stdout: `ch01: finding-${finalizeCalls}`, stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "", stderr: "" };
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    // pre-repair {A}; first post-repair scan {A,B} → new major B → ONE re-dispatch; then back to {A} → stop.
+    majorFindingKeys: () => new Set(majorCalls++ === 1 ? ["A", "B"] : ["A"]),
+  });
+  const outcome = await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+  assert.equal(outcome.status, "ready");
+  assert.equal(spawns.filter((s) => s.sessionId.startsWith("qc-regression-fix")).length, 1, "exactly one targeted fix for the introduced major");
+});
+
+test("R3: a CLEAN repair (no NEW major) spawns NO regression-fix", async () => {
+  let finalizeCalls = 0;
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  const { deps, spawns } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args.includes("--finalize")) return finalizeCalls++ === 0 ? { code: 1, stdout: "REVISE", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" };
+      if (args[0] === "qc-diagnose") return { code: 0, stdout: `ch01: finding-${finalizeCalls}`, stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "", stderr: "" };
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    majorFindingKeys: () => new Set(["A"]), // constant pre/post → no new major
+  });
+  await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+  assert.equal(spawns.filter((s) => s.sessionId.startsWith("qc-regression-fix")).length, 0, "a clean repair never re-dispatches");
+});
+
+test("R4: repair fans out ONE surgical session PER flagged chapter (no single batch session that homogenizes)", async () => {
+  const ROUND = "r20260101000000-abcdef";
+  const matrixPath = evidenceMatrixPath("zz", ROUND);
+  let finalizeCalls = 0;
+  try {
+    // A matrix marking ch1 + ch2 non-publishable → flagged = {1,2} → two surgical sessions.
+    mkdirSync(dirname(matrixPath), { recursive: true });
+    writeFileSync(matrixPath, JSON.stringify({
+      schemaVersion: "qc-evidence-matrix-v1", bookId: "zz", roundId: ROUND,
+      chapters: [
+        { chapterNumber: 1, finalVerdict: "REVISE", reason: "x", checks: {}, majorStatus: { book: [], chapter: [] } },
+        { chapterNumber: 2, finalVerdict: "REVISE", reason: "x", checks: {}, majorStatus: { book: [], chapter: [] } },
+      ],
+    }), "utf8");
+    const statuses = [
+      makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+      makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+    ];
+    const { deps, spawns } = happyDeps(statuses, {
+      runVerb: async (args) => {
+        if (args.includes("--create")) return { code: 0, stdout: `round: ${ROUND}`, stderr: "" };
+        if (args.includes("--finalize")) return finalizeCalls++ === 0 ? { code: 1, stdout: "REVISE", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" };
+        if (args[0] === "qc-diagnose") return { code: 0, stdout: `ch01: finding-${finalizeCalls}`, stderr: "" };
+        if (args[0] === "qc-converge") return { code: 0, stdout: "", stderr: "" };
+        return { code: 0, stdout: "", stderr: "" };
+      },
+    });
+    await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+    const perChapter = spawns.filter((s) => /^qc-repair-1-ch[12]#/.test(s.sessionId)).map((s) => s.sessionId.replace(/#.*/, ""));
+    assert.deepEqual(new Set(perChapter), new Set(["qc-repair-1-ch1", "qc-repair-1-ch2"]), "one surgical session per flagged chapter");
+    assert.equal(spawns.filter((s) => /^qc-repair-1#/.test(s.sessionId)).length, 0, "NO single batch repair session when chapters are flagged");
+  } finally {
+    rmSync(dirname(matrixPath), { recursive: true, force: true });
+  }
 });
 
 test("autopilot --auto-publish ships on a clean QC pass", async () => {
