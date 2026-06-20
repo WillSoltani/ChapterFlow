@@ -13,5 +13,5 @@ export default async function BookProfilePage() {
     userEmail = null;
   }
 
-  return <BookProfileClient userEmail={userEmail} appVersion="0.1.0" />;
+  return <BookProfileClient userEmail={userEmail} />;
 }
