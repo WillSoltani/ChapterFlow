@@ -572,6 +572,33 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       memoryLimit: 512,
     });
 
+    // Deploy the authored book packages to the content bucket. The server reads
+    // these from S3 at runtime (quiz/audio/ask) instead of bundling all ~37.6 MB
+    // into the ServerFn, which would exceed Lambda's 250 MiB unzipped limit (#257).
+    // BucketDeployment uses its OWN managed-Lambda role to write — the GitHub OIDC
+    // deploy role has no direct s3:PutObject on the content bucket, which is why a
+    // plain in-workflow upload failed (#259). Each file is named <bookId>.v21.json,
+    // so it lands at book-content/packages/<bookId>.v21.json where
+    // getServerBookPackage() fetches it. prune:false + the dedicated key prefix
+    // mean it never touches the other book-content/* prefixes (books/, library/, …).
+    const bookContentBucket = s3.Bucket.fromBucketName(
+      this,
+      "BookPackagesContentBucket",
+      props.contentBucketName,
+    );
+    new s3deploy.BucketDeployment(this, "DeployBookPackages", {
+      sources: [
+        s3deploy.Source.asset(path.join(__dirname, "../../book-packages"), {
+          exclude: ["README.md", "_quarantined", "_quarantined/**"],
+        }),
+      ],
+      destinationBucket: bookContentBucket,
+      destinationKeyPrefix: "book-content/packages",
+      contentType: "application/json",
+      prune: false,
+      memoryLimit: 512,
+    });
+
     // -------------------------------------------------------------------
     // ACM Certificate
     // -------------------------------------------------------------------

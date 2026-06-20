@@ -15,7 +15,7 @@ import measureWhatMattersPackageJson from "@/book-packages/measure-what-matters.
 import clearThinkingPackageJson from "@/book-packages/clear-thinking.v21.json";
 import antifragilePackageJson from "@/book-packages/antifragile.v21.json";
 import blueOceanStrategyPackageJson from "@/book-packages/blue-ocean-strategy.v21.json";
-import gettingThingsDonePackageJson from "@/book-packages/Getting-Things-Done.v21.json";
+import gettingThingsDonePackageJson from "@/book-packages/getting-things-done.v21.json";
 import essentialismPackageJson from "@/book-packages/essentialism.v21.json";
 import deepWorkPackageJson from "@/book-packages/deep-work.v21.json";
 import soGoodTheyCantIgnoreYouPackageJson from "@/book-packages/so-good-they-cant-ignore-you.v21.json";
