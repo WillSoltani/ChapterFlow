@@ -60,8 +60,22 @@ const PHASE_DURATIONS_MS: Record<ChapterTab, number> = {
  * is driven manually via the PhaseStepper / ContinueButton) and the
  * phase-transition animation is disabled.
  */
-export function DesktopReaderShell() {
-  const [activeTab, setActiveTab] = useState<ChapterTab>("summary");
+export function DesktopReaderShell({
+  controlledPhase,
+  autoPlay = true,
+}: {
+  /** When set, SCROLL (or any external driver) owns the phase: this value wins
+   *  and the internal autoplay timer never schedules. Used by the pinned
+   *  signature section. */
+  controlledPhase?: ChapterTab;
+  /** Default true. false disables internal auto-advance (driver owns it). */
+  autoPlay?: boolean;
+} = {}) {
+  const [internalTab, setInternalTab] = useState<ChapterTab>("summary");
+  // Effective phase: the external driver wins when controlled; otherwise the
+  // internal autoplay/interaction state drives it (standalone InteractiveDemo).
+  const isControlled = controlledPhase != null;
+  const activeTab = controlledPhase ?? internalTab;
   const [readingDepth, setReadingDepth] = useState<ReadingDepth>("standard");
   const [bookmarkedTakeaways, setBookmarkedTakeaways] = useState<Set<number>>(
     new Set()
@@ -100,6 +114,8 @@ export function DesktopReaderShell() {
   // ContinueButton instead (WCAG 2.2.2: no auto-updating moving content).
   // Also gated on `isInView` so the loop never cycles while off-screen.
   useEffect(() => {
+    // Scroll-driven (controlled) mode owns the phase — never schedule the timer.
+    if (!autoPlay || isControlled) return;
     if (prefersReducedMotion) return;
     if (!isInView) return;
     if (hasInteracted.current) return;
@@ -107,15 +123,22 @@ export function DesktopReaderShell() {
     advanceRef.current = setTimeout(() => {
       const idx = PHASE_ORDER.indexOf(activeTab);
       const next = PHASE_ORDER[(idx + 1) % PHASE_ORDER.length];
-      setActiveTab(next);
+      setInternalTab(next);
     }, dwell);
     return () => stopAutoAdvance();
-  }, [activeTab, stopAutoAdvance, prefersReducedMotion, isInView]);
+  }, [
+    activeTab,
+    stopAutoAdvance,
+    prefersReducedMotion,
+    isInView,
+    autoPlay,
+    isControlled,
+  ]);
 
   const handleTabChange = useCallback(
     (tab: ChapterTab) => {
       markInteracted();
-      setActiveTab(tab);
+      setInternalTab(tab);
     },
     [markInteracted]
   );
@@ -124,7 +147,7 @@ export function DesktopReaderShell() {
     markInteracted();
     const idx = PHASE_ORDER.indexOf(activeTab);
     if (idx >= 0 && idx < PHASE_ORDER.length - 1) {
-      setActiveTab(PHASE_ORDER[idx + 1]);
+      setInternalTab(PHASE_ORDER[idx + 1]);
     }
   }, [activeTab, markInteracted]);
 
@@ -207,8 +230,14 @@ export function DesktopReaderShell() {
 
       {/* Content area */}
       <div
-        className="px-6 py-8 md:px-10 md:py-10 max-h-[720px] overflow-y-auto"
-        onClick={markInteracted}
+        className={
+          isControlled
+            ? // Scroll-driven: neutralize the inner scroll so the PAGE scroll
+              // owns the scrub (the inner overflow-y-auto would otherwise trap it).
+              "px-6 py-8 md:px-10 md:py-10 overflow-hidden"
+            : "px-6 py-8 md:px-10 md:py-10 max-h-[720px] overflow-y-auto"
+        }
+        onClick={isControlled ? undefined : markInteracted}
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -288,7 +317,7 @@ export function DesktopReaderShell() {
                 fontScaleClass="text-base"
                 onContinueToNextChapter={() => {
                   markInteracted();
-                  setActiveTab("summary");
+                  setInternalTab("summary");
                 }}
                 nextChapterLabel="Continue to Chapter 2 →"
                 bookmarkedTakeaways={

@@ -298,6 +298,24 @@ body {
   --cf-transition-fast: 160ms var(--cf-site-ease);
   --cf-transition-med: 220ms var(--cf-site-ease);
 
+  /* ── Dark "science" anchor — THEME-INVARIANT ──
+     The landing's one dramatic dark section must read dark in BOTH light and
+     dark page themes, so these are declared with IDENTICAL values here (:root)
+     and in html:not(.dark). The anchor is self-contained: it uses ONLY
+     --cf-anchor-* (+ color-mix of --cf-anchor-accent), never the page --accent-*
+     (which flips to a dark teal in light mode and would muddy the dark stage).
+     Text-on-dark contrast: --cf-anchor-text on --cf-anchor-bg ≈ 16:1 (AA/AAA in
+     light, dark, and high-contrast). */
+  --cf-anchor-bg: #080B12;
+  --cf-anchor-surface: rgba(255, 255, 255, 0.045);
+  --cf-anchor-surface-strong: rgba(255, 255, 255, 0.07);
+  --cf-anchor-border: rgba(255, 255, 255, 0.10);
+  --cf-anchor-text: #F4F7FA;
+  --cf-anchor-text-muted: #9DABBA;
+  --cf-anchor-accent: #22D3EE;
+  --cf-anchor-accent-strong: #67E8F9;
+  --cf-anchor-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
+
   /* ── CF surface tokens (for app pages, mapped to dark palette) ── */
   --cf-page-bg: #0B0E14;
   --cf-page-bg-alt: #111827;
@@ -387,6 +405,18 @@ body {
    Applied when .dark class is NOT on <html>
    ───────────────────────────────────────── */
 html:not(.dark) {
+  /* Dark "science" anchor — THEME-INVARIANT: identical to the :root values
+     above so the anchor stays dark on a light page (see the :root comment). */
+  --cf-anchor-bg: #080B12;
+  --cf-anchor-surface: rgba(255, 255, 255, 0.045);
+  --cf-anchor-surface-strong: rgba(255, 255, 255, 0.07);
+  --cf-anchor-border: rgba(255, 255, 255, 0.10);
+  --cf-anchor-text: #F4F7FA;
+  --cf-anchor-text-muted: #9DABBA;
+  --cf-anchor-accent: #22D3EE;
+  --cf-anchor-accent-strong: #67E8F9;
+  --cf-anchor-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
+
   /* Shadcn tokens (light mode) */
   --background: #FAFAF9;
   --foreground: #1C1917;
