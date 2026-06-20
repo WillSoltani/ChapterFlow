@@ -11,7 +11,7 @@ import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
 import { bookUserPk, aiQuestionCountSk, aiCachedAnswerPk, aiCachedAnswerSk } from "@/app/app/api/book/_lib/keys";
 import { createHash } from "crypto";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
-import { getBookPackageByIdForTone } from "@/app/book/data/bookPackages";
+import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
 
 export const runtime = "nodejs";
 
@@ -98,13 +98,13 @@ export async function POST(req: Request, ctx: Params) {
     // Accept optional chapterNumber for context weighting
     const chapterNumber = typeof body.chapterNumber === "number" ? body.chapterNumber : null;
 
-    // Load chapter content from the in-repo book package set. NOTE: this is a
-    // DIFFERENT source than the reader, which serves chapters from S3 via
-    // content-service. A catalog book present in S3/Dynamo but not compiled into
-    // BOOK_PACKAGES 404s here even though the reader renders it (finding M19 —
-    // the full fix is cross-cutting: route Ask + Audio through content-service,
-    // or gate the catalog to the in-repo set).
-    const pkg = getBookPackageByIdForTone(bookId, "direct");
+    // Load the authored book package from S3 (book-content/packages/<id>.v21.json),
+    // fetched + cached on demand. This is the same data that used to be statically
+    // bundled into the server (see book-package-source.ts) — moved out of the
+    // Lambda to keep ServerFn under the 250 MiB limit. NOTE: still a DIFFERENT
+    // source than the reader's published chapters; a book with no authored package
+    // in S3 404s here even though the reader renders it (residual of finding M19).
+    const pkg = await getServerBookPackage(bookId, "direct");
     if (!pkg) {
       return bookErr(req, 404, "book_not_found", "Book not found");
     }

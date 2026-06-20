@@ -1,115 +1,16 @@
-import {
-  BOOK_PACKAGES,
-  getBookPackageById,
-  getBookPackagePresentation,
-  getThePowerOfHabitPackageForTone,
-  THE_POWER_OF_HABIT_RAW_CHAPTERS,
-  getMakeTimePackageForTone,
-  MAKE_TIME_RAW_CHAPTERS,
-  getMakeItStickPackageForTone,
-  MAKE_IT_STICK_RAW_CHAPTERS,
-  getMadeToStickPackageForTone,
-  MADE_TO_STICK_RAW_CHAPTERS,
-  getCrucialConversationsPackageForTone,
-  CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
-  getDifficultConversationsPackageForTone,
-  DIFFICULT_CONVERSATIONS_RAW_CHAPTERS,
-  getWhatEveryBodyIsSayingPackageForTone,
-  WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
-  getThePrincePackageForTone,
-  THE_PRINCE_RAW_CHAPTERS,
-  getTinyHabitsPackageForTone,
-  TINY_HABITS_RAW_CHAPTERS,
-  getEssentialismPackageForTone,
-  ESSENTIALISM_RAW_CHAPTERS,
-  getDeepWorkPackageForTone,
-  DEEP_WORK_RAW_CHAPTERS,
-  getSoGoodTheyCantIgnoreYouPackageForTone,
-  SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS,
-  getPredictablyIrrationalPackageForTone,
-  PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
-  getThinkingInBetsPackageForTone,
-  THINKING_IN_BETS_RAW_CHAPTERS,
-  getTheLawsOfHumanNaturePackageForTone,
-  THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
-  getTheAlmanackOfNavalRavikantPackageForTone,
-  THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
-  getTheHardThingAboutHardThingsPackageForTone,
-  THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
-  getInfluencePackageForTone,
-  INFLUENCE_RAW_CHAPTERS,
-  getTheInnovatorsDilemmaPackageForTone,
-  THE_INNOVATORS_DILEMMA_RAW_CHAPTERS,
-  getBuiltToLastPackageForTone,
-  BUILT_TO_LAST_RAW_CHAPTERS,
-  getCompetingAgainstLuckPackageForTone,
-  COMPETING_AGAINST_LUCK_RAW_CHAPTERS,
-  getLeadersEatLastPackageForTone,
-  LEADERS_EAT_LAST_RAW_CHAPTERS,
-  getLimitlessPackageForTone,
-  LIMITLESS_RAW_CHAPTERS,
-  getPeakPackageForTone,
-  PEAK_RAW_CHAPTERS,
-  getPlayingToWinPackageForTone,
-  PLAYING_TO_WIN_RAW_CHAPTERS,
-  getTheOneThingPackageForTone,
-  THE_ONE_THING_RAW_CHAPTERS,
-  getTheCharismaMythPackageForTone,
-  THE_CHARISMA_MYTH_RAW_CHAPTERS,
-  getTheLikeSwitchPackageForTone,
-  THE_LIKE_SWITCH_RAW_CHAPTERS,
-  getGoodToGreatPackageForTone,
-  GOOD_TO_GREAT_RAW_CHAPTERS,
-  getHowToTalkToAnyonePackageForTone,
-  HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
-  getSevenPowersPackageForTone,
-  SEVEN_POWERS_RAW_CHAPTERS,
-  getTalkLikeTedPackageForTone,
-  TALK_LIKE_TED_RAW_CHAPTERS,
-  getNeverSplitTheDifferencePackageForTone,
-  NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
-  getPreSuasionPackageForTone,
-  PRE_SUASION_RAW_CHAPTERS,
-  getSuperThinkingPackageForTone,
-  SUPER_THINKING_RAW_CHAPTERS,
-  getSuperforecastingPackageForTone,
-  SUPERFORECASTING_RAW_CHAPTERS,
-  getYouCantHurtMePackageForTone,
-  YOU_CANT_HURT_ME_RAW_CHAPTERS,
-  getIndistractablePackageForTone,
-  INDISTRACTABLE_RAW_CHAPTERS,
-  getExtremeOwnershipPackageForTone,
-  EXTREME_OWNERSHIP_RAW_CHAPTERS,
-  getTheArtOfWarPackageForTone,
-  THE_ART_OF_WAR_RAW_CHAPTERS,
-  getTheWarOfArtPackageForTone,
-  THE_WAR_OF_ART_RAW_CHAPTERS,
-  getThe33StrategiesOfWarPackageForTone,
-  THE_33_STRATEGIES_OF_WAR_RAW_CHAPTERS,
-  getAtomicHabitsPackageForTone,
-  ATOMIC_HABITS_RAW_CHAPTERS,
-  getTheGreatMentalModelsVol1PackageForTone,
-  THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
-  getTheBlackSwanPackageForTone,
-  THE_BLACK_SWAN_RAW_CHAPTERS,
-  getTheFirst20HoursPackageForTone,
-  THE_FIRST_20_HOURS_RAW_CHAPTERS,
-  getTheOutsidersPackageForTone,
-  THE_OUTSIDERS_RAW_CHAPTERS,
-  getUltralearningPackageForTone,
-  ULTRALEARNING_RAW_CHAPTERS,
-  isStrictReaderSchema,
-  resolveTone,
-  type BookPackage,
-  type PackageChapter,
-  type PackageExample,
-  type PackageQuizQuestion,
-  type PackageSummaryBlock,
-  type PackageVariantContent,
-  type ToneKey,
-  type VariantFamily,
-  type VariantKey,
-} from "@/app/book/data/bookPackages";
+import { isStrictReaderSchema, resolveTone } from "@/app/book/data/book-package-core";
+import type {
+  BookPackage,
+  PackageChapter,
+  PackageExample,
+  PackageQuizQuestion,
+  PackageSummaryBlock,
+  PackageVariantContent,
+  ToneKey,
+  VariantFamily,
+  VariantKey,
+} from "@/app/book/data/book-package-core";
+import bookChapterMeta from "@/app/book/data/book-chapter-meta.json";
 import {
   V21_SCHEMA_VERSION,
   extractV21ChapterExtras,
@@ -645,8 +546,12 @@ function buildQuizExplanation(
 }
 
 function estimatePages(bookPackage: BookPackage): number {
-  const presentation = getBookPackagePresentation(bookPackage.book.bookId);
-  if (presentation.pages) return presentation.pages;
+  // Only reached via buildBookChapterFromRawV21 (the API content path), which
+  // discards bundle.pages and returns just chapters[0]; the slim
+  // getBookChaptersBundle serves the real page count from precomputed metadata.
+  // So the former getBookPackagePresentation lookup (which pulled the heavy
+  // book-package corpus into this module) is unnecessary — estimate from reading
+  // time, which is all this discarded value would ever be.
   const totalMinutes = bookPackage.chapters.reduce(
     (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
     0
@@ -716,7 +621,7 @@ function extractNewFields(rawChapter: any, tone: ToneKey): Partial<BookChapter> 
   return fields;
 }
 
-function buildBundle(
+export function buildBundle(
   bookPackage: BookPackage,
   rawChapters?: any[], // eslint-disable-line @typescript-eslint/no-explicit-any
   tone: ToneKey = "direct",
@@ -960,278 +865,56 @@ export function buildBookChapterFromRawV21(
   return bundle.chapters[0];
 }
 
-type ToneBundleGetter = (tone: ToneKey) => BookPackage;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ToneRawGetter = () => any[];
+// ── Slim chapter metadata (replaces the former all-books corpus) ──────────────
+//
+// bookChapters used to eagerly build a full BookChapter bundle for ALL ~105 books
+// from the statically-imported ~37.6 MB book-package corpus. That landed in BOTH
+// the client bundle AND — via SSR of the reader — the OpenNext ServerFn, blowing
+// Lambda's 250 MiB unzipped limit and breaking prod deploys. The reader's full
+// chapter content already comes from the API (useChapterContent); only analytics /
+// profile / badges / library-state need per-chapter data, and only these slim
+// fields. So we read the precomputed slim metadata (a few hundred KB, generated by
+// scripts/book/generate-chapter-meta.ts) instead, and nothing imports the heavy
+// corpus at runtime anymore.
 
-const TONE_BUNDLE_GETTERS: Record<string, { getPackage: ToneBundleGetter; getRaw: ToneRawGetter }> = {
-  "the-power-of-habit": {
-    getPackage: getThePowerOfHabitPackageForTone,
-    getRaw: () => THE_POWER_OF_HABIT_RAW_CHAPTERS,
-  },
-  "make-time": {
-    getPackage: getMakeTimePackageForTone,
-    getRaw: () => MAKE_TIME_RAW_CHAPTERS,
-  },
-  "make-it-stick": {
-    getPackage: getMakeItStickPackageForTone,
-    getRaw: () => MAKE_IT_STICK_RAW_CHAPTERS,
-  },
-  "made-to-stick": {
-    getPackage: getMadeToStickPackageForTone,
-    getRaw: () => MADE_TO_STICK_RAW_CHAPTERS,
-  },
-  "crucial-conversations": {
-    getPackage: getCrucialConversationsPackageForTone,
-    getRaw: () => CRUCIAL_CONVERSATIONS_RAW_CHAPTERS,
-  },
-  "difficult-conversations": {
-    getPackage: getDifficultConversationsPackageForTone,
-    getRaw: () => DIFFICULT_CONVERSATIONS_RAW_CHAPTERS,
-  },
-  "what-every-body-is-saying": {
-    getPackage: getWhatEveryBodyIsSayingPackageForTone,
-    getRaw: () => WHAT_EVERY_BODY_IS_SAYING_RAW_CHAPTERS,
-  },
-  "the-prince": {
-    getPackage: getThePrincePackageForTone,
-    getRaw: () => THE_PRINCE_RAW_CHAPTERS,
-  },
-  "tiny-habits": {
-    getPackage: getTinyHabitsPackageForTone,
-    getRaw: () => TINY_HABITS_RAW_CHAPTERS,
-  },
-  essentialism: {
-    getPackage: getEssentialismPackageForTone,
-    getRaw: () => ESSENTIALISM_RAW_CHAPTERS,
-  },
-  "deep-work": {
-    getPackage: getDeepWorkPackageForTone,
-    getRaw: () => DEEP_WORK_RAW_CHAPTERS,
-  },
-  "so-good-they-cant-ignore-you": {
-    getPackage: getSoGoodTheyCantIgnoreYouPackageForTone,
-    getRaw: () => SO_GOOD_THEY_CANT_IGNORE_YOU_RAW_CHAPTERS,
-  },
-  "predictably-irrational": {
-    getPackage: getPredictablyIrrationalPackageForTone,
-    getRaw: () => PREDICTABLY_IRRATIONAL_RAW_CHAPTERS,
-  },
-  "thinking-in-bets": {
-    getPackage: getThinkingInBetsPackageForTone,
-    getRaw: () => THINKING_IN_BETS_RAW_CHAPTERS,
-  },
-  "the-almanack-of-naval-ravikant": {
-    getPackage: getTheAlmanackOfNavalRavikantPackageForTone,
-    getRaw: () => THE_ALMANACK_OF_NAVAL_RAVIKANT_RAW_CHAPTERS,
-  },
-  "the-laws-of-human-nature": {
-    getPackage: getTheLawsOfHumanNaturePackageForTone,
-    getRaw: () => THE_LAWS_OF_HUMAN_NATURE_RAW_CHAPTERS,
-  },
-  "the-hard-thing-about-hard-things": {
-    getPackage: getTheHardThingAboutHardThingsPackageForTone,
-    getRaw: () => THE_HARD_THING_ABOUT_HARD_THINGS_RAW_CHAPTERS,
-  },
-  influence: {
-    getPackage: getInfluencePackageForTone,
-    getRaw: () => INFLUENCE_RAW_CHAPTERS,
-  },
-  "the-innovators-dilemma": {
-    getPackage: getTheInnovatorsDilemmaPackageForTone,
-    getRaw: () => THE_INNOVATORS_DILEMMA_RAW_CHAPTERS,
-  },
-  "built-to-last": {
-    getPackage: getBuiltToLastPackageForTone,
-    getRaw: () => BUILT_TO_LAST_RAW_CHAPTERS,
-  },
-  "competing-against-luck": {
-    getPackage: getCompetingAgainstLuckPackageForTone,
-    getRaw: () => COMPETING_AGAINST_LUCK_RAW_CHAPTERS,
-  },
-  "leaders-eat-last": {
-    getPackage: getLeadersEatLastPackageForTone,
-    getRaw: () => LEADERS_EAT_LAST_RAW_CHAPTERS,
-  },
-  limitless: {
-    getPackage: getLimitlessPackageForTone,
-    getRaw: () => LIMITLESS_RAW_CHAPTERS,
-  },
-  peak: {
-    getPackage: getPeakPackageForTone,
-    getRaw: () => PEAK_RAW_CHAPTERS,
-  },
-  "playing-to-win": {
-    getPackage: getPlayingToWinPackageForTone,
-    getRaw: () => PLAYING_TO_WIN_RAW_CHAPTERS,
-  },
-  "the-one-thing": {
-    getPackage: getTheOneThingPackageForTone,
-    getRaw: () => THE_ONE_THING_RAW_CHAPTERS,
-  },
-  "the-charisma-myth": {
-    getPackage: getTheCharismaMythPackageForTone,
-    getRaw: () => THE_CHARISMA_MYTH_RAW_CHAPTERS,
-  },
-  "the-like-switch": {
-    getPackage: getTheLikeSwitchPackageForTone,
-    getRaw: () => THE_LIKE_SWITCH_RAW_CHAPTERS,
-  },
-  "good-to-great": {
-    getPackage: getGoodToGreatPackageForTone,
-    getRaw: () => GOOD_TO_GREAT_RAW_CHAPTERS,
-  },
-  "how-to-talk-to-anyone": {
-    getPackage: getHowToTalkToAnyonePackageForTone,
-    getRaw: () => HOW_TO_TALK_TO_ANYONE_RAW_CHAPTERS,
-  },
-  "seven-powers": {
-    getPackage: getSevenPowersPackageForTone,
-    getRaw: () => SEVEN_POWERS_RAW_CHAPTERS,
-  },
-  "talk-like-ted": {
-    getPackage: getTalkLikeTedPackageForTone,
-    getRaw: () => TALK_LIKE_TED_RAW_CHAPTERS,
-  },
-  "never-split-the-difference": {
-    getPackage: getNeverSplitTheDifferencePackageForTone,
-    getRaw: () => NEVER_SPLIT_THE_DIFFERENCE_RAW_CHAPTERS,
-  },
-  "pre-suasion": {
-    getPackage: getPreSuasionPackageForTone,
-    getRaw: () => PRE_SUASION_RAW_CHAPTERS,
-  },
-  "super-thinking": {
-    getPackage: getSuperThinkingPackageForTone,
-    getRaw: () => SUPER_THINKING_RAW_CHAPTERS,
-  },
-  superforecasting: {
-    getPackage: getSuperforecastingPackageForTone,
-    getRaw: () => SUPERFORECASTING_RAW_CHAPTERS,
-  },
-  indistractable: {
-    getPackage: getIndistractablePackageForTone,
-    getRaw: () => INDISTRACTABLE_RAW_CHAPTERS,
-  },
-  "you-can't-hurt-me": {
-    getPackage: getYouCantHurtMePackageForTone,
-    getRaw: () => YOU_CANT_HURT_ME_RAW_CHAPTERS,
-  },
-  "extreme-ownership": {
-    getPackage: getExtremeOwnershipPackageForTone,
-    getRaw: () => EXTREME_OWNERSHIP_RAW_CHAPTERS,
-  },
-  "the-art-of-war": {
-    getPackage: getTheArtOfWarPackageForTone,
-    getRaw: () => THE_ART_OF_WAR_RAW_CHAPTERS,
-  },
-  "the-war-of-art": {
-    getPackage: getTheWarOfArtPackageForTone,
-    getRaw: () => THE_WAR_OF_ART_RAW_CHAPTERS,
-  },
-  "the-33-strategies-of-war": {
-    getPackage: getThe33StrategiesOfWarPackageForTone,
-    getRaw: () => THE_33_STRATEGIES_OF_WAR_RAW_CHAPTERS,
-  },
-  "atomic-habits": {
-    getPackage: getAtomicHabitsPackageForTone,
-    getRaw: () => ATOMIC_HABITS_RAW_CHAPTERS,
-  },
-  "the-great-mental-models-vol-1": {
-    getPackage: getTheGreatMentalModelsVol1PackageForTone,
-    getRaw: () => THE_GREAT_MENTAL_MODELS_VOL_1_RAW_CHAPTERS,
-  },
-  "the-black-swan": {
-    getPackage: getTheBlackSwanPackageForTone,
-    getRaw: () => THE_BLACK_SWAN_RAW_CHAPTERS,
-  },
-  "the-first-20-hours": {
-    getPackage: getTheFirst20HoursPackageForTone,
-    getRaw: () => THE_FIRST_20_HOURS_RAW_CHAPTERS,
-  },
-  "the-outsiders": {
-    getPackage: getTheOutsidersPackageForTone,
-    getRaw: () => THE_OUTSIDERS_RAW_CHAPTERS,
-  },
-  ultralearning: {
-    getPackage: getUltralearningPackageForTone,
-    getRaw: () => ULTRALEARNING_RAW_CHAPTERS,
-  },
+export type BookChapterMeta = {
+  bookId: string;
+  id: string;
+  order: number;
+  code: string;
+  title: string;
+  minutes: number;
 };
+type BookChapterMetaBundle = { chapters: BookChapterMeta[] };
 
-const TONE_AWARE_BOOK_IDS = new Set(Object.keys(TONE_BUNDLE_GETTERS));
+const CHAPTER_META = bookChapterMeta as Record<string, BookChapterMetaBundle>;
+const EMPTY_META_BUNDLE: BookChapterMetaBundle = { chapters: [] };
 
-const TONE_BUNDLE_CACHE_MAX = 20;
-const toneBundleCache = new Map<string, BookChapterBundle>();
-
-function buildToneAwareBundle(bookId: string, tone: ToneKey): BookChapterBundle {
-  const cacheKey = `${bookId}::${tone}`;
-  const cached = toneBundleCache.get(cacheKey);
-  if (cached) {
-    toneBundleCache.delete(cacheKey);
-    toneBundleCache.set(cacheKey, cached);
-    return cached;
-  }
-
-  const getter = TONE_BUNDLE_GETTERS[bookId];
-  if (!getter) return EMPTY_BUNDLE;
-
-  const pkg = getter.getPackage(tone);
-  const raw = getter.getRaw();
-  const bundle = buildBundle(pkg, raw, tone);
-
-  if (toneBundleCache.size >= TONE_BUNDLE_CACHE_MAX) {
-    const oldestKey = toneBundleCache.keys().next().value;
-    if (oldestKey !== undefined) toneBundleCache.delete(oldestKey);
-  }
-  toneBundleCache.set(cacheKey, bundle);
-  return bundle;
-}
-
-const CHAPTERS_BY_BOOK_ID: Record<string, BookChapterBundle> = Object.fromEntries(
-  BOOK_PACKAGES.map((pkg) => [pkg.book.bookId, buildBundle(pkg)])
-);
-
-const EMPTY_BUNDLE: BookChapterBundle = {
-  pages: 0,
-  chapters: [],
-};
-
-export function getBookChaptersBundle(bookId: string, tone?: ToneKey): BookChapterBundle {
-  if (tone && TONE_AWARE_BOOK_IDS.has(bookId)) {
-    return buildToneAwareBundle(bookId, tone);
-  }
-  return CHAPTERS_BY_BOOK_ID[bookId] ?? EMPTY_BUNDLE;
+export function getBookChaptersBundle(
+  bookId: string,
+  _tone?: ToneKey,
+): BookChapterMetaBundle {
+  return CHAPTER_META[bookId] ?? EMPTY_META_BUNDLE;
 }
 
 export function getChapterById(
-  bookId: string,
-  chapterId: string,
-  tone?: ToneKey
+  _bookId: string,
+  _chapterId: string,
+  _tone?: ToneKey,
 ): BookChapter | undefined {
-  return getBookChaptersBundle(bookId, tone).chapters.find(
-    (chapter) => chapter.id === chapterId
-  );
+  // No local fallback chapter: the full corpus was removed to keep the ServerFn
+  // under Lambda's 250 MiB limit. The reader fetches content from the API; on an
+  // API failure it surfaces a retryable error (same as an empty/0-question result)
+  // rather than serving a stale bundled copy.
+  return undefined;
 }
 
 export function getChapterByOrder(
-  bookId: string,
-  order: number,
-  tone?: ToneKey
+  _bookId: string,
+  _order: number,
+  _tone?: ToneKey,
 ): BookChapter | undefined {
-  return getBookChaptersBundle(bookId, tone).chapters.find(
-    (chapter) => chapter.order === order
-  );
+  return undefined;
 }
 
-export { type ToneKey } from "@/app/book/data/bookPackages";
-
-export function getBookPackageEdition(bookId: string): string | undefined {
-  const bookPackage = getBookPackageById(bookId);
-  if (!bookPackage) return undefined;
-  const edition = bookPackage.book.edition;
-  if (!edition) return undefined;
-  if (typeof edition === "string") return edition;
-  const year = typeof edition.publishedYear === "number" ? ` (${edition.publishedYear})` : "";
-  return `${edition.name}${year}`;
-}
+export { type ToneKey } from "@/app/book/data/book-package-core";

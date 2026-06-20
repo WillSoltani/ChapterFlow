@@ -82,6 +82,13 @@ jobs:
       - name: Build OpenNext (includes Next.js build)
         run: npx open-next build
 
+      # The server reads authored book packages from S3 at runtime (quiz/audio/ask)
+      # instead of bundling all ~37.6 MB into the ServerFn, which would exceed
+      # Lambda's 250 MiB unzipped limit. Upload BEFORE the CDK deploy so the new
+      # server function finds every package the moment it goes live. Idempotent.
+      - name: Upload book packages to S3
+        run: npx tsx scripts/book/upload-book-packages-to-s3.ts
+
       - name: CDK deploy frontend stack
         working-directory: infra
         run: npx cdk deploy -c env=${{ env.CHAPTERFLOW_ENV }} "${FRONTEND_STACK}" --exclusively --require-approval never

@@ -69,7 +69,7 @@ import {
 import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import { resolveStreakMode, resolveStreakSkipDays } from "@/app/app/api/book/_lib/streak-mode";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
-import type { ToneKey } from "@/app/book/data/bookPackages";
+import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
 
@@ -228,11 +228,11 @@ export async function POST(
     const learningMode = resolveLearningMode(userSettings?.settings);
     const tone = parseTone(body.tone ?? readSavedTone(userSettings?.settings));
     // Prefer quiz questions from local book-package JSON over stale S3 data.
-    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);
+    const localQuestions = await getLocalQuizQuestions(bookId, chapterNumberInt, tone);
     const quiz = localQuestions
       ? { ...s3Quiz, questions: localQuestions }
       : s3Quiz;
-    const strictV12 = isLocalV12Package(bookId);
+    const strictV12 = await isLocalV12Package(bookId);
 
     const quizState =
       persistedQuizState ??

@@ -15,12 +15,9 @@ import {
 } from "./repo";
 import { buildChapterKey, buildQuizKey, nowIso } from "./keys";
 import { planProgressVersionUpgrade } from "./version-upgrade-core";
-import {
-  getBookPackageById,
-  getBookPackageByIdForTone,
-  isStrictReaderSchema,
-  type ToneKey,
-} from "@/app/book/data/bookPackages";
+import { getServerBookPackage } from "./book-package-source";
+import { isStrictReaderSchema } from "@/app/book/data/book-package-core";
+import type { ToneKey } from "@/app/book/data/book-package-core";
 
 type ReaderProgress = NonNullable<Awaited<ReturnType<typeof getUserProgress>>>;
 
@@ -249,12 +246,12 @@ export async function getUserAccessibleQuiz(params: {
  * Build quiz questions from the local book-package JSON.
  * Returns null when the package or chapter is not found locally.
  */
-export function getLocalQuizQuestions(
+export async function getLocalQuizQuestions(
   bookId: string,
   chapterNumber: number,
   tone: ToneKey = "direct"
-): BookPackageQuizQuestion[] | null {
-  const pkg = getBookPackageByIdForTone(bookId, tone);
+): Promise<BookPackageQuizQuestion[] | null> {
+  const pkg = await getServerBookPackage(bookId, tone);
   if (!pkg) return null;
   const chapter = pkg.chapters.find((ch) => ch.number === chapterNumber);
   if (!chapter?.quiz?.questions) return null;
@@ -291,8 +288,8 @@ export function getLocalQuizQuestions(
  * one. Name kept (isLocalV12Package) for call-site compatibility; the
  * predicate now matches v21 too.
  */
-export function isLocalV12Package(bookId: string): boolean {
-  return isStrictReaderSchema(getBookPackageById(bookId));
+export async function isLocalV12Package(bookId: string): Promise<boolean> {
+  return isStrictReaderSchema(await getServerBookPackage(bookId));
 }
 
 export function selectVariantFromQuery(value: string | null): VariantKey | undefined {
