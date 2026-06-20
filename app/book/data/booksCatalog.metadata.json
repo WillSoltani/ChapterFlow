@@ -63,6 +63,31 @@
     "synopsis": "A modern reading of James Clear's twenty chapters on tiny gains, identity change, environment design, repetition, and the conditions that make habits stick long enough to compound."
   },
   {
+    "id": "blink",
+    "title": "Blink",
+    "author": "Malcolm Gladwell",
+    "categories": [
+      "Psychology",
+      "Decision Making",
+      "Behavioral Economics"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "intuition",
+      "snap judgment",
+      "thin slicing",
+      "bias",
+      "decision making",
+      "perception"
+    ],
+    "chapterCount": 6,
+    "estimatedMinutes": 72,
+    "icon": "🧩",
+    "coverImage": "/book-covers/blink.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of intuition, snap judgment, thin slicing, bias, and decision making with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "blue-ocean-strategy",
     "title": "Blue Ocean Strategy",
     "author": "W. Chan Kim; Renée Mauborgne",
@@ -173,6 +198,32 @@
     "synopsis": "A modern reading of Clayton Christensen and coauthors' ten chapters on jobs theory, customer progress, hidden competition, causal demand, and building innovation around what customers are really trying to get done."
   },
   {
+    "id": "contagious",
+    "title": "Contagious",
+    "author": "Jonah Berger",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Communication",
+      "Behavioral Economics"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "virality",
+      "social influence",
+      "marketing",
+      "word of mouth",
+      "consumer behavior",
+      "storytelling"
+    ],
+    "chapterCount": 6,
+    "estimatedMinutes": 67,
+    "icon": "🎤",
+    "coverImage": "/book-covers/contagious.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of virality, social influence, marketing, word of mouth, and consumer behavior with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "crucial-conversations",
     "title": "Crucial Conversations: Tools for Talking When Stakes Are High",
     "author": "Joseph Grenny, Kerry Patterson, Ron McMillan, Al Switzler, Emily Gregory",
@@ -192,6 +243,32 @@
     "coverImage": "/book-covers/crucial-conversations.webp",
     "difficulty": "Medium",
     "synopsis": "A practical guide to high-stakes dialogue: spotting crucial conversations early, avoiding silence and force, restoring safety, and turning hard talks into real action."
+  },
+  {
+    "id": "daring-greatly",
+    "title": "Daring Greatly",
+    "author": "Brené Brown",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Relationships"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "Vulnerability",
+      "Shame Resilience",
+      "Courage",
+      "Wholeheartedness",
+      "Connection",
+      "Parenting",
+      "Leadership"
+    ],
+    "chapterCount": 7,
+    "estimatedMinutes": 88,
+    "icon": "🧠",
+    "coverImage": "/book-covers/daring-greatly.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of vulnerability, shame resilience, courage, wholeheartedness, and connection with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "deep-work",
@@ -269,6 +346,32 @@
     "coverImage": "/book-covers/digital-minimalism.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of lopsided-arms-race, digital-minimalism, digital-declutter, solitude-deprivation, and conversation-centric-connection with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "drive",
+    "title": "Drive",
+    "author": "Daniel H. Pink",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Productivity",
+      "Behavioral Economics"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "motivation",
+      "autonomy",
+      "mastery",
+      "purpose",
+      "incentives",
+      "behavior-change"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 88,
+    "icon": "✅",
+    "coverImage": "/book-covers/drive.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of motivation, autonomy, mastery, purpose, and incentives with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "eat-that-frog",
@@ -362,6 +465,54 @@
     "synopsis": "A modern reading of Jocko Willink and Leif Babin's thirteen chapters on ownership, trust, planning, decentralized command, disciplined execution, and leadership under pressure."
   },
   {
+    "id": "factfulness",
+    "title": "Factfulness",
+    "author": "Hans Rosling, Ola Rosling, Anna Rosling Rönnlund",
+    "categories": [
+      "Decision Making",
+      "Learning",
+      "Psychology"
+    ],
+    "category": "Decision Making",
+    "tags": [
+      "the-gap-instinct",
+      "the-negativity-instinct",
+      "the-straight-line-instinct",
+      "the-fear-instinct",
+      "the-size-instinct",
+      "the-generalization-instinct",
+      "the-destiny-instinct",
+      "the-single-perspective-instinct"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 124,
+    "icon": "🚨",
+    "coverImage": "/book-covers/factfulness.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of the-gap-instinct, the-negativity-instinct, the-straight-line-instinct, the-fear-instinct, and the-size-instinct with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "flow",
+    "title": "Flow: The Psychology of Optimal Experience",
+    "author": "Mihaly Csikszentmihalyi",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "⏱️",
+    "coverImage": "/book-covers/flow.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "games-people-play",
     "title": "Games People Play",
     "author": "Eric Berne",
@@ -404,6 +555,27 @@
     "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
+    "id": "good-strategy-bad-strategy",
+    "title": "Good Strategy / Bad Strategy",
+    "author": "Richard Rumelt",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 17,
+    "estimatedMinutes": 178,
+    "icon": "🎯",
+    "coverImage": "/book-covers/good-strategy-bad-strategy.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "good-to-great",
     "title": "Good to Great",
     "author": "Jim Collins",
@@ -423,6 +595,54 @@
     "coverImage": "/book-covers/good-to-great.webp",
     "difficulty": "Hard",
     "synopsis": "A modern reading of Jim Collins's nine chapters on disciplined leadership, strategic clarity, cumulative momentum, and the difference between a breakthrough and an enduring institution."
+  },
+  {
+    "id": "grit",
+    "title": "Grit: The Power of Passion and Perseverance",
+    "author": "Angela Duckworth",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 13,
+    "estimatedMinutes": 156,
+    "icon": "✅",
+    "coverImage": "/book-covers/grit.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "hooked",
+    "title": "Hooked",
+    "author": "Nir Eyal",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Entrepreneurship",
+      "Innovation"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "habits",
+      "product design",
+      "behavior design",
+      "engagement",
+      "triggers",
+      "rewards",
+      "user retention"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 95,
+    "icon": "💡",
+    "coverImage": "/book-covers/hooked.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of habits, product design, behavior design, engagement, and triggers with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "how-to-talk-to-anyone",
@@ -651,6 +871,27 @@
     "synopsis": "A practical guide to reclaiming attention day by day through a clear Highlight, better focus defenses, stronger energy, and a lightweight reflection loop."
   },
   {
+    "id": "mans-search-for-meaning",
+    "title": "Man's Search for Meaning",
+    "author": "Viktor E. Frankl",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 5,
+    "estimatedMinutes": 60,
+    "icon": "🎯",
+    "coverImage": "/book-covers/mans-search-for-meaning.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "measure-what-matters",
     "title": "Measure What Matters",
     "author": "John Doerr",
@@ -676,6 +917,55 @@
     "coverImage": "/book-covers/measure-what-matters.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of John Doerr's OKR system: choosing focused objectives, defining key results, aligning teams, tracking progress, stretching honestly, and using frequent conversations to improve."
+  },
+  {
+    "id": "meditations",
+    "title": "Meditations",
+    "author": "Marcus Aurelius",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 144,
+    "icon": "📌",
+    "coverImage": "/book-covers/meditations.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "mindset",
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "categories": [
+      "Psychology",
+      "Self-Help",
+      "Learning",
+      "Relationships"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "growth mindset",
+      "fixed mindset",
+      "learning",
+      "effort",
+      "resilience",
+      "feedback",
+      "achievement",
+      "parenting"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 99,
+    "icon": "🧪",
+    "coverImage": "/book-covers/mindset.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of growth mindset, fixed mindset, learning, effort, and resilience with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "mistakes-were-made-but-not-by-me",
@@ -705,6 +995,27 @@
     "synopsis": "A modern reading of self-justification, cognitive dissonance, bias, memory, blame, conflict, and the hard practice of owning mistakes before they harden into identity."
   },
   {
+    "id": "never-eat-alone",
+    "title": "Never Eat Alone",
+    "author": "Keith Ferrazzi",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 33,
+    "estimatedMinutes": 396,
+    "icon": "🎯",
+    "coverImage": "/book-covers/never-eat-alone.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "never-split-the-difference",
     "title": "Never Split the Difference: Negotiating as if Your Life Depended on It",
     "author": "Chris Voss, Tahl Raz",
@@ -729,6 +1040,51 @@
     "coverImage": "/book-covers/never-split-the-difference.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of Chris Voss's ten chapters on tactical empathy, calibrated questions, mirroring, labeling, bargaining, and reading the hidden leverage inside high-stakes negotiation."
+  },
+  {
+    "id": "noise",
+    "title": "Noise: A Flaw in Human Judgment",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
+    "categories": [
+      "Psychology",
+      "Decision Making"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "bias",
+      "judgment",
+      "decision-making",
+      "noise",
+      "cognitive-science",
+      "behavioral-economics"
+    ],
+    "chapterCount": 39,
+    "estimatedMinutes": 468,
+    "icon": "📉",
+    "coverImage": "/book-covers/noise.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of bias, judgment, decision-making, noise, and cognitive-science with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "on-becoming-a-person",
+    "title": "On Becoming a Person",
+    "author": "Carl Rogers",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 21,
+    "estimatedMinutes": 252,
+    "icon": "🗂️",
+    "coverImage": "/book-covers/on-becoming-a-person.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "peak",
@@ -893,6 +1249,27 @@
     "synopsis": "A modern reading of Peter Bevelin's practical mental models for judgment: misjudgment patterns, incentives, probability, consequences, checklists, and temperament."
   },
   {
+    "id": "skin-in-the-game",
+    "title": "Skin in the Game: Hidden Asymmetries in Daily Life",
+    "author": "Nassim Nicholas Taleb",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 19,
+    "estimatedMinutes": 228,
+    "icon": "🎯",
+    "coverImage": "/book-covers/skin-in-the-game.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "smarter-faster-better",
     "title": "Smarter Faster Better",
     "author": "Charles Duhigg",
@@ -933,6 +1310,32 @@
     "coverImage": "/book-covers/so-good-they-cant-ignore-you.webp",
     "difficulty": "Medium",
     "synopsis": "A practical reading of the passion hypothesis, craftsman mindset, career capital, control, and mission as a sequenced path to work that becomes compelling over time."
+  },
+  {
+    "id": "start-with-why",
+    "title": "Start With Why",
+    "author": "Simon Sinek",
+    "categories": [
+      "Leadership",
+      "Business",
+      "Communication",
+      "Entrepreneurship"
+    ],
+    "category": "Leadership",
+    "tags": [
+      "purpose",
+      "why",
+      "Golden Circle",
+      "leadership",
+      "brand trust",
+      "inspiration"
+    ],
+    "chapterCount": 14,
+    "estimatedMinutes": 168,
+    "icon": "📣",
+    "coverImage": "/book-covers/start-with-why.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of purpose, why, golden circle, leadership, and brand trust with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "stillness-is-the-key",
@@ -1025,6 +1428,27 @@
     "synopsis": "A modern reading of Carmine Gallo's nine public-speaking chapters on passion, story, delivery, novelty, memorable moments, warmth, compression, vividness, and rehearsal under real audience pressure."
   },
   {
+    "id": "the-12-week-year",
+    "title": "The 12 Week Year",
+    "author": "Brian Moran and Michael Lennington",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 21,
+    "estimatedMinutes": 252,
+    "icon": "⏱️",
+    "coverImage": "/book-covers/the-12-week-year.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "the-33-strategies-of-war",
     "title": "The 33 Strategies of War",
     "author": "Robert Greene",
@@ -1071,6 +1495,80 @@
     "coverImage": "/book-covers/the-4-hour-workweek.webp",
     "difficulty": "Hard",
     "synopsis": "A modern reading of relative-wealth, productive-nonconformity, fear-setting, dreamlining, and effectiveness-over-efficiency with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-48-laws-of-power",
+    "title": "The 48 Laws of Power",
+    "author": "Robert Greene",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 48,
+    "estimatedMinutes": 576,
+    "icon": "✅",
+    "coverImage": "/book-covers/the-48-laws-of-power.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-5-am-club",
+    "title": "The 5 AM Club",
+    "author": "Robin Sharma",
+    "categories": [
+      "Self-Help",
+      "Productivity",
+      "Leadership"
+    ],
+    "category": "Self-Help",
+    "tags": [
+      "morning routine",
+      "habit formation",
+      "peak performance",
+      "personal mastery",
+      "discipline",
+      "focus"
+    ],
+    "chapterCount": 18,
+    "estimatedMinutes": 182,
+    "icon": "🏔️",
+    "coverImage": "/book-covers/the-5-am-club.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of morning routine, habit formation, peak performance, personal mastery, and discipline with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-7-habits-of-highly-effective-people",
+    "title": "The 7 Habits of Highly Effective People",
+    "author": "Stephen R. Covey",
+    "categories": [
+      "Self-Help",
+      "Leadership",
+      "Productivity",
+      "Relationships"
+    ],
+    "category": "Self-Help",
+    "tags": [
+      "habits",
+      "principles",
+      "character",
+      "effectiveness",
+      "interdependence",
+      "trust",
+      "personal leadership",
+      "renewal"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 133,
+    "icon": "✅",
+    "coverImage": "/book-covers/the-7-habits-of-highly-effective-people.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of habits, principles, character, effectiveness, and interdependence with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "the-almanack-of-naval-ravikant",
@@ -1181,6 +1679,80 @@
     "synopsis": "A modern reading of Atul Gawande's nine chapters on complexity, omission, team pause points, disciplined checklists, resistance, and carrying structured safeguards into other high-stakes fields."
   },
   {
+    "id": "the-courage-to-be-disliked",
+    "title": "The Courage to Be Disliked",
+    "author": "Ichiro Kishimi, Fumitake Koga",
+    "categories": [
+      "Self-Help",
+      "Psychology",
+      "Philosophy"
+    ],
+    "category": "Self-Help",
+    "tags": [
+      "Adlerian psychology",
+      "inferiority and comparison",
+      "interpersonal conflict",
+      "separation of tasks",
+      "boundaries",
+      "approval-seeking",
+      "contribution",
+      "self-acceptance",
+      "freedom",
+      "trust",
+      "self-consciousness",
+      "present-tense living",
+      "courage"
+    ],
+    "chapterCount": 5,
+    "estimatedMinutes": 60,
+    "icon": "🕯️",
+    "coverImage": "/book-covers/the-courage-to-be-disliked.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of adlerian psychology, inferiority and comparison, interpersonal conflict, separation of tasks, and boundaries with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-denial-of-death",
+    "title": "The Denial of Death",
+    "author": "Ernest Becker",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 11,
+    "estimatedMinutes": 132,
+    "icon": "🕯️",
+    "coverImage": "/book-covers/the-denial-of-death.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-elephant-in-the-brain",
+    "title": "The Elephant in the Brain",
+    "author": "Kevin Simler; Robin Hanson",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 16,
+    "estimatedMinutes": 192,
+    "icon": "🎯",
+    "coverImage": "/book-covers/the-elephant-in-the-brain.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "the-first-20-hours",
     "title": "The First 20 Hours: How to Learn Anything... Fast!",
     "author": "Josh Kaufman",
@@ -1200,6 +1772,32 @@
     "coverImage": "/book-covers/the-first-20-hours.webp",
     "difficulty": "Medium",
     "synopsis": "A practical guide to rapid skill acquisition: lowering the barrier to starting, deconstructing a skill, designing early practice, and getting to usable performance in the first twenty hours."
+  },
+  {
+    "id": "the-gift-of-fear",
+    "title": "The Gift of Fear",
+    "author": "Gavin de Becker",
+    "categories": [
+      "Personal Safety",
+      "Psychology",
+      "Violence Prevention",
+      "Threat Assessment",
+      "Boundaries"
+    ],
+    "category": "Personal Safety",
+    "tags": [
+      "intuition",
+      "safety",
+      "boundaries",
+      "violence prevention",
+      "judgment"
+    ],
+    "chapterCount": 15,
+    "estimatedMinutes": 180,
+    "icon": "🚨",
+    "coverImage": "/book-covers/the-gift-of-fear.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of intuition, safety, boundaries, violence prevention, and judgment with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "the-gifts-of-imperfection",
@@ -1247,6 +1845,27 @@
     "coverImage": "/book-covers/the-great-mental-models-v-1.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of core mental models: abstraction and reality, circles of competence, first principles, second-order effects, probabilistic thinking, inversion, and the disciplined limits of judgment."
+  },
+  {
+    "id": "the-great-mental-models-vol-2",
+    "title": "The Great Mental Models, Volume 2: Physics, Chemistry, and Biology",
+    "author": "Shane Parrish",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 20,
+    "estimatedMinutes": 240,
+    "icon": "🧩",
+    "coverImage": "/book-covers/the-great-mental-models-vol-2.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "the-hard-thing-about-hard-things",
@@ -1338,6 +1957,33 @@
     "synopsis": "A modern reading of validated learning, MVPs, innovation accounting, pivots, growth engines, adaptive organizations, and anti-waste management under uncertainty."
   },
   {
+    "id": "the-let-them-theory",
+    "title": "The Let Them Theory",
+    "author": "Mel Robbins",
+    "categories": [
+      "Self-Help",
+      "Psychology",
+      "Relationships",
+      "Communication"
+    ],
+    "category": "Self-Help",
+    "tags": [
+      "boundaries",
+      "letting go",
+      "emotional regulation",
+      "control",
+      "stress management",
+      "relationships",
+      "self-empowerment"
+    ],
+    "chapterCount": 20,
+    "estimatedMinutes": 200,
+    "icon": "📣",
+    "coverImage": "/book-covers/the-let-them-theory.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of boundaries, letting go, emotional regulation, control, and stress management with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "the-like-switch",
     "title": "The Like Switch",
     "author": "Jack Schafer, Marvin Karlins",
@@ -1362,6 +2008,27 @@
     "coverImage": "/book-covers/the-like-switch.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of Jack Schafer and Marvin Karlins's eight chapters on first impressions, rapport, attraction, conversation, closeness, maintenance, and the promise and peril of trust."
+  },
+  {
+    "id": "the-obstacle-is-the-way",
+    "title": "The Obstacle Is the Way",
+    "author": "Ryan Holiday",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 28,
+    "estimatedMinutes": 336,
+    "icon": "🗂️",
+    "coverImage": "/book-covers/the-obstacle-is-the-way.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "the-one-thing",
@@ -1507,6 +2174,80 @@
     "synopsis": "A modern reading of Morgan Housel's twenty-two chapters on luck, risk, enoughness, compounding, saving, freedom, pessimism, and the historical forces shaping consumer expectations."
   },
   {
+    "id": "the-pyramid-principle",
+    "title": "The Pyramid Principle",
+    "author": "Barbara Minto",
+    "categories": [
+      "Productivity",
+      "Self Improvement"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "attention",
+      "focus",
+      "habits"
+    ],
+    "chapterCount": 10,
+    "estimatedMinutes": 120,
+    "icon": "✅",
+    "coverImage": "/book-covers/the-pyramid-principle.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-righteous-mind",
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt",
+    "categories": [
+      "Psychology",
+      "Moral Psychology",
+      "Politics",
+      "Religion"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "morality",
+      "moral psychology",
+      "politics",
+      "religion",
+      "tribalism",
+      "intuition",
+      "group behavior"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 144,
+    "icon": "👁️",
+    "coverImage": "/book-covers/the-righteous-mind.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of morality, moral psychology, politics, religion, and tribalism with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-tipping-point",
+    "title": "The Tipping Point",
+    "author": "Malcolm Gladwell",
+    "categories": [
+      "Psychology",
+      "Business",
+      "Communication",
+      "Behavioral Economics"
+    ],
+    "category": "Psychology",
+    "tags": [
+      "social epidemics",
+      "influence",
+      "networks",
+      "stickiness",
+      "context",
+      "change"
+    ],
+    "chapterCount": 8,
+    "estimatedMinutes": 97,
+    "icon": "💬",
+    "coverImage": "/book-covers/the-tipping-point.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of social epidemics, influence, networks, stickiness, and context with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "the-war-of-art",
     "title": "The War of Art",
     "author": "Steven Pressfield",
@@ -1644,6 +2385,33 @@
     "synopsis": "A modern reading of Scott H. Young's fourteen chapters on self-directed skill acquisition, directness, feedback, retention, experimentation, and designing learning projects that survive real proof."
   },
   {
+    "id": "unreasonable-hospitality",
+    "title": "Unreasonable Hospitality",
+    "author": "Will Guidara",
+    "categories": [
+      "Leadership",
+      "Management",
+      "Business",
+      "Strategy"
+    ],
+    "category": "Leadership",
+    "tags": [
+      "hospitality",
+      "customer experience",
+      "team culture",
+      "service excellence",
+      "restaurants",
+      "generosity",
+      "employee-first"
+    ],
+    "chapterCount": 20,
+    "estimatedMinutes": 200,
+    "icon": "🎯",
+    "coverImage": "/book-covers/unreasonable-hospitality.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of hospitality, customer experience, team culture, service excellence, and restaurants with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "what-every-body-is-saying",
     "title": "What Every BODY is Saying",
     "author": "Joe Navarro",
@@ -1671,796 +2439,24 @@
     "synopsis": "A practical guide to reading nonverbal behavior with more discipline: noticing comfort, discomfort, confidence, stress, and withdrawal without turning one cue into false certainty."
   },
   {
-    "id": "blink",
-    "title": "Blink",
-    "author": "Malcolm Gladwell",
-    "categories": [
-      "Psychology",
-      "Decision Making",
-      "Behavioral Economics"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "thin-slicing",
-      "snap-judgment",
-      "intuition",
-      "unconscious-bias",
-      "rapid-cognition"
-    ],
-    "chapterCount": 6,
-    "estimatedMinutes": 72,
-    "icon": "👁️",
-    "coverImage": "/book-covers/blink.webp",
-    "difficulty": "Easy",
-    "synopsis": "A reading of Gladwell's case for rapid cognition: how the adaptive unconscious thin-slices situations in seconds, when those snap judgments outperform deliberation, and how priming and bias quietly distort them."
-  },
-  {
-    "id": "contagious",
-    "title": "Contagious",
-    "author": "Jonah Berger",
-    "categories": [
-      "Business",
-      "Psychology",
-      "Communication"
-    ],
-    "category": "Business",
-    "tags": [
-      "virality",
-      "word-of-mouth",
-      "social-influence",
-      "marketing",
-      "storytelling",
-      "consumer-behavior"
-    ],
-    "chapterCount": 6,
-    "estimatedMinutes": 67,
-    "icon": "📣",
-    "coverImage": "/book-covers/contagious.webp",
-    "difficulty": "Easy",
-    "synopsis": "A practical look at why products and ideas catch on, built around Berger's STEPPS framework: social currency, triggers, emotion, public visibility, practical value, and stories."
-  },
-  {
-    "id": "daring-greatly",
-    "title": "Daring Greatly",
-    "author": "Brené Brown",
-    "categories": [
-      "Psychology",
-      "Self Improvement",
-      "Relationships"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "vulnerability",
-      "shame-resilience",
-      "courage",
-      "wholehearted-living",
-      "connection",
-      "parenting"
-    ],
-    "chapterCount": 7,
-    "estimatedMinutes": 88,
-    "icon": "💛",
-    "coverImage": "/book-covers/daring-greatly.webp",
-    "difficulty": "Medium",
-    "synopsis": "A reading of Brown's research on scarcity and shame, the myths that armor us against vulnerability, and what it takes to dare greatly in parenting, school, and work."
-  },
-  {
-    "id": "drive",
-    "title": "Drive",
-    "author": "Daniel H. Pink",
-    "categories": [
-      "Psychology",
-      "Behavioral Economics",
-      "Business"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "motivation",
-      "autonomy",
-      "mastery",
-      "purpose",
-      "incentives",
-      "intrinsic-drive"
-    ],
-    "chapterCount": 11,
-    "estimatedMinutes": 88,
-    "icon": "🚀",
-    "coverImage": "/book-covers/drive.webp",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of Pink's case against carrots and sticks: why extrinsic rewards backfire for complex work, and how autonomy, mastery, and purpose drive lasting motivation in individuals and organizations."
-  },
-  {
-    "id": "flow",
-    "title": "Flow: The Psychology of Optimal Experience",
-    "author": "Mihaly Csikszentmihalyi",
-    "categories": [
-      "Psychology",
-      "Self Improvement"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "flow-state",
-      "optimal-experience",
-      "consciousness",
-      "attention",
-      "enjoyment",
-      "meaning"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 120,
-    "icon": "🌊",
-    "coverImage": "/book-covers/flow.webp",
-    "difficulty": "Medium",
-    "synopsis": "A foundational reading of Csikszentmihalyi's account of optimal experience: how ordered attention, clear goals, and challenges matched to skill produce the absorbed state of flow across work, thought, the body, and relationships."
-  },
-  {
-    "id": "good-strategy-bad-strategy",
-    "title": "Good Strategy / Bad Strategy",
-    "author": "Richard Rumelt",
-    "categories": [
-      "Strategy",
-      "Business",
-      "Leadership"
-    ],
-    "category": "Strategy",
-    "tags": [
-      "competitive-advantage",
-      "strategy-kernel",
-      "leverage",
-      "focus",
-      "bad-strategy"
-    ],
-    "chapterCount": 17,
-    "estimatedMinutes": 178,
-    "icon": "♟️",
-    "coverImage": "/book-covers/good-strategy-bad-strategy.webp",
-    "difficulty": "Medium",
-    "synopsis": "A clear-eyed account of what separates real strategy from fluff and goals, built around Rumelt's kernel of diagnosis, guiding policy, and coherent action, with chapters on leverage, focus, proximate objectives, and inertia."
-  },
-  {
-    "id": "grit",
-    "title": "Grit: The Power of Passion and Perseverance",
-    "author": "Angela Duckworth",
-    "categories": [
-      "Psychology",
-      "Self Improvement",
-      "Mental Toughness"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "perseverance",
-      "passion",
-      "deliberate-practice",
-      "growth-mindset",
-      "achievement",
-      "motivation"
-    ],
-    "chapterCount": 13,
-    "estimatedMinutes": 156,
-    "icon": "💪",
-    "coverImage": "/book-covers/grit.webp",
-    "difficulty": "Medium",
-    "synopsis": "A psychologist's case that sustained passion and perseverance toward long-term goals predicts achievement more than talent, with chapters on interest, deliberate practice, purpose, hope, and cultivating grit through parenting and culture."
-  },
-  {
-    "id": "hooked",
-    "title": "Hooked",
-    "author": "Nir Eyal",
-    "categories": [
-      "Business",
-      "Psychology",
-      "Innovation"
-    ],
-    "category": "Business",
-    "tags": [
-      "habit-forming",
-      "product-design",
-      "behavior-design",
-      "triggers",
-      "variable-rewards",
-      "user-retention"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 95,
-    "icon": "🎣",
-    "coverImage": "/book-covers/hooked.webp",
-    "difficulty": "Medium",
-    "synopsis": "A working model for building habit-forming products through a four-phase loop of trigger, action, variable reward, and investment, with ethical questions about engineering automatic user behavior."
-  },
-  {
-    "id": "mans-search-for-meaning",
-    "title": "Man's Search for Meaning",
-    "author": "Viktor E. Frankl",
-    "categories": [
-      "Psychology",
-      "Memoir",
-      "Philosophy"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "logotherapy",
-      "meaning",
-      "suffering",
-      "holocaust",
-      "resilience",
-      "existentialism"
-    ],
-    "chapterCount": 5,
-    "estimatedMinutes": 60,
-    "icon": "🕯️",
-    "coverImage": "/book-covers/mans-search-for-meaning.webp",
-    "difficulty": "Medium",
-    "synopsis": "A psychiatrist's account of surviving Nazi concentration camps paired with logotherapy, his argument that the drive to find meaning, even in unavoidable suffering, is what sustains a person."
-  },
-  {
-    "id": "meditations",
-    "title": "Meditations",
-    "author": "Marcus Aurelius",
-    "categories": [
-      "Philosophy",
-      "Classics",
-      "Self Improvement"
-    ],
-    "category": "Philosophy",
-    "tags": [
-      "stoicism",
-      "self-discipline",
-      "mortality",
-      "duty",
-      "judgment",
-      "inner-peace"
-    ],
-    "chapterCount": 12,
-    "estimatedMinutes": 144,
-    "icon": "🏛️",
-    "coverImage": "/book-covers/meditations.webp",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of a Roman emperor's private Stoic notebook on governing one's own judgments, accepting what lies outside one's control, serving the common good, and living rightly in the present."
-  },
-  {
-    "id": "mindset",
-    "title": "Mindset",
-    "author": "Carol S. Dweck",
-    "categories": [
-      "Psychology",
-      "Self Improvement",
-      "Learning"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "growth-mindset",
-      "fixed-mindset",
-      "effort",
-      "resilience",
-      "achievement",
-      "parenting"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 99,
-    "icon": "🌱",
-    "coverImage": "/book-covers/mindset.webp",
-    "difficulty": "Easy",
-    "synopsis": "A research-based account of how a fixed versus growth mindset shapes ability, effort, and resilience, traced through achievement, sports, business, relationships, and parenting, and how mindsets can change."
-  },
-  {
-    "id": "never-eat-alone",
-    "title": "Never Eat Alone",
-    "author": "Keith Ferrazzi",
-    "categories": [
-      "Relationships",
-      "Career",
-      "Communication"
-    ],
-    "category": "Relationships",
-    "tags": [
-      "networking",
-      "relationships",
-      "generosity",
-      "career-growth",
-      "connection",
-      "follow-up"
-    ],
-    "chapterCount": 33,
-    "estimatedMinutes": 396,
-    "icon": "🤝",
-    "coverImage": "/book-covers/never-eat-alone.webp",
-    "difficulty": "Easy",
-    "synopsis": "A practical guide to building relationships before you need them: connecting generously, giving without keeping score, warming cold calls, working conferences, following up, and linking yourself to natural connectors."
-  },
-  {
-    "id": "noise",
-    "title": "Noise: A Flaw in Human Judgment",
-    "author": "Daniel Kahneman, Olivier Sibony, Cass R. Sunstein",
-    "categories": [
-      "Decision Making",
-      "Psychology",
-      "Behavioral Economics"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "judgment",
-      "noise",
-      "decision-hygiene",
-      "forecasting",
-      "cognitive-bias",
-      "behavioral-economics"
-    ],
-    "chapterCount": 39,
-    "estimatedMinutes": 468,
-    "icon": "🎚️",
-    "coverImage": "/book-covers/noise.webp",
-    "difficulty": "Hard",
-    "synopsis": "A rigorous look at the unwanted variability in human judgment—distinct from bias—across courts, medicine, hiring, and forecasting, with decision-hygiene practices for measuring and reducing it."
-  },
-  {
-    "id": "on-becoming-a-person",
-    "title": "On Becoming a Person",
-    "author": "Carl Rogers",
-    "categories": [
-      "Psychology",
-      "Self Improvement",
-      "Classics"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "client-centered-therapy",
-      "personal-growth",
-      "humanistic-psychology",
-      "helping-relationships",
-      "self-acceptance",
-      "becoming"
-    ],
-    "chapterCount": 21,
-    "estimatedMinutes": 252,
-    "icon": "🌱",
-    "coverImage": "/book-covers/on-becoming-a-person.webp",
-    "difficulty": "Medium",
-    "synopsis": "A foundational humanistic-psychology reading of Rogers' chapters on the helping relationship, client-centered therapy, the fully functioning person, and what it means to become more truly oneself."
-  },
-  {
-    "id": "skin-in-the-game",
-    "title": "Skin in the Game: Hidden Asymmetries in Daily Life",
-    "author": "Nassim Nicholas Taleb",
-    "categories": [
-      "Philosophy",
-      "Decision Making",
-      "Behavioral Economics"
-    ],
-    "category": "Philosophy",
-    "tags": [
-      "risk",
-      "asymmetry",
-      "ethics",
-      "uncertainty",
-      "incentives",
-      "rationality"
-    ],
-    "chapterCount": 19,
-    "estimatedMinutes": 228,
-    "icon": "⚖️",
-    "coverImage": "/book-covers/skin-in-the-game.webp",
-    "difficulty": "Hard",
-    "synopsis": "A modern reading of Taleb's chapters on risk-sharing, hidden asymmetries, the minority rule, ethics under uncertainty, and why those who decide should bear the consequences of their decisions."
-  },
-  {
-    "id": "start-with-why",
-    "title": "Start With Why",
-    "author": "Simon Sinek",
-    "categories": [
-      "Leadership",
-      "Business",
-      "Communication"
-    ],
-    "category": "Leadership",
-    "tags": [
-      "purpose",
-      "golden-circle",
-      "inspiration",
-      "trust",
-      "brand-loyalty",
-      "vision"
-    ],
-    "chapterCount": 14,
-    "estimatedMinutes": 168,
-    "icon": "🎯",
-    "coverImage": "/book-covers/start-with-why.webp",
-    "difficulty": "Medium",
-    "synopsis": "A reading of Sinek's case that lasting leadership inspires from the inside out: starting with WHY, grounding it in the Golden Circle and the biology of decision, and sustaining clarity, discipline, and trust."
-  },
-  {
-    "id": "the-12-week-year",
-    "title": "The 12 Week Year",
-    "author": "Brian Moran and Michael Lennington",
-    "categories": [
-      "Productivity",
-      "Self Improvement",
-      "Business"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "execution",
-      "goal-setting",
-      "accountability",
-      "time-management",
-      "planning",
-      "focus"
-    ],
-    "chapterCount": 21,
-    "estimatedMinutes": 252,
-    "icon": "📅",
-    "coverImage": "/book-covers/the-12-week-year.webp",
-    "difficulty": "Easy",
-    "synopsis": "A practical system for replacing annual planning with focused 12-week cycles, built on vision, weekly execution, process control, scorekeeping, and the accountability and commitment that turn intentions into action."
-  },
-  {
-    "id": "the-48-laws-of-power",
-    "title": "The 48 Laws of Power",
-    "author": "Robert Greene",
-    "categories": [
-      "Strategy",
-      "Psychology",
-      "Self Improvement"
-    ],
-    "category": "Strategy",
-    "tags": [
-      "power-dynamics",
-      "manipulation",
-      "influence",
-      "human-nature",
-      "historical-examples",
-      "self-protection"
-    ],
-    "chapterCount": 48,
-    "estimatedMinutes": 576,
-    "icon": "♟️",
-    "coverImage": "/book-covers/the-48-laws-of-power.webp",
-    "difficulty": "Medium",
-    "synopsis": "A study of power drawn from history: laws on concealing intentions, guarding reputation, managing allies and rivals, and reading the social maneuvering behind every interaction."
-  },
-  {
-    "id": "the-5-am-club",
-    "title": "The 5 AM Club",
-    "author": "Robin Sharma",
-    "categories": [
-      "Productivity",
-      "Self Improvement",
-      "Leadership"
-    ],
-    "category": "Productivity",
-    "tags": [
-      "morning-routine",
-      "habit-formation",
-      "peak-performance",
-      "discipline",
-      "self-mastery",
-      "focus"
-    ],
-    "chapterCount": 18,
-    "estimatedMinutes": 182,
-    "icon": "⏰",
-    "coverImage": "/book-covers/the-5-am-club.webp",
-    "difficulty": "Easy",
-    "synopsis": "A fable-framed argument for the early-morning \"Victory Hour,\" built around rising at 5 AM, the 20/20/20 Formula, and habit-installation routines for sustained focus and elite performance."
-  },
-  {
-    "id": "the-7-habits-of-highly-effective-people",
-    "title": "The 7 Habits of Highly Effective People",
-    "author": "Stephen R. Covey",
-    "categories": [
-      "Self Improvement",
-      "Leadership",
-      "Productivity"
-    ],
-    "category": "Self Improvement",
-    "tags": [
-      "proactivity",
-      "principles",
-      "character",
-      "win-win",
-      "empathic-listening",
-      "renewal"
-    ],
-    "chapterCount": 11,
-    "estimatedMinutes": 133,
-    "icon": "🧭",
-    "coverImage": "/book-covers/the-7-habits-of-highly-effective-people.webp",
-    "difficulty": "Medium",
-    "synopsis": "A principle-centered approach to personal and interpersonal effectiveness, moving from self-mastery and proactivity through win-win thinking, empathic listening, and synergy to continual self-renewal."
-  },
-  {
-    "id": "the-courage-to-be-disliked",
-    "title": "The Courage to Be Disliked",
-    "author": "Ichiro Kishimi, Fumitake Koga",
-    "categories": [
-      "Psychology",
-      "Philosophy",
-      "Self Improvement"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "adlerian-psychology",
-      "separation-of-tasks",
-      "self-acceptance",
-      "interpersonal-relationships",
-      "approval-seeking",
-      "present-living"
-    ],
-    "chapterCount": 5,
-    "estimatedMinutes": 60,
-    "icon": "🗣️",
-    "coverImage": "/book-covers/the-courage-to-be-disliked.webp",
-    "difficulty": "Medium",
-    "synopsis": "A dialogue-form introduction to Adlerian psychology, covering the denial of trauma, the interpersonal root of problems, the separation of tasks, contribution to others, and living fully in the present."
-  },
-  {
-    "id": "the-denial-of-death",
-    "title": "The Denial of Death",
-    "author": "Ernest Becker",
-    "categories": [
-      "Psychology",
-      "Philosophy",
-      "Classics"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "mortality",
-      "heroism",
-      "psychoanalysis",
-      "self-deception",
-      "human-nature",
-      "existentialism"
-    ],
-    "chapterCount": 11,
-    "estimatedMinutes": 132,
-    "icon": "💀",
-    "coverImage": "/book-covers/the-denial-of-death.webp",
-    "difficulty": "Hard",
-    "synopsis": "A reading of Becker's argument that the denial of death drives human behavior: the terror of mortality, character as a vital lie, heroism and immortality projects, and a psychoanalytic case from Freud through Kierkegaard and Rank."
-  },
-  {
-    "id": "the-elephant-in-the-brain",
-    "title": "The Elephant in the Brain",
-    "author": "Kevin Simler; Robin Hanson",
-    "categories": [
-      "Psychology",
-      "Behavioral Economics",
-      "Self Improvement"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "hidden-motives",
-      "self-deception",
-      "signaling",
-      "evolutionary-psychology",
-      "social-norms",
-      "human-behavior"
-    ],
-    "chapterCount": 16,
-    "estimatedMinutes": 192,
-    "icon": "🐘",
-    "coverImage": "/book-covers/the-elephant-in-the-brain.webp",
-    "difficulty": "Medium",
-    "synopsis": "A modern reading of the selfish, hidden motives behind everyday behavior: how signaling, social norms, and self-deception quietly shape conversation, charity, education, medicine, religion, and politics."
-  },
-  {
-    "id": "the-gift-of-fear",
-    "title": "The Gift of Fear",
-    "author": "Gavin de Becker",
-    "categories": [
-      "Personal Safety",
-      "Psychology"
-    ],
-    "category": "Personal Safety",
-    "tags": [
-      "intuition",
-      "violence-prevention",
-      "threat-assessment",
-      "personal-safety",
-      "boundaries",
-      "danger-signals"
-    ],
-    "chapterCount": 15,
-    "estimatedMinutes": 180,
-    "icon": "⚠️",
-    "coverImage": "/book-covers/the-gift-of-fear.webp",
-    "difficulty": "Medium",
-    "synopsis": "A practical guide to trusting intuition as a survival tool: reading the signals that precede violence, assessing real threats, and acting on fear to predict and avoid danger."
-  },
-  {
-    "id": "the-great-mental-models-vol-2",
-    "title": "The Great Mental Models, Volume 2: Physics, Chemistry, and Biology",
-    "author": "Shane Parrish",
-    "categories": [
-      "Decision Making",
-      "Learning",
-      "Self Improvement"
-    ],
-    "category": "Decision Making",
-    "tags": [
-      "mental-models",
-      "physics",
-      "biology",
-      "first-principles",
-      "decision-making",
-      "systems-thinking"
-    ],
-    "chapterCount": 20,
-    "estimatedMinutes": 240,
-    "icon": "🔬",
-    "coverImage": "/book-covers/the-great-mental-models-vol-2.webp",
-    "difficulty": "Medium",
-    "synopsis": "A guided tour of thinking tools borrowed from physics, chemistry, and biology—inertia, leverage, activation energy, catalysts, evolution, and ecosystems—reframed as transferable models for clearer reasoning."
-  },
-  {
-    "id": "the-let-them-theory",
-    "title": "The Let Them Theory",
-    "author": "Mel Robbins",
-    "categories": [
-      "Self Improvement",
-      "Psychology",
-      "Relationships"
-    ],
-    "category": "Self Improvement",
-    "tags": [
-      "boundaries",
-      "letting-go",
-      "emotional-regulation",
-      "control",
-      "friendship",
-      "self-empowerment"
-    ],
-    "chapterCount": 20,
-    "estimatedMinutes": 200,
-    "icon": "🙌",
-    "coverImage": "/book-covers/the-let-them-theory.webp",
-    "difficulty": "Easy",
-    "synopsis": "A practical reading of Robbins's two-part rule for stopping the urge to control other people and redirecting that energy to your own choices, applied to stress, comparison, difficult people, and changing friendships."
-  },
-  {
-    "id": "the-obstacle-is-the-way",
-    "title": "The Obstacle Is the Way",
-    "author": "Ryan Holiday",
-    "categories": [
-      "Philosophy",
-      "Self Improvement",
-      "Mental Toughness"
-    ],
-    "category": "Philosophy",
-    "tags": [
-      "stoicism",
-      "adversity",
-      "resilience",
-      "perception",
-      "perseverance"
-    ],
-    "chapterCount": 28,
-    "estimatedMinutes": 336,
-    "icon": "🪨",
-    "coverImage": "/book-covers/the-obstacle-is-the-way.webp",
-    "difficulty": "Medium",
-    "synopsis": "A modern application of Stoic philosophy organized around perception, action, and will, on turning obstacles and adversity into the path forward."
-  },
-  {
-    "id": "the-pyramid-principle",
-    "title": "The Pyramid Principle",
-    "author": "Barbara Minto",
-    "categories": [
-      "Communication",
-      "Business"
-    ],
-    "category": "Communication",
-    "tags": [
-      "structured-thinking",
-      "business-writing",
-      "logic",
-      "problem-solving",
-      "consulting",
-      "clear-communication"
-    ],
-    "chapterCount": 10,
-    "estimatedMinutes": 120,
-    "icon": "🔺",
-    "coverImage": "/book-covers/the-pyramid-principle.webp",
-    "difficulty": "Medium",
-    "synopsis": "A practical method for organizing ideas into a top-down pyramid: leading with the main point, grouping and ordering supporting arguments logically, framing introductions, and turning that structure into clear prose."
-  },
-  {
-    "id": "the-righteous-mind",
-    "title": "The Righteous Mind",
-    "author": "Jonathan Haidt",
-    "categories": [
-      "Psychology",
-      "Philosophy"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "moral-psychology",
-      "moral-intuition",
-      "moral-foundations",
-      "political-tribalism",
-      "group-selection",
-      "religion"
-    ],
-    "chapterCount": 12,
-    "estimatedMinutes": 144,
-    "icon": "🐘",
-    "coverImage": "/book-covers/the-righteous-mind.webp",
-    "difficulty": "Medium",
-    "synopsis": "A reading of Haidt's case that moral intuitions come first and reasoning follows, mapping the moral foundations behind political and religious divides and why humans are so groupish."
-  },
-  {
-    "id": "the-tipping-point",
-    "title": "The Tipping Point",
-    "author": "Malcolm Gladwell",
-    "categories": [
-      "Psychology",
-      "Communication",
-      "Business"
-    ],
-    "category": "Psychology",
-    "tags": [
-      "social-epidemics",
-      "word-of-mouth",
-      "influence",
-      "stickiness",
-      "social-networks",
-      "behavior-change"
-    ],
-    "chapterCount": 8,
-    "estimatedMinutes": 97,
-    "icon": "🦠",
-    "coverImage": "/book-covers/the-tipping-point.webp",
-    "difficulty": "Medium",
-    "synopsis": "A reading of how ideas, products, and behaviors spread like epidemics, driven by a few key people, the stickiness of a message, and the power of context to tip trends past a critical threshold."
-  },
-  {
-    "id": "unreasonable-hospitality",
-    "title": "Unreasonable Hospitality",
-    "author": "Will Guidara",
-    "categories": [
-      "Leadership",
-      "Business",
-      "Memoir"
-    ],
-    "category": "Leadership",
-    "tags": [
-      "hospitality",
-      "team-culture",
-      "customer-experience",
-      "service-excellence",
-      "intention",
-      "generosity"
-    ],
-    "chapterCount": 20,
-    "estimatedMinutes": 200,
-    "icon": "🍽️",
-    "coverImage": "/book-covers/unreasonable-hospitality.webp",
-    "difficulty": "Easy",
-    "synopsis": "A restaurateur's account of building a culture of unreasonable hospitality: leading with intention, treating people generously, and turning attentive service into a competitive edge."
-  },
-  {
     "id": "zero-to-one",
     "title": "Zero to One",
     "author": "Peter Thiel",
     "categories": [
-      "Entrepreneurship",
-      "Business",
-      "Innovation"
+      "Productivity",
+      "Self Improvement"
     ],
-    "category": "Entrepreneurship",
+    "category": "Productivity",
     "tags": [
-      "startups",
-      "monopoly",
-      "competition",
-      "contrarian-thinking",
-      "venture-capital",
-      "technology"
+      "attention",
+      "focus",
+      "habits"
     ],
     "chapterCount": 14,
     "estimatedMinutes": 168,
-    "icon": "🚀",
+    "icon": "✅",
     "coverImage": "/book-covers/zero-to-one.webp",
     "difficulty": "Medium",
-    "synopsis": "A contrarian take on building startups: why creating something new beats competing, how monopolies sustain progress, and Thiel's case for definite optimism, secrets worth pursuing, and the founder's outsized role."
+    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
   }
 ]
