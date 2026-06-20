@@ -72,6 +72,9 @@ export type SpawnCodexAgentOptions = {
   bin?: string;
   /** Injectable for tests. Defaults to the real `codex exec` runner. */
   runner?: CodexRunner;
+  /** Bind codex `-c model_reasoning_effort=<level>` (low|medium|high). Used to give the
+   *  noisiest reviewer (the cross-chapter sweep) a more stable, higher-effort read. */
+  reasoningEffort?: "low" | "medium" | "high";
 };
 
 export type CodexAgentResult = {
@@ -105,10 +108,15 @@ export function codexAvailable(bin = findCodexBinary()): boolean {
  *  here — confirm them against your installed codex version (`codex exec --help`)
  *  and tweak in ONE place if needed. `codex exec` runs non-interactively to
  *  completion and prints the final agent message to stdout. */
-export function codexExecArgv(task: string, sandbox: CodexSandbox, writableRoots: string[] = [], skipGitRepoCheck = false): string[] {
+export function codexExecArgv(task: string, sandbox: CodexSandbox, writableRoots: string[] = [], skipGitRepoCheck = false, reasoningEffort?: string): string[] {
   const argv = ["exec", "--sandbox", sandbox];
   // Allow running outside a git repo (a blind reviewer workspace under tmpdir is not one).
   if (skipGitRepoCheck) argv.push("--skip-git-repo-check");
+  // Bind the model reasoning effort (codex `-c model_reasoning_effort=<level>`) instead of
+  // only HINTING it in the prompt — a higher-effort read is more stable round-to-round, which
+  // matters most for the cross-chapter sweep (the noisiest reviewer). Verified the key is
+  // accepted by `codex exec`. All flags must precede the positional prompt.
+  if (reasoningEffort) argv.push("-c", `model_reasoning_effort=${reasoningEffort}`);
   // Extra writable roots (codex `--add-dir`) — only meaningful under workspace-write; a
   // read-only session writes nothing, so don't widen it. The PROMPT stays the LAST arg
   // (positional), so all flags must precede it.
@@ -158,7 +166,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
   const sandbox = opts.sandbox ?? "workspace-write";
   const timeoutMs = opts.timeoutMs ?? 1_800_000;
   const runner = opts.runner ?? defaultCodexRunner;
-  const argv = codexExecArgv(opts.task, sandbox, opts.writableRoots, opts.skipGitRepoCheck);
+  const argv = codexExecArgv(opts.task, sandbox, opts.writableRoots, opts.skipGitRepoCheck, opts.reasoningEffort);
   // Fail-closed env: STRICT_AGENT_ENV is spread AFTER opts.env so a caller's env map
   // can never DISABLE a strict invariant (the enforcement they gate is absence-safe,
   // i.e. silently OFF without these vars). CHAPTERFLOW_SESSION_ID is set LAST of all,
