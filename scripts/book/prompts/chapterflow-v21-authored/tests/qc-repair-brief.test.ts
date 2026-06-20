@@ -66,6 +66,51 @@ test("repair brief renders rules, exact finding details, and validation commands
   }
 });
 
+test("R2: repair prompt carries the constraint envelope + a C7/F1-safe rename pool", () => {
+  try {
+    cleanup();
+    const submission: ValidatedSweepSubmission = {
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep",
+      verdict: "REVISE",
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [{
+        chapterNumber: 5,
+        unitId: "examples[2]",
+        repairClass: "prose_coherence",
+        severity: "major",
+        quote: "The analyst's role flips mid-chapter.",
+        problem: "Persona inconsistency — the same character holds two contradictory roles.",
+        expectedFix: "Reconcile the persona: keep one consistent role, or rename the second actor.",
+        globalTheme: "persona",
+      }],
+    };
+    appendFindingsFromSubmission({ bookId: BOOK, roundId: ROUND, role: "sweep", submissionFile: "sweep.json", submission });
+    const prompt = renderRepairPromptMarkdown(BOOK, ROUND);
+    // The envelope tells the writer the guardrails a fix must not trip — the "no new issue" contract.
+    assert.match(prompt, /CONSTRAINT ENVELOPE/);
+    assert.match(prompt, /C7 \(blocker\)/);
+    assert.match(prompt, /SP2 \(blocker\): NEVER change an example's planSpec\.format/);
+    assert.match(prompt, /B1 \(blocker\)/);
+    assert.match(prompt, /A13 \(major\)/);
+    assert.match(prompt, /C23 \(major\)/);
+    assert.match(prompt, /BP28\/BP29\/BP31/);
+    // The safe-rename pool must EXCLUDE every C7-banned name (so a rename can't re-trip C7).
+    const poolLine = prompt.split("\n").find((l) => l.includes("pick from:")) ?? "";
+    assert.ok(poolLine, "a safe-rename pool line (with names) is rendered");
+    const poolNames = poolLine.split("pick from:")[1] ?? "";
+    assert.ok(poolNames.trim().length > 0, "the pool lists at least one name");
+    for (const banned of ["Priya", "Marcus", "Tessa", "Naomi"]) {
+      assert.doesNotMatch(poolNames, new RegExp(`\\b${banned}\\b`), `${banned} (C7-banned) must NOT be offered in the rename pool`);
+    }
+  } finally {
+    cleanup();
+  }
+});
+
 test("A5: repeated same-class findings on sibling units render ONE class-level banner", () => {
   try {
     cleanup();

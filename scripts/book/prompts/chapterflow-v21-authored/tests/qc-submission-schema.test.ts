@@ -224,6 +224,35 @@ test("qc-bar-read-v2 axis hits become repair findings", () => {
   assert.equal(findings[0].chapterNumber, 1);
 });
 
+test("R1: a bar hit's concrete `fix` becomes the finding's expectedFix; absent → formulaic fallback", () => {
+  function barWithHit(hit: any) {
+    const axes = greenAxes().filter((a) => a.axis !== "quiz_key_correctness");
+    const weak = axes.find((a) => a.axis === "example_coherence");
+    weak.score = 0.4;
+    weak.tier = "GENERATED_DRAFT";
+    weak.hits = [hit];
+    const r = validateSubmission(BOOK, ROUND, "bar", {
+      schemaVersion: "qc-bar-read-v2", bookId: BOOK, roundId: ROUND, role: "bar",
+      reviewer: "codex-qc:bar", chapterNumber: 1, chapterId: `${BOOK}-ch01`,
+      contentHash: "abc123", notes: "Example slate is below the publishable floor.", axes,
+    });
+    assert.equal(r.ok, true, (r as any).errors?.join("\n"));
+    return findingsFromSubmission((r as any).submission)[0];
+  }
+
+  // A reviewer-authored `fix` is threaded verbatim into expectedFix — the actionable target.
+  const withFix = barWithHit({
+    unitId: "examples[0]", quote: "planning-note scene", defect: "Scene narrates the concept instead of staging a decision.",
+    fix: "Recast examples[0] as Dana facing the layoff memo at 4:55pm and choosing whether to forward it — show the decision, don't summarize the lesson.",
+  });
+  assert.match(withFix.expectedFix, /Recast examples\[0\] as Dana/);
+  assert.doesNotMatch(withFix.expectedFix, /re-run author checks/, "the formulaic stub must NOT be used when a concrete fix exists");
+
+  // No `fix` (legacy / reviewer skipped it) → the formulaic fallback, unchanged behavior.
+  const noFix = barWithHit({ unitId: "examples[0]", quote: "planning-note scene", defect: "Scene is not reader-facing." });
+  assert.equal(noFix.expectedFix, "Repair the example_coherence defect and re-run author checks before a fresh QC round.");
+});
+
 test("qc-bar-read-v2 sub-floor axes require cited hits", () => {
   const axes = greenAxes().filter((a) => a.axis !== "quiz_key_correctness");
   const weak = axes.find((a) => a.axis === "example_coherence");
