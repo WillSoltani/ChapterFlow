@@ -130,6 +130,26 @@ test("autopilot drives research→write→qc→ready, halts at ready WITHOUT pub
   assert.ok(!verbs.some((v) => v[0] === "publish-after-qc"), "must NOT publish — halts at ready by default");
 });
 
+test("C1: first QC round is INCREMENTAL when a carryable pass exists (passes accumulate, never re-rolled)", async () => {
+  const statuses = (): BookStatus[] => [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  // A carryable pass on disk → round 0 opens INCREMENTAL so the prior pass is BANKED
+  // (no fresh stochastic re-roll) — the convergence fix. (attempt===0, so the flag comes
+  // ONLY from anyCarryable, not from attempt>0.)
+  const carry = happyDeps(statuses(), { anyCarryable: () => true });
+  await runAutopilot({ bookId: "zz", deps: carry.deps });
+  const carryCreate = carry.verbs.find((v) => v.includes("--create"));
+  assert.ok(carryCreate?.includes("--incremental"), "round 0 is incremental when a carryable pass exists");
+
+  // No carryable pass → round 0 is a FULL round (every chapter re-reviewed) — unchanged behavior.
+  const full = happyDeps(statuses(), { anyCarryable: () => false });
+  await runAutopilot({ bookId: "zz", deps: full.deps });
+  const fullCreate = full.verbs.find((v) => v.includes("--create"));
+  assert.ok(fullCreate && !fullCreate.includes("--incremental"), "round 0 is a full round when nothing is carryable");
+});
+
 test("autopilot --plan takes NO action (zero spawns, zero verbs)", async () => {
   const { deps, spawns, verbs } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })]);
   const outcome = await runAutopilot({ bookId: "zz", plan: true, deps });
