@@ -115,6 +115,29 @@ A good test: read fullRead aloud at the speed of someone who reads news articles
 
 If two tiers begin with the same noun phrase, you have failed. If the writer reading your three tiers back-to-back could not identify a real escalation, you have failed.
 
+## The one move, made impossible to miss (beginner-first)
+
+A beginner should always be able to answer three questions about a chapter: **what is the idea, why does it matter, and what do I do with it today.** The strongest chapters already do this — the reader can hold the whole chapter as one repeatable move. Aim for that every time.
+
+- **Surface the practical move early.** Do not make the reader wait through a story, then a second story, then the theory before the usable idea arrives. In the `fastRead`, the reader should reach the move fast — in the first beat or two, not buried at the end. A scene can frame the move; it must not delay it past the point a tired reader gives up.
+
+- **Each tier has a different job:**
+  - `fastRead` answers *what is it, why does it matter, what do I do today.* The reader leaves with one concrete image and one move they could try this afternoon.
+  - `deepRead` answers *why does this happen* — the mechanism under the effect. Not more story for its own sake; the engine.
+  - `fullRead` answers *when does this fail or get misused* — the edges, the nuance, the case where the move is the wrong move.
+
+- **A job is not a template — this is the trap.** Hold each tier to its *job*, never to a fixed shape. Do NOT march every chapter's `fastRead` through an identical problem→mistake→tool skeleton, and do not open chapters the same way book-to-book. Same job, different shape each time. Cross-chapter structural sameness is exactly what the book-sweep flags, and what a reader feels as filler. The progression rule above still rules: no two tiers, and no two chapters, may rhyme.
+
+- **Introduce one idea at a time, and define a hard word the moment it appears.** Do not open by stacking several technical terms the reader must hold at once. When a term a general reader won't know shows up — base rate, attention residue, anchoring, replacement rate, solitude deprivation — give it a quick plain gloss on first use, in the same breath: "base rate, the normal background rate before the vivid case." Define once, then use the term freely.
+
+- **Keep the sharp line; add the plain one.** When you land a compressed, almost-literary line, follow it with the everyday translation. "Fear is an alarm, not a scale" is good — then: "It tells you something feels dangerous. It does not tell you how likely, or how large, the danger is." The pair beats either half alone: the line is memorable, the follow-up is clear.
+
+- **"Not this, this" is your fastest clarity tool.** Beginners read contrast quickly. Prefer "Do not try to kill the fear; use it as an alarm, then check the numbers" over "Manage your fear response appropriately." Name the wrong move, then the right one.
+
+- **Match the form to the idea.** If the chapter teaches a *procedure*, give it a small named, repeatable loop the reader can hold (choose, clear, attend, return). If it teaches a *lens* — a way of seeing, not a set of steps — do not force a fake formula onto it; use a not-this/this contrast or one clean rule instead. A manufactured four-step acronym bolted onto an idea that is not a procedure reads as fake precision, and fake precision is worse than none.
+
+- **The one-sentence test — run it before you finish.** Could a tired reader explain this chapter to a friend in one sentence: name its one repeatable move in about eight words? If yes, the `fastRead` is doing its job. If you cannot say it that plainly yourself, the move is buried — surface it.
+
 ## Hard rules of voice
 
 1. **Never narrate the source.** No "the chapter", "this chapter", "the author", "the book", "the law", "in this chapter", "Chapter N", or author-surname-plus-verb constructions ("Clear argues…", "Kahneman writes…"). Also no abstract meta-frame where "the idea / this idea / this move" is the subject of an essay verb ("the idea wants", "this idea argues", "the move targets", "the idea's demand"). Teach the idea directly through scenes and named protagonists, as if the reader had never heard of the source.

@@ -259,6 +259,7 @@ export type CriticCheckId =
   | "pedagogy.quiz_tests_application"
   | "pedagogy.card_tests_retrieval"
   | "pedagogy.example_exercises_core_move"
+  | "pedagogy.takeaway_distillable"
   | "schema.enum_validity"
   | "schema.answer_position_balance"
   | "schema.bloom_vocabulary"

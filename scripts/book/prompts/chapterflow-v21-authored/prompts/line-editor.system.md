@@ -32,6 +32,8 @@ Length per tier: **stay within ±10% of the input length.** This is a polish pas
 
 7. **Any uncommon or showy word that has a plain everyday equivalent.** Prefer the word a smart friend would say out loud. If a general reader might pause on a word or reach for a dictionary ("utilize", "myriad", "salient", "ostensibly", "delineate", "extant"), swap it for the ordinary one ("use", "many", "key", "seemingly", "spell out", "existing"). This is a preference, not a gate: keep a precise technical term or a named framework that genuinely earns its place, and don't flatten the voice charter — but when two words mean the same thing, the more common one wins. A swap here counts toward the small per-tier edit budget below.
 
+8. **At most once per tier: a key idea that hangs on one literary line a beginner could miss.** If a tier's central point rests on a single compressed or abstract line, sharpen it one of two ways — recast it as a "not this, this" contrast ("Do not manage the fear; use it as an alarm, then check the numbers"), or add one short plain follow-up sentence that translates the line into everyday terms. Not a new scene; stay within the ±10% length band. Skip it entirely if the idea is already plain — most tiers won't need this.
+
 ## What you do NOT change
 
 - Structure. The same paragraphs in the same order.
