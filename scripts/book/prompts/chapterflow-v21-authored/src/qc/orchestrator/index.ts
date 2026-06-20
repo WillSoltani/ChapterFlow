@@ -17,7 +17,7 @@ import { unresolvedMajors } from "../majorDisposition.js";
 import { isNoApiCodexQcMode } from "../noApiMode.js";
 import { openQcRound, qcRoundPath, verifyQcRoundToken, type QcRoundRole } from "../qcRound.js";
 import { checkSourceV2Gate, sourceHashFor } from "../sourceV2Gate.js";
-import { loadSweepRecord, sweepChapterStatus, writeSweepPack, writeSweepRecordFromSubmission, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
+import { carryForwardSweep, loadSweepRecord, sweepCarryable, sweepChapterStatus, writeSweepPack, writeSweepRecordFromSubmission, REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
 import { writeReviewPacket } from "./reviewPacket.js";
 export { reviewPacketPath } from "./reviewPacket.js";
 import {
@@ -125,10 +125,13 @@ function cardHeader(bookId: string, roundId: string, role: string, token: string
   ].join("\n");
 }
 
-function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>): string[] {
+function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>, opts: { skipSweep?: boolean } = {}): string[] {
   const root = taskCardsDir(bookId, roundId);
   const paths: string[] = [];
-  paths.push(writeText(resolve(root, "00-sweep.md"), cardHeader(bookId, roundId, "sweep", tokens.sweep) + [
+  // When the book is byte-identical to a prior PASS sweep the sweep is carried forward
+  // (no card emitted ⇒ the driver, which derives its reviewer set + completion from the
+  // cards on disk, never spawns or waits for a sweep session this round).
+  if (!opts.skipSweep) paths.push(writeText(resolve(root, "00-sweep.md"), cardHeader(bookId, roundId, "sweep", tokens.sweep) + [
     "Read the sweep pack only for the cross-chapter sweep.",
     "Check all four families: scene_skeleton, persona_drift, repeated_unit, location_stamping. List every family you checked in `checkedFamilies`.",
     "Emit a finding ONLY for a family that ACTUALLY fired. Do NOT add an empty or placeholder finding for a family that is clean.",
@@ -259,6 +262,14 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   const roundId = opened.record.roundId;
   ensureRoundLayout(bookId, roundId);
 
+  // Content-addressed sweep carry-forward (incremental rounds only — the first/full round
+  // always sweeps fresh). When the whole book is byte-identical to a prior PASS sweep, the
+  // codex sweep can only re-roll its stochastic verdict, so re-stamp that real PASS onto
+  // this round and skip the session. ANY changed/added/removed chapter ⇒ a fresh sweep.
+  const priorSweep = loadSweepRecord(bookId);
+  const sweepCarried = incremental && sweepCarryable(priorSweep, selected);
+  if (sweepCarried && priorSweep) carryForwardSweep(bookId, priorSweep, roundId);
+
   let keyPackPaths: string[] = [];
   let keyPackError: string | undefined;
   try {
@@ -270,12 +281,16 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   }
   let sweepPackPath: string | undefined;
   let sweepPackError: string | undefined;
-  try {
-    sweepPackPath = writeSweepPack(bookId, roundId);
-    messages.push(`sweep-pack: wrote ${sweepPackPath}`);
-  } catch (err) {
-    sweepPackError = (err as Error).message;
-    errors.push(`sweep-pack failed: ${sweepPackError}`);
+  if (sweepCarried) {
+    messages.push("sweep: carried a prior PASS forward (book byte-identical) — skipping the sweep session");
+  } else {
+    try {
+      sweepPackPath = writeSweepPack(bookId, roundId);
+      messages.push(`sweep-pack: wrote ${sweepPackPath}`);
+    } catch (err) {
+      sweepPackError = (err as Error).message;
+      errors.push(`sweep-pack failed: ${sweepPackError}`);
+    }
   }
   const barPack = writeBarPack(bookId, roundId);
   if (barPack.errors.length) {
@@ -283,7 +298,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   } else {
     messages.push(`bar-pack: wrote ${barPack.packPath}`);
   }
-  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens);
+  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens, { skipSweep: sweepCarried });
   // Self-contained reviewer packet (content/rubric pointers + per-role submit
   // commands + invalid-until-filled JSON skeletons). Written here because the
   // plaintext round tokens only exist at creation time.

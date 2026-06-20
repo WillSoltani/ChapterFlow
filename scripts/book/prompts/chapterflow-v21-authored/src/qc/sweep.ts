@@ -246,6 +246,46 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
   return { path: p };
 }
 
+/**
+ * Content-addressed sweep carry-forward. The book-wide sweep is the single most
+ * stochastic reviewer (a fresh whole-book read flags a rotating subset round to round).
+ * When the ENTIRE book is byte-IDENTICAL to a prior PASS sweep — every chapter's content
+ * hash matches AND the chapter SET is unchanged — re-running it can only re-roll the dice,
+ * never surface a genuinely new cross-chapter pattern (a cross-chapter pattern is a property
+ * of the whole book; if nothing moved, it cannot have changed). `sweepCarryable` is true
+ * exactly then, so the caller may carry the prior PASS forward instead of spawning a codex
+ * sweep session. Conservative: ANY changed/added/removed chapter ⇒ false ⇒ full fresh sweep.
+ */
+export function sweepCarryable(priorRec: SweepRecord | null, chapters: ChapterV21[]): boolean {
+  if (!priorRec || priorRec.verdict !== "PASS") return false;
+  if (!REQUIRED_SWEEP_FAMILIES.every((fam) => (priorRec.checkedFamilies ?? []).includes(fam))) return false;
+  const priorHashes = priorRec.contentHashes ?? {};
+  // The chapter SET must be identical (a new/removed chapter could introduce a
+  // cross-chapter collision the prior sweep never read).
+  if (Object.keys(priorHashes).length !== chapters.length) return false;
+  for (const ch of chapters) {
+    if (priorHashes[String(ch.number)] !== chapterContentHash(ch)) return false;
+  }
+  return true;
+}
+
+/** Re-stamp a prior PASS SweepRecord onto a new roundId (used only when sweepCarryable is
+ *  true, so the carried hashes still match the current book). Faithfully copies the verdict,
+ *  findings, checkedFamilies and contentHashes of a REAL prior PASS — it never fabricates a
+ *  pass. The reviewer is marked `carry-forward` for auditability. */
+export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId: string): string {
+  const rec: SweepRecord = {
+    ...priorRec,
+    roundId,
+    reviewer: "carry-forward",
+    attestedAt: new Date().toISOString(),
+  };
+  mkdirSync(QC_DIR, { recursive: true });
+  const p = sweepRecordPath(bookId);
+  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
+  return p;
+}
+
 export function loadSweepRecord(bookId: string): SweepRecord | null {
   const p = sweepRecordPath(bookId);
   if (!existsSync(p)) return null;
