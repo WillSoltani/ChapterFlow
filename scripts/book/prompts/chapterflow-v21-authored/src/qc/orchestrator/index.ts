@@ -409,7 +409,13 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
         blockers.push("barRead");
       }
     }
-    if (ledgerFindings.length > 0) blockers.push("repairLedger");
+    // Mirror finalize's `openSerious` (finalize.ts): only a blocker/major open finding (or a
+    // needs_qc_rerun flag) bars a chapter from confirm. Advisory/minor findings are non-blocking
+    // by design — finalize publishes a chapter that carries only those (repairLedger=NO_OPEN_BLOCKERS),
+    // so withholding its confirm read here strands it in NEEDS_MORE_QC forever (a clean, sweep-passing
+    // chapter with one advisory factual-accuracy nit can never certify). Keep this gate consistent
+    // with finalize so confirm-eligibility can't be STRICTER than the publish decision it feeds.
+    if (ledgerFindings.some((f) => f.status === "needs_qc_rerun" || f.severity === "blocker" || f.severity === "major")) blockers.push("repairLedger");
     if (chapterMajorFindings.length > 0) blockers.push("majors");
 
     if (blockers.length === 0) {

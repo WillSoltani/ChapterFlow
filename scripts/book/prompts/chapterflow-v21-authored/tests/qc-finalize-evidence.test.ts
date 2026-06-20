@@ -28,7 +28,7 @@ import {
 } from "../src/qc/orchestrator/artifacts.js";
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
 import { generateConfirmCandidates } from "../src/qc/orchestrator/index.js";
-import { effectiveLedger } from "../src/qc/orchestrator/ledger.js";
+import { effectiveLedger, appendFindings } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 
@@ -474,6 +474,60 @@ goldTest("confirm-candidates SKIPS a plan-enforcement-failing chapter (parity wi
     const skip = result.skipped.find((s) => s.chapterNumber === SOURCE_CHAPTER_NUMBER);
     assert.ok(skip, "the chapter must be in the skipped list");
     assert.ok(skip!.blockers.includes("planEnforcement"), `expected a planEnforcement blocker, got ${JSON.stringify(skip?.blockers)}`);
+  } finally {
+    cleanup();
+  }
+});
+
+// E (parity, ledger severity): confirm-candidate eligibility must not be STRICTER than finalize
+// on the LEDGER either. finalize's `openSerious` (finalize.ts) treats only blocker/major open
+// findings as a repairLedger blocker; advisory/minor are non-blocking (finalize publishes a chapter
+// carrying only those, repairLedger=NO_OPEN_BLOCKERS). generateConfirmCandidates used to skip on ANY
+// open finding, so a clean, sweep-passing chapter with one advisory factual-accuracy nit was barred
+// from its confirm read and stranded in NEEDS_MORE_QC forever (the factfulness non-certification bug).
+// Non-vacuous: before the fix this chapter was skipped with a repairLedger blocker.
+goldTest("confirm-candidates does NOT skip a chapter whose only open ledger finding is ADVISORY (parity with finalize)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    const r = appendFindings({
+      bookId: GREEN_BOOK, roundId: ROUND, role: "sweep", submissionFile: "test://advisory",
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER, unitId: `${chapter.chapterId}-hook`,
+        repairClass: "factual_accuracy", severity: "advisory", quote: String(chapter.hook).slice(0, 24),
+        problem: "An exact figure could not be verified against the source facts.",
+        expectedFix: "Soften or attribute the figure.",
+      }],
+    });
+    assert.equal(r.appended, 1, "the advisory finding must land in the ledger (not dropped as fabricated)");
+    assert.ok(effectiveLedger(GREEN_BOOK, ROUND).some((f) => f.severity === "advisory" && f.status === "open"));
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(result.candidates, [SOURCE_CHAPTER_NUMBER], `an advisory-only chapter must still be a confirm candidate, got skipped=${JSON.stringify(result.skipped)}`);
+  } finally {
+    cleanup();
+  }
+});
+
+// Complement (non-vacuous the other way): a MAJOR open ledger finding STILL blocks confirm, so the
+// severity filter narrowed the gate to match finalize rather than removing the repairLedger blocker.
+goldTest("confirm-candidates STILL skips a chapter with a MAJOR open ledger finding (repairLedger blocker)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    appendFindings({
+      bookId: GREEN_BOOK, roundId: ROUND, role: "sweep", submissionFile: "test://major",
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER, unitId: `${chapter.chapterId}-hook`,
+        repairClass: "factual_accuracy", severity: "major", quote: String(chapter.hook).slice(0, 24),
+        problem: "A blocking factual error.", expectedFix: "Correct it.",
+      }],
+    });
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(result.candidates, [], "a major-finding chapter must NOT be a confirm candidate");
+    const skip = result.skipped.find((s) => s.chapterNumber === SOURCE_CHAPTER_NUMBER);
+    assert.ok(skip?.blockers.includes("repairLedger"), `expected a repairLedger blocker, got ${JSON.stringify(skip?.blockers)}`);
   } finally {
     cleanup();
   }

@@ -68,6 +68,12 @@ export type SweepRecord = {
   checkedFamilies: SweepFamily[];
   findings: Array<{
     family: SweepFamily;
+    // Whether this finding gates the chapters it names. Mirrors finalize's `openSerious`
+    // ledger contract: a blocker (or major) sweep finding blocks; an advisory (or minor)
+    // observation is surfaced but never gates. Collapsed to two tiers at write time.
+    // Legacy records predate this field; readers treat an absent severity as "blocker"
+    // (fail-closed — preserves the pre-severity "every named finding FAILs" behavior).
+    severity: "blocker" | "advisory";
     chapters: number[];
     unitId: string;
     quote: string;
@@ -153,6 +159,7 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
     checkedFamilies: submission.checkedFamilies,
     findings: submission.findings.map((f) => ({
       family: isSweepFamily(f.repairClass) ? f.repairClass : "scene_skeleton",
+      severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
       chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
       unitId: f.unitId,
       quote: f.quote,
@@ -191,8 +198,11 @@ function loadFindingsFile(path: string): { checkedFamilies: SweepFamily[]; findi
     for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
       if (typeof f?.[key] !== "string" || !f[key].trim()) errors.push(`findings[${i}].${key} is required`);
     }
+    const sev = String(f?.severity ?? "").toLowerCase();
+    const severity: "blocker" | "advisory" = sev === "advisory" || sev === "minor" ? "advisory" : "blocker";
     return {
       family: isSweepFamily(family) ? family : "scene_skeleton",
+      severity,
       chapters,
       unitId: String(f?.unitId ?? ""),
       quote: String(f?.quote ?? ""),
@@ -260,8 +270,17 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   if (rec.contentHashes?.[String(chapterNumber)] !== contentHash) return "STALE";
   if (rec.verdict === "PASS") return "PASS";
   const findings = rec.findings ?? [];
-  if (findings.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
-  return findings.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
+  // Only a BLOCKER-severity finding gates the chapters it names. An ADVISORY sweep
+  // observation (e.g. a stochastic unverifiable-number nit) is surfaced but never FAILs a
+  // chapter — this mirrors finalize's `openSerious` ledger gate so the sweep can't be a
+  // STRICTER gate than the publish decision it feeds. A finding with no severity (a legacy,
+  // pre-severity record) is treated as a blocker (fail-closed).
+  const blockers = findings.filter((f) => f.severity !== "advisory");
+  if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
+  // A non-PASS verdict explained by NO blocker (all-advisory, or naming nothing) fails
+  // closed — an unexplained REVISE/CORRUPTION still blocks rather than silently passing
+  // every chapter. (Advisory-only findings do not "explain" the verdict at blocker level.)
+  return blockers.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
 }
 
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
