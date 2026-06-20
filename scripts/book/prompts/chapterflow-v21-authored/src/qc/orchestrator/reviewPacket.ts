@@ -200,6 +200,7 @@ export function writeReviewPacket(
   L.push("  - Shared CONCEPT vocabulary: the book's central terms recurring across chapters is the SUBJECT, not a templated shell. Only flag a reused STRUCTURE with the content swapped.");
   L.push("  - A consistent pedagogical opener ('The mechanism is:') across chapters is a CONVENTION when the content differs and the prose reads as human teaching.");
   L.push("  - Two chapters that happen to share a venue or a card frame are fine; the defect is a SHELL spanning many chapters. Rule of thumb: REVISE the whole book only when ≥3 families each span ≥1/3 of the chapters, or any single shell saturates the book.");
+  L.push("OUT OF SCOPE — this is a CROSS-CHAPTER TEMPLATING check only. You do NOT have the source pack and CANNOT verify facts or numbers: do NOT raise any factual-accuracy / unverifiable-number / wrong-statistic finding here (numeric grounding is the bar read's `factual_accuracy` axis, which has the source + web-verified numbers). Every finding MUST classify into exactly one of the four families above; a finding that is not one of them is invalid and will be dropped.");
   L.push(`Set verdict to PASS / REVISE / CORRUPTION (replace FILL_ME). REVISE/CORRUPTION need ≥1 quote-backed finding citing the SPECIFIC chapters and the shared shell.`);
   L.push(submitCmd(bookId, roundId, "sweep", tokens.sweep, "<sweep.json>"));
   L.push(json(buildSweepSkeleton(bookId, roundId)));

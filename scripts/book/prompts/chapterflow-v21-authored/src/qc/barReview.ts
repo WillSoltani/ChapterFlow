@@ -28,6 +28,10 @@ import { isNoApiCodexQcMode } from "./noApiMode.js";
 import { keyPackDir, loadBookChapters } from "./manualKeyJudge.js";
 import { checkSourceV2Gate, sourceFactsForPack, sourceHashFor, loadSourceV2Sidecar, type SourceFactForPack } from "./sourceV2Gate.js";
 import { hasFreshConfirmReadArtifact, writeBarReadArtifact } from "./orchestrator/artifacts.js";
+import { parseSourceVerifyRecord, sourceVerifyRecordPath, verifiableItems } from "../critics/sourceVerify.js";
+
+/** A numeric token the FILLED source-verify record marks VERIFIED against a real source. */
+export type GroundedNumber = { token: string; sourceRef: string; itemId: string };
 
 export type BarPackChapter = {
   chapterNumber: number;
@@ -36,8 +40,52 @@ export type BarPackChapter = {
   contentHash: string;
   sourceHash: string | null;
   sourceFacts: SourceFactForPack[];
+  /** Numbers the source-verify record confirmed VERIFIED (with the cited source). The
+   *  factual_accuracy axis TRUSTS these instead of re-distrusting them every round. Empty
+   *  when no source-verify record exists (fail-safe → pre-feature behaviour unchanged). */
+  groundedNumbers: GroundedNumber[];
   chapter: unknown;
 };
+
+const NUMERIC_TOKEN_RE = /\d[\d.,]*\d|\d/g;
+function digitTokens(text: string): string[] {
+  return (String(text).match(NUMERIC_TOKEN_RE) ?? []).map((t) => t.replace(/,/g, ""));
+}
+
+/**
+ * Deterministic VERIFIED-number provenance for one chapter's bar pack. A numeric token is
+ * grounded iff it appears in a sidecar item (named-example hardSpecifics / testable-fact
+ * claim) whose verdict in the FILLED source-verify record is exactly VERIFIED — carrying that
+ * item's cited sourceRef. WRONG / UNVERIFIABLE / FILL_ME / missing items contribute NOTHING,
+ * so a distrusted number can never be laundered into the trusted list. Fail-safe: no record
+ * (or an unparseable one) → [] (pack behaviour byte-identical to before the feature). Reuses
+ * verifiableItems() as the single source of anchor-id truth (the record was emitted from it).
+ */
+export function groundedNumbersForChapter(bookId: string, chapterNumber: number, sidecar: unknown): GroundedNumber[] {
+  const path = sourceVerifyRecordPath(bookId);
+  if (!existsSync(path)) return [];
+  const { record } = parseSourceVerifyRecord(readFileSync(path, "utf8"));
+  const chRec = record?.chapters?.find((c) => Number(c.chapterNumber) === chapterNumber);
+  if (!chRec?.items?.length) return [];
+  const verifiedRef = new Map<string, string>();
+  for (const it of chRec.items) {
+    if (String(it.verdict ?? "").trim().toUpperCase() === "VERIFIED") verifiedRef.set(String(it.id), String(it.sourceRef ?? "").trim());
+  }
+  if (verifiedRef.size === 0) return [];
+  const out: GroundedNumber[] = [];
+  const seen = new Set<string>();
+  for (const item of verifiableItems(sidecar)) {
+    const ref = verifiedRef.get(String(item.id));
+    if (ref === undefined) continue; // not VERIFIED for this chapter
+    for (const token of digitTokens(`${item.claim} ${item.detail}`)) {
+      const key = `${item.id}:${token}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ token, sourceRef: ref, itemId: String(item.id) });
+    }
+  }
+  return out;
+}
 
 export type BarPack = {
   schemaVersion: "bar-pack-v1";
@@ -163,6 +211,7 @@ export function writeBarPack(bookId: string, roundId: string): { packPath?: stri
         contentHash: chapterContentHash(ch),
         sourceHash: sourceHashFor(bookId, ch.number),
         sourceFacts: sourceFactsForPack(source),
+        groundedNumbers: groundedNumbersForChapter(bookId, ch.number, source),
         chapter: stripReviewScaffolding(ch),
       };
     }),

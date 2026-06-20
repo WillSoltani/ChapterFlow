@@ -157,15 +157,22 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
     attestedAt: new Date().toISOString(),
     contentHashes,
     checkedFamilies: submission.checkedFamilies,
-    findings: submission.findings.map((f) => ({
-      family: isSweepFamily(f.repairClass) ? f.repairClass : "scene_skeleton",
-      severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
-      chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
-      unitId: f.unitId,
-      quote: f.quote,
-      problem: f.problem,
-      expectedFix: f.expectedFix,
-    })),
+    findings: submission.findings.flatMap((f) => {
+      // FIX 3 — DROP a finding whose repairClass is not one of the 4 sweep families instead
+      // of silently coercing it to scene_skeleton. The old coercion let a factual/number
+      // doubt (which the sweep has no source to verify) masquerade as a templating defect and
+      // gate the book on a non-templating basis. A real templating family is kept untouched.
+      if (!isSweepFamily(f.repairClass)) return [];
+      return [{
+        family: f.repairClass,
+        severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
+        chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
+        unitId: f.unitId,
+        quote: f.quote,
+        problem: f.problem,
+        expectedFix: f.expectedFix,
+      }];
+    }),
   };
   mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(submission.bookId);
