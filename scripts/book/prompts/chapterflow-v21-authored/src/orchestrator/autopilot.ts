@@ -208,6 +208,22 @@ export function flaggedChapterNumbers(bookId: string, roundId: string): Set<numb
   return out;
 }
 
+/** Chapters the surgical repair fan-out should spawn an EDIT session for: REVISE / CORRUPTION only.
+ *  A NEEDS_MORE_QC chapter failed on missing/stale EVIDENCE, not a content defect — it carries zero
+ *  actionable findings (the repair prompt buckets it "[re-QC only … no edits]"), so an edit session
+ *  there is a wasted codex call that risks a needless edit invalidating its still-valid review.
+ *  (The collateral-edit guard keeps using the full `flaggedChapterNumbers` set, not this one.) */
+export function repairTargetChapterNumbers(bookId: string, roundId: string): Set<number> {
+  const out = new Set<number>();
+  try {
+    const matrix = JSON.parse(readFileSync(evidenceMatrixPath(bookId, roundId), "utf8"));
+    for (const d of matrix?.chapters ?? []) {
+      if ((d?.finalVerdict === "REVISE" || d?.finalVerdict === "CORRUPTION") && d.chapterNumber != null) out.add(Number(d.chapterNumber));
+    }
+  } catch { /* no matrix yet → empty → whole-prompt single-session fallback */ }
+  return out;
+}
+
 export function chapterNumberFromCard(path: string): number | null {
   const matches = [...path.matchAll(/ch0*(\d+)/gi)];
   return matches.length ? Number(matches[matches.length - 1][1]) : null;
@@ -904,9 +920,12 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     // ONLY its chapter — so no session ever re-authors siblings together. Cross-chapter residue (an
     // F1 collision, a BP* templating echo) is caught reactively by the qc-converge loop (blockers)
     // and the R3 major scan below. Sequential = no two sessions race a shared cross-chapter signal.
-    // No matrix yet (empty `flagged`) → ONE session over the whole prompt (unchanged fallback).
-    const repairTargets: Array<number | null> = flagged.size ? [...flagged].sort((a, b) => a - b) : [null];
-    deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}${flagged.size ? ` — ${flagged.size} surgical chapter session(s)` : ""}`);
+    // Fan out an EDIT session only for chapters with actionable content findings (REVISE/CORRUPTION).
+    // NEEDS_MORE_QC chapters are "[re-QC only]" — flagged for the collateral guard but not edited.
+    // No matrix / no editable chapter → ONE session over the whole prompt (unchanged fallback).
+    const editable = repairTargetChapterNumbers(bookId, round.roundId);
+    const repairTargets: Array<number | null> = editable.size ? [...editable].sort((a, b) => a - b) : [null];
+    deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}${editable.size ? ` — ${editable.size} surgical chapter session(s)` : ""}`);
     // Collateral-edit guard: snapshot the GREEN (non-flagged) chapters' hashes around the WHOLE
     // fan-out. A repair that edits a chapter carrying a passing review invalidates its attestation.
     const preHashes = deps.chapterHashes(bookId);
@@ -943,7 +962,7 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const newMajors = [...deps.majorFindingKeys(bookId)].filter((k) => !preMajors.has(k));
       if (!newMajors.length) break;
       deps.log(`[autopilot] WARNING: the repair introduced ${newMajors.length} NEW major(s) invisible to qc-converge: ${newMajors.join("; ")} — re-dispatching a targeted fix (${rc + 1}/${REGRESSION_REDISPATCH_CAP}).`);
-      const fixTask = `Your previous repair of ${bookId} introduced NEW major findings that \`qc-converge\` does NOT catch (they are major-tier, not blockers — templating, commas, or a duplicate protagonist). Fix EACH below by editing ONLY chapter CONTENT under state/chapters/, preserving every number / proper noun / source anchor, then re-run \`gate-chapter\` and \`book-gate\`. Do NOT introduce any further templating / banned-name / comma defect.\n\nNEW majors (key = scope:chapter:catalogId:location):\n${newMajors.map((k) => `- ${k}`).join("\n")}`;
+      const fixTask = `Your previous repair of ${bookId} introduced NEW major findings that \`qc-converge\` does NOT catch (they are major-tier, not blockers — templating, commas, or a duplicate protagonist). Fix EACH below by editing ONLY chapter CONTENT under state/chapters/, preserving every number / proper noun / source anchor, then re-run \`gate-chapter\` and \`book-gate\`. Do NOT introduce any further templating / banned-name / comma defect. Edit each named chapter IN ISOLATION — do NOT copy one chapter's scenes, names, or phrasing into another; that re-creates the cross-chapter templating the sweep flags.\n\nNEW majors (key = scope:chapter:catalogId:location):\n${newMajors.map((k) => `- ${k}`).join("\n")}`;
       const rr = await spawnAndLog(bookId, { task: fixTask, sessionId: deps.mkSessionId(`qc-regression-fix-${attempt + 1}-${rc}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!rr.ok) { deps.log(`[autopilot] regression-fix session exited ${rr.exitCode}`); break; }
       // A regression fix is a content edit → re-converge the deterministic gates before re-scanning.

@@ -143,15 +143,19 @@ export function evaluateDeterministic(
     const checks: DeterministicChecks = {
       sourceV2: source.passed ? "PASS" : "FAIL",
       shipGate: shipGate.blockers.length === 0 ? "PASS" : "FAIL",
-      authorCheck: authorFindings.length === 0 ? "PASS" : "FAIL",
+      // Severity-aware (matches finalize's openSerious = blocker/major): the gate must not be
+      // STRICTER than the publish decision it feeds. Today every authoring-contract finding is
+      // "major" so this is behaviour-identical, but ACSeverity also permits "minor" — a future
+      // minor AC check must NOT REVISE a chapter on its own. (intraBook below is already blocker-only.)
+      authorCheck: authorFindings.some((f) => f.severity === "blocker" || f.severity === "major") ? "FAIL" : "PASS",
       intraBook: intraFindings.some((f) => f.severity === "blocker") ? "FAIL" : "PASS",
       bookGate: bookGateStatus,
       planEnforcement: planFindings.length === 0 ? "PASS" : "FAIL",
     };
 
     // The FAIL-driving findings only — exactly what makes each check fail in
-    // finalize (ship-gate fails on BLOCKERS, intra-book on BLOCKERS; author-check
-    // and plan-enforcement fail on ANY finding; source-v2 fails when not passed).
+    // finalize (ship-gate + intra-book on BLOCKERS; author-check on BLOCKER/MAJOR;
+    // plan-enforcement on ANY finding (always blocker); source-v2 fails when not passed).
     const findings: ConvergeFinding[] = [];
     if (!source.passed) {
       for (const f of source.findings) {
@@ -161,7 +165,7 @@ export function evaluateDeterministic(
     for (const f of shipGate.blockers) {
       findings.push({ scope: "chapter", chapterNumber: ch.number, gate: "shipGate", catalogId: f.catalogId, severity: String(f.severity), unit: f.unit, message: f.message, evidence: f.evidence });
     }
-    for (const f of authorFindings) {
+    for (const f of authorFindings.filter((x) => x.severity === "blocker" || x.severity === "major")) {
       findings.push({ scope: "chapter", chapterNumber: ch.number, gate: "authorCheck", catalogId: f.checkId, severity: String(f.severity), unit: f.unit, message: f.message, evidence: f.evidence });
     }
     for (const f of intraFindings.filter((x) => x.severity === "blocker")) {
