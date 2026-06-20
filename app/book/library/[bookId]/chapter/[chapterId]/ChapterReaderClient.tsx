@@ -135,6 +135,12 @@ export function ChapterReaderClient({
   const [sessionMode, setSessionMode] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCompleteModal, setShowCompleteModal] = useState(false);
+  // RF-3: gate the page-level celebration confetti on a *fresh* in-session pass,
+  // not the durable `quiz.session.result.passed`. The durable value reloads `true`
+  // when a reader revisits an already-passed chapter, which would re-fire the burst
+  // for no new accomplishment (a false→true edge on load). This flag is set only by
+  // a fresh pass in `handleSubmitQuiz` and re-armed on chapter navigation.
+  const [justPassedThisSession, setJustPassedThisSession] = useState(false);
   // Quiz success modal removed: chapter completion now happens after Practice phase
   const [approvedUserExamples, setApprovedUserExamples] = useState<ChapterExample[]>([]);
   const [userSubmissions, setUserSubmissions] = useState<UserScenarioSubmission[]>([]);
@@ -473,6 +479,18 @@ export function ChapterReaderClient({
       window.removeEventListener("online", onOnline);
     };
   }, [quiz.session, quiz.submit, chapterId, claimLoopCompleteIP]);
+
+  // RF-3: re-arm the fresh-pass confetti gate when the reader moves between
+  // chapters. The reader is reused across chapter→chapter navigation (the route
+  // element carries no `key`, so React keeps the instance and only swaps the
+  // `chapterId` prop). Without this reset the flag would stay `true` from the
+  // previous chapter and the next chapter's pass — `setJustPassedThisSession(true)`
+  // on already-true state — would produce no false→true edge, swallowing its
+  // legitimate celebration. On a full remount (returning from the library) it is
+  // already false, so this is harmless there.
+  useEffect(() => {
+    setJustPassedThisSession(false);
+  }, [chapterId]);
 
   // Wrapped setActiveTab that enforces gating and shows interstitial
   const setActiveTab = useCallback(
@@ -1099,6 +1117,11 @@ export function ChapterReaderClient({
       const nextSession = submitResult?.session ?? null;
       const persona = bookPrefs.extended.motivationPersona || "coach";
       if (nextSession?.result?.passed) {
+        // RF-3: record a *fresh* in-session pass so the page-level confetti fires
+        // now (and only now), never when a revisit reloads a durable passed result.
+        // Set on ANY fresh pass, including a provisional/offline one: RF-4's
+        // celebrate-then-reconcile intentionally celebrates the optimistic pass.
+        setJustPassedThisSession(true);
         // Mark the phase done; the celebration is the single ChapterCompleteModal
         // surface, opened when the user taps "Continue to Practice" on the
         // ResultsScreen. No separate celebration overlay or achievement toasts.
@@ -1639,9 +1662,12 @@ export function ChapterReaderClient({
       )}
 
       {/* One celebration confetti burst, fired at the page level (viewport-
-       *  relative, reduced-motion-aware) the moment the quiz is passed. */}
+       *  relative, reduced-motion-aware) the moment the quiz is freshly passed.
+       *  RF-3: gated on `justPassedThisSession` (set only by an in-session pass),
+       *  NOT the durable `quiz.session.result.passed` — the latter reloads true on
+       *  a revisit and would re-fire the burst for no new accomplishment. */}
       <Confetti
-        trigger={quiz.session?.result?.passed === true}
+        trigger={justPassedThisSession}
         origin="center"
         colors={["--cr-accent", "--cr-success", "--cr-warning"]}
       />
