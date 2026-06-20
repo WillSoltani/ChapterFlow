@@ -45,7 +45,11 @@ export function usePersonalizationScore(
       [extended.letterSpacing, defaultExtendedSettings.letterSpacing],
       [extended.streakMode, defaultExtendedSettings.streakMode],
       [extended.motivationPersona, defaultExtendedSettings.motivationPersona],
-      [extended.quizStyle, defaultExtendedSettings.quizStyle],
+      // NOTE (PREF-1): quizStyle removed from the personalization meter — no quiz
+      // route or session reads quizStyle/quizIntensity (they key off difficulty +
+      // tone), so crediting it inflated the meter with a setting that changes nothing.
+      // The stored field + onboarding seeding are intentionally kept for a future
+      // implementation; only the meter credit is dropped.
       [extended.dailyGoalPreset, defaultExtendedSettings.dailyGoalPreset],
       [extended.colorBlindMode, defaultExtendedSettings.colorBlindMode],
     ];
