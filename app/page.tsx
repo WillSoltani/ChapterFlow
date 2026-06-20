@@ -9,6 +9,7 @@ import { Hero } from "@/components/sections/Hero";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
 import { Problem } from "@/components/sections/Problem";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { RetentionLoopSection } from "@/components/sections/RetentionLoopSection";
 import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
 import { Library } from "@/components/sections/Library";
 import { SocialProof } from "@/components/sections/SocialProof";
@@ -146,6 +147,7 @@ export default function Home() {
           <Hero />
           <Problem />
           <HowItWorks />
+          <RetentionLoopSection />
           <InteractiveDemo />
           <Library />
           <SocialProof />
