@@ -61,6 +61,7 @@ import { needsReconcile, reconcileProvisionalPass } from "@/app/book/library/[bo
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import { usePhaseCompletion, getPhaseThresholds } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/usePhaseCompletion";
 import { useBreakReminder } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useBreakReminder";
+import { useScrollResume } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useScrollResume";
 import { useBookProgress } from "@/app/book/library/hooks/useBookProgress";
 import { useReadingSessionTracker } from "@/app/book/library/hooks/useReadingSessionTracker";
 import type { LearningMode, ContentTone } from "@/app/book/settings/types/settings";
@@ -752,6 +753,26 @@ export function ChapterReaderClient({
       !isLocked &&
       bookPrefs.privacy.saveReadingHistory,
     dailyGoalMinutes,
+  });
+
+  // SET-6 — honor Settings → Reading → "Pick up where you left off" (default ON).
+  // Persists the window scroll offset for this chapter and restores it ONCE on
+  // entry. `ready` mirrors the gate under which the reader content (and its
+  // `contentRef` height) is actually mounted below the skeleton return, so the
+  // saved offset is reachable; the one-shot restore leaves the in-chapter
+  // tab/phase scroll-to-top resets untouched.
+  useScrollResume({
+    bookId,
+    chapterId,
+    enabled: bookPrefsHydrated && bookPrefs.reading.resumeWhereLeftOff,
+    ready:
+      onboardingHydrated &&
+      hydrated &&
+      chapterHydrated &&
+      onboarding.setupComplete &&
+      bookAccessStatus === "ready" &&
+      !isLocked &&
+      Boolean(chapter),
   });
 
   // Daily goal celebration — show toast once when goal is first reached
