@@ -82,7 +82,6 @@ import {
 
 type BookProfileClientProps = {
   userEmail: string | null;
-  appVersion: string;
 };
 
 type NoteEntry = {
@@ -245,7 +244,7 @@ const SECTION_IDS = [
 
 // ─── Main component ───
 
-export function BookProfileClient({ userEmail, appVersion }: BookProfileClientProps) {
+export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   const router = useRouter();
   const heroRef = useRef<HTMLDivElement>(null);
   const [showMiniHeader, setShowMiniHeader] = useState(false);

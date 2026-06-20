@@ -1,6 +1,7 @@
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { BookSettingsClient } from "@/app/book/settings/BookSettingsClient";
+import packageJson from "@/package.json";
 
 function splitCsv(value: string | undefined): string[] {
   return String(value ?? "")
@@ -31,5 +32,5 @@ export default async function BookSettingsPage() {
     isAdmin = false;
   }
 
-  return <BookSettingsClient isAdmin={isAdmin} userEmail={userEmail} appVersion="0.1.0" />;
+  return <BookSettingsClient isAdmin={isAdmin} userEmail={userEmail} appVersion={packageJson.version} />;
 }
