@@ -167,3 +167,32 @@ export function adaptApiChapterToBookChapter(
 
   return buildBookChapterFromRawV21(rawChapter, book);
 }
+
+const RECONSTRUCT_DEPTHS = ["simple", "standard", "deeper"] as const;
+
+/**
+ * Whether a reconstructed chapter has NO renderable Summary body in ANY reading
+ * depth — the state a present-but-blank-prose variant produces.
+ *
+ * `variantProse` returns `undefined` for a variant whose `chapterBreakdown` AND
+ * `summaryBlocks` are blank, and `buildBookChapterFromRawV21` builds a chapter
+ * object regardless, so the reconstruction tolerates total emptiness. The
+ * chapter route's `variant_missing` guard only rejects the zero-KEYS case, so a
+ * payload with a PRESENT variant key whose prose is blank still returns HTTP
+ * 200. Rendered, that chapter shows chrome (title, phase tabs) over a blank
+ * Summary — no error, no fallback. Callers treat a `true` here like a failed
+ * load (fall back to local content, else surface an explicit error) instead of
+ * silently presenting a body-less chapter. (PAR-3)
+ *
+ * Keyed on `summaryByDepth` (the Summary phase body) across all depths, so it
+ * only reports empty when even a depth-switch would surface nothing — never a
+ * false positive on a chapter that renders content in some depth.
+ */
+export function isReconstructedChapterEmpty(chapter: BookChapter): boolean {
+  return RECONSTRUCT_DEPTHS.every(
+    (depth) =>
+      !chapter.summaryByDepth[depth]?.some(
+        (block) => typeof block.text === "string" && block.text.trim().length > 0,
+      ),
+  );
+}

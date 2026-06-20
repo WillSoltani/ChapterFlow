@@ -272,6 +272,22 @@ export function useQuizSession(params: {
     if (!enabled) return null;
     const token = loadTokenRef.current;
     const isStale = () => token !== loadTokenRef.current;
+    // Fall back to the local bundle when the server quiz is unusable — either the
+    // fetch failed (catch) OR a 200 returned a question-less payload (PAR-3).
+    // buildLocalSession() returns null for a missing/empty local quiz (RF-1), so
+    // those surface a RETRYABLE error rather than the terminal 0-question
+    // "No quiz questions available for this chapter." session.
+    const fallbackToLocalOrError = (cause?: unknown): QuizSessionView | null => {
+      const local = buildLocalSession();
+      if (local) {
+        setSession(local);
+        syncFromSession(local);
+        setError(null);
+        return local;
+      }
+      setError(cause instanceof Error ? cause.message : "Unable to load quiz right now.");
+      return null;
+    };
     setLoading(true);
     try {
       const payload = await fetchBookJson<{
@@ -283,6 +299,15 @@ export function useQuizSession(params: {
       // the hook unmounted — otherwise the prior chapter's quiz overwrites the
       // current one (and submits against the wrong attempt).
       if (isStale()) return null;
+      // A 200 with a question-less quiz is as unusable as a failed fetch: the
+      // quiz loads from a SEPARATE endpoint, so a question-less payload here is a
+      // malformed/partial response, not a legitimately quiz-less chapter (passing
+      // a quiz is the sole chapter-completion gate). Route it through the same
+      // fallback rather than rendering the terminal "No quiz questions" dead-end.
+      // (PAR-3)
+      if (!payload.quiz || payload.quiz.questions.length === 0) {
+        return fallbackToLocalOrError();
+      }
       setSession(payload.quiz);
       syncFromSession(payload.quiz);
       setError(null);
@@ -290,17 +315,7 @@ export function useQuizSession(params: {
     } catch (loadError: unknown) {
       if (isStale()) return null;
       // Fall back to local quiz data if API fails
-      const local = buildLocalSession();
-      if (local) {
-        setSession(local);
-        syncFromSession(local);
-        setError(null);
-        return local;
-      }
-      const message =
-        loadError instanceof Error ? loadError.message : "Unable to load quiz right now.";
-      setError(message);
-      return null;
+      return fallbackToLocalOrError(loadError);
     } finally {
       if (!isStale()) setLoading(false);
     }

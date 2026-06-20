@@ -5,6 +5,7 @@ import { BookClientError, fetchBookJson } from "@/app/book/_lib/book-api";
 import type { BookChapter } from "@/app/book/data/bookChapters";
 import {
   adaptApiChapterToBookChapter,
+  isReconstructedChapterEmpty,
   type ApiChapterResponse,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
 
@@ -39,10 +40,14 @@ type ChapterContentState = {
  * reader's `BookChapter` shape via the boundary adapter, and exposes the
  * server progress block.
  *
- * On ANY fetch error it falls back to local package content so the reader never
- * gets stuck (offline/dev, transient errors, or a gated chapter). Access is
- * still enforced server-side and surfaced through the reader's existing,
- * server-derived gates: the `/start` call (402 → paywall/blocked) and
+ * On ANY fetch error — OR a 200 that reconstructs to an empty body (a
+ * present-but-blank-prose variant; see `isReconstructedChapterEmpty`) — it falls
+ * back to local package content so the reader never gets stuck (offline/dev,
+ * transient errors, a gated chapter, or a malformed/partial publish). When the
+ * local bundle is also empty/absent it surfaces an explicit error so the reader
+ * shows its "Couldn't load this chapter" card instead of a silent blank chapter.
+ * Access is still enforced server-side and surfaced through the reader's
+ * existing, server-derived gates: the `/start` call (402 → paywall/blocked) and
  * `isLocked` (from `useBookProgress`, which reads `/me/books/[id]/state`). The
  * raw `error` + `status` are surfaced for callers that want to react further.
  *
@@ -103,6 +108,26 @@ export function useChapterContent(params: {
       .then((res) => {
         if (!mounted) return;
         const chapter = adaptApiChapterToBookChapter(res.chapter, bookRef.current);
+        // Content-sanity: a 200 can still reconstruct to an empty body — a
+        // PRESENT variant key whose prose is blank (the route's `variant_missing`
+        // guard only rejects the zero-KEYS case). Rendering it shows chrome over
+        // a silent blank Summary, with no error and no fallback. Treat it like a
+        // failed load: prefer a non-empty local bundle, else surface the explicit
+        // "Couldn't load this chapter" state. (PAR-3)
+        if (isReconstructedChapterEmpty(chapter)) {
+          const local = fallbackRef.current?.();
+          const usableLocal = local && !isReconstructedChapterEmpty(local) ? local : undefined;
+          setState({
+            chapter: usableLocal,
+            progress: res.progress ?? null,
+            loading: false,
+            hydrated: true,
+            error: usableLocal ? null : new Error("Chapter content was empty."),
+            status: null,
+            source: usableLocal ? "local" : null,
+          });
+          return;
+        }
         setState({
           chapter,
           progress: res.progress ?? null,
