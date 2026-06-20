@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useSyncExternalStore } from "react";
+import dynamic from "next/dynamic";
 import {
   m,
   AnimatePresence,
@@ -13,9 +14,34 @@ import {
 } from "framer-motion";
 import { DUR, EASE, SPRING, SCROLL_OFFSET } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
-import { DesktopReaderShell } from "@/components/landing/reader-demo/DesktopReaderShell";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
 import { ORDER, phaseForProgress } from "./retention-loop-phase";
+
+// Lazy-load the heavy (~2,500-line) reader shell client-only, matching the
+// InteractiveDemo's optimization — it only renders in the desktop pinned branch
+// (never SSR'd: the server always renders the static fallback), so this keeps it
+// out of the SSR/first-paint bundle. A dimension-matched skeleton holds the slot.
+function ReaderSkeleton() {
+  return (
+    <div
+      aria-hidden
+      className="w-full animate-pulse rounded-2xl border"
+      style={{
+        height: "min(640px, 70svh)",
+        background: "var(--cf-anchor-surface-strong)",
+        borderColor: "var(--cf-anchor-border)",
+      }}
+    />
+  );
+}
+
+const DesktopReaderShell = dynamic(
+  () =>
+    import("@/components/landing/reader-demo/DesktopReaderShell").then(
+      (mod) => mod.DesktopReaderShell,
+    ),
+  { ssr: false, loading: () => <ReaderSkeleton /> },
+);
 
 const BEATS: Record<
   ChapterTab,

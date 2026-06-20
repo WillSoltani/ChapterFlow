@@ -250,7 +250,12 @@ export function Pricing() {
           <SectionReveal delay={0.1}>
             <div
               className="relative flex flex-col bg-(--bg-glass) border border-(--border-subtle) rounded-xl p-8 w-full max-w-[380px]"
-              style={{ backdropFilter: "blur(12px)" }}
+              style={{
+                backdropFilter: "blur(12px)",
+                // Lift the card off the page with a real (theme-aware) elevation
+                // shadow — a flat, shadowless surface is the "templated" tell.
+                boxShadow: "var(--shadow-card)",
+              }}
             >
               <span className="text-[12px] uppercase tracking-[0.1em] text-(--text-secondary) font-semibold">
                 Free
@@ -316,8 +321,11 @@ export function Pricing() {
                 backdropFilter: "blur(12px)",
                 background: "var(--bg-glass)",
                 border: "1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent)",
+                // Paired elevation (key + ambient, theme-aware) UNDER the cyan
+                // glow so the featured card reads as lifted AND lit, not just
+                // glowing on a flat plane.
                 boxShadow:
-                  "0 0 40px color-mix(in srgb, var(--accent-cyan) 12%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
+                  "var(--shadow-elevated), 0 0 40px color-mix(in srgb, var(--accent-cyan) 12%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
               }}
             >
               {/* Badge */}

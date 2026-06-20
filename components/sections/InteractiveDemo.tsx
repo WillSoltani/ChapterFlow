@@ -96,14 +96,15 @@ export function InteractiveDemo() {
         {/* ---- Header ---- */}
         <SectionReveal>
           <div className="text-center mb-12 md:mb-16">
-            <SectionLabel>SEE IT IN ACTION</SectionLabel>
+            <SectionLabel>TRY IT YOURSELF</SectionLabel>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-(--text-heading) mt-4 font-(family-name:--font-display)">
-              This is what reading looks like on ChapterFlow.
+              Your turn. Take the quiz.
             </h2>
 
             <p className="text-(--text-secondary) mt-4 text-lg font-(family-name:--font-body)">
-              Summary. Examples. Quiz. Practice. Every chapter, every book.
+              Click through the reader and answer a question &mdash; passing is
+              what unlocks the next chapter.
             </p>
           </div>
         </SectionReveal>
