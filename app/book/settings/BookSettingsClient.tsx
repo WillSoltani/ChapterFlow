@@ -66,6 +66,7 @@ import {
   MOTIVATION_TO_PERSONA,
   DAILY_GOAL_TIERS,
 } from "./constants/defaults";
+import { TTS_SPEED_OPTIONS, snapTtsSpeedToOption } from "./constants/tts";
 
 // Types
 import type {
@@ -851,11 +852,28 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                     speaker icon to start playback &mdash; perfect for commutes
                     or multitasking.
                   </p>
+
+                  {/* SET-2: Playback speed is the one TTS preference with a real
+                      backend — it seeds and persists the reader AudioPlayer's
+                      speed. Voice / auto-advance controls stay removed: there is
+                      no multi-voice narration backend, and auto-advance conflicts
+                      with quiz-gated chapter unlocks. */}
+                  <div className="mt-3">
+                    <SettingRow
+                      label="Playback speed"
+                      description="How fast chapters are read aloud. Takes effect the next time you open the player."
+                    >
+                      <SegmentedControl
+                        groupId="seg-tts-speed"
+                        options={TTS_SPEED_OPTIONS.map((s) => ({ value: String(s), label: `${s}×` }))}
+                        value={hydrated ? String(snapTtsSpeedToOption(ext.ttsSpeed)) : "1"}
+                        onChange={(v) => { patchExt({ ttsSpeed: Number(v) }); announce(`Playback speed changed to ${v}x`); triggerToast(); }}
+                        label="Text-to-speech playback speed"
+                        reducedMotion={reducedMotion}
+                      />
+                    </SettingRow>
+                  </div>
                 </>
-                /* Voice / speed / auto-advance controls were removed: they were
-                   stored but never consumed by the reader's AudioPlayer (they
-                   did nothing). See the READER handoff to wire ttsVoice/ttsSpeed
-                   into AudioPlayer, then they can be re-added here. */
               ) : (
                 <ProFeatureCard
                   icon="&#128266;"

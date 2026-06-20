@@ -353,9 +353,11 @@ function parseExtendedSettings(ext: Partial<ExtendedSettings>): ExtendedSettings
     fontFamily: parseString(ext.fontFamily, ["serif", "sans-serif", "opendyslexic"] as const, d.fontFamily),
     lineSpacing: parseString(ext.lineSpacing, ["compact", "comfortable", "relaxed"] as const, d.lineSpacing),
     letterSpacing: parseString(ext.letterSpacing, ["tight", "normal", "wide"] as const, d.letterSpacing),
-    ttsVoice: parseString(ext.ttsVoice, ["clara", "james", "aria"] as const, d.ttsVoice),
+    // NOTE: ttsVoice / ttsAutoAdvance were stored + synced here but had no
+    // backend (one hardcoded narration voice, no voice param) and no reader
+    // consumer, so they were removed (SET-2). ttsSpeed stays — it is now wired
+    // into the reader's AudioPlayer (seeds + persists the listener's speed).
     ttsSpeed: parseNumber(ext.ttsSpeed, d.ttsSpeed, 0.5, 2.0),
-    ttsAutoAdvance: parseBoolean(ext.ttsAutoAdvance, d.ttsAutoAdvance),
     learningMode: parseString(ext.learningMode, ["guided", "standard", "challenge"] as const, d.learningMode),
     streakMode: parseString(ext.streakMode, ["off", "standard", "flexible"] as const, d.streakMode),
     streakSkipDays: parseNumber(ext.streakSkipDays, d.streakSkipDays, 0, 3),

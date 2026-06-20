@@ -14,10 +14,9 @@ export const defaultExtendedSettings: ExtendedSettings = {
   lineSpacing: "comfortable",
   letterSpacing: "normal",
 
-  // Text-to-Speech (Pro)
-  ttsVoice: "clara",
+  // Text-to-Speech (Pro). Only ttsSpeed remains (wired into the reader
+  // AudioPlayer); ttsVoice / ttsAutoAdvance were removed (no backend). See SET-2.
   ttsSpeed: 1.0,
-  ttsAutoAdvance: true,
 
   // Learning Mode
   learningMode: "standard",
