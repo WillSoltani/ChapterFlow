@@ -368,7 +368,18 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   const rec = loadSweepRecord(bookId);
   if (!rec) return [{ checkId: "QC3.sweep_missing", severity: sev, message: `No sweep attestation for ${bookId}. Run sweep-pack and sweep-attest.` }];
   if (!loadQcRound(rec.bookId, rec.roundId)?.roles?.sweep) return [{ checkId: "QC3.sweep_round_missing", severity: sev, message: `Sweep attestation is not backed by an existing QC round file. Re-open a round and re-attest the sweep.` }];
-  if (rec.verdict !== "PASS") return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict}, not PASS.` }];
+  // The publish gate must agree with the per-chapter sweep gate (sweepChapterStatus): an
+  // all-advisory/minor REVISE is surfaced but NEVER blocks (the sweep is not a stricter gate than
+  // the publish decision it feeds — else a book reads 11/11 PUBLISHABLE yet cannot ship). A blocker
+  // finding still blocks (majors map to blocker at write time, so majors still block — no
+  // loosening); an uncited CORRUPTION or an unexplained non-PASS (no findings) still blocks.
+  if (rec.verdict !== "PASS") {
+    const findings = rec.findings ?? [];
+    const blockers = findings.filter((f) => f.severity !== "advisory");
+    if (blockers.length > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
+      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${blockers.length} blocking finding(s).` }];
+    }
+  }
   const missingFamilies = REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family));
   if (missingFamilies.length > 0) return [{ checkId: "QC3.sweep_incomplete", severity: sev, message: `Sweep PASS is incomplete; missing checkedFamilies: ${missingFamilies.join(", ")}.` }];
   const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
