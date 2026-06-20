@@ -1396,7 +1396,7 @@ export function ChapterReaderClient({
           <div className="mt-3 flex items-start gap-3 rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-active) p-3 text-left">
             <Lightbulb className="mt-0.5 h-4 w-4 flex-shrink-0 text-(--cr-accent)" />
             <div className="flex-1">
-              <p className="text-sm font-semibold text-(--cr-text-heading)">The same loop you just tried</p>
+              <p className="text-sm font-semibold text-(--cr-text-heading)">How this chapter works</p>
               <p className="mt-0.5 text-[13px] text-(--cr-text-secondary)">
                 Read the <strong>Summary</strong>, see it in <strong>Examples</strong>, then prove it stuck in the{" "}
                 <strong>Quiz</strong> to unlock the next chapter. Pick Guided, Standard, or Challenge in Reading settings to set how much detail you get.
