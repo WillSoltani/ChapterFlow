@@ -37,6 +37,7 @@ import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { REPO_ROOT } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadBookChapters, keyPackDir } from "../qc/manualKeyJudge.js";
+import { carryableChapter } from "../qc/orchestrator/index.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
 import {
   reviewPacketPath,
@@ -109,6 +110,12 @@ export type AutopilotDeps = {
    *  compares this before/after a wave: any change means a reviewer mutated a
    *  chapter (the read-only contract was broken) → integrity halt. */
   chapterHashes: (bookId: string) => Record<string, string>;
+  /** True iff ANY chapter holds a fresh PUBLISHABLE attestation at its current bytes —
+   *  a prior pass an incremental round can CARRY instead of re-rolling with a fresh
+   *  stochastic bar/confirm read. Drives FIRST-round incremental so passes ACCUMULATE
+   *  across rounds (the convergence fix) instead of oscillating. Fail-safe → false
+   *  (a full round is always correct), so a read error never forces an incremental carry. */
+  anyCarryable: (bookId: string) => boolean;
   /** True iff the reviewer card already produced a submission on disk — used to
    *  re-spawn ONLY the missing reviewers on an INCOMPLETE round, not the whole wave. */
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
@@ -359,6 +366,16 @@ function defaultChapterHashes(bookId: string): Record<string, string> {
   const out: Record<string, string> = {};
   for (const ch of loadBookChapters(bookId)) out[String(ch.number)] = chapterContentHash(ch);
   return out;
+}
+
+/** Fail-safe: any read error (no chapters dir, half-written chapter) → false, i.e. a
+ *  full (non-incremental) round. We never force a carry on uncertain state. */
+function defaultAnyCarryable(bookId: string): boolean {
+  try {
+    return loadBookChapters(bookId).some((ch) => carryableChapter(bookId, ch));
+  } catch {
+    return false;
+  }
 }
 
 /** Map a task-card path → its QC role + chapter + (for tiebreak cards) the bar-read
@@ -630,6 +647,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     readTask: d?.readTask ?? ((p) => readFileSync(p, "utf8")),
     mkSessionId: d?.mkSessionId ?? defaultMkSessionId,
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
+    anyCarryable: d?.anyCarryable ?? defaultAnyCarryable,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
     logBroker: d?.logBroker ?? logBrokerToDisk,
@@ -787,13 +805,19 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): P
 async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
-    // First round is full; repair rounds (attempt>0) re-review only the chapters the
-    // repair changed (incremental — book-wide sweep + gates still run over the whole
-    // book). Tiebreak is ON for EVERY round: it only costs extra reads for BORDERLINE
-    // chapters, and the driver's dynamic-wave loop now actually reviews the t2/t3 cards —
-    // so a borderline INITIAL round smooths the variance instead of forcing a needless
-    // repair (it used to be repair-only, which was a no-op since the cards never ran).
-    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0, tiebreak: true });
+    // Incremental carry drives convergence. A non-incremental round re-rolls EVERY
+    // chapter with a FRESH, stochastic bar/confirm read — so a chapter that passed last
+    // round gets a new lucky-or-unlucky read this round and the publishable set oscillates,
+    // never landing all-green at once. Incremental CARRIES any chapter holding a fresh
+    // PUBLISHABLE attestation at its exact bytes (no fresh re-roll), so passes ACCUMULATE.
+    // We turn it on whenever a carryable pass EXISTS — not just on repair rounds
+    // (attempt>0) — so a resumed run banks its prior passes from round 0. The book-wide
+    // sweep + every cross-chapter gate still run over the WHOLE book (createQcOrchestrationRound),
+    // so a sibling's repair that newly implicates a carried chapter still demotes it.
+    // Tiebreak is ON for EVERY round: it only costs extra reads for BORDERLINE chapters,
+    // and the driver's dynamic-wave loop now actually reviews the t2/t3 cards — so a
+    // borderline INITIAL round smooths the variance instead of forcing a needless repair.
+    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0 || deps.anyCarryable(bookId), tiebreak: true });
     if (round.verdict === "ERROR" || !round.roundId) {
       return mkHalt(bookId, "qc", "infra", `could not open/finalize a QC round (${round.note})`);
     }
