@@ -70,7 +70,9 @@ const SWEEP_FINDING = obj(
 );
 
 const AXIS_HIT = obj(
-  { unitId: str({ minLength: 1 }), quote: str({ minLength: 1 }), defect: str({ minLength: 1 }) },
+  // `fix` is OPTIONAL (not required) — the reviewer's concrete per-hit remediation, threaded
+  // into the repair finding's expectedFix. Legacy submissions omit it (schema stays back-compat).
+  { unitId: str({ minLength: 1 }), quote: str({ minLength: 1 }), defect: str({ minLength: 1 }), fix: str({ minLength: 1 }) },
   ["unitId", "quote", "defect"],
 );
 

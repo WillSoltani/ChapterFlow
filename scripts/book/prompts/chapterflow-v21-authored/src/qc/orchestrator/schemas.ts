@@ -286,7 +286,11 @@ function validateKeyDerive(bookId: string, roundId: string, role: SubmissionRole
 }
 
 function normalizeHit(raw: any, errors: string[], context: string): AxisHit {
-  const hit = { unitId: String(raw?.unitId ?? raw?.unit ?? ""), quote: String(raw?.quote ?? ""), defect: String(raw?.defect ?? raw?.problem ?? "") };
+  const hit: AxisHit = { unitId: String(raw?.unitId ?? raw?.unit ?? ""), quote: String(raw?.quote ?? ""), defect: String(raw?.defect ?? raw?.problem ?? "") };
+  // OPTIONAL concrete remediation (accept `fix` or `expectedFix`). Omitted when blank so
+  // legacy submissions stay byte-identical and findingsFromSubmission falls back cleanly.
+  const fix = String(raw?.fix ?? raw?.expectedFix ?? "").trim();
+  if (fix) hit.fix = fix;
   if (!hit.unitId.trim()) errors.push(`${context}.unitId is required`);
   if (!hit.quote.trim()) errors.push(`${context}.quote is required`);
   if (!hit.defect.trim()) errors.push(`${context}.defect is required`);
@@ -429,7 +433,9 @@ export function findingsFromSubmission(submission: ValidatedSubmission): Submiss
           severity: axis.tier === "CORRUPTION" ? "blocker" : axis.score < 0.6 ? "major" : "advisory",
           quote: hit.quote,
           problem: hit.defect,
-          expectedFix: `Repair the ${axis.axis} defect and re-run author checks before a fresh QC round.`,
+          // Prefer the reviewer's concrete per-hit remediation; fall back to the formulaic
+          // stub only when the bar omitted `fix` (legacy / a reviewer that skipped it).
+          expectedFix: hit.fix?.trim() || `Repair the ${axis.axis} defect and re-run author checks before a fresh QC round.`,
           globalTheme: axis.axis,
         });
       }

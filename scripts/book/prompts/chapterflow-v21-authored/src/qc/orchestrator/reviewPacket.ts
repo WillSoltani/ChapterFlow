@@ -219,6 +219,11 @@ export function writeReviewPacket(
   // ── Bar read (per chapter) ─────────────────────────────────────────────────
   L.push("## 3. Bar read — one per chapter (the publishable-bar score)");
   L.push("Replace every `score: null` with your honest 0..1. Any axis you score <0.6 REQUIRES a cited hit.");
+  L.push("Each cited hit is `{unitId, quote, defect, fix}`. `fix` is REQUIRED on every hit: the CONCRETE");
+  L.push("change that resolves THIS unit's defect — what to write INSTEAD (a replacement distractor, the");
+  L.push("missing plain-language definition, the specific number to ground), precise enough that applying it");
+  L.push("clears the axis in one edit. NOT a restatement of the defect and NOT a vague directive (\"improve the");
+  L.push("quiz\"). A repair writer with ONLY your `fix` and the chapter must be able to land the change blind.");
   L.push("(quiz_key_correctness is injected from the key judge — do not include it.)");
   for (const ch of chapters) {
     L.push(`### bar ${ch2(ch.number)} — ${ch.chapterId}`);
