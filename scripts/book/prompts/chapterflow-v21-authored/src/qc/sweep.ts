@@ -347,10 +347,18 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   // pre-severity record) is treated as a blocker (fail-closed).
   const blockers = findings.filter((f) => f.severity !== "advisory");
   if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
-  // A non-PASS verdict explained by NO blocker (all-advisory, or naming nothing) fails
-  // closed — an unexplained REVISE/CORRUPTION still blocks rather than silently passing
-  // every chapter. (Advisory-only findings do not "explain" the verdict at blocker level.)
-  return blockers.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
+  // A blocker exists but does not name THIS chapter → this chapter passes (a global verdict
+  // must not strand a clean, unnamed chapter).
+  if (blockers.some((f) => (f.chapters ?? []).length > 0)) return "PASS";
+  // No blocker names anything. The sweep must NOT be a STRICTER gate than the publish decision
+  // it feeds (which ignores advisory/minor via openSerious=blocker/major). So:
+  //  - the sweep CITED advisory/minor observations (findings.length > 0) on a REVISE: they are
+  //    surfaced but never gate — every chapter PASSES (the convergence fix: an all-advisory
+  //    sweep can no longer demote the whole book, the treadmill that stalled certification).
+  //  - it cited NOTHING yet returned non-PASS, OR it returned CORRUPTION: an unexplained or
+  //    serious-but-uncited verdict → fail closed for every chapter (never ship on that).
+  if (findings.length > 0 && rec.verdict !== "CORRUPTION") return "PASS";
+  return "FAIL";
 }
 
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
