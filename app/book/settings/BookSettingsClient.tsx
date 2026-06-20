@@ -62,7 +62,6 @@ import type { RefreshResult } from "./components/RefreshPreferencesModal";
 import { READING_PROFILES, DAILY_GOAL_OPTIONS, MOTIVATION_OPTIONS } from "./constants/profiles";
 import {
   QUIZ_STYLE_TO_INTENSITY,
-  INTENSITY_TO_QUIZ_STYLE,
   PERSONA_TO_MOTIVATION,
   MOTIVATION_TO_PERSONA,
   DAILY_GOAL_TIERS,
@@ -71,7 +70,6 @@ import {
 // Types
 import type {
   ReadingProfile,
-  QuizStyle,
   MotivationPersona,
   DailyGoalPreset,
   CelebrationEvent,
@@ -390,18 +388,11 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
     triggerToast();
   }
 
-  // --- Quiz Style mapping ---
-  const currentQuizStyle: QuizStyle = hydrated
-    ? (INTENSITY_TO_QUIZ_STYLE[onboarding.quizIntensity] ?? "challenge")
-    : "challenge";
-
-  function handleQuizStyleChange(style: QuizStyle) {
-    patchExt({ quizStyle: style, profileCustomized: true });
-    setQuizIntensity(QUIZ_STYLE_TO_INTENSITY[style] as QuizIntensity);
-    const labels = { comfortable: "Comfortable", challenge: "Challenge me", surprise: "Surprise me" };
-    announce(`Quiz style changed to ${labels[style]}`);
-    triggerToast();
-  }
+  // PREF-1: the Quiz Style control was removed from this screen (no quiz route
+  // reads quizStyle/quizIntensity — they key off difficulty + tone), so the
+  // currentQuizStyle selector + handleQuizStyleChange handler were dead code and
+  // are gone. The stored field + onboarding→profile seeding stay intact, so a
+  // future quiz-style implementation can re-add a control cheaply.
 
   // --- Motivation mapping (reads from ext, independent of onboarding) ---
   const currentMotivation: MotivationPersona = hydrated
