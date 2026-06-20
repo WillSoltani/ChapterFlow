@@ -49,7 +49,7 @@ import {
 import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
 import { sweepPackPath } from "../qc/sweep.js";
 import { barPackPath } from "../qc/barReview.js";
-import { barArtifactPath, confirmArtifactPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
+import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 
@@ -179,6 +179,19 @@ export function parseRoundId(stdout: string): string | null {
 
 /** chNN from a card filename / path (e.g. "bar/ch03.md" → 3). Uses the LAST
  *  ch-number in the path so a parent dir like "chapterflow-v21" can't mislead it. */
+/** Chapters a round did NOT pass (finalVerdict !== PUBLISHABLE) — the set a repair may edit;
+ *  the complement (PUBLISHABLE) is what the collateral-edit guard protects. */
+export function flaggedChapterNumbers(bookId: string, roundId: string): Set<number> {
+  const out = new Set<number>();
+  try {
+    const matrix = JSON.parse(readFileSync(evidenceMatrixPath(bookId, roundId), "utf8"));
+    for (const d of matrix?.chapters ?? []) {
+      if (d?.finalVerdict && d.finalVerdict !== "PUBLISHABLE" && d.chapterNumber != null) out.add(Number(d.chapterNumber));
+    }
+  } catch { /* no matrix yet → empty (caller falls back to the prompt's own chapter list) */ }
+  return out;
+}
+
 export function chapterNumberFromCard(path: string): number | null {
   const matches = [...path.matchAll(/ch0*(\d+)/gi)];
   return matches.length ? Number(matches[matches.length - 1][1]) : null;
@@ -812,12 +825,34 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     // Spawn ONE repair writer with the generated repair prompt, then converge
     // deterministically before the next (fresh) round — the treadmill-killer.
     const repairPromptPath = resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId, round.roundId, "repair-prompt.md");
-    const repairTask = existsSync(repairPromptPath)
+    // Re-attach the DEALT authoring card for each flagged chapter. The repair brief gives the
+    // per-unit WHAT (quote + expected fix); the card gives the per-slot HOW — the distinct
+    // shape/venue/opener slots the deal computed. Without it a repair re-authors blind and
+    // collapses sibling scenes onto a NEW shared shell (the documented homogenization that
+    // feeds the templating the sweep then flags). Attaching it lets the writer restage onto
+    // the variety that was already designed in.
+    const flagged = flaggedChapterNumbers(bookId, round.roundId);
+    const dealtCards = flagged.size
+      ? deps.listWriteCards(bookId)
+          .filter((c) => { const n = chapterNumberFromCard(c); return n != null && flagged.has(n); })
+          .map((c) => `\n\n--- DEALT AUTHORING CARD ch${chapterNumberFromCard(c)} (restage onto THESE dealt shape/venue/opener slots — do NOT collapse the scenes onto a new shared frame) ---\n${deps.readTask(c)}`)
+          .join("")
+      : "";
+    const repairTask = (existsSync(repairPromptPath)
       ? deps.readTask(repairPromptPath)
-      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`;
+      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`) + dealtCards;
     deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}`);
+    // Collateral-edit guard: snapshot the GREEN (non-flagged) chapters' hashes. A repair that
+    // edits a chapter carrying a passing review invalidates its attestation → forced re-review
+    // → possible regression (the green->regress half of the 7->1 divergence). Warn loudly.
+    const preHashes = deps.chapterHashes(bookId);
     const r = await spawnAndLog(bookId, { task: repairTask, sessionId: deps.mkSessionId(`qc-repair-${attempt + 1}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] repair session exited ${r.exitCode}`);
+    const postHashes = deps.chapterHashes(bookId);
+    const collateral = Object.keys(postHashes).filter((n) => !flagged.has(Number(n)) && preHashes[n] !== undefined && preHashes[n] !== postHashes[n]);
+    // Only warn when we actually know the flagged set (a found matrix); an empty `flagged`
+    // means the matrix wasn't readable, and we can't distinguish collateral from intended.
+    if (flagged.size && collateral.length) deps.log(`[autopilot] WARNING: repair collaterally edited non-flagged chapter(s) ${collateral.map((n) => `ch${n}`).join(", ")} — they carried a passing review and will be re-reviewed next round (possible regression). The repair brief scopes edits to the flagged chapters only.`);
     // Converge deterministic gates so the NEXT formal round won't bounce on a nit.
     for (let c = 0; c < maxRepair; c++) {
       const cv = await deps.runVerb(["qc-converge", bookId]);
