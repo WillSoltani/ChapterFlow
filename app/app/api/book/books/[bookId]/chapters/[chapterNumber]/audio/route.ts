@@ -16,11 +16,8 @@ import {
 import { getOrCreateStreak } from "@/app/app/api/book/_lib/streak-repo";
 import { getOrCreateTier } from "@/app/app/api/book/_lib/tier-repo";
 import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
-import {
-  getBookPackageByIdForTone,
-  type ToneKey,
-  type VariantKey,
-} from "@/app/book/data/bookPackages";
+import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
+import type { ToneKey, VariantKey } from "@/app/book/data/book-package-core";
 import {
   buildSegmentPlan,
   getSegmentKeys,
@@ -89,13 +86,13 @@ async function loadSegmentFromS3(bucket: string, key: string): Promise<Buffer | 
   }
 }
 
-function resolveVariantContent(
+async function resolveVariantContent(
   bookId: string,
   chapterNumber: number,
   tone: ToneKey,
   variant: string,
 ) {
-  const pkg = getBookPackageByIdForTone(bookId, tone);
+  const pkg = await getServerBookPackage(bookId, tone);
   if (!pkg) return null;
   const chapter = pkg.chapters.find((ch) => ch.number === chapterNumber);
   if (!chapter) return null;
@@ -216,7 +213,7 @@ async function generateAndCacheBodySegment(
   segment: BodySegmentType,
   elevenLabsKey: string,
 ): Promise<Buffer | null> {
-  const v = resolveVariantContent(bookId, chapterNumber, tone, variant);
+  const v = await resolveVariantContent(bookId, chapterNumber, tone, variant);
   if (!v) return null;
 
   const ttsText = extractSegmentText(v as Record<string, unknown>, segment, tone);
@@ -317,7 +314,7 @@ export async function GET(req: Request, ctx: Params) {
     const variant: VariantKey = variantParam;
     const bucket = await getBookContentBucket();
 
-    const pkg = getBookPackageByIdForTone(bookId, tone);
+    const pkg = await getServerBookPackage(bookId, tone);
     if (!pkg) return bookErr(req, 404, "book_not_found", "Book not found");
     const totalChapters = pkg.chapters.length;
 

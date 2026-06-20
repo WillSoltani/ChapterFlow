@@ -14,7 +14,7 @@ import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
 import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
-import type { ToneKey } from "@/app/book/data/bookPackages";
+import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
 
@@ -189,9 +189,9 @@ export async function POST(
     const learningMode = resolveLearningMode(userSettings?.settings);
     const difficulty = parseDifficulty(body.difficulty);
     const tone = parseTone(body.tone ?? readSavedTone(userSettings?.settings));
-    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);
+    const localQuestions = await getLocalQuizQuestions(bookId, chapterNumberInt, tone);
     const quiz = localQuestions ? { ...s3Quiz, questions: localQuestions } : s3Quiz;
-    const strictV12 = isLocalV12Package(bookId);
+    const strictV12 = await isLocalV12Package(bookId);
     const maxQuestions = strictV12
       ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
       : QUIZ_QUESTION_COUNTS[learningMode];

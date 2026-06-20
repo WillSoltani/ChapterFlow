@@ -25,7 +25,7 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
-import type { ToneKey } from "@/app/book/data/bookPackages";
+import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
 
@@ -105,11 +105,11 @@ export async function GET(
     const learningMode = resolveLearningMode(userSettings?.settings);
     const tone = parseTone(searchParams.get("tone") ?? readSavedTone(userSettings?.settings));
     // Prefer quiz questions from the local book-package JSON over stale S3 data.
-    const localQuestions = getLocalQuizQuestions(bookId, chapterNumberInt, tone);
+    const localQuestions = await getLocalQuizQuestions(bookId, chapterNumberInt, tone);
     const quiz = localQuestions
       ? { ...s3Quiz, questions: localQuestions }
       : s3Quiz;
-    const strictV12 = isLocalV12Package(bookId);
+    const strictV12 = await isLocalV12Package(bookId);
     const maxQuestions = strictV12
       ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
       : QUIZ_QUESTION_COUNTS[learningMode];
