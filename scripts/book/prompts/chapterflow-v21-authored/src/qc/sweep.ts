@@ -158,13 +158,14 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
     contentHashes,
     checkedFamilies: submission.checkedFamilies,
     findings: submission.findings.flatMap((f) => {
-      // FIX 3 — DROP a finding whose repairClass is not one of the 4 sweep families instead
-      // of silently coercing it to scene_skeleton. The old coercion let a factual/number
-      // doubt (which the sweep has no source to verify) masquerade as a templating defect and
-      // gate the book on a non-templating basis. A real templating family is kept untouched.
-      if (!isSweepFamily(f.repairClass)) return [];
+      // FIX 3 — map the finding's repairClass to a family. A clearly factual/numeric finding
+      // (which the sweep has no source to verify) is DROPPED; a real templating finding — even
+      // one labeled descriptively rather than with a canonical family id — is KEPT and mapped,
+      // so it stays actionable instead of collapsing the round into an empty fail-closed REVISE.
+      const family = sweepFamilyForRepairClass(f.repairClass);
+      if (!family) return [];
       return [{
-        family: f.repairClass,
+        family,
         severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
         chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
         unitId: f.unitId,
@@ -182,6 +183,24 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
 
 function isSweepFamily(value: unknown): value is SweepFamily {
   return (REQUIRED_SWEEP_FAMILIES as readonly string[]).includes(String(value));
+}
+
+/** Map a sweep submission's `repairClass` to one of the 4 families, or null to DROP it.
+ *  Reviewers routinely label a real templating finding descriptively ("vary_scene_action",
+ *  "deduplicate_practice_unit") rather than with the canonical family id — those must be KEPT
+ *  and mapped, not dropped (dropping a real finding leaves an empty REVISE that fails the whole
+ *  book closed with no actionable repair). Only a finding that is clearly FACTUAL/numeric (which
+ *  the sweep has no source pack to verify, and which belongs to the bar's factual_accuracy axis)
+ *  is dropped. */
+export function sweepFamilyForRepairClass(repairClass: unknown): SweepFamily | null {
+  if (isSweepFamily(repairClass)) return repairClass;
+  // Normalize _ / - to spaces so word-boundary anchors work on snake/kebab labels.
+  const c = String(repairClass ?? "").toLowerCase().replace(/[_-]+/g, " ");
+  if (/\bfact|numeric|number|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // factual → out of scope → drop
+  if (/scene|frame|skeleton|vignette|opening|opener/.test(c)) return "scene_skeleton";
+  if (/persona|\bname|character|protagonist/.test(c)) return "persona_drift";
+  if (/venue|location|place|stamp|clock|timing|setting/.test(c)) return "location_stamping";
+  return "repeated_unit"; // default templating bucket (cards / plans / practice / quiz / hooks)
 }
 
 function loadFindingsFile(path: string): { checkedFamilies: SweepFamily[]; findings: SweepRecord["findings"]; errors: string[] } {

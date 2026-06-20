@@ -17,7 +17,7 @@ import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
 import { groundedNumbersForChapter } from "../src/qc/barReview.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
-import { REQUIRED_SWEEP_FAMILIES, loadSweepRecord, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { REQUIRED_SWEEP_FAMILIES, loadSweepRecord, sweepFamilyForRepairClass, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { AXIS_RUBRIC } from "../src/critics/semantic/publishableBar.js";
 
 const BOOK = "zz-fixture-grounded-numbers";
@@ -98,6 +98,22 @@ test("factual_accuracy rubric trusts groundedNumbers AND keeps the 'could not ve
   assert.ok(AXIS_RUBRIC.factual_accuracy.includes("groundedNumbers"), "rubric must reference groundedNumbers");
   assert.ok(AXIS_RUBRIC.factual_accuracy.includes("could not verify"), "rubric must keep the original 'could not verify' clause");
   assert.ok(/NOT on the list|CONTRADICTS/.test(AXIS_RUBRIC.factual_accuracy), "rubric must still require flagging unlisted/contradicting numbers");
+});
+
+test("sweepFamilyForRepairClass: canonical families pass through; FACTUAL labels drop; DESCRIPTIVE templating labels MAP (not drop)", () => {
+  // Canonical families are kept as-is.
+  for (const fam of REQUIRED_SWEEP_FAMILIES) assert.equal(sweepFamilyForRepairClass(fam), fam);
+  // Clearly factual/numeric labels are out of scope for the sweep → dropped.
+  for (const c of ["factual_accuracy", "unverifiable_number", "wrong_statistic", "source_citation", "drifted_date"]) {
+    assert.equal(sweepFamilyForRepairClass(c), null, `${c} should drop`);
+  }
+  // REGRESSION: reviewers label real templating findings descriptively — these must be KEPT and
+  // mapped, never dropped (dropping them left an empty REVISE that failed the whole book closed).
+  assert.equal(sweepFamilyForRepairClass("deduplicate_practice_unit"), "repeated_unit");
+  assert.equal(sweepFamilyForRepairClass("vary_scene_action"), "scene_skeleton");
+  assert.equal(sweepFamilyForRepairClass("reused_card_shell"), "repeated_unit");
+  assert.equal(sweepFamilyForRepairClass("name_collision_across_chapters"), "persona_drift");
+  assert.equal(sweepFamilyForRepairClass("venue_stamping"), "location_stamping");
 });
 
 test("writeSweepRecordFromSubmission: an off-family (factual) finding is DROPPED; a real templating finding survives", () => {
