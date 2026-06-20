@@ -1,36 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { PulseCTA } from "@/components/landing/PulseCTA";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 
 /**
- * Interactive CTA links extracted from FinalCTA so the outer section can
- * stay a server component. Only these tracked links need client JS.
+ * Interactive CTA links extracted from FinalCTA so the outer section can stay a
+ * server component. Only these tracked links need client JS. Styled with the
+ * dark-anchor tokens because FinalCTA is a dark band: the bright-cyan button
+ * needs dark text for contrast, and the page accent/text tokens would be a muddy
+ * dark-teal / dark-grey on it.
  */
 export function FinalCTALinks() {
   return (
-    <div className="mt-8 flex flex-col items-center gap-3">
-      <PulseCTA className="inline-block">
+    <div className="mt-8 flex flex-col items-center gap-4">
+      <MagneticButton className="rounded-full">
         <Link
           href={AUTH_LOGIN_BOOK_URL}
           onClick={() => track("cta_click", { source: "final_cta_primary" })}
-          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2"
           style={{
-            backgroundColor: "var(--accent-cyan)",
-            color: "var(--primary-foreground)",
+            backgroundColor: "var(--cf-anchor-accent)",
+            color: "var(--cf-anchor-bg)",
           }}
         >
           Start reading free &rarr;
         </Link>
-      </PulseCTA>
+      </MagneticButton>
+
+      <p className="text-[13px] text-(--cf-anchor-text-muted)">
+        Two free books &middot; no credit card &middot; cancel anytime
+      </p>
 
       <Link
         href={AUTH_LOGIN_BOOK_URL}
         onClick={() => track("cta_click", { source: "final_cta_signin" })}
-        className="text-[14px] font-medium transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
-        style={{ color: "var(--text-secondary)" }}
+        className="text-[14px] font-medium transition-colors duration-200 hover:text-(--cf-anchor-text) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2 rounded"
+        style={{ color: "var(--cf-anchor-text-muted)" }}
       >
         Already have an account? Sign in
       </Link>

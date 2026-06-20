@@ -46,6 +46,83 @@ test.describe("public funnel", () => {
   });
 });
 
+// Landing redesign regressions — the three behaviours most at risk of silent
+// breakage: the mobile hero order (a conversion bug if it flips), the signature
+// scroll section's reduced-motion fallback (WCAG 2.3.3), and a present/clickable
+// primary CTA. Run in dev mode (DEV_AUTH_BYPASS, no data plane). The landing
+// reveals on scroll/in-view, so the section is scrolled into view before asserting.
+test.describe("landing redesign", () => {
+  test("at 390px the headline precedes the phone preview", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const h1 = page.locator("main h1").first();
+    await expect(h1).toBeVisible();
+
+    // The hero phone lives in a <figure> whose sr-only <figcaption> starts
+    // "Reader interface preview" (unique to the hero).
+    const phoneFigure = page
+      .locator("figure", {
+        has: page.getByText(/Reader interface preview/i),
+      })
+      .first();
+
+    const h1Box = await h1.boundingBox();
+    const phoneBox = await phoneFigure.boundingBox();
+    expect(h1Box, "headline must have a layout box").toBeTruthy();
+    expect(phoneBox, "phone figure must have a layout box").toBeTruthy();
+
+    // Headline is ABOVE the phone (DOM-first, no order-* flip) ...
+    expect(h1Box!.y).toBeLessThan(phoneBox!.y);
+    // ... and is the first thing in view above the fold.
+    expect(h1Box!.y).toBeLessThan(844);
+  });
+
+  test("primary 'Start reading free' CTA is present and clickable", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const cta = page
+      .getByRole("link", { name: /start reading free/i })
+      .first();
+    await expect(cta).toBeVisible();
+    await expect(cta).toBeEnabled();
+    expect(await cta.getAttribute("href")).toBeTruthy();
+  });
+
+  test("with reduced motion, the signature loop section is static and legible", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/");
+
+    const section = page.locator("#retention-loop");
+    await expect(section).toHaveCount(1);
+    await section.scrollIntoViewIfNeeded();
+
+    // Static fallback: no pinned/sticky stage exists ...
+    await expect(section.locator(".sticky")).toHaveCount(0);
+
+    // ... and all four loop steps are present and legible at once. Use the
+    // visible <h3> headings (getByRole heading) — the section also carries an
+    // sr-only <ol> of the beats for assistive tech, which getByText would also
+    // match.
+    await expect(
+      section.getByRole("heading", { name: /Read the idea, once/i }),
+    ).toBeVisible();
+    await expect(
+      section.getByRole("heading", { name: /See it in the world/i }),
+    ).toBeVisible();
+    await expect(
+      section.getByRole("heading", { name: /Recall beats rereading/i }),
+    ).toBeVisible();
+    await expect(
+      section.getByRole("heading", { name: /Lock it in, move on/i }),
+    ).toBeVisible();
+  });
+});
+
 // Authenticated app shell — reachable locally via DEV_AUTH_BYPASS=1 (set by the
 // `dev` script). Book data may be empty without BOOK_TABLE_NAME, so we assert
 // the shell renders and the route does not bounce to auth or crash.
