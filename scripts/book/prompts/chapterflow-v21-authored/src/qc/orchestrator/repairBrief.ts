@@ -4,6 +4,10 @@ import { dirname } from "path";
 import { evidenceMatrixPath, repairBriefPath, repairPromptPath } from "./artifacts.js";
 import { effectiveLedger, type EffectiveLedgerFinding } from "./ledger.js";
 import { classDefectBanner, unitContainer } from "./findingGrouping.js";
+import { C7_BANNED_NAMES } from "../../critics/finalGate.js";
+import { extractNamesFromText } from "../../librarian/libraryState.js";
+import { loadNameBank } from "../../librarian/namePlan.js";
+import { loadBookChapters } from "../manualKeyJudge.js";
 
 const SEVERITY_RANK: Record<string, number> = { blocker: 0, major: 1, minor: 2, advisory: 3 };
 
@@ -195,6 +199,45 @@ export function writeRepairBrief(bookId: string, roundId: string): string {
 }
 
 
+/** The deterministic guardrails a content edit can trip. Injected into the repair prompt so a
+ *  repair that fixes one finding does not spawn a DIFFERENT one next round — the "no new issue"
+ *  envelope. These are exactly what `gate-chapter` / `book-gate` / `qc-converge` enforce. */
+function renderConstraintEnvelope(bookId: string): string[] {
+  const L: string[] = [];
+  L.push("CONSTRAINT ENVELOPE — your edit must not trip a DIFFERENT gate (that just spawns a new finding next round).");
+  L.push("Before you hand off, confirm your edit obeys ALL of these (they are what gate-chapter / book-gate / qc-converge enforce):");
+  L.push(`- C7 (blocker): do NOT introduce a protagonist name from the banned pool unless it was dealt to THIS chapter — ${C7_BANNED_NAMES.join(", ")}. Use the SAFE-RENAME POOL below.`);
+  L.push("- F1 (blocker): do NOT give a character a name that already recurs in another chapter (cross-chapter collision). The SAFE-RENAME POOL is pre-filtered for this.");
+  L.push("- SP2 (blocker): NEVER change an example's planSpec.format — it must equal the dealt scene shape. Re-stage WITHIN the dealt shape; don't swap shapes.");
+  L.push("- B1 (blocker): do NOT open a hook / counterintuition / keyTakeaway with \"In this chapter\", \"This chapter\", \"The chapter\", or \"The author\".");
+  L.push("- A13 (major): keep scenario openers clean — no doubled periods, no \"Name, plural-noun verb\" apposition, and ≤2 commas in the first 80 characters.");
+  L.push("- C23 (major): one protagonist per example — do NOT reuse the same character name across two examples in the same chapter.");
+  L.push("- BP28/BP29/BP31 (major, book-wide templating): do NOT introduce a card-front phrasing, a clock time (e.g. 9:10 a.m.), or a uniform \"Label:\" quiz-choice format that already recurs across other chapters.");
+  L.push("- Preserve every number / proper noun / source anchor — source-v2 grounding must survive your edit.");
+  const pool = safeRenamePool(bookId);
+  if (pool.length) {
+    L.push(`- SAFE-RENAME POOL (vetted: not C7-banned, not used in any chapter → safe from C7 + F1). If a fix needs a NEW character name, pick from: ${pool.slice(0, 15).join(", ")}.`);
+  }
+  return L;
+}
+
+/** Bank names that are safe to introduce anywhere in this book: not C7-banned, and not already
+ *  used (by `extractNamesFromText`, the same extractor F1 uses) in ANY chapter — so the pool is
+ *  immune to C7 and to an F1 cross-chapter collision. Fail-safe: any read error → [] (the
+ *  envelope simply omits the pool; it never crashes the brief). */
+function safeRenamePool(bookId: string): string[] {
+  try {
+    const banned = new Set(C7_BANNED_NAMES);
+    const used = new Set<string>();
+    for (const ch of loadBookChapters(bookId)) {
+      for (const name of extractNamesFromText(JSON.stringify(ch))) used.add(name);
+    }
+    return loadNameBank().filter((n) => !banned.has(n) && !used.has(n));
+  } catch {
+    return [];
+  }
+}
+
 export function renderRepairPromptMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
   const matrixChapters = nonPublishableMatrixChapters(bookId, roundId);
@@ -243,6 +286,8 @@ export function renderRepairPromptMarkdown(bookId: string, roundId: string, find
     lines.push(`Evidence matrix: ${evidenceMatrixPath(bookId, roundId)}`);
     return lines.join("\n") + "\n";
   }
+  lines.push(...renderConstraintEnvelope(bookId));
+  lines.push("");
   lines.push("global repair themes:");
   for (const theme of themes) lines.push(`- ${theme}`);
   lines.push("");

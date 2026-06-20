@@ -2012,6 +2012,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   }
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
+  const { planOpeners, formatOpenerPlanForChapter } = await import("./librarian/openerPlan.js");
   const { planPedagogy, writePedagogyPlan, loadPedagogyPalettes } = await import("./librarian/pedagogyPlan.js");
   const { planExemplars, writeExemplarPlan, formatExemplarOwned, formatExemplarForbidden } = await import("./librarian/exemplarPlan.js");
   const { planVenues, writeVenuePlan } = await import("./librarian/venuePlan.js");
@@ -2090,6 +2091,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   writeNamePlan(plan);
   const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
   writeShapePlan(shapePlan);
+  // Per-example scenario-opener archetypes (the missing twin of shapePlan/venuePlan): deals a
+  // distinct opening CONSTRUCTION per slot so scenarios are born varied instead of defaulting
+  // to "At the [venue], …" / "On [day], …" stamps (scene_skeleton / location_stamping).
+  const openerPlan = planOpeners(bookId, from, to, 6);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
   const pedagogyPlan = planPedagogy(bookId, from, to, { forceFresh: includeAll });
   writePedagogyPlan(pedagogyPlan);
@@ -2194,6 +2199,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const shapeLines = shapeIds
       .map((id, i) => `    ${i + 1}. ${id} — ${shapeDefs.get(id) ?? "use the format the planSpec names"}`)
       .join("\n");
+    const openerLines = formatOpenerPlanForChapter(openerPlan, ch.number).map((l) => `    ${l}`).join("\n");
     const pedagogy = pedagogyPlan.allocation[ch.number];
     const tryGrammar = pedagogy ? tryDefs.get(pedagogy.tryThisNowGrammar) : undefined;
     const quizA = pedagogy ? quizDefs.get(pedagogy.quizOpeners[0]) : undefined;
@@ -2304,6 +2310,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Use ONLY these character names: ${names}\n` +
         `• SCENE SHAPES — example[i] MUST use shape i below. This is the anti-skeleton plan (R6): structurally different scenes cannot share the "[Name] does X at [time] in [place]" frame. A binary "must decide whether A or B" tension may appear at most ONCE (only in a 'dilemma' slot).\n` +
         `${shapeLines}\n` +
+        (openerLines ? openerLines + "\n" : "") +
         sceneModeLine +
         venueLine +
         rhetoricLine +

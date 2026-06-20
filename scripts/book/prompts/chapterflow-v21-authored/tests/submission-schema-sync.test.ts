@@ -125,3 +125,17 @@ test("schema↔validator sync: field-level violations fail BOTH (no drift)", () 
   fails("major", (x) => { x.dispositions[0].status = "ignored"; }, "major disposition status not in enum");
   fails("keyA", (x) => { x.chapters[0].answers[0].reason = "short"; }, "key reason < 40 chars");
 });
+
+test("R1: a bar hit's optional `fix` passes BOTH schema and validator; an UNKNOWN hit field still fails the schema", () => {
+  const schema = submissionJsonSchemaForRole("bar")!.schema;
+  const withFix = structuredClone(validFixtures().bar);
+  const ex = withFix.axes.find((a: any) => a.axis === "example_coherence");
+  ex.score = 0.4; ex.tier = "GENERATED_DRAFT";
+  ex.hits = [{ unitId: "examples[0]", quote: "planning-note scene", defect: "states the concept", fix: "Recast as a person making the decision in scene." }];
+  assert.deepEqual(schemaErrors(schema, withFix), [], "schema must accept the optional hit `fix`");
+  assert.equal(validateSubmission(BOOK, ROUND, "bar", withFix).ok, true, "validator must accept the optional hit `fix`");
+  // additionalProperties:false still bites: I added `fix` SPECIFICALLY, not loosened the hit shape.
+  const withBogus = structuredClone(withFix);
+  withBogus.axes.find((a: any) => a.axis === "example_coherence").hits[0].bogus = "x";
+  assert.ok(schemaErrors(schema, withBogus).length > 0, "an unknown hit property must still fail the schema");
+});

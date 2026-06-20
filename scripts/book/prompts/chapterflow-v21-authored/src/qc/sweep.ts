@@ -130,7 +130,11 @@ export function writeSweepPack(bookId: string, roundId: string): string {
       })),
       implementationPlan: {
         coreSkill: ch.implementationPlan?.coreSkill,
-        challenge: (ch.implementationPlan as any)?.challenge ?? ch.implementationPlan?.twentyFourHourChallenge,
+        // Only emit a REAL `challenge` (no v21 chapter has one). The old `?? twentyFourHourChallenge`
+        // fallback duplicated the 24h-challenge text into a SECOND pack field, and the sweep correctly
+        // flagged that self-duplication as repeated_unit ("challenge == twentyFourHourChallenge verbatim")
+        // on EVERY chapter — a pack artifact, not a content defect, that false-gated the whole book.
+        challenge: (ch.implementationPlan as any)?.challenge,
         twentyFourHourChallenge: ch.implementationPlan?.twentyFourHourChallenge,
         weeklyPractice: ch.implementationPlan?.weeklyPractice,
         ifThenPlans: (ch.implementationPlan?.ifThenPlans ?? []).map((plan) => ({ context: plan.context ?? "", plan: plan.plan ?? "" })),
@@ -343,10 +347,18 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   // pre-severity record) is treated as a blocker (fail-closed).
   const blockers = findings.filter((f) => f.severity !== "advisory");
   if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
-  // A non-PASS verdict explained by NO blocker (all-advisory, or naming nothing) fails
-  // closed — an unexplained REVISE/CORRUPTION still blocks rather than silently passing
-  // every chapter. (Advisory-only findings do not "explain" the verdict at blocker level.)
-  return blockers.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
+  // A blocker exists but does not name THIS chapter → this chapter passes (a global verdict
+  // must not strand a clean, unnamed chapter).
+  if (blockers.some((f) => (f.chapters ?? []).length > 0)) return "PASS";
+  // No blocker names anything. The sweep must NOT be a STRICTER gate than the publish decision
+  // it feeds (which ignores advisory/minor via openSerious=blocker/major). So:
+  //  - the sweep CITED advisory/minor observations (findings.length > 0) on a REVISE: they are
+  //    surfaced but never gate — every chapter PASSES (the convergence fix: an all-advisory
+  //    sweep can no longer demote the whole book, the treadmill that stalled certification).
+  //  - it cited NOTHING yet returned non-PASS, OR it returned CORRUPTION: an unexplained or
+  //    serious-but-uncited verdict → fail closed for every chapter (never ship on that).
+  if (findings.length > 0 && rec.verdict !== "CORRUPTION") return "PASS";
+  return "FAIL";
 }
 
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {
@@ -356,7 +368,18 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   const rec = loadSweepRecord(bookId);
   if (!rec) return [{ checkId: "QC3.sweep_missing", severity: sev, message: `No sweep attestation for ${bookId}. Run sweep-pack and sweep-attest.` }];
   if (!loadQcRound(rec.bookId, rec.roundId)?.roles?.sweep) return [{ checkId: "QC3.sweep_round_missing", severity: sev, message: `Sweep attestation is not backed by an existing QC round file. Re-open a round and re-attest the sweep.` }];
-  if (rec.verdict !== "PASS") return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict}, not PASS.` }];
+  // The publish gate must agree with the per-chapter sweep gate (sweepChapterStatus): an
+  // all-advisory/minor REVISE is surfaced but NEVER blocks (the sweep is not a stricter gate than
+  // the publish decision it feeds — else a book reads 11/11 PUBLISHABLE yet cannot ship). A blocker
+  // finding still blocks (majors map to blocker at write time, so majors still block — no
+  // loosening); an uncited CORRUPTION or an unexplained non-PASS (no findings) still blocks.
+  if (rec.verdict !== "PASS") {
+    const findings = rec.findings ?? [];
+    const blockers = findings.filter((f) => f.severity !== "advisory");
+    if (blockers.length > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
+      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${blockers.length} blocking finding(s).` }];
+    }
+  }
   const missingFamilies = REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family));
   if (missingFamilies.length > 0) return [{ checkId: "QC3.sweep_incomplete", severity: sev, message: `Sweep PASS is incomplete; missing checkedFamilies: ${missingFamilies.join(", ")}.` }];
   const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));

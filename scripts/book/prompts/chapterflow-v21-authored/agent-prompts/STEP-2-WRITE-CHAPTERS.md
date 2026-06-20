@@ -28,6 +28,7 @@ Every field you write must use specific terminology and proper nouns from these 
 3. `scenario`: 280–520 chars, usually 55–95 words.
 4. **The named source case is the STAGE; the dealt venue is fallback-only.** The case (and `planSpec.requiredBeat`) is the binding setting — the person in it is the scene's actor. If the dealt `planSpec.venue` can't host that case, DISCARD the venue and stage the case in its own setting. Never relocate the scene to the venue and demote the real case to notes/a report "glowing on a phone," and never invent a spectator who reads the case off a screen — that is the anchor-as-prop failure (deterministic blocker `SL3`).
 5. **Never write scaffolding into prose.** A format id (`coach_talk`, `inner_monologue`, `predict_reveal`, …) or a Title-Case paste of the `planSpec.domain` ("Peyton's Teacher Setting Terms For…") are planning notes, not reader text. They block at chapter-gate (`SL1`/`SL2`).
+6. **Where you have latitude, stage it in modern, everyday life.** When the case has no fixed real-world stage, or you are illustrating with an author's invented device (the sidecar marks it `realWorld: false`), set the scene somewhere your reader actually lives *today* — a group chat or text thread, a phone notification, a food-delivery or rideshare wait, a commute, a shared streaming queue, an open-plan office, a kitchen — not a generic boardroom, a podium, or an abstract "imagine a person who…" stage. Prefer the relational/communication and domestic venues on your dealt palette over the occupational ones; a contemporary, relatable surface is what makes the lesson land and stops the prose reading like a textbook. This is the ONLY freedom rule 4 grants: a **real** source case keeps its own setting — never modernize a genuinely dated case to feel current (SC9/SL3 catch that), but DO render the reader's half of the scene in the present day.
 
 ### Quiz `correctIndex` per chapter
 
@@ -226,6 +227,29 @@ number, one on an aftermath, one on a place, one on a decision already made. If 
 describe all six scenes with one sentence template, you have failed R6 — tear them out
 and rebuild each from a different `namedExample`. (And per the name plan: one name = one
 person across breakdown → examples → quiz; never reuse a name for a second character.)
+
+**R6.1 — Use your dealt OPENER GRAMMAR.** Your authoring card now deals each example a
+distinct opening **construction** (`example[i] → mid_action / line_of_dialogue / bare_number
+/ aftermath_first / object_in_motion / decision_already_made / sensory_detail /
+direct_observation`). Open each scenario with its dealt construction. It is a FORM, not a
+script — write your own concrete image; never copy the example wording. Do **not** open with
+`At the [venue], …` or `On [day], …`: the dealt venue is the *setting*, not the first clause
+(that stamp is exactly what flattens a book — factfulness shipped 61% of scenes opening that
+way).
+
+**R6.2 — Keep the setting cue without a stamp (C2 / A13).** A scenario still needs a concrete
+scene cue (`narrative.specific_scene`/C2), but it does **not** have to be a time/place stamp:
+a **labeled** artifact ("a folder labeled Q3"), a **role word** matched to `planSpec.domain`,
+or a place + concrete object all satisfy C2 — prefer these over a stamp. To name a
+protagonist's role, use a **`[Role] [Name]`** prefix ("Analyst Renee", "Coach Omar") rather
+than the `[Name], a [role],` appositive — the prefix carries the role with zero extra commas,
+so it can't trip A13's run-on opener (3+ commas in the first 80 characters).
+
+**R6.3 — Self-check before you gate.** The deterministic gates can NOT see `scene_skeleton`
+or `location_stamping`. Before `gate-chapter`, list your six scenario openers and your
+timings/venues. If one sentence template describes all six openers, or any clock / place /
+container recurs across the chapter, you have a defect the gates will miss — restage from your
+dealt OPENER GRAMMAR / VENUE slots first.
 
 ---
 

@@ -67,3 +67,27 @@ test("sweep stores checked families and findings and passes freshness check", ()
     cleanup();
   }
 });
+
+test("checkSweep (publish gate): an all-advisory/minor REVISE does NOT block; a blocker REVISE does (bug #2 parity)", () => {
+  const FAMILIES = ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"];
+  const chapters = () => [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  const writeFindings = (file: string, severity: "minor" | "blocker") => writeFileSync(file, JSON.stringify({
+    checkedFamilies: FAMILIES,
+    findings: [{ family: "repeated_unit", severity, chapters: [1], unitId: "u", quote: "q", problem: "p", expectedFix: "f" }],
+  }, null, 2), "utf8");
+  try {
+    // An all-advisory/minor REVISE must NOT block publish — the publish gate agrees with the
+    // per-chapter sweep gate (sweep ≤ publish decision).
+    let s = setup();
+    writeFindings(s.findingsFile, "minor");
+    assert.ok(writeSweepAttestation(BOOK, ROUND, s.token, "REVISE", "codex-qc:sweep-test", s.findingsFile).path);
+    assert.deepEqual(checkSweep(chapters(), true), [], "an all-advisory/minor REVISE must not block publish");
+    // A blocker finding still blocks (majors map to blocker at write, so majors still block too).
+    s = setup();
+    writeFindings(s.findingsFile, "blocker");
+    assert.ok(writeSweepAttestation(BOOK, ROUND, s.token, "REVISE", "codex-qc:sweep-test", s.findingsFile).path);
+    assert.equal(checkSweep(chapters(), true)[0]?.checkId, "QC3.sweep_not_pass", "a blocker REVISE still blocks publish");
+  } finally {
+    cleanup();
+  }
+});

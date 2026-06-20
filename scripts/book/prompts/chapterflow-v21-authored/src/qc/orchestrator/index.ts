@@ -101,7 +101,7 @@ function chapterHashRecord(chapters: ChapterV21[]): Record<string, string> {
  *  attestation is a PUBLISHABLE on byte-identical content. The attestation (NOT
  *  the round record) is the authority: a forged round can never carry a chapter
  *  no independent reviewer has passed at these exact bytes. */
-function carryableChapter(bookId: string, ch: ChapterV21): boolean {
+export function carryableChapter(bookId: string, ch: ChapterV21): boolean {
   const att = loadAttestation(bookId, ch.number);
   return !!att && att.verdict === "PUBLISHABLE" && isAttestationFresh(att, ch);
 }
