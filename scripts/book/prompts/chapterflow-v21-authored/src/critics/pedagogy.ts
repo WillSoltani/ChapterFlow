@@ -5,7 +5,7 @@
  */
 
 import { CriticFinding, QuizQuestion, ReviewCard } from "../types.js";
-import { finding, pickEvidence, truncate } from "./shared.js";
+import { finding, pickEvidence } from "./shared.js";
 
 const QUIZ_FORBIDDEN_OPENERS = [
   /^\s*what does the (chapter|author|book)/i,
@@ -133,11 +133,11 @@ export function checkCardTestsRetrieval(rc: ReviewCard): CriticFinding[] {
  * an abstract truth legitimately, so a false positive must cost nothing; it only
  * nudges the writer to name the move. It is conservative ON PURPOSE — calibrated
  * against the 1,606 shipped keyTakeaways so it fires on ~4.5% (the genuinely
- * arm's-length ones a beginner can't carry, e.g. "Discernment protects
- * contribution by ranking the vital few…"), not on the many good imperative
- * takeaways ("Keep reserves that…", "Trade weak signals for…") that simply carry
- * abstract nouns, nor on directives embedded after a clause break ("…, so check
- * the base rate"). A finding
+ * arm's-length ones a beginner can't carry, e.g. "Vulnerability with boundaries
+ * means risking exposure for love, creativity, and integrity"), not on the many
+ * good imperative takeaways ("Keep reserves that…", "Trade weak signals for…")
+ * that simply carry abstract nouns, nor on directives embedded after a clause
+ * break ("…, so check the base rate"). A finding
  * fires only when the takeaway is abstraction-heavy (≥3 distinct nominalizations)
  * AND offers the reader no move to grab: not an imperative directive, no
  * second-person, no number, no named entity, no "X, not Y" contrast. It is
@@ -150,7 +150,11 @@ export function checkCardTestsRetrieval(rc: ReviewCard): CriticFinding[] {
 const NOMINALIZATION_RE = /\b[a-z]{4,}(?:tions?|ments?|ness|ities|ity|isms?|ances?|ences?|izations?|isations?)\b/gi;
 // Imperative-verb openers — a takeaway that OPENS with one of these is itself a
 // directive (it names the move), so it is concrete by construction. Closed list
-// drawn from the verbs that actually open shipped imperative takeaways.
+// drawn from the verbs that actually open shipped imperative takeaways. It is a
+// pragmatic proxy, not exhaustive: a NEW book whose imperative takeaway opens with
+// an unlisted verb may draw a spurious advisory — acceptable for a minor nudge
+// (a model-backed check would judge "names a move?" precisely; this is the cheap,
+// never-gating stand-in). Bias is toward UNDER-firing; over-fires are bounded noise.
 const IMPERATIVE_VERBS = new Set([
   "keep", "welcome", "prefer", "respect", "run", "build", "trade", "ground", "begin",
   "treat", "use", "ask", "pick", "choose", "hold", "name", "check", "spot", "notice",
@@ -200,7 +204,7 @@ export function checkTakeawayDistillable(text: string | undefined, fieldLabel: s
       "pedagogy.takeaway_distillable",
       "minor",
       `${fieldLabel} reads abstract (${distinct.size} concept-nouns, no move to grab) — name the one repeatable move a reader could act on today`,
-      truncate(text, 200),
+      text,
     ),
   ];
 }
