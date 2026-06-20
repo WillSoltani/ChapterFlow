@@ -647,6 +647,42 @@ goldTest("P2 GUARD (Fix 2): a GROUNDED sweep FAIL STILL demotes a carried chapte
   }
 });
 
+goldTest("P2 GUARD (Fix 2, generalized): an UNGROUNDED over-naming sweep FAIL does NOT demote a FRESHLY-reviewed chapter (not just carried ones)", () => {
+  try {
+    cleanup();
+    // A FRESH (non-carried) chapter with green reads. The stochastic sweep OVER-NAMES it with a
+    // distinctive quote that appears in NO chapter (the-undoing-project r20260620134645:
+    // 'in the Hebrew University seminar room' named across all 12, present in exactly 1 — collapsed
+    // the book 11/12 -> 0/12). The groundedness guard used to protect only CARRIED chapters; a
+    // fabricated finding demotes a fresh chapter just as wrongly, so the guard now clears it for any.
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]); // fresh per-chapter reads, NOT carried
+    writeSweepRecordFromSubmission({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep-fixture",
+      verdict: "REVISE",
+      checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER,
+        unitId: "examples.ex01",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote: "in a fabricated seminar room that appears in no chapter whatsoever",
+        problem: "An over-claimed cross-chapter scene frame, absent from this chapter's text.",
+        expectedFix: "n/a",
+      }],
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].checks.sweep, "PASS", "an ungrounded over-naming clears for a fresh chapter too");
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", "a freshly-reviewed chapter is not demoted by a fabricated sweep mention");
+  } finally {
+    cleanup();
+  }
+});
+
 goldTest("P2: a carried chapter whose content CHANGED since its attestation is NOT carried (re-reviewed)", () => {
   try {
     cleanup();

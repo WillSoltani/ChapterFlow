@@ -71,9 +71,13 @@ test("sweep stores checked families and findings and passes freshness check", ()
 test("checkSweep (publish gate): an all-advisory/minor REVISE does NOT block; a blocker REVISE does (bug #2 parity)", () => {
   const FAMILIES = ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"];
   const chapters = () => [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  // The blocker case must use a DISTINCTIVE (>= 20-char) quote so it genuinely gates: a
+  // repeated_unit/scene_skeleton finding anchored on a non-distinctive common phrase is
+  // surfaced but non-gating (nondistinctiveRepetitionQuote), which is a separate rule from
+  // the advisory-vs-blocker parity this test exercises.
   const writeFindings = (file: string, severity: "minor" | "blocker") => writeFileSync(file, JSON.stringify({
     checkedFamilies: FAMILIES,
-    findings: [{ family: "repeated_unit", severity, chapters: [1], unitId: "u", quote: "q", problem: "p", expectedFix: "f" }],
+    findings: [{ family: "repeated_unit", severity, chapters: [1], unitId: "u", quote: "she sees the error halfway through the meeting", problem: "p", expectedFix: "f" }],
   }, null, 2), "utf8");
   try {
     // An all-advisory/minor REVISE must NOT block publish — the publish gate agrees with the

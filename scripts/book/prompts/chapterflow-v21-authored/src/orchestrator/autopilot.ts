@@ -833,6 +833,15 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
 // ── Phase: gate (repair ship/book-gate blockers, bounded) ─────────────────────
 
 async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
+  // BP7 (book-pattern audit) fails closed without durable brief + per-chapter plan artifacts under
+  // state/briefs|plans/, which the codex authoring path does NOT persist. `derive-artifacts` is a
+  // deterministic, side-effect-free pass over on-disk state, so derive them up front: this resolves
+  // BP7 deterministically instead of leaving it to the content-repair agent's initiative. The repair
+  // task below says "edit chapter CONTENT only", so a compliant agent would never create those files
+  // and the loop would burn every attempt then HALT "deterministic gates still DIRTY". Best-effort —
+  // a derive failure just falls back to the prior agent-driven behavior, no worse than before.
+  const derived = await deps.runVerb(["derive-artifacts", bookId]);
+  if (derived.code !== 0) deps.log(`[autopilot] derive-artifacts exited ${derived.code} before gate convergence (BP7 may persist) — ${(derived.stderr || derived.stdout).slice(0, 200)}`);
   for (let attempt = 1; attempt <= maxRepair; attempt++) {
     const converge = await deps.runVerb(["qc-converge", bookId]);
     if (converge.code === 0) return null; // DETERMINISTIC-CLEAN → re-loop (advances to qc)

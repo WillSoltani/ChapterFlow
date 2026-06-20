@@ -89,3 +89,44 @@ test("sweepChapterStatus: a legacy record finding with NO severity is treated as
   legacy.findings = [{ family: "persona_drift", chapters: [2], unitId: "u", quote: "q", problem: "p", expectedFix: "f" } as SweepRecord["findings"][number]];
   assert.equal(sweepChapterStatus(legacy, 2, "h2", ROUND), "FAIL", "an absent severity is fail-closed (blocking)");
 });
+
+// A finding with an explicit family + quote (the distinctiveness-guard fixtures).
+const FQ = (family: SweepRecord["findings"][number]["family"], quote: string, chapters: number[], severity: "blocker" | "advisory" = "blocker"): FindingInput => ({
+  family,
+  severity,
+  chapters,
+  unitId: "u",
+  quote,
+  problem: "p",
+  expectedFix: "f",
+});
+
+test("sweepChapterStatus: a repeated_unit BLOCKER anchored on a non-distinctive quote ('had already') does NOT gate (the-undoing-project regression)", () => {
+  // r20260620130507-d0c017: three blocker repeated_unit findings quoting the tense auxiliaries
+  // 'had already' / 'has already' / 'was already' demoted 7/12 -> 1/12. A 2-word common phrase
+  // cannot prove distinctive reuse, so it is surfaced but never gates the chapters it names.
+  const rec = baseRec("REVISE", [FQ("repeated_unit", "had already", [2, 5], "blocker")]);
+  assert.equal(sweepChapterStatus(rec, 2, "h2", ROUND), "PASS", "a non-distinctive repetition quote must not demote a named chapter");
+  assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "PASS", "nor any other chapter it names");
+});
+
+test("sweepChapterStatus: a repeated_unit BLOCKER on a DISTINCTIVE (>=20 char) quote STILL gates (non-vacuous — real templating blocks)", () => {
+  // The guard rejects ONLY non-distinctive anchors. A genuine copy-pasted unit (a real templating
+  // defect) is long enough to discriminate and must still FAIL its chapters.
+  const rec = baseRec("REVISE", [FQ("repeated_unit", "she sees the error halfway through the meeting", [2], "blocker")]);
+  assert.equal(sweepChapterStatus(rec, 2, "h2", ROUND), "FAIL", "a distinctive reused unit still gates");
+  assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "PASS", "an unnamed clean chapter still passes");
+});
+
+test("sweepChapterStatus: scene_skeleton follows the same distinctiveness rule; persona_drift / location_stamping are unaffected (short names/venues are legitimate)", () => {
+  assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("scene_skeleton", "was already", [2, 5], "blocker")]), 2, "h2", ROUND), "PASS", "non-distinctive cross-chapter scene_skeleton does not gate");
+  assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("scene_skeleton", "opens at the desk with the clock ticking past the deadline", [2], "blocker")]), 2, "h2", ROUND), "FAIL", "distinctive scene_skeleton still gates");
+  // Scope guard: persona_drift (a reused NAME) and location_stamping (a reused VENUE) legitimately
+  // carry short quotes — the distinctiveness rule must NOT touch them.
+  assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("persona_drift", "Genevieve", [2], "blocker")]), 2, "h2", ROUND), "FAIL", "a short persona_drift quote still gates");
+  assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("location_stamping", "the dock", [2], "blocker")]), 2, "h2", ROUND), "FAIL", "a short location_stamping quote still gates");
+  // A SINGLE-chapter finding is a local defect, not a cross-chapter reuse claim — its quote length is
+  // irrelevant, so it still gates (the sweep's repeated_unit DEFAULT bucket must not swallow a real
+  // single-chapter quiz/behavioral finding with a short quote).
+  assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("repeated_unit", "A labelled choice.", [2], "blocker")]), 2, "h2", ROUND), "FAIL", "a single-chapter short-quote finding still gates");
+});

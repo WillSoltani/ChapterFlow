@@ -230,6 +230,12 @@ Commands:
                                      WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
                                      the DECISIONS. Runs on the Codex subscription (NO API metering). HALTS at
                                      "ready to publish" unless --auto-publish. --plan previews the spawn plan.
+  book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--auto-publish] [--no-notify] [--sound] [--log <file>]
+                                     SAME conductor as book-autopilot, wrapped to print a clean timestamped
+                                     update AND a macOS notification on every MAJOR event (research / write /
+                                     gate / QC round + publishable tally / repair / warnings / final). One
+                                     input, walk away, get pinged. --no-notify = terminal only; --log appends
+                                     an event log. Changes no pipeline behavior; same gates, env, exit code.
   codex-agent-run <task-file> [--session <id>] [--sandbox ...] [--timeout-ms N]
                                      Debug: spawn ONE headless codex exec agent with a task file as its
                                      instruction; prints the result. Proves codex exec works before autopilot.
@@ -4598,6 +4604,8 @@ async function main() {
       return runQcConverge(args, flags);
     case "book-autopilot":
       return runBookAutopilot(args, flags);
+    case "book-run":
+      return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
     case "codex-agent-run":
       return runCodexAgentRun(args, flags);
     case "key-pack":

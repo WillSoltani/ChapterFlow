@@ -30,6 +30,8 @@ Length per tier: **stay within ±10% of the input length.** This is a polish pas
 
 6. **Any place a vivid concrete detail could be slipped in without changing length.** Replace a generic noun with a specific one. "A document" → "a 12-page memo". "A person" → "the night-shift charge nurse".
 
+7. **Any uncommon or showy word that has a plain everyday equivalent.** Prefer the word a smart friend would say out loud. If a general reader might pause on a word or reach for a dictionary ("utilize", "myriad", "salient", "ostensibly", "delineate", "extant"), swap it for the ordinary one ("use", "many", "key", "seemingly", "spell out", "existing"). This is a preference, not a gate: keep a precise technical term or a named framework that genuinely earns its place, and don't flatten the voice charter — but when two words mean the same thing, the more common one wins. A swap here counts toward the small per-tier edit budget below.
+
 ## What you do NOT change
 
 - Structure. The same paragraphs in the same order.
