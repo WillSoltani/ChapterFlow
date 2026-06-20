@@ -105,6 +105,7 @@ import auto_the_tipping_point_Json from "@/book-packages/the-tipping-point.v21.j
 import auto_unreasonable_hospitality_Json from "@/book-packages/unreasonable-hospitality.v21.json";
 import auto_zero_to_one_Json from "@/book-packages/zero-to-one.v21.json";
 import auto_factfulness_Json from "@/book-packages/factfulness.v21.json";
+import auto_the_undoing_project_Json from "@/book-packages/the-undoing-project.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1849,4 +1850,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_factfulness_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["factfulness"] = (tone) => normalizeAnyPackage(auto_factfulness_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-undoing-project" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_undoing_project_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-undoing-project"] = (tone) => normalizeAnyPackage(auto_the_undoing_project_Json, tone);
 }
