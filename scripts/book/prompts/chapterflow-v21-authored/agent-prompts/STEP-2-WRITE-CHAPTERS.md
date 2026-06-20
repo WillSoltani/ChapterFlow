@@ -227,6 +227,29 @@ describe all six scenes with one sentence template, you have failed R6 — tear 
 and rebuild each from a different `namedExample`. (And per the name plan: one name = one
 person across breakdown → examples → quiz; never reuse a name for a second character.)
 
+**R6.1 — Use your dealt OPENER GRAMMAR.** Your authoring card now deals each example a
+distinct opening **construction** (`example[i] → mid_action / line_of_dialogue / bare_number
+/ aftermath_first / object_in_motion / decision_already_made / sensory_detail /
+direct_observation`). Open each scenario with its dealt construction. It is a FORM, not a
+script — write your own concrete image; never copy the example wording. Do **not** open with
+`At the [venue], …` or `On [day], …`: the dealt venue is the *setting*, not the first clause
+(that stamp is exactly what flattens a book — factfulness shipped 61% of scenes opening that
+way).
+
+**R6.2 — Keep the setting cue without a stamp (C2 / A13).** A scenario still needs a concrete
+scene cue (`narrative.specific_scene`/C2), but it does **not** have to be a time/place stamp:
+a **labeled** artifact ("a folder labeled Q3"), a **role word** matched to `planSpec.domain`,
+or a place + concrete object all satisfy C2 — prefer these over a stamp. To name a
+protagonist's role, use a **`[Role] [Name]`** prefix ("Analyst Renee", "Coach Omar") rather
+than the `[Name], a [role],` appositive — the prefix carries the role with zero extra commas,
+so it can't trip A13's run-on opener (3+ commas in the first 80 characters).
+
+**R6.3 — Self-check before you gate.** The deterministic gates can NOT see `scene_skeleton`
+or `location_stamping`. Before `gate-chapter`, list your six scenario openers and your
+timings/venues. If one sentence template describes all six openers, or any clock / place /
+container recurs across the chapter, you have a defect the gates will miss — restage from your
+dealt OPENER GRAMMAR / VENUE slots first.
+
 ---
 
 ## False-positive allowances (write freely)
