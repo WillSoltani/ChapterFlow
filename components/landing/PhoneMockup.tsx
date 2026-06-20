@@ -35,18 +35,14 @@ export function PhoneMockup({ children }: { children: React.ReactNode }) {
               }
         }
       >
-        {/* Live Demo badge */}
+        {/* Live Demo badge — a calm static dot (the phone CONTENT auto-cycles;
+            an extra pinging/throbbing affordance reads as hype on a calm product). */}
         <div className="flex items-center justify-center gap-1.5 mb-3">
-          <span className="relative flex h-2 w-2">
-            <span
-              className="absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping"
-              style={{ background: "var(--accent-emerald)" }}
-            />
-            <span
-              className="relative inline-flex rounded-full h-2 w-2"
-              style={{ background: "var(--accent-emerald)" }}
-            />
-          </span>
+          <span
+            className="inline-flex h-2 w-2 rounded-full"
+            style={{ background: "var(--accent-emerald)" }}
+            aria-hidden
+          />
           <span
             className="text-[10px] font-semibold uppercase"
             style={{ color: "var(--accent-cyan)", letterSpacing: "0.1em" }}

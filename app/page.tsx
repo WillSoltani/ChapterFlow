@@ -104,14 +104,17 @@ export default function Home() {
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
 
-      {/* Background gradient mesh */}
+      {/* Background gradient mesh — tokenized via color-mix so it adapts to
+          light / dark / high-contrast (the old rgba(34,211,238,…) literals were
+          theme-blind: a bright-cyan wash that ignored the active palette).
+          Single accent (cyan) for restraint; strengthened from the prior 6%/3%. */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(34, 211, 238, 0.06), transparent)",
-            "radial-gradient(ellipse 40vw 40vw at 80% 60%, rgba(34, 211, 238, 0.03), transparent)",
+            "radial-gradient(ellipse 60vw 50vw at 28% -5%, color-mix(in srgb, var(--accent-cyan) 9%, transparent), transparent 62%)",
+            "radial-gradient(ellipse 52vw 46vw at 82% 52%, color-mix(in srgb, var(--accent-cyan) 5%, transparent), transparent 62%)",
             "var(--bg-base)",
           ].join(", "),
         }}

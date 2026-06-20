@@ -1,7 +1,8 @@
 "use client";
 
-import { m, useScroll, useSpring, useReducedMotion } from "framer-motion";
+import { m, useScroll, useSpring } from "framer-motion";
 import { SPRING } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 /**
  * ScrollProgressBar — a thin reading-progress line fixed to the top of the
@@ -24,7 +25,7 @@ import { SPRING } from "@/lib/motion";
 export function ScrollProgressBar() {
   const { scrollYProgress } = useScroll();
   const smoothed = useSpring(scrollYProgress, SPRING.progress);
-  const prefersReducedMotion = useReducedMotion();
+  const prefersReducedMotion = usePrefersReducedMotion();
   const scaleX = prefersReducedMotion ? scrollYProgress : smoothed;
 
   return (
