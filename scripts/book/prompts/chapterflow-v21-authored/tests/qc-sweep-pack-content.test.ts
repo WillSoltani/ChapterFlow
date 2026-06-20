@@ -30,6 +30,12 @@ test("sweep-pack contains reader-facing content and omits hidden/internal fields
     assert.ok(ch.quiz[0].choices.length > 0);
     assert.ok(ch.reviewCards[0].front);
     assert.ok(ch.implementationPlan.coreSkill);
+    // REGRESSION: the pack must NOT duplicate the 24h-challenge into a phantom `challenge`
+    // field. The old `challenge ?? twentyFourHourChallenge` fallback did, and the sweep then
+    // correctly flagged "challenge == twentyFourHourChallenge verbatim" as repeated_unit on
+    // EVERY chapter — a pack artifact that false-gated whole books.
+    assert.ok(ch.implementationPlan.twentyFourHourChallenge, "fixture has a 24h challenge");
+    assert.equal(ch.implementationPlan.challenge, undefined, "no phantom `challenge` duplicate of the 24h challenge");
     assert.ok(ch.memorableLines.length > 0);
     assert.doesNotMatch(text, /correctIndex/);
     assert.doesNotMatch(text, /sourceAnchorId/);
