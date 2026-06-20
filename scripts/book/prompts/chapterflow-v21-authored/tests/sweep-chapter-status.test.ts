@@ -66,10 +66,21 @@ test("sweepChapterStatus: an ADVISORY-only finding naming a chapter does NOT fai
   assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "FAIL", "a blocker still FAILs its chapter");
 });
 
-test("sweepChapterStatus: an ALL-advisory REVISE fails CLOSED for every chapter (no blocker explains the verdict)", () => {
-  const rec = baseRec("REVISE", [F([2], "advisory")]);
-  assert.equal(sweepChapterStatus(rec, 2, "h2", ROUND), "FAIL", "an advisory does not explain a REVISE at blocker level — fail closed");
-  assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "FAIL", "and every other chapter fails closed too");
+test("sweepChapterStatus: an ALL-advisory REVISE does NOT block any chapter (bug #2 — sweep ≤ publish gate)", () => {
+  // The sweep must not be a STRICTER gate than the publish decision it feeds (which ignores
+  // advisory/minor). A REVISE carrying only advisory observations is surfaced but gates nothing
+  // — the convergence fix: a single minor templating echo can no longer demote the whole book.
+  const rec = baseRec("REVISE", [F([2], "advisory"), F([5], "advisory")]);
+  assert.equal(sweepChapterStatus(rec, 2, "h2", ROUND), "PASS", "an advisory-cited REVISE does not gate the named chapter");
+  assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "PASS", "nor any other chapter");
+});
+
+test("sweepChapterStatus: a CORRUPTION with no cited blocker STILL fails closed (serious-but-uncited)", () => {
+  // CORRUPTION is the most serious verdict; if the reviewer claims it but cites no blocker, we
+  // never silently ship — every chapter fails closed. (Only the all-advisory REVISE relaxes.)
+  const rec = baseRec("CORRUPTION", [F([2], "advisory")]);
+  assert.equal(sweepChapterStatus(rec, 2, "h2", ROUND), "FAIL", "an uncited CORRUPTION fails closed");
+  assert.equal(sweepChapterStatus(rec, 5, "h5", ROUND), "FAIL", "for every chapter");
 });
 
 test("sweepChapterStatus: a legacy record finding with NO severity is treated as a blocker (fail-closed)", () => {
