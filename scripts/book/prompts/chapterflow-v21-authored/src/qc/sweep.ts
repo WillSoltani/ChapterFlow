@@ -68,6 +68,12 @@ export type SweepRecord = {
   checkedFamilies: SweepFamily[];
   findings: Array<{
     family: SweepFamily;
+    // Whether this finding gates the chapters it names. Mirrors finalize's `openSerious`
+    // ledger contract: a blocker (or major) sweep finding blocks; an advisory (or minor)
+    // observation is surfaced but never gates. Collapsed to two tiers at write time.
+    // Legacy records predate this field; readers treat an absent severity as "blocker"
+    // (fail-closed — preserves the pre-severity "every named finding FAILs" behavior).
+    severity: "blocker" | "advisory";
     chapters: number[];
     unitId: string;
     quote: string;
@@ -151,14 +157,23 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
     attestedAt: new Date().toISOString(),
     contentHashes,
     checkedFamilies: submission.checkedFamilies,
-    findings: submission.findings.map((f) => ({
-      family: isSweepFamily(f.repairClass) ? f.repairClass : "scene_skeleton",
-      chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
-      unitId: f.unitId,
-      quote: f.quote,
-      problem: f.problem,
-      expectedFix: f.expectedFix,
-    })),
+    findings: submission.findings.flatMap((f) => {
+      // FIX 3 — map the finding's repairClass to a family. A clearly factual/numeric finding
+      // (which the sweep has no source to verify) is DROPPED; a real templating finding — even
+      // one labeled descriptively rather than with a canonical family id — is KEPT and mapped,
+      // so it stays actionable instead of collapsing the round into an empty fail-closed REVISE.
+      const family = sweepFamilyForRepairClass(f.repairClass);
+      if (!family) return [];
+      return [{
+        family,
+        severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
+        chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
+        unitId: f.unitId,
+        quote: f.quote,
+        problem: f.problem,
+        expectedFix: f.expectedFix,
+      }];
+    }),
   };
   mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(submission.bookId);
@@ -168,6 +183,24 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
 
 function isSweepFamily(value: unknown): value is SweepFamily {
   return (REQUIRED_SWEEP_FAMILIES as readonly string[]).includes(String(value));
+}
+
+/** Map a sweep submission's `repairClass` to one of the 4 families, or null to DROP it.
+ *  Reviewers routinely label a real templating finding descriptively ("vary_scene_action",
+ *  "deduplicate_practice_unit") rather than with the canonical family id — those must be KEPT
+ *  and mapped, not dropped (dropping a real finding leaves an empty REVISE that fails the whole
+ *  book closed with no actionable repair). Only a finding that is clearly FACTUAL/numeric (which
+ *  the sweep has no source pack to verify, and which belongs to the bar's factual_accuracy axis)
+ *  is dropped. */
+export function sweepFamilyForRepairClass(repairClass: unknown): SweepFamily | null {
+  if (isSweepFamily(repairClass)) return repairClass;
+  // Normalize _ / - to spaces so word-boundary anchors work on snake/kebab labels.
+  const c = String(repairClass ?? "").toLowerCase().replace(/[_-]+/g, " ");
+  if (/\bfact|numeric|number|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // factual → out of scope → drop
+  if (/scene|frame|skeleton|vignette|opening|opener/.test(c)) return "scene_skeleton";
+  if (/persona|\bname|character|protagonist/.test(c)) return "persona_drift";
+  if (/venue|location|place|stamp|clock|timing|setting/.test(c)) return "location_stamping";
+  return "repeated_unit"; // default templating bucket (cards / plans / practice / quiz / hooks)
 }
 
 function loadFindingsFile(path: string): { checkedFamilies: SweepFamily[]; findings: SweepRecord["findings"]; errors: string[] } {
@@ -191,8 +224,11 @@ function loadFindingsFile(path: string): { checkedFamilies: SweepFamily[]; findi
     for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
       if (typeof f?.[key] !== "string" || !f[key].trim()) errors.push(`findings[${i}].${key} is required`);
     }
+    const sev = String(f?.severity ?? "").toLowerCase();
+    const severity: "blocker" | "advisory" = sev === "advisory" || sev === "minor" ? "advisory" : "blocker";
     return {
       family: isSweepFamily(family) ? family : "scene_skeleton",
+      severity,
       chapters,
       unitId: String(f?.unitId ?? ""),
       quote: String(f?.quote ?? ""),
@@ -236,6 +272,46 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
   return { path: p };
 }
 
+/**
+ * Content-addressed sweep carry-forward. The book-wide sweep is the single most
+ * stochastic reviewer (a fresh whole-book read flags a rotating subset round to round).
+ * When the ENTIRE book is byte-IDENTICAL to a prior PASS sweep — every chapter's content
+ * hash matches AND the chapter SET is unchanged — re-running it can only re-roll the dice,
+ * never surface a genuinely new cross-chapter pattern (a cross-chapter pattern is a property
+ * of the whole book; if nothing moved, it cannot have changed). `sweepCarryable` is true
+ * exactly then, so the caller may carry the prior PASS forward instead of spawning a codex
+ * sweep session. Conservative: ANY changed/added/removed chapter ⇒ false ⇒ full fresh sweep.
+ */
+export function sweepCarryable(priorRec: SweepRecord | null, chapters: ChapterV21[]): boolean {
+  if (!priorRec || priorRec.verdict !== "PASS") return false;
+  if (!REQUIRED_SWEEP_FAMILIES.every((fam) => (priorRec.checkedFamilies ?? []).includes(fam))) return false;
+  const priorHashes = priorRec.contentHashes ?? {};
+  // The chapter SET must be identical (a new/removed chapter could introduce a
+  // cross-chapter collision the prior sweep never read).
+  if (Object.keys(priorHashes).length !== chapters.length) return false;
+  for (const ch of chapters) {
+    if (priorHashes[String(ch.number)] !== chapterContentHash(ch)) return false;
+  }
+  return true;
+}
+
+/** Re-stamp a prior PASS SweepRecord onto a new roundId (used only when sweepCarryable is
+ *  true, so the carried hashes still match the current book). Faithfully copies the verdict,
+ *  findings, checkedFamilies and contentHashes of a REAL prior PASS — it never fabricates a
+ *  pass. The reviewer is marked `carry-forward` for auditability. */
+export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId: string): string {
+  const rec: SweepRecord = {
+    ...priorRec,
+    roundId,
+    reviewer: "carry-forward",
+    attestedAt: new Date().toISOString(),
+  };
+  mkdirSync(QC_DIR, { recursive: true });
+  const p = sweepRecordPath(bookId);
+  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
+  return p;
+}
+
 export function loadSweepRecord(bookId: string): SweepRecord | null {
   const p = sweepRecordPath(bookId);
   if (!existsSync(p)) return null;
@@ -260,8 +336,17 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   if (rec.contentHashes?.[String(chapterNumber)] !== contentHash) return "STALE";
   if (rec.verdict === "PASS") return "PASS";
   const findings = rec.findings ?? [];
-  if (findings.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
-  return findings.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
+  // Only a BLOCKER-severity finding gates the chapters it names. An ADVISORY sweep
+  // observation (e.g. a stochastic unverifiable-number nit) is surfaced but never FAILs a
+  // chapter — this mirrors finalize's `openSerious` ledger gate so the sweep can't be a
+  // STRICTER gate than the publish decision it feeds. A finding with no severity (a legacy,
+  // pre-severity record) is treated as a blocker (fail-closed).
+  const blockers = findings.filter((f) => f.severity !== "advisory");
+  if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
+  // A non-PASS verdict explained by NO blocker (all-advisory, or naming nothing) fails
+  // closed — an unexplained REVISE/CORRUPTION still blocks rather than silently passing
+  // every chapter. (Advisory-only findings do not "explain" the verdict at blocker level.)
+  return blockers.some((f) => (f.chapters ?? []).length > 0) ? "PASS" : "FAIL";
 }
 
 export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFinding[] {

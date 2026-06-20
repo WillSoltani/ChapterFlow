@@ -28,7 +28,7 @@ import {
 } from "../src/qc/orchestrator/artifacts.js";
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
 import { generateConfirmCandidates } from "../src/qc/orchestrator/index.js";
-import { effectiveLedger } from "../src/qc/orchestrator/ledger.js";
+import { effectiveLedger, appendFindings } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 
@@ -479,6 +479,60 @@ goldTest("confirm-candidates SKIPS a plan-enforcement-failing chapter (parity wi
   }
 });
 
+// E (parity, ledger severity): confirm-candidate eligibility must not be STRICTER than finalize
+// on the LEDGER either. finalize's `openSerious` (finalize.ts) treats only blocker/major open
+// findings as a repairLedger blocker; advisory/minor are non-blocking (finalize publishes a chapter
+// carrying only those, repairLedger=NO_OPEN_BLOCKERS). generateConfirmCandidates used to skip on ANY
+// open finding, so a clean, sweep-passing chapter with one advisory factual-accuracy nit was barred
+// from its confirm read and stranded in NEEDS_MORE_QC forever (the factfulness non-certification bug).
+// Non-vacuous: before the fix this chapter was skipped with a repairLedger blocker.
+goldTest("confirm-candidates does NOT skip a chapter whose only open ledger finding is ADVISORY (parity with finalize)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    const r = appendFindings({
+      bookId: GREEN_BOOK, roundId: ROUND, role: "sweep", submissionFile: "test://advisory",
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER, unitId: `${chapter.chapterId}-hook`,
+        repairClass: "factual_accuracy", severity: "advisory", quote: String(chapter.hook).slice(0, 24),
+        problem: "An exact figure could not be verified against the source facts.",
+        expectedFix: "Soften or attribute the figure.",
+      }],
+    });
+    assert.equal(r.appended, 1, "the advisory finding must land in the ledger (not dropped as fabricated)");
+    assert.ok(effectiveLedger(GREEN_BOOK, ROUND).some((f) => f.severity === "advisory" && f.status === "open"));
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(result.candidates, [SOURCE_CHAPTER_NUMBER], `an advisory-only chapter must still be a confirm candidate, got skipped=${JSON.stringify(result.skipped)}`);
+  } finally {
+    cleanup();
+  }
+});
+
+// Complement (non-vacuous the other way): a MAJOR open ledger finding STILL blocks confirm, so the
+// severity filter narrowed the gate to match finalize rather than removing the repairLedger blocker.
+goldTest("confirm-candidates STILL skips a chapter with a MAJOR open ledger finding (repairLedger blocker)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter]);
+    appendFindings({
+      bookId: GREEN_BOOK, roundId: ROUND, role: "sweep", submissionFile: "test://major",
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER, unitId: `${chapter.chapterId}-hook`,
+        repairClass: "factual_accuracy", severity: "major", quote: String(chapter.hook).slice(0, 24),
+        problem: "A blocking factual error.", expectedFix: "Correct it.",
+      }],
+    });
+    const result = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(result.candidates, [], "a major-finding chapter must NOT be a confirm candidate");
+    const skip = result.skipped.find((s) => s.chapterNumber === SOURCE_CHAPTER_NUMBER);
+    assert.ok(skip?.blockers.includes("repairLedger"), `expected a repairLedger blocker, got ${JSON.stringify(skip?.blockers)}`);
+  } finally {
+    cleanup();
+  }
+});
+
 // P2 — turn the green single-chapter fixture into an INCREMENTAL round where ch5
 // is carried (no fresh per-chapter reads this round, but a prior fresh PUBLISHABLE
 // attestation). Cross-chapter signals (sweep/book-gate) stay live.
@@ -520,13 +574,15 @@ goldTest("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter with
   }
 });
 
-goldTest("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new cross-chapter collision can't ship green)", () => {
+goldTest("P2 GUARD (Fix 2): an UNGROUNDED sweep FAIL does NOT demote a carried chapter and keeps its high-water-mark", () => {
   try {
     cleanup();
     setupCarriedChapter();
-    // A sibling's repair introduced a new cross-chapter collision THIS round: the
-    // book-wide sweep now FAILs implicating the carried chapter. Non-fabricated —
-    // the finding cites no dotted container.field path.
+    // A stochastic sweep names the carried chapter but QUOTES a paraphrase that exists
+    // NOWHERE in the chapter's text — the documented 7->1 divergence driver. The carried
+    // chapter was independently swept clean at this exact hash, so an un-locatable mention
+    // must not clobber its banked PUBLISHABLE. (Pre-fix this demoted it to REVISE and
+    // overwrote the attestation.)
     writeSweepRecordFromSubmission({
       schemaVersion: "qc-sweep-submission-v1",
       bookId: GREEN_BOOK,
@@ -540,14 +596,52 @@ goldTest("P2 GUARD: a failing book-wide sweep DEMOTES a carried chapter (a new c
         unitId: "quiz",
         repairClass: "repeated_unit",
         severity: "major",
-        quote: "A reused review prompt shared across chapters.",
+        quote: "A reused review prompt shared across chapters that appears in no chapter at all.",
         problem: "Cross-chapter templating implicates this carried chapter.",
         expectedFix: "Vary the shared unit so it is chapter-specific.",
       }],
     });
     const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
-    assert.equal(result.chapters[0].finalVerdict, "REVISE", "a carried chapter newly implicated by the sweep must be demoted, not carried green");
-    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "the stale PUBLISHABLE attestation is overwritten");
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", "an ungrounded sweep mention must not un-bank a carried chapter");
+    assert.equal(result.chapters[0].checks.sweep, "PASS", "the ungrounded FAIL is re-validated back to PASS");
+    assert.equal(result.attestationsWritten, 0, "the prior PUBLISHABLE attestation is preserved (not overwritten)");
+    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "high-water-mark intact");
+  } finally {
+    cleanup();
+  }
+});
+
+goldTest("P2 GUARD (Fix 2): a GROUNDED sweep FAIL STILL demotes a carried chapter (a real cross-chapter collision can't ship green)", () => {
+  try {
+    cleanup();
+    const chapter = setupCarriedChapter();
+    // The sweep quote is a VERBATIM slice of the carried chapter's own text → grounded →
+    // a real defect → the chapter is still demoted and its attestation overwritten. This is
+    // the floor: Fix 2 only neutralizes UNlocatable quotes, never grounded ones.
+    const realQuote = String(chapter.examples?.[0]?.scenario ?? "").slice(0, 80);
+    assert.ok(realQuote.replace(/[^a-z0-9]+/gi, " ").trim().length >= 20, "fixture must yield a discriminating verbatim quote");
+    writeSweepRecordFromSubmission({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep-fixture",
+      verdict: "REVISE",
+      checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER,
+        unitId: "examples.ex01",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote: realQuote,
+        problem: "A genuinely reused scene frame quoted verbatim from the chapter.",
+        expectedFix: "Re-stage the scene so the frame is distinct.",
+      }],
+    });
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].checks.sweep, "FAIL", "a grounded sweep finding keeps the chapter FAILed");
+    assert.equal(result.chapters[0].finalVerdict, "REVISE", "a real cross-chapter collision still demotes a carried chapter");
+    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "a real demotion overwrites the prior PUBLISHABLE so it is re-reviewed, never carried/promoted on a stale pass");
   } finally {
     cleanup();
   }
