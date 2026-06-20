@@ -55,6 +55,15 @@ export type SpawnCodexAgentOptions = {
   cwd: string;
   /** Default workspace-write (author/edit chapters); read-only for pure reviewers. */
   sandbox?: CodexSandbox;
+  /** Extra directories the workspace-write sandbox must allow writes to, BEYOND the cwd +
+   *  /tmp (codex `--add-dir`). The pipeline writes research artifacts to repo-root
+   *  `.chapterflow/runs`, which is ABOVE the pipeline-dir workdir — without this the agent
+   *  can't write them and the round makes no progress. */
+  writableRoots?: string[];
+  /** Pass codex `--skip-git-repo-check`. Required when cwd is NOT a git repo — e.g. a
+   *  blind reviewer workspace under tmpdir — else `codex exec` refuses with "Not inside a
+   *  trusted directory". Safe for the read-only reviewers that run there. */
+  skipGitRepoCheck?: boolean;
   /** Agentic sessions are long; default 30 min. */
   timeoutMs?: number;
   /** Extra env merged over STRICT_AGENT_ENV (never overrides CHAPTERFLOW_SESSION_ID). */
@@ -96,8 +105,16 @@ export function codexAvailable(bin = findCodexBinary()): boolean {
  *  here — confirm them against your installed codex version (`codex exec --help`)
  *  and tweak in ONE place if needed. `codex exec` runs non-interactively to
  *  completion and prints the final agent message to stdout. */
-export function codexExecArgv(task: string, sandbox: CodexSandbox): string[] {
-  return ["exec", "--sandbox", sandbox, task];
+export function codexExecArgv(task: string, sandbox: CodexSandbox, writableRoots: string[] = [], skipGitRepoCheck = false): string[] {
+  const argv = ["exec", "--sandbox", sandbox];
+  // Allow running outside a git repo (a blind reviewer workspace under tmpdir is not one).
+  if (skipGitRepoCheck) argv.push("--skip-git-repo-check");
+  // Extra writable roots (codex `--add-dir`) — only meaningful under workspace-write; a
+  // read-only session writes nothing, so don't widen it. The PROMPT stays the LAST arg
+  // (positional), so all flags must precede it.
+  if (sandbox === "workspace-write") for (const dir of writableRoots) argv.push("--add-dir", dir);
+  argv.push(task);
+  return argv;
 }
 
 const defaultCodexRunner: CodexRunner = ({ bin, argv, cwd, env, timeoutMs }) =>
@@ -141,7 +158,7 @@ export async function spawnCodexAgent(opts: SpawnCodexAgentOptions): Promise<Cod
   const sandbox = opts.sandbox ?? "workspace-write";
   const timeoutMs = opts.timeoutMs ?? 1_800_000;
   const runner = opts.runner ?? defaultCodexRunner;
-  const argv = codexExecArgv(opts.task, sandbox);
+  const argv = codexExecArgv(opts.task, sandbox, opts.writableRoots, opts.skipGitRepoCheck);
   // Fail-closed env: STRICT_AGENT_ENV is spread AFTER opts.env so a caller's env map
   // can never DISABLE a strict invariant (the enforcement they gate is absence-safe,
   // i.e. silently OFF without these vars). CHAPTERFLOW_SESSION_ID is set LAST of all,

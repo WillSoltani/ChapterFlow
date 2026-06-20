@@ -130,8 +130,11 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
   const paths: string[] = [];
   paths.push(writeText(resolve(root, "00-sweep.md"), cardHeader(bookId, roundId, "sweep", tokens.sweep) + [
     "Read the sweep pack only for the cross-chapter sweep.",
-    "Check all four families: scene_skeleton, persona_drift, repeated_unit, location_stamping.",
-    "Submit `qc-sweep-submission-v1` with checkedFamilies and verbatim findings.",
+    "Check all four families: scene_skeleton, persona_drift, repeated_unit, location_stamping. List every family you checked in `checkedFamilies`.",
+    "Emit a finding ONLY for a family that ACTUALLY fired. Do NOT add an empty or placeholder finding for a family that is clean.",
+    "EVERY finding MUST set `chapters` to the affected chapter numbers (at least one) and quote the shared shell verbatim — a finding with no `chapters` is rejected.",
+    "If no family fired, submit verdict PASS with findings: []. Otherwise verdict REVISE (or CORRUPTION) with only the fired-family findings.",
+    "Submit `qc-sweep-submission-v1`.",
     `Command: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role sweep --token ${tokens.sweep} --file <submission.json>`,
     "",
   ].join("\n")));

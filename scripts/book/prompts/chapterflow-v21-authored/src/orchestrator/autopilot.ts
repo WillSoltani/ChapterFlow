@@ -34,6 +34,7 @@ import { fileURLToPath } from "url";
 
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
+import { REPO_ROOT } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadBookChapters, keyPackDir } from "../qc/manualKeyJudge.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
@@ -56,6 +57,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
 const AGENT_PROMPTS_DIR = resolve(PIPELINE_DIR, "agent-prompts");
 const STATE_CHAPTERS = resolve(PIPELINE_DIR, "state", "chapters");
+// Workspace-write WORK sessions run with cwd=PIPELINE_DIR, so codex's sandbox covers
+// PIPELINE_DIR/state/** + /tmp. But the research phase WRITES source artifacts to repo-root
+// `.chapterflow/runs/**` (ABOVE the workdir) — grant that as an extra writable root so the
+// research session can actually persist its output (else the round makes no progress).
+const WORK_WRITABLE_ROOTS = [resolve(REPO_ROOT, ".chapterflow")];
 
 // ── Phase model ──────────────────────────────────────────────────────────────
 
@@ -710,7 +716,7 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<boolean>
   const promptPath = resolve(AGENT_PROMPTS_DIR, "RESEARCH-CODEX-SESSION.md");
   const task = `${deps.readTask(promptPath)}\n\n---\nRun the research phase for bookId: ${bookId}. Follow the playbook above until book-status reports the write phase.`;
   deps.log(`[autopilot] research: spawning 1 codex session for ${bookId}`);
-  const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId("research"), cwd: PIPELINE_DIR, sandbox: "workspace-write" }, deps);
+  const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId("research"), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
   if (!r.ok) deps.log(`[autopilot] research session exited ${r.exitCode}: ${r.stderr.slice(0, 300)}`);
   return r.ok;
 }
@@ -735,7 +741,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
   await mapWithConcurrency(missing, maxParallel, async (card) => {
     const n = chapterNumberFromCard(card);
     const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above, then run author-check + gate-chapter until clean.`;
-    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`write-ch${n}`), cwd: PIPELINE_DIR, sandbox: "workspace-write" }, deps);
+    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`write-ch${n}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
     return r;
   });
@@ -752,7 +758,7 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): P
     if (converge.code >= 2) return mkHalt(bookId, "gate", "infra", `qc-converge errored (exit ${converge.code}) — not a content problem; inspect: ${(converge.stderr || converge.stdout).slice(0, 300)}`);
     deps.log(`[autopilot] gate repair attempt ${attempt}/${maxRepair} — converging deterministic gates`);
     const task = `Fix the DETERMINISTIC gate findings below for bookId ${bookId} by editing chapter CONTENT only (state/chapters/), then run \`npx tsx src/cli.ts qc-converge ${bookId}\` until it reports DETERMINISTIC-CLEAN. Fix EVERY finding in one pass. Do NOT edit pipeline code/config.\n\n${converge.stdout}`;
-    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write" }, deps);
+    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] gate repair session exited ${r.exitCode}`);
   }
   const final = await deps.runVerb(["qc-converge", bookId]);
@@ -810,14 +816,14 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       ? deps.readTask(repairPromptPath)
       : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`;
     deps.log(`[autopilot] QC repair attempt ${attempt + 1}/${maxRepair} on round ${round.roundId}`);
-    const r = await spawnAndLog(bookId, { task: repairTask, sessionId: deps.mkSessionId(`qc-repair-${attempt + 1}`), cwd: PIPELINE_DIR, sandbox: "workspace-write" }, deps);
+    const r = await spawnAndLog(bookId, { task: repairTask, sessionId: deps.mkSessionId(`qc-repair-${attempt + 1}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] repair session exited ${r.exitCode}`);
     // Converge deterministic gates so the NEXT formal round won't bounce on a nit.
     for (let c = 0; c < maxRepair; c++) {
       const cv = await deps.runVerb(["qc-converge", bookId]);
       if (cv.code === 0) break;
       if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during repair convergence — not a content problem; inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
-      const cr = await spawnAndLog(bookId, { task: `Fix the remaining deterministic findings for ${bookId}, then qc-converge until CLEAN.\n\n${cv.stdout}`, sessionId: deps.mkSessionId(`qc-converge-fix-${attempt + 1}-${c}`), cwd: PIPELINE_DIR, sandbox: "workspace-write" }, deps);
+      const cr = await spawnAndLog(bookId, { task: `Fix the remaining deterministic findings for ${bookId}, then qc-converge until CLEAN.\n\n${cv.stdout}`, sessionId: deps.mkSessionId(`qc-converge-fix-${attempt + 1}-${c}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!cr.ok) break;
     }
     // loop → drive a FRESH round (a repair invalidates the prior one)
@@ -1010,29 +1016,51 @@ export async function brokerReviewer(bookId: string, roundId: string, card: stri
   // Distinct per-spawn id — qc-submit runs under THIS id so reviewer≠author holds.
   const sessionId = deps.mkSessionId(`qc-${label}`);
   const base: BrokerResult = { card, role, sessionId, agentOk: false, extractionOk: false, submissionOk: false };
+  const token = tokens[role];
+  if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return { ...base, error: `no ${role} token in REVIEW-PACKET` }; }
   // Per-reviewer BLIND workspace (constructive isolation) + a self-contained prompt.
   const ws = deps.reviewerWorkspace(bookId, roundId, card, sessionId);
-  const task = buildReviewerTask(deps.readTask(card), roundId, role, deps.reviewerSkeleton(bookId, roundId, card), ws.inputs);
-  try {
-    const r = await spawnAndLog(bookId, { task, sessionId, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox }, deps);
-    if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { ...base, error: `agent exited ${r.exitCode}` }; }
+  const baseTask = buildReviewerTask(deps.readTask(card), roundId, role, deps.reviewerSkeleton(bookId, roundId, card), ws.inputs);
+
+  /** One reviewer attempt: spawn (read-only, blind cwd) → extract JSON → qc-submit under
+   *  THIS session id (so reviewer≠author holds). Returns the extracted json (for a
+   *  corrective retry) + a rejection reason when it didn't record. */
+  const attempt = async (taskText: string, sid: string, fileLabel: string): Promise<{ agentOk: boolean; json: string | null; submitOk: boolean; rejection?: string }> => {
+    const r = await spawnAndLog(bookId, { task: taskText, sessionId: sid, cwd: ws.cwd, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true }, deps);
+    if (!r.ok) { deps.log(`[autopilot] reviewer ${label} exited ${r.exitCode}`); return { agentOk: false, json: null, submitOk: false, rejection: `agent exited ${r.exitCode}` }; }
     // Extract from the FULL stdout first: spawnCodexAgent's finalMessage is only the LAST
-    // non-empty line (the closing ``` of a fenced block, or `}`), so `finalMessage || stdout`
-    // would feed extraction just that fragment and silently drop EVERY multiline submission.
+    // non-empty line (the closing ``` of a fenced block), so `finalMessage || stdout` would
+    // feed extraction just that fragment and silently drop EVERY multiline submission.
     const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
-    if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output — skipping submit (round will surface this as INCOMPLETE)`); return { ...base, agentOk: true, error: "no parseable submission JSON in agent output" }; }
-    const token = tokens[role];
-    if (!token) { deps.log(`[autopilot] reviewer ${label}: no plaintext ${role} token in REVIEW-PACKET — skipping submit`); return { ...base, agentOk: true, extractionOk: true, error: `no ${role} token in REVIEW-PACKET` }; }
+    if (!json) { deps.log(`[autopilot] reviewer ${label}: no parseable submission JSON in output`); return { agentOk: true, json: null, submitOk: false, rejection: "no parseable submission JSON in agent output" }; }
     let file: string;
-    try { file = deps.writeTempSubmission(bookId, roundId, label, json); }
-    catch (err) { deps.log(`[autopilot] reviewer ${label}: temp submission write failed`); return { ...base, agentOk: true, extractionOk: true, error: `temp write failed: ${(err as Error)?.message ?? String(err)}` }; }
+    try { file = deps.writeTempSubmission(bookId, roundId, fileLabel, json); }
+    catch (err) { return { agentOk: true, json, submitOk: false, rejection: `temp write failed: ${(err as Error)?.message ?? String(err)}` }; }
     const submitArgs = ["qc-submit", bookId, "--round", roundId, "--role", role, "--token", token, "--file", file];
     if (variant) submitArgs.push("--variant", variant);
-    // CHAPTERFLOW_SESSION_ID = the REVIEWER's id (not the conductor's): submitQcArtifact
-    // stamps it as reviewerSessionId, so independence enforcement is preserved.
-    const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sessionId });
-    if (submit.code !== 0) { deps.log(`[autopilot] qc-submit (${label}) failed: ${(submit.stderr || submit.stdout).slice(0, 200)}`); return { ...base, agentOk: true, extractionOk: true, error: `qc-submit exited ${submit.code}: ${(submit.stderr || submit.stdout).slice(0, 200)}` }; }
-    return { ...base, agentOk: true, extractionOk: true, submissionOk: true };
+    const submit = await deps.runVerb(submitArgs, { CHAPTERFLOW_SESSION_ID: sid });
+    if (submit.code !== 0) { const reason = (submit.stderr || submit.stdout).slice(0, 300); deps.log(`[autopilot] qc-submit (${label}) failed: ${reason}`); return { agentOk: true, json, submitOk: false, rejection: `qc-submit exited ${submit.code}: ${reason}` }; }
+    return { agentOk: true, json, submitOk: true };
+  };
+
+  try {
+    const a1 = await attempt(baseTask, sessionId, label);
+    if (a1.submitOk) return { ...base, agentOk: true, extractionOk: true, submissionOk: true };
+    // Corrective retry — ONLY when the agent produced JSON but qc-submit REJECTED it (a
+    // fixable validation error, e.g. a sweep finding missing `chapters`). Feeding the exact
+    // rejection + the rejected JSON back lets the reviewer self-correct instead of the
+    // narrow-retry re-running the identical prompt and reproducing the same error. One
+    // bounded attempt; a fresh session id preserves reviewer independence.
+    if (a1.json) {
+      const sid2 = deps.mkSessionId(`qc-${label}-fix`);
+      const fixTask = `${baseTask}\n\n--- YOUR PREVIOUS SUBMISSION WAS REJECTED ---\nqc-submit rejected it:\n${a1.rejection}\nYour previous submission was:\n\`\`\`json\n${a1.json}\n\`\`\`\nFix EXACTLY the rejected problem(s) and re-emit the COMPLETE corrected submission JSON as your FINAL message — a single \`\`\`json block. Change nothing else.`;
+      deps.log(`[autopilot] reviewer ${label}: qc-submit rejected — one corrective retry with the validation error fed back`);
+      const a2 = await attempt(fixTask, sid2, `${label}-fix`);
+      if (a2.submitOk) return { ...base, sessionId: sid2, agentOk: true, extractionOk: true, submissionOk: true };
+      return { ...base, agentOk: true, extractionOk: true, error: a2.rejection ?? a1.rejection };
+    }
+    // Agent crashed or produced no JSON — not correctable by feeding an error back.
+    return { ...base, agentOk: a1.agentOk, extractionOk: false, error: a1.rejection };
   } finally {
     ws.cleanup(); // always tear down the blind workspace, on every return/throw path
   }

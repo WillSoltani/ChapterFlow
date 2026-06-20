@@ -731,6 +731,33 @@ test("a throwing logBroker does NOT change the wave outcome (best-effort)", asyn
   assert.equal(results.length, 1, "the wave still returns its results despite a logBroker failure");
 });
 
+test("broker does ONE corrective retry feeding qc-submit's rejection back, and the fix is recorded", async () => {
+  // Live-run lesson: a reviewer emitted a sweep finding missing `chapters`; qc-submit
+  // rejected it and the old narrow-retry re-ran the identical prompt → same error → halt.
+  // Now the broker re-spawns ONCE with the rejection + the rejected JSON fed back.
+  let n = 0;
+  let submitCalls = 0;
+  const tasks: string[] = [];
+  const deps = resolveDeps({
+    mkSessionId: () => `s${++n}`,
+    readTask: () => "SWEEP CARD", logSession: () => {}, log: () => {},
+    reviewerSkeleton: () => null,
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind", inputs: [], cleanup: () => {} }),
+    writeTempSubmission: () => "/tmp/sub.json",
+    spawn: (async (o: { sessionId: string; task: string }) => { tasks.push(o.task); return { ok: true, exitCode: 0, finalMessage: "```", stdout: '```json\n{"role":"sweep","verdict":"REVISE","findings":[{"family":"repeated_unit"}]}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
+    runVerb: async (args) => {
+      if (args[0] === "qc-submit") { submitCalls++; return submitCalls === 1 ? { code: 1, stdout: "", stderr: "sweep.findings[0].chapters must list affected chapters" } : { code: 0, stdout: "", stderr: "" }; }
+      return { code: 0, stdout: "", stderr: "" };
+    },
+  });
+  const res = await brokerReviewer("zz", "r1", "/t/00-sweep.md", { sweep: "SW" }, deps);
+  assert.equal(res.submissionOk, true, "the corrective retry recorded the submission");
+  assert.equal(submitCalls, 2, "exactly two qc-submit attempts (original + ONE corrective)");
+  assert.equal(tasks.length, 2, "the reviewer was re-spawned exactly once");
+  assert.match(tasks[1], /WAS REJECTED/, "the corrective prompt feeds the rejection back");
+  assert.match(tasks[1], /chapters must list affected chapters/, "including the exact validation error so the model can self-correct");
+});
+
 test("roleFromCard is variant-aware: bar-tiebreak maps to bar+variant (NOT 'unknown'), primary bar has no variant", () => {
   // D1a load-bearing: the OLD roleFromCard matched only '/bar/' so a '/bar-tiebreak/' card
   // fell through to 'unknown' → its submission was reported missing forever → the dynamic
