@@ -19,7 +19,7 @@ import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNo
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity } from "./integrity.js";
 import { finding } from "./shared.js";
-import { checkCardTestsRetrieval, checkQuizTestsApplication } from "./pedagogy.js";
+import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
@@ -189,6 +189,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // minor id so only the real recall-about-text case (D1, major) blocks.
   "D1.short_prompt": "minor",
   D2: "minor",
+  // D3 — keyTakeaway distillability ("one-sentence test"). ADVISORY (minor):
+  // nudges the writer to name the chapter's one concrete move when the takeaway
+  // reads fully abstract. Never gates — word choice is contextual and a
+  // conceptual book may state an abstract truth (see critics/pedagogy.ts).
+  "D3.takeaway_distillable": "minor",
   // Reading level (E)
   E1: "major",
   // E2 — tier progression. Upgraded to blocker May 2026 after the Start With Why
@@ -480,6 +485,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     for (const f of checkCapitalization(chapter.keyTakeaway, "keyTakeaway")) push("A12", "keyTakeaway", f.message, f.evidence);
     for (const f of checkSentenceSanity(chapter.keyTakeaway, "keyTakeaway")) push("A13", "keyTakeaway", f.message, f.evidence);
     for (const f of checkMaxWordCount(chapter.keyTakeaway, "keyTakeaway", 30)) push("A14", "keyTakeaway", f.message, f.evidence);
+    for (const f of checkTakeawayDistillable(chapter.keyTakeaway, "keyTakeaway")) push("D3.takeaway_distillable", "keyTakeaway", f.message, f.evidence);
     runRegisterChecks("keyTakeaway", chapter.keyTakeaway, push);
   }
   if (chapter.tryThisNow) {

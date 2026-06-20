@@ -5,7 +5,7 @@
  */
 
 import { CriticFinding, QuizQuestion, ReviewCard } from "../types.js";
-import { finding, pickEvidence } from "./shared.js";
+import { finding, pickEvidence, truncate } from "./shared.js";
 
 const QUIZ_FORBIDDEN_OPENERS = [
   /^\s*what does the (chapter|author|book)/i,
@@ -120,4 +120,87 @@ export function checkCardTestsRetrieval(rc: ReviewCard): CriticFinding[] {
     }
   }
   return findings;
+}
+
+/**
+ * D3 — keyTakeaway distillability (ADVISORY / minor). The "one-sentence test":
+ * a reader should be able to repeat the chapter's keyTakeaway as one concrete,
+ * repeatable move. A takeaway that stays fully at arm's length — a pileup of
+ * nominalized concept-nouns ("cultivation", "motivation", "recognition") and NO
+ * concrete anchor — reads abstract, and a tired beginner cannot carry it.
+ *
+ * This NEVER blocks. Word choice is contextual and a conceptual book may state
+ * an abstract truth legitimately, so a false positive must cost nothing; it only
+ * nudges the writer to name the move. It is conservative ON PURPOSE — calibrated
+ * against the 1,606 shipped keyTakeaways so it fires on ~4.5% (the genuinely
+ * arm's-length ones a beginner can't carry, e.g. "Discernment protects
+ * contribution by ranking the vital few…"), not on the many good imperative
+ * takeaways ("Keep reserves that…", "Trade weak signals for…") that simply carry
+ * abstract nouns, nor on directives embedded after a clause break ("…, so check
+ * the base rate"). A finding
+ * fires only when the takeaway is abstraction-heavy (≥3 distinct nominalizations)
+ * AND offers the reader no move to grab: not an imperative directive, no
+ * second-person, no number, no named entity, no "X, not Y" contrast. It is
+ * deliberately NOT a length check — A14 (integrity.length_cap) already caps the
+ * word count; this is about whether the sentence names a move.
+ */
+// A nominalized abstract noun: ≥4 letters of stem before an abstraction suffix
+// (so "motion"/"comment"/"city" — stem <4 — do not match, but "cultivation",
+// "movement", "quality", "representativeness" do).
+const NOMINALIZATION_RE = /\b[a-z]{4,}(?:tions?|ments?|ness|ities|ity|isms?|ances?|ences?|izations?|isations?)\b/gi;
+// Imperative-verb openers — a takeaway that OPENS with one of these is itself a
+// directive (it names the move), so it is concrete by construction. Closed list
+// drawn from the verbs that actually open shipped imperative takeaways.
+const IMPERATIVE_VERBS = new Set([
+  "keep", "welcome", "prefer", "respect", "run", "build", "trade", "ground", "begin",
+  "treat", "use", "ask", "pick", "choose", "hold", "name", "check", "spot", "notice",
+  "start", "stop", "make", "give", "take", "turn", "try", "avoid", "protect", "grow",
+  "drop", "watch", "find", "set", "tie", "place", "put", "bring", "carry", "lead",
+  "look", "reach", "separate", "compare", "explore", "evaluate", "learn", "trace",
+  "map", "frame", "aim", "default", "resist", "replace", "swap", "cut", "limit",
+  "guard", "plan", "test", "measure", "decide", "commit", "practice", "rehearse",
+  "favor", "favour", "anchor", "expect", "let", "do", "design", "write", "say",
+  // openers seen on shipped imperative takeaways the v1 calibration missed
+  "match", "honor", "honour", "manage", "interpret", "translate", "become", "divide",
+  "overcome", "prioritize", "prioritise", "defend", "restore", "repair", "schedule",
+  "pause", "exploit", "convert", "count", "renew", "audit", "install", "slow",
+]);
+
+// Leading conjunctions/adverbs that can sit in front of an embedded directive
+// ("…, SO check the base rate"; "…, THEN restore it") without changing that the
+// clause issues an imperative.
+const CLAUSE_LEAD = /^(?:so|then|and|but|or|yet|thus|therefore|hence|now)\b\s*/i;
+
+/** Does a clause issue an imperative (optionally behind a leading conjunction)? */
+function clauseIsImperative(clause: string): boolean {
+  const stripped = clause.trim().replace(CLAUSE_LEAD, "");
+  const first = (stripped.match(/^[A-Za-z']+/)?.[0] ?? "").toLowerCase();
+  return IMPERATIVE_VERBS.has(first);
+}
+
+export function checkTakeawayDistillable(text: string | undefined, fieldLabel: string): CriticFinding[] {
+  if (!text || !text.trim()) return [];
+  const distinct = new Set((text.match(NOMINALIZATION_RE) ?? []).map((m) => m.toLowerCase()));
+  if (distinct.size < 3) return [];                                    // not abstraction-heavy
+  // A directive anywhere is a move the reader can grab — whether it OPENS the
+  // takeaway ("Keep reserves that…") or is embedded after a clause break
+  // ("…, so check the base rate"; "…steadiness: ask better questions, hold tension").
+  if (text.split(/[,;:]/).some(clauseIsImperative)) return [];
+  // Other concrete anchors. The named-entity check looks only PAST the first word
+  // so a sentence-initial capital never counts as a proper noun.
+  const pastFirst = text.replace(/^\s*[A-Za-z']+/, "");
+  const anchored = /\b(?:you|your|you're|yourself|yourselves)\b/i.test(text)
+    || /\d/.test(text)
+    || /,\s*not\b/i.test(text)
+    || /\bnot\b[^,.]{0,40}\bbut\b/i.test(text)
+    || /[\s,:(]\b[A-Z][a-z]{2,}/.test(pastFirst);                     // a named entity grounds it
+  if (anchored) return [];
+  return [
+    finding(
+      "pedagogy.takeaway_distillable",
+      "minor",
+      `${fieldLabel} reads abstract (${distinct.size} concept-nouns, no move to grab) — name the one repeatable move a reader could act on today`,
+      truncate(text, 200),
+    ),
+  ];
 }
