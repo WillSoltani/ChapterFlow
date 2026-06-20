@@ -283,6 +283,41 @@ test("R4: repair fans out ONE surgical session PER flagged chapter (no single ba
   }
 });
 
+test("R4: a NEEDS_MORE_QC (re-QC-only) chapter gets NO surgical edit session (only REVISE/CORRUPTION do)", async () => {
+  const ROUND = "r20260101000000-abcdef";
+  const matrixPath = evidenceMatrixPath("zz", ROUND);
+  let finalizeCalls = 0;
+  try {
+    // ch1 REVISE (editable) + ch2 NEEDS_MORE_QC (re-QC only, no content findings).
+    mkdirSync(dirname(matrixPath), { recursive: true });
+    writeFileSync(matrixPath, JSON.stringify({
+      schemaVersion: "qc-evidence-matrix-v1", bookId: "zz", roundId: ROUND,
+      chapters: [
+        { chapterNumber: 1, finalVerdict: "REVISE", reason: "x", checks: {}, majorStatus: { book: [], chapter: [] } },
+        { chapterNumber: 2, finalVerdict: "NEEDS_MORE_QC", reason: "missing evidence", checks: {}, majorStatus: { book: [], chapter: [] } },
+      ],
+    }), "utf8");
+    const statuses = [
+      makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+      makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+    ];
+    const { deps, spawns } = happyDeps(statuses, {
+      runVerb: async (args) => {
+        if (args.includes("--create")) return { code: 0, stdout: `round: ${ROUND}`, stderr: "" };
+        if (args.includes("--finalize")) return finalizeCalls++ === 0 ? { code: 1, stdout: "REVISE", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" };
+        if (args[0] === "qc-diagnose") return { code: 0, stdout: `ch01: finding-${finalizeCalls}`, stderr: "" };
+        if (args[0] === "qc-converge") return { code: 0, stdout: "", stderr: "" };
+        return { code: 0, stdout: "", stderr: "" };
+      },
+    });
+    await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+    const edits = spawns.filter((s) => /^qc-repair-1-ch\d+#/.test(s.sessionId)).map((s) => s.sessionId.replace(/#.*/, ""));
+    assert.deepEqual(new Set(edits), new Set(["qc-repair-1-ch1"]), "only the REVISE chapter gets an edit session; the NEEDS_MORE_QC chapter does not");
+  } finally {
+    rmSync(dirname(matrixPath), { recursive: true, force: true });
+  }
+});
+
 test("autopilot --auto-publish ships on a clean QC pass", async () => {
   const statuses = [
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
