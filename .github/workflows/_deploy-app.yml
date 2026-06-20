@@ -83,11 +83,16 @@ jobs:
         run: npx open-next build
 
       # The server reads authored book packages from S3 at runtime (quiz/audio/ask)
-      # instead of bundling all ~37.6 MB into the ServerFn, which would exceed
-      # Lambda's 250 MiB unzipped limit. Upload BEFORE the CDK deploy so the new
-      # server function finds every package the moment it goes live. Idempotent.
-      - name: Upload book packages to S3
-        run: npx tsx scripts/book/upload-book-packages-to-s3.ts
+      # instead of bundling all ~37.6 MB into the ServerFn (which would exceed
+      # Lambda's 250 MiB unzipped limit). The packages live at
+      # s3://<content-bucket>/book-content/packages/<bookId>.v21.json and are kept
+      # in sync OUT OF BAND via scripts/book/upload-book-packages-to-s3.ts, run with
+      # a profile that has s3:PutObject on the content bucket. They are NOT uploaded
+      # in this workflow: the GitHub OIDC deploy role (ChapterFlowGitHubDeploy) only
+      # has CDK/CloudFormation rights, not direct s3:PutObject on the content bucket,
+      # so an in-workflow upload fails with AccessDenied.
+      # TODO: move this into a CDK BucketDeployment in the frontend stack (which uses
+      # its own managed-Lambda role) for automatic in-deploy sync — see PR follow-up.
 
       - name: CDK deploy frontend stack
         working-directory: infra
