@@ -104,3 +104,47 @@ test("planOpeners: each prone class is still DEALT at least once over a long boo
   for (const ids of Object.values(plan.allocation)) for (const id of ids) { const c = proneOf.get(id); if (c) seen.add(c); }
   for (const c of proneClasses) assert.ok(seen.has(c), `prone class "${c}" was never dealt over a 12-chapter book`);
 });
+
+test("planOpeners: no opener archetype saturates a realistic-length book — spine + prone (quiet spine-cap fix)", () => {
+  // PR #271 capped the PRONE classes but left the non-prone spine uncapped — on the quiet run a single
+  // spine opener (hand_hovers) recurred across ~1/3 of chapters and the sweep flagged it MINOR. The fix
+  // grew the spine 8->12 and chose a chapter step that SPREADS each archetype across the book, so no
+  // archetype — spine OR prone — covers more than ~60% of a realistic-length book. The step-5 slot
+  // spread bounds every N in 9..16 below 60%; N=10 is the TIGHTEST (its hard ceiling is exactly
+  // 6 in-window chapters / 10 = 60%), so this assertion is a structural bound, not a sampled fluke.
+  // (The deal-time guard's cap is looser — max(0.6, contiguousFloor) — but the spread keeps ACTUAL
+  // coverage at/under 60% here; this test asserts that stronger spread property.)
+  const books: string[] = [];
+  for (let i = 0; i < 120; i++) books.push(`zz-cov-${i}`);
+  books.push("the-organized-mind", "quiet", "fooled-by-randomness", "the-happiness-hypothesis", "nudge");
+  for (let N = 9; N <= 16; N++) {
+    for (const book of books) {
+      const plan = planOpeners(book, 1, N, 6); // the deal-time assertMaxCoverage throws if any archetype saturates
+      const coverage = new Map<string, number>();
+      for (const ids of Object.values(plan.allocation)) {
+        for (const id of new Set(ids)) coverage.set(id, (coverage.get(id) ?? 0) + 1);
+      }
+      for (const [id, count] of coverage) {
+        assert.ok(count / N <= 0.6 + 1e-9, `N=${N} ${book}: opener "${id}" covers ${count}/${N} chapters (>60%)`);
+      }
+    }
+  }
+});
+
+test("planOpeners: short books deal without a coverage false-throw (the PR #271 false-throw trap)", () => {
+  // The N-aware cap (max(0.6, contiguous-deal floor)) must stay satisfiable for short books too — a flat
+  // 0.6 cap would false-throw at N=6..8, where the linear deal's unavoidable floor exceeds 60%. (This is
+  // the same class of bug that the prone anyCap=1 fix avoided in PR #271.) planOpeners() throwing here = a
+  // regressed cap. The structural ceiling over N=6..8 is 4/6 = 66.7%, comfortably under the 70% sanity bound.
+  for (let N = 6; N <= 8; N++) {
+    for (let i = 0; i < 120; i++) {
+      const book = `zz-short-${i}`;
+      const plan = planOpeners(book, 1, N, 6); // must not throw
+      const coverage = new Map<string, number>();
+      for (const ids of Object.values(plan.allocation)) for (const id of new Set(ids)) coverage.set(id, (coverage.get(id) ?? 0) + 1);
+      let max = 0;
+      for (const [, c] of coverage) max = Math.max(max, c / N);
+      assert.ok(max <= 0.7 + 1e-9, `N=${N} ${book}: max coverage ${(max * 100).toFixed(0)}% exceeded the 70% short-book sanity bound`);
+    }
+  }
+});
