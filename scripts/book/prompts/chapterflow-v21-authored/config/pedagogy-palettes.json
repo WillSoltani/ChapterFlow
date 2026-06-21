@@ -23,12 +23,12 @@
     },
     {
       "id": "one-number-contrast",
-      "definition": "Lead with one number that creates contrast before the lesson arrives. The number should measure time, count, money, or frequency, not decorate the sentence. Write the numbers as digits. Miniature example: \"Three minutes of checking saves the 30-minute apology nobody planned to make.\"",
+      "definition": "Lead with ONE concrete, grounded number (time, count, money, or frequency — a real figure from the chapter's sources/groundedNumbers, never invented) and let it land before the lesson. Write numbers as digits. Do NOT manufacture a gimmicky \"N versus M\" contrast or a marketing-copy ratio (\"1 classroom did more damage than 10 parties\" reads like an ad) — one real number, stated plainly, that makes the reader stop. Miniature example: \"41 tabs open, and not one of them was the thing she sat down to do.\"",
       "auditClass": "numeric"
     },
     {
       "id": "ratio-reversal",
-      "definition": "Use a small ratio or percentage — WRITE THE NUMBERS AS DIGITS — to reveal that the visible problem is not where most of the damage lives. Avoid second person and avoid a question ending. Miniature example: \"2 of the 10 errors caused almost all of the rework.\"",
+      "definition": "Use a small, GROUNDED ratio or percentage (real figures from the chapter, never invented; WRITE THE NUMBERS AS DIGITS) to show the visible problem is not where most of the damage lives. Avoid second person and avoid a question ending. It must read like a person noticing something true, not a billboard slogan — no manufactured \"N vs M\" contrast for effect. Miniature example: \"2 of the 10 steps caused almost all the rework; the other 8 were never the problem.\"",
       "auditClass": "numeric"
     },
     {
@@ -236,8 +236,8 @@
     },
     {
       "id": "compare-two-responses",
-      "definition": "Present two plausible responses and ask which one better fits the chapter's principle, or why one fails.",
-      "example": "Two managers see the same warning sign: one adds a checklist, the other asks for more effort. Which response fits the chapter best?"
+      "definition": "Present two plausible responses a real person might give and ask which one holds up — phrased as a choice someone actually faces, NOT exam-speak (\"which best preserves the nuance\"). Put a recognizable human in it.",
+      "example": "Your teammate wants to drop the review step since nothing failed last month; you think it still earns its place. Who has the better read, and why?"
     },
     {
       "id": "data-reading",

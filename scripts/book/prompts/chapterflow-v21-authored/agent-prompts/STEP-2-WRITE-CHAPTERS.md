@@ -625,6 +625,8 @@ labels telegraph the key by valence and REVISE the quiz_distractor_quality axis)
 
 2. **Scenario stems.** Good: "A hiring manager scoring resumes after a late dinner notices that one candidate…". Bad: "Which of these is a heuristic?".
 
+2.5. **Make it feel like life, not an exam.** Prefer a recognizable real-world moment — a friend's claim, a message you might get, a choice you'd actually face — over abstract exam-speak. Bad (exam-speak): "Which response best preserves the nuance?" / "Which correction best fits the data problem?". Good: "Your friend says, 'Every millionaire I follow wakes up at 5 a.m., so that must be the secret.' What's the first question to ask?". A reader should recognize the situation before they reason about it. (Second person in the QUIZ stem is fine — it's framing, not a scene with a named cast.)
+
 3. **Distractors are plausible mistakes.** Three defensible choices; only one actually follows from the chapter's move. Distractors should reflect the exact heuristic or bias the chapter is warning about.
 
 4. **BP15 — No absolute words in wrong distractors.** Never `always`, `never`, `automatically`, `impossible`, `guaranteed`, `entirely`, `ever`, `forever`, `completely`, `wholly`, `absolutely`, `under no circumstances`, `in all cases` in any non-correct choice. Replace with scenario-anchored qualifiers: "in most cases," "when the cue is salient," "for the kind of judgments this chapter describes."
