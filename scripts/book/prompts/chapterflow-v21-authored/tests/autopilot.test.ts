@@ -23,6 +23,7 @@ import {
   sliceBarPackToChapter,
   roleFromCard,
   resolveDeps,
+  summarizeRoundDrivers,
   type AutopilotDeps,
   type BrokerResult,
 } from "../src/orchestrator/autopilot.js";
@@ -908,4 +909,35 @@ test("roleFromCard is variant-aware: bar-tiebreak maps to bar+variant (NOT 'unkn
   assert.equal(primary.chapter, 3);
   assert.equal(primary.variant, undefined, "the PRIMARY bar read has no variant (so its presence check ≠ a t2 card's)");
   assert.equal(roleFromCard("/s/qc/zz/r1/task-cards/confirm/ch01.md").role, "confirm");
+});
+
+test("summarizeRoundDrivers: the QC halt names the ACTUAL failed checks per chapter (not a hardcoded source-limit guess)", () => {
+  const ROUND = "r20260101000000-fedcba";
+  const matrixPath = evidenceMatrixPath("zz-drivers", ROUND);
+  try {
+    mkdirSync(dirname(matrixPath), { recursive: true });
+    writeFileSync(matrixPath, JSON.stringify({
+      schemaVersion: "qc-evidence-matrix-v1", bookId: "zz-drivers", roundId: ROUND,
+      chapters: [
+        { chapterNumber: 1, finalVerdict: "REVISE", reason: "x", checks: { sweep: "FAIL", confirmRead: "REVISE", barRead: "GREEN", sourceV2: "PASS", repairLedger: "NO_OPEN_BLOCKERS", majors: "NOT_APPLICABLE" }, majorStatus: { book: [], chapter: [] } },
+        { chapterNumber: 2, finalVerdict: "PUBLISHABLE", reason: "ok", checks: { sweep: "PASS", confirmRead: "PUBLISHABLE", barRead: "GREEN" }, majorStatus: { book: [], chapter: [] } },
+        { chapterNumber: 3, finalVerdict: "REVISE", reason: "x", checks: { confirmRead: "REVISE", barRead: "GREEN" }, majorStatus: { book: [], chapter: [] } },
+      ],
+    }), "utf8");
+    const summary = summarizeRoundDrivers("zz-drivers", ROUND);
+    // ch01 names its real failures, ch03 names its real failure, ch02 (PUBLISHABLE) is excluded.
+    assert.match(summary, /ch01:.*sweep/, "must name ch01's sweep failure");
+    assert.match(summary, /ch01:.*confirmRead/, "must name ch01's confirmRead failure");
+    assert.match(summary, /ch03:.*confirmRead/, "must name ch03's confirmRead failure");
+    assert.ok(!/ch02/.test(summary), "a PUBLISHABLE chapter must not appear in the halt drivers");
+    assert.ok(!/barRead/.test(summary), "a GREEN check must not be reported as a driver");
+    assert.ok(!/repairLedger/.test(summary), "a clean repair ledger (NO_OPEN_BLOCKERS) must not be reported as a driver");
+    assert.ok(!/majors/.test(summary), "an N/A majors check (NOT_APPLICABLE) must not be reported as a driver");
+  } finally {
+    rmSync(dirname(matrixPath), { recursive: true, force: true });
+  }
+});
+
+test("summarizeRoundDrivers: a missing/unreadable matrix yields an empty string (fail-safe, never throws)", () => {
+  assert.equal(summarizeRoundDrivers("zz-no-such-book", "r20990101000000-000000"), "");
 });

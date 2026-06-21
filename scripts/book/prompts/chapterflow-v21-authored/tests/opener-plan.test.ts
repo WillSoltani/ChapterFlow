@@ -59,3 +59,48 @@ test("loadScenarioOpeners: the palette is large enough and has unique ids", () =
   assert.ok(openers.length >= 6, "need a real palette");
   assert.equal(new Set(openers.map((o) => o.id)).size, openers.length, "opener ids must be unique");
 });
+
+test("planOpeners: a scene-skeleton-PRONE opener class never saturates the book (the-organized-mind fix)", () => {
+  const openers = loadScenarioOpeners();
+  const proneOf = new Map(openers.map((o) => [o.id, o.proneClass]));
+  const proneClasses = [...new Set(openers.map((o) => o.proneClass).filter(Boolean))] as string[];
+  assert.ok(proneClasses.length > 0, "palette must tag at least one scene-skeleton-prone class");
+  for (let N = 1; N <= 14; N++) {
+    const plan = planOpeners(`zz-prone-${N}`, 1, N, 6);
+    const coverage = new Map<string, number>();
+    for (let n = 1; n <= N; n++) {
+      const classesInChapter = new Set(
+        (plan.allocation[n] ?? []).map((id) => proneOf.get(id)).filter(Boolean) as string[],
+      );
+      for (const c of classesInChapter) coverage.set(c, (coverage.get(c) ?? 0) + 1);
+    }
+    for (const c of proneClasses) {
+      const share = (coverage.get(c) ?? 0) / N;
+      // The round-robin guarantee: each prone class recurs in ~1/(classes+1) of chapters — always a MINORITY,
+      // so the book-wide sweep can no longer flag it as cross-chapter scene-skeleton templating.
+      assert.ok(share <= 0.5, `N=${N}: prone class "${c}" covers ${(share * 100).toFixed(0)}% of chapters (must stay a minority)`);
+    }
+  }
+});
+
+test("planOpeners: every chapter draws all but at most one opener from the non-prone spine", () => {
+  const openers = loadScenarioOpeners();
+  const proneIds = new Set(openers.filter((o) => o.proneClass).map((o) => o.id));
+  const plan = planOpeners("zz-spine-check", 1, 12, 6);
+  for (const [n, ids] of Object.entries(plan.allocation)) {
+    const proneCount = ids.filter((id) => proneIds.has(id)).length;
+    assert.ok(proneCount <= 1, `ch${n} has ${proneCount} prone openers (at most 1 allowed)`);
+  }
+});
+
+test("planOpeners: each prone class is still DEALT at least once over a long book (rationed, not eliminated)", () => {
+  // Guards against a degenerate deal that just drops prone openers entirely — they're a legitimate
+  // variety, capped to a minority, not banned. Over a 12-chapter book every prone class should appear.
+  const openers = loadScenarioOpeners();
+  const proneOf = new Map(openers.map((o) => [o.id, o.proneClass]));
+  const proneClasses = [...new Set(openers.map((o) => o.proneClass).filter(Boolean))] as string[];
+  const plan = planOpeners("zz-prone-dealt", 1, 12, 6);
+  const seen = new Set<string>();
+  for (const ids of Object.values(plan.allocation)) for (const id of ids) { const c = proneOf.get(id); if (c) seen.add(c); }
+  for (const c of proneClasses) assert.ok(seen.has(c), `prone class "${c}" was never dealt over a 12-chapter book`);
+});

@@ -21,12 +21,14 @@ Open `.chapterflow/runs/<bookId>/<runId>/sidecars/source/ch<NN>.source.json`. No
 
 Every field you write must use specific terminology and proper nouns from these sources. A scenario that could appear in any chapter of any book is wrong — it's drifted from the source and is the root cause of every templating defect downstream.
 
+Numbers carry the same rule. Any SPECIFIC factual count or statistic in ANY field (hook, scenario, breakdown, keyTakeaway) — a study figure, a tally like "3 checkboxes," a count like "eight winning quarters" — must come from this chapter's `groundedNumbers`/`sourceFacts`. If the exact number is not grounded, write it qualitatively ("a short checklist," "several strong quarters") or use a number the source DOES establish (a verified year). The blind confirm read REVISEs an invented precise number as a `factual_accuracy` major. Years and chapter-number tokens are exempt.
+
 ### Scenarios (`examples[i].scenario`)
 
 1. Anchor in ONE of this chapter's `namedExamples` or its `centralConcept`. Each scenario should reference at least one proper noun from the sidecar — a real company, person, product, place, or framework name. `SC9` fires at chapter-gate time if a scenario contains no source-grounded anchor.
 2. Use a DIFFERENT scene structure across scenarios — vary opener style (time-first, place-first, dialogue-led, data-first, role-action), vary protagonist role, vary stakes. Do NOT use the same skeleton with different nouns substituted.
 3. `scenario`: 280–520 chars, usually 55–95 words.
-4. **The named source case is the STAGE; the dealt venue is fallback-only.** The case (and `planSpec.requiredBeat`) is the binding setting — the person in it is the scene's actor. If the dealt `planSpec.venue` can't host that case, DISCARD the venue and stage the case in its own setting. Never relocate the scene to the venue and demote the real case to notes/a report "glowing on a phone," and never invent a spectator who reads the case off a screen — that is the anchor-as-prop failure (deterministic blocker `SL3`).
+4. **The named source case is the STAGE; the dealt venue is fallback-only.** The case (and `planSpec.requiredBeat`) is the binding setting — the person in it is the scene's actor. If the dealt `planSpec.venue` can't host that case, DISCARD the venue and stage the case in its own setting. Never relocate the scene to the venue and demote the real case to notes/a report "glowing on a phone," and never invent a spectator who reads the case off a screen — that is the anchor-as-prop failure (deterministic blocker `SL3`). The same failure in PHYSICAL form is just as wrong: the source named, then parked as set-dressing: a book that "sits open" on a desk, a study "in her bag for later," a phrase left "in the margin," a citation "beside her name." The named case must drive the scene's ACTION and logic; it must never sit in the scene as an inert object the reader is told about.
 5. **Never write scaffolding into prose.** A format id (`coach_talk`, `inner_monologue`, `predict_reveal`, …) or a Title-Case paste of the `planSpec.domain` ("Peyton's Teacher Setting Terms For…") are planning notes, not reader text. They block at chapter-gate (`SL1`/`SL2`).
 6. **Where you have latitude, stage it in modern, everyday life.** When the case has no fixed real-world stage, or you are illustrating with an author's invented device (the sidecar marks it `realWorld: false`), set the scene somewhere your reader actually lives *today* — a group chat or text thread, a phone notification, a food-delivery or rideshare wait, a commute, a shared streaming queue, an open-plan office, a kitchen — not a generic boardroom, a podium, or an abstract "imagine a person who…" stage. Prefer the relational/communication and domestic venues on your dealt palette over the occupational ones; a contemporary, relatable surface is what makes the lesson land and stops the prose reading like a textbook. This is the ONLY freedom rule 4 grants: a **real** source case keeps its own setting — never modernize a genuinely dated case to feel current (SC9/SL3 catch that), but DO render the reader's half of the scene in the present day.
 
@@ -222,20 +224,26 @@ generated. The frame to BREAK:
 Concretely: a clock-time opener is fine in *one or two* scenes, never as the default for
 all six. The "must decide whether A or B" / "one option is X, the other is Y" binary is a
 frame, not a scene — use it at most once. Give each of the six scenes a genuinely
-different **construction**: one opens mid-action, one on a line of dialogue, one on a
-number, one on an aftermath, one on a place, one on a decision already made. If you can
-describe all six scenes with one sentence template, you have failed R6 — tear them out
-and rebuild each from a different `namedExample`. (And per the name plan: one name = one
-person across breakdown → examples → quiz; never reuse a name for a second character.)
+different **construction**, and take it from your dealt OPENER GRAMMAR (R6.1) — do not reach
+for the same shells every chapter. In particular the after-action ("the post was already
+deleted…", "she had already decided…") and clipped-count ("N. That was the count.") openers
+are scene-skeleton-prone: the deal hands them to only a FEW chapters, so use them ONLY when
+your card deals one — otherwise open IN the action (mid-action, a line of dialogue, a
+gesture, a contrast, a sensory beat). If you can describe all six scenes with one sentence
+template, you have failed R6 — tear them out and rebuild each from a different
+`namedExample`. (And per the name plan: one name = one person across breakdown → examples →
+quiz; never reuse a name for a second character.)
 
-**R6.1 — Use your dealt OPENER GRAMMAR.** Your authoring card now deals each example a
-distinct opening **construction** (`example[i] → mid_action / line_of_dialogue / bare_number
-/ aftermath_first / object_in_motion / decision_already_made / sensory_detail /
-direct_observation`). Open each scenario with its dealt construction. It is a FORM, not a
-script — write your own concrete image; never copy the example wording. Do **not** open with
-`At the [venue], …` or `On [day], …`: the dealt venue is the *setting*, not the first clause
-(that stamp is exactly what flattens a book — factfulness shipped 61% of scenes opening that
-way).
+**R6.1 — Use your dealt OPENER GRAMMAR.** Your authoring card deals each example a distinct
+opening **construction** (`example[i] → <archetype>`, e.g. `mid_action`, `line_of_dialogue`,
+`in_mid_decision`, `interruption_beat`, `contrast_at_hand`, `sensory_detail`). Open each
+scenario with the exact construction your card deals — do not pick from this list yourself,
+and do not reach for the scene-skeleton-prone shells (`aftermath_first`, `decision_already_made`,
+`bare_number`, `object_in_motion`) unless your card explicitly deals one; those are rationed to
+a few chapters on purpose. It is a FORM, not a script — write your own concrete image; never
+copy the example wording. Do **not** open with `At the [venue], …` or `On [day], …`: the dealt
+venue is the *setting*, not the first clause (that stamp is exactly what flattens a book —
+factfulness shipped 61% of scenes opening that way).
 
 **R6.2 — Keep the setting cue without a stamp (C2 / A13).** A scenario still needs a concrete
 scene cue (`narrative.specific_scene`/C2), but it does **not** have to be a time/place stamp:
@@ -650,7 +658,7 @@ Spaced-repetition cards.
 
 1. `title` is a NEW skill name, NOT the chapter title. Example: "Run a 10-minute pre-mortem" not "Pre-mortems".
 2. `coreSkill` describes the action the reader takes, not the concept.
-3. `ifThenPlans` are 3-5 items. Each must be a concrete trigger ("If your inbox has more than 20 unread items by 10 AM…") followed by a concrete action ("…then close the inbox tab and open the calendar instead.").
+3. `ifThenPlans` are 3-5 items, and ALL of them apply the SAME named move from your `implementationPlan.title` to a DIFFERENT trigger — one tool used several ways, not a list of unconnected tips. Each = a concrete trigger ("If your inbox has more than 20 unread items by 10 AM…") + a concrete action that PERFORMS that named move ("…then run the load-draw: write the three places the work is waiting and close the first one."). An if-then whose action ignores the chapter's named tool is a `plan_actionability` REVISE — the reader is left with disconnected advice instead of one practiced loop.
 4. `twentyFourHourChallenge` is one specific 24-hour commitment with a verifiable outcome.
 5. `weeklyPractice` is one practice that compounds across a week.
 6. No banned phrases. No em dashes. No meta-references.

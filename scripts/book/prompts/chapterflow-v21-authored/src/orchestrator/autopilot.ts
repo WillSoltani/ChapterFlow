@@ -165,7 +165,7 @@ export type AutopilotDeps = {
 
 export type AutopilotOptions = {
   bookId: string;
-  maxRepairRounds?: number; // default 3
+  maxRepairRounds?: number; // default 4
   maxParallel?: number; // default 6
   autoPublish?: boolean; // default false → HALT at ready-to-publish
   plan?: boolean; // dry-run: print the spawn plan, take no action
@@ -229,6 +229,33 @@ export function repairTargetChapterNumbers(bookId: string, roundId: string): Set
     }
   } catch { /* no matrix yet → empty → whole-prompt single-session fallback */ }
   return out;
+}
+
+/** Evidence-derived halt summary: per non-PUBLISHABLE chapter in a round's matrix, name the
+ *  ACTUAL failed checks (sweep / confirmRead / barRead / sourceV2 / …) instead of a hardcoded
+ *  guess. Lets the QC halt point the operator at the real driver (e.g. cross-chapter sweep
+ *  templating vs a confirm factual finding) rather than blaming "source/research". "" when the
+ *  matrix is unreadable or every chapter passed. */
+export function summarizeRoundDrivers(bookId: string, roundId: string): string {
+  try {
+    const matrix = JSON.parse(readFileSync(evidenceMatrixPath(bookId, roundId), "utf8"));
+    // Non-failing check values: PASS/GREEN/PUBLISHABLE plus the clean repair-ledger state and the
+    // not-applicable evidence state (else a REVISE chapter's clean ledger / N/A majors get falsely
+    // named as drivers — see finalize.ts repairLedger / EvidenceStatus values).
+    const ok = new Set(["PASS", "GREEN", "PUBLISHABLE", "NO_OPEN_BLOCKERS", "NOT_APPLICABLE"]);
+    const parts: string[] = [];
+    for (const d of matrix?.chapters ?? []) {
+      if (!d?.finalVerdict || d.finalVerdict === "PUBLISHABLE") continue;
+      const failed = Object.entries(d.checks ?? {})
+        .filter(([, v]) => !(ok.has(String(v)) || v === true))
+        .map(([k]) => k);
+      const ch = `ch${String(d.chapterNumber ?? "?").padStart(2, "0")}`;
+      parts.push(failed.length ? `${ch}:${failed.join("+")}` : `${ch}:${d.finalVerdict}`);
+    }
+    return parts.join(", ");
+  } catch {
+    return "";
+  }
 }
 
 export function chapterNumberFromCard(path: string): number | null {
@@ -744,7 +771,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   if (typeof bookId !== "string" || bookId.length === 0 || normSlug(bookId) !== bookId) {
     return mkHalt(String(bookId), "research", "governance", `invalid bookId "${bookId}" — must be a canonical lowercase slug (got normSlug="${typeof bookId === "string" ? normSlug(bookId) : "?"}"). Refusing to run: a non-canonical id takes a different run lock than its normalized state (mutex bypass) and can traverse lock/state/temp paths.`);
   }
-  const maxRepair = opts.maxRepairRounds ?? 3;
+  const maxRepair = opts.maxRepairRounds ?? 4; // 4 (was 3): one extra round of headroom so a single noisy QC round doesn't doom convergence; the absolute loop cap (MAX_LOOP_ITERS) still backstops a treadmill.
   const maxParallel = opts.maxParallel ?? 6;
   const autoPublish = opts.autoPublish ?? false;
 
@@ -965,7 +992,8 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     }
     // REVISE → repair, but never past the bound and never without diagnose.
     if (attempt === maxRepair) {
-      return mkHalt(bookId, "qc", "content", `QC still REVISE after ${maxRepair} repair rounds — escalate (likely a source/research limitation). Last round: ${round.roundId}`);
+      const drivers = summarizeRoundDrivers(bookId, round.roundId);
+      return mkHalt(bookId, "qc", "content", `QC still REVISE after ${maxRepair} repair rounds — escalate. Last round ${round.roundId} unresolved: ${drivers || "see qc-diagnose"}. (If these are sweep/templating findings it is likely cross-chapter VARIETY, not a source limit; if confirmRead/factual, check source grounding.)`);
     }
     const diagnose = await deps.runVerb(["qc-diagnose", bookId, "--round", round.roundId]);
     deps.log(`[autopilot] qc-diagnose (round ${round.roundId}):\n${diagnose.stdout.slice(0, 600)}`);
