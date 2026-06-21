@@ -221,8 +221,14 @@ export function sweepFamilyForRepairClass(repairClass: unknown): SweepFamily | n
   const templatingSignal = /reuse|reused|repeat|repetition|recur|recurr|duplicat|\bdupe\b|identical|\bsame\b|template|stamp|uniform|\becho\b|copy|carbon|boilerplate|formula/;
   if (!templatingSignal.test(c) && /\bfact|numeric|number|\bstats?\b|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // clearly factual (no repetition signal) → out of scope → drop. \bstats?\b matches stat/stats but NOT static/statement.
   if (/scene|frame|skeleton|vignette|opening|opener/.test(c)) return "scene_skeleton";
-  if (/persona|\bname|character|protagonist/.test(c)) return "persona_drift";
-  if (/venue|location|place|stamp|clock|timing|setting/.test(c)) return "location_stamping";
+  if (/persona|\bname|\bcharacter\b|protagonist/.test(c)) return "persona_drift"; // \bcharacter\b so "characteristic"/"characterization" don't misroute a repeated-unit finding into persona_drift (a non-distinctiveness family → false gate, same class as the place/location fix below)
+  // \b on place/location/setting so "replace"/"allocation"/"resetting" can't misroute a
+  // repeated-unit finding into location_stamping. Without this, "replace-repeated-rhetorical-unit"
+  // matched /place/ inside "rePLACE" → location_stamping (not a distinctiveness-required family),
+  // so nondistinctiveRepetitionQuote could not demote its non-distinctive quote and it gated the
+  // round (the the-organized-mind round-3 8/9→3/9 false flip). stamp stays unanchored so "stamping"
+  // still routes here.
+  if (/venue|\blocation\b|\bplace\b|stamp|clock|timing|\bsetting\b/.test(c)) return "location_stamping";
   return "repeated_unit"; // default templating bucket (cards / plans / practice / quiz / hooks)
 }
 

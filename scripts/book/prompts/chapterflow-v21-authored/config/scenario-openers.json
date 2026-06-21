@@ -1,12 +1,17 @@
 {
+  "_comment": "Scenario-opener archetypes dealt per example by src/librarian/openerPlan.ts. `proneClass` tags a scene-skeleton-prone construction (after-action / clipped-count / object-in-motion) — openerPlan caps each prone CLASS to a minority of chapters (deal-time saturation guard) so the book-wide sweep can't flag it as cross-chapter templating. The 8 untagged archetypes are the non-prone 'spine' that fills most slots.",
   "openers": [
     { "id": "mid_action", "definition": "Open in the MIDDLE of a physical action already underway — a verb in the first clause, no scene-setting preamble (\"Renee slides the report back across the desk before the meeting even starts.\")." },
     { "id": "line_of_dialogue", "definition": "Open on a line of spoken DIALOGUE (or a terse quoted instruction), then reveal who said it (\"'Ship it tonight,' the director says, and the room goes quiet.\")." },
-    { "id": "bare_number", "definition": "Open on a concrete NUMBER or measurement and let it land before any context (\"Forty-one tabs. That was the count when the laptop finally froze.\")." },
-    { "id": "aftermath_first", "definition": "Open on the RESULT or aftermath, then double back to how it happened (\"The post was already deleted by the time the apology went out.\")." },
-    { "id": "object_in_motion", "definition": "Open on a named concrete OBJECT doing something, with the person secondary (\"The dashboard turned red at 2:14, three hours after anyone last looked at it.\")." },
-    { "id": "decision_already_made", "definition": "Open just AFTER a decision — the character is already ACTING on a choice the reader hasn't seen (\"She had already said no twice, so the third email didn't get a reply.\")." },
+    { "id": "bare_number", "proneClass": "clipped_count", "definition": "Open on a concrete NUMBER or measurement and let it land before any context (\"Forty-one tabs. That was the count when the laptop finally froze.\")." },
+    { "id": "aftermath_first", "proneClass": "after_action", "definition": "Open on the RESULT or aftermath, then double back to how it happened (\"The post was already deleted by the time the apology went out.\")." },
+    { "id": "object_in_motion", "proneClass": "object_motion", "definition": "Open on a named concrete OBJECT doing something, with the person secondary (\"The dashboard turned red at 2:14, three hours after anyone last looked at it.\")." },
+    { "id": "decision_already_made", "proneClass": "after_action", "definition": "Open just AFTER a decision — the character is already ACTING on a choice the reader hasn't seen (\"She had already said no twice, so the third email didn't get a reply.\")." },
     { "id": "sensory_detail", "definition": "Open on a specific SENSORY detail (a sound, a texture, a temperature) that grounds the scene before the task (\"The phone buzzed against the wood, and the buzz was the whole problem.\")." },
-    { "id": "direct_observation", "definition": "Open on a flat, declarative OBSERVATION about the situation — no character yet, just the state of things (\"Every plan on the board was a week behind, and nobody had said so out loud.\")." }
+    { "id": "direct_observation", "definition": "Open on a flat, declarative OBSERVATION about the situation — no character yet, just the state of things (\"Every plan on the board was a week behind, and nobody had said so out loud.\")." },
+    { "id": "in_mid_decision", "definition": "Open IN the live act of choosing — the person already in motion on one path, the choosing visible in what their hands or words are doing right now, NOT a stop-and-weigh A-vs-B binary (\"Dana keys in the override while the warning box is still loading.\")." },
+    { "id": "interruption_beat", "definition": "Open at the instant something INTERRUPTS the person's task in progress (\"Marcus is three lines into the reply when the second alert lands.\")." },
+    { "id": "contrast_at_hand", "definition": "Open on a vivid CONTRAST the person faces right now, both sides concrete (\"The cleared desk sat next to the buried one, and both were hers.\")." },
+    { "id": "hand_hovers", "definition": "Open on one specific physical GESTURE mid-task — the small motion that carries the stakes (\"Her cursor hovers over send, then drifts back to the draft.\")." }
   ]
 }
