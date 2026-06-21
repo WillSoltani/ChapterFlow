@@ -2177,6 +2177,18 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const chaptersDir = resolve(PIPE, "state/chapters");
   const blocks: string[] = [];
   const cardMeta: Array<{ number: number; chapterId: string }> = [];
+  // Soft-banned tics (book-wide). The tight-budget ones recur across mutually-
+  // blind chapters and blow a 0–3/book budget that NO single chapter author can
+  // see (post-hoc F4 at book-gate is the only enforcement) — the-undoing-style
+  // "treats it as" ×6 vs budget 2. Surface the near-forbidden ones to every
+  // author here, sourced from banned-phrases.json so it can't drift.
+  const { loadBannedPhrases } = await import("./critics/shared.js");
+  const softBanTics = ((loadBannedPhrases().softBanned ?? []) as Array<{ phrase: string; perBookBudget: number }>)
+    .filter((s) => (s.perBookBudget ?? 0) <= 3)
+    .map((s) => `"${s.phrase}" (≤${s.perBookBudget}/book)`);
+  const softBanLine = softBanTics.length
+    ? `• SOFT-BANNED TICS (book-wide budget — treat as near-forbidden; QC's F4 REVISEs the whole book when the count is blown): avoid ${softBanTics.join(", ")}. Each reads fine once, but recurs across mutually-blind chapters and blows a tiny per-book budget; prefer a plain verb or a restructure (e.g. "treats it as" → "reads … as", "counts … as", "sees … as").\n`
+    : "";
   let pending = 0;
   let done = 0;
   for (const ch of flat) {
@@ -2342,6 +2354,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         `• Follow agent-prompts/STEP-2-WRITE-CHAPTERS.md (the authoring law).\n` +
         `• Save to state/chapters/${chapterId}.v21-native.chapter.json\n` +
         `• PLAIN LANGUAGE (R2.7 — product direction): every abstract claim is followed within TWO sentences by something the reader can SEE (a person, a scene, a number). Say it like you'd say it to a smart friend at lunch. Define terms-of-art in everyday words the first time; never stack two undefined abstractions in one sentence. Each breakdown tier OPENS concrete, not with a thesis. Short common words win. This applies to EVERY reader-facing field (quiz, cards, examples, hook, keyTakeaway, plan), not just the breakdown — a gate (E7) flags fancy words with their plain swap (utilize→use, leverage→use, facilitate→help) and any sentence over 34 words (over 24 in a one-liner). Target grade 7–9.\n` +
+        softBanLine +
         `• TWO-PASS: after drafting, self-critique against agent-prompts/FIELD-PURPOSE-CONTRACTS.md (concept-as-actor, templated loops, echo-template explanations, bare-label card fronts, proposition-not-action whatToDo) AND against R2.7 (read your fastRead aloud — if a sentence wouldn't survive being said to a friend, rewrite it) and FIX what you find before gating.\n` +
         `• THE REAL TARGET IS THE PUBLISHABLE BAR, NOT THE GATE. QC's verdict comes from a reviewer scoring your chapter on 9 weighted axes (PASS = ≥85/100, no axis <0.6). A gate-clean chapter can still be REVISE'd. BEFORE you finish, run \`npx tsx src/cli.ts publishable-rubric\` and self-score this draft on every axis; fix any axis you'd score below ~0.85 and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy). The biggest levers: derive each quiz key yourself from the source and confirm the keyed index, make distractors real misconceptions, give each example a concrete acting scene with a decision, keep prose concrete + plain.\n` +
         `• gate-chapter majors (C2/E4 → example_coherence/prose_coherence, E7/E1/A13 → prose readability, C23 → example variety) are NOT free hints — QC's finalizer BLOCKS the chapter on any unresolved major, so handing one off costs a whole QC round downstream. TRIAGE every major before you finish: fix the genuine scene/sentence defect (most are real). The gold reference books trip a few of these on genuinely good prose — leave ONLY a major you can defend as that kind of false positive; never hand off one you simply didn't look at. EXCEPTION — a DETERMINISTIC register ban (B-class: B4 banned-phrase, B5 em-dash, and the other lexical bans) is house POLICY, not a prose-quality call: it can NEVER be defended as a false positive. The phrase is forbidden no matter how good the sentence reads — rewrite it. (digital-minimalism ch1 self-attested a banned-phrase B4 as an FP twice and ate two QC rounds.)\n` +
