@@ -77,6 +77,14 @@ const PLAIN_WORD_SWAPS: ReadonlyArray<{ re: RegExp; simple: string }> = [
   { re: /\bthe majority of\b/i, simple: "most" },
   { re: /\bhas the ability to\b/i, simple: "can" },
   { re: /\bhave the ability to\b/i, simple: "can" },
+  // Coined academic NOUN-PHRASE labels surfaced by editorial review — a smart-sounding
+  // compound where plain words land faster. CURATED LITERALS only (never a general
+  // "coined compound" detector, which would nuke legit terms-of-art). The write-side
+  // rule does the heavy lifting; these lock in the known offenders so they can't recur.
+  { re: /\bexternali[sz](?:e|es|ed|ing|ation)\s+(?:household\s+)?cognition\b/i, simple: "using your space to remember for you" },
+  { re: /\bbounded group management\b/i, simple: "keeping your circle to the people you can keep up with" },
+  { re: /\bchannel norms\b/i, simple: "which messages deserve a text, a call, an email, or no reply" },
+  { re: /\b(?:the leap |moving )?from description to prescription\b/i, simple: "treating what worked for someone as what you must do" },
 ];
 
 function splitSentences(text: string): string[] {

@@ -267,6 +267,7 @@ export type CriticCheckId =
   | "integrity.sentence_sanity"
   | "integrity.length_cap"
   | "integrity.example_title_verb_shell"
+  | "integrity.tryThisNow_complexity"
   | "C11.identical_backs"
   | "C11.mostly_identical_backs"
   | "C12.quiz_template_prompt"

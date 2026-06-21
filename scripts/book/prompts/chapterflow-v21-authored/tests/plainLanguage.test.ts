@@ -26,6 +26,25 @@ test("E7 does NOT flag clean plain prose or legitimate domain terms (no false po
   assert.deepEqual(checkPlainVocabulary(domain, "deepRead"), [], "domain terms must not be flagged");
 });
 
+test("E7 swaps the curated coined academic NOUN-PHRASE labels (editorial review)", () => {
+  const cases: Array<[string, RegExp]> = [
+    ["She is externalizing household cognition with the bowl.", /externali/i],
+    ["This is bounded group management in action.", /bounded group/i],
+    ["He never learned the channel norms for the team.", /channel norms/i],
+    ["The denominator test challenges the leap from description to prescription.", /description to prescription/i],
+  ];
+  for (const [text, re] of cases) {
+    const f = checkPlainVocabulary(text, "deepRead");
+    assert.ok(f.some((x) => re.test(x.message) && x.severity === "minor"), `should swap in: ${text}\n${JSON.stringify(f.map((x) => x.message))}`);
+  }
+});
+
+test("E7 does NOT flag the plain rephrasings or unrelated common words", () => {
+  // The swap targets are specific coined compounds, not their plain components.
+  assert.deepEqual(checkPlainVocabulary("She uses her space to remember for her.", "deepRead"), []);
+  assert.deepEqual(checkPlainVocabulary("The group met to manage the schedule.", "deepRead"), []);
+});
+
 test("E7 flags a run-on prose sentence as a major and lets a short one pass", () => {
   const runOn =
     "When the team decided to protect the public date they also escalated the interface risk, added a new reviewer to every vendor call, and moved acceptance testing ahead of the demo rehearsal because nobody wanted surprises.";
