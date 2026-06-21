@@ -216,6 +216,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SL1.format_tag_leak": "blocker",
   "SL2.domain_label_leak": "major",
   "SL3.spectator_prop": "major",
+  "SL4.citation_prop": "major",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
   "BP16.quiz_answer_length_blocker": "blocker",
