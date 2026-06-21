@@ -19,6 +19,7 @@ construction; a field with nothing real to say falls back on the skeletons below
 
 ## Part 1 — Chapter framing & support fields
 
+**Voice (R2.6):** the TEACHING fields speak to the reader as **you** (`counterintuition`, `keyTakeaway`, `tryThisNow`, `whyItMatters`, the breakdown tiers' lesson). The SCENE fields stay third person about a named person (`scenario`, `whatToDo`) — never rewrite a scenario into "you". Named person in the scene; "you" in the lesson.
 
 ### `examples[i].scenario`
 
@@ -31,6 +32,7 @@ construction; a field with nothing real to say falls back on the skeletons below
 4. Keep the concept *off-stage*: it is what the choice illustrates, not a prop anyone handles.
 5. Vary the scene SHAPE across the chapter's six examples and FIT the staging to the topic. Span venue kinds (domestic, relational, civic, occupational, commercial, recreational) — a personal/relational subject belongs at a kitchen table, on a phone call, or in a text thread, not at a workplace prop. A venue can be a relationship channel, not only a physical place.
 6. The **named source case is the stage, not a prop.** The case in your sidecar (and the planSpec.requiredBeat) is the scene's binding setting; the dealt venue is fallback-only. If the dealt venue can't host the real case, *discard the venue* and stage the case in its own setting. Never relocate the scene to the dealt venue and demote the real case to notes "glowing on a phone," and never invent a spectator who reads the case off a screen — the person in the source case is the actor.
+7. **Open on the recognizable frustration, not a withheld reveal** (stay third person — this is the SCENE). Lead with the pain the reader knows, in the named person's hands; don't bury it in a literary slow-burn. "Brett's junk drawer won't close, and the one receipt he needs is somewhere in the pile" lands; "The self-checkout receipt was already in Brett's junk drawer before he knew why it bothered him" hides the point in a reveal. The first clause should make the reader think *that's me*.
 
 **REJECT:**
 - A concept label made the actor or object — "Cleo lifts a productive vulnerability folder," "Aisha studies scarcity." Ideas can't be held or studied; this fails the reader because it gives them a label to memorize instead of a moment to inhabit (pairs with AC1).

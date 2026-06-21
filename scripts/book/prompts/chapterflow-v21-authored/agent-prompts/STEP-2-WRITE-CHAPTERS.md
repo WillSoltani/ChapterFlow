@@ -147,7 +147,11 @@ masks"):
   triadic abstract-noun list ("shame, comparison, and disengagement" cadence)
   more than once per chapter.
 
-
+**R2.6 — Talk to the reader: second person is the default TEACHING voice (2026 voice direction).** Reader feedback: the content "sounds written for *a reader*, not *me*." The rule of thumb: **tell the STORIES about named people; talk to the READER about what they mean.**
+- The teaching / framing fields address the reader as **you**: `breakdown.fastRead` / `deepRead` / `fullRead` (the lesson the scene teaches), `counterintuition`, `keyTakeaway`, `whyItMatters`, `tryThisNow`. Write "You keep every receipt because one might matter, and the drawer becomes a graveyard of paper" — not "People tend to keep receipts." Detached third-person exposition ("One tends to…", "Most people…", "The reader who…") is the failure mode.
+- **GUARD — example SCENARIOS stay third person.** `examples[].scenario` and `whatToDo` are about a NAMED person doing something (Julien, Priya, Marcus). NEVER rewrite a scenario into "you": the named cast is load-bearing — the name plan, the duplicate-protagonist gate (C23), and the scene-cue gate (C2) all key off named actors. The shape is: a named person in the SCENE, "you" in the LESSON around it.
+- **Hooks follow their dealt shape.** Some dealt hook shapes are second person (`you-threshold`, `your-hidden-default`); others deliberately are not (`one-number-contrast`, `ratio-reversal`, `object-in-motion`). Obey the dealt shape — do not force "you" onto a hook whose shape says otherwise.
+- This is a DEFAULT, not a mandate to cram "you" into every sentence. A teaching line with no "you" is fine if it reads like talking to one person at lunch (R2.5). The point is closing the distance, not hitting a pronoun quota.
 
 **R2.8 — Nothing in this prompt is copy-paste material.** Every example, cue
 phrase, shape definition, and illustrative sentence in this document and in
@@ -493,6 +497,7 @@ Good examples:
 ### Step 2 — `counterintuition` (1-2 sentences)
 
 - The chapter's surprise; what a careful reader did not expect.
+- **Land the punch first, then qualify.** Lead with the sharp claim the reader feels ("A louder voice is not a deeper self"), then add the limit — not the reverse. The nuance is mandatory, but it comes AFTER the line that lands. Do not open by hedging ("This is sometimes true, but…").
 - NO banned opener stems. Forbidden literally: `Most readers assume`, `Most people assume`, `Most readers think`, `Most people think`, `The paradox is`, `The paradox is that`, `The paradox is this`, `The paradox:`, `It feels like`, `The mistake is`, `The mistake is to`, `The mistake is treating`, `The mistaken move is`, `The dangerous move is`, `The last mistake is`, `The easy mistake is`, `The trap is to`, `The trap is not`, `the real lever is`, `the real move is`, `the real test is`, `the hard move is`, `the visible lever is`, `the sharper move is`, `the stronger move is`, `the better move is`, `the hidden cost is`, `the hidden cause is`, `the deeper cause is`.
 - NO counter shape that matches ≥40% of prior chapters' counters. (Read prior counters.) Shapes include: negation-correction ("X is not Y, but Z"), inversion ("you'd expect A but get B"), paradox ("the more you X, the less you Y"), reframe ("what looks like A is actually B"), etc.
 
@@ -536,6 +541,8 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 7. **Concrete openers.** Every paragraph starts with something specific — a scene, a number, a name, a verb. Never with a definition ("Productivity is…") or a generic abstraction.
 8. **Layered, not redundant.** Cross-tier verbatim of 4+ consecutive words is flagged (B8 minor) and excessive cross-tier overlap is a defect. Vary phrasing across tiers.
 9. **Voice charter consistency.** Match the bibliography's `authorVoice.register`. If `plainspoken`, don't drift into `literary` mid-chapter.
+10. **Punch-first ordering.** Order the beats inside a tier: the claim that lands → the reader's recognition ("you've felt this") → why it works → the nuance/limit → the move. Lead with the truth the reader feels, THEN qualify. The nuance stays IN the tier — never drop it (honesty is non-negotiable, and the QC sweep reads a dropped limit as overclaim) — it just comes after the punch, not before it. The slow build that hedges for two sentences before saying anything is the failure.
+11. **Citations live in the DEEP tiers.** Keep `fastRead` (and the hook + counterintuition) citation-free and plain — no named researchers, study years, journals, or framework name-drops up front. Lead with the plain idea ("Your brain is bad at being a cabinet, so the room has to carry some memory for you"); name Clark, Norman, or Allen only in `deepRead` / `fullRead`, and even there cite the FINDING, not the artifact (per the no-author-surname-verb rule + SL5). The reader earns the scaffolding after the plain idea, never before it. Cap the named sources a single chapter introduces — a chapter that name-drops five thinkers reads like school (concept load).
 
 **No banned phrases anywhere in the breakdown:**
 `boundary condition`, `keeps the chapter honest`, `keeps the chapter from`, `strips away`, `is not decorative`, `is not magic`, `operating logic`, `tidy explanation`, `selective suspicion`, `diagnostic discipline`, `durable practice`, `usable lesson`, `reframes behavior`, `installs the operational`, `On a note beside the work, write the reminders plainly`, `That matters because` (over 10 occurrences per book caps as MAJOR), `turns out to be`.
@@ -558,6 +565,16 @@ comic once seen"):
   shows that the dream was also a vow." (the anchor IS the realization)
 If you cannot make the anchor do work inside the scene's logic, use it in the
 breakdown instead — never staple it to a wall, sticky note, or margin.
+
+**Open on the reader's frustration, not a withheld reveal.** Reader feedback: scenes
+"feel written to demonstrate a principle, not like a real moment someone cares about."
+Start the scene at the recognizable pain, in a NAMED person's hands — not a literary
+slow-burn that hides the point. "The self-checkout receipt was already in Brett's junk
+drawer before he knew why it bothered him" buries the frustration in a reveal; "Brett's
+junk drawer won't close, and the one receipt he needs is somewhere in the pile" lands
+it. The first clause should make the reader think *that's me* — then show the named
+person living it. (The lesson AROUND the scene speaks to "you"; the scene itself stays
+in third person — R2.6.)
 
 
 The most error-prone section. The ship gate has 6+ critic checks here.
