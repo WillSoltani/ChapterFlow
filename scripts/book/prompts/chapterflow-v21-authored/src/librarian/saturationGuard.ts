@@ -64,3 +64,30 @@ export function assertMaxShare(
     }
   }
 }
+
+/**
+ * COVERAGE variant of `assertMaxShare`, for allocators that deal MANY values per
+ * chapter (e.g. the opener plan deals 6 distinct archetypes/chapter). `assertMaxShare`
+ * measures count / (total dealt slots); coverage measures, per value, the fraction of
+ * CHAPTERS it appears in — the dimension the book-wide sweep actually reads (an archetype
+ * recurring across many chapters reads as cross-chapter templating, regardless of how many
+ * slots exist). `chapters[i]` is the list of values dealt to chapter i; a value is counted
+ * once per chapter even if it somehow repeats within one. Throw if any value's coverage
+ * exceeds `cap`.
+ */
+export function assertMaxCoverage(chapters: string[][], cap: number, label: string): void {
+  const n = chapters.length;
+  if (n === 0) return;
+  const coverage = new Map<string, number>();
+  for (const ids of chapters) {
+    for (const id of new Set(ids)) coverage.set(id, (coverage.get(id) ?? 0) + 1);
+  }
+  for (const [id, count] of coverage) {
+    const share = count / n;
+    if (share > cap + 1e-9) {
+      throw new Error(
+        `${label}: value "${id}" appears in ${count}/${n} chapters (${(share * 100).toFixed(0)}%), over the ${(cap * 100).toFixed(0)}% coverage cap.`,
+      );
+    }
+  }
+}

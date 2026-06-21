@@ -24,11 +24,23 @@
  * the rest of every chapter is filled from the non-prone "spine". A deal-time
  * `assertMaxShare` makes an over-saturated prone class impossible to PRODUCE.
  *
+ * SPINE SATURATION (the quiet fix): capping the prone CLASSES left the non-prone spine
+ * uncapped — with only 8 spine archetypes and 6 slots/chapter, each spine archetype landed
+ * in ~6/8 = 75% of chapters (pigeonhole), so on the quiet run a single spine opener
+ * (`hand_hovers`) recurred across ~⅓ of chapters and the sweep flagged it MINOR. Fixed two
+ * ways: (1) the spine grew 8→12 archetypes so the natural per-archetype coverage drops to
+ * ~6/12 = 50%; (2) the chapter step was chosen so each archetype's appearances are SPREAD
+ * across the book (not a contiguous run of chapters), keeping even short-book worst-case
+ * coverage near the target. A deal-time `assertMaxCoverage` makes an over-saturated spine
+ * archetype impossible to PRODUCE, the coverage analogue of the prone `assertMaxShare`.
+ *
  * Allocation scheme (deterministic, no RNG, reproducible like shapePlan):
  *   - rotation = FNV-1a(`${bookId}:opener`) — a per-book offset distinct from shapePlan's.
  *   - SPINE: chapter n, slot i → nonProne[(rotation + n*CHAPTER_STEP + i*SLOT_STEP) % NP].
- *     With NP=8 non-prone, SLOT_STEP=3 (coprime 8) → slots distinct; CHAPTER_STEP=5
- *     (coprime 8) → consecutive chapters don't repeat a slot's spine opener.
+ *     With NP=12 non-prone, SLOT_STEP=5 (coprime 12) → slots distinct; CHAPTER_STEP=11
+ *     (coprime 12, ≠0) → consecutive chapters don't repeat a slot's spine opener, and the
+ *     induced slot-membership step (≡5 mod 12) spreads each archetype across the book
+ *     instead of clustering it into a contiguous block of chapters.
  *   - PRONE accent: a round-robin schedule [...proneClasses,"none"] picks at most one prone
  *     class per chapter; one spine slot (rotating position) is replaced with a member of
  *     that class. Prone ∉ nonProne, so distinctness holds and the replaced slot still
@@ -42,14 +54,18 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { assertMaxShare } from "./saturationGuard.js";
+import { assertMaxShare, assertMaxCoverage } from "./saturationGuard.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const SCENARIO_OPENERS_PATH = resolve(__dirname, "../../config/scenario-openers.json");
 
-const SLOT_STEP = 3;    // coprime with the 8-archetype non-prone spine → intra-chapter distinctness
-const CHAPTER_STEP = 5; // coprime with 8 → consecutive chapters don't repeat a slot's spine opener
+const SLOT_STEP = 5;    // coprime with the 12-archetype non-prone spine → intra-chapter distinctness
+const CHAPTER_STEP = 11; // coprime with 12 (≠0) → consecutive chapters don't repeat a slot's spine opener;
+                         // also SPREADS each archetype's appearances (slot-membership step ≡5 mod 12, not a
+                         // contiguous run) so no spine archetype clusters into a block of chapters.
 const PRONE_TARGET_FLOOR = 0.45; // a prone class may never exceed this; the round-robin keeps it ~1/(classes+1)
+const SPINE_COVERAGE_TARGET = 0.6; // no opener archetype (spine OR prone) should appear in more than this
+                                   // fraction of chapters; cap is raised to the unavoidable floor for small N.
 
 export type ScenarioOpener = { id: string; definition: string; proneClass?: string };
 
@@ -154,6 +170,20 @@ export function planOpeners(bookId: string, from: number, to: number, perChapter
       cap,
       note: "scene-skeleton-prone opener class over-recurs across the book — see openerPlan header",
     });
+  }
+
+  // GUARANTEE: no single opener archetype — spine OR prone — recurs across more than a minority
+  // of the book (the coverage analogue of the prone guard above). The linear deal's unavoidable
+  // worst case for Nch chapters is a contiguous run of `perChapter` in-window chapters per NP-period
+  // (⌊Nch/NP⌋·perChapter + min(Nch mod NP, perChapter)); cap at the larger of that and the target so
+  // a correct deal never false-throws on a short book. The chosen step SPREADS appearances, so the
+  // real coverage sits well under this bound for realistic book lengths (N≥~9).
+  const chapters = Object.values(allocation);
+  if (chapters.length) {
+    const Nch = chapters.length;
+    const contiguousFloor = (Math.floor(Nch / NP) * perChapter + Math.min(Nch % NP, perChapter)) / Nch;
+    const coverageCap = Math.max(SPINE_COVERAGE_TARGET, contiguousFloor);
+    assertMaxCoverage(chapters, coverageCap, `opener-plan coverage (${bookId})`);
   }
 
   return { schemaVersion: "opener-plan-v1", bookId, createdAt: new Date().toISOString(), perChapter, allocation };
