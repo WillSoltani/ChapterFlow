@@ -62,14 +62,28 @@ function fnv1a(s: string): number {
   return h >>> 0;
 }
 
-/** A prior chapter in [1, n-1], walked with a coprime stride so the callback
- *  target spreads across the book instead of every card pointing at chapter 1. */
+/** A prior chapter in [1, n-1], spread across the book so the callback CONCEPT
+ *  doesn't collapse onto one chapter's idea (BP28).
+ *
+ *  The previous formula added a `(n-1)*2` "stride" that is ALWAYS ≡ 0 (mod
+ *  span=n-1), so it vanished under the modulo and the target degenerated to
+ *  `1 + (offset mod (n-1))` — a near-constant numerator over a slowly-growing
+ *  modulus, which piled most chapters onto ONE early target (fooled-by-randomness
+ *  dealt 7/13 chapters → ch2, so 8 review-card callbacks all resurfaced ch2's
+ *  "alternative histories" concept and tripped BP28; 50/114 catalog books were
+ *  >= the 0.40 density risk). Any polynomial in n collapses mod (n-1) (since
+ *  n ≡ 1), so a non-degenerate spread needs a non-polynomial map: a golden-ratio
+ *  low-discrepancy sequence places consecutive chapters' targets evenly across
+ *  the prior range with low clustering (worst single-target share 0.364 across
+ *  the 56 catalog books with >=12 chapters). A per-book phase decorrelates books.
+ *  Pure in (bookId, n) so a single-chapter redo (which can't see N) reproduces
+ *  the full-book assignment. */
 function callbackTargetFor(bookId: string, n: number): number {
   const span = n - 1; // n > 1 guaranteed by the caller
   if (span <= 1) return 1;
-  const offset = fnv1a(`${bookId}:recall:target`);
-  // Stride 2 is coprime with most spans; the modulo keeps the target in range.
-  return 1 + ((offset + (n - 1) * 2) % span);
+  const phase = (fnv1a(`${bookId}:recall:target`) % 100_000) / 100_000; // [0,1)
+  const GOLDEN = 0.6180339887498949;
+  return 1 + Math.floor(((phase + n * GOLDEN) % 1) * span);
 }
 
 export function planCallbacks(bookId: string, from: number, to: number): CallbackPlan {
@@ -101,6 +115,21 @@ export function planCallbacks(bookId: string, from: number, to: number): Callbac
     const maxFrame = Math.max(0, ...Object.values(frameCounts));
     if (maxFrame / N >= 0.4) {
       throw new Error(`callback-plan invariant violated: one recall frame lands ${maxFrame}/${N} >= 0.40 (BP28 risk).`);
+    }
+  }
+  // The callback TARGET is the OTHER half of BP28: if too many chapters resurface
+  // the SAME prior chapter, the recalled concept collapses onto that chapter's
+  // idea no matter how varied the question frame is — the defect that shipped
+  // because only frame density was asserted, never target density. Short books
+  // unavoidably concentrate on ch1/ch2 (n=2 is forced to ch1, few priors), so
+  // only assert once there are enough priors to spread over: across the 56
+  // catalog books with >=12 chapters the allocator's worst single-target share is
+  // 0.364, so a >=0.40 share here means the target allocator regressed to a
+  // degenerate distribution (the OLD vanishing-stride piled 7/13 onto one chapter).
+  if (N >= 12) {
+    const maxTarget = Math.max(0, ...Object.values(targetCounts));
+    if (maxTarget / N >= 0.4) {
+      throw new Error(`callback-plan invariant violated: one callback target lands ${maxTarget}/${N} >= 0.40 (BP28 concept-collapse risk).`);
     }
   }
   return {
