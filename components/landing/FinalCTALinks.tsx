@@ -7,10 +7,10 @@ import { track } from "@/lib/analytics";
 
 /**
  * Interactive CTA links extracted from FinalCTA so the outer section can stay a
- * server component. Only these tracked links need client JS. Styled with the
- * dark-anchor tokens because FinalCTA is a dark band: the bright-cyan button
- * needs dark text for contrast, and the page accent/text tokens would be a muddy
- * dark-teal / dark-grey on it.
+ * server component. Only these tracked links need client JS. Uses the page accent
+ * tokens (--accent-cyan / --primary-foreground) — V5's FinalCTA is now a raised
+ * panel inside the all-dark .landing-dark scope, not the old light-page anchor
+ * band, so the section accent and this button must be the SAME cyan.
  */
 export function FinalCTALinks() {
   return (
@@ -19,25 +19,25 @@ export function FinalCTALinks() {
         <Link
           href={AUTH_LOGIN_BOOK_URL}
           onClick={() => track("cta_click", { source: "final_cta_primary" })}
-          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2"
+          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{
-            backgroundColor: "var(--cf-anchor-accent)",
-            color: "var(--cf-anchor-bg)",
+            backgroundColor: "var(--accent-cyan)",
+            color: "var(--primary-foreground)",
           }}
         >
           Start reading free &rarr;
         </Link>
       </MagneticButton>
 
-      <p className="text-[13px] text-(--cf-anchor-text-muted)">
+      <p className="text-[13px] text-(--text-muted)">
         Two free books &middot; no credit card &middot; cancel anytime
       </p>
 
       <Link
         href={AUTH_LOGIN_BOOK_URL}
         onClick={() => track("cta_click", { source: "final_cta_signin" })}
-        className="text-[14px] font-medium transition-colors duration-200 hover:text-(--cf-anchor-text) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2 rounded"
-        style={{ color: "var(--cf-anchor-text-muted)" }}
+        className="text-[14px] font-medium transition-colors duration-200 hover:text-(--text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 rounded"
+        style={{ color: "var(--text-secondary)" }}
       >
         Already have an account? Sign in
       </Link>

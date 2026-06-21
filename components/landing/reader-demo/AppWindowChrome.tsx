@@ -49,8 +49,10 @@ export function AppWindowChrome() {
           ChapterFlow
         </span>
         <span style={{ color: "var(--cr-text-disabled)" }}>·</span>
+        {/* No layoutId: V5 mounts two reader consoles (hero + signature) at once,
+            and a shared layoutId across both collides (framer warp/warnings). The
+            title doesn't transition position, so it needs no shared-layout id. */}
         <motion.span
-          layoutId="demo-chapter-title"
           className="text-[12px] truncate"
           style={{
             color: "var(--cr-text-secondary)",

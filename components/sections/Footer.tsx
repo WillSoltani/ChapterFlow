@@ -3,7 +3,7 @@ import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { CurrentYear } from "./CurrentYear";
 
 const navLinks = [
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "How it works", href: "/#retention-engine" },
   { label: "Library", href: "/books" },
   { label: "Pricing", href: "/#pricing" },
   { label: "Contact", href: "/contact" },

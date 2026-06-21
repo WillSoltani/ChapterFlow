@@ -168,10 +168,7 @@ export function Pricing() {
           <div className="text-center">
             <SectionLabel>PRICING</SectionLabel>
 
-            <h2
-              className="mt-4 text-[28px] md:text-[36px] lg:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-(--text-heading)"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
+            <h2 className="cf-display-2 cf-display-sans mt-4 text-balance font-bold text-(--text-heading)">
               Start free. Go deeper when you&apos;re ready.
             </h2>
 
@@ -249,9 +246,8 @@ export function Pricing() {
           {/* FREE card */}
           <SectionReveal delay={0.1}>
             <div
-              className="relative flex flex-col bg-(--bg-glass) border border-(--border-subtle) rounded-xl p-8 w-full max-w-[380px]"
+              className="relative flex flex-col bg-(--cf-surface) border border-(--border-subtle) rounded-xl p-8 w-full max-w-[380px]"
               style={{
-                backdropFilter: "blur(12px)",
                 // Lift the card off the page with a real (theme-aware) elevation
                 // shadow — a flat, shadowless surface is the "templated" tell.
                 boxShadow: "var(--shadow-card)",
@@ -318,14 +314,14 @@ export function Pricing() {
             <div
               className="relative flex flex-col rounded-xl p-8 w-full max-w-[380px] scale-[1.02]"
               style={{
-                backdropFilter: "blur(12px)",
-                background: "var(--bg-glass)",
-                border: "1px solid color-mix(in srgb, var(--accent-cyan) 35%, transparent)",
+                background: "var(--cf-surface)",
+                border: "1px solid color-mix(in srgb, var(--accent-cyan) 55%, transparent)",
                 // Paired elevation (key + ambient, theme-aware) UNDER the cyan
                 // glow so the featured card reads as lifted AND lit, not just
-                // glowing on a flat plane.
+                // glowing on a flat plane. A crisp inset rim makes the accent read
+                // on white — a 35% hairline washed out.
                 boxShadow:
-                  "var(--shadow-elevated), 0 0 40px color-mix(in srgb, var(--accent-cyan) 12%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
+                  "inset 0 0 0 1px color-mix(in srgb, var(--accent-cyan) 20%, transparent), var(--shadow-elevated), 0 0 40px color-mix(in srgb, var(--accent-cyan) 12%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
               }}
             >
               {/* Badge */}

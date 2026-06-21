@@ -38,12 +38,15 @@ export function SectionReveal({
     getServerSnapshot,
   );
 
+  // Calm, intentional rise — a short offset reads as "settling into place" rather
+  // than the long template fade-up. (Full per-preset reveal vocabulary is a
+  // separate refinement; the resting composition is already art-directed.)
   const initialOffset =
     direction === "up"
-      ? { y: 24, x: 0 }
+      ? { y: 14, x: 0 }
       : direction === "left"
-        ? { x: -24, y: 0 }
-        : { x: 24, y: 0 };
+        ? { x: -16, y: 0 }
+        : { x: 16, y: 0 };
 
   const hidden = { opacity: 0, ...initialOffset };
   const shown = { opacity: 1, x: 0, y: 0 };

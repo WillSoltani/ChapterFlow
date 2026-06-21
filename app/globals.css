@@ -285,13 +285,28 @@ body {
   /* ── Fonts ── */
   --font-display: var(--font-satoshi);
   --font-body: var(--font-jakarta);
-  /* Literary serif reading voice — consumed by batch 04 (useBookPreferences
-     repoint + default flip). var(--font-newsreader) is supplied by the
-     next/font import batch 04 adds to app/layout.tsx; the bare 'Newsreader'
-     family + serif stack are graceful fallbacks until then. */
+  /* Literary serif reading voice — the in-app reader's prose face. Supplied by
+     the next/font Newsreader import in app/layout.tsx; the bare 'Newsreader'
+     family + serif stack are graceful fallbacks. */
   --font-reading: var(--font-newsreader, 'Newsreader'), 'Source Serif 4', Charter, Georgia, serif;
   --reader-measure: 680px;   /* ~66ch reading column */
   --reader-leading: 1.7;
+
+  /* ── LANDING editorial type + rhythm scale (theme-invariant) ──
+     One measured spine for the marketing page. Pair a display SIZE util
+     (.cf-display-1/2/3) with the .cf-display-sans voice (Satoshi). */
+  --type-display-1: clamp(2.6rem, 6.2vw, 4.6rem);  /* hero headline */
+  --type-display-2: clamp(2rem, 3.6vw, 3rem);      /* section h2 */
+  --type-display-3: clamp(1.35rem, 2.4vw, 1.85rem);/* featured claim / sub-display */
+  /* Fluid section padding (vertical band rhythm). */
+  --section-pad-sm: clamp(3rem, 6vh, 4.5rem);
+  --section-pad-md: clamp(4rem, 9vh, 7rem);
+  --section-pad-lg: clamp(5.5rem, 12vh, 9rem);
+  /* Vertical flow (owl) rhythm — one stack scale instead of ad-hoc mt-3/4/5/…. */
+  --flow-xs: 0.5rem;
+  --flow-sm: 0.875rem;
+  --flow-md: 1.5rem;
+  --flow-lg: 2.5rem;
 
   /* ── CF legacy compat tokens ── */
   --cf-site-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -665,7 +680,160 @@ html.transitioning *::after {
 }
 
 /* ─────────────────────────────────────────
-   CTA BUTTON SHINE EFFECT
+   LANDING DISPLAY TYPE — size utils paired with the Satoshi voice.
+   ───────────────────────────────────────── */
+/* Display SIZE utilities (pair with .cf-display-sans). */
+.cf-display-1 { font-size: var(--type-display-1); text-wrap: balance; }
+.cf-display-2 { font-size: var(--type-display-2); text-wrap: balance; }
+.cf-display-3 { font-size: var(--type-display-3); text-wrap: balance; }
+
+/* VOICE: mechanical Satoshi for display headings. */
+.cf-display-sans {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+/* Mono editorial caption (citations, folios, running heads). */
+.cf-folio {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Vertical flow (owl) rhythm utilities — one stack scale. */
+.cf-flow-sm > * + * { margin-top: var(--flow-sm); }
+.cf-flow-md > * + * { margin-top: var(--flow-md); }
+.cf-flow-lg > * + * { margin-top: var(--flow-lg); }
+
+/* ─────────────────────────────────────────
+   LANDING — ALWAYS-DARK PRODUCT SHELL
+   The marketing landing is a sleek dark product site regardless of the app's
+   light/dark theme. We re-declare the canonical dark token VALUES on the landing
+   root; the alias tokens (--bg-base=var(--cf-page-bg), --text-heading=var(--cf-
+   text-1), --cr-* = the reader's tokens, etc.) resolve against these, so the
+   whole tree — nav, sections, the in-app reader shot — renders dark with no FOUC
+   and without fighting the theme toggle. rgba/hex are allowed in CSS.
+   ───────────────────────────────────────── */
+.landing-dark {
+  color-scheme: dark;
+  background: #0B0E14;
+
+  /* Shadcn base */
+  --background: #0B0E14;
+  --foreground: #F4F8FB;
+
+  /* Canonical surfaces + text. NOTE: alias tokens like --text-heading /
+     --bg-base were already resolved to LIGHT on <html>, so overriding the
+     --cf-* they point at does NOT reach them — every FINAL token a marketing
+     component reads must be set DIRECTLY here. (The reader's --cr-* tokens are
+     intentionally left LIGHT so the product reads as a bright screen glowing on
+     the dark page.) */
+  --cf-page-bg: #0B0E14;
+  --cf-page-bg-alt: #0E1521;
+  --cf-surface: #11161F;
+  --cf-surface-muted: #161C26;
+  --cf-surface-strong: #1E2630;
+  --cf-border: rgba(255, 255, 255, 0.07);
+  --cf-border-strong: rgba(255, 255, 255, 0.12);
+  --cf-divider: rgba(255, 255, 255, 0.07);
+  --cf-text-1: #F4F8FB;
+  --cf-text-2: #DCE3EA;
+  --cf-text-3: #93A1B1;
+  --cf-text-soft: #7C8B9A;
+  --cf-topbar-bg: rgba(10, 13, 19, 0.72);
+  --cf-dropdown-bg: #11161F;
+  --cf-input-bg: #161C26;
+  --cf-input-bg-hover: #1E2630;
+  --cf-overlay: rgba(0, 0, 0, 0.6);
+
+  /* FINAL text tokens (set directly — these are what components read) */
+  --text-heading: #F4F8FB;
+  --text-primary: #E8ECF1;
+  --text-secondary: #93A1B1;
+  --text-tertiary: #7C8B9A;
+  --text-muted: #8593A3;
+
+  /* FINAL surface aliases (components read these directly) */
+  --bg-base: #0B0E14;
+  --bg-surface-1: #11161F;
+  --bg-surface-2: #161C26;
+  --bg-surface-3: #1E2630;
+  --bg-raised: #11161F;
+  --bg-elevated: #161C26;
+
+  /* Glass */
+  --bg-glass: rgba(255, 255, 255, 0.045);
+  --bg-glass-hover: rgba(255, 255, 255, 0.08);
+  --bg-glass-active: rgba(255, 255, 255, 0.12);
+
+  /* Accents — bright cyan glow on dark */
+  --accent-cyan: #2DD4DF;
+  --accent-cyan-muted: #0E7490;
+  --accent-cyan-glow: rgba(45, 212, 223, 0.18);
+  --accent-rose: #FB7185;
+  --accent-amber: #FBBF24;
+  --accent-emerald: #34D399;
+  --primary: #2DD4DF;
+  --primary-foreground: #06080C;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-default: rgba(255, 255, 255, 0.11);
+  --border-medium: rgba(255, 255, 255, 0.14);
+  --border-emphasis: rgba(255, 255, 255, 0.2);
+
+  /* Shadows — deep, for floating glass on near-black */
+  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.04) inset, 0 8px 30px rgba(0, 0, 0, 0.5);
+  --shadow-elevated: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 18px 50px rgba(0, 0, 0, 0.6);
+  --shadow-hero: 0 30px 80px rgba(0, 0, 0, 0.65), 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-book: 0 16px 44px rgba(0, 0, 0, 0.6), 0 4px 14px rgba(0, 0, 0, 0.4);
+
+  /* V5 redesign — set DIRECTLY (alias-resolution trap: a --cf-* an alias points
+     at won't reach the final token). Consumed only in the .landing-dark scope. */
+  --cf-console-rim: rgba(255, 255, 255, 0.1); /* machined bezel rim around the live reader console */
+  --cf-ledger-row-hover: rgba(255, 255, 255, 0.025); /* faint flat row-hover on the editorial Ledger */
+  --cf-engine-readout: #2dd4df; /* the large mono retained-% readout digits */
+  --cf-spine-decay: rgba(141, 156, 170, 0.72); /* "without review" decay line — ≥3:1 on the surface (WCAG 1.4.11), still subordinate to the cyan line */
+  --cf-grid-line: rgba(255, 255, 255, 0.07); /* faint structural grid / hairline rules */
+}
+
+/* Hero product showpiece — a subtle perspective tilt so the live reader reads as
+   a physical, lit object (desktop only; flat on mobile so the app text stays
+   undistorted/readable). The transform is STATIC (not animated), so no
+   reduced-motion concern. Pair with transform-gpu + a contained glow. */
+.cf-hero-console { transform: none; will-change: transform; }
+@media (min-width: 1024px) {
+  .cf-hero-console {
+    transform: perspective(2200px) rotateY(-7deg) rotateX(2deg);
+  }
+}
+
+/* Editorial Ledger spec-sheet rows — a faint flat hover wash (no glass). */
+.cf-ledger-row { transition: background-color 0.3s var(--cf-site-ease); }
+@media (hover: hover) {
+  .cf-ledger-row:hover { background-color: var(--cf-ledger-row-hover); }
+}
+
+/* Signature pin track — height set via media query, NOT JS, so it matches the
+   ScrollStory isStatic decision (pin only on desktop + fine pointer + motion)
+   from FIRST paint. Avoids the post-hydration auto→420svh jump that otherwise
+   shoves every section below it down on every desktop load. The selectors mirror
+   isStatic exactly: pinned only at (min-width:1024px) and (pointer:fine), and
+   never under OS- OR in-app-reduced motion. */
+.cf-pin-track { height: auto; }
+@media (min-width: 1024px) and (pointer: fine) {
+  .cf-pin-track { height: 420svh; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-pin-track { height: auto; }
+}
+html[data-motion="reduced"] .cf-pin-track { height: auto; }
+
+/* ─────────────────────────────────────────
+   CTA BUTTON SHINE EFFECT  (hover-only single sweep — no ambient auto-fire)
    ───────────────────────────────────────── */
 .cta-shine {
   position: relative;
@@ -684,7 +852,15 @@ html.transitioning *::after {
     transparent 55%
   );
   transform: translateX(-100%);
-  animation: cta-shine-sweep 1.5s ease-in-out 2s 1 forwards;
+  pointer-events: none;
+}
+
+.cta-shine:hover::before {
+  animation: cta-shine-sweep 0.9s ease-in-out 1 forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-shine:hover::before { animation: none; }
 }
 
 @keyframes cta-shine-sweep {

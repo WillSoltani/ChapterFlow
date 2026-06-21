@@ -7,11 +7,8 @@ import {
 import { Navbar } from "@/components/sections/Navbar";
 import { Hero } from "@/components/sections/Hero";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
-import { Problem } from "@/components/sections/Problem";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { RetentionLoopSection } from "@/components/sections/RetentionLoopSection";
-import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
-import { Library } from "@/components/sections/Library";
+import { ScrollStory } from "@/components/sections/ScrollStory";
+import { Ledger } from "@/components/sections/Ledger";
 import { ScienceAndTrust } from "@/components/sections/ScienceAndTrust";
 import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -96,7 +93,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen">
+    <div className="landing-dark relative min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -106,18 +103,33 @@ export default function Home() {
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
 
       {/* Background gradient mesh — tokenized via color-mix so it adapts to
-          light / dark / high-contrast (the old rgba(34,211,238,…) literals were
-          theme-blind: a bright-cyan wash that ignored the active palette).
-          Single accent (cyan) for restraint; strengthened from the prior 6%/3%. */}
+          light / dark / high-contrast. Single accent (cyan) for restraint. Three
+          well-distributed glows (top-left, mid-right, lower-center) so no stretch
+          of the page scrolls over truly flat black — the "void/sparse" failure
+          mode. Fixed, so every scroll position keeps some atmosphere. */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 28% -5%, color-mix(in srgb, var(--accent-cyan) 9%, transparent), transparent 62%)",
-            "radial-gradient(ellipse 52vw 46vw at 82% 52%, color-mix(in srgb, var(--accent-cyan) 5%, transparent), transparent 62%)",
+            "radial-gradient(ellipse 60vw 50vw at 28% -5%, color-mix(in srgb, var(--accent-cyan) 11%, transparent), transparent 62%)",
+            "radial-gradient(ellipse 54vw 48vw at 84% 46%, color-mix(in srgb, var(--accent-cyan) 7%, transparent), transparent 60%)",
+            "radial-gradient(ellipse 66vw 46vw at 36% 103%, color-mix(in srgb, var(--accent-cyan) 7%, transparent), transparent 58%)",
             "var(--bg-base)",
           ].join(", "),
+        }}
+      />
+      {/* Faint structural grid — gives the eye something to rest on so empty bands
+          never read as dead black. Fixed + masked to fade at the very top/bottom. */}
+      <div
+        className="pointer-events-none fixed inset-0 -z-10"
+        aria-hidden
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, var(--cf-grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--cf-grid-line) 1px, transparent 1px)",
+          backgroundSize: "60px 60px",
+          maskImage: "radial-gradient(135% 105% at 50% 42%, black 78%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(135% 105% at 50% 42%, black 78%, transparent 100%)",
         }}
       />
 
@@ -143,13 +155,14 @@ export default function Home() {
           <AuthErrorBanner />
         </Suspense>
 
+        {/* Product-forward narrative — the loop is the spine. The reader appears
+            twice in two registers (hero showpiece → scroll-driven signature), never
+            repeated: hook (hero) → operate the loop + the science (signature) →
+            the toolkit (ledger) → honest trust → price → close. */}
         <main id="main" tabIndex={-1} className="focus:outline-none">
           <Hero />
-          <Problem />
-          <HowItWorks />
-          <RetentionLoopSection />
-          <InteractiveDemo />
-          <Library />
+          <ScrollStory />
+          <Ledger />
           <ScienceAndTrust />
           <Pricing />
           <FinalCTA />

@@ -34,7 +34,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "**/*.mts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    ".next-chapterflow/types/**/*.ts",
+    ".next-chapterflow/dev/types/**/*.ts",
+    ".next-review/types/**/*.ts",
+    ".next-review/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -39,10 +39,12 @@ function LogoIcon({ size = 28 }: { size?: number }) {
 
 /* ── Data ──────────────────────────────────────────── */
 
+// Anchor ids MUST match real section ids on app/page.tsx (#retention-engine =
+// the signature, #features = the Ledger, #why-it-works = the trust band).
 const NAV_LINKS = [
-  { id: "how-it-works", label: "How it works" },
-  { id: "demo", label: "Demo" },
-  { id: "library", label: "Library" },
+  { id: "retention-engine", label: "How it works" },
+  { id: "features", label: "Features" },
+  { id: "why-it-works", label: "Why it works" },
   { id: "pricing", label: "Pricing" },
 ] as const;
 
@@ -53,7 +55,7 @@ const AUTH_URL = AUTH_LOGIN_BOOK_URL;
 export function Navbar() {
   const { loggedIn, loading, user } = useAuthStatus();
   const pathname = usePathname();
-  // Section anchors (#how-it-works, #demo, …) only exist on the home page.
+  // Section anchors (#retention-engine, #features, …) only exist on the home page.
   // Off-home (e.g. /pricing, /books) they must point back to /#section.
   const anchorHref = useCallback(
     (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`),
