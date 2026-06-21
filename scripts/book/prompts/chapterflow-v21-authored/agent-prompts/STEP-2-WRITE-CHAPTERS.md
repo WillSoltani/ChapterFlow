@@ -162,6 +162,8 @@ catch-phrases — "the telling detail", "decisive misstep" — became book-wide
 stamps). Before gating, grep your own chapter for any phrase you recognize
 from this prompt; if you find one, rewrite it in scene-native words.
 
+**R2.9 — Make the reader feel the cost (the dealt STAKES).** Reader feedback: chapters read "more useful than exciting" — a smart method, but no pain and no payoff. Your authoring card deals a STAKES menu (modern felt-consequences: a missed payment, a dead phone before work, a buried message, a closed window). Land at least one real consequence in an example or the chapter framing, so the reader thinks *"this is why my life feels more cluttered than it should"* — not just *"that's a smart way to organize things."* Draw from the dealt menu where one fits; if none fits this chapter's subject, use a fitting modern stake of your own — never force an ill-fitting one, and do NOT make the stake the scene's opening construction (that is the opener's job). Keep it grounded: a real cost the reader recognizes, not melodrama.
+
 **R2.7 — Plain language beats abstraction (2026-06-11 product direction).** The
 catalog's reader panel scored interest lowest of all axes and named the cause:
 "wall-to-wall abstraction with no narrative inside", paragraphs of abstract
