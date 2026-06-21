@@ -13,6 +13,13 @@
  *  SL3 (MAJOR)   spectator_prop — the real source case is demoted to text/notes
  *      "glowing on a phone/screen" while an invented spectator watches, instead
  *      of the scene dramatizing the case directly.
+ *  SL4 (MAJOR)   citation_prop — a cited ACADEMIC source is rendered as a physical
+ *      visual-aid / handled desk document inside the dramatized scene (the source
+ *      "parked as set-dressing" instead of its FINDING driving the action — the
+ *      FIELD-PURPOSE-CONTRACTS §physical-form ban). the-organized-mind ch06 shipped
+ *      "the 1974 Science slide" and "reads the wording from the 1979 Econometrica
+ *      notes"; the model bar/confirm read was meant to flag these (example_coherence)
+ *      but passed them, so SL4 makes the clearest form deterministic.
  *
  * Reader-facing fields are enumerated via authoringContract.readerFields().
  */
@@ -21,7 +28,7 @@ import { readerFields } from "./authoringContract.js";
 import type { ChapterV21 } from "../types.js";
 
 export type ScaffoldLeakFinding = {
-  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop";
+  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop";
   severity: "blocker" | "major";
   unit: string;
   message: string;
@@ -49,6 +56,39 @@ const GLOW = "(?:glow\\w*|lit up|lights? up|light\\w* up)";
 const DEVICE = "(?:phone|screen|laptop|tablet|monitor)";
 // Match either word order: "notes glow on his phone" OR "his phone glowed with the notes".
 const SCREEN_GLOW_RE = new RegExp(`\\b${GLOW}\\b[^.?!]{0,40}\\b${DEVICE}\\b|\\b${DEVICE}\\b[^.?!]{0,40}\\b${GLOW}\\b`, "i");
+
+// SL4 — a cited ACADEMIC source staged as a physical prop. PRECISION (the SL1/SL3
+// lesson — a false positive is worse than a missed weak case): a CITATION must
+// DIRECTLY label the prop ("1974 Science slide", "Econometrica notes"), not merely
+// co-occur with it in the sentence. That adjacency is the discriminator: it lets a
+// finding be CITED freely with an abstract verb — "the 2008 PNAS work PUTS the
+// cortex in the story", "CALLS Granovetter's 1973 paper a reason", "the 1989 Science
+// work COMES BACK to him" — none fire (no prop is bound to the citation), and it
+// rejects the false-positive class an adversarial review found: a capitalized
+// common-word venue used as a brand / place / surname / subject near any year —
+// "Science Museum … slides", "2016 Nature documentary … projector", "Nature Valley
+// invoice", "Mr. Lancet … 2021 worksheet". A capitalized compound word (Museum,
+// Valley, Block, Cafe, Conservancy, Reviews) sitting between the venue and the prop
+// breaks the bind, so those don't fire; the match is case-sensitive so a lowercase
+// "science slide" (a slide about science, not the journal) also passes.
+//
+// Common-word venues (Science/Nature/Cell/…) only count as a citation when BOUND to
+// an adjacent year; unambiguous venues (PNAS, "Journal of X") count on their own.
+// Scope: a per-sentence scan — a citation split across two sentences is not bound
+// (precision over recall, as with SL1/SL3).
+const SL4_HARD_VENUE = "(?:PNAS|JAMA|NEJM|BMJ|Psychological Science|American Economic Review|(?:[A-Z][a-z]+ )?Journal of [A-Z][a-z]+|Annual Review of [A-Z][a-z]+)";
+const SL4_COMMON_VENUE = "(?:Science|Nature|Econometrica|Neuron|Cell|Lancet|Cognition)";
+const SL4_YEAR = "(?:19|20)\\d{2}";
+// A citation token: a hard venue, OR a common-word venue bound to an adjacent year.
+const SL4_CITATION = `(?:${SL4_HARD_VENUE}|${SL4_YEAR}\\s+${SL4_COMMON_VENUE}|${SL4_COMMON_VENUE}\\s+\\(?${SL4_YEAR})`;
+// Inherently-physical visual aids — a citation rendered directly AS one is staging.
+const SL4_VISUAL = "(?:slides?|transparenc(?:y|ies)|overheads?|projector|posters?|worksheets?|handouts?|printouts?|photocop(?:y|ies)|figures?|graphs?|diagrams?)";
+// Ambiguous source documents — staging only under a handling verb in the sentence.
+const SL4_DOC = "(?:notes?|chart)";
+// Case-SENSITIVE (no /i): a capitalized journal directly labeling a (lowercase) prop.
+const SL4_VISUAL_RE = new RegExp(`\\b${SL4_CITATION}\\s+${SL4_VISUAL}\\b`);
+const SL4_DOC_RE = new RegExp(`\\b${SL4_CITATION}\\s+${SL4_DOC}\\b`);
+const SL4_HANDLE_RE = /\b(?:reads?|reading|slid\w*|sliding|pull\w*|hand(?:s|ed|ing)?|pins?|pinned|tuck\w*|taps?|tapped|projects?|holds? up|unfolds?|from the|off the|across the (?:table|desk))\b/i;
 
 const STOP = new Set(["the", "a", "an", "and", "or", "but", "of", "to", "in", "on", "for", "with", "at", "by", "about", "during", "after", "before", "their", "his", "her", "a's"]);
 
@@ -123,6 +163,26 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
           unit: `example[${i}]`,
           message: `example[${i}] demotes the source case to notes glowing on a screen ("${glow[0]}") — an invented onlooker reading the real case off a device. Stage the named source case directly; don't make it a prop.`,
           evidence: glow[0],
+        });
+        break;
+      }
+    }
+
+    // SL4 — a cited academic source rendered as a physical prop. Fire when a CITATION
+    // DIRECTLY labels a visual aid ("1974 Science slide"), or directly labels a source
+    // document ("1979 Econometrica notes") that is also physically handled in the
+    // sentence. Adjacency keeps abstract-verb finding-citations clean (see header).
+    for (const sentence of scenario.split(/(?<=[.?!])\s+/)) {
+      const visual = sentence.match(SL4_VISUAL_RE);
+      const doc = sentence.match(SL4_DOC_RE);
+      const hit = visual ?? (doc && SL4_HANDLE_RE.test(sentence) ? doc : null);
+      if (hit) {
+        findings.push({
+          checkId: "SL4.citation_prop",
+          severity: "major",
+          unit: `example[${i}]`,
+          message: `example[${i}] stages a cited source as a physical prop ("${hit[0]}") — a study parked as set-dressing. Cite the FINDING so it drives the person's action; don't render the source as a handled slide/notes/worksheet.`,
+          evidence: hit[0],
         });
         break;
       }
