@@ -20,6 +20,8 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
+import { writeFileAtomic } from "./lib/atomicWrite.js";
+
 import { runEditorInChief, applyAuthorVoiceProfile } from "./agents/editor-in-chief.js";
 import { runCurriculumPlanner } from "./agents/curriculum-planner.js";
 import { runWriterBreakdown } from "./agents/writer-breakdown.js";
@@ -88,13 +90,20 @@ async function loadOrBuild<T>(
   log: (m: string) => void,
 ): Promise<T> {
   if (existsSync(filePath)) {
-    log(`${label}: reusing cached`);
-    return JSON.parse(readFileSync(filePath, "utf8")) as T;
+    try {
+      const cached = JSON.parse(readFileSync(filePath, "utf8")) as T;
+      log(`${label}: reusing cached`);
+      return cached;
+    } catch {
+      // A torn/corrupt cache scaffold (e.g. a crash mid-write before atomic writes landed)
+      // must NOT throw and abort the whole chapter build — treat it as a cache MISS and
+      // regenerate. Self-healing instead of wedging.
+      log(`${label}: cached file unreadable — regenerating`);
+    }
   }
   log(`${label}: generating…`);
   const val = await generator();
-  mkdirSync(dirname(filePath), { recursive: true });
-  writeFileSync(filePath, JSON.stringify(val, null, 2), "utf8");
+  writeFileAtomic(filePath, JSON.stringify(val, null, 2));
   return val;
 }
 
@@ -387,10 +396,12 @@ export async function generateChapter(
     throw new Error(`Ship gate BLOCKED ${chapter.chapterId}: ${gate.blockers.length} blocker(s). See quarantine.`);
   }
 
-  // Write output
+  // Write output ATOMICALLY (tmp+rename): a SIGKILL/crash mid-write must never leave a
+  // truncated chapter JSON — that torn file crashes loadBookChapters on resume and wedges
+  // the walk-away conductor permanently. rename(2) leaves either the old file or the complete
+  // new one.
   const outDir = resolve(STATE, "chapters");
-  mkdirSync(outDir, { recursive: true });
-  writeFileSync(resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`), JSON.stringify(assembled, null, 2), "utf8");
+  writeFileAtomic(resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`), JSON.stringify(assembled, null, 2));
 
   // Ingest into library ledger atomically — re-loads under lock so concurrent
   // generateBook runs don't lose updates. (The earlier librarySnapshot was

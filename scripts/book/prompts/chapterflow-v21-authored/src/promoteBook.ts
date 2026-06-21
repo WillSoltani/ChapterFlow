@@ -21,6 +21,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -380,7 +381,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     // package validator / reader.
     chapters: loadedChapters.map((c) => stripInternalFields(c)).sort((a, b) => a.number - b.number),
   };
-  writeFileSync(packagePath, JSON.stringify(pkg, null, 2), "utf8");
+  // Atomic write: the published package is the SHIPPED artifact — a crash mid-write must never
+  // leave a truncated book-packages/<id>.v21.json (which the web reader/validator would choke on).
+  writeFileAtomic(packagePath, JSON.stringify(pkg, null, 2));
 
   return {
     promoted: true,

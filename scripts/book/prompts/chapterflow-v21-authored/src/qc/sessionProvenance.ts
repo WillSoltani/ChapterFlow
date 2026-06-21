@@ -39,7 +39,13 @@ export function currentSessionId(): string | undefined {
 }
 
 export function sessionIndependenceEnforced(): boolean {
-  return process.env[SESSION_INDEPENDENCE_ENV] === "1";
+  // Enforced when EITHER the explicit opt-in is set OR we're in no-API codex-QC mode. The
+  // canonical autopilot/book-run path force-sets the explicit var, but a bare manual `qc-auto`
+  // (CHAPTERFLOW_NO_API_CODEX_QC=1) used to leave independence OFF — so a single agent could
+  // author + bar-grade + confirm-grade the same chapter with two relabeled reviewer strings and
+  // self-certify. No-API mode is exactly where the SESSION is the trust boundary, so it implies
+  // enforcement. (Absence-safe per-id short-circuits still protect legacy/un-stamped chapters.)
+  return process.env[SESSION_INDEPENDENCE_ENV] === "1" || process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1";
 }
 
 export function provenancePath(chapterId: string): string {

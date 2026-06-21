@@ -17,6 +17,7 @@ import { fileURLToPath } from "url";
 
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
+import { evaluateDeterministic } from "../qc/orchestrator/deterministicGate.js";
 import { isAttestationFresh, loadAttestation, type QcVerdict } from "../critics/qcAttestation.js";
 import { auditBook } from "../critics/catalogAudit.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
@@ -57,6 +58,13 @@ export type BookStatus = {
   qcdChapters: number;
   bookGatePass: boolean | null;
   bookGateBlockers: number;
+  /** True iff the FULL deterministic battery (source-v2 + ship-gate + author-check +
+   *  intra-book + book-gate + plan-enforcement — the same evaluator qc-converge + finalize
+   *  use) is clean. The conductor gates gate→qc on THIS, not just ship-gate+book-gate, so a
+   *  source/intra/plan-dirty chapter is converged in the cheap gate phase instead of skipping
+   *  to QC (where the round preflight would hard-halt 'infra' on a fixable content defect).
+   *  Fail-safe → true on any evaluator error (never block progression on an unreadable book). */
+  deterministicClean: boolean;
   packaged: boolean;
   publishable: boolean;
   /** whether the pre-authoring collision-prevention sheet exists. */
@@ -156,6 +164,17 @@ export function computeBookStatus(bookId: string): BookStatus {
     bookGateBlockers = bg.findings.filter((f) => f.severity === "blocker").length;
   }
 
+  // Full deterministic battery (source-v2 + ship + author + intra + book + plan) — the SAME
+  // evaluator qc-converge/finalize use. The conductor gates gate→qc on this so a deterministically
+  // dirty chapter is converged cheaply in the gate phase instead of skipping to a QC round whose
+  // preflight would hard-halt. Fail-safe → true on any read error (never block on an unreadable book).
+  let deterministicClean = true;
+  if (written.length > 0) {
+    deterministicClean = quiet(() => {
+      try { return evaluateDeterministic(bookId, written, written).clean; } catch { return true; }
+    });
+  }
+
   const packaged = existsSync(resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`));
   const guardrails = existsSync(resolve(STATE_DIR, "guardrails", `${bookId}.guardrails.md`));
   const allWritten = expected != null && writtenChapters >= expected && writtenChapters > 0;
@@ -172,6 +191,7 @@ export function computeBookStatus(bookId: string): BookStatus {
   if (writtenChapters === 0) phase = stage;
   else if (!allWritten) phase = `generating (${writtenChapters}/${expected ?? "?"} written)`;
   else if (!allGated) phase = "gating";
+  else if (!deterministicClean) phase = "gating";
   else if (!allQcd) phase = "qc";
   else if (!packaged) phase = "ready to publish";
   else phase = "shipped";
@@ -190,12 +210,21 @@ export function computeBookStatus(bookId: string): BookStatus {
     nextCommand = firstBad
       ? `npx tsx src/cli.ts gate-chapter state/chapters/${firstBad.chapterId}.v21-native.chapter.json`
       : `npx tsx src/cli.ts book-gate ${bookId}`;
+  } else if (!deterministicClean) {
+    // Ship/book gates pass but the FULL deterministic battery (source-v2 / author-check /
+    // intra-book / plan-enforcement) is dirty — converge it before QC, exactly as the conductor
+    // does, so the operator isn't sent to qc-auto on a round whose preflight would block.
+    nextLabel = "converge deterministic gates";
+    nextCommand = `npx tsx src/cli.ts qc-converge ${bookId}`;
   } else if (!allQcd) {
     nextLabel = "run no-API QC";
     nextCommand = `CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto "${bookId}" --pass`;
   } else if (!packaged) {
     nextLabel = "publish";
-    nextCommand = `npx tsx src/cli.ts publish "${bookId}"`;
+    // Env-prefixed so the printed command runs the full no-API gate stack (sweep + source-verify
+    // + manual key-judge + majors). promote/publish now also force this internally, but the
+    // displayed command must be honest about the operating mode.
+    nextCommand = `CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish "${bookId}"`;
   } else {
     nextLabel = "all done";
     nextCommand = `# ${bookId} is QC'd and shipped to book-packages/`;
@@ -203,7 +232,7 @@ export function computeBookStatus(bookId: string): BookStatus {
 
   return {
     bookId, stage, phase, expectedChapters: expected, writtenChapters, gatedChapters, qcdChapters,
-    bookGatePass, bookGateBlockers, packaged, publishable, guardrails, variety, nextCommand, nextLabel, chapters,
+    bookGatePass, bookGateBlockers, deterministicClean, packaged, publishable, guardrails, variety, nextCommand, nextLabel, chapters,
   };
 }
 

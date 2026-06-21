@@ -3,6 +3,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 export const QC_ROUND_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "major", "attest"] as const;
 export type QcRoundRole = typeof QC_ROUND_ROLES[number];
@@ -62,7 +63,9 @@ export function openQcRound(bookId: string, roundId = `r${new Date().toISOString
   mkdirSync(QC_ROUNDS_DIR, { recursive: true });
   const path = qcRoundPath(bookId, roundId);
   if (existsSync(path)) throw new Error(`QC round already exists: ${path}`);
-  writeFileSync(path, JSON.stringify(record, null, 2), "utf8");
+  // Atomic: a torn round.json is read UNGUARDED by checkRoundFreshness/selectedRoundChapters
+  // (the H2 crash vector) — a crash mid-write here would make finalize throw on the next read.
+  writeFileAtomic(path, JSON.stringify(record, null, 2));
   return { record, tokens, path };
 }
 

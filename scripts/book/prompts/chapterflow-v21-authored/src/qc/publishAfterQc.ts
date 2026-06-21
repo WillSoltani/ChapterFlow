@@ -281,7 +281,14 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
   const chapters = loadBookChapters(bookId).sort((a, b) => a.number - b.number);
   const ship: string[] = [], intra: string[] = [], qcStatus: string[] = [], quizKey: string[] = [], manualKey: string[] = [];
   for (const ch of chapters) {
-    ship.push(...runShipGate(ch).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
+    // H5 defense: a malformed authored chapter (codex writes JSON directly, no schema coercion)
+    // could make a critic throw; that must surface as a publish BLOCKER, not an unhandled crash
+    // that aborts the whole preflight (escapes the only try/catch in this function).
+    try {
+      ship.push(...runShipGate(ch).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
+    } catch (err) {
+      ship.push(`ship ch${ch.number} GATE_CRASH: ship gate threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`);
+    }
     intra.push(...runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number)).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
     qcStatus.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
     quizKey.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));

@@ -10,7 +10,7 @@ import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../sr
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import type { ChapterV21 } from "../src/types.js";
 import { checkManualKeyJudge, keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKeyPacks, type KeyDerivation } from "../src/qc/manualKeyJudge.js";
-import { unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
+import { currentMajorFindings, unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import {
   barArtifactPath,
@@ -356,7 +356,13 @@ goldTest("finalize dryRun computes the same verdict but writes NOTHING durable (
   }
 });
 
-goldTest("finalize and qc-auto refuse PASS when a current major is unresolved", () => {
+goldTest("deterministic majors are SURFACED but advisory-at-QC (do not block the verdict)", () => {
+  // Corrected contract (H3 fix): a deterministic major must NOT, by itself, drive the QC
+  // verdict to REVISE — QC_ENFORCED_MAJORS is empty because EVERY deterministic major
+  // fires on the clean/gold reference corpus (SC9 on 16/21 gold), so blocking on them
+  // demands manual waivers on good content (the documented convergence-killer). The major
+  // must still SURFACE (currentMajorFindings / majorStatus) for human review + the
+  // conductor's regression scan; it just doesn't gate.
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     cleanup();
@@ -364,21 +370,12 @@ goldTest("finalize and qc-auto refuse PASS when a current major is unresolved", 
     chapter.tryThisNow = `${chapter.tryThisNow} This names a boundary condition for the reviewer.`;
     setupGreenEvidence(MAJOR_BOOK, [chapter], { rawSweepSubmission: true });
     const result = finalizeQcRound(MAJOR_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
-    assert.equal(result.allPublishable, false);
-    assert.equal(result.chapters[0].checks.majors, "FAIL");
-    assert.equal(result.chapters[0].finalVerdict, "REVISE");
-    assert.equal(loadAttestation(MAJOR_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE");
+    // The fixture still trips a deterministic major — it stays VISIBLE:
+    assert.ok(currentMajorFindings(MAJOR_BOOK, [chapter]).length > 0, "the deterministic major must still surface for human review / regression scan");
+    // ...but it no longer BLOCKS the QC verdict:
+    assert.equal(result.chapters[0].checks.majors, "PASS");
     const matrix = JSON.parse(readFileSync(evidenceMatrixPath(MAJOR_BOOK, ROUND), "utf8"));
-    assert.equal(matrix.chapters[0].majorStatus.status, "FAIL");
-    assert.equal(matrix.chapters[0].majorStatus.chapter.length > 0 || matrix.chapters[0].majorStatus.book.length > 0, true);
-    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-    const cli = runCli(["qc-auto", MAJOR_BOOK, "--pass", "--round", ROUND, "--chapters", String(SOURCE_CHAPTER_NUMBER)]);
-    assert.notEqual(cli.status, 0);
-    assert.doesNotMatch(cli.out, /QC AUTO PASS/);
-    // Guard against the hollow-test trap: qc-auto must refuse because of the
-    // unresolved MAJOR, not because the round is stale (which would short-circuit
-    // before the major gate and pass these assertions for the wrong reason).
-    assert.doesNotMatch(cli.out, /STALE_ROUND/, "must reach the major gate, not short-circuit on staleness");
+    assert.equal(matrix.chapters[0].majorStatus.status, "PASS");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

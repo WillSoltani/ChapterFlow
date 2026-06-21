@@ -35,7 +35,7 @@ function makeStatus(o: Partial<BookStatus>): BookStatus {
   return {
     bookId: "zz", stage: "write-chapter", phase: "", expectedChapters: 2,
     writtenChapters: 0, gatedChapters: 0, qcdChapters: 0, bookGatePass: null,
-    bookGateBlockers: 0, packaged: false, publishable: false, guardrails: false,
+    bookGateBlockers: 0, deterministicClean: true, packaged: false, publishable: false, guardrails: false,
     variety: null, nextCommand: "", nextLabel: "", chapters: [],
     ...o,
   };
@@ -96,6 +96,10 @@ test("decidePhase maps bookStatus to the right conductor phase", () => {
   assert.equal(decidePhase(makeStatus({ writtenChapters: 1, expectedChapters: 2 })), "write");
   assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 1, bookGatePass: false, chapters: [chap(1), chap(2, true, false)] })), "gate");
   assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 1 })), "qc");
+  // H1/#6: ship-gate + book-gate clean but the FULL deterministic battery dirty (source-v2 /
+  // intra-book / plan-enforcement) must route to the cheap gate-repair phase, NOT skip to qc
+  // (where the round preflight would hard-halt 'infra' or waste a reviewer wave).
+  assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] })), "gate");
   assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2 })), "ready");
   assert.equal(decidePhase(makeStatus({ packaged: true })), "shipped");
 });

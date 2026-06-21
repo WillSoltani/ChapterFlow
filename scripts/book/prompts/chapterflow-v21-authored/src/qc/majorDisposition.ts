@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
-import { runShipGate } from "../critics/finalGate.js";
+import { runShipGate, QC_ENFORCED_MAJORS } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
 import { loadQcRound, type QcRoundRole } from "./qcRound.js";
@@ -105,9 +105,19 @@ function dispositionIsRoundBacked(bookId: string, disposition: MajorDisposition)
   return !!(round.roles?.major || round.roles?.confirm);
 }
 
+/**
+ * The majors that actually BLOCK the QC verdict (REVISE / governance halt). This is
+ * `currentMajorFindings` narrowed to `QC_ENFORCED_MAJORS` (an empty allowlist — see
+ * finalGate.ts), then minus any waived/disposed finding. Deterministic majors stay
+ * VISIBLE via `currentMajorFindings`/`formatMajorStatus` (human review + the conductor's
+ * regression scan); they're just not, by themselves, a hard QC gate — every one of them
+ * fires on the clean/gold corpus, so blocking on them is the documented convergence-killer
+ * (SC9 et al.). Semantic quality is gated by the model QC (bar/sweep/confirm) + blockers.
+ */
 export function unresolvedMajors(bookId: string, chapters = loadBookChapters(bookId), requireRoundBacked = false): MajorFindingSnapshot[] {
   const dispositions = new Map(loadWaivers(bookId).dispositions.map((d) => [d.findingId, d]));
   return currentMajorFindings(bookId, chapters).filter((f) => {
+    if (!QC_ENFORCED_MAJORS.has(f.checkId)) return false; // advisory-at-QC → never blocks
     const d = dispositions.get(f.id);
     if (!d || !dispositionClosesCurrentMajor(d.status)) return true;
     if (requireRoundBacked && !dispositionIsRoundBacked(bookId, d)) return true;

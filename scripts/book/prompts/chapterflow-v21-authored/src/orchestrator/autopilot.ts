@@ -36,7 +36,8 @@ import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 import { REPO_ROOT } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { loadBookChapters, keyPackDir } from "../qc/manualKeyJudge.js";
+import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
+import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
 import { carryableChapter } from "../qc/orchestrator/index.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
 import {
@@ -75,7 +76,13 @@ export type AutopilotPhase = "research" | "write" | "gate" | "qc" | "ready" | "s
 export function decidePhase(s: BookStatus): AutopilotPhase {
   if (s.packaged) return "shipped";
   const allWritten = s.expectedChapters != null && s.writtenChapters >= s.expectedChapters && s.writtenChapters > 0;
-  const allGated = allWritten && s.gatedChapters === s.writtenChapters && s.bookGatePass === true;
+  // Gate gate→qc on the FULL deterministic battery (deterministicClean), not just ship-gate +
+  // book-gate. Otherwise a chapter that is ship/book-clean but source-v2 / author-check /
+  // intra-book / plan-enforcement DIRTY skips the gate phase, and the QC round's preflight then
+  // hard-halts 'infra' (source/book-gate) or wastes a whole reviewer wave (intra/plan) on a defect
+  // the cheap gate-repair loop is built to converge. deterministicClean is fail-safe → true, so it
+  // never blocks progression on an unreadable book.
+  const allGated = allWritten && s.gatedChapters === s.writtenChapters && s.bookGatePass === true && s.deterministicClean !== false;
   const allQcd = allWritten && s.qcdChapters === s.writtenChapters;
   if (allGated && allQcd) return "ready"; // == publishable && !packaged
   if (!allWritten) {
@@ -671,7 +678,11 @@ export function acquireBookLock(lockDir: string, bookId: string, staleMs = LOCK_
       // still ours, so report unhealthy and let the conductor halt. Do NOT set
       // `released` here — a transient FS blip is not loss of ownership, and leaving it
       // false keeps release()'s token-checked cleanup running in the `finally`.
-      try { const tmp = `${path}.hb-${owner}`; writeFileSync(tmp, mkRecord(), "utf8"); renameSync(tmp, path); } catch { return false; }
+      // Per-CALL unique temp suffix (not just per-owner): concurrent heartbeat() calls during a
+      // parallel write phase share one owner string and would otherwise race the SAME temp path
+      // (the loser hits ENOENT after the winner renames it away). Harmless today (doWrite ignores
+      // the return), but a unique suffix removes the latent spurious-false.
+      try { const tmp = `${path}.hb-${owner}-${randomBytes(4).toString("hex")}`; writeFileSync(tmp, mkRecord(), "utf8"); renameSync(tmp, path); } catch { return false; }
       return true;
     },
     // Token-checked release: only unlink if WE still own it (never delete a successor's).
@@ -719,6 +730,24 @@ const REGRESSION_REDISPATCH_CAP = 2;
 export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOutcome> {
   const deps = resolveDeps(opts.deps);
   const bookId = opts.bookId;
+  // Validate the bookId BEFORE it touches any path (lock / state / blind-workspace / broker-temp
+  // dirs) or a spawned CLI argv. It arrives as a raw CLI positional and flows into resolve()-based
+  // path construction, which collapses '../' — so an unvalidated id is a path-traversal +
+  // same-book-mutex-bypass vector. Same lowercase-slug rule the rest of the pipeline uses
+  // (researcher-bibliography / normSlug). A '--'-prefixed id (swallowed as a flag upstream) also
+  // fails this. Refuse up front with a structured halt rather than acting on it.
+  if (typeof bookId !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(bookId)) {
+    return mkHalt(String(bookId), "research", "governance", `invalid bookId "${bookId}" — must be a lowercase slug matching /^[a-z0-9][a-z0-9-]*$/. Refusing to run: an unvalidated id flows into lock/state/temp paths (traversal) and spawned CLI argv.`);
+  }
+  // Self-heal a torn chapter file BEFORE the first status read. A half-written chapter (crash
+  // mid-save) makes loadBookChapters→computeBookStatus throw on every read, which would wedge
+  // the conductor permanently ("re-run to resume" re-throws). Quarantine moves it aside so the
+  // chapter is treated as MISSING and re-authored. (Atomic writes now PREVENT new tears; this
+  // recovers a pre-existing/external one.)
+  try {
+    const quarantined = quarantineCorruptChapterFiles(bookId);
+    if (quarantined.length) deps.log(`[autopilot] quarantined ${quarantined.length} corrupt chapter file(s) → state/chapters/_corrupt/ (will be re-authored): ${quarantined.join(", ")}`);
+  } catch { /* best-effort: a quarantine failure must never block the run */ }
   const maxRepair = opts.maxRepairRounds ?? 3;
   const maxParallel = opts.maxParallel ?? 6;
   const autoPublish = opts.autoPublish ?? false;
@@ -732,6 +761,15 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     return mkHalt(bookId, safePhase(bookId, deps), "infra", `could not acquire the run lock for ${bookId} (${lock.heldBy ?? "unknown"}). If a previous run died, remove state/autopilot-locks/${bookId}.lock and retry.`);
   }
   deps.log(`[autopilot] strict invariants ENFORCED (no-API · source-verify-required · session-independence); lock acquired for ${bookId}`);
+
+  // Heartbeat the run lock from INSIDE the long phases too, not just once per outer iteration.
+  // A single QC iteration (an initial round + up to maxRepair repair rounds, each spawning many
+  // 30-min codex sessions) — or a large write phase — can run for HOURS, longer than the
+  // cross-host stale window (LOCK_FALLBACK_STALE_MS), so without an in-phase refresh a cross-host
+  // sibling could time-steal a lock whose owner is alive but mid-phase. refresh() keeps `at` fresh
+  // (and returns false the moment we no longer own it). Same-host liveness already protects us;
+  // this closes the cross-host window. No-op when the lock impl has no refresh (test stubs).
+  const heartbeat = (): boolean => (lock.refresh ? lock.refresh() : true);
 
   try {
     let lastSignature = "";
@@ -763,7 +801,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "write") {
-        await doWrite(bookId, status, maxParallel, deps);
+        await doWrite(bookId, status, maxParallel, deps, heartbeat);
         continue;
       }
       if (phase === "gate") {
@@ -772,7 +810,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "qc") {
-        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps);
+        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat);
         if (result) return result; // halt or ready handled inside; null = re-loop
         continue;
       }
@@ -806,7 +844,7 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<boolean>
 
 // ── Phase: write (fan out one agent per MISSING chapter) ──────────────────────
 
-async function doWrite(bookId: string, status: BookStatus, maxParallel: number, deps: AutopilotDeps): Promise<void> {
+async function doWrite(bookId: string, status: BookStatus, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<void> {
   const writeDir = `state/authoring-cards/${bookId}`;
   // Deal the dispatch cards (idempotent; also writes the pre-authoring plans).
   const fanout = await deps.runVerb(["fanout", bookId, "--write-dir", writeDir]);
@@ -822,10 +860,18 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
   });
   deps.log(`[autopilot] write: ${missing.length} chapter(s) to author (parallel ≤${maxParallel})`);
   await mapWithConcurrency(missing, maxParallel, async (card) => {
+    heartbeat(); // keep the run lock fresh across a long (multi-hour) write phase
     const n = chapterNumberFromCard(card);
+    const writerSessionId = deps.mkSessionId(`write-ch${n}`);
     const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above, then run author-check + gate-chapter until clean.`;
-    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`write-ch${n}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    const r = await spawnAndLog(bookId, { task, sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
+    // Record the authoring session so finalize's author≠reviewer invariant has a real AUTHOR
+    // side under autopilot (previously only qc-stamp-author wrote provenance, which the conductor
+    // never runs → the headline independence check silently no-op'd). Best-effort; a sidecar
+    // write failure must never sink the write phase. (Reviewers get DISTINCT session ids by
+    // construction, so this never false-collides.)
+    if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, writerSessionId); } catch { /* best-effort */ } }
     return r;
   });
 }
@@ -863,9 +909,16 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): P
 
 /** Returns an outcome to STOP on (halt), or null to RE-LOOP (round passed → status
  *  advances to ready). The repair loop honors qc-diagnose governance + stuck-detect. */
-async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
+async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
+    // Refresh the run lock at each round boundary: a full QC iteration (initial round + repair
+    // rounds, each many 30-min codex sessions) can run for HOURS, past the cross-host stale
+    // window. If refresh reports we no longer own the lock (a successor took over), HALT rather
+    // than keep two conductors driving the same book.
+    if (!heartbeat()) {
+      return mkHalt(bookId, "qc", "infra", `lost the run lock for ${bookId} mid-QC (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
+    }
     // Incremental carry drives convergence. A non-incremental round re-rolls EVERY
     // chapter with a FRESH, stochastic bar/confirm read — so a chapter that passed last
     // round gets a new lucky-or-unlucky read this round and the publishable set oscillates,
@@ -898,6 +951,15 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     }
     const diagnose = await deps.runVerb(["qc-diagnose", bookId, "--round", round.roundId]);
     deps.log(`[autopilot] qc-diagnose (round ${round.roundId}):\n${diagnose.stdout.slice(0, 600)}`);
+    // Defensive: the governance (major-disposition) and no-progress decisions below read ONLY
+    // diagnose.stdout. If qc-diagnose itself FAILED (threw → exit≠0, error on stderr, empty
+    // stdout), that empty output would silently read as "no majors / progress made" and let the
+    // loop spawn a repair on an undiagnosable round. Treat a failed diagnose as infra, not a
+    // green light. (In the normal flow the round was just finalized in-process, so this is a
+    // backstop, not the common path.)
+    if (diagnose.code !== 0) {
+      return mkHalt(bookId, "qc", "infra", `qc-diagnose errored (exit ${diagnose.code}) for round ${round.roundId} — cannot make a governance/progress decision on its output: ${(diagnose.stderr || diagnose.stdout).slice(0, 300)}`);
+    }
     if (/major-disposition/.test(diagnose.stdout)) {
       return mkHalt(bookId, "qc", "governance", `a MAJOR finding needs human disposition (waive vs fix) — the autopilot never auto-waives. Review: npx tsx src/cli.ts qc-diagnose ${bookId} --round ${round.roundId}`);
     }
@@ -946,8 +1008,12 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
         ? wholePrompt
         : `REPAIR SCOPE: this session repairs ONLY ch${pad(n)}. Edit ONLY state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json — do NOT edit any other chapter (a sibling session handles those) and do NOT copy another chapter's scenes, names, or phrasing (that re-creates the templating the sweep flags). Fix every finding scoped to ch${pad(n)} below; ignore findings scoped to other chapters.\n\n${wholePrompt}${dealtCardFor(n)}`;
       const sid = n == null ? `qc-repair-${attempt + 1}` : `qc-repair-${attempt + 1}-ch${n}`;
-      const rr = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(sid), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      const repairSessionId = deps.mkSessionId(sid);
+      const rr = await spawnAndLog(bookId, { task, sessionId: repairSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!rr.ok) deps.log(`[autopilot] repair session ${sid} exited ${rr.exitCode}`);
+      // A repair RE-AUTHORS the chapter → update author provenance to this session, so the
+      // author≠reviewer invariant tracks the latest authoring session (best-effort).
+      if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, repairSessionId); } catch { /* best-effort */ } }
     }
     const postHashes = deps.chapterHashes(bookId);
     const collateral = Object.keys(postHashes).filter((n) => !flagged.has(Number(n)) && preHashes[n] !== undefined && preHashes[n] !== postHashes[n]);
@@ -1069,11 +1135,20 @@ function parseFinalizeResult(stdout: string, code: number): FinalizeQcRoundResul
   try {
     const j = JSON.parse(stdout) as Partial<FinalizeQcRoundResult>;
     if (j && typeof j.allPublishable === "boolean" && Array.isArray(j.chapters)) return j as FinalizeQcRoundResult;
-  } catch { /* fall through to exit-code inference */ }
+  } catch { /* fall through to the infra-crash shape below */ }
+  // No parseable FinalizeQcRoundResult on stdout = finalize CRASHED (it threw before printing
+  // its JSON: a corrupt round.json, an fs failure, …). The OLD fallback inferred the verdict
+  // from the bare exit code — but a finalize crash exits 1, which COLLIDES with finalize's
+  // legitimate "repair required" exit code, so a crash was misclassified REPAIR and the
+  // conductor dispatched a content-repair writer at an infra fault. Return an INFRA-shaped
+  // result instead (no repair/incomplete/publishable, empty chapters): the driver maps this to
+  // outcome INFRA → the conductor halts 'infra', never edits content on a crash. (A real verdict
+  // ALWAYS prints valid JSON and is handled by the try above.)
   return {
-    ok: code === 0, allPublishable: code === 0, repairRequired: code === 1, incomplete: code === 3,
+    ok: false, allPublishable: false, repairRequired: false, incomplete: false,
     evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "",
-    attestationsWritten: 0, chapters: [], errors: [],
+    attestationsWritten: 0, chapters: [],
+    errors: [`finalize produced no parseable result JSON (exit ${code}) — treated as an infra crash, not a repair verdict`],
   } as unknown as FinalizeQcRoundResult;
 }
 

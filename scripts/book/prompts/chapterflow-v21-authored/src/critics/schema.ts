@@ -78,6 +78,17 @@ export function checkEnumValidity(q: QuizQuestion): CriticFinding[] {
         "quiz question missing bloomsLevel",
       ),
     );
+  } else if (typeof q.bloomsLevel !== "string") {
+    // A non-string bloomsLevel (codex JSON slip: a number/object) would throw on
+    // .toLowerCase() below and crash the whole ship gate (→ finalize/qc-converge).
+    // Emit a finding instead of crashing.
+    findings.push(
+      finding(
+        "schema.enum_validity",
+        "blocker",
+        `bloomsLevel must be a string (got ${typeof q.bloomsLevel})`,
+      ),
+    );
   } else if (!CANONICAL_BLOOMS.has(q.bloomsLevel.toLowerCase())) {
     const normalized = normalizeBloomsLevel(q.bloomsLevel);
     findings.push(
@@ -89,7 +100,15 @@ export function checkEnumValidity(q: QuizQuestion): CriticFinding[] {
     );
   }
 
-  if (q.depthLevel && !CANONICAL_DEPTH.has(q.depthLevel.toLowerCase())) {
+  if (q.depthLevel != null && typeof q.depthLevel !== "string") {
+    findings.push(
+      finding(
+        "schema.enum_validity",
+        "major",
+        `depthLevel must be a string (got ${typeof q.depthLevel})`,
+      ),
+    );
+  } else if (q.depthLevel && !CANONICAL_DEPTH.has(q.depthLevel.toLowerCase())) {
     const normalized = normalizeDepthLevel(q.depthLevel);
     findings.push(
       finding(
