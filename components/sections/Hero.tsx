@@ -6,7 +6,10 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
-import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import {
+  CATALOG_BOOK_COUNT_DISPLAY,
+  CATALOG_MEDIAN_CHAPTER_MINUTES,
+} from "@/lib/catalog-stats";
 import { track } from "@/lib/analytics";
 
 /**
@@ -55,14 +58,15 @@ export function Hero() {
       id="hero"
       className="relative flex min-h-[92svh] items-center overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20"
     >
-      {/* Contained atmospheric glow behind the console (no full-bleed void). */}
+      {/* ONE contained accent glow, tucked behind the console — depth from a single
+          calibrated signal, never an ambient teal wash. Tinted via --cf-glow-contained. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[-10%] top-[6%] h-[760px] w-[860px]"
+        className="pointer-events-none absolute right-[-6%] top-[10%] h-[620px] w-[700px]"
         style={{
           background:
-            "radial-gradient(closest-side, color-mix(in srgb, var(--accent-cyan) 16%, transparent), transparent 78%)",
-          filter: "blur(20px)",
+            "radial-gradient(closest-side, var(--cf-glow-contained), transparent 76%)",
+          filter: "blur(18px)",
         }}
       />
       {/* faint grid, fading out, anchored top-left under the headline */}
@@ -75,6 +79,16 @@ export function Hero() {
           backgroundImage:
             "linear-gradient(to right, var(--cf-grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--cf-grid-line) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
+        }}
+      />
+      {/* low-opacity grain over the whole canvas — premium-dark depth, not decoration. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(0deg, var(--cf-grain) 0, var(--cf-grain) 1px, transparent 1px, transparent 3px)",
+          mixBlendMode: "overlay",
         }}
       />
 
@@ -104,8 +118,9 @@ export function Hero() {
             style={{ fontFamily: "var(--font-body)", color: "var(--text-secondary)" }}
           >
             ChapterFlow turns every chapter into a guided loop — read it, prove it
-            with a quiz, unlock the next. The retention science behind Anki and
-            Duolingo, applied to the books you actually want to read.
+            with a quiz, unlock the next. Built on the testing effect and an
+            FSRS-5 spaced-repetition schedule, applied to the books you actually
+            want to read.
           </p>
 
           {/* loop-verb motif (echoed in the signature's phase rail + the final CTA) */}
@@ -154,13 +169,38 @@ export function Hero() {
             </a>
           </div>
 
-          <p className="cf-folio mt-6" style={{ color: "var(--text-muted)" }}>
-            {CATALOG_BOOK_COUNT_DISPLAY} books · {FREE_OFFER_LABEL} · no credit card
-          </p>
+          {/* datum-strip — a single hairline-ruled row of mono spec-cells, derived
+              (median minutes + count + free offer), never hardcoded. */}
+          <dl
+            className="mt-8 grid grid-cols-3 rounded-md border"
+            style={{ borderColor: "var(--cf-grid-line)" }}
+          >
+            {[
+              { dt: "Median chapter", dd: `~${CATALOG_MEDIAN_CHAPTER_MINUTES} min`, num: true },
+              { dt: "Catalog", dd: `${CATALOG_BOOK_COUNT_DISPLAY} books`, num: true },
+              { dt: "To start", dd: FREE_OFFER_LABEL, num: false },
+            ].map((cell, i) => (
+              <div
+                key={cell.dt}
+                className="flex flex-col gap-1 px-4 py-2.5"
+                style={i > 0 ? { borderLeft: "1px solid var(--cf-grid-line)" } : undefined}
+              >
+                <dt className="cf-folio" style={{ color: "var(--text-muted)" }}>
+                  {cell.dt}
+                </dt>
+                <dd
+                  className={`cf-folio ${cell.num ? "tabular-nums" : ""}`}
+                  style={{ color: "var(--text-heading)" }}
+                >
+                  {cell.dd}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* RIGHT — the live reader as a glowing, tilted showpiece. Fixed-height
-            console window so it's a clean, finished object (no ragged fold clip). */}
+        {/* RIGHT — the live reader as a lit instrument console. Fixed-height window
+            (clean finished object, CLS 0) + a mono caption labelling the artifact. */}
         <div className="lg:col-span-7" style={{ perspective: "2200px" }}>
           <div className="cf-hero-console transform-gpu lg:translate-x-6">
             <div
@@ -176,6 +216,20 @@ export function Hero() {
                 autoPlay={!reduced}
               />
             </div>
+            {/* console caption — labels the live artifact in mono, like a plate
+                under an instrument. Visible (not aria-hidden): it tells the visitor
+                this is the real product running. */}
+            <p
+              className="cf-folio mt-3 flex items-center gap-2"
+              style={{ color: "var(--text-muted)" }}
+            >
+              <span
+                aria-hidden
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ background: "var(--accent-cyan)" }}
+              />
+              Live reader · {reduced ? "the loop, paused" : "auto-playing the loop"}
+            </p>
           </div>
         </div>
       </div>

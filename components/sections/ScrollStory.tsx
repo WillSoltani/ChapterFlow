@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useRef, useState, useSyncExternalStore } from "react";
+import { useRef, useState, useSyncExternalStore, type CSSProperties } from "react";
 import {
   m,
   AnimatePresence,
@@ -15,6 +15,25 @@ import {
 import { DUR, EASE, SPRING, SCROLL_OFFSET } from "@/lib/motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import {
+  // SINGLE SOURCE OF TRUTH for the §01 phase mapping AND curve geometry —
+  // the unit test (lib/retention-loop-phase.test.ts) guards exactly these, so the
+  // shipped chart/playhead/readout can't silently drift from the test.
+  BEAT_BANDS,
+  beatFor,
+  REVIEWS,
+  T_MAX,
+  X0,
+  X1,
+  Y_TOP,
+  Y_BOT,
+  xOf,
+  yOf,
+  Rf,
+  withRecall,
+  withRecallPct,
+  playheadYOf,
+} from "@/components/sections/retention-loop-phase";
 
 /**
  * THE signature moment — "Operate the loop."
@@ -36,23 +55,10 @@ import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]
  * AND touch. The one bespoke moment on the page.
  */
 
-/* ---- curve geometry (pure, deterministic) ---------------------------------- */
-const T_MAX = 36; // days
-const X0 = 60;
-const X1 = 624;
-const Y_TOP = 34; // 100% retention
-const Y_BOT = 286; // 0% retention
-const xOf = (t: number) => X0 + (t / T_MAX) * (X1 - X0);
-const yOf = (r: number) => Y_TOP + (1 - r) * (Y_BOT - Y_TOP);
-const Rf = (t: number, s: number) => 1 / (1 + t / (9 * s)); // R(S) = 0.9 exactly
-
-// Spaced reviews: stability grows each time, so each interval ends right at R=0.9.
-const REVIEWS = [
-  { t: 0, s: 1 },
-  { t: 1, s: 3 },
-  { t: 4, s: 8 },
-  { t: 12, s: 21 },
-];
+/* ---- curve geometry --------------------------------------------------------- */
+// All pure curve math (T_MAX, X0/X1, xOf/yOf/Rf, REVIEWS, withRecall, playheadYOf,
+// withRecallPct) is imported from @/components/sections/retention-loop-phase so the
+// invariant test guards the SHIPPED geometry. This file only builds the SVG paths.
 
 type Pt = [number, number];
 
@@ -71,17 +77,6 @@ function sawtoothPts(): Pt[] {
   }
   return pts;
 }
-// With-ChapterFlow recall at day t (the cyan saw-tooth's value): find the active
-// review interval, then evaluate the same Rf the curve is drawn from — so the big
-// readout ALWAYS agrees with the line height at the playhead (never a number that
-// contradicts the chart). Sits in [~0.89, 1.0]: 100% fresh, holding near the 90%
-// FSRS floor between reviews.
-function withRecallPct(t: number): number {
-  let iv = REVIEWS[0];
-  for (const r of REVIEWS) if (t >= r.t) iv = r;
-  return Math.round(Rf(t - iv.t, iv.s) * 100);
-}
-
 const toLine = (pts: Pt[]) =>
   "M " + pts.map((p) => `${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(" L ");
 
@@ -144,15 +139,22 @@ const BEATS: Beat[] = [
     phase: "practice",
     kicker: "04 · Keep it",
     headline: "Then it returns, right before you'd forget.",
-    body: "Each idea comes back on a widening schedule set by FSRS — the algorithm behind Anki. Retention holds above 90%. That shaded gap is everything you'd have lost.",
-    cite: "FSRS · Anki 23.10 · R(t) = 1 / (1 + t ⁄ 9S)",
+    body: "Each idea comes back on a widening schedule set by FSRS-5, the open spaced-repetition scheduler. Retention holds above 90%. That shaded gap is everything you'd have lost.",
+    cite: "FSRS-5 spaced repetition · R(t) = 1 / (1 + t ⁄ 9S)",
   },
 ];
-// Upper bound of each beat by scroll progress (also drives the reader's phase).
-const BEAT_BANDS = [0.27, 0.5, 0.78, Infinity];
-function beatFor(p: number): number {
-  for (let i = 0; i < BEAT_BANDS.length; i++) if (p < BEAT_BANDS[i]) return i;
-  return BEAT_BANDS.length - 1;
+// Upper bound of each beat by scroll progress (also drives the reader's phase) —
+// BEAT_BANDS / beatFor are imported from retention-loop-phase (single SoT).
+// Lower/upper scroll-progress edge of each beat band (last beat closes at 1).
+const BEAT_EDGES: [number, number][] = BEAT_BANDS.map((hi, i) => [
+  i === 0 ? 0 : BEAT_BANDS[i - 1],
+  hi === Infinity ? 1 : hi,
+]);
+// Convert a raw scrollYProgress value to the `draw` (0–100) scale that the curve,
+// playhead and clip all run on — draw = (smooth − 0.06) / (0.94 − 0.06) · 100,
+// clamped — so the per-word caption reveal shares the SAME single scroll source.
+function drawOf(p: number): number {
+  return Math.min(100, Math.max(0, ((p - 0.06) / (0.94 - 0.06)) * 100));
 }
 
 /* ---- the live reader (lazy; heavy) ----------------------------------------- */
@@ -200,17 +202,21 @@ function useDesktopFinePointer() {
 function RetentionChart({
   clip,
   playheadX,
+  playheadY,
+  readout,
   isStatic,
 }: {
   clip: string | MotionValue<string>;
   playheadX: number | MotionValue<number>;
+  playheadY?: MotionValue<number>;
+  readout?: MotionValue<string>;
   isStatic: boolean;
 }) {
   return (
     <svg
-      viewBox="0 0 640 320"
+      viewBox="0 0 640 332"
       role="img"
-      aria-label="Recall probability over time. Without review, memory decays steeply toward zero. With ChapterFlow, a quiz snaps recall back to 100% and spaced reviews keep it above 90%. The shaded area between the two lines is the retention otherwise lost."
+      aria-label="Recall probability (y-axis, 0 to 100 percent) over time (x-axis, Day 1 through Month 1). Without review, memory decays steeply toward zero. With ChapterFlow, a quiz snaps recall back to 100% and spaced reviews keep it above 90%. A cyan playhead rides the with-review line and prints the live recall value. The shaded area between the two lines is the retention otherwise lost."
       className="h-auto w-full"
     >
       <defs>
@@ -220,7 +226,11 @@ function RetentionChart({
         </linearGradient>
       </defs>
 
-      {/* gridlines + y labels (static) */}
+      {/* instrument-frame axis rails — the bezel's measured edges */}
+      <line x1={X0} x2={X0} y1={Y_TOP - 6} y2={Y_BOT} stroke="var(--cf-axis-tint)" strokeWidth={1} />
+      <line x1={X0} x2={X1} y1={Y_BOT} y2={Y_BOT} stroke="var(--cf-axis-tint)" strokeWidth={1} />
+
+      {/* gridlines + y labels (static) — each tick re-derived from yOf, never hardcoded */}
       {GRID.map((g) => (
         <g key={g.label}>
           <line
@@ -233,32 +243,77 @@ function RetentionChart({
             strokeDasharray={g.hot ? "2 6" : "0"}
             strokeWidth={1}
           />
+          {/* left axis tick mark */}
+          <line
+            x1={X0 - 4}
+            x2={X0}
+            y1={yOf(g.r)}
+            y2={yOf(g.r)}
+            stroke={g.hot ? "var(--accent-cyan)" : "var(--cf-axis-tint)"}
+            strokeWidth={1}
+          />
           <text
             x={X0 - 10}
             y={yOf(g.r) + 4}
             textAnchor="end"
             fontSize="11"
             fontFamily="var(--font-mono)"
-            fill={g.hot ? "var(--accent-cyan)" : "var(--text-tertiary)"}
+            style={{ fontVariantNumeric: "tabular-nums" }}
+            fill={g.hot ? "var(--accent-cyan)" : "var(--cf-axis-tint)"}
           >
             {g.label}
           </text>
         </g>
       ))}
-      {/* x ticks */}
+      {/* y-axis caption */}
+      <text
+        x={X0 - 10}
+        y={Y_TOP - 16}
+        textAnchor="end"
+        fontSize="9"
+        fontFamily="var(--font-mono)"
+        letterSpacing="0.08em"
+        fill="var(--cf-axis-tint)"
+      >
+        RECALL
+      </text>
+
+      {/* x ticks — re-derived from xOf, with tick marks on the bottom rail */}
       {XTICKS.map((x) => (
-        <text
-          key={x.label}
-          x={xOf(x.t)}
-          y={Y_BOT + 20}
-          textAnchor="middle"
-          fontSize="11"
-          fontFamily="var(--font-mono)"
-          fill="var(--text-tertiary)"
-        >
-          {x.label}
-        </text>
+        <g key={x.label}>
+          <line
+            x1={xOf(x.t)}
+            x2={xOf(x.t)}
+            y1={Y_BOT}
+            y2={Y_BOT + 4}
+            stroke="var(--cf-axis-tint)"
+            strokeWidth={1}
+          />
+          <text
+            x={xOf(x.t)}
+            y={Y_BOT + 20}
+            textAnchor="middle"
+            fontSize="11"
+            fontFamily="var(--font-mono)"
+            style={{ fontVariantNumeric: "tabular-nums" }}
+            fill="var(--cf-axis-tint)"
+          >
+            {x.label}
+          </text>
+        </g>
       ))}
+      {/* x-axis caption */}
+      <text
+        x={X1}
+        y={Y_BOT + 20}
+        textAnchor="end"
+        fontSize="9"
+        fontFamily="var(--font-mono)"
+        letterSpacing="0.08em"
+        fill="var(--cf-axis-tint)"
+      >
+        FSRS INTERVAL →
+      </text>
 
       {/* revealed content (clip wipes L→R with scroll; static = fully shown) */}
       <m.g style={isStatic ? undefined : { clipPath: clip }}>
@@ -299,17 +354,45 @@ function RetentionChart({
         ))}
       </m.g>
 
-      {/* scrubbing playhead (motion only) */}
+      {/* scrubbing playhead + live readout chip (motion only). The chip rides
+          playheadY — derived from the SAME withRecall geometry the readout text
+          prints — so the printed value is always the cyan line height here. */}
       {!isStatic && (
-        <m.line
-          x1={playheadX}
-          x2={playheadX}
-          y1={Y_TOP - 6}
-          y2={Y_BOT + 6}
-          stroke="var(--accent-cyan)"
-          strokeOpacity="0.35"
-          strokeWidth={1.5}
-        />
+        <>
+          <m.line
+            x1={playheadX}
+            x2={playheadX}
+            y1={Y_TOP - 6}
+            y2={Y_BOT}
+            stroke="var(--accent-cyan)"
+            strokeOpacity="0.35"
+            strokeWidth={1.5}
+          />
+          {playheadY && (
+            <m.circle
+              cx={playheadX}
+              cy={playheadY}
+              r={4}
+              fill="var(--cf-playhead-readout)"
+              stroke="var(--cf-page-bg)"
+              strokeWidth={2}
+            />
+          )}
+          {readout && (
+            <m.text
+              x={playheadX}
+              y={Y_TOP - 10}
+              dx={8}
+              fontSize="12"
+              fontFamily="var(--font-mono)"
+              fontWeight={700}
+              style={{ fontVariantNumeric: "tabular-nums" }}
+              fill="var(--cf-playhead-readout)"
+            >
+              {readout}
+            </m.text>
+          )}
+        </>
       )}
 
       {/* legend */}
@@ -327,7 +410,82 @@ function RetentionChart({
   );
 }
 
-function BeatCopy({ beat }: { beat: Beat }) {
+/* ---- TextRevealByWord — per-word scrub on the active beat caption ----------- */
+// Each word's opacity is driven by the SAME `draw` (0–100) MotionValue that powers
+// the reader, curve, playhead and clip — no second useScroll. As the visitor scrubs
+// through the active beat's band, words light dim→lit left-to-right (off-main-thread
+// opacity only). The text stays one natural reading order for AT; the sr-only BEATS
+// list in <ScrollStory> is the canonical narrative for screen readers, so the live
+// words are aria-hidden to avoid a stuttering double-read on partial reveal.
+function TextRevealWords({
+  text,
+  draw,
+  band,
+  className,
+  style,
+}: {
+  text: string;
+  draw: MotionValue<number>;
+  band: [number, number];
+  className?: string;
+  style?: CSSProperties;
+}) {
+  const words = text.split(" ");
+  // Reveal across the FIRST ~62% of the beat band so the caption is fully lit a
+  // beat before the band ends (the reader/curve keep moving for the remainder).
+  const [bStart, bEnd] = band;
+  const revealEnd = bStart + (bEnd - bStart) * 0.62;
+  const span = Math.max(revealEnd - bStart, 1e-3);
+  // Each word lights over a short window; windows overlap (0.55× step) for a smooth
+  // rolling sweep rather than a hard one-at-a-time cut.
+  const step = words.length > 1 ? span / words.length : span;
+  const win = step * 1.8;
+  return (
+    <p className={className} style={style} aria-hidden>
+      {words.map((w, i) => {
+        const lo = bStart + i * step;
+        const hi = lo + win;
+        return (
+          <WordSpan key={`${w}-${i}`} draw={draw} lo={lo} hi={hi}>
+            {w}
+          </WordSpan>
+        );
+      })}
+    </p>
+  );
+}
+function WordSpan({
+  draw,
+  lo,
+  hi,
+  children,
+}: {
+  draw: MotionValue<number>;
+  lo: number;
+  hi: number;
+  children: string;
+}) {
+  const opacity = useTransform(draw, [lo, hi], [0.22, 1], { clamp: true });
+  return (
+    <>
+      <m.span style={{ opacity, willChange: "opacity" }}>{children}</m.span>{" "}
+    </>
+  );
+}
+
+function BeatCopy({
+  beat,
+  draw,
+  beatIndex,
+}: {
+  beat: Beat;
+  draw: MotionValue<number>;
+  beatIndex: number;
+}) {
+  // Active beat's scroll-progress band → draw (0–100) scale, so the per-word reveal
+  // runs on the exact range the playhead crosses this beat.
+  const [pLo, pHi] = BEAT_EDGES[beatIndex];
+  const band: [number, number] = [drawOf(pLo), drawOf(pHi)];
   return (
     <div className="relative" style={{ minHeight: "12.5rem" }}>
       <AnimatePresence mode="wait">
@@ -352,27 +510,17 @@ function BeatCopy({ beat }: { beat: Beat }) {
           >
             {beat.headline}
           </h3>
-          <p className="mt-3 max-w-[46ch] text-[14.5px] leading-[1.6]" style={{ color: "var(--text-secondary)" }}>
-            {beat.body}
-          </p>
+          <TextRevealWords
+            text={beat.body}
+            draw={draw}
+            band={band}
+            className="mt-3 max-w-[46ch] text-[14.5px] leading-[1.6]"
+            style={{ color: "var(--text-secondary)" }}
+          />
           <p className="cf-folio mt-3">{beat.cite}</p>
         </m.div>
       </AnimatePresence>
     </div>
-  );
-}
-
-function Aurora() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 -z-10"
-      style={{
-        background:
-          "radial-gradient(60% 55% at 72% 42%, color-mix(in srgb, var(--accent-cyan) 15%, transparent) 0%, color-mix(in srgb, var(--accent-cyan) 5%, transparent) 38%, transparent 74%)",
-        filter: "blur(46px)",
-      }}
-    />
   );
 }
 
@@ -385,25 +533,35 @@ const PHASE_LABELS: { phase: ChapterTab; label: string }[] = [
   { phase: "quiz", label: "Prove" },
   { phase: "practice", label: "Keep" },
 ];
+// Four-segment phase rail: each segment fills cyan as its phase is reached, so the
+// loop's four stages read as a calibrated progress bar, not just a label row.
 function PhaseRail({ active }: { active: number }) {
   return (
-    <div className="flex items-center gap-2" aria-hidden>
+    <div className="flex items-stretch gap-1.5" aria-hidden>
       {PHASE_LABELS.map((p, i) => {
-        const on = i <= active;
+        const reached = i <= active;
+        const current = i === active;
         return (
-          <div key={p.phase} className="flex items-center gap-2">
+          <div key={p.phase} className="flex min-w-[3.25rem] flex-col gap-1.5">
             <span
-              className="cf-folio transition-colors duration-300"
-              style={{ color: i === active ? "var(--accent-cyan)" : on ? "var(--text-secondary)" : "var(--text-tertiary)" }}
+              className="h-[3px] w-full rounded-full transition-colors duration-300"
+              style={{
+                background: reached ? "var(--accent-cyan)" : "var(--cf-grid-line)",
+                opacity: reached ? (current ? 1 : 0.55) : 1,
+              }}
+            />
+            <span
+              className="cf-folio leading-none transition-colors duration-300"
+              style={{
+                color: current
+                  ? "var(--accent-cyan)"
+                  : reached
+                    ? "var(--text-secondary)"
+                    : "var(--text-tertiary)",
+              }}
             >
               {p.label}
             </span>
-            {i < PHASE_LABELS.length - 1 && (
-              <span
-                className="h-px w-6 transition-colors duration-300"
-                style={{ background: on ? "var(--accent-cyan)" : "var(--cf-grid-line)" }}
-              />
-            )}
           </div>
         );
       })}
@@ -435,7 +593,9 @@ function StaticStack() {
       {/* Controlled + autoPlay=false → the reader's isControlled branch disables
           its inner overflow scroll, so PAGE scroll is the only scroll on touch
           (no nested-scroll trap) and no phase auto-cycles under the user's thumb. */}
-      <div className="mt-8 overflow-hidden rounded-2xl" style={{ border: "1px solid var(--cf-console-rim)", boxShadow: "var(--shadow-hero)" }}>
+      {/* min-height matches ReaderConsoleSkeleton (540) so the lazy skeleton→reader
+          swap reserves space and CLS stays 0 on the calm static fallback path. */}
+      <div className="mt-8 overflow-hidden rounded-2xl" style={{ minHeight: 540, border: "1px solid var(--cf-console-rim)", boxShadow: "var(--shadow-hero)" }}>
         <DesktopReaderShell controlledPhase="summary" autoPlay={false} />
       </div>
 
@@ -448,7 +608,14 @@ function StaticStack() {
       <ol className="mt-8 flex flex-col gap-6">
         {BEATS.map((b) => (
           <li key={b.kicker}>
-            <p className="cf-folio" style={{ color: "var(--accent-cyan)" }}>{b.kicker}</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="cf-folio" style={{ color: "var(--accent-cyan)" }}>{b.kicker}</p>
+              {b.phase === "quiz" && (
+                <span className="cf-folio" style={{ color: "var(--accent-cyan)" }}>
+                  · ACTIVE RECALL — unlock
+                </span>
+              )}
+            </div>
             <h3 className="mt-1.5 text-[18px] font-bold" style={{ fontFamily: "var(--font-display)", color: "var(--text-heading)" }}>
               {b.headline}
             </h3>
@@ -465,22 +632,33 @@ function StaticStack() {
 function PinnedStage({
   clip,
   playheadX,
+  playheadY,
   retained,
+  readoutChip,
+  draw,
   beatIndex,
 }: {
   clip: MotionValue<string>;
   playheadX: MotionValue<number>;
+  playheadY: MotionValue<number>;
   retained: MotionValue<string>;
+  readoutChip: MotionValue<string>;
+  draw: MotionValue<number>;
   beatIndex: number;
 }) {
   const beat = BEATS[beatIndex];
+  // ACTIVE RECALL — unlock: at the quiz beat, retrieval snaps recall back up and
+  // passing is the gate. We flip the readout LABEL only (never the number — the
+  // number stays bound to the playhead's line height, preserving the invariant).
+  const isRecall = beatIndex === 2;
   return (
     <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
-      <Aurora />
       <div className="mx-auto w-full max-w-[1320px] px-8">
-        {/* header rail */}
+        {/* header rail — SECTION_INTRO is the section's real <h2> (heading
+            hierarchy: Hero <h1> → this <h2> → per-beat <h3>), visually styled as
+            the folio so it reads as a running head, not a banner heading. */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-          <p className="cf-folio" style={{ color: "var(--text-tertiary)" }}>{SECTION_INTRO}</p>
+          <h2 className="cf-folio" style={{ color: "var(--text-tertiary)" }}>{SECTION_INTRO}</h2>
           <PhaseRail active={beatIndex} />
         </div>
 
@@ -506,36 +684,64 @@ function PinnedStage({
           <div>
             <div className="flex items-end justify-between gap-4">
               <div>
-                <m.p
+                <p
                   className="leading-none"
                   style={{
                     fontFamily: "var(--font-mono)",
                     fontSize: "clamp(2.6rem, 4.4vw, 3.6rem)",
                     fontWeight: 700,
                     color: "var(--cf-engine-readout)",
+                    fontVariantNumeric: "tabular-nums",
                   }}
                 >
-                  {retained}
-                </m.p>
-                <p className="cf-folio mt-1">recall, with review · FSRS target 90%</p>
+                  <span style={{ color: "var(--text-tertiary)" }}>R = </span>
+                  <m.span>{retained}</m.span>
+                </p>
+                <p
+                  className="cf-folio mt-1 transition-colors duration-200"
+                  style={{ color: isRecall ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
+                >
+                  {isRecall ? "ACTIVE RECALL — unlock" : "recall, with review · FSRS target 90%"}
+                </p>
               </div>
             </div>
 
+            {/* instrument bezel: mono spec stamp + the calibrated chart. Depth
+                comes from a FLAT surface fill + hairline rule (matching the
+                Ledger/Science panels), NOT backdrop-blur glass — the Field Manual
+                direction rejects glassmorphism. */}
             <div
-              className="mt-4 rounded-2xl border p-5"
+              className="mt-4 rounded-2xl border"
               style={{
-                background: "color-mix(in srgb, var(--cf-surface) 55%, transparent)",
-                borderColor: "var(--border-subtle)",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
+                background: "var(--cf-surface)",
+                borderColor: "var(--cf-console-rim)",
                 boxShadow: "var(--shadow-elevated)",
               }}
             >
-              <RetentionChart clip={clip} playheadX={playheadX} isStatic={false} />
+              <div
+                className="flex items-center justify-between gap-3 border-b px-5 py-2.5"
+                style={{ borderColor: "var(--border-subtle)" }}
+              >
+                <span className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
+                  RETENTION INSTRUMENT · R(t) = 1 ⁄ (1 + t ⁄ 9S)
+                </span>
+                <span className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
+                  CALIBRATED
+                </span>
+              </div>
+              <div className="p-5">
+                <RetentionChart
+                  clip={clip}
+                  playheadX={playheadX}
+                  playheadY={playheadY}
+                  readout={readoutChip}
+                  isStatic={false}
+                />
+              </div>
             </div>
 
             <div className="mt-5">
-              <BeatCopy beat={beat} />
+              <BeatCopy beat={beat} draw={draw} beatIndex={beatIndex} />
             </div>
           </div>
         </div>
@@ -560,9 +766,14 @@ export function ScrollStory() {
   const rightInset = useTransform(draw, (v) => 100 - v);
   const clip = useMotionTemplate`inset(0% ${rightInset}% 0% 0%)`;
   const playheadX = useTransform(draw, (v) => X0 + (v / 100) * (X1 - X0));
+  // The playhead dot/chip y-pixel — same withRecall geometry as the printed value,
+  // so the chip provably rides the cyan line (readout == line height at playhead).
+  const playheadY = useTransform(draw, (v) => playheadYOf((v / 100) * T_MAX));
   // Readout = the with-review recall AT the playhead, so the number can never
   // disagree with the cyan line beside it (100% fresh → holding near the 90% floor).
   const retained = useTransform(draw, (v) => `${withRecallPct((v / 100) * T_MAX)}%`);
+  // The in-chart playhead chip prints the SAME value as the big readout, prefixed.
+  const readoutChip = useTransform(draw, (v) => `R = ${withRecallPct((v / 100) * T_MAX)}%`);
 
   const [beatIndex, setBeatIndex] = useState(0);
   useMotionValueEvent(scrollYProgress, "change", (p) => {
@@ -589,7 +800,15 @@ export function ScrollStory() {
       {isStatic ? (
         <StaticStack />
       ) : (
-        <PinnedStage clip={clip} playheadX={playheadX} retained={retained} beatIndex={beatIndex} />
+        <PinnedStage
+          clip={clip}
+          playheadX={playheadX}
+          playheadY={playheadY}
+          retained={retained}
+          readoutChip={readoutChip}
+          draw={draw}
+          beatIndex={beatIndex}
+        />
       )}
     </section>
   );

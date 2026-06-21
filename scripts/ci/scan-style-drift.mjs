@@ -62,6 +62,8 @@ const RUNTIME_TOKENS = new Set([
   "--cr-ring-circumference",
   "--cr-ring-offset",
   "--cr-header-h",
+  "--cr-spotlight-x",
+  "--cr-spotlight-y",
 ]);
 
 // ── file helpers ─────────────────────────────────────────────────────────────

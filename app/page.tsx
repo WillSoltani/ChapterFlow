@@ -9,6 +9,7 @@ import { Hero } from "@/components/sections/Hero";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
 import { ScrollStory } from "@/components/sections/ScrollStory";
 import { Ledger } from "@/components/sections/Ledger";
+import { CatalogIndex } from "@/components/sections/CatalogIndex";
 import { ScienceAndTrust } from "@/components/sections/ScienceAndTrust";
 import { Pricing } from "@/components/sections/Pricing";
 import { FinalCTA } from "@/components/sections/FinalCTA";
@@ -102,19 +103,17 @@ export default function Home() {
       {/* Noise texture overlay */}
       <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
 
-      {/* Background gradient mesh — tokenized via color-mix so it adapts to
-          light / dark / high-contrast. Single accent (cyan) for restraint. Three
-          well-distributed glows (top-left, mid-right, lower-center) so no stretch
-          of the page scrolls over truly flat black — the "void/sparse" failure
-          mode. Fixed, so every scroll position keeps some atmosphere. */}
+      {/* Calibrated near-black field. Depth comes from grain + the masked
+          structural grid below + the ONE contained glow in the hero — NOT an
+          ambient teal wash (the Field Manual direction traded that away). A single
+          faint top tint keeps the very top of the page from reading as dead black
+          behind the transparent nav; everything below rests on the grid + grain. */}
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden
         style={{
           background: [
-            "radial-gradient(ellipse 60vw 50vw at 28% -5%, color-mix(in srgb, var(--accent-cyan) 11%, transparent), transparent 62%)",
-            "radial-gradient(ellipse 54vw 48vw at 84% 46%, color-mix(in srgb, var(--accent-cyan) 7%, transparent), transparent 60%)",
-            "radial-gradient(ellipse 66vw 46vw at 36% 103%, color-mix(in srgb, var(--accent-cyan) 7%, transparent), transparent 58%)",
+            "radial-gradient(ellipse 70vw 38vw at 50% -8%, color-mix(in srgb, var(--accent-cyan) 5%, transparent), transparent 64%)",
             "var(--bg-base)",
           ].join(", "),
         }}
@@ -164,6 +163,7 @@ export default function Home() {
           <ScrollStory />
           <Ledger />
           <ScienceAndTrust />
+          <CatalogIndex />
           <Pricing />
           <FinalCTA />
         </main>

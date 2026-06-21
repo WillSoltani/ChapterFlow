@@ -72,8 +72,9 @@ export function DesktopReaderShell({
   autoPlay?: boolean;
 } = {}) {
   const [internalTab, setInternalTab] = useState<ChapterTab>("summary");
-  // Effective phase: the external driver wins when controlled; otherwise the
-  // internal autoplay/interaction state drives it (standalone InteractiveDemo).
+  // Effective phase: the external driver wins when controlled (the §01 signature
+  // scrubs it); otherwise the internal autoplay/interaction state drives it (the
+  // hero console auto-running the loop).
   const isControlled = controlledPhase != null;
   const activeTab = controlledPhase ?? internalTab;
   const [readingDepth, setReadingDepth] = useState<ReadingDepth>("standard");
@@ -96,6 +97,12 @@ export function DesktopReaderShell({
 
   const hasInteracted = useRef(false);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // WCAG 2.2.2 (pause/stop/hide): auto-updating content must not move
+  // indefinitely. We count phase advances and STOP after one full loop (4 phases,
+  // back to Summary) so a non-interacting, non-reduced-motion visitor sees the
+  // loop run once, then it rests — no perpetual motion they can't halt.
+  const advancesRef = useRef(0);
+  const [loopComplete, setLoopComplete] = useState(false);
 
   const stopAutoAdvance = useCallback(() => {
     if (advanceRef.current) {
@@ -119,10 +126,16 @@ export function DesktopReaderShell({
     if (prefersReducedMotion) return;
     if (!isInView) return;
     if (hasInteracted.current) return;
+    if (loopComplete) return; // one full loop done — rest (WCAG 2.2.2)
     const dwell = PHASE_DURATIONS_MS[activeTab];
     advanceRef.current = setTimeout(() => {
       const idx = PHASE_ORDER.indexOf(activeTab);
       const next = PHASE_ORDER[(idx + 1) % PHASE_ORDER.length];
+      advancesRef.current += 1;
+      // Completed the loop (cycled through all 4 phases, back to Summary): stop.
+      if (advancesRef.current >= PHASE_ORDER.length) {
+        setLoopComplete(true);
+      }
       setInternalTab(next);
     }, dwell);
     return () => stopAutoAdvance();
@@ -133,6 +146,7 @@ export function DesktopReaderShell({
     isInView,
     autoPlay,
     isControlled,
+    loopComplete,
   ]);
 
   const handleTabChange = useCallback(

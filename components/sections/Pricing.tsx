@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import { Check, Minus, ChevronDown } from "lucide-react";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
@@ -20,84 +21,42 @@ import {
   PRO_FEATURES,
 } from "@/lib/pricing";
 
-/* ------------------------------------------------------------------ */
-/*  Inline icons                                                      */
-/* ------------------------------------------------------------------ */
+/**
+ * §05 Pricing — the TERMS SHEET.
+ *
+ * Not a centered SaaS pricing block: a left-aligned spec sheet matching the
+ * Ledger / CatalogIndex / Science panels. A §05 SectionLabel + mono running-head,
+ * the two tiers as hairline-ruled spec rows on a flat --cf-surface panel (no
+ * floating glassy scale cards, no glow halos), prices in mono tabular datum style,
+ * benefit/exclusion chips inline. ONE accent — cyan — for the work; the Pro CTA is
+ * the same cyan as the hero/science CTAs (no gold/amber gradient, no second hue).
+ */
 
-function CheckIcon() {
+/* ---- terms-sheet benefit chips — Lucide raw, color via text-(--cf-*) -------- */
+
+function GrantedIcon() {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--accent-emerald)/15">
-      <svg
-        width="12"
-        height="12"
-        viewBox="0 0 12 12"
-        fill="none"
-        className="text-(--accent-emerald)"
-      >
-        <path
-          d="M2.5 6.5L4.5 8.5L9.5 3.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-(--accent-cyan)/15 text-(--accent-cyan)">
+      <Check size={11} strokeWidth={2.5} aria-hidden />
     </span>
   );
 }
 
-function DashIcon() {
+function ExcludedIcon() {
   return (
-    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--text-muted)/10">
-      <svg
-        width="10"
-        height="10"
-        viewBox="0 0 10 10"
-        fill="none"
-        className="text-(--text-muted)"
-      >
-        <path
-          d="M2.5 5H7.5"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-        />
-      </svg>
+    <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-(--text-muted)/10 text-(--text-muted)">
+      <Minus size={10} strokeWidth={2.5} aria-hidden />
     </span>
   );
 }
 
-function ChevronIcon({ open }: { open: boolean }) {
-  return (
-    <motion.svg
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-      className="shrink-0 text-(--text-muted)"
-      animate={{ rotate: open ? 180 : 0 }}
-      transition={{ duration: 0.25, ease: "easeInOut" }}
-    >
-      <path
-        d="M5 7.5L10 12.5L15 7.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </motion.svg>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  FAQ data                                                          */
-/* ------------------------------------------------------------------ */
+/* ---- FAQ data -------------------------------------------------------------- */
 
 const faqs = [
   {
     question: "Can I cancel anytime?",
     answer:
-      "Yes \u2014 cancel anytime from your account settings, with no penalties or lock-in. Cancel during your 14-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.",
+      "Yes — cancel anytime from your account settings, with no penalties or lock-in. Cancel during your 14-day free trial and you won't be charged. Cancel after, and your Pro access continues until the end of the period you've already paid for; the remaining time isn't refunded.",
   },
   {
     question: `What happens after my ${PRICING.freeBookLimit} free books?`,
@@ -116,9 +75,103 @@ const faqs = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-/*  Pricing component                                                 */
-/* ------------------------------------------------------------------ */
+/* ---- a tier as a spec row -------------------------------------------------- */
+
+type TierFeature = { label: string; granted: boolean };
+
+function TierRow({
+  call,
+  name,
+  price,
+  unit,
+  subline,
+  blurb,
+  features,
+  accent,
+  cta,
+  terms,
+}: {
+  call: string;
+  name: string;
+  price: string;
+  unit: string;
+  subline?: ReactNode;
+  blurb: string;
+  features: TierFeature[];
+  accent: boolean;
+  cta: ReactNode;
+  terms?: ReactNode;
+}) {
+  return (
+    <div
+      className="grid grid-cols-1 gap-6 px-6 py-8 md:grid-cols-[minmax(0,18rem)_1fr] md:gap-10 md:px-9 md:py-9"
+      style={{ background: "var(--cf-surface)" }}
+    >
+      {/* LEFT — call number, name, price datum */}
+      <div className="flex flex-col">
+        <div className="flex items-center gap-2">
+          <span
+            className="cf-folio tabular-nums"
+            style={{ color: accent ? "var(--accent-cyan)" : "var(--cf-axis-tint)" }}
+          >
+            {call}
+          </span>
+          <span
+            className="cf-folio"
+            style={{ color: accent ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
+          >
+            {name}
+          </span>
+        </div>
+
+        <div className="mt-4 flex items-baseline gap-1.5">
+          <span
+            className="text-[44px] font-bold leading-none tabular-nums text-(--text-heading)"
+            style={{ fontFamily: "var(--font-jetbrains)" }}
+          >
+            {price}
+          </span>
+          <span className="text-[14px] text-(--text-muted)">{unit}</span>
+        </div>
+
+        {subline && (
+          <p className="mt-1.5 text-[13px]" style={{ color: "var(--accent-cyan)" }}>
+            {subline}
+          </p>
+        )}
+
+        <p
+          className="mt-3 max-w-[28ch] text-[14px] leading-[1.6] text-(--text-secondary)"
+          style={{ fontFamily: "var(--font-body)" }}
+        >
+          {blurb}
+        </p>
+
+        <div className="mt-6 md:mt-auto md:pt-6">{cta}</div>
+        {terms && <div className="mt-3">{terms}</div>}
+      </div>
+
+      {/* RIGHT — the spec list */}
+      <ul className="grid grid-cols-1 gap-x-8 gap-y-3 self-center sm:grid-cols-2">
+        {features.map((f) => (
+          <li
+            key={f.label}
+            className="flex items-center gap-2.5 text-[14px]"
+            style={{
+              fontFamily: "var(--font-body)",
+              color: f.granted ? "var(--text-secondary)" : "var(--text-muted)",
+            }}
+          >
+            {f.granted ? <GrantedIcon /> : <ExcludedIcon />}
+            {f.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/* ---- Pricing component ----------------------------------------------------- */
 
 export function Pricing() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -127,14 +180,8 @@ export function Pricing() {
   const freeHref = loggedIn ? "/book" : AUTH_LOGIN_BOOK_URL;
   // The Pro CTA advertises "Start 14-day free trial" with a "card required,
   // charged when the trial ends" promise — so it must land on the trial-start
-  // (Stripe checkout) surface, not the free reader. Logged-in: the settings
-  // Billing tab (upgrade action). Logged-out: login → that same surface via
-  // returnTo, instead of AUTH_LOGIN_BOOK_URL which dumped new visitors in /book
-  // (the reader) with no checkout.
-  // A user who is ALREADY Pro must NOT be sent toward a second checkout
-  // (CHECKOUT-DOUBLE): relabel to "Manage subscription" and route them to
-  // settings. isPro defaults false, so the CTA degrades to the trial flow if the
-  // plan can't be resolved.
+  // (Stripe checkout) surface, not the free reader. Already-Pro users go to
+  // settings to MANAGE, never a second checkout (CHECKOUT-DOUBLE).
   const proHref = isPro
     ? "/book/settings"
     : loggedIn
@@ -147,345 +194,256 @@ export function Pricing() {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
 
-  /* ---- Free features ---- */
-  const freeFeatures = [
-    "Access to the full book library",
-    `Finish up to ${PRICING.freeBookLimit} books`,
-    "Lite and Standard depth modes",
-    "Chapter summaries and examples",
-    "Chapter quizzes",
+  /* ---- Free tier spec ---- */
+  const freeFeatures: TierFeature[] = [
+    { label: "Full book library", granted: true },
+    { label: `Finish up to ${PRICING.freeBookLimit} books`, granted: true },
+    { label: "Lite & Standard depth", granted: true },
+    { label: "Summaries & examples", granted: true },
+    { label: "Chapter quizzes", granted: true },
+    { label: "Deeper depth mode", granted: false },
+    { label: "Unlimited books", granted: false },
   ];
-  const freeMissing = ["Deeper depth mode", "Unlimited books"];
 
-  /* ---- Pro features (single source of truth: lib/pricing.ts) ---- */
-  const proFeatures = PRO_FEATURES;
+  /* ---- Pro tier spec (single source of truth: lib/pricing.ts) ---- */
+  const proFeatures: TierFeature[] = PRO_FEATURES.map((label) => ({
+    label,
+    granted: true,
+  }));
+
+  const proPrice = isAnnual
+    ? PRICING_TIER_DISPLAY.annual_upfront.price
+    : formatAmount(perMonthAmount);
 
   return (
-    <section id="pricing" className="pt-14 pb-6 lg:pt-20 lg:pb-8">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* ---- Intro ---- */}
+    <section id="pricing" className="relative">
+      <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
+        {/* ---- Section head — left-aligned, folio system ---- */}
         <SectionReveal>
-          <div className="text-center">
-            <SectionLabel>PRICING</SectionLabel>
-
-            <h2 className="cf-display-2 cf-display-sans mt-4 text-balance font-bold text-(--text-heading)">
-              Start free. Go deeper when you&apos;re ready.
+          <div className="max-w-2xl">
+            <SectionLabel>§05 · PRICING</SectionLabel>
+            <h2
+              className="mt-4 font-bold leading-[1.05] text-balance"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(2rem, 4vw, 3.1rem)",
+                letterSpacing: "-0.03em",
+                color: "var(--text-heading)",
+              }}
+            >
+              Two tiers. One method. No lock-in.
             </h2>
-
             <p
-              className="mt-3 text-(--text-secondary)"
+              className="mt-4 max-w-xl text-[16px] leading-[1.6] text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
-              No annual lock-in. No confusing tiers. Two plans, one purpose.
-            </p>
-
-            <p
-              className="mt-2 text-[14px] text-(--text-muted)"
-              style={{ fontFamily: "var(--font-body)" }}
-            >
-              The average non-fiction book costs $18. ChapterFlow Pro gives you
-              unlimited structured access for less.
+              Read {FREE_OFFER_LABEL} with no card. Start a {PRICING.trialDays}-day
+              Pro trial for unlimited access and the deepest reading mode — cancel
+              before it ends and you won&apos;t be charged.
             </p>
           </div>
         </SectionReveal>
 
-        {/* ---- Billing toggle ---- */}
-        <SectionReveal delay={0.05}>
-          <div className="mt-8 min-h-11 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => setIsAnnual(false)}
-              className="flex items-center min-h-11 px-1 text-[14px] transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-              style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setIsAnnual((v) => !v)}
-              role="switch"
-              aria-checked={isAnnual}
-              aria-label="Toggle annual pricing"
-              className="relative w-12 h-6 rounded-full transition-colors cursor-pointer border border-transparent forced-colors:border-[ButtonText] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-              style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
-            >
-              <div
-                className="absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform border border-transparent forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
-                style={{ transform: isAnnual ? "translateX(26px)" : "translateX(2px)" }}
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsAnnual(true)}
-              className="flex items-center min-h-11 px-1 text-[14px] transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-              style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
-            >
-              Annual
-              <span
-                className="ml-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full"
-                style={{ color: "var(--accent-cyan)", background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)" }}
-              >
-                Save {ANNUAL_SAVINGS_PCT}%
-              </span>
-            </button>
-          </div>
-        </SectionReveal>
-
-        {/* ---- Free-access models clarifier ---- */}
+        {/* ---- The terms-sheet panel ---- */}
         <SectionReveal delay={0.08}>
-          <p
-            className="mt-4 text-[13px] text-(--text-muted) text-center max-w-xl mx-auto leading-[1.6]"
-            style={{ fontFamily: "var(--font-body)" }}
+          <div
+            className="relative mt-12 overflow-hidden rounded-2xl border"
+            style={{ borderColor: "var(--border-subtle)", background: "var(--cf-surface)" }}
           >
-            Read {FREE_OFFER_LABEL} with no card — or start a {PRICING.trialDays}-day
-            Pro trial for unlimited access.
-          </p>
-        </SectionReveal>
-
-        {/* ---- Pricing cards ---- */}
-        <div className="mt-8 flex flex-col md:flex-row gap-6 justify-center items-center md:items-stretch">
-          {/* FREE card */}
-          <SectionReveal delay={0.1}>
+            {/* running head — billing cadence toggle as a mono datum control */}
             <div
-              className="relative flex flex-col bg-(--cf-surface) border border-(--border-subtle) rounded-xl p-8 w-full max-w-[380px]"
-              style={{
-                // Lift the card off the page with a real (theme-aware) elevation
-                // shadow — a flat, shadowless surface is the "templated" tell.
-                boxShadow: "var(--shadow-card)",
-              }}
+              className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4 md:px-9"
+              style={{ borderBottom: "1px solid var(--border-subtle)" }}
             >
-              <span className="text-[12px] uppercase tracking-[0.1em] text-(--text-secondary) font-semibold">
-                Free
+              <span className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
+                Terms sheet · effective on signup
               </span>
 
-              <span
-                className="mt-4 text-[48px] font-bold leading-none text-(--text-heading)"
-                style={{ fontFamily: "var(--font-jetbrains)" }}
-              >
-                $0
-              </span>
-
-              <p
-                className="mt-3 text-[14px] text-(--text-secondary)"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Try ChapterFlow with two complete books.
-              </p>
-
-              <hr className="my-6 border-(--border-subtle)" />
-
-              {/* Features */}
-              <ul className="flex flex-col gap-3 flex-1">
-                {freeFeatures.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-3 text-[14px] text-(--text-secondary)"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    <CheckIcon />
-                    {f}
-                  </li>
-                ))}
-                {freeMissing.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-3 text-[14px] text-(--text-muted)"
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    <DashIcon />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              {/* CTA */}
-              <Link
-                href={freeHref}
-                onClick={() => track("cta_click", { source: "pricing_free" })}
-                className="mt-8 block w-full text-center border border-(--border-medium) text-(--text-heading) hover:bg-(--bg-glass) rounded-xl py-3.5 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                Get {FREE_OFFER_LABEL}
-              </Link>
-            </div>
-          </SectionReveal>
-
-          {/* PRO card */}
-          <SectionReveal delay={0.2}>
-            <div
-              className="relative flex flex-col rounded-xl p-8 w-full max-w-[380px] scale-[1.02]"
-              style={{
-                background: "var(--cf-surface)",
-                border: "1px solid color-mix(in srgb, var(--accent-cyan) 55%, transparent)",
-                // Paired elevation (key + ambient, theme-aware) UNDER the cyan
-                // glow so the featured card reads as lifted AND lit, not just
-                // glowing on a flat plane. A crisp inset rim makes the accent read
-                // on white — a 35% hairline washed out.
-                boxShadow:
-                  "inset 0 0 0 1px color-mix(in srgb, var(--accent-cyan) 20%, transparent), var(--shadow-elevated), 0 0 40px color-mix(in srgb, var(--accent-cyan) 12%, transparent), 0 0 80px color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
-              }}
-            >
-              {/* Badge */}
-              <span
-                className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10 text-[11px] font-bold uppercase tracking-wider px-4 py-1.5 rounded-full whitespace-nowrap"
-                style={{
-                  background: "var(--accent-cyan)",
-                  color: "var(--primary-foreground)",
-                  boxShadow:
-                    "0 4px 14px color-mix(in srgb, var(--accent-cyan) 35%, transparent), 0 0 0 1px color-mix(in srgb, var(--accent-cyan) 50%, transparent)",
-                }}
-              >
-                Most popular
-              </span>
-
-              <span className="text-[12px] uppercase tracking-[0.1em] text-(--accent-cyan) font-semibold">
-                Pro
-              </span>
-
-              <div className="mt-4 flex items-baseline">
-                <span
-                  className="text-[48px] font-bold leading-none text-(--text-heading)"
-                  style={{ fontFamily: "var(--font-jetbrains)" }}
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsAnnual(false)}
+                  className="cf-folio min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
                 >
-                  {isAnnual
-                    ? PRICING_TIER_DISPLAY.annual_upfront.price
-                    : formatAmount(perMonthAmount)}
-                </span>
-                <span className="ml-1 text-[16px] text-(--text-muted)">
-                  {PRICING.currency} / {isAnnual ? "year" : "month"}
-                </span>
+                  MONTHLY
+                </button>
+                <button
+                  onClick={() => setIsAnnual((v) => !v)}
+                  role="switch"
+                  aria-checked={isAnnual}
+                  aria-label="Toggle annual pricing"
+                  className="relative h-5 w-10 rounded-full transition-colors cursor-pointer border border-transparent forced-colors:border-[ButtonText] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
+                >
+                  <span
+                    className="absolute top-0.5 h-4 w-4 rounded-full bg-(--cf-toggle-knob) shadow transition-transform border border-transparent forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
+                    style={{ transform: isAnnual ? "translateX(22px)" : "translateX(2px)" }}
+                  />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsAnnual(true)}
+                  className="cf-folio flex items-center gap-1.5 min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
+                >
+                  ANNUAL
+                  <span style={{ color: "var(--accent-cyan)" }}>
+                    −{ANNUAL_SAVINGS_PCT}%
+                  </span>
+                </button>
               </div>
+            </div>
 
-              <p className="mt-1 text-[13px] text-(--accent-cyan)">
-                {isAnnual ? (
+            {/* FREE row */}
+            <TierRow
+              call="CF-FREE"
+              name="FREE"
+              price="$0"
+              unit="forever"
+              blurb="Try ChapterFlow with two complete books — no card, no expiry."
+              features={freeFeatures}
+              accent={false}
+              cta={
+                <Link
+                  href={freeHref}
+                  onClick={() => track("cta_click", { source: "pricing_free" })}
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-[15px] font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  Get {FREE_OFFER_LABEL}
+                </Link>
+              }
+            />
+
+            {/* hairline rule between tiers */}
+            <div style={{ borderTop: "1px solid var(--border-subtle)" }} />
+
+            {/* PRO row */}
+            <TierRow
+              call="CF-PRO"
+              name="PRO"
+              price={proPrice}
+              unit={`${PRICING.currency} / ${isAnnual ? "year" : "month"}`}
+              subline={
+                isAnnual ? (
                   <>
-                    That&apos;s {formatAmount(PRICING.annualMonthlyAmount)}/month
+                    {formatAmount(PRICING.annualMonthlyAmount)}/mo
                     <span className="text-(--text-muted)">
                       {" "}
-                      &middot; billed {PRICING_TIER_DISPLAY.annual_upfront.price}{" "}
-                      {PRICING.currency} once a year
+                      · billed once a year
                     </span>
                   </>
                 ) : (
-                  <>That&apos;s {formatAmount(perMonthAmount / 30)}/day</>
-                )}
-              </p>
-
-              <p
-                className="mt-3 text-[14px] text-(--text-secondary)"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Unlimited books and the deepest reading mode.
-              </p>
-
-              <hr className="my-6 border-(--border-subtle)" />
-
-              {/* Features */}
-              <ul className="flex flex-col gap-3 flex-1">
-                {proFeatures.map((f) => (
-                  <li
-                    key={f}
-                    className="flex items-center gap-3 text-[14px] text-(--text-secondary)"
+                  <>{formatAmount(perMonthAmount / 30)}/day</>
+                )
+              }
+              blurb="Unlimited books and the deepest reading mode, with priority on new titles."
+              features={proFeatures}
+              accent
+              cta={
+                // ONE accent: cyan = the work. The Pro CTA carries the SAME cyan as
+                // the hero/science CTAs — no gold/amber gradient, no glow halo.
+                <Link
+                  href={proHref}
+                  onClick={() =>
+                    track("cta_click", {
+                      source: isPro ? "pricing_manage" : "pricing_pro",
+                    })
+                  }
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-[15px] font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {proCtaLabel}
+                </Link>
+              }
+              terms={
+                // Trial terms are a broken promise to someone already paying, so
+                // hide them for Pro users (the CTA is "Manage subscription").
+                !isPro ? (
+                  <p
+                    className="max-w-[34ch] text-[12px] leading-[1.6] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
-                    <CheckIcon />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Trial terms are a broken promise to someone already paying, so
-                  hide them for Pro users (the CTA above is now "Manage
-                  subscription"). Everyone else sees the full disclosure. */}
-              {!isPro && (
-                <p
-                  className="mt-6 mb-3 text-[12px] text-(--text-muted) text-center leading-[1.6]"
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {PRICING.trialDays}-day free trial, then{" "}
-                  {isAnnual
-                    ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year (${formatAmount(PRICING.annualMonthlyAmount)} ${PRICING.currency}/month)`
-                    : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}
-                  . A card is required; you won&apos;t be charged until the trial ends, and you can
-                  cancel anytime before then.{" "}
-                  <Link
-                    href="/legal/refund"
-                    className="underline hover:text-(--text-secondary)"
-                  >
-                    Refund policy
-                  </Link>
-                  .
-                </p>
-              )}
-
-              {/* CTA — upgrade = "the win", so it carries the single canonical
-                  gold Pro-CTA accent (--cf-upgrade-accent, from batch 01), the
-                  same treatment as the dashboard "Go Pro" pill. text-black for
-                  ≥4.5:1 on gold. NOT the cyan product accent (cyan = "the work"). */}
-              <Link
-                href={proHref}
-                onClick={() => track("cta_click", { source: isPro ? "pricing_manage" : "pricing_pro" })}
-                className="block w-full text-center rounded-xl py-3.5 font-semibold text-black transition-transform hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  background: "var(--cf-upgrade-accent)",
-                  boxShadow: "var(--cf-upgrade-accent-shadow)",
-                }}
-              >
-                {proCtaLabel}
-              </Link>
-            </div>
-          </SectionReveal>
-        </div>
-
-        {/* ---- FAQ Accordion ---- */}
-        <SectionReveal delay={0.3}>
-          <div className="max-w-2xl mx-auto mt-10">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border-b border-(--border-subtle)">
-                <button
-                  onClick={() => toggleFaq(index)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      toggleFaq(index);
-                    }
-                  }}
-                  aria-expanded={openIndex === index}
-                  aria-controls={`faq-answer-${index}`}
-                  className="flex w-full items-center justify-between py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-                >
-                  <span
-                    className="text-[16px] text-(--text-heading) font-medium"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {faq.question}
-                  </span>
-                  <ChevronIcon open={openIndex === index} />
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {openIndex === index && (
-                    <motion.div
-                      key="answer"
-                      id={`faq-answer-${index}`}
-                      role="region"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
+                    {PRICING.trialDays}-day free trial, then{" "}
+                    {isAnnual
+                      ? `${PRICING_TIER_DISPLAY.annual_upfront.price} ${PRICING.currency}/year`
+                      : `${formatAmount(perMonthAmount)} ${PRICING.currency}/month`}
+                    . Card required; not charged until the trial ends, cancel anytime
+                    before then.{" "}
+                    <Link
+                      href="/legal/refund"
+                      className="underline hover:text-(--text-secondary)"
                     >
-                      <p
-                        className="pb-4 text-[14px] text-(--text-secondary) leading-[1.6]"
-                        style={{ fontFamily: "var(--font-body)" }}
+                      Refund policy
+                    </Link>
+                    .
+                  </p>
+                ) : undefined
+              }
+            />
+          </div>
+        </SectionReveal>
+
+        {/* ---- FAQ — mono spec footnotes (disclosure rows) ---- */}
+        <SectionReveal delay={0.16}>
+          <div className="mt-12">
+            <p className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
+              Footnotes
+            </p>
+            <div className="mt-3 border-t border-(--border-subtle)">
+              {faqs.map((faq, index) => {
+                const open = openIndex === index;
+                return (
+                  <div key={index} className="border-b border-(--border-subtle)">
+                    <button
+                      id={`faq-q-${index}`}
+                      onClick={() => toggleFaq(index)}
+                      aria-expanded={open}
+                      aria-controls={`faq-answer-${index}`}
+                      className="flex w-full items-center justify-between gap-4 py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                    >
+                      <span
+                        className="text-[15px] font-medium text-(--text-heading)"
+                        style={{ fontFamily: "var(--font-display)" }}
                       >
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
+                        {faq.question}
+                      </span>
+                      <motion.span
+                        className="shrink-0 text-(--text-muted)"
+                        animate={{ rotate: open ? 180 : 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                      >
+                        <ChevronDown size={18} aria-hidden />
+                      </motion.span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          key="answer"
+                          id={`faq-answer-${index}`}
+                          role="region"
+                          aria-labelledby={`faq-q-${index}`}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <p
+                            className="max-w-[60ch] pb-4 text-[14px] leading-[1.6] text-(--text-secondary)"
+                            style={{ fontFamily: "var(--font-body)" }}
+                          >
+                            {faq.answer}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </SectionReveal>
       </div>

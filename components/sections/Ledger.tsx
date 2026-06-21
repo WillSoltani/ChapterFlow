@@ -1,11 +1,8 @@
 "use client";
 
+import { useCallback, useRef } from "react";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { BookCover } from "@/components/ui/BookCover";
-import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
-import { getBookCoverPath } from "@/lib/book-covers";
-import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 /**
  * The toolkit, as an editorial spec-sheet — NOT a glass bento (that pattern is the
@@ -58,7 +55,7 @@ function ScheduleVisual() {
                 boxShadow: "0 0 8px color-mix(in srgb, var(--accent-cyan) 50%, transparent)",
               }}
             />
-            <span className="cf-folio whitespace-nowrap" style={{ color: "var(--text-tertiary)" }}>{s}</span>
+            <span className="cf-folio whitespace-nowrap tabular-nums" style={{ color: "var(--text-tertiary)" }}>{s}</span>
           </div>
           {i < stops.length - 1 && (
             <span className="mx-1 mb-4 h-px flex-1" style={{ background: "var(--accent-cyan)", opacity: 0.4 }} />
@@ -74,7 +71,7 @@ function StreakVisual() {
   return (
     <div className="flex w-full flex-col gap-2.5">
       <div className="flex items-end gap-2">
-        <span className="text-[32px] font-bold leading-none" style={{ fontFamily: "var(--font-display)", color: "var(--text-heading)" }}>12</span>
+        <span className="text-[32px] font-bold leading-none tabular-nums" style={{ fontFamily: "var(--font-display)", color: "var(--text-heading)" }}>12</span>
         <span className="pb-1 text-[12px]" style={{ color: "var(--text-secondary)" }}>day streak</span>
       </div>
       <div className="flex gap-1.5">
@@ -89,31 +86,6 @@ function StreakVisual() {
           />
         ))}
       </div>
-    </div>
-  );
-}
-
-function LibraryVisual() {
-  const books = BOOKS_CATALOG.slice(0, 5);
-  return (
-    <div className="flex w-full items-end justify-end gap-2.5">
-      {books.map((b, i) => (
-        <div
-          key={b.id}
-          className="w-[58px] shrink-0 overflow-hidden rounded-md"
-          style={{ boxShadow: "var(--shadow-book)", transform: `translateY(${i % 2 === 0 ? 0 : 6}px)` }}
-        >
-          <BookCover
-            bookId={b.id}
-            title={b.title}
-            icon={b.icon}
-            coverImage={getBookCoverPath(b.id)}
-            className="aspect-[3/4] w-full"
-            sizes="58px"
-            interactive={false}
-          />
-        </div>
-      ))}
     </div>
   );
 }
@@ -135,11 +107,14 @@ function AudioVisual() {
 
 /* ---- rows ------------------------------------------------------------------ */
 
-type Row = { n: string; label: string; title: string; desc: string; visual: React.ReactNode };
+/* Each row is a SPEC-LINE: the forgetting problem it answers (mono, subordinate)
+   → the stated remedy (the claim). Problem-first, not a feature list. */
+type Row = { n: string; label: string; problem: string; title: string; desc: string; visual: React.ReactNode };
 const ROWS: Row[] = [
   {
     n: "01",
     label: "Depth",
+    problem: "A long chapter on a short day goes unread",
     title: "Read at the depth you have time for.",
     desc: "The same chapter as the gist, the argument, or the full picture — switch any time without losing your place.",
     visual: <DepthVisual />,
@@ -147,32 +122,65 @@ const ROWS: Row[] = [
   {
     n: "02",
     label: "Spaced review",
-    title: "Ideas come back right before you'd forget.",
+    problem: "Ideas fade between sessions",
+    title: "Spaced review returns them at the 90% edge.",
     desc: "FSRS schedules each idea on a widening interval — Day 1, Day 4, Week 2, Month 1 — so review costs minutes, not hours.",
     visual: <ScheduleVisual />,
   },
   {
     n: "03",
     label: "Streak",
-    title: "A daily habit, not a binge.",
+    problem: "A forgotten weekend marathon teaches nothing",
+    title: "A daily habit beats the binge.",
     desc: "A few minutes a day beats a forgotten weekend marathon. The streak rewards consistency, the thing retention actually needs.",
     visual: <StreakVisual />,
   },
   {
     n: "04",
-    label: "Library",
-    title: `${CATALOG_BOOK_COUNT_DISPLAY} books, every one structured the same way.`,
-    desc: "Bestselling non-fiction, broken into the same guided loop — so the method is identical no matter what you pick up.",
-    visual: <LibraryVisual />,
-  },
-  {
-    n: "05",
     label: "Narration",
-    title: "Prefer to listen? Every chapter is narrated.",
+    problem: "Reading time is the time you don't have",
+    title: "Listen anywhere — every chapter is narrated.",
     desc: "Commute, walk, cook — the loop comes with you. Audio and reading stay in sync across your devices.",
     visual: <AudioVisual />,
   },
 ];
+
+/* ---- spotlight panel (cursor-following radial mask) ------------------------ */
+/* A tiny client island: on pointermove it writes the cursor position into
+   --cr-spotlight-x/-y on the panel element (rAF-coalesced, so at most one write
+   per frame and zero React re-renders). The CSS overlay (.cf-ledger-spotlight)
+   pools --cf-spotlight-alpha at those coords and fades in on hover — opacity +
+   mask-position only, no scale, no layout shift. Pointer-only & decorative
+   (aria-hidden); reduced-motion and touch suppress it in CSS. */
+function LedgerSpotlightPanel({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const frame = useRef(0);
+
+  const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const { clientX, clientY } = e;
+    if (frame.current) return;
+    frame.current = requestAnimationFrame(() => {
+      frame.current = 0;
+      const rect = el.getBoundingClientRect();
+      el.style.setProperty("--cr-spotlight-x", `${clientX - rect.left}px`);
+      el.style.setProperty("--cr-spotlight-y", `${clientY - rect.top}px`);
+    });
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      onPointerMove={handlePointerMove}
+      className="cf-ledger-panel relative mt-12 overflow-hidden rounded-2xl border"
+      style={{ borderColor: "var(--border-subtle)", background: "var(--cf-surface)" }}
+    >
+      <span aria-hidden className="cf-ledger-spotlight" />
+      {children}
+    </div>
+  );
+}
 
 export function Ledger() {
   return (
@@ -193,7 +201,7 @@ export function Ledger() {
               Everything else is in service of remembering it.
             </h2>
             <p className="mt-4 max-w-xl text-[16px] leading-[1.6]" style={{ color: "var(--text-secondary)" }}>
-              No highlight graveyard, no features for their own sake. Five things,
+              No highlight graveyard, no features for their own sake. Four things,
               each earning its place in the loop.
             </p>
           </div>
@@ -201,14 +209,11 @@ export function Ledger() {
 
         {/* the spec-sheet */}
         <SectionReveal delay={0.08}>
-          <div
-            className="mt-12 overflow-hidden rounded-2xl border"
-            style={{ borderColor: "var(--border-subtle)", background: "var(--cf-surface)" }}
-          >
+          <LedgerSpotlightPanel>
             {ROWS.map((row, i) => (
               <div
                 key={row.n}
-                className="cf-ledger-row grid items-center gap-6 px-6 py-7 md:grid-cols-[7.5rem_1fr_15rem] md:px-9 md:py-8"
+                className="cf-ledger-row relative z-[1] grid items-center gap-6 px-6 py-7 md:grid-cols-[7.5rem_1fr_15rem] md:px-9 md:py-8"
                 style={{ borderTop: i === 0 ? "none" : "1px solid var(--border-subtle)" }}
               >
                 {/* line number + label */}
@@ -222,8 +227,15 @@ export function Ledger() {
                   </span>
                 </div>
 
-                {/* claim */}
+                {/* spec-line: forgetting problem → stated remedy (the claim) */}
                 <div>
+                  <p
+                    className="cf-folio mb-1.5 flex items-center gap-2"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    <span aria-hidden style={{ color: "var(--accent-cyan)" }}>↳</span>
+                    {row.problem}
+                  </p>
                   <h3
                     className="text-[18px] font-bold leading-snug md:text-[20px]"
                     style={{ fontFamily: "var(--font-display)", color: "var(--text-heading)", letterSpacing: "-0.01em" }}
@@ -239,7 +251,7 @@ export function Ledger() {
                 <div className="flex items-center md:justify-end">{row.visual}</div>
               </div>
             ))}
-          </div>
+          </LedgerSpotlightPanel>
         </SectionReveal>
       </div>
     </section>

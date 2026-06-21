@@ -1,106 +1,154 @@
 import Link from "next/link";
-import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { AUTH_LOGIN_BOOK_URL, CHAPTERFLOW_NAME } from "@/app/_lib/chapterflow-brand";
 import { CurrentYear } from "./CurrentYear";
 
-const navLinks = [
+/**
+ * The colophon — the back-cover of the manual.
+ *
+ * A dense, calm, mono colophon block on the same inverse anchor band the Final
+ * CTA closes on (cf-anchor tokens), so the page signs off on one continuous
+ * near-black field rather than a second surface. Hairline top rule, a "SPEC
+ * v1.0" version stamp beside the wordmark, three index columns (manual / legal /
+ * contact), the science-sources line repeated as a PERMANENT citation footer
+ * (trust surfaced, never buried), and the CurrentYear copyright line. No glow, no
+ * glass — depth from the single hairline and the mono datum rhythm. Static
+ * markup, reduced-motion safe.
+ */
+
+const MANUAL_LINKS = [
   { label: "How it works", href: "/#retention-engine" },
   { label: "Library", href: "/books" },
   { label: "Pricing", href: "/#pricing" },
-  { label: "Contact", href: "/contact" },
-  { label: "Sign in", href: AUTH_LOGIN_BOOK_URL },
+  { label: "Start free", href: AUTH_LOGIN_BOOK_URL },
 ];
+
+const LEGAL_LINKS = [
+  { label: "Terms", href: "/legal/terms" },
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "Refunds", href: "/legal/refund" },
+  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Copyright", href: "/legal/copyright" },
+  { label: "Data rights", href: "/legal/data-rights" },
+];
+
+// The same references certified in §03 Evidence, repeated as a standing footer
+// citation so the cited authority is the last thing on the page — real
+// authors/venues only, never logos or fabricated proof.
+const SOURCES =
+  "Ebbinghaus 1885 · Karpicke & Roediger, Science 2008 · Cepeda et al. 2006 · FSRS-5 spaced repetition";
+
+const linkClass =
+  "rounded text-(--cf-anchor-text-muted) transition-colors duration-200 hover:text-(--cf-anchor-text) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--cf-anchor-accent)/60 focus-visible:ring-offset-2";
+
+function ColumnHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="cf-folio mb-3 text-(--cf-anchor-text-muted)">{children}</p>
+  );
+}
 
 export function Footer() {
   return (
     <footer
-      className="py-8"
+      className="relative"
       style={{
-        borderTop: "1px solid var(--border-subtle)",
-        background: "var(--bg-base)",
+        background: "var(--cf-anchor-bg)",
+        borderTop: "1px solid var(--cf-anchor-border)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 items-center">
-          {/* Left: Logo + tagline */}
-          <div className="flex flex-col md:flex-row md:items-center items-center gap-2 md:gap-3">
-            <div className="flex items-center gap-1.5">
-              <svg width={22} height={22} viewBox="0 0 28 28" fill="none" aria-hidden="true" className="flex-shrink-0">
-                <path
-                  d="M4 7C4 5.9 4.9 5 6 5H12C13.1 5 14 5.9 14 7V21C14 22.1 13.1 23 12 23H6C4.9 23 4 22.1 4 21V7Z"
-                  stroke="var(--accent-cyan)"
-                  strokeWidth={1.5}
-                  fill="none"
-                />
-                <path
-                  d="M14 7C14 5.9 14.9 5 16 5H22C23.1 5 24 5.9 24 7V21C24 22.1 23.1 23 22 23H16C14.9 23 14 22.1 14 21V7Z"
-                  stroke="var(--accent-cyan)"
-                  strokeWidth={1.5}
-                  fill="none"
-                />
-                <path
-                  d="M17 12L20 14L17 16"
-                  stroke="var(--accent-cyan)"
-                  strokeWidth={1.5}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span
-                className="text-[14px] font-semibold"
-                style={{ color: "var(--text-heading)" }}
-              >
-                ChapterFlow
+      <div className="mx-auto max-w-[1180px] px-5 py-14 md:px-8 md:py-16">
+        {/* masthead — wordmark + spec stamp */}
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <div className="flex items-baseline gap-3">
+              <span className="font-(family-name:--font-display) text-[17px] font-semibold text-(--cf-anchor-text)">
+                {CHAPTERFLOW_NAME}
+              </span>
+              <span className="cf-folio tabular-nums text-(--cf-anchor-accent)">
+                SPEC v1.0
               </span>
             </div>
-            <span
-              className="text-[13px] text-center md:text-left"
-              style={{ color: "var(--text-muted)" }}
-            >
-              Guided reading for depth, momentum, and real retention.
-            </span>
+            <p className="mt-3 text-[13.5px] leading-[1.6] text-(--cf-anchor-text-muted)">
+              Guided reading specified as one instrument: read, prove, keep.
+              Built on the testing effect and an FSRS-5 spaced-repetition
+              schedule.
+            </p>
           </div>
 
-          {/* Right: Nav links */}
-          <nav className="flex flex-row flex-wrap justify-center gap-x-6 gap-y-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="nav-link whitespace-nowrap text-[13px] rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
-                style={{ color: "var(--text-muted)" }}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          {/* index columns */}
+          <div className="grid grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-3">
+            <nav aria-label="Manual">
+              <ColumnHeading>Manual</ColumnHeading>
+              <ul className="space-y-2.5">
+                {MANUAL_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Legal">
+              <ColumnHeading>Legal</ColumnHeading>
+              <ul className="space-y-2.5">
+                {LEGAL_LINKS.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Contact">
+              <ColumnHeading>Contact</ColumnHeading>
+              <ul className="space-y-2.5">
+                <li>
+                  <Link
+                    href="/contact"
+                    className={`block whitespace-nowrap text-[13.5px] ${linkClass}`}
+                  >
+                    Get in touch
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
 
-        {/* Bottom row */}
+        {/* permanent citation footer — the cited record, repeated */}
         <div
-          className="mt-6 flex flex-col md:flex-row md:justify-between items-center gap-2 text-[12px]"
-          style={{ color: "var(--text-muted)" }}
+          className="mt-12 border-t pt-6"
+          style={{ borderColor: "var(--cf-anchor-border)" }}
         >
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/legal/terms" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Terms
-            </Link>
-            <Link href="/legal/privacy" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Privacy
-            </Link>
-            <Link href="/legal/refund" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Refunds
-            </Link>
-            <Link href="/legal/cookies" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Cookies
-            </Link>
-            <Link href="/legal/copyright" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Copyright
-            </Link>
-            <Link href="/legal/data-rights" className="hover:underline rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2">
-              Data Rights
-            </Link>
-          </div>
-          <span>&copy; <CurrentYear /> ChapterFlow</span>
+          <p className="cf-folio mb-2 text-(--cf-anchor-text-muted)">
+            Sources, on the record
+          </p>
+          <p className="cf-folio normal-case text-(--cf-anchor-text-muted)">
+            <span aria-hidden className="text-(--cf-anchor-accent)">↳ </span>
+            {SOURCES}
+          </p>
+        </div>
+
+        {/* sign-off line */}
+        <div
+          className="mt-6 flex flex-col gap-2 border-t pt-6 text-[12px] sm:flex-row sm:items-center sm:justify-between"
+          style={{ borderColor: "var(--cf-anchor-border)" }}
+        >
+          <span className="cf-folio tabular-nums text-(--cf-anchor-text-muted)">
+            &copy; <CurrentYear /> {CHAPTERFLOW_NAME} · SPEC v1.0
+          </span>
+          <span className="cf-folio text-(--cf-anchor-text-muted)">
+            Two free books · no card · cancel anytime
+          </span>
         </div>
       </div>
     </footer>

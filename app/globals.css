@@ -798,6 +798,20 @@ html.transitioning *::after {
   --cf-engine-readout: #2dd4df; /* the large mono retained-% readout digits */
   --cf-spine-decay: rgba(141, 156, 170, 0.72); /* "without review" decay line — ≥3:1 on the surface (WCAG 1.4.11), still subordinate to the cyan line */
   --cf-grid-line: rgba(255, 255, 255, 0.07); /* faint structural grid / hairline rules */
+
+  /* V6 "Field Manual" — instrument-frame + graft tokens. Declared DIRECTLY in
+     .landing-dark (the alias-resolution trap above applies): the landing renders
+     theme-invariantly in this scope, so every value a V6 component reads lives
+     here. color-mix off --accent-cyan / --text-* so they track the one accent.
+     Premium-dark alpha bands: grain ~3%, contained glow ~16%, spotlight ~9%
+     (depth from grain + hairline + ONE contained glow, never decorative glow). */
+  --cf-grain: color-mix(in srgb, var(--text-muted) 3%, transparent); /* low-opacity neutral noise overlay */
+  --cf-glow-contained: color-mix(in srgb, var(--accent-cyan) 16%, transparent); /* the single contained hero/console glow */
+  --cf-axis-tint: var(--cf-spine-decay); /* instrument-frame axis ticks/labels — ≥3:1 on surface, subordinate to the cyan readout */
+  --cf-playhead-readout: var(--cf-engine-readout); /* tabular "R = 0.9x" playhead readout digits (same source as the curve) */
+  --cf-spotlight-alpha: color-mix(in srgb, var(--accent-cyan) 9%, transparent); /* Ledger cursor-following spotlight-mask radial */
+  --cf-marquee-fade: var(--cf-page-bg); /* citation-marquee edge-fade mask stop (fades to the page canvas) */
+  --cf-toggle-knob: var(--cf-anchor-text); /* Pricing annual-toggle knob (replaces literal bg-white) */
 }
 
 /* Hero product showpiece — a subtle perspective tilt so the live reader reads as
@@ -815,6 +829,111 @@ html.transitioning *::after {
 .cf-ledger-row { transition: background-color 0.3s var(--cf-site-ease); }
 @media (hover: hover) {
   .cf-ledger-row:hover { background-color: var(--cf-ledger-row-hover); }
+}
+
+/* Ledger spotlight-mask — a cursor-following radial pooled at --cr-spotlight-x/-y,
+   layered ABOVE the panel surface and BELOW the rows (rows sit at a positive
+   z-index). pointer-events:none so it never steals hover; opacity-only fade
+   (off-main-thread); position via CSS vars set on pointermove (no React re-render).
+   Sweeps a contained pool of the ONE accent across the spec-sheet so it reads as a
+   live instrument panel — never decorative glow, no scale, no layout shift. */
+.cf-ledger-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s var(--cf-site-ease);
+  background: radial-gradient(
+    16rem 16rem at var(--cr-spotlight-x, 50%) var(--cr-spotlight-y, 50%),
+    var(--cf-spotlight-alpha),
+    transparent 72%
+  );
+}
+@media (hover: hover) and (pointer: fine) {
+  .cf-ledger-panel:hover .cf-ledger-spotlight { opacity: 1; }
+}
+/* Pointer-only decoration — never show under reduced motion. */
+html[data-motion="reduced"] .cf-ledger-spotlight { opacity: 0 !important; }
+@media (prefers-reduced-motion: reduce) {
+  .cf-ledger-spotlight { opacity: 0 !important; }
+}
+
+/* §04 catalog-index cells — the only hover affordance is the cover's border
+   lifting to the cyan edge + a faint flat wash. Border-color + background only:
+   NO scale, NO transform, NO layout shift (CLS stays 0). Gated on hover:hover so
+   touch shows static cells; the call-number/category datum carries the meaning
+   so color is never the sole indicator. */
+.cf-catalog-cell { transition: background-color 0.2s var(--cf-site-ease); }
+.cf-catalog-cell > div:first-child { transition: border-color 0.2s var(--cf-site-ease); }
+@media (hover: hover) {
+  .cf-catalog-cell:hover { background-color: var(--cf-ledger-row-hover); }
+  .cf-catalog-cell:hover > div:first-child { border-color: var(--cf-accent-border); }
+}
+
+/* Citation marquee — §03 Evidence. A single horizontal strip of REAL science
+   citations that drifts left at a calm constant speed, edge-faded into the page
+   canvas (mask, NOT a gradient overlay div) so chips dissolve at both rims.
+   Motion is translateX ONLY (off-main-thread) and pauses on hover/focus so a
+   reader can rest on any citation. The track is duplicated; the second copy is
+   aria-hidden so AT reads each citation once. Constraint: citations, never logos.
+   Under reduced motion the loop is frozen and the strip simply wraps to a static,
+   fully-readable row (no infinite animation survives). */
+.cf-marquee {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    var(--cf-marquee-fade) 8%,
+    var(--cf-marquee-fade) 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    var(--cf-marquee-fade) 8%,
+    var(--cf-marquee-fade) 92%,
+    transparent 100%
+  );
+}
+.cf-marquee-track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  will-change: transform;
+  animation: cf-marquee-drift 38s linear infinite;
+}
+@media (hover: hover) {
+  .cf-marquee:hover .cf-marquee-track { animation-play-state: paused; }
+}
+.cf-marquee:focus-within .cf-marquee-track { animation-play-state: paused; }
+@keyframes cf-marquee-drift {
+  to { transform: translateX(-50%); }
+}
+/* Reduced motion: freeze the drift and let the strip wrap to a readable static
+   row — the citations stay legible, the infinite loop never runs. */
+html[data-motion="reduced"] .cf-marquee {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+html[data-motion="reduced"] .cf-marquee-track {
+  animation: none;
+  width: 100%;
+}
+html[data-motion="reduced"] .cf-marquee-track > ul { flex-wrap: wrap; }
+html[data-motion="reduced"] .cf-marquee-dup { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .cf-marquee {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .cf-marquee-track {
+    animation: none;
+    width: 100%;
+  }
+  .cf-marquee-track > ul { flex-wrap: wrap; }
+  .cf-marquee-dup { display: none; }
 }
 
 /* Signature pin track — height set via media query, NOT JS, so it matches the
