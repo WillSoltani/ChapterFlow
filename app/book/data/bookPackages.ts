@@ -107,6 +107,7 @@ import auto_zero_to_one_Json from "@/book-packages/zero-to-one.v21.json";
 import auto_factfulness_Json from "@/book-packages/factfulness.v21.json";
 import auto_the_undoing_project_Json from "@/book-packages/the-undoing-project.v21.json";
 import auto_fooled_by_randomness_Json from "@/book-packages/fooled-by-randomness.v21.json";
+import auto_quiet_Json from "@/book-packages/quiet.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1865,4 +1866,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_fooled_by_randomness_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["fooled-by-randomness"] = (tone) => normalizeAnyPackage(auto_fooled_by_randomness_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "quiet" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_quiet_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["quiet"] = (tone) => normalizeAnyPackage(auto_quiet_Json, tone);
 }
