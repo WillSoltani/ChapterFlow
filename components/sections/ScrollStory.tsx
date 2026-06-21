@@ -790,9 +790,11 @@ export function ScrollStory() {
       ref={outerRef}
       id="retention-engine"
       aria-label="Operate the loop: read, prove, keep — and the forgetting, recall, and spaced-repetition science behind it"
-      // Height is CSS-media-query driven (.cf-pin-track) to match isStatic from
-      // first paint — no auto→420svh post-hydration jump on desktop.
-      className="cf-pin-track relative"
+      // The .cf-pin-track 420svh height applies ONLY when the pinned stage
+      // actually renders (!isStatic). Pre-hydration / reduced-motion / non-desktop
+      // render the compact StaticStack, so applying the tall track unconditionally
+      // (the CSS media query fires before JS) left a large empty scroll gap.
+      className={isStatic ? "relative" : "cf-pin-track relative"}
     >
       {/* sr-only narrative for assistive tech regardless of mode */}
       <ol className="sr-only">

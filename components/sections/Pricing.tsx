@@ -2,7 +2,7 @@
 
 import { useState, type ReactNode } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Check, Minus, ChevronDown } from "lucide-react";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -409,18 +409,18 @@ export function Pricing() {
                       >
                         {faq.question}
                       </span>
-                      <motion.span
+                      <m.span
                         className="shrink-0 text-(--text-muted)"
                         animate={{ rotate: open ? 180 : 0 }}
                         transition={{ duration: 0.25, ease: "easeInOut" }}
                       >
                         <ChevronDown size={18} aria-hidden />
-                      </motion.span>
+                      </m.span>
                     </button>
 
                     <AnimatePresence initial={false}>
                       {open && (
-                        <motion.div
+                        <m.div
                           key="answer"
                           id={`faq-answer-${index}`}
                           role="region"
@@ -437,7 +437,7 @@ export function Pricing() {
                           >
                             {faq.answer}
                           </p>
-                        </motion.div>
+                        </m.div>
                       )}
                     </AnimatePresence>
                   </div>
