@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
@@ -117,6 +117,35 @@ export function loadBookChapters(bookId: string): ChapterV21[] {
       }
     })
     .sort((a, b) => a.number - b.number);
+}
+
+/**
+ * Move any UNPARSEABLE chapter file for a book aside to state/chapters/_corrupt/, returning
+ * the names moved. A torn/half-written chapter (e.g. a pre-atomic-write crash mid-save) makes
+ * loadBookChapters — and therefore computeBookStatus and the whole conductor loop — THROW on
+ * EVERY read, wedging the walk-away autopilot permanently on its own partial write ("re-run to
+ * resume" just re-throws). The conductor calls this ONCE at startup so a corrupt chapter is
+ * treated as MISSING and re-authored (self-healing) instead of bricking the run. The corrupt
+ * bytes are preserved (moved, not deleted) for forensics. Best-effort: a file we can't move is
+ * left in place (loadBookChapters will still surface it loudly). Read paths keep their
+ * fail-loud contract — quarantine is an explicit, logged write-step, never a silent skip.
+ */
+export function quarantineCorruptChapterFiles(bookId: string): string[] {
+  const moved: string[] = [];
+  let files: string[];
+  try { files = readdirSync(CHAPTERS_DIR).filter((f) => isSiblingFile(f, bookId)); }
+  catch { return moved; }
+  for (const f of files) {
+    const full = resolve(CHAPTERS_DIR, f);
+    try { JSON.parse(readFileSync(full, "utf8")); continue; } catch { /* corrupt → quarantine */ }
+    try {
+      const qdir = resolve(CHAPTERS_DIR, "_corrupt");
+      mkdirSync(qdir, { recursive: true });
+      renameSync(full, resolve(qdir, `${f}.${Date.now()}`));
+      moved.push(f);
+    } catch { /* best-effort: leave it; loadBookChapters will surface it */ }
+  }
+  return moved;
 }
 
 export function buildKeyPack(bookId: string, roundId: string, chapter: ChapterV21): KeyPack {

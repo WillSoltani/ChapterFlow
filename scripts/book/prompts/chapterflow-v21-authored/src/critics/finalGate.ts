@@ -341,6 +341,30 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
  */
 export const ENFORCED_MAJOR = new Set<string>([]);
 
+/**
+ * QC_ENFORCED_MAJORS — the curated set of MAJOR catalog ids that may BLOCK the QC
+ * verdict (drive a chapter to REVISE / a `major-disposition` governance halt in the
+ * autopilot). The QC consumption path (`unresolvedMajors` → finalize `checks.majors`,
+ * publish/promote major gates, the conductor's governance HALT) filters through this.
+ *
+ * It is **deliberately empty**, for the SAME reason `ENFORCED_MAJOR` is. A corpus
+ * calibration (clean + gold reference books) shows that EVERY deterministic major
+ * fires on at least one reference-quality chapter (A13/B4/C2/C3/C23/E1/E4/E7/SC9/
+ * BP15/BP16/BP27/BP31/F4 …) — i.e. none is precise enough to be a hard gate without
+ * retroactively failing books that shipped (the SC9-reversal trap: SC9 alone fires on
+ * 16/21 gold chapters). Treating any of them as QC-BLOCKING demands a manual waiver on
+ * good content and is a documented convergence-killer.
+ *
+ * Deterministic majors are still SURFACED (via `currentMajorFindings` / `formatMajorStatus`
+ * for human review and the conductor's post-repair regression scan) — they just don't, by
+ * themselves, block the QC verdict. The real semantic gate is the model QC (bar / sweep /
+ * confirm) plus the deterministic BLOCKERS; deterministic majors are prevention + debt.
+ *
+ * An id belongs here ONLY after it is shown to fire ZERO times across the clean + gold
+ * corpus (guarded by the qc-enforced-major calibration test). Until then this stays empty.
+ */
+export const QC_ENFORCED_MAJORS = new Set<string>([]);
+
 const HOOK_BANNED_OPENERS = /^\s*(in this (chapter|book)|this chapter|the chapter|the author)/i;
 
 /**
@@ -735,9 +759,22 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // ── Quiz (A1, A2, A3, A4, A5, D1) ────────────────────────────────────────
   chapter.quiz.questions.forEach((q, i) => {
     const unit = `quiz.q${String(i + 1).padStart(2, "0")}`;
-    // A5 — exactly 3 choices
+    // A5 — exactly 3 choices. MUST short-circuit the rest of this question's checks:
+    // several below (the register-check text below, and any future choices reader)
+    // call q.choices.* and would throw on a malformed question. Codex authors chapter
+    // JSON directly with no schema coercion before the gate, so a missing/null `choices`
+    // is reachable — the gate's contract is to REPORT it as a blocker, never crash.
     if (!Array.isArray(q.choices) || q.choices.length !== 3) {
       push("A5", unit, `choices length ${q.choices?.length} (must be 3)`);
+      return;
+    }
+    // A5 — correct-answer key must index a real choice. Pure structural invariant with
+    // zero false-positives (every reference-corpus question has a valid 0..2 index): an
+    // out-of-range/non-integer correctIndex renders choices[idx]=undefined as the "correct"
+    // answer in the reader. The deterministic layer was previously blind to this — only the
+    // OPTIONAL model key-judge caught it — so a bare promote could ship a keyless quiz.
+    if (!Number.isInteger(q.correctIndex) || q.correctIndex < 0 || q.correctIndex >= q.choices.length) {
+      push("A5", unit, `correctIndex ${q.correctIndex} out of range (must be an integer in 0..${q.choices.length - 1})`);
     }
     // A1 / A2 / A3 — schema enum validity
     for (const f of checkEnumValidity(q as any)) {

@@ -1,5 +1,6 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
-import { dirname, resolve } from "path";
+import { existsSync, readFileSync } from "fs";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
@@ -94,6 +95,19 @@ export function sweepRecordPath(bookId: string): string {
   return resolve(QC_DIR, `${bookId}.sweep.json`);
 }
 
+// Per-field excerpt cap for the sweep pack. The sweep is the ONE book-wide reviewer (a
+// single read gates the whole book), so an unbounded field would grow its context without
+// limit on a large/aberrant book → higher timeout (→ SIGKILL → round fails) + noisier,
+// less stable reads. Cross-chapter templating (scene skeletons, openers, repeated units)
+// lives in the HEAD of each field, so a generous head-cap preserves the signal while bounding
+// the pack. 6000 is a no-op for the entire current corpus (measured max field ≈ 3.9K chars);
+// it only bites a pathological/future field. (We deliberately do NOT window the sweep across
+// CHAPTERS — it exists to compare ACROSS chapters, so chunking would break its detection.)
+const SWEEP_FIELD_MAX = 6000;
+function capSweepField(s: string, max = SWEEP_FIELD_MAX): string {
+  return s.length > max ? `${s.slice(0, max)}\n…[truncated for sweep — ${s.length - max} more chars]` : s;
+}
+
 export function writeSweepPack(bookId: string, roundId: string): string {
   const chapters = loadBookChapters(bookId);
   const pack: SweepPack = {
@@ -109,17 +123,17 @@ export function writeSweepPack(bookId: string, roundId: string): string {
       hook: ch.hook ?? "",
       counterintuition: ch.counterintuition ?? "",
       keyTakeaway: ch.keyTakeaway ?? "",
-      tryThisNow: ch.tryThisNow ?? "",
+      tryThisNow: capSweepField(ch.tryThisNow ?? ""),
       breakdown: {
-        fastRead: ch.breakdown?.fastRead ?? "",
-        deepRead: ch.breakdown?.deepRead ?? "",
-        fullRead: ch.breakdown?.fullRead ?? "",
+        fastRead: capSweepField(ch.breakdown?.fastRead ?? ""),
+        deepRead: capSweepField(ch.breakdown?.deepRead ?? ""),
+        fullRead: capSweepField(ch.breakdown?.fullRead ?? ""),
       },
       examples: (ch.examples ?? []).map((ex) => ({
         title: ex.title ?? "",
-        scenario: ex.scenario ?? "",
-        whatToDo: ex.whatToDo ?? "",
-        whyItMatters: ex.whyItMatters ?? "",
+        scenario: capSweepField(ex.scenario ?? ""),
+        whatToDo: capSweepField(ex.whatToDo ?? ""),
+        whyItMatters: capSweepField(ex.whyItMatters ?? ""),
       })),
       quiz: (ch.quiz?.questions ?? []).map((q) => ({
         prompt: q.prompt ?? "",
@@ -144,8 +158,7 @@ export function writeSweepPack(bookId: string, roundId: string): string {
     })),
   };
   const p = sweepPackPath(bookId, roundId);
-  mkdirSync(dirname(p), { recursive: true });
-  writeFileSync(p, JSON.stringify(pack, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(pack, null, 2));
   return p;
 }
 
@@ -180,9 +193,8 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
       }];
     }),
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(submission.bookId);
-  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return p;
 }
 
@@ -201,7 +213,13 @@ export function sweepFamilyForRepairClass(repairClass: unknown): SweepFamily | n
   if (isSweepFamily(repairClass)) return repairClass;
   // Normalize _ / - to spaces so word-boundary anchors work on snake/kebab labels.
   const c = String(repairClass ?? "").toLowerCase().replace(/[_-]+/g, " ");
-  if (/\bfact|numeric|number|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // factual → out of scope → drop
+  // A repetition/templating SIGNAL wins over the factual terms: labels like "source moment
+  // reuse", "scene figure repetition", "reused figure caption", "repeated date stamp" are
+  // REAL cross-chapter templating findings that merely contain a factual-sounding word
+  // (figure/source/date). Dropping them as "factual" left an empty record that failed the
+  // whole book closed — keep them and map to a family.
+  const templatingSignal = /reuse|reused|repeat|repetition|recur|recurr|duplicat|\bdupe\b|identical|\bsame\b|template|stamp|uniform|\becho\b|copy|carbon|boilerplate|formula/;
+  if (!templatingSignal.test(c) && /\bfact|numeric|number|\bstats?\b|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // clearly factual (no repetition signal) → out of scope → drop. \bstats?\b matches stat/stats but NOT static/statement.
   if (/scene|frame|skeleton|vignette|opening|opener/.test(c)) return "scene_skeleton";
   if (/persona|\bname|character|protagonist/.test(c)) return "persona_drift";
   if (/venue|location|place|stamp|clock|timing|setting/.test(c)) return "location_stamping";
@@ -271,9 +289,8 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
     findings: loaded.findings,
     notes,
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(bookId);
-  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return { path: p };
 }
 
@@ -311,9 +328,8 @@ export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId
     reviewer: "carry-forward",
     attestedAt: new Date().toISOString(),
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(bookId);
-  writeFileSync(p, JSON.stringify(rec, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return p;
 }
 

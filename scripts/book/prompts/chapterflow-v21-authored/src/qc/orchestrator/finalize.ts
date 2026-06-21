@@ -297,6 +297,19 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   const det = evaluateDeterministic(bookId, chapters, allChapters);
   const bookGate = det.bookGate;
   const sweepRecord = loadSweepRecord(bookId);
+  // A non-PASS sweep whose submitted findings ALL got dropped by the family mapper (e.g.
+  // mislabeled factual) leaves an empty WRITTEN record. sweepChapterStatus then FAILs every
+  // chapter, but there are no actionable ledger findings — so finalize would REVISE→demote
+  // every chapter to NEEDS_MORE_QC with NO repair target, dead-ending the round (an
+  // unrecoverable INCOMPLETE halt). Treat that like a fabricated sweep: route to "re-run the
+  // sweep", never a targetless REVISE. Computed from the SUBMISSION-had-findings vs
+  // WRITTEN-record-empty gap so it fires ONLY on the drop case (not on a reviewer who
+  // genuinely cited nothing, which still fails closed).
+  const sweepDroppedAllFindings =
+    !!sweepSubmission && (sweepSubmission.findings?.length ?? 0) > 0 && (sweepRecord?.findings?.length ?? 0) === 0;
+  if (sweepDroppedAllFindings) {
+    console.warn(`[finalize] sweep for ${bookId} round ${roundId}: all ${sweepSubmission!.findings.length} submitted finding(s) were dropped by the family mapper → empty written record; routing to re-run-sweep instead of a targetless REVISE.`);
+  }
   const briefPath = repairBriefPath(bookId, roundId);
   const promptPath = repairPromptPath(bookId, roundId);
   const decisions: EvidenceChapterDecision[] = [];
@@ -444,7 +457,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     // excluded from the REVISE trigger so the chapter's REAL failures still drive
     // the verdict; if nothing else fails it routes to NEEDS_MORE_QC (re-run the
     // sweep), never PUBLISHABLE on an invalid sweep.
-    const unactionableSweep = checks.sweep === "FAIL" && sweepAllFabricated;
+    const unactionableSweep = checks.sweep === "FAIL" && (sweepAllFabricated || sweepDroppedAllFindings);
     const sweepBlocks = checks.sweep !== "PASS" && !unactionableSweep;
 
     let finalVerdict: EvidenceChapterDecision["finalVerdict"] = "NEEDS_MORE_QC";

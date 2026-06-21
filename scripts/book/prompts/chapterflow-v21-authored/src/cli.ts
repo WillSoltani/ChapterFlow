@@ -17,7 +17,7 @@
  */
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
-import { execSync } from "child_process";
+import { execSync, execFileSync } from "child_process";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
@@ -27,6 +27,7 @@ import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
+import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 
@@ -1276,6 +1277,17 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     console.error("Usage: promote-book <bookId> --title X --author Y");
     return 2;
   }
+  // H4: promoteBook runs the book-level no-API gate stack (sweep + source-verify + manual
+  // key-judge) ONLY when CHAPTERFLOW_NO_API_CODEX_QC=1. The codex/no-API flow is the canonical
+  // operating mode for these verbs, and a book-level SWEEP REVISE has NO other enforcer at
+  // promote time — so an env-less invocation (the command book-status used to print) silently
+  // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. (The deterministic
+  // `unresolved majors` promote gate is now ADVISORY — post-H3 it gates only on the empty
+  // QC_ENFORCED_MAJORS allowlist — so the teeth here are sweep + source-verify + manual key-judge.)
+  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    console.log("promote/publish: enforcing the no-API QC gate stack (CHAPTERFLOW_NO_API_CODEX_QC=1) — sweep + source-verify + manual key-judge must pass before shipping.");
+  }
   const title = typeof flags["title"] === "string" ? flags["title"] : null;
   const author = typeof flags["author"] === "string" ? flags["author"] : null;
   if (!title || !author) {
@@ -1729,7 +1741,9 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
       obj.chapterId = stem;
       // Preserve the file's exact formatting style (2-space indent, trailing NL if present).
       const out = JSON.stringify(obj, null, 2) + (raw.endsWith("\n") ? "\n" : "");
-      writeFileSync(full, out, "utf8");
+      // Atomic: this rewrites a chapter JSON in place — a crash mid-write would leave a torn file
+      // that wedges loadBookChapters/the conductor (the H6 vector), so use tmp+rename here too.
+      writeFileAtomic(full, out);
     }
   }
   console.log(
@@ -1825,6 +1839,10 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   // "DONE — promoted + registered" even when register-web had failed).
   let runFailures = 0;
   if (doRun) {
+    // H4 (missed-call-site): force the no-API gate stack for EVERY shipped book, same as
+    // runPromoteBook. A `batch --run` invoked env-less would otherwise skip the book-level
+    // sweep/source-verify gate and could ship a SWEEP-REVISE book on per-chapter attestations alone.
+    if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     for (const r of rows.filter((x) => x.action === "ship")) {
       const b = books.find((x) => (parseChapterId(`${x.bookId}-ch01`)?.bookId ?? x.bookId) === r.bookId)!;
       try {
@@ -1959,8 +1977,12 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     const createdBy = typeof flags["created-by"] === "string" ? (flags["created-by"] as string) : "register-web";
     console.log(`\nAWS env detected — ingesting "${bookId}" into the reader catalog (DynamoDB/S3)…`);
     try {
-      execSync(
-        `npx tsx ${JSON.stringify(publishScript)} --file ${JSON.stringify(`book-packages/${bookId}.v21.json`)} --created-by ${JSON.stringify(createdBy)}`,
+      // #17: pass args as an ARGV array via execFileSync — NOT a shell string. JSON.stringify is
+      // not shell-safe (a crafted bookId could break out of the quotes), and bookId/createdBy are
+      // operator-supplied. argv has no shell to inject into.
+      execFileSync(
+        "npx",
+        ["tsx", publishScript, "--file", `book-packages/${bookId}.v21.json`, "--created-by", createdBy],
         { cwd: REPO, stdio: "inherit" },
       );
       console.log(`✓ Ingested — "${bookId}" is now in the in-app library + reader (just refresh the page).`);
@@ -4003,6 +4025,16 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
 async function runQuizJudge(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const g = shadowGuard();
   if (g) return g;
+  // #14: quiz-judge defaults to the BILLED openai-api provider and makes ~1 call per quiz
+  // question. In no-API mode the wrong-key catch is the MANUAL keyA/keyB judge (run via
+  // qc-orchestrate), not this billed verb — so refuse here rather than silently spend money the
+  // mode promises it won't. (The provider-router choke point would also block it; this is the
+  // clear early error.)
+  const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
+  if (isNoApiCodexQcMode()) {
+    console.error("quiz-judge makes BILLED model calls and is disabled in no-API mode (CHAPTERFLOW_NO_API_CODEX_QC=1). The no-API wrong-key catch is the manual keyA/keyB judge via qc-orchestrate (see QC-SESSION-PROMPT). Unset CHAPTERFLOW_NO_API_CODEX_QC to run the billed judge intentionally.");
+    return 2;
+  }
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: quiz-judge <bookId> [--chapters 1,2,3] [--provider openai-api]");
@@ -4295,7 +4327,17 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
     return 2;
   }
-  const report = runShipGate(chapter);
+  // H5 defense: a malformed authored chapter could make a critic throw. The repair agent runs
+  // gate-chapter to converge — it needs an actionable BLOCK report, not a raw stack trace (which
+  // gives it nothing to fix and drives the conductor's no-progress HALT). Surface a crash as a
+  // gate failure with the message instead.
+  let report;
+  try {
+    report = runShipGate(chapter);
+  } catch (err) {
+    console.error(`gate-chapter: ship gate CRASHED on a malformed chapter (${(err as Error)?.message ?? String(err)}). Fix the malformed field (likely a quiz question: missing/null choices, out-of-range correctIndex, or non-string bloomsLevel) and re-run.`);
+    return 1;
+  }
   console.log(formatGateReport(report));
 
   // Intra-book quiz similarity check — runs AFTER the chapter-only ship gate.

@@ -16,6 +16,7 @@ import {
   checkBookQuizCrossChapterDuplicates,
   checkBookQuizNgramTemplates,
 } from "./quizQuality.js";
+import { checkKeyedChoiceDuplication } from "./quizCorrectness.js";
 import { checkBookQuizPromptTemplates } from "./antiSalting.js";
 import { loadBannedPhrases } from "./shared.js";
 import { normalizeConvergenceKey } from "./experiencePlan.js";
@@ -387,6 +388,23 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+
+  // ── D1 — cross-chapter keyed-choice duplication (#12). ──────────────────
+  // The SAME correct-answer string keyed in ≥2 chapters (the let-them-theory defect: one
+  // answer template across 20/20 chapters). BP21 is structurally blind to it (it skips the
+  // correct index). This critic previously ran ONLY as a printed CLI advisory — never in any
+  // gate — so the exact defect it was written to catch could ship. Wired here as a BLOCKER:
+  // it is calibrated to 0 false-positives across the clean+gold corpus (verified), and post-H3
+  // a "major" would be advisory-at-QC and therefore still decorative — a blocker actually gates
+  // and routes the conductor's gate-repair loop to rewrite the templated key.
+  for (const f of checkKeyedChoiceDuplication(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: "blocker",
       message: f.message,
       evidence: f.evidence,
     });

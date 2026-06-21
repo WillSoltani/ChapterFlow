@@ -1,9 +1,10 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
-import { dirname, resolve } from "path";
+import { existsSync, readFileSync, readdirSync } from "fs";
+import { resolve } from "path";
 
 import { chapterContentHash, type QcAttestation, type QcFinding } from "../../critics/qcAttestation.js";
 import type { ChapterV21 } from "../../types.js";
 import { CANONICAL_STATE } from "../../lib/chapterPaths.js";
+import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
 
 export const QC_ORCHESTRATOR_DIR = resolve(CANONICAL_STATE, "qc-orchestrator");
@@ -87,15 +88,15 @@ function readJson(path: string): any | null {
 
 export function writeBarReadArtifact(submission: ValidatedBarReadSubmission, variant?: BarReadVariant): string {
   const path = barArtifactPath(submission.bookId, submission.roundId, submission.chapterNumber, variant);
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify({ ...submission, storedAt: new Date().toISOString() }, null, 2), "utf8");
+  // Atomic: a torn bar/confirm artifact makes finalize's loadBarReadArtifact return null (a
+  // "missing read"), silently demoting a real PUBLISHABLE to NEEDS_MORE_QC.
+  writeFileAtomic(path, JSON.stringify({ ...submission, storedAt: new Date().toISOString() }, null, 2));
   return path;
 }
 
 export function writeConfirmReadArtifact(submission: ValidatedConfirmReadSubmission): string {
   const path = confirmArtifactPath(submission.bookId, submission.roundId, submission.chapterNumber);
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify({ ...submission, storedAt: new Date().toISOString() }, null, 2), "utf8");
+  writeFileAtomic(path, JSON.stringify({ ...submission, storedAt: new Date().toISOString() }, null, 2));
   return path;
 }
 

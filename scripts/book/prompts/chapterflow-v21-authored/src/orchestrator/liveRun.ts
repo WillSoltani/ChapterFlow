@@ -271,6 +271,21 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     return 2;
   }
 
+  // Graceful interruption. State writes are now atomic (tmp+rename), so a Ctrl-C / SIGTERM can
+  // never leave a torn chapter/package — and the same-host run lock auto-frees on process death
+  // (PID-liveness), so a re-run resumes cleanly. This handler just makes the interrupt LEGIBLE
+  // (a clear line + a 130 exit) instead of a bare stack trace; it doesn't force-kill child codex
+  // sessions (they carry their own timeouts).
+  let interrupted = false;
+  for (const sig of ["SIGINT", "SIGTERM"] as const) {
+    process.once(sig, () => {
+      if (interrupted) return;
+      interrupted = true;
+      console.error(red(`\n${sig} — interrupting book run for ${bookId}. State is crash-safe (atomic writes) and the run lock auto-frees; re-run \`book-run ${bookId}\` to resume.`));
+      process.exit(130);
+    });
+  }
+
   // Strict invariants: force-set so the conductor's IN-PROCESS gates (ship/book
   // gate regression scan, finalize) enforce — the subprocess env is force-set
   // elsewhere, but the in-process reads need it in our own env too.
