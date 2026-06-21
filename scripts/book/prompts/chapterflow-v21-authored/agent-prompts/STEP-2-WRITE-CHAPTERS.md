@@ -466,6 +466,7 @@ Valid `ExampleFormat` values: `decision_point`, `dialogue`, `dilemma`, `before_a
 - NO meta-references: never open with `In this chapter`, `The chapter`, `The author`, `This chapter`.
 - First word must NOT match the first word of ≥50% of prior chapters in this book. (Read prior chapters' hooks.)
 - No em dash (`—`) anywhere. Use commas, periods, parens, colons, semicolons.
+- Name a habit or default in plain, descriptive words. Never coin a compound label for the concept and use it as if the reader already shares it: write "the habit of copying winners," not "your winner default"; "betting on a straight line," not "the straight-line default." (A dealt `your-hidden-default` shape still works this way: name the default, just do not brand it.) Coin a term only later in the chapter once it is earned, never in the hook. Only a term that is genuinely the book's own (e.g. Pink's "Type I") may appear, and only if it says what it means in the same line (a term you invent yourself is never "the book's own").
 
 Good examples:
 - "On the morning of the work that would change his life, the writer sat down and could not begin."

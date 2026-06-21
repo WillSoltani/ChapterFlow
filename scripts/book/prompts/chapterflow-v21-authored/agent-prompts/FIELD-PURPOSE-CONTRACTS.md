@@ -106,6 +106,7 @@ construction; a field with nothing real to say falls back on the skeletons below
 - A restated thesis — the keyTakeaway in shorter words. It spoils the payoff and gives the reader no reason to read on.
 - Meta-talk about the chapter ("In this chapter we explore…") — that describes the artifact instead of pulling the reader into the content.
 - Abstract with no image — "Scarcity affects courage." Nothing concrete to catch on.
+- A coined label used as if the reader already shares it — "your winner default," "the straight-line default." Naming a default is fine, but say it in plain words ("the habit of copying winners"), not an invented compound term the reader has not met. A genuine book term ("Type I") may appear only if it says what it means in the same line (a label you coined is not a book term).
 
 **POSITIVE:** "Houston hears a question about entitled kids, and the room starts talking about fear."
 **NEGATIVE:** "This chapter explains how scarcity culture reduces courage and how to build enoughness." (restated thesis + meta)
