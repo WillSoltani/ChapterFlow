@@ -27,6 +27,21 @@ type RegisteredTest = {
 
 const registry: RegisteredTest[] = [];
 
+/** Set true once runRegistered actually executes tests. Used by the wrong-runner guard below. */
+let everRan = false;
+
+// WRONG-RUNNER GUARD. This harness uses its OWN registry; the assertions run only when
+// `runRegistered()` is called (by `npx tsx tests/run.ts`). If a file is loaded with
+// `node --test` / `tsx --test` instead, node:test sees no native cases and reports the FILE as
+// "ok" while the harness assertions NEVER RUN — a wrong-runner invocation silently masquerades as
+// green. Fail loudly at exit when tests were registered but never run, so that can't happen.
+process.on("exit", (code) => {
+  if (registry.length > 0 && !everRan) {
+    console.error(`\n✗ HARNESS MISUSE: ${registry.length} test(s) registered but never executed — run the suite with \`npx tsx tests/run.ts\` (NOT \`tsx --test\` / \`node --test\`, which only IMPORTS the files). See tests/README.md.`);
+    if (code === 0) process.exitCode = 1;
+  }
+});
+
 /** A normal test: throws = FAIL. */
 export function test(name: string, fn: () => void | Promise<void>): void {
   registry.push({ name, fn });
@@ -51,6 +66,7 @@ function describeError(e: unknown): string {
 
 /** Run every registered test, clear the registry, return results. */
 export async function runRegistered(): Promise<TestResult[]> {
+  everRan = true; // mark the suite as actually executed (defeats the wrong-runner guard)
   const results: TestResult[] = [];
   for (const t of registry) {
     if (t.skipReason) {

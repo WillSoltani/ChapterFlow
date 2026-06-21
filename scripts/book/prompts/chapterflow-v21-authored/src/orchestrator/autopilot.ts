@@ -34,7 +34,7 @@ import { fileURLToPath } from "url";
 
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
-import { REPO_ROOT } from "../lib/chapterPaths.js";
+import { REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
@@ -736,23 +736,25 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   // same-book-mutex-bypass vector. Same lowercase-slug rule the rest of the pipeline uses
   // (researcher-bibliography / normSlug). A '--'-prefixed id (swallowed as a flag upstream) also
   // fails this. Refuse up front with a structured halt rather than acting on it.
-  if (typeof bookId !== "string" || !/^[a-z0-9][a-z0-9-]*$/.test(bookId)) {
-    return mkHalt(String(bookId), "research", "governance", `invalid bookId "${bookId}" — must be a lowercase slug matching /^[a-z0-9][a-z0-9-]*$/. Refusing to run: an unvalidated id flows into lock/state/temp paths (traversal) and spawned CLI argv.`);
+  // Validate against the CANONICAL slug form, not just a loose regex. The lock is taken on the RAW
+  // bookId while all chapter/state ops normalize via normSlug — so a non-canonical id (e.g.
+  // "my-book-", "my--book") would get a DIFFERENT lock than its normalized state, bypassing the
+  // same-book mutex (#6). Requiring bookId === normSlug(bookId) makes lock and state agree, rejects
+  // traversal / '--'-prefixed / non-canonical ids, and accepts every real slug (#13).
+  if (typeof bookId !== "string" || bookId.length === 0 || normSlug(bookId) !== bookId) {
+    return mkHalt(String(bookId), "research", "governance", `invalid bookId "${bookId}" — must be a canonical lowercase slug (got normSlug="${typeof bookId === "string" ? normSlug(bookId) : "?"}"). Refusing to run: a non-canonical id takes a different run lock than its normalized state (mutex bypass) and can traverse lock/state/temp paths.`);
   }
-  // Self-heal a torn chapter file BEFORE the first status read. A half-written chapter (crash
-  // mid-save) makes loadBookChapters→computeBookStatus throw on every read, which would wedge
-  // the conductor permanently ("re-run to resume" re-throws). Quarantine moves it aside so the
-  // chapter is treated as MISSING and re-authored. (Atomic writes now PREVENT new tears; this
-  // recovers a pre-existing/external one.)
-  try {
-    const quarantined = quarantineCorruptChapterFiles(bookId);
-    if (quarantined.length) deps.log(`[autopilot] quarantined ${quarantined.length} corrupt chapter file(s) → state/chapters/_corrupt/ (will be re-authored): ${quarantined.join(", ")}`);
-  } catch { /* best-effort: a quarantine failure must never block the run */ }
   const maxRepair = opts.maxRepairRounds ?? 3;
   const maxParallel = opts.maxParallel ?? 6;
   const autoPublish = opts.autoPublish ?? false;
 
-  if (opts.plan) return planOnly(bookId, deps);
+  // plan is a read-only dry-run (takes no action, acquires no lock). Guard the status read so a
+  // corrupt chapter surfaces as a clean infra halt instead of an uncaught crash (this path runs
+  // BEFORE the try/catch below). It deliberately does NOT quarantine — a dry-run must not mutate.
+  if (opts.plan) {
+    try { return planOnly(bookId, deps); }
+    catch (err) { return mkHalt(bookId, "research", "infra", `--plan could not read book status (likely a corrupt chapter file): ${(err as Error)?.message ?? String(err)}`); }
+  }
 
   // Same-book lock: refuse to start if another run holds it (prevents two conductors
   // racing the same book's state). Released in `finally` on every exit path.
@@ -761,6 +763,17 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     return mkHalt(bookId, safePhase(bookId, deps), "infra", `could not acquire the run lock for ${bookId} (${lock.heldBy ?? "unknown"}). If a previous run died, remove state/autopilot-locks/${bookId}.lock and retry.`);
   }
   deps.log(`[autopilot] strict invariants ENFORCED (no-API · source-verify-required · session-independence); lock acquired for ${bookId}`);
+
+  // Self-heal a torn chapter file — AFTER acquiring the lock so a REJECTED second conductor never
+  // mutates this book's state (#17). A half-written chapter (crash mid-save) makes
+  // loadBookChapters→computeBookStatus throw on every read, which would wedge the conductor
+  // permanently ("re-run to resume" re-throws). Quarantine moves it aside so the chapter is treated
+  // as MISSING and re-authored. (Atomic writes now PREVENT new tears; this recovers a pre-existing
+  // /external one.) Self-guarded so it can't throw out and strand the just-acquired lock.
+  try {
+    const quarantined = quarantineCorruptChapterFiles(bookId);
+    if (quarantined.length) deps.log(`[autopilot] quarantined ${quarantined.length} corrupt chapter file(s) → state/chapters/_corrupt/ (will be re-authored): ${quarantined.join(", ")}`);
+  } catch { /* best-effort: a quarantine failure must never block the run */ }
 
   // Heartbeat the run lock from INSIDE the long phases too, not just once per outer iteration.
   // A single QC iteration (an initial round + up to maxRepair repair rounds, each spawning many
@@ -805,7 +818,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "gate") {
-        const halt = await doGate(bookId, maxRepair, deps);
+        const halt = await doGate(bookId, maxRepair, deps, heartbeat);
         if (halt) return halt;
         continue;
       }
@@ -878,7 +891,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
 
 // ── Phase: gate (repair ship/book-gate blockers, bounded) ─────────────────────
 
-async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
+async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
   // BP7 (book-pattern audit) fails closed without durable brief + per-chapter plan artifacts under
   // state/briefs|plans/, which the codex authoring path does NOT persist. `derive-artifacts` is a
   // deterministic, side-effect-free pass over on-disk state, so derive them up front: this resolves
@@ -889,6 +902,11 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps): P
   const derived = await deps.runVerb(["derive-artifacts", bookId]);
   if (derived.code !== 0) deps.log(`[autopilot] derive-artifacts exited ${derived.code} before gate convergence (BP7 may persist) — ${(derived.stderr || derived.stdout).slice(0, 200)}`);
   for (let attempt = 1; attempt <= maxRepair; attempt++) {
+    // Keep the run lock fresh across this multi-hour repair phase (each attempt spawns a 30-min
+    // codex session); halt if a successor took the lock — same as doQcWithRepair.
+    if (!heartbeat()) {
+      return mkHalt(bookId, "gate", "infra", `lost the run lock for ${bookId} mid-gate-repair — halting to avoid two conductors on the same book.`);
+    }
     const converge = await deps.runVerb(["qc-converge", bookId]);
     if (converge.code === 0) return null; // DETERMINISTIC-CLEAN → re-loop (advances to qc)
     // exit 1 = dirty content (repair); exit ≥2 = qc-converge itself errored (no chapters,
@@ -1128,27 +1146,38 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
   return { roundId, verdict: "INCOMPLETE", note: `unrecognized driver outcome: ${result.outcome}` };
 }
 
-/** Parse `qc-orchestrate --finalize` JSON stdout into a FinalizeQcRoundResult. Falls
- *  back to inferring the verdict from the exit code (0 PASS / 1 REPAIR / 3 INCOMPLETE)
- *  when stdout isn't the expected JSON — keeps the conductor robust. */
+/** Parse `qc-orchestrate --finalize` JSON stdout into a FinalizeQcRoundResult, falling back to
+ *  exit-code inference (0 PASS / 1 REPAIR / 3 INCOMPLETE) when stdout isn't the full JSON.
+ *
+ *  H2 hazard: exit 1 is OVERLOADED — finalize exits 1 for a legitimate "repair required" AND an
+ *  uncaught throw (a crash: corrupt round.json, fs failure) also exits 1. A crash must NOT be
+ *  misclassified as REPAIR (which would dispatch a content-repair writer at an infra fault). The
+ *  distinguisher: a real verdict prints to STDOUT (a result line / JSON); a crash prints its error
+ *  to STDERR and leaves stdout EMPTY. So exit-1-with-empty-stdout = crash → infra; exit-1-with
+ *  -output = repair. Exit 0 = PASS, exit 3 = INCOMPLETE (collect-incomplete / STALE_ROUND) are
+ *  unambiguous and inferred directly. A complete or incomplete-flagged JSON payload is honored
+ *  by the try branch regardless of code. */
 function parseFinalizeResult(stdout: string, code: number): FinalizeQcRoundResult {
   try {
     const j = JSON.parse(stdout) as Partial<FinalizeQcRoundResult>;
     if (j && typeof j.allPublishable === "boolean" && Array.isArray(j.chapters)) return j as FinalizeQcRoundResult;
-  } catch { /* fall through to the infra-crash shape below */ }
-  // No parseable FinalizeQcRoundResult on stdout = finalize CRASHED (it threw before printing
-  // its JSON: a corrupt round.json, an fs failure, …). The OLD fallback inferred the verdict
-  // from the bare exit code — but a finalize crash exits 1, which COLLIDES with finalize's
-  // legitimate "repair required" exit code, so a crash was misclassified REPAIR and the
-  // conductor dispatched a content-repair writer at an infra fault. Return an INFRA-shaped
-  // result instead (no repair/incomplete/publishable, empty chapters): the driver maps this to
-  // outcome INFRA → the conductor halts 'infra', never edits content on a crash. (A real verdict
-  // ALWAYS prints valid JSON and is handled by the try above.)
+    // collect-incomplete prints a partial `{ ok:false, incomplete:true }` (no allPublishable/chapters).
+    if (j && j.incomplete === true) {
+      return { ok: false, allPublishable: false, repairRequired: false, incomplete: true,
+        evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "", attestationsWritten: 0, chapters: [], errors: [] } as unknown as FinalizeQcRoundResult;
+    }
+  } catch { /* not JSON — fall through to exit-code inference */ }
+  const hasOutput = stdout.trim().length > 0;
+  // exit 1 + EMPTY stdout = a crash (threw before printing) → infra (repairRequired:false). exit 1
+  // WITH output = a real repair verdict. exit 0 = PASS. exit 3 = INCOMPLETE. Any other code = infra.
   return {
-    ok: false, allPublishable: false, repairRequired: false, incomplete: false,
+    ok: code === 0,
+    allPublishable: code === 0,
+    repairRequired: code === 1 && hasOutput,
+    incomplete: code === 3,
     evidenceMatrixPath: "", repairBriefPath: "", repairPromptPath: "",
     attestationsWritten: 0, chapters: [],
-    errors: [`finalize produced no parseable result JSON (exit ${code}) — treated as an infra crash, not a repair verdict`],
+    errors: (code === 1 && !hasOutput) ? [`finalize exited 1 with no stdout — treated as an infra crash, not a repair verdict`] : [],
   } as unknown as FinalizeQcRoundResult;
 }
 

@@ -279,22 +279,27 @@ export type PreflightCheck = { check: string; blockers: string[] };
  *  the gating behaviour is byte-identical to before. */
 function noApiPreflightChecks(bookId: string): PreflightCheck[] {
   const chapters = loadBookChapters(bookId).sort((a, b) => a.number - b.number);
+  // H5 defense: a malformed authored chapter (codex writes JSON directly, no schema coercion) could
+  // make ANY critic throw. That must surface as a publish BLOCKER, never an unhandled crash that
+  // aborts the whole preflight (noApiPreflightChecks is called WITHOUT a try/catch). `safe` turns a
+  // throw into a single GATE_CRASH blocker for that check so the publish fails closed with an
+  // actionable message instead of a raw stack trace.
+  const safe = (label: string, fn: () => string[]): string[] => {
+    try { return fn(); } catch (err) { return [`${label} GATE_CRASH: a critic threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`]; }
+  };
   const ship: string[] = [], intra: string[] = [], qcStatus: string[] = [], quizKey: string[] = [], manualKey: string[] = [];
   for (const ch of chapters) {
-    // H5 defense: a malformed authored chapter (codex writes JSON directly, no schema coercion)
-    // could make a critic throw; that must surface as a publish BLOCKER, not an unhandled crash
-    // that aborts the whole preflight (escapes the only try/catch in this function).
+    // Wrap the WHOLE per-chapter critic group (every one of these can throw on a malformed chapter).
     try {
       ship.push(...runShipGate(ch).blockers.map((f) => `ship ch${ch.number} ${f.catalogId}: ${f.message}`));
+      intra.push(...runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number)).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
+      qcStatus.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
+      quizKey.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));
+      manualKey.push(...checkManualKeyJudge(ch, true).map((f) => `manual-keyjudge ch${ch.number} ${f.checkId}: ${f.message}`));
     } catch (err) {
-      ship.push(`ship ch${ch.number} GATE_CRASH: ship gate threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`);
+      ship.push(`ship ch${ch.number} GATE_CRASH: a critic threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`);
     }
-    intra.push(...runIntraBookChecks(ch, chapters.filter((other) => other.number < ch.number)).filter((f) => f.severity === "blocker").map((f) => `intra ch${ch.number} ${f.checkId}: ${f.message}`));
-    qcStatus.push(...checkQcAttestation(ch, true).map((f) => `qc-status ch${ch.number} ${f.checkId}: ${f.message}`));
-    quizKey.push(...checkKeyJudge(ch, true, process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE === "1").map((f) => `quiz-key ch${ch.number} ${f.checkId}: ${f.message}`));
-    manualKey.push(...checkManualKeyJudge(ch, true).map((f) => `manual-keyjudge ch${ch.number} ${f.checkId}: ${f.message}`));
   }
-  const bookGate = runBookGate(bookId, chapters);
   // WS-4 source-reality gate: a PRESENT-but-rubber-stamped verification record (the
   // digital-minimalism failure) blocks; an absent record blocks only under the opt-in
   // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1, so the gold corpus is not retroactively bricked.
@@ -308,12 +313,12 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     { check: "qc-status", blockers: qcStatus },
     { check: "quiz-key", blockers: quizKey },
     { check: "manual-keyjudge", blockers: manualKey },
-    { check: "book-gate", blockers: bookGate.findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`) },
-    { check: "source-v2", blockers: checkSourceV2Gate(bookId, chapters.map((ch) => ch.number)).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`) },
-    { check: "plan-enforcement", blockers: checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`) },
-    { check: "sweep", blockers: checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`) },
-    { check: "majors", blockers: unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`) },
-    { check: "source-verify", blockers: sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" }).filter((f) => f.severity === "blocker").map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`) },
+    { check: "book-gate", blockers: safe("book-gate", () => runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`)) },
+    { check: "source-v2", blockers: safe("source-v2", () => checkSourceV2Gate(bookId, chapters.map((ch) => ch.number)).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
+    { check: "plan-enforcement", blockers: safe("plan-enforcement", () => checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
+    { check: "sweep", blockers: safe("sweep", () => checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`)) },
+    { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },
+    { check: "source-verify", blockers: safe("source-verify", () => sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" }).filter((f) => f.severity === "blocker").map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`)) },
   ];
 }
 

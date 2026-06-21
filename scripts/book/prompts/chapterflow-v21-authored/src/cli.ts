@@ -27,6 +27,7 @@ import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
 import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileName, assertNoShadowStateDir } from "./lib/chapterPaths.js";
+import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 
@@ -1740,7 +1741,9 @@ async function runFixChapterIds(args: string[], flags: Record<string, string | b
       obj.chapterId = stem;
       // Preserve the file's exact formatting style (2-space indent, trailing NL if present).
       const out = JSON.stringify(obj, null, 2) + (raw.endsWith("\n") ? "\n" : "");
-      writeFileSync(full, out, "utf8");
+      // Atomic: this rewrites a chapter JSON in place — a crash mid-write would leave a torn file
+      // that wedges loadBookChapters/the conductor (the H6 vector), so use tmp+rename here too.
+      writeFileAtomic(full, out);
     }
   }
   console.log(

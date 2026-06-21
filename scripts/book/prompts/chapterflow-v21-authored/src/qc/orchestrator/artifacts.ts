@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
-import { dirname, resolve } from "path";
+import { existsSync, readFileSync, readdirSync } from "fs";
+import { resolve } from "path";
 
 import { chapterContentHash, type QcAttestation, type QcFinding } from "../../critics/qcAttestation.js";
 import type { ChapterV21 } from "../../types.js";

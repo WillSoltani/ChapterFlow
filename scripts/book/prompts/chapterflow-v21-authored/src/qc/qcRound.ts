@@ -1,5 +1,5 @@
 import { createHash, randomBytes } from "crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
@@ -60,7 +60,6 @@ export function openQcRound(bookId: string, roundId = `r${new Date().toISOString
     openedAt: new Date().toISOString(),
     roles,
   };
-  mkdirSync(QC_ROUNDS_DIR, { recursive: true });
   const path = qcRoundPath(bookId, roundId);
   if (existsSync(path)) throw new Error(`QC round already exists: ${path}`);
   // Atomic: a torn round.json is read UNGUARDED by checkRoundFreshness/selectedRoundChapters

@@ -138,15 +138,21 @@ export function computeBookStatus(bookId: string): BookStatus {
   const stage = safeNextTaskKind(bookId);
 
   const chapters: ChapterStatus[] = written.map((ch) => {
-    const gate = quiet(() => runShipGate(ch));
+    // Fail-safe: a malformed-but-PARSEABLE chapter (valid JSON, bad shape) must not crash
+    // computeBookStatus — the conductor calls it every loop, so a throw here wedges the walk-away
+    // run the same way a torn file does (quarantine only catches UNPARSEABLE files). A gate crash →
+    // treat the chapter as BLOCKED so it routes to the gate-repair loop, never a conductor crash.
+    let shipGatePass = false, shipBlockers = 1;
+    try { const gate = quiet(() => runShipGate(ch)); shipGatePass = gate.blockers.length === 0; shipBlockers = gate.blockers.length; }
+    catch { /* leave BLOCKED — a crash means the chapter needs repair, not a halt */ }
     const att = loadAttestation(bookId, ch.number);
     const fresh = att ? isAttestationFresh(att, ch) : false;
     return {
       number: ch.number,
       chapterId: ch.chapterId,
       written: true,
-      shipGatePass: gate.blockers.length === 0,
-      shipBlockers: gate.blockers.length,
+      shipGatePass,
+      shipBlockers,
       qcVerdict: att?.verdict ?? "NONE",
       qcFresh: fresh,
     };
@@ -159,28 +165,33 @@ export function computeBookStatus(bookId: string): BookStatus {
   let bookGatePass: boolean | null = null;
   let bookGateBlockers = 0;
   if (written.length > 0) {
-    const bg = quiet(() => runBookGate(bookId, written));
-    bookGatePass = bg.passed;
-    bookGateBlockers = bg.findings.filter((f) => f.severity === "blocker").length;
-  }
-
-  // Full deterministic battery (source-v2 + ship + author + intra + book + plan) — the SAME
-  // evaluator qc-converge/finalize use. The conductor gates gate→qc on this so a deterministically
-  // dirty chapter is converged cheaply in the gate phase instead of skipping to a QC round whose
-  // preflight would hard-halt. Fail-safe → true on any read error (never block on an unreadable book).
-  let deterministicClean = true;
-  if (written.length > 0) {
-    deterministicClean = quiet(() => {
-      try { return evaluateDeterministic(bookId, written, written).clean; } catch { return true; }
-    });
+    // Fail-safe (same rationale as the per-chapter gate above): a crash → not clean → routes to gate.
+    try { const bg = quiet(() => runBookGate(bookId, written)); bookGatePass = bg.passed; bookGateBlockers = bg.findings.filter((f) => f.severity === "blocker").length; }
+    catch { bookGatePass = false; }
   }
 
   const packaged = existsSync(resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`));
   const guardrails = existsSync(resolve(STATE_DIR, "guardrails", `${bookId}.guardrails.md`));
   const allWritten = expected != null && writtenChapters >= expected && writtenChapters > 0;
+
+  // Full deterministic battery (source-v2 + ship + author + intra + book + plan) — the SAME
+  // evaluator qc-converge/finalize use. The conductor gates gate→qc on this so a deterministically
+  // dirty chapter is converged cheaply in the gate phase instead of skipping to a QC round whose
+  // preflight would hard-halt. Only matters once ALL chapters are written (decidePhase's allGated
+  // requires allWritten), so SKIP the expensive O(n²) battery on partially-written books. Fail-safe
+  // → true on any read error (never block on an unreadable book).
+  let deterministicClean = true;
+  if (allWritten) {
+    deterministicClean = quiet(() => {
+      try { return evaluateDeterministic(bookId, written, written).clean; } catch { return true; }
+    });
+  }
+
   const allGated = allWritten && gatedChapters === writtenChapters && bookGatePass === true;
   const allQcd = allWritten && qcdChapters === writtenChapters;
-  const publishable = allGated && allQcd;
+  // Include deterministicClean so `publishable` can't be true while the phase ladder says "gating"
+  // for a deterministically-dirty book (the contradictory-status bug).
+  const publishable = allGated && allQcd && deterministicClean;
 
   const variety = readVariety(bookId, written);
 

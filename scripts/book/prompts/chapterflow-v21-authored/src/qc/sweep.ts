@@ -1,6 +1,6 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { dirname, resolve } from "path";
+import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
@@ -158,7 +158,6 @@ export function writeSweepPack(bookId: string, roundId: string): string {
     })),
   };
   const p = sweepPackPath(bookId, roundId);
-  mkdirSync(dirname(p), { recursive: true });
   writeFileAtomic(p, JSON.stringify(pack, null, 2));
   return p;
 }
@@ -194,7 +193,6 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
       }];
     }),
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(submission.bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return p;
@@ -221,7 +219,7 @@ export function sweepFamilyForRepairClass(repairClass: unknown): SweepFamily | n
   // (figure/source/date). Dropping them as "factual" left an empty record that failed the
   // whole book closed — keep them and map to a family.
   const templatingSignal = /reuse|reused|repeat|repetition|recur|recurr|duplicat|\bdupe\b|identical|\bsame\b|template|stamp|uniform|\becho\b|copy|carbon|boilerplate|formula/;
-  if (!templatingSignal.test(c) && /\bfact|numeric|number|\bstat|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // clearly factual (no repetition signal) → out of scope → drop
+  if (!templatingSignal.test(c) && /\bfact|numeric|number|\bstats?\b|statistic|accuracy|verif|citation|\bfigure\b|\bsource\b|\bdate\b/.test(c)) return null; // clearly factual (no repetition signal) → out of scope → drop. \bstats?\b matches stat/stats but NOT static/statement.
   if (/scene|frame|skeleton|vignette|opening|opener/.test(c)) return "scene_skeleton";
   if (/persona|\bname|character|protagonist/.test(c)) return "persona_drift";
   if (/venue|location|place|stamp|clock|timing|setting/.test(c)) return "location_stamping";
@@ -291,7 +289,6 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
     findings: loaded.findings,
     notes,
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return { path: p };
@@ -331,7 +328,6 @@ export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId
     reviewer: "carry-forward",
     attestedAt: new Date().toISOString(),
   };
-  mkdirSync(QC_DIR, { recursive: true });
   const p = sweepRecordPath(bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
   return p;
