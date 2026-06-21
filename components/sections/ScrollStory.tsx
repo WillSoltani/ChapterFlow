@@ -139,7 +139,7 @@ const BEATS: Beat[] = [
     phase: "practice",
     kicker: "04 · Keep it",
     headline: "Then it returns, right before you'd forget.",
-    body: "Each idea comes back on a widening schedule set by FSRS-5, the open spaced-repetition scheduler. Retention holds above 90%. That shaded gap is everything you'd have lost.",
+    body: "Each idea comes back on a widening schedule set by FSRS-5, the open spaced-repetition scheduler. Retention holds around 90%. That shaded gap is everything you'd have lost.",
     cite: "FSRS-5 spaced repetition · R(t) = 1 / (1 + t ⁄ 9S)",
   },
 ];
@@ -216,7 +216,7 @@ function RetentionChart({
     <svg
       viewBox="0 0 640 332"
       role="img"
-      aria-label="Recall probability (y-axis, 0 to 100 percent) over time (x-axis, Day 1 through Month 1). Without review, memory decays steeply toward zero. With ChapterFlow, a quiz snaps recall back to 100% and spaced reviews keep it above 90%. A cyan playhead rides the with-review line and prints the live recall value. The shaded area between the two lines is the retention otherwise lost."
+      aria-label="Recall probability (y-axis, 0 to 100 percent) over time (x-axis, Day 1 through Month 1). Without review, memory decays steeply toward zero. With ChapterFlow, a quiz snaps recall back to 100% and spaced reviews keep it around 90%. A cyan playhead rides the with-review line and prints the live recall value. The shaded area between the two lines is the retention otherwise lost."
       className="h-auto w-full"
     >
       <defs>
@@ -776,7 +776,10 @@ export function ScrollStory() {
   const readoutChip = useTransform(draw, (v) => `R = ${withRecallPct((v / 100) * T_MAX)}%`);
 
   const [beatIndex, setBeatIndex] = useState(0);
-  useMotionValueEvent(scrollYProgress, "change", (p) => {
+  // Drive the reader phase off the SAME spring-smoothed value the chart playhead
+  // uses (not raw scrollYProgress), so the left reader phase and the right curve
+  // scrub advance together instead of the phase leading the lagging curve.
+  useMotionValueEvent(smooth, "change", (p) => {
     if (isStatic) return;
     const next = beatFor(p);
     setBeatIndex((prev) => (prev === next ? prev : next));

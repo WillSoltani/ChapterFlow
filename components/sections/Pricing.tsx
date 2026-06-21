@@ -400,7 +400,7 @@ export function Pricing() {
                       id={`faq-q-${index}`}
                       onClick={() => toggleFaq(index)}
                       aria-expanded={open}
-                      aria-controls={`faq-answer-${index}`}
+                      aria-controls={open ? `faq-answer-${index}` : undefined}
                       className="flex w-full items-center justify-between gap-4 py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                     >
                       <span

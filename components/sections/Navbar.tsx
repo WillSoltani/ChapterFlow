@@ -177,7 +177,11 @@ export function Navbar() {
           setActiveSection(visible.target.id);
         }
       },
-      { threshold: 0.15, rootMargin: "-10% 0px -70% 0px" },
+      // threshold 0 (not 0.15): the §01 signature section is ~420svh tall, so its
+      // max intersectionRatio inside the -10%/-70% band is ~5% — a 0.15 threshold
+      // would never fire for it and the §01 LOOP nav link could never light. The
+      // band keeps ~one section in view at a time; the ratio sort still picks it.
+      { threshold: 0, rootMargin: "-10% 0px -70% 0px" },
     );
 
     elements.forEach((el) => observer.observe(el));

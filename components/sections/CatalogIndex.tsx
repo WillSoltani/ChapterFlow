@@ -73,7 +73,7 @@ export function CatalogIndex() {
                 className="cf-folio"
                 style={{ color: "var(--cf-axis-tint)" }}
               >
-                Catalog index · CF-001 … CF-{CATALOG_BOOK_COUNT_DISPLAY}
+                Catalog index · CF-001 onward
               </span>
               <span className="cf-folio tabular-nums" style={{ color: "var(--text-tertiary)" }}>
                 <span style={{ color: "var(--text-heading)" }}>{CATALOG_BOOK_COUNT_DISPLAY}</span> titles in print

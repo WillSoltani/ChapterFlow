@@ -59,18 +59,13 @@ test.describe("landing redesign", () => {
     const h1 = page.locator("main h1").first();
     await expect(h1).toBeVisible();
 
-    // The hero phone lives in a <figure> whose sr-only <figcaption> starts
-    // "Reader interface preview" (unique to the hero).
-    const phoneFigure = page
-      .locator("figure", {
-        has: page.getByText(/Reader interface preview/i),
-      })
-      .first();
+    // The hero reader preview renders inside the .cf-hero-console wrapper.
+    const phoneFigure = page.locator(".cf-hero-console").first();
 
     const h1Box = await h1.boundingBox();
     const phoneBox = await phoneFigure.boundingBox();
     expect(h1Box, "headline must have a layout box").toBeTruthy();
-    expect(phoneBox, "phone figure must have a layout box").toBeTruthy();
+    expect(phoneBox, "reader console must have a layout box").toBeTruthy();
 
     // Headline is ABOVE the phone (DOM-first, no order-* flip) ...
     expect(h1Box!.y).toBeLessThan(phoneBox!.y);
@@ -78,12 +73,12 @@ test.describe("landing redesign", () => {
     expect(h1Box!.y).toBeLessThan(844);
   });
 
-  test("primary 'Start reading free' CTA is present and clickable", async ({
+  test("primary 'Start your first chapter' CTA is present and clickable", async ({
     page,
   }) => {
     await page.goto("/");
     const cta = page
-      .getByRole("link", { name: /start reading free/i })
+      .getByRole("link", { name: /start your first chapter/i })
       .first();
     await expect(cta).toBeVisible();
     await expect(cta).toBeEnabled();
@@ -97,7 +92,7 @@ test.describe("landing redesign", () => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto("/");
 
-    const section = page.locator("#retention-loop");
+    const section = page.locator("#retention-engine");
     await expect(section).toHaveCount(1);
     await section.scrollIntoViewIfNeeded();
 
@@ -109,16 +104,18 @@ test.describe("landing redesign", () => {
     // sr-only <ol> of the beats for assistive tech, which getByText would also
     // match.
     await expect(
-      section.getByRole("heading", { name: /Read the idea, once/i }),
+      section.getByRole("heading", { name: /forget most of it within days/i }),
     ).toBeVisible();
     await expect(
-      section.getByRole("heading", { name: /See it in the world/i }),
+      section.getByRole("heading", {
+        name: /Worked examples make the idea concrete/i,
+      }),
     ).toBeVisible();
     await expect(
-      section.getByRole("heading", { name: /Recall beats rereading/i }),
+      section.getByRole("heading", { name: /Prove it once/i }),
     ).toBeVisible();
     await expect(
-      section.getByRole("heading", { name: /Lock it in, move on/i }),
+      section.getByRole("heading", { name: /right before you'd forget/i }),
     ).toBeVisible();
   });
 });

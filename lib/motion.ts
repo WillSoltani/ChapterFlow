@@ -71,9 +71,9 @@ export const SPRING = {
 /**
  * `useScroll({ offset })` presets for element-relative scroll tracking. The
  * tuple maps [target-edge meets container-edge] start -> end; progress runs 0->1
- * between them. `coverViewport` tracks an element from when its top reaches the
- * viewport top to when its bottom reaches the viewport bottom — the right window
- * for a tall pinned/sticky section. NOTE: the page-wide progress bar must use the
+ * between them. `pinnedSection` tracks a tall section from top-aligned to
+ * bottom-aligned — the right window for a pinned/sticky scrub; `enterLeave`
+ * tracks an element across the viewport. NOTE: the page-wide progress bar must use the
  * DEFAULT document `useScroll()` (no target), which auto-accounts for total page
  * height — so it never desyncs when a tall pinned section changes that height.
  */
