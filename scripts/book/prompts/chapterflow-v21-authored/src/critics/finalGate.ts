@@ -17,7 +17,7 @@ import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
-import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity } from "./integrity.js";
+import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
 import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
@@ -158,6 +158,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "A12-breakdown": "blocker",
   A13: "major",
   A14: "major",
+  A17: "major", // tryThisNow too complex to be an immediate action (advisory)
   A15: "blocker",
   A16: "blocker",
   "A16.quiz_count_floor": "blocker",
@@ -217,6 +218,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SL2.domain_label_leak": "major",
   "SL3.spectator_prop": "major",
   "SL4.citation_prop": "major",
+  "SL5.publication_detail": "major",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
   "BP16.quiz_answer_length_blocker": "blocker",
@@ -516,6 +518,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   if (chapter.tryThisNow) {
     for (const f of checkCapitalization(chapter.tryThisNow, "tryThisNow")) push("A12", "tryThisNow", f.message, f.evidence);
     for (const f of checkSentenceSanity(chapter.tryThisNow, "tryThisNow")) push("A13", "tryThisNow", f.message, f.evidence);
+    for (const f of checkTryThisNowComplexity(chapter.tryThisNow)) push("A17", "tryThisNow", f.message, f.evidence);
     runRegisterChecks("tryThisNow", chapter.tryThisNow, push);
   }
   // Backwards-compat: legacy v21 packages (tiny-habits) used reflectionBefore/After.

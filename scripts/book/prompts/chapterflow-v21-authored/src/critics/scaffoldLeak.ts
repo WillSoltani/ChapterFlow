@@ -20,6 +20,11 @@
  *      "the 1974 Science slide" and "reads the wording from the 1979 Econometrica
  *      notes"; the model bar/confirm read was meant to flag these (example_coherence)
  *      but passed them, so SL4 makes the clearest form deterministic.
+ *  SL5 (MAJOR)   publication_detail — publication metadata (a curated publisher name,
+ *      a QUALIFIED "revised/Nth edition", or ISBN) surfaces inside reader prose and
+ *      slows the sentence ("Donald Norman's 2013 revised edition from Basic Books").
+ *      The reader cares about the FINDING; edition/publisher belong in the source
+ *      layer. Distinct from SL4 (source-as-physical-prop). NO bare-year matching.
  *
  * Reader-facing fields are enumerated via authoringContract.readerFields().
  */
@@ -28,7 +33,7 @@ import { readerFields } from "./authoringContract.js";
 import type { ChapterV21 } from "../types.js";
 
 export type ScaffoldLeakFinding = {
-  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop";
+  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop" | "SL5.publication_detail";
   severity: "blocker" | "major";
   unit: string;
   message: string;
@@ -90,6 +95,25 @@ const SL4_VISUAL_RE = new RegExp(`\\b${SL4_CITATION}\\s+${SL4_VISUAL}\\b`);
 const SL4_DOC_RE = new RegExp(`\\b${SL4_CITATION}\\s+${SL4_DOC}\\b`);
 const SL4_HANDLE_RE = /\b(?:reads?|reading|slid\w*|sliding|pull\w*|hand(?:s|ed|ing)?|pins?|pinned|tuck\w*|taps?|tapped|projects?|holds? up|unfolds?|from the|off the|across the (?:table|desk))\b/i;
 
+// SL5 — publication metadata in reader prose (the source's edition/publisher, not its
+// finding). PRECISION: an EDITION marker must be QUALIFIED ("revised edition", "3rd
+// edition") — never the bare word "edition", which is common; a curated PUBLISHER name
+// only counts when a year / "edition" / "published" cue sits in the SAME sentence (so
+// "she worked at Penguin" — a setting — does not fire). NO bare-year matching (the SL4
+// false-positive lesson). Case-sensitive publisher names (proper nouns).
+// Curated, UNAMBIGUOUS publisher proper-nouns only — common-word / place imprints
+// (Crown, Vintage, Portfolio, Currency, Bloomsbury) are deliberately excluded: they
+// false-fire as ordinary words / a London neighborhood.
+const SL5_PUBLISHER_RE =
+  /\b(?:Basic Books|Penguin(?: Random House| Press| Books)?|Random House|Harvard University Press|Princeton University Press|Oxford University Press|Cambridge University Press|Yale University Press|MIT Press|University of Chicago Press|Simon (?:&|and) Schuster|Farrar, Straus(?: and Giroux)?|HarperCollins|Harper(?:Business| Perennial)?|W\.?\s?W\.?\s?Norton|Little, Brown|Houghton Mifflin(?: Harcourt)?|Scribner|Doubleday|Riverhead|Knopf|McGraw-Hill)\b/;
+const SL5_EDITION_RE =
+  /\b(?:revised|reprint|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|\d+(?:st|nd|rd|th))\s+edition\b/i;
+const SL5_ISBN_RE = /\bISBN\b/;
+// A publisher name only counts as a citation when an explicit publication cue sits in
+// the same sentence. NO bare-year alternation — a year alone fires on ordinary
+// biography/company-history prose ("She joined Penguin in 2011"), the SL4 lesson.
+const SL5_CITE_CUE_RE = /\bedition\b|\bpublished\b|\bpublisher\b|\breprint\b/i;
+
 const STOP = new Set(["the", "a", "an", "and", "or", "but", "of", "to", "in", "on", "for", "with", "at", "by", "about", "during", "after", "before", "their", "his", "her", "a's"]);
 
 function domainContentTokens(domain: string): Set<string> {
@@ -115,6 +139,27 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
         message: `${f.unit}.${f.field} contains the internal scene-shape format tag "${m[1]}" as literal prose. Format ids are authoring scaffolding — never write them into reader-facing text.`,
         evidence: m[1],
       });
+    }
+  }
+
+  // SL5 — publication metadata in reader prose (see header). Per-sentence over every
+  // reader field so it catches breakdown and example prose alike.
+  for (const f of readerFields(chapter)) {
+    for (const sentence of f.text.split(/(?<=[.?!])\s+/)) {
+      const edition = sentence.match(SL5_EDITION_RE);
+      const isbn = sentence.match(SL5_ISBN_RE);
+      const publisher = sentence.match(SL5_PUBLISHER_RE);
+      const hit = edition ?? isbn ?? (publisher && SL5_CITE_CUE_RE.test(sentence) ? publisher : null);
+      if (hit) {
+        findings.push({
+          checkId: "SL5.publication_detail",
+          severity: "major",
+          unit: f.unit,
+          message: `${f.unit}.${f.field} carries publication metadata ("${hit[0]}") in reader prose — cite the FINDING, not the edition/publisher; publication details belong in the source layer.`,
+          evidence: hit[0],
+        });
+        break;
+      }
     }
   }
 

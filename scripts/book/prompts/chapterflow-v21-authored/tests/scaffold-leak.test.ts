@@ -102,6 +102,35 @@ test("SL4 needs BOTH a real citation and a prop — neither alone fires", () => 
   );
 });
 
+test("SL5 flags publication metadata in reader prose (edition/publisher), not a finding citation", () => {
+  // The #12 feedback case: "Donald Norman's 2013 revised edition from Basic Books".
+  const edition = checkScaffoldLeak(chapterWith("Donald Norman's 2013 revised edition from Basic Books makes the point about doors."));
+  assert.ok(edition.some((f) => f.checkId === "SL5.publication_detail" && f.severity === "major"), JSON.stringify(edition));
+  const publisherCited = checkScaffoldLeak(chapterWith("Penguin published the 2011 study that Mara keeps quoting."));
+  assert.ok(publisherCited.some((f) => f.checkId === "SL5.publication_detail"), JSON.stringify(publisherCited));
+});
+
+test("SL5 does NOT fire on a bare 'edition'/year, a publisher-as-setting, or a book-as-object", () => {
+  const cases = [
+    "The 2013 edition we studied had fourteen chapters worth reading.", // bare "edition" + year, no qualifier
+    "She worked at Penguin for years and learned to wait out a bad draft.", // publisher as a workplace setting, no citation cue
+    "A worn paperback sat open on the windowsill while the kettle boiled.", // a book as a physical object, not metadata
+    "He drove down Edition Avenue past the old press building.", // "Edition" as a place name (edition not preceded by a qualifier)
+    // Publisher-as-biography NEAR a year must NOT fire (the bare-year FP class an
+    // adversarial review caught: a publisher name + any year alone was tripping it).
+    "She joined Penguin in 2011 as a junior editor and rose fast.",
+    "He started at Random House in 1998 sorting mail in the basement.",
+    "By 2016 she ran the whole marketing team at HarperCollins.",
+  ];
+  for (const s of cases) {
+    assert.deepEqual(
+      checkScaffoldLeak(chapterWith(s)).filter((f) => f.checkId === "SL5.publication_detail"),
+      [],
+      `SL5 false-fired on: ${s}`,
+    );
+  }
+});
+
 test("a clean scenario produces no scaffold-leak findings", () => {
   assert.deepEqual(checkScaffoldLeak(chapterWith("At the town hall, Hyun raises a hand and names the weekday-walk pattern aloud.")), []);
 });

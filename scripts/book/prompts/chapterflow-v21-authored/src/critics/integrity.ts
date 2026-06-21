@@ -15,6 +15,7 @@
  *   A12 — capitalization on display field (BLOCKER)
  *   A13 — sentence-parse sanity on display field (MAJOR)
  *   A14 — keyTakeaway exceeds maximum word count (MAJOR)
+ *   A17 — tryThisNow is too complex to be an immediate action (MAJOR)
  */
 
 import { CriticFinding } from "../types.js";
@@ -203,6 +204,51 @@ export function checkMaxWordCount(text: string | undefined, fieldLabel: string, 
     ];
   }
   return [];
+}
+
+/**
+ * A17 — tryThisNow complexity cap. The immediate action must be ONE trigger + ONE
+ * move a reader can do in under a minute — not homework. Editorial review found
+ * prompts like "…the first time a routine item lands loose, spend ten minutes
+ * ranking keys, medicine, and bills by risk. Move one object…" (31 words, a
+ * multi-item ranking, two actions) that read as a chore a casual reader skips.
+ *
+ * Two high-precision tells (calibrated on the gold corpus, whose tryThisNow fields
+ * top out at 24 words and use coordinated lists — so a raw comma cap is out, see A13):
+ *   (1) over the word cap (the homework example was 31; gold maxes at 24), or
+ *   (2) a ranking/sorting VERB applied to a 3+ item list ("rank/sort/group A, B, and C").
+ * Advisory MAJOR — surfaces in the writer card + repair loop, never blocks.
+ */
+const TRY_THIS_NOW_WORD_CAP = 30;
+const RANKING_LIST_RE =
+  /\b(?:rank|ranking|sort|sorting|order|ordering|prioriti[sz]e|prioriti[sz]ing|group|grouping|categori[sz]e|categori[sz]ing)\b[^.?!]*?\b\w+(?:\s+\w+){0,2},\s+\w+(?:\s+\w+){0,2},\s+(?:and|or)\s+\w+/i;
+
+export function checkTryThisNowComplexity(text: string | undefined): CriticFinding[] {
+  if (!text) return [];
+  const findings: CriticFinding[] = [];
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  if (words.length > TRY_THIS_NOW_WORD_CAP) {
+    findings.push(
+      finding(
+        "integrity.tryThisNow_complexity",
+        "major",
+        `tryThisNow is ${words.length} words (cap ${TRY_THIS_NOW_WORD_CAP}) — make it ONE trigger + ONE move a reader can do in under a minute, not a multi-step chore`,
+        text.slice(0, 200),
+      ),
+    );
+  }
+  const rankList = text.match(RANKING_LIST_RE);
+  if (rankList) {
+    findings.push(
+      finding(
+        "integrity.tryThisNow_complexity",
+        "major",
+        `tryThisNow asks the reader to rank/sort a multi-item list ("${rankList[0].slice(0, 60)}…") — too much for an immediate action; ask for one concrete move on one thing`,
+        text.slice(0, 200),
+      ),
+    );
+  }
+  return findings;
 }
 
 /**

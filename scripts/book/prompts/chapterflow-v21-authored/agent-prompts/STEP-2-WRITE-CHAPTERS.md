@@ -176,6 +176,15 @@ ChapterFlow is for a WIDE audience. The rules:
 - **Define every term-of-art in everyday words the first time it appears** —
   then you may use it freely. Never stack two undefined abstractions in one
   sentence.
+- **No coined noun-phrase LABELS.** Do not invent a smart-sounding compound and
+  use it as a name — "externalized household cognition", "bounded group
+  management", "channel norms", "the leap from description to prescription". Say
+  the plain thing instead: "using your space to remember for you", "you can only
+  keep up with so many people", "which messages deserve a text, a call, or no
+  reply", "what worked for someone isn't automatically what you should do". A
+  real term-of-art from the source is fine once you gloss it plainly (and it
+  belongs in a deeper tier, not the hook/fastRead); a label you coined is not.
+  (Deterministic backstop E7 swaps the known offenders; the rule covers the rest.)
 - **Prefer the short common word**: use/not utilize, enough/not sufficiency,
   blame/not attribution. Nominalizations (-tion/-ness/-ity words) are a
   budget, not a style: if a sentence has two, rewrite one as a verb with a
@@ -489,10 +498,13 @@ Good examples:
 
 ### Step 3 — `tryThisNow` (80-220 chars)
 
-- One specific 30-90 second action the reader can do right now or at their next obvious moment. Directive, not question.
+- ONE trigger + ONE move the reader can do in under a minute. Directive, not question. Keep it ≤30 words.
+- It must read like a nudge, not homework. **No multi-step chores, no "rank/sort A, B, and C", no nested conditional trigger** ("the first time X happens, spend ten minutes ranking…"). If you wrote two actions, cut to the one that matters (A17 flags the over-built ones).
 - Bad: "Take some time to think about your priorities." (vague)
 - Bad: "What would you do if you only had one task today?" (question)
+- Bad: "Within the next 24 hours, the first time a routine item lands loose, spend ten minutes ranking keys, medicine, and bills by risk. Move one object." (homework — multi-item ranking + two actions + nested trigger)
 - Good: "Open the calendar for next Tuesday and block one 45-minute window labeled with the actual task name, not 'focus time' or 'deep work'."
+- Good: "Pick one thing you lose often. Move its home to the place your hand already goes." (one trigger, one move)
 
 ### Step 4 — `keyTakeaway` (140-220 chars, max 30 words)
 
