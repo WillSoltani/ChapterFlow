@@ -1,7 +1,7 @@
 {
   "schemaVersion": "chapterflow-v21-authored",
-  "packageId": "the-organized-mind-v21-1782073009130",
-  "createdAt": "2026-06-21T20:16:49.130Z",
+  "packageId": "the-organized-mind-v21-1782077258279",
+  "createdAt": "2026-06-21T21:27:38.279Z",
   "contentOwner": "chapterflow",
   "book": {
     "bookId": "the-organized-mind",
@@ -1481,7 +1481,7 @@
       "readingTimeMinutes": 11,
       "hook": "Your inbox offers one scary percentage. What if the safer move is to count the people first?",
       "counterintuition": "A hard choice can look like a need for more facts. In fact, the first fix is often a clearer display: counts, base rates, tradeoffs, and honest uncertainty.",
-      "tryThisNow": "At your next handoff between tasks, spend ten minutes pre-writing two replies you might send. Compare the words and name which one shows the base rate.",
+      "tryThisNow": "At your next task handoff, spend ten minutes pre-writing one recommendation two ways: bare claim, then usual rate, denominator, frame, and uncertainty. Compare the drafts before sending.",
       "keyTakeaway": "Hard choices improve when you rewrite risk as comparable information: shared counts, visible base rates, clear frames, and uncertainty that stays in view.",
       "breakdown": {
         "fastRead": "Audrey reads a risk memo with one bold percentage circled in red. The number feels urgent, but it gives her no group to count from. She cannot tell if the warning is rare, common, or just vivid. Counts make fear answerable.\n\nThe shape of a choice means the form you give facts before you judge them. A percent, a story, a table, and a graph can aim the mind in different ways. Gigerenzer and Edwards showed why count form helps: groups of people are easier to compare than loose odds. The rule is plain: before trusting the loudest fact, ask what group it came from, what frame it uses, and what side-by-side fact it hides.",
@@ -1503,15 +1503,15 @@
         },
         {
           "exampleId": "ex02",
-          "title": "Audrey's Jammed Memo",
+          "title": "Audrey's Comparison Memo",
           "tags": [
             "Tufte",
             "comparison",
             "display"
           ],
-          "scenario": "The printer tray sticks halfway before the morning risk review, and memo writer Audrey tugs the Graphics Press proof loose at the print counter. Her memo does the action: \"Replace the gradient chart. Keep the 1983 Tufte rule in view: data-ink and comparison must serve the decision. Put the two options on one scale before asking for a vote.\"",
-          "whatToDo": "Audrey sends the memo with one revised chart and one plain sentence above it: compare cost, risk, and time on the same scale.",
-          "whyItMatters": "The artifact changes the meeting before anyone speaks. A decision memo earns its space when the display makes comparison hard to miss."
+          "scenario": "At her desk outside the morning risk review, analyst Audrey opens the draft memo and catches the chart doing too much decoration. She writes the choice in the margin: \"Use the 1983 data-ink and comparison test. Replace the gradient chart, put both options on one scale, and show risk beside cost before the vote.\"",
+          "whatToDo": "Audrey revises the memo before sending it. One chart carries cost, risk, and time on the same scale, with a plain sentence above the display.",
+          "whyItMatters": "The memo changes the meeting before anyone speaks. A decision memo earns its space when the display makes comparison hard to miss."
         },
         {
           "exampleId": "ex03",
@@ -1521,7 +1521,7 @@
             "heuristics",
             "prospect theory"
           ],
-          "scenario": "Ryan hears the projector fan buzz under the 1974 Science slide, and the sound makes the pause feel longer. He accepts the plan when it is described as lives saved. Constance reads the matched loss wording from the 1979 Econometrica notes and asks for the same outcome in one unit. Ryan follows the gain frame. Constance slows the room until the frame is visible.",
+          "scenario": "The room speaker crackles before the vote, and Ryan feels the room lean toward the version that says lives saved. The 1974 Science lesson is happening in the room: a fast heuristic is letting a vivid gain phrase stand in for the actual odds. Constance brings in the 1979 Econometrica lesson from prospect theory, rewriting the same outcome as the matched loss because losses can pull harder than equal gains. Ryan follows the gain frame. Constance slows the room until both frames use one unit.",
           "whatToDo": "Constance rewrites both versions in matched terms before the group votes. Ryan marks where his first reaction came from the wording, not the outcome.",
           "whyItMatters": "The contrast gives framing a body. Two smart readers can meet the same facts and part ways because gain and loss do not feel equal."
         },
@@ -1545,7 +1545,7 @@
             "denominator",
             "risk"
           ],
-          "scenario": "Sliding the 2003 worksheet across the table, Sylvie says the positive-test problem still feels like a trick. The tutor does not add a formula. He asks her to draw the BMJ natural frequencies tree as people in a class, then shade the ones with the condition and the ones with positive results. Her confusion becomes visible enough to work with.",
+          "scenario": "Sliding her half-drawn class roster across the training table, Sylvie says the BMJ natural frequencies problem still feels like a trick. The tutor does not add a formula. He asks her to keep one shared class, then mark who has the condition, who tests positive, and where the marks overlap. The percentages turn into counted groups she can point to.",
           "whatToDo": "Sylvie turns the percentages into counted groups and points to the shaded overlap. She answers from the picture before returning to symbols.",
           "whyItMatters": "Learning improves when the hard part can be seen. Natural frequencies give the learner an object to inspect, not just a rule to recite."
         },
@@ -1557,7 +1557,7 @@
             "uncertainty",
             "comparison"
           ],
-          "scenario": "The second alert flashes before Callum can defend the bright trend line. Earlier, the dashboard showed one clean forecast number on the review tablet. Later, after he applies the 1983 Graphics Press rule of data-ink and comparison, the same board shows a range, a denominator, and last month's base rate. One variable changed: the display now admits uncertainty.",
+          "scenario": "The second alert flashes before Callum can defend the bright trend line. Earlier, the dashboard showed one clean forecast number on the review tablet. Later, after he applies the 1983 data-ink and comparison test, the same board shows a range, a denominator, and last month's base rate. One variable changed: the display now admits uncertainty.",
           "whatToDo": "Callum replaces the single forecast with a range and puts the old base rate beside the new alert count. He leaves the trend line only where scale is clear.",
           "whyItMatters": "The before-and-after view shows what clear structure buys. It does not make the answer easy; it makes overconfidence harder."
         }
