@@ -225,13 +225,14 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
-  book-autopilot <bookId> [--plan] [--auto-publish] [--max-repair N] [--max-parallel N]
+  book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]
                                      END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
                                      → ready-to-publish, spawning codex exec agentic sub-sessions for the
                                      WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
-                                     the DECISIONS. Runs on the Codex subscription (NO API metering). HALTS at
-                                     "ready to publish" unless --auto-publish. --plan previews the spawn plan.
-  book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--auto-publish] [--no-notify] [--sound] [--log <file>]
+                                     the DECISIONS. Runs on the Codex subscription (NO API metering). On QC
+                                     convergence AUTO-PUBLISHES (full promote gate, then commit+push to main —
+                                     NOT a live deploy); --no-publish halts for review. --plan previews the plan.
+  book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]
                                      SAME conductor as book-autopilot, wrapped to print a clean timestamped
                                      update AND a macOS notification on every MAJOR event (research / write /
                                      gate / QC round + publishable tally / repair / warnings / final). One
@@ -3335,13 +3336,15 @@ async function runQcConverge(args: string[], flags: Record<string, string | bool
 
 /** `book-autopilot <bookId>` — the end-to-end conductor. Runs research → write →
  *  gate → QC(+≤3 repair) → ready-to-publish by spawning `codex exec` agentic
- *  sub-sessions for the WORK while deterministic code owns every DECISION. Halts
- *  at "ready to publish" (review then ship) unless --auto-publish. Runs entirely
- *  on the Codex subscription — no API metering. `--plan` previews the spawn plan. */
+ *  sub-sessions for the WORK while deterministic code owns every DECISION. On QC
+ *  convergence it AUTO-PUBLISHES by default (the full promote gate, then commit +
+ *  push the package to main — NOT a live deploy); pass --no-publish to halt at
+ *  ready-to-publish for review. Runs entirely on the Codex subscription — no API
+ *  metering. `--plan` previews the spawn plan. */
 async function runBookAutopilot(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: book-autopilot <bookId> [--plan] [--auto-publish] [--max-repair N] [--max-parallel N]");
+    console.error("Usage: book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]");
     return 2;
   }
   const { runAutopilot, formatOutcome } = await import("./orchestrator/autopilot.js");
@@ -3350,7 +3353,8 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
-    autoPublish: flags["auto-publish"] === true,
+    // Auto-publish ON by default; --no-publish halts at ready-to-publish for review.
+    autoPublish: flags["no-publish"] !== true,
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });

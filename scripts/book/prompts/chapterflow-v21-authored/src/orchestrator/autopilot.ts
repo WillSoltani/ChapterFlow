@@ -16,8 +16,10 @@
  *    writer ≠ each reviewer ≠ confirm and finalize's collision-rejection holds.
  *  - Decisions are deterministic: the agent never decides repair-vs-publish; the
  *    conductor reads gate exit codes / bookStatus and decides.
- *  - Publish is human-gated: the conductor HALTS at "ready to publish" unless
- *    --auto-publish is set (and even then never commits/pushes on its own).
+ *  - Publish: the conductor AUTO-PUBLISHES on QC convergence by default — it runs the
+ *    full deterministic promote gate, then commits + pushes the package to main (NOT a
+ *    live deploy; that stays manual and reversible via git). --no-publish HALTS at
+ *    "ready to publish" for human review instead. The gate still blocks either way.
  *  - Bounded + stuck-aware: ≤ maxRepairRounds, and it HALTS early if a repair
  *    makes no progress or surfaces a major needing human disposition.
  *
@@ -167,7 +169,7 @@ export type AutopilotOptions = {
   bookId: string;
   maxRepairRounds?: number; // default 4
   maxParallel?: number; // default 6
-  autoPublish?: boolean; // default false → HALT at ready-to-publish
+  autoPublish?: boolean; // library default false (→ HALT at ready). The CLI (book-run / book-autopilot) defaults this ON; when true, handleReady runs publish-after-qc --commit --push.
   plan?: boolean; // dry-run: print the spawn plan, take no action
   deps?: Partial<AutopilotDeps>;
 };
@@ -185,7 +187,7 @@ export type HaltCategory = "infra" | "content" | "governance" | "progress" | "in
 export type AutopilotOutcome =
   | { status: "shipped"; bookId: string }
   | { status: "ready"; bookId: string; roundId?: string; message: string }
-  | { status: "published"; bookId: string; roundId: string }
+  | { status: "published"; bookId: string; roundId: string; message?: string }
   | { status: "halt"; bookId: string; phase: AutopilotPhase; reason: string; category: HaltCategory };
 
 function mkHalt(bookId: string, phase: AutopilotPhase, category: HaltCategory, reason: string): AutopilotOutcome {
@@ -1387,9 +1389,20 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
     };
   }
   if (!roundId) return mkHalt(bookId, "ready", "infra", "auto-publish requested but no passed round id found; publish manually");
-  const pub = await deps.runVerb(["publish-after-qc", bookId, "--round", roundId]); // no --commit/--push: those stay explicit
+  // Auto-publish = the FULL deterministic promote gate (all 11 checks inside
+  // publish-after-qc) + commit + push to main. The gate still BLOCKS: any failing check
+  // makes publish-after-qc exit nonzero and we HALT below — auto-publish removes the human
+  // go-ahead, never a gate. This commits the package to main; it does NOT deploy to live
+  // users (that stays a separate manual step), so a bad publish is reversible via git
+  // before the next deploy.
+  const pub = await deps.runVerb(["publish-after-qc", bookId, "--round", roundId, "--commit", "--push"]);
   if (pub.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-after-qc failed (exit ${pub.code}): ${(pub.stderr || pub.stdout).slice(0, 300)}`);
-  return { status: "published", bookId, roundId };
+  return {
+    status: "published",
+    bookId,
+    roundId,
+    message: `PUBLISHED — promote gate passed; package committed + pushed to main (round ${roundId}). NOT live until the separate manual deploy.`,
+  };
 }
 
 // ── --plan dry-run (cost preview; takes NO action) ────────────────────────────
@@ -1421,7 +1434,7 @@ function planOnly(bookId: string, deps: AutopilotDeps): AutopilotOutcome {
     `              + up to 1 confirm read per publishable candidate (≤${N})`,
     `              = ≤${perRoundMax} sessions/round worst case (typical: far lower)`,
     `              ×(1 initial + up to 3 repair rounds)`,
-    `  publish: gated (stops at "ready to publish" unless --auto-publish)`,
+    `  publish: AUTO on convergence (full promote gate, then commit+push to main; --no-publish halts for review)`,
     `  no API metering — every session runs via codex exec on the subscription.`,
   ];
   deps.log(lines.join("\n"));
