@@ -8,18 +8,18 @@
     "test": "tsx --test lambda/lib/*.test.ts"
   },
   "dependencies": {
-    "aws-cdk-lib": "^2.259.0",
+    "aws-cdk-lib": "^2.260.0",
     "constructs": "^10.6.0",
     "dotenv": "^17.4.2"
   },
   "devDependencies": {
-    "@aws-sdk/client-dynamodb": "^3.1068.0",
-    "@aws-sdk/client-sesv2": "^3.1068.0",
-    "@aws-sdk/client-ssm": "^3.1068.0",
-    "@aws-sdk/lib-dynamodb": "^3.1068.0",
+    "@aws-sdk/client-dynamodb": "^3.1073.0",
+    "@aws-sdk/client-sesv2": "^3.1073.0",
+    "@aws-sdk/client-ssm": "^3.1073.0",
+    "@aws-sdk/lib-dynamodb": "^3.1073.0",
     "@types/dotenv": "^8.2.3",
-    "@types/node": "^22.19.21",
-    "aws-cdk": "^2.1126.0",
+    "@types/node": "^22.20.0",
+    "aws-cdk": "^2.1128.0",
     "aws-sdk-client-mock": "^4.1.0",
     "tsx": "^4.20.6",
     "typescript": "^5.0.0"
