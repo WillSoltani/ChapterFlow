@@ -46,76 +46,69 @@ test.describe("public funnel", () => {
   });
 });
 
-// Landing redesign regressions — the three behaviours most at risk of silent
-// breakage: the mobile hero order (a conversion bug if it flips), the signature
-// scroll section's reduced-motion fallback (WCAG 2.3.3), and a present/clickable
-// primary CTA. Run in dev mode (DEV_AUTH_BYPASS, no data plane). The landing
-// reveals on scroll/in-view, so the section is scrolled into view before asserting.
+// Landing redesign (RECALL) regressions — the three behaviours most at risk of
+// silent breakage: the mobile hero order (a conversion bug if it flips), the
+// scroll-pinned library section's reduced-motion fallback (WCAG 2.3.3), and a
+// present/clickable primary CTA. Run in dev mode (DEV_AUTH_BYPASS, no data
+// plane). The landing reveals on scroll/in-view, so the section is scrolled into
+// view before asserting.
 test.describe("landing redesign", () => {
-  test("at 390px the headline precedes the phone preview", async ({ page }) => {
+  test("at 390px the headline precedes the hero showcase", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
 
     const h1 = page.locator("main h1").first();
     await expect(h1).toBeVisible();
 
-    // The hero reader preview renders inside the .cf-hero-console wrapper.
-    const phoneFigure = page.locator(".cf-hero-console").first();
+    // The hero's framed visual (the FSRS retention-curve plate) renders inside
+    // the .rl-hero-showcase wrapper, below the headline on phones.
+    const showcase = page.locator(".rl-hero-showcase").first();
 
     const h1Box = await h1.boundingBox();
-    const phoneBox = await phoneFigure.boundingBox();
+    const showcaseBox = await showcase.boundingBox();
     expect(h1Box, "headline must have a layout box").toBeTruthy();
-    expect(phoneBox, "reader console must have a layout box").toBeTruthy();
+    expect(showcaseBox, "hero showcase must have a layout box").toBeTruthy();
 
-    // Headline is ABOVE the phone (DOM-first, no order-* flip) ...
-    expect(h1Box!.y).toBeLessThan(phoneBox!.y);
+    // Headline is ABOVE the showcase (DOM-first, no order-* flip) ...
+    expect(h1Box!.y).toBeLessThan(showcaseBox!.y);
     // ... and is the first thing in view above the fold.
     expect(h1Box!.y).toBeLessThan(844);
   });
 
-  test("primary 'Start your first chapter' CTA is present and clickable", async ({
+  test("primary 'Start reading free' CTA is present and clickable", async ({
     page,
   }) => {
     await page.goto("/");
     const cta = page
-      .getByRole("link", { name: /start your first chapter/i })
+      .getByRole("link", { name: /start reading free/i })
       .first();
     await expect(cta).toBeVisible();
     await expect(cta).toBeEnabled();
     expect(await cta.getAttribute("href")).toBeTruthy();
   });
 
-  test("with reduced motion, the signature loop section is static and legible", async ({
+  test("with reduced motion, the scroll-pinned library section is static and legible", async ({
     page,
   }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.goto("/");
 
-    const section = page.locator("#retention-engine");
+    const section = page.locator("#library");
     await expect(section).toHaveCount(1);
     await section.scrollIntoViewIfNeeded();
 
-    // Static fallback: no pinned/sticky stage exists ...
-    await expect(section.locator(".sticky")).toHaveCount(0);
+    // Reduced motion drops the scroll-pin: the inner stage is no longer sticky,
+    // so nothing pins to the viewport (WCAG 2.3.3) and the choreography is
+    // snapped to its final, fully-arrived state.
+    await expect(section.locator(".rl-lib-stage")).toHaveCSS(
+      "position",
+      "static",
+    );
 
-    // ... and all four loop steps are present and legible at once. Use the
-    // visible <h3> headings (getByRole heading) — the section also carries an
-    // sr-only <ol> of the beats for assistive tech, which getByText would also
-    // match.
+    // ... and the section heading is rendered and legible at rest.
     await expect(
-      section.getByRole("heading", { name: /forget most of it within days/i }),
-    ).toBeVisible();
-    await expect(
-      section.getByRole("heading", {
-        name: /Worked examples make the idea concrete/i,
-      }),
-    ).toBeVisible();
-    await expect(
-      section.getByRole("heading", { name: /Prove it once/i }),
-    ).toBeVisible();
-    await expect(
-      section.getByRole("heading", { name: /right before you'd forget/i }),
+      section.getByRole("heading", { name: /books, all real/i }),
     ).toBeVisible();
   });
 });
