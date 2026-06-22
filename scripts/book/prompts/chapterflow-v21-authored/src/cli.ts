@@ -2203,6 +2203,15 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planFullReadSkeletons, writeFullReadSkeletonPlan } = await import("./librarian/fullReadSkeletonPlan.js");
   const fullReadSkeletonPlan = planFullReadSkeletons(bookId, from, to);
   writeFullReadSkeletonPlan(fullReadSkeletonPlan);
+  // Scene-mechanism plan: per-chapter FUNCTIONAL MOVE (the dramatic transaction the
+  // chapter's marquee scene dramatizes) so the book can't reuse ONE scene device — e.g.
+  // "a leader loses her voice → a substitute seizes the teaching prop → teaches" across
+  // chapters — with only the nouns swapped (the-happiness-hypothesis scene_skeleton/
+  // repeated_unit). Orthogonal to shapePlan (grammar) and sceneModePlan (stance).
+  // Prevention-only: no deterministic adherence gate exists; the model QC sweep is the backstop.
+  const { planSceneMechanisms, writeSceneMechanismPlan } = await import("./librarian/sceneMechanismPlan.js");
+  const sceneMechanismPlan = planSceneMechanisms(bookId, from, to);
+  writeSceneMechanismPlan(sceneMechanismPlan);
   // Carried name allocations for authored chapters include every capitalized
   // token the extractor saw ("University", "All", "Tonight" — junk from
   // scenario text). Pasting those as an exclusive allowlist breaks redo
@@ -2329,6 +2338,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const sceneModeLine = sceneMode
       ? `• SCENE STANCE (book-wide variety — most chapters must NOT review evidence after a closed outcome): ${sceneMode.stance} — ${sceneMode.directive}\n`
       : "";
+    // Scene mechanism: the FUNCTIONAL MOVE the chapter's marquee scene dramatizes, so the
+    // book can't reuse one device across chapters. A DIFFERENT axis from the dealt SHAPE
+    // (grammar) and STANCE (vantage) — this is the dramatic transaction (who acts, what changes).
+    const smech = sceneMechanismPlan.allocation[ch.number];
+    const sceneMechanismLine = smech
+      ? `• SCENE MECHANISM (build THIS chapter's marquee scene on this functional MOVE — book-wide variety): ${smech.directive} This is the WHAT-HAPPENS, not the construction (your dealt SHAPES decide that) and not the stance. Other chapters are dealt OTHER moves; do NOT fall back to a favorite device (a leader losing her voice and a substitute taking over; a message restarted/reframed) unless THIS move is the one dealt. Render it with this chapter's own concept, people, and source case.\n`
+      : "";
     // Action timing: situational trigger, never an arbitrary clock stamp (BP29).
     const tm = timingPlan.allocation[ch.number];
     const timingLine = tm
@@ -2368,6 +2384,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         (openerLines ? openerLines + "\n" : "") +
         (stakesLines ? stakesLines + "\n" : "") +
         sceneModeLine +
+        sceneMechanismLine +
         venueLine +
         rhetoricLine +
         (cadenceLine ? cadenceLine + "\n" : "") +

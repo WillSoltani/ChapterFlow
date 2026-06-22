@@ -274,6 +274,19 @@ timings/venues. If one sentence template describes all six openers, or any clock
 container recurs across the chapter, you have a defect the gates will miss — restage from your
 dealt OPENER GRAMMAR / VENUE slots first.
 
+**R6.4 — Use your dealt SCENE MECHANISM (the functional move, not the grammar).** Your card
+deals each chapter one *functional move* — the dramatic transaction the chapter's marquee scene
+dramatizes (`SCENE MECHANISM: <move>`), e.g. *the protagonist decides alone*, *two peers
+disagree and one concedes*, *the expert admits a limit*, *the outsider notices what insiders
+miss*. This is a DIFFERENT axis from scene SHAPE (R6/R6.1 = how a scene is constructed) and from
+STANCE: one move can be rendered as dialogue OR postmortem, live OR retrospective. The recurring
+failure this prevents is one *device* reused book-wide with only the nouns swapped — a leader
+who loses her voice and a substitute who seizes the teaching prop, recurring across chapters; a
+message "restarted/reframed" used as the example move chapter after chapter. Build this chapter's
+central scene on the dealt move, and do NOT reach for a favorite device unless it is the one
+dealt to this chapter. Like R6, the gates cannot see this — it is on you, and the cross-chapter
+model QC sweep is the only backstop.
+
 ---
 
 ## False-positive allowances (write freely)
