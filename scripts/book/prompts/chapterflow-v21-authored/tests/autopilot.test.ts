@@ -73,6 +73,9 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
     // neither touches disk nor trips the fence/retry. Individual tests override them.
     chapterHashes: () => ({}),
     submissionPresent: () => true,
+    // Item B: the happy path treats the sweep as already corroborated (a single PASS converges).
+    // The dedicated item-B test below exercises the false→true confirming-round path explicitly.
+    sweepConfirmed: () => true,
     logSession: () => {},
     logBroker: () => {},
     reviewerSkeleton: () => null,
@@ -134,6 +137,35 @@ test("autopilot drives research→write→qc→ready, halts at ready WITHOUT pub
   const ids = spawns.map((s) => s.sessionId);
   assert.equal(new Set(ids).size, ids.length, "every spawn gets a DISTINCT session id (independence by construction)");
   assert.ok(!verbs.some((v) => v[0] === "publish-after-qc"), "must NOT publish — halts at ready by default");
+});
+
+test("item B: a QC PASS that is not yet sweep-confirmed runs ONE independent confirming round (--no-sweep-carry), then advances to ready", async () => {
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }), // phase = qc
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }), // phase = ready
+  ];
+  // sweepConfirmed is FALSE until an INDEPENDENT confirming round has actually run (keyed off the
+  // real --no-sweep-carry create), then TRUE — the exact false→true path item B exists for, robust
+  // to how many times the conductor consults sweepConfirmed. (happyDeps defaults it to true.)
+  const h = happyDeps(statuses);
+  h.deps.sweepConfirmed = () => h.verbs.some((v) => v.includes("--no-sweep-carry"));
+  const { verbs } = h;
+  const outcome = await runAutopilot({ bookId: "zz", deps: h.deps });
+
+  assert.equal(outcome.status, "ready", "it converges to ready (never halts) once the second read corroborates");
+  const creates = verbs.filter((v) => v.includes("--create"));
+  assert.equal(creates.length, 2, "exactly two QC rounds opened: the convergence round + ONE confirming round");
+  assert.ok(!creates[0].includes("--no-sweep-carry"), "the first (convergence) round sweeps normally");
+  assert.ok(creates[1].includes("--no-sweep-carry"), "the confirming round forces a FRESH sweep so the second read is independent, not a carry");
+});
+
+test("item B: if an independent sweep NEVER corroborates the PASS, the autopilot HALTS — it does not loop forever or ship", async () => {
+  const statuses = [makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })];
+  const { deps, verbs } = happyDeps(statuses, { sweepConfirmed: () => false }); // the stochastic sweep keeps disagreeing
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "halt", "an uncorroboratable stochastic sweep escalates instead of shipping");
+  if (outcome.status === "halt") assert.match(outcome.reason, /corroborate|confirming/i);
+  assert.ok(!verbs.some((v) => v[0] === "publish-after-qc"), "never publishes on an unconfirmed sweep");
 });
 
 test("C1: first QC round is INCREMENTAL when a carryable pass exists (passes accumulate, never re-rolled)", async () => {

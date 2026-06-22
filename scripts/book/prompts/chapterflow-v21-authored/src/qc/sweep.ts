@@ -95,6 +95,76 @@ export function sweepRecordPath(bookId: string): string {
   return resolve(QC_DIR, `${bookId}.sweep.json`);
 }
 
+/** Append-only per-round sweep history (one JSON record per line). The single
+ *  `{bookId}.sweep.json` is only the LATEST pointer (overwritten each round); this
+ *  preserves every round's record so the gate can reason ACROSS rounds — the basis for
+ *  (1) the sticky per-chapter carry that ignores a single stochastic verdict flip on
+ *  byte-frozen content, and (2) item B (require two consecutive independent clear reads
+ *  over identical content before auto-publish). */
+export function sweepHistoryPath(bookId: string): string {
+  return resolve(QC_DIR, `${bookId}.sweep-history.jsonl`);
+}
+
+/** Append a record to the per-round history. Best-effort + crash-safe: it must never throw
+ *  into a sweep write path (a failed history append must not fail the round). One JSON object
+ *  per line, appended via an atomic read-modify-write (the records are small + few per book). */
+export function appendSweepHistory(rec: SweepRecord): void {
+  try {
+    const p = sweepHistoryPath(rec.bookId);
+    const prior = existsSync(p) ? readFileSync(p, "utf8") : "";
+    writeFileAtomic(p, `${prior}${JSON.stringify(rec)}\n`);
+  } catch {
+    /* history is an optimization layer; never let it break a sweep write */
+  }
+}
+
+/** Load the per-round sweep history NEWEST-FIRST, de-duplicated by roundId (a re-finalized
+ *  round appends again — keep its LAST record). Returns [] when absent/unreadable (fail-safe:
+ *  every consumer then behaves exactly as it did before history existed). */
+export function loadSweepHistory(bookId: string): SweepRecord[] {
+  const p = sweepHistoryPath(bookId);
+  if (!existsSync(p)) return [];
+  let lines: string[];
+  try {
+    lines = readFileSync(p, "utf8").split("\n").filter((l) => l.trim());
+  } catch {
+    return [];
+  }
+  const byRound = new Map<string, SweepRecord>();
+  for (const line of lines) {
+    try {
+      const rec = JSON.parse(line) as SweepRecord;
+      if (rec && typeof rec.roundId === "string") byRound.set(rec.roundId, rec); // last write per round wins
+    } catch {
+      /* skip a corrupt line */
+    }
+  }
+  // Newest-first by roundId. roundIds are creation-ordered (r<YYYYMMDDhhmmss>-<hash>, qcRound.ts),
+  // so this is stable even when a round is RE-FINALIZED out of order (which would give it a newer
+  // attestedAt than a later round — sorting by attestedAt could then make a FUTURE round look prior).
+  return [...byRound.values()].sort((a, b) => String(b.roundId ?? "").localeCompare(String(a.roundId ?? "")));
+}
+
+/** The sweep record from the round immediately PRIOR to `currentRoundId` (the next-older record
+ *  in newest-first history). null when there is no prior round. When `currentRoundId` is not yet in
+ *  history (its record hasn't been appended), the newest existing record IS the prior. Used for
+ *  cross-round corroboration — never returns a NEWER round (the oldest round has no prior). */
+export function priorSweepRecord(bookId: string, currentRoundId: string): SweepRecord | null {
+  const hist = loadSweepHistory(bookId); // newest-first
+  const idx = hist.findIndex((r) => r.roundId === currentRoundId);
+  if (idx === -1) return hist[0] ?? null; // current round not yet recorded → newest is the prior
+  return hist[idx + 1] ?? null; // the next-older record (none ⇒ this is the oldest round)
+}
+
+/** Does this record's findings GATE the given chapter? (a non-advisory, distinctiveness-valid
+ *  finding that NAMES the chapter). The pure per-record half of the gate, shared by the
+ *  per-chapter status and the cross-round corroboration check. */
+export function recordGatesChapter(rec: SweepRecord | null, chapterNumber: number): boolean {
+  if (!rec) return false;
+  if (rec.verdict === "PASS") return false;
+  return (rec.findings ?? []).filter(sweepFindingGates).some((f) => (f.chapters ?? []).includes(chapterNumber));
+}
+
 // Per-field excerpt cap for the sweep pack. The sweep is the ONE book-wide reviewer (a
 // single read gates the whole book), so an unbounded field would grow its context without
 // limit on a large/aberrant book → higher timeout (→ SIGKILL → round fails) + noisier,
@@ -195,6 +265,7 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
   };
   const p = sweepRecordPath(submission.bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
+  appendSweepHistory(rec);
   return p;
 }
 
@@ -297,6 +368,7 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
   };
   const p = sweepRecordPath(bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
+  appendSweepHistory(rec);
   return { path: p };
 }
 
@@ -336,6 +408,7 @@ export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId
   };
   const p = sweepRecordPath(bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
+  appendSweepHistory(rec);
   return p;
 }
 
@@ -369,7 +442,24 @@ function sweepFindingGates(f: SweepRecord["findings"][number]): boolean {
   return f.severity !== "advisory" && !nondistinctiveRepetitionQuote(f);
 }
 
-export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: number, contentHash: string, roundId: string): "PASS" | "FAIL" | "STALE" | "MISSING" {
+/** Mechanism 1 — sticky per-chapter carry / cross-round corroboration. A gate raised by the
+ *  CURRENT round on a chapter SURVIVES (really gates) unless it is an UNCORROBORATED verdict
+ *  flip on byte-frozen content: the chapter's content is unchanged since the prior sweep round
+ *  AND the prior round did NOT gate it. The cross-chapter sweep is the noisiest, most stochastic
+ *  reviewer (a fresh whole-book read flags a rotating subset round to round) — so a single read
+ *  newly flagging a chapter whose bytes never moved is far more likely a stochastic flip than a
+ *  genuinely new cross-chapter pattern. The prior CLEAR verdict is sticky until either the
+ *  chapter's content changes (a fresh read is then trusted on its own) or a second independent
+ *  read corroborates the gate. Fail-safe: no prior record / content changed ⇒ the gate stands
+ *  (exactly today's behavior). This both kills the false-positive treadmill AND, applied in BOTH
+ *  the per-chapter gate and the publish gate, keeps the two from ever drifting. */
+function gateSurvivesCorroboration(prior: SweepRecord | null, chapterNumber: number, currentContentHash: string): boolean {
+  const frozenSincePrior = !!prior && prior.contentHashes?.[String(chapterNumber)] === currentContentHash;
+  if (frozenSincePrior && !recordGatesChapter(prior, chapterNumber)) return false; // uncorroborated upward flip on frozen content → demote
+  return true;
+}
+
+export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: number, contentHash: string, roundId: string, prior?: SweepRecord | null): "PASS" | "FAIL" | "STALE" | "MISSING" {
   if (!rec || rec.roundId !== roundId) return "MISSING";
   if (rec.contentHashes?.[String(chapterNumber)] !== contentHash) return "STALE";
   if (rec.verdict === "PASS") return "PASS";
@@ -380,7 +470,13 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   // STRICTER gate than the publish decision it feeds. A finding with no severity (a legacy,
   // pre-severity record) is treated as a blocker (fail-closed).
   const blockers = findings.filter(sweepFindingGates);
-  if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber))) return "FAIL";
+  // Mechanism 1: a gate on THIS chapter only FAILs it if it survives cross-round corroboration
+  // (an uncorroborated stochastic flip on byte-frozen content is demoted — see
+  // gateSurvivesCorroboration). `prior` is injectable for tests; default loads the prior round.
+  // A CORRUPTION verdict is NEVER demoted — corroboration suppresses only stochastic REVISE flips,
+  // and checkSweep keeps an unconditional CORRUPTION block, so demoting it here would break parity.
+  const priorRec = prior !== undefined ? prior : priorSweepRecord(rec.bookId, roundId);
+  if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber)) && (rec.verdict === "CORRUPTION" || gateSurvivesCorroboration(priorRec, chapterNumber, contentHash))) return "FAIL";
   // A blocker exists but does not name THIS chapter → this chapter passes (a global verdict
   // must not strand a clean, unnamed chapter).
   if (blockers.some((f) => (f.chapters ?? []).length > 0)) return "PASS";
@@ -409,16 +505,87 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   // loosening); an uncited CORRUPTION or an unexplained non-PASS (no findings) still blocks.
   if (rec.verdict !== "PASS") {
     const findings = rec.findings ?? [];
-    const blockers = findings.filter(sweepFindingGates);
-    if (blockers.length > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
-      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${blockers.length} blocking finding(s).` }];
+    // Mechanism 1: count a chapter as blocking only if its gate survives cross-round corroboration
+    // (an uncorroborated stochastic flip on byte-frozen content is demoted) — the SAME predicate
+    // sweepChapterStatus uses, so the publish gate and the per-chapter gate can never disagree.
+    const prior = priorSweepRecord(bookId, rec.roundId);
+    const hashByCh = new Map<number, string>();
+    for (const ch of chapters) hashByCh.set(ch.number, chapterContentHash(ch));
+    const gatedChapters = new Set<number>();
+    for (const f of findings.filter(sweepFindingGates)) {
+      for (const n of f.chapters ?? []) {
+        const h = hashByCh.get(n);
+        if (h === undefined || gateSurvivesCorroboration(prior, n, h)) gatedChapters.add(n); // unknown bytes ⇒ fail closed
+      }
+    }
+    if (gatedChapters.size > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
+      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${gatedChapters.size} blocking chapter(s).` }];
     }
   }
-  const missingFamilies = REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family));
+  // Family-completeness is a PASS-only requirement (only a PASS attestation claims it checked all 4
+  // families). A non-PASS record whose only gate was DEMOTED by corroboration is effectively clear —
+  // sweepChapterStatus already PASSes its chapters — so applying this PASS-only check to it would make
+  // the publish gate STRICTER than the per-chapter gate (the drift sweep.ts is built to prevent).
+  const missingFamilies = rec.verdict === "PASS" ? REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family)) : [];
   if (missingFamilies.length > 0) return [{ checkId: "QC3.sweep_incomplete", severity: sev, message: `Sweep PASS is incomplete; missing checkedFamilies: ${missingFamilies.join(", ")}.` }];
   const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
   if (stale.length > 0) return [{ checkId: "QC3.sweep_stale", severity: sev, message: `Sweep attestation is stale/missing for chapter(s): ${stale.map((ch) => ch.number).join(", ")}.` }];
   return [];
+}
+
+/** Is this record a CLEAR read over exactly the given (current) book bytes? Clear = not
+ *  CORRUPTION, all required families checked, contentHashes match the current set 1:1, and NO
+ *  read was over the CURRENT (byte-identical) book — same chapter set + every hash. */
+function sweepReadOverCurrent(rec: SweepRecord, currentHashes: Record<string, string>): boolean {
+  const recHashes = rec.contentHashes ?? {};
+  const keys = Object.keys(currentHashes);
+  if (Object.keys(recHashes).length !== keys.length) return false;
+  for (const k of keys) if (recHashes[k] !== currentHashes[k]) return false;
+  return true;
+}
+
+/** A clear read = over the current bytes, not CORRUPTION, all required families checked, and no
+ *  finding gates any chapter (RAW gate — a disagreeing read must block confirmation; intentionally
+ *  STRICTER than the per-round corroboration gate, paired with the confirmRounds reset on repair). */
+function sweepRecordClearOver(rec: SweepRecord, currentHashes: Record<string, string>): boolean {
+  if (!sweepReadOverCurrent(rec, currentHashes)) return false;
+  if (rec.verdict === "CORRUPTION") return false;
+  if (!REQUIRED_SWEEP_FAMILIES.every((fam) => (rec.checkedFamilies ?? []).includes(fam))) return false;
+  return !(rec.findings ?? []).some(sweepFindingGates);
+}
+
+/** Item B — two-round confirmation before AUTO-PUBLISH. The cross-chapter sweep is the noisiest,
+ *  most stochastic reviewer: a single fresh read flips verdict round-to-round on byte-identical
+ *  content, and a read that misses a real pattern would silently flip a chapter to PASS and ship a
+ *  book a re-read would block. Confirmation requires, over the CURRENT book bytes: (1) NO read gated
+ *  any chapter or returned CORRUPTION (a single disagreeing read over identical content blocks — even
+ *  if it is not the latest, so a clear→gate→clear sandwich cannot self-clear), AND (2) at least TWO
+ *  INDEPENDENT (non-carry) clear reads (a carry-forward is a byte copy, never independent evidence, so
+ *  copies can't self-confirm). The autopilot forces the confirming round to do a FRESH sweep. */
+export function sweepTwoRoundConfirmed(bookId: string, chapters: ChapterV21[]): { ok: boolean; reason?: string } {
+  const currentHashes: Record<string, string> = {};
+  for (const ch of chapters) currentHashes[String(ch.number)] = chapterContentHash(ch);
+  const overCurrent = loadSweepHistory(bookId).filter((r) => sweepReadOverCurrent(r, currentHashes));
+  // (1) ANY read over the current bytes that has a REAL gate disqualifies confirmation. "Real" is
+  // decided by the SAME cross-round corroboration the round verdict uses (gateSurvivesCorroboration):
+  // a single uncorroborated stochastic flip on byte-frozen content is noise here too (it was demoted
+  // in the round verdict), so it must NOT block — else a confirming round's own stochastic flag would
+  // poison history and false-HALT a genuinely converged book. CORRUPTION always disqualifies.
+  const disagreeing = overCurrent.filter((r) => {
+    if (r.verdict === "CORRUPTION") return true;
+    const prior = priorSweepRecord(bookId, r.roundId);
+    return (r.findings ?? []).filter(sweepFindingGates).some((f) =>
+      (f.chapters ?? []).some((n) => {
+        const h = currentHashes[String(n)];
+        return h !== undefined && gateSurvivesCorroboration(prior, n, h);
+      }));
+  });
+  if (disagreeing.length > 0) return { ok: false, reason: `a sweep read over the current content has a corroborated gate (${disagreeing.length}); not corroborated-clear` };
+  // (2) ≥2 INDEPENDENT clear reads (carry-forward copies don't count toward the corroboration total).
+  const clears = overCurrent.filter((r) => sweepRecordClearOver(r, currentHashes));
+  const independentClears = clears.filter((r) => r.reviewer !== "carry-forward");
+  if (independentClears.length >= 2) return { ok: true };
+  return { ok: false, reason: `auto-publish needs TWO independent clear sweep reads over identical content (have ${clears.length} clear, ${independentClears.length} independent) — run one more confirming QC round` };
 }
 
 export function formatSweepStatus(bookId: string): string {

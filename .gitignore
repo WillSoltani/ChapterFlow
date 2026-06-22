@@ -87,6 +87,12 @@ scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/        # deri
 scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/   # ad-hoc backup snapshots — use git, not dirs
 scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/  # Phase-0 migration backup
 
+# Per-round cross-chapter sweep history — a best-effort, machine-LOCAL optimization that backs the
+# sticky-gate corroboration + item-B two-read confirmation. checkSweep is fail-safe without it (no
+# history ⇒ gate stands, exactly the pre-history behavior), so it must not be committed (high churn,
+# and reproducibility in CI/fresh checkout is preserved by the fail-safe).
+scripts/book/prompts/chapterflow-v21-authored/state/qc/*.sweep-history.jsonl
+
 # Playwright E2E
 /test-results/
 /playwright-report/

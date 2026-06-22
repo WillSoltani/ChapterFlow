@@ -209,7 +209,7 @@ export function checkRoundFreshness(bookId: string, roundId: string, chapters?: 
   return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
-export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean; tiebreak?: boolean } = {}): OrchestratorResult {
+export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean; tiebreak?: boolean; noSweepCarry?: boolean } = {}): OrchestratorResult {
   const errors: string[] = [];
   const messages: string[] = [];
   if (!isNoApiCodexQcMode()) {
@@ -249,7 +249,11 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   const carriedChapters = incremental ? selected.filter((ch) => carryableChapter(bookId, ch)) : [];
   const carriedNumbers = new Set(carriedChapters.map((ch) => ch.number));
   const reviewChapters = incremental ? selected.filter((ch) => !carriedNumbers.has(ch.number)) : selected;
-  if (incremental && reviewChapters.length === 0) {
+  // All per-chapter reviews carry ⇒ normally nothing to re-QC, skip the round. EXCEPT when
+  // noSweepCarry is set (the item-B confirming round): the book-wide SWEEP must still run fresh
+  // over the frozen book to produce an INDEPENDENT second read, even though no chapter needs a
+  // fresh bar/confirm/key. So open the round and let the (un-carried) sweep run.
+  if (incremental && reviewChapters.length === 0 && !options.noSweepCarry) {
     return { ok: true, roundId: "", roundDir: "", errors: [], messages: [...messages, `incremental: all ${selected.length} chapters carry a fresh PUBLISHABLE attestation — nothing to re-QC, no round opened.`] };
   }
 
@@ -266,8 +270,10 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   // always sweeps fresh). When the whole book is byte-identical to a prior PASS sweep, the
   // codex sweep can only re-roll its stochastic verdict, so re-stamp that real PASS onto
   // this round and skip the session. ANY changed/added/removed chapter ⇒ a fresh sweep.
+  // `noSweepCarry` forces a FRESH sweep even when carryable — used by the item-B confirming
+  // round, which needs a genuinely INDEPENDENT second read (a carry would just copy the prior).
   const priorSweep = loadSweepRecord(bookId);
-  const sweepCarried = incremental && sweepCarryable(priorSweep, selected);
+  const sweepCarried = incremental && !options.noSweepCarry && sweepCarryable(priorSweep, selected);
   if (sweepCarried && priorSweep) carryForwardSweep(bookId, priorSweep, roundId);
 
   let keyPackPaths: string[] = [];

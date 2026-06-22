@@ -142,6 +142,40 @@ test("P2: incremental create reviews only changed chapters and carries the rest 
   }
 });
 
+test("item B (F1): when ALL chapters carry, a normal incremental round opens NOTHING, but a noSweepCarry confirming round STILL opens to run the fresh book-wide sweep", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    setup();
+    // BOTH chapters carry a fresh PUBLISHABLE attestation → reviewChapters is empty.
+    for (const n of [1, 2]) {
+      writeAttestation({
+        schemaVersion: "qc-attest-v1", bookId: BOOK, chapterNumber: n, chapterId: `${BOOK}-ch0${n}`,
+        verdict: "PUBLISHABLE", contentHash: chapterContentHash(makeChapter(BOOK, n)), hashVersion: "v2",
+        reviewer: "codex-qc:auto:r-old", reviewedAt: "2026-01-01T00:00:00.000Z", roundId: "r-old", roundRole: "attest",
+      });
+    }
+    // (a) A normal incremental round has nothing to re-QC → opens no round (today's behavior).
+    const skipped = createQcOrchestrationRound(BOOK, { roundId: "r-itemb-skip", incremental: true, allowDirtyPreflight: true });
+    assert.equal(skipped.ok, true);
+    assert.equal(skipped.roundId, "", "all-carry incremental round opens nothing");
+    assert.match(skipped.messages.join("\n"), /nothing to re-QC/);
+    // (b) The item-B confirming round (noSweepCarry) MUST open anyway, to run an independent fresh
+    // sweep over the frozen book — the F1 fix. Without it the confirming round was dead-on-arrival.
+    const opened = createQcOrchestrationRound(BOOK, { roundId: ROUND, incremental: true, noSweepCarry: true, allowDirtyPreflight: true });
+    assert.equal(opened.ok, true, opened.errors.join("\n"));
+    assert.equal(opened.roundId, ROUND, "the confirming round opens a real round even with an empty review set");
+    assert.ok(existsSync(roundRecordPath(BOOK, ROUND)), "round record written");
+    assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md")), "the fresh book-wide sweep card is written");
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch01.md")), false, "no per-chapter bar card (all chapters carried)");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    rmSync(orchestratorRoundDir(BOOK, "r-itemb-skip"), { recursive: true, force: true });
+    cleanup();
+  }
+});
+
 test("F6a: a book-gate-dirty book is REFUSED a round (no allowDirtyPreflight) and opens none", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
