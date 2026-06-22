@@ -4,7 +4,7 @@ import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { stagingPlan, formatPublishAfterQcResult, publishBranchError, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
+import { stagingPlan, formatPublishAfterQcResult, publishBranchError, dirtySourceOutsidePlan, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
 
 const BOOK = "zz-fixture-publish-git";
 const ROUND = "r-git";
@@ -74,6 +74,25 @@ test("publishBranchError: refuses to publish off main, allows main, honors the o
     if (prev === undefined) delete process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH;
     else process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH = prev;
   }
+});
+
+test("dirtySourceOutsidePlan: flags dirty source outside the plan; ignores state, the plan itself, and non-source", () => {
+  const inPlan = resolve(REPO_ROOT, "scripts/book/prompts/chapterflow-v21-authored/src/qc/publishAfterQc.ts");
+  const status = [
+    " M scripts/book/prompts/chapterflow-v21-authored/src/qc/sweep.ts", // dirty source outside plan → flagged
+    " M scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json", // generated state → ignored
+    " M scripts/book/prompts/chapterflow-v21-authored/src/qc/publishAfterQc.ts", // in the plan → ignored
+    " M book-packages/zz.v21.json", // published package, not a source surface → ignored
+  ].join("\n");
+  const runner = (_cmd: string, a: string[]): string => (a[0] === "status" ? status : "");
+
+  const dirty = dirtySourceOutsidePlan(runner, [inPlan]);
+  assert.deepEqual(dirty, ["scripts/book/prompts/chapterflow-v21-authored/src/qc/sweep.ts"]);
+
+  // A clean source tree (only state churns) yields nothing.
+  const cleanRunner = (_cmd: string, a: string[]): string =>
+    a[0] === "status" ? " M scripts/book/prompts/chapterflow-v21-authored/state/x.json\n" : "";
+  assert.deepEqual(dirtySourceOutsidePlan(cleanRunner, []), []);
 });
 
 test("formatPublishAfterQcResult: a genuine PRE-commit failure still says 'no commit performed'", () => {

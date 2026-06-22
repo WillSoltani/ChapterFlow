@@ -81,7 +81,7 @@ export type PublishAfterQcResult = {
 
 type Metadata = { title?: string; author?: string; source?: string };
 
-type Runner = (cmd: string, args: string[], options?: { cwd?: string; env?: NodeJS.ProcessEnv }) => string;
+type Runner = (cmd: string, args: string[], options?: { cwd?: string; env?: NodeJS.ProcessEnv; timeoutMs?: number }) => string;
 
 export type PublishAfterQcInternals = {
   runner?: Runner;
@@ -172,12 +172,15 @@ export function transientCleanupPlan(bookId: string, roundId: string): { remove:
   };
 }
 
-function defaultRunner(cmd: string, args: string[], options: { cwd?: string; env?: NodeJS.ProcessEnv } = {}): string {
+function defaultRunner(cmd: string, args: string[], options: { cwd?: string; env?: NodeJS.ProcessEnv; timeoutMs?: number } = {}): string {
   return execFileSync(cmd, args, {
     cwd: options.cwd ?? REPO_ROOT,
     env: options.env ?? process.env,
     encoding: "utf8",
     stdio: ["ignore", "pipe", "pipe"],
+    // A bounded ceiling so a hung child (e.g. a wedged test) becomes a LOUD timeout
+    // failure instead of hanging an unattended publish forever. 0/undefined = no limit.
+    timeout: options.timeoutMs,
   }) as string;
 }
 
@@ -215,8 +218,41 @@ function cachedFiles(runner: Runner): string[] {
     .map((line) => resolve(REPO_ROOT, line));
 }
 
+/**
+ * Uncommitted tracked SOURCE files outside the publish plan. The pre-commit tsc +
+ * tests/run.ts validate the whole working tree, but `git commit` only includes the staged
+ * plan — so an unrelated dirty source file (a) silently changes what got validated vs
+ * committed, and (b) can fail the pre-commit checks for a reason unrelated to the book,
+ * halting an otherwise-converged unattended publish. We only look at the surfaces tsc/tests
+ * actually compile/run (src/tests/config/agent-prompts) — generated state/, book-packages/,
+ * and scratch churn freely during a run and must be ignored. Override with
+ * CHAPTERFLOW_ALLOW_DIRTY_PUBLISH=1.
+ */
+export function dirtySourceOutsidePlan(runner: Runner, plan: string[]): string[] {
+  const allowed = new Set(plan.map((p) => resolve(p)));
+  const SOURCE_RE = /\/chapterflow-v21-authored\/(?:src|tests|config|agent-prompts)\//;
+  let status = "";
+  try {
+    status = git(["status", "--porcelain", "--untracked-files=no"], runner);
+  } catch {
+    return [];
+  }
+  const dirty: string[] = [];
+  for (const line of status.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    let path = line.slice(3).trim(); // porcelain: "XY <path>"
+    const arrow = path.indexOf(" -> ");
+    if (arrow !== -1) path = path.slice(arrow + 4).trim(); // renamed → take the destination
+    const abs = resolve(REPO_ROOT, path);
+    if (!SOURCE_RE.test(abs)) continue;
+    if (allowed.has(abs)) continue;
+    dirty.push(path);
+  }
+  return dirty;
+}
+
 function runPublishTests(runner: Runner): void {
-  runner("npx", ["tsc", "-p", ".", "--noEmit"], { cwd: PIPELINE_DIR });
+  runner("npx", ["tsc", "-p", ".", "--noEmit"], { cwd: PIPELINE_DIR, timeoutMs: 300_000 });
   // The self-test validates the pipeline CODE, on synthetic fixtures — it must run in a
   // HERMETIC env. The operator's book-publish flags (REQUIRE_SOURCE_VERIFY /
   // ENFORCE_SESSION_INDEPENDENCE) gate the REAL book's preflight, which has already
@@ -231,6 +267,7 @@ function runPublishTests(runner: Runner): void {
   runner("npx", ["tsx", "tests/run.ts", "qc-orchestrator", "qc-finalize", "no-api-promote", "qc-auto", "qc-submission", "publish-after-qc"], {
     cwd: PIPELINE_DIR,
     env,
+    timeoutMs: 600_000,
   });
 }
 
@@ -452,6 +489,22 @@ function stageAndMaybeCommit(args: {
   // auto-publish silently commit + push to the wrong (current) branch.
   const branchErr = publishBranchError(args.runner);
   if (branchErr) return { staged, errors: [branchErr] };
+
+  // Refuse to publish from a dirty source tree — an unrelated uncommitted source edit
+  // would be validated by the pre-commit tsc/tests but not committed, and can halt an
+  // otherwise-converged unattended publish for a reason unrelated to the book.
+  if (process.env.CHAPTERFLOW_ALLOW_DIRTY_PUBLISH !== "1") {
+    const dirty = dirtySourceOutsidePlan(args.runner, staged);
+    if (dirty.length) {
+      const shown = dirty.slice(0, 5).join(", ") + (dirty.length > 5 ? `, +${dirty.length - 5} more` : "");
+      return {
+        staged,
+        errors: [
+          `Refusing to publish from a dirty source tree: ${dirty.length} uncommitted tracked source file(s) outside the publish plan (${shown}). Commit or stash them first, or set CHAPTERFLOW_ALLOW_DIRTY_PUBLISH=1 to override.`,
+        ],
+      };
+    }
+  }
 
   if (staged.length === 0) return { staged, errors: ["No production files were available to stage."] };
   const preExistingStaged = cachedFiles(args.runner);
