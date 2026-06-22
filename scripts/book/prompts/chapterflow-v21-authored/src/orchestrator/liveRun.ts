@@ -38,6 +38,7 @@ import {
   type AutopilotOutcome,
 } from "./autopilot.js";
 import { evidenceMatrixPath } from "../qc/orchestrator/artifacts.js";
+import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
 
 // ── Presentation ────────────────────────────────────────────────────────────────
@@ -115,6 +116,39 @@ function tallyLine(t: Tally | null): string {
   return t.detail ? `${head} (${t.detail})` : head;
 }
 
+/** Format an evidence matrix's per-chapter verdicts as "ch1 ✓ · ch2 ✓ · ch3 REVISE · …" (sorted by
+ *  chapter number; PUBLISHABLE → ✓). Pure (no IO) so it is unit-testable. "" for an empty set. */
+export function formatChapterVerdicts(chapters: Array<{ chapterNumber?: number; finalVerdict?: string }>): string {
+  return chapters
+    .slice()
+    .sort((a, b) => (a.chapterNumber ?? 0) - (b.chapterNumber ?? 0))
+    .map((ch) => {
+      const n = ch.chapterNumber ?? "?";
+      const v = ch.finalVerdict ?? "UNKNOWN";
+      return v === "PUBLISHABLE" ? `ch${n} ✓` : `ch${n} ${v}`;
+    })
+    .join(" · ");
+}
+
+/** 1-indexed number of the book's MIDDLE chapter given a chapter count (ceil(N/2): 11→6, 10→5, 1→1). */
+export function middleChapterNumber(total: number): number {
+  return Math.max(1, Math.ceil(total / 2));
+}
+
+/** A compact per-chapter verdict line for a QC round. Presentation-only (reads the same evidence
+ *  matrix tallyFor does). null if not on disk yet / empty. */
+function perChapterVerdictLine(bookId: string, roundId: string | null): string | null {
+  if (!roundId) return null;
+  try {
+    const matrix = JSON.parse(readFileSync(evidenceMatrixPath(bookId, roundId), "utf8"));
+    const chapters: Array<{ chapterNumber?: number; finalVerdict?: string }> = matrix?.chapters ?? [];
+    if (!chapters.length) return null;
+    return formatChapterVerdicts(chapters);
+  } catch {
+    return null;
+  }
+}
+
 // ── Event classification — turn one `[autopilot] …` line into an update ──────────
 
 type Update = {
@@ -163,6 +197,17 @@ function classify(bookId: string, raw: string): Update {
   const writeStart = line.match(/^write:\s*(\d+)\s+chapter/);
   if (writeStart) {
     return { icon: "✍️ ", label: "WRITE", text: `authoring ${writeStart[1]} chapter(s)`, major: true, tone: cyan };
+  }
+  // Per-chapter write progress (one writer agent per chapter, ≤max-parallel concurrent). These
+  // print to the live stream but are NOT desktop notifications — else an 11-chapter book would
+  // fire 22 pings. The terminal interleaves them as the parallel writers start/finish.
+  const chWriting = line.match(/^write ch(\d+): writer working/);
+  if (chWriting) {
+    return { icon: "  ✍️", label: `ch${chWriting[1]}`, text: "writer working", major: false, tone: cyan };
+  }
+  const chWritten = line.match(/^write ch(\d+): done/);
+  if (chWritten) {
+    return { icon: "  ✓", label: `ch${chWritten[1]}`, text: "write done", major: false, tone: green };
   }
   const chDone = line.match(/^write ch(\d+) session exited (-?\d+)/);
   if (chDone) {
@@ -220,6 +265,13 @@ function emit(bookId: string, raw: string): void {
   const label = u.label ? u.tone(`${u.label}`) + " " : "";
   const stamp = dim(clock());
   console.log(`${stamp} ${u.icon} ${label}${text}`);
+
+  // For a QC round verdict (QC PASS / QC VERDICT), follow with a compact per-chapter breakdown so
+  // the operator sees exactly which chapters passed vs need a revise this round.
+  if (u.tallyRound !== undefined) {
+    const perCh = perChapterVerdictLine(bookId, u.tallyRound);
+    if (perCh) console.log(`${dim(clock())}      ${dim(perCh)}`);
+  }
 
   if (logFile) {
     try {
@@ -351,6 +403,28 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   const finalRound = "roundId" in outcome ? outcome.roundId ?? null : null;
   const finalTail = finalRound ? ` · ${tallyLine(tallyFor(bookId, finalRound))}` : "";
   notify(`📖 ${bookId} · ${outcome.status.toUpperCase()}`, summary.replace(/^AUTOPILOT[^:]*:\s*/, "") + finalTail);
+
+  // On a successful run (published / ready / shipped — anything but a halt), print the JSON of the
+  // book's MIDDLE chapter so the operator can eyeball the output without hunting for the file. The
+  // middle is the most representative single chapter (not the intro, not the wrap-up). Chapters live
+  // in state/chapters/ and survive publish, so this works on both the published and --no-publish paths.
+  // Skipped on --plan (a dry-run does no work, so there's nothing fresh to review).
+  if (!halted && !plan) {
+    try {
+      const chapters = loadBookChapters(bookId).slice().sort((a, b) => a.number - b.number);
+      if (chapters.length === 0) {
+        console.log(dim("\n(no authored chapters found on disk to print for review.)"));
+      } else {
+        const mid = chapters[middleChapterNumber(chapters.length) - 1];
+        console.log(
+          bold(`\n${"─".repeat(70)}\n📄 Middle chapter for review — chapter ${mid.number} of ${chapters.length}: "${mid.title}"\n${"─".repeat(70)}`),
+        );
+        console.log(JSON.stringify(mid, null, 2));
+      }
+    } catch (err) {
+      console.log(dim(`\n(could not load the middle chapter for review: ${(err as Error).message})`));
+    }
+  }
 
   return halted ? 1 : 0;
 }
