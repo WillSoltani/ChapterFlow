@@ -18,6 +18,12 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
+// The pixel-sampled dust reads as legible "memory dust" only at the large desktop
+// headline; on phones/tablets the same point cloud looks like broken, grainy text.
+// So the effect only paints at/above the desktop breakpoint (matches the landing's
+// existing ≤1023.98px mobile/tablet boundary); below it the word stays plain text.
+const DESKTOP_DUST_MQ = "(min-width: 1024px)";
+
 type DissolveWordProps = { text: string };
 
 type DustPoint = {
@@ -251,8 +257,10 @@ export function DissolveWord({ text }: DissolveWordProps) {
 
     function setup() {
       if (cancelled) return;
-      // Reduced motion: leave the plain text span visible, never paint.
-      if (reduce) {
+      // Reduced motion OR below the desktop breakpoint: keep the plain text span
+      // visible and never paint (the dust looks like broken text at phone/tablet
+      // headline sizes — see DESKTOP_DUST_MQ).
+      if (reduce || (window.matchMedia && !window.matchMedia(DESKTOP_DUST_MQ).matches)) {
         stopLoop();
         active = false;
         sizerEl.style.visibility = "visible";
@@ -324,6 +332,18 @@ export function DissolveWord({ text }: DissolveWordProps) {
       ro.observe(sizerEl);
     }
 
+    // Re-evaluate when crossing the desktop breakpoint (resize/rotate). matchMedia
+    // is the deterministic trigger — it doesn't depend on the headline font-size
+    // actually changing across the breakpoint, which a clamp cap could prevent.
+    let mq: MediaQueryList | undefined;
+    const onBreakpoint = () => {
+      if (!cancelled) setup();
+    };
+    if (window.matchMedia) {
+      mq = window.matchMedia(DESKTOP_DUST_MQ);
+      mq.addEventListener("change", onBreakpoint);
+    }
+
     return () => {
       cancelled = true;
       stopLoop();
@@ -331,6 +351,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
       document.removeEventListener("visibilitychange", onVisibility);
       if (resizeTimer) clearTimeout(resizeTimer);
       if (ro) ro.disconnect();
+      if (mq) mq.removeEventListener("change", onBreakpoint);
     };
   }, [text, reduce]);
 
