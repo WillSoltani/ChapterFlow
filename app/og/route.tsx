@@ -28,7 +28,14 @@ export async function GET() {
       >
         <div
           style={{
+            // Satori does NOT auto-wrap a nowrap flex row, so the single-line
+            // headline could overflow the 1200px frame and shear off both edges.
+            // Allow wrapping + cap the width so it breaks to two centered lines.
             display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            textAlign: "center",
+            maxWidth: 1040,
             fontSize: 92,
             fontWeight: 800,
             letterSpacing: "-0.04em",

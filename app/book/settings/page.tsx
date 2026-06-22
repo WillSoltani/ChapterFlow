@@ -1,6 +1,7 @@
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { BookSettingsClient } from "@/app/book/settings/BookSettingsClient";
+import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import packageJson from "@/package.json";
 
 function splitCsv(value: string | undefined): string[] {
@@ -14,8 +15,22 @@ function normalizeEmail(value: string | undefined) {
   return String(value ?? "").trim().toLowerCase();
 }
 
-export default async function BookSettingsPage() {
+/** The upgrade deep-link (e.g. from the landing "Annual" toggle) may carry a
+ *  `plan` hint so the billing card pre-selects that interval. Validate it before
+ *  trusting it — anything unrecognized is ignored (settings picks its default). */
+function parsePlanHint(value: string | string[] | undefined): BillingInterval | undefined {
+  const v = Array.isArray(value) ? value[0] : value;
+  return v === "monthly" || v === "annual" || v === "annual_upfront" ? v : undefined;
+}
+
+export default async function BookSettingsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
   await requireDashboardAccess();
+
+  const initialUpgradeInterval = parsePlanHint((await searchParams).plan);
 
   let userEmail: string | null = null;
   let isAdmin = false;
@@ -32,5 +47,12 @@ export default async function BookSettingsPage() {
     isAdmin = false;
   }
 
-  return <BookSettingsClient isAdmin={isAdmin} userEmail={userEmail} appVersion={packageJson.version} />;
+  return (
+    <BookSettingsClient
+      isAdmin={isAdmin}
+      userEmail={userEmail}
+      appVersion={packageJson.version}
+      initialUpgradeInterval={initialUpgradeInterval}
+    />
+  );
 }

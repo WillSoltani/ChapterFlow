@@ -131,6 +131,19 @@ export function RecallCoverflow({
       : activeInternal;
   const paused = pausedProp !== undefined ? pausedProp : pausedInternal;
 
+  // The shelf's index is owned by the parent when `active` is controlled (e.g.
+  // the library drives it from scroll). In that mode a user-stepping SWIPE fights
+  // the parent's per-frame re-derivation and gets snapped back, so swipe-to-step
+  // is armed only when this coverflow owns its own index. Arrows/keys stay (they
+  // are discrete and don't trigger the scroll that overrides them).
+  const indexControlled = activeProp !== undefined;
+
+  // The pause/play control (WCAG 2.2.2) is meaningful only where autoplay can
+  // actually run: not reduced-motion, more than one cover, and not externally
+  // force-paused. The library passes `paused`, so autoplay never runs there and
+  // the control would be a no-op showing a misleading Pause icon — hide it.
+  const showPauseControl = !reduced && count > 1 && pausedProp !== true;
+
   // Route a pause request to the parent when controlled, else to local state.
   const setPaused = useCallback(
     (value: boolean) => {
@@ -256,8 +269,13 @@ export function RecallCoverflow({
         onPointerDown={(e) => {
           if (e.pointerType !== "mouse") {
             setPaused(true);
-            swipeStartX.current = e.clientX;
-            swiped.current = false;
+            // Arm swipe-to-step only when this coverflow owns its index. When the
+            // index is parent-controlled (scroll-driven), leaving swipeStartX null
+            // makes pointerup a no-op so the gesture can't fight the scroll.
+            if (!indexControlled) {
+              swipeStartX.current = e.clientX;
+              swiped.current = false;
+            }
           }
         }}
         onPointerUp={(e) => {
@@ -377,15 +395,18 @@ export function RecallCoverflow({
         <NavButton side="left" onClick={userPrev} />
         <NavButton side="right" onClick={userNext} />
 
-        {/* ── WCAG 2.2.2 — persistent pause/play for the >5s autoplay. Survives
-             hover/focus toggling; pressing it marks the shelf interacted. ── */}
-        <PlayPauseButton
-          paused={userPaused}
-          onToggle={() => {
-            setInteracted(true);
-            setUserPaused((p) => !p);
-          }}
-        />
+        {/* ── WCAG 2.2.2 — persistent pause/play for the >5s autoplay. Only shown
+             where autoplay can actually run; in a parent-paused/scroll-driven
+             mount it would be a no-op with a misleading icon, so it's hidden. ── */}
+        {showPauseControl ? (
+          <PlayPauseButton
+            paused={userPaused}
+            onToggle={() => {
+              setInteracted(true);
+              setUserPaused((p) => !p);
+            }}
+          />
+        ) : null}
       </div>
 
       {/* ── Focused title + author, below the shelf, updating with the center.
@@ -490,7 +511,11 @@ function CaptionPlate({
 }) {
   return (
     <div className="mt-10 text-center sm:mt-12">
+      {/* The visible title/author are decorative duplicates of the sr-only live
+          span below — hide them from the a11y tree so the focused title isn't
+          announced twice (once linearly, once via the live region). */}
       <p
+        aria-hidden="true"
         className="font-(family-name:--font-display) text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] sm:text-[1.5rem]"
         style={{ color: "var(--cf-recall-ink)" }}
       >
@@ -498,6 +523,7 @@ function CaptionPlate({
       </p>
       {author ? (
         <p
+          aria-hidden="true"
           className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.22em]"
           style={{ color: "var(--cf-recall-ink-faint)" }}
         >

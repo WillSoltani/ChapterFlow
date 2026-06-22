@@ -21,6 +21,7 @@ import {
 import { useBookPreferences } from "@/app/book/hooks/useBookPreferences";
 import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
 import { useBookEntitlements } from "@/app/book/hooks/useBookEntitlements";
+import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import { MONTHLY_PRICE_WITH_CURRENCY } from "@/lib/pricing";
 import { useToast } from "@/app/book/hooks/useToast";
 import { Toast } from "@/app/book/components/ui/Toast";
@@ -126,9 +127,12 @@ type BookSettingsClientProps = {
   isAdmin: boolean;
   userEmail: string | null;
   appVersion: string;
+  /** Optional billing-interval pre-selection carried from an upgrade deep-link
+   *  (e.g. the landing "Annual" toggle). Clamped to an available tier downstream. */
+  initialUpgradeInterval?: BillingInterval;
 };
 
-export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSettingsClientProps) {
+export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgradeInterval }: BookSettingsClientProps) {
   const router = useRouter();
 
   // Existing state hooks
@@ -1487,6 +1491,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion }: BookSetti
                 cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
                 price={price}
                 pricingTiers={billingState.payload?.paywall.pricingTiers}
+                initialInterval={initialUpgradeInterval}
                 onUpgrade={(interval) => launchBillingAction("upgrade", interval)}
                 onManage={() => launchBillingAction("portal")}
                 onRedeemKey={redeemLicenseKey}

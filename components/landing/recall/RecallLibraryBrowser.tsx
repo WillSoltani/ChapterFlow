@@ -26,7 +26,7 @@ import {
 } from "@/app/book/data/booksCatalog";
 import { useBookCoverSource } from "@/lib/use-book-cover-source";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
-import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { filterBooks, deriveCategories } from "./book-filter";
 import { RecallBookRequestDialog } from "./RecallBookRequestDialog";
@@ -132,7 +132,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
                   className="mt-1.5 font-(family-name:--font-display) text-[1.5rem] font-bold leading-tight tracking-[-0.02em] sm:text-[1.875rem]"
                   style={{ color: "var(--cf-recall-ink)" }}
                 >
-                  {CATALOG_BOOK_COUNT_DISPLAY} books, all real
+                  {CATALOG_BOOK_COUNT} books, all real
                 </h2>
               </div>
               <button

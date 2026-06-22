@@ -263,6 +263,16 @@ export function DissolveWord({ text }: DissolveWordProps) {
         active = true;
         sizerEl.style.visibility = "hidden";
         canvasEl.style.display = "block";
+        // The IO observes the canvas, which started display:none — its initial
+        // callback can latch onScreen=false BEFORE this runs (when fonts.ready
+        // resolves after the IO fires). Now that the canvas is laid out, re-derive
+        // visibility from geometry so the loop starts this frame instead of waiting
+        // for the IO's display-change re-notification. Margin mirrors the IO's.
+        const r = canvasEl.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const vw = window.innerWidth || document.documentElement.clientWidth;
+        onScreen =
+          r.bottom > -120 && r.top < vh + 120 && r.right > -120 && r.left < vw + 120;
         startLoop();
       }
     }

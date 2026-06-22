@@ -29,14 +29,9 @@ import {
   TRIAL_CTA_LABEL,
   FREE_OFFER_LABEL,
   UPGRADE_LOGIN_URL,
+  upgradeLoginUrlForInterval,
+  ANNUAL_SAVINGS_PCT,
 } from "@/lib/pricing";
-
-/* Whole-percent saving of the annual plan vs paying monthly (= 25%). Derived
-   here from PRICING so the displayed savings can never drift from the prices. */
-const ANNUAL_SAVINGS_PCT = Math.round(
-  ((PRICING.monthlyAmount - PRICING.annualMonthlyAmount) / PRICING.monthlyAmount) *
-    100,
-);
 
 type BillingInterval = "monthly" | "annual";
 
@@ -105,15 +100,24 @@ export function RecallPricing() {
 
 /* The two tier cards + the monthly/annual toggle. Split into its own client
    subcomponent so the toggle can hold useState; the surrounding section stays
-   a thin SSR shell. The toggle is DISPLAY-ONLY — both CTAs route exactly as
-   before (Free → AUTH_LOGIN_BOOK_URL, Pro → UPGRADE_LOGIN_URL). */
+   a thin SSR shell. The toggle updates the displayed Pro price AND the Pro CTA's
+   deep-link (which carries the chosen interval through to settings), so the
+   landing's plan and the in-app selection stay in sync. Free → AUTH_LOGIN_BOOK_URL. */
 function PricingPlans() {
   const reducedMotion = usePrefersReducedMotion();
-  const [interval, setInterval] = useState<BillingInterval>("monthly");
+  // Named `setBillingInterval` (not `setInterval`) so it can't shadow the global
+  // window.setInterval inside this component.
+  const [interval, setBillingInterval] = useState<BillingInterval>("monthly");
   const isAnnual = interval === "annual";
   const proPrice = formatAmount(
     isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount,
   );
+  // Carry the chosen interval into the upgrade deep-link so settings pre-selects
+  // it (the displayed plan and the in-app selection stay in sync). Monthly uses
+  // the plain URL; settings already defaults to the best available tier.
+  const proUpgradeHref = isAnnual
+    ? upgradeLoginUrlForInterval("annual")
+    : UPGRADE_LOGIN_URL;
 
   return (
     <>
@@ -126,7 +130,7 @@ function PricingPlans() {
           groupId="recall-pricing-interval"
           label="Billing interval"
           value={interval}
-          onChange={setInterval}
+          onChange={setBillingInterval}
           reducedMotion={reducedMotion}
           options={[
             { value: "monthly", label: "Monthly" },
@@ -267,7 +271,7 @@ function PricingPlans() {
             </ul>
 
             <a
-              href={UPGRADE_LOGIN_URL}
+              href={proUpgradeHref}
               className="mt-9 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               style={{
                 background: "var(--cf-recall-accent)",
