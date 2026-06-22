@@ -143,7 +143,7 @@ type ChapterResearchResult = {
     label: string;                      // brief identifier, e.g. "Dave Brailsford / British Cycling"
     summary: string;                    // 2-3 sentences paraphrasing the example
     teachesWhat: string;                // 1 sentence: what mental move this example illustrates
-  }>;                                   // 1-5 examples that appear in THIS specific chapter
+  }>;                                   // 3-6 examples that appear in THIS specific chapter (source-v2 gate blocks fewer than 3)
   hardEdge: string;                     // 2-3 sentences naming the typical mis-takeaway
   voiceCues: string[];                  // 2-4 observable moves visible in THIS chapter
   forbiddenLeakage?: string[];          // 0-3 concepts from LATER chapters that should NOT appear here
@@ -165,7 +165,7 @@ type SourceSidecarV2 = ChapterResearchResult & {
   namedExamples: Array<{ id: string; label; summary; teachesWhat;
     hardSpecifics: string[];   // 2-4 CONCRETE checkable tokens — a number, place, person, date
     realWorld: boolean;        // true = a real case; false = an author's named device
-  }>;
+  }>;                          // ≥3 per chapter — the source-v2 gate hard-blocks fewer than 3 (aim 3-6)
   testableFacts: Array<{       // >= 9 (one per quiz question) — the correctness spine
     id: string;                // "chNN.fact.<k>"
     claim: string;             // one verifiably-true proposition — the keyed-answer seed
@@ -190,8 +190,9 @@ Why each exists (it pre-empts a downstream defect, so the writer can't template 
 
 Rules: every `testableFacts[].commonError` must differ from its `claim` by MORE than a negation
 (SC10 blocks a degenerate fact); every `becauseMechanism` must contain a causal connective; each
-chapter needs ≥2 real named entities in `namedExamples`/`hardSpecifics` (SC10 blocks "nothing to
-check"). Generate stable ids as shown so STEP-2 can cite them as provenance.
+chapter needs **≥3 `namedExamples`** (the source-v2 gate hard-blocks fewer than 3; aim 3-6), of
+which **≥2 are real-world named entities** in `namedExamples`/`hardSpecifics` (SC10 blocks "nothing
+to check"). Generate stable ids as shown so STEP-2 can cite them as provenance.
 
 **Hard rules for chapter sources:**
 
