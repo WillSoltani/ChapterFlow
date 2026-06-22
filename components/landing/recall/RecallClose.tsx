@@ -3,8 +3,9 @@
  *
  * The quiet, confident close. ONE focal idea: a single-line promise + the one
  * accent CTA, on the same deep canvas with enormous whitespace. Then a minimal
- * footer colophon beneath a hairline — wordmark, the in-page section links, the
- * legal pages (Terms/Privacy/Refunds/Cookies), and a single legal line. NO
+ * footer colophon beneath a hairline — wordmark, the in-page section links plus
+ * Contact, the legal pages (Terms/Privacy/Refunds/Cookies/Copyright/Data rights),
+ * and a single legal line. NO
  * chart/curve (that lives in the hero, exactly once), NO second hue, NO social
  * proof, NO clutter.
  *
@@ -26,15 +27,20 @@ const SECTION_LINKS = [
   { href: "#why-it-works", label: "Why it works" },
   { href: "#library", label: "Library" },
   { href: "#pricing", label: "Pricing" },
+  { href: "#faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 /* The real legal pages (app/legal/*). Required on a paid Stripe product —
-   labels/paths mirror the canonical site footer (components/sections/Footer). */
+   labels/paths mirror the canonical site footer (components/sections/Footer),
+   including the compliance pages (Copyright, Data rights). */
 const LEGAL_LINKS = [
   { href: "/legal/terms", label: "Terms" },
   { href: "/legal/privacy", label: "Privacy" },
   { href: "/legal/refund", label: "Refunds" },
   { href: "/legal/cookies", label: "Cookies" },
+  { href: "/legal/copyright", label: "Copyright" },
+  { href: "/legal/data-rights", label: "Data rights" },
 ] as const;
 
 export function RecallClose() {

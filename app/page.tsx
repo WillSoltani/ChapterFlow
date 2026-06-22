@@ -13,6 +13,8 @@ import { RecallHowItWorks } from "@/components/landing/recall/RecallHowItWorks";
 import { RecallWhyItWorks } from "@/components/landing/recall/RecallWhyItWorks";
 import { RecallLibrary } from "@/components/landing/recall/RecallLibrary";
 import { RecallRequestSection } from "@/components/landing/recall/RecallRequestSection";
+import { RecallFaq } from "@/components/landing/recall/RecallFaq";
+import { recallFaqJsonLd } from "@/components/landing/recall/recall-faq-data";
 import { RecallPricing } from "@/components/landing/recall/RecallPricing";
 import { RecallClose } from "@/components/landing/recall/RecallClose";
 
@@ -75,13 +77,20 @@ export default function Home() {
         "query-input": "required name=search_term_string",
       },
     },
+    // FAQ rich-result markup, built from the same data the visible accordion renders.
+    recallFaqJsonLd(),
   ];
 
   return (
     <div className="landing-dark relative min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
+        // future FAQ answer) can't close this inline tag early. < is valid
+        // JSON and renders identically in the parsed structured data.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
       />
 
       {/* Skip to main content (WCAG 2.4.1) */}
@@ -127,6 +136,9 @@ export default function Home() {
         <RecallLibrary />
         <RecallReveal>
           <RecallRequestSection />
+        </RecallReveal>
+        <RecallReveal>
+          <RecallFaq />
         </RecallReveal>
         <RecallReveal>
           <RecallPricing />

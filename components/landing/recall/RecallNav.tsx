@@ -71,6 +71,9 @@ export function RecallNav() {
         <a className="rl-nav-link" href="#how-it-works">
           How it works
         </a>
+        <a className="rl-nav-link" href="#why-it-works">
+          Why it works
+        </a>
         <a className="rl-nav-link" href="#library">
           Library
         </a>
