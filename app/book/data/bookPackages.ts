@@ -110,6 +110,7 @@ import auto_fooled_by_randomness_Json from "@/book-packages/fooled-by-randomness
 import auto_quiet_Json from "@/book-packages/quiet.v21.json";
 import auto_the_organized_mind_Json from "@/book-packages/the-organized-mind.v21.json";
 import auto_nudge_Json from "@/book-packages/nudge.v21.json";
+import auto_the_paradox_of_choice_Json from "@/book-packages/the-paradox-of-choice.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1889,4 +1890,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_nudge_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["nudge"] = (tone) => normalizeAnyPackage(auto_nudge_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-paradox-of-choice" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_paradox_of_choice_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-paradox-of-choice"] = (tone) => normalizeAnyPackage(auto_the_paradox_of_choice_Json, tone);
 }
