@@ -415,12 +415,12 @@ function EmptyState({ query, onRequest }: { query: string; onRequest: () => void
   const q = query.trim();
   return (
     <div className="mx-auto max-w-[40rem] py-16 text-center sm:py-24">
-      <p
+      <h3
         className="font-(family-name:--font-display) text-[1.375rem] font-bold tracking-[-0.02em] sm:text-[1.625rem]"
         style={{ color: "var(--cf-recall-ink)" }}
       >
         {q ? <>No match for “{q}”.</> : <>Nothing here yet.</>}
-      </p>
+      </h3>
       <p
         className="mx-auto mt-3 max-w-[34ch] text-[0.9375rem] leading-relaxed"
         style={{ color: "var(--cf-recall-ink-soft)" }}

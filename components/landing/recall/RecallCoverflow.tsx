@@ -27,11 +27,13 @@ import Image from "next/image";
 import {
   useCallback,
   useEffect,
+  useRef,
   useState,
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
 } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 /** A typed style bag so we can pass Tailwind ring CSS custom-properties through
  *  inline `style` without `any` or scattered `@ts-expect-error` directives. */
@@ -86,43 +88,6 @@ const STEP_TRANSLATE_Z = 130; // px pushed back, per step
 const STEP_SCALE = 0.12; // scale lost per step
 const STEP_OPACITY = 0.34; // opacity lost per step
 
-/**
- * Detects "reduce motion" from BOTH signals RECALL honors: the OS-level
- * `prefers-reduced-motion` media query AND the in-app `html[data-motion="reduced"]`
- * toggle (set by applyDocumentTheme). Returns false on the server / first paint
- * so SSR markup is stable, then resolves on mount and stays live via listeners.
- */
-function useReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
-
-  useEffect(() => {
-    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const root = document.documentElement;
-
-    const compute = () =>
-      setReduced(
-        mql.matches || root.getAttribute("data-motion") === "reduced",
-      );
-
-    compute();
-    mql.addEventListener("change", compute);
-
-    // Watch the in-app toggle (the single source of truth) for live changes.
-    const observer = new MutationObserver(compute);
-    observer.observe(root, {
-      attributes: true,
-      attributeFilter: ["data-motion"],
-    });
-
-    return () => {
-      mql.removeEventListener("change", compute);
-      observer.disconnect();
-    };
-  }, []);
-
-  return reduced;
-}
-
 export function RecallCoverflow({
   books,
   active: activeProp,
@@ -130,13 +95,31 @@ export function RecallCoverflow({
   paused: pausedProp,
   onPausedChange,
 }: CoverflowProps) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const count = books.length;
 
   // Internal fallbacks for the uncontrolled (standalone) case. When the matching
   // prop is supplied the parent owns the value and these are ignored.
   const [activeInternal, setActiveInternal] = useState(0);
   const [pausedInternal, setPausedInternal] = useState(false);
+
+  // WCAG 2.2.2 — an EXPLICIT user pause that survives hover/focus/press toggling
+  // (those are transient and resume on leave/release). When the user presses the
+  // pause control, autoplay stays stopped until they press play again, regardless
+  // of pointer state. Also gates the caption live region (only announce once the
+  // user has taken control of the shelf).
+  const [userPaused, setUserPaused] = useState(false);
+  // True once the user has interacted with the shelf (arrows, click, swipe, pause
+  // toggle). Until then the caption stays silent for idle screen readers.
+  const [interacted, setInteracted] = useState(false);
+
+  // Swipe tracking (touch/pen only). `swipeStartX` records the pointerdown X; on
+  // pointerup we compute the delta and step the shelf past a threshold. `swiped`
+  // is a synchronous flag so the focal cover's click handler can suppress the tap
+  // that the OS still fires after a swipe.
+  const swipeStartX = useRef<number | null>(null);
+  const swiped = useRef(false);
+  const SWIPE_THRESHOLD = 40;
 
   const active =
     activeProp !== undefined
@@ -157,7 +140,7 @@ export function RecallCoverflow({
     [onPausedChange],
   );
 
-  const focus = useCallback(
+  const focusInternal = useCallback(
     (index: number) => {
       if (count === 0) return;
       // Wrap into range so the carousel loops infinitely in both directions.
@@ -169,28 +152,46 @@ export function RecallCoverflow({
     [count, onActiveChange],
   );
 
-  const next = useCallback(() => focus(active + 1), [active, focus]);
-  const prev = useCallback(() => focus(active - 1), [active, focus]);
+  // A focus change driven by the USER (arrows / click / swipe) — marks the shelf
+  // as interacted so the caption live region may begin announcing.
+  const userFocus = useCallback(
+    (index: number) => {
+      setInteracted(true);
+      focusInternal(index);
+    },
+    [focusInternal],
+  );
 
-  // ── Auto-advance: loops forever, suspended while paused or reduced-motion ──
+  // Autoplay step (no interaction flag — the timer is not a user action).
+  const next = useCallback(
+    () => focusInternal(active + 1),
+    [active, focusInternal],
+  );
+
+  // User-driven steps (arrows, nav buttons, swipe) — mark interaction.
+  const userNext = useCallback(() => userFocus(active + 1), [active, userFocus]);
+  const userPrev = useCallback(() => userFocus(active - 1), [active, userFocus]);
+
+  // ── Auto-advance: loops forever, suspended while paused (hover/focus/press),
+  //    explicitly user-paused (WCAG 2.2.2), or reduced-motion. ─────────────────
   useEffect(() => {
-    if (reduced || paused || count <= 1) return;
+    if (reduced || paused || userPaused || count <= 1) return;
     const id = window.setInterval(next, AUTOPLAY_MS);
     return () => window.clearInterval(id);
-  }, [reduced, paused, count, next]);
+  }, [reduced, paused, userPaused, count, next]);
 
   // ── Keyboard: ArrowLeft/Right step the shelf when it (or a cover) is focused ─
   const onKeyDown = useCallback(
     (event: ReactKeyboardEvent) => {
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        next();
+        userNext();
       } else if (event.key === "ArrowLeft") {
         event.preventDefault();
-        prev();
+        userPrev();
       }
     },
-    [next, prev],
+    [userNext, userPrev],
   );
 
   if (count === 0) return null;
@@ -251,14 +252,38 @@ export function RecallCoverflow({
         // resume on release — otherwise a single tap would freeze autoplay forever
         // (there is no pointer-leave to clear it). Mouse is governed by the
         // hover/focus handlers above, so skip it here to avoid double-toggling.
+        // We also record the press X so pointerup can resolve a horizontal swipe.
         onPointerDown={(e) => {
-          if (e.pointerType !== "mouse") setPaused(true);
+          if (e.pointerType !== "mouse") {
+            setPaused(true);
+            swipeStartX.current = e.clientX;
+            swiped.current = false;
+          }
         }}
         onPointerUp={(e) => {
-          if (e.pointerType !== "mouse") setPaused(false);
+          if (e.pointerType !== "mouse") {
+            setPaused(false);
+            // Horizontal swipe → step the shelf. dx > threshold reads as a
+            // swipe-right (reveal the previous cover); dx < -threshold as next.
+            const start = swipeStartX.current;
+            if (start !== null) {
+              const dx = e.clientX - start;
+              if (dx > SWIPE_THRESHOLD) {
+                swiped.current = true;
+                userPrev();
+              } else if (dx < -SWIPE_THRESHOLD) {
+                swiped.current = true;
+                userNext();
+              }
+            }
+            swipeStartX.current = null;
+          }
         }}
         onPointerCancel={(e) => {
-          if (e.pointerType !== "mouse") setPaused(false);
+          if (e.pointerType !== "mouse") {
+            setPaused(false);
+            swipeStartX.current = null;
+          }
         }}
         className="relative mx-auto h-[clamp(14rem,42vw,28rem)] w-full select-none rounded-[1.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
         style={stageStyle}
@@ -321,7 +346,15 @@ export function RecallCoverflow({
                 aria-current={isFocused ? "true" : undefined}
                 aria-hidden={beyond ? true : undefined}
                 tabIndex={beyond ? -1 : 0}
-                onClick={() => focus(i)}
+                onClick={() => {
+                  // A swipe also fires a synthetic click on the cover under the
+                  // finger; suppress it so a swipe doesn't double-trigger focus.
+                  if (swiped.current) {
+                    swiped.current = false;
+                    return;
+                  }
+                  userFocus(i);
+                }}
                 // Centering is the inline `transform: translate(-50%,-50%)` in
                 // coverStyle. In Tailwind v4, -translate-x/y-1/2 set the standalone
                 // `translate` PROPERTY, which COMPOSES with (does not override) that
@@ -341,12 +374,28 @@ export function RecallCoverflow({
         </div>
 
         {/* ── Navigation arrows — overlaid, token-styled, outside the 3D space ── */}
-        <NavButton side="left" onClick={prev} />
-        <NavButton side="right" onClick={next} />
+        <NavButton side="left" onClick={userPrev} />
+        <NavButton side="right" onClick={userNext} />
+
+        {/* ── WCAG 2.2.2 — persistent pause/play for the >5s autoplay. Survives
+             hover/focus toggling; pressing it marks the shelf interacted. ── */}
+        <PlayPauseButton
+          paused={userPaused}
+          onToggle={() => {
+            setInteracted(true);
+            setUserPaused((p) => !p);
+          }}
+        />
       </div>
 
-      {/* ── Focused title + author, below the shelf, updating with the center ── */}
-      <CaptionPlate title={focused.title} author={focused.author} live />
+      {/* ── Focused title + author, below the shelf, updating with the center.
+           The live region is gated on interaction so an idle screen reader isn't
+           announced a new title every 3.5s before the user engages the shelf. ── */}
+      <CaptionPlate
+        title={focused.title}
+        author={focused.author}
+        live={interacted}
+      />
     </div>
   );
 }
@@ -424,8 +473,12 @@ function CoverFrame({
   );
 }
 
-/* ── The caption below the shelf: focused title + author. `live` marks it as a
-   polite live region so screen readers announce the focus change. ──────────── */
+/* ── The caption below the shelf: focused title + author. The visible text is
+   NOT itself a live region; a separate, always-registered sr-only polite region
+   carries the announcement and stays EMPTY until the user has engaged (`live`).
+   That keeps idle 3.5s autoplay silent for screen readers while still announcing
+   the FIRST engaged change — a region that becomes-live and changes-content in the
+   same commit is swallowed by some ATs, whereas this one is live from mount. ──── */
 function CaptionPlate({
   title,
   author,
@@ -436,11 +489,7 @@ function CaptionPlate({
   live?: boolean;
 }) {
   return (
-    <div
-      className="mt-10 text-center sm:mt-12"
-      aria-live={live ? "polite" : undefined}
-      aria-atomic={live ? true : undefined}
-    >
+    <div className="mt-10 text-center sm:mt-12">
       <p
         className="font-(family-name:--font-display) text-[1.25rem] font-semibold leading-tight tracking-[-0.02em] sm:text-[1.5rem]"
         style={{ color: "var(--cf-recall-ink)" }}
@@ -455,6 +504,9 @@ function CaptionPlate({
           {author}
         </p>
       ) : null}
+      <span className="sr-only" aria-live="polite" aria-atomic="true">
+        {live ? title : ""}
+      </span>
     </div>
   );
 }
@@ -486,6 +538,38 @@ function NavButton({
       style={navStyle}
     >
       <Icon size={20} strokeWidth={2} aria-hidden />
+    </button>
+  );
+}
+
+/* ── The persistent autoplay pause/play control (WCAG 2.2.2). Token-styled to
+   match the nav arrows, anchored at the shelf's bottom edge, with an explicit
+   accessible label that reflects the current state. ─────────────────────────── */
+function PlayPauseButton({
+  paused,
+  onToggle,
+}: {
+  paused: boolean;
+  onToggle: () => void;
+}) {
+  const Icon = paused ? Play : Pause;
+  const ctrlStyle: RingStyle = {
+    background: "var(--cf-recall-panel)",
+    border: "1px solid var(--cf-recall-border)",
+    color: "var(--cf-recall-ink-soft)",
+    "--tw-ring-color": "var(--cf-recall-accent)",
+    "--tw-ring-offset-color": "transparent",
+  };
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={paused ? "Play cover carousel" : "Pause cover carousel"}
+      aria-pressed={paused}
+      className="absolute bottom-2 left-1/2 z-[200] flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full backdrop-blur-sm transition-[transform,background-color,border-color] duration-150 ease-out hover:scale-[1.06] active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:bottom-3"
+      style={ctrlStyle}
+    >
+      <Icon size={15} strokeWidth={2} aria-hidden />
     </button>
   );
 }

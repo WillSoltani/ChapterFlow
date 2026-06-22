@@ -16,7 +16,7 @@
  * of actual covers), lots of air, exactly one accent (the periwinkle recall
  * accent on the derived count + the progress fill). No chart/curve (that lives in
  * the hero and appears exactly once). The book count is DERIVED from the live
- * catalog via CATALOG_BOOK_COUNT_DISPLAY so it can never overstate.
+ * catalog via CATALOG_BOOK_COUNT (the exact integer) so it tracks the real shelf.
  *
  * The active-cover index is LIFTED here and pushed into RecallCoverflow as a
  * controlled prop, so the scroll handler is the sole index driver. The coverflow
@@ -36,7 +36,7 @@ import dynamic from "next/dynamic";
 import { LayoutGrid } from "lucide-react";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { RecallCoverflow } from "./RecallCoverflow";
 
@@ -54,7 +54,7 @@ const RecallLibraryBrowser = dynamic(
  * meaning, strategy, mindset). Each id is a real catalog book with a committed
  * cover raster; titles/authors for alt text are read from the live catalog so
  * they can never drift from the real data. The full count is stated separately
- * from CATALOG_BOOK_COUNT_DISPLAY — this row is a sample, not the whole shelf.
+ * from CATALOG_BOOK_COUNT — this row is a sample, not the whole shelf.
  */
 const SHOWCASE_BOOK_IDS = [
   "atomic-habits",
@@ -147,12 +147,23 @@ export function RecallLibrary() {
         head.style.opacity = String(Math.min(1, p / 0.06));
       }
 
-      // The coverflow zooms up into place from below.
-      const b = easeOut(Math.min(1, Math.max(0, (p - 0.1) / 0.22)));
-      const coverScale = 0.62 + 0.38 * b;
-      const coverOpacity = Math.min(1, Math.max(0, (p - 0.1) / 0.14));
+      // The coverflow fills the LOWER viewport early (opacity ramps in fast so
+      // there is no empty void at pin entry) but RISES to center later: its
+      // position/scale ramp `b` starts only after the headline block has begun
+      // settling (p>0.12), so the covers never collide with the still-visible
+      // eyebrow/headline/dek at the top of the stage. Decoupling opacity (early)
+      // from position (later) kills both the void AND the text-overlap.
+      const b = easeOut(Math.min(1, Math.max(0, (p - 0.12) / 0.2)));
+      const coverScale = 0.82 + 0.18 * b;
+      // Opacity ramps in fast (p>0.04 → full by ~p>=0.16) with a non-zero floor
+      // so a deep-link first paint (#library/#request, p≈0) shows covers, not an
+      // empty stage. The floor only lifts the at-rest start; the scrolled ramp
+      // quickly overtakes it and resolves to 1.
+      const coverOpacity = Math.max(0.12, Math.min(1, Math.max(0, (p - 0.04) / 0.12)));
       if (cover) {
-        cover.style.transform = `translateY(${(1 - b) * 64}px) scale(${coverScale})`;
+        // Start well below center (150px) so the covers sit in the lower viewport
+        // at entry — under the headline block, not over it — then travel up.
+        cover.style.transform = `translateY(${(1 - b) * 150}px) scale(${coverScale})`;
         cover.style.opacity = String(coverOpacity);
       }
 
@@ -171,7 +182,12 @@ export function RecallLibrary() {
       if (bar) {
         bar.style.transform = `scaleX(${browse.toFixed(3)})`;
         const track = bar.parentElement;
-        if (track) track.style.opacity = String(coverOpacity);
+        // The progress track uses the FLOOR-LESS ramp (not coverOpacity, which has
+        // a 0.12 deep-link floor) so an empty track never ghosts in at pin entry.
+        if (track)
+          track.style.opacity = String(
+            Math.min(1, Math.max(0, (p - 0.04) / 0.12)),
+          );
       }
     };
 
@@ -250,7 +266,7 @@ export function RecallLibrary() {
               }}
             >
               <span style={{ color: "var(--cf-recall-accent)" }}>
-                {CATALOG_BOOK_COUNT_DISPLAY}
+                {CATALOG_BOOK_COUNT}
               </span>{" "}
               books, all real.
             </h2>
@@ -302,7 +318,7 @@ export function RecallLibrary() {
             }}
           >
             <LayoutGrid size={17} strokeWidth={2} aria-hidden />
-            Browse all {CATALOG_BOOK_COUNT_DISPLAY} books
+            Browse all {CATALOG_BOOK_COUNT} books
           </button>
           <a
             href="#request"

@@ -832,7 +832,7 @@ html.transitioning *::after {
   --cf-recall-bg: #06070A;            /* deep near-black hero canvas */
   --cf-recall-ink: #ECEFF6;           /* soft near-white primary ink */
   --cf-recall-ink-soft: #A2A9BC;      /* supporting copy */
-  --cf-recall-ink-faint: #5E6678;     /* eyebrow / mono labels / axis */
+  --cf-recall-ink-faint: #787F90;     /* eyebrow / mono labels / axis — 5.04:1 on bg, ≥4.68:1 on the deepest panel-inset (clears WCAG AA text on every recall surface) */
   --cf-recall-ink-ghost: #2A2F3C;     /* hairlines that must read as near-silent */
 
   /* The ONE accent + its brightness/opacity ladder (locked → fading). */
@@ -884,6 +884,46 @@ html.transitioning *::after {
      data (cool periwinkle = retained/good, warm coral = forgetting/loss). */
   --cf-recall-decay: #D2918A;          /* muted coral — the decay (no-review) line + its readout */
   --cf-recall-decay-soft: rgba(210, 145, 138, 0.55); /* dimmed coral for the dashed gap connector */
+
+  /* Tailwind v4 ring-offset utilities default the offset color to white; pin it
+     to the page canvas so focus rings on this dark surface don't show a white halo. */
+  --tw-ring-offset-color: var(--cf-recall-bg);
+}
+
+/* Tailwind v4 registers --tw-ring-offset-color via @property with inherits:false,
+   so the declaration on the .landing-dark ancestor above does NOT cascade to the
+   ring-bearing controls. Set it directly on every descendant (+ pseudo-elements)
+   so focus-visible:ring-offset utilities render a transparent gap (the dark surface
+   shows through) instead of Tailwind's default white halo. `transparent` is
+   surface-agnostic (correct over panels AND the canvas); inline overrides on the
+   coverflow controls still win over this rule. */
+.landing-dark *,
+.landing-dark *::before,
+.landing-dark *::after {
+  --tw-ring-offset-color: transparent;
+}
+
+/* The global :focus-visible recipe (outline: 2px solid var(--accent-cyan)) is
+   UNLAYERED, so it beats Tailwind's layered focus-visible:outline-none and always
+   paints — and .landing-dark redefines --accent-cyan, making every keyboard-focus
+   indicator CYAN against this single-periwinkle brand (the CTAs' Tailwind ring
+   box-shadow is itself overridden by their inline glow shadow, so the outline is
+   often the only indicator). Repoint the focus outline to the recall accent so all
+   focus rings on this surface are on-brand. The .cf-focus variant (used by the
+   pricing SegmentedControl) needs the +1 specificity to win over its own rule. */
+.landing-dark :focus-visible,
+.landing-dark .cf-focus:focus-visible {
+  outline-color: var(--cf-recall-accent);
+}
+
+/* High-contrast accessibility override — the recall palette has no contrast
+   variant of its own, so lift the faint/soft inks and hairlines when the user
+   requests high contrast (data-contrast="high" is toggled on <html>). */
+html[data-contrast="high"] .landing-dark {
+  --cf-recall-ink-faint: #9AA3B4;
+  --cf-recall-ink-soft: #C3C9D6;
+  --cf-recall-border: rgba(255, 255, 255, 0.14);
+  --cf-recall-border-strong: rgba(255, 255, 255, 0.20);
 }
 
 /* RECALL hero entrance — fast (≈190ms) ease-out fade-up, staggered via inline
@@ -1012,7 +1052,6 @@ html.transitioning *::after {
     opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--cf-reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 
 /* Revealed (added by the IntersectionObserver). */
@@ -1030,7 +1069,6 @@ html.transitioning *::after {
     opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: var(--cf-reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 .cf-reveal-group.cf-reveal-in .cf-reveal-item {
   opacity: 1;
@@ -3199,7 +3237,7 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
 .rl-cf-wrap {
   position: relative;
   z-index: 1;
-  margin: 9rem auto 0;
+  margin: 3rem auto 0;
   width: 100%;
   max-width: 64rem;
   transform-origin: center top;
@@ -3322,6 +3360,30 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   to {
     transform: translateX(-48%) translateY(3%) scale(1.09);
   }
+}
+
+/* --- Nav scrim --- A fixed full-width gradient mask BEHIND the floating pill
+   nav (z-49; pill is z-50, page content z-10). Fades headings out cleanly as
+   they reach the top instead of smearing under the blurred pill. Static, so it
+   is already reduced-motion safe. Rendered as a dedicated .rl-nav-scrim element
+   (see WS-nav) rather than a .landing-dark::before — .landing-dark is re-applied
+   to portaled Dialog panels (RecallLibraryBrowser / RecallBookRequestDialog) to
+   re-scope tokens, so a ::before there would multiply this fixed full-viewport
+   gradient onto every open dialog. pointer-events:none keeps it click-through. */
+.rl-nav-scrim {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 104px;
+  z-index: 49;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    var(--cf-recall-bg) 0%,
+    color-mix(in srgb, var(--cf-recall-bg) 60%, transparent) 45%,
+    transparent 100%
+  );
 }
 
 /* --- Floating pill nav --- */

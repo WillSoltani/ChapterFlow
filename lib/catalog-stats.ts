@@ -18,7 +18,7 @@ import {
 } from "@/app/book/data/booksCatalog";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
-/** Round DOWN to the nearest `step` and suffix "+", e.g. 67 → "60+". */
+/** Round DOWN to the nearest `step` and suffix "+", e.g. a 106-book catalog floors to "100+". */
 function displayFloor(count: number, step = 10): string {
   return `${Math.floor(count / step) * step}+`;
 }
@@ -33,7 +33,7 @@ function median(values: number[]): number {
     : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
 }
 
-/** Exact number of published books in the live catalog (67 today). */
+/** Exact number of published books in the live catalog (derived from BOOKS_CATALOG). */
 export const CATALOG_BOOK_COUNT = BOOKS_CATALOG.length;
 
 /**

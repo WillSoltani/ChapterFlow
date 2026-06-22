@@ -16,8 +16,13 @@
  * filled CTA. Fast cf-fade-up entrances; prefers-reduced-motion → static.
  */
 
+"use client";
+
+import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
+import { SegmentedControl } from "@/app/book/settings/components/controls/SegmentedControl";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import {
   PRICING,
   formatAmount,
@@ -25,6 +30,15 @@ import {
   FREE_OFFER_LABEL,
   UPGRADE_LOGIN_URL,
 } from "@/lib/pricing";
+
+/* Whole-percent saving of the annual plan vs paying monthly (= 25%). Derived
+   here from PRICING so the displayed savings can never drift from the prices. */
+const ANNUAL_SAVINGS_PCT = Math.round(
+  ((PRICING.monthlyAmount - PRICING.annualMonthlyAmount) / PRICING.monthlyAmount) *
+    100,
+);
+
+type BillingInterval = "monthly" | "annual";
 
 /* The two tiers, stated plainly. Pro features come straight from the canonical
    PRO_FEATURES list via PRICING; the Free list names what the free reader
@@ -47,8 +61,6 @@ const PRO_FEATURES_SHORT = [
 ] as const;
 
 export function RecallPricing() {
-  const monthly = formatAmount(PRICING.monthlyAmount);
-
   return (
     <section
       id="pricing"
@@ -80,13 +92,61 @@ export function RecallPricing() {
             className="cf-fade-up mx-auto mt-6 max-w-[42ch] text-[1.0625rem] leading-relaxed sm:text-[1.1875rem]"
             style={{ color: "var(--cf-recall-ink-soft)", animationDelay: "110ms" }}
           >
-            Two plans, no lock-in. Read {FREE_OFFER_LABEL} free, no card. Upgrade
+            Two plans, no lock-in. Read {FREE_OFFER_LABEL}, no card. Upgrade
             when you feel it working. Cancel anytime.
           </p>
         </header>
 
-        {/* ── Two tiers, side by side ── */}
-        <div className="mx-auto mt-16 grid max-w-[58rem] grid-cols-1 gap-6 sm:mt-20 sm:gap-8 md:grid-cols-2 md:gap-7 lg:gap-8">
+        <PricingPlans />
+      </div>
+    </section>
+  );
+}
+
+/* The two tier cards + the monthly/annual toggle. Split into its own client
+   subcomponent so the toggle can hold useState; the surrounding section stays
+   a thin SSR shell. The toggle is DISPLAY-ONLY — both CTAs route exactly as
+   before (Free → AUTH_LOGIN_BOOK_URL, Pro → UPGRADE_LOGIN_URL). */
+function PricingPlans() {
+  const reducedMotion = usePrefersReducedMotion();
+  const [interval, setInterval] = useState<BillingInterval>("monthly");
+  const isAnnual = interval === "annual";
+  const proPrice = formatAmount(
+    isAnnual ? PRICING.annualMonthlyAmount : PRICING.monthlyAmount,
+  );
+
+  return (
+    <>
+      {/* ── Monthly / annual toggle (display only) ── */}
+      <div
+        className="cf-fade-up mx-auto mt-12 flex flex-col items-center gap-2.5 sm:mt-14"
+        style={{ animationDelay: "130ms" }}
+      >
+        <SegmentedControl<BillingInterval>
+          groupId="recall-pricing-interval"
+          label="Billing interval"
+          value={interval}
+          onChange={setInterval}
+          reducedMotion={reducedMotion}
+          options={[
+            { value: "monthly", label: "Monthly" },
+            { value: "annual", label: "Annual" },
+          ]}
+        />
+        <p
+          className="font-(family-name:--font-mono) text-[10.5px] uppercase tracking-[0.24em]"
+          style={{
+            color: isAnnual
+              ? "var(--cf-recall-accent)"
+              : "var(--cf-recall-ink-faint)",
+          }}
+        >
+          Save {ANNUAL_SAVINGS_PCT}% billed annually
+        </p>
+      </div>
+
+      {/* ── Two tiers, side by side ── */}
+      <div className="mx-auto mt-12 grid max-w-[58rem] grid-cols-1 items-start gap-6 sm:mt-14 sm:gap-8 md:grid-cols-2 md:gap-7 lg:gap-8">
           {/* FREE — plain neutral card */}
           <div
             className="cf-fade-up cf-hover-raise flex flex-col rounded-[1.5rem] p-8 sm:p-10"
@@ -153,26 +213,45 @@ export function RecallPricing() {
               animationDelay: "220ms",
             }}
           >
-            <p
-              className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.28em]"
-              style={{ color: "var(--cf-recall-accent)" }}
-            >
-              Pro
-            </p>
+            <div className="flex items-baseline justify-between gap-3">
+              <p
+                className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.28em]"
+                style={{ color: "var(--cf-recall-accent)" }}
+              >
+                Pro
+              </p>
+              <p
+                className="font-(family-name:--font-mono) text-[10px] uppercase tracking-[0.24em]"
+                style={{ color: "var(--cf-recall-accent)" }}
+              >
+                Recommended
+              </p>
+            </div>
             <div className="mt-6 flex items-baseline gap-2">
               <span
                 className="font-(family-name:--font-display) font-bold leading-none tracking-[-0.04em]"
                 style={{ color: "var(--cf-recall-ink)", fontSize: "clamp(2.75rem, 5vw, 3.5rem)" }}
               >
-                {monthly}
+                {proPrice}
               </span>
               <span
                 className="text-[0.9375rem]"
                 style={{ color: "var(--cf-recall-ink-faint)" }}
               >
-                / month
+                {isAnnual ? "/mo" : "/ month"}
               </span>
             </div>
+            {isAnnual ? (
+              <p
+                className="mt-2 text-[0.8125rem] leading-relaxed"
+                style={{ color: "var(--cf-recall-ink-soft)" }}
+              >
+                billed annually ·{" "}
+                <span style={{ color: "var(--cf-recall-accent)" }}>
+                  Save {ANNUAL_SAVINGS_PCT}%
+                </span>
+              </p>
+            ) : null}
             <p
               className="mt-4 text-[0.9375rem] leading-relaxed"
               style={{ color: "var(--cf-recall-ink-soft)" }}
@@ -202,16 +281,20 @@ export function RecallPricing() {
               <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
             </a>
             <p
-              className="mt-4 text-center text-[0.8125rem] leading-relaxed"
+              className="mt-4 text-center text-[0.875rem] font-medium leading-relaxed"
+              style={{ color: "var(--cf-recall-ink-soft)" }}
+            >
+              Cancel anytime.
+            </p>
+            <p
+              className="mt-1.5 text-center text-[0.8125rem] leading-relaxed"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               Card required, charged when the {PRICING.trialDays}-day trial ends.
-              Cancel anytime before then.
             </p>
           </div>
         </div>
-      </div>
-    </section>
+    </>
   );
 }
 

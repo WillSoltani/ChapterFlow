@@ -60,6 +60,9 @@ export function DissolveWord({ text }: DissolveWordProps) {
     let Hc = 0;
     let padX = 0;
     let padY = 0;
+    // Rendered font size of the sizer glyph; drives the gust magnitude scaling so
+    // the dust cloud shrinks with a wrapped phone headline. Set in buildPoints().
+    let fs = 48;
     let rgb: [number, number, number] = [236, 239, 246];
     const t0 = performance.now();
 
@@ -84,7 +87,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
           : `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
       const cm = (cs.color.match(/\d+/g) || []).map(Number);
       if (cm.length >= 3) rgb = [cm[0], cm[1], cm[2]];
-      const fs = parseFloat(cs.fontSize) || 48;
+      fs = parseFloat(cs.fontSize) || 48;
       const probeCanvas = document.createElement("canvas");
       const probe = probeCanvas.getContext("2d");
       if (!probe) return false;
@@ -152,11 +155,20 @@ export function DissolveWord({ text }: DissolveWordProps) {
       const el = (now - t0) / 1000;
       const period = 7.2;
       const gustDur = 2.6;
-      const band = 24;
+      // Scale the gust magnitude with the rendered font size so the dust cloud
+      // shrinks with a wrapped phone headline (and stops overlapping the adjacent
+      // line) while keeping its desktop character at the large hero size.
+      const gustScale = Math.min(1.25, Math.max(0.5, fs / 64));
+      const band = 24 * gustScale;
       const cyc = el % period;
       // The gust front sweeps left→right across the word over `gustDur` seconds.
       const front =
         cyc < gustDur ? padX + (cyc / gustDur) * (W + 60) - 30 : -99999;
+      // Batched additive ("lighter") passes: collect blown/returning points and
+      // draw them in one composite-op switch per frame instead of toggling
+      // globalCompositeOperation per point.
+      const lighterDraws: Array<[number, number, number]> = [];
+      ctx.globalCompositeOperation = "source-over";
       for (let i = 0; i < points.length; i++) {
         const p = points[i];
         if (p.rel === 0) {
@@ -168,13 +180,12 @@ export function DissolveWord({ text }: DissolveWordProps) {
           ) {
             p.rel = 1;
             p.life = 0;
-            p.max = 55 + Math.random() * 55;
-            p.vx = 1.1 + Math.random() * 3.0;
-            p.vy = -(0.5 + Math.random() * 1.7);
+            p.max = (55 + Math.random() * 55) * gustScale;
+            p.vx = (1.1 + Math.random() * 3.0) * gustScale;
+            p.vy = -(0.5 + Math.random() * 1.7) * gustScale;
           }
           p.x = p.hx + Math.sin(el * 1.7 + p.ph) * 0.45;
           p.y = p.hy + Math.cos(el * 1.5 + p.ph) * 0.45;
-          ctx.globalCompositeOperation = "source-over";
           ctx.fillStyle = dust(0.95);
           ctx.fillRect(p.x, p.y, 1.7, 1.7);
         } else if (p.rel === 1) {
@@ -185,9 +196,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
           p.vy += 0.012;
           p.vx *= 0.99;
           const a = Math.max(0, 1 - p.life / p.max);
-          ctx.globalCompositeOperation = "lighter";
-          ctx.fillStyle = dust(a * 0.85);
-          ctx.fillRect(p.x, p.y, 1.7, 1.7);
+          lighterDraws.push([p.x, p.y, a * 0.85]);
           if (p.life >= p.max) p.rel = 2;
         } else {
           // Easing back home (the word re-assembles, so it loops forever).
@@ -195,9 +204,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
           p.y += (p.hy - p.y) * 0.11;
           const d = Math.hypot(p.hx - p.x, p.hy - p.y);
           const a = Math.min(1, 0.35 + (1 - Math.min(1, d / 28)));
-          ctx.globalCompositeOperation = "lighter";
-          ctx.fillStyle = dust(a);
-          ctx.fillRect(p.x, p.y, 1.7, 1.7);
+          lighterDraws.push([p.x, p.y, a]);
           if (d < 0.6) {
             p.rel = 0;
             p.x = p.hx;
@@ -205,25 +212,58 @@ export function DissolveWord({ text }: DissolveWordProps) {
           }
         }
       }
+      // Single additive pass for all blown/returning dust this frame.
+      if (lighterDraws.length) {
+        ctx.globalCompositeOperation = "lighter";
+        for (let i = 0; i < lighterDraws.length; i++) {
+          const d = lighterDraws[i];
+          ctx.fillStyle = dust(d[2]);
+          ctx.fillRect(d[0], d[1], 1.7, 1.7);
+        }
+      }
       ctx.globalCompositeOperation = "source-over";
+    }
+
+    // Whether the canvas is built + active (points ready, sizer hidden). The
+    // rAF loop is only allowed to run when this is true AND the canvas is both
+    // on-screen (IntersectionObserver) and the tab is visible.
+    let active = false;
+    let onScreen = true;
+
+    function startLoop() {
+      if (
+        !cancelled &&
+        active &&
+        onScreen &&
+        !document.hidden &&
+        !raf
+      ) {
+        raf = requestAnimationFrame(loop);
+      }
+    }
+
+    function stopLoop() {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
     }
 
     function setup() {
       if (cancelled) return;
       // Reduced motion: leave the plain text span visible, never paint.
       if (reduce) {
-        if (raf) {
-          cancelAnimationFrame(raf);
-          raf = 0;
-        }
+        stopLoop();
+        active = false;
         sizerEl.style.visibility = "visible";
         canvasEl.style.display = "none";
         return;
       }
       if (buildPoints()) {
+        active = true;
         sizerEl.style.visibility = "hidden";
         canvasEl.style.display = "block";
-        if (!raf) raf = requestAnimationFrame(loop);
+        startLoop();
       }
     }
 
@@ -236,28 +276,66 @@ export function DissolveWord({ text }: DissolveWordProps) {
       setup();
     }
 
+    // Pause the particle loop while the word is scrolled off-screen…
+    let io: IntersectionObserver | undefined;
+    if (window.IntersectionObserver) {
+      io = new IntersectionObserver(
+        (entries) => {
+          onScreen = entries.some((e) => e.isIntersecting);
+          if (onScreen) startLoop();
+          else stopLoop();
+        },
+        { rootMargin: "120px" },
+      );
+      io.observe(canvasEl);
+    }
+
+    // …and while the tab is hidden (rAF is already throttled there, but this also
+    // stops it entirely and resumes cleanly on return).
+    const onVisibility = () => {
+      if (document.hidden) stopLoop();
+      else startLoop();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
     let ro: ResizeObserver | undefined;
+    let resizeTimer: ReturnType<typeof setTimeout> | undefined;
     if (window.ResizeObserver) {
-      // Re-run the full setup on resize. Going through setup() (not a bespoke
-      // rebuild) means a resize that succeeds AFTER an initial buildPoints failure
-      // also STARTS the loop (`if (!raf)`), so the word can't end up hidden-sizer
-      // over a blank canvas.
-      ro = new ResizeObserver(() => setup());
+      // Re-run the full setup on resize (debounced ~150ms so a drag-resize doesn't
+      // rebuild every frame). Going through setup() (not a bespoke rebuild) means a
+      // resize that succeeds AFTER an initial buildPoints failure also STARTS the
+      // loop, so the word can't end up hidden-sizer over a blank canvas.
+      ro = new ResizeObserver(() => {
+        if (resizeTimer) clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (!cancelled) setup();
+        }, 150);
+      });
       ro.observe(sizerEl);
     }
 
     return () => {
       cancelled = true;
-      if (raf) cancelAnimationFrame(raf);
+      stopLoop();
+      if (io) io.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      if (resizeTimer) clearTimeout(resizeTimer);
       if (ro) ro.disconnect();
     };
   }, [text, reduce]);
 
   return (
     <span className="relative inline-block">
-      {/* Hidden sizer reserves layout + baseline; stays visible under reduced
-          motion (the canvas never paints there). */}
-      <span ref={sizeRef}>{text}</span>
+      {/* Visual sizer reserves layout + baseline (so the headline never shifts
+          when the canvas swaps in). When the canvas paints it is set
+          visibility:hidden — which would drop the word from the accessible name —
+          so it is aria-hidden and an .sr-only copy below keeps the word in the
+          <h1> accessible name regardless of paint state. Under reduced motion the
+          sizer stays VISIBLE and the canvas never paints. */}
+      <span ref={sizeRef} aria-hidden>
+        {text}
+      </span>
+      <span className="sr-only">{text}</span>
       <canvas
         ref={canvasRef}
         aria-hidden

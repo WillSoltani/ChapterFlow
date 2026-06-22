@@ -15,30 +15,34 @@
  * renders the final state statically.
  */
 
-const RECEIPTS: { finding: string; source: string; year: string }[] = [
+const RECEIPTS: { finding: string; source: string; year: string; href?: string }[] = [
   {
     finding:
       "Memory decays on a predictable curve. Most of what you read is gone within days, unless something interrupts the forgetting.",
     source: "Hermann Ebbinghaus, Über das Gedächtnis",
     year: "1885",
+    href: "https://archive.org/details/memorycontributi00ebbiuoft",
   },
   {
     finding:
       "Recalling an idea from memory locks it in far better than rereading it. The act of retrieval is what makes knowledge last: the testing effect.",
     source: "Karpicke & Roediger, Science",
     year: "2008",
+    href: "https://doi.org/10.1126/science.1152408",
   },
   {
     finding:
       "The same study, spread out over time, beats the same study crammed together. Spacing reviews is one of the most reliable findings in learning.",
     source: "Cepeda et al., Psychological Bulletin",
     year: "2006",
+    href: "https://doi.org/10.1037/0033-2909.132.3.354",
   },
   {
     finding:
       "A modern scheduling algorithm predicts the moment you're about to forget and brings each idea back right then, so you never review more than you need.",
     source: "FSRS · open-source spaced-repetition scheduler",
     year: "FSRS-5",
+    href: "https://github.com/open-spaced-repetition/fsrs4anki",
   },
 ];
 
@@ -71,7 +75,7 @@ export function RecallWhyItWorks() {
               animationDelay: "55ms",
             }}
           >
-            Built on settled science.
+            Built on a century of memory research.
           </h2>
           <p
             className="cf-fade-up mt-6 max-w-[34ch] text-[1.0625rem] leading-relaxed sm:text-[1.1875rem]"
@@ -104,20 +108,51 @@ export function RecallWhyItWorks() {
               >
                 {r.finding}
               </p>
-              {/* the receipt: source + year in mono, right-anchored */}
+              {/* the receipt: source + year in mono, right-anchored. When a
+                  primary-source href exists, the receipt becomes a quiet link
+                  (new tab) with a tiny ↗ affordance. */}
               <div className="order-1 shrink-0 sm:order-2 sm:w-[12rem] sm:pt-1 sm:text-right">
-                <p
-                  className="font-(family-name:--font-mono) text-[12px] leading-snug tracking-[0.04em]"
-                  style={{ color: "var(--cf-recall-ink-soft)" }}
-                >
-                  {r.source}
-                </p>
-                <p
-                  className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em]"
-                  style={{ color: "var(--cf-recall-accent)" }}
-                >
-                  {r.year}
-                </p>
+                {r.href ? (
+                  <a
+                    href={r.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex flex-col rounded underline-offset-4 transition-opacity duration-150 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 sm:items-end"
+                    style={{
+                      // @ts-expect-error -- CSS custom property for the focus ring color
+                      "--tw-ring-color": "var(--cf-recall-accent-line)",
+                    }}
+                  >
+                    <span
+                      className="font-(family-name:--font-mono) text-[12px] leading-snug tracking-[0.04em] group-hover:underline"
+                      style={{ color: "var(--cf-recall-ink-soft)" }}
+                    >
+                      {r.source}
+                    </span>
+                    <span
+                      className="mt-1.5 inline-flex items-center gap-1 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em] group-hover:underline"
+                      style={{ color: "var(--cf-recall-accent)" }}
+                    >
+                      {r.year}
+                      <span aria-hidden className="text-[0.85em]">↗</span>
+                    </span>
+                  </a>
+                ) : (
+                  <>
+                    <p
+                      className="font-(family-name:--font-mono) text-[12px] leading-snug tracking-[0.04em]"
+                      style={{ color: "var(--cf-recall-ink-soft)" }}
+                    >
+                      {r.source}
+                    </p>
+                    <p
+                      className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em]"
+                      style={{ color: "var(--cf-recall-accent)" }}
+                    >
+                      {r.year}
+                    </p>
+                  </>
+                )}
               </div>
             </li>
           ))}

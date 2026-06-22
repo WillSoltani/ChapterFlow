@@ -44,7 +44,15 @@ function RecallLogo() {
 
 export function RecallNav() {
   return (
-    <header className="rl-nav">
+    <>
+      {/* Top fade scrim — a fixed gradient mask (bg → transparent) behind the
+          pill so section headings fade out as they reach the top instead of
+          smearing through the blurred nav. Sits under the pill (z-49 vs z-50).
+          A dedicated element (not .landing-dark::before) so it doesn't also
+          paint over the portaled Library/Request dialogs. Styled in globals.css
+          under .rl-nav-scrim. */}
+      <div className="rl-nav-scrim" aria-hidden="true" />
+      <header className="rl-nav">
       {/* Brand — mark in a glassy hairline tile, wordmark in the display face */}
       <Link href="/" className="rl-nav-brand" aria-label="ChapterFlow home">
         <span className="rl-nav-mark" aria-hidden="true">
@@ -96,6 +104,7 @@ export function RecallNav() {
           Start reading free
         </a>
       </nav>
-    </header>
+      </header>
+    </>
   );
 }

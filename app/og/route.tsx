@@ -14,52 +14,59 @@ export async function GET() {
     (
       <div
         style={{
+          position: "relative",
           height: "100%",
           width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "#070b16",
+          background: "#06070A",
           backgroundImage:
-            "radial-gradient(ellipse 60% 50% at 30% 0%, rgba(34, 211, 238, 0.12), transparent), radial-gradient(ellipse 40% 40% at 80% 60%, rgba(34, 211, 238, 0.06), transparent)",
+            "radial-gradient(ellipse 55% 45% at 20% 0%, rgba(138, 162, 255, 0.10), transparent)",
         }}
       >
         <div
           style={{
-            fontSize: 120,
+            display: "flex",
+            fontSize: 92,
             fontWeight: 800,
-            color: "#22d3ee",
             letterSpacing: "-0.04em",
-            lineHeight: 1,
+            lineHeight: 1.05,
+            color: "#ECEFF6",
           }}
         >
-          ChapterFlow
+          <span>Stop forgetting&nbsp;</span>
+          <span style={{ color: "#8AA2FF" }}>what you read.</span>
         </div>
         <div
           style={{
-            fontSize: 44,
-            color: "#ffffff",
-            marginTop: 24,
-            opacity: 0.92,
-            fontWeight: 600,
-          }}
-        >
-          Stop forgetting what you read.
-        </div>
-        <div
-          style={{
-            fontSize: 22,
-            color: "#22d3ee",
+            display: "flex",
+            fontSize: 26,
+            color: "#A2A9BC",
             marginTop: 36,
-            opacity: 0.75,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            fontWeight: 600,
+            letterSpacing: "0.04em",
           }}
         >
-          Built on spaced repetition science
+          Guided reading on FSRS spaced repetition.
         </div>
+
+        {/* Minimal periwinkle retention-curve motif near the bottom. */}
+        <svg
+          width={1200}
+          height={120}
+          viewBox="0 0 1200 120"
+          style={{ position: "absolute", left: 0, bottom: 0 }}
+        >
+          <path
+            d="M0 30 C 220 30, 300 105, 1200 112"
+            fill="none"
+            stroke="#8AA2FF"
+            strokeWidth={3}
+            strokeOpacity={0.45}
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
     ),
     { width: 1200, height: 630 }

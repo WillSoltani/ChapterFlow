@@ -9,16 +9,15 @@
  * proof, NO clutter.
  *
  * The CTA repeats the hero's exact accent button so the page opens and closes on
- * the same gesture. The footer count is DERIVED from CATALOG_BOOK_COUNT_DISPLAY
- * so it can never overstate the real catalog. Token-only DOM color; Tailwind v4
- * parenthetical token syntax; fast cf-fade-up entrances; prefers-reduced-motion
- * → static. Server Component (static brand/pricing/catalog constants only).
+ * the same gesture. The footer descriptor stays count-free so it can never
+ * overstate the real catalog. Token-only DOM color; Tailwind v4 parenthetical
+ * token syntax; fast cf-fade-up entrances; prefers-reduced-motion → static.
+ * Server Component (static brand/pricing constants only).
  */
 
 import { ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL, CHAPTERFLOW_NAME } from "@/app/_lib/chapterflow-brand";
 import { FREE_OFFER_LABEL } from "@/lib/pricing";
-import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 /* The in-page section anchors, named plainly. No fabricated About/Blog/Careers
    tree — just the real sections of this page. */
@@ -95,7 +94,7 @@ export function RecallClose() {
                 "--tw-ring-color": "var(--cf-recall-accent)",
               }}
             >
-              Start reading free
+              Start your first book
               <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
             </a>
           </div>
@@ -120,8 +119,7 @@ export function RecallClose() {
               className="text-[13px] leading-relaxed"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
-              Guided reading that makes {CATALOG_BOOK_COUNT_DISPLAY} books you love
-              stick.
+              Guided reading that makes the books you love finally stick.
             </span>
           </div>
 

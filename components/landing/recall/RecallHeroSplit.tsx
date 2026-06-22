@@ -32,11 +32,12 @@
  */
 
 import { useEffect, useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
+import { FREE_OFFER_LABEL } from "@/lib/pricing";
 import {
-  CATALOG_BOOK_COUNT_DISPLAY,
+  CATALOG_BOOK_COUNT,
   CATALOG_MEDIAN_CHAPTER_MINUTES,
 } from "@/lib/catalog-stats";
 import {
@@ -67,6 +68,7 @@ const px = (n: number): number => Math.round(n) + 0.5;
 
 export function RecallHeroSplit() {
   const reduced = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLDivElement>(null);
   const showcaseRef = useRef<HTMLDivElement>(null);
 
@@ -109,15 +111,53 @@ export function RecallHeroSplit() {
       py2 = e.clientY / window.innerHeight - 0.5;
       if (!raf) raf = requestAnimationFrame(apply);
     };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => {
+
+    // Only listen while the hero is on-screen — once it scrolls away the parallax
+    // recompute is pure waste (and keeps a global pointermove handler alive for
+    // the whole page). An IntersectionObserver attaches/detaches the listener.
+    let attached = false;
+    const attach = () => {
+      if (attached) return;
+      attached = true;
+      window.addEventListener("pointermove", onMove, { passive: true });
+    };
+    const detach = () => {
+      if (!attached) return;
+      attached = false;
       window.removeEventListener("pointermove", onMove);
-      if (raf) cancelAnimationFrame(raf);
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    const section = sectionRef.current;
+    let io: IntersectionObserver | null = null;
+    if (section && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) attach();
+            else detach();
+          }
+        },
+        { threshold: 0 },
+      );
+      io.observe(section);
+    } else {
+      // No IO (very old engines / SSR safety net): fall back to always-on.
+      attach();
+    }
+
+    return () => {
+      io?.disconnect();
+      detach();
     };
   }, [reduced]);
 
   return (
     <section
+      ref={sectionRef}
       aria-labelledby="recall-split-headline"
       className="relative isolate flex min-h-[100svh] w-full flex-col items-center px-6 pb-20 pt-28 text-center sm:px-10 sm:pt-36 lg:px-16 lg:pt-44"
       style={{ background: "transparent" }}
@@ -155,10 +195,9 @@ export function RecallHeroSplit() {
             animationDelay: "110ms",
           }}
         >
-          You finish the book, feel a little changed, and then a month later you
-          can&apos;t recall a single idea from it. ChapterFlow walks you through
-          each one and keeps bringing the ideas back, until they&apos;re yours
-          for good.
+          ChapterFlow turns every book into a short guided loop — read it,
+          recall it, and let spaced review bring the ideas back until
+          they&apos;re yours for good.
         </p>
 
         <div
@@ -181,7 +220,7 @@ export function RecallHeroSplit() {
           </a>
           <a
             href="#how-it-works"
-            className="rounded text-[0.9375rem] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            className="inline-flex min-h-[44px] items-center gap-1 rounded text-[0.9375rem] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
             style={{
               color: "var(--cf-recall-ink-soft)",
               // @ts-expect-error -- CSS custom property for the focus ring color
@@ -189,8 +228,20 @@ export function RecallHeroSplit() {
             }}
           >
             See how it works
+            <ChevronRight size={16} strokeWidth={2.25} aria-hidden />
           </a>
         </div>
+
+        {/* risk-reversal microcopy — no card, free tier, free forever */}
+        <p
+          className="cf-fade-up mx-auto mt-4 text-[0.8125rem] font-(family-name:--font-mono)"
+          style={{
+            color: "var(--cf-recall-ink-faint)",
+            animationDelay: "195ms",
+          }}
+        >
+          No card needed · {FREE_OFFER_LABEL} · free forever
+        </p>
 
         {/* specs row — derived catalog stats, not hardcoded */}
         <div
@@ -199,7 +250,7 @@ export function RecallHeroSplit() {
         >
           <div className="rl-hero-spec">
             <span className="rl-hero-spec-num font-(family-name:--font-display)">
-              {CATALOG_BOOK_COUNT_DISPLAY}
+              {CATALOG_BOOK_COUNT}
             </span>
             <span className="rl-hero-spec-label font-(family-name:--font-mono)">
               books, all real
@@ -314,6 +365,10 @@ function CinematicPlate({
   const idleRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const baseRef = useRef<number | null>(null);
   const tRef = useRef(0.08);
+  // The single playhead-geometry writer, published by the effect so the
+  // pointer-scrub handler (defined in the component body) reuses the EXACT same
+  // DOM-write logic instead of duplicating it.
+  const drawRef = useRef<(t: number) => void>(() => {});
 
   // Initial playhead position — ALWAYS the sweep start, so the SSR markup and the
   // client's first render are identical (no hydration mismatch). The effect below
@@ -389,6 +444,8 @@ function CinematicPlate({
         rtx.textContent = `${aPct}%`;
       }
     };
+    // Publish for the pointer-scrub handler so it reuses this exact writer.
+    drawRef.current = draw;
 
     draw(tRef.current);
     if (reduced) {
@@ -421,9 +478,57 @@ function CinematicPlate({
       tRef.current = v;
       draw(v);
     };
-    raf = requestAnimationFrame(tick);
+
+    // The auto-sweep only needs to run while the plate is on-screen AND the tab is
+    // visible. Off-screen / hidden, we cancel the rAF and stop rescheduling; on
+    // re-entry we restart from the current tRef (forgetting the timeline base so
+    // the sweep resumes smoothly from where it stopped, not where it left the
+    // clock). Mirrors the IntersectionObserver pattern used in RecallReveal.
+    let onScreen = true;
+    const running = () => raf !== 0;
+    const start = () => {
+      if (running()) return;
+      if (!onScreen || document.hidden) return;
+      // resume from the current spot, not a stale wall-clock base
+      baseRef.current = null;
+      raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    let io: IntersectionObserver | null = null;
+    const svgEl = svgRef.current;
+    if (svgEl && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            onScreen = entry.isIntersecting;
+            if (onScreen) start();
+            else stop();
+          }
+        },
+        { threshold: 0 },
+      );
+      io.observe(svgEl);
+    } else {
+      onScreen = true;
+    }
+
+    const onVisibility = () => {
+      if (document.hidden) stop();
+      else start();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+
+    start();
     return () => {
-      cancelAnimationFrame(raf);
+      io?.disconnect();
+      document.removeEventListener("visibilitychange", onVisibility);
+      stop();
       if (idleRef.current) clearTimeout(idleRef.current);
     };
     // G is module-stable; reduced is the only reactive input.
@@ -446,61 +551,8 @@ function CinematicPlate({
     );
     hoverRef.current = true;
     tRef.current = tt;
-    // draw immediately for snappy scrubbing
-    {
-      const rT = Math.max(0, Math.min(1, lockedRecall(tt)));
-      const dT = Math.max(0, Math.min(1, Rf(tt, 1)));
-      const playX = G.xOf(tt);
-      const rY = G.yOf(rT);
-      const dY = G.yOf(dT);
-      const tagRight = playX < (G.x0 + G.x1) / 2;
-      const tagDX = tagRight ? 13 : -13;
-      const tagAnchor = tagRight ? "start" : "end";
-      const dayCx = Math.max(G.x0 + 28, Math.min(G.x1 - 28, playX));
-      phRef.current?.setAttribute("x1", String(playX));
-      phRef.current?.setAttribute("x2", String(playX));
-      const gp = gapRef.current;
-      if (gp) {
-        gp.setAttribute("x1", String(playX));
-        gp.setAttribute("x2", String(playX));
-        gp.setAttribute("y1", String(rY));
-        gp.setAttribute("y2", String(dY));
-      }
-      dayGRef.current?.setAttribute(
-        "transform",
-        `translate(${dayCx}, ${G.yTop - 12})`,
-      );
-      if (dayTRef.current) dayTRef.current.textContent = `DAY ${Math.round(tt)}`;
-      const dd = dDotRef.current;
-      if (dd) {
-        dd.setAttribute("cx", String(playX));
-        dd.setAttribute("cy", String(dY));
-      }
-      const dtx = dTxtRef.current;
-      if (dtx) {
-        dtx.setAttribute("x", String(playX + tagDX));
-        dtx.setAttribute("y", String(dY + 18));
-        dtx.setAttribute("text-anchor", tagAnchor);
-        dtx.textContent = `${Math.round(dT * 100)}%`;
-      }
-      const rg = ringRef.current;
-      if (rg) {
-        rg.setAttribute("cx", String(playX));
-        rg.setAttribute("cy", String(rY));
-      }
-      const rd = rDotRef.current;
-      if (rd) {
-        rd.setAttribute("cx", String(playX));
-        rd.setAttribute("cy", String(rY));
-      }
-      const rtx = rTxtRef.current;
-      if (rtx) {
-        rtx.setAttribute("x", String(playX + tagDX));
-        rtx.setAttribute("y", String(rY - 11));
-        rtx.setAttribute("text-anchor", tagAnchor);
-        rtx.textContent = `${Math.round(rT * 100)}%`;
-      }
-    }
+    // draw immediately for snappy scrubbing — reuse the single playhead writer
+    drawRef.current(tt);
     if (idleRef.current) clearTimeout(idleRef.current);
     idleRef.current = setTimeout(() => {
       hoverRef.current = false;

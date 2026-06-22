@@ -79,6 +79,13 @@ export function RecallBookRequestDialog({
           is read.
         </p>
 
+        <p
+          className="mt-2 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.2em]"
+          style={{ color: "var(--cf-recall-ink-faint)" }}
+        >
+          No spam, no sharing.
+        </p>
+
         <div className="mt-7">
           <RecallBookRequestForm initialTitle={initialTitle} />
         </div>

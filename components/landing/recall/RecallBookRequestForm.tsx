@@ -174,6 +174,26 @@ export function RecallBookRequestForm({
         errorId={id("email-err")}
         errorText="Please enter a valid email address."
       />
+      {/* Reassure before the field that needs the email: scope + no spam, with
+          the canonical privacy page linked. */}
+      <p
+        className="-mt-2.5 text-[0.8125rem] leading-relaxed"
+        style={{ color: "var(--cf-recall-ink-faint)" }}
+      >
+        We&apos;ll only email you about this title. No spam, no sharing — see our{" "}
+        <a
+          href="/legal/privacy"
+          className="rounded underline underline-offset-4 transition-colors duration-150 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          style={{
+            color: "var(--cf-recall-ink-soft)",
+            // @ts-expect-error -- CSS custom property for the focus ring color
+            "--tw-ring-color": "var(--cf-recall-accent-line)",
+          }}
+        >
+          privacy
+        </a>{" "}
+        policy.
+      </p>
       <Field
         id={id("author")}
         label="Author"

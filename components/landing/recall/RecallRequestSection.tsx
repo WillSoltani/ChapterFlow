@@ -51,13 +51,16 @@ export function RecallRequestSection() {
           </p>
         </header>
 
-        {/* ── The form, seated in one hairline-framed plate ── */}
+        {/* ── The form, seated in one hairline-framed plate. The min-height is
+            sized to the resting form so the success-state swap (a shorter card)
+            doesn't collapse the plate or jump the page. ── */}
         <div
-          className="cf-fade-up mx-auto mt-14 max-w-[34rem] rounded-[1.5rem] p-7 sm:mt-16 sm:p-9"
+          className="cf-fade-up mx-auto mt-14 flex max-w-[34rem] flex-col justify-center rounded-[1.5rem] p-7 sm:mt-16 sm:p-9"
           style={{
             background: "var(--cf-recall-plate)",
             border: "1px solid var(--cf-recall-frame)",
             animationDelay: "165ms",
+            minHeight: "37rem",
           }}
         >
           <RecallBookRequestForm />

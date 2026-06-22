@@ -55,7 +55,7 @@ const STEPS: Step[] = [
   {
     icon: BookOpen,
     label: "Summary",
-    body: "The big ideas, distilled. The gold from 300 pages in a few minutes.",
+    body: "The big ideas of the whole book, distilled to what matters.",
   },
   {
     icon: Lightbulb,
