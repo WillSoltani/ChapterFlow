@@ -927,9 +927,11 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     heartbeat(); // keep the run lock fresh across a long (multi-hour) write phase
     const n = chapterNumberFromCard(card);
     const writerSessionId = deps.mkSessionId(`write-ch${n}`);
+    deps.log(`[autopilot] write ch${n}: writer working`); // per-chapter START (one writer agent per chapter)
     const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above, then run author-check + gate-chapter until clean.`;
     const r = await spawnAndLog(bookId, { task, sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
+    else deps.log(`[autopilot] write ch${n}: done`); // per-chapter SUCCESS
     // Record the authoring session so finalize's author≠reviewer invariant has a real AUTHOR
     // side under autopilot (previously only qc-stamp-author wrote provenance, which the conductor
     // never runs → the headline independence check silently no-op'd). Best-effort; a sidecar
