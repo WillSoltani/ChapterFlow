@@ -112,6 +112,7 @@ import auto_the_organized_mind_Json from "@/book-packages/the-organized-mind.v21
 import auto_nudge_Json from "@/book-packages/nudge.v21.json";
 import auto_the_paradox_of_choice_Json from "@/book-packages/the-paradox-of-choice.v21.json";
 import auto_emotional_intelligence_Json from "@/book-packages/emotional-intelligence.v21.json";
+import auto_the_happiness_hypothesis_Json from "@/book-packages/the-happiness-hypothesis.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1905,4 +1906,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_emotional_intelligence_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["emotional-intelligence"] = (tone) => normalizeAnyPackage(auto_emotional_intelligence_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-happiness-hypothesis" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_happiness_hypothesis_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-happiness-hypothesis"] = (tone) => normalizeAnyPackage(auto_the_happiness_hypothesis_Json, tone);
 }
