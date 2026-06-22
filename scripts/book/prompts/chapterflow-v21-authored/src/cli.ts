@@ -3353,8 +3353,10 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
-    // Auto-publish ON by default; --no-publish halts at ready-to-publish for review.
-    autoPublish: flags["no-publish"] !== true,
+    // Auto-publish ON by default; --no-publish (in any form) halts for review. Presence-
+    // check, not `!== true`, so a parser that binds a following token as the flag's value
+    // can't make the opt-out fail OPEN.
+    autoPublish: !("no-publish" in flags),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });

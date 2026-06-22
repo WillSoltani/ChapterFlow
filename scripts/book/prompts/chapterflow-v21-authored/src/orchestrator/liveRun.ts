@@ -309,7 +309,11 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // Auto-publish is ON by default: on QC convergence the full promote gate runs and the
   // package is committed + pushed to main (NOT a live deploy). --no-publish restores the
   // old behavior of halting at ready-to-publish and printing the manual ship command.
-  const autoPublish = flags["no-publish"] !== true;
+  // Opt out on the PRESENCE of --no-publish in any form. The greedy arg parser can bind
+  // the following token as this flag's value (`--no-publish 0` → "0"), so a `!== true`
+  // check would fail OPEN (keep publishing) on the one human-safety lever. Presence-check
+  // fails SAFE: any --no-publish disables auto-publish.
+  const autoPublish = !("no-publish" in flags);
   const plan = flags["plan"] === true;
 
   console.log(bold(`\n📖 Book run — ${bookId}`));

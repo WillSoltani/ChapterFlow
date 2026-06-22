@@ -1444,7 +1444,7 @@ function planOnly(bookId: string, deps: AutopilotDeps): AutopilotOutcome {
 export function formatOutcome(o: AutopilotOutcome): string {
   switch (o.status) {
     case "shipped": return `AUTOPILOT — ${o.bookId}: already shipped (packaged).`;
-    case "published": return `AUTOPILOT — ${o.bookId}: PUBLISHED from round ${o.roundId}.`;
+    case "published": return `AUTOPILOT — ${o.bookId}: ${o.message ?? `PUBLISHED from round ${o.roundId}.`}`;
     case "ready": return `AUTOPILOT — ${o.bookId}: ${o.message}`;
     case "halt": return `AUTOPILOT HALT — ${o.bookId} [phase ${o.phase} · ${o.category}]: ${o.reason}`;
   }

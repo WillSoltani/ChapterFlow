@@ -4,7 +4,7 @@ import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { stagingPlan, formatPublishAfterQcResult, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
+import { stagingPlan, formatPublishAfterQcResult, publishBranchError, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
 
 const BOOK = "zz-fixture-publish-git";
 const ROUND = "r-git";
@@ -52,6 +52,28 @@ test("formatPublishAfterQcResult: a commit that SUCCEEDED but failed to PUSH is 
   assert.match(out, /push: FAILED/);
   assert.match(out, /EXISTS locally/);
   assert.doesNotMatch(out, /no publish\/commit\/push performed/, "must NOT claim nothing was committed when a commit exists");
+});
+
+test("publishBranchError: refuses to publish off main, allows main, honors the override", () => {
+  // A fake git runner that only answers `rev-parse --abbrev-ref HEAD`.
+  const onBranch = (branch: string) => (_cmd: string, a: string[]): string =>
+    a.join(" ") === "rev-parse --abbrev-ref HEAD" ? `${branch}\n` : "";
+
+  assert.equal(publishBranchError(onBranch("main")), null, "on main → safe to publish");
+  const err = publishBranchError(onBranch("feat/auto-publish-after-qc"));
+  assert.ok(
+    err && /Refusing to publish off main/.test(err) && /feat\/auto-publish-after-qc/.test(err),
+    `off-main commit must be refused loudly, got: ${err}`,
+  );
+
+  const prev = process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH;
+  process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH = "1";
+  try {
+    assert.equal(publishBranchError(onBranch("feat/x")), null, "override bypasses the guard");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH;
+    else process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH = prev;
+  }
 });
 
 test("formatPublishAfterQcResult: a genuine PRE-commit failure still says 'no commit performed'", () => {

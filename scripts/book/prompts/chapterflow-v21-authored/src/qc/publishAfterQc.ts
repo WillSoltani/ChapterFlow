@@ -185,6 +185,28 @@ function git(args: string[], runner: Runner): string {
   return runner("git", args, { cwd: REPO_ROOT });
 }
 
+/**
+ * Branch guard for publishing. The convention is to commit + push the v21 package
+ * DIRECTLY to main, and auto-publish (book-run/book-autopilot, default-on) runs this
+ * UNATTENDED — where `git push` (push.default=simple) silently pushes whatever branch is
+ * checked out. A run from a feature branch would therefore publish THERE and falsely
+ * report "pushed to main". This guard returns an error string when HEAD is not `main`
+ * (so the caller fails LOUD and the conductor HALTs with a clear reason instead of
+ * silently mis-targeting), or null when it is safe to commit. Override for tests / edge
+ * ops with CHAPTERFLOW_ALLOW_PUBLISH_BRANCH=1.
+ */
+export function publishBranchError(runner: Runner): string | null {
+  if (process.env.CHAPTERFLOW_ALLOW_PUBLISH_BRANCH === "1") return null;
+  let branch = "";
+  try {
+    branch = git(["rev-parse", "--abbrev-ref", "HEAD"], runner).trim();
+  } catch {
+    branch = "";
+  }
+  if (branch === "main") return null;
+  return `Refusing to publish off main: HEAD is on "${branch || "(unknown)"}". Publishing commits + pushes the package directly to main — check out main, or set CHAPTERFLOW_ALLOW_PUBLISH_BRANCH=1 to override.`;
+}
+
 function cachedFiles(runner: Runner): string[] {
   return git(["diff", "--cached", "--name-only"], runner)
     .split(/\r?\n/)
@@ -425,6 +447,11 @@ function stageAndMaybeCommit(args: {
     return { staged, errors: unsafe.map((p) => `Refusing to stage unsafe publish artifact: ${rel(p)}`) };
   }
   if (!args.commit) return { staged, errors: [] };
+
+  // Refuse to write publish history off main — fail loud rather than let an unattended
+  // auto-publish silently commit + push to the wrong (current) branch.
+  const branchErr = publishBranchError(args.runner);
+  if (branchErr) return { staged, errors: [branchErr] };
 
   if (staged.length === 0) return { staged, errors: ["No production files were available to stage."] };
   const preExistingStaged = cachedFiles(args.runner);
