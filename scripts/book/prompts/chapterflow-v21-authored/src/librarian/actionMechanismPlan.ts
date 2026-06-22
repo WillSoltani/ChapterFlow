@@ -29,6 +29,7 @@
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const ACTION_MECHANISM_PLANS_DIR = resolve(__dirname, "../../state/action-mechanism-plans");
@@ -60,15 +61,6 @@ export type ActionMechanismPlan = {
   allocation: Record<number, ActionMechanismAllocation>;
   diagnostics: { mechanismCounts: Record<string, number> };
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 export function planActionMechanisms(bookId: string, from: number, to: number): ActionMechanismPlan {
   // Defensive: a NaN/<1/inverted range from the CLI would index the rotation

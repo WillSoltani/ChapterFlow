@@ -102,6 +102,24 @@ test("SL4 needs BOTH a real citation and a prop — neither alone fires", () => 
   );
 });
 
+test("SL4 treats a generic 'Journal of X' as a citation only when bound to a year (FP class)", () => {
+  // Without a year, "Journal of X" is ambiguous (a travel/finance journal-as-magazine, a
+  // personal journal) — staging it with a prop must NOT fire.
+  for (const s of [
+    "She flips open the Journal of Travel notes and reads the bird list aloud.",
+    "He grabs the Journal of Finance handout from the rack by the cafe door.",
+  ]) {
+    assert.deepEqual(
+      checkScaffoldLeak(chapterWith(s)).filter((f) => f.checkId === "SL4.citation_prop"),
+      [],
+      `SL4 false-fired on a year-free generic journal: ${s}`,
+    );
+  }
+  // Bound to a year it IS a citation — staging it as a visual aid still fires.
+  const cited = checkScaffoldLeak(chapterWith("Maya pins the 2019 Journal of Neuroscience figure to the board and points."));
+  assert.ok(cited.some((f) => f.checkId === "SL4.citation_prop"), JSON.stringify(cited));
+});
+
 test("SL5 flags publication metadata in reader prose (edition/publisher), not a finding citation", () => {
   // The #12 feedback case: "Donald Norman's 2013 revised edition from Basic Books".
   const edition = checkScaffoldLeak(chapterWith("Donald Norman's 2013 revised edition from Basic Books makes the point about doors."));
@@ -121,6 +139,12 @@ test("SL5 does NOT fire on a bare 'edition'/year, a publisher-as-setting, or a b
     "She joined Penguin in 2011 as a junior editor and rose fast.",
     "He started at Random House in 1998 sorting mail in the basement.",
     "By 2016 she ran the whole marketing team at HarperCollins.",
+    // Single-token imprints that are really a PERSON or PLACE + a cue word — pruned from
+    // the publisher list so they no longer false-fire (the SL5 name/place-collision class).
+    "Harper published her first poem at nine, in the school magazine.",
+    "The Riverhead diner published its weekend menu every Friday.",
+    // A physical book as a scene PROP — a qualified edition with no publication cue nearby.
+    "She kept the first edition on the shelf for luck, next to the dried flowers.",
   ];
   for (const s of cases) {
     assert.deepEqual(

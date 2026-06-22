@@ -23,6 +23,7 @@ import { fileURLToPath } from "url";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 
 import type { CounterShape } from "../critics/bookPatternAudit.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const RHETORIC_PLANS_DIR = resolve(__dirname, "../../state/rhetoric-plans");
@@ -65,15 +66,6 @@ export type RhetoricPlan = {
   allocation: Record<number, RhetoricAllocation>;
   diagnostics: { counterShapeCounts: Record<string, number>; hookClassCounts: Record<string, number> };
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 export function planRhetoric(bookId: string, from: number, to: number): RhetoricPlan {
   // Defensive: a NaN/<1/inverted range from the CLI would index the rotation

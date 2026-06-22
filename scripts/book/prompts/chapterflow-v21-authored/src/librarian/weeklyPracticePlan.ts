@@ -26,6 +26,7 @@
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const WEEKLY_PRACTICE_PLANS_DIR = resolve(__dirname, "../../state/weekly-practice-plans");
@@ -56,15 +57,6 @@ export type WeeklyPracticePlan = {
   allocation: Record<number, WeeklyPracticeAllocation>;
   diagnostics: { formCounts: Record<string, number> };
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 export function planWeeklyPractices(bookId: string, from: number, to: number): WeeklyPracticePlan {
   if (!Number.isInteger(from) || !Number.isInteger(to) || from < 1 || to < from) {

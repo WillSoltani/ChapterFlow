@@ -12,11 +12,14 @@ import { loadStakes, planStakes, formatStakesForChapter } from "../src/librarian
 
 const BOOK = "zz-fixture-stakes";
 
-test("planStakes: every chapter gets perChapter DISTINCT stakes", () => {
+test("planStakes: every chapter gets perChapter DISTINCT stakes, each carrying its definition", () => {
   const plan = planStakes(BOOK, 1, 12, 3);
-  for (const [n, ids] of Object.entries(plan.allocation)) {
+  assert.equal(plan.schemaVersion, "stakes-plan-v2");
+  for (const [n, dealt] of Object.entries(plan.allocation)) {
+    const ids = dealt.map((s) => s.id);
     assert.equal(new Set(ids).size, ids.length, `ch${n} reused a stake: ${ids.join(", ")}`);
-    assert.equal(ids.length, 3);
+    assert.equal(dealt.length, 3);
+    for (const s of dealt) assert.ok(s.id && s.definition, `ch${n} stake must carry id + definition inline`);
   }
 });
 
@@ -44,7 +47,7 @@ test("planStakes: no stake saturates the book, and the deal never false-throws (
       if (N >= 9) {
         // realistic book lengths: the structural max coverage is perChapter/N ≤ 3/9 = 33%
         const cov = new Map<string, number>();
-        for (const ids of Object.values(plan.allocation)) for (const id of new Set(ids)) cov.set(id, (cov.get(id) ?? 0) + 1);
+        for (const dealt of Object.values(plan.allocation)) for (const id of new Set(dealt.map((s) => s.id))) cov.set(id, (cov.get(id) ?? 0) + 1);
         for (const [id, c] of cov) {
           assert.ok(c / N <= 0.5 + 1e-9, `N=${N} ${book}: stake "${id}" covers ${c}/${N} chapters (>50%)`);
         }
@@ -58,8 +61,25 @@ test("formatStakesForChapter: emits a fit-or-substitute menu naming each dealt s
   const lines = formatStakesForChapter(plan, 1).join("\n");
   assert.match(lines, /STAKES/);
   assert.match(lines, /FEEL the cost/i);
-  for (const id of plan.allocation[1]) assert.ok(lines.includes(id), `card must name the dealt stake ${id}`);
+  for (const s of plan.allocation[1]) {
+    assert.ok(lines.includes(s.id), `card must name the dealt stake ${s.id}`);
+    assert.ok(lines.includes(s.definition), `card must inline the definition for ${s.id}`);
+  }
   assert.deepEqual(formatStakesForChapter(plan, 99), [], "a chapter with no allocation yields no lines");
+});
+
+test("formatStakesForChapter: formats from the plan alone — no palette re-read, no blank definitions", () => {
+  // A made-up id that is NOT in the palette still renders its inline definition, proving
+  // the card reads from the plan (not the disk) and can never emit a blank "- id: ".
+  const plan = {
+    schemaVersion: "stakes-plan-v2" as const,
+    bookId: "zz-fixture",
+    createdAt: "",
+    perChapter: 1,
+    allocation: { 1: [{ id: "made-up-stake", definition: "a felt cost the palette never had" }] },
+  };
+  const lines = formatStakesForChapter(plan, 1).join("\n");
+  assert.match(lines, /made-up-stake: a felt cost the palette never had/);
 });
 
 test("loadStakes: the palette is large enough and has unique ids", () => {

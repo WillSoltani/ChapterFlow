@@ -26,3 +26,14 @@ test("A17 does NOT fire on a gold-style coordinated list (the A13 comma trap)", 
   assert.deepEqual(checkTryThisNowComplexity("Find one nudge you use often. Label it price, fear, status, or novelty."), []);
   assert.deepEqual(checkTryThisNowComplexity("Write your pitch in three lines: WHY first, HOW second, WHAT last."), []);
 });
+
+test("A17 does NOT fire on the NOUN sense (your group / the order) before a 3-item list", () => {
+  // "group"/"order"/"ranking" are nouns here, not ranking verbs — a determiner precedes
+  // them, directly OR across an adjective. The imperative verb sense still fires (above).
+  assert.deepEqual(checkTryThisNowComplexity("Text your group: Sam, Pat, and Lee, just to say hi."), []);
+  assert.deepEqual(checkTryThisNowComplexity("Notice the order they arrive in: email, Slack, and texts."), []);
+  // determiner + ADJECTIVE + noun (the adjective-gap FP class an adversarial probe found):
+  assert.deepEqual(checkTryThisNowComplexity("Text your daily group: Maya, Devon, and Priya, then put the phone down."), []);
+  assert.deepEqual(checkTryThisNowComplexity("Trust the natural order of the day: coffee, a shower, and a walk."), []);
+  assert.deepEqual(checkTryThisNowComplexity("Scribble a quick ranking: sleep, water, and a walk, and tape it up."), []);
+});

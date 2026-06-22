@@ -220,8 +220,14 @@ export function checkMaxWordCount(text: string | undefined, fieldLabel: string, 
  * Advisory MAJOR — surfaces in the writer card + repair loop, never blocks.
  */
 const TRY_THIS_NOW_WORD_CAP = 30;
+// The leading negative lookbehind skips a determiner/possessive — and any 0-2 modifier
+// words between it and the homograph ("your DAILY group", "a QUICK ranking") — so the NOUN
+// senses don't false-fire; only the imperative VERB sense ("Rank A, B, and C", "Then sort
+// A, B, C") should. The {0,2} word gap closes the adjective-between-determiner-and-noun FP
+// class an adversarial probe surfaced; punctuation between (a comma) still breaks the gap,
+// so a real imperative after a clause boundary ("Each morning, rank …") still fires.
 const RANKING_LIST_RE =
-  /\b(?:rank|ranking|sort|sorting|order|ordering|prioriti[sz]e|prioriti[sz]ing|group|grouping|categori[sz]e|categori[sz]ing)\b[^.?!]*?\b\w+(?:\s+\w+){0,2},\s+\w+(?:\s+\w+){0,2},\s+(?:and|or)\s+\w+/i;
+  /(?<!\b(?:your|the|a|an|its|their|this|that|these|those|his|her|our|my|each|every)\s(?:\w+\s){0,2})\b(?:rank|ranking|sort|sorting|order|ordering|prioriti[sz]e|prioriti[sz]ing|group|grouping|categori[sz]e|categori[sz]ing)\b[^.?!]*?\b\w+(?:\s+\w+){0,2},\s+\w+(?:\s+\w+){0,2},\s+(?:and|or)\s+\w+/i;
 
 export function checkTryThisNowComplexity(text: string | undefined): CriticFinding[] {
   if (!text) return [];

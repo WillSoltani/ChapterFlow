@@ -25,6 +25,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import type { ChapterV21 } from "../types.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const ANSWER_KEY_PLANS_DIR = resolve(__dirname, "../../state/answer-key-plans");
@@ -46,15 +47,6 @@ export type AnswerKeyPlan = {
   /** book-wide position counts + the largest position fraction (must be < AGGREGATE_CEILING). */
   aggregate: { counts: number[]; maxFraction: number };
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 /** Balanced position counts for Q questions over P positions; the remainder
  *  (when Q is not divisible by P) is spread starting at `offset` so it rotates

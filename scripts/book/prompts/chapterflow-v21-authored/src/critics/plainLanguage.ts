@@ -26,6 +26,7 @@
 
 import { ChapterV21, CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
+import { splitSentences } from "./textUtils.js";
 
 /** Reader-facing prose sentence cap (words). Above this a sentence is a run-on
  *  that hurts comprehension; the authoring rule is "no sentence over 30 words"
@@ -87,9 +88,6 @@ const PLAIN_WORD_SWAPS: ReadonlyArray<{ re: RegExp; simple: string }> = [
   { re: /\b(?:the leap |moving )?from description to prescription\b/i, simple: "treating what worked for someone as what you must do" },
 ];
 
-function splitSentences(text: string): string[] {
-  return text.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
-}
 
 function wordCount(text: string): number {
   return (text.match(/\b[A-Za-z0-9'’-]+\b/g) ?? []).length;
