@@ -21,7 +21,9 @@
  *     npx tsx src/cli.ts book-run <bookId> [...same flags]
  *
  * Flags: --max-parallel N, --max-repair N, --plan (dry-run spawn plan),
- *        --auto-publish (DANGER: skips the human publish gate — off by default),
+ *        --no-publish (halt at ready-to-publish for review; auto-publish is ON by
+ *          default — on convergence it runs the full promote gate, then commits + pushes
+ *          the package to main; NOT a live deploy, which stays manual),
  *        --no-notify (terminal only), --sound (notification sound), --log <file>.
  */
 import { spawn } from "child_process";
@@ -267,7 +269,7 @@ function parseArgv(raw: string[]): { args: string[]; flags: Flags } {
 export async function runLive(args: string[], flags: Flags): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--auto-publish] [--no-notify] [--sound] [--log <file>]");
+    console.error("Usage: book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]");
     return 2;
   }
 
@@ -304,7 +306,14 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
 
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
-  const autoPublish = flags["auto-publish"] === true;
+  // Auto-publish is ON by default: on QC convergence the full promote gate runs and the
+  // package is committed + pushed to main (NOT a live deploy). --no-publish restores the
+  // old behavior of halting at ready-to-publish and printing the manual ship command.
+  // Opt out on the PRESENCE of --no-publish in any form. The greedy arg parser can bind
+  // the following token as this flag's value (`--no-publish 0` → "0"), so a `!== true`
+  // check would fail OPEN (keep publishing) on the one human-safety lever. Presence-check
+  // fails SAFE: any --no-publish disables auto-publish.
+  const autoPublish = !("no-publish" in flags);
   const plan = flags["plan"] === true;
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
@@ -312,11 +321,13 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     dim(
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
         `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}` +
-        `${autoPublish ? " · AUTO-PUBLISH ⚠️ (human gate skipped)" : ""}`,
+        `${autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
   if (autoPublish) {
-    console.log(yellow("   ⚠️  --auto-publish will ship without a human go-ahead. Publishing is irreversible."));
+    console.log(yellow("   ⚠️  On QC convergence this auto-publishes: the full promote gate runs, then the package is committed + pushed to main. This is NOT a live deploy (still manual) and is reversible via git. Pass --no-publish to halt for review instead."));
+  } else {
+    console.log(dim("   --no-publish: will halt at ready-to-publish and print the manual ship command."));
   }
   console.log("");
   notify(`📖 ${bookId} · launching`, "Book run started — you'll get a ping on every major event.");

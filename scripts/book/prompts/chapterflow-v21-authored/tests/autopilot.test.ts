@@ -323,7 +323,7 @@ test("R4: a NEEDS_MORE_QC (re-QC-only) chapter gets NO surgical edit session (on
   }
 });
 
-test("autopilot --auto-publish ships on a clean QC pass", async () => {
+test("auto-publish ships on a clean QC pass — runs the promote gate, then commits + pushes", async () => {
   const statuses = [
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
@@ -331,7 +331,31 @@ test("autopilot --auto-publish ships on a clean QC pass", async () => {
   const { deps, verbs } = happyDeps(statuses);
   const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
   assert.equal(outcome.status, "published");
-  assert.ok(verbs.some((v) => v[0] === "publish-after-qc"), "auto-publish runs publish-after-qc");
+  const publish = verbs.find((v) => v[0] === "publish-after-qc");
+  assert.ok(publish, "auto-publish runs publish-after-qc");
+  assert.ok(publish!.includes("--commit"), "auto-publish commits the package to main");
+  assert.ok(publish!.includes("--push"), "auto-publish pushes to main");
+});
+
+test("auto-publish HALTS (never bypasses) when the promote gate fails", async () => {
+  // A failing promote-gate check must surface as a HALT, not a publish — auto-publish
+  // removes the human go-ahead, never a gate.
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  const verbs: string[][] = [];
+  const { deps } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      verbs.push(args);
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args[0] === "publish-after-qc") return { code: 1, stdout: "", stderr: "blocker: sweep SC9 distinctness" };
+      return { code: 0, stdout: "", stderr: "" };
+    },
+  });
+  const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
+  assert.equal(outcome.status, "halt", "a failing promote gate must HALT, not publish");
+  assert.ok(verbs.some((v) => v[0] === "publish-after-qc" && v.includes("--commit")), "it ran the promote gate (publish-after-qc --commit) before halting");
 });
 
 // ── PR1 hardening ─────────────────────────────────────────────────────────────
