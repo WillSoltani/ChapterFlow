@@ -109,6 +109,7 @@ import auto_the_undoing_project_Json from "@/book-packages/the-undoing-project.v
 import auto_fooled_by_randomness_Json from "@/book-packages/fooled-by-randomness.v21.json";
 import auto_quiet_Json from "@/book-packages/quiet.v21.json";
 import auto_the_organized_mind_Json from "@/book-packages/the-organized-mind.v21.json";
+import auto_nudge_Json from "@/book-packages/nudge.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1881,4 +1882,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_organized_mind_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-organized-mind"] = (tone) => normalizeAnyPackage(auto_the_organized_mind_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "nudge" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_nudge_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["nudge"] = (tone) => normalizeAnyPackage(auto_nudge_Json, tone);
 }
