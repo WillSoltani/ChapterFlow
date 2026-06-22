@@ -3237,7 +3237,14 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
 .rl-cf-wrap {
   position: relative;
   z-index: 1;
-  margin: 3rem auto 0;
+  /* Desktop gap to the header. The 3D coverflow's active cover overflows this
+     wrapper's box upward by ~144px (translateZ/scale), and the stage is
+     vertically centered (justify-content:center), so as the covers zoom to full
+     size they ride UP into the headline/dek — the same failure the ≤1023.98px
+     block fixes with flex-start. Centering splits this margin (~16px clearance
+     per rem), so 11rem keeps the grown covers ~32px clear of the dek across
+     desktop heights (verified 1366×768 → 2560×1440). Mobile overrides below. */
+  margin: 11rem auto 0;
   width: 100%;
   max-width: 64rem;
   transform-origin: center top;
