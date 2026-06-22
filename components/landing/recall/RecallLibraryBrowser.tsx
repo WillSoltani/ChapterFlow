@@ -33,6 +33,12 @@ import { RecallBookRequestDialog } from "./RecallBookRequestDialog";
 
 const ALL = "All";
 
+// The grid reveals a first batch, then grows by STEP per "Show more" press —
+// rendering all ~106 covers at once is a wall of images. Reset to INITIAL on
+// every filter change and on close.
+const INITIAL_VISIBLE = 12;
+const VISIBLE_STEP = 24;
+
 type RecallLibraryBrowserProps = {
   open: boolean;
   onClose: () => void;
@@ -45,6 +51,11 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [requestOpen, setRequestOpen] = useState(false);
   const [requestPrefill, setRequestPrefill] = useState("");
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const gridRef = useRef<HTMLUListElement>(null);
+  // When "Show more" reveals the final batch its button unmounts; this holds the
+  // index of the first newly shown card so focus moves there (not to <body>).
+  const pendingFocusIndex = useRef<number | null>(null);
 
   const categories = useMemo(
     () => [ALL, ...deriveCategories(BOOKS_CATALOG_METADATA)],
@@ -71,8 +82,35 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
       setSelectedId(null);
       setRequestOpen(false);
       setRequestPrefill("");
+      setVisibleCount(INITIAL_VISIBLE);
     }
   }, [open]);
+
+  // A new search/category is a fresh result set — collapse back to the first
+  // batch so the user isn't dropped deep into a long, now-irrelevant list.
+  useEffect(() => {
+    setVisibleCount(INITIAL_VISIBLE);
+  }, [query, category]);
+
+  // After "Show more" reveals the final batch (its button gone), move focus to
+  // the first newly shown card so keyboard focus isn't lost (WCAG 2.4.3).
+  useEffect(() => {
+    const idx = pendingFocusIndex.current;
+    if (idx == null) return;
+    pendingFocusIndex.current = null;
+    const cards = gridRef.current?.querySelectorAll<HTMLButtonElement>(
+      "button[data-book-card]",
+    );
+    cards?.[idx]?.focus();
+  }, [visibleCount]);
+
+  const showMore = useCallback(() => {
+    const next = Math.min(visibleCount + VISIBLE_STEP, filtered.length);
+    // Final batch → the button is about to unmount; remember the first newly
+    // shown card so the effect below moves focus there (not to <body>).
+    if (next >= filtered.length) pendingFocusIndex.current = visibleCount;
+    setVisibleCount(next);
+  }, [visibleCount, filtered.length]);
 
   // Return to the grid from the detail view, keeping focus in the overlay (the
   // detail's Back button is about to unmount, which would otherwise drop focus
@@ -208,9 +246,10 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
           </div>
         </header>
 
-        {/* live count for screen readers */}
+        {/* live count for screen readers (announces filter + "show more" changes) */}
         <p aria-live="polite" className="sr-only">
-          {filtered.length} books shown
+          Showing {Math.min(visibleCount, filtered.length)} of {filtered.length}{" "}
+          books
         </p>
 
         {/* ── Body: detail view, grid, or empty state ── */}
@@ -220,13 +259,35 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
           ) : filtered.length === 0 ? (
             <EmptyState query={query} onRequest={() => openRequest(query.trim())} />
           ) : (
-            <ul className="rl-browse-grid">
-              {filtered.map((book) => (
-                <li key={book.id}>
-                  <BookCard book={book} onSelect={() => setSelectedId(book.id)} />
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul ref={gridRef} className="rl-browse-grid">
+                {filtered.slice(0, visibleCount).map((book) => (
+                  <li key={book.id}>
+                    <BookCard book={book} onSelect={() => setSelectedId(book.id)} />
+                  </li>
+                ))}
+              </ul>
+              {visibleCount < filtered.length ? (
+                <div className="mt-12 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={showMore}
+                    className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                    style={{
+                      color: "var(--cf-recall-ink)",
+                      border: "1px solid var(--cf-recall-border-strong)",
+                      // @ts-expect-error -- CSS custom property for the focus ring color
+                      "--tw-ring-color": "var(--cf-recall-accent-line)",
+                    }}
+                  >
+                    Show more books
+                    <span style={{ color: "var(--cf-recall-ink-faint)" }}>
+                      ({filtered.length - visibleCount} more)
+                    </span>
+                  </button>
+                </div>
+              ) : null}
+            </>
           )}
         </div>
       </Dialog>
@@ -252,6 +313,7 @@ function BookCard({
   return (
     <button
       type="button"
+      data-book-card
       onClick={onSelect}
       aria-label={`${book.title} by ${book.author} — view details`}
       className="rl-book-card group block w-full text-left focus-visible:outline-none"
