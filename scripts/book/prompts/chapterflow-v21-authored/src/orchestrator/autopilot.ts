@@ -53,7 +53,7 @@ import {
 import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
-import { sweepPackPath } from "../qc/sweep.js";
+import { sweepPackPath, sweepTwoRoundConfirmed } from "../qc/sweep.js";
 import { barPackPath } from "../qc/barReview.js";
 import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
@@ -75,7 +75,7 @@ export type AutopilotPhase = "research" | "write" | "gate" | "qc" | "ready" | "s
 
 /** Map a BookStatus to the conductor's discrete phase, using the SAME structured
  *  conditions computeBookStatus uses (kept in sync by deriving from its fields). */
-export function decidePhase(s: BookStatus): AutopilotPhase {
+export function decidePhase(s: BookStatus, sweepConfirmed = true): AutopilotPhase {
   if (s.packaged) return "shipped";
   const allWritten = s.expectedChapters != null && s.writtenChapters >= s.expectedChapters && s.writtenChapters > 0;
   // Gate gate→qc on the FULL deterministic battery (deterministicClean), not just ship-gate +
@@ -86,7 +86,12 @@ export function decidePhase(s: BookStatus): AutopilotPhase {
   // never blocks progression on an unreadable book.
   const allGated = allWritten && s.gatedChapters === s.writtenChapters && s.bookGatePass === true && s.deterministicClean !== false;
   const allQcd = allWritten && s.qcdChapters === s.writtenChapters;
-  if (allGated && allQcd) return "ready"; // == publishable && !packaged
+  // Item B: a fully-QC'd book is only "ready" once the sweep is two-read-confirmed. If it converged
+  // on a single (possibly lucky) sweep — e.g. a resumed run that reached PASS in a prior process —
+  // route it back to "qc" so doQcWithRepair runs the independent confirming round before publish,
+  // instead of going straight to handleReady (the resume auto-publish bypass). Defaults true so
+  // non-conductor callers (and the unit tests of the phase ladder) are unaffected.
+  if (allGated && allQcd) return sweepConfirmed ? "ready" : "qc";
   if (!allWritten) {
     const researchPending = s.writtenChapters === 0 && (s.stage.startsWith("research") || s.expectedChapters == null);
     return researchPending ? "research" : "write";
@@ -127,6 +132,11 @@ export type AutopilotDeps = {
    *  across rounds (the convergence fix) instead of oscillating. Fail-safe → false
    *  (a full round is always correct), so a read error never forces an incremental carry. */
   anyCarryable: (bookId: string) => boolean;
+  /** Item B — true iff the book has TWO independent clear sweep reads over its CURRENT bytes
+   *  (sweepTwoRoundConfirmed). The conductor won't declare QC convergence on a single lucky
+   *  stochastic sweep read; it requires this cross-round corroboration first. Fail-safe → false
+   *  (an unconfirmed book just runs one more confirming round; a read error never force-ships). */
+  sweepConfirmed: (bookId: string) => boolean;
   /** The stable keys of every MAJOR-tier deterministic finding over the whole book
    *  (ship-gate majors + book-gate majors: A13 commas, C23 dup protagonist, BP28/29/31
    *  templating, …). These are INVISIBLE to qc-converge (it gates on blockers only), so a
@@ -439,6 +449,14 @@ function defaultAnyCarryable(bookId: string): boolean {
   }
 }
 
+function defaultSweepConfirmed(bookId: string): boolean {
+  try {
+    return sweepTwoRoundConfirmed(bookId, loadBookChapters(bookId)).ok;
+  } catch {
+    return false;
+  }
+}
+
 /** All MAJOR-tier deterministic finding keys for the book — ship-gate majors (per-chapter,
  *  e.g. A13/C23) keyed by chapter+catalogId+unit, plus book-gate majors (e.g. BP28/29/31)
  *  keyed by catalogId+named-chapters. Fail-safe → empty set. The keys must be STABLE across
@@ -735,6 +753,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     mkSessionId: d?.mkSessionId ?? defaultMkSessionId,
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
     anyCarryable: d?.anyCarryable ?? defaultAnyCarryable,
+    sweepConfirmed: d?.sweepConfirmed ?? defaultSweepConfirmed,
     majorFindingKeys: d?.majorFindingKeys ?? defaultMajorFindingKeys,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
@@ -823,8 +842,11 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         return mkHalt(bookId, safePhase(bookId, deps), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
       }
       const status = deps.statusOf(bookId);
-      const phase = decidePhase(status);
-      const sig = `${phase}:${status.writtenChapters}/${status.expectedChapters ?? "?"}:${status.gatedChapters}:${status.qcdChapters}`;
+      const sweepConfirmed = deps.sweepConfirmed(bookId);
+      const phase = decidePhase(status, sweepConfirmed);
+      // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
+      // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.
+      const sig = `${phase}:${status.writtenChapters}/${status.expectedChapters ?? "?"}:${status.gatedChapters}:${status.qcdChapters}:${sweepConfirmed ? "c" : "u"}`;
       deps.log(`[autopilot] phase=${phase} written=${status.writtenChapters}/${status.expectedChapters ?? "?"} gated=${status.gatedChapters} qcd=${status.qcdChapters}`);
 
       if (phase === "shipped") return { status: "shipped", bookId };
@@ -870,7 +892,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
 
 /** decidePhase guarded against a statusOf that itself throws (used only in halt/error paths). */
 function safePhase(bookId: string, deps: AutopilotDeps): AutopilotPhase {
-  try { return decidePhase(deps.statusOf(bookId)); } catch { return "research"; }
+  try { return decidePhase(deps.statusOf(bookId), deps.sweepConfirmed(bookId)); } catch { return "research"; }
 }
 
 // ── Phase: research ──────────────────────────────────────────────────────────
@@ -958,6 +980,19 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, he
  *  advances to ready). The repair loop honors qc-diagnose governance + stuck-detect. */
 async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
+  // Item B — two-round sweep confirmation. The cross-chapter sweep is stochastic, so a single
+  // PASS can be a lucky read that auto-publishes a book a re-read would block. On a PASS we require
+  // a SECOND independent (fresh) sweep over the now-frozen book to ALSO be clear before declaring
+  // convergence. A confirming round is NOT a repair, so it does not spend the repair budget; it is
+  // separately capped so a sweep that refuses to corroborate escalates instead of looping.
+  let confirmRounds = 0;
+  // Resume case: a book whose chapters all already carry a fresh PUBLISHABLE pass but is NOT yet
+  // sweep-confirmed (e.g. it reached PASS on a single sweep in a prior process) must run an
+  // INDEPENDENT confirming sweep before publish. Forcing a fresh sweep on the first round both
+  // opens the round (an all-carry incremental round otherwise re-QCs nothing) and produces that
+  // second read. Harmless for a fresh run (round 0 has no prior sweep to carry anyway).
+  let forceFreshSweep = deps.anyCarryable(bookId) && !deps.sweepConfirmed(bookId);
+  const MAX_CONFIRM_ROUNDS = 2;
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
     // Refresh the run lock at each round boundary: a full QC iteration (initial round + repair
     // rounds, each many 30-min codex sessions) can run for HOURS, past the cross-host stale
@@ -978,7 +1013,8 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     // Tiebreak is ON for EVERY round: it only costs extra reads for BORDERLINE chapters,
     // and the driver's dynamic-wave loop now actually reviews the t2/t3 cards — so a
     // borderline INITIAL round smooths the variance instead of forcing a needless repair.
-    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0 || deps.anyCarryable(bookId), tiebreak: true });
+    const round = await driveQcRound(bookId, maxParallel, deps, { incremental: attempt > 0 || forceFreshSweep || deps.anyCarryable(bookId), tiebreak: true, forceFreshSweep });
+    forceFreshSweep = false; // consumed by this round
     if (round.verdict === "ERROR" || !round.roundId) {
       return mkHalt(bookId, "qc", "infra", `could not open/finalize a QC round (${round.note})`);
     }
@@ -987,7 +1023,18 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     }
     if (round.verdict === "PASS") {
       deps.log(`[autopilot] QC PASS on round ${round.roundId}`);
-      return null; // re-loop → ready
+      // Item B: a single PASS is not enough to auto-publish — require a SECOND independent clear
+      // sweep over the identical (now-frozen) book. If not yet confirmed, run one more round whose
+      // sweep is forced FRESH (no carry) so it is a genuine corroboration, not a copy.
+      if (deps.sweepConfirmed(bookId)) return null; // confirmed → ready
+      if (confirmRounds >= MAX_CONFIRM_ROUNDS) {
+        return mkHalt(bookId, "qc", "content", `QC reads PASS but an independent confirming sweep would not corroborate after ${MAX_CONFIRM_ROUNDS} attempts — the stochastic cross-chapter sweep keeps disagreeing on frozen content. Escalate / inspect: npx tsx src/cli.ts qc-diagnose ${bookId} --round ${round.roundId}`);
+      }
+      confirmRounds++;
+      forceFreshSweep = true; // next round: independent fresh sweep over the frozen book
+      attempt--; // a confirming round is not a repair — do not consume the repair budget
+      deps.log(`[autopilot] QC PASS on ${round.roundId}; running an independent confirming sweep (item B ${confirmRounds}/${MAX_CONFIRM_ROUNDS})`);
+      continue;
     }
     if (round.verdict === "INCOMPLETE") {
       return mkHalt(bookId, "qc", "infra", `QC round ${round.roundId} INCOMPLETE (reviewer submissions still missing after a narrow retry) — a reviewer agent likely failed. Inspect: npx tsx src/cli.ts qc-diagnose ${bookId} --round ${round.roundId}`);
@@ -997,6 +1044,11 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const drivers = summarizeRoundDrivers(bookId, round.roundId);
       return mkHalt(bookId, "qc", "content", `QC still REVISE after ${maxRepair} repair rounds — escalate. Last round ${round.roundId} unresolved: ${drivers || "see qc-diagnose"}. (If these are sweep/templating findings it is likely cross-chapter VARIETY, not a source limit; if confirmRead/factual, check source grounding.)`);
     }
+    // A repair is about to change content, which resets sweepTwoRoundConfirmed's notion of "the
+    // current bytes" — so the item-B confirm budget restarts too. Without this, a confirming round
+    // that legitimately CAUGHT a flip (→ repair) would burn the cap and a later genuinely-converged
+    // version could be denied its full 2-read confirmation (a premature, false HALT).
+    confirmRounds = 0;
     const diagnose = await deps.runVerb(["qc-diagnose", bookId, "--round", round.roundId]);
     deps.log(`[autopilot] qc-diagnose (round ${round.roundId}):\n${diagnose.stdout.slice(0, 600)}`);
     // Defensive: the governance (major-disposition) and no-progress decisions below read ONLY
@@ -1105,11 +1157,14 @@ type QcRoundResult = { roundId: string | null; verdict: "PASS" | "REVISE" | "INC
  *  a fenced codex reviewer spawner. Maps the driver's structured outcome → QcRoundResult.
  *  `incremental` (repair rounds) re-reviews only changed chapters; `tiebreak` gathers
  *  extra bar reads for borderline chapters. */
-async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps, opts: { incremental: boolean; tiebreak: boolean }): Promise<QcRoundResult> {
+async function driveQcRound(bookId: string, maxParallel: number, deps: AutopilotDeps, opts: { incremental: boolean; tiebreak: boolean; forceFreshSweep?: boolean }): Promise<QcRoundResult> {
   // Open the round + write first-wave task cards (also runs the deterministic preflight).
   const createArgs = ["qc-orchestrate", bookId, "--create"];
   if (opts.incremental) createArgs.push("--incremental");
   if (opts.tiebreak) createArgs.push("--tiebreak");
+  // Item B confirming round: force a FRESH sweep (no carry-forward) so the second clear read is
+  // a genuinely independent corroboration, not a copy of the prior PASS.
+  if (opts.forceFreshSweep) createArgs.push("--no-sweep-carry");
   const create = await deps.runVerb(createArgs);
   const roundId = parseRoundId(create.stdout) ?? parseRoundId(create.stderr);
   if (!roundId) return { roundId: null, verdict: "ERROR", note: `--create produced no round id (preflight may have blocked): ${(create.stderr || create.stdout).slice(0, 300)}` };
@@ -1409,7 +1464,7 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
 
 function planOnly(bookId: string, deps: AutopilotDeps): AutopilotOutcome {
   const status = deps.statusOf(bookId);
-  const phase = decidePhase(status);
+  const phase = decidePhase(status, deps.sweepConfirmed(bookId));
   const expected = deps.expectedChapterNumbers(bookId);
   const written = new Set(status.chapters.filter((c) => c.written).map((c) => c.number));
   const toWrite = expected.filter((n) => !written.has(n)).length || Math.max(0, (status.expectedChapters ?? 0) - status.writtenChapters);

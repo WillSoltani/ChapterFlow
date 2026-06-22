@@ -130,3 +130,39 @@ test("sweepChapterStatus: scene_skeleton follows the same distinctiveness rule; 
   // single-chapter quiz/behavioral finding with a short quote).
   assert.equal(sweepChapterStatus(baseRec("REVISE", [FQ("repeated_unit", "A labelled choice.", [2], "blocker")]), 2, "h2", ROUND), "FAIL", "a single-chapter short-quote finding still gates");
 });
+
+// ── Mechanism 1 — sticky per-chapter carry / cross-round corroboration ────────────────────────
+// A single stochastic sweep read must not FAIL a chapter whose bytes never moved when the prior
+// round did NOT gate it (the proven cross-chapter-sweep non-determinism). The `prior` arg is
+// injected here so these stay pure (no disk).
+test("Mechanism 1: an UNCORROBORATED gate on byte-frozen content (prior PASSed it) is DEMOTED to PASS", () => {
+  const cur = baseRec("REVISE", [F([2], "blocker")]);
+  const priorClear = baseRec("PASS", []); // PASS → recordGatesChapter(prior,2) = false; contentHashes {2:h2} match
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorClear), "PASS", "an uncorroborated upward flip on frozen content must not gate");
+});
+
+test("Mechanism 1: a CORROBORATED gate (prior ALSO gated the chapter) STILL FAILs over frozen content", () => {
+  const cur = baseRec("REVISE", [F([2], "blocker")]);
+  const priorGated = baseRec("REVISE", [F([2], "blocker")]); // prior gated ch2 too → corroborated
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorGated), "FAIL", "two independent reads agreeing on a gate must block");
+});
+
+test("Mechanism 1: when the chapter's CONTENT CHANGED since the prior round, a fresh single read is trusted (gate stands)", () => {
+  const cur = baseRec("REVISE", [F([2], "blocker")]);
+  const priorOtherContent = baseRec("PASS", []);
+  priorOtherContent.contentHashes = { "2": "h2-OLD", "5": "h5" }; // ch2 moved since prior → not frozen
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorOtherContent), "FAIL", "a gate on freshly-changed content is not a flip — it stands on one read");
+});
+
+test("Mechanism 1: with NO prior round the gate stands (fail-safe = today's behavior)", () => {
+  const cur = baseRec("REVISE", [F([2], "blocker")]);
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, null), "FAIL", "no prior corroboration data ⇒ gate, never silently pass");
+});
+
+test("Mechanism 1: a CORRUPTION verdict is NEVER demoted, even on byte-frozen content the prior PASSed (parity with checkSweep)", () => {
+  // Corroboration suppresses only stochastic REVISE flips. A CORRUPTION must always FAIL — else the
+  // per-chapter gate (PASS) would diverge from checkSweep (which keeps an unconditional CORRUPTION block).
+  const cur = baseRec("CORRUPTION", [F([2], "blocker")]);
+  const priorClear = baseRec("PASS", []);
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorClear), "FAIL", "CORRUPTION is never demoted by corroboration");
+});

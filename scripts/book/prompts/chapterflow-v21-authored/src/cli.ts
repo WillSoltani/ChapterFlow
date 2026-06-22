@@ -2707,6 +2707,7 @@ async function runQcOrchestrate(args: string[], flags: Record<string, string | b
       allowDirtyPreflight: flags["allow-dirty-preflight"] === true,
       incremental: flags["incremental"] === true,
       tiebreak: flags["tiebreak"] === true,
+      noSweepCarry: flags["no-sweep-carry"] === true,
     });
     for (const m of result.messages) console.log(m);
     if (result.errors.length) for (const e of result.errors) console.error(e);
