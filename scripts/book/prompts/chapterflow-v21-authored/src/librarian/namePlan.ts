@@ -37,6 +37,7 @@ import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { extractNamesFromText } from "./libraryState.js";
 import { findSourceSidecar } from "./sourceSidecars.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CONFIG_DIR = resolve(__dirname, "../../config");
@@ -81,14 +82,6 @@ function isBankable(name: string): boolean {
 /** Deterministic FNV-1a hash — used to scatter the bank so adjacent (= same
  *  chapter) names don't share an origin or an initial. Stable across runs (no
  *  Math.random) so allocations stay reproducible. */
-function nameHash(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 /** Load + dedupe + validate + DE-CLUSTER the name bank.
  *
@@ -120,7 +113,7 @@ export function loadNameBank(): string[] {
     }
   }
   // Scatter: hash primary, name secondary (stable tie-break on hash collision).
-  out.sort((a, b) => nameHash(a) - nameHash(b) || (a < b ? -1 : a > b ? 1 : 0));
+  out.sort((a, b) => fnv1a(a) - fnv1a(b) || (a < b ? -1 : a > b ? 1 : 0));
   return out;
 }
 
@@ -300,7 +293,7 @@ export function planNames(
   const bankSet = new Set(bank);
   const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
   const crossBook = bankNamesUsedByOtherBooks(bookId);
-  const offset = bank.length ? nameHash(bookId) % bank.length : 0;
+  const offset = bank.length ? fnv1a(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
   // Never DEAL a name the C7 ship-gate bans (single source of truth: C7_BANNED_NAMES).
   // The gate only LICENSES a freshly-dealt banned name, and that license evaporates once

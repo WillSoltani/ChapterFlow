@@ -25,6 +25,7 @@
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CALLBACK_PLANS_DIR = resolve(__dirname, "../../state/callback-plans");
@@ -52,15 +53,6 @@ export type CallbackPlan = {
   allocation: Record<number, CallbackAllocation>;
   diagnostics: { frameCounts: Record<string, number>; targetCounts: Record<number, number> };
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 /** A prior chapter in [1, n-1], spread across the book so the callback CONCEPT
  *  doesn't collapse onto one chapter's idea (BP28).

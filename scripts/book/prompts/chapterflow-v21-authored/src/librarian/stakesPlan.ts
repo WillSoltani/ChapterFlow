@@ -25,8 +25,10 @@
  *     cover (target 0.5, raised to the unavoidable small-N floor so a correct deal on a
  *     short book never false-throws — the openerPlan small-N-floor lesson).
  *
- * No on-disk carry: a stake is prose guidance, not a stored structured field, so the
- * deal is pure and redo-stable by construction.
+ * The deal is pure and redo-stable by construction (recomputed, never read back from
+ * disk to drive a decision). The plan DOES carry the dealt stakes' definitions inline so
+ * the writer card formats straight from the plan — no per-chapter palette re-read, and no
+ * way to emit a blank definition for an unresolved id.
  */
 
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
@@ -34,6 +36,8 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { assertMaxCoverage } from "./saturationGuard.js";
+import { fnv1a } from "../lib/fnv1a.js";
+import { assertCoprimeSteps } from "../lib/coprime.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const STAKES_PALETTE_PATH = resolve(__dirname, "../../config/stakes-palette.json");
@@ -46,22 +50,13 @@ const COVERAGE_TARGET = 0.5; // no single stake should cover more than half a bo
 export type Stake = { id: string; definition: string };
 
 export type StakesPlan = {
-  schemaVersion: "stakes-plan-v1";
+  schemaVersion: "stakes-plan-v2";
   bookId: string;
   createdAt: string;
   perChapter: number;
-  /** chapter number → dealt stake ids (a menu the writer lands one of, or substitutes). */
-  allocation: Record<number, string[]>;
+  /** chapter number → dealt stakes, definition inline (a menu the writer lands one of, or substitutes). */
+  allocation: Record<number, Stake[]>;
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 export function loadStakes(): Stake[] {
   const raw = JSON.parse(readFileSync(STAKES_PALETTE_PATH, "utf8")) as { stakes?: Stake[] };
@@ -87,17 +82,22 @@ export function planStakes(bookId: string, from: number, to: number, perChapter 
   if (perChapter > N) {
     throw new Error(`perChapter ${perChapter} exceeds the ${N}-stake palette — add stakes to stakes-palette.json or lower perChapter.`);
   }
+  // The step math (intra-chapter distinctness + book-wide spread) only holds while the
+  // steps stay coprime with the palette size. Fail loud and self-explaining if a palette
+  // edit breaks that, instead of surfacing as a confusing "duplicate stakes" downstream.
+  assertCoprimeSteps(N, [SLOT_STEP, CHAPTER_STEP], "stakes-plan");
   const rotation = fnv1a(`${bookId}:stakes`) % N;
 
-  const allocation: Record<number, string[]> = {};
+  const allocation: Record<number, Stake[]> = {};
   for (let n = from; n <= to; n++) {
-    const dealt: string[] = [];
+    const dealt: Stake[] = [];
     for (let i = 0; i < perChapter; i++) {
-      dealt.push(stakes[(rotation + n * CHAPTER_STEP + i * SLOT_STEP) % N].id);
+      dealt.push(stakes[(rotation + n * CHAPTER_STEP + i * SLOT_STEP) % N]);
     }
-    // The distinctness invariant depends on N and the coprime step; the config can change
-    // underneath, so verify the dealt menu is actually distinct.
-    if (new Set(dealt).size !== dealt.length) {
+    // Belt-and-suspenders: the coprime guard above already guarantees distinct slots, but
+    // verify the dealt menu is actually distinct in case the step math is ever changed.
+    const ids = dealt.map((s) => s.id);
+    if (new Set(ids).size !== ids.length) {
       throw new Error(`stakes-plan invariant violated: duplicate stakes within ch${n} (palette size ${N} no longer satisfies the step math).`);
     }
     allocation[n] = dealt;
@@ -112,25 +112,25 @@ export function planStakes(bookId: string, from: number, to: number, perChapter 
     const Nch = chapters.length;
     const contiguousFloor = (Math.floor(Nch / N) * perChapter + Math.min(Nch % N, perChapter)) / Nch;
     const coverageCap = Math.max(COVERAGE_TARGET, contiguousFloor);
-    assertMaxCoverage(chapters, coverageCap, `stakes-plan coverage (${bookId})`);
+    const idChapters = chapters.map((cs) => cs.map((s) => s.id));
+    assertMaxCoverage(idChapters, coverageCap, `stakes-plan coverage (${bookId})`);
   }
 
-  return { schemaVersion: "stakes-plan-v1", bookId, createdAt: new Date().toISOString(), perChapter, allocation };
+  return { schemaVersion: "stakes-plan-v2", bookId, createdAt: new Date().toISOString(), perChapter, allocation };
 }
 
 /** Card-ready lines: the dealt stakes menu framed as a fit-or-substitute CONTENT cue,
  *  never a mandate or a scene position. */
 export function formatStakesForChapter(plan: StakesPlan, chapterNumber: number): string[] {
-  const ids = plan.allocation[chapterNumber];
-  if (!ids?.length) return [];
-  const byId = new Map(loadStakes().map((s) => [s.id, s.definition]));
+  const dealt = plan.allocation[chapterNumber];
+  if (!dealt?.length) return [];
   const lines = [
     "STAKES — make the reader FEEL the cost, not just learn a tidy method. Land at least one",
     "real modern consequence in an example or the chapter framing. Draw from this menu if one",
     "fits the chapter; otherwise use a fitting modern stake of your own. NEVER force an",
     "ill-fitting stake, and do NOT make it the scene's opening construction (that's the opener's job):",
   ];
-  ids.forEach((id) => lines.push(`  - ${id}: ${byId.get(id) ?? ""}`));
+  dealt.forEach((s) => lines.push(`  - ${s.id}: ${s.definition}`));
   return lines;
 }
 

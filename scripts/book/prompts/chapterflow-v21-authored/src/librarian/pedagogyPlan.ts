@@ -42,6 +42,7 @@ import { fileURLToPath } from "url";
 import { CHAPTERS_DIR, chapterFileName, isSiblingFile } from "../lib/chapterPaths.js";
 import type { HookShape } from "../critics/catalogAudit.js";
 import { assertMaxShare } from "./saturationGuard.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const PEDAGOGY_PALETTES_PATH = resolve(__dirname, "../../config/pedagogy-palettes.json");
@@ -143,15 +144,6 @@ const VALID_HOOK_CLASSES: Record<HookShape, true> = {
   first_person: true,
   declarative_image: true,
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);

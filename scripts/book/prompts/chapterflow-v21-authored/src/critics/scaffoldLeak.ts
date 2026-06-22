@@ -31,6 +31,7 @@
 
 import { readerFields } from "./authoringContract.js";
 import type { ChapterV21 } from "../types.js";
+import { splitSentences } from "./textUtils.js";
 
 export type ScaffoldLeakFinding = {
   checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop" | "SL5.publication_detail";
@@ -81,11 +82,18 @@ const SCREEN_GLOW_RE = new RegExp(`\\b${GLOW}\\b[^.?!]{0,40}\\b${DEVICE}\\b|\\b$
 // an adjacent year; unambiguous venues (PNAS, "Journal of X") count on their own.
 // Scope: a per-sentence scan — a citation split across two sentences is not bound
 // (precision over recall, as with SL1/SL3).
-const SL4_HARD_VENUE = "(?:PNAS|JAMA|NEJM|BMJ|Psychological Science|American Economic Review|(?:[A-Z][a-z]+ )?Journal of [A-Z][a-z]+|Annual Review of [A-Z][a-z]+)";
+const SL4_HARD_VENUE = "(?:PNAS|JAMA|NEJM|BMJ|Psychological Science|American Economic Review|Annual Review of [A-Z][a-z]+)";
+// A generic "Journal of X" is ambiguous (a travel/finance journal-as-magazine, a personal
+// journal — not only a cited academic venue), so — like the common-word venues — it counts
+// only when BOUND to an adjacent year. The unambiguous abbreviations/titles above stay
+// year-free. (Kills "the Journal of Travel notes" / "the Journal of Finance handout" FPs.)
+const SL4_GENERIC_JOURNAL = "(?:[A-Z][a-z]+ )?Journal of [A-Z][a-z]+";
 const SL4_COMMON_VENUE = "(?:Science|Nature|Econometrica|Neuron|Cell|Lancet|Cognition)";
 const SL4_YEAR = "(?:19|20)\\d{2}";
-// A citation token: a hard venue, OR a common-word venue bound to an adjacent year.
-const SL4_CITATION = `(?:${SL4_HARD_VENUE}|${SL4_YEAR}\\s+${SL4_COMMON_VENUE}|${SL4_COMMON_VENUE}\\s+\\(?${SL4_YEAR})`;
+// A year-bound venue: a common-word venue OR a generic journal, adjacent to a year.
+const SL4_YEARLY_VENUE = `(?:${SL4_COMMON_VENUE}|${SL4_GENERIC_JOURNAL})`;
+// A citation token: a hard venue (year-free), OR a year-bound venue with an adjacent year.
+const SL4_CITATION = `(?:${SL4_HARD_VENUE}|${SL4_YEAR}\\s+${SL4_YEARLY_VENUE}|${SL4_YEARLY_VENUE}\\s+\\(?${SL4_YEAR})`;
 // Inherently-physical visual aids — a citation rendered directly AS one is staging.
 const SL4_VISUAL = "(?:slides?|transparenc(?:y|ies)|overheads?|projector|posters?|worksheets?|handouts?|printouts?|photocop(?:y|ies)|figures?|graphs?|diagrams?)";
 // Ambiguous source documents — staging only under a handling verb in the sentence.
@@ -101,13 +109,21 @@ const SL4_HANDLE_RE = /\b(?:reads?|reading|slid\w*|sliding|pull\w*|hand(?:s|ed|i
 // only counts when a year / "edition" / "published" cue sits in the SAME sentence (so
 // "she worked at Penguin" — a setting — does not fire). NO bare-year matching (the SL4
 // false-positive lesson). Case-sensitive publisher names (proper nouns).
-// Curated, UNAMBIGUOUS publisher proper-nouns only — common-word / place imprints
-// (Crown, Vintage, Portfolio, Currency, Bloomsbury) are deliberately excluded: they
-// false-fire as ordinary words / a London neighborhood.
+// Curated, UNAMBIGUOUS publisher proper-nouns only — common-word / place / person-name
+// imprints are deliberately excluded because they false-fire on ordinary prose: Crown,
+// Vintage, Portfolio, Currency, Bloomsbury (words / a London neighborhood), AND the
+// single-token names that collide with a person or place + a cue word — Harper (a common
+// given name: "Harper published her first poem"), Riverhead (a town: "the Riverhead diner
+// published its menu"), Scribner (a surname). HarperCollins (unambiguous company) stays.
 const SL5_PUBLISHER_RE =
-  /\b(?:Basic Books|Penguin(?: Random House| Press| Books)?|Random House|Harvard University Press|Princeton University Press|Oxford University Press|Cambridge University Press|Yale University Press|MIT Press|University of Chicago Press|Simon (?:&|and) Schuster|Farrar, Straus(?: and Giroux)?|HarperCollins|Harper(?:Business| Perennial)?|W\.?\s?W\.?\s?Norton|Little, Brown|Houghton Mifflin(?: Harcourt)?|Scribner|Doubleday|Riverhead|Knopf|McGraw-Hill)\b/;
+  /\b(?:Basic Books|Penguin(?: Random House| Press| Books)?|Random House|Harvard University Press|Princeton University Press|Oxford University Press|Cambridge University Press|Yale University Press|MIT Press|University of Chicago Press|Simon (?:&|and) Schuster|Farrar, Straus(?: and Giroux)?|HarperCollins|W\.?\s?W\.?\s?Norton|Little, Brown|Houghton Mifflin(?: Harcourt)?|Doubleday|Knopf|McGraw-Hill)\b/;
 const SL5_EDITION_RE =
   /\b(?:revised|reprint|first|second|third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|\d+(?:st|nd|rd|th))\s+edition\b/i;
+// A qualified edition only counts as a publication leak inside a clear PUBLICATION context
+// (a book/title/author/publish cue, or a curated publisher) — so a physical book as a scene
+// prop ("she kept the first edition on the shelf for luck") does not fire. "edition" itself
+// is excluded from the cue (it is the trigger, so including it would be circular).
+const SL5_EDITION_CUE_RE = /\b(?:book|books|title|novel|memoir|textbook|author|authored|wrote|writer|publish(?:ed|er|ing)?|publication|hardcover|paperback)\b/i;
 const SL5_ISBN_RE = /\bISBN\b/;
 // A publisher name only counts as a citation when an explicit publication cue sits in
 // the same sentence. NO bare-year alternation — a year alone fires on ordinary
@@ -145,10 +161,13 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
   // SL5 — publication metadata in reader prose (see header). Per-sentence over every
   // reader field so it catches breakdown and example prose alike.
   for (const f of readerFields(chapter)) {
-    for (const sentence of f.text.split(/(?<=[.?!])\s+/)) {
-      const edition = sentence.match(SL5_EDITION_RE);
+    for (const sentence of splitSentences(f.text)) {
       const isbn = sentence.match(SL5_ISBN_RE);
       const publisher = sentence.match(SL5_PUBLISHER_RE);
+      const editionMatch = sentence.match(SL5_EDITION_RE);
+      // An edition marker counts only in a clear publication context (a book/author/publish
+      // cue or a named publisher) — not a physical book as a scene prop.
+      const edition = editionMatch && (SL5_EDITION_CUE_RE.test(sentence) || publisher) ? editionMatch : null;
       const hit = edition ?? isbn ?? (publisher && SL5_CITE_CUE_RE.test(sentence) ? publisher : null);
       if (hit) {
         findings.push({
@@ -199,7 +218,7 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
 
     // SL3 — the real case demoted to source notes glowing on a screen. Require
     // BOTH a source-material noun AND a screen-glow within the SAME sentence.
-    for (const sentence of scenario.split(/(?<=[.?!])\s+/)) {
+    for (const sentence of splitSentences(scenario)) {
       const glow = sentence.match(SCREEN_GLOW_RE);
       if (glow && SOURCE_PROP_NOUN.test(sentence)) {
         findings.push({
@@ -217,7 +236,7 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
     // DIRECTLY labels a visual aid ("1974 Science slide"), or directly labels a source
     // document ("1979 Econometrica notes") that is also physically handled in the
     // sentence. Adjacency keeps abstract-verb finding-citations clean (see header).
-    for (const sentence of scenario.split(/(?<=[.?!])\s+/)) {
+    for (const sentence of splitSentences(scenario)) {
       const visual = sentence.match(SL4_VISUAL_RE);
       const doc = sentence.match(SL4_DOC_RE);
       const hit = visual ?? (doc && SL4_HANDLE_RE.test(sentence) ? doc : null);

@@ -29,6 +29,7 @@ import { fileURLToPath } from "url";
 
 import { chapterFileName } from "../lib/chapterPaths.js";
 import type { ChapterV21 } from "../types.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const SCENE_SHAPES_PATH = resolve(__dirname, "../../config/scene-shapes.json");
@@ -51,15 +52,6 @@ export type ShapePlan = {
   /** chapters whose allocation was read from disk rather than dealt. */
   carriedChapters: number[];
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
 
 export function loadSceneShapes(): SceneShape[] {
   const raw = JSON.parse(readFileSync(SCENE_SHAPES_PATH, "utf8")) as { shapes: SceneShape[] };

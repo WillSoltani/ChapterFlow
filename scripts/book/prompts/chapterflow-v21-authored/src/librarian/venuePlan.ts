@@ -15,6 +15,8 @@
 import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { fnv1a } from "../lib/fnv1a.js";
+import { gcd } from "../lib/coprime.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const VENUE_PALETTE_PATH = resolve(__dirname, "../../config/venue-palette.json");
@@ -33,26 +35,6 @@ export type VenuePlan = {
   perChapter: number;
   allocation: Record<number, string[]>;
 };
-
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
-
-function gcd(a: number, b: number): number {
-  let x = Math.abs(a);
-  let y = Math.abs(b);
-  while (y !== 0) {
-    const next = x % y;
-    x = y;
-    y = next;
-  }
-  return x;
-}
 
 export function loadVenuePalette(): string[] {
   const raw = JSON.parse(readFileSync(VENUE_PALETTE_PATH, "utf8")) as { venues?: unknown[] };

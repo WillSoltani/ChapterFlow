@@ -55,6 +55,8 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { assertMaxShare, assertMaxCoverage } from "./saturationGuard.js";
+import { fnv1a } from "../lib/fnv1a.js";
+import { assertCoprimeSteps } from "../lib/coprime.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const SCENARIO_OPENERS_PATH = resolve(__dirname, "../../config/scenario-openers.json");
@@ -78,15 +80,6 @@ export type OpenerPlan = {
   allocation: Record<number, string[]>;
 };
 
-function fnv1a(s: string): number {
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return h >>> 0;
-}
-
 export function loadScenarioOpeners(): ScenarioOpener[] {
   const raw = JSON.parse(readFileSync(SCENARIO_OPENERS_PATH, "utf8")) as { openers: ScenarioOpener[] };
   const seen = new Set<string>();
@@ -108,6 +101,10 @@ export function planOpeners(bookId: string, from: number, to: number, perChapter
   if (perChapter > NP) {
     throw new Error(`perChapter ${perChapter} exceeds the ${NP}-archetype non-prone spine — add non-prone openers to scenario-openers.json or lower perChapter.`);
   }
+  // The spine step math (intra-chapter distinctness + cross-chapter spread) only holds
+  // while the steps stay coprime with the non-prone spine size; fail loud and
+  // self-explaining if a scenario-openers.json edit changes NP and breaks that.
+  assertCoprimeSteps(NP, [SLOT_STEP, CHAPTER_STEP], "opener-plan spine");
   // Group the prone archetypes by class; the schedule rotates over the classes + "none".
   const proneByClass = new Map<string, ScenarioOpener[]>();
   for (const o of openers) {

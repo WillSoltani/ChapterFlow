@@ -10,6 +10,7 @@
 
 import { CriticFinding } from "../types.js";
 import { finding } from "./shared.js";
+import { splitSentences } from "./textUtils.js";
 
 /**
  * Concrete-opener ratio across paragraphs.
@@ -288,6 +289,3 @@ function firstSentence(text: string): string {
   return m ? m[0].trim() : text.slice(0, 120).trim();
 }
 
-function splitSentences(text: string): string[] {
-  return text.split(/(?<=[.!?])\s+/).map((s) => s.trim()).filter(Boolean);
-}
