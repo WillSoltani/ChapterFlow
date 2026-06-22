@@ -3418,3 +3418,172 @@ html[data-motion="reduced"] .rl-ambient-aurora {
   border-radius: 2px;
   box-shadow: 0 0 0 1px var(--cf-recall-frame);
 }
+
+/* ===================== Library browser + request form ===================== */
+/* RECALL-native chrome for the catalog browser overlay + request dialog/form.
+   Token-only; hover lifts are transitions (no @keyframes), so the universal
+   reduced-motion clamp (html[data-motion="reduced"] *) already neutralizes them
+   — no separate kill needed. */
+
+/* Skin the shared Dialog panel (which bakes generic --cf-surface/--cf-border) to
+   the RECALL canvas. !important reliably beats the panel's base utilities
+   regardless of compiled-CSS order. */
+.rl-browse-panel {
+  background: var(--cf-recall-bg) !important;
+  border-color: var(--cf-recall-frame) !important;
+  color: var(--cf-recall-ink);
+}
+.rl-modal-panel {
+  background: var(--cf-recall-panel) !important;
+  border-color: var(--cf-recall-border-strong) !important;
+  color: var(--cf-recall-ink);
+}
+
+/* Sticky header inside the scrolling browse panel: tinted + blurred so the grid
+   scrolls cleanly beneath the search + chips. */
+.rl-browse-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--cf-recall-bg) 86%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border-bottom: 1px solid var(--cf-recall-frame);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rl-browse-header {
+    background: var(--cf-recall-bg);
+  }
+}
+
+/* RECALL text input / textarea. 16px font avoids iOS zoom; 44px min target. */
+.rl-input {
+  width: 100%;
+  min-height: 44px;
+  border-radius: 0.875rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: var(--cf-recall-ink);
+  background: var(--cf-recall-panel-inset);
+  border: 1px solid var(--cf-recall-border-strong);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
+}
+.rl-input::placeholder {
+  color: var(--cf-recall-ink-faint);
+}
+.rl-input:hover {
+  border-color: var(--cf-recall-accent-line);
+}
+.rl-input:focus {
+  outline: none;
+  border-color: var(--cf-recall-accent);
+  box-shadow: 0 0 0 3px var(--cf-recall-accent-wash);
+}
+
+/* Category filter chips. */
+.rl-filter-chip {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--cf-recall-ink-soft);
+  background: transparent;
+  border: 1px solid var(--cf-recall-border-strong);
+  cursor: pointer;
+  transition:
+    color 150ms ease,
+    background 150ms ease,
+    border-color 150ms ease;
+}
+.rl-filter-chip:hover {
+  color: var(--cf-recall-ink);
+  border-color: var(--cf-recall-accent-line);
+}
+.rl-filter-chip:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--cf-recall-bg),
+    0 0 0 4px var(--cf-recall-accent-line);
+}
+.rl-filter-chip-active {
+  color: var(--cf-recall-ink);
+  background: var(--cf-recall-accent-wash);
+  border-color: var(--cf-recall-accent-line);
+}
+
+/* Responsive cover grid: fluid columns, covers as the focal element. */
+.rl-browse-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (min-width: 480px) {
+  .rl-browse-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 768px) {
+  .rl-browse-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.75rem 1.25rem;
+  }
+}
+@media (min-width: 1024px) {
+  .rl-browse-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .rl-browse-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* Cover frame + hover lift (transition-only → reduced-motion clamps it). */
+.rl-book-cover {
+  background: var(--cf-recall-panel-inset);
+  border: 1px solid var(--cf-recall-frame);
+  box-shadow: 0 18px 40px -28px var(--cf-recall-plate-deep);
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+@media (hover: hover) {
+  .rl-book-card:hover .rl-book-cover {
+    transform: translateY(-4px);
+    border-color: var(--cf-recall-accent-line);
+    box-shadow: 0 28px 60px -30px var(--cf-recall-glow);
+  }
+}
+.rl-book-card:focus-visible .rl-book-cover {
+  border-color: var(--cf-recall-accent);
+  box-shadow: 0 0 0 2px var(--cf-recall-accent);
+}
+
+/* Typographic placeholder for the few catalog ids without a committed cover
+   (no emoji — RECALL restraint). */
+.rl-cover-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0.85rem;
+  text-align: left;
+  background: linear-gradient(
+    160deg,
+    var(--cf-recall-panel) 0%,
+    var(--cf-recall-panel-inset) 100%
+  );
+}

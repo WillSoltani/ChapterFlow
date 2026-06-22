@@ -32,11 +32,13 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { LayoutGrid } from "lucide-react";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { RecallCoverflow } from "./RecallCoverflow";
+import { RecallLibraryBrowser } from "./RecallLibraryBrowser";
 
 /**
  * A small, deliberately restrained selection of recognizable titles for the
@@ -79,6 +81,8 @@ export function RecallLibrary() {
   //    is a controlled child here). Autoplay is suppressed in this pinned layout
   //    (see the header), so there is no pause state to track. ──────────────────
   const [active, setActive] = useState(0);
+  // The full-catalog browser overlay (portaled via Dialog) toggles from here.
+  const [browserOpen, setBrowserOpen] = useState(false);
 
   // Wrap any incoming index into range so the carousel loops in both directions.
   const focus = useCallback(
@@ -258,8 +262,40 @@ export function RecallLibrary() {
           <div className="rl-lib-progress">
             <span ref={barRef} className="rl-lib-progress-fill" />
           </div>
+
+          {/* ── Actions: open the full catalog, or jump to the request form. ── */}
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+            <button
+              type="button"
+              onClick={() => setBrowserOpen(true)}
+              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{
+                color: "var(--cf-recall-ink)",
+                border: "1px solid var(--cf-recall-border-strong)",
+                // @ts-expect-error -- CSS custom property for the focus ring color
+                "--tw-ring-color": "var(--cf-recall-accent-line)",
+              }}
+            >
+              <LayoutGrid size={17} strokeWidth={2} aria-hidden />
+              Browse all {CATALOG_BOOK_COUNT_DISPLAY} books
+            </button>
+            <a
+              href="#request"
+              className="rounded text-[0.9375rem] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              style={{
+                color: "var(--cf-recall-ink-soft)",
+                // @ts-expect-error -- CSS custom property for the focus ring color
+                "--tw-ring-color": "var(--cf-recall-accent-line)",
+              }}
+            >
+              Request a book
+            </a>
+          </div>
         </div>
       </div>
+
+      {/* Full-catalog browser overlay (portaled; placement here is just ownership). */}
+      <RecallLibraryBrowser open={browserOpen} onClose={() => setBrowserOpen(false)} />
     </section>
   );
 }

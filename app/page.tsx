@@ -12,6 +12,7 @@ import { RecallHeroSplit } from "@/components/landing/recall/RecallHeroSplit";
 import { RecallHowItWorks } from "@/components/landing/recall/RecallHowItWorks";
 import { RecallWhyItWorks } from "@/components/landing/recall/RecallWhyItWorks";
 import { RecallLibrary } from "@/components/landing/recall/RecallLibrary";
+import { RecallRequestSection } from "@/components/landing/recall/RecallRequestSection";
 import { RecallPricing } from "@/components/landing/recall/RecallPricing";
 import { RecallClose } from "@/components/landing/recall/RecallClose";
 
@@ -124,6 +125,9 @@ export default function Home() {
           <RecallWhyItWorks />
         </RecallReveal>
         <RecallLibrary />
+        <RecallReveal>
+          <RecallRequestSection />
+        </RecallReveal>
         <RecallReveal>
           <RecallPricing />
         </RecallReveal>
