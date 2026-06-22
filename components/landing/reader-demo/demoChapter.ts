@@ -1,11 +1,15 @@
 /**
  * Single source of truth for the landing-page reader demo content.
  *
- * This file holds curated demo content for "Never Split the Difference · Chapter 1"
+ * This file holds curated demo content for "Atomic Habits · Chapter 1"
  * shaped to match the in-app reader's data types so we can feed the real
  * SummaryCard / ExamplesList / PracticePhase components from the app/book
  * reader directly. This is what makes the landing demo look identical to
  * the actual product.
+ *
+ * All content here is derived from the repo's own authored book package
+ * (book-packages/atomic-habits.v21.json, contentOwner "chapterflow"),
+ * chapter 1 ("The Surprising Power of Atomic Habits").
  *
  * Editorial rule for this file: NO em dashes (U+2014). The phone screen
  * is small and em dashes look noisy at 7-10pt. Use periods, commas, or
@@ -20,12 +24,12 @@ import type {
   ReadingDepth,
 } from "@/app/book/data/bookChapters";
 
-export const DEMO_CHAPTER_ID = "demo-never-split-the-difference-ch1";
-export const DEMO_BOOK_ID = "never-split-the-difference";
-export const DEMO_BOOK_TITLE = "Never Split the Difference";
-export const DEMO_BOOK_AUTHOR = "Chris Voss";
+export const DEMO_CHAPTER_ID = "demo-atomic-habits-ch1";
+export const DEMO_BOOK_ID = "atomic-habits";
+export const DEMO_BOOK_TITLE = "Atomic Habits";
+export const DEMO_BOOK_AUTHOR = "James Clear";
 export const DEMO_CHAPTER_NUMBER = 1;
-export const DEMO_CHAPTER_TITLE = "The New Rules";
+export const DEMO_CHAPTER_TITLE = "The Surprising Power of Atomic Habits";
 
 /* ------------------------------------------------------------------ */
 /*  Summary blocks (paragraphs + bullets) by depth                    */
@@ -35,27 +39,27 @@ const summarySimple: ChapterSummaryBlock[] = [
   {
     id: "p1-simple",
     type: "paragraph",
-    text: "Old-school negotiation says: be rational, find common ground, split the difference. Voss says that's wrong. Real people don't negotiate with logic. They negotiate with feelings.",
+    text: "An ice cube sits in a cold room. You raise the temperature one degree at a time. Twenty-six. Twenty-seven. Twenty-eight. Nothing. Then thirty-two, and the cube melts. Which degree did the work? All of them.",
   },
   {
     id: "p2-simple",
     type: "paragraph",
-    text: "If you want a better outcome, stop trying to win the argument. Start trying to understand the other person. That's it. That's the whole new rule.",
+    text: "Your habits run on the same physics. The change is banked long before it shows. Most people quit on the day the graph still looks flat, three weeks before it would have bent.",
   },
   {
     id: "b1-simple",
     type: "bullet",
-    text: "People decide with emotion, then justify with logic.",
+    text: "Useful change is banked long before it shows up on the scoreboard.",
   },
   {
     id: "b2-simple",
     type: "bullet",
-    text: "Listening is the cheapest thing you can offer, and the most valuable.",
+    text: "Most people quit on the flat day, just before the line was about to bend.",
   },
   {
     id: "b3-simple",
     type: "bullet",
-    text: "Compromise (splitting the difference) usually means both sides lose.",
+    text: "You did not lose because the work failed. You stopped reading the scoreboard before the score updated.",
   },
 ];
 
@@ -63,45 +67,45 @@ const summaryStandard: ChapterSummaryBlock[] = [
   {
     id: "p1-standard",
     type: "paragraph",
-    text: "For decades, negotiation theory taught that humans are rational actors who maximize utility. The traditional advice (have a strong BATNA, find a fair middle, split the difference) was built on that assumption. Voss spent two decades as the FBI's lead international hostage negotiator and learned the assumption is wrong.",
+    text: "A second-violin section has not improved at concerts in eight weeks. Their teacher is privately drafting a reseating chart. Then she opens her notebook. The intonation drills are logged. The scale tempos have crept up a metronome click each week. Something is moving. It just is not moving where the audience can hear it yet.",
   },
   {
     id: "p2-standard",
     type: "paragraph",
-    text: "Real negotiations are emotional. People don't decide based on what's logical. They decide based on what feels safe, fair, and respected. Push them toward logic and they dig in. Help them feel heard and they open up.",
+    text: "This is what compounding looks like from the inside. The work goes into the foundation first. The visible part comes later, often all at once. Measure only the surface, and you will pull the plug two weeks before payout.",
   },
   {
     id: "p3-standard",
     type: "paragraph",
-    text: "The skill the book teaches is tactical empathy: understanding the other side's emotions and intentions deeply enough to influence the conversation, not by arguing your case, but by making them feel like the case argues itself.",
+    text: "Useful change does not arrive on a slope. It arrives on a step. You add small inputs day after day, and nothing visible moves. Then a threshold breaks and the line jumps. The jump looks like a breakthrough. It is the inputs cashing in.",
   },
   {
     id: "b1-standard",
     type: "bullet",
-    text: "The old rationalist negotiation playbook (BATNA, win-win, split the difference) was built on a false model of how humans actually decide.",
+    text: "Compounding works from the inside out: the work goes into the foundation first, and the visible result shows up later, often all at once.",
     detail:
-      "Behavioral economics has shown that people are loss-averse, emotionally driven, and routinely irrational. Negotiation strategies that assume the other side is a calculator will lose to strategies that recognize the other side is a person.",
+      "Picture a line cook on a Saturday rush who saves fifteen seconds per plate. On any single ticket, fifteen seconds is nothing. Across forty plates a night, five nights a week, it is an hour he has quietly bought back. He did not get faster. His station did.",
   },
   {
     id: "b2-standard",
     type: "bullet",
-    text: "Tactical empathy is the active skill of recognizing the other side's feelings and using that recognition to shift the conversation.",
+    text: "Change arrives on a step, not a slope. Inputs go in evenly, then a threshold breaks and the line jumps all at once.",
     detail:
-      "It's not the same as sympathy. You don't have to agree. You just have to demonstrate that you understand. That demonstration is what lowers the other side's defenses and makes movement possible.",
+      "Add small inputs day after day and nothing visible moves. Then a threshold breaks and the line jumps. The jump looks like a breakthrough, but it is just the inputs you already made finally cashing in.",
   },
   {
     id: "b3-standard",
     type: "bullet",
-    text: "Compromising is rarely the right answer. Splitting the difference often produces an outcome both sides feel worse about than the original positions.",
+    text: "You act on what you put in, not on what the graph shows. Hold the protocol on the flat days.",
     detail:
-      "If you want a black shoe and a brown shoe, splitting the difference gives you one of each. The middle is not always the best. Real negotiators look for asymmetric trades where each side gets what matters most to them.",
+      "The graph catches up to work you have already done. If you only judge the work by the surface metric on a flat day, you will quit right before the surface starts to move.",
   },
   {
     id: "b4-standard",
     type: "bullet",
-    text: "The first job in any negotiation is to make the other side feel safe enough to talk.",
+    text: "The flat stretch is a measurement problem, not a progress problem. Trust the inputs you have logged.",
     detail:
-      "Without safety, you'll get positions, not interests. People defend positions; they share interests. Calibrated questions and labeling emotions are the tools that build that safety quickly.",
+      "Skill change shows up in the practice ledger before it shows up in the concert hall. The notebook of logged drills and creeping tempos is the real evidence, weeks before the audience can hear it.",
   },
 ];
 
@@ -109,52 +113,52 @@ const summaryDeeper: ChapterSummaryBlock[] = [
   {
     id: "p1-deeper",
     type: "paragraph",
-    text: "Voss opens the book by tracing the intellectual history of modern negotiation theory back to the Harvard Negotiation Project (Getting to Yes, Fisher and Ury) and the rationalist assumptions it inherited from game theory. He argues that while these frameworks built a useful vocabulary (BATNA, ZOPA, interests vs. positions), they were built on a model of human decision-making that the next generation of behavioral research (Kahneman, Tversky) systematically dismantled.",
+    text: "The ambush goes like this. You have been at something for six weeks. The number on the scale, the balance on the card, the metric you check on Sunday, will not move. You did the work. The work did not show up. So you start asking the dangerous question: maybe this is not for me.",
   },
   {
     id: "p2-deeper",
     type: "paragraph",
-    text: "The book's thesis is that negotiation is fundamentally about emotional safety, not rational calculation. People negotiate well when they feel understood and badly when they feel attacked. The FBI hostage program rebuilt its training in the 1990s around this insight, replacing problem-solving frameworks with active listening, emotional labeling, and calibrated questions. Crisis outcomes improved dramatically.",
+    text: "Compounding works against your patience. Inputs go in evenly. Outputs come out in steps. The surface holds still for weeks at a time, and the brain reads still as nothing. It is not nothing. It is everything, stored somewhere you cannot see yet.",
   },
   {
     id: "p3-deeper",
     type: "paragraph",
-    text: "Voss frames the rest of the book as a working translation of those FBI techniques into everyday negotiation: salary, real estate, business deals, parenting, marriage. The mechanics are simple. The execution requires reorientation. Most readers, he warns, will find that the hardest part is not learning the moves, but unlearning the instinct to argue, persuade, and force a decision.",
+    text: "Here is the edge worth naming. Treating invisible progress as banked is not the same as trusting any flat stretch. Some flat stretches are flat because the inputs are wrong. So make the inputs themselves auditable. If the small thing happened and the result has not moved, you are in the valley. If the small thing did not happen, you already know why.",
   },
   {
     id: "b1-deeper",
     type: "bullet",
-    text: "The Harvard Negotiation Project gave the field its vocabulary, but its rationalist assumptions don't survive contact with real human decision-making.",
+    text: "The plateau is an ambush. After weeks of real work with no visible result, the brain starts asking whether the effort is for you at all.",
     detail:
-      "Getting to Yes (Fisher and Ury, 1981) introduced principled negotiation, BATNA (Best Alternative to a Negotiated Agreement), and the distinction between positions and interests. These concepts are still useful. But the book assumed a Kahneman-and-Tversky-pre-1979 world, where people optimize. They don't.",
+      "A couple six months into paying down twenty-eight thousand dollars of credit card debt have not missed an autopay, and the balance has barely budged. The instinct is to cash out a small index fund just to feel a win. But the amortization schedule shows the principal line steepening in month fourteen. They are sitting in month six. Eight more months of patience is the difference between a paid card and another decade of minimums.",
   },
   {
     id: "b2-deeper",
     type: "bullet",
-    text: "Behavioral economics broke the rational-actor model. Loss aversion, framing effects, and cognitive biases mean that emotion drives decisions even when people insist logic is in the driver's seat.",
+    text: "Inputs go in evenly, but outputs come out in steps. The surface holds still for weeks, and the brain misreads still as nothing.",
     detail:
-      "Daniel Kahneman's prospect theory showed that losses hurt about twice as much as equivalent gains feel good. That single asymmetry rewrites how a negotiator should frame proposals. Lead with what the other side stands to lose, not what they could gain, and you'll move them faster.",
+      "It is not nothing. It is everything, stored somewhere you cannot see yet. The phase change hides everything until the threshold breaks, so judging the work by the result on a flat day quits you out one hour before the puddle.",
   },
   {
     id: "b3-deeper",
     type: "bullet",
-    text: "Tactical empathy is the operational concept of the book: deliberate, observable, repeatable techniques for recognizing emotion and using it to shape the other side's decision-making.",
+    text: "Outcomes are lagging measures. The number you check is downstream of mechanics that have already shifted.",
     detail:
-      "Tactical empathy is not warm and fuzzy. It is a discipline. Voss breaks it into specific moves: mirroring (repeating the last 1-3 words), labeling ('it sounds like you're worried about...'), accusations audits (naming the worst things they could say about you before they do), and calibrated questions (open questions starting with How and What). Each move has a measurable effect on the conversation.",
+      "A stroke patient in week eleven of grip-strength work is ready to walk away because the dynamometer reading has not changed. But the therapist's notes show range of motion creeping up about two degrees a week. The squeeze number is the last thing to move, not the only thing that matters. Strength is a downstream measure of mechanics that already changed.",
   },
   {
     id: "b4-deeper",
     type: "bullet",
-    text: "Splitting the difference is a failure mode, not a goal. Compromise outcomes are usually worse for both sides than asymmetric trades that respect each side's actual priorities.",
+    text: "Trusting banked progress is not the same as trusting any flat stretch. Make the inputs themselves auditable.",
     detail:
-      "The book's title is the thesis. If two people each want something different, splitting the difference gives both of them half of what they don't want. Real negotiators look for trades where one side gives up something they care little about and the other side gets something that matters to them. That asymmetry creates real value, not the illusion of fairness.",
+      "Some flat stretches are flat because the inputs are wrong. So ask what you actually did this week. Did the small thing happen? If the small thing happened and the result has not moved, you are in the valley. If the small thing did not happen, you already know why.",
   },
   {
     id: "b5-deeper",
     type: "bullet",
-    text: "The first job in any negotiation is to make the other side feel safe enough to share their actual position, not their bargaining position.",
+    text: "Keep two ledgers: one for results you check rarely and judge slowly, one for actions you check daily and judge honestly.",
     detail:
-      "People defend bargaining positions (numbers, demands) but reveal interests (fears, hopes, constraints) only when they feel safe. Safety is built fast through tone of voice (the late-night FM DJ voice), labeling, and a refusal to argue. Until safety exists, every other technique is wasted.",
+      "The action ledger is where you decide whether to keep going. The result ledger is where the world tells you, eventually, what you already knew. You do not quit on the bad days. You quit one week before the bend, and you never find out it was there.",
   },
 ];
 
@@ -188,11 +192,11 @@ export const DEMO_ACTIVATION_PROMPT_BY_DEPTH: Partial<
   Record<ReadingDepth, string>
 > = {
   simple:
-    "Think of a recent negotiation where you walked away frustrated. Hold it in mind as you read.",
+    "Think of a habit you tracked that hit a plateau and you quit. Hold it in mind as you read.",
   standard:
-    "Think of a recent negotiation that didn't go the way you wanted (a salary talk, a price haggle, a tough conversation with a partner). As you read, look for the moment you reached for logic when the other side needed empathy.",
+    "Think of an effort that felt stalled (a fitness routine, a savings plan, a skill you were building). As you read, look for the moment you judged the work by a flat surface number instead of the inputs you had logged.",
   deeper:
-    "Identify a high-stakes negotiation in your past where the outcome felt unfair to both sides. Was it a compromise nobody loved? Why did splitting the difference feel like the only option in the moment? What were the actual interests on each side that never got named?",
+    "Identify a high-stakes effort you abandoned at the plateau. What was the headline number you were watching? Were there leading indicators (reps, tempo, smaller habits) that had already moved? How close were you to the bend when you quit?",
 };
 
 /* ------------------------------------------------------------------ */
@@ -203,13 +207,13 @@ export const DEMO_SELF_CHECK_PROMPTS_BY_DEPTH: Partial<
   Record<ReadingDepth, string[]>
 > = {
   standard: [
-    "In your own words, why does Voss say splitting the difference is usually a failure?",
-    "What's the difference between a position and an interest? Give an example from your life.",
+    "In your own words, why does Clear say change arrives on a step instead of a slope?",
+    "What is the difference between a leading indicator and a lagging outcome? Give an example from your life.",
   ],
   deeper: [
-    "How would you explain tactical empathy to a colleague who's never read the book?",
-    "If the rationalist negotiation framework was so wrong, why did it survive for forty years before being challenged?",
-    "What's the connection between Kahneman's loss aversion and Voss's claim that you should frame proposals around what the other side stands to lose?",
+    "How would you explain 'you do not rise to your goals, you fall to your systems' to someone who has never read the book?",
+    "Why does the brain misread a flat stretch as no progress, even when real work is going in every day?",
+    "What is the difference between trusting banked progress and stubbornly trusting any flat stretch? How would you tell the two apart?",
   ],
 };
 
@@ -218,7 +222,7 @@ export const DEMO_SELF_CHECK_PROMPTS_BY_DEPTH: Partial<
 /* ------------------------------------------------------------------ */
 
 export const DEMO_KEY_QUOTE =
-  "He who has learned to disagree without being disagreeable has discovered the most valuable secret of negotiation.";
+  "You do not quit on the bad days. You quit one week before the bend, and you never find out it was there.";
 
 /* ------------------------------------------------------------------ */
 /*  1-Minute Recap by depth                                            */
@@ -226,22 +230,22 @@ export const DEMO_KEY_QUOTE =
 
 export const DEMO_RECAP_BY_DEPTH: Record<ReadingDepth, string[]> = {
   simple: [
-    "People decide with emotion, then justify with logic.",
-    "Listening is the cheapest move and the most powerful.",
-    "Splitting the difference usually means both sides lose.",
+    "Useful change is banked long before it shows on the scoreboard.",
+    "Most people quit on the flat day, just before the line bends.",
+    "You did not lose because the work failed. You stopped reading the scoreboard before the score updated.",
   ],
   standard: [
-    "The old rationalist negotiation playbook was built on a model of how humans decide that turns out to be wrong.",
-    "Tactical empathy (recognizing emotion and reflecting it back) is the operational replacement.",
-    "Compromise is a failure mode. Real negotiators find asymmetric trades where each side gets what matters most.",
-    "The first move in any negotiation is making the other side feel safe enough to share their actual interests.",
+    "Compounding works from the inside out: the foundation gets built first, and the visible result arrives later, often all at once.",
+    "Change arrives on a step, not a slope. Inputs go in evenly, then a threshold breaks and the line jumps.",
+    "You act on what you put in, not on what the graph shows. Hold the protocol on the flat days.",
+    "Skill change lands in the practice ledger before the concert hall. Trust the inputs you have logged.",
   ],
   deeper: [
-    "Modern negotiation theory inherited rationalist assumptions from game theory and the Harvard Negotiation Project. Behavioral economics has since shown those assumptions are wrong about how people actually decide.",
-    "Tactical empathy is a discipline of specific, observable moves: mirroring, labeling, calibrated questions, accusations audit. Each has a measurable effect on the conversation.",
-    "Loss aversion (Kahneman) is the single most important framing tool. People will work harder to avoid losing than to gain something equivalent.",
-    "Splitting the difference is the thesis the book is built against. Asymmetric trades that respect each side's actual priorities produce better outcomes than fair-feeling middles.",
-    "Safety precedes everything. Until the other side feels safe, you'll get bargaining positions instead of interests, and no technique will work.",
+    "The plateau is an ambush. After weeks of real work with no visible result, the brain starts asking whether the effort is for you.",
+    "Inputs go in evenly but outputs come out in steps. The surface holds still while the work is stored somewhere you cannot see yet.",
+    "Outcomes are lagging measures. The number you check is downstream of mechanics that have already shifted.",
+    "Trusting banked progress is not the same as trusting any flat stretch. Make the inputs auditable: did the small thing actually happen?",
+    "Keep two ledgers. The action ledger (checked daily, judged honestly) is where you decide to keep going. The result ledger only confirms it later.",
   ],
 };
 
@@ -252,42 +256,42 @@ export const DEMO_RECAP_BY_DEPTH: Record<ReadingDepth, string[]> = {
 export const DEMO_EXAMPLES: ChapterExample[] = [
   {
     id: "ex-work-1",
-    title: "The salary negotiation that hit a wall at 'final offer'",
+    title: "The sales rep a manager almost cut at week eight",
     scope: "work",
     scenario:
-      "You've been offered a job at $95K. You want $110K. The recruiter says the offer is final and there's no more room. You're tempted to either accept, walk away, or split the difference at $102K. Voss would say all three are mistakes.",
+      "A junior rep makes eighty cold calls a day for two months and books only three meetings. Her manager has a performance improvement plan half written. The top-line number (meetings booked) has been flat for eight weeks, and the instinct is to cut and move on.",
     whatToDo:
-      "Don't argue the number. Ask a calibrated question: 'How am I supposed to make that work given the cost of living here and what I'd be leaving behind?' Then go silent and let them solve your problem. The recruiter often has more authority than they admit, and the question gives them a face-saving way to find more.",
+      "Before signing, open the call-quality notes. The discovery questions are sharper, objections are handled cleaner, voicemails are starting to get callbacks. Treat those leading indicators as banked progress, not noise, and hold the protocol while the lagging metric is still flat. The meetings-booked curve bends upward in week ten.",
     whyItMatters:
-      "Splitting the difference at $102K leaves you frustrated for a year. The calibrated question shifts the burden of solving the problem onto the other side without forcing them into a corner. That's the move.",
+      "Pipeline outcomes lag behind skill acquisition by weeks. Cutting on the lagging number alone destroys the very habit that was about to produce the result you were measuring for. You do not rise to your goal, you fall to your system, and her system had already turned.",
     reflectionPrompt:
-      "Before reading the analysis: what would you actually say in this moment? Type the exact sentence you'd send.",
+      "Before reading the analysis: what is one leading indicator you would write down before deciding to cut this rep? Name it exactly.",
   },
   {
     id: "ex-personal-1",
-    title: "The argument with your partner about where to live",
+    title: "The couple staring at a debt balance that will not move",
     scope: "personal",
     scenario:
-      "Your partner wants to move to the suburbs. You want to stay in the city. You've each made your case three times. Neither of you is moving. The conversation is starting to get tense, and you can feel it sliding into 'who wins'.",
+      "Ines and Davit are six months into paying down twenty-eight thousand dollars of credit card debt. They have thrown nine thousand at it and the balance still reads twenty-two. It feels like nothing. One of them is hovering over the Sell button on a small index fund, just to feel a win.",
     whatToDo:
-      "Stop arguing your case. Try labeling: 'It sounds like the suburbs feel like the only place we can actually have the life you want.' Then shut up. Let them tell you what's underneath the position. Once you understand the actual interest (space, quiet, kids' future, escape from a hard memory), you can find a solution neither of you saw.",
+      "Pull up the amortization curve and find the month where the principal line steepens. Here it bends in month fourteen. They are standing on the flat part. Keep the autopay running through the flat months instead of cashing out for a feeling of progress, and set a calendar reminder for the date the curve bends.",
     whyItMatters:
-      "You weren't fighting about geography. You were fighting about an unspoken interest the position was hiding. Labeling brings the interest to the surface where it can actually be solved.",
+      "Compound paydown front-loads interest, so the early months look flat by arithmetic, not by failure. The balance is a lagging measure of a system that is already working. Selling the fund to feel motion would burn the asset that makes the curve bend later.",
     reflectionPrompt:
-      "Think of a recurring fight in your relationship. What's the interest hiding behind the position?",
+      "Think of a goal where the headline number feels stuck. What is the underlying input that is actually compounding while the surface holds still?",
   },
   {
     id: "ex-school-1",
-    title: "The professor who won't budge on your grade",
+    title: "The orchestra teacher with a reseating roster ready to go",
     scope: "school",
     scenario:
-      "You got a B+ on a paper you thought was an A. You email the professor. They reply with a polite no. Most students would either accept it or argue point-by-point about the rubric. Both lose.",
+      "Brisa's second-violin section has not sounded better at concerts in eight weeks. She has a roster ready to reseat the whole section by morning. The fall concert sounded just like the one before it, and the visible result has not moved.",
     whatToDo:
-      "Open with an accusations audit: 'I know this email probably feels like I'm just trying to argue my way to a better grade. I'm not. I'm trying to understand what I missed so I do better next time.' That preempts their defenses. Then ask: 'How could I have made the argument stronger?' Now they're teaching, not defending.",
+      "Open the notebook first. Eight weeks of tally marks: intonation drills logged each Monday, scale tempos crept up one click at a time from sixty-eight to seventy-six, bow-distribution notes on every player. Keep the rehearsal protocol running through the spring concert and count those logged reps as progress already made, not progress still owed.",
     whyItMatters:
-      "Arguing the rubric makes you look like every other grade-grubbing student. Asking how to improve makes you the rare student who actually wants to learn. Sometimes the grade changes. Always the relationship does.",
+      "Skill change shows up in the practice ledger before it shows up in the concert hall. Pulling the protocol three weeks early discards gains that exist but have not yet surfaced as sound. The outcome is a lagging measure of the system, and the system was working.",
     reflectionPrompt:
-      "What's the difference between asking 'why is this a B+' and 'how could I have made it stronger'? Why does the second one work?",
+      "What is the difference between asking 'has the result moved' and 'did the small thing happen this week'? Why does the second question keep you from quitting too early?",
   },
 ];
 
@@ -298,42 +302,42 @@ export const DEMO_EXAMPLES: ChapterExample[] = [
 const quizStandard: ChapterQuizQuestion[] = [
   {
     id: "q1",
-    prompt: "What's the core argument Voss makes against traditional negotiation theory?",
+    prompt:
+      "After ten weeks of marathon training, your weekly long-run pace has not changed. Your training log shows resting heart rate down four beats and recovery time after intervals shortened by two minutes. Which best describes your current state?",
     options: [
-      "It's too aggressive for modern workplaces",
-      "It assumes people decide rationally when they actually decide emotionally",
-      "It only works in business, not personal life",
-      "It requires too much preparation to be practical",
+      "The pace number is the only honest measure, and it says you have stalled.",
+      "The unchanged pace is a lagging readout while the underlying fitness has already begun to shift.",
+      "Your body has adapted to the program and you should switch routines to keep progressing.",
     ],
     correctIndex: 1,
     explanation:
-      "Voss argues that the rationalist model (BATNA, win-win, split the difference) was built on a flawed assumption about how humans decide. Behavioral economics has shown that people are loss-averse and emotionally driven, not utility-maximizing calculators.",
+      "Resting heart rate and shorter recovery times are the underlying gains that build before pace responds. Treating pace as the only signal misreads banked progress as no progress, and switching routines abandons the work just before it would show.",
   },
   {
     id: "q2",
-    prompt: "Why does Voss say splitting the difference is usually a failure?",
+    prompt:
+      "You have used a Spanish flashcard app twenty minutes a day for seven weeks. Your placement quiz score has not moved from A2. You notice you now follow podcast openers without translating in your head. What is the soundest move?",
     options: [
-      "It takes too long to reach the middle",
-      "It produces an outcome both sides feel worse about than asymmetric trades that respect each side's priorities",
-      "It only works when both parties trust each other",
-      "It violates the principle of fairness",
+      "Drop the flashcards for a more advanced course since A2 is clearly your ceiling.",
+      "Add an extra hour each weekend to force the quiz number up.",
+      "Keep the daily twenty minutes and trust the comprehension shift to surface in the quiz over the next month.",
     ],
-    correctIndex: 1,
+    correctIndex: 2,
     explanation:
-      "If you want a black shoe and a brown shoe, splitting the difference gives you one of each. Real negotiators look for asymmetric trades where one side gives up something they care little about and the other side gets something that matters most to them.",
+      "Effortless podcast comprehension is the kind of below-the-surface gain that precedes a placement jump. Quitting forfeits banked work, and doubling volume in panic ignores the signal that the protocol is already doing its job.",
   },
   {
     id: "q3",
-    prompt: "What is tactical empathy?",
+    prompt:
+      "You are a founder five months in. MRR has crawled from 4k to 5k while signups have tripled and churn has dropped from 9% to 3%. Your co-founder wants to overhaul pricing this week to 'finally see growth.' What is the soundest response?",
     options: [
-      "Pretending to agree with the other side to win them over",
-      "The deliberate skill of recognizing the other side's emotions and using that recognition to shape the negotiation",
-      "A psychological trick that only works on inexperienced negotiators",
-      "The same thing as sympathy",
+      "Hold the pricing for another two months, since the inputs that drive MRR have already turned.",
+      "Pivot pricing now, since five months without a real revenue jump means the model is broken.",
+      "Cut marketing spend until MRR responds, then resume.",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Tactical empathy is not sympathy. You don't have to agree with the other side, you just have to demonstrate that you understand them. That demonstration is what lowers their defenses and makes movement possible.",
+      "Tripled signups and a churn drop from 9% to 3% are the upstream gains that produce MRR steepening. Pivoting discards the curve right before it bends, and starving marketing kills the pipeline already feeding the trend.",
   },
 ];
 
@@ -342,16 +346,16 @@ const quizDeeper: ChapterQuizQuestion[] = [
   ...quizStandard,
   {
     id: "q4",
-    prompt: "How does Kahneman's loss aversion connect to Voss's framing advice?",
+    prompt:
+      "Two friends each invest $400 a month. After four years one has about $19,000 and grumbles that 'compounding is a myth, my returns are barely above what I put in.' Which judgment of his situation is soundest?",
     options: [
-      "It doesn't, they're unrelated fields",
-      "Loss aversion explains why framing proposals around what the other side stands to lose moves them faster than framing around gains",
-      "Loss aversion only applies to financial negotiations",
-      "It's the reason the book uses storytelling instead of data",
+      "His result tracks the early years of a compounding curve, where contributions dominate returns, and quitting now forfeits the steepening still ahead.",
+      "Four years of modest returns proves that index investing does not work for ordinary savers.",
+      "He should switch to higher-risk assets now to generate the returns compounding promised.",
     ],
-    correctIndex: 1,
+    correctIndex: 0,
     explanation:
-      "Kahneman's prospect theory showed that losses feel about twice as painful as equivalent gains feel good. Voss uses this to argue that negotiators should lead with what the other side stands to lose, not what they could gain. That single asymmetry is one of the most powerful tools in the book.",
+      "Early years of a compounding curve look nearly linear because principal dwarfs gains. Calling it a failed strategy quits at the flat part of the curve, and chasing risk to force the slope abandons the math that would otherwise deliver it.",
   },
 ];
 
@@ -366,34 +370,34 @@ export const DEMO_QUIZ_BY_DEPTH: Record<ReadingDepth, ChapterQuizQuestion[]> = {
 /* ------------------------------------------------------------------ */
 
 export const DEMO_KEY_TAKEAWAY_CARD =
-  "Stop arguing logic when the other side is running on emotion. Make them feel understood first, then watch the position shift.";
+  "Stop judging the work by a flat surface number. Read the inputs you have banked, hold the protocol through the plateau, and let the graph catch up to work you have already done.";
 
 export const DEMO_IMPLEMENTATION_PLAN: ImplementationPlanItem = {
   coreSkill:
-    "Recognize when a conversation is being driven by emotion (not logic) and respond with tactical empathy: label the feeling out loud, then go silent and let the other side fill the space.",
+    "The skill is reading flat results as banked progress instead of missing progress. You stop using the headline number as your only signal and start trusting the leading indicators you have logged, so you can hold a protocol steady through the weeks when nothing visible is happening.",
   ifThenPlans: [
     {
       context: "work",
-      plan: "If a salary or scope conversation hits 'final offer', then I will ask one calibrated question ('How am I supposed to make that work?') and stay silent until they answer.",
+      plan: "If I am about to cut a project or person whose top-line metric has not moved in eight weeks, then before I decide I will write down three leading indicators that have moved and ask whether I am quitting in week ten of a fourteen-week curve.",
     },
     {
       context: "personal",
-      plan: "If a recurring fight is escalating, then I will pause and label the underlying feeling out loud before responding to the surface topic.",
+      plan: "If I feel the urge to break a savings or debt plan because the balance looks stuck, then I will open the schedule, find the month where the curve steepens, and set a calendar reminder for that date instead of acting today.",
     },
     {
       context: "school",
-      plan: "If I'm pushing back on a grade or assignment, then I will open with an accusations audit (naming what they probably think I'm trying to do) before making my case.",
+      plan: "If a practice or training number has been flat for three sessions, then I will pull up my own logs from six weeks ago and compare the secondary measures (range, tempo, reps) before I change anything.",
     },
   ],
   twentyFourHourChallenge:
-    "In the next 24 hours, find one conversation where someone is upset and try a single label ('It sounds like you're frustrated with...'). Don't try to fix anything. Just notice what happens after you name the feeling.",
+    "In the next 24 hours, pick one effort that feels stalled and spend ten minutes building a one-page log of what you have actually banked: dates, reps, small numbers that crept. Pin it somewhere you open daily.",
   weeklyPractice:
-    "At the end of each week, list the conversations where you reached for logic when the other side needed empathy. Mark which ones you'd handle differently with tactical empathy. Track the trend.",
+    "Once a week, on the same day, do a fifteen-minute banked-progress review for your two most important efforts. Write the headline number, list three leading indicators underneath it, and decide for each whether you are holding the protocol another week or changing one variable. Keep the reviews in one running document so you can see the curve bend when it bends.",
 };
 
 export const DEMO_PREDICTION_PROMPT_BY_DEPTH: Partial<Record<ReadingDepth, string>> = {
   standard:
-    "Chapter 2 is called 'Be a Mirror'. Based on what you just read, what specific technique do you think Voss will introduce next, and why does mirroring matter for tactical empathy?",
+    "Chapter 2 turns from why tiny habits compound to how identity drives them. Based on what you just read, what do you think Clear will argue matters more: changing your outcomes, or changing who you believe you are?",
   deeper:
-    "If tactical empathy is the operational concept, what specific moves do you think the next chapter will introduce first, and how do they build on what Chapter 1 established about emotion vs. logic?",
+    "If outcomes are lagging measures of your systems, what do you predict the next chapter identifies as the deepest layer underneath systems and habits, and how would that reframe what a single 1% action is really a vote for?",
 };

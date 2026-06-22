@@ -247,7 +247,7 @@ export function DesktopQuizPanel({
           className="text-2xl font-bold text-(--cr-text-heading)"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          {passed ? "🎉 Quiz Passed!" : "Not quite — keep going"}
+          {passed ? "🎉 Quiz Passed!" : "Not quite, keep going"}
         </h2>
 
         <div className="my-5">

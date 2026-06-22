@@ -117,7 +117,7 @@ export function SummaryCard({
           style={{ animation: "cr-card-enter 200ms ease-out" }}
         >
           <span className="mr-1.5">{"\uD83C\uDFC6"}</span>
-          Challenge mode — no retries on the quiz
+          Challenge mode: no retries on the quiz
         </div>
       )}
 
@@ -125,7 +125,7 @@ export function SummaryCard({
       {activationPrompt && (
         <p className="italic text-sm text-(--cr-text-secondary)">
           <span className="not-italic font-medium text-(--cr-accent) mr-1.5">
-            Before you read —
+            Before you read:
           </span>
           {activationPrompt}
         </p>

@@ -812,6 +812,383 @@ html.transitioning *::after {
   --cf-spotlight-alpha: color-mix(in srgb, var(--accent-cyan) 9%, transparent); /* Ledger cursor-following spotlight-mask radial */
   --cf-marquee-fade: var(--cf-page-bg); /* citation-marquee edge-fade mask stop (fades to the page canvas) */
   --cf-toggle-knob: var(--cf-anchor-text); /* Pricing annual-toggle knob (replaces literal bg-white) */
+
+  /* ──────────────────────────────────────────────────────────────────────
+     RECALL HERO — "one playable moment" (components/landing/recall/).
+     A deep near-black canvas, near-monochrome, with EXACTLY ONE accent hue:
+     a soft premium periwinkle/cornflower blue (deliberately NOT the brand
+     cyan — a calmer, more restrained signal). Every "fading vs locked /
+     wrong vs right" state is expressed with OPACITY/BRIGHTNESS of this ONE
+     accent (or of neutral grays) — never a second hue. Declared DIRECTLY
+     here (alias-resolution trap: components read these final tokens). */
+
+  /* Canvas + ink — a true premium black, soft near-white ink (never #fff). */
+  --cf-recall-bg: #06070A;            /* deep near-black hero canvas */
+  --cf-recall-ink: #ECEFF6;           /* soft near-white primary ink */
+  --cf-recall-ink-soft: #A2A9BC;      /* supporting copy */
+  --cf-recall-ink-faint: #5E6678;     /* eyebrow / mono labels / axis */
+  --cf-recall-ink-ghost: #2A2F3C;     /* hairlines that must read as near-silent */
+
+  /* The ONE accent + its brightness/opacity ladder (locked → fading). */
+  --cf-recall-accent: #8AA2FF;        /* full-brightness LOCKED signal */
+  --cf-recall-accent-strong: #A9BBFF; /* peak highlight (readout digits) */
+  --cf-recall-accent-dim: #4A5680;    /* dimmed accent — the FADING curve */
+  --cf-recall-accent-faint: #2C3450;  /* near-extinguished accent (decay tail) */
+  --cf-recall-accent-line: rgba(138, 162, 255, 0.16);  /* faint accent hairline / chip rest border */
+  --cf-recall-accent-wash: rgba(138, 162, 255, 0.08);  /* faint accent fill (selected chip rest) */
+  --cf-recall-accent-area: rgba(138, 162, 255, 0.10);  /* locked-curve area fill top stop */
+  --cf-recall-glow: rgba(138, 162, 255, 0.22);         /* the SINGLE soft glow behind the focal moment */
+
+  /* Panel material — flat, no glass: a barely-raised surface + one hairline. */
+  --cf-recall-panel: #0B0D13;         /* the playable-moment panel surface */
+  --cf-recall-panel-inset: #0E1118;   /* the curve well, slightly deeper */
+  --cf-recall-border: rgba(255, 255, 255, 0.06);       /* panel hairline */
+  --cf-recall-border-strong: rgba(255, 255, 255, 0.10);/* chip / divider hairline */
+
+  /* State feedback — still ONE hue: right=full accent, wrong=neutral dim. */
+  --cf-recall-right-bg: rgba(138, 162, 255, 0.14);     /* correct chip wash */
+  --cf-recall-wrong-ink: #6A7081;     /* wrong answer settles to a muted neutral */
+  --cf-recall-grid: rgba(255, 255, 255, 0.035);        /* curve well baseline grid */
+
+  /* CINEMATIC "curve-as-hero" extras — the curve is the giant centerpiece, so
+     it needs a richer light kit than the small playable well: a brighter line
+     core for the lit retained stroke, a two-stop area gradient with more body,
+     a soft endpoint halo, and a deeper ambient bloom for near-full-bleed use.
+     STILL the one periwinkle hue — every value is the SAME #8AA2FF expressed at
+     a different opacity/brightness. No second color is introduced. */
+  --cf-recall-line-core: #C6D2FF;       /* hottest core of the lit retained line */
+  --cf-recall-area-top: rgba(138, 162, 255, 0.22);  /* curve area fill — top stop (under the line) */
+  --cf-recall-area-mid: rgba(138, 162, 255, 0.07);  /* curve area fill — mid stop */
+  --cf-recall-area-bot: rgba(138, 162, 255, 0);     /* curve area fill — fades to nothing */
+  --cf-recall-halo: rgba(138, 162, 255, 0.40);      /* glowing endpoint halo (inner) */
+  --cf-recall-halo-soft: rgba(138, 162, 255, 0.16); /* glowing endpoint halo (outer bloom) */
+  --cf-recall-bloom: rgba(138, 162, 255, 0.16);     /* large ambient bloom behind a full-bleed curve */
+  --cf-recall-bloom-deep: rgba(138, 162, 255, 0.30);/* hotter center of that ambient bloom */
+  --cf-recall-axis: rgba(255, 255, 255, 0.05);      /* near-silent baseline/axis rule for the big curve */
+  --cf-recall-frame: rgba(255, 255, 255, 0.07);     /* hairline frame around the editorial-split curve plate */
+  --cf-recall-plate: #080A0F;          /* the framed curve "plate" surface (split variant) */
+  --cf-recall-plate-deep: #05060A;     /* deepest inset, bottom of the lit plate */
+  --cf-recall-specular: rgba(255, 255, 255, 0.06); /* top-left directional sheen on the plate (material lighting) */
+  --cf-recall-vignette: rgba(0, 0, 0, 0.55);       /* edge vignette that seats the chart in the plate */
+  --cf-recall-grid-line: rgba(255, 255, 255, 0.05);/* value-axis gridlines (whisper-quiet, crisp) */
+  --cf-recall-tick: rgba(255, 255, 255, 0.14);     /* time-axis tick marks + baseline */
+  --cf-recall-dot-core: #EAF0FF;        /* review-event marker core (brightest point on the curve) */
+  /* The "without review" decay series — a muted warm coral, the ONE secondary
+     hue, used ONLY in the chart's two-series legend so the lines read as distinct
+     data (cool periwinkle = retained/good, warm coral = forgetting/loss). */
+  --cf-recall-decay: #D2918A;          /* muted coral — the decay (no-review) line + its readout */
+  --cf-recall-decay-soft: rgba(210, 145, 138, 0.55); /* dimmed coral for the dashed gap connector */
+}
+
+/* RECALL hero entrance — fast (≈190ms) ease-out fade-up, staggered via inline
+   animation-delay. Transform/opacity only (off-main-thread). prefers-reduced-
+   motion renders everything in its final position with no animation. */
+@keyframes cf-recall-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cf-fade-up {
+  opacity: 0;
+  animation: cf-recall-fade-up 190ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-fade-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* ── CINEMATIC curve draw-on (curve-as-hero variants) ───────────────────────
+   The lit retained line draws itself on left→right via stroke-dashoffset, then
+   the area fill + glowing endpoint settle in. FAST + buttery (~760ms total),
+   transform/opacity/stroke only (off-main-thread). Each line sets pathLength="1"
+   on the <path> so the dash math is exact with NO JS measurement (the path's
+   geometric length is normalized to 1 unit).
+   prefers-reduced-motion renders the FINAL state statically (no draw). */
+@keyframes cf-curve-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes cf-curve-settle {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes cf-curve-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* The retained (locked) line — drawn on. Pair with pathLength="1" on the path.
+   FAST: the whole sequence resolves in ~720ms so the hero feels snappy, not
+   slow (transform/opacity/stroke only → off-main-thread). */
+.cf-curve-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: cf-curve-draw 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+/* The ghost decay line + area fill + axis — fade in just behind the draw. */
+.cf-curve-fade {
+  opacity: 0;
+  animation: cf-curve-settle 480ms cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+/* The glowing endpoint — pops once the line arrives. */
+.cf-curve-head {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cf-curve-pop 300ms cubic-bezier(0.34, 1.56, 0.64, 1) 440ms both;
+}
+/* The live readout chip — settles in with the endpoint. */
+.cf-curve-readout {
+  opacity: 0;
+  animation: cf-curve-settle 340ms cubic-bezier(0.22, 1, 0.36, 1) 460ms both;
+}
+/* Review-event markers (the data points) — pop in sequence as the line reaches
+   each review day. Per-dot animation-delay is set inline so they march along
+   with the draw-on. transform-box:fill-box keeps the scale centered on the dot. */
+.cf-curve-dot {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cf-curve-pop 280ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-curve-line,
+  .cf-curve-fade,
+  .cf-curve-head,
+  .cf-curve-readout,
+  .cf-curve-dot {
+    opacity: 1;
+    transform: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+}
+
+/* ── Scroll-triggered section reveal (RECALL) ───────────────────────────────
+   JS-armed reveal (see components/landing/recall/RecallReveal.tsx). The hidden
+   start state is applied ONLY after the client mounts (the .cf-reveal class is
+   added in a useEffect), so server HTML / no-JS / crawlers render the content
+   fully visible — no invisible-content / SEO risk. An IntersectionObserver then
+   adds .cf-reveal-in once the element scrolls into view to play the transition
+   once. Animates on ALL browsers (incl. Safari < 26), unlike the old native
+   animation-timeline:view() approach. Compositor-safe (opacity + transform only).
+   y-travel and start delay come from --cf-reveal-y / --cf-reveal-delay inline. */
+
+/* Armed hidden state (added by JS after mount only). */
+.cf-reveal {
+  opacity: 0;
+  transform: translateY(var(--cf-reveal-y, 28px));
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--cf-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+/* Revealed (added by the IntersectionObserver). */
+.cf-reveal.cf-reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger mode: the wrapper is NOT armed; its direct children are. Each child
+   gets its own --cf-reveal-delay inline from the component. */
+.cf-reveal-group .cf-reveal-item {
+  opacity: 0;
+  transform: translateY(var(--cf-reveal-y, 28px));
+  transition:
+    opacity 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--cf-reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.cf-reveal-group.cf-reveal-in .cf-reveal-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-reveal,
+  .cf-reveal-group .cf-reveal-item {
+    transform: none !important;
+    transition: opacity 300ms linear !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ── Reusable hover micro-interactions ──────────────────────────────────────
+   transform/opacity-only lifts for citation rows / pricing cards / step cards.
+   Gated on (hover: hover) so touch devices don't get a stuck hover; muted under
+   reduced motion (color/border kept, lift removed). */
+.cf-hover-lift {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .cf-hover-lift:hover {
+    transform: translateY(-4px);
+    border-color: var(--cf-recall-border-strong);
+    box-shadow: 0 18px 40px -24px var(--cf-recall-glow);
+  }
+}
+
+.cf-hover-raise {
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 220ms ease;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .cf-hover-raise:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 26px 60px -28px var(--cf-recall-glow);
+  }
+}
+
+.cf-hover-nudge {
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms ease;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .cf-hover-nudge:hover {
+    transform: translateX(3px);
+    border-color: var(--cf-recall-accent-line);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf-hover-lift,
+  .cf-hover-raise,
+  .cf-hover-nudge {
+    transition: border-color 200ms ease, box-shadow 200ms ease !important;
+  }
+  .cf-hover-lift:hover,
+  .cf-hover-raise:hover,
+  .cf-hover-nudge:hover {
+    transform: none !important;
+  }
+}
+
+/* ── RECALL · "The loop" in-app reader demo wrapper ─────────────────────────
+   Wraps DesktopReaderShell (which mounts the REAL in-app PhaseStepper +
+   ExamplesList) inside #how-it-works. Two jobs:
+   (1) BUG FIX — ExamplesList's filter bar is `sticky top-(--cr-header-h,64px)`;
+       on the landing --cr-header-h is undefined → falls back to 64px and the bar
+       floats mid-page on scroll. We zero the var AND force inherited stickies to
+       static, and pin a containing block (transform) so PhaseStepper's
+       `fixed z-50` tooltips anchor here, not the viewport.
+   (2) MATCH THE PAGE — the reader's accent tokens are aliases that resolve to
+       brand CYAN at :root, so we override their FINAL values here, re-pointing the
+       accent family to the periwinkle --cf-recall-accent family (semantic
+       success/error/warning untouched; bright surfaces kept). */
+.recall-reader-demo {
+  --cr-header-h: 0px;
+  /* containing block for fixed descendants WITHOUT overflow clipping (so the
+     inner frame's glow + sibling halo still bloom — translateZ(0), not contain). */
+  transform: translateZ(0);
+
+  --cr-accent: var(--cf-recall-accent);
+  --cr-accent-hover: var(--cf-recall-accent-strong);
+  --cr-accent-muted: var(--cf-recall-accent-wash);
+  --cr-accent-glow: var(--cf-recall-glow);
+  --cr-accent-active: var(--cf-recall-accent-wash);
+  --cr-info: var(--cf-recall-accent);
+}
+.recall-reader-demo :where(.sticky) {
+  position: static !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .recall-reader-demo {
+    transform: translateZ(0);
+  }
+}
+
+/* ── Hero chart ambient motion (RECALL) ─────────────────────────────────────
+   Continuous, eye-catching but tasteful: a bright "light packet" travels along
+   the lit curve (stroke-dashoffset on a short dash, pathLength=1), and the
+   endpoint halo gently breathes. CSS @keyframes → animate everywhere incl.
+   Safari. Compositor-safe-ish (stroke/opacity/transform). Disabled under
+   reduced motion. */
+@keyframes cf-curve-shimmer {
+  from {
+    stroke-dashoffset: 1.18;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.cf-curve-shimmer {
+  stroke-dasharray: 0.16 1.02;
+  stroke-dashoffset: 1.18;
+  animation: cf-curve-shimmer 3.4s linear infinite;
+  animation-delay: 900ms; /* start after the one-time draw-on resolves */
+}
+@keyframes cf-curve-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.7);
+  }
+}
+.cf-curve-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cf-curve-pulse 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf-curve-shimmer {
+    animation: none;
+    stroke-dashoffset: 1.18; /* hide the packet (no visible dash at rest) */
+  }
+  .cf-curve-pulse {
+    animation: none;
+    opacity: 0;
+  }
+}
+/* Mirror the kill for the in-app html[data-motion="reduced"] toggle (RECALL's
+   single source of truth). The universal data-motion clamp only shortens the
+   loop; these need an explicit `animation: none` so the shimmer dash + endpoint
+   pulse settle at their authored at-rest state, not on the keyframe end frame. */
+html[data-motion="reduced"] .cf-curve-shimmer {
+  animation: none !important;
+  stroke-dashoffset: 1.18;
+}
+html[data-motion="reduced"] .cf-curve-pulse {
+  animation: none !important;
+  opacity: 0;
 }
 
 /* Hero product showpiece — a subtle perspective tilt so the live reader reads as
@@ -2445,3 +2822,599 @@ html[data-contrast="high"] :focus-visible {
    :where() kill-list in the REDUCED MOTION section above, shared verbatim by
    both the OS-level media query and the in-app data-motion toggle (they cover
    the identical set). */
+
+
+
+/* ===================== PORT: A hero+chart ===================== */
+/* =============================================================================
+ * RECALL hero — centered editorial-instrument layout + the lit "product plate".
+ * Ported from the approved RecallLanding reference (rl-hero* / rl-plate*).
+ * Token-only color (raw rgba allowed here since this is a CSS file). The
+ * cf-fade-up / cf-curve-* classes already exist in globals; these add only the
+ * rl-* hero/plate classes, their keyframes, the gradient sheen, the live
+ * playhead chrome, and the parallax vars (--rl-px / --rl-py, set by JS).
+ * ============================================================================= */
+
+/* ---- keyframes ---- */
+@keyframes rl-dot   { 0%, 100% { box-shadow: 0 0 0 0 var(--cf-recall-glow); } 50% { box-shadow: 0 0 0 5px transparent; } }
+@keyframes rl-sheen { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes rl-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes rl-blink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0.18; } }
+@keyframes rl-scan  {
+  0%   { opacity: 0; transform: translateX(-120%); }
+  14%  { opacity: 0.95; }
+  86%  { opacity: 0.95; }
+  100% { opacity: 0; transform: translateX(250%); }
+}
+
+/* ---- centered head (carries the headline; parallaxes with the pointer) ---- */
+.rl-hero-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 62rem;
+  margin: 0 auto;
+  transform: translate3d(calc(var(--rl-px, 0) * -7px), calc(var(--rl-py, 0) * -5px), 0);
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+.rl-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--cf-recall-ink-soft);
+  padding: 0.42rem 0.85rem 0.42rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid var(--cf-recall-accent-line);
+  background: var(--cf-recall-accent-wash);
+}
+.rl-hero-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cf-recall-accent);
+  animation: rl-dot 2.4s ease-in-out infinite;
+}
+
+/* the animated gradient-clip on "what you read." */
+.rl-hero-sheen {
+  background: linear-gradient(
+    100deg,
+    var(--cf-recall-accent) 0%,
+    var(--cf-recall-line-core) 34%,
+    var(--cf-recall-accent-strong) 58%,
+    var(--cf-recall-line-core) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rl-sheen 6.5s ease-in-out infinite;
+}
+
+/* ---- specs row ---- */
+.rl-hero-specs {
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+.rl-hero-spec {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0 2.25rem;
+}
+.rl-hero-spec + .rl-hero-spec {
+  border-left: 1px solid var(--cf-recall-frame);
+}
+.rl-hero-spec-num {
+  font-weight: 700;
+  font-size: 1.45rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--cf-recall-ink);
+}
+.rl-hero-spec-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--cf-recall-ink-faint);
+}
+
+/* ---- chart showcase ---- */
+.rl-hero-showcase {
+  position: relative;
+  z-index: 1;
+  margin: 5rem auto 0;
+  width: 100%;
+  max-width: 58rem;
+  perspective: 2000px;
+}
+.rl-hero-reflection {
+  position: absolute;
+  left: 50%;
+  bottom: -6%;
+  z-index: 0;
+  width: 78%;
+  height: 16%;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, var(--cf-recall-glow), transparent 76%);
+  filter: blur(26px);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+/* the plate wrapper carries the 3D tilt (reads the inherited --rl-px/--rl-py) */
+.rl-plate-wrap {
+  position: relative;
+  transform-style: preserve-3d;
+  transform:
+    translate3d(calc(var(--rl-px, 0) * 12px), calc(var(--rl-py, 0) * 8px), 0)
+    rotateX(calc(7deg + var(--rl-py, 0) * -5deg))
+    rotateY(calc(var(--rl-px, 0) * 7deg));
+  transition: transform 0.12s ease-out;
+  will-change: transform;
+}
+.rl-plate-bloom {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  z-index: 0;
+  height: 48rem;
+  width: 48rem;
+  transform: translate(-50%, -50%)
+    translate3d(calc(var(--rl-px, 0) * -20px), calc(var(--rl-py, 0) * -14px), 0);
+  border-radius: 9999px;
+  background: radial-gradient(
+    closest-side,
+    var(--cf-recall-bloom-deep),
+    var(--cf-recall-bloom) 44%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.rl-plate {
+  position: relative;
+  aspect-ratio: 780 / 560;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 1.75rem;
+  border: 1px solid var(--cf-recall-frame);
+  background: linear-gradient(160deg, var(--cf-recall-plate) 0%, var(--cf-recall-plate-deep) 100%);
+  box-shadow:
+    0 1px 0 0 var(--cf-recall-border) inset,
+    0 50px 120px -50px var(--cf-recall-glow);
+  animation: rl-float 9s ease-in-out infinite;
+}
+.rl-plate-svg {
+  display: block;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+/* HUD */
+.rl-plate-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.15rem;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cf-recall-ink-faint);
+  pointer-events: none;
+}
+.rl-plate-hud-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  color: var(--cf-recall-accent);
+}
+.rl-plate-hud-live i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--cf-recall-accent);
+  box-shadow: 0 0 6px var(--cf-recall-glow);
+  animation: rl-blink 1.6s steps(1) infinite;
+}
+
+/* corner ticks */
+.rl-plate-ticks {
+  position: absolute;
+  inset: 0.75rem;
+  z-index: 3;
+  pointer-events: none;
+}
+.rl-tick {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border: 0 solid var(--cf-recall-accent-line);
+}
+.rl-tick.tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.rl-tick.tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.rl-tick.bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.rl-tick.br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* one-time scan sweep */
+.rl-plate-scan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--cf-recall-accent-wash) 38%,
+    var(--cf-recall-glow) 50%,
+    var(--cf-recall-accent-wash) 62%,
+    transparent
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  animation: rl-scan 1.9s cubic-bezier(0.6, 0, 0.2, 1) 0.5s 1 both;
+}
+
+/* material overlays — sheen reads the parallax vars, vignette + grain are static */
+.rl-plate-sheen {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    120% 90% at calc(12% + var(--rl-px, 0) * 32%) calc(0% + var(--rl-py, 0) * 14%),
+    var(--cf-recall-specular),
+    transparent 55%
+  );
+}
+.rl-plate-vig {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(130% 130% at 50% 42%, transparent 58%, var(--cf-recall-vignette) 100%);
+}
+.rl-plate-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 900px) {
+  .rl-hero-showcase { margin-top: 3.5rem; }
+  .rl-plate-wrap { transform: none; }
+}
+@media (max-width: 640px) {
+  .rl-hero-spec { padding: 0 1.4rem; }
+  .rl-hero-spec-num { font-size: 1.2rem; }
+}
+
+/* ---- reduced motion: static, untilted, no canvas/scan/parallax ---- */
+@media (prefers-reduced-motion: reduce) {
+  .rl-hero-head { transform: none; }
+  .rl-plate-wrap { transform: none; }
+  .rl-plate-bloom { transform: translate(-50%, -50%); }
+  .rl-hero-sheen,
+  .rl-plate-hud-live i,
+  .rl-plate,
+  .rl-hero-eyebrow::before { animation: none !important; }
+  .rl-plate-scan { display: none; }
+}
+/* In-app reduced-motion toggle mirrors the OS query (parity with the hook). */
+html[data-motion="reduced"] .rl-hero-head,
+html[data-motion="reduced"] .rl-plate-wrap { transform: none; }
+html[data-motion="reduced"] .rl-plate-bloom { transform: translate(-50%, -50%); }
+html[data-motion="reduced"] .rl-hero-sheen,
+html[data-motion="reduced"] .rl-plate-hud-live i,
+html[data-motion="reduced"] .rl-plate,
+html[data-motion="reduced"] .rl-hero-eyebrow::before { animation: none !important; }
+html[data-motion="reduced"] .rl-plate-scan { display: none; }
+
+
+/* ===================== PORT: B library-pin ===================== */
+/* ── RECALL Library — scroll-pinned stage ──────────────────────────────────
+   The section is a tall pin (rl-lib-pin); an inner sticky stage (rl-lib-stage)
+   holds in view while RecallLibrary's scroll handler choreographs the beat
+   (header settles, coverflow zooms up, scroll-steps covers, progress fills,
+   autoplay pauses while pinned). All animated properties are transform/opacity
+   only and are driven from JS, so they stay compositor-safe. Tokens only. */
+
+.rl-lib-pin {
+  min-height: 340vh;
+  overflow-x: clip;
+}
+
+.rl-lib-stage {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 4rem;
+  overflow: hidden;
+}
+
+/* Backdrop tint that lifts ever so slightly as the section pins (opacity driven
+   by JS from 0). Raw rgba is allowed here (a CSS file); the radial accent wash
+   matches the reference's periwinkle bloom over the deep canvas. */
+.rl-lib-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(90% 70% at 50% 32%, rgba(150, 170, 255, 0.1), transparent 70%),
+    linear-gradient(180deg, rgba(22, 26, 42, 0.6), rgba(12, 15, 26, 0.55));
+}
+
+/* Header + coverflow wrapper share a center-top transform origin so the scroll
+   handler can settle/zoom them cleanly. z-index lifts them above the tint. */
+.rl-lib-header {
+  position: relative;
+  z-index: 1;
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+.rl-cf-wrap {
+  position: relative;
+  z-index: 1;
+  margin: 9rem auto 0;
+  width: 100%;
+  max-width: 64rem;
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+/* Thin scroll-browse progress bar. Track fades in with the covers (opacity set
+   by JS); the fill is the one periwinkle accent, scaled 0→1 along the browse. */
+.rl-lib-progress {
+  position: relative;
+  z-index: 1;
+  margin: 2.75rem auto 0;
+  width: 180px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cf-recall-frame);
+  opacity: 0;
+  overflow: hidden;
+}
+
+.rl-lib-progress-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--cf-recall-accent);
+}
+
+/* Mobile: shorter pin + tighter stage padding so the beat resolves sooner. */
+@media (max-width: 760px) {
+  .rl-lib-pin {
+    min-height: 260vh;
+  }
+  .rl-lib-stage {
+    padding: 3rem 1.5rem;
+  }
+  .rl-cf-wrap {
+    margin-top: 5rem;
+  }
+}
+
+/* Reduced motion (CSS safety net): if JS hasn't run, drop the pin entirely so
+   the section reads as a calm static block. RecallLibrary's effect also un-pins
+   the stage inline and snaps the choreography to its final state. The tint and
+   progress fill render fully arrived; the will-change hints are dropped. */
+@media (prefers-reduced-motion: reduce) {
+  .rl-lib-pin {
+    min-height: auto;
+  }
+  .rl-lib-stage {
+    position: static;
+    min-height: 0;
+  }
+  .rl-lib-tint {
+    opacity: 0.5;
+  }
+  .rl-lib-progress {
+    opacity: 1;
+  }
+  .rl-lib-progress-fill {
+    transform: scaleX(1);
+  }
+  .rl-lib-header,
+  .rl-cf-wrap {
+    will-change: auto;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+
+/* ===================== PORT: C nav+ambient ===================== */
+/* =============================================================================
+ * RECALL landing — floating pill NAV + aurora/spot AMBIENT layers.
+ * Used by components/landing/recall/RecallNav.tsx + RecallAmbient.tsx.
+ * Raw rgba is permitted here (CSS file); TSX stays token-only.
+ * ============================================================================= */
+
+/* --- Ambient: aurora + top spotlight (behind the existing blooms/vignette/grain) --- */
+.rl-ambient-aurora {
+  position: absolute;
+  left: 50%;
+  top: -12%;
+  width: 130vw;
+  height: 86vh;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: blur(44px);
+  opacity: 0.85;
+  background:
+    radial-gradient(38% 48% at 32% 38%, var(--cf-recall-glow), transparent 70%),
+    radial-gradient(34% 44% at 70% 30%, var(--cf-recall-halo-soft), transparent 72%);
+  animation: rl-aurora 20s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.rl-ambient-spot {
+  position: absolute;
+  left: 50%;
+  top: -34%;
+  width: 64vw;
+  height: 96vh;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: radial-gradient(50% 58% at 50% 0%, rgba(255, 255, 255, 0.055), transparent 68%);
+}
+@keyframes rl-aurora {
+  from {
+    transform: translateX(-52%) translateY(-2%) scale(1);
+  }
+  to {
+    transform: translateX(-48%) translateY(3%) scale(1.09);
+  }
+}
+
+/* --- Floating pill nav --- */
+.rl-nav {
+  position: fixed;
+  top: 1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: min(72rem, calc(100% - 2rem));
+  padding: 0.6rem 0.6rem 0.6rem 1.2rem;
+  border-radius: 9999px;
+  border: 1px solid var(--cf-recall-border-strong);
+  /* Glass: tint the deep panel surface and let the canvas blur through. */
+  background: color-mix(in srgb, var(--cf-recall-panel) 64%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+    0 22px 54px -30px rgba(0, 0, 0, 0.85);
+}
+/* Fallback for engines without backdrop-filter (e.g. Firefox without the flag):
+   render an opaque-enough panel so text stays legible over the hero. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rl-nav {
+    background: color-mix(in srgb, var(--cf-recall-panel) 92%, transparent);
+  }
+}
+
+.rl-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+}
+.rl-nav-mark {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid var(--cf-recall-accent-line);
+  color: var(--cf-recall-accent);
+}
+
+.rl-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.9rem;
+}
+.rl-nav-link {
+  font-size: 0.875rem;
+  color: var(--cf-recall-ink-soft);
+  transition: color 0.15s ease;
+}
+.rl-nav-link:hover {
+  color: var(--cf-recall-ink);
+}
+@media (max-width: 820px) {
+  .rl-nav-links {
+    display: none;
+  }
+}
+
+.rl-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.rl-nav-signin {
+  font-size: 0.9375rem;
+  color: var(--cf-recall-ink-soft);
+  transition: color 0.15s ease;
+}
+.rl-nav-signin:hover {
+  color: var(--cf-recall-ink);
+}
+
+/* --- Reduced motion: stop the aurora drift (no animation). Honor BOTH the OS
+   media query AND the in-app html[data-motion="reduced"] toggle. --- */
+@media (prefers-reduced-motion: reduce) {
+  .rl-ambient-aurora {
+    animation: none !important;
+  }
+}
+html[data-motion="reduced"] .rl-ambient-aurora {
+  animation: none !important;
+}
+
+
+/* ===================== PORT: D copy+badge ===================== */
+/* ── RECALL landing: Canadian flag badge (footer) ───────────────────────────
+   Raw flag colors live here (CSS file) so the TSX stays token-only; the SVG in
+   RecallClose.tsx references these via fill="var(--cf-recall-flag-red|white)".
+   The .cf-recall-canadian svg rule ports the reference's rounded + hairline
+   ring on the little flag chip. */
+:root {
+  --cf-recall-flag-red: #d52b1e;
+  --cf-recall-flag-white: #ffffff;
+}
+.cf-recall-canadian svg {
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--cf-recall-frame);
+}

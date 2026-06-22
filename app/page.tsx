@@ -4,34 +4,26 @@ import {
   CHAPTERFLOW_NAME,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
-import { Navbar } from "@/components/sections/Navbar";
-import { Hero } from "@/components/sections/Hero";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
-import { ScrollStory } from "@/components/sections/ScrollStory";
-import { Ledger } from "@/components/sections/Ledger";
-import { CatalogIndex } from "@/components/sections/CatalogIndex";
-import { ScienceAndTrust } from "@/components/sections/ScienceAndTrust";
-import { Pricing } from "@/components/sections/Pricing";
-import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Footer } from "@/components/sections/Footer";
-import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
-import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
-import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
-import { PRICING } from "@/lib/pricing";
-import {
-  CATALOG_BOOK_COUNT_DISPLAY,
-  CATALOG_MEDIAN_CHAPTER_MINUTES,
-} from "@/lib/catalog-stats";
+import { RecallNav } from "@/components/landing/recall/RecallNav";
+import { RecallAmbient } from "@/components/landing/recall/RecallAmbient";
+import { RecallReveal } from "@/components/landing/recall/RecallReveal";
+import { RecallHeroSplit } from "@/components/landing/recall/RecallHeroSplit";
+import { RecallHowItWorks } from "@/components/landing/recall/RecallHowItWorks";
+import { RecallWhyItWorks } from "@/components/landing/recall/RecallWhyItWorks";
+import { RecallLibrary } from "@/components/landing/recall/RecallLibrary";
+import { RecallPricing } from "@/components/landing/recall/RecallPricing";
+import { RecallClose } from "@/components/landing/recall/RecallClose";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
   description:
-    `ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world examples, prove retention with quizzes, and practice what you learned. ${CATALOG_BOOK_COUNT_DISPLAY} books, free to start.`,
+    "ChapterFlow turns every non-fiction book into a guided learning loop: read a summary, see real examples, pass a quiz, and let spaced review lock it in. Free to start.",
   metadataBase: new URL(getChapterFlowSiteUrl()),
   openGraph: {
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. Summaries, examples, quizzes, and real progress. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books.`,
+      "Most of what you read is gone within days. ChapterFlow turns every book into a guided loop that makes it stick. Free to start.",
     url: getChapterFlowSiteUrl(),
     siteName: CHAPTERFLOW_NAME,
     type: "website",
@@ -40,7 +32,7 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: `${CHAPTERFLOW_NAME} — Stop forgetting what you read`,
+        alt: `${CHAPTERFLOW_NAME}. Stop forgetting what you read`,
       },
     ],
   },
@@ -48,11 +40,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books, free to start.`,
+      "Guided reading that makes what you read last. Read it once, keep it for good.",
     images: ["/og"],
   },
 };
 
+/**
+ * RECALL landing — the hero is the canonical "Editorial Split" (RecallHeroSplit):
+ * an oversized headline left, the FSRS retention curve as a framed product plate
+ * right. The earlier ?v=a|b|c variant switcher and its alternate heroes are gone.
+ * Server Component.
+ */
 export default function Home() {
   const siteUrl = getChapterFlowSiteUrl();
   const jsonLd = [
@@ -63,7 +61,7 @@ export default function Home() {
       url: siteUrl,
       logo: `${siteUrl}/og`,
       description:
-        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, and quizzes.",
+        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, quizzes, and spaced-repetition review.",
     },
     {
       "@context": "https://schema.org",
@@ -76,21 +74,6 @@ export default function Home() {
         "query-input": "required name=search_term_string",
       },
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: `${CHAPTERFLOW_NAME} Pro`,
-      description:
-        "Unlimited access to a structured non-fiction reading library with summaries, examples, quizzes, and spaced-repetition retention.",
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: PRICING.annualMonthlyAmount.toFixed(2),
-        highPrice: PRICING.monthlyAmount.toFixed(2),
-        priceCurrency: PRICING.currency,
-        offerCount: 2,
-        availability: "https://schema.org/InStock",
-      },
-    },
   ];
 
   return (
@@ -100,77 +83,55 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* Noise texture overlay */}
-      <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
-
-      {/* Calibrated near-black field. Depth comes from grain + the masked
-          structural grid below + the ONE contained glow in the hero — NOT an
-          ambient teal wash (the Field Manual direction traded that away). A single
-          faint top tint keeps the very top of the page from reading as dead black
-          behind the transparent nav; everything below rests on the grid + grain. */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-10"
-        aria-hidden
-        style={{
-          background: [
-            "radial-gradient(ellipse 70vw 38vw at 50% -8%, color-mix(in srgb, var(--accent-cyan) 5%, transparent), transparent 64%)",
-            "var(--bg-base)",
-          ].join(", "),
-        }}
-      />
-      {/* Faint structural grid — gives the eye something to rest on so empty bands
-          never read as dead black. Fixed + masked to fade at the very top/bottom. */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-10"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, var(--cf-grid-line) 1px, transparent 1px), linear-gradient(to bottom, var(--cf-grid-line) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-          maskImage: "radial-gradient(135% 105% at 50% 42%, black 78%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(135% 105% at 50% 42%, black 78%, transparent 100%)",
-        }}
-      />
-
       {/* Skip to main content (WCAG 2.4.1) */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none"
         style={{
-          background: "var(--accent-cyan)",
-          color: "var(--primary-foreground)",
+          background: "var(--cf-recall-accent)",
+          color: "var(--cf-recall-bg)",
         }}
       >
         Skip to main content
       </a>
 
-      {/* ONE LazyMotion provider for the whole marketing tree (see
-          LandingMotionProvider). Sections inside use the lightweight `m`. */}
-      <LandingMotionProvider>
-        <ScrollProgressBar />
+      {/* The page's depth field — a fixed, parallaxing ambient layer the
+          transparent sections read through. Sits behind all content. */}
+      <RecallAmbient />
 
-        <Navbar />
-        <Suspense fallback={null}>
-          <AuthErrorBanner />
-        </Suspense>
+      {/* Failed Cognito sign-ins bounce back to /?auth=… — surface a dismissible
+          retry banner. Reads useSearchParams, so it needs its own Suspense
+          boundary to keep the page statically renderable. */}
+      <Suspense fallback={null}>
+        <AuthErrorBanner />
+      </Suspense>
 
-        {/* Product-forward narrative — the loop is the spine. The reader appears
-            twice in two registers (hero showpiece → scroll-driven signature), never
-            repeated: hook (hero) → operate the loop + the science (signature) →
-            the toolkit (ledger) → honest trust → price → close. */}
-        <main id="main" tabIndex={-1} className="focus:outline-none">
-          <Hero />
-          <ScrollStory />
-          <Ledger />
-          <ScienceAndTrust />
-          <CatalogIndex />
-          <Pricing />
-          <FinalCTA />
-        </main>
+      <RecallNav />
 
-        <Footer />
-        <MobileStickyBar />
-      </LandingMotionProvider>
+      {/* Hero animates on first paint (above the fold); every section below it
+          reveals on scroll-in (RecallReveal) so the page stays alive as you go.
+          RecallLibrary is the exception: it is scroll-PINNED (an inner
+          position:sticky stage), and a RecallReveal wrapper would set a
+          transform on the ancestor, which makes that sticky stage stick to the
+          wrapper instead of the viewport — killing the pin. It owns its own
+          scroll-in choreography, so it is rendered directly. */}
+      <main id="main" tabIndex={-1} className="relative z-10 focus:outline-none">
+        <RecallHeroSplit />
+        <RecallReveal>
+          <RecallHowItWorks />
+        </RecallReveal>
+        <RecallReveal>
+          <RecallWhyItWorks />
+        </RecallReveal>
+        <RecallLibrary />
+        <RecallReveal>
+          <RecallPricing />
+        </RecallReveal>
+      </main>
+
+      <RecallReveal className="relative z-10">
+        <RecallClose />
+      </RecallReveal>
     </div>
   );
 }
