@@ -551,7 +551,7 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 
 **What each tier does:**
 
-- **fastRead** — scene + rule. One vignette, then the move, end on the takeaway.
+- **fastRead** — scene + rule. One vignette, then the move, end on the takeaway. The 2-minute tier stays NAME-FREE: no researcher, study year, or framework name here (not "David G. Myers called this the American Paradox") — citations belong in deepRead/fullRead (rule 11). Lead with the plain idea and the scene.
 - **deepRead** — mechanism + second scene. Why the move works + a second example that stress-tests it.
 - **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, and a closing line.
 

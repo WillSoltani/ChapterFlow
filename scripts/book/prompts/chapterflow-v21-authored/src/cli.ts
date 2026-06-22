@@ -2155,6 +2155,12 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const { planRhetoric, writeRhetoricPlan } = await import("./librarian/rhetoricPlan.js");
   const rhetoricPlan = planRhetoric(bookId, from, to);
   writeRhetoricPlan(rhetoricPlan);
+  // Chapter-cadence plan: rotate the BODY ARC (which beat leads the breakdown + deepRead
+  // order) so chapters don't all run the identical "named scene -> you-lesson" floor plan
+  // (the cold-validation monotony finding). Does not touch the hook.
+  const { planChapterArchetypes, writeCadencePlan, formatCadenceForChapter } = await import("./librarian/chapterArchetypePlan.js");
+  const cadencePlan = planChapterArchetypes(bookId, from, to);
+  writeCadencePlan(cadencePlan);
   // Answer-key plan: per-chapter balanced correctIndex target so the book stays
   // under the F3 ceiling by construction instead of drifting to index 0.
   const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
@@ -2270,6 +2276,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     const rhetoricLine = rhet
       ? `• OPENERS (anti-clustering — the book must not converge on one shape): counterintuition = ${rhet.counterShape} — ${rhet.counterDirective} || hook = ${rhet.hookOpenerClass} — ${rhet.hookDirective} These are YOUR assigned shapes; do not default to the "X is not Y" negation shell (B11) or open the hook with "What" (B13).\n`
       : "";
+    const cadenceLine = formatCadenceForChapter(cadencePlan, ch.number).map((l) => `    ${l}`).join("\n");
     const akTarget = answerKeyPlan.allocation[ch.number] ?? [];
     const answerKeyLine = akTarget.length
       ? `• ANSWER-KEY TARGET — place the correct answers at these positions across the ${akTarget.length} questions: [${akTarget.join(", ")}]. Score each question for TRUTH first, then arrange the (unchanged) choices so the correct one lands on its target position. This keeps the book balanced (prevents F3 answer-position drift). NEVER change which choice is true to hit a position.\n`
@@ -2362,6 +2369,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         sceneModeLine +
         venueLine +
         rhetoricLine +
+        (cadenceLine ? cadenceLine + "\n" : "") +
         pedagogyLines +
         answerKeyLine +
         timingLine +
