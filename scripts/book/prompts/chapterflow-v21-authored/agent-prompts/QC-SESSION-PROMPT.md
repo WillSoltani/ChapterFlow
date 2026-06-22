@@ -145,17 +145,32 @@ Read ALL of the book's chapters in one pass looking ONLY for cross-chapter
 repetition (this is the defect class per-chapter reads structurally miss):
 
 1. **scene_skeleton** — example scenes sharing one frame across chapters,
-   even with different nouns.
+   even with different nouns. This INCLUDES one functional MOVE / device reused
+   with only the nouns swapped — the dramatic transaction is identical while the
+   names/props/setting change. E.g. a leader who loses her voice and a substitute
+   who seizes the teaching prop (marker/page/microphone) and teaches the concept,
+   recurring across chapters; a "decision made alone under deadline" beat reused
+   chapter after chapter. Quote a DISTINCTIVE multi-word span of the reused
+   device — long and specific enough to be unambiguous (e.g. "loses her voice and
+   a substitute takes the marker"), not a bare two-word fragment.
 2. **persona_drift** — one name, different people across chapters (incl. a
    source figure's first name on a fictional protagonist).
 3. **repeated_unit** — near-identical cards/plans/quiz stems/hooks/tactics/
    marquee exemplars across chapters (an exemplar anchoring 2+ chapters with
-   date/place stamping counts).
+   date/place stamping counts). This INCLUDES one example UNIT reused as the same
+   functional move — e.g. a message that is "restarted/reframed" (a drafted reply
+   stopped, softened, and resent) used as the example in chapter after chapter.
+   Quote the unit's distinctive verbatim text (its title plus a few words of the
+   move, e.g. "Restarted Reply — the drafted accusation is stopped and resent").
 4. **location_stamping** — one venue stamped across many chapters.
 
-Every finding needs a verbatim quote + every chapter number involved.
-FP-guards: shared CONCEPT terms are the book's vocabulary; a consistent
-pedagogical opener with differing content is a convention.
+Every finding needs a verbatim quote + every chapter number involved. Quote a
+DISTINCTIVE span of the recurring device — long and specific enough to be
+unambiguous — and list EVERY chapter it appears in (do NOT stop at the first two).
+FP-guards: shared CONCEPT terms are the book's vocabulary; an ordinary recurring
+GESTURE ("nods", "takes a breath") is natural narration; a consistent pedagogical
+opener with differing content is a convention. None of these is templating — only
+flag a reused structural DEVICE.
 
 **EARLY EXIT:** if ≥3 structural families each span ≥⅓ of the chapters, the
 book is systemically templated — STOP. Report the families as the fix brief,

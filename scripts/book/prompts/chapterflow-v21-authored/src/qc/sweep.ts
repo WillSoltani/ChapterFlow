@@ -111,8 +111,24 @@ export function sweepHistoryPath(bookId: string): string {
 export function appendSweepHistory(rec: SweepRecord): void {
   try {
     const p = sweepHistoryPath(rec.bookId);
-    const prior = existsSync(p) ? readFileSync(p, "utf8") : "";
-    writeFileAtomic(p, `${prior}${JSON.stringify(rec)}\n`);
+    const prior = existsSync(p) ? readFileSync(p, "utf8").split("\n").filter((l) => l.trim()) : [];
+    // Drop any prior line(s) for THIS roundId (a re-finalize/carry re-appends the same round) and
+    // re-add the fresh record LAST — last-write-wins per round, matching loadSweepHistory's dedup so
+    // the on-disk file equals the loaded view (no bloat). Unparseable lines are kept verbatim
+    // (forensics). The dedup is purely cosmetic for consumers (they already dedup on load), so item-B
+    // independent-read counting is unchanged.
+    const kept: string[] = [];
+    for (const line of prior) {
+      try {
+        const r = JSON.parse(line) as SweepRecord;
+        if (r && r.roundId === rec.roundId) continue; // replace the prior record for this round
+      } catch {
+        /* keep an unparseable line as-is */
+      }
+      kept.push(line);
+    }
+    kept.push(JSON.stringify(rec));
+    writeFileAtomic(p, `${kept.join("\n")}\n`);
   } catch {
     /* history is an optimization layer; never let it break a sweep write */
   }

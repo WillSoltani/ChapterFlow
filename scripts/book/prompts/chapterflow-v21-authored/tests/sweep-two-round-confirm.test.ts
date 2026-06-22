@@ -8,7 +8,7 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "node:fs";
+import { rmSync, readFileSync } from "node:fs";
 
 import { test } from "./harness.js";
 import { makeChapter } from "./helpers.js";
@@ -58,6 +58,11 @@ test("history: append is newest-first and de-duplicates by roundId (a re-finaliz
     assert.equal(hist[0].verdict, "PASS", "the LAST write for r2 wins (the re-finalize)");
     assert.equal(priorSweepRecord(BOOK, "r2")?.roundId, "r1", "prior of r2 is r1");
     assert.equal(priorSweepRecord(BOOK, "r1"), null, "r1 has no prior");
+    // Dedup happens ON DISK, not just on load: the re-finalize of r2 replaced its prior line, so the
+    // raw file has exactly one line per round (no bloat — roundIds were landing 2-18x pre-fix).
+    const rawRoundIds = readFileSync(sweepHistoryPath(BOOK), "utf8").split("\n").filter((l) => l.trim()).map((l) => (JSON.parse(l) as SweepRecord).roundId);
+    assert.deepEqual(rawRoundIds.filter((r) => r === "r2").length, 1, "exactly one r2 line on disk after the re-finalize");
+    assert.equal(rawRoundIds.length, 2, "two lines total (r1, r2) — deduped on append");
   } finally {
     reset();
   }
