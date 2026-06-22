@@ -720,6 +720,12 @@ html.transitioning *::after {
 .landing-dark {
   color-scheme: dark;
   background: #0B0E14;
+  /* Contain the oversized decorative layers (ambient blooms, 130dvw aurora,
+     plate bloom) and any momentarily-wide content so the page never shows a
+     horizontal scrollbar on phones/tablets. MUST be `clip`, NOT `hidden`:
+     `clip` does not establish a scroll container, so it cannot break the
+     library's position:sticky pin further down the page. */
+  overflow-x: clip;
 
   /* Shadcn base */
   --background: #0B0E14;
@@ -3151,14 +3157,14 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
    only and are driven from JS, so they stay compositor-safe. Tokens only. */
 
 .rl-lib-pin {
-  min-height: 340vh;
+  min-height: 340svh;
   overflow-x: clip;
 }
 
 .rl-lib-stage {
   position: sticky;
   top: 0;
-  min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -3223,16 +3229,25 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   background: var(--cf-recall-accent);
 }
 
-/* Mobile: shorter pin + tighter stage padding so the beat resolves sooner. */
-@media (max-width: 760px) {
+/* Mobile + tablet: shorter pin + tighter stage padding so the beat resolves
+   sooner (≤1024px — tablets have far less vertical room than desktop, so the
+   desktop 340svh pin felt endless there). */
+@media (max-width: 1023.98px) {
   .rl-lib-pin {
-    min-height: 260vh;
+    min-height: 260svh;
   }
+  /* Top-anchor the stage (instead of vertically centering) and clear the fixed
+     nav, so on short viewports the header, coverflow and progress stack
+     deterministically — the centered layout let the coverflow ride up over the
+     header subtext. Desktop keeps justify-content:center. (Capped at 1023.98px
+     so it does NOT overlap the lg: cover offset, which begins at exactly 1024px
+     — both firing at 1024 would pull the covers back up over the header.) */
   .rl-lib-stage {
-    padding: 3rem 1.5rem;
+    justify-content: flex-start;
+    padding: 4.75rem 1.25rem 2rem;
   }
   .rl-cf-wrap {
-    margin-top: 5rem;
+    margin-top: 1.75rem;
   }
 }
 
@@ -3278,8 +3293,8 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   position: absolute;
   left: 50%;
   top: -12%;
-  width: 130vw;
-  height: 86vh;
+  width: 130dvw;
+  height: 86dvh;
   transform: translateX(-50%);
   pointer-events: none;
   filter: blur(44px);
@@ -3439,6 +3454,20 @@ html[data-motion="reduced"] .rl-ambient-aurora {
   color: var(--cf-recall-ink);
 }
 
+/* The periwinkle primary-CTA color treatment, shared by the library-browser +
+   request CTAs (the layout/size classes stay per-site). Centralizes the accent
+   bg/ink/glow + focus-ring color so they can't drift, and removes the per-site
+   inline style + @ts-expect-error. */
+.rl-cta-accent {
+  /* min-height guarantees the WCAG 44px touch target regardless of font metrics
+     (py-3.5 + 0.9375rem text lands ~46px but is line-height-dependent). */
+  min-height: 44px;
+  background: var(--cf-recall-accent);
+  color: var(--cf-recall-bg);
+  box-shadow: 0 14px 40px -12px var(--cf-recall-glow);
+  --tw-ring-color: var(--cf-recall-accent);
+}
+
 /* Sticky header inside the scrolling browse panel: tinted + blurred so the grid
    scrolls cleanly beneath the search + chips. */
 .rl-browse-header {
@@ -3487,8 +3516,11 @@ html[data-motion="reduced"] .rl-ambient-aurora {
 /* Category filter chips. */
 .rl-filter-chip {
   flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   border-radius: 999px;
-  padding: 0.4rem 0.9rem;
+  padding: 0.4rem 0.95rem;
   font-size: 0.8125rem;
   font-weight: 500;
   white-space: nowrap;

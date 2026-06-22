@@ -15,7 +15,7 @@ import {
 export function AppWindowChrome() {
   return (
     <div
-      className="h-11 flex items-center px-4 gap-3"
+      className="hidden h-11 items-center gap-3 px-4 md:flex"
       style={{
         background: "var(--cr-bg-surface-2)",
         borderBottom: "1px solid var(--cr-glass-border)",

@@ -86,7 +86,7 @@ export function RecallPricing() {
         </header>
 
         {/* ── Two tiers, side by side ── */}
-        <div className="mx-auto mt-16 grid max-w-[58rem] grid-cols-1 gap-6 sm:mt-20 sm:gap-8 lg:grid-cols-2">
+        <div className="mx-auto mt-16 grid max-w-[58rem] grid-cols-1 gap-6 sm:mt-20 sm:gap-8 md:grid-cols-2 md:gap-7 lg:gap-8">
           {/* FREE — plain neutral card */}
           <div
             className="cf-fade-up cf-hover-raise flex flex-col rounded-[1.5rem] p-8 sm:p-10"

@@ -16,7 +16,7 @@
  * back to a typographic plate (never the catalog emoji — RECALL restraint).
  */
 
-import { useId, useMemo, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Search, X, ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { Dialog } from "@/components/ui/Dialog";
@@ -24,7 +24,7 @@ import {
   BOOKS_CATALOG_METADATA,
   type BookCatalogMetadata,
 } from "@/app/book/data/booksCatalog";
-import { getBookCoverPath } from "@/lib/book-covers";
+import { useBookCoverSource } from "@/lib/use-book-cover-source";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
@@ -58,6 +58,46 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
   const selected = selectedId
     ? BOOKS_CATALOG_METADATA.find((b) => b.id === selectedId) ?? null
     : null;
+
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // Reset transient state whenever the overlay closes, so the next open is a
+  // fresh grid (the instance stays mounted between opens for the exit animation,
+  // so without this the old search/category/detail view would persist).
+  useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setCategory(ALL);
+      setSelectedId(null);
+      setRequestOpen(false);
+      setRequestPrefill("");
+    }
+  }, [open]);
+
+  // Return to the grid from the detail view, keeping focus in the overlay (the
+  // detail's Back button is about to unmount, which would otherwise drop focus
+  // to <body> — WCAG 2.4.3).
+  const backToGrid = useCallback(() => {
+    setSelectedId(null);
+    requestAnimationFrame(() => searchRef.current?.focus());
+  }, []);
+
+  // In the detail view, Escape should go BACK to the grid, not close the whole
+  // library. Intercept in the capture phase so it beats the Dialog's
+  // document-level (bubble) Escape→onClose. Skip while the nested request dialog
+  // is open (it owns Escape then).
+  useEffect(() => {
+    if (!selectedId || requestOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        e.preventDefault();
+        backToGrid();
+      }
+    };
+    document.addEventListener("keydown", onKey, true);
+    return () => document.removeEventListener("keydown", onKey, true);
+  }, [selectedId, requestOpen, backToGrid]);
 
   function openRequest(prefill: string) {
     setRequestPrefill(prefill);
@@ -99,7 +139,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
                 type="button"
                 onClick={onClose}
                 aria-label="Close library"
-                className="-mr-1 grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                className="-mr-1 grid h-12 w-12 shrink-0 place-items-center rounded-full transition-colors duration-150 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{
                   color: "var(--cf-recall-ink-soft)",
                   border: "1px solid var(--cf-recall-border-strong)",
@@ -125,6 +165,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
               </label>
               <input
                 id={`${titleId}-search`}
+                ref={searchRef}
                 type="search"
                 value={query}
                 onChange={(e) => {
@@ -175,7 +216,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
         {/* ── Body: detail view, grid, or empty state ── */}
         <div className="mx-auto w-full max-w-[78rem] px-6 pb-16 pt-6 sm:px-8">
           {selected ? (
-            <BookDetail book={selected} onBack={() => setSelectedId(null)} />
+            <BookDetail book={selected} onBack={backToGrid} />
           ) : filtered.length === 0 ? (
             <EmptyState query={query} onRequest={() => openRequest(query.trim())} />
           ) : (
@@ -234,10 +275,17 @@ function BookCard({
   );
 }
 
-/* ── Cover image with a typographic fallback for the few ids without a file. ── */
+/* ── Cover image with a typographic fallback for the few ids without a file. ──
+   Uses the shared resolver (lib/use-book-cover-source) so it walks the full
+   AVIF-first → WebP → … candidate chain (smaller transfer, recovers covers that
+   exist only as AVIF/under an alias) and only shows the text plate once EVERY
+   candidate is exhausted. ── */
 function BrowseCover({ book }: { book: BookCatalogMetadata }) {
-  const [errored, setErrored] = useState(false);
-  if (errored) {
+  const { src, exhausted, onError, loader } = useBookCoverSource(
+    book.id,
+    book.coverImage,
+  );
+  if (exhausted || !src) {
     return (
       <div className="rl-cover-fallback">
         <span
@@ -254,13 +302,14 @@ function BrowseCover({ book }: { book: BookCatalogMetadata }) {
   }
   return (
     <Image
-      src={getBookCoverPath(book.id)}
+      src={src}
+      loader={loader}
       alt={`${book.title} by ${book.author}`}
       fill
       sizes="(max-width: 640px) 44vw, (max-width: 1024px) 22vw, 14vw"
       className="object-cover"
       draggable={false}
-      onError={() => setErrored(true)}
+      onError={onError}
     />
   );
 }
@@ -273,6 +322,14 @@ function BookDetail({
   book: BookCatalogMetadata;
   onBack: () => void;
 }) {
+  // Move focus to the Back control when the detail view opens, so a keyboard /
+  // screen-reader user lands inside the new view instead of losing focus to
+  // <body> when the grid (and the activating card) unmounts (WCAG 2.4.3).
+  const backRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    backRef.current?.focus();
+  }, []);
+
   const meta = [
     canonicalizeCategory(book.category),
     `${book.chapterCount} chapters`,
@@ -283,9 +340,10 @@ function BookDetail({
   return (
     <div className="cf-fade-up">
       <button
+        ref={backRef}
         type="button"
         onClick={onBack}
-        className="inline-flex items-center gap-1.5 text-[0.875rem] font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+        className="-ml-2 inline-flex min-h-[44px] items-center gap-1.5 rounded px-2 text-[0.875rem] font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         style={{
           color: "var(--cf-recall-ink-soft)",
           // @ts-expect-error -- CSS custom property for the focus ring color
@@ -298,7 +356,7 @@ function BookDetail({
 
       <div className="mt-7 grid grid-cols-1 gap-8 sm:grid-cols-[minmax(0,200px)_1fr] sm:gap-10">
         <div
-          className="rl-book-cover relative mx-auto aspect-[2/3] w-[160px] overflow-hidden rounded-[12px] sm:mx-0 sm:w-full"
+          className="rl-book-cover relative mx-auto aspect-[2/3] w-[42vw] max-w-[170px] overflow-hidden rounded-[12px] sm:mx-0 sm:w-full sm:max-w-none"
           style={{ border: "1px solid var(--cf-recall-frame)" }}
         >
           <BrowseCover book={book} />
@@ -341,14 +399,7 @@ function BookDetail({
 
           <a
             href={AUTH_LOGIN_BOOK_URL}
-            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-            style={{
-              background: "var(--cf-recall-accent)",
-              color: "var(--cf-recall-bg)",
-              boxShadow: "0 14px 40px -12px var(--cf-recall-glow)",
-              // @ts-expect-error -- CSS custom property for the focus ring color
-              "--tw-ring-color": "var(--cf-recall-accent)",
-            }}
+            className="rl-cta-accent mt-8 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
           >
             Start reading free
             <ArrowRight size={17} strokeWidth={2.25} aria-hidden />
@@ -380,14 +431,7 @@ function EmptyState({ query, onRequest }: { query: string; onRequest: () => void
       <button
         type="button"
         onClick={onRequest}
-        className="mt-7 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-        style={{
-          background: "var(--cf-recall-accent)",
-          color: "var(--cf-recall-bg)",
-          boxShadow: "0 14px 40px -12px var(--cf-recall-glow)",
-          // @ts-expect-error -- CSS custom property for the focus ring color
-          "--tw-ring-color": "var(--cf-recall-accent)",
-        }}
+        className="rl-cta-accent mt-7 inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
       >
         {q ? <>Request “{q}”</> : <>Request a book</>}
         <ArrowUpRight size={17} strokeWidth={2.25} aria-hidden />

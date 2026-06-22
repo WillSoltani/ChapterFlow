@@ -18,6 +18,7 @@ import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapter
 import type { ReadingDepth } from "@/app/book/data/bookChapters";
 
 import { AppWindowChrome } from "./AppWindowChrome";
+import { MobileAppChrome } from "./MobileAppChrome";
 import { DesktopQuizPanel } from "./DesktopQuizPanel";
 import {
   DEMO_ACTIVATION_PROMPT_BY_DEPTH,
@@ -214,13 +215,17 @@ export function DesktopReaderShell({
   return (
     <div
       ref={rootRef}
-      className="overflow-hidden rounded-2xl border"
+      className="overflow-hidden rounded-[1.75rem] border md:rounded-2xl"
       style={{
         background: "var(--cr-bg-root)",
         borderColor: "var(--cr-glass-border)",
         boxShadow: "0 24px 64px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3)",
       }}
     >
+      {/* Phone-style chrome on small screens; desktop browser chrome from md up. */}
+      <div className="md:hidden">
+        <MobileAppChrome />
+      </div>
       <AppWindowChrome />
 
       {/* Phase stepper bar */}

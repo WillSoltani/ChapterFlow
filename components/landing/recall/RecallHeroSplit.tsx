@@ -82,6 +82,15 @@ export function RecallHeroSplit() {
       showcaseRef.current?.style.removeProperty("--rl-py");
       return;
     }
+    // Parallax + 3D tilt is a fine-pointer (mouse) affordance only. On touch
+    // devices `pointermove` fires continuously through every scroll/drag, which
+    // recomputes the tilt for no benefit (jank + battery). Skip coarse pointers.
+    if (
+      typeof window.matchMedia === "function" &&
+      !window.matchMedia("(pointer: fine)").matches
+    ) {
+      return;
+    }
     let raf = 0;
     let px2 = 0;
     let py2 = 0;
@@ -110,7 +119,7 @@ export function RecallHeroSplit() {
   return (
     <section
       aria-labelledby="recall-split-headline"
-      className="relative isolate flex min-h-[100svh] w-full flex-col items-center px-6 pb-20 pt-44 text-center sm:px-10 lg:px-16"
+      className="relative isolate flex min-h-[100svh] w-full flex-col items-center px-6 pb-20 pt-28 text-center sm:px-10 sm:pt-36 lg:px-16 lg:pt-44"
       style={{ background: "transparent" }}
     >
       {/* ── centered head: eyebrow → headline → sub → CTAs → specs ── */}
@@ -127,7 +136,11 @@ export function RecallHeroSplit() {
           className="cf-fade-up mt-7 font-(family-name:--font-display) font-extrabold leading-[0.9] tracking-[-0.045em] text-balance"
           style={{
             color: "var(--cf-recall-ink)",
-            fontSize: "clamp(3.25rem, 8vw, 7rem)",
+            // Lower the MIN only (keep 8vw + 7rem so tablet/desktop are
+            // unchanged); at the old 3.25rem min, "Stop forgetting" couldn't fit
+            // one line on phones, so the word wrapped/overflowed and the dust
+            // canvas painted into the gap as a detached cloud.
+            fontSize: "clamp(2.25rem, 8vw, 7rem)",
             animationDelay: "55ms",
           }}
         >

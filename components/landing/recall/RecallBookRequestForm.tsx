@@ -196,7 +196,11 @@ export function RecallBookRequestForm({
         />
       </div>
 
-      {/* Honeypot — off-screen, hidden from assistive tech and tab order. */}
+      {/* Honeypot — off-screen, hidden from assistive tech and tab order. The
+          data-*-ignore hints tell password managers / browser autofill to leave
+          these alone: "Company" especially is a common address-autofill target,
+          and an autofilled honeypot would make the server silently drop a real
+          reader's request. */}
       <div
         aria-hidden
         className="pointer-events-none absolute -left-[9999px] h-0 w-0 overflow-hidden"
@@ -207,6 +211,9 @@ export function RecallBookRequestForm({
           type="text"
           tabIndex={-1}
           autoComplete="off"
+          data-1p-ignore
+          data-lpignore="true"
+          data-form-type="other"
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
         />
@@ -216,6 +223,9 @@ export function RecallBookRequestForm({
           type="text"
           tabIndex={-1}
           autoComplete="off"
+          data-1p-ignore
+          data-lpignore="true"
+          data-form-type="other"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
         />
@@ -245,14 +255,7 @@ export function RecallBookRequestForm({
       <button
         type="submit"
         disabled={!canSubmit}
-        className="mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
-        style={{
-          background: "var(--cf-recall-accent)",
-          color: "var(--cf-recall-bg)",
-          boxShadow: "0 14px 40px -12px var(--cf-recall-glow)",
-          // @ts-expect-error -- CSS custom property for the focus ring color
-          "--tw-ring-color": "var(--cf-recall-accent)",
-        }}
+        className="rl-cta-accent mt-1 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter,opacity] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-55"
       >
         {status === "submitting" ? (
           <>

@@ -142,7 +142,7 @@ export function RecallHowItWorks() {
               accent) and adds the gentle 3D tilt. */}
           <RecallReaderShowcase>
             <div
-              className="overflow-hidden rounded-2xl"
+              className="overflow-hidden rounded-[1.75rem] md:rounded-2xl"
               style={{
                 boxShadow:
                   "0 40px 120px -40px var(--cf-recall-glow), 0 0 0 1px var(--cf-recall-frame)",

@@ -214,13 +214,13 @@ export function RecallCoverflow({
     return (
       <div className="mx-auto w-full max-w-[56rem]">
         <ul
-          className="flex items-start justify-center gap-6 sm:gap-8"
+          className="flex items-start justify-center gap-3 sm:gap-8"
           aria-label="A sample of the ChapterFlow catalog"
         >
           {staticBooks.map((book, i) => (
             <li
               key={book.id}
-              className="aspect-[2/3] w-[40%] max-w-[14rem] sm:w-[30%]"
+              className="aspect-[2/3] w-[30%] max-w-[14rem]"
               // Visually emphasize the middle cover without any motion.
               style={{ opacity: i === 1 ? 1 : 0.55 }}
             >
@@ -260,7 +260,7 @@ export function RecallCoverflow({
         onPointerCancel={(e) => {
           if (e.pointerType !== "mouse") setPaused(false);
         }}
-        className="relative mx-auto h-[clamp(20rem,42vw,28rem)] w-full select-none rounded-[1.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
+        className="relative mx-auto h-[clamp(14rem,42vw,28rem)] w-full select-none rounded-[1.25rem] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-4"
         style={stageStyle}
       >
         <div
@@ -322,7 +322,16 @@ export function RecallCoverflow({
                 aria-hidden={beyond ? true : undefined}
                 tabIndex={beyond ? -1 : 0}
                 onClick={() => focus(i)}
-                className="absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(16rem,34vw,23rem)] -translate-x-1/2 -translate-y-1/2 rounded-[12px] focus-visible:outline-none focus-visible:ring-2"
+                // Centering is the inline `transform: translate(-50%,-50%)` in
+                // coverStyle. In Tailwind v4, -translate-x/y-1/2 set the standalone
+                // `translate` PROPERTY, which COMPOSES with (does not override) that
+                // inline transform — a full 100% offset that rode the covers up over
+                // the header and left a dead gap below. The desktop layout was tuned
+                // and signed off WITH that offset (covers tuck up under the header),
+                // so we keep it at lg+ but drop it below lg, where single (correct)
+                // centering is what makes the compact mobile/tablet stage clear the
+                // header.
+                className="absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(12rem,34vw,23rem)] rounded-[12px] focus-visible:outline-none focus-visible:ring-2 lg:-translate-x-1/2 lg:-translate-y-1/2"
                 style={coverStyle}
               >
                 <CoverFrame book={book} focused={isFocused} withReflection />

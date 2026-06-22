@@ -32,13 +32,21 @@
  */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { LayoutGrid } from "lucide-react";
 import { getBookById } from "@/app/book/data/booksCatalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { RecallCoverflow } from "./RecallCoverflow";
-import { RecallLibraryBrowser } from "./RecallLibraryBrowser";
+
+// The full-catalog browser (overlay + its dialog + form + lucide icons) is only
+// needed once a visitor actually opens it, so load that chunk on first open
+// instead of in every landing visitor's initial bundle (next/dynamic, client-only).
+const RecallLibraryBrowser = dynamic(
+  () => import("./RecallLibraryBrowser").then((m) => m.RecallLibraryBrowser),
+  { ssr: false },
+);
 
 /**
  * A small, deliberately restrained selection of recognizable titles for the
@@ -82,7 +90,15 @@ export function RecallLibrary() {
   //    (see the header), so there is no pause state to track. ──────────────────
   const [active, setActive] = useState(0);
   // The full-catalog browser overlay (portaled via Dialog) toggles from here.
+  // `browserMounted` latches true on first open so the lazy chunk is fetched
+  // only on demand, then the instance stays mounted (so Dialog can play its exit
+  // animation and the browser resets its own state on close).
   const [browserOpen, setBrowserOpen] = useState(false);
+  const [browserMounted, setBrowserMounted] = useState(false);
+  const openBrowser = useCallback(() => {
+    setBrowserMounted(true);
+    setBrowserOpen(true);
+  }, []);
 
   // Wrap any incoming index into range so the carousel loops in both directions.
   const focus = useCallback(
@@ -200,13 +216,14 @@ export function RecallLibrary() {
   }, [focus, reduced]);
 
   return (
-    <section
-      ref={secRef}
-      id="library"
-      aria-labelledby="recall-library-headline"
-      className="rl-lib-pin relative w-full"
-      style={{ background: "transparent" }}
-    >
+    <>
+      <section
+        ref={secRef}
+        id="library"
+        aria-labelledby="recall-library-headline"
+        className="rl-lib-pin relative w-full"
+        style={{ background: "transparent" }}
+      >
       {/* ── The sticky stage holds in view while the scroll handler choreographs. ── */}
       <div ref={stageRef} className="rl-lib-stage">
         <div ref={tintRef} className="rl-lib-tint" aria-hidden />
@@ -262,40 +279,49 @@ export function RecallLibrary() {
           <div className="rl-lib-progress">
             <span ref={barRef} className="rl-lib-progress-fill" />
           </div>
+        </div>
+      </div>
+      </section>
 
-          {/* ── Actions: open the full catalog, or jump to the request form. ── */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
-            <button
-              type="button"
-              onClick={() => setBrowserOpen(true)}
-              className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              style={{
-                color: "var(--cf-recall-ink)",
-                border: "1px solid var(--cf-recall-border-strong)",
-                // @ts-expect-error -- CSS custom property for the focus ring color
-                "--tw-ring-color": "var(--cf-recall-accent-line)",
-              }}
-            >
-              <LayoutGrid size={17} strokeWidth={2} aria-hidden />
-              Browse all {CATALOG_BOOK_COUNT_DISPLAY} books
-            </button>
-            <a
-              href="#request"
-              className="rounded text-[0.9375rem] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              style={{
-                color: "var(--cf-recall-ink-soft)",
-                // @ts-expect-error -- CSS custom property for the focus ring color
-                "--tw-ring-color": "var(--cf-recall-accent-line)",
-              }}
-            >
-              Request a book
-            </a>
-          </div>
+      {/* ── Actions live in NORMAL FLOW just after the pin, NOT inside the
+          centered/clipped sticky stage: the stage is justify-content:center +
+          overflow:hidden, so on short viewports a bottom-anchored row (the only
+          entry to the browser) would be clipped below the fold. Here it always
+          renders. ── */}
+      <div className="relative px-6 pb-24 sm:pb-28 lg:pb-32">
+        <div className="mx-auto flex max-w-[78rem] flex-wrap items-center justify-center gap-x-6 gap-y-4">
+          <button
+            type="button"
+            onClick={openBrowser}
+            className="inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            style={{
+              color: "var(--cf-recall-ink)",
+              border: "1px solid var(--cf-recall-border-strong)",
+              // @ts-expect-error -- CSS custom property for the focus ring color
+              "--tw-ring-color": "var(--cf-recall-accent-line)",
+            }}
+          >
+            <LayoutGrid size={17} strokeWidth={2} aria-hidden />
+            Browse all {CATALOG_BOOK_COUNT_DISPLAY} books
+          </button>
+          <a
+            href="#request"
+            className="rounded text-[0.9375rem] font-medium underline-offset-4 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+            style={{
+              color: "var(--cf-recall-ink-soft)",
+              // @ts-expect-error -- CSS custom property for the focus ring color
+              "--tw-ring-color": "var(--cf-recall-accent-line)",
+            }}
+          >
+            Request a book
+          </a>
         </div>
       </div>
 
-      {/* Full-catalog browser overlay (portaled; placement here is just ownership). */}
-      <RecallLibraryBrowser open={browserOpen} onClose={() => setBrowserOpen(false)} />
-    </section>
+      {/* Full-catalog browser overlay (portaled; lazy-mounted on first open). */}
+      {browserMounted ? (
+        <RecallLibraryBrowser open={browserOpen} onClose={() => setBrowserOpen(false)} />
+      ) : null}
+    </>
   );
 }
