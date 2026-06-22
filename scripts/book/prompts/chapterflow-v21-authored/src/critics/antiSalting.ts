@@ -46,23 +46,53 @@ import { finding } from "./shared.js";
 // ── Pattern catalog ─────────────────────────────────────────────────────────
 
 /**
- * Identifier-style tokens that appear inside prose. Matches:
- *   q01, q1, q07, p2, p13, ex1, ex01, c5, c10
- * Whether at sentence boundaries or mid-sentence. Real English never contains
- * these as standalone words inside prose.
+ * Identifier-style scaffold tokens injected into prose — authoring ids the salter lifts
+ * out of the structured id fields ("q7" from questionId "q07") and drops into reader prose
+ * to break n-gram matching. Two patterns, split by domain-collision risk:
  *
- * Allows them in `questionId` / `cardId` / `exampleId` fields (which are
- * structured identifiers, not prose) — the critic is field-aware.
+ *  - q-tokens are LOWERCASE-only (case-sensitive). Uppercase "Q<n>" collides with real
+ *    domain tokens that must NOT fire — quarters ("Q3 earnings", Q1–Q4) and product names
+ *    ("Audi Q7", "Q5") — so only the lowercase id-field form ("q7"/"q07") is safe to catch.
+ *    `c\d` / `p\d` are dropped: not v21 id prefixes (the real ones are q/ex/card/chapter)
+ *    and they collide with domain tokens (C3 vertebra, Series C2, P50, the gene p53).
+ *  - ex / card / chapter tokens match in ANY case: no domain token looks like
+ *    "EX1"/"Card2"/"CHAPTER3", so case-insensitive is safe and catches an uppercased leak.
+ *
+ * Residual marker-evasions (an uppercase "Q7", or a c/p marker a rule-aware adversary
+ * picks) are out of scope HERE but backstopped downstream: the verbatim skeleton such a
+ * marker leaves in examples/breakdown trips AS10 (5-token window shared with ≥2 priors),
+ * and a templated quiz prompt trips AS4 / AS13. Field-aware: structured id fields
+ * (questionId / cardId / exampleId) are not scanned.
  */
-const IDENTIFIER_TOKEN = /\b(q\d{1,3}|p\d{1,3}|ex\d{1,3}|c\d{1,3}|card\d{1,3}|chapter\d{1,3})\b/i;
+const SALT_Q_TOKEN = /\bq\d{1,3}\b/;
+const SALT_PREFIX_TOKEN = /\b(?:ex|card|chapter)\d{1,3}\b/i;
 
 /**
- * CamelCase pairs of 4+-letter capitalized words. Catches:
+ * Runs of 2+ jammed 4+-letter capitalized words. Catches the salt artifact — INVENTED
+ * place/person names jammed without a space:
  *   MaplefieldBridgeton, HarborlineNorthwell, CooperLatham, ZenithKestrel
- * Allows legitimate compound names like McDonald, MacArthur, O'Brien, JPMorgan
- * by requiring both halves to be 4+ alpha-only characters.
+ * `{2,}` (not exactly two) so a THREE-hump jam ("MaplefieldBridgetonHarborline",
+ * "PowerPointSharePoint") still matches — the old fixed-pair form ended in `\b` after the
+ * 2nd hump and silently failed to match when a 3rd capital followed. Allows legitimate
+ * compound names like McDonald, MacArthur, O'Brien, JPMorgan: each half must be 4+
+ * lowercase letters, so a 2-3-letter prefix (Mc/Mac/JP) never forms a hump.
  */
-const JAMMED_PROPER_NOUNS = /\b[A-Z][a-z]{3,}[A-Z][a-z]{3,}\b/;
+const JAMMED_PROPER_NOUNS = /\b(?:[A-Z][a-z]{3,}){2,}\b/g;
+
+/**
+ * Real CamelCase BRAND names whose halves are both 4+ letters legitimately trip the
+ * pattern (the corpus is self-help / productivity / business prose, where these appear).
+ * Allowlisted so a chapter naming one doesn't hard-block — now that publish is automatic,
+ * a spurious AS2 block HALTS an unattended run. The salt artifact (jammed invented
+ * place/person names) is never on this list and still fires. Exact spellings; extend as
+ * the corpus needs.
+ */
+const CAMELCASE_BRAND_ALLOWLIST = new Set<string>([
+  "PowerPoint", "SharePoint", "OpenTable", "LandRover", "FaceTime", "SoundCloud",
+  "WordPress", "DoorDash", "MailChimp", "MasterCard", "QuickBooks", "TaskRabbit",
+  "ClassPass", "DeepMind", "SurveyMonkey", "PostMates", "MoviePass", "NerdWallet",
+  "SalesForce", "BlackBerry", "AstraZeneca",
+]);
 
 /**
  * Doubled period followed by whitespace + capital letter. Catches:
@@ -130,7 +160,7 @@ export function checkChapterIdentifierTokens(chapter: ChapterV21): CriticFinding
   }
 
   for (const { unit, text } of fields) {
-    const match = text.match(IDENTIFIER_TOKEN);
+    const match = text.match(SALT_Q_TOKEN) ?? text.match(SALT_PREFIX_TOKEN);
     if (match) {
       findings.push(
         finding(
@@ -181,16 +211,19 @@ export function checkChapterJammedNouns(chapter: ChapterV21): CriticFinding[] {
   });
 
   for (const { unit, text } of fields) {
-    const match = text.match(JAMMED_PROPER_NOUNS);
-    if (match) {
+    // Scan ALL jammed-noun matches and report the first that is NOT an allowlisted brand,
+    // so a real salt artifact later in the field still fires even if a brand appears first.
+    for (const m of text.matchAll(JAMMED_PROPER_NOUNS)) {
+      if (CAMELCASE_BRAND_ALLOWLIST.has(m[0])) continue;
       findings.push(
         finding(
           "AS2.jammed_proper_nouns" as any,
           "blocker",
-          `${unit} contains jammed proper nouns "${match[0]}" — two capitalized words mashed without a space. Rewrite as separate words with a separator, or use a single coherent place name.`,
-          text.slice(Math.max(0, (match.index ?? 0) - 30), (match.index ?? 0) + 60),
+          `${unit} contains jammed proper nouns "${m[0]}" — two capitalized words mashed without a space. Rewrite as separate words with a separator, or use a single coherent place name.`,
+          text.slice(Math.max(0, (m.index ?? 0) - 30), (m.index ?? 0) + 60),
         ),
       );
+      break; // one finding per field, as before
     }
   }
   return findings;
@@ -245,6 +278,20 @@ export function checkChapterDoubledPeriods(chapter: ChapterV21): CriticFinding[]
  * with TOKEN varying per chapter. Token-level diff catches this immediately:
  * the 14 non-TOKEN words are identical, so similarity is 14/16 = 87.5% > 70%.
  */
+/**
+ * Minimum identical (multiset-shared) word count for a same-position prompt group to
+ * count as a salt skeleton. A legitimate short recall stem with a distinct CONCEPT per
+ * chapter ("What is the main idea behind anchoring/framing/…?") shares 6 words; a salt
+ * skeleton with a one-token MARKER ("After Reyes'/Patel's setback which step best restores
+ * momentum?") shares 7. 7 is the exact line: it exempts the 6-shared distinct-concept stem
+ * (the false positive) while still firing on the 7-shared marker skeleton (an adversarial
+ * probe's evasion). Note there is no cross-chapter verbatim-quiz-prompt backstop downstream
+ * (AS10 covers examples/breakdown, AS12 covers answer SEQUENCES), so this floor must stay
+ * tight — do not raise it. Below 7 shared, salt and a legitimate short stem are
+ * indistinguishable by length alone (the irreducible limit of this heuristic).
+ */
+const SHARED_SKELETON_MIN = 7;
+
 export function checkBookQuizPromptTemplates(chapters: ChapterV21[]): CriticFinding[] {
   const findings: CriticFinding[] = [];
   if (chapters.length < 2) return findings;
@@ -272,7 +319,14 @@ export function checkBookQuizPromptTemplates(chapters: ChapterV21[]): CriticFind
     for (let i = 0; i < prompts.length; i++) {
       for (let j = i + 1; j < prompts.length; j++) {
         const sim = wordOverlapSimilarity(tokenSets[i], tokenSets[j]);
-        if (sim >= 0.7) {
+        const shared = sharedWordCount(tokenSets[i], tokenSets[j]);
+        // BOTH a high overlap ratio AND a long enough shared skeleton. The ratio alone
+        // false-fires on short distinct-concept recall stems ("What is the main idea behind
+        // anchoring?" vs "…framing?" = 6 shared words, 0.86 ratio — legitimately distinct
+        // concepts). A real salt skeleton is LONG (it has to span an n-gram window to be
+        // worth gaming): the Covey artifact shared 14 words. SHARED_SKELETON_MIN separates
+        // them; within-chapter (AS13) and cross-chapter n-gram (AS10–AS12) backstop the rest.
+        if (sim >= 0.7 && shared >= SHARED_SKELETON_MIN) {
           const list = highSimilarity.get(i) ?? [];
           list.push(j);
           highSimilarity.set(i, list);
@@ -327,15 +381,16 @@ function tokenize(s: string): string[] {
  */
 function wordOverlapSimilarity(a: string[], b: string[]): number {
   if (a.length === 0 || b.length === 0) return 0;
-  // Count shared words using multiset intersection
+  return sharedWordCount(a, b) / Math.max(a.length, b.length);
+}
+
+/** Multiset intersection size: how many word occurrences a and b share. */
+function sharedWordCount(a: string[], b: string[]): number {
   const counterA = new Map<string, number>();
   for (const w of a) counterA.set(w, (counterA.get(w) ?? 0) + 1);
-  let shared = 0;
   const counterB = new Map<string, number>();
   for (const w of b) counterB.set(w, (counterB.get(w) ?? 0) + 1);
-  for (const [w, ca] of counterA) {
-    const cb = counterB.get(w) ?? 0;
-    shared += Math.min(ca, cb);
-  }
-  return shared / Math.max(a.length, b.length);
+  let shared = 0;
+  for (const [w, ca] of counterA) shared += Math.min(ca, counterB.get(w) ?? 0);
+  return shared;
 }
