@@ -62,6 +62,12 @@ const RUNTIME_TOKENS = new Set([
   "--cr-ring-circumference",
   "--cr-ring-offset",
   "--cr-header-h",
+  "--cr-spotlight-x",
+  "--cr-spotlight-y",
+  // RECALL landing: per-element reveal tuning set inline by RecallReveal.tsx and
+  // consumed with a fallback in globals.css (.cf-reveal). Runtime-set, by design.
+  "--cf-reveal-y",
+  "--cf-reveal-delay",
 ]);
 
 // ── file helpers ─────────────────────────────────────────────────────────────

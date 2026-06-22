@@ -15,7 +15,7 @@ import {
 export function AppWindowChrome() {
   return (
     <div
-      className="h-11 flex items-center px-4 gap-3"
+      className="hidden h-11 items-center gap-3 px-4 md:flex"
       style={{
         background: "var(--cr-bg-surface-2)",
         borderBottom: "1px solid var(--cr-glass-border)",
@@ -49,8 +49,10 @@ export function AppWindowChrome() {
           ChapterFlow
         </span>
         <span style={{ color: "var(--cr-text-disabled)" }}>·</span>
+        {/* No layoutId: V5 mounts two reader consoles (hero + signature) at once,
+            and a shared layoutId across both collides (framer warp/warnings). The
+            title doesn't transition position, so it needs no shared-layout id. */}
         <motion.span
-          layoutId="demo-chapter-title"
           className="text-[12px] truncate"
           style={{
             color: "var(--cr-text-secondary)",

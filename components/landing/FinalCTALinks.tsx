@@ -1,22 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { PulseCTA } from "@/components/landing/PulseCTA";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
 import { track } from "@/lib/analytics";
 
 /**
- * Interactive CTA links extracted from FinalCTA so the outer section can
- * stay a server component. Only these tracked links need client JS.
+ * Interactive CTA links extracted from FinalCTA so the outer section can stay a
+ * server component. Only these tracked links need client JS. Uses the page accent
+ * tokens (--accent-cyan / --primary-foreground) — V5's FinalCTA is now a raised
+ * panel inside the all-dark .landing-dark scope, not the old light-page anchor
+ * band, so the section accent and this button must be the SAME cyan.
  */
 export function FinalCTALinks() {
   return (
-    <div className="mt-8 flex flex-col items-center gap-3">
-      <PulseCTA className="inline-block">
+    <div className="mt-8 flex flex-col items-center gap-4">
+      <MagneticButton className="rounded-full">
         <Link
           href={AUTH_LOGIN_BOOK_URL}
           onClick={() => track("cta_click", { source: "final_cta_primary" })}
-          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform hover:scale-[1.03] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+          className="cta-shine inline-flex items-center rounded-full px-8 py-4 font-semibold text-[16px] transition-transform active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
           style={{
             backgroundColor: "var(--accent-cyan)",
             color: "var(--primary-foreground)",
@@ -24,7 +27,11 @@ export function FinalCTALinks() {
         >
           Start reading free &rarr;
         </Link>
-      </PulseCTA>
+      </MagneticButton>
+
+      <p className="text-[13px] text-(--text-muted)">
+        Two free books &middot; no credit card &middot; cancel anytime
+      </p>
 
       <Link
         href={AUTH_LOGIN_BOOK_URL}

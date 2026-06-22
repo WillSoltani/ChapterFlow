@@ -46,6 +46,73 @@ test.describe("public funnel", () => {
   });
 });
 
+// Landing redesign (RECALL) regressions — the three behaviours most at risk of
+// silent breakage: the mobile hero order (a conversion bug if it flips), the
+// scroll-pinned library section's reduced-motion fallback (WCAG 2.3.3), and a
+// present/clickable primary CTA. Run in dev mode (DEV_AUTH_BYPASS, no data
+// plane). The landing reveals on scroll/in-view, so the section is scrolled into
+// view before asserting.
+test.describe("landing redesign", () => {
+  test("at 390px the headline precedes the hero showcase", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+
+    const h1 = page.locator("main h1").first();
+    await expect(h1).toBeVisible();
+
+    // The hero's framed visual (the FSRS retention-curve plate) renders inside
+    // the .rl-hero-showcase wrapper, below the headline on phones.
+    const showcase = page.locator(".rl-hero-showcase").first();
+
+    const h1Box = await h1.boundingBox();
+    const showcaseBox = await showcase.boundingBox();
+    expect(h1Box, "headline must have a layout box").toBeTruthy();
+    expect(showcaseBox, "hero showcase must have a layout box").toBeTruthy();
+
+    // Headline is ABOVE the showcase (DOM-first, no order-* flip) ...
+    expect(h1Box!.y).toBeLessThan(showcaseBox!.y);
+    // ... and is the first thing in view above the fold.
+    expect(h1Box!.y).toBeLessThan(844);
+  });
+
+  test("primary 'Start reading free' CTA is present and clickable", async ({
+    page,
+  }) => {
+    await page.goto("/");
+    const cta = page
+      .getByRole("link", { name: /start reading free/i })
+      .first();
+    await expect(cta).toBeVisible();
+    await expect(cta).toBeEnabled();
+    expect(await cta.getAttribute("href")).toBeTruthy();
+  });
+
+  test("with reduced motion, the scroll-pinned library section is static and legible", async ({
+    page,
+  }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.goto("/");
+
+    const section = page.locator("#library");
+    await expect(section).toHaveCount(1);
+    await section.scrollIntoViewIfNeeded();
+
+    // Reduced motion drops the scroll-pin: the inner stage is no longer sticky,
+    // so nothing pins to the viewport (WCAG 2.3.3) and the choreography is
+    // snapped to its final, fully-arrived state.
+    await expect(section.locator(".rl-lib-stage")).toHaveCSS(
+      "position",
+      "static",
+    );
+
+    // ... and the section heading is rendered and legible at rest.
+    await expect(
+      section.getByRole("heading", { name: /books, all real/i }),
+    ).toBeVisible();
+  });
+});
+
 // Authenticated app shell — reachable locally via DEV_AUTH_BYPASS=1 (set by the
 // `dev` script). Book data may be empty without BOOK_TABLE_NAME, so we assert
 // the shell renders and the route does not bounce to auth or crash.

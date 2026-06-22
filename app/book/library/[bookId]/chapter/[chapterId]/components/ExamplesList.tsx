@@ -749,7 +749,7 @@ function AddScenarioModal({
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  {`Submit scenario — +${SCENARIO_REWARD} if approved`}
+                  {`Submit scenario, +${SCENARIO_REWARD} if approved`}
                 </>
               )}
             </button>

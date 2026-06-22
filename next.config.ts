@@ -81,10 +81,16 @@ const cspBaseDirectives = [
 // editable here). It still hardens frame-ancestors/object-src/base-uri/
 // form-action/connect-src/frame-src — the directives that actually contain a
 // reflected/stored-XSS blast radius and clickjacking for this product.
-const contentSecurityPolicy = [
-  ...cspBaseDirectives,
-  "script-src 'self' 'unsafe-inline'",
-].join("; ");
+//
+// DEV ONLY: Next's dev runtime (HMR / React Refresh) uses eval(), which trips
+// the enforcing CSP and logs an 'unsafe-eval' console error during local dev.
+// We add 'unsafe-eval' to script-src ONLY when NODE_ENV !== 'production', so the
+// production policy is byte-for-byte unchanged.
+const cspScriptSrc =
+  process.env.NODE_ENV === "production"
+    ? "script-src 'self' 'unsafe-inline'"
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
+const contentSecurityPolicy = [...cspBaseDirectives, cspScriptSrc].join("; ");
 
 // Report-Only policy: the stricter target. 'strict-dynamic' + 'unsafe-inline'
 // (ignored by strict-dynamic-aware browsers) lets us collect violation reports

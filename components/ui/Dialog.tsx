@@ -43,6 +43,8 @@ interface BaseOverlayProps {
 interface OverlayShellProps extends BaseOverlayProps {
   layout: "center" | "bottom";
   panelClassName: string;
+  /** Edge-to-edge: drop the centered/padded container so the panel fills the viewport. */
+  fullBleed?: boolean;
 }
 
 /**
@@ -65,6 +67,7 @@ function OverlayShell({
   className = "",
   layout,
   panelClassName,
+  fullBleed = false,
   children,
 }: OverlayShellProps) {
   const [mounted, setMounted] = useState(false);
@@ -195,8 +198,11 @@ function OverlayShell({
           exit: { opacity: 0, scale: 0.96, y: 8 },
         };
 
-  const containerAlign =
-    layout === "bottom" ? "items-end justify-center" : "items-center justify-center p-4";
+  const containerAlign = fullBleed
+    ? ""
+    : layout === "bottom"
+      ? "items-end justify-center"
+      : "items-center justify-center p-4";
 
   // Derive z-index from stack depth so a nested overlay paints above its parent.
   // Falls back to the base before this instance has registered (stackIndex < 0).
@@ -265,13 +271,20 @@ export interface DialogProps extends BaseOverlayProps {
  *   </Dialog>
  */
 export function Dialog({ size = "md", className, ...base }: DialogProps) {
-  const rounded = size === "fullscreen" ? "" : "rounded-2xl";
+  const isFullscreen = size === "fullscreen";
+  const rounded = isFullscreen ? "" : "rounded-2xl";
+  // Fullscreen is a true edge-to-edge surface (no 90dvh cap, no padded centering
+  // container — see fullBleed); every other size stays a centered, capped card.
+  const panelClassName = isFullscreen
+    ? `w-full ${DIALOG_SIZES.fullscreen} overflow-y-auto`
+    : `w-full ${DIALOG_SIZES[size]} ${rounded} max-h-[90dvh] overflow-y-auto`;
   return (
     <OverlayShell
       {...base}
       layout="center"
       className={className}
-      panelClassName={`w-full ${DIALOG_SIZES[size]} ${rounded} max-h-[90dvh] overflow-y-auto`}
+      panelClassName={panelClassName}
+      fullBleed={isFullscreen}
     />
   );
 }

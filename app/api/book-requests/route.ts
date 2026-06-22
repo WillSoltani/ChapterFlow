@@ -423,12 +423,20 @@ async function persist(record: BookRequestRecord): Promise<void> {
 }
 
 async function notifyTeam(record: BookRequestRecord): Promise<void> {
-  const sender =
-    process.env.BOOK_REQUESTS_FROM_EMAIL || process.env.SES_SENDER_EMAIL;
-  const to = process.env.BOOK_REQUESTS_TO_EMAIL;
-  if (!sender || !to) return;
-
+  // Resolve recipient + sender through the app's two-tier resolver (process.env
+  // first, then SSM at ${SSM_PARAMETER_PREFIX}/<KEY>) so a runtime SSM param is
+  // enough to enable team emails — no Lambda env injection or redeploy. The FROM
+  // falls back to SES_SENDER_EMAIL, which is already an SSM-configured verified
+  // sender used by the app's other mail. Whole body is guarded: this runs
+  // fire-and-forget (void notifyTeam(...)), so it must never throw.
   try {
+    const { getServerEnv } = await import("@/app/app/api/_lib/server-env");
+    const sender =
+      (await getServerEnv("BOOK_REQUESTS_FROM_EMAIL")) ||
+      (await getServerEnv("SES_SENDER_EMAIL"));
+    const to = await getServerEnv("BOOK_REQUESTS_TO_EMAIL");
+    if (!sender || !to) return;
+
     const { SESv2Client, SendEmailCommand } = await import(
       "@aws-sdk/client-sesv2"
     );

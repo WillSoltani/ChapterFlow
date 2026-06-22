@@ -4,33 +4,29 @@ import {
   CHAPTERFLOW_NAME,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
-import { Navbar } from "@/components/sections/Navbar";
-import { Hero } from "@/components/sections/Hero";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
-import { Problem } from "@/components/sections/Problem";
-import { HowItWorks } from "@/components/sections/HowItWorks";
-import { InteractiveDemo } from "@/components/sections/InteractiveDemo";
-import { Library } from "@/components/sections/Library";
-import { SocialProof } from "@/components/sections/SocialProof";
-import { Pricing } from "@/components/sections/Pricing";
-import { FinalCTA } from "@/components/sections/FinalCTA";
-import { Footer } from "@/components/sections/Footer";
-import { MobileStickyBar } from "@/components/landing/MobileStickyBar";
-import { PRICING } from "@/lib/pricing";
-import {
-  CATALOG_BOOK_COUNT_DISPLAY,
-  CATALOG_MEDIAN_CHAPTER_MINUTES,
-} from "@/lib/catalog-stats";
+import { RecallNav } from "@/components/landing/recall/RecallNav";
+import { RecallAmbient } from "@/components/landing/recall/RecallAmbient";
+import { RecallReveal } from "@/components/landing/recall/RecallReveal";
+import { RecallHeroSplit } from "@/components/landing/recall/RecallHeroSplit";
+import { RecallHowItWorks } from "@/components/landing/recall/RecallHowItWorks";
+import { RecallWhyItWorks } from "@/components/landing/recall/RecallWhyItWorks";
+import { RecallLibrary } from "@/components/landing/recall/RecallLibrary";
+import { RecallRequestSection } from "@/components/landing/recall/RecallRequestSection";
+import { RecallFaq } from "@/components/landing/recall/RecallFaq";
+import { recallFaqJsonLd } from "@/components/landing/recall/recall-faq-data";
+import { RecallPricing } from "@/components/landing/recall/RecallPricing";
+import { RecallClose } from "@/components/landing/recall/RecallClose";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
   description:
-    `ChapterFlow turns every non-fiction book into a guided learning loop. Read summaries, see real-world examples, prove retention with quizzes, and practice what you learned. ${CATALOG_BOOK_COUNT_DISPLAY} books, free to start.`,
+    "ChapterFlow turns every non-fiction book into a guided learning loop: read a summary, see real examples, pass a quiz, and let spaced review lock it in. Free to start.",
   metadataBase: new URL(getChapterFlowSiteUrl()),
   openGraph: {
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. Summaries, examples, quizzes, and real progress. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books.`,
+      "Most of what you read is gone within days. ChapterFlow turns every book into a guided loop that makes it stick. Free to start.",
     url: getChapterFlowSiteUrl(),
     siteName: CHAPTERFLOW_NAME,
     type: "website",
@@ -39,7 +35,7 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: `${CHAPTERFLOW_NAME} — Stop forgetting what you read`,
+        alt: `${CHAPTERFLOW_NAME}. Stop forgetting what you read`,
       },
     ],
   },
@@ -47,11 +43,17 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
     description:
-      `Guided reading that turns every chapter into a ~${CATALOG_MEDIAN_CHAPTER_MINUTES}-minute learning loop. ${CATALOG_BOOK_COUNT_DISPLAY} non-fiction books, free to start.`,
+      "Guided reading that makes what you read last. Read it once, keep it for good.",
     images: ["/og"],
   },
 };
 
+/**
+ * RECALL landing — the hero is the canonical "Editorial Split" (RecallHeroSplit):
+ * an oversized headline left, the FSRS retention curve as a framed product plate
+ * right. The earlier ?v=a|b|c variant switcher and its alternate heroes are gone.
+ * Server Component.
+ */
 export default function Home() {
   const siteUrl = getChapterFlowSiteUrl();
   const jsonLd = [
@@ -62,7 +64,7 @@ export default function Home() {
       url: siteUrl,
       logo: `${siteUrl}/og`,
       description:
-        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, and quizzes.",
+        "ChapterFlow turns every non-fiction book into a guided learning loop with summaries, examples, quizzes, and spaced-repetition review.",
     },
     {
       "@context": "https://schema.org",
@@ -75,76 +77,77 @@ export default function Home() {
         "query-input": "required name=search_term_string",
       },
     },
-    {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: `${CHAPTERFLOW_NAME} Pro`,
-      description:
-        "Unlimited access to a structured non-fiction reading library with summaries, examples, quizzes, and spaced-repetition retention.",
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: PRICING.annualMonthlyAmount.toFixed(2),
-        highPrice: PRICING.monthlyAmount.toFixed(2),
-        priceCurrency: PRICING.currency,
-        offerCount: 2,
-        availability: "https://schema.org/InStock",
-      },
-    },
+    // FAQ rich-result markup, built from the same data the visible accordion renders.
+    recallFaqJsonLd(),
   ];
 
   return (
-    <div className="relative min-h-screen">
+    <div className="landing-dark relative min-h-screen">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      {/* Noise texture overlay */}
-      <div className="noise-overlay pointer-events-none fixed inset-0 z-0" aria-hidden />
-
-      {/* Background gradient mesh */}
-      <div
-        className="pointer-events-none fixed inset-0 -z-10"
-        aria-hidden
-        style={{
-          background: [
-            "radial-gradient(ellipse 60vw 50vw at 30% 0%, rgba(34, 211, 238, 0.06), transparent)",
-            "radial-gradient(ellipse 40vw 40vw at 80% 60%, rgba(34, 211, 238, 0.03), transparent)",
-            "var(--bg-base)",
-          ].join(", "),
+        // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
+        // future FAQ answer) can't close this inline tag early. < is valid
+        // JSON and renders identically in the parsed structured data.
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
         }}
       />
 
       {/* Skip to main content (WCAG 2.4.1) */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none"
         style={{
-          background: "var(--accent-cyan)",
-          color: "var(--primary-foreground)",
+          background: "var(--cf-recall-accent)",
+          color: "var(--cf-recall-bg)",
         }}
       >
         Skip to main content
       </a>
 
-      <Navbar />
+      {/* The page's depth field — a fixed, parallaxing ambient layer the
+          transparent sections read through. Sits behind all content. */}
+      <RecallAmbient />
+
+      {/* Failed Cognito sign-ins bounce back to /?auth=… — surface a dismissible
+          retry banner. Reads useSearchParams, so it needs its own Suspense
+          boundary to keep the page statically renderable. */}
       <Suspense fallback={null}>
         <AuthErrorBanner />
       </Suspense>
 
-      <main id="main" tabIndex={-1} className="focus:outline-none">
-        <Hero />
-        <Problem />
-        <HowItWorks />
-        <InteractiveDemo />
-        <Library />
-        <SocialProof />
-        <Pricing />
-        <FinalCTA />
+      <RecallNav />
+
+      {/* Hero animates on first paint (above the fold); every section below it
+          reveals on scroll-in (RecallReveal) so the page stays alive as you go.
+          RecallLibrary is the exception: it is scroll-PINNED (an inner
+          position:sticky stage), and a RecallReveal wrapper would set a
+          transform on the ancestor, which makes that sticky stage stick to the
+          wrapper instead of the viewport — killing the pin. It owns its own
+          scroll-in choreography, so it is rendered directly. */}
+      <main id="main" tabIndex={-1} className="relative z-10 focus:outline-none">
+        <RecallHeroSplit />
+        <RecallReveal>
+          <RecallHowItWorks />
+        </RecallReveal>
+        <RecallReveal>
+          <RecallWhyItWorks />
+        </RecallReveal>
+        <RecallLibrary />
+        <RecallReveal>
+          <RecallRequestSection />
+        </RecallReveal>
+        <RecallReveal>
+          <RecallFaq />
+        </RecallReveal>
+        <RecallReveal>
+          <RecallPricing />
+        </RecallReveal>
       </main>
 
-      <Footer />
-      <MobileStickyBar />
+      <RecallReveal className="relative z-10">
+        <RecallClose />
+      </RecallReveal>
     </div>
   );
 }

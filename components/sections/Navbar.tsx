@@ -39,11 +39,17 @@ function LogoIcon({ size = 28 }: { size?: number }) {
 
 /* ── Data ──────────────────────────────────────────── */
 
+// Instrument-header anchors: mono §NN · LABEL, matching the folio/spec-sheet system
+// the whole page runs on. The `num` is the section's folio stamp; `label` is its
+// short name. Anchor ids MUST match real section ids on app/page.tsx
+// (#retention-engine = §01 signature, #features = §02 Ledger spec, #why-it-works =
+// §03 trust/evidence, #library = §04 catalog index, #pricing = §05 terms).
 const NAV_LINKS = [
-  { id: "how-it-works", label: "How it works" },
-  { id: "demo", label: "Demo" },
-  { id: "library", label: "Library" },
-  { id: "pricing", label: "Pricing" },
+  { id: "retention-engine", num: "01", label: "LOOP" },
+  { id: "features", num: "02", label: "SPEC" },
+  { id: "why-it-works", num: "03", label: "EVIDENCE" },
+  { id: "library", num: "04", label: "LIBRARY" },
+  { id: "pricing", num: "05", label: "PRICING" },
 ] as const;
 
 const AUTH_URL = AUTH_LOGIN_BOOK_URL;
@@ -53,7 +59,7 @@ const AUTH_URL = AUTH_LOGIN_BOOK_URL;
 export function Navbar() {
   const { loggedIn, loading, user } = useAuthStatus();
   const pathname = usePathname();
-  // Section anchors (#how-it-works, #demo, …) only exist on the home page.
+  // Section anchors (#retention-engine, #features, …) only exist on the home page.
   // Off-home (e.g. /pricing, /books) they must point back to /#section.
   const anchorHref = useCallback(
     (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`),
@@ -63,6 +69,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
 
   const authResolved = !loading;
   const isLoggedIn = loggedIn === true;
@@ -102,12 +109,39 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  /* ── Escape closes mobile menu ──────────────────── */
+  /* ── Escape closes menu + Tab focus trap (aria-modal) ──── */
 
+  // The overlay declares role="dialog" aria-modal="true", so per WCAG 2.4.3 focus
+  // must NOT escape it while open: Tab/Shift+Tab cycle first↔last focusable inside
+  // the dialog instead of landing on the page content behind the modal.
   useEffect(() => {
     if (!mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const root = dialogRef.current;
+      if (!root) return;
+      const focusable = Array.from(
+        root.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.offsetParent !== null || el === document.activeElement);
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      if (e.shiftKey) {
+        if (active === first || !root.contains(active)) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (active === last || !root.contains(active)) {
+        e.preventDefault();
+        first.focus();
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -143,7 +177,11 @@ export function Navbar() {
           setActiveSection(visible.target.id);
         }
       },
-      { threshold: 0.15, rootMargin: "-10% 0px -70% 0px" },
+      // threshold 0 (not 0.15): the §01 signature section is ~420svh tall, so its
+      // max intersectionRatio inside the -10%/-70% band is ~5% — a 0.15 threshold
+      // would never fire for it and the §01 LOOP nav link could never light. The
+      // band keeps ~one section in view at a time; the ratio sort still picks it.
+      { threshold: 0, rootMargin: "-10% 0px -70% 0px" },
     );
 
     elements.forEach((el) => observer.observe(el));
@@ -185,16 +223,27 @@ export function Navbar() {
         }
       >
         <nav className="mx-auto flex max-w-[1200px] items-center justify-between px-4 py-4">
-          {/* ── Logo ────────────────────────────── */}
-          <Link href="/" className="flex items-center gap-2">
+          {/* ── Logo + spec stamp ───────────────── */}
+          <Link href="/" className="flex items-center gap-2.5">
             <LogoIcon />
             <span className="font-(family-name:--font-display) text-[18px] font-semibold text-(--text-heading)">
               ChapterFlow
             </span>
+            {/* mono spec stamp — part of the instrument-header system */}
+            <span
+              aria-hidden
+              className="hidden cf-folio rounded border px-1.5 py-0.5 leading-none sm:inline-block"
+              style={{
+                color: "var(--cf-axis-tint)",
+                borderColor: "var(--border-subtle)",
+              }}
+            >
+              SPEC v1.0
+            </span>
           </Link>
 
-          {/* ── Desktop center links ────────────── */}
-          <div className="hidden items-center gap-8 md:flex">
+          {/* ── Desktop center links — §NN · LABEL spec anchors ── */}
+          <div className="hidden items-center gap-6 md:flex lg:gap-7">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -202,19 +251,22 @@ export function Navbar() {
                   key={link.id}
                   href={anchorHref(link.id)}
                   onClick={() => handleNavClick(link.id)}
-                  className={`relative font-(family-name:--font-body) text-[14px] font-medium transition-colors duration-200 ${
+                  className={`relative cf-folio rounded transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 ${
                     isActive
                       ? "text-(--text-heading)"
-                      : "text-(--text-secondary) hover:text-(--text-heading)"
+                      : "text-(--text-tertiary) hover:text-(--text-heading)"
                   }`}
                 >
+                  <span style={{ color: isActive ? "var(--accent-cyan)" : "var(--cf-axis-tint)" }}>
+                    §{link.num}
+                  </span>{" "}
                   {link.label}
-                  {isActive && (
-                    <span
-                      className="absolute -bottom-2.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-(--accent-cyan)"
-                      aria-hidden="true"
-                    />
-                  )}
+                  {/* cyan underline marks the active section */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-2 left-0 h-px w-full origin-left rounded-full bg-(--accent-cyan) transition-transform duration-200"
+                    style={{ transform: isActive ? "scaleX(1)" : "scaleX(0)" }}
+                  />
                 </a>
               );
             })}
@@ -271,7 +323,7 @@ export function Navbar() {
           {/* ── Mobile hamburger ────────────────── */}
           <button
             type="button"
-            className="relative flex h-8 w-8 flex-col items-center justify-center gap-[5px] md:hidden rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
+            className="relative flex h-11 w-11 flex-col items-center justify-center gap-[5px] md:hidden rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2"
             onClick={toggleMobile}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
@@ -306,6 +358,7 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
@@ -333,15 +386,16 @@ export function Navbar() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 + i * 0.08, duration: 0.3 }}
-                    className={`relative font-(family-name:--font-body) text-[24px] font-medium transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 ${
+                    className={`relative font-(family-name:--font-mono) text-[22px] font-medium uppercase tracking-[0.04em] transition-colors duration-200 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 ${
                       isActive
                         ? "text-(--text-heading)"
                         : "text-(--text-secondary)"
                     }`}
                   >
+                    <span style={{ color: "var(--accent-cyan)" }}>§{link.num}</span>{" "}
                     {link.label}
                     {isActive && (
-                      <span className="absolute -bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-(--accent-cyan)" />
+                      <span className="absolute -bottom-2 left-1/2 h-px w-8 -translate-x-1/2 rounded-full bg-(--accent-cyan)" />
                     )}
                   </motion.a>
                 );

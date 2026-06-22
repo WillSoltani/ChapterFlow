@@ -51,6 +51,7 @@ infra/node_modules/
 infra/lib/lambdas/*/node_modules/
 node_modules/
 .next/
+.next-*/
 .next-chapterflow/
 .next-chapterflow-bookcheck/
 .next-cf-dev/

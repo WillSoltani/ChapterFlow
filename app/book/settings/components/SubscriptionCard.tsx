@@ -15,6 +15,9 @@ type SubscriptionCardProps = {
   cancelAtPeriodEnd?: boolean;
   price: string;
   pricingTiers?: PricingTier[];
+  /** Billing interval to pre-select (e.g. carried from the landing "Annual"
+   *  toggle via the upgrade deep-link). Only honored when it's an offered tier. */
+  initialInterval?: BillingInterval;
   onUpgrade: (interval?: BillingInterval) => Promise<string | null>;
   onManage: () => Promise<string | null>;
   onRedeemKey: (code: string) => Promise<string | null>;
@@ -34,6 +37,7 @@ export function SubscriptionCard({
   cancelAtPeriodEnd,
   price,
   pricingTiers,
+  initialInterval,
   onUpgrade,
   onManage,
   onRedeemKey,
@@ -45,9 +49,14 @@ export function SubscriptionCard({
   const [keyMessage, setKeyMessage] = useState("");
   const [actionLoading, setActionLoading] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
-  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(
-    pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly"
-  );
+  const [selectedInterval, setSelectedInterval] = useState<BillingInterval>(() => {
+    // Honor a deep-link interval hint, but ONLY if it's actually offered (its
+    // Stripe Price ID is configured) — otherwise fall back to the default so we
+    // never pre-select an unpurchasable tier.
+    const offered = (pricingTiers ?? []).some((t) => t.interval === initialInterval);
+    if (initialInterval && offered) return initialInterval;
+    return pricingTiers && pricingTiers.length > 1 ? "annual" : "monthly";
+  });
 
   const formattedDate = currentPeriodEnd
     ? new Date(currentPeriodEnd).toLocaleDateString(undefined, {

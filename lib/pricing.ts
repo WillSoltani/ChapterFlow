@@ -178,6 +178,19 @@ export const UPGRADE_LOGIN_URL = `/auth/login?returnTo=${encodeURIComponent(
   UPGRADE_RETURN_PATH,
 )}`;
 
+/**
+ * Logged-out upgrade CTA that also carries the chosen billing interval, e.g. a
+ * landing "Annual" toggle. The interval rides along as a `plan` query param on
+ * the {@link UPGRADE_RETURN_PATH} deep-link so the settings billing card can
+ * pre-select it after the auth round-trip — keeping the displayed plan and the
+ * in-app selection in sync. It degrades safely: if that interval isn't offered
+ * (its Stripe Price ID isn't configured), settings clamps to an available tier.
+ */
+export function upgradeLoginUrlForInterval(interval: string): string {
+  const returnTo = `${UPGRADE_RETURN_PATH}&plan=${encodeURIComponent(interval)}`;
+  return `/auth/login?returnTo=${encodeURIComponent(returnTo)}`;
+}
+
 /** Annual-tier discount badge, e.g. "Save 25%". */
 export const ANNUAL_SAVINGS_BADGE = `Save ${ANNUAL_SAVINGS_PCT}%`;
 
