@@ -1,6 +1,6 @@
 # QC Playbook — ChapterFlow v21 Quality Control
 
-## Two ways to run QC (same protocol, same trust guarantees)
+## Two ways to run QC (same protocol, same procedural guarantees)
 
 1. **Claude Workflow fleet** (fast, parallel): `qc-run <bookId>` generates a
    workflow file; a Claude session launches it. Sweep-first with systemic
@@ -12,8 +12,12 @@
    qc-attest), sweep-first with the same early-exit rule. Reader identity
    goes in --reviewer (claude-qc:/codex-qc:).
 
-The trust boundary is the SESSION, not the model: whoever authored a chapter
-never attests it; the replay guard and hash pinning hold for every reader.
+The trust boundary is the local SESSION, not the model: whoever authored a chapter
+never attests it. `CHAPTERFLOW_SESSION_ID` and round tokens provide attributable
+procedural separation and auditability; they are not cryptographic proof that two
+different humans did the work. Fresh no-API QC requires recorded author/reviewer
+session provenance; legacy/unknown provenance remains readable but cannot certify
+publishability.
 
 
 > **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,

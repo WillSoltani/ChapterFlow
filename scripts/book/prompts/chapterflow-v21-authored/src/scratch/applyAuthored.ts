@@ -18,8 +18,11 @@
  *   "ifThenPlans":    { "1": "new plan text", ... }       // ifThenPlans[idx].plan only (rare)
  * }
  */
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync } from "fs";
 import { resolve } from "path";
+
+import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { recordAuthorProvenance, requireCurrentSessionId } from "../qc/sessionProvenance.js";
 
 const chapterFile = process.argv[2];
 const patchFile = process.argv[3];
@@ -97,5 +100,7 @@ if (patch.ifThenPlans) {
   }
 }
 
-writeFileSync(resolve(chapterFile), JSON.stringify(ch, null, 2) + "\n");
+const authorSessionId = requireCurrentSessionId(`applyAuthored ${ch.chapterId ?? chapterFile}`);
+if (typeof ch.chapterId === "string" && ch.chapterId.trim()) recordAuthorProvenance(ch.chapterId, authorSessionId);
+writeFileAtomic(resolve(chapterFile), JSON.stringify(ch, null, 2) + "\n");
 console.log(`applied patch to ${chapterFile}`);

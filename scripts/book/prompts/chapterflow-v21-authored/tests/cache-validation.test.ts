@@ -5,6 +5,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, cleanTmp, makeChapter } from "./helpers.js";
 import { buildChapterCacheInputs, generateChapter } from "../src/generateChapter.js";
+import { loadAuthorProvenance, provenancePath } from "../src/qc/sessionProvenance.js";
 import {
   currentProviderIdentity,
   stringDependency,
@@ -41,6 +42,7 @@ function cleanup(): void {
   rmSync(CHAPTER_PATH, { force: true });
   rmSync(`${CHAPTER_PATH}.cache-manifest.json`, { force: true });
   rmSync(INDEX_PATH, { force: true });
+  rmSync(provenancePath(CHAPTER_ID), { force: true });
 }
 
 async function withEnv<T>(updates: Record<string, string | undefined>, fn: () => T | Promise<T>): Promise<T> {
@@ -173,11 +175,12 @@ test("valid unchanged cached chapter reuses without provider call while gates st
       writeCachedChapter(cacheCleanChapter());
     });
 
-    const produced = await withEnv({ CHAPTERFLOW_PROVIDER: "openai-api", CHAPTERFLOW_ALLOW_MODEL_GEN: undefined }, () =>
+    const produced = await withEnv({ CHAPTERFLOW_PROVIDER: "openai-api", CHAPTERFLOW_ALLOW_MODEL_GEN: undefined, CHAPTERFLOW_SESSION_ID: "author-cache-session" }, () =>
       generateChapter(BOOK_META, chapterSpec(), { logger: () => {} }),
     );
 
     assert.equal(produced.chapterId, CHAPTER_ID);
+    assert.equal(loadAuthorProvenance(CHAPTER_ID)?.authorSessionId, "author-cache-session", "generateChapter cache acceptance must stamp author provenance");
     const after = JSON.parse(readFileSync(LEDGER_PATH, "utf8"));
     assert.deepEqual(after.books[BOOK].chaptersIngested, [1], "validated cache is ingested after gates pass");
   } finally {

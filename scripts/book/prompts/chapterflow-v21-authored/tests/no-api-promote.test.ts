@@ -10,6 +10,7 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { currentMajorFindings, unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
+import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-no-api-promote";
 
@@ -19,6 +20,7 @@ function cleanup(): void {
   }
   for (const n of [1, 2, 3]) {
     rmSync(attestationPath(BOOK, n), { force: true });
+    rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-keyjudge.json`), { force: true });
   }
   rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
@@ -61,6 +63,7 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     });
     writeFixtureBookWithIndex(chapters);
     for (const ch of chapters) {
+      recordAuthorProvenance(ch.chapterId, `author-session-${ch.number}`);
       writeAttestation({
         schemaVersion: "qc-attest-v1",
         bookId: BOOK,
@@ -71,6 +74,7 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
         hashVersion: "v2",
         reviewer: "human:legacy",
         reviewedAt: "2026-06-12T00:00:00.000Z",
+        reviewerSessionId: `reviewer-session-${ch.number}`,
       });
     }
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -189,6 +193,7 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
     const chapter = makeChapter(BOOK, 1);
     writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-no-api-artifacts");
+    recordAuthorProvenance(chapter.chapterId, "author-session-artifact-test");
     writeAttestation({
       schemaVersion: "qc-attest-v1",
       bookId: BOOK,
@@ -199,6 +204,7 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
       hashVersion: "v2",
       reviewer: "human:artifact-test",
       reviewedAt: "2026-06-12T00:00:00.000Z",
+      reviewerSessionId: "reviewer-session-artifact-test",
       roundId: "r-no-api-artifacts",
       roundRole: "confirm",
     });

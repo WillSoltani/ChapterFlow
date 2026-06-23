@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { collectQcRound } from "../src/qc/orchestrator/index.js";
-import { appendFindingsFromSubmission, effectiveLedger } from "../src/qc/orchestrator/ledger.js";
-import { orchestratorRoundDir, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
+import { appendFindingsFromSubmission, effectiveLedger, quarantineMalformedLedger, readLedgerEvents } from "../src/qc/orchestrator/ledger.js";
+import { orchestratorRoundDir, repairLedgerPath, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
 import { sweepRecordPath } from "../src/qc/sweep.js";
 import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js";
 
@@ -102,6 +102,72 @@ test("collectQcRound stores raw sweep evidence without creating a semantic block
     const result = collectQcRound(BOOK, ROUND);
     assert.equal(result.ok, true, result.errors.join("\n"));
     assert.equal(effectiveLedger(BOOK, ROUND).length, 0, "raw collection must not author semantic repair-ledger findings");
+  } finally {
+    cleanup();
+  }
+});
+
+test("repair ledger readers fail closed and report the malformed JSONL line", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({
+        schemaVersion: "qc-repair-ledger-event-v1",
+        event: "status",
+        findingId: "qcf-existing",
+        bookId: BOOK,
+        roundId: ROUND,
+        status: "still_open",
+        reason: "synthetic first line",
+        updatedAt: "2026-06-23T00:00:00.000Z",
+      }),
+      "{ malformed json",
+      "",
+    ].join("\n"), "utf8");
+
+    assert.throws(
+      () => effectiveLedger(BOOK, ROUND),
+      (err: unknown) => err instanceof Error && /repair-ledger\.jsonl:2/.test(err.message) && /malformed/i.test(err.message),
+      "a corrupt ledger byte must be a loud integrity failure with the exact line number",
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+test("repair ledger quarantine requires confirmation and preserves corrupt raw lines", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({
+        schemaVersion: "qc-repair-ledger-event-v1",
+        event: "status",
+        findingId: "qcf-existing",
+        bookId: BOOK,
+        roundId: ROUND,
+        status: "still_open",
+        reason: "synthetic first line",
+        updatedAt: "2026-06-23T00:00:00.000Z",
+      }),
+      "{ malformed json",
+      "",
+    ].join("\n"), "utf8");
+
+    const preview = quarantineMalformedLedger(BOOK, ROUND);
+    assert.equal(preview.ok, false, "operator must explicitly confirm before a corrupt ledger is rewritten");
+    assert.equal(preview.issues[0].lineNumber, 2);
+
+    const repaired = quarantineMalformedLedger(BOOK, ROUND, { confirm: true, now: new Date("2026-06-23T00:00:00.000Z") });
+    assert.equal(repaired.ok, true, repaired.error);
+    assert.ok(repaired.quarantinePath);
+    const quarantine = readFileSync(repaired.quarantinePath!, "utf8");
+    assert.match(quarantine, /"lineNumber":2/);
+    assert.match(quarantine, /\{ malformed json/);
+    assert.equal(readLedgerEvents(BOOK, ROUND).length, 1, "valid events remain readable after corrupt raw lines are quarantined");
   } finally {
     cleanup();
   }

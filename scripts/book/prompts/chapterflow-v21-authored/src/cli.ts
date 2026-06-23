@@ -225,6 +225,9 @@ Commands:
                                      the final production outputs.
   qc-ledger-status <bookId> --round <roundId>
                                      Summarize the append-only orchestrator repair ledger.
+  qc-ledger-repair <bookId> --round <roundId> [--confirm]
+                                     Quarantine malformed repair-ledger JSONL lines and rewrite
+                                     only the valid events. Without --confirm, reports what would move.
   qc-repair-brief <bookId> --round <roundId>
                                      Render and print the repair brief and pasteable repair prompt paths.
   qc-repair-prompt <bookId> --round <roundId>
@@ -3414,6 +3417,26 @@ async function runQcLedgerStatus(args: string[], flags: Record<string, string | 
   return result.findings.some((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun") ? 1 : 0;
 }
 
+async function runQcLedgerRepair(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-ledger-repair <bookId> --round <roundId> [--confirm]");
+    return 2;
+  }
+  const { quarantineMalformedLedger } = await import("./qc/orchestrator/ledger.js");
+  const result = quarantineMalformedLedger(bookId, roundId, { confirm: flags["confirm"] === true });
+  if (result.ok) {
+    console.log(`qc-ledger-repair: ${result.issues.length} malformed line(s), ${result.eventsPreserved} valid event(s) preserved`);
+    if (result.quarantinePath) console.log(`quarantine: ${result.quarantinePath}`);
+    return 0;
+  }
+  console.error(result.error ?? "repair ledger contains malformed lines");
+  for (const issue of result.issues) console.error(`${issue.path}:${issue.lineNumber}: ${issue.message}`);
+  console.error("Re-run with --confirm to quarantine corrupt raw lines and rewrite the valid-event ledger.");
+  return 1;
+}
+
 async function runQcRepairBrief(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
@@ -4875,6 +4898,8 @@ async function main() {
       return runPublishAfterQc(args, flags);
     case "qc-ledger-status":
       return runQcLedgerStatus(args, flags);
+    case "qc-ledger-repair":
+      return runQcLedgerRepair(args, flags);
     case "qc-repair-brief":
       return runQcRepairBrief(args, flags);
     case "qc-repair-prompt":

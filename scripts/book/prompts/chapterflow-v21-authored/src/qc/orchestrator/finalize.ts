@@ -1,7 +1,8 @@
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
+import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
@@ -29,8 +30,9 @@ import { appendFindings, effectiveLedger, hasBlockingAuthority, ledgerStatusSumm
 import { allFindingsFabricated, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
-import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
+import { certificationSessionFailures, currentSessionId, loadAuthorProvenance } from "../sessionProvenance.js";
 import { validateSubmission, type FindingProvenanceSource, type SubmissionRole, type ValidatedBarReadSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
+import { withQcTransaction } from "./transaction.js";
 
 export type EvidenceStatus =
   | "PASS"
@@ -303,7 +305,7 @@ function barReadEntries(bookId: string, roundId: string, chapterNumber: number):
   return out;
 }
 
-export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
+function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
   // dryRun computes the same decisions in-memory but writes NOTHING durable
   // (no attestations, evidence matrix, qc-summary, repair brief, ledger, or
   // sweep record). A preflight must never mutate QC state — re-finalizing with
@@ -505,20 +507,29 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       checks.planEnforcement === "PASS";
     const confirmMissingForCandidate = publishableCandidate && (checks.confirmRead === "MISSING" || checks.confirmRead === "STALE");
     const sameReviewerConfirm = publishableCandidate && bar && confirm && bar.reviewer === confirm.reviewer && confirm.decision === "PUBLISHABLE";
-    // Session independence (opt-in CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE, absence-safe):
+    // Session independence: reviewer subagents stamp their own CHAPTERFLOW_SESSION_ID,
+    // and publishable certification requires those ids plus author provenance.
     // each reviewer subagent stamps its own CHAPTERFLOW_SESSION_ID, captured per submission.
-    // These turn "separate reviewers" from a derived role-string label into recorded evidence —
-    // bar≠confirm, bar≠tiebreak variants, and neither reviewer == the chapter's author session.
-    const authorSessionId = loadAuthorProvenance(ch.chapterId)?.authorSessionId;
-    const barConfirmSameSession = publishableCandidate && !!bar && !!confirm && confirm.decision === "PUBLISHABLE" && sessionsCollide(bar.reviewerSessionId, confirm.reviewerSessionId);
-    const reviewerIsAuthorSession = publishableCandidate && (
-      (!!bar && sessionsCollide(authorSessionId, bar.reviewerSessionId)) ||
-      (!!confirm && sessionsCollide(authorSessionId, confirm.reviewerSessionId))
-    );
+    // These turn "separate reviewers" from a derived role-string label into recorded evidence:
+    // author≠sweep/bar/confirm, sweep≠bar/confirm, bar≠confirm, and bar≠tiebreak variants.
+    const authorProvenance = loadAuthorProvenance(ch.chapterId);
+    const authorSessionId = authorProvenance?.authorSessionId;
     const barReadSessions = bar
       ? barEntries.map((entry) => entry.read).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash).map((r) => r.reviewerSessionId)
       : [];
-    const barVariantSameSession = publishableCandidate && sessionsCollideAmong(barReadSessions);
+    const provenanceFailures = publishableCandidate
+      ? certificationSessionFailures({
+          chapterId: ch.chapterId,
+          bookRound: `${bookId}/${roundId}`,
+          authorSessionId,
+          sweepSessionId: sweepRecord?.reviewerSessionId,
+          barSessionId: bar?.reviewerSessionId,
+          confirmSessionId: confirm?.reviewerSessionId,
+          barReadSessionIds: barReadSessions,
+        })
+      : [];
+    const missingIndependentProvenance = provenanceFailures.filter((failure) => failure.code.startsWith("missing_"));
+    const collisionProvenance = provenanceFailures.find((failure) => !failure.code.startsWith("missing_"));
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
     // finalizerFindings now synthesises a major repair finding for it, so it
     // routes to REVISE (via the barRead === "YELLOW" disjunction below) with a
@@ -537,14 +548,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       reason = "required QC artifact is missing or stale";
     } else if (confirmMissingForCandidate) {
       reason = "publishable candidate is missing a fresh confirm read";
+    } else if (missingIndependentProvenance.length > 0) {
+      reason = `publishable certification requires recorded session provenance; legacy/unknown evidence cannot certify independence: ${missingIndependentProvenance.map((failure) => failure.message).join("; ")}`;
     } else if (sameReviewerConfirm) {
       reason = "confirm reviewer must differ from bar reviewer";
-    } else if (reviewerIsAuthorSession) {
-      reason = `a reviewer session matches the chapter's author session (${authorSessionId}) — the author cannot grade their own work; re-review in a fresh session`;
-    } else if (barConfirmSameSession) {
-      reason = `bar and confirm were graded in the SAME session (${bar?.reviewerSessionId}) — dispatch the confirm read as a separate session`;
-    } else if (barVariantSameSession) {
-      reason = "two bar reads (primary + tiebreak variants) share a session — each tiebreak read must be an independent session";
+    } else if (collisionProvenance) {
+      reason = `${collisionProvenance.message} — dispatch the affected read in a fresh independent session`;
     } else if (unactionableConfirm) {
       reason = "confirm read returned a non-publishable decision without quote-backed findings";
     } else if (keyJudge?.status === "CORRUPTION" || checks.barRead === "RED" || (publishableCandidate && checks.confirmRead === "CORRUPTION")) {
@@ -690,14 +699,14 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
 
   const matrixPath = evidenceMatrixPath(bookId, roundId);
   if (!options.dryRun) mkdirSync(dirname(matrixPath), { recursive: true });
-  if (!options.dryRun) writeFileSync(matrixPath, JSON.stringify({
+  if (!options.dryRun) writeFileAtomic(matrixPath, JSON.stringify({
     schemaVersion: "qc-evidence-matrix-v1",
     bookId,
     roundId,
     generatedAt: new Date().toISOString(),
     chapters: decisions,
     errors,
-  }, null, 2), "utf8");
+  }, null, 2) + "\n");
 
   const writtenBriefPath = options.dryRun ? briefPath : writeRepairBrief(bookId, roundId);
 
@@ -717,6 +726,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       const ch = chapterByNumber.get(decision.chapterNumber);
       if (!ch) continue;
       const verdict: QcVerdict = decision.finalVerdict;
+      if (!currentSessionId()) {
+        errors.push(`attestation for ${ch.chapterId} requires CHAPTERFLOW_SESSION_ID so reviewerSessionId provenance can be stamped`);
+        continue;
+      }
       const findings = decision.finalVerdict === "PUBLISHABLE" ? [] : summarizeFindings(bookId, roundId, ch.number);
       writeAttestation(attestationForDecision(ch, decision, verdict, findings));
       attestationsWritten++;
@@ -738,7 +751,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     chapters: decisions,
     errors,
   };
-  if (!options.dryRun) writeFileSync(qcSummaryPath(bookId, roundId), JSON.stringify({
+  if (!options.dryRun) writeFileAtomic(qcSummaryPath(bookId, roundId), JSON.stringify({
     bookId,
     roundId,
     finalizedAt: new Date().toISOString(),
@@ -759,6 +772,10 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       NEEDS_MORE_QC: decisions.filter((d) => d.finalVerdict === "NEEDS_MORE_QC").length,
     },
     errors,
-  }, null, 2) + "\n", "utf8");
+  }, null, 2) + "\n");
   return result;
+}
+
+export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
+  return withQcTransaction(bookId, roundId, "finalize", () => finalizeQcRoundUnlocked(bookId, roundId, options));
 }

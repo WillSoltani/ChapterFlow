@@ -40,6 +40,17 @@ function cleanup(): void {
   rmSync(TMP_DIR, { recursive: true, force: true });
 }
 
+function withSession<T>(sessionId: string, fn: () => T): T {
+  const prev = process.env.CHAPTERFLOW_SESSION_ID;
+  try {
+    process.env.CHAPTERFLOW_SESSION_ID = sessionId;
+    return fn();
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_SESSION_ID;
+    else process.env.CHAPTERFLOW_SESSION_ID = prev;
+  }
+}
+
 function writeRoundRecord(hashes: Record<string, string> | undefined): void {
   const path = roundRecordPath(BOOK, ROUND);
   mkdirSync(dirname(path), { recursive: true });
@@ -138,13 +149,13 @@ test("submitQcArtifact rejects a non-approved reviewer and accepts an approved o
 
     const bareFile = resolve(TMP_DIR, "sweep-bare.json");
     writeFileSync(bareFile, JSON.stringify(sweepSubmission("wave-a-sweep-codex")), "utf8");
-    const bad = submitQcArtifact(BOOK, ROUND, "sweep", bareFile, opened.tokens.sweep);
+    const bad = withSession("qc-hardening-submit-session", () => submitQcArtifact(BOOK, ROUND, "sweep", bareFile, opened.tokens.sweep));
     assert.equal(bad.ok, false, "a bare-string reviewer must be rejected");
     assert.match(bad.errors.join(" "), /not an approved QC role/);
 
     const okFile = resolve(TMP_DIR, "sweep-ok.json");
     writeFileSync(okFile, JSON.stringify(sweepSubmission("codex-qc:reviewer-1")), "utf8");
-    const good = submitQcArtifact(BOOK, ROUND, "sweep", okFile, opened.tokens.sweep);
+    const good = withSession("qc-hardening-submit-session", () => submitQcArtifact(BOOK, ROUND, "sweep", okFile, opened.tokens.sweep));
     assert.equal(good.ok, true, good.errors.join("; "));
   } finally {
     cleanup();
@@ -206,6 +217,37 @@ test("checkQcAttestation: enforcement ON but no author provenance ⇒ no finding
   } finally {
     if (prevEnf === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prevEnf;
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
+    cleanup();
+  }
+});
+
+test("checkQcAttestation: no-api mode classifies missing provenance as legacy/unknown and blocks certification", () => {
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    cleanup();
+    const ch = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [ch]);
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: BOOK,
+      chapterNumber: 1,
+      chapterId: ch.chapterId,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(ch),
+      hashVersion: "v2",
+      reviewer: "codex-qc:reviewer-1",
+      reviewedAt: "2026-06-13T00:00:00.000Z",
+      roundId: ROUND,
+      roundRole: "confirm",
+    });
+
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const findings = checkQcAttestation(ch, true);
+    assert.equal(findings[0].checkId, "QC0.legacy_unknown_reviewer_session");
+    assert.match(findings[0].message, /legacy\/unknown/i);
+  } finally {
     if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
     cleanup();

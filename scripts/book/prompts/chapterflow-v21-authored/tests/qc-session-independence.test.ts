@@ -1,16 +1,15 @@
 /**
  * Per-submission reviewer-session independence. These guard the PRIMITIVES that every
  * pairwise enforcement (keyA≠keyB, bar≠confirm, bar≠tiebreak, reviewer≠author) is built on:
- * the collision predicates are opt-in (CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE) and
- * absence-safe (an unset id never blocks), and qc-submit captures the env session id onto the
- * validated submission so the enforcement has real evidence to compare. The keyA/keyB and
- * finalize wiring that consumes these is exercised in manual-keyjudge.test.ts / finalize tests.
+ * low-level collision predicates are opt-in/absence-safe, while certification policy classifies
+ * missing ids as legacy/unknown and non-certifying. qc-submit captures the env session id onto
+ * the validated submission so the enforcement has real evidence to compare.
  */
 
 import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
-import { sessionsCollide, sessionsCollideAmong } from "../src/qc/sessionProvenance.js";
+import { certificationSessionFailures, sessionsCollide, sessionsCollideAmong } from "../src/qc/sessionProvenance.js";
 import { validateSubmission } from "../src/qc/orchestrator/schemas.js";
 import { AXIS_WEIGHTS } from "../src/critics/semantic/publishableBar.js";
 
@@ -64,4 +63,53 @@ test("validateSubmission carries reviewerSessionId through to the validated subm
   const noId = validateSubmission("zz", "r", "bar", base);
   assert.equal(noId.ok, true);
   assert.equal((noId as any).submission.reviewerSessionId, undefined, "absent ⇒ undefined, never blocks validation");
+});
+
+test("certificationSessionFailures classifies legacy/unknown provenance as non-certifying", () => {
+  withEnforce(true, () => {
+    const failures = certificationSessionFailures({
+      chapterId: "zz-ch01",
+      bookRound: "zz/r1",
+      authorSessionId: undefined,
+      sweepSessionId: "sweep",
+      barSessionId: "bar",
+      confirmSessionId: "confirm",
+    });
+    assert.ok(failures.some((failure) => failure.code === "missing_author"));
+    assert.match(failures[0].message, /legacy\/unknown/);
+  });
+});
+
+test("certificationSessionFailures blocks required session collisions", () => {
+  withEnforce(true, () => {
+    const base = {
+      chapterId: "zz-ch01",
+      bookRound: "zz/r1",
+      authorSessionId: "author",
+      sweepSessionId: "sweep",
+      barSessionId: "bar",
+      confirmSessionId: "confirm",
+      barReadSessionIds: ["bar", "bar-t2", "bar-t3"],
+    };
+    assert.deepEqual(certificationSessionFailures(base), []);
+    assert.ok(certificationSessionFailures({ ...base, barSessionId: "author" }).some((f) => f.code === "author_bar_collision"));
+    assert.ok(certificationSessionFailures({ ...base, confirmSessionId: "author" }).some((f) => f.code === "author_confirm_collision"));
+    assert.ok(certificationSessionFailures({ ...base, sweepSessionId: "author" }).some((f) => f.code === "author_sweep_collision"));
+    assert.ok(certificationSessionFailures({ ...base, confirmSessionId: "bar" }).some((f) => f.code === "bar_confirm_collision"));
+    assert.ok(certificationSessionFailures({ ...base, sweepSessionId: "bar" }).some((f) => f.code === "sweep_bar_collision"));
+    assert.ok(certificationSessionFailures({ ...base, barReadSessionIds: ["bar", "bar-t2", "bar-t2"] }).some((f) => f.code === "bar_tiebreak_collision"));
+  });
+});
+
+test("validateSubmission can require reviewerSessionId for fresh new-schema submissions", () => {
+  const base = {
+    schemaVersion: "qc-bar-read-v1", bookId: "zz", roundId: "r", role: "bar",
+    reviewer: "codex-qc:t", chapterNumber: 1, chapterId: "zz-ch01", contentHash: "h", axes: greenAxes(),
+  };
+  const missing = validateSubmission("zz", "r", "bar", base, { requireReviewerSessionId: true });
+  assert.equal(missing.ok, false);
+  assert.match((missing as any).errors.join("\n"), /reviewerSessionId is required/);
+
+  const present = validateSubmission("zz", "r", "bar", { ...base, reviewerSessionId: "bar-session" }, { requireReviewerSessionId: true });
+  assert.equal(present.ok, true, (present as any).errors?.join("\n"));
 });

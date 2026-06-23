@@ -28,15 +28,16 @@
  */
 
 import { createHash } from "crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
 import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
-import { loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
+import { classifySessionProvenance, loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -234,7 +235,7 @@ export function loadAttestation(bookId: string, chapterNumber: number): QcAttest
 export function writeAttestation(att: QcAttestation): string {
   mkdirSync(QC_DIR, { recursive: true });
   const p = attestationPath(att.bookId, att.chapterNumber);
-  writeFileSync(p, JSON.stringify(att, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(att, null, 2) + "\n");
   return p;
 }
 
@@ -309,6 +310,16 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     }
   }
   if (isNoApiCodexQcMode()) {
+    const reviewerState = classifySessionProvenance(att.reviewerSessionId, `attestation reviewer ${att.chapterId}`);
+    if (reviewerState.kind === "legacy_unknown") {
+      return [{ checkId: "QC0.legacy_unknown_reviewer_session", severity: sev,
+        message: `No-api QC mode requires recorded reviewer session provenance; ${reviewerState.reason}. Re-review in a fresh session with CHAPTERFLOW_SESSION_ID set.` }];
+    }
+    const authorState = classifySessionProvenance(loadAuthorProvenance(chapter.chapterId)?.authorSessionId, `author ${chapter.chapterId}`);
+    if (authorState.kind === "legacy_unknown") {
+      return [{ checkId: "QC0.legacy_unknown_author_session", severity: sev,
+        message: `No-api QC mode requires recorded author provenance; ${authorState.reason}. Re-stamp the authored chapter before QC.` }];
+    }
     if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];

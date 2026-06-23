@@ -3,12 +3,14 @@ import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
 import { dirname } from "path";
 
 import { chapterContentHash } from "../../critics/qcAttestation.js";
+import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
 import { evidenceSourceRef, type EvidenceSourceKind } from "./evidenceSource.js";
 import { citesNonexistentField, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
 import { sweepFamilyForRepairClass, sweepFindingBlocks } from "../sweep.js";
+import { withQcTransaction } from "./transaction.js";
 
 export type LedgerStatus =
   | "open"
@@ -77,6 +79,23 @@ export type EffectiveLedgerFinding = Omit<LedgerFindingEvent, "event" | "schemaV
   sources: LedgerSource[];
 };
 
+export type LedgerIntegrityIssue = {
+  path: string;
+  lineNumber: number;
+  rawLine: string;
+  message: string;
+};
+
+export class LedgerIntegrityError extends Error {
+  readonly issues: LedgerIntegrityIssue[];
+
+  constructor(issues: LedgerIntegrityIssue[]) {
+    super(`Malformed QC repair ledger:\n${issues.map((issue) => `${issue.path}:${issue.lineNumber}: ${issue.message}`).join("\n")}`);
+    this.name = "LedgerIntegrityError";
+    this.issues = issues;
+  }
+}
+
 function normalizeForId(value: unknown): string {
   return String(value ?? "").trim().replace(/\s+/g, " ").toLowerCase();
 }
@@ -102,21 +121,83 @@ export function stableFindingId(
   return `qcf-${createHash("sha256").update(raw, "utf8").digest("hex").slice(0, 16)}`;
 }
 
-function parseJsonl(text: string): LedgerEvent[] {
-  return text.split(/\r?\n/).filter((line) => line.trim()).flatMap((line) => {
+function isLedgerEvent(value: unknown): value is LedgerEvent {
+  if (!value || typeof value !== "object") return false;
+  const rec = value as Partial<LedgerEvent>;
+  if (rec.schemaVersion !== "qc-repair-ledger-event-v1") return false;
+  return rec.event === "finding" || rec.event === "source" || rec.event === "status";
+}
+
+function parseJsonlStrict(path: string, text: string): { events: LedgerEvent[]; issues: LedgerIntegrityIssue[] } {
+  const events: LedgerEvent[] = [];
+  const issues: LedgerIntegrityIssue[] = [];
+  const lines = text.split(/\r?\n/);
+  lines.forEach((line, index) => {
+    if (!line.trim()) return;
     try {
-      const parsed = JSON.parse(line) as LedgerEvent;
-      return parsed?.schemaVersion === "qc-repair-ledger-event-v1" ? [parsed] : [];
-    } catch {
-      return [];
+      const parsed = JSON.parse(line) as unknown;
+      if (!isLedgerEvent(parsed)) {
+        issues.push({ path, lineNumber: index + 1, rawLine: line, message: "invalid ledger event schema" });
+        return;
+      }
+      events.push(parsed);
+    } catch (err) {
+      issues.push({ path, lineNumber: index + 1, rawLine: line, message: `malformed JSON (${(err as Error).message})` });
     }
+  });
+  return { events, issues };
+}
+
+function readLedgerParseResult(bookId: string, roundId: string): { path: string; events: LedgerEvent[]; issues: LedgerIntegrityIssue[] } {
+  const path = repairLedgerPath(bookId, roundId);
+  if (!existsSync(path)) return { path, events: [], issues: [] };
+  const parsed = parseJsonlStrict(path, readFileSync(path, "utf8"));
+  return { path, ...parsed };
+}
+
+export function quarantineMalformedLedger(bookId: string, roundId: string, options: { confirm?: boolean; now?: Date } = {}): {
+  ok: boolean;
+  ledgerPath: string;
+  quarantinePath?: string;
+  issues: LedgerIntegrityIssue[];
+  eventsPreserved: number;
+  error?: string;
+} {
+  return withQcTransaction(bookId, roundId, "repair-ledger-quarantine", () => {
+    const parsed = readLedgerParseResult(bookId, roundId);
+    if (parsed.issues.length === 0) return { ok: true, ledgerPath: parsed.path, issues: [], eventsPreserved: parsed.events.length };
+    if (!options.confirm) {
+      return {
+        ok: false,
+        ledgerPath: parsed.path,
+        issues: parsed.issues,
+        eventsPreserved: parsed.events.length,
+        error: "Refusing to rewrite a malformed ledger without explicit operator confirmation.",
+      };
+    }
+    const stamp = (options.now ?? new Date()).toISOString().replace(/[^0-9A-Za-z]/g, "");
+    const quarantinePath = `${parsed.path}.quarantine-${stamp}.jsonl`;
+    const quarantineLines = parsed.issues.map((issue) => JSON.stringify({
+      schemaVersion: "qc-repair-ledger-quarantine-v1",
+      bookId,
+      roundId,
+      originalLedgerPath: parsed.path,
+      lineNumber: issue.lineNumber,
+      rawLine: issue.rawLine,
+      message: issue.message,
+      quarantinedAt: (options.now ?? new Date()).toISOString(),
+    })).join("\n") + "\n";
+    mkdirSync(dirname(parsed.path), { recursive: true });
+    writeFileAtomic(quarantinePath, quarantineLines);
+    writeFileAtomic(parsed.path, parsed.events.map((event) => JSON.stringify(event)).join("\n") + (parsed.events.length ? "\n" : ""));
+    return { ok: true, ledgerPath: parsed.path, quarantinePath, issues: parsed.issues, eventsPreserved: parsed.events.length };
   });
 }
 
 export function readLedgerEvents(bookId: string, roundId: string): LedgerEvent[] {
-  const p = repairLedgerPath(bookId, roundId);
-  if (!existsSync(p)) return [];
-  return parseJsonl(readFileSync(p, "utf8"));
+  const parsed = readLedgerParseResult(bookId, roundId);
+  if (parsed.issues.length > 0) throw new LedgerIntegrityError(parsed.issues);
+  return parsed.events;
 }
 
 export function effectiveLedger(bookId: string, roundId: string): EffectiveLedgerFinding[] {
@@ -155,9 +236,11 @@ function sourceKey(source: Pick<LedgerSource, "sourceRole" | "submissionFile" | 
 
 function appendLedgerEvents(bookId: string, roundId: string, events: LedgerEvent[]): void {
   if (events.length === 0) return;
-  const path = repairLedgerPath(bookId, roundId);
-  mkdirSync(dirname(path), { recursive: true });
-  appendFileSync(path, events.map((e) => JSON.stringify(e)).join("\n") + "\n", "utf8");
+  withQcTransaction(bookId, roundId, "status", () => {
+    const path = repairLedgerPath(bookId, roundId);
+    mkdirSync(dirname(path), { recursive: true });
+    appendFileSync(path, events.map((e) => JSON.stringify(e)).join("\n") + "\n", "utf8");
+  });
 }
 
 export function appendStatusEvents(bookId: string, roundId: string, updates: Array<{ findingId: string; status: Exclude<LedgerStatus, "open">; reason: string; validation?: Record<string, unknown> }>): number {

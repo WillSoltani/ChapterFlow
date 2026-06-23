@@ -77,6 +77,7 @@ import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
 import { canonicalChapterIndexPath, readCanonicalChapterIndex } from "./lib/chapterSet.js";
 import { checkSourceV2Gate, sourceSidecarPathFor } from "./qc/sourceV2Gate.js";
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
+import { recordAuthorProvenance, requireCurrentSessionId } from "./qc/sessionProvenance.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -472,6 +473,8 @@ export async function generateChapter(
         reuseProblems = [`cached chapter unreadable: ${(err as Error).message}`];
       }
       if (cached && reuseProblems.length === 0) {
+        const authorSessionId = requireCurrentSessionId(`generateChapter ${chapter.chapterId} cache acceptance`);
+        recordAuthorProvenance(chapter.chapterId, authorSessionId);
         let alreadyIngested = false;
         const updated = await withLibraryState((state) => {
           const existingBook = state.books[book.bookId];
@@ -809,6 +812,8 @@ export async function generateChapter(
   // truncated chapter JSON — that torn file crashes loadBookChapters on resume and wedges
   // the walk-away conductor permanently. rename(2) leaves either the old file or the complete
   // new one.
+  const authorSessionId = requireCurrentSessionId(`generateChapter ${chapter.chapterId}`);
+  recordAuthorProvenance(assembled.chapterId, authorSessionId);
   const outDir = resolve(stateRoot, "chapters");
   const finalChapterPath = resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`);
   writeFileAtomic(finalChapterPath, JSON.stringify(assembled, null, 2));
