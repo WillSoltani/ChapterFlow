@@ -116,9 +116,17 @@ module.exports.default = Anthropic;
 }
 
 function runNode(script: string, env: Record<string, string | undefined> = {}, timeoutMs = 2_000): string {
+  const childEnv: Record<string, string | undefined> = {
+    ...process.env,
+    CHAPTERFLOW_NO_API_CODEX_QC: undefined,
+    ...env,
+  };
+  for (const [key, value] of Object.entries(childEnv)) {
+    if (value === undefined) delete childEnv[key];
+  }
   return execFileSync(process.execPath, ["--import", "tsx", "-e", script], {
     cwd: PIPELINE_DIR,
-    env: { ...process.env, ...env },
+    env: childEnv as NodeJS.ProcessEnv,
     encoding: "utf8",
     timeout: timeoutMs,
     stdio: ["ignore", "pipe", "pipe"],

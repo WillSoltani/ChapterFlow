@@ -15,13 +15,17 @@ import { AXIS_WEIGHTS } from "../src/critics/semantic/publishableBar.js";
 
 function withEnforce(on: boolean, fn: () => void): void {
   const prev = process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     if (on) process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = "1";
     else delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+    if (!on) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     fn();
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prev;
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
   }
 }
 

@@ -91,6 +91,15 @@ export type BookGateReport = {
 
 const ANSWER_POSITION_MAX_FRAC = 0.45;  // book-wide ceiling for any one position
 
+export type BookGateOptions = {
+  /** Defaults to chapterflow-v21-authored/state for production runs. */
+  stateDir?: string;
+  /** Defaults to true, matching production promotion requirements. */
+  requirePlanArtifacts?: boolean;
+  /** Defaults to true, matching production source-alignment diagnostics. */
+  checkSourceAlignment?: boolean;
+};
+
 /**
  * Top-level fields whose presence should be consistent across every chapter
  * in a book. If ≥80% of chapters have one but some don't, it's almost
@@ -167,7 +176,7 @@ function isFieldPresent(chapter: any, field: string): boolean {
   return true;
 }
 
-export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateReport {
+export function runBookGate(bookId: string, chapters: ChapterV21[], options: BookGateOptions = {}): BookGateReport {
   const schema = validateBookGateInput(bookId, chapters);
   if (!schema.ok) return schemaBookGateReport(bookId, Array.isArray(chapters) ? chapters.length : 0, schema.findings);
   chapters = schema.value;
@@ -411,7 +420,13 @@ export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateRep
   // Per-chapter C8 catches templates inside one chapter. This catches the
   // Codex-session failure mode: hooks, counters, tryThisNow fields, quiz
   // explanations, and example shells repeated across many chapters.
-  const patternAudit = runBookPatternAudit({ bookId, chapters });
+  const patternAudit = runBookPatternAudit({
+    bookId,
+    chapters,
+    stateDir: options.stateDir,
+    requirePlanArtifacts: options.requirePlanArtifacts,
+    checkSourceAlignment: options.checkSourceAlignment,
+  });
   for (const f of patternAudit.findings) {
     findings.push({
       catalogId: f.code,

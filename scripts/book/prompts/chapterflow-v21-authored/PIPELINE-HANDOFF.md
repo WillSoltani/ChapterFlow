@@ -51,10 +51,13 @@ lifts this constraint.
 - **Dir:** `scripts/book/prompts/chapterflow-v21-authored/`
 - **Run:** `npx tsx src/cli.ts <command>` — `tsx` executes TypeScript directly and
   **ignores types** at runtime. Since Phase 0 there IS a tsconfig: typecheck with
-  `npx tsc -p . --noEmit` (zero-error baseline, held by CI/tests — see tests/README.md).
+  `npm run pipeline:typecheck` from the repo root (zero-error baseline, held by
+  CI/tests — see tests/README.md).
   The repo-root Next.js tsconfig also sweeps this dir at ES2017/strict, so keep new
   code compatible with both.
-- **Node:** 18+ for the pipeline; the **web app needs Node 20**.
+- **Node/package:** repo root pins Node `>=20.20.0 <21` and npm `10.8.2`.
+  The pipeline is an explicit npm workspace package using the root
+  `package-lock.json`; run `npm ci --include=optional` at the repo root.
 - **State dirs:** chapters in `state/chapters/`, indexes in `state/indexes/`, name plans
   in `state/name-plans/`, QC attestations in `state/qc/`, gate reports in `state/books/`.
   Research artifacts (toc + source sidecars) in `.chapterflow/runs/<bookId>/<runId>/`

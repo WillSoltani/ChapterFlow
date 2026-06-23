@@ -44,6 +44,17 @@ function cleanup(n: number): void {
   rmSync(attestationPath(BOOK, n), { force: true });
 }
 
+function withoutNoApi<T>(fn: () => T): T {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    return fn();
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+  }
+}
+
 test("checkQcAttestation blocks a PUBLISHABLE attestation self-certified by the writer", () => {
   const ch = makeChapter(BOOK, 1);
   try {
@@ -62,7 +73,7 @@ test("checkQcAttestation accepts the approved QC reviewer roles", () => {
   try {
     for (const reviewer of ["claude-qc:s1", "codex-qc:s2", "harness:qc-run-x", "human:alice"]) {
       writeAtt(ch, reviewer);
-      assert.deepEqual(checkQcAttestation(ch, true), [], `${reviewer} should be an approved QC role`);
+      assert.deepEqual(withoutNoApi(() => checkQcAttestation(ch, true)), [], `${reviewer} should be an approved QC role`);
     }
   } finally {
     cleanup(2);
@@ -87,12 +98,12 @@ test("CHAPTERFLOW_QC_REVIEWERS overrides the allowed roles", () => {
   try {
     writeAtt(ch, "auditor:bob");
     assert.equal(
-      checkQcAttestation(ch, true)[0].checkId,
+      withoutNoApi(() => checkQcAttestation(ch, true))[0].checkId,
       "QC0.unverified_reviewer",
       "auditor is not an approved role by default",
     );
     process.env.CHAPTERFLOW_QC_REVIEWERS = "auditor, claude-qc";
-    assert.deepEqual(checkQcAttestation(ch, true), [], "auditor passes once added to the env allowlist");
+    assert.deepEqual(withoutNoApi(() => checkQcAttestation(ch, true)), [], "auditor passes once added to the env allowlist");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_QC_REVIEWERS;
     else process.env.CHAPTERFLOW_QC_REVIEWERS = prev;

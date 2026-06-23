@@ -8,7 +8,7 @@ separated by a resource-name suffix: `dev`, `staging`, `prod`.
 
 | File | Trigger | What it does |
 |------|---------|--------------|
-| `.github/workflows/ci.yml` | PRs + push to `main` | **Hard gate:** typecheck, unit tests, `next build`, OpenNext bundle, and CDK backend synth. **Advisory:** an ESLint job that reports problems but never blocks. |
+| `.github/workflows/ci.yml` | PRs + push to `main` | **Hard gate:** app typecheck/unit tests/`next build`/OpenNext bundle, the v21 pipeline workspace typecheck/tests/doctor/build, and CDK backend synth. **Advisory:** an ESLint job that reports problems but never blocks. |
 | `.github/workflows/deploy.yml` | push to `main` (auto → **dev**); `workflow_dispatch` (pick env) | Orchestrates a deploy. Push keeps **dev** in sync. Manual dispatch chooses `dev`/`staging`/`prod` and what to run. |
 | `.github/workflows/_deploy-infra.yml` | reusable (`workflow_call`) | Deploys the CDK **backend** stack for one env, then optionally seeds book data (names resolved from SSM — never hardcoded). |
 | `.github/workflows/_deploy-app.yml` | reusable (`workflow_call`) | Builds OpenNext, deploys the CDK **frontend** stack, invalidates CloudFront, runs a **blocking health gate**, and opens a failure issue on prod. |
@@ -80,8 +80,9 @@ Stateful RETAIN resources are not rolled back by an app redeploy.
 run separately and is **advisory** — the web-app lint surface (`app/`,
 `components/`, `lib/`) carries pre-existing debt, so the CI lint job reports it
 without blocking. Pay it down, then promote `Lint (advisory)` to a required
-check. The offline v21 pipeline (`scripts/**`) and the CDK package (`infra/**`)
-are excluded from the app lint surface.
+check. The offline v21 pipeline (`scripts/book/prompts/chapterflow-v21-authored`)
+has its own npm workspace package and CI job; the CDK package (`infra/**`) is
+excluded from the app lint surface.
 
 ## 7) Troubleshooting
 
@@ -93,6 +94,9 @@ are excluded from the app lint surface.
 - **Reproduce CI locally:**
   ```bash
   npm ci && npm run verify          # typecheck + test + build
+  npm run pipeline:typecheck
+  npm run pipeline:test
+  npm run pipeline:doctor
   npx open-next build
   npm --prefix infra ci && npm --prefix infra run build
   cd infra && npx cdk synth -c env=dev ChapterFlowBackend-dev

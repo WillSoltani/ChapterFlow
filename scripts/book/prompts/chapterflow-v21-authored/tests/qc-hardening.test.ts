@@ -166,8 +166,10 @@ test("submitQcArtifact rejects a non-approved reviewer and accepts an approved o
 test("session independence is OFF by default and short-circuits on absent ids", async () => {
   const { violatesSessionIndependence } = await import("../src/qc/sessionProvenance.js");
   const prev = process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+    delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     assert.equal(violatesSessionIndependence("s1", "s1"), false, "off by default");
     process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = "1";
     assert.equal(violatesSessionIndependence("s1", "s1"), true, "same session author+reviewer ⇒ violation");
@@ -177,6 +179,8 @@ test("session independence is OFF by default and short-circuits on absent ids", 
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prev;
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
   }
 });
 

@@ -14,7 +14,7 @@ import {
 import { generateChapter, type BookMeta, type ChapterSpec, type GenerateChapterAgents } from "../src/generateChapter.js";
 import { readerContentHash } from "../src/lib/readerContent.js";
 import type { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../src/types.js";
-import { TMP_DIR, writeCanonicalIndexFixture } from "./helpers.js";
+import { TMP_DIR, writeCanonicalIndexFixture, writeSourceEvidenceFixture } from "./helpers.js";
 import { test } from "./harness.js";
 
 const BOOK = "zz-fixture-generation-debt";
@@ -357,8 +357,10 @@ test("generated chapter assembly stamps canonical schema and generation provenan
 test("generation array misalignment fails before chapter output is written", async () => {
   const root = resolve(TMP_DIR, "generation-debt-prewrite");
   const stateRoot = resolve(root, "state");
+  const runsRoot = resolve(root, "runs");
   rmSync(root, { recursive: true, force: true });
   writeCanonicalIndexFixture(BOOK, [{ chapterId: CHAPTER_ID, number: 1, title: "The harbor checkpoint" }], resolve(stateRoot, "indexes"));
+  writeSourceEvidenceFixture(BOOK, [{ number: 1, title: "The harbor checkpoint" }], "20260623T000000Z-generation-debt", runsRoot);
   const outPath = resolve(stateRoot, "chapters", `${CHAPTER_ID}.v21-native.chapter.json`);
   const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
   process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
@@ -418,6 +420,7 @@ test("generation array misalignment fails before chapter output is written", asy
       () =>
         generateChapter(bookMeta(), chapterSpec(), {
           stateRoot,
+          runsRoot,
           candidatesPerSlot: 1,
           logger: () => {},
           agents,

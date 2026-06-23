@@ -97,6 +97,29 @@ attempt counts and the single JSON repair attempt; adapters make one raw call wi
 SDK retries disabled, honor per-call timeouts, return bounded raw evidence, and
 include usage/latency metadata for validation.
 
+## Package and CI contract
+
+The v21 pipeline is an explicit npm workspace package at
+`scripts/book/prompts/chapterflow-v21-authored`. The repository root
+`package-lock.json` is the single dependency lockfile; do not add a second
+lockfile under this directory.
+
+From a clean checkout:
+
+```bash
+npm ci --include=optional
+npm run pipeline:typecheck
+npm run pipeline:test
+npm run pipeline:doctor
+npm run pipeline:build
+```
+
+The package pins Node `>=20.20.0 <21`, npm `10.8.2`, exact pipeline tool
+versions, and declares `openai` plus `@anthropic-ai/sdk` as optional provider
+dependencies. The default test script sets `CHAPTERFLOW_NO_API_CODEX_QC=1` and
+uses synthetic fixtures, so it must not require production `state/` artifacts,
+global model CLIs, API keys, or private `.chapterflow/runs` data.
+
 ## Autopilot — the Codex control plane (no API metering)
 
 The three providers above are the paid path. The **default** needs no funded API:

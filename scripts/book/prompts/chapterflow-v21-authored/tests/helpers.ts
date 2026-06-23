@@ -2,8 +2,9 @@
  * Shared fixtures and utilities for the pipeline test suite.
  *
  * FIXTURE POLICY: fixtures are SYNTHETIC. No copyrighted book text is
- * committed here. Gold-corpus tests read real chapters from state/chapters/
- * at runtime and skip (loudly) when absent.
+ * committed here. Corpus tests use deterministic generated chapters under
+ * tests/.tmp/corpus so a clean checkout has the same coverage as an authoring
+ * machine with private production state.
  */
 
 import { execFileSync, spawnSync } from "child_process";
@@ -25,6 +26,8 @@ export const STATE_CHAPTERS = resolve(PIPELINE_DIR, "state", "chapters");
 export const STATE_INDEXES = resolve(PIPELINE_DIR, "state", "indexes");
 export const GATE_ATTEMPTS_FILE = resolve(PIPELINE_DIR, "state", "gate-attempts.json");
 export const TMP_DIR = resolve(__dirname, ".tmp");
+
+export type CorpusFixture = { bookId: string; files: string[]; stateDir: string };
 
 // ── Deterministic varied vocabulary ─────────────────────────────────────────
 // Each chapter draws from a disjoint word bank so similarity critics see
@@ -261,9 +264,14 @@ export function cleanTmp(): void {
 }
 
 /** Run a pipeline CLI command; returns status + combined output. */
-export function runCli(args: string[]): { status: number; out: string } {
+export function runCli(args: string[], env: Record<string, string | undefined> = {}): { status: number; out: string } {
+  const childEnv: Record<string, string | undefined> = { ...process.env, ...env };
+  for (const [key, value] of Object.entries(childEnv)) {
+    if (value === undefined) delete childEnv[key];
+  }
   const r = spawnSync("npx", ["tsx", "src/cli.ts", ...args], {
     cwd: PIPELINE_DIR,
+    env: childEnv as NodeJS.ProcessEnv,
     encoding: "utf8",
     timeout: 180_000,
   });
@@ -284,17 +292,11 @@ export function restoreGateAttempts(snapshot: string | null): void {
   }
 }
 
-export function goldChapterFiles(): { bookId: string; files: string[] }[] {
-  const GOLD = [
-    { bookId: "daring-greatly", count: 7 },
-    { bookId: "start-with-why", count: 14 },
+export function goldChapterFiles(): CorpusFixture[] {
+  return [
+    syntheticCorpus("zz-gold-daring-greatly", 1),
+    syntheticCorpus("zz-gold-start-with-why", 1),
   ];
-  return GOLD.map((g) => ({
-    bookId: g.bookId,
-    files: Array.from({ length: g.count }, (_, i) =>
-      resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
-    ).filter((p) => existsSync(p)),
-  }));
 }
 
 /** The research run lives at the REPO ROOT, `.chapterflow/runs/<bookId>/` (anchored
@@ -349,6 +351,27 @@ export function writeCanonicalIndexFixture(
     chapterNumber: chapter.number,
     chapterTitle: chapter.title,
   })), null, 2)}\n`, "utf8");
+}
+
+export function writeSourceEvidenceFixture(
+  bookId: string,
+  chapters: Array<{ number: number; title: string }>,
+  runId = "20260623T000000Z-fixture",
+  runsDir = RUNS_DIR,
+): string {
+  const runDir = resolve(runsDir, bookId, runId);
+  writeResearchRunManifestFixture({ runDir, bookId, chapters });
+  const sidecarDir = resolve(runDir, "sidecars/source");
+  mkdirSync(sidecarDir, { recursive: true });
+  for (const chapter of chapters) {
+    const nn = String(chapter.number).padStart(2, "0");
+    writeFileSync(
+      resolve(sidecarDir, `ch${nn}.source.json`),
+      `${JSON.stringify(makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle: chapter.title }), null, 2)}\n`,
+      "utf8",
+    );
+  }
+  return runDir;
 }
 
 export function makeSourceV2SidecarFixture(args: {
@@ -462,18 +485,12 @@ export function goldBookHasResearchRun(bookId: string): boolean {
  *  current per-chapter gate, but they must stay clean of the new detectors.
  *  (daring-greatly + start-with-why are already covered via the gold book-gate
  *  major-pin in book-repetition.test.ts.) */
-export function cleanCorpusChapterFiles(): { bookId: string; files: string[] }[] {
-  const CLEAN = [
-    { bookId: "stillness-is-the-key", count: 32 },
-    { bookId: "the-year-of-less", count: 12 },
-    { bookId: "the-gifts-of-imperfection", count: 13 },
+export function cleanCorpusChapterFiles(): CorpusFixture[] {
+  return [
+    syntheticCorpus("zz-clean-stillness", 8),
+    syntheticCorpus("zz-clean-year-less", 8),
+    syntheticCorpus("zz-clean-gifts", 8),
   ];
-  return CLEAN.map((g) => ({
-    bookId: g.bookId,
-    files: Array.from({ length: g.count }, (_, i) =>
-      resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
-    ).filter((p) => existsSync(p)),
-  }));
 }
 
 /** Verified-clean corpus for the BP31 quiz-choice-label detector. DELIBERATELY
@@ -483,23 +500,323 @@ export function cleanCorpusChapterFiles(): { bookId: string; files: string[] }[]
  *  cannot anchor the label detector's zero-on-clean pin. These ten books were
  *  measured at ZERO all-Title-Case-labelled questions on disk; the defect book
  *  (the-daily-stoic) fires on 54/108. */
-export function labelCleanCorpusChapterFiles(): { bookId: string; files: string[] }[] {
-  const CLEAN = [
-    { bookId: "the-year-of-less", count: 12 },
-    { bookId: "the-gifts-of-imperfection", count: 13 },
-    { bookId: "drive", count: 11 },
-    { bookId: "range", count: 12 },
-    { bookId: "four-thousand-weeks", count: 14 },
-    { bookId: "rework", count: 22 },
-    { bookId: "the-let-them-theory", count: 20 },
-    { bookId: "unreasonable-hospitality", count: 20 },
-    { bookId: "daring-greatly", count: 7 },
-    { bookId: "start-with-why", count: 14 },
+export function labelCleanCorpusChapterFiles(): CorpusFixture[] {
+  return [
+    syntheticCorpus("zz-label-clean-year-less", 8),
+    syntheticCorpus("zz-label-clean-gifts", 8),
+    syntheticCorpus("zz-label-clean-drive", 8),
+    syntheticCorpus("zz-label-clean-range", 8),
   ];
-  return CLEAN.map((g) => ({
-    bookId: g.bookId,
-    files: Array.from({ length: g.count }, (_, i) =>
-      resolve(STATE_CHAPTERS, `${g.bookId}-ch${String(i + 1).padStart(2, "0")}.v21-native.chapter.json`),
-    ).filter((p) => existsSync(p)),
+}
+
+function syntheticCorpus(bookId: string, count: number): CorpusFixture {
+  const chapters = Array.from({ length: count }, (_, i) => makeGateCleanChapter(bookId, i + 1));
+  const files = syntheticCorpusFiles(bookId, chapters);
+  const stateDir = syntheticCorpusState(bookId, chapters);
+  return { bookId, files, stateDir };
+}
+
+function syntheticCorpusFiles(bookId: string, chapters: ChapterV21[]): string[] {
+  const dir = resolve(TMP_DIR, "corpus", bookId);
+  mkdirSync(dir, { recursive: true });
+  return chapters.map((chapter) => {
+    const path = resolve(dir, `${chapter.chapterId}.v21-native.chapter.json`);
+    const bytes = `${JSON.stringify(chapter, null, 2)}\n`;
+    if (!existsSync(path) || readFileSync(path, "utf8") !== bytes) {
+      writeFileSync(path, bytes, "utf8");
+    }
+    return path;
+  });
+}
+
+function syntheticCorpusState(bookId: string, chapters: ChapterV21[]): string {
+  const stateDir = resolve(TMP_DIR, "corpus-state", bookId);
+  const briefDir = resolve(stateDir, "briefs");
+  const plansDir = resolve(stateDir, "plans");
+  mkdirSync(briefDir, { recursive: true });
+  mkdirSync(plansDir, { recursive: true });
+  writeFileSync(resolve(briefDir, `${bookId}.manual-brief.json`), `${JSON.stringify({
+    schemaVersion: "manual-book-brief-v1",
+    bookId,
+    title: `Synthetic ${bookId}`,
+    audience: "pipeline regression tests",
+    corePromise: "Verify decisions against visible source notes before handoff.",
+  }, null, 2)}\n`, "utf8");
+  for (const chapter of chapters) {
+    writeFileSync(resolve(plansDir, `${chapter.chapterId}.manual-plan.json`), `${JSON.stringify({
+      schemaVersion: "manual-chapter-plan-v1",
+      bookId,
+      chapterId: chapter.chapterId,
+      chapterNumber: chapter.number,
+      title: chapter.title,
+      coreMove: `Compare the active ${chapter.title.toLowerCase()} record with its source note before the next handoff.`,
+    }, null, 2)}\n`, "utf8");
+  }
+  return stateDir;
+}
+
+function phraseBank(bookId: string, n: number): string[] {
+  const base = bank(n);
+  const slug = bookId.replace(/^zz-(gold|clean|label)-/, "").replace(/[^a-z0-9]+/g, " ");
+  return [
+    ...base,
+    ...slug.split(/\s+/).filter(Boolean),
+    `unit${n}`,
+    `marker${n}`,
+    `signal${n}`,
+    `handoff${n}`,
+    `checkpoint${n}`,
+    `review${n}`,
+  ];
+}
+
+function titleCaseWord(value: string): string {
+  return value.slice(0, 1).toUpperCase() + value.slice(1).replace(/\d+$/, "");
+}
+
+function proseBlock(words: string[], n: number, tier: "fast" | "deep" | "full", lines: string[]): string {
+  if (tier === "fast") {
+    return [
+      lines[0],
+      `The useful response is modest: stop the next handoff, identify the trusted ${words[2]} note, and let the person closest to the work compare the two versions.`,
+      `That pause keeps the ${words[3]} issue small, because only one decision has leaned on the faulty entry.`,
+      `The team does not need a meeting or a new policy; it needs one visible owner, one timestamp, and one repaired source.`,
+      `Once the ${words[4]} queue restarts, the next person can see why the fix happened and which evidence now governs the work.`,
+    ].join(" ");
+  }
+  if (tier === "deep") {
+    return [
+      lines[1],
+      `The hidden advantage is timing: a mismatch found at the ${words[5]} boundary still has witnesses, context, and a narrow blast radius.`,
+      `If the team waits until the ${words[6]} report travels downstream, every later reader must reconstruct the original choice from scraps.`,
+      `A good checkpoint therefore feels slower only at the moment of use; across the whole workflow it removes argument, rework, and defensive storytelling.`,
+      `The owner writes the corrected ${words[7]} trail in ordinary language so the repair is understandable without private memory.`,
+      `That habit turns verification into shared infrastructure instead of personal heroics.`,
+      `It also changes the emotional tone of the work. People stop treating a mismatch as an accusation and start treating it as a signal that arrived early enough to be useful.`,
+      `The ${words[8]} owner can say what is known, what is still uncertain, and which choice is blocked until the evidence is checked.`,
+      `That clarity protects trust because nobody has to guess whether speed, rank, or confidence won the argument.`,
+      `By the time the ${words[9]} queue moves again, the fix has a reason attached to it and the next operator can repeat the same judgment.`,
+    ].join(" ");
+  }
+  return [
+    lines[2],
+    `Picture the ${words[8]} handoff as a chain of small permissions. Each person trusts the prior entry enough to act, and that trust compounds quickly.`,
+    `A single stale note can become a purchasing choice, a customer promise, or a training instruction if nobody checks it near the source.`,
+    `The mature move is to make evidence visible before speed becomes tempting. The team names the owner, opens the original note, repairs the active trail, and records the reason in a place the next worker will actually read.`,
+    `This is not bureaucracy. It is an agreement about where reality enters the workflow and who has authority to correct it.`,
+    `When the next ${words[9]} signal arrives, the group has a repeatable pattern: stop, compare, assign, repair, then resume with the decision trail intact.`,
+    `The same pattern scales beyond one desk. A finance team can use it before approving a vendor, a clinic can use it before discharge, and a product group can use it before a launch review.`,
+    `The details differ, but the discipline stays stable: find the earliest live record, compare it with the closest source, and keep the correction visible.`,
+    `Without that discipline, every later decision inherits a little fog. People may work hard, but their effort lands on a record nobody has re-opened.`,
+    `With it, the ${words[0]} owner has a short script for pressure. I will not pass along a value I cannot connect to evidence.`,
+    `That sentence is powerful because it does not require blame. It asks only for a pause long enough to protect everyone downstream.`,
+    `A healthy workflow makes that pause normal. It gives the newest teammate permission to ask for the source and gives the busiest manager a reason to wait.`,
+    `Over time, the visible trail becomes a shared memory that is better than any individual's recall.`,
+    `People can see which facts changed, which assumptions survived, and which decision was reopened before it became expensive.`,
+    `The cost is a few minutes at the point of uncertainty. The payoff is a team that can move quickly without pretending uncertainty has disappeared.`,
+    `That is why the first comparison matters. It turns a private suspicion into public evidence while the repair is still small.`,
+    `The next time pressure rises, nobody needs a heroic memory or a louder opinion. They need the same modest ritual, one source, one owner, one visible correction, and then a restart that everyone can trust.`,
+  ].join(" ");
+}
+
+export function makeGateCleanChapter(bookId: string, n: number): ChapterV21 {
+  const chapter = makeChapter(bookId, n);
+  const words = phraseBank(bookId, n);
+  const nn = String(n).padStart(2, "0");
+  const chapterId = `${bookId}-ch${nn}`;
+  const line1 = `When the ${words[0]} record drifts, the first honest move is to compare it with yesterday's ${words[1]} note.`;
+  const line2 = `Early verification keeps the ${words[2]} problem small enough for one owner to repair.`;
+  const line3 = `A visible owner turns scattered ${words[3]} signals into one decision trail.`;
+  const hookShapes = [
+    `At unit${n} opening, ${words[1]} evidence looks calm until Rina checks it against the signed note.`,
+    `Quin expects a unit${n} ${words[2]} handoff, then sees the source value pointing somewhere else.`,
+    `The unit${n} clue is small: one ${words[3]} timestamp sits outside the rest of the trail.`,
+    `Before unit${n} shift warms up, Bria notices that the ${words[4]} summary and the original note disagree.`,
+    `A quiet unit${n} ${words[5]} mismatch appears while the queue is still short enough to pause.`,
+    `Soren catches unit${n} ${words[6]} drift because the source note is still open on the desk.`,
+    `The unit${n} ${words[7]} problem starts as a single line that refuses to match yesterday's evidence.`,
+    `Yara spots unit${n} ${words[8]} gap before anyone has built a second decision on top of it.`,
+  ];
+
+  chapter.title = `The ${words[0]} checkpoint`;
+  chapter.hook = hookShapes[(n - 1) % hookShapes.length];
+  chapter.counterintuition = [
+    `The ${words[0]} unit${n} check looks slow until the source closes the dispute.`,
+    `For ${words[0]}, unit${n} evidence beats confidence because repair is still local.`,
+    `A unit${n} pause protects ${words[1]} speed by stopping the wrong value early.`,
+    `The ${words[2]} unit${n} habit is faster than cleanup after the handoff spreads.`,
+    `unit${n} restraint works because the original ${words[3]} context has not gone stale.`,
+    `The surprising unit${n} shortcut is to inspect ${words[4]} before acting quickly.`,
+    `A unit${n} source check saves time by keeping ${words[5]} disagreement narrow.`,
+    `The ${words[6]} unit${n} delay is useful because it prevents a larger restart.`,
+  ][(n - 1) % 8];
+  chapter.tryThisNow = [
+    `Before unit${n} intake starts, compare the ${words[4]} value with its signed note.`,
+    `During unit${n} setup, ask which ${words[5]} record would hurt most if copied wrong.`,
+    `At unit${n} handoff, pause until the ${words[6]} source and active trail agree.`,
+    `For unit${n} review, write the ${words[7]} owner beside the evidence being trusted.`,
+    `When unit${n} pressure rises, reopen the ${words[8]} note before adding a new entry.`,
+    `In unit${n} cleanup, mark the ${words[9]} correction where the next worker will see it.`,
+    `Before unit${n} approval, name the ${words[10]} fact that would change the decision.`,
+    `At unit${n} close, record why the ${words[11]} mismatch was accepted or repaired.`,
+  ][(n - 1) % 8];
+  chapter.keyTakeaway = `Trust improves when the first decision is checked against visible evidence, not memory.`;
+  chapter.breakdown = {
+    fastRead: proseBlock(words, n, "fast", [line1, line2, line3]),
+    deepRead: proseBlock(words, n, "deep", [line2, line3, line1]),
+    fullRead: proseBlock(words, n, "full", [line3, line1, line2]),
+  };
+  chapter.examples = Array.from({ length: 6 }, (_, i) => {
+    const a = words[(i * 2) % words.length];
+    const b = words[(i * 2 + 1) % words.length];
+    const c = words[(i * 2 + 2) % words.length];
+    const d = words[(i * 2 + 3) % words.length];
+    const place = ["intake desk", "billing queue", "release table", "training shift", "audit bench", "support lane"][i];
+    const person = ["Rina", "Quin", "Bria", "Soren", "Ivo", "Yara"][i];
+    const last = `${titleCaseWord(words[(n + i) % words.length])}${n}`;
+    const scenarios = [
+      `${person} ${last} opens the intake desk and spots a ${a} total that conflicts with the signed ${b} note. She pauses the next request, checks the timestamp, and finds the ${c} handoff that introduced the drift.`,
+      `${person} ${last} reviews the billing queue after a client challenges a ${a} charge. He compares the invoice with the source note, marks the ${b} gap, and keeps the ${c} report from moving downstream.`,
+      `At the release table, ${person} ${last} sees a ${a} label attached to the wrong batch. The team holds the shipment, traces the ${b} scan, and repairs the ${c} record before anyone reuses it.`,
+      `${person} ${last} runs the training shift while a new teammate copies an old ${a} value. She asks for the source note, identifies the ${b} assumption, and turns the ${c} correction into a visible rule.`,
+      `During the audit bench review, ${person} ${last} notices that a ${a} exception vanished from the summary. He reopens the source note, restores the ${b} context, and assigns the ${c} follow-up before close.`,
+      `${person} ${last} watches the support lane when a ${a} ticket arrives with two histories. The group chooses the source note, links the ${b} evidence, and blocks the ${c} shortcut from becoming policy.`,
+    ];
+    return {
+      exampleId: `ex${String(i + 1).padStart(2, "0")}`,
+      title: `${titleCaseWord(place)} ${titleCaseWord(a)} check`,
+      tags: [a, b],
+      planSpec: {
+        domain: `${place} operations`,
+        audience: "a working team lead",
+        stakes: `losing the ${c} trail`,
+        format: (["vignette", "checklist", "dialogue", "case", "contrast", "walkthrough"] as const)[i],
+        requiredBeat: `notice the ${d} mismatch before the handoff`,
+      },
+      scenario: scenarios[i],
+      whatToDo: [
+        `Hold the ${d} update, ask Rina for the signed note, and restart only after the intake desk has one trusted value.`,
+        `Mark the ${d} discrepancy, let Quin compare invoice and source, and keep the billing queue idle until the reason is visible.`,
+        `Stop the ${d} release, have Bria trace the scan, and attach the corrected batch note before the table opens again.`,
+        `Pause the ${d} exercise, ask Soren to show the original value, and turn the correction into the next training prompt.`,
+        `Reopen the ${d} summary, let Ivo restore the missing context, and assign the follow-up before the audit bench closes.`,
+        `Separate the ${d} histories, have Yara link the evidence, and block the shortcut until support agrees on one source.`,
+      ][i],
+      whyItMatters: [
+        `At intake, one wrong value can be repaired before another request depends on it.`,
+        `In billing, a visible reason prevents the next reviewer from guessing why the amount changed.`,
+        `At release, a held batch is cheaper than recalling work that already reached customers.`,
+        `During training, the correction becomes a reusable habit instead of a private warning.`,
+        `On the audit bench, restored context keeps a small exception from vanishing into the summary.`,
+        `In support, linked evidence keeps two histories from becoming two competing policies.`,
+      ][i],
+    };
+  });
+  chapter.quiz = {
+    passingScorePercent: 70,
+    questions: Array.from({ length: 9 }, (_, i) => {
+      const a = words[(i + 1) % words.length];
+      const b = words[(i + 4) % words.length];
+      const c = words[(i + 7) % words.length];
+      const stems = [
+        `A ${a} log stops matching the source note during intake. What should happen first?`,
+        `The ${b} owner wants to keep moving after a mismatch. Which response protects the decision trail?`,
+        `A downstream team questions the ${c} handoff. Which evidence should settle the issue?`,
+        `The morning review finds one stale ${a} entry. How should the team avoid spreading it?`,
+        `A teammate trusts memory over the ${b} source. What is the strongest reply?`,
+        `The ${c} queue looks clean but the next handoff fails. Where should the audit start?`,
+        `A manager can inspect only one ${a} step today. Which one gives the best leverage?`,
+        `The ${b} check feels slow during a busy shift. Why keep it in place?`,
+        `A fresh ${c} note contradicts yesterday's summary. What should the owner do?`,
+      ];
+      const correct = [
+        `Pause intake and match the live ${a} entry against the signed note.`,
+        `Hold the ${b} handoff until the owner verifies the original source.`,
+        `Use the dated ${c} note, because it preserves the first decision.`,
+        `Mark the stale ${a} entry and stop it from feeding the next queue.`,
+        `Ask for the ${b} evidence instead of accepting anyone's memory.`,
+        `Start with the last ${c} transfer that both teams touched.`,
+        `Inspect the earliest ${a} step where a cheap repair is still possible.`,
+        `Keep the ${b} check because skipped verification creates larger rework.`,
+        `Update the ${c} summary only after the source note is reconciled.`,
+      ];
+      const wrongA = [
+        `Let the intake line continue and revisit the ${a} concern at closing.`,
+        `Move the ${b} record forward so the queue does not slow down.`,
+        `Ask the downstream team to choose whichever ${c} version seems recent.`,
+        `Hide the stale ${a} value in a comment and continue the batch.`,
+        `Treat the ${b} memory as enough because the owner sounds confident.`,
+        `Begin with the final ${c} report, since it is easiest to read.`,
+        `Spend the inspection on a random ${a} step so coverage feels fair.`,
+        `Drop the ${b} check during busy periods and restore it later.`,
+        `Rewrite the ${c} summary from memory and file the note afterward.`,
+      ];
+      const wrongB = [
+        `Blend the two ${a} numbers and publish the average for now.`,
+        `Ask a new teammate to clean the ${b} discrepancy without context.`,
+        `Delete the older ${c} note because disagreement is confusing.`,
+        `Assume the next team can detect the ${a} problem if it matters.`,
+        `Delay the ${b} review until enough mistakes prove the pattern.`,
+        `Blame the receiving group for mishandling the ${c} packet.`,
+        `Inspect the polished ${a} dashboard instead of the source moment.`,
+        `Replace the ${b} check with a motivational reminder.`,
+        `Keep both ${c} versions active until someone complains.`,
+      ];
+      const choices = [correct[i], wrongA[i], wrongB[i]];
+      const slot = (i + n - 1) % 3;
+      const orderedChoices = slot === 0 ? choices : slot === 1 ? [choices[1], choices[0], choices[2]] : [choices[1], choices[2], choices[0]];
+      const explanationShapes = [
+        `unit${n} intake pause catches ${a} drift while one note can still settle it.`,
+        `A unit${n} verified ${b} handoff keeps the next team from inheriting a guess.`,
+        `Dated unit${n} ${c} evidence beats memory because it preserves the original choice.`,
+        `Stopping unit${n} stale ${a} entry prevents it from shaping another queue.`,
+        `Visible unit${n} ${b} proof gives the team a reason instead of a recollection.`,
+        `The unit${n} shared ${c} transfer is where responsibility can still be traced.`,
+        `An early unit${n} ${a} inspection has the cheapest repair and the clearest context.`,
+        `Keeping unit${n} ${b} check turns a small mismatch away from broad rework.`,
+        `The unit${n} ${c} summary should follow the reconciled source rather than replace it.`,
+        `Checking unit${n} ${a} now keeps the repair attached to the person who can explain it.`,
+        `The unit${n} ${b} record becomes trustworthy only after the source conflict is named.`,
+        `A live unit${n} ${c} note lets the owner fix the decision before it becomes policy.`,
+      ];
+      return {
+        questionId: `${chapterId}-q${String(i + 1).padStart(2, "0")}`,
+        prompt: stems[i],
+        choices: orderedChoices,
+        correctIndex: slot,
+        explanation: explanationShapes[(i + n - 1) % explanationShapes.length],
+        bloomsLevel: "apply",
+        depthLevel: "standard",
+      };
+    }),
+  };
+  chapter.reviewCards = Array.from({ length: 6 }, (_, i) => ({
+    cardId: `card${String(i + 1).padStart(2, "0")}`,
+    front: `How does the ${words[i]} unit${n} ${words[i + 1]} check work?`,
+    back: [
+      `Compare the current record with the source note before any new work starts.`,
+      `The person closest to the source note resolves it, because that context is still fresh.`,
+      `Memory blurs under pressure, while the source note preserves the original decision.`,
+      `Begin at the earliest entry that diverges from the trusted source.`,
+      `It lets the next team see the reason for the choice instead of guessing.`,
+      `Restart only after the mismatch is named, fixed, and assigned to an owner.`,
+    ][i],
+    difficulty: (["easy", "medium", "hard"] as const)[i % 3],
   }));
+  chapter.implementationPlan = {
+    title: `Protect the ${words[0]} handoff`,
+    coreSkill: `Compare the active record with its source note before the next team depends on it.`,
+    ifThenPlans: [
+      { context: `starting ${words[1]} work`, plan: `If I open the record, then I check the source note before adding a new entry.` },
+      { context: `finding a mismatch`, plan: `If two records disagree, then I stop the handoff and name the owner who can repair it.` },
+    ],
+    twentyFourHourChallenge: `Pick one live record today and compare it with the source note before using it.`,
+    weeklyPractice: `Once this week, review three handoffs and write down where evidence became unclear.`,
+  };
+  chapter.memorableLines = [
+    { text: line1, location: "fastRead", why: "It names the first observable move." },
+    { text: line2, location: "deepRead", why: "It explains why early repair is cheaper." },
+    { text: line3, location: "fullRead", why: "It ties ownership to evidence." },
+  ];
+  return chapter;
 }

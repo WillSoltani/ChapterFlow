@@ -4478,19 +4478,28 @@ async function runBookGate(args: string[]): Promise<number> {
     return 2;
   }
 
-  // Auto-derive brief + plan artifacts. BP7 (book gate) fails closed
-  // without these, but derive-artifacts is a deterministic side-effect-
-  // free pass over what's already on disk, so it's safe to run
-  // unconditionally on every book-gate invocation. Eliminates the
-  // recurring "derive-artifacts forgotten" defect that turned book-gate
-  // into a 2-blocker false alarm every time.
-  console.log(`Auto-deriving brief + plan artifacts for ${bookId} (so BP7 doesn't false-fire)...`);
-  const deriveCode = await runDeriveArtifacts([bookId]);
-  if (deriveCode !== 0) {
-    console.error(`derive-artifacts failed for ${bookId}; aborting book-gate.`);
-    return deriveCode;
+  const hasBriefArtifact =
+    existsSyncFs(resolve(STATE_DIR, "briefs", `${bookId}.manual-brief.json`)) ||
+    existsSyncFs(resolve(STATE_DIR, "briefs", `${bookId}.brief.json`));
+  const missingPlanArtifacts = chapterFiles
+    .map((f) => chapterIdFromFileName(f))
+    .filter((chapterId) =>
+      !existsSyncFs(resolve(STATE_DIR, "plans", `${chapterId}.manual-plan.json`)) &&
+      !existsSyncFs(resolve(STATE_DIR, "plans", `${chapterId}.plan.json`)),
+    );
+  if (!hasBriefArtifact || missingPlanArtifacts.length > 0) {
+    // Auto-derive brief + plan artifacts. BP7 (book gate) fails closed
+    // without these, but derive-artifacts is a deterministic pass over what's
+    // already on disk. If the artifacts already exist, keep the command
+    // hermetic and avoid requiring a private research run just to re-check.
+    console.log(`Auto-deriving brief + plan artifacts for ${bookId} (so BP7 doesn't false-fire)...`);
+    const deriveCode = await runDeriveArtifacts([bookId]);
+    if (deriveCode !== 0) {
+      console.error(`derive-artifacts failed for ${bookId}; aborting book-gate.`);
+      return deriveCode;
+    }
+    console.log("");
   }
-  console.log("");
 
   const chapters: ChapterV21[] = [];
   for (const f of chapterFiles) {

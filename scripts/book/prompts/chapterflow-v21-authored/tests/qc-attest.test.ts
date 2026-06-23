@@ -18,6 +18,7 @@ import { test } from "./harness.js";
 import { cleanTmp, makeChapter, runCli, TMP_DIR } from "./helpers.js";
 
 const BOOK = "zz-fixture-attest";
+const LEGACY_QC_ENV = { CHAPTERFLOW_NO_API_CODEX_QC: undefined };
 
 function withFixture(fn: (chapterFile: string) => void): void {
   mkdirSync(TMP_DIR, { recursive: true });
@@ -34,10 +35,10 @@ function withFixture(fn: (chapterFile: string) => void): void {
 
 test("qc-attest refuses a PUBLISHABLE flip over REVISE on UNCHANGED content (self-attest replay)", () => {
   withFixture((file) => {
-    const revise = runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"]);
+    const revise = runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"], LEGACY_QC_ENV);
     assert.equal(revise.status, 0, revise.out.slice(-500));
 
-    const flip = runCli(["qc-attest", file, "--verdict", "PUBLISHABLE", "--reviewer", "codex:writer"]);
+    const flip = runCli(["qc-attest", file, "--verdict", "PUBLISHABLE", "--reviewer", "codex:writer"], LEGACY_QC_ENV);
     assert.equal(flip.status, 1, `unchanged-content flip must be refused\n${flip.out.slice(-500)}`);
     assert.match(flip.out, /REFUSED/);
 
@@ -50,7 +51,7 @@ test("qc-attest refuses a PUBLISHABLE flip over REVISE on UNCHANGED content (sel
 
 test("qc-attest allows the flip after the content actually changed, and keeps history", () => {
   withFixture((file) => {
-    const revise = runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"]);
+    const revise = runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"], LEGACY_QC_ENV);
     assert.equal(revise.status, 0, revise.out.slice(-500));
 
     // The redo loop did real work: the chapter changed.
@@ -58,7 +59,7 @@ test("qc-attest allows the flip after the content actually changed, and keeps hi
     ch.hook = ch.hook + " Rewritten after review.";
     writeFileSync(file, JSON.stringify(ch, null, 2), "utf8");
 
-    const flip = runCli(["qc-attest", file, "--verdict", "PUBLISHABLE", "--reviewer", "human:reviewer-b"]);
+    const flip = runCli(["qc-attest", file, "--verdict", "PUBLISHABLE", "--reviewer", "human:reviewer-b"], LEGACY_QC_ENV);
     assert.equal(flip.status, 0, `changed-content flip is the legitimate redo path\n${flip.out.slice(-500)}`);
 
     const att = JSON.parse(readFileSync(attestationPath(BOOK, 1), "utf8"));
@@ -72,13 +73,13 @@ test("qc-attest allows the flip after the content actually changed, and keeps hi
 
 test("qc-attest --supersede overrides the guard and records the reason", () => {
   withFixture((file) => {
-    runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"]);
+    runCli(["qc-attest", file, "--verdict", "REVISE", "--reviewer", "human:reviewer-a"], LEGACY_QC_ENV);
     const flip = runCli([
       "qc-attest", file,
       "--verdict", "PUBLISHABLE",
       "--reviewer", "human:reviewer-b",
       "--supersede", "prior REVISE was based on a misread of the source sidecar",
-    ]);
+    ], LEGACY_QC_ENV);
     assert.equal(flip.status, 0, flip.out.slice(-500));
     const att = JSON.parse(readFileSync(attestationPath(BOOK, 1), "utf8"));
     assert.equal(att.verdict, "PUBLISHABLE");

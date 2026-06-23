@@ -102,7 +102,7 @@ test("handoff does not re-document fixed gaps as open (the next developer reads 
     "promote HAS run AS5–AS12 since Phase 1a (src/critics/intraBook.ts)",
   );
   assert.doesNotMatch(s, /there is \*\*no tsconfig\*\*/, "Phase 0 added the tsconfig + typecheck baseline");
-  assert.match(s, /tsc -p \. --noEmit/, "the handoff must tell the next developer how to typecheck");
+  assert.match(s, /npm run pipeline:typecheck/, "the handoff must tell the next developer how to typecheck");
 });
 
 test("WS-4: the research prompt requires the sidecar-vs-reality source-verify step before handoff", () => {

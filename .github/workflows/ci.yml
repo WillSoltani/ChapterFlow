@@ -84,6 +84,40 @@ jobs:
         working-directory: infra
         run: npm test
 
+  # ── Hard gate: v21 pipeline workspace package ───────────────────────────
+  # This runs from the same clean checkout and root package-lock as the app.
+  # The pipeline tests force no-API mode and use synthetic fixtures only.
+  pipeline-checks:
+    name: v21 Pipeline Typecheck + Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CHAPTERFLOW_NO_API_CODEX_QC: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: Pipeline typecheck
+        run: npm run pipeline:typecheck
+
+      - name: Pipeline tests
+        run: npm run pipeline:test
+
+      - name: Pipeline doctor
+        run: npm run pipeline:doctor
+
+      - name: Pipeline build
+        run: npm run pipeline:build
+
   # ── Smoke gate (DEV BUILD ONLY): drive the app in a browser (Playwright) ──
   # SCOPE WARNING (M51): this job runs the app via `npm run dev` — the Turbopack
   # DEV server with DEV_AUTH_BYPASS=1 and no data plane. It verifies that the

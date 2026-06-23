@@ -3,7 +3,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, cleanTmp, makeChapter } from "./helpers.js";
+import { PIPELINE_DIR, RUNS_DIR, STATE_CHAPTERS, TMP_DIR, cleanTmp, makeChapter, writeSourceEvidenceFixture } from "./helpers.js";
 import { buildChapterCacheInputs, generateChapter } from "../src/generateChapter.js";
 import { loadAuthorProvenance, provenancePath } from "../src/qc/sessionProvenance.js";
 import {
@@ -12,6 +12,7 @@ import {
   validateStageCache,
   writeStageCacheManifest,
 } from "../src/cache/stageCache.js";
+import { loadPlanningSourceEvidence } from "../src/source/sourceEvidence.js";
 import type { BookMeta, ChapterSpec } from "../src/generateChapter.js";
 import type { ChapterV21 } from "../src/types.js";
 
@@ -42,6 +43,7 @@ function cleanup(): void {
   rmSync(CHAPTER_PATH, { force: true });
   rmSync(`${CHAPTER_PATH}.cache-manifest.json`, { force: true });
   rmSync(INDEX_PATH, { force: true });
+  rmSync(resolve(RUNS_DIR, BOOK), { recursive: true, force: true });
   rmSync(provenancePath(CHAPTER_ID), { force: true });
 }
 
@@ -64,10 +66,33 @@ async function withEnv<T>(updates: Record<string, string | undefined>, fn: () =>
 function writeIndex(spec = chapterSpec()): void {
   mkdirSync(resolve(PIPELINE_DIR, "state", "indexes"), { recursive: true });
   writeFileSync(INDEX_PATH, JSON.stringify([spec], null, 2), "utf8");
+  const runDir = writeSourceEvidenceFixture(BOOK, [{ number: spec.chapterNumber, title: spec.chapterTitle }]);
+  const sidecarPath = resolve(runDir, "sidecars/source/ch01.source.json");
+  const sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
+  sidecar.namedExamples = [
+    ...sidecar.namedExamples,
+    { id: "ch01.ex.riverside-clinic", label: "ch01 Riverside clinic intake", summary: "Riverside clinic used a waiting-room source slip to resolve a blue paper slip mismatch.", teachesWhat: "The oldest local record protects a patient handoff.", hardSpecifics: ["Riverside clinic", "waiting-room", "blue paper slip"], realWorld: false },
+    { id: "ch01.ex.north-pier", label: "ch01 North Pier pallet audit", summary: "North Pier warehouse checked a pallet scale against the bill of lading before signing.", teachesWhat: "Receiving work stays accurate when the source count wins.", hardSpecifics: ["North Pier", "pallet scale", "bill of lading"], realWorld: false },
+    { id: "ch01.ex.maple-school", label: "ch01 Maple Street school roster", summary: "Maple Street school stopped a bus line until the roster count matched the classroom aide.", teachesWhat: "Movement waits until the handoff record is reconciled.", hardSpecifics: ["Maple Street school", "bus line", "roster count"], realWorld: false },
+    { id: "ch01.ex.cedar-credit", label: "ch01 Cedar credit union packet", summary: "Cedar credit union paused an approval queue while the income worksheet and summary were compared.", teachesWhat: "Approval should rest on the source note, not a copied summary.", hardSpecifics: ["Cedar credit union", "income worksheet", "approval"], realWorld: false },
+    { id: "ch01.ex.union-kitchen", label: "ch01 Union kitchen service count", summary: "Union kitchen checked the ticket rail against plated meals before service started.", teachesWhat: "Service pressure should not hide a count mismatch.", hardSpecifics: ["Union kitchen", "ticket rail", "entree"], realWorld: false },
+    { id: "ch01.ex.westline-studio", label: "ch01 Westline studio invoice", summary: "Westline studio matched an invoice against an export checklist before sending final files.", teachesWhat: "Delivery and billing should describe the same work.", hardSpecifics: ["Westline studio", "invoice", "export checklist"], realWorld: false },
+  ];
+  writeFileSync(sidecarPath, JSON.stringify(sidecar, null, 2), "utf8");
 }
 
 function cacheCleanChapter(): ChapterV21 {
   const chapter = makeChapter(BOOK, 1, { overrides: { memorableLines: undefined } });
+  chapter.title = chapterSpec().chapterTitle;
+  const factAnchor = "ch01.fact.1";
+  const exampleAnchors = [
+    "ch01.ex.riverside-clinic",
+    "ch01.ex.north-pier",
+    "ch01.ex.maple-school",
+    "ch01.ex.cedar-credit",
+    "ch01.ex.union-kitchen",
+    "ch01.ex.westline-studio",
+  ];
   const formats = ["decision_point", "dialogue", "postmortem", "audit", "text_thread", "mistake_recovery"];
   const names = ["Avery", "Bianca", "Corin", "Devon", "Iris", "Jules"];
   const places = ["Riverside clinic", "North Pier warehouse", "Maple Street school", "Cedar credit union", "Union kitchen", "Westline studio"];
@@ -82,6 +107,7 @@ function cacheCleanChapter(): ChapterV21 {
   ];
   chapter.examples = chapter.examples.map((ex, i) => ({
     ...ex,
+    sourceAnchorIds: [exampleAnchors[i]],
     title: titles[i],
     tags: [formats[i], "practice"],
     planSpec: {
@@ -148,17 +174,50 @@ function cacheCleanChapter(): ChapterV21 {
     back: ["The prior source slip, because intake drift is cheapest before any patient is routed.", "The earlier receiving note, because signing turns a small mismatch into inventory drift.", "Only after roster and classroom count agree, because movement makes the error harder to see.", "The income note against the summary, because approval should not rest on a copied number.", "Plates against tickets, because service pressure hides the cause once orders leave.", "Invoice lines against deliverables, because a clean send should describe the actual work."][i],
     difficulty: (["easy", "medium", "hard"] as const)[i % 3],
   }));
+  const effectiveAnchors: Record<string, string[]> = {
+    hook: [factAnchor],
+    counterintuition: [factAnchor],
+    "breakdown.fastRead": [factAnchor],
+    "breakdown.deepRead": [factAnchor],
+    "breakdown.fullRead": [factAnchor],
+    keyTakeaway: [factAnchor],
+    tryThisNow: [factAnchor],
+    "implementationPlan.title": [factAnchor],
+    "implementationPlan.coreSkill": [factAnchor],
+    "implementationPlan.twentyFourHourChallenge": [factAnchor],
+    "implementationPlan.weeklyPractice": [factAnchor],
+  };
+  chapter.examples.forEach((_, i) => { effectiveAnchors[`examples[${i}]`] = [exampleAnchors[i]]; });
+  chapter.quiz.questions.forEach((_, i) => { effectiveAnchors[`quiz.questions[${i}]`] = [factAnchor]; });
+  chapter.reviewCards.forEach((card, i) => {
+    effectiveAnchors[`reviewCards[${i}]`] = [factAnchor];
+    card.sourceAnchorIds = [factAnchor];
+  });
+  chapter.implementationPlan.ifThenPlans.forEach((plan, i) => {
+    effectiveAnchors[`implementationPlan.ifThenPlans[${i}]`] = [factAnchor];
+    plan.sourceAnchorIds = [factAnchor];
+  });
+  chapter.authoring = {
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: "sha256:cache-validation-fixture",
+      observedAnchorIds: [factAnchor, ...exampleAnchors],
+      effectiveAnchors,
+    },
+  };
   return chapter;
 }
 
 function writeCachedChapter(chapter: ChapterV21): void {
   mkdirSync(STATE_CHAPTERS, { recursive: true });
   writeFileSync(CHAPTER_PATH, JSON.stringify(chapter, null, 2), "utf8");
+  const sourceEvidence = loadPlanningSourceEvidence(BOOK, chapter.number);
   writeStageCacheManifest({
     artifactPath: CHAPTER_PATH,
     artifactType: "chapter",
     artifactId: CHAPTER_ID,
-    inputs: buildChapterCacheInputs(BOOK_META, chapterSpec(chapter.title), currentProviderIdentity("writer")),
+    inputs: buildChapterCacheInputs(BOOK_META, chapterSpec(chapter.title), currentProviderIdentity("writer"), undefined, { sourceEvidence }),
     generatorName: "generateChapter",
     provider: currentProviderIdentity("writer"),
   });
@@ -305,7 +364,8 @@ test("invalid cached chapter is rejected before library-state ingestion", async 
         },
       },
     });
-    writeFileSync(CHAPTER_PATH, JSON.stringify(broken, null, 2), "utf8");
+    writeIndex(chapterSpec(broken.title));
+    writeCachedChapter(broken);
 
     await assert.rejects(
       () =>

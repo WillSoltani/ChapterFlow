@@ -162,34 +162,28 @@ for (const { bookId, files } of cleanCorpusChapterFiles()) {
   });
 }
 
-for (const { bookId, files } of goldChapterFiles()) {
+for (const { bookId, files, stateDir } of goldChapterFiles()) {
   if (files.length === 0) {
-    skip(`gold: ${bookId} book-gate blockers stay zero`, `no ${bookId} chapters in state/chapters/ on this machine`);
+    skip(`gold: ${bookId} book-gate blockers stay zero`, `synthetic corpus did not generate files`);
     continue;
   }
 
   test(`gold: ${bookId} — runBookGate emits ZERO blockers across ${files.length} chapters`, () => {
     const chapters = files.map((file) => JSON.parse(readFileSync(file, "utf8")) as ChapterV21);
-    const report = quietWarn(() => runBookGate(bookId, chapters));
+    const report = quietWarn(() => runBookGate(bookId, chapters, { stateDir }));
     const blockers = report.findings.filter((finding) => finding.severity === "blocker");
     assert.deepEqual(
       blockers.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`),
       [],
       `book-gate blocker false-positives on gold corpus`,
     );
-    // Pin MAJORS too (2026-06-11 review): BP26 is minor and BP27 major, so a
-    // blockers-only pin could never catch a BP27 gold false-positive.
-    // Baseline at pin time: daring-greatly 0 majors; start-with-why 1 major
-    // (pre-existing F4, unrelated to BP26/BP27).
-    const majorBaseline: Record<string, number> = { "daring-greatly": 0, "start-with-why": 1 };
+    // Pin MAJORS too: BP26 is minor and BP27 major, so a blockers-only pin
+    // could never catch a BP27 clean-corpus false-positive.
     const majors = report.findings.filter((finding) => finding.severity === "major");
-    const allowed = majorBaseline[bookId];
-    if (allowed !== undefined) {
-      assert.ok(
-        majors.length <= allowed,
-        `gold majors regressed (${majors.length} > baseline ${allowed}):\n` +
-          majors.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`).join("\n"),
-      );
-    }
+    assert.deepEqual(
+      majors.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`),
+      [],
+      `gold majors regressed:\n${majors.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`).join("\n")}`,
+    );
   });
 }
