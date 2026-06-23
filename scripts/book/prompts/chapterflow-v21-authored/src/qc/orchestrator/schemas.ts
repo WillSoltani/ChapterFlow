@@ -29,6 +29,9 @@ export type FindingProvenanceSource = {
 export type SubmissionFinding = {
   chapterNumber?: number;
   chapters?: number[];
+  /** Optional reviewer-supplied stable key for a grounded sweep defect. Sweep
+   *  ingestion verifies this against the server-derived key before persisting. */
+  defectKey?: string;
   unitId: string;
   repairClass: string;
   severity: FindingSeverity;
@@ -164,6 +167,7 @@ function normalizeFinding(raw: any, errors: string[], context: string, defaults:
   const f: SubmissionFinding = {
     chapterNumber: Number.isFinite(chapterNumber) ? chapterNumber : undefined,
     chapters,
+    defectKey: nonempty(raw?.defectKey) ? String(raw.defectKey) : defaults.defectKey,
     unitId: String(raw?.unitId ?? raw?.unit ?? defaults.unitId ?? ""),
     repairClass: String(raw?.repairClass ?? raw?.axis ?? raw?.family ?? defaults.repairClass ?? ""),
     severity: normalizeSeverity(raw?.severity ?? defaults.severity),

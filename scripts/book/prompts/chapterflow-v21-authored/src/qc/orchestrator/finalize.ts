@@ -312,7 +312,13 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   if (!options.dryRun) mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
 
   const sweepSubmission = latestValidSubmissionWithPath<ValidatedSweepSubmission>(bookId, roundId, "sweep");
-  if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission.submission, sweepSubmission.path);
+  if (sweepSubmission && !options.dryRun) {
+    try {
+      writeSweepRecordFromSubmission(sweepSubmission.submission, sweepSubmission.path);
+    } catch (err) {
+      errors.push(`sweep-record: ${(err as Error).message}`);
+    }
+  }
   if (!options.dryRun) migrateRawSemanticLedgerFindings(bookId, roundId);
 
   const allChapters = loadBookChapters(bookId);
@@ -353,7 +359,12 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   // (exemplar ownership + cross-chapter patterns are book-wide).
   const det = evaluateDeterministic(bookId, chapters, allChapters);
   const bookGate = det.bookGate;
-  const sweepRecord = loadSweepRecord(bookId);
+  let sweepRecord: ReturnType<typeof loadSweepRecord> = null;
+  try {
+    sweepRecord = loadSweepRecord(bookId);
+  } catch (err) {
+    errors.push(`sweep-history: ${(err as Error).message}`);
+  }
   // A non-PASS sweep whose submitted findings ALL got dropped by the family mapper (e.g.
   // mislabeled factual) leaves an empty WRITTEN record. sweepChapterStatus then FAILs every
   // chapter, but there are no actionable ledger findings — so finalize would REVISE→demote

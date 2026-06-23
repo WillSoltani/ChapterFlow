@@ -6,9 +6,9 @@ import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
 import { evidenceSourceRef, type EvidenceSourceKind } from "./evidenceSource.js";
-import { citesNonexistentField, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
+import { citesNonexistentField, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
-import { sweepFamilyForRepairClass } from "../sweep.js";
+import { sweepFamilyForRepairClass, sweepFindingBlocks } from "../sweep.js";
 
 export type LedgerStatus =
   | "open"
@@ -257,7 +257,19 @@ export function appendFindings(args: {
     // for repair. Without this the finding is cleared at the sweep gate yet kept OPEN in the ledger,
     // and ledger=OPEN_FINDINGS keeps the chapter REVISE forever (the-undoing-project run #3: a sweep
     // 'has already' demoted exactly the 7 chapters it named, all sweep=PASS).
-    .filter((f) => { const fam = sweepFamilyOf(f); return !fam || !nondistinctiveRepetitionQuote({ family: fam, quote: f.quote, chapters: f.chapters }); })
+    .filter((f) => {
+      const fam = sweepFamilyOf(f);
+      if (!fam) return true;
+      return sweepFindingBlocks({
+        family: fam,
+        severity: f.severity === "blocker" || f.severity === "major" ? "blocker" : "advisory",
+        chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
+        unitId: f.unitId,
+        quote: f.quote,
+        problem: f.problem,
+        expectedFix: f.expectedFix,
+      });
+    })
     // Mirror finalize's per-chapter GROUNDEDNESS: a cross-chapter sweep finding is only carried OPEN
     // for the chapters its quote is actually grounded in. An over-named finding ('in the Hebrew
     // University seminar room' claimed across 12, present in 1) must not keep the 11 ungrounded

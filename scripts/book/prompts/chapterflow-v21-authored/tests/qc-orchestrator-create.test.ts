@@ -164,7 +164,12 @@ test("item B (F1): when ALL chapters carry, a normal incremental round opens NOT
     assert.equal(opened.roundId, ROUND, "the confirming round opens a real round even with an empty review set");
     assert.ok(existsSync(roundRecordPath(BOOK, ROUND)), "round record written");
     assert.ok(existsSync(resolve(taskCardsDir(BOOK, ROUND), "00-sweep.md")), "the fresh book-wide sweep card is written");
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "01-keyA.md")), false, "no redundant keyA card");
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "02-keyB.md")), false, "no redundant keyB card");
+    assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "majors.md")), false, "no redundant major triage card");
     assert.equal(existsSync(resolve(taskCardsDir(BOOK, ROUND), "bar", "ch01.md")), false, "no per-chapter bar card (all chapters carried)");
+    const record = JSON.parse(readFileSync(roundRecordPath(BOOK, ROUND), "utf8"));
+    assert.equal(record.sweepOnlyConfirmation, true, "round record marks the sweep-only confirmation mode");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

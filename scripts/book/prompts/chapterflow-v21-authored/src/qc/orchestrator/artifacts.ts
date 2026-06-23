@@ -40,6 +40,10 @@ export function roundRecordPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "round.json");
 }
 
+export function sweepRoundRecordPath(bookId: string, roundId: string): string {
+  return resolve(orchestratorRoundDir(bookId, roundId), "sweep-record.json");
+}
+
 export function repairLedgerPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "repair-ledger.jsonl");
 }

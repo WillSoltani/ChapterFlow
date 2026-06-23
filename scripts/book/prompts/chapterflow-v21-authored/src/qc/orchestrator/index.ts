@@ -67,6 +67,9 @@ export type QcOrchestratorRoundRecord = {
    *  chapter whose first bar read lands borderline gets 2 extra independent reads
    *  (t2/t3) and the per-axis MEDIAN decides — variance-smoothing the 84/85 flap. */
   tiebreak?: boolean;
+  /** Item-B confirmation over a frozen all-carried book: only the fresh sweep
+   *  reviewer is required; per-chapter key/bar/major sessions would be waste. */
+  sweepOnlyConfirmation?: boolean;
 };
 
 export type OrchestratorResult = {
@@ -125,7 +128,7 @@ function cardHeader(bookId: string, roundId: string, role: string, token: string
   ].join("\n");
 }
 
-function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>, opts: { skipSweep?: boolean } = {}): string[] {
+function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>, opts: { skipSweep?: boolean; sweepOnly?: boolean } = {}): string[] {
   const root = taskCardsDir(bookId, roundId);
   const paths: string[] = [];
   // When the book is byte-identical to a prior PASS sweep the sweep is carried forward
@@ -141,6 +144,7 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
     `Command: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role sweep --token ${tokens.sweep} --file <submission.json>`,
     "",
   ].join("\n")));
+  if (opts.sweepOnly) return paths;
   for (const role of ["keyA", "keyB"] as const) {
     paths.push(writeText(resolve(root, role === "keyA" ? "01-keyA.md" : "02-keyB.md"), cardHeader(bookId, roundId, role, tokens[role]) + [
       "Read ONLY the blind key packs and their sourceFacts.",
@@ -249,6 +253,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   const carriedChapters = incremental ? selected.filter((ch) => carryableChapter(bookId, ch)) : [];
   const carriedNumbers = new Set(carriedChapters.map((ch) => ch.number));
   const reviewChapters = incremental ? selected.filter((ch) => !carriedNumbers.has(ch.number)) : selected;
+  const sweepOnlyConfirmation = incremental && !!options.noSweepCarry && reviewChapters.length === 0;
   // All per-chapter reviews carry ⇒ normally nothing to re-QC, skip the round. EXCEPT when
   // noSweepCarry is set (the item-B confirming round): the book-wide SWEEP must still run fresh
   // over the frozen book to produce an INDEPENDENT second read, even though no chapter needs a
@@ -272,18 +277,27 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   // this round and skip the session. ANY changed/added/removed chapter ⇒ a fresh sweep.
   // `noSweepCarry` forces a FRESH sweep even when carryable — used by the item-B confirming
   // round, which needs a genuinely INDEPENDENT second read (a carry would just copy the prior).
-  const priorSweep = loadSweepRecord(bookId);
+  let priorSweep: ReturnType<typeof loadSweepRecord> = null;
+  try {
+    priorSweep = loadSweepRecord(bookId);
+  } catch (err) {
+    errors.push(`sweep-history failed: ${(err as Error).message}`);
+  }
   const sweepCarried = incremental && !options.noSweepCarry && sweepCarryable(priorSweep, selected);
   if (sweepCarried && priorSweep) carryForwardSweep(bookId, priorSweep, roundId);
 
   let keyPackPaths: string[] = [];
   let keyPackError: string | undefined;
-  try {
-    keyPackPaths = writeKeyPacks(bookId, roundId);
-    messages.push(`key-pack: wrote ${keyPackPaths.length} pack(s)`);
-  } catch (err) {
-    keyPackError = (err as Error).message;
-    errors.push(`key-pack failed: ${keyPackError}`);
+  if (sweepOnlyConfirmation) {
+    messages.push("key-pack: skipped for sweep-only confirmation round");
+  } else {
+    try {
+      keyPackPaths = writeKeyPacks(bookId, roundId);
+      messages.push(`key-pack: wrote ${keyPackPaths.length} pack(s)`);
+    } catch (err) {
+      keyPackError = (err as Error).message;
+      errors.push(`key-pack failed: ${keyPackError}`);
+    }
   }
   let sweepPackPath: string | undefined;
   let sweepPackError: string | undefined;
@@ -298,13 +312,15 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
       errors.push(`sweep-pack failed: ${sweepPackError}`);
     }
   }
-  const barPack = writeBarPack(bookId, roundId);
-  if (barPack.errors.length) {
+  const barPack = sweepOnlyConfirmation ? { packPath: undefined, templatePath: undefined, errors: [] } : writeBarPack(bookId, roundId);
+  if (sweepOnlyConfirmation) {
+    messages.push("bar-pack: skipped for sweep-only confirmation round");
+  } else if (barPack.errors.length) {
     errors.push(...barPack.errors.map((e) => `bar-pack failed: ${e}`));
   } else {
     messages.push(`bar-pack: wrote ${barPack.packPath}`);
   }
-  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens, { skipSweep: sweepCarried });
+  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens, { skipSweep: sweepCarried, sweepOnly: sweepOnlyConfirmation });
   // Self-contained reviewer packet (content/rubric pointers + per-role submit
   // commands + invalid-until-filled JSON skeletons). Written here because the
   // plaintext round tokens only exist at creation time.
@@ -333,6 +349,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     chapterContentHashes: chapterHashRecord(selected),
     ...(incremental ? { reviewChapters: reviewChapters.map((ch) => ch.number), carriedChapters: carriedChapters.map((ch) => ch.number) } : {}),
     ...(options.tiebreak ? { tiebreak: true } : {}),
+    ...(sweepOnlyConfirmation ? { sweepOnlyConfirmation: true } : {}),
   };
   writeText(roundRecordPath(bookId, roundId), JSON.stringify(record, null, 2) + "\n");
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify({ bookId, roundId, createdAt: record.createdAt, submissions: 0, ledger: {}, attestationsWritten: 0 }, null, 2) + "\n");
@@ -377,7 +394,12 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   resolveManualKeyJudges(bookId, roundId);
   const roundRecord = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
   const tiebreakOn = roundRecord?.tiebreak === true;
-  const sweep = loadSweepRecord(bookId);
+  let sweep: ReturnType<typeof loadSweepRecord> = null;
+  try {
+    sweep = loadSweepRecord(bookId);
+  } catch (err) {
+    errors.push(`sweep-history failed: ${(err as Error).message}`);
+  }
   // E1: the SIX deterministic gates (source-v2, ship-gate, author-check, intra-book,
   // book-gate, plan-enforcement) come from the SHARED evaluator that finalize + qc-converge
   // use, so a chapter's confirm-candidate eligibility can't DRIFT from finalize's
@@ -606,7 +628,13 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
   // is oldest→newest, so the last one wins — matching finalize's latestValidSubmission).
   // collect runs BEFORE generateConfirmCandidates, which reads loadSweepRecord; without this
   // the first candidate pass sees no fresh record and falsely blocks every chapter on "sweep".
-  if (latestSweep) writeSweepRecordFromSubmission(latestSweep.submission, latestSweep.path);
+  if (latestSweep) {
+    try {
+      writeSweepRecordFromSubmission(latestSweep.submission, latestSweep.path);
+    } catch (err) {
+      errors.push(`sweep-record failed: ${(err as Error).message}`);
+    }
+  }
   const briefPath = writeRepairBrief(bookId, roundId);
   const promptPath = writeRepairPrompt(bookId, roundId);
   const summary = {

@@ -18,6 +18,7 @@ import { compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalCh
 import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
+import { loadSweepHistory } from "../qc/sweep.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -107,6 +108,15 @@ function checkTocContract(bookId: string): DoctorFinding {
   return { level: "warn", check: "toc-contract", message: `${bookId}: TOC uses ${parsed.migration.inputShape}; run toc-migrate ${bookId} --apply` };
 }
 
+function checkSweepHistory(bookId: string): DoctorFinding {
+  try {
+    loadSweepHistory(bookId);
+    return { level: "ok", check: "sweep-history", message: `${bookId}: immutable sweep records are reconstructable` };
+  } catch (e) {
+    return { level: "fatal", check: "sweep-history", message: (e as Error).message.split("\n").join(" ") };
+  }
+}
+
 function checkUntrackedImports(): DoctorFinding {
   // Untracked src/*.ts that tracked code imports compile locally (tsconfig globs
   // pick them up) but fail TS2307 on a fresh origin checkout. List untracked
@@ -135,7 +145,7 @@ function checkUntrackedImports(): DoctorFinding {
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
   const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports()];
   if (bookId) {
-    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId));
+    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId), checkSweepHistory(bookId));
   } else {
     // sweep every book's chapter-number integrity
     try {
