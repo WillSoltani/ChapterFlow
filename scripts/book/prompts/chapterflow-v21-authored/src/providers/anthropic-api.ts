@@ -19,17 +19,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import {
   AgentTier,
   CallOptions,
-  CallResult,
   Provider,
-  appendJsonInstruction,
-  extractJson,
+  ProviderRawResult,
+  defaultModelForProvider,
+  withProviderTimeout,
 } from "./types.js";
-
-const TIER_DEFAULT_MODELS: Record<AgentTier, string> = {
-  writer: "claude-sonnet-4-6",
-  researcher: "claude-sonnet-4-6",
-  critic: "claude-haiku-4-5-20251001",
-};
 
 // Approximate input/output prices in USD per 1M tokens. Used only for the
 // estimatedCostUsd field in CallResult; not authoritative.
@@ -44,53 +38,47 @@ function client(): Anthropic {
   if (_client) return _client;
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY not set");
-  _client = new Anthropic({ apiKey });
+  _client = new Anthropic({ apiKey, maxRetries: 0 });
   return _client;
 }
 
 export const AnthropicApiProvider: Provider = {
   name: "anthropic-api",
   defaultModelForTier(tier: AgentTier): string {
-    return TIER_DEFAULT_MODELS[tier];
+    return defaultModelForProvider("anthropic-api", tier);
   },
   isConfigured(): boolean {
     return !!process.env.ANTHROPIC_API_KEY;
   },
-  async call<T = string>(opts: CallOptions): Promise<CallResult<T>> {
-    const model = opts.model ?? TIER_DEFAULT_MODELS[opts.tier];
-    const userText = opts.jsonMode ? appendJsonInstruction(opts.user) : opts.user;
+  async call(opts: CallOptions & { model: string }): Promise<ProviderRawResult> {
+    const model = opts.model;
     const messages: Anthropic.MessageParam[] = [];
+    const system = [{ type: "text" as const, text: opts.system, cache_control: { type: "ephemeral" as const } }];
     if (opts.priorTurns) {
       for (const turn of opts.priorTurns) {
-        messages.push({ role: turn.role, content: turn.content });
+        if (turn.role === "system") {
+          system.push({ type: "text", text: turn.content, cache_control: { type: "ephemeral" } });
+        } else {
+          messages.push({ role: turn.role, content: turn.content });
+        }
       }
     }
-    messages.push({ role: "user", content: userText });
+    messages.push({ role: "user", content: opts.user });
 
     const startedAt = Date.now();
-    const response = await client().messages.create({
-      model,
-      max_tokens: opts.maxTokens ?? 4096,
-      temperature: opts.temperature ?? 0.7,
-      system: [{ type: "text", text: opts.system, cache_control: { type: "ephemeral" } }],
-      messages,
-    });
+    const response = await withProviderTimeout("anthropic-api", opts.timeoutMs ?? 240_000, (signal) =>
+      client().messages.create({
+        model,
+        max_tokens: opts.maxTokens ?? 4096,
+        temperature: opts.temperature ?? 0.7,
+        system,
+        messages,
+      }, { signal }),
+    );
     const durationMs = Date.now() - startedAt;
 
     const textBlocks = response.content.filter((b: any) => b.type === "text") as Array<{ type: "text"; text: string }>;
     const raw = textBlocks.map((b) => b.text).join("");
-
-    let content: T;
-    if (opts.jsonMode) {
-      const jsonText = extractJson(raw);
-      try {
-        content = JSON.parse(jsonText) as T;
-      } catch (err) {
-        throw new Error(`Failed to parse JSON from ${model}: ${(err as Error).message}\n---\n${raw.slice(0, 500)}`);
-      }
-    } else {
-      content = raw as unknown as T;
-    }
 
     const usage: any = response.usage;
     const inputTokens = usage?.input_tokens ?? 0;
@@ -102,8 +90,14 @@ export const AnthropicApiProvider: Provider = {
       provider: "anthropic-api",
       model,
       durationMs,
-      content,
       raw,
+      usage: {
+        inputTokens,
+        outputTokens,
+        cacheReadTokens: usage?.cache_read_input_tokens ?? 0,
+        cacheWriteTokens: usage?.cache_creation_input_tokens ?? 0,
+        estimatedCostUsd,
+      },
       inputTokens,
       outputTokens,
       cacheReadTokens: usage?.cache_read_input_tokens ?? 0,

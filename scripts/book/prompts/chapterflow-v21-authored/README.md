@@ -90,6 +90,13 @@ export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
 **Critic agents are deterministic code** — they don't call any model — so they
 behave identically regardless of provider. Only writer/researcher calls vary.
 
+Provider adapters are lazy-loaded only after a provider is selected. Deterministic
+commands such as `book-status`, `doctor`, and gates do not require the optional
+`openai` or `@anthropic-ai/sdk` packages at import time. The router owns provider
+attempt counts and the single JSON repair attempt; adapters make one raw call with
+SDK retries disabled, honor per-call timeouts, return bounded raw evidence, and
+include usage/latency metadata for validation.
+
 ## Autopilot — the Codex control plane (no API metering)
 
 The three providers above are the paid path. The **default** needs no funded API:
@@ -154,7 +161,7 @@ chapterflow-v21-authored/
 ├── README.md                   (this file)
 ├── src/
 │   ├── types.ts                typed contracts between agents
-│   ├── claudeClient.ts         SDK wrapper with prompt caching
+│   ├── claudeClient.ts         provider-router wrapper used by agents
 │   ├── cli.ts                  entry: critic, generate, repair, ledger
 │   ├── critics/                runnable binary checks
 │   │   ├── narrative.ts

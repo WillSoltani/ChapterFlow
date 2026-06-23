@@ -4,7 +4,7 @@ import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import type { AgentTier, ProviderName } from "../providers/types.js";
+import { defaultModelForProvider, isProviderName, type AgentTier, type ProviderName } from "../providers/types.js";
 import { CONFIG_SCHEMA_CONTRACT_VERSION, RUNTIME_SCHEMA_CONTRACT_VERSION } from "../runtimeSchemas.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -505,28 +505,7 @@ function currentProviderName(): ProviderName {
 }
 
 function defaultModel(provider: ProviderName, tier: AgentTier): string {
-  const defaults: Record<ProviderName, Record<AgentTier, string>> = {
-    "anthropic-cli": {
-      writer: "claude-opus-4-7",
-      researcher: "claude-sonnet-4-6",
-      critic: "claude-haiku-4-5-20251001",
-    },
-    "anthropic-api": {
-      writer: process.env.CHAPTERFLOW_ANTHROPIC_WRITER ?? "claude-opus-4-7",
-      researcher: process.env.CHAPTERFLOW_ANTHROPIC_RESEARCHER ?? "claude-sonnet-4-6",
-      critic: process.env.CHAPTERFLOW_ANTHROPIC_CRITIC ?? "claude-haiku-4-5-20251001",
-    },
-    "openai-api": {
-      writer: process.env.CHAPTERFLOW_OPENAI_WRITER ?? "gpt-4o",
-      researcher: process.env.CHAPTERFLOW_OPENAI_RESEARCHER ?? "gpt-4o-mini",
-      critic: process.env.CHAPTERFLOW_OPENAI_CRITIC ?? "gpt-4o-mini",
-    },
-  };
-  return defaults[provider][tier];
-}
-
-function isProviderName(value: unknown): value is ProviderName {
-  return value === "anthropic-cli" || value === "anthropic-api" || value === "openai-api";
+  return defaultModelForProvider(provider, tier);
 }
 
 function isArtifactType(value: unknown): value is StageArtifactType {

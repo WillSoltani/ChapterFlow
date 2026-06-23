@@ -604,12 +604,48 @@ export function validateProviderCallResult(raw: unknown, checkId = "schema.provi
     c.issue("/", "provider CallResult object", raw);
     return { ok: false, findings: c.findings };
   }
-  requiredString(c, raw, "provider", "/");
+  const provider = raw.provider;
+  if (provider !== "anthropic-cli" && provider !== "anthropic-api" && provider !== "openai-api") {
+    c.issue("/provider", "known provider name", provider);
+  }
   requiredString(c, raw, "model", "/");
   requiredFiniteNumber(c, raw, "durationMs", "/");
+  requiredPositiveInteger(c, raw, "attempts", "/");
   requiredString(c, raw, "raw", "/", { nonempty: false });
+  const rawResponses = optionalArray(c, raw, "rawResponses", "/");
+  stringArray(c, rawResponses, "/rawResponses", { allowEmpty: true });
+  const attemptMetadata = requiredArray(c, raw, "attemptMetadata", "/");
+  if (attemptMetadata) {
+    attemptMetadata.forEach((item, i) => {
+      const p = child("/attemptMetadata", i);
+      if (!isRecord(item)) {
+        c.issue(p, "provider attempt metadata object", item);
+        return;
+      }
+      requiredPositiveInteger(c, item, "attempt", p);
+      requiredFiniteNumber(c, item, "durationMs", p);
+      requiredString(c, item, "kind", p);
+      optionalString(c, item, "error", p);
+    });
+  }
+  const usage = requiredRecord(c, raw, "usage", "/");
+  if (usage) {
+    optionalNonnegativeNumber(c, usage, "inputTokens", "/usage");
+    optionalNonnegativeNumber(c, usage, "outputTokens", "/usage");
+    optionalNonnegativeNumber(c, usage, "cacheReadTokens", "/usage");
+    optionalNonnegativeNumber(c, usage, "cacheWriteTokens", "/usage");
+    optionalNonnegativeNumber(c, usage, "estimatedCostUsd", "/usage");
+  }
   if (!("content" in raw)) c.issue("/content", "present provider content", undefined);
   return c.findings.length ? { ok: false, findings: c.findings } : { ok: true, value: raw, findings: [] };
+}
+
+function optionalNonnegativeNumber(c: Collector, raw: Record<string, unknown>, key: string, path: string): void {
+  const value = raw[key];
+  if (value === undefined || value === null) return;
+  if (typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+    c.issue(child(path, key), "nonnegative finite number when present", value);
+  }
 }
 
 export function validateSourceAnchors(raw: unknown, checkId = "schema.source_anchor_contract"): RuntimeValidationResult<SourceAnchorForPrompt[]> {
