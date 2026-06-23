@@ -463,6 +463,66 @@ export function unsafePublishFiles(files: string[], opts: { allGreen?: boolean }
   return [...new Set(unsafe)].sort();
 }
 
+/**
+ * Push the current branch, RECONCILING with an advanced remote. A bare `git push` fails
+ * non-fast-forward whenever origin/<branch> moved during the run — and for an UNATTENDED
+ * auto-publish that can take >1h, the remote moving (another PR or book publish landing on
+ * main meanwhile) is the COMMON case, not the exception. A bare push there strands the publish
+ * commit locally and HALTs the run for a reason unrelated to the book.
+ *
+ * The publish commit touches only the promote-set files (the new package + the two web-registry
+ * files, both append-only), so rebasing it onto the advanced remote is virtually always
+ * conflict-free. On a REAL conflict (e.g. two book publishes racing on the catalog) we ABORT the
+ * rebase and surface the error — NEVER force-push, never auto-resolve. `--autostash` keeps benign
+ * run-churn (e.g. a dirty state/gate-attempts.json) from blocking the rebase. Bounded retries
+ * cover a second advance landing between fetch and push. Returns pushed=false + an error string
+ * (the caller then reports the commit-exists-locally recovery) only when reconciliation can't make
+ * the push fast-forward.
+ */
+export function pushWithRebase(runner: Runner, attempts = 3): { pushed: boolean; error?: string } {
+  let lastErr: string | undefined;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    try {
+      git(["push"], runner);
+      return { pushed: true };
+    } catch (err) {
+      lastErr = (err as Error).message;
+    }
+    // Push rejected — almost always "remote moved". Reconcile by rebasing our commit(s) onto the
+    // freshly-fetched remote tip, then retry the push on the next loop.
+    const branch = git(["rev-parse", "--abbrev-ref", "HEAD"], runner).trim();
+    if (!branch || branch === "HEAD") {
+      return { pushed: false, error: `push rejected and cannot auto-rebase a detached HEAD: ${lastErr}` };
+    }
+    try {
+      git(["fetch", "origin", branch], runner);
+      git(["rebase", "--autostash", `origin/${branch}`], runner);
+    } catch (rebaseErr) {
+      try { git(["rebase", "--abort"], runner); } catch { /* nothing in progress to abort */ }
+      return {
+        pushed: false,
+        error: `push rejected; auto-rebase onto origin/${branch} failed (likely a real content conflict — resolve manually, do NOT force-push): ${(rebaseErr as Error).message}`,
+      };
+    }
+    // `git rebase --autostash` has TWO conflict modes. A COMMIT-replay conflict throws (caught
+    // above). But re-applying the autostashed working-tree run-churn (e.g. the shared, tracked
+    // state/gate-attempts.json that another book's publish also appended to) onto the advanced
+    // remote can conflict while rebase still exits 0 — leaving UU conflict markers in the tree +
+    // an orphaned autostash. Our PUBLISH commit replayed clean (that is what we push); the churn is
+    // throwaway generated state. Resolve deterministically: take the rebased (HEAD) version of any
+    // unmerged file and drop the leftover stash, so we never push from — or leave behind — a
+    // marker-laden tree (which would later crash JSON.parse and silently wipe gate-attempt history).
+    const unmerged = git(["diff", "--name-only", "--diff-filter=U"], runner).trim();
+    if (unmerged) {
+      for (const f of unmerged.split(/\r?\n/).filter(Boolean)) {
+        try { git(["checkout", "HEAD", "--", f], runner); } catch { /* best-effort cleanup */ }
+      }
+      try { git(["stash", "drop"], runner); } catch { /* no autostash entry left to drop */ }
+    }
+  }
+  return { pushed: false, error: lastErr };
+}
+
 function stageAndMaybeCommit(args: {
   bookId: string;
   roundId: string;
@@ -544,13 +604,14 @@ function stageAndMaybeCommit(args: {
   // exists (typically: a prior run committed, then its push failed). Do NOT create
   // a second/duplicate commit — adopt the existing HEAD and go straight to push.
   if (cached.length === 0) {
-    const head = git(["rev-parse", "HEAD"], args.runner).trim();
+    let head = git(["rev-parse", "HEAD"], args.runner).trim();
     const headSubject = git(["log", "-1", "--format=%s"], args.runner).trim();
     let pushedExisting = false;
     let pushErr: string | undefined;
     if (args.push) {
-      try { git(["push"], args.runner); pushedExisting = true; }
-      catch (err) { pushErr = (err as Error).message; }
+      const r = pushWithRebase(args.runner);
+      pushedExisting = r.pushed; pushErr = r.error;
+      head = git(["rev-parse", "HEAD"], args.runner).trim(); // a reconcile-rebase may have rewritten HEAD
     }
     // Only assert "this IS the publish commit (skipped a duplicate)" when HEAD's subject
     // says so; otherwise the tree merely already contains identical content (e.g. an
@@ -569,16 +630,18 @@ function stageAndMaybeCommit(args: {
     `Cleanup: ${args.cleanup}`,
   ].join("\n");
   git(["commit", "-m", msg], args.runner);
-  const commitHash = git(["rev-parse", "HEAD"], args.runner).trim();
-  // The commit SUCCEEDED above. Push is a separate, retryable step: a push failure
-  // (almost always "remote moved") must NOT erase the fact that the commit exists,
-  // or the caller wrongly reports "no commit performed" and an operator re-runs into
-  // a duplicate commit. Capture the push error and report it accurately instead.
+  let commitHash = git(["rev-parse", "HEAD"], args.runner).trim();
+  // The commit SUCCEEDED above. Push is a separate, retryable step that RECONCILES with an
+  // advanced remote (pushWithRebase): for an unattended run the remote commonly moves mid-run, so
+  // a bare push would strand this commit and halt for an unrelated reason. A push failure that even
+  // reconciliation can't fix (a real conflict) must NOT erase the fact that the commit exists, or
+  // the caller wrongly reports "no commit performed" and an operator re-runs into a duplicate.
   let pushed = false;
   let pushError: string | undefined;
   if (args.push) {
-    try { git(["push"], args.runner); pushed = true; }
-    catch (err) { pushError = (err as Error).message; }
+    const r = pushWithRebase(args.runner);
+    pushed = r.pushed; pushError = r.error;
+    commitHash = git(["rev-parse", "HEAD"], args.runner).trim(); // a reconcile-rebase may have rewritten HEAD
   }
   return { staged, commitHash, pushed, pushError, errors: [] };
 }
