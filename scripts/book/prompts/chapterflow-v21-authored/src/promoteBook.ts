@@ -40,6 +40,9 @@ import { checkSweep } from "./qc/sweep.js";
 import { unresolvedMajors } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 import { normSlug } from "./lib/chapterPaths.js";
+import { stripInternalFields } from "./lib/readerContent.js";
+import { buildProductionManifest, type ProductionManifestFinding } from "./productionManifest.js";
+import { verifyProductionPackage } from "./verifyProductionPackage.js";
 import {
   compareChapterSetToCanonical,
   formatChapterSetBlockers,
@@ -68,6 +71,7 @@ export type PromotionResult = {
    *  cannot do — enforced here from the sidecar `quiz-judge` writes. */
   keyJudgeBlockerCount: number;
   noApiBlockerCount: number;
+  productionManifestBlockerCount: number;
   canonicalBlockerCount: number;
   canonicalBlockers?: ChapterSetBlocker[];
   shipGateMajorCount: number;
@@ -88,24 +92,6 @@ export type PromotionInput = {
   tags?: string[];
 };
 
-/** Recursively remove every occurrence of `key` from a value (returns a copy).
- *  Used to strip the v2-only `sourceAnchorId` provenance field — which exists so
- *  SC11 can verify a unit uses its declared anchor at GATE time — from the
- *  shipped package, so internal pipeline metadata never reaches the web
- *  package validator / reader. */
-function stripKeyDeep<T>(value: T, key: string): T {
-  if (Array.isArray(value)) return value.map((v) => stripKeyDeep(v, key)) as unknown as T;
-  if (value && typeof value === "object") {
-    const out: Record<string, unknown> = {};
-    for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
-      if (k === key) continue;
-      out[k] = stripKeyDeep(v, key);
-    }
-    return out as T;
-  }
-  return value;
-}
-
 /** Authoring-internal fields that must never reach the shipped package:
  *  sourceAnchorId (gate-time provenance) and planSpec (the planner's design
  *  rationale — types.ts: "Not shown to readers", but it shipped anyway until
@@ -113,9 +99,7 @@ function stripKeyDeep<T>(value: T, key: string): T {
  *  state/chapters files are never mutated, and the v2 content hash excludes
  *  both keys, so stripping cannot stale a QC attestation
  *  (tests/promote-gate.test.ts pins both properties). */
-export function stripInternalFields(chapter: ChapterV21): ChapterV21 {
-  return stripKeyDeep(stripKeyDeep(chapter, "sourceAnchorId"), "planSpec");
-}
+export { stripInternalFields } from "./lib/readerContent.js";
 
 export function promoteBook(input: PromotionInput): PromotionResult {
   const bookId = normSlug(input.bookId);
@@ -343,6 +327,67 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     })));
   }
   const noApiBlockerCount = noApiFindings.length;
+  const preManifestBlockerCount =
+    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount;
+
+  mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
+  const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
+  let existingPkg: Partial<BookPackageV21> | null = null;
+  if (existsSync(packagePath)) {
+    try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
+  }
+  const existingManifest = existingPkg?.productionManifest;
+  const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : new Date().toISOString();
+  const priorRunId = typeof existingManifest?.metadata?.runId === "string" ? existingManifest.metadata.runId : undefined;
+  const contentOwner = input.contentOwner ?? "chapterflow";
+  const shippedChapters = loadedChapters.map((c) => stripInternalFields(c));
+
+  let candidatePackage: BookPackageV21 | null = null;
+  let productionManifestFindings: ProductionManifestFinding[] = [];
+  let verificationFindings: ProductionManifestFinding[] = [];
+  let manifestContentId: string | null = null;
+
+  if (preManifestBlockerCount === 0) {
+    const manifestResult = buildProductionManifest({
+      bookId,
+      title,
+      author,
+      contentOwner,
+      categories: input.categories,
+      tags: input.tags,
+      chapters: shippedChapters,
+      createdAt,
+      runId: priorRunId,
+      packagePath,
+    });
+    if (!manifestResult.ok) {
+      productionManifestFindings = manifestResult.findings;
+    } else {
+      manifestContentId = manifestResult.manifest.contentId;
+      candidatePackage = {
+        schemaVersion: V21_SCHEMA_VERSION,
+        packageId: manifestResult.manifest.contentId,
+        createdAt: manifestResult.manifest.metadata.createdAt,
+        contentOwner,
+        book: {
+          bookId,
+          title,
+          author,
+          categories: input.categories,
+          tags: input.tags,
+        },
+        productionManifest: manifestResult.manifest,
+        chapters: shippedChapters,
+      };
+      const verification = verifyProductionPackage({
+        packagePath,
+        packageData: candidatePackage,
+        compareLooseState: true,
+      });
+      if (!verification.ok) verificationFindings = verification.findings;
+    }
+  }
+  const productionManifestBlockerCount = productionManifestFindings.length + verificationFindings.length;
 
   // Step 4: Write the report regardless of pass/fail.
   mkdirSync(resolve(STATE, "books"), { recursive: true });
@@ -370,13 +415,19 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
     noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
     canonicalChapterSet: { indexPath: canonical.path, chapterCount: canonical.chapters.length, totalBlockers: 0, findings: [] },
+    productionManifest: {
+      contentId: manifestContentId,
+      skipped: preManifestBlockerCount > 0,
+      totalBlockers: productionManifestBlockerCount,
+      findings: [...productionManifestFindings, ...verificationFindings],
+    },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
   // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
   // quiz answer-key judge gate.
-  if (shipBlockerCount > 0 || intraBlockerCount > 0 || bookBlockerCount > 0 || qcBlockerCount > 0 || keyJudgeBlockerCount > 0 || noApiBlockerCount > 0) {
+  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
     writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
@@ -392,6 +443,9 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     const noApiSummary = noApiBlockerCount > 0
       ? ` + ${noApiBlockerCount} no-api QC blocker(s): ${noApiFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${noApiBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const manifestSummary = productionManifestBlockerCount > 0
+      ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
+      : "";
     return {
       promoted: false,
       bookId,
@@ -401,45 +455,21 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       intraBookBlockerCount: intraBlockerCount,
       keyJudgeBlockerCount,
       noApiBlockerCount,
+      productionManifestBlockerCount,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
-  // Step 6: Build the BookPackageV21 and write it to the library.
-  // Idempotent re-promote: if a package already exists, PRESERVE its packageId +
-  // createdAt so a re-run over unchanged chapters writes a BYTE-IDENTICAL file.
-  // (These two fields used to embed Date.now()/new Date() on every run, so a
-  // re-publish after a failed push staged a spurious diff and created a DUPLICATE
-  // publish commit — the partial-state bug. Stable identity → no phantom diff.)
-  mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
-  const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
-  let existingPkg: Partial<BookPackageV21> | null = null;
-  if (existsSync(packagePath)) {
-    try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
-  }
-  const pkg: BookPackageV21 = {
-    schemaVersion: V21_SCHEMA_VERSION,
-    packageId: typeof existingPkg?.packageId === "string" ? existingPkg.packageId : `${bookId}-v21-${Date.now()}`,
-    createdAt: typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : new Date().toISOString(),
-    contentOwner: input.contentOwner ?? "chapterflow",
-    book: {
-      bookId,
-      title,
-      author,
-      categories: input.categories,
-      tags: input.tags,
-    },
-    // Strip authoring-internal fields (sourceAnchorId provenance + planSpec
-    // scaffolding) so they never ship into book-packages/ or reach the web
-    // package validator / reader.
-    chapters: loadedChapters.map((c) => stripInternalFields(c)),
-  };
+  // Step 6: Write the independently verified BookPackageV21 to the library.
+  // The packageId is the manifest content ID, so timestamp metadata no longer
+  // defines production identity. createdAt remains metadata and is preserved
+  // from the prior package to keep unchanged re-promotes byte-stable.
   // Atomic write: the published package is the SHIPPED artifact — a crash mid-write must never
   // leave a truncated book-packages/<id>.v21.json (which the web reader/validator would choke on).
-  writeFileAtomic(packagePath, JSON.stringify(pkg, null, 2));
+  writeFileAtomic(packagePath, JSON.stringify(candidatePackage, null, 2));
 
   return {
     promoted: true,
@@ -451,6 +481,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    productionManifestBlockerCount: 0,
     canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
@@ -468,6 +499,7 @@ function blockedResult(args: { bookId: string; reason: string; canonicalBlockers
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    productionManifestBlockerCount: 0,
     canonicalBlockerCount: args.canonicalBlockers?.length ?? 0,
     canonicalBlockers: args.canonicalBlockers,
     shipGateMajorCount: 0,
@@ -487,6 +519,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Canonical chapter set: ${r.canonicalBlockerCount} blockers`);
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
+  lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");
 }

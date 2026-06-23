@@ -1,3 +1,5 @@
+import type { ProductionPackageManifest } from "./productionManifest.js";
+
 /**
  * ChapterFlow v21 — shared typed contracts.
  *
@@ -398,6 +400,7 @@ export type BookPackageV21 = {
     edition?: BookEdition;
   };
   chapters: ChapterV21[];
+  productionManifest: ProductionPackageManifest;
 };
 
 export type ChapterV21 = {

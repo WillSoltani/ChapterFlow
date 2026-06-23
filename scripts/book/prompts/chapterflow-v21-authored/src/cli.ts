@@ -122,6 +122,10 @@ Commands:
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
                                      Quarantines to state/books/_blocked/ on failure.
+  verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p]
+                                     Read-only production verifier: recomputes the manifest payload from
+                                     the canonical index, package chapters, source evidence, and QC evidence.
+                                     Exits 0 only when the package content ID is independently verified.
   publish "<book name or id>" [--title X --author Y] [--categories A,B] [--tags x,y]
                                      One-verb ship. Resolves the book, auto-fills title/author from its
                                      brief, then runs promote-book (so it CANNOT ship a book that has not
@@ -1318,6 +1322,27 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
   console.log(formatPromotionResult(result));
   return result.promoted ? 0 : 1;
+}
+
+async function runVerifyProductionPackage(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args[0];
+  if (!input) {
+    console.error("Usage: verify-production-package <bookId|package.json> [--compare-loose-state] [--json]");
+    return 2;
+  }
+  const { verifyProductionPackage, formatVerifyProductionPackageResult, packagePathForBook } = await import("./verifyProductionPackage.js");
+  const packagePath = input.endsWith(".json") || input.includes("/")
+    ? resolve(process.cwd(), input)
+    : packagePathForBook(input);
+  const result = verifyProductionPackage({
+    packagePath,
+    stateRoot: typeof flags["state-root"] === "string" ? resolve(process.cwd(), flags["state-root"] as string) : undefined,
+    runsRoot: typeof flags["runs-root"] === "string" ? resolve(process.cwd(), flags["runs-root"] as string) : undefined,
+    compareLooseState: flags["compare-loose-state"] === true || flags["loose-state"] === true,
+  });
+  if (flags["json"] === true) console.log(JSON.stringify(result, null, 2));
+  else console.log(formatVerifyProductionPackageResult(result));
+  return result.ok ? 0 : 1;
 }
 
 /** `publish "<book name or id>"` — one-verb ship. Resolves the book, auto-fills
@@ -4650,6 +4675,8 @@ async function main() {
       return runAuthoringGuardrails(args, flags);
     case "promote-book":
       return runPromoteBook(args, flags);
+    case "verify-production-package":
+      return runVerifyProductionPackage(args, flags);
     case "gate-chapter":
       return runGateChapter(args);
     case "book-gate":

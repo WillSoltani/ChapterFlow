@@ -70,6 +70,25 @@ function blockedReports(bookId: string): string[] {
   }
 }
 
+function sourceRunDir(bookId: string, runId: string): string {
+  return resolve(PIPELINE_DIR, "../../../../.chapterflow/runs", bookId, runId);
+}
+
+function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: number; chapterId: string }>, runId: string): void {
+  const dir = resolve(sourceRunDir(bookId, runId), "sidecars", "source");
+  mkdirSync(dir, { recursive: true });
+  for (const spec of chapters) {
+    writeFileSync(resolve(dir, `ch${String(spec.chapterNumber).padStart(2, "0")}.source.json`), JSON.stringify({
+      schemaVersion: "source-v1",
+      bookId,
+      chapterId: spec.chapterId,
+      chapterNumber: spec.chapterNumber,
+      centralConcept: { name: `concept ${spec.chapterNumber}`, plainDefinition: "Synthetic fixture source evidence." },
+      testableFacts: [{ id: `f${spec.chapterNumber}`, claim: "fixture", becauseMechanism: "fixture", commonError: "fixture", errorIsWhy: "fixture" }],
+    }, null, 2), "utf8");
+  }
+}
+
 function withPromotionEnvCleared<T>(fn: () => T): T {
   const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const prevRequireKeyJudge = process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
@@ -173,6 +192,7 @@ test("promoteBook fails closed when the canonical index is missing or malformed 
 
 test("promoteBook still promotes a complete correctly ordered canonical book", () => {
   const bookId = "drive";
+  const runId = `zz-test-promote-manifest-${process.pid}`;
   const index = loadChapterIndex(bookId);
   const packagePath = productionPackagePath(bookId);
   const reportPath = gateReportPath(bookId);
@@ -182,6 +202,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
 
   try {
     withPromotionEnvCleared(() => {
+      writeSourceSidecars(bookId, index, runId);
       for (const spec of index) {
         const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
         writeAttestation({
@@ -194,6 +215,8 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
           hashVersion: "v2",
           reviewer: "claude-qc:canonical-full-regression",
           reviewedAt: "2026-06-23T00:00:00.000Z",
+          roundId: "canonical-full-regression-round",
+          roundRole: "attest",
         });
       }
 
@@ -212,6 +235,59 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
     });
   } finally {
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
+    rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
+    restoreFile(reportPath, reportBefore);
+    restoreFile(packagePath, packageBefore);
+  }
+});
+
+test("promoteBook embeds a production manifest identity instead of trusting timestamp package metadata", () => {
+  const bookId = "drive";
+  const runId = `zz-test-promote-manifest-identity-${process.pid}`;
+  const index = loadChapterIndex(bookId);
+  const packagePath = productionPackagePath(bookId);
+  const reportPath = gateReportPath(bookId);
+  const packageBefore = readFileSync(packagePath, "utf8");
+  const reportBefore = snapshotFile(reportPath);
+  const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
+
+  try {
+    withPromotionEnvCleared(() => {
+      writeSourceSidecars(bookId, index, runId);
+      for (const spec of index) {
+        const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
+        writeAttestation({
+          schemaVersion: "qc-attest-v1",
+          bookId,
+          chapterNumber: spec.chapterNumber,
+          chapterId: spec.chapterId,
+          verdict: "PUBLISHABLE",
+          contentHash: chapterContentHash(chapter),
+          hashVersion: "v2",
+          reviewer: "claude-qc:manifest-regression",
+          reviewedAt: "2026-06-23T00:00:00.000Z",
+          roundId: "manifest-regression-round",
+          roundRole: "attest",
+        });
+      }
+
+      const result = promoteBook({
+        bookId,
+        title: "Drive",
+        author: "Daniel H. Pink",
+        chapters: index,
+        categories: ["Psychology", "Self-Help", "Productivity", "Behavioral Economics"],
+        tags: ["motivation", "autonomy", "mastery", "purpose", "incentives", "behavior-change"],
+      });
+
+      assert.equal(result.promoted, true, result.reason);
+      const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
+      assert.equal(pkg.packageId, pkg.productionManifest?.contentId, "package identity must be derived from the embedded production manifest");
+      assert.equal(typeof pkg.productionManifest?.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
+    });
+  } finally {
+    for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
+    rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
     restoreFile(reportPath, reportBefore);
     restoreFile(packagePath, packageBefore);
   }
