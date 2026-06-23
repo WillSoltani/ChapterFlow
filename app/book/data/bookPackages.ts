@@ -114,6 +114,7 @@ import auto_the_paradox_of_choice_Json from "@/book-packages/the-paradox-of-choi
 import auto_emotional_intelligence_Json from "@/book-packages/emotional-intelligence.v21.json";
 import auto_the_happiness_hypothesis_Json from "@/book-packages/the-happiness-hypothesis.v21.json";
 import auto_stumbling_on_happiness_Json from "@/book-packages/stumbling-on-happiness.v21.json";
+import auto_behave_Json from "@/book-packages/behave.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1921,4 +1922,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_stumbling_on_happiness_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["stumbling-on-happiness"] = (tone) => normalizeAnyPackage(auto_stumbling_on_happiness_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "behave" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_behave_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["behave"] = (tone) => normalizeAnyPackage(auto_behave_Json, tone);
 }
