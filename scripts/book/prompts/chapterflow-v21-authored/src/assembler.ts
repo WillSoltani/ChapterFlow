@@ -25,6 +25,7 @@ import { ImplementationPlanOutput } from "./agents/writer-implementation-plan.js
 import { HookOutput } from "./agents/writer-hook.js";
 import { MemorableLine } from "./agents/memorable-lines.js";
 import type { PlanningSourceEvidence } from "./source/sourceEvidence.js";
+import { formatRuntimeFindings, RuntimeSchemaFinding, validateAssembleInput } from "./runtimeSchemas.js";
 
 export type AssembleInput = {
   plan: ChapterDesignDoc;
@@ -42,7 +43,37 @@ export type AssembleInput = {
   sourceEvidence?: PlanningSourceEvidence;
 };
 
-export function assembleChapterV21(input: AssembleInput): ChapterV21 {
+export type AssembleChapterResult =
+  | { ok: true; chapter: ChapterV21; findings: [] }
+  | { ok: false; findings: RuntimeSchemaFinding[] };
+
+export class AssemblyValidationError extends Error {
+  readonly findings: RuntimeSchemaFinding[];
+
+  constructor(findings: RuntimeSchemaFinding[]) {
+    super(`assembleChapterV21 input failed runtime schema: ${formatRuntimeFindings(findings)}`);
+    this.name = "AssemblyValidationError";
+    this.findings = findings;
+  }
+}
+
+export function assembleChapterV21(input: unknown): AssembleChapterResult {
+  return tryAssembleChapterV21(input);
+}
+
+export function tryAssembleChapterV21(input: unknown): AssembleChapterResult {
+  const parsed = validateAssembleInput(input);
+  if (!parsed.ok) return { ok: false, findings: parsed.findings };
+  return { ok: true, chapter: assembleChapterV21Validated(parsed.value), findings: [] };
+}
+
+export function assembleChapterV21OrThrow(input: unknown): ChapterV21 {
+  const result = tryAssembleChapterV21(input);
+  if (!result.ok) throw new AssemblyValidationError(result.findings);
+  return result.chapter;
+}
+
+function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
   const { plan, breakdown, examples, quiz, cards, implementationPlan, keyTakeaway, hook } = input;
   const anchorMap: Record<string, string[]> = {};
   const defaultAnchors = defaultAnchorIds(input.sourceEvidence?.anchors ?? [], plan);

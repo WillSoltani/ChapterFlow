@@ -31,6 +31,7 @@ import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileN
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
+import { formatRuntimeFindings, validateAllConfigFiles } from "./runtimeSchemas.js";
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -4774,6 +4775,11 @@ async function main() {
         "Override only if you truly mean it: --allow-noncanonical",
     );
     return 3;
+  }
+  const configFindings = validateAllConfigFiles();
+  if (configFindings.length > 0) {
+    console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
+    return 2;
   }
   switch (cmd) {
     case "critic":

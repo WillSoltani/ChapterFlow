@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import type { AgentTier, ProviderName } from "../providers/types.js";
+import { CONFIG_SCHEMA_CONTRACT_VERSION, RUNTIME_SCHEMA_CONTRACT_VERSION } from "../runtimeSchemas.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_ROOT = resolve(__dirname, "../..");
@@ -37,6 +38,11 @@ export type CacheDependency = {
 
 export type StageCacheManifest = {
   schemaVersion: typeof STAGE_CACHE_SCHEMA_VERSION;
+  schemaVersions: {
+    stageCache: typeof STAGE_CACHE_SCHEMA_VERSION;
+    runtimeContract: typeof RUNTIME_SCHEMA_CONTRACT_VERSION;
+    configContract: typeof CONFIG_SCHEMA_CONTRACT_VERSION;
+  };
   artifactType: StageArtifactType;
   artifactId: string;
   outputPath: string;
@@ -144,6 +150,8 @@ export function defaultCacheDependencies(args: {
   const provider = args.provider ?? currentProviderIdentity(args.providerTier ?? "writer");
   return [
     stringDependency("stage-cache-schema-version", args.stageSchemaVersion ?? STAGE_CACHE_SCHEMA_VERSION),
+    stringDependency("runtime-schema-contract-version", RUNTIME_SCHEMA_CONTRACT_VERSION),
+    stringDependency("config-schema-contract-version", CONFIG_SCHEMA_CONTRACT_VERSION),
     stringDependency("generator-code-version", args.codeVersion ?? STAGE_CACHE_CODE_VERSION),
     stringDependency("provider", provider.provider),
     stringDependency("model", provider.model),
@@ -167,6 +175,11 @@ export function writeStageCacheManifest(options: StageCacheWriteOptions): StageC
   const inputs = normalizeDependencies(options.inputs);
   const manifest: StageCacheManifest = {
     schemaVersion: STAGE_CACHE_SCHEMA_VERSION,
+    schemaVersions: {
+      stageCache: STAGE_CACHE_SCHEMA_VERSION,
+      runtimeContract: RUNTIME_SCHEMA_CONTRACT_VERSION,
+      configContract: CONFIG_SCHEMA_CONTRACT_VERSION,
+    },
     artifactType: options.artifactType,
     artifactId: options.artifactId,
     outputPath: options.artifactPath,
@@ -249,6 +262,14 @@ export function validateStageCache(options: StageCacheValidateOptions): CacheVal
   if (manifest.creationStatus !== "complete") {
     reasons.push(`creationStatus is ${manifest.creationStatus}, expected complete`);
     changedDependencies.push("creationStatus");
+  }
+  if (manifest.schemaVersions.runtimeContract !== RUNTIME_SCHEMA_CONTRACT_VERSION) {
+    reasons.push(`runtime schema contract changed: manifest ${manifest.schemaVersions.runtimeContract}, current ${RUNTIME_SCHEMA_CONTRACT_VERSION}`);
+    changedDependencies.push("runtime-schema-contract-version");
+  }
+  if (manifest.schemaVersions.configContract !== CONFIG_SCHEMA_CONTRACT_VERSION) {
+    reasons.push(`config schema contract changed: manifest ${manifest.schemaVersions.configContract}, current ${CONFIG_SCHEMA_CONTRACT_VERSION}`);
+    changedDependencies.push("config-schema-contract-version");
   }
   if (manifest.generator.name !== options.generatorName) {
     reasons.push(`generator changed: manifest ${manifest.generator.name}, current ${options.generatorName}`);
@@ -398,6 +419,13 @@ function parseStageCacheManifest(raw: unknown): { ok: true; manifest: StageCache
   if (!raw || typeof raw !== "object") return { ok: false, errors: ["cache manifest must be an object"] };
   const m = raw as Partial<StageCacheManifest>;
   if (m.schemaVersion !== STAGE_CACHE_SCHEMA_VERSION) errors.push(`schemaVersion changed: manifest ${String(m.schemaVersion)}, current ${STAGE_CACHE_SCHEMA_VERSION}`);
+  if (!m.schemaVersions || typeof m.schemaVersions !== "object") {
+    errors.push("schemaVersions must be an object");
+  } else {
+    if (m.schemaVersions.stageCache !== STAGE_CACHE_SCHEMA_VERSION) errors.push(`schemaVersions.stageCache changed: manifest ${String(m.schemaVersions.stageCache)}, current ${STAGE_CACHE_SCHEMA_VERSION}`);
+    if (m.schemaVersions.runtimeContract !== RUNTIME_SCHEMA_CONTRACT_VERSION) errors.push(`schemaVersions.runtimeContract changed: manifest ${String(m.schemaVersions.runtimeContract)}, current ${RUNTIME_SCHEMA_CONTRACT_VERSION}`);
+    if (m.schemaVersions.configContract !== CONFIG_SCHEMA_CONTRACT_VERSION) errors.push(`schemaVersions.configContract changed: manifest ${String(m.schemaVersions.configContract)}, current ${CONFIG_SCHEMA_CONTRACT_VERSION}`);
+  }
   if (!isArtifactType(m.artifactType)) errors.push(`artifactType is invalid: ${String(m.artifactType)}`);
   if (typeof m.artifactId !== "string" || !m.artifactId) errors.push("artifactId must be a non-empty string");
   if (typeof m.outputPath !== "string" || !m.outputPath) errors.push("outputPath must be a non-empty string");

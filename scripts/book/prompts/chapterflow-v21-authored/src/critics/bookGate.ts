@@ -28,12 +28,16 @@ import {
   checkBookTimingAnchorStamping,
   checkBookVenueStamping,
 } from "./bookRepetition.js";
+import { RuntimeSchemaFinding, validateBookGateInput } from "../runtimeSchemas.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
   severity: "blocker" | "major" | "minor";
   message: string;
   evidence?: string;
+  path?: string;                 // JSON pointer for runtime schema findings
+  expected?: string;
+  observed?: string;
   /** Offending chapters, when the finding is chapter-scoped — lets the write-
    *  orchestrator barrier re-dispatch exactly those chapters. Absent for
    *  book-wide findings (e.g. F3 answer-position drift). */
@@ -106,6 +110,55 @@ const SCHEMA_CONSISTENCY_FIELDS = [
 ] as const;
 const SCHEMA_CONSISTENCY_THRESHOLD = 0.8;
 
+function emptyPatternAudit(bookId: string, chapterCount: number): BookPatternAuditReport {
+  return {
+    bookId,
+    chapterCount,
+    passed: false,
+    findings: [],
+    stats: {
+      repeatedQuizExplanationGroups: 0,
+      repeatedSurfaceFrameGroups: 0,
+      repeatedExampleFrameGroups: 0,
+      repeatedConcreteAnchors: 0,
+      templatedBreakdownShellGroups: 0,
+      shortParagraphDuplicateGroups: 0,
+      literalSubstringGroups: 0,
+      quizPositionTemplateDuplicates: 0,
+      missingPlanChapters: [],
+      missingBrief: false,
+      sourceAlignmentWarnings: 0,
+    },
+  };
+}
+
+function schemaBookGateReport(bookId: unknown, chapterCount: number, schemaFindings: RuntimeSchemaFinding[]): BookGateReport {
+  const safeBookId = typeof bookId === "string" && bookId.trim() ? bookId : "unknown";
+  return {
+    bookId: safeBookId,
+    chapterCount,
+    passed: false,
+    findings: schemaFindings.map((f) => ({
+      catalogId: f.checkId,
+      severity: "blocker",
+      message: f.message,
+      evidence: f.observed,
+      path: f.path,
+      expected: f.expected,
+      observed: f.observed,
+    })),
+    stats: {
+      answerPositionCounts: [0, 0, 0],
+      answerPositionPctMax: 0,
+      totalQuizQuestions: 0,
+      duplicatedNames: [],
+      duplicatedHookOpeners: [],
+      schemaInconsistencies: [],
+      patternAudit: emptyPatternAudit(safeBookId, chapterCount),
+    },
+  };
+}
+
 function isFieldPresent(chapter: any, field: string): boolean {
   const value = chapter[field];
   if (value === undefined || value === null) return false;
@@ -115,6 +168,10 @@ function isFieldPresent(chapter: any, field: string): boolean {
 }
 
 export function runBookGate(bookId: string, chapters: ChapterV21[]): BookGateReport {
+  const schema = validateBookGateInput(bookId, chapters);
+  if (!schema.ok) return schemaBookGateReport(bookId, Array.isArray(chapters) ? chapters.length : 0, schema.findings);
+  chapters = schema.value;
+
   const findings: BookGateFinding[] = [];
 
   // ── Cumulative answer-position balance (F3 / A4 escalated to book level) ─

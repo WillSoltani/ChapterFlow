@@ -70,7 +70,7 @@ import {
 } from "./librarian/libraryState.js";
 import { callClaude } from "./claudeClient.js";
 import { renderUntrustedSourceBlock } from "./providers/types.js";
-import { assembleChapterV21, V21_SCHEMA_VERSION } from "./assembler.js";
+import { assembleChapterV21OrThrow, V21_SCHEMA_VERSION } from "./assembler.js";
 import { sanitizeBriefForWriter } from "./lib/brief-sanitizer.js";
 import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes, SourceAnchorForPrompt } from "./types.js";
 import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
@@ -86,6 +86,7 @@ import {
 } from "./critics/prose.js";
 import { checkReadingLevel, fleschKincaid } from "./critics/readingLevel.js";
 import { runShipGate, formatGateReport } from "./critics/finalGate.js";
+import { validateChapterV21 } from "./runtimeSchemas.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -313,27 +314,8 @@ function validateChapterPlanShape(plan: ChapterDesignDoc, chapter: ChapterSpec):
 }
 
 function validateChapterShape(chapter: ChapterV21): string[] {
-  const problems: string[] = [];
-  if (!chapter || typeof chapter !== "object") return ["chapter must be an object"];
-  if (typeof chapter.chapterId !== "string" || !chapter.chapterId) problems.push("chapterId missing");
-  if (!Number.isInteger(chapter.number) || chapter.number < 1) problems.push("number must be a positive integer");
-  if (typeof chapter.title !== "string" || !chapter.title) problems.push("title missing");
-  if (typeof chapter.hook !== "string" || !chapter.hook) problems.push("hook missing");
-  if (typeof chapter.keyTakeaway !== "string" || !chapter.keyTakeaway) problems.push("keyTakeaway missing");
-  if (!chapter.breakdown || typeof chapter.breakdown !== "object") {
-    problems.push("breakdown missing");
-  } else {
-    for (const tier of ["fastRead", "deepRead", "fullRead"] as const) {
-      if (typeof chapter.breakdown[tier] !== "string" || !chapter.breakdown[tier]) problems.push(`breakdown.${tier} missing`);
-    }
-  }
-  if (!Array.isArray(chapter.examples)) problems.push("examples must be an array");
-  if (!chapter.quiz || typeof chapter.quiz !== "object" || !Array.isArray(chapter.quiz.questions)) problems.push("quiz.questions must be an array");
-  if (!Array.isArray(chapter.reviewCards)) problems.push("reviewCards must be an array");
-  if (!chapter.implementationPlan || typeof chapter.implementationPlan !== "object" || !Array.isArray(chapter.implementationPlan.ifThenPlans)) {
-    problems.push("implementationPlan.ifThenPlans must be an array");
-  }
-  return problems;
+  const parsed = validateChapterV21(chapter);
+  return parsed.ok ? [] : parsed.findings.map((f) => `${f.path}: expected ${f.expected}; observed ${f.observed}`);
 }
 
 function validateCachedChapterForReuse(
@@ -753,7 +735,7 @@ export async function generateChapter(
   log(`quiz=${quiz.questions.length}q, cards=${cards.cards.length}, plan=${ipPlan.ifThenPlans.length} if-thens, tryThisNow=${tryThisNow ? "yes" : "skipped"}`);
 
   // Assemble draft chapter (without memorableLines yet — that runs after assembly)
-  const draftAssembled = assembleChapterV21({
+  const draftAssembled = assembleChapterV21OrThrow({
     plan,
     breakdown,
     examples,
@@ -780,7 +762,7 @@ export async function generateChapter(
     log(`memorable lines failed: ${(err as Error).message}, continuing without`);
   }
 
-  const assembled = assembleChapterV21({
+  const assembled = assembleChapterV21OrThrow({
     plan,
     breakdown,
     examples,

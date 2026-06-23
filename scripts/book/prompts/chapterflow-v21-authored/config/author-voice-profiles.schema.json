@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "author-voice-profiles.schema.json",
+  "title": "ChapterFlow Author Voice Profiles",
+  "type": "object",
+  "required": ["version", "profiles"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["bookId", "author", "register"],
+        "properties": {
+          "bookId": { "type": "string" },
+          "author": { "type": "string" },
+          "register": { "type": "string" },
+          "naturalCounterShapes": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "naturalHookShapes": {
+            "type": "object",
+            "additionalProperties": { "type": "number" }
+          },
+          "avoidFrames": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "unconfirmed": { "type": "boolean" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

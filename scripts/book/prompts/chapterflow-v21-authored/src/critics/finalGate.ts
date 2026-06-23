@@ -65,6 +65,7 @@ import {
   checkReaderPatternLabelLength,
   checkReaderPatternLabelHygiene,
 } from "./experiencePlan.js";
+import { RuntimeSchemaFinding, validateChapterV21 } from "../runtimeSchemas.js";
 
 export type GateSeverity = "blocker" | "major" | "minor";
 
@@ -74,6 +75,9 @@ export type GateFinding = {
   unit: string;               // human-readable location ("breakdown.fastRead", "example[2]", "quiz.q05")
   message: string;
   evidence?: string;          // truncated offending text
+  path?: string;              // JSON pointer for runtime schema findings
+  expected?: string;
+  observed?: string;
 };
 
 export type GateReport = {
@@ -236,6 +240,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "schema.quiz_duplicate_choice": "blocker",
   "schema.quiz_lowercase_choice_start": "major",
   "schema.quiz_unexpected_field": "blocker",
+  "schema.chapter_contract": "blocker",
   // Anti-salting (May 2026 Covey incident).
   "AS1.identifier_token_injection": "blocker",
   "AS2.jammed_proper_nouns": "blocker",
@@ -469,7 +474,35 @@ function checkBreakdownSentenceCapitalization(
   return findings;
 }
 
+function schemaGateReport(findings: RuntimeSchemaFinding[]): GateReport {
+  const blockers: GateFinding[] = findings.map((f) => ({
+    catalogId: f.checkId,
+    severity: "blocker",
+    unit: f.path,
+    path: f.path,
+    expected: f.expected,
+    observed: f.observed,
+    message: f.message,
+    evidence: f.observed,
+  }));
+  return {
+    passed: false,
+    blockers,
+    majors: [],
+    minors: [],
+    summary: {
+      blockersCount: blockers.length,
+      majorsCount: 0,
+      minorsCount: 0,
+    },
+  };
+}
+
 export function runShipGate(chapter: ChapterV21): GateReport {
+  const schema = validateChapterV21(chapter);
+  if (!schema.ok) return schemaGateReport(schema.findings);
+  chapter = schema.value;
+
   const findings: GateFinding[] = [];
   const allocatedNames = allocatedNamesForChapter(chapter);
 

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "meta-patterns.schema.json",
+  "title": "ChapterFlow Meta Patterns",
+  "type": "object",
+  "required": ["version", "metaReferencePatterns", "chapterNumberPatterns", "allowedMetaContexts"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "metaReferencePatterns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/patternEntry" }
+    },
+    "chapterNumberPatterns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/patternEntry" }
+    },
+    "allowedMetaContexts": {
+      "type": "object",
+      "required": ["bypassFields"],
+      "properties": {
+        "description": { "type": "string" },
+        "bypassFields": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "patternEntry": {
+      "type": "object",
+      "required": ["id", "pattern", "severity"],
+      "properties": {
+        "id": { "type": "string" },
+        "pattern": { "type": "string" },
+        "severity": { "type": "string" },
+        "example": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}
