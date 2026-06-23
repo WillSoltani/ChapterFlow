@@ -380,7 +380,7 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     { check: "quiz-key", blockers: quizKey },
     { check: "manual-keyjudge", blockers: manualKey },
     { check: "book-gate", blockers: safe("book-gate", () => runBookGate(bookId, chapters).findings.filter((f) => f.severity === "blocker").map((f) => `book-gate ${f.catalogId}: ${f.message}`)) },
-    { check: "source-v2", blockers: safe("source-v2", () => checkSourceV2Gate(bookId, chapters.map((ch) => ch.number)).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
+    { check: "source-v2", blockers: safe("source-v2", () => checkSourceV2Gate(bookId).findings.map((f) => `source-v2 ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
     { check: "plan-enforcement", blockers: safe("plan-enforcement", () => checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
     { check: "sweep", blockers: safe("sweep", () => checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`)) },
     { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },

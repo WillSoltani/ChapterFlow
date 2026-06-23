@@ -391,7 +391,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // compatible; this stricter stack is active only when explicitly enabled.
   const noApiFindings: Array<{ chapter?: number; checkId: string; severity: "blocker"; message: string }> = [];
   if (noApiMode) {
-    const source = checkSourceV2Gate(bookId, loadedChapters.map((ch) => ch.number));
+    const source = checkSourceV2Gate(bookId);
     noApiFindings.push(...source.findings.map((f) => ({
       chapter: f.chapterNumber,
       checkId: f.checkId,

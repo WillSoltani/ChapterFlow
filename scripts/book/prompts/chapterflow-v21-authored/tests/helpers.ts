@@ -8,15 +8,21 @@
 
 import { execFileSync, spawnSync } from "child_process";
 import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, existsSync } from "fs";
-import { dirname, resolve } from "path";
+import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import type { ChapterV21 } from "../src/types.js";
+import {
+  buildInitialResearchRunManifest,
+  RESEARCH_RUN_CODE_VERSION,
+  type ResearchRunOverallStatus,
+} from "../src/lib/researchRunManifest.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export const PIPELINE_DIR = resolve(__dirname, "..");
 export const STATE_CHAPTERS = resolve(PIPELINE_DIR, "state", "chapters");
+export const STATE_INDEXES = resolve(PIPELINE_DIR, "state", "indexes");
 export const GATE_ATTEMPTS_FILE = resolve(PIPELINE_DIR, "state", "gate-attempts.json");
 export const TMP_DIR = resolve(__dirname, ".tmp");
 
@@ -295,6 +301,54 @@ export function goldChapterFiles(): { bookId: string; files: string[] }[] {
  *  so it is absent in CI and most checkouts even when the committed gold chapter files
  *  ARE present. */
 export const RUNS_DIR = resolve(PIPELINE_DIR, "../../../..", ".chapterflow/runs");
+
+export function writeResearchRunManifestFixture(args: {
+  runDir: string;
+  bookId: string;
+  chapters: Array<{ number: number; title: string }>;
+  createdAt?: string;
+  status?: ResearchRunOverallStatus;
+}): void {
+  const createdAt = args.createdAt ?? "2026-06-23T00:00:00.000Z";
+  const runId = basename(args.runDir);
+  const manifest = buildInitialResearchRunManifest({
+    runId,
+    bookId: args.bookId,
+    createdAt,
+    input: {
+      title: args.bookId,
+      author: "Fixture Author",
+      bookIdHint: args.bookId,
+      hash: `fixture-input-${args.bookId}`,
+    },
+    bibliographyHash: `fixture-bibliography-${args.bookId}`,
+    bibliographyPath: "source-freeze/toc.json",
+    expectedChapters: args.chapters,
+    compatibility: {
+      codeVersion: RESEARCH_RUN_CODE_VERSION,
+      promptHash: "fixture-prompt",
+      configHash: "fixture-config",
+      provider: "fixture",
+      model: "fixture-model",
+    },
+  });
+  manifest.overallStatus = args.status ?? "complete";
+  mkdirSync(args.runDir, { recursive: true });
+  writeFileSync(resolve(args.runDir, "research-run.manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+}
+
+export function writeCanonicalIndexFixture(
+  bookId: string,
+  chapters: Array<{ chapterId: string; number: number; title: string }>,
+  indexDir = STATE_INDEXES,
+): void {
+  mkdirSync(indexDir, { recursive: true });
+  writeFileSync(resolve(indexDir, `${bookId}.json`), `${JSON.stringify(chapters.map((chapter) => ({
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    chapterTitle: chapter.title,
+  })), null, 2)}\n`, "utf8");
+}
 
 /** True iff a gold book's research run exists on disk. The committed chapter files are
  *  NOT sufficient for `book-gate`: it auto-derives brief/plan artifacts from the research

@@ -23,6 +23,7 @@ import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
 import type { RunbookStatus } from "./runbook.js";
+import type { BibliographyResult } from "./agents/researcher-bibliography.js";
 import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
@@ -308,6 +309,7 @@ Commands:
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
+  toc-migrate <bookId> [--path p]    Report TOC shape; with --apply, rewrite canonical chapterflow.toc.v1.
   fix-chapter-ids [<bookId>]         Normalize chapterId to match filename stem (--dry-run to preview).
   quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
   unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
@@ -348,6 +350,43 @@ function parseCsvFlag(value: string | boolean | undefined): string[] | undefined
   if (typeof value !== "string") return undefined;
   const items = value.split(",").map((s) => s.trim()).filter(Boolean);
   return items.length ? items : undefined;
+}
+
+function recordOrEmpty(value: unknown): Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function stringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+}
+
+function tocAuthorVoice(value: unknown): BibliographyResult["authorVoice"] {
+  const voice = recordOrEmpty(value);
+  const register = typeof voice.register === "string" && ["warm", "analytical", "plainspoken", "literary", "clinical"].includes(voice.register)
+    ? voice.register as BibliographyResult["authorVoice"]["register"]
+    : "plainspoken";
+  return {
+    register,
+    signatureMoves: stringArray(voice.signatureMoves),
+    avoidMoves: stringArray(voice.avoidMoves),
+  };
+}
+
+function tocEdition(value: unknown, chapterCount: number): BibliographyResult["edition"] {
+  const edition = recordOrEmpty(value);
+  return {
+    name: typeof edition.name === "string" ? edition.name : undefined,
+    publisher: typeof edition.publisher === "string" ? edition.publisher : undefined,
+    publishedYear: typeof edition.publishedYear === "number" ? edition.publishedYear : undefined,
+    isbn13: typeof edition.isbn13 === "string" ? edition.isbn13 : undefined,
+    language: typeof edition.language === "string" ? edition.language : undefined,
+    chapterCount: typeof edition.chapterCount === "number" ? edition.chapterCount : chapterCount,
+    sectionCount: typeof edition.sectionCount === "number" ? edition.sectionCount : undefined,
+  };
+}
+
+function stringOrEmpty(value: unknown): string {
+  return typeof value === "string" ? value : "";
 }
 
 function loadBookPackage(file: string): BookPackage {
@@ -633,27 +672,29 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     console.error("Usage: derive-artifacts <bookId>");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Run the research playbook first.`);
-    return 2;
-  }
   const REPO = resolve(__dirname, "../../../../..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
   const STATE_DIR = resolve(__dirname, "../state");
-  const tocPath = resolve(RUNS_DIR, bookId, runId, "source-freeze", "toc.json");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const tocPath = findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json");
   const indexPath = resolve(STATE_DIR, "indexes", `${bookId}.json`);
 
-  if (!existsSyncFs(tocPath)) {
-    console.error(`Bibliography missing: ${tocPath}`);
+  if (!tocPath) {
+    console.error(`No compatible research run with a toc.json for "${bookId}". Run the research playbook first.`);
     return 2;
   }
   if (!existsSyncFs(indexPath)) {
     console.error(`Chapter index missing: ${indexPath}`);
     return 2;
   }
-  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const tocParsed = parseTocFile(tocPath, { bookId });
+  if (!tocParsed.ok) {
+    console.error(`Bibliography invalid: ${formatTocIssues(tocParsed.issues)}`);
+    return 2;
+  }
+  const toc = tocParsed.toc;
+  const voice = tocAuthorVoice(toc.authorVoice);
   const index: Array<{ chapterId: string; chapterNumber: number; chapterTitle: string }> =
     JSON.parse(readFileSync(indexPath, "utf8"));
 
@@ -669,11 +710,11 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     coreIdeas: [],
     targetReader: "",
     voiceCharter: {
-      register: toc.authorVoice?.register ?? "plainspoken",
+      register: voice.register,
       person: "third",
       cadence: "medium",
-      signatureMoves: toc.authorVoice?.signatureMoves ?? [],
-      avoidMoves: toc.authorVoice?.avoidMoves ?? [],
+      signatureMoves: voice.signatureMoves,
+      avoidMoves: voice.avoidMoves,
     },
     teachingArc: toc.teachingArc ?? "",
     forbiddenMoves: [],
@@ -754,27 +795,31 @@ async function runCheckSource(args: string[]): Promise<number> {
     console.error("Usage: check-source <bookId>");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Run the research playbook first.`);
-    return 2;
-  }
   const REPO = resolve(__dirname, "../../../../..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
-  const runDir = resolve(RUNS_DIR, bookId, runId);
+  const { resolveResearchRun } = await import("./lib/runDirs.js");
+  const run = resolveResearchRun(RUNS_DIR, bookId, {
+    requiredArtifactRelPath: "source-freeze/toc.json",
+    allowedStatuses: ["running", "failed", "coherence_failed", "complete"],
+  });
+  if (!run.ok) {
+    console.error(`No compatible research run with a toc.json for "${bookId}". Run the research playbook first.`);
+    return 2;
+  }
+  const runDir = run.runDir;
   const tocPath = resolve(runDir, "source-freeze", "toc.json");
   if (!existsSyncFs(tocPath)) {
     console.error(`Bibliography missing: ${tocPath}`);
     return 2;
   }
-  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
-  const flat: Array<{ number: number; title: string }> =
-    (toc.flatChapters && toc.flatChapters.length > 0
-      ? toc.flatChapters
-      : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? []))
-      .slice()
-      .sort((a: any, b: any) => a.number - b.number);
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const tocParsed = parseTocFile(tocPath, { bookId });
+  if (!tocParsed.ok) {
+    console.error(`Bibliography invalid: ${formatTocIssues(tocParsed.issues)}`);
+    return 2;
+  }
+  const toc = tocParsed.toc;
+  const flat: Array<{ number: number; title: string }> = tocParsed.chapters;
   const sourceDir = resolve(runDir, "sidecars", "source");
   const chapters: any[] = [];
   for (const ch of flat) {
@@ -786,19 +831,18 @@ async function runCheckSource(args: string[]): Promise<number> {
     }
     chapters.push(JSON.parse(readFileSync(p, "utf8")));
   }
-  const bibliography = {
+  const bibliography: BibliographyResult = {
     bookId: toc.bookId ?? bookId,
     title: toc.title,
     author: toc.author,
-    edition: toc.edition,
-    introduction: toc.introduction,
-    sections: toc.sections,
-    flatChapters: toc.flatChapters,
-    thesis: toc.thesis,
-    teachingArc: toc.teachingArc,
-    authorVoice: toc.authorVoice,
-    confidence: toc.confidence,
-    notes: toc.notes,
+    edition: tocEdition(toc.edition, flat.length),
+    introduction: typeof toc.introduction === "string" ? toc.introduction : undefined,
+    flatChapters: flat,
+    thesis: stringOrEmpty(toc.thesis),
+    teachingArc: stringOrEmpty(toc.teachingArc),
+    authorVoice: tocAuthorVoice(toc.authorVoice),
+    confidence: toc.confidence === "medium" || toc.confidence === "low" ? toc.confidence : "high",
+    notes: typeof toc.notes === "string" ? toc.notes : undefined,
   };
   const { runSourceCoherenceCheck, formatSourceCoherenceReport } = await import("./critics/sourceCoherence.js");
   const report = runSourceCoherenceCheck({ bibliography, chapters });
@@ -1665,6 +1709,60 @@ async function runStateStatus(_args: string[], _flags: Record<string, string | b
   return 0;
 }
 
+/** `toc-migrate <bookId> [--path p] [--apply]` — audit a research TOC and
+ *  optionally rewrite it to the canonical v1 shape. Legacy `chapters`,
+ *  `flatChapters`, and `sections[].chapters` are accepted only through the
+ *  shared parser, so the migration is deterministic and preserves the flattened
+ *  chapter sequence. */
+async function runTocMigrate(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: toc-migrate <bookId> [--path <toc.json>] [--apply]");
+    return 2;
+  }
+  const REPO = resolve(__dirname, "../../../../..");
+  const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const tocPath = typeof flags["path"] === "string"
+    ? resolve(process.cwd(), flags["path"] as string)
+    : findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json", {
+        allowedStatuses: ["running", "failed", "coherence_failed", "complete"],
+      });
+  if (!tocPath) {
+    console.error(`No TOC found for "${bookId}". Pass --path <toc.json> to audit a specific legacy file.`);
+    return 2;
+  }
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const parsed = parseTocFile(tocPath, { bookId });
+  if (!parsed.ok) {
+    console.log(`toc-migrate — ${bookId}`);
+    console.log(`  path: ${tocPath}`);
+    console.log(`  status: INVALID`);
+    console.log(`  issues: ${formatTocIssues(parsed.issues)}`);
+    return 2;
+  }
+  const canonical = `${JSON.stringify(parsed.toc, null, 2)}\n`;
+  const current = readFileSync(tocPath, "utf8");
+  const changed = current !== canonical;
+  console.log(`toc-migrate — ${bookId}`);
+  console.log(`  path: ${tocPath}`);
+  console.log(`  shape: ${parsed.migration.inputShape}`);
+  console.log(`  chapters: ${parsed.migration.chapterCount}`);
+  console.log(`  canonical rewrite needed: ${changed ? "yes" : "no"}`);
+  for (const warning of parsed.migration.warnings) console.log(`  warning: ${warning}`);
+  if (flags["apply"] === true) {
+    if (changed) {
+      writeFileAtomic(tocPath, canonical);
+      console.log("  wrote canonical chapterflow.toc.v1 TOC");
+    } else {
+      console.log("  already canonical; no file written");
+    }
+  } else {
+    console.log("  dry-run: no file written (use --apply to rewrite)");
+  }
+  return 0;
+}
+
 /** `migrate-state [--apply] [--prefer-canonical|--prefer-shadow]` — Phase 0.
  *  Reconciles the accidental repo-root `state/chapters` SHADOW dir (whose files
  *  are invisible to gates/promote) against the canonical pipeline dir. Default is
@@ -2097,20 +2195,18 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     return 2;
   }
   const toc = JSON.parse(readFileSync(tocPath, "utf8"));
-  const title = toc.title ?? toc.book?.title ?? bookId;
-  const flat: Array<{ number: number; title: string }> = (
-    toc.flatChapters && toc.flatChapters.length > 0 ? toc.flatChapters : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? [])
-  )
-    .slice()
-    .sort((a: any, b: any) => a.number - b.number);
-  if (flat.length === 0) {
-    console.error(`Chapter list at ${tocPath} is empty.`);
+  const { flattenTocChapters, formatTocIssues, parseToc } = await import("./lib/tocContract.js");
+  const tocParsed = parseToc(toc, { bookId, path: tocPath });
+  if (!tocParsed.ok) {
+    console.error(`Chapter list at ${tocPath} is invalid: ${formatTocIssues(tocParsed.issues)}`);
     return 2;
   }
+  const title = tocParsed.toc.title ?? bookId;
+  const flat: Array<{ number: number; title: string }> = flattenTocChapters(toc, { bookId, path: tocPath });
   const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
   if (isNoApiCodexQcMode()) {
     const { checkSourceV2Gate, formatSourceV2GateReport } = await import("./qc/sourceV2Gate.js");
-    const sourceGate = checkSourceV2Gate(bookId, flat.map((ch) => ch.number));
+    const sourceGate = checkSourceV2Gate(bookId);
     if (!sourceGate.passed) {
       console.error(formatSourceV2GateReport(sourceGate));
       console.error("fanout refuses to print authoring prompts in CHAPTERFLOW_NO_API_CODEX_QC=1 until source-v2-gate passes.");
@@ -4795,6 +4891,8 @@ async function main() {
       return runAuthorCheck(args);
     case "fix-chapter-ids":
       return runFixChapterIds(args, flags);
+    case "toc-migrate":
+      return runTocMigrate(args, flags);
     case "migrate-state":
       return runMigrateState(args, flags);
     case "state-status":

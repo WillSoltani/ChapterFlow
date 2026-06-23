@@ -11,7 +11,7 @@ import { resolve } from "path";
 import { formatExemplarPlan, formatExemplarForbidden, planExemplars, writeExemplarPlan } from "../src/librarian/exemplarPlan.js";
 import { checkPlanEnforcement } from "../src/qc/planEnforcement.js";
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, runCli } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, runCli, writeResearchRunManifestFixture } from "./helpers.js";
 
 const BOOK = "zz-fixture-exemplars";
 const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");
@@ -32,6 +32,15 @@ function resetFixture(): void {
 
 function writeFixtureSidecars(): void {
   resetFixture();
+  writeResearchRunManifestFixture({
+    runDir: RUN_DIR,
+    bookId: BOOK,
+    chapters: [
+      { number: 1, title: "Exemplar One" },
+      { number: 2, title: "Exemplar Two" },
+      { number: 3, title: "Exemplar Three" },
+    ],
+  });
   writeSidecar(1, {
     namedExamples: [
       {
@@ -190,6 +199,14 @@ test("entity unification: superstring forms share ONE owner; single-token noise 
         { label: "Tiger Woods Earl Woods lessons", summary: "Earl Woods drilled Tiger Woods on exits.", teachesWhat: "pressure" },
       ],
       properNouns: ["California"],
+    });
+    writeResearchRunManifestFixture({
+      runDir: RUN_DIR,
+      bookId: BOOK,
+      chapters: [
+        { number: 1, title: "Exemplar One" },
+        { number: 2, title: "Exemplar Two" },
+      ],
     });
     const plan = planExemplars(BOOK, 1, 2);
     const ch1 = plan.allocation[1], ch2 = plan.allocation[2];

@@ -8,7 +8,7 @@ import { stripInternalFields } from "../src/lib/readerContent.js";
 import { buildProductionManifest } from "../src/productionManifest.js";
 import { V21_SCHEMA_VERSION, type BookPackageV21, type ChapterV21 } from "../src/types.js";
 import { packagePathForBook, verifyProductionPackage } from "../src/verifyProductionPackage.js";
-import { cleanTmp, makeChapter, runCli, TMP_DIR } from "./helpers.js";
+import { cleanTmp, makeChapter, runCli, TMP_DIR, writeResearchRunManifestFixture } from "./helpers.js";
 import { test } from "./harness.js";
 
 const BOOK = "zz-fixture-production-manifest";
@@ -56,6 +56,11 @@ function makeFixture(name: string, createdAt = "2026-06-23T00:00:00.000Z"): {
   const index = chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title }));
   const indexPath = resolve(stateRoot, "indexes", `${BOOK}.json`);
   writeJson(indexPath, index);
+  writeResearchRunManifestFixture({
+    runDir: resolve(runsRoot, BOOK, "run-a"),
+    bookId: BOOK,
+    chapters: index.map((ch) => ({ number: ch.chapterNumber, title: ch.chapterTitle })),
+  });
 
   for (const ch of chapters) {
     writeJson(resolve(stateRoot, "chapters", `${ch.chapterId}.v21-native.chapter.json`), ch);

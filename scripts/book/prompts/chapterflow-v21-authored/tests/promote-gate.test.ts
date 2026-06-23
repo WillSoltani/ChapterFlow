@@ -16,7 +16,7 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import {
   currentMajorFindings,
   MAJOR_WAIVER_FILE_SCHEMA_VERSION,
@@ -94,6 +94,11 @@ function sourceRunDir(bookId: string, runId: string): string {
 }
 
 function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: number; chapterId: string }>, runId: string): void {
+  writeResearchRunManifestFixture({
+    runDir: sourceRunDir(bookId, runId),
+    bookId,
+    chapters: chapters.map((spec) => ({ number: spec.chapterNumber, title: spec.chapterId })),
+  });
   const dir = resolve(sourceRunDir(bookId, runId), "sidecars", "source");
   mkdirSync(dir, { recursive: true });
   for (const spec of chapters) {

@@ -4,7 +4,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
+import { PIPELINE_DIR, STATE_CHAPTERS, STATE_INDEXES, makeChapter, writeCanonicalIndexFixture, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
@@ -33,6 +33,7 @@ function sourceSidecar(n: number): any {
 
 function cleanup(): void {
   for (const n of [1, 2]) rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
+  rmSync(resolve(STATE_INDEXES, `${BOOK}.json`), { force: true });
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
@@ -41,9 +42,16 @@ function cleanup(): void {
 
 function setup(): void {
   cleanup();
-  writeFixtureBook(STATE_CHAPTERS, [makeChapter(BOOK, 1), makeChapter(BOOK, 2)]);
+  const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  writeFixtureBook(STATE_CHAPTERS, chapters);
+  writeCanonicalIndexFixture(BOOK, chapters);
   const dir = resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN, "sidecars/source");
   mkdirSync(dir, { recursive: true });
+  writeResearchRunManifestFixture({
+    runDir: resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN),
+    bookId: BOOK,
+    chapters: chapters.map((ch) => ({ number: ch.number, title: ch.title })),
+  });
   for (const n of [1, 2]) writeFileSync(resolve(dir, `ch${String(n).padStart(2, "0")}.source.json`), JSON.stringify(sourceSidecar(n), null, 2), "utf8");
 }
 

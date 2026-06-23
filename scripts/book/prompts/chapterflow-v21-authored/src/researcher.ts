@@ -47,6 +47,7 @@ import {
   runSourceCoherenceCheck,
 } from "./critics/sourceCoherence.js";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
+import { buildCanonicalToc } from "./lib/tocContract.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
   RESEARCH_RUN_CODE_VERSION,
@@ -658,7 +659,8 @@ function leaseExpired(lease: { expiresAt?: string } | undefined, now: Date): boo
 /** Convert a BibliographyResult to the toc.json shape expected by
  *  source-loader.loadTableOfContents and the upload-book-package pipeline. */
 function bibliographyToTocJson(b: BibliographyResult): object {
-  const toc: any = {
+  return buildCanonicalToc({
+    bookId: b.bookId,
     title: b.title,
     author: b.author,
     edition: {
@@ -670,14 +672,16 @@ function bibliographyToTocJson(b: BibliographyResult): object {
       chapterCount: b.edition.chapterCount,
       sectionCount: b.edition.sectionCount,
     },
-  };
-  if (b.introduction) toc.introduction = b.introduction;
-  if (b.sections && b.sections.length > 0) {
-    toc.sections = b.sections;
-  } else {
-    toc.chapters = b.flatChapters ?? [];
-  }
-  return toc;
+    introduction: b.introduction,
+    thesis: b.thesis,
+    teachingArc: b.teachingArc,
+    authorVoice: b.authorVoice,
+    confidence: b.confidence,
+    notes: b.notes,
+    categories: (b as { categories?: unknown }).categories,
+    tags: (b as { tags?: unknown }).tags,
+    chapters: flattenChapters(b),
+  });
 }
 
 /** Render the book-source.md companion file. Contains the bibliography's

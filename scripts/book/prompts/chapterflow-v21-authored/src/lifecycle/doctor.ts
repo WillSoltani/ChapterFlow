@@ -15,12 +15,16 @@ import { fileURLToPath } from "url";
 
 import { assertNoShadowStateDir } from "../lib/chapterPaths.js";
 import { compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
+import { findRunArtifact } from "../lib/runDirs.js";
+import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
+const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");
 const STATE_DIR = resolve(PIPELINE_DIR, "state");
 const SRC_DIR = resolve(PIPELINE_DIR, "src");
+const RUNS_DIR = resolve(REPO_ROOT, ".chapterflow/runs");
 
 export type DoctorFinding = { level: "ok" | "warn" | "fatal"; check: string; message: string };
 
@@ -90,6 +94,19 @@ function checkCanonicalChapterSet(bookId: string): DoctorFinding {
   return { level: "ok", check: "canonical-chapter-set", message: `${bookId}: state chapters exactly match canonical index (${canonical.chapters.length})` };
 }
 
+function checkTocContract(bookId: string): DoctorFinding {
+  const tocPath = findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json", {
+    allowedStatuses: ["running", "failed", "coherence_failed", "complete"],
+  });
+  if (!tocPath) return { level: "ok", check: "toc-contract", message: `${bookId}: no research TOC on disk yet` };
+  const parsed = parseTocFile(tocPath, { bookId });
+  if (!parsed.ok) return { level: "fatal", check: "toc-contract", message: formatTocIssues(parsed.issues) };
+  if (parsed.migration.inputShape === "canonical" && !parsed.migration.changed) {
+    return { level: "ok", check: "toc-contract", message: `${bookId}: canonical TOC (${parsed.chapters.length} chapters)` };
+  }
+  return { level: "warn", check: "toc-contract", message: `${bookId}: TOC uses ${parsed.migration.inputShape}; run toc-migrate ${bookId} --apply` };
+}
+
 function checkUntrackedImports(): DoctorFinding {
   // Untracked src/*.ts that tracked code imports compile locally (tsconfig globs
   // pick them up) but fail TS2307 on a fresh origin checkout. List untracked
@@ -118,7 +135,7 @@ function checkUntrackedImports(): DoctorFinding {
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
   const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports()];
   if (bookId) {
-    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId));
+    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId), checkTocContract(bookId));
   } else {
     // sweep every book's chapter-number integrity
     try {
