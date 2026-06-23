@@ -3,6 +3,8 @@ import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
+import { currentProviderIdentity, writeStageCacheManifest } from "../src/cache/stageCache.js";
+import { buildChapterCacheInputs } from "../src/generateChapter.js";
 import { generateBook, loadChapterIndex } from "../src/generateBook.js";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
@@ -28,18 +30,21 @@ test("generateBook range runs do not write or overwrite production packages", as
   const bookGateReportPath = resolve(PIPELINE_DIR, "state", "books", `${bookId}.book-gate.json`);
   const ledgerPath = resolve(PIPELINE_DIR, "state", "library-state.json");
   const qcPath = attestationPath(bookId, chapterNumber);
+  const chapterPath = resolve(STATE_CHAPTERS, `${chapterSpec.chapterId}.v21-native.chapter.json`);
+  const cacheManifestPath = `${chapterPath}.cache-manifest.json`;
   const packageBefore = readFileSync(packagePath, "utf8");
   const gateReportBefore = snapshotFile(gateReportPath);
   const bookGateReportBefore = snapshotFile(bookGateReportPath);
   const ledgerBefore = snapshotFile(ledgerPath);
   const qcBefore = snapshotFile(qcPath);
+  const cacheManifestBefore = snapshotFile(cacheManifestPath);
   const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const prevRequireKeyJudge = process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
 
   try {
     delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     delete process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
-    const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${chapterSpec.chapterId}.v21-native.chapter.json`), "utf8"));
+    const chapter = JSON.parse(readFileSync(chapterPath, "utf8"));
     writeAttestation({
       schemaVersion: "qc-attest-v1",
       bookId,
@@ -50,6 +55,18 @@ test("generateBook range runs do not write or overwrite production packages", as
       hashVersion: "v2",
       reviewer: "claude-qc:generate-range-regression",
       reviewedAt: "2026-06-23T00:00:00.000Z",
+    });
+    writeStageCacheManifest({
+      artifactPath: chapterPath,
+      artifactType: "chapter",
+      artifactId: chapterSpec.chapterId,
+      inputs: buildChapterCacheInputs(
+        { bookId, title: "Drive", author: "Daniel H. Pink" },
+        chapterSpec,
+        currentProviderIdentity("writer"),
+      ),
+      generatorName: "generateChapter",
+      provider: currentProviderIdentity("writer"),
     });
 
     const result = await generateBook(
@@ -74,6 +91,7 @@ test("generateBook range runs do not write or overwrite production packages", as
     restoreFile(bookGateReportPath, bookGateReportBefore);
     restoreFile(ledgerPath, ledgerBefore);
     restoreFile(packagePath, packageBefore);
+    restoreFile(cacheManifestPath, cacheManifestBefore);
     if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
     if (prevRequireKeyJudge === undefined) delete process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;

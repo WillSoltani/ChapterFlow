@@ -216,6 +216,14 @@ npx tsx $CLI generate-book atomic-habits --title "Atomic Habits" --author "James
   --no-categorizer --categories "Productivity,Habits" --tags "habits,systems,compounding,identity"
 ```
 
+`generate-book` resumes only from content-addressed cache manifests. A chapter
+file that exists without a matching `.cache-manifest.json`, whose output hash
+changed, whose declared input hashes changed, or whose current deterministic
+gates fail is reported as stale instead of being ingested. Use `--force` only
+when `CHAPTERFLOW_ALLOW_MODEL_GEN=1` is intentionally set; it bypasses reuse
+but the newly generated chapter still runs the full boundary validation before
+being written and added to the library ledger.
+
 Playbooks for the model-driven steps:
 - [prompts/PLAYBOOK-OPERATOR-RESEARCH.md](prompts/PLAYBOOK-OPERATOR-RESEARCH.md)
 - [prompts/PLAYBOOK-OPERATOR-CHAPTER.md](prompts/PLAYBOOK-OPERATOR-CHAPTER.md)

@@ -21,6 +21,23 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { writeFileAtomic } from "./lib/atomicWrite.js";
+import {
+  CacheDependency,
+  ProviderIdentity,
+  STAGE_CACHE_CODE_VERSION,
+  StaleCacheError,
+  configDependencies,
+  currentProviderIdentity,
+  defaultCacheDependencies,
+  fileDependency,
+  loadOrBuildCachedJson,
+  promptDependencies,
+  quarantineInvalidArtifact,
+  stringDependency,
+  validateStageCache,
+  valueDependency,
+  writeStageCacheManifest,
+} from "./cache/stageCache.js";
 
 import { runEditorInChief, applyAuthorVoiceProfile } from "./agents/editor-in-chief.js";
 import { runCurriculumPlanner } from "./agents/curriculum-planner.js";
@@ -47,6 +64,10 @@ import { callClaude } from "./claudeClient.js";
 import { assembleChapterV21, V21_SCHEMA_VERSION } from "./assembler.js";
 import { sanitizeBriefForWriter } from "./lib/brief-sanitizer.js";
 import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes } from "./types.js";
+import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
+import { canonicalChapterIndexPath, readCanonicalChapterIndex } from "./lib/chapterSet.js";
+import { checkSourceV2Gate, sourceSidecarPathFor } from "./qc/sourceV2Gate.js";
+import { checkPlanEnforcement } from "./qc/planEnforcement.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -59,6 +80,22 @@ import { runShipGate, formatGateReport } from "./critics/finalGate.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
+
+const BRIEF_PROMPTS = ["editor-in-chief.system.md"];
+const PLAN_PROMPTS = ["curriculum-planner.system.md"];
+const CHAPTER_PROMPTS = [
+  "writer-hook.system.md",
+  "writer-breakdown.system.md",
+  "voice-pass.system.md",
+  "line-editor.system.md",
+  "writer-example.system.md",
+  "example-curator.system.md",
+  "writer-quiz.system.md",
+  "writer-cards.system.md",
+  "writer-implementation-plan.system.md",
+  "try-this-now.system.md",
+  "memorable-lines.system.md",
+];
 
 export type BookMeta = {
   bookId: string;
@@ -76,6 +113,10 @@ export type GenerateChapterOptions = {
   logger?: (msg: string) => void;
   candidatesPerSlot?: number;
   voicePassMaxIterations?: number;
+  /** Bypass cache reuse. Does not bypass validation of newly generated output. */
+  force?: boolean;
+  /** Test/tooling hook for deterministic invalidation without editing source. */
+  cacheCodeVersion?: string;
   /** Hook first-words + counter shapes of every prior chapter in this book.
    *  Used by the hook/breakdown writers to diversify away from over-used
    *  templates. Passed through by generateBook from in-memory state plus
@@ -88,23 +129,213 @@ async function loadOrBuild<T>(
   generator: () => Promise<T>,
   label: string,
   log: (m: string) => void,
+  cache: {
+    artifactType: "book-brief" | "chapter-plan";
+    artifactId: string;
+    inputs: CacheDependency[];
+    provider: ProviderIdentity;
+    allowGenerate: boolean;
+    force?: boolean;
+    codeVersion?: string;
+    validateValue?: (value: T) => string[];
+  },
 ): Promise<T> {
-  if (existsSync(filePath)) {
-    try {
-      const cached = JSON.parse(readFileSync(filePath, "utf8")) as T;
-      log(`${label}: reusing cached`);
-      return cached;
-    } catch {
-      // A torn/corrupt cache scaffold (e.g. a crash mid-write before atomic writes landed)
-      // must NOT throw and abort the whole chapter build — treat it as a cache MISS and
-      // regenerate. Self-healing instead of wedging.
-      log(`${label}: cached file unreadable — regenerating`);
+  return loadOrBuildCachedJson<T>({
+    artifactPath: filePath,
+    artifactType: cache.artifactType,
+    artifactId: cache.artifactId,
+    inputs: cache.inputs,
+    generatorName: cache.artifactType,
+    provider: cache.provider,
+    codeVersion: cache.codeVersion,
+    allowGenerate: cache.allowGenerate,
+    force: cache.force,
+    label,
+    log,
+    generator,
+    validateValue: cache.validateValue,
+  });
+}
+
+function briefPath(bookId: string): string {
+  return resolve(STATE, "briefs", `${bookId}.brief.json`);
+}
+
+function manualBriefPath(bookId: string): string {
+  return resolve(STATE, "briefs", `${bookId}.manual-brief.json`);
+}
+
+function planPath(chapterId: string): string {
+  return resolve(STATE, "plans", `${chapterId}.plan.json`);
+}
+
+function manualPlanPath(chapterId: string): string {
+  return resolve(STATE, "plans", `${chapterId}.manual-plan.json`);
+}
+
+function chapterPath(chapterId: string): string {
+  return resolve(STATE, "chapters", `${chapterId}.v21-native.chapter.json`);
+}
+
+function stageProvider(): ProviderIdentity {
+  return currentProviderIdentity("writer");
+}
+
+export function buildBriefCacheInputs(
+  book: BookMeta,
+  provider: ProviderIdentity = stageProvider(),
+  codeVersion: string = STAGE_CACHE_CODE_VERSION,
+): CacheDependency[] {
+  return [
+    ...defaultCacheDependencies({ provider, codeVersion }),
+    stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
+    valueDependency("book-meta", book),
+    fileDependency("author-voice-profile-config", resolve(CANONICAL_STATE, "../config/author-voice-profiles.json")),
+    ...promptDependencies(BRIEF_PROMPTS),
+    ...configDependencies(),
+  ];
+}
+
+export function buildPlanCacheInputs(
+  book: BookMeta,
+  chapter: ChapterSpec,
+  provider: ProviderIdentity = stageProvider(),
+  codeVersion: string = STAGE_CACHE_CODE_VERSION,
+): CacheDependency[] {
+  return [
+    ...defaultCacheDependencies({ provider, codeVersion }),
+    stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
+    valueDependency("book-meta", book),
+    valueDependency("chapter-spec", chapter),
+    fileDependency("book-brief:generated", briefPath(book.bookId)),
+    fileDependency("book-brief:manual", manualBriefPath(book.bookId)),
+    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, sourceSidecarPathFor(book.bookId, chapter.chapterNumber)),
+    ...promptDependencies(PLAN_PROMPTS),
+    ...configDependencies(),
+  ];
+}
+
+export function buildChapterCacheInputs(
+  book: BookMeta,
+  chapter: ChapterSpec,
+  provider: ProviderIdentity = stageProvider(),
+  codeVersion: string = STAGE_CACHE_CODE_VERSION,
+): CacheDependency[] {
+  return [
+    ...defaultCacheDependencies({ provider, codeVersion }),
+    stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
+    valueDependency("book-meta", book),
+    valueDependency("chapter-spec", chapter),
+    fileDependency("canonical-index", canonicalChapterIndexPath(book.bookId)),
+    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, sourceSidecarPathFor(book.bookId, chapter.chapterNumber)),
+    fileDependency("book-brief:generated", briefPath(book.bookId)),
+    fileDependency("book-brief:manual", manualBriefPath(book.bookId)),
+    fileDependency("chapter-plan:generated", planPath(chapter.chapterId)),
+    fileDependency("chapter-plan:manual", manualPlanPath(chapter.chapterId)),
+    fileDependency("shape-plan", resolve(CANONICAL_STATE, "shape-plans", `${book.bookId}.shape-plan.json`)),
+    fileDependency("exemplar-plan", resolve(CANONICAL_STATE, "exemplar-plans", `${book.bookId}.exemplar-plan.json`)),
+    ...promptDependencies(CHAPTER_PROMPTS),
+    ...configDependencies(),
+  ];
+}
+
+function validateBookBriefShape(brief: BookBrief, book: BookMeta): string[] {
+  const problems: string[] = [];
+  if (!brief || typeof brief !== "object") return ["brief must be an object"];
+  if (brief.bookId !== book.bookId) problems.push(`bookId ${JSON.stringify(brief.bookId)} != ${book.bookId}`);
+  if (typeof brief.title !== "string" || !brief.title) problems.push("title missing");
+  if (typeof brief.author !== "string" || !brief.author) problems.push("author missing");
+  if (typeof brief.thesisParagraph !== "string" || brief.thesisParagraph.length < 20) problems.push("thesisParagraph too short");
+  if (!Array.isArray(brief.coreIdeas)) problems.push("coreIdeas must be an array");
+  if (!brief.voiceCharter || typeof brief.voiceCharter !== "object") problems.push("voiceCharter missing");
+  if (!Array.isArray(brief.forbiddenMoves)) problems.push("forbiddenMoves must be an array");
+  return problems;
+}
+
+function validateChapterPlanShape(plan: ChapterDesignDoc, chapter: ChapterSpec): string[] {
+  const problems: string[] = [];
+  if (!plan || typeof plan !== "object") return ["plan must be an object"];
+  if (plan.chapterId !== chapter.chapterId) problems.push(`chapterId ${JSON.stringify(plan.chapterId)} != ${chapter.chapterId}`);
+  if (plan.number !== chapter.chapterNumber) problems.push(`number ${String(plan.number)} != ${chapter.chapterNumber}`);
+  if (typeof plan.title !== "string" || !plan.title) problems.push("title missing");
+  if (typeof plan.coreMove !== "string" || plan.coreMove.length < 10) problems.push("coreMove too short");
+  if (!Array.isArray(plan.exampleSpecs)) problems.push("exampleSpecs must be an array");
+  if (!plan.quizFocus || typeof plan.quizFocus !== "object") problems.push("quizFocus missing");
+  if (!plan.cardFocus || typeof plan.cardFocus !== "object") problems.push("cardFocus missing");
+  return problems;
+}
+
+function validateChapterShape(chapter: ChapterV21): string[] {
+  const problems: string[] = [];
+  if (!chapter || typeof chapter !== "object") return ["chapter must be an object"];
+  if (typeof chapter.chapterId !== "string" || !chapter.chapterId) problems.push("chapterId missing");
+  if (!Number.isInteger(chapter.number) || chapter.number < 1) problems.push("number must be a positive integer");
+  if (typeof chapter.title !== "string" || !chapter.title) problems.push("title missing");
+  if (typeof chapter.hook !== "string" || !chapter.hook) problems.push("hook missing");
+  if (typeof chapter.keyTakeaway !== "string" || !chapter.keyTakeaway) problems.push("keyTakeaway missing");
+  if (!chapter.breakdown || typeof chapter.breakdown !== "object") {
+    problems.push("breakdown missing");
+  } else {
+    for (const tier of ["fastRead", "deepRead", "fullRead"] as const) {
+      if (typeof chapter.breakdown[tier] !== "string" || !chapter.breakdown[tier]) problems.push(`breakdown.${tier} missing`);
     }
   }
-  log(`${label}: generating…`);
-  const val = await generator();
-  writeFileAtomic(filePath, JSON.stringify(val, null, 2));
-  return val;
+  if (!Array.isArray(chapter.examples)) problems.push("examples must be an array");
+  if (!chapter.quiz || typeof chapter.quiz !== "object" || !Array.isArray(chapter.quiz.questions)) problems.push("quiz.questions must be an array");
+  if (!Array.isArray(chapter.reviewCards)) problems.push("reviewCards must be an array");
+  if (!chapter.implementationPlan || typeof chapter.implementationPlan !== "object" || !Array.isArray(chapter.implementationPlan.ifThenPlans)) {
+    problems.push("implementationPlan.ifThenPlans must be an array");
+  }
+  return problems;
+}
+
+function validateCachedChapterForReuse(
+  cached: ChapterV21,
+  book: BookMeta,
+  chapter: ChapterSpec,
+  filePath: string,
+): string[] {
+  const problems: string[] = [];
+  problems.push(...validateChapterShape(cached).map((problem) => `runtime schema: ${problem}`));
+  if (cached.chapterId !== chapter.chapterId) problems.push(`chapter identity: chapterId ${cached.chapterId} != ${chapter.chapterId}`);
+  if (cached.number !== chapter.chapterNumber) problems.push(`chapter identity: number ${cached.number} != ${chapter.chapterNumber}`);
+  if (cached.title !== chapter.chapterTitle) problems.push(`chapter identity: title ${JSON.stringify(cached.title)} != ${JSON.stringify(chapter.chapterTitle)}`);
+  for (const f of checkChapterIdentity(cached, filePath)) {
+    problems.push(`filename identity: ${f.message}`);
+  }
+
+  const index = readCanonicalChapterIndex(book.bookId);
+  if (!index.ok) {
+    problems.push(...index.blockers.map((b) => `canonical index: ${b.message}`));
+  } else {
+    const entry = index.chapters.find((spec) => spec.chapterId === chapter.chapterId);
+    if (!entry) {
+      problems.push(`canonical index: ${chapter.chapterId} is not a member of ${index.path}`);
+    } else {
+      if (entry.chapterNumber !== chapter.chapterNumber) {
+        problems.push(`canonical index: ${chapter.chapterId} is chapter ${entry.chapterNumber}, expected ${chapter.chapterNumber}`);
+      }
+      if (entry.chapterTitle !== chapter.chapterTitle) {
+        problems.push(`canonical index: ${chapter.chapterId} title ${JSON.stringify(entry.chapterTitle)} != ${JSON.stringify(chapter.chapterTitle)}`);
+      }
+    }
+  }
+
+  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1" || sourceSidecarPathFor(book.bookId, chapter.chapterNumber)) {
+    const sourceGate = checkSourceV2Gate(book.bookId, [chapter.chapterNumber]);
+    if (!sourceGate.passed) {
+      problems.push(...sourceGate.findings.map((f) => `source-v2: ${f.checkId} ${f.message}`));
+    }
+  }
+
+  const planFindings = checkPlanEnforcement(book.bookId, [cached]);
+  problems.push(...planFindings.map((f) => `plan enforcement: ${f.checkId} ${f.message}`));
+
+  const gate = runShipGate(cached);
+  if (!gate.passed) {
+    problems.push(...gate.blockers.map((f) => `ship gate: ${f.catalogId} ${f.unit}: ${f.message}`));
+  }
+  return problems;
 }
 
 async function generateKeyTakeaway(brief: BookBrief, plan: ChapterDesignDoc, deepRead: string): Promise<string> {
@@ -135,27 +366,66 @@ export async function generateChapter(
   });
   const CANDIDATES_PER_SLOT = options.candidatesPerSlot ?? 3;
   const VOICE_PASS_MAX = options.voicePassMaxIterations ?? 3;
+  const provider = stageProvider();
+  const codeVersion = options.cacheCodeVersion ?? STAGE_CACHE_CODE_VERSION;
+  const allowModelGeneration = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN === "1";
   const overall = Date.now();
 
-  // Resume: if this chapter's output already exists AND it's ingested in the
-  // library ledger, skip regeneration and return the cached chapter.
-  const chapterOutPath = resolve(STATE, "chapters", `${chapter.chapterId}.v21-native.chapter.json`);
-  if (existsSync(chapterOutPath)) {
-    const cached = JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
-    let alreadyIngested = false;
-    await withLibraryState((state) => {
-      const existingBook = state.books[book.bookId];
-      alreadyIngested = !!existingBook?.chaptersIngested.includes(chapter.chapterNumber);
-      if (!alreadyIngested) {
-        ingestIntoLibrary(state, book.bookId, book.title, book.author, cached);
-      }
+  const chapterOutPath = chapterPath(chapter.chapterId);
+  const chapterInputs = buildChapterCacheInputs(book, chapter, provider, codeVersion);
+  if (existsSync(chapterOutPath) && !options.force) {
+    const cache = validateStageCache({
+      artifactPath: chapterOutPath,
+      artifactType: "chapter",
+      artifactId: chapter.chapterId,
+      inputs: chapterInputs,
+      generatorName: "generateChapter",
+      provider,
+      codeVersion,
     });
-    if (alreadyIngested) {
-      log(`resume: ${chapter.chapterId} already generated AND ingested — skipping`);
+    if (cache.ok) {
+      let cached: ChapterV21 | null = null;
+      let reuseProblems: string[] = [];
+      try {
+        cached = JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
+        reuseProblems = validateCachedChapterForReuse(cached, book, chapter, chapterOutPath);
+      } catch (err) {
+        reuseProblems = [`cached chapter unreadable: ${(err as Error).message}`];
+      }
+      if (cached && reuseProblems.length === 0) {
+        let alreadyIngested = false;
+        const updated = await withLibraryState((state) => {
+          const existingBook = state.books[book.bookId];
+          alreadyIngested = !!existingBook?.chaptersIngested.includes(chapter.chapterNumber);
+          if (!alreadyIngested) {
+            ingestIntoLibrary(state, book.bookId, book.title, book.author, cached);
+          }
+        });
+        if (alreadyIngested) {
+          log(`resume: ${chapter.chapterId} cache validated AND already ingested — skipping`);
+        } else {
+          log(`resume: ${chapter.chapterId} cache validated; ingested after validation (${updated.books[book.bookId].chaptersIngested.length} chapter(s))`);
+        }
+        return cached;
+      }
+      if (!allowModelGeneration) {
+        throw new StaleCacheError(chapter.chapterId, reuseProblems, ["current-gates"]);
+      }
+      quarantineInvalidArtifact(chapterOutPath, reuseProblems);
+      log(`resume: ${chapter.chapterId} cache failed current gates (${reuseProblems.slice(0, 3).join("; ")}) — regenerating`);
     } else {
-      log(`resume: ${chapter.chapterId} output exists but not ingested — ingesting and skipping regen`);
+      if (!allowModelGeneration) {
+        throw new StaleCacheError(chapter.chapterId, cache.reasons, cache.changedDependencies);
+      }
+      quarantineInvalidArtifact(chapterOutPath, cache.reasons);
+      log(`resume: ${chapter.chapterId} cache invalid (${cache.changedDependencies.join(", ")}) — regenerating`);
     }
-    return cached;
+  } else if (existsSync(chapterOutPath) && options.force) {
+    if (!allowModelGeneration) {
+      throw new StaleCacheError(chapter.chapterId, ["--force bypasses cache reuse but model generation is disabled"], ["force"]);
+    }
+    quarantineInvalidArtifact(chapterOutPath, ["--force bypassed chapter cache reuse"]);
+    log(`resume: ${chapter.chapterId} --force bypassed cache reuse — regenerating`);
   }
 
   // No authored chapter on disk → the only way forward from here is the
@@ -164,7 +434,7 @@ export async function generateChapter(
   // never what the operator meant: generate-book is the ASSEMBLER for
   // chapters Codex already authored, and silently falling through here was a
   // verified surprise-API-spend bug. Hard-error unless explicitly enabled.
-  if (!process.env.CHAPTERFLOW_ALLOW_MODEL_GEN) {
+  if (!allowModelGeneration) {
     throw new Error(
       `${chapter.chapterId}: no authored chapter at ${chapterOutPath} and model generation is disabled ` +
         `(no-API operating model). Author the missing chapter via \`fanout ${book.bookId}\` + Codex, or set ` +
@@ -173,10 +443,20 @@ export async function generateChapter(
   }
 
   const briefFromDisk = await loadOrBuild<BookBrief>(
-    resolve(STATE, "briefs", `${book.bookId}.brief.json`),
+    briefPath(book.bookId),
     () => runEditorInChief(book),
     `brief[${book.bookId}]`,
     log,
+    {
+      artifactType: "book-brief",
+      artifactId: book.bookId,
+      inputs: buildBriefCacheInputs(book, provider, codeVersion),
+      provider,
+      allowGenerate: allowModelGeneration,
+      force: options.force,
+      codeVersion,
+      validateValue: (value) => validateBookBriefShape(value, book),
+    },
   );
   // Always re-apply the author-voice profile to the loaded brief. If the
   // brief was cached before the profile was updated (or before the profile
@@ -191,7 +471,7 @@ export async function generateChapter(
   const brief = sanitizeBriefForWriter(briefRaw);
 
   const plan = await loadOrBuild<ChapterDesignDoc>(
-    resolve(STATE, "plans", `${chapter.chapterId}.plan.json`),
+    planPath(chapter.chapterId),
     () => runCurriculumPlanner({
       brief,
       chapterId: chapter.chapterId,
@@ -200,6 +480,16 @@ export async function generateChapter(
     }),
     `plan[${chapter.chapterId}]`,
     log,
+    {
+      artifactType: "chapter-plan",
+      artifactId: chapter.chapterId,
+      inputs: buildPlanCacheInputs(book, chapter, provider, codeVersion),
+      provider,
+      allowGenerate: allowModelGeneration,
+      force: options.force,
+      codeVersion,
+      validateValue: (value) => validateChapterPlanShape(value, chapter),
+    },
   );
   log(`plan: ${plan.exampleCount} examples, formats: ${Array.from(new Set(plan.exampleSpecs.map((s) => s.format))).join(", ")}`);
 
@@ -395,13 +685,33 @@ export async function generateChapter(
     );
     throw new Error(`Ship gate BLOCKED ${chapter.chapterId}: ${gate.blockers.length} blocker(s). See quarantine.`);
   }
+  const boundaryProblems = validateCachedChapterForReuse(assembled, book, chapter, chapterOutPath);
+  if (boundaryProblems.length > 0) {
+    const quarantineDir = resolve(STATE, "chapters", "_blocked");
+    mkdirSync(quarantineDir, { recursive: true });
+    writeFileAtomic(
+      resolve(quarantineDir, `${chapter.chapterId}.boundary.${Date.now()}.json`),
+      JSON.stringify({ chapter: assembled, boundaryProblems }, null, 2),
+    );
+    throw new Error(`Boundary validation BLOCKED ${chapter.chapterId}: ${boundaryProblems.slice(0, 5).join("; ")}. See quarantine.`);
+  }
 
   // Write output ATOMICALLY (tmp+rename): a SIGKILL/crash mid-write must never leave a
   // truncated chapter JSON — that torn file crashes loadBookChapters on resume and wedges
   // the walk-away conductor permanently. rename(2) leaves either the old file or the complete
   // new one.
   const outDir = resolve(STATE, "chapters");
-  writeFileAtomic(resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`), JSON.stringify(assembled, null, 2));
+  const finalChapterPath = resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`);
+  writeFileAtomic(finalChapterPath, JSON.stringify(assembled, null, 2));
+  writeStageCacheManifest({
+    artifactPath: finalChapterPath,
+    artifactType: "chapter",
+    artifactId: chapter.chapterId,
+    inputs: buildChapterCacheInputs(book, chapter, provider, codeVersion),
+    generatorName: "generateChapter",
+    provider,
+    codeVersion,
+  });
 
   // Ingest into library ledger atomically — re-loads under lock so concurrent
   // generateBook runs don't lose updates. (The earlier librarySnapshot was

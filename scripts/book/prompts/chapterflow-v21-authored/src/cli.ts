@@ -107,10 +107,10 @@ Commands:
   research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
                                      SUBPROCESS MODE: run the researcher via claude -p subprocess
                                      calls. Counts against your Max subscription quota.
-  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research]
+  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research] [--force]
                                      SUBPROCESS MODE: end-to-end fresh generation.
                                      Counts against your Max subscription quota.
-  generate-book <bookId> --title X --author Y [--from N] [--to N] [--no-categorizer --categories A,B --tags x,y]
+  generate-book <bookId> --title X --author Y [--from N] [--to N] [--force] [--no-categorizer --categories A,B --tags x,y]
                                      Lower-level: generate (or resume) every chapter of a book
                                      using an existing chapter index. Full canonical runs auto-promote
                                      on success; --from/--to range runs stop before production promotion.
@@ -582,7 +582,7 @@ async function runLedger(args: string[], flags: Record<string, string | boolean>
 async function runGenerateBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: generate-book <bookId> --title X --author Y [--from N] [--to N] [--no-categorizer --categories A,B --tags x,y]");
+    console.error("Usage: generate-book <bookId> --title X --author Y [--from N] [--to N] [--force] [--no-categorizer --categories A,B --tags x,y]");
     return 2;
   }
   const title = typeof flags["title"] === "string" ? flags["title"] : null;
@@ -596,6 +596,7 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
   const noCategorizer = flags["no-categorizer"] === true;
   const manualCategories = parseCsvFlag(flags["categories"]);
   const manualTags = parseCsvFlag(flags["tags"]);
+  const force = flags["force"] === true;
 
   const { generateBook, loadChapterIndex } = await import("./generateBook.js");
   const chapters = loadChapterIndex(bookId);
@@ -609,6 +610,7 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
       noCategorizer,
       manualCategories,
       manualTags,
+      force,
     },
   );
   // Failed chapters are a failure even when the book gate over the PARTIAL
@@ -1241,6 +1243,7 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
   const skipResearch = flags["skip-research"] === true;
   const fromChapter = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : undefined;
   const toChapter = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : undefined;
+  const force = flags["force"] === true;
 
   // Resolve bookId. Prefer the flag, else slugify the title for a quick
   // is-research-already-done check before the model call.
@@ -1269,7 +1272,7 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
   const result = await generateBook(
     { bookId: resolvedBookId, title, author },
     chapters,
-    { fromChapter, toChapter, continueOnError: false },
+    { fromChapter, toChapter, continueOnError: false, force },
   );
   if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;

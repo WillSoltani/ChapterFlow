@@ -41,6 +41,10 @@ export type GenerateBookOptions = {
   manualCategories?: string[];
   /** Operator-supplied tags; used when noCategorizer is true. */
   manualTags?: string[];
+  /** Bypass chapter/intermediate cache reuse. Newly generated output still gates normally. */
+  force?: boolean;
+  /** Test/tooling hook for deterministic cache-version invalidation. */
+  cacheCodeVersion?: string;
 };
 
 export type GenerateBookResult = {
@@ -80,7 +84,12 @@ export async function generateBook(
     log(`\n--- Chapter ${ch.chapterNumber}/${range[range.length - 1].chapterNumber}: ${ch.chapterTitle} ---`);
     try {
       const priorChapterShapes = buildPriorChapterShapes(succeeded);
-      const produced = await generateChapter(book, ch, { priorChapterShapes });
+      const produced = await generateChapter(book, ch, {
+        logger: log,
+        priorChapterShapes,
+        force: options.force,
+        cacheCodeVersion: options.cacheCodeVersion,
+      });
       succeeded.push(produced);
     } catch (err) {
       const msg = (err as Error).message;
