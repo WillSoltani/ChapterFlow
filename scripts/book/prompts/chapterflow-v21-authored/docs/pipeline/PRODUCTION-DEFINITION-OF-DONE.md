@@ -21,7 +21,9 @@ research and write checks run in their own phases (`runbook <book>` shows where 
 - `author-check` clean for every chapter (advisory shadow rollout — surfaces, drives repair).
 - `gate-chapter` PASS for every chapter (deterministic per-chapter ship gate).
 - `fanout --barrier` PASS — book-gate clean and no write-barrier-actionable sameness offenders.
-- `major-status` clean OR every major explicitly triaged (`major-disposition`) — no silent debt.
+- `major-status` PASS — every current major is either absent or closed by a reviewer-attributed,
+  content-bound `major-disposition` waiver for the exact finding/content. Legacy/unbound waivers
+  remain audit history but do not make production major-clean.
 
 ## QC
 - `sweep` PASS — no cross-chapter templating.
@@ -36,7 +38,8 @@ research and write checks run in their own phases (`runbook <book>` shows where 
 - `publish-after-qc --commit --push` PASS — package written, committed, pushed.
 - transient cleanup done — no `REVIEW-PACKET.md` / task cards / `qc-auto.workflow.js` committed
   (the pre-commit hook also blocks these + live `cfq-*` round tokens).
-- package exists (`book-packages/<book>.v21.json`) and the catalog is registered (`register-web`).
+- package exists (`book-packages/<book>.v21.json`), `verify-production-package` PASS, and the
+  catalog is registered (`register-web`, which refuses unverified packages).
 
 ## The enforced checklist (runtime)
 The QC + publish half of this stack is a real gate inside `promoteBook` / `publish-after-qc` — it
@@ -44,7 +47,8 @@ re-runs every check from scratch at promote time, so a book that hasn't earned i
 `publish-after-qc` (dry-run or real) now prints which items passed:
 
 ```
-publish preflight — 10/11 checks passed:
+publish preflight — 11/12 checks passed:
+  ✓ canonical-chapter-set
   ✓ ship-gate
   ✓ intra-book
   ✓ qc-status

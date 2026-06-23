@@ -20,7 +20,8 @@
  * Downstream consumers branch on `schemaVersion` to know which shape to read.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { randomBytes } from "crypto";
+import { readFileSync, mkdirSync, existsSync, renameSync, rmSync, readdirSync, statSync } from "fs";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -37,7 +38,7 @@ import { verifiableItems, sourceVerifyGateFindings } from "./critics/sourceVerif
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
 import { checkManualKeyJudge } from "./qc/manualKeyJudge.js";
 import { checkSweep } from "./qc/sweep.js";
-import { unresolvedMajors } from "./qc/majorDisposition.js";
+import { evaluateMajorCleanliness } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 import { normSlug } from "./lib/chapterPaths.js";
 import { stripInternalFields } from "./lib/readerContent.js";
@@ -55,6 +56,22 @@ const STATE = resolve(__dirname, "../state");
 const REPO_ROOT = resolve(__dirname, "../../../../..");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const QUARANTINE_DIR = resolve(STATE, "books", "_blocked");
+const PROMOTION_TX_DIR = resolve(STATE, "books", "_transactions");
+
+export type PromotionFaultPoint =
+  | "beforeStaging"
+  | "afterStaging"
+  | "afterVerification"
+  | "beforeFinalRename"
+  | "beforeRegistryUpdate";
+
+export type PromotionOptions = {
+  /** Test seam: throw at a named transition after journaling that transition. */
+  faultAt?: PromotionFaultPoint;
+  /** Stable transaction id for deterministic fault/recovery tests. */
+  transactionId?: string;
+  now?: () => Date;
+};
 
 export type PromotionResult = {
   promoted: boolean;
@@ -71,6 +88,7 @@ export type PromotionResult = {
    *  cannot do — enforced here from the sidecar `quiz-judge` writes. */
   keyJudgeBlockerCount: number;
   noApiBlockerCount: number;
+  majorBlockerCount: number;
   productionManifestBlockerCount: number;
   canonicalBlockerCount: number;
   canonicalBlockers?: ChapterSetBlocker[];
@@ -92,6 +110,96 @@ export type PromotionInput = {
   tags?: string[];
 };
 
+type PromotionTransactionState = "started" | "staged" | "verified" | "published" | "complete";
+
+function safeTxId(value: string): string {
+  return value.replace(/[^a-zA-Z0-9_.-]/g, "_").slice(0, 80) || "tx";
+}
+
+function newTransactionId(options: PromotionOptions): string {
+  return safeTxId(options.transactionId ?? `${Date.now()}-${randomBytes(4).toString("hex")}`);
+}
+
+function transactionDir(bookId: string, txId: string): string {
+  return resolve(PROMOTION_TX_DIR, `${bookId}.${txId}`);
+}
+
+function writeJournal(args: {
+  bookId: string;
+  txId: string;
+  state: PromotionTransactionState;
+  stagedPackagePath: string;
+  packagePath: string;
+  contentId?: string | null;
+  now: () => Date;
+}): void {
+  mkdirSync(transactionDir(args.bookId, args.txId), { recursive: true });
+  writeFileAtomic(resolve(transactionDir(args.bookId, args.txId), "journal.json"), JSON.stringify({
+    schemaVersion: "promotion-transaction-v1",
+    bookId: args.bookId,
+    txId: args.txId,
+    state: args.state,
+    stagedPackagePath: args.stagedPackagePath,
+    packagePath: args.packagePath,
+    contentId: args.contentId ?? null,
+    updatedAt: args.now().toISOString(),
+  }, null, 2) + "\n");
+}
+
+function recoverPromotionTransactions(bookId: string): void {
+  if (!existsSync(PROMOTION_TX_DIR)) return;
+  for (const name of readdirSync(PROMOTION_TX_DIR)) {
+    if (!name.startsWith(`${bookId}.`)) continue;
+    const dir = resolve(PROMOTION_TX_DIR, name);
+    try {
+      if (statSync(dir).isDirectory()) rmSync(dir, { recursive: true, force: true });
+    } catch {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  }
+}
+
+function injectFault(options: PromotionOptions, point: PromotionFaultPoint): void {
+  if (options.faultAt === point) throw new Error(`Injected promotion fault at ${point}`);
+}
+
+function publishPackageTransactionally(args: {
+  bookId: string;
+  packagePath: string;
+  candidatePackage: BookPackageV21;
+  contentId: string | null;
+  options: PromotionOptions;
+}): void {
+  const now = args.options.now ?? (() => new Date());
+  recoverPromotionTransactions(args.bookId);
+  const txId = newTransactionId(args.options);
+  const txDir = transactionDir(args.bookId, txId);
+  const stagedPackagePath = resolve(txDir, "package.v21.json");
+  writeJournal({ bookId: args.bookId, txId, state: "started", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  injectFault(args.options, "beforeStaging");
+
+  writeFileAtomic(stagedPackagePath, JSON.stringify(args.candidatePackage, null, 2));
+  writeJournal({ bookId: args.bookId, txId, state: "staged", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  injectFault(args.options, "afterStaging");
+
+  const verification = verifyProductionPackage({ packagePath: stagedPackagePath, compareLooseState: true });
+  if (!verification.ok) {
+    throw new Error(`Staged package verification failed: ${verification.findings.map((f) => f.message).join("; ")}`);
+  }
+  writeJournal({ bookId: args.bookId, txId, state: "verified", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  injectFault(args.options, "afterVerification");
+  injectFault(args.options, "beforeFinalRename");
+  // promoteBook itself does not write web registries. This seam marks the final
+  // pre-visibility point before any caller can safely run a registry update.
+  injectFault(args.options, "beforeRegistryUpdate");
+
+  mkdirSync(dirname(args.packagePath), { recursive: true });
+  renameSync(stagedPackagePath, args.packagePath);
+  writeJournal({ bookId: args.bookId, txId, state: "published", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  writeJournal({ bookId: args.bookId, txId, state: "complete", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  rmSync(txDir, { recursive: true, force: true });
+}
+
 /** Authoring-internal fields that must never reach the shipped package:
  *  sourceAnchorId (gate-time provenance) and planSpec (the planner's design
  *  rationale — types.ts: "Not shown to readers", but it shipped anyway until
@@ -101,9 +209,10 @@ export type PromotionInput = {
  *  (tests/promote-gate.test.ts pins both properties). */
 export { stripInternalFields } from "./lib/readerContent.js";
 
-export function promoteBook(input: PromotionInput): PromotionResult {
+export function promoteBook(input: PromotionInput, options: PromotionOptions = {}): PromotionResult {
   const bookId = normSlug(input.bookId);
   const { title, author, chapters } = input;
+  const now = options.now ?? (() => new Date());
 
   // Step 0: Quarantine tombstone. quarantine-book used to only MOVE the
   // shipped package aside — every piece of state that made the book
@@ -246,6 +355,12 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   const bookGate = runBookGate(bookId, loadedChapters);
   const bookBlockerCount = bookGate.findings.filter((f) => f.severity === "blocker").length;
   const bookMajorCount = bookGate.findings.filter((f) => f.severity === "major").length;
+  const noApiMode = isNoApiCodexQcMode();
+  const majorPolicy = evaluateMajorCleanliness(bookId, loadedChapters, {
+    requireContentBound: true,
+    requireRoundBacked: noApiMode,
+  });
+  const majorBlockerCount = majorPolicy.unresolved.length;
 
   // Step 3.5: QC-attestation gate — the no-API semantic judge. Every chapter
   // must carry a fresh PUBLISHABLE attestation from a Claude reviewer; this is
@@ -274,7 +389,6 @@ export function promoteBook(input: PromotionInput): PromotionResult {
 
   // Step 3.7: v21.1 no-API Codex QC mode. Default promotion remains backward
   // compatible; this stricter stack is active only when explicitly enabled.
-  const noApiMode = isNoApiCodexQcMode();
   const noApiFindings: Array<{ chapter?: number; checkId: string; severity: "blocker"; message: string }> = [];
   if (noApiMode) {
     const source = checkSourceV2Gate(bookId, loadedChapters.map((ch) => ch.number));
@@ -320,15 +434,10 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       severity: "blocker" as const,
       message: f.message,
     })));
-    noApiFindings.push(...unresolvedMajors(bookId, loadedChapters, true).map((f) => ({
-      checkId: "QC4.major_unresolved",
-      severity: "blocker" as const,
-      message: `Unresolved major ${f.id} (${f.scope} ${f.checkId}): ${f.message}`,
-    })));
   }
   const noApiBlockerCount = noApiFindings.length;
   const preManifestBlockerCount =
-    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount;
+    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount;
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
   const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
@@ -337,7 +446,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
   }
   const existingManifest = existingPkg?.productionManifest;
-  const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : new Date().toISOString();
+  const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : now().toISOString();
   const priorRunId = typeof existingManifest?.metadata?.runId === "string" ? existingManifest.metadata.runId : undefined;
   const contentOwner = input.contentOwner ?? "chapterflow";
   const shippedChapters = loadedChapters.map((c) => stripInternalFields(c));
@@ -396,7 +505,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     bookId,
     title,
     author,
-    promotedAt: new Date().toISOString(),
+    promotedAt: now().toISOString(),
     chapterCount: loadedChapters.length,
     shipGate: {
       perChapter: perChapterGates.map((g) => ({
@@ -414,6 +523,13 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
     noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
+    majorPolicy: {
+      schemaVersion: "major-production-policy-v1",
+      totalCurrent: majorPolicy.current.length,
+      totalBlockers: majorBlockerCount,
+      current: majorPolicy.current,
+      decisions: majorPolicy.decisions,
+    },
     canonicalChapterSet: { indexPath: canonical.path, chapterCount: canonical.chapters.length, totalBlockers: 0, findings: [] },
     productionManifest: {
       contentId: manifestContentId,
@@ -422,15 +538,14 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       findings: [...productionManifestFindings, ...verificationFindings],
     },
   };
-  writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
   // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
   // quiz answer-key judge gate.
   if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
-    const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${Date.now()}.report.json`);
-    writeFileSync(quarantinePath, JSON.stringify(fullReport, null, 2), "utf8");
+    const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
+    writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
     const qcSummary = qcBlockerCount > 0
       ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
       : "";
@@ -443,9 +558,13 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     const noApiSummary = noApiBlockerCount > 0
       ? ` + ${noApiBlockerCount} no-api QC blocker(s): ${noApiFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${noApiBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const majorSummary = majorBlockerCount > 0
+      ? ` + ${majorBlockerCount} unresolved major(s): ${majorPolicy.unresolved.slice(0, 3).map((f) => `${f.scope} ${f.checkId}`).join(", ")}${majorBlockerCount > 3 ? ", …" : ""}`
+      : "";
     const manifestSummary = productionManifestBlockerCount > 0
       ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
       : "";
+    writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
     return {
       promoted: false,
       bookId,
@@ -455,11 +574,12 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       intraBookBlockerCount: intraBlockerCount,
       keyJudgeBlockerCount,
       noApiBlockerCount,
+      majorBlockerCount,
       productionManifestBlockerCount,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -467,9 +587,14 @@ export function promoteBook(input: PromotionInput): PromotionResult {
   // The packageId is the manifest content ID, so timestamp metadata no longer
   // defines production identity. createdAt remains metadata and is preserved
   // from the prior package to keep unchanged re-promotes byte-stable.
-  // Atomic write: the published package is the SHIPPED artifact — a crash mid-write must never
-  // leave a truncated book-packages/<id>.v21.json (which the web reader/validator would choke on).
-  writeFileAtomic(packagePath, JSON.stringify(candidatePackage, null, 2));
+  publishPackageTransactionally({
+    bookId,
+    packagePath,
+    candidatePackage,
+    contentId: manifestContentId,
+    options,
+  });
+  writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
 
   return {
     promoted: true,
@@ -481,11 +606,12 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    majorBlockerCount: 0,
     productionManifestBlockerCount: 0,
     canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
-    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
+    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
   };
 }
 
@@ -499,6 +625,7 @@ function blockedResult(args: { bookId: string; reason: string; canonicalBlockers
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    majorBlockerCount: 0,
     productionManifestBlockerCount: 0,
     canonicalBlockerCount: args.canonicalBlockers?.length ?? 0,
     canonicalBlockers: args.canonicalBlockers,
@@ -519,6 +646,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Canonical chapter set: ${r.canonicalBlockerCount} blockers`);
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
+  lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);
   return lines.join("\n");

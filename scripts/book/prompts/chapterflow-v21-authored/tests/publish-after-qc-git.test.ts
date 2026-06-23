@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
+import { runCli } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { stagingPlan, formatPublishAfterQcResult, publishBranchError, dirtySourceOutsidePlan, pushWithRebase, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
 
@@ -27,6 +28,26 @@ test("publish-after-qc staging plan includes only package unless register-web ch
 
     const withRegistry = stagingPlan(BOOK, ROUND, { registeredFiles: [REGISTRY] });
     assert.deepEqual(withRegistry, [REGISTRY, PACKAGE].sort());
+  } finally {
+    cleanup();
+  }
+});
+
+test("register-web refuses to update registries for an unverified package", () => {
+  cleanup();
+  const before = readFileSync(REGISTRY, "utf8");
+  try {
+    mkdirSync(dirname(PACKAGE), { recursive: true });
+    writeFileSync(PACKAGE, JSON.stringify({
+      schemaVersion: "chapterflow-book-v21",
+      book: { bookId: BOOK, title: "Bad Fixture", author: "Nobody" },
+      chapters: [],
+    }, null, 2) + "\n", "utf8");
+
+    const result = runCli(["register-web", BOOK, "--skip-ingest"]);
+    assert.equal(result.status, 1);
+    assert.match(result.out, /not verified|refusing/i);
+    assert.equal(readFileSync(REGISTRY, "utf8"), before, "registry bytes must stay untouched when package verification fails");
   } finally {
     cleanup();
   }

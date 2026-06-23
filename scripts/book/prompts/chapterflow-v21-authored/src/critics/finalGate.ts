@@ -345,26 +345,11 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
 export const ENFORCED_MAJOR = new Set<string>([]);
 
 /**
- * QC_ENFORCED_MAJORS — the curated set of MAJOR catalog ids that may BLOCK the QC
- * verdict (drive a chapter to REVISE / a `major-disposition` governance halt in the
- * autopilot). The QC consumption path (`unresolvedMajors` → finalize `checks.majors`,
- * publish/promote major gates, the conductor's governance HALT) filters through this.
- *
- * It is **deliberately empty**, for the SAME reason `ENFORCED_MAJOR` is. A corpus
- * calibration (clean + gold reference books) shows that EVERY deterministic major
- * fires on at least one reference-quality chapter (A13/B4/C2/C3/C23/E1/E4/E7/SC9/
- * BP15/BP16/BP27/BP31/F4 …) — i.e. none is precise enough to be a hard gate without
- * retroactively failing books that shipped (the SC9-reversal trap: SC9 alone fires on
- * 16/21 gold chapters). Treating any of them as QC-BLOCKING demands a manual waiver on
- * good content and is a documented convergence-killer.
- *
- * Deterministic majors are still SURFACED (via `currentMajorFindings` / `formatMajorStatus`
- * for human review and the conductor's post-repair regression scan) — they just don't, by
- * themselves, block the QC verdict. The real semantic gate is the model QC (bar / sweep /
- * confirm) plus the deterministic BLOCKERS; deterministic majors are prevention + debt.
- *
- * An id belongs here ONLY after it is shown to fire ZERO times across the clean + gold
- * corpus (guarded by the qc-enforced-major calibration test). Until then this stays empty.
+ * QC_ENFORCED_MAJORS — retained as a calibration sentinel for the old QC-specific
+ * allowlist. Production major cleanliness no longer filters through this set:
+ * `unresolvedMajors` returns every current major unless an attributable,
+ * content-bound waiver closes that exact finding/content. `ENFORCED_MAJOR` still
+ * controls only the per-chapter write self-gate above.
  */
 export const QC_ENFORCED_MAJORS = new Set<string>([]);
 

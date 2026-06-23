@@ -19,9 +19,9 @@ its rung's bar is met.
 |------|---------|-------------------|
 | **0 — Document** | Observed **once** | Add a prompt warning / a note here + in the relevant `agent-prompts/*`. No gate. |
 | **1 — Prevent** | Confirmed **twice** (same class, different books/chapters) | Add a prevention plan or authoring guidance — an allocator (`src/librarian/*Plan.ts`) or a writer card line — so the defect can't be dealt in the first place. |
-| **2 — Shadow** | **Zero false positives on the clean corpus** | Add a SHADOW major — it *surfaces* (advisory) but does NOT fail the gate. See the `author-check` shadow rollout (`authoringContract.ts`) and the BP shadow majors (`bookGate.ts`). |
-| **3 — Write-barrier actionable** | Repeated **true** positive **and** low FP, still zero on clean | Make it block the **write self-gate** (re-dispatch the offender) but not QC/publish. Code: `WRITE_BARRIER_ACTIONABLE_PREFIXES` in `bookGate.ts` (currently `BP28`–`BP31`). |
-| **4 — Hard blocker** | See the gate below — all three must hold | Add the catalog id to `ENFORCED_MAJOR` (`finalGate.ts`). This FAILs the chapter. **`ENFORCED_MAJOR` is currently empty — nothing has met the bar.** |
+| **2 — Shadow** | **Zero false positives on the clean corpus** | Add a SHADOW major — it *surfaces* as a major but does NOT fail the write gate. Production still requires the major to be fixed or closed by a content-bound waiver. See the `author-check` shadow rollout (`authoringContract.ts`) and the BP shadow majors (`bookGate.ts`). |
+| **3 — Write-barrier actionable** | Repeated **true** positive **and** low FP, still zero on clean | Make it block the **write self-gate** (re-dispatch the offender) before QC. Code: `WRITE_BARRIER_ACTIONABLE_PREFIXES` in `bookGate.ts` (currently `BP28`–`BP31`). |
+| **4 — Hard blocker** | See the gate below — all three must hold | Add the catalog id to `ENFORCED_MAJOR` (`finalGate.ts`). This FAILs the chapter's write gate. **`ENFORCED_MAJOR` is currently empty — nothing has met the bar.** |
 
 ### The hard-blocker gate (rung 4)
 
@@ -160,11 +160,14 @@ shared by the whole battery. (Books absent on a machine SKIP loudly, never silen
 
 ## Keeping the registry honest
 
-- The actual enforcement state lives in **code**, not here: `ENFORCED_MAJOR` (`finalGate.ts`) is the
-  hard-blocker set, `WRITE_BARRIER_ACTIONABLE_PREFIXES` (`bookGate.ts`) is rung 3. This registry must
-  agree with them. A contract test (`tests/docs-contract.test.ts`) asserts the registry documents
-  the hard-blocker gate **and** that `ENFORCED_MAJOR` is still empty — so a future promotion forces a
-  co-update of both the code and this ledger.
+- The actual write-gate enforcement state lives in **code**, not here: `ENFORCED_MAJOR`
+  (`finalGate.ts`) is the hard-blocker set, `WRITE_BARRIER_ACTIONABLE_PREFIXES` (`bookGate.ts`)
+  is rung 3. Production major cleanliness is separate: every current major blocks unless
+  `majorDisposition.ts` finds a reviewer-attributed, content-bound waiver for that exact
+  finding/content. This registry must agree with the write-gate mechanisms. A contract test
+  (`tests/docs-contract.test.ts`) asserts the registry documents the hard-blocker gate **and**
+  that `ENFORCED_MAJOR` is still empty — so a future promotion forces a co-update of both the
+  code and this ledger.
 - When a class is promoted, move it **one rung** and record the evidence (which corpus, how many
   TPs). Skipping rungs is how a pipeline overfits.
 - **Every class carries a `Caught by:` test** — the fault-injection inventory. The calibration

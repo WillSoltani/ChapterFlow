@@ -1287,9 +1287,9 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   // key-judge) ONLY when CHAPTERFLOW_NO_API_CODEX_QC=1. The codex/no-API flow is the canonical
   // operating mode for these verbs, and a book-level SWEEP REVISE has NO other enforcer at
   // promote time — so an env-less invocation (the command book-status used to print) silently
-  // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. (The deterministic
-  // `unresolved majors` promote gate is now ADVISORY — post-H3 it gates only on the empty
-  // QC_ENFORCED_MAJORS allowlist — so the teeth here are sweep + source-verify + manual key-judge.)
+  // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. Unresolved
+  // majors are also production-blocking by default unless a content-bound reviewer waiver closes
+  // the exact current finding.
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     console.log("promote/publish: enforcing the no-API QC gate stack (CHAPTERFLOW_NO_API_CODEX_QC=1) — sweep + source-verify + manual key-judge must pass before shipping.");
@@ -1943,6 +1943,15 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
     return 2;
   }
+  const { verifyProductionPackage } = await import("./verifyProductionPackage.js");
+  const verification = verifyProductionPackage({ packagePath: pkgPath, compareLooseState: true });
+  if (!verification.ok) {
+    console.error(
+      `Package at ${pkgPath} is not verified; refusing to update web registries: ` +
+        verification.findings.slice(0, 5).map((f) => f.message).join("; "),
+    );
+    return 1;
+  }
   const bpPath = resolve(REPO, "app/book/data/bookPackages.ts");
   if (!existsSyncFs(bpPath)) {
     console.error(`Web registry not found at ${bpPath}. (Are you on the web-app branch / is app/ present?)`);
@@ -1972,7 +1981,7 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
       `  BOOK_PACKAGE_TONE_GETTERS["${bookId}"] = (tone) => normalizeAnyPackage(${ident}, tone);\n` +
       `}\n`;
     src = src.replace(/\s*$/, "\n") + block;
-    writeFileSync(bpPath, src, "utf8");
+    writeFileAtomic(bpPath, src);
     console.log(`Registered "${bookId}" in app/book/data/bookPackages.ts (import + BOOK_PACKAGES + tone getter; presentation auto-infers).`);
   }
   // Regenerate the catalog metadata — this imports BOOK_PACKAGES, so success also

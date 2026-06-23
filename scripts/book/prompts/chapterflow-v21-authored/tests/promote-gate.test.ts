@@ -14,22 +14,41 @@ import { resolve } from "path";
 import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { loadChapterIndex } from "../src/generateBook.js";
+import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
+import {
+  currentMajorFindings,
+  MAJOR_WAIVER_FILE_SCHEMA_VERSION,
+  MAJOR_WAIVER_RECORD_SCHEMA_VERSION,
+  waiverPath,
+} from "../src/qc/majorDisposition.js";
 
 const BOOK = "zz-fixture-promote";
+const MAJOR_BOOK = "zz-fixture-promote-major-clean";
 
 function cleanupFixture(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
-    if (f.startsWith(`${BOOK}-ch`)) rmSync(resolve(STATE_CHAPTERS, f), { force: true });
+    if (f.startsWith(`${BOOK}-ch`) || f.startsWith(`${MAJOR_BOOK}-ch`)) rmSync(resolve(STATE_CHAPTERS, f), { force: true });
   }
   const booksDir = resolve(PIPELINE_DIR, "state", "books");
   rmSync(resolve(booksDir, `${BOOK}.gate.json`), { force: true });
+  rmSync(resolve(booksDir, `${MAJOR_BOOK}.gate.json`), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`), { force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${MAJOR_BOOK}.json`), { force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), { force: true });
+  rmSync(waiverPath(MAJOR_BOOK), { force: true });
+  rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+  rmSync(sourceRunDir(MAJOR_BOOK, "zz-test-major-clean"), { recursive: true, force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "books", "_transactions"), { recursive: true, force: true });
+  for (const n of Array.from({ length: 20 }, (_, i) => i + 1)) {
+    rmSync(attestationPath(MAJOR_BOOK, n), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "plans", `${MAJOR_BOOK}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
+  }
   const blocked = resolve(booksDir, "_blocked");
   try {
     for (const f of readdirSync(blocked)) {
-      if (f.startsWith(`${BOOK}.`)) rmSync(resolve(blocked, f), { force: true });
+      if (f.startsWith(`${BOOK}.`) || f.startsWith(`${MAJOR_BOOK}.`)) rmSync(resolve(blocked, f), { force: true });
     }
   } catch {}
 }
@@ -87,6 +106,105 @@ function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: nu
       testableFacts: [{ id: `f${spec.chapterNumber}`, claim: "fixture", becauseMechanism: "fixture", commonError: "fixture", errorIsWhy: "fixture" }],
     }, null, 2), "utf8");
   }
+}
+
+function setupMajorCleanFixture(): ReturnType<typeof loadChapterIndex> {
+  cleanupFixture();
+  const sourceBook = "drive";
+  const sourceIndex = loadChapterIndex(sourceBook);
+  const chapters = sourceIndex.map((spec) => {
+    const source = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
+    const nn = String(spec.chapterNumber).padStart(2, "0");
+    return {
+      ...source,
+      chapterId: `${MAJOR_BOOK}-ch${nn}`,
+      number: spec.chapterNumber,
+    };
+  });
+  writeFixtureBook(STATE_CHAPTERS, chapters);
+  const index = chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title }));
+  writeFixtureIndex(MAJOR_BOOK, chapters.map((ch) => ({ chapterId: ch.chapterId, number: ch.number, title: ch.title })));
+  writeSourceSidecars(MAJOR_BOOK, index, "zz-test-major-clean");
+  mkdirSync(resolve(PIPELINE_DIR, "state", "briefs"), { recursive: true });
+  writeFileSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), JSON.stringify({
+    schemaVersion: "manual-book-brief-v1",
+    bookId: MAJOR_BOOK,
+    title: "Major Clean Fixture",
+    author: "Test Author",
+  }, null, 2) + "\n", "utf8");
+  mkdirSync(resolve(PIPELINE_DIR, "state", "plans"), { recursive: true });
+  for (const ch of chapters) {
+    writeFileSync(resolve(PIPELINE_DIR, "state", "plans", `${ch.chapterId}.manual-plan.json`), JSON.stringify({
+      schemaVersion: "manual-chapter-plan-v1",
+      bookId: MAJOR_BOOK,
+      chapterId: ch.chapterId,
+      chapterNumber: ch.number,
+      title: ch.title,
+      coreMove: "Use the fixture signal.",
+    }, null, 2) + "\n", "utf8");
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: MAJOR_BOOK,
+      chapterNumber: ch.number,
+      chapterId: ch.chapterId,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(ch),
+      hashVersion: "v2",
+      reviewer: "human:major-clean-fixture",
+      reviewedAt: "2026-06-23T00:00:00.000Z",
+      roundId: "r-major-clean",
+      roundRole: "confirm",
+    });
+  }
+  return index;
+}
+
+function writeContentBoundMajorWaivers(bookId: string, chapters: any[], reviewer = "human:major-clean-fixture", roundId = "r-major-clean"): void {
+  const dispositions = currentMajorFindings(bookId, chapters).map((finding) => ({
+    schemaVersion: MAJOR_WAIVER_RECORD_SCHEMA_VERSION,
+    findingId: finding.id,
+    status: "waived_accepted_debt",
+    checkId: finding.checkId,
+    scope: finding.scope,
+    reason: "Synthetic fixture intentionally preserves deterministic major findings while testing production policy.",
+    reviewer,
+    roundId,
+    roundRole: "confirm",
+    timestamp: "2026-06-23T00:00:00.000Z",
+    contentHash: finding.contentHash,
+    contentHashVersion: finding.contentHashVersion,
+    findingHash: finding.findingHash,
+  }));
+  mkdirSync(resolve(PIPELINE_DIR, "state", "waivers"), { recursive: true });
+  writeFileSync(waiverPath(bookId), JSON.stringify({
+    schemaVersion: MAJOR_WAIVER_FILE_SCHEMA_VERSION,
+    bookId,
+    dispositions,
+  }, null, 2) + "\n", "utf8");
+}
+
+function waiveCurrentMajors(bookId: string, chapters = loadMajorFixtureChapters()): void {
+  writeContentBoundMajorWaivers(bookId, chapters);
+}
+
+function loadMajorFixtureChapters(): any[] {
+  return loadChapterIndex(MAJOR_BOOK).map((spec) =>
+    JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8")),
+  );
+}
+
+function promoteMajorFixture(chapters = loadChapterIndex(MAJOR_BOOK), faultAt?: string) {
+  return promoteBook({
+    bookId: MAJOR_BOOK,
+    title: "Major Clean Fixture",
+    author: "Test Author",
+    chapters,
+    categories: ["Business"],
+    tags: ["fixture"],
+  }, {
+    ...(faultAt ? { faultAt, transactionId: `tx-${faultAt}` } : {}),
+    now: () => new Date("2026-06-23T00:00:00.000Z"),
+  } as any);
 }
 
 function withPromotionEnvCleared<T>(fn: () => T): T {
@@ -198,6 +316,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
   const reportPath = gateReportPath(bookId);
   const packageBefore = readFileSync(packagePath, "utf8");
   const reportBefore = snapshotFile(reportPath);
+  const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
 
   try {
@@ -219,6 +338,9 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
           roundRole: "attest",
         });
       }
+      writeContentBoundMajorWaivers(bookId, index.map((spec) =>
+        JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8")),
+      ), "human:canonical-full-regression", "canonical-full-regression-round");
 
       const result = promoteBook({
         bookId,
@@ -236,6 +358,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
   } finally {
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
+    restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
     restoreFile(packagePath, packageBefore);
   }
@@ -249,6 +372,7 @@ test("promoteBook embeds a production manifest identity instead of trusting time
   const reportPath = gateReportPath(bookId);
   const packageBefore = readFileSync(packagePath, "utf8");
   const reportBefore = snapshotFile(reportPath);
+  const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
 
   try {
@@ -270,6 +394,9 @@ test("promoteBook embeds a production manifest identity instead of trusting time
           roundRole: "attest",
         });
       }
+      writeContentBoundMajorWaivers(bookId, index.map((spec) =>
+        JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8")),
+      ), "human:manifest-regression", "manifest-regression-round");
 
       const result = promoteBook({
         bookId,
@@ -288,8 +415,123 @@ test("promoteBook embeds a production manifest identity instead of trusting time
   } finally {
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
+    restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
     restoreFile(packagePath, packageBefore);
+  }
+});
+
+test("promoteBook blocks unresolved majors by default and writes no visible package", () => {
+  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      const chapters = loadMajorFixtureChapters();
+      assert.ok(currentMajorFindings(MAJOR_BOOK, chapters).length > 0, "fixture must expose current deterministic majors");
+      const result = promoteMajorFixture(index);
+      assert.equal(result.promoted, false, "unresolved majors must block production");
+      assert.match(result.reason, /major/i);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "blocked major policy must leave no production package");
+    });
+  } finally {
+    console.warn = oldWarn;
+    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    cleanupFixture();
+  }
+});
+
+test("content-bound major waivers permit only the exact finding/content and stale after edits", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      const promoted = promoteMajorFixture(index);
+      assert.equal(promoted.promoted, true, promoted.reason);
+      const packageBefore = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
+
+      const chPath = resolve(STATE_CHAPTERS, `${MAJOR_BOOK}-ch01.v21-native.chapter.json`);
+      const chapter = JSON.parse(readFileSync(chPath, "utf8"));
+      chapter.tryThisNow = `${chapter.tryThisNow} Write the result in one plain sentence before moving on.`;
+      writeFileSync(chPath, JSON.stringify(chapter, null, 2), "utf8");
+      writeAttestation({
+        schemaVersion: "qc-attest-v1",
+        bookId: MAJOR_BOOK,
+        chapterNumber: chapter.number,
+        chapterId: chapter.chapterId,
+        verdict: "PUBLISHABLE",
+        contentHash: chapterContentHash(chapter),
+        hashVersion: "v2",
+        reviewer: "human:major-clean-fixture",
+        reviewedAt: "2026-06-23T00:01:00.000Z",
+        roundId: "r-major-clean",
+        roundRole: "confirm",
+      });
+
+      const blocked = promoteMajorFixture(index);
+      assert.equal(blocked.promoted, false, "editing content must stale the prior major waivers");
+      assert.match(blocked.reason, /major/i);
+      assert.equal(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"), packageBefore, "stale waiver must not overwrite the last verified package");
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("promotion transaction fault injection leaves no visible package and reruns deterministically", () => {
+  const oldWarn = console.warn;
+  const faultPoints = ["beforeStaging", "afterStaging", "afterVerification", "beforeFinalRename", "beforeRegistryUpdate"];
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      let expectedBytes: string | null = null;
+      for (const point of faultPoints) {
+        rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+        rmSync(gateReportPath(MAJOR_BOOK), { force: true });
+        assert.throws(() => promoteMajorFixture(index, point), new RegExp(point), `fault ${point} must abort promotion`);
+        assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, `${point} must not expose a production package`);
+
+        const recovered = promoteMajorFixture(index);
+        assert.equal(recovered.promoted, true, recovered.reason);
+        const verification = verifyProductionPackage({ packagePath: productionPackagePath(MAJOR_BOOK), compareLooseState: true });
+        assert.equal(verification.ok, true, verification.findings.map((f) => f.message).join("\n"));
+        const bytes = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
+        if (expectedBytes === null) expectedBytes = bytes;
+        assert.equal(bytes, expectedBytes, `recovery after ${point} must produce byte-identical package output`);
+      }
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
+  }
+});
+
+test("re-promoting the identical manifest is idempotent and resolves to a verified package", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      const first = promoteMajorFixture(index);
+      assert.equal(first.promoted, true, first.reason);
+      const firstBytes = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
+      const second = promoteMajorFixture(index);
+      assert.equal(second.promoted, true, second.reason);
+      assert.equal(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"), firstBytes, "identical re-promote must keep package bytes stable");
+      const verified = verifyProductionPackage({ packagePath: productionPackagePath(MAJOR_BOOK), compareLooseState: true });
+      assert.equal(verified.ok, true, verified.findings.map((f) => f.message).join("\n"));
+    });
+  } finally {
+    console.warn = oldWarn;
+    cleanupFixture();
   }
 });
 

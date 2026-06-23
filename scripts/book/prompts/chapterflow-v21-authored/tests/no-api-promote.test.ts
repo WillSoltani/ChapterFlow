@@ -88,11 +88,7 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     assert.ok(noApiIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC2.manual_keyjudge_missing"), `manual keyjudge blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
-    // H3: deterministic majors (e.g. the BP27 venue-stamping the fixture plants) are now ADVISORY
-    // at QC AND promote — they SURFACE (currentMajorFindings) but no longer emit a QC4 blocker
-    // (every deterministic major fires on the clean/gold corpus, so blocking on them retroactively
-    // fails good books). The real promote teeth are source-v2 + sweep + manual key-judge + blockers.
-    assert.ok(!noApiIds.includes("QC4.major_unresolved"), `deterministic majors must be advisory post-H3, not a promote blocker: ${noApiIds.join(", ")}`);
+    assert.ok((report.majorPolicy?.totalBlockers ?? 0) > 0, "unresolved majors must be production-blocking in the explicit major policy");
     assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
   } finally {
     console.warn = oldWarn;
@@ -161,7 +157,11 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
         timestamp: "2026-06-12T00:00:00.000Z",
       }],
     }, null, 2) + "\n", "utf8");
-    assert.equal(unresolvedMajors(BOOK, [chapter], true).some((f) => f.id === finding.id), false);
+    assert.equal(
+      unresolvedMajors(BOOK, [chapter], true).some((f) => f.id === finding.id),
+      true,
+      "legacy unbound waivers remain auditable but no longer close production-blocking majors",
+    );
     const cli = runCli([
       "major-disposition",
       BOOK,

@@ -356,13 +356,10 @@ goldTest("finalize dryRun computes the same verdict but writes NOTHING durable (
   }
 });
 
-goldTest("deterministic majors are SURFACED but advisory-at-QC (do not block the verdict)", () => {
-  // Corrected contract (H3 fix): a deterministic major must NOT, by itself, drive the QC
-  // verdict to REVISE — QC_ENFORCED_MAJORS is empty because EVERY deterministic major
-  // fires on the clean/gold reference corpus (SC9 on 16/21 gold), so blocking on them
-  // demands manual waivers on good content (the documented convergence-killer). The major
-  // must still SURFACE (currentMajorFindings / majorStatus) for human review + the
-  // conductor's regression scan; it just doesn't gate.
+goldTest("deterministic majors are SURFACED and unresolved majors fail the major check by default", () => {
+  // Production hardening contract: deterministic majors still surface for human
+  // review, and they now block the major cleanliness check until a narrow,
+  // content-bound reviewer waiver closes the exact finding/content.
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     cleanup();
@@ -372,10 +369,10 @@ goldTest("deterministic majors are SURFACED but advisory-at-QC (do not block the
     const result = finalizeQcRound(MAJOR_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
     // The fixture still trips a deterministic major — it stays VISIBLE:
     assert.ok(currentMajorFindings(MAJOR_BOOK, [chapter]).length > 0, "the deterministic major must still surface for human review / regression scan");
-    // ...but it no longer BLOCKS the QC verdict:
-    assert.equal(result.chapters[0].checks.majors, "PASS");
+    // ...and unresolved majors now BLOCK the major cleanliness check:
+    assert.equal(result.chapters[0].checks.majors, "FAIL");
     const matrix = JSON.parse(readFileSync(evidenceMatrixPath(MAJOR_BOOK, ROUND), "utf8"));
-    assert.equal(matrix.chapters[0].majorStatus.status, "PASS");
+    assert.equal(matrix.chapters[0].majorStatus.status, "FAIL");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

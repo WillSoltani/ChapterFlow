@@ -14,6 +14,7 @@ import { promoteBook } from "../promoteBook.js";
 import { V21_SCHEMA_VERSION } from "../types.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
 import { compareChapterSetToCanonical, readCanonicalChapterIndex } from "../lib/chapterSet.js";
+import { verifyProductionPackage } from "../verifyProductionPackage.js";
 import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
 import { qcRoundPath } from "./qcRound.js";
@@ -805,6 +806,18 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   }
   if (!existsSync(packagePath) || !packageLooksV21(packagePath)) {
     return { ok: false, bookId, roundId, packagePath, errors: [`Promoted package missing or not ${V21_SCHEMA_VERSION}: ${packagePath}`], warnings, next };
+  }
+  const packageVerification = verifyProductionPackage({ packagePath, compareLooseState: true });
+  if (!packageVerification.ok) {
+    return {
+      ok: false,
+      bookId,
+      roundId,
+      packagePath,
+      errors: [`Promoted package failed verification before registry update: ${packageVerification.findings.slice(0, 5).map((f) => f.message).join("; ")}`],
+      warnings,
+      next,
+    };
   }
 
   const registry = registryFiles();

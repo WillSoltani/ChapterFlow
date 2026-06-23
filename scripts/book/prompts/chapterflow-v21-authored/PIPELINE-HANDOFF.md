@@ -91,7 +91,7 @@ The supported (no-API) operator loop, per book:
    role-separated round with `qc-open-round`, run the sweep, blind manual key
    judge (`key-pack`/`key-derive`/`key-resolve`), batch publishable-bar QC
    (`bar-pack`/`bar-attest`) or per-chapter round-tokened `qc-attest`,
-   and explicit `major-disposition` for every current major. `qc-status <bookId>`
+   and explicit content-bound `major-disposition` for every current major. `qc-status <bookId>`
    tracks PASS/STALE/REVISE/CORRUPTION/MISSING; gate-only GREEN is never enough.
 7. **`promote-book <bookId> --title … --author …`** — final gate (re-runs ship gate +
    book gate + the QC-attestation gate), auto-derives categories/tags (§7), strips
