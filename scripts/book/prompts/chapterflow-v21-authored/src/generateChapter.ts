@@ -77,7 +77,15 @@ import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
 import { canonicalChapterIndexPath, readCanonicalChapterIndex } from "./lib/chapterSet.js";
 import { checkSourceV2Gate, sourceSidecarPathFor } from "./qc/sourceV2Gate.js";
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
-import { recordAuthorProvenance, requireCurrentSessionId } from "./qc/sessionProvenance.js";
+import { currentSessionId, recordAuthorProvenance, requireCurrentSessionId } from "./qc/sessionProvenance.js";
+import {
+  createGenerationRunManifest,
+  generationInputHash,
+  generationInputHashes,
+  recordGenerationDegradation,
+  recordGenerationStage,
+  writeGenerationManifestSidecar,
+} from "./generationDegradation.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -575,6 +583,26 @@ export async function generateChapter(
       validateValue: (value) => validateChapterPlanShape(value, chapter),
     },
   );
+  const generationManifest = createGenerationRunManifest({
+    runId: process.env.CHAPTERFLOW_RUN_ID ?? `${chapter.chapterId}.${Date.now()}`,
+    chapterId: chapter.chapterId,
+    authorSessionId: currentSessionId() ?? "legacy-unknown",
+    provider,
+    codeVersion,
+    sourceHash: sourceEvidence.available ? sourceEvidence.sourceHash : null,
+    sourceAnchorCatalogHash: sourceEvidence.available ? sourceEvidence.anchorCatalogHash : null,
+    planHash: generationInputHash(plan),
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "editor-in-chief",
+    input: { book, sourceHash: sourceEvidence.available ? sourceEvidence.sourceHash : null },
+    output: briefRaw,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "curriculum-planner",
+    input: { book, chapter, sourceHash: sourceEvidence.available ? sourceEvidence.sourceHash : null },
+    output: plan,
+  });
   log(`plan: ${plan.exampleCount} examples, formats: ${Array.from(new Set(plan.exampleSpecs.map((s) => s.format))).join(", ")}`);
 
   log(`hook + breakdown: generating in parallel…`);
@@ -598,11 +626,27 @@ export async function generateChapter(
       sourceAnchors: selectAnchorsForClaim(sourceEvidence, ["breakdown_claim", "core_move"], plan.coreMoveSourceAnchorIds),
     }),
   ]);
+  recordGenerationStage(generationManifest, {
+    stage: "writer-hook",
+    input: { brief, plan, priorChapterShapes: options.priorChapterShapes },
+    output: hook,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "writer-breakdown",
+    input: { brief, plan, priorChapterShapes: options.priorChapterShapes },
+    output: draftBreakdown,
+  });
   log(`hook: "${hook.hook}"`);
   log(`draft breakdown: fastRead=${draftBreakdown.fastRead.length}c, deepRead=${draftBreakdown.deepRead.length}c, fullRead=${draftBreakdown.fullRead.length}c`);
 
   log(`voice pass: iterating (max ${VOICE_PASS_MAX})…`);
   let breakdown = await agents.runVoicePass({ brief, plan, draft: draftBreakdown });
+  recordGenerationStage(generationManifest, {
+    stage: "voice-pass",
+    input: { brief, plan, draft: draftBreakdown },
+    output: breakdown,
+    attemptCount: 1,
+  });
   log(`voice pass iter 1 done (fastRead=${breakdown.fastRead.length}c, deepRead=${breakdown.deepRead.length}c, fullRead=${breakdown.fullRead.length}c)`);
   const runProseChecksOnBreakdown = (b: typeof breakdown): string[] => {
     const issues: string[] = [];
@@ -627,8 +671,28 @@ export async function generateChapter(
     log(`voice pass iter ${iter}: ${issues.length} findings, re-running`);
     try {
       breakdown = await agents.runVoicePass({ brief, plan, draft: breakdown, priorFindings: issues });
+      recordGenerationStage(generationManifest, {
+        stage: "voice-pass",
+        input: { brief, plan, priorFindings: issues },
+        output: breakdown,
+        attemptCount: iter,
+      });
     } catch (err) {
-      log(`voice pass iter ${iter} failed: ${(err as Error).message}`);
+      const event = recordGenerationDegradation(generationManifest, {
+        stage: "voice-pass",
+        inputHashes: generationInputHashes({ brief, plan, priorFindings: issues, draft: breakdown }),
+        error: err,
+        attemptCount: iter,
+        fallbackUsed: {
+          kind: "previous-clean-voice-pass-output",
+          policy: "availability",
+          reason: "Retained the last successful voice-pass output after a later iteration failed.",
+        },
+        fallbackOutput: breakdown,
+        severity: "serious",
+        requiredDisposition: "resolve_before_production",
+      });
+      log(`voice pass iter ${iter} failed: ${(err as Error).message}; recorded degradation ${event.eventId}`);
       break;
     }
   }
@@ -637,10 +701,30 @@ export async function generateChapter(
   // been brought home. Closes the editorial-quality gap to commercial apps.
   log(`line editor: surgical polish pass…`);
   try {
+    const beforeLineEditor = breakdown;
     breakdown = await agents.runLineEditor({ brief, plan, draft: breakdown });
+    recordGenerationStage(generationManifest, {
+      stage: "line-editor",
+      input: { brief, plan, draft: beforeLineEditor },
+      output: breakdown,
+    });
     log(`line editor: done (fastRead=${breakdown.fastRead.length}c, deepRead=${breakdown.deepRead.length}c, fullRead=${breakdown.fullRead.length}c)`);
   } catch (err) {
-    log(`line editor: failed (${(err as Error).message}), keeping voice-passed draft`);
+    const event = recordGenerationDegradation(generationManifest, {
+      stage: "line-editor",
+      inputHashes: generationInputHashes({ brief, plan, draft: breakdown }),
+      error: err,
+      attemptCount: 1,
+      fallbackUsed: {
+        kind: "voice-passed-draft",
+        policy: "availability",
+        reason: "Line editor failed after voice pass; retained the voice-passed draft.",
+      },
+      fallbackOutput: breakdown,
+      severity: "serious",
+      requiredDisposition: "resolve_before_production",
+    });
+    log(`line editor: failed (${(err as Error).message}), keeping voice-passed draft; recorded degradation ${event.eventId}`);
   }
 
   // Library ledger: forbidden names from recent books. This is a read-only
@@ -691,12 +775,42 @@ export async function generateChapter(
         log(`  example[${i}] batch 1 all failed on pronoun/noise names, filtering ledger and retrying…`);
         const cleaned = usedNames.filter((n) => !/^(You|Your|We|Us|Our|My|I|Me|Him|Them|Who|What|Why|How|He|She|They|It|This|That|These|Those|Here|There|Not|Nobody|Anybody|Somebody|Everyone|Someone|Anyone|None|Yes|No|Maybe|Once|Only|Even|Also|Still|Again|Just|When|Where|While|Before|After|During|Until|Since|And|But|Or|So|If|Because|Then|Now|Today|Tomorrow|The|A|An|First|Second|Third|Fourth|Fifth|Last|Next)$/.test(n));
         const retry = await runBatch(cleaned);
+        const event = recordGenerationDegradation(generationManifest, {
+          stage: "writer-example",
+          inputHashes: generationInputHashes({ spec, specIndex: i, usedNames, initialErrors: errors }),
+          error: new Error(`example[${i}] initial candidate batch failed on pronoun/noise name constraints`),
+          attemptCount: 2,
+          fallbackUsed: {
+            kind: "filtered-ledger-name-list",
+            policy: "availability",
+            reason: "Filtered pronoun/noise tokens from the forbidden-name ledger and retried the same example slot.",
+          },
+          fallbackOutput: { candidateCount: retry.candidates.length, errors: retry.errors },
+          severity: "serious",
+          requiredDisposition: "resolve_before_production",
+        });
+        log(`  example[${i}] fallback recorded ${event.eventId}`);
         candidates = retry.candidates;
         errors = retry.errors;
       } else {
         log(`  example[${i}] batch 1 all failed: ${errors.slice(0, 3).join(" | ")}`);
         log(`  example[${i}] retry with relaxed name constraints (within-chapter only, no cross-book forbidden)…`);
         const retry = await runBatch(withinChapterNames);
+        const event = recordGenerationDegradation(generationManifest, {
+          stage: "writer-example",
+          inputHashes: generationInputHashes({ spec, specIndex: i, usedNames, initialErrors: errors }),
+          error: new Error(`example[${i}] initial candidate batch failed`),
+          attemptCount: 2,
+          fallbackUsed: {
+            kind: "within-chapter-name-list",
+            policy: "availability",
+            reason: "Dropped cross-book forbidden names for this retry; within-chapter dedupe remained active.",
+          },
+          fallbackOutput: { candidateCount: retry.candidates.length, errors: retry.errors },
+          severity: "serious",
+          requiredDisposition: "resolve_before_production",
+        });
+        log(`  example[${i}] fallback recorded ${event.eventId}`);
         candidates = retry.candidates;
         errors = retry.errors;
       }
@@ -714,6 +828,12 @@ export async function generateChapter(
       winner = candidates[curated.winnerIndex];
     }
     examples.push(winner);
+    recordGenerationStage(generationManifest, {
+      stage: "writer-example",
+      input: { spec, specIndex: i },
+      output: winner,
+      attemptCount: candidates.length,
+    });
     for (const n of extractNamesFromText(winner.scenario)) {
       if (!usedNames.includes(n)) usedNames.push(n);
       if (!withinChapterNames.includes(n)) withinChapterNames.push(n);
@@ -725,16 +845,60 @@ export async function generateChapter(
   const quizAnchors = selectAnchorsForClaim(sourceEvidence, ["quiz_prompt", "quiz_explanation", "quiz_key_evidence"], plan.quizFocus.sourceAnchorIds, 12);
   const cardAnchors = selectAnchorsForClaim(sourceEvidence, ["review_card"], plan.cardFocus.sourceAnchorIds, 8);
   const implementationAnchors = selectAnchorsForClaim(sourceEvidence, ["implementation_guidance", "takeaway"], plan.coreMoveSourceAnchorIds, 8);
+  const tryThisNowPromise = agents.runTryThisNow({ brief, plan })
+    .then((output) => {
+      recordGenerationStage(generationManifest, {
+        stage: "try-this-now",
+        input: { brief, plan },
+        output,
+      });
+      return output;
+    })
+    .catch((err) => {
+      const event = recordGenerationDegradation(generationManifest, {
+        stage: "try-this-now",
+        inputHashes: generationInputHashes({ brief, plan }),
+        error: err,
+        attemptCount: 1,
+        fallbackUsed: {
+          kind: "omitted-optional-callout",
+          policy: "availability",
+          reason: "tryThisNow support stage failed; omitted the optional callout rather than inventing one.",
+        },
+        fallbackOutput: null,
+        severity: "serious",
+        requiredDisposition: "resolve_before_production",
+      });
+      log(`tryThisNow failed: ${(err as Error).message}; recorded degradation ${event.eventId}`);
+      return undefined;
+    });
   const [quiz, cards, ipPlan, keyTakeaway, tryThisNow] = await Promise.all([
     agents.runWriterQuiz({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: quizAnchors }),
     agents.runWriterCards({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: cardAnchors }),
     agents.runWriterImplementationPlan({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: implementationAnchors }),
     agents.generateKeyTakeaway(brief, plan, breakdown.deepRead, selectAnchorsForClaim(sourceEvidence, ["takeaway", "core_move"], plan.coreMoveSourceAnchorIds, 6)),
-    agents.runTryThisNow({ brief, plan }).catch((err) => {
-      log(`tryThisNow failed: ${(err as Error).message}`);
-      return undefined;
-    }),
+    tryThisNowPromise,
   ]);
+  recordGenerationStage(generationManifest, {
+    stage: "writer-quiz",
+    input: { brief, plan, breakdownHash: generationInputHash(breakdown), anchorIds: anchorIds(quizAnchors) },
+    output: quiz,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "writer-cards",
+    input: { brief, plan, breakdownHash: generationInputHash(breakdown), anchorIds: anchorIds(cardAnchors) },
+    output: cards,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "writer-implementation-plan",
+    input: { brief, plan, breakdownHash: generationInputHash(breakdown), anchorIds: anchorIds(implementationAnchors) },
+    output: ipPlan,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "key-takeaway",
+    input: { brief, plan, deepReadHash: generationInputHash(breakdown.deepRead) },
+    output: keyTakeaway,
+  });
   log(`quiz=${quiz.questions.length}q, cards=${cards.cards.length}, plan=${ipPlan.ifThenPlans.length} if-thens, tryThisNow=${tryThisNow ? "yes" : "skipped"}`);
 
   // Assemble draft chapter (without memorableLines yet — that runs after assembly)
@@ -751,6 +915,7 @@ export async function generateChapter(
     tryThisNow: tryThisNow?.tryThisNow,
     tryThisNowSourceAnchorIds: anchorIds(implementationAnchors.slice(0, 1)),
     sourceEvidence,
+    generation: generationManifest,
   });
 
   // Memorable-lines pass: read the assembled chapter, mark the 3 most quotable
@@ -760,9 +925,28 @@ export async function generateChapter(
   try {
     const ml = await agents.runMemorableLines(draftAssembled);
     memorableLines = ml.memorableLines;
+    recordGenerationStage(generationManifest, {
+      stage: "memorable-lines",
+      input: { chapterHash: generationInputHash(draftAssembled) },
+      output: ml,
+    });
     log(`memorable lines: ${memorableLines.length} marked`);
   } catch (err) {
-    log(`memorable lines failed: ${(err as Error).message}, continuing without`);
+    const event = recordGenerationDegradation(generationManifest, {
+      stage: "memorable-lines",
+      inputHashes: generationInputHashes({ draftAssembled }),
+      error: err,
+      attemptCount: 1,
+      fallbackUsed: {
+        kind: "omitted-quotable-lines",
+        policy: "availability",
+        reason: "Memorable-lines support stage failed; preserved the assembled chapter without optional highlights.",
+      },
+      fallbackOutput: null,
+      severity: "serious",
+      requiredDisposition: "resolve_before_production",
+    });
+    log(`memorable lines failed: ${(err as Error).message}, continuing without; recorded degradation ${event.eventId}`);
   }
 
   const assembled = assembleChapterV21OrThrow({
@@ -779,12 +963,23 @@ export async function generateChapter(
     tryThisNowSourceAnchorIds: anchorIds(implementationAnchors.slice(0, 1)),
     memorableLines,
     sourceEvidence,
+    generation: generationManifest,
+  });
+  recordGenerationStage(generationManifest, {
+    stage: "assembly",
+    input: { planHash: generationInputHash(plan), supportHash: generationInputHash({ examples, quiz, cards, ipPlan, keyTakeaway, tryThisNow, memorableLines }) },
+    output: assembled,
   });
 
   // Final ship gate. The assembled chapter is run through every critic in
   // the FAILURE-MODES catalog. Blockers fail-close: the chapter does NOT
   // get persisted to disk. Majors/minors are logged but allow the ship.
   const gate = runShipGate(assembled);
+  recordGenerationStage(generationManifest, {
+    stage: "ship-gate",
+    input: { chapterHash: generationInputHash(assembled) },
+    output: { passed: gate.passed, blockers: gate.blockers.length, majors: gate.majors.length, minors: gate.minors.length },
+  });
   log(formatGateReport(gate));
   if (!gate.passed) {
     // Save the failed draft to a quarantine path so it can be inspected.
@@ -813,10 +1008,20 @@ export async function generateChapter(
   // the walk-away conductor permanently. rename(2) leaves either the old file or the complete
   // new one.
   const authorSessionId = requireCurrentSessionId(`generateChapter ${chapter.chapterId}`);
-  recordAuthorProvenance(assembled.chapterId, authorSessionId);
+  generationManifest.authorSessionId = authorSessionId;
+  const finalChapter: ChapterV21 = {
+    ...assembled,
+    authoring: {
+      schemaVersion: "chapter-authoring-v1",
+      ...(assembled.authoring ?? {}),
+      generation: generationManifest,
+    },
+  };
+  recordAuthorProvenance(finalChapter.chapterId, authorSessionId);
   const outDir = resolve(stateRoot, "chapters");
   const finalChapterPath = resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`);
-  writeFileAtomic(finalChapterPath, JSON.stringify(assembled, null, 2));
+  writeFileAtomic(finalChapterPath, JSON.stringify(finalChapter, null, 2));
+  writeGenerationManifestSidecar(generationManifest, stateRoot);
   writeStageCacheManifest({
     artifactPath: finalChapterPath,
     artifactType: "chapter",
@@ -831,12 +1036,12 @@ export async function generateChapter(
   // generateBook runs don't lose updates. (The earlier librarySnapshot was
   // a stale read used only for the forbidden-names list above.)
   const updated = await withLibraryState((state) => {
-    ingestIntoLibrary(state, book.bookId, book.title, book.author, assembled);
+    ingestIntoLibrary(state, book.bookId, book.title, book.author, finalChapter);
   });
   log(`librarian: ingested. Book now has ${updated.books[book.bookId].namesUsed.length} unique names across ${updated.books[book.bookId].chaptersIngested.length} chapters.`);
 
   log(`chapter done: ${((Date.now() - overall) / 1000).toFixed(1)}s wall`);
-  return assembled;
+  return finalChapter;
 }
 
 export function readingLevels(chapter: ChapterV21): { fastRead: number; deepRead: number; fullRead: number } {

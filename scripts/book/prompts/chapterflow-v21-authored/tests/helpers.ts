@@ -11,7 +11,7 @@ import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, existsSync
 import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import type { ChapterV21 } from "../src/types.js";
+import { V21_SCHEMA_VERSION, type ChapterV21 } from "../src/types.js";
 import {
   buildInitialResearchRunManifest,
   RESEARCH_RUN_CODE_VERSION,
@@ -155,6 +155,7 @@ export function makeChapter(bookId: string, n: number, opts: MakeChapterOpts = {
     opts.questionIdStyle === "scoped" ? `${chapterId}-q${String(i + 1).padStart(2, "0")}` : `q${String(i + 1).padStart(2, "0")}`;
 
   const chapter: ChapterV21 = {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId,
     number: n,
     title: `The ${words[0]} principle`,

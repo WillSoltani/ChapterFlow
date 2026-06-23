@@ -128,6 +128,8 @@ Commands:
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
+                                     Unresolved serious generation-debt events block; exact-content
+                                     waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
   verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p]
                                      Read-only production verifier: recomputes the manifest payload from
@@ -1384,7 +1386,8 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   // promote time — so an env-less invocation (the command book-status used to print) silently
   // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. Unresolved
   // majors are also production-blocking by default unless a content-bound reviewer waiver closes
-  // the exact current finding.
+  // the exact current finding. Serious generation degradation follows the same production rule:
+  // it must be resolved or closed by an exact-content waiver before promoteBook ships.
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     console.log("promote/publish: enforcing the no-API QC gate stack (CHAPTERFLOW_NO_API_CODEX_QC=1) — sweep + source-verify + manual key-judge must pass before shipping.");

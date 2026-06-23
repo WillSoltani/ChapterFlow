@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { resolve } from "path";
-import type { ChapterV21 } from "../types.js";
+import { V21_SCHEMA_VERSION, type ChapterV21 } from "../types.js";
 
 const outDirs = [
   resolve("state/chapters"),
@@ -59,6 +59,7 @@ function example(bookId: string, n: number, i: number, title: string, tags: stri
 
 const chapters: ChapterV21[] = [
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch01",
     number: 1,
     title: "The Habit Zone",
@@ -119,6 +120,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch02",
     number: 2,
     title: "Trigger",
@@ -179,6 +181,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch03",
     number: 3,
     title: "Action",
@@ -239,6 +242,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch04",
     number: 4,
     title: "Variable Reward",
@@ -299,6 +303,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch05",
     number: 5,
     title: "Investment",
@@ -359,6 +364,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch06",
     number: 6,
     title: "What Are You Going To Do With This?",
@@ -419,6 +425,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch07",
     number: 7,
     title: "Case Study: The Bible App",
@@ -479,6 +486,7 @@ const chapters: ChapterV21[] = [
     ],
   },
   {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "hooked-ch08",
     number: 8,
     title: "Habit Testing and Where To Look For Habit-Forming Opportunities",

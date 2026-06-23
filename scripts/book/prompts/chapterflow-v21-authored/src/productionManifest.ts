@@ -55,6 +55,15 @@ export type ProductionManifestChapter = {
     schemaVersion: string | null;
     sourceHash: string | null;
   } | null;
+  generationEvidence: {
+    path: string;
+    semanticHash: string;
+    schemaVersion: string | null;
+    runId: string | null;
+    degradationCount: number;
+    seriousDegradationCount: number;
+    advisoryDegradationCount: number;
+  } | null;
   qcAttestation: {
     path: string;
     semanticHash: string;
@@ -253,9 +262,11 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
 
     const authoringPath = stateChapterPathFor(stateRoot, spec.chapterId);
     let authoringEvidence: ProductionManifestChapter["authoringEvidence"] = null;
+    let generationEvidence: ProductionManifestChapter["generationEvidence"] = null;
     const authored = readJsonWithSemanticHash(authoringPath, "PPKG.authoring_unreadable", "state chapter authoring evidence", spec.chapterNumber);
     if (authored.ok) {
       const sourceAnchors = authored.value?.authoring?.sourceAnchors;
+      const generation = authored.value?.authoring?.generation;
       const authoringSchema = typeof sourceAnchors?.schemaVersion === "string" ? sourceAnchors.schemaVersion : null;
       const authoringHash = sourceAnchors ? canonicalJsonSha256(sourceAnchors) : "";
       const authoringSourceHash = typeof sourceAnchors?.sourceHash === "string" ? sourceAnchors.sourceHash : null;
@@ -265,6 +276,18 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
           semanticHash: authoringHash,
           schemaVersion: authoringSchema,
           sourceHash: authoringSourceHash,
+        };
+      }
+      if (generation && typeof generation === "object") {
+        const degradations = Array.isArray(generation.degradations) ? generation.degradations : [];
+        generationEvidence = {
+          path: logicalStatePath(stateRoot, authoringPath),
+          semanticHash: canonicalJsonSha256(generation),
+          schemaVersion: typeof generation.schemaVersion === "string" ? generation.schemaVersion : null,
+          runId: typeof generation.runId === "string" ? generation.runId : null,
+          degradationCount: degradations.length,
+          seriousDegradationCount: degradations.filter((event: any) => event?.severity === "serious").length,
+          advisoryDegradationCount: degradations.filter((event: any) => event?.severity === "advisory").length,
         };
       }
       if (sourceSchema === "source-v2" && (!sourceAnchors || authoringSchema !== "chapter-source-anchor-map-v1")) {
@@ -355,6 +378,7 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
         schemaVersion: sourceSchema,
       },
       authoringEvidence,
+      generationEvidence,
       qcAttestation: {
         path: logicalStatePath(stateRoot, qcPath),
         semanticHash: qcHash,

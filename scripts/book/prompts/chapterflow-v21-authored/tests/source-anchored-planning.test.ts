@@ -278,25 +278,25 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and 
       name: "nonexistent",
       checkId: "SC11.5.unknown_anchor",
       evidence: "ch01.fact.404",
-      mutate: (chapter) => { chapter.authoring!.sourceAnchors.effectiveAnchors.hook = ["ch01.fact.404"]; },
+      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors.hook = ["ch01.fact.404"]; },
     },
     {
       name: "wrong-chapter",
       checkId: "SC11.4.wrong_chapter_anchor",
       evidence: "ch02.fact.1",
-      mutate: (chapter) => { chapter.authoring!.sourceAnchors.effectiveAnchors.hook = ["ch02.fact.1"]; },
+      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors.hook = ["ch02.fact.1"]; },
     },
     {
       name: "placeholder",
       checkId: "SC11.3.placeholder_anchor",
       evidence: "anchor-99",
-      mutate: (chapter) => { chapter.authoring!.sourceAnchors.effectiveAnchors.hook = ["anchor-99"]; },
+      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors.hook = ["anchor-99"]; },
     },
     {
       name: "unsupported",
       checkId: "SC11.6.unsupported_anchor",
       evidence: "ch01.ex.lantern",
-      mutate: (chapter) => { chapter.authoring!.sourceAnchors.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"]; },
+      mutate: (chapter) => { chapter.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"]; },
     },
   ];
   for (const c of cases) {

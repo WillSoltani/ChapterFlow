@@ -44,6 +44,7 @@ import { normSlug } from "./lib/chapterPaths.js";
 import { stripInternalFields } from "./lib/readerContent.js";
 import { buildProductionManifest, type ProductionManifestFinding } from "./productionManifest.js";
 import { verifyProductionPackage } from "./verifyProductionPackage.js";
+import { evaluateGenerationDebt } from "./generationDegradation.js";
 import {
   compareChapterSetToCanonical,
   formatChapterSetBlockers,
@@ -90,6 +91,8 @@ export type PromotionResult = {
   noApiBlockerCount: number;
   majorBlockerCount: number;
   sourceIntegrityBlockerCount: number;
+  generationDebtBlockerCount: number;
+  generationDebtAdvisoryCount: number;
   productionManifestBlockerCount: number;
   canonicalBlockerCount: number;
   canonicalBlockers?: ChapterSetBlocker[];
@@ -370,6 +373,9 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     message: f.message,
   }));
   const sourceIntegrityBlockerCount = sourceIntegrityFindings.length;
+  const generationDebt = evaluateGenerationDebt(bookId, loadedChapters);
+  const generationDebtBlockerCount = generationDebt.totalBlockers;
+  const generationDebtAdvisoryCount = generationDebt.totalAdvisories;
 
   // Step 3.5: QC-attestation gate — the no-API semantic judge. Every chapter
   // must carry a fresh PUBLISHABLE attestation from a Claude reviewer; this is
@@ -439,7 +445,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   }
   const noApiBlockerCount = noApiFindings.length;
   const preManifestBlockerCount =
-    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount + sourceIntegrityBlockerCount;
+    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount + sourceIntegrityBlockerCount + generationDebtBlockerCount;
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
   const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
@@ -525,6 +531,13 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
     sourceIntegrity: { totalBlockers: sourceIntegrityBlockerCount, findings: sourceIntegrityFindings },
+    generationDebt: {
+      schemaVersion: generationDebt.schemaVersion,
+      totalBlockers: generationDebtBlockerCount,
+      totalAdvisories: generationDebtAdvisoryCount,
+      findings: generationDebt.findings,
+      waived: generationDebt.waived,
+    },
     noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
     majorPolicy: {
       schemaVersion: "major-production-policy-v1",
@@ -567,6 +580,9 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     const sourceIntegritySummary = sourceIntegrityBlockerCount > 0
       ? ` + ${sourceIntegrityBlockerCount} source-integrity blocker(s): ${sourceIntegrityFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${sourceIntegrityBlockerCount > 3 ? ", …" : ""}`
       : "";
+    const generationDebtSummary = generationDebtBlockerCount > 0
+      ? ` + ${generationDebtBlockerCount} generation-debt blocker(s): ${generationDebt.findings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.stage}`).join(", ")}${generationDebtBlockerCount > 3 ? ", …" : ""}`
+      : "";
     const manifestSummary = productionManifestBlockerCount > 0
       ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
       : "";
@@ -582,11 +598,13 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       noApiBlockerCount,
       majorBlockerCount,
       sourceIntegrityBlockerCount,
+      generationDebtBlockerCount,
+      generationDebtAdvisoryCount,
       productionManifestBlockerCount,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
     };
   }
 
@@ -615,6 +633,8 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     noApiBlockerCount: 0,
     majorBlockerCount: 0,
     sourceIntegrityBlockerCount: 0,
+    generationDebtBlockerCount: 0,
+    generationDebtAdvisoryCount,
     productionManifestBlockerCount: 0,
     canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
@@ -635,6 +655,8 @@ function blockedResult(args: { bookId: string; reason: string; canonicalBlockers
     noApiBlockerCount: 0,
     majorBlockerCount: 0,
     sourceIntegrityBlockerCount: 0,
+    generationDebtBlockerCount: 0,
+    generationDebtAdvisoryCount: 0,
     productionManifestBlockerCount: 0,
     canonicalBlockerCount: args.canonicalBlockers?.length ?? 0,
     canonicalBlockers: args.canonicalBlockers,
@@ -656,6 +678,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
   lines.push(`  Source integrity: ${r.sourceIntegrityBlockerCount} blockers`);
+  lines.push(`  Generation debt: ${r.generationDebtBlockerCount} blockers, ${r.generationDebtAdvisoryCount} advisories`);
   lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);

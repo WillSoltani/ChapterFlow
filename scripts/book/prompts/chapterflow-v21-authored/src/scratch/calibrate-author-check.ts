@@ -14,7 +14,7 @@
  */
 import { readFileSync, readdirSync } from "node:fs";
 import { checkAuthoringContract, ACFinding } from "../critics/authoringContract.js";
-import type { ChapterV21 } from "../types.js";
+import { V21_SCHEMA_VERSION, type ChapterV21 } from "../types.js";
 
 let failures = 0;
 const ok = (c: boolean, msg: string) => { console.log(`  ${c ? "✓" : "✗ FAIL"} ${msg}`); if (!c) failures++; };
@@ -37,6 +37,7 @@ for (const book of ["daring-greatly", "start-with-why"]) {
 // check should fire). Built to pass everything by default.
 function baseChapter(): ChapterV21 {
   return {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: "fixture-ch01", number: 1, title: "Productive Vulnerability", readingTimeMinutes: 8,
     hook: "Trust is built in the smallest moments, not the grand gestures.",
     keyTakeaway: "Name the fear before the conversation and it loses its grip on the room.",

@@ -8,6 +8,7 @@ import type {
   ChapterV21,
   SourceAnchorForPrompt,
 } from "./types.js";
+import { V21_SCHEMA_VERSION } from "./types.js";
 import type { AssembleInput } from "./assembler.js";
 import type { BreakdownOutput } from "./agents/writer-breakdown.js";
 import type { CardsOutput } from "./agents/writer-cards.js";
@@ -135,6 +136,17 @@ function requiredString(c: Collector, raw: Record<string, unknown>, key: string,
   }
 }
 
+function requiredLiteral(c: Collector, raw: Record<string, unknown>, key: string, path: string, expected: string): void {
+  const value = raw[key];
+  if (value !== expected) c.issue(child(path, key), JSON.stringify(expected), value);
+}
+
+function optionalLiteral(c: Collector, raw: Record<string, unknown>, key: string, path: string, expected: string): void {
+  const value = raw[key];
+  if (value === undefined || value === null) return;
+  if (value !== expected) c.issue(child(path, key), `${JSON.stringify(expected)} when present`, value);
+}
+
 function optionalString(c: Collector, raw: Record<string, unknown>, key: string, path: string): void {
   const value = raw[key];
   if (value === undefined || value === null) return;
@@ -199,6 +211,7 @@ export function validateChapterV21(raw: unknown, checkId = "schema.chapter_contr
     return { ok: false, findings: c.findings };
   }
 
+  optionalLiteral(c, raw, "schemaVersion", "/", V21_SCHEMA_VERSION);
   requiredString(c, raw, "chapterId", "/");
   requiredPositiveInteger(c, raw, "number", "/");
   requiredString(c, raw, "title", "/");
@@ -338,19 +351,22 @@ function validateMemorableLine(c: Collector, item: unknown, path: string): void 
 function validateAuthoringEvidence(c: Collector, authoring: Record<string, unknown>, path: string): void {
   optionalString(c, authoring, "schemaVersion", path);
   const sourceAnchors = optionalRecord(c, authoring, "sourceAnchors", path);
-  if (!sourceAnchors) return;
-  optionalString(c, sourceAnchors, "schemaVersion", child(path, "sourceAnchors"));
-  optionalString(c, sourceAnchors, "sourceHash", child(path, "sourceAnchors"));
-  optionalString(c, sourceAnchors, "sourceSidecarPath", child(path, "sourceAnchors"));
-  optionalStringArray(c, sourceAnchors, "observedAnchorIds", child(path, "sourceAnchors"));
-  const effective = optionalRecord(c, sourceAnchors, "effectiveAnchors", child(path, "sourceAnchors"));
-  if (effective) {
-    const effectivePath = child(child(path, "sourceAnchors"), "effectiveAnchors");
-    for (const [key, value] of Object.entries(effective)) {
-      if (!Array.isArray(value)) c.issue(child(effectivePath, key), "array of strings", value);
-      else stringArray(c, value, child(effectivePath, key));
+  if (sourceAnchors) {
+    optionalString(c, sourceAnchors, "schemaVersion", child(path, "sourceAnchors"));
+    optionalString(c, sourceAnchors, "sourceHash", child(path, "sourceAnchors"));
+    optionalString(c, sourceAnchors, "sourceSidecarPath", child(path, "sourceAnchors"));
+    optionalStringArray(c, sourceAnchors, "observedAnchorIds", child(path, "sourceAnchors"));
+    const effective = optionalRecord(c, sourceAnchors, "effectiveAnchors", child(path, "sourceAnchors"));
+    if (effective) {
+      const effectivePath = child(child(path, "sourceAnchors"), "effectiveAnchors");
+      for (const [key, value] of Object.entries(effective)) {
+        if (!Array.isArray(value)) c.issue(child(effectivePath, key), "array of strings", value);
+        else stringArray(c, value, child(effectivePath, key));
+      }
     }
   }
+  const generation = optionalRecord(c, authoring, "generation", path);
+  if (generation) validateGenerationRunManifest(c, generation, child(path, "generation"));
 }
 
 function validateExperiencePlan(c: Collector, ep: Record<string, unknown>, path: string): void {
@@ -445,6 +461,8 @@ export function validateAssembleInput(raw: unknown, checkId = "schema.assembler_
   optionalString(c, raw, "tryThisNow", "/");
   optionalStringArray(c, raw, "tryThisNowSourceAnchorIds", "/");
   optionalArray(c, raw, "memorableLines", "/");
+  const generation = optionalRecord(c, raw, "generation", "/");
+  if (generation) validateGenerationRunManifest(c, generation, "/generation");
 
   if (plan && examples) {
     const specLen = Array.isArray(plan.exampleSpecs) ? plan.exampleSpecs.length : null;
@@ -474,7 +492,190 @@ export function validateAssembleInput(raw: unknown, checkId = "schema.assembler_
     if (typeof expected === "number" && cards.cards.length !== expected) c.issue("/cards/cards", `length equal to plan.cardFocus.count (${expected})`, cards.cards);
   }
 
+  validateSourceV2AssembleAnchors(c, raw);
+
   return c.findings.length ? { ok: false, findings: c.findings } : { ok: true, value: raw as AssembleInputValidated, findings: [] };
+}
+
+function validateSourceV2AssembleAnchors(c: Collector, raw: Record<string, unknown>): void {
+  const sourceEvidence = raw.sourceEvidence;
+  if (!isRecord(sourceEvidence) || sourceEvidence.sourceV2 !== true) return;
+  const anchorItems = Array.isArray(sourceEvidence.anchors) ? sourceEvidence.anchors : [];
+  const allowed = new Set<string>();
+  for (const item of anchorItems) {
+    if (isRecord(item) && typeof item.id === "string" && item.id.trim()) allowed.add(item.id);
+  }
+  if (allowed.size === 0) {
+    c.issue("/sourceEvidence/anchors", "nonempty allowed source anchors for source-v2 assembly", sourceEvidence.anchors);
+    return;
+  }
+
+  const requireIds = (value: unknown, path: string): void => {
+    const ids = normalizeStringArrayValue(value);
+    if (ids.length === 0) {
+      c.issue(path, "nonempty source anchor id array from generated output", value);
+      return;
+    }
+    ids.forEach((id, i) => {
+      if (!allowed.has(id)) c.issue(child(path, i), "allowed source anchor id", id);
+    });
+  };
+  const requireRecordIds = (record: Record<string, unknown> | null, key: string, path: string): void => {
+    if (!record) {
+      c.issue(path, "object carrying source anchor ids", record);
+      return;
+    }
+    requireIds(record[key], child(path, key));
+  };
+  const idsFromSourceFields = (record: Record<string, unknown>): unknown => {
+    const arr = record.sourceAnchorIds;
+    if (arr !== undefined) return arr;
+    const single = record.sourceAnchorId;
+    return single === undefined ? undefined : [single];
+  };
+
+  const breakdown = isRecord(raw.breakdown) ? raw.breakdown : null;
+  const breakdownIds = isRecord(breakdown?.sourceAnchorIds) ? breakdown.sourceAnchorIds : null;
+  requireRecordIds(breakdownIds, "fastRead", "/breakdown/sourceAnchorIds");
+  requireRecordIds(breakdownIds, "deepRead", "/breakdown/sourceAnchorIds");
+  requireRecordIds(breakdownIds, "fullRead", "/breakdown/sourceAnchorIds");
+
+  const examples = Array.isArray(raw.examples) ? raw.examples : [];
+  examples.forEach((example, i) => {
+    if (isRecord(example)) requireIds(idsFromSourceFields(example), child(child("/examples", i), "sourceAnchorIds"));
+  });
+
+  const quiz = isRecord(raw.quiz) ? raw.quiz : null;
+  const questions = Array.isArray(quiz?.questions) ? quiz.questions : [];
+  questions.forEach((question, i) => {
+    const qPath = child(child("/quiz/questions", i), "sourceAnchorIds");
+    if (isRecord(question)) {
+      requireIds(idsFromSourceFields(question), qPath);
+      requireIds(question.keyEvidenceAnchorIds, child(child("/quiz/questions", i), "keyEvidenceAnchorIds"));
+    }
+  });
+
+  const cards = isRecord(raw.cards) ? raw.cards : null;
+  const cardItems = Array.isArray(cards?.cards) ? cards.cards : [];
+  cardItems.forEach((card, i) => {
+    if (isRecord(card)) requireIds(idsFromSourceFields(card), child(child("/cards/cards", i), "sourceAnchorIds"));
+  });
+
+  const implementationPlan = isRecord(raw.implementationPlan) ? raw.implementationPlan : null;
+  if (implementationPlan) {
+    requireIds(implementationPlan.titleSourceAnchorIds, "/implementationPlan/titleSourceAnchorIds");
+    requireIds(implementationPlan.coreSkillSourceAnchorIds, "/implementationPlan/coreSkillSourceAnchorIds");
+    const ifThenPlans = Array.isArray(implementationPlan.ifThenPlans) ? implementationPlan.ifThenPlans : [];
+    ifThenPlans.forEach((item, i) => {
+      if (isRecord(item)) requireIds(idsFromSourceFields(item), child(child("/implementationPlan/ifThenPlans", i), "sourceAnchorIds"));
+    });
+    requireIds(implementationPlan.twentyFourHourChallengeSourceAnchorIds, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
+    requireIds(implementationPlan.weeklyPracticeSourceAnchorIds, "/implementationPlan/weeklyPracticeSourceAnchorIds");
+  }
+
+  const hook = isRecord(raw.hook) ? raw.hook : null;
+  if (hook) {
+    requireIds(hook.sourceAnchorIds, "/hook/sourceAnchorIds");
+    if (typeof hook.counterintuition === "string" && hook.counterintuition.trim()) {
+      requireIds(hook.counterintuitionSourceAnchorIds, "/hook/counterintuitionSourceAnchorIds");
+    }
+  }
+  requireIds(raw.keyTakeawaySourceAnchorIds, "/keyTakeawaySourceAnchorIds");
+  if (typeof raw.tryThisNow === "string" && raw.tryThisNow.trim()) {
+    requireIds(raw.tryThisNowSourceAnchorIds, "/tryThisNowSourceAnchorIds");
+  }
+
+  const memorableLines = Array.isArray(raw.memorableLines) ? raw.memorableLines : [];
+  memorableLines.forEach((line, i) => {
+    if (isRecord(line)) requireIds(line.sourceAnchorIds, child(child("/memorableLines", i), "sourceAnchorIds"));
+  });
+}
+
+function normalizeStringArrayValue(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  if (typeof value === "string" && value.trim()) return [value];
+  return [];
+}
+
+function validateGenerationRunManifest(c: Collector, raw: Record<string, unknown>, path: string): void {
+  requiredLiteral(c, raw, "schemaVersion", path, "chapter-generation-run-v1");
+  requiredString(c, raw, "runId", path);
+  requiredString(c, raw, "chapterId", path);
+  requiredString(c, raw, "authorSessionId", path);
+  requiredString(c, raw, "createdAt", path);
+  requiredString(c, raw, "promptSetId", path);
+  requiredString(c, raw, "configId", path);
+  requiredString(c, raw, "codeVersion", path);
+  requiredLiteral(c, raw, "chapterSchemaVersion", path, V21_SCHEMA_VERSION);
+  optionalString(c, raw, "sourceHash", path);
+  optionalString(c, raw, "sourceAnchorCatalogHash", path);
+  optionalString(c, raw, "planHash", path);
+  const provider = requiredRecord(c, raw, "provider", path);
+  if (provider) {
+    requiredString(c, provider, "tier", child(path, "provider"));
+    requiredString(c, provider, "provider", child(path, "provider"));
+    requiredString(c, provider, "model", child(path, "provider"));
+  }
+  const projection = requiredRecord(c, raw, "projection", path);
+  if (projection) {
+    requiredString(c, projection, "version", child(path, "projection"));
+    requiredLiteral(c, projection, "readerContentHashInclusion", child(path, "projection"), "excluded");
+    requiredString(c, projection, "note", child(path, "projection"));
+  }
+  const stages = requiredArray(c, raw, "stages", path);
+  if (stages) {
+    stages.forEach((stage, i) => {
+      const p = child(child(path, "stages"), i);
+      if (!isRecord(stage)) {
+        c.issue(p, "generation stage provenance object", stage);
+        return;
+      }
+      requiredLiteral(c, stage, "schemaVersion", p, "chapter-generation-stage-v1");
+      requiredString(c, stage, "stage", p);
+      requiredString(c, stage, "status", p);
+      requiredString(c, stage, "inputHash", p);
+      optionalString(c, stage, "outputHash", p);
+      requiredPositiveInteger(c, stage, "attemptCount", p);
+      requiredString(c, stage, "completedAt", p);
+      optionalString(c, stage, "degradationEventId", p);
+    });
+  }
+  const degradations = requiredArray(c, raw, "degradations", path);
+  if (degradations) {
+    degradations.forEach((event, i) => validateGenerationDegradationEvent(c, event, child(child(path, "degradations"), i)));
+  }
+}
+
+function validateGenerationDegradationEvent(c: Collector, event: unknown, path: string): void {
+  if (!isRecord(event)) {
+    c.issue(path, "generation degradation event object", event);
+    return;
+  }
+  requiredLiteral(c, event, "schemaVersion", path, "generation-degradation-event-v1");
+  requiredString(c, event, "eventId", path);
+  requiredString(c, event, "stage", path);
+  const inputHashes = requiredRecord(c, event, "inputHashes", path);
+  if (inputHashes) {
+    for (const [key, value] of Object.entries(inputHashes)) {
+      if (typeof value !== "string" || !value.trim()) c.issue(child(child(path, "inputHashes"), key), "nonempty hash string", value);
+    }
+  }
+  const error = requiredRecord(c, event, "error", path);
+  if (error) {
+    requiredString(c, error, "class", child(path, "error"));
+    requiredString(c, error, "message", child(path, "error"));
+  }
+  requiredPositiveInteger(c, event, "attemptCount", path);
+  const fallback = requiredRecord(c, event, "fallbackUsed", path);
+  if (fallback) {
+    requiredString(c, fallback, "kind", child(path, "fallbackUsed"));
+    requiredString(c, fallback, "policy", child(path, "fallbackUsed"));
+    requiredString(c, fallback, "reason", child(path, "fallbackUsed"));
+  }
+  requiredString(c, event, "outputHash", path);
+  requiredString(c, event, "severity", path);
+  requiredString(c, event, "requiredDisposition", path);
+  requiredString(c, event, "observedAt", path);
 }
 
 function validatePlan(c: Collector, plan: Record<string, unknown>, path: string): void {

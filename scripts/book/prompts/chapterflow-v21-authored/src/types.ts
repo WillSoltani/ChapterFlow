@@ -1,4 +1,5 @@
 import type { ProductionPackageManifest } from "./productionManifest.js";
+import type { GenerationRunManifestV1 } from "./generationDegradation.js";
 
 /**
  * ChapterFlow v21 — shared typed contracts.
@@ -409,6 +410,7 @@ export type BookPackageV21 = {
 };
 
 export type ChapterV21 = {
+  schemaVersion: typeof V21_SCHEMA_VERSION;
   chapterId: string;
   number: number;
   title: string;
@@ -488,7 +490,8 @@ export type ChapterSourceAnchorMapV1 = {
 
 export type ChapterAuthoringEvidenceV21 = {
   schemaVersion: "chapter-authoring-v1";
-  sourceAnchors: ChapterSourceAnchorMapV1;
+  sourceAnchors?: ChapterSourceAnchorMapV1;
+  generation?: GenerationRunManifestV1;
 };
 
 /** A "which pattern fits you?" reader personalization tag (RDRP*). The label is a

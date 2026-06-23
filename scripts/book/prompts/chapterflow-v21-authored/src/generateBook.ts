@@ -19,6 +19,14 @@ import { classifyCounterShape } from "./critics/bookPatternAudit.js";
 import { promoteBook, formatPromotionResult, PromotionResult } from "./promoteBook.js";
 import { runCategorizer } from "./agents/categorizer.js";
 import { loadCanonicalChapterIndex } from "./lib/chapterSet.js";
+import { currentProviderIdentity } from "./cache/stageCache.js";
+import { currentSessionId } from "./qc/sessionProvenance.js";
+import {
+  createGenerationRunManifest,
+  generationInputHashes,
+  recordGenerationDegradation,
+  writeGenerationManifestSidecar,
+} from "./generationDegradation.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -158,7 +166,32 @@ export async function generateBook(
           // Categorizer failure shouldn't block promotion. Categories are
           // optional metadata; the book is still shippable. Operator can rerun
           // the categorizer later (it caches once it succeeds).
-          log(`categorizer failed (${(err as Error).message}); promoting without categories — rerun the categorizer separately to backfill`);
+          const categorizerManifest = createGenerationRunManifest({
+            runId: process.env.CHAPTERFLOW_RUN_ID ?? `${book.bookId}.categorizer.${Date.now()}`,
+            chapterId: `${book.bookId}.categorizer`,
+            authorSessionId: currentSessionId() ?? "legacy-unknown",
+            provider: currentProviderIdentity("critic"),
+            codeVersion: options.cacheCodeVersion,
+            sourceHash: null,
+            sourceAnchorCatalogHash: null,
+            planHash: null,
+          });
+          const event = recordGenerationDegradation(categorizerManifest, {
+            stage: "categorizer",
+            inputHashes: generationInputHashes({ book, chapterTitles: chapters.map((c) => c.chapterTitle) }),
+            error: err,
+            attemptCount: 1,
+            fallbackUsed: {
+              kind: "omitted-categories-and-tags",
+              policy: "metadata-only",
+              reason: "Categorizer failed; promotion can continue because categories/tags are optional metadata.",
+            },
+            fallbackOutput: { categories: null, tags: null },
+            severity: "advisory",
+            requiredDisposition: "visible_advisory",
+          });
+          writeGenerationManifestSidecar(categorizerManifest);
+          log(`categorizer failed (${(err as Error).message}); promoting without categories — recorded advisory degradation ${event.eventId}`);
         }
       }
 

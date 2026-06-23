@@ -25,6 +25,7 @@ import { ImplementationPlanOutput } from "./agents/writer-implementation-plan.js
 import { HookOutput } from "./agents/writer-hook.js";
 import { MemorableLine } from "./agents/memorable-lines.js";
 import type { PlanningSourceEvidence } from "./source/sourceEvidence.js";
+import type { GenerationRunManifestV1 } from "./generationDegradation.js";
 import { formatRuntimeFindings, RuntimeSchemaFinding, validateAssembleInput } from "./runtimeSchemas.js";
 
 export type AssembleInput = {
@@ -41,6 +42,7 @@ export type AssembleInput = {
   tryThisNowSourceAnchorIds?: string[];
   memorableLines?: MemorableLine[];
   sourceEvidence?: PlanningSourceEvidence;
+  generation?: GenerationRunManifestV1;
 };
 
 export type AssembleChapterResult =
@@ -177,6 +179,7 @@ function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
   });
 
   return {
+    schemaVersion: V21_SCHEMA_VERSION,
     chapterId: plan.chapterId,
     number: plan.number,
     title: plan.title,
@@ -195,16 +198,21 @@ function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
     reviewCards: assembledCards,
     implementationPlan: assembledPlan,
     memorableLines: input.memorableLines,
-    authoring: input.sourceEvidence?.sourceV2
+    authoring: input.sourceEvidence?.sourceV2 || input.generation
       ? {
           schemaVersion: "chapter-authoring-v1",
-          sourceAnchors: {
-            schemaVersion: "chapter-source-anchor-map-v1",
-            sourceHash: input.sourceEvidence.sourceHash,
-            sourceSidecarPath: input.sourceEvidence.chapterSidecarPath ?? undefined,
-            observedAnchorIds: input.sourceEvidence.anchors.map((anchor) => anchor.id),
-            effectiveAnchors: Object.fromEntries(Object.entries(anchorMap).filter(([, ids]) => ids.length > 0)),
-          },
+          ...(input.sourceEvidence?.sourceV2
+            ? {
+                sourceAnchors: {
+                  schemaVersion: "chapter-source-anchor-map-v1" as const,
+                  sourceHash: input.sourceEvidence.sourceHash,
+                  sourceSidecarPath: input.sourceEvidence.chapterSidecarPath ?? undefined,
+                  observedAnchorIds: input.sourceEvidence.anchors.map((anchor) => anchor.id),
+                  effectiveAnchors: Object.fromEntries(Object.entries(anchorMap).filter(([, ids]) => ids.length > 0)),
+                },
+              }
+            : {}),
+          ...(input.generation ? { generation: input.generation } : {}),
         }
       : undefined,
   };
