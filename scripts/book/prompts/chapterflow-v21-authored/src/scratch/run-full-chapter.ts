@@ -34,7 +34,6 @@ import { callClaude } from "../claudeClient.js";
 import { assembleChapterV21, V21_SCHEMA_VERSION } from "../assembler.js";
 import {
   BookBrief,
-  BookPackageV21,
   ChapterDesignDoc,
 } from "../types.js";
 import {
@@ -308,7 +307,7 @@ async function main() {
   }
 
   // Wrap as a v21 BookPackage
-  const pkg: BookPackageV21 = {
+  const pkg = {
     schemaVersion: V21_SCHEMA_VERSION,
     packageId: `${BOOK.bookId}-v21-preview`,
     createdAt: new Date().toISOString(),

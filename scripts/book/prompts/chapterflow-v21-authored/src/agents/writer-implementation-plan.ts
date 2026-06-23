@@ -7,7 +7,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -15,16 +15,21 @@ const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 
 export type ImplementationPlanOutput = {
   title: string;
+  titleSourceAnchorIds?: string[];
   coreSkill: string;
-  ifThenPlans: Array<{ context: string; plan: string }>;
+  coreSkillSourceAnchorIds?: string[];
+  ifThenPlans: Array<{ sourceAnchorId?: string; sourceAnchorIds?: string[]; context: string; plan: string }>;
   twentyFourHourChallenge: string;
+  twentyFourHourChallengeSourceAnchorIds?: string[];
   weeklyPractice: string;
+  weeklyPracticeSourceAnchorIds?: string[];
 };
 
 export type PlanInput = {
   brief: BookBrief;
   plan: ChapterDesignDoc;
   breakdown: BreakdownOutput;
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 const MAX_PLAN_RETRIES = 2;
@@ -48,6 +53,14 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
   parts.push(`# Chapter breakdown (grounding)`);
   parts.push(input.breakdown.deepRead);
   parts.push("");
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push(`# Allowed source anchors`);
+    parts.push("Use only these ids. Emit titleSourceAnchorIds, coreSkillSourceAnchorIds, ifThenPlans[].sourceAnchorIds, twentyFourHourChallengeSourceAnchorIds, and weeklyPracticeSourceAnchorIds.");
+    parts.push("```json");
+    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
+    parts.push("```");
+    parts.push("");
+  }
   parts.push(`Write the ImplementationPlanOutput JSON now. Include a "title" field: 4–7 words naming the specific skill this plan teaches, derived from the chapter's coreSkill. The title must be specific enough that it could not be swapped with another chapter's plan title.`);
   const baseUserPrompt = parts.join("\n");
 
@@ -64,7 +77,7 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
         jsonMode: true,
         timeoutMs: 180_000,
       });
-      return validate(result.content);
+      return validate(result.content, input);
     } catch (err) {
       lastError = err instanceof Error ? err : new Error(String(err));
       if (attempt === MAX_PLAN_RETRIES) break;
@@ -85,7 +98,7 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
   throw lastError ?? new Error("implementation plan: writer exhausted retries with no result");
 }
 
-function validate(p: ImplementationPlanOutput): ImplementationPlanOutput {
+function validate(p: ImplementationPlanOutput, input: PlanInput): ImplementationPlanOutput {
   const problems: string[] = [];
   const titleWords = (p.title ?? "").trim().split(/\s+/).filter(Boolean).length;
   if (!p.title || titleWords < 4 || titleWords > 7) {
@@ -101,6 +114,28 @@ function validate(p: ImplementationPlanOutput): ImplementationPlanOutput {
   if (!p.weeklyPractice || p.weeklyPractice.length < 40) problems.push("weeklyPractice too short");
   for (const [i, it] of (p.ifThenPlans ?? []).entries()) {
     if (!it.plan || !/^\s*if\b/i.test(it.plan)) problems.push(`ifThenPlans[${i}] missing "If …, then …" structure`);
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+    const check = (label: string, ids: unknown) => {
+      if (!Array.isArray(ids) || ids.length === 0) {
+        problems.push(`${label} must cite at least one allowed source anchor`);
+        return;
+      }
+      for (const id of ids) {
+        if (typeof id !== "string" || !allowed.has(id)) problems.push(`${label} cites unsupported source anchor ${JSON.stringify(id)}`);
+      }
+    };
+    check("titleSourceAnchorIds", p.titleSourceAnchorIds);
+    check("coreSkillSourceAnchorIds", p.coreSkillSourceAnchorIds);
+    p.ifThenPlans?.forEach((it, i) => {
+      const ids = it.sourceAnchorIds ?? (it.sourceAnchorId ? [it.sourceAnchorId] : []);
+      check(`ifThenPlans[${i}].sourceAnchorIds`, ids);
+      if (!it.sourceAnchorId && ids[0]) it.sourceAnchorId = ids[0];
+      if (!it.sourceAnchorIds && ids.length > 0) it.sourceAnchorIds = ids;
+    });
+    check("twentyFourHourChallengeSourceAnchorIds", p.twentyFourHourChallengeSourceAnchorIds);
+    check("weeklyPracticeSourceAnchorIds", p.weeklyPracticeSourceAnchorIds);
   }
   // Defense in depth: ship gate also catches these.
   const metaRegexes = [

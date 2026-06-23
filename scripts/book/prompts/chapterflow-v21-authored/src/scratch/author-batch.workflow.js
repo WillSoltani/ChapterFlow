@@ -109,7 +109,7 @@ NAME PLAN (hard requirement — prevents book-gate F1/BP13):
 - Do NOT use any other names. Do NOT reuse a name across two examples.
 - Read config/banned-connectives.json: never use any listed phrase, and never let a 5-word run repeat the shape of another scenario. Vary how each scene opens (time-first / place-first / dialogue / data / consequence-first), how the decision is framed, how the consequence lands.
 
-V2 PROVENANCE (R5): the sidecar is source-v2, so set sourceAnchorId on every example, quiz question, review card, and ifThen plan to the id of the testableFact/namedExample/concept it is built from, and use >=2 of that anchor's hardSpecifics. SC11 verifies it.
+V2 PROVENANCE (R5): the sidecar is source-v2, so every claim-bearing unit must be anchored before writing: hook, counterintuition, breakdown tiers, examples, quiz prompt/explanation/key evidence, review cards, implementation-plan title/coreSkill/if-thens/challenge/weekly practice, keyTakeaway, tryThisNow, and memorableLines. Use sourceAnchorId/sourceAnchorIds on units and keep authoring.sourceAnchors.effectiveAnchors as the full unit-path audit map. Use only testableFact/namedExample/concept ids from the sidecar; named examples must use >=2 hardSpecifics. SC11 verifies missing, fabricated, wrong-chapter, unsupported, and name-dropped anchors.
 
 WRITE the chapter JSON to: state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json
 

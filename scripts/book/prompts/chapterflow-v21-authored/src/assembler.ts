@@ -14,6 +14,7 @@ import {
   ImplementationPlanV21,
   QuizV21,
   ReviewCardV21,
+  SourceAnchorForPrompt,
   V21_SCHEMA_VERSION,
 } from "./types.js";
 import { BreakdownOutput } from "./agents/writer-breakdown.js";
@@ -23,6 +24,7 @@ import { CardsOutput } from "./agents/writer-cards.js";
 import { ImplementationPlanOutput } from "./agents/writer-implementation-plan.js";
 import { HookOutput } from "./agents/writer-hook.js";
 import { MemorableLine } from "./agents/memorable-lines.js";
+import type { PlanningSourceEvidence } from "./source/sourceEvidence.js";
 
 export type AssembleInput = {
   plan: ChapterDesignDoc;
@@ -32,18 +34,36 @@ export type AssembleInput = {
   cards: CardsOutput;
   implementationPlan: ImplementationPlanOutput;
   keyTakeaway: string;
+  keyTakeawaySourceAnchorIds?: string[];
   hook: HookOutput;
   tryThisNow?: string;
+  tryThisNowSourceAnchorIds?: string[];
   memorableLines?: MemorableLine[];
+  sourceEvidence?: PlanningSourceEvidence;
 };
 
 export function assembleChapterV21(input: AssembleInput): ChapterV21 {
   const { plan, breakdown, examples, quiz, cards, implementationPlan, keyTakeaway, hook } = input;
+  const anchorMap: Record<string, string[]> = {};
+  const defaultAnchors = defaultAnchorIds(input.sourceEvidence?.anchors ?? [], plan);
+  const remember = (path: string, ids: unknown, fallback: string[] = defaultAnchors): string[] => {
+    const normalized = normalizeAnchorIds(ids);
+    const chosen = normalized.length > 0 ? normalized : fallback;
+    if (chosen.length > 0) anchorMap[path] = chosen;
+    return chosen;
+  };
 
   const assembledExamples: ExampleV21[] = examples.map((ex, i) => {
     const spec = plan.exampleSpecs[i];
+    const sourceAnchorIds = remember(
+      `examples[${i}]`,
+      ex.sourceAnchorIds ?? ex.sourceAnchorId,
+      normalizeAnchorIds(spec?.sourceAnchorIds).length > 0 ? normalizeAnchorIds(spec?.sourceAnchorIds) : defaultAnchors,
+    );
     return {
       exampleId: ex.exampleId || `ch${String(plan.number).padStart(2, "0")}-ex${String(i + 1).padStart(2, "0")}`,
+      sourceAnchorId: ex.sourceAnchorId ?? sourceAnchorIds[0],
+      sourceAnchorIds,
       title: ex.title,
       tags: buildTags(spec),
       planSpec: {
@@ -61,34 +81,69 @@ export function assembleChapterV21(input: AssembleInput): ChapterV21 {
 
   const assembledQuiz: QuizV21 = {
     passingScorePercent: quiz.passingScorePercent ?? 70,
-    questions: quiz.questions.map((q) => ({
-      questionId: q.questionId,
-      prompt: q.prompt,
-      choices: q.choices,
-      correctIndex: q.correctIndex,
-      explanation: q.explanation,
-      bloomsLevel: q.bloomsLevel,
-      depthLevel: q.depthLevel,
-    })),
+    questions: quiz.questions.map((q, i) => {
+      const fallback = normalizeAnchorIds(plan.quizFocus.sourceAnchorIds).length > 0 ? normalizeAnchorIds(plan.quizFocus.sourceAnchorIds) : defaultAnchors;
+      const sourceAnchorIds = remember(`quiz.questions[${i}]`, q.sourceAnchorIds ?? q.sourceAnchorId, fallback);
+      const keyEvidenceAnchorIds = remember(`quiz.questions[${i}].keyEvidence`, q.keyEvidenceAnchorIds, sourceAnchorIds);
+      return {
+        questionId: q.questionId,
+        sourceAnchorId: q.sourceAnchorId ?? sourceAnchorIds[0],
+        sourceAnchorIds,
+        keyEvidenceAnchorIds,
+        prompt: q.prompt,
+        choices: q.choices,
+        correctIndex: q.correctIndex,
+        explanation: q.explanation,
+        bloomsLevel: q.bloomsLevel,
+        depthLevel: q.depthLevel,
+      };
+    }),
   };
 
-  const assembledCards: ReviewCardV21[] = cards.cards.map((c) => ({
-    cardId: c.cardId,
-    front: c.front,
-    back: c.back,
-    difficulty: c.difficulty,
-  }));
+  const assembledCards: ReviewCardV21[] = cards.cards.map((c, i) => {
+    const fallback = normalizeAnchorIds(plan.cardFocus.sourceAnchorIds).length > 0 ? normalizeAnchorIds(plan.cardFocus.sourceAnchorIds) : defaultAnchors;
+    const sourceAnchorIds = remember(`reviewCards[${i}]`, c.sourceAnchorIds ?? c.sourceAnchorId, fallback);
+    return {
+      cardId: c.cardId,
+      sourceAnchorId: c.sourceAnchorId ?? sourceAnchorIds[0],
+      sourceAnchorIds,
+      front: c.front,
+      back: c.back,
+      difficulty: c.difficulty,
+    };
+  });
 
+  const planFallback = normalizeAnchorIds(plan.coreMoveSourceAnchorIds).length > 0 ? normalizeAnchorIds(plan.coreMoveSourceAnchorIds) : defaultAnchors;
   const assembledPlan: ImplementationPlanV21 = {
     title: implementationPlan.title,
+    titleSourceAnchorIds: remember("implementationPlan.title", implementationPlan.titleSourceAnchorIds, planFallback),
     coreSkill: implementationPlan.coreSkill,
-    ifThenPlans: implementationPlan.ifThenPlans.map((it) => ({
-      context: it.context,
-      plan: it.plan,
-    })),
+    coreSkillSourceAnchorIds: remember("implementationPlan.coreSkill", implementationPlan.coreSkillSourceAnchorIds, planFallback),
+    ifThenPlans: implementationPlan.ifThenPlans.map((it, i) => {
+      const ids = remember(`implementationPlan.ifThenPlans[${i}]`, it.sourceAnchorIds ?? it.sourceAnchorId, planFallback);
+      return {
+        sourceAnchorId: it.sourceAnchorId ?? ids[0],
+        sourceAnchorIds: ids,
+        context: it.context,
+        plan: it.plan,
+      };
+    }),
     twentyFourHourChallenge: implementationPlan.twentyFourHourChallenge,
+    twentyFourHourChallengeSourceAnchorIds: remember("implementationPlan.twentyFourHourChallenge", implementationPlan.twentyFourHourChallengeSourceAnchorIds, planFallback),
     weeklyPractice: implementationPlan.weeklyPractice,
+    weeklyPracticeSourceAnchorIds: remember("implementationPlan.weeklyPractice", implementationPlan.weeklyPracticeSourceAnchorIds, planFallback),
   };
+
+  const hookAnchors = remember("hook", hook.sourceAnchorIds, planFallback);
+  if (hook.counterintuition) remember("counterintuition", hook.counterintuitionSourceAnchorIds, hookAnchors);
+  remember("keyTakeaway", input.keyTakeawaySourceAnchorIds, planFallback);
+  if (input.tryThisNow) remember("tryThisNow", input.tryThisNowSourceAnchorIds, planFallback);
+  remember("breakdown.fastRead", breakdown.sourceAnchorIds?.fastRead, planFallback);
+  remember("breakdown.deepRead", breakdown.sourceAnchorIds?.deepRead, planFallback);
+  remember("breakdown.fullRead", breakdown.sourceAnchorIds?.fullRead, planFallback);
+  input.memorableLines?.forEach((line, i) => {
+    remember(`memorableLines[${i}]`, line.sourceAnchorIds, anchorIdsForLocation(anchorMap, line.location, planFallback));
+  });
 
   return {
     chapterId: plan.chapterId,
@@ -109,6 +164,18 @@ export function assembleChapterV21(input: AssembleInput): ChapterV21 {
     reviewCards: assembledCards,
     implementationPlan: assembledPlan,
     memorableLines: input.memorableLines,
+    authoring: input.sourceEvidence?.sourceV2
+      ? {
+          schemaVersion: "chapter-authoring-v1",
+          sourceAnchors: {
+            schemaVersion: "chapter-source-anchor-map-v1",
+            sourceHash: input.sourceEvidence.sourceHash,
+            sourceSidecarPath: input.sourceEvidence.chapterSidecarPath ?? undefined,
+            observedAnchorIds: input.sourceEvidence.anchors.map((anchor) => anchor.id),
+            effectiveAnchors: Object.fromEntries(Object.entries(anchorMap).filter(([, ids]) => ids.length > 0)),
+          },
+        }
+      : undefined,
   };
 }
 
@@ -126,4 +193,25 @@ function buildTags(spec: ChapterDesignDoc["exampleSpecs"][number]): string[] {
   if (interesting.length > 0) tags.push(interesting[0].replace(/[^a-z]/g, ""));
   if (interesting.length > 2) tags.push(interesting[2].replace(/[^a-z]/g, ""));
   return tags.filter(Boolean).slice(0, 4);
+}
+
+function normalizeAnchorIds(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  if (typeof value === "string" && value.trim()) return [value];
+  return [];
+}
+
+function defaultAnchorIds(anchors: SourceAnchorForPrompt[], plan: ChapterDesignDoc): string[] {
+  const planned = normalizeAnchorIds(plan.coreMoveSourceAnchorIds);
+  if (planned.length > 0) return planned;
+  const concept = anchors.find((anchor) => anchor.kind === "concept");
+  if (concept) return [concept.id];
+  return anchors.slice(0, 1).map((anchor) => anchor.id);
+}
+
+function anchorIdsForLocation(anchorMap: Record<string, string[]>, location: string, fallback: string[]): string[] {
+  if (anchorMap[location]?.length) return anchorMap[location];
+  const normalized = location.replace(/^example\[(\d+)\]\..+$/, "examples[$1]");
+  if (anchorMap[normalized]?.length) return anchorMap[normalized];
+  return fallback;
 }

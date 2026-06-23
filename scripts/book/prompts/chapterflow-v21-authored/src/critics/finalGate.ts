@@ -308,6 +308,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // chapter's sidecar is schemaVersion source-v2, so v1 chapters never brick.
   "SC11.1.missing_provenance": "blocker",
   "SC11.2.anchor_specific_not_present": "blocker",
+  "SC11.3.placeholder_anchor": "blocker",
+  "SC11.4.wrong_chapter_anchor": "blocker",
+  "SC11.5.unknown_anchor": "blocker",
+  "SC11.6.unsupported_anchor": "blocker",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.

@@ -15,7 +15,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -27,6 +27,8 @@ export type PlannerInput = {
   chapterTitle: string;
   /** Optional source-text excerpt for THIS chapter. Improves planning fidelity. */
   chapterSource?: string;
+  /** Validated source-v2 anchors the planner may use for design decisions. */
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 export async function runCurriculumPlanner(input: PlannerInput): Promise<ChapterDesignDoc> {
@@ -62,8 +64,16 @@ function buildUserPrompt(input: PlannerInput): string {
   parts.push(`title: ${input.chapterTitle}`);
   if (input.chapterSource) {
     parts.push("");
-    parts.push(`# Chapter source excerpt`);
+    parts.push(`# Chapter source evidence`);
     parts.push(input.chapterSource);
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push("");
+    parts.push(`# Allowed source anchors`);
+    parts.push("Use ONLY these ids in coreMoveSourceAnchorIds, exampleSpecs[].sourceAnchorIds, quizFocus.sourceAnchorIds, and cardFocus.sourceAnchorIds.");
+    parts.push("```json");
+    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
+    parts.push("```");
   }
   parts.push("");
   parts.push(`Write the ChapterDesignDoc JSON now.`);
@@ -107,6 +117,24 @@ function validateDoc(doc: ChapterDesignDoc, input: PlannerInput): ChapterDesignD
     }
   }
   if (!doc.cardFocus) problems.push("cardFocus missing");
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+    const checkIds = (label: string, ids: unknown) => {
+      if (!Array.isArray(ids) || ids.length === 0) {
+        problems.push(`${label} must carry sourceAnchorIds from the validated source-v2 sidecar`);
+        return;
+      }
+      for (const id of ids) {
+        if (typeof id !== "string" || !allowed.has(id)) {
+          problems.push(`${label} cites unsupported source anchor ${JSON.stringify(id)}`);
+        }
+      }
+    };
+    checkIds("coreMoveSourceAnchorIds", doc.coreMoveSourceAnchorIds);
+    doc.exampleSpecs?.forEach((spec, i) => checkIds(`exampleSpecs[${i}].sourceAnchorIds`, spec.sourceAnchorIds));
+    checkIds("quizFocus.sourceAnchorIds", doc.quizFocus?.sourceAnchorIds);
+    checkIds("cardFocus.sourceAnchorIds", doc.cardFocus?.sourceAnchorIds);
+  }
   if (problems.length > 0) {
     throw new Error(`curriculum plan invalid: ${problems.join("; ")}`);
   }

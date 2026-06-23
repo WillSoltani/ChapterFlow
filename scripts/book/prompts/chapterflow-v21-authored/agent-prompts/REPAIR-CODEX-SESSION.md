@@ -35,8 +35,10 @@ SC9 is the exact failure the gate exists to catch. Patching only the cited lines
 and burns a round.
 
 ## For each [edit] chapter
-1. Read the finding, the chapter JSON, and its source sidecar. **Preserve** `sourceAnchorId` /
-   provenance and the dealt names/shapes/venues — fix the defect, don't rewrite the chapter.
+1. Read the finding, the chapter JSON, and its source sidecar. **Preserve** source provenance
+   (`sourceAnchorId`, `sourceAnchorIds`, `keyEvidenceAnchorIds`, and
+   `authoring.sourceAnchors.effectiveAnchors`) plus dealt names/shapes/venues — fix the defect,
+   don't rewrite the chapter.
 2. A deterministic register / banned-phrase ban (B-class — e.g. a banned-pool protagonist name or
    a banned stem) is **NEVER** a false positive. Fix the phrase; do not defend it as good prose.
 3. If a fix must change a **dealt slot** (a scene shape/format the plan enforces), re-deal that slot

@@ -160,7 +160,18 @@ export function chapterContentHashV0(chapter: ChapterV21): string {
  *  additions; that's how passingScorePercent etc. escaped).
  *  tests/hash-coverage.test.ts pins the coverage to the type. */
 const V2_EXCLUDE_DEEP = new Set([
+  "authoring",
   "sourceAnchorId", // gate-time provenance, stripped at promote
+  "sourceAnchorIds",
+  "keyEvidenceAnchorIds",
+  "titleSourceAnchorIds",
+  "coreSkillSourceAnchorIds",
+  "twentyFourHourChallengeSourceAnchorIds",
+  "weeklyPracticeSourceAnchorIds",
+  "hookSourceAnchorIds",
+  "counterintuitionSourceAnchorIds",
+  "keyTakeawaySourceAnchorIds",
+  "tryThisNowSourceAnchorIds",
   "planSpec",       // writer scaffolding — "not shown to readers" (types.ts)
   "exampleId",      // unit identity, not content
   "questionId",

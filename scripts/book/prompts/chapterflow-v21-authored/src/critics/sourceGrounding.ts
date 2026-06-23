@@ -20,11 +20,12 @@
 import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
-import { ChapterV21, CriticFinding } from "../types.js";
+import { ChapterV21, CriticFinding, SourceAnchorForPrompt, SourceClaimType } from "../types.js";
 import { finding } from "./shared.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
 import { findLatestRunDir, findRunArtifact } from "../lib/runDirs.js";
 import { detectSidecarShape } from "../source/sidecarSchema.js";
+import { buildSourceAnchorCatalog } from "../source/sourceEvidence.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // SC9 lives in src/critics/, so it needs one more `..` than helpers in
@@ -145,44 +146,159 @@ export function checkChapterProvenance(chapter: ChapterV21, sidecarOverride?: an
   const sc = sidecarOverride ?? loadChapterSidecar(chapter.chapterId);
   if (!sc || detectSidecarShape(sc) !== "v2") return []; // v2-only — v1 cannot brick
   const findings: CriticFinding[] = [];
+  const anchorCatalog = buildSourceAnchorCatalog(sc);
+  const anchors = new Map(anchorCatalog.map((anchor) => [anchor.id, anchor]));
+  const expectedPrefix = `ch${String(chapter.number).padStart(2, "0")}.`;
+  const effective = chapter.authoring?.sourceAnchors?.effectiveAnchors ?? {};
 
-  // anchorId -> hardSpecifics (namedExamples carry them; facts/concept have none).
-  const anchors = new Map<string, string[]>();
-  for (const e of sc.namedExamples ?? []) if (e?.id) anchors.set(String(e.id), (e.hardSpecifics ?? []).map(String));
-  for (const f of sc.testableFacts ?? []) if (f?.id) anchors.set(String(f.id), []);
-  if (sc.centralConcept?.id) anchors.set(String(sc.centralConcept.id), []);
+  const idsFor = (path: string, legacy?: unknown, fallbackPath?: string): string[] => {
+    const mapped = normalizeAnchorIds(effective[path]);
+    if (mapped.length > 0) return mapped;
+    const legacyIds = normalizeAnchorIds(legacy);
+    if (legacyIds.length > 0) return legacyIds;
+    if (fallbackPath) return normalizeAnchorIds(effective[fallbackPath]);
+    return [];
+  };
 
-  const checkUnit = (unit: string, anchorId: string | undefined, text: string) => {
-    if (!anchorId) {
-      findings.push(finding("SC11.1.missing_provenance" as any, "blocker",
-        `${unit} has no sourceAnchorId — a v2 chapter must declare which source anchor each unit is built from (declare-then-write). Add the anchor id it dramatizes.`));
-      return;
+  type Unit = { unit: string; path: string; claimType: SourceClaimType; ids: string[]; text: string };
+  const units: Unit[] = [];
+  const push = (unit: string, path: string, claimType: SourceClaimType, ids: string[], text: string | undefined) => {
+    units.push({ unit, path, claimType, ids, text: text ?? "" });
+  };
+
+  push("hook", "hook", "hook", idsFor("hook", (chapter as any).hookSourceAnchorIds), chapter.hook);
+  if (chapter.counterintuition) {
+    push("counterintuition", "counterintuition", "hook", idsFor("counterintuition", (chapter as any).counterintuitionSourceAnchorIds, "hook"), chapter.counterintuition);
+  }
+  push("breakdown.fastRead", "breakdown.fastRead", "breakdown_claim", idsFor("breakdown.fastRead"), chapter.breakdown?.fastRead);
+  push("breakdown.deepRead", "breakdown.deepRead", "breakdown_claim", idsFor("breakdown.deepRead"), chapter.breakdown?.deepRead);
+  push("breakdown.fullRead", "breakdown.fullRead", "breakdown_claim", idsFor("breakdown.fullRead"), chapter.breakdown?.fullRead);
+  push("keyTakeaway", "keyTakeaway", "takeaway", idsFor("keyTakeaway", (chapter as any).keyTakeawaySourceAnchorIds), chapter.keyTakeaway);
+  if (chapter.tryThisNow) {
+    push("tryThisNow", "tryThisNow", "implementation_guidance", idsFor("tryThisNow", (chapter as any).tryThisNowSourceAnchorIds), chapter.tryThisNow);
+  }
+
+  chapter.examples?.forEach((e, i) => {
+    push(
+      `example[${i}]`,
+      `examples[${i}]`,
+      "example",
+      idsFor(`examples[${i}]`, (e as any).sourceAnchorIds ?? e.sourceAnchorId),
+      `${e.title ?? ""} ${e.scenario ?? ""} ${e.whatToDo ?? ""} ${e.whyItMatters ?? ""}`,
+    );
+  });
+
+  chapter.quiz?.questions?.forEach((q, i) => {
+    const base = `quiz.questions[${i}]`;
+    const ci = typeof q.correctIndex === "number" ? q.choices?.[q.correctIndex] ?? "" : "";
+    const qIds = idsFor(base, (q as any).sourceAnchorIds ?? q.sourceAnchorId);
+    push(`quiz.questions[${i}].prompt`, `${base}.prompt`, "quiz_prompt", idsFor(`${base}.prompt`, undefined, base).concat(qIds).filter(uniqueInOrder), q.prompt ?? "");
+    push(`quiz.questions[${i}].explanation`, `${base}.explanation`, "quiz_explanation", idsFor(`${base}.explanation`, undefined, base).concat(qIds).filter(uniqueInOrder), q.explanation ?? "");
+    const keyIds = idsFor(`${base}.keyEvidence`, (q as any).keyEvidenceAnchorIds, base);
+    push(`quiz.questions[${i}].keyEvidence`, `${base}.keyEvidence`, "quiz_key_evidence", keyIds.length > 0 ? keyIds : qIds, `${q.prompt ?? ""} ${ci} ${q.explanation ?? ""}`);
+  });
+
+  chapter.reviewCards?.forEach((c, i) => {
+    push(
+      `reviewCards[${i}]`,
+      `reviewCards[${i}]`,
+      "review_card",
+      idsFor(`reviewCards[${i}]`, (c as any).sourceAnchorIds ?? c.sourceAnchorId),
+      `${c.front ?? ""} ${c.back ?? ""}`,
+    );
+  });
+
+  const impl = chapter.implementationPlan;
+  if (impl) {
+    push("implementationPlan.title", "implementationPlan.title", "implementation_guidance", idsFor("implementationPlan.title", (impl as any).titleSourceAnchorIds), impl.title);
+    push("implementationPlan.coreSkill", "implementationPlan.coreSkill", "implementation_guidance", idsFor("implementationPlan.coreSkill", (impl as any).coreSkillSourceAnchorIds), impl.coreSkill);
+    impl.ifThenPlans?.forEach((it, i) => {
+      push(
+        `implementationPlan.ifThenPlans[${i}]`,
+        `implementationPlan.ifThenPlans[${i}]`,
+        "implementation_guidance",
+        idsFor(`implementationPlan.ifThenPlans[${i}]`, (it as any).sourceAnchorIds ?? it.sourceAnchorId),
+        `${it.context ?? ""} ${it.plan ?? ""}`,
+      );
+    });
+    push("implementationPlan.twentyFourHourChallenge", "implementationPlan.twentyFourHourChallenge", "implementation_guidance", idsFor("implementationPlan.twentyFourHourChallenge", (impl as any).twentyFourHourChallengeSourceAnchorIds), impl.twentyFourHourChallenge);
+    push("implementationPlan.weeklyPractice", "implementationPlan.weeklyPractice", "implementation_guidance", idsFor("implementationPlan.weeklyPractice", (impl as any).weeklyPracticeSourceAnchorIds), impl.weeklyPractice);
+  }
+
+  chapter.memorableLines?.forEach((line, i) => {
+    push(
+      `memorableLines[${i}]`,
+      `memorableLines[${i}]`,
+      "memorable_line",
+      idsFor(`memorableLines[${i}]`, (line as any).sourceAnchorIds, line.location),
+      `${line.text ?? ""} ${line.why ?? ""}`,
+    );
+  });
+
+  for (const unit of units) {
+    checkUnit(unit, anchors, expectedPrefix, findings);
+  }
+
+  return findings;
+}
+
+function normalizeAnchorIds(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  if (typeof value === "string" && value.trim()) return [value];
+  return [];
+}
+
+function uniqueInOrder(value: string, index: number, array: string[]): boolean {
+  return array.indexOf(value) === index;
+}
+
+function placeholderAnchorId(id: string): boolean {
+  return /^(anchor|source-anchor|sourceAnchor|id|todo|tbd|fixme|placeholder)([-_:]?\d*)?$/i.test(id.trim()) ||
+    /\b(todo|tbd|fixme|placeholder)\b/i.test(id);
+}
+
+function checkUnit(
+  unit: { unit: string; claimType: SourceClaimType; ids: string[]; text: string },
+  anchors: Map<string, SourceAnchorForPrompt>,
+  expectedPrefix: string,
+  findings: CriticFinding[],
+): void {
+  if (unit.ids.length === 0) {
+    findings.push(finding("SC11.1.missing_provenance" as any, "blocker",
+      `${unit.unit} has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from.`));
+    return;
+  }
+  for (const anchorId of unit.ids) {
+    if (placeholderAnchorId(anchorId)) {
+      findings.push(finding("SC11.3.placeholder_anchor" as any, "blocker",
+        `${unit.unit} cites placeholder source anchor "${anchorId}". Cite a stable id from the validated source-v2 sidecar.`, anchorId));
+      continue;
     }
-    if (!anchors.has(anchorId)) {
-      findings.push(finding("SC11.1.missing_provenance" as any, "blocker",
-        `${unit} cites sourceAnchorId "${anchorId}" which is not an anchor in this chapter's sidecar (dangling/fabricated). Cite a real namedExample/testableFact/concept id.`, anchorId));
-      return;
+    const anchor = anchors.get(anchorId);
+    if (!anchor) {
+      const chapterMatch = anchorId.match(/^ch\d+\./i);
+      const checkId = chapterMatch && !anchorId.startsWith(expectedPrefix)
+        ? "SC11.4.wrong_chapter_anchor"
+        : "SC11.5.unknown_anchor";
+      findings.push(finding(checkId as any, "blocker",
+        `${unit.unit} cites source anchor "${anchorId}" which is not allowed for this chapter. Cite a real anchor id from ${expectedPrefix}*.`, anchorId));
+      continue;
     }
-    const specifics = anchors.get(anchorId)!;
+    if (!anchor.supportsClaimTypes.includes(unit.claimType)) {
+      findings.push(finding("SC11.6.unsupported_anchor" as any, "blocker",
+        `${unit.unit} cites "${anchorId}" (${anchor.kind}), but that anchor does not support ${unit.claimType} claims. Use an anchor whose supportsClaimTypes includes ${unit.claimType}.`, anchorId));
+      continue;
+    }
+    const specifics = anchor.hardSpecifics ?? [];
     if (specifics.length >= 2) {
-      const lc = text.toLowerCase();
+      const lc = unit.text.toLowerCase();
       const present = specifics.filter((s) => s && lc.includes(s.toLowerCase())).length;
       if (present < 2) {
         findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
-          `${unit} names anchor "${anchorId}" but uses <2 of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details — a generic sentence that just mentions it doesn't ground the content (this is what the source-dilution evasion exploits).`, anchorId));
+          `${unit.unit} names anchor "${anchorId}" but uses <2 of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
       }
     }
-  };
-
-  chapter.examples?.forEach((e, i) => checkUnit(`example[${i}].scenario`, e.sourceAnchorId, e.scenario ?? ""));
-  chapter.quiz?.questions?.forEach((q, i) => {
-    const ci = typeof q.correctIndex === "number" ? q.choices?.[q.correctIndex] ?? "" : "";
-    checkUnit(`quiz.q${String(i + 1).padStart(2, "0")}`, q.sourceAnchorId, `${q.prompt ?? ""} ${ci} ${q.explanation ?? ""}`);
-  });
-  chapter.reviewCards?.forEach((c, i) => checkUnit(`card[${i}]`, c.sourceAnchorId, `${c.front ?? ""} ${c.back ?? ""}`));
-  chapter.implementationPlan?.ifThenPlans?.forEach((it, i) => checkUnit(`plan.ifThen[${i}]`, it.sourceAnchorId, `${it.context ?? ""} ${it.plan ?? ""}`));
-
-  return findings;
+  }
 }
 
 export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[] {

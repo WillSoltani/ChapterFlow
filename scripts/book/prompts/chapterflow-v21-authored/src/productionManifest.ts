@@ -49,6 +49,12 @@ export type ProductionManifestChapter = {
     semanticHash: string;
     schemaVersion: string | null;
   };
+  authoringEvidence: {
+    path: string;
+    semanticHash: string;
+    schemaVersion: string | null;
+    sourceHash: string | null;
+  } | null;
   qcAttestation: {
     path: string;
     semanticHash: string;
@@ -79,6 +85,7 @@ export type ProductionManifestPayload = {
   chapters: ProductionManifestChapter[];
   evidencePolicy: {
     sourceEvidence: "required";
+    authoringEvidence: "required-for-source-v2";
     qcAttestation: "required";
   };
   versions: {
@@ -171,6 +178,10 @@ function qcAttestationPathFor(stateRoot: string, bookId: string, chapterNumber: 
   return resolve(stateRoot, "qc", `${bookId}-ch${String(chapterNumber).padStart(2, "0")}.qc.json`);
 }
 
+function stateChapterPathFor(stateRoot: string, chapterId: string): string {
+  return resolve(stateRoot, "chapters", `${chapterId}.v21-native.chapter.json`);
+}
+
 function sourceSidecarPathFor(runsRoot: string, bookId: string, chapterNumber: number): string | null {
   return findRunArtifact(runsRoot, bookId, `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.json`);
 }
@@ -238,6 +249,34 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
       } else {
         findings.push(source.finding);
       }
+    }
+
+    const authoringPath = stateChapterPathFor(stateRoot, spec.chapterId);
+    let authoringEvidence: ProductionManifestChapter["authoringEvidence"] = null;
+    const authored = readJsonWithSemanticHash(authoringPath, "PPKG.authoring_unreadable", "state chapter authoring evidence", spec.chapterNumber);
+    if (authored.ok) {
+      const sourceAnchors = authored.value?.authoring?.sourceAnchors;
+      const authoringSchema = typeof sourceAnchors?.schemaVersion === "string" ? sourceAnchors.schemaVersion : null;
+      const authoringHash = sourceAnchors ? canonicalJsonSha256(sourceAnchors) : "";
+      const authoringSourceHash = typeof sourceAnchors?.sourceHash === "string" ? sourceAnchors.sourceHash : null;
+      if (sourceAnchors) {
+        authoringEvidence = {
+          path: logicalStatePath(stateRoot, authoringPath),
+          semanticHash: authoringHash,
+          schemaVersion: authoringSchema,
+          sourceHash: authoringSourceHash,
+        };
+      }
+      if (sourceSchema === "source-v2" && (!sourceAnchors || authoringSchema !== "chapter-source-anchor-map-v1")) {
+        findings.push(blocker({
+          checkId: "PPKG.authoring_provenance_missing",
+          chapterNumber: spec.chapterNumber,
+          path: authoringPath,
+          message: `Source-v2 chapter ${spec.chapterId} is missing authoring.sourceAnchors provenance in the state chapter artifact.`,
+        }));
+      }
+    } else if (sourceSchema === "source-v2") {
+      findings.push(authored.finding);
     }
 
     const qcPath = qcAttestationPathFor(stateRoot, bookId, spec.chapterNumber);
@@ -315,6 +354,7 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
         semanticHash: sourceHash,
         schemaVersion: sourceSchema,
       },
+      authoringEvidence,
       qcAttestation: {
         path: logicalStatePath(stateRoot, qcPath),
         semanticHash: qcHash,
@@ -359,6 +399,7 @@ function buildPayload(input: BuildProductionManifestInput): { ok: true; payload:
     chapters: chapterPayloads,
     evidencePolicy: {
       sourceEvidence: "required",
+      authoringEvidence: "required-for-source-v2",
       qcAttestation: "required",
     },
     versions: {

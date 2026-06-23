@@ -581,9 +581,28 @@ test("promoteBook runs the intra-book suite and blocks on planted card reuse", (
 
 test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without staling the attestation hash", () => {
   const ch = makeChapter(BOOK, 9);
-  for (const ex of ch.examples) ex.sourceAnchorId = "a1";
-  for (const q of ch.quiz.questions) q.sourceAnchorId = "a2";
-  for (const card of ch.reviewCards) card.sourceAnchorId = "a3";
+  for (const ex of ch.examples) {
+    ex.sourceAnchorId = "a1";
+    ex.sourceAnchorIds = ["a1"];
+  }
+  for (const q of ch.quiz.questions) {
+    q.sourceAnchorId = "a2";
+    q.sourceAnchorIds = ["a2"];
+    q.keyEvidenceAnchorIds = ["a2"];
+  }
+  for (const card of ch.reviewCards) {
+    card.sourceAnchorId = "a3";
+    card.sourceAnchorIds = ["a3"];
+  }
+  ch.authoring = {
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: "hash-a",
+      observedAnchorIds: ["a1"],
+      effectiveAnchors: { hook: ["a1"] },
+    },
+  };
 
   const before = chapterContentHash(ch);
   const shipped = stripInternalFields(ch);
@@ -591,6 +610,7 @@ test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without 
   const json = JSON.stringify(shipped);
   assert.doesNotMatch(json, /planSpec/, "writer scaffolding must not ship to readers");
   assert.doesNotMatch(json, /sourceAnchorId/, "gate provenance must not ship to readers");
+  assert.doesNotMatch(json, /authoring/, "authoring audit map must not ship to readers");
   assert.equal(shipped.examples[0].scenario, ch.examples[0].scenario, "reader content untouched");
   assert.equal(chapterContentHash(shipped), before, "the strip must never stale a QC attestation");
   assert.ok((ch.examples[0] as any).planSpec, "strip works on a copy — state chapters are not mutated");

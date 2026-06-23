@@ -12,13 +12,15 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc, ExampleSpec } from "../types.js";
+import { BookBrief, ChapterDesignDoc, ExampleSpec, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 
 export type ExampleOutput = {
   exampleId: string;
+  sourceAnchorId?: string;
+  sourceAnchorIds?: string[];
   title: string;
   scenario: string;
   whatToDo: string;
@@ -32,6 +34,7 @@ export type ExampleInput = {
   specIndex: number;
   /** Names already used in this chapter's prior examples. Writer must not reuse. */
   usedNames: string[];
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 const MAX_EXAMPLE_RETRIES = 1;
@@ -103,6 +106,14 @@ function buildUserPrompt(input: ExampleInput): string {
   if (input.usedNames.length > 0) {
     parts.push(`# Names already used in prior examples of this chapter — must NOT reuse`);
     parts.push(input.usedNames.join(", "));
+    parts.push("");
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push(`# Allowed source anchors for this example`);
+    parts.push("Use only these ids. Emit sourceAnchorIds with the namedExample/testableFact anchors the scene dramatizes.");
+    parts.push("```json");
+    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
+    parts.push("```");
     parts.push("");
   }
   parts.push(`Slug hint for exampleId: "ch${String(input.plan.number).padStart(2, "0")}-ex${String(input.specIndex + 1).padStart(2, "0")}-<protagonist-slug>"`);
@@ -204,6 +215,17 @@ function validateExample(ex: ExampleOutput, input: ExampleInput): ExampleOutput 
         problems.push(`whatToDo repeats the scenario (${Math.round(overlap * 100)}% content-word overlap) — rewrite to add new instruction not already in the scenario`);
       }
     }
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+    const ids = ex.sourceAnchorIds ?? (ex.sourceAnchorId ? [ex.sourceAnchorId] : []);
+    if (ids.length === 0) {
+      problems.push("sourceAnchorIds must cite at least one allowed source anchor");
+    }
+    for (const id of ids) {
+      if (typeof id !== "string" || !allowed.has(id)) problems.push(`sourceAnchorIds cites unsupported source anchor ${JSON.stringify(id)}`);
+    }
+    if (!ex.sourceAnchorId && ids[0]) ex.sourceAnchorId = ids[0];
   }
 
   // Protagonist name drift: the name token in the exampleId slug must appear

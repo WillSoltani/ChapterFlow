@@ -124,7 +124,9 @@ batch in one run.
 npx tsx src/cli.ts promote-book <bookId> --title "Full Title" --author "Author Name"
 ```
 Promote re-runs the **ship gate + book gate + QC-attestation gate** — ALL must be
-blocker-clean. It strips the internal `sourceAnchorId` and writes
+blocker-clean. It strips internal provenance/scaffolding (`sourceAnchorId`,
+`sourceAnchorIds`, `authoring.sourceAnchors`, `planSpec`) from the public reader payload
+while the production manifest points back to the state/source evidence, then writes
 `book-packages/<bookId>.v21.json`. On any failure it quarantines the report and
 does NOT ship. **Categories + tags are auto-derived (no-API) from the book's
 content** — preview them with `npx tsx src/cli.ts categorize <bookId>`, or override

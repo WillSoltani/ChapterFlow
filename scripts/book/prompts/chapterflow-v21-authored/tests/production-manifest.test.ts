@@ -32,6 +32,63 @@ function reverseKeys(value: unknown): unknown {
   return value;
 }
 
+function addAuthoringEvidence(chapter: ChapterV21): ChapterV21 {
+  const anchorId = `fact-${chapter.number}`;
+  const effectiveAnchors: Record<string, string[]> = {
+    hook: [anchorId],
+    counterintuition: [anchorId],
+    "breakdown.fastRead": [anchorId],
+    "breakdown.deepRead": [anchorId],
+    "breakdown.fullRead": [anchorId],
+    keyTakeaway: [anchorId],
+    tryThisNow: [anchorId],
+    "implementationPlan.title": [anchorId],
+    "implementationPlan.coreSkill": [anchorId],
+    "implementationPlan.twentyFourHourChallenge": [anchorId],
+    "implementationPlan.weeklyPractice": [anchorId],
+  };
+  chapter.examples.forEach((example, i) => {
+    example.sourceAnchorId = anchorId;
+    example.sourceAnchorIds = [anchorId];
+    effectiveAnchors[`examples[${i}]`] = [anchorId];
+  });
+  chapter.quiz.questions.forEach((question, i) => {
+    question.sourceAnchorId = anchorId;
+    question.sourceAnchorIds = [anchorId];
+    question.keyEvidenceAnchorIds = [anchorId];
+    effectiveAnchors[`quiz.questions[${i}]`] = [anchorId];
+    effectiveAnchors[`quiz.questions[${i}].keyEvidence`] = [anchorId];
+  });
+  chapter.reviewCards.forEach((card, i) => {
+    card.sourceAnchorId = anchorId;
+    card.sourceAnchorIds = [anchorId];
+    effectiveAnchors[`reviewCards[${i}]`] = [anchorId];
+  });
+  chapter.implementationPlan.titleSourceAnchorIds = [anchorId];
+  chapter.implementationPlan.coreSkillSourceAnchorIds = [anchorId];
+  chapter.implementationPlan.twentyFourHourChallengeSourceAnchorIds = [anchorId];
+  chapter.implementationPlan.weeklyPracticeSourceAnchorIds = [anchorId];
+  chapter.implementationPlan.ifThenPlans.forEach((item, i) => {
+    item.sourceAnchorId = anchorId;
+    item.sourceAnchorIds = [anchorId];
+    effectiveAnchors[`implementationPlan.ifThenPlans[${i}]`] = [anchorId];
+  });
+  chapter.memorableLines?.forEach((line, i) => {
+    line.sourceAnchorIds = [anchorId];
+    effectiveAnchors[`memorableLines[${i}]`] = [anchorId];
+  });
+  chapter.authoring = {
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: `fixture-source-${chapter.number}`,
+      observedAnchorIds: [anchorId],
+      effectiveAnchors,
+    },
+  };
+  return chapter;
+}
+
 function fixtureRoot(name: string): string {
   return resolve(TMP_DIR, `production-manifest-${name}`);
 }
@@ -52,7 +109,7 @@ function makeFixture(name: string, createdAt = "2026-06-23T00:00:00.000Z"): {
   const stateRoot = resolve(root, "state");
   const runsRoot = resolve(root, "runs");
   const packagePath = resolve(root, "book-packages", `${BOOK}.v21.json`);
-  const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
+  const chapters = [addAuthoringEvidence(makeChapter(BOOK, 1)), addAuthoringEvidence(makeChapter(BOOK, 2))];
   const index = chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title }));
   const indexPath = resolve(stateRoot, "indexes", `${BOOK}.json`);
   writeJson(indexPath, index);

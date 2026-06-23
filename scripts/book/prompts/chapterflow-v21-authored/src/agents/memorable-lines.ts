@@ -19,6 +19,7 @@ export type MemorableLine = {
   text: string;
   location: string;
   why: string;
+  sourceAnchorIds?: string[];
 };
 
 export type MemorableLinesOutput = {

@@ -1,10 +1,24 @@
 import type { ChapterV21 } from "../types.js";
 import { canonicalJsonSha256 } from "./canonicalJson.js";
 
-export const READER_CONTENT_STRIP_RULES_VERSION = "reader-content-strip-v1" as const;
+export const READER_CONTENT_STRIP_RULES_VERSION = "reader-content-strip-v2" as const;
 export const READER_CONTENT_HASH_VERSION = "reader-content-canonical-sha256-v1" as const;
 
-const AUTHORING_INTERNAL_KEYS = new Set(["sourceAnchorId", "planSpec"]);
+const AUTHORING_INTERNAL_KEYS = new Set([
+  "authoring",
+  "planSpec",
+  "sourceAnchorId",
+  "sourceAnchorIds",
+  "keyEvidenceAnchorIds",
+  "titleSourceAnchorIds",
+  "coreSkillSourceAnchorIds",
+  "twentyFourHourChallengeSourceAnchorIds",
+  "weeklyPracticeSourceAnchorIds",
+  "hookSourceAnchorIds",
+  "counterintuitionSourceAnchorIds",
+  "keyTakeawaySourceAnchorIds",
+  "tryThisNowSourceAnchorIds",
+]);
 
 function stripAuthoringKeysDeep<T>(value: T): T {
   if (Array.isArray(value)) return value.map((v) => stripAuthoringKeysDeep(v)) as unknown as T;

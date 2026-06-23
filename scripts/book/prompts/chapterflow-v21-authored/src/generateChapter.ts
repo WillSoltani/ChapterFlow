@@ -52,7 +52,15 @@ import { runLineEditor } from "./agents/line-editor.js";
 import { runMemorableLines } from "./agents/memorable-lines.js";
 import { runTryThisNow } from "./agents/try-this-now.js";
 import { runExampleCurator } from "./curator/exampleSelector.js";
-import { loadSourceBundle } from "./source-loader.js";
+import {
+  anchorIds,
+  loadPlanningSourceEvidence,
+  renderBookSourceForEditor,
+  renderChapterSourceForPlanner,
+  selectAnchorsForClaim,
+  sourceEvidenceDependencyValue,
+  type PlanningSourceEvidence,
+} from "./source/sourceEvidence.js";
 import {
   getForbiddenNames,
   ingestChapter as ingestIntoLibrary,
@@ -63,7 +71,7 @@ import {
 import { callClaude } from "./claudeClient.js";
 import { assembleChapterV21, V21_SCHEMA_VERSION } from "./assembler.js";
 import { sanitizeBriefForWriter } from "./lib/brief-sanitizer.js";
-import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes } from "./types.js";
+import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes, SourceAnchorForPrompt } from "./types.js";
 import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
 import { canonicalChapterIndexPath, readCanonicalChapterIndex } from "./lib/chapterSet.js";
 import { checkSourceV2Gate, sourceSidecarPathFor } from "./qc/sourceV2Gate.js";
@@ -122,6 +130,30 @@ export type GenerateChapterOptions = {
    *  templates. Passed through by generateBook from in-memory state plus
    *  any resumed cached chapters. */
   priorChapterShapes?: PriorChapterShapes;
+  /** Test/tooling roots for hermetic fixtures. Production uses canonical state and .chapterflow/runs. */
+  stateRoot?: string;
+  runsRoot?: string;
+  /** Force source-v2 evidence even outside no-api mode. */
+  sourceV2Required?: boolean;
+  /** Test seam for focused lifecycle regressions. Production should not set this. */
+  agents?: Partial<GenerateChapterAgents>;
+};
+
+export type GenerateChapterAgents = {
+  runEditorInChief: typeof runEditorInChief;
+  runCurriculumPlanner: typeof runCurriculumPlanner;
+  runWriterHook: typeof runWriterHook;
+  runWriterBreakdown: typeof runWriterBreakdown;
+  runVoicePass: typeof runVoicePass;
+  runLineEditor: typeof runLineEditor;
+  runWriterExample: typeof runWriterExample;
+  runExampleCurator: typeof runExampleCurator;
+  runWriterQuiz: typeof runWriterQuiz;
+  runWriterCards: typeof runWriterCards;
+  runWriterImplementationPlan: typeof runWriterImplementationPlan;
+  runTryThisNow: typeof runTryThisNow;
+  runMemorableLines: typeof runMemorableLines;
+  generateKeyTakeaway: typeof generateKeyTakeaway;
 };
 
 async function loadOrBuild<T>(
@@ -157,39 +189,47 @@ async function loadOrBuild<T>(
   });
 }
 
-function briefPath(bookId: string): string {
-  return resolve(STATE, "briefs", `${bookId}.brief.json`);
+function briefPath(bookId: string, stateRoot: string = STATE): string {
+  return resolve(stateRoot, "briefs", `${bookId}.brief.json`);
 }
 
-function manualBriefPath(bookId: string): string {
-  return resolve(STATE, "briefs", `${bookId}.manual-brief.json`);
+function manualBriefPath(bookId: string, stateRoot: string = STATE): string {
+  return resolve(stateRoot, "briefs", `${bookId}.manual-brief.json`);
 }
 
-function planPath(chapterId: string): string {
-  return resolve(STATE, "plans", `${chapterId}.plan.json`);
+function planPath(chapterId: string, stateRoot: string = STATE): string {
+  return resolve(stateRoot, "plans", `${chapterId}.plan.json`);
 }
 
-function manualPlanPath(chapterId: string): string {
-  return resolve(STATE, "plans", `${chapterId}.manual-plan.json`);
+function manualPlanPath(chapterId: string, stateRoot: string = STATE): string {
+  return resolve(stateRoot, "plans", `${chapterId}.manual-plan.json`);
 }
 
-function chapterPath(chapterId: string): string {
-  return resolve(STATE, "chapters", `${chapterId}.v21-native.chapter.json`);
+function chapterPath(chapterId: string, stateRoot: string = STATE): string {
+  return resolve(stateRoot, "chapters", `${chapterId}.v21-native.chapter.json`);
 }
 
 function stageProvider(): ProviderIdentity {
   return currentProviderIdentity("writer");
 }
 
+type CacheBuildContext = {
+  stateRoot?: string;
+  runsRoot?: string;
+  sourceEvidence?: PlanningSourceEvidence;
+};
+
 export function buildBriefCacheInputs(
   book: BookMeta,
   provider: ProviderIdentity = stageProvider(),
   codeVersion: string = STAGE_CACHE_CODE_VERSION,
+  context: CacheBuildContext = {},
 ): CacheDependency[] {
   return [
     ...defaultCacheDependencies({ provider, codeVersion }),
     stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
     valueDependency("book-meta", book),
+    valueDependency("source-evidence", sourceEvidenceDependencyValue(context.sourceEvidence)),
     fileDependency("author-voice-profile-config", resolve(CANONICAL_STATE, "../config/author-voice-profiles.json")),
     ...promptDependencies(BRIEF_PROMPTS),
     ...configDependencies(),
@@ -201,15 +241,18 @@ export function buildPlanCacheInputs(
   chapter: ChapterSpec,
   provider: ProviderIdentity = stageProvider(),
   codeVersion: string = STAGE_CACHE_CODE_VERSION,
+  context: CacheBuildContext = {},
 ): CacheDependency[] {
+  const stateRoot = context.stateRoot ?? STATE;
   return [
     ...defaultCacheDependencies({ provider, codeVersion }),
     stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
     valueDependency("book-meta", book),
     valueDependency("chapter-spec", chapter),
-    fileDependency("book-brief:generated", briefPath(book.bookId)),
-    fileDependency("book-brief:manual", manualBriefPath(book.bookId)),
-    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, sourceSidecarPathFor(book.bookId, chapter.chapterNumber)),
+    valueDependency("source-evidence", sourceEvidenceDependencyValue(context.sourceEvidence)),
+    fileDependency("book-brief:generated", briefPath(book.bookId, stateRoot)),
+    fileDependency("book-brief:manual", manualBriefPath(book.bookId, stateRoot)),
+    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, context.sourceEvidence?.chapterSidecarPath ?? sourceSidecarPathFor(book.bookId, chapter.chapterNumber, { runsRoot: context.runsRoot })),
     ...promptDependencies(PLAN_PROMPTS),
     ...configDependencies(),
   ];
@@ -220,20 +263,23 @@ export function buildChapterCacheInputs(
   chapter: ChapterSpec,
   provider: ProviderIdentity = stageProvider(),
   codeVersion: string = STAGE_CACHE_CODE_VERSION,
+  context: CacheBuildContext = {},
 ): CacheDependency[] {
+  const stateRoot = context.stateRoot ?? STATE;
   return [
     ...defaultCacheDependencies({ provider, codeVersion }),
     stringDependency("v21-schema-version", V21_SCHEMA_VERSION),
     valueDependency("book-meta", book),
     valueDependency("chapter-spec", chapter),
-    fileDependency("canonical-index", canonicalChapterIndexPath(book.bookId)),
-    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, sourceSidecarPathFor(book.bookId, chapter.chapterNumber)),
-    fileDependency("book-brief:generated", briefPath(book.bookId)),
-    fileDependency("book-brief:manual", manualBriefPath(book.bookId)),
-    fileDependency("chapter-plan:generated", planPath(chapter.chapterId)),
-    fileDependency("chapter-plan:manual", manualPlanPath(chapter.chapterId)),
-    fileDependency("shape-plan", resolve(CANONICAL_STATE, "shape-plans", `${book.bookId}.shape-plan.json`)),
-    fileDependency("exemplar-plan", resolve(CANONICAL_STATE, "exemplar-plans", `${book.bookId}.exemplar-plan.json`)),
+    valueDependency("source-evidence", sourceEvidenceDependencyValue(context.sourceEvidence)),
+    fileDependency("canonical-index", canonicalChapterIndexPath(book.bookId, stateRoot)),
+    fileDependency(`source:ch${String(chapter.chapterNumber).padStart(2, "0")}`, context.sourceEvidence?.chapterSidecarPath ?? sourceSidecarPathFor(book.bookId, chapter.chapterNumber, { runsRoot: context.runsRoot })),
+    fileDependency("book-brief:generated", briefPath(book.bookId, stateRoot)),
+    fileDependency("book-brief:manual", manualBriefPath(book.bookId, stateRoot)),
+    fileDependency("chapter-plan:generated", planPath(chapter.chapterId, stateRoot)),
+    fileDependency("chapter-plan:manual", manualPlanPath(chapter.chapterId, stateRoot)),
+    fileDependency("shape-plan", resolve(stateRoot, "shape-plans", `${book.bookId}.shape-plan.json`)),
+    fileDependency("exemplar-plan", resolve(stateRoot, "exemplar-plans", `${book.bookId}.exemplar-plan.json`)),
     ...promptDependencies(CHAPTER_PROMPTS),
     ...configDependencies(),
   ];
@@ -338,11 +384,24 @@ function validateCachedChapterForReuse(
   return problems;
 }
 
-async function generateKeyTakeaway(brief: BookBrief, plan: ChapterDesignDoc, deepRead: string): Promise<string> {
-  const result = await callClaude<{ keyTakeaway: string }>({
+export type KeyTakeawayOutput = {
+  keyTakeaway: string;
+  sourceAnchorIds?: string[];
+};
+
+async function generateKeyTakeaway(
+  brief: BookBrief,
+  plan: ChapterDesignDoc,
+  deepRead: string,
+  sourceAnchors: SourceAnchorForPrompt[] = [],
+): Promise<KeyTakeawayOutput> {
+  const sourceBlock = sourceAnchors.length > 0
+    ? `\n\n# Allowed source anchors\nUse only these ids and emit sourceAnchorIds for the claim.\n${JSON.stringify(sourceAnchors, null, 2)}`
+    : "";
+  const result = await callClaude<KeyTakeawayOutput>({
     tier: "writer",
-    system: `You write one-sentence key takeaways. Output a single JSON object: { "keyTakeaway": "..." }. The takeaway is ONE sentence, 140–220 characters, teaching the chapter's core move directly. No meta-references ("the chapter", "the author", "Chapter N"), no banned phrases ("That matters because", "boundary condition", etc.). No em dashes (—) anywhere, use commas, periods, or a semicolon. Plain words.`,
-    user: `# Brief voice charter\n${JSON.stringify(brief.voiceCharter, null, 2)}\n\n# Chapter coreMove\n${plan.coreMove}\n\n# Chapter title\n${plan.title}\n\n# Deep-read breakdown\n${deepRead}\n\nWrite the JSON now.`,
+    system: `You write one-sentence key takeaways. Output a single JSON object: { "keyTakeaway": "...", "sourceAnchorIds": ["..."] }. The takeaway is ONE sentence, 140–220 characters, teaching the chapter's core move directly. No meta-references ("the chapter", "the author", "Chapter N"), no banned phrases ("That matters because", "boundary condition", etc.). No em dashes (—) anywhere, use commas, periods, or a semicolon. Plain words.`,
+    user: `# Brief voice charter\n${JSON.stringify(brief.voiceCharter, null, 2)}\n\n# Chapter coreMove\n${plan.coreMove}\n\n# Chapter title\n${plan.title}\n\n# Deep-read breakdown\n${deepRead}${sourceBlock}\n\nWrite the JSON now.`,
     jsonMode: true,
     maxTokens: 400,
     temperature: 0.6,
@@ -352,7 +411,15 @@ async function generateKeyTakeaway(brief: BookBrief, plan: ChapterDesignDoc, dee
   if (!kt || kt.length < 100 || kt.length > 300) {
     throw new Error(`keyTakeaway length invalid (${kt?.length})`);
   }
-  return kt;
+  if (sourceAnchors.length > 0) {
+    const allowed = new Set(sourceAnchors.map((anchor) => anchor.id));
+    const ids = result.content.sourceAnchorIds ?? [];
+    if (ids.length === 0) throw new Error("keyTakeaway must cite at least one allowed source anchor");
+    for (const id of ids) {
+      if (!allowed.has(id)) throw new Error(`keyTakeaway cites unsupported source anchor ${JSON.stringify(id)}`);
+    }
+  }
+  return result.content;
 }
 
 export async function generateChapter(
@@ -369,10 +436,37 @@ export async function generateChapter(
   const provider = stageProvider();
   const codeVersion = options.cacheCodeVersion ?? STAGE_CACHE_CODE_VERSION;
   const allowModelGeneration = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN === "1";
+  const stateRoot = options.stateRoot ?? STATE;
+  const runsRoot = options.runsRoot;
+  const agents: GenerateChapterAgents = {
+    runEditorInChief,
+    runCurriculumPlanner,
+    runWriterHook,
+    runWriterBreakdown,
+    runVoicePass,
+    runLineEditor,
+    runWriterExample,
+    runExampleCurator,
+    runWriterQuiz,
+    runWriterCards,
+    runWriterImplementationPlan,
+    runTryThisNow,
+    runMemorableLines,
+    generateKeyTakeaway,
+    ...(options.agents ?? {}),
+  };
   const overall = Date.now();
+  const sourceEvidence = loadPlanningSourceEvidence(book.bookId, chapter.chapterNumber, {
+    runsRoot,
+    requireSourceV2: options.sourceV2Required,
+  });
+  if (sourceEvidence.available) {
+    log(`source: planning evidence loaded before editorial planning (sourceV2=${sourceEvidence.sourceV2 ? "yes" : "no"}, anchors=${sourceEvidence.anchors.length})`);
+  }
+  const cacheContext: CacheBuildContext = { stateRoot, runsRoot, sourceEvidence };
 
-  const chapterOutPath = chapterPath(chapter.chapterId);
-  const chapterInputs = buildChapterCacheInputs(book, chapter, provider, codeVersion);
+  const chapterOutPath = chapterPath(chapter.chapterId, stateRoot);
+  const chapterInputs = buildChapterCacheInputs(book, chapter, provider, codeVersion, cacheContext);
   if (existsSync(chapterOutPath) && !options.force) {
     const cache = validateStageCache({
       artifactPath: chapterOutPath,
@@ -443,14 +537,14 @@ export async function generateChapter(
   }
 
   const briefFromDisk = await loadOrBuild<BookBrief>(
-    briefPath(book.bookId),
-    () => runEditorInChief(book),
+    briefPath(book.bookId, stateRoot),
+    () => agents.runEditorInChief({ ...book, sourceExcerpt: renderBookSourceForEditor(sourceEvidence) }),
     `brief[${book.bookId}]`,
     log,
     {
       artifactType: "book-brief",
       artifactId: book.bookId,
-      inputs: buildBriefCacheInputs(book, provider, codeVersion),
+      inputs: buildBriefCacheInputs(book, provider, codeVersion, cacheContext),
       provider,
       allowGenerate: allowModelGeneration,
       force: options.force,
@@ -471,19 +565,21 @@ export async function generateChapter(
   const brief = sanitizeBriefForWriter(briefRaw);
 
   const plan = await loadOrBuild<ChapterDesignDoc>(
-    planPath(chapter.chapterId),
-    () => runCurriculumPlanner({
+    planPath(chapter.chapterId, stateRoot),
+    () => agents.runCurriculumPlanner({
       brief,
       chapterId: chapter.chapterId,
       chapterNumber: chapter.chapterNumber,
       chapterTitle: chapter.chapterTitle,
+      chapterSource: renderChapterSourceForPlanner(sourceEvidence),
+      sourceAnchors: sourceEvidence.anchors,
     }),
     `plan[${chapter.chapterId}]`,
     log,
     {
       artifactType: "chapter-plan",
       artifactId: chapter.chapterId,
-      inputs: buildPlanCacheInputs(book, chapter, provider, codeVersion),
+      inputs: buildPlanCacheInputs(book, chapter, provider, codeVersion, cacheContext),
       provider,
       allowGenerate: allowModelGeneration,
       force: options.force,
@@ -493,11 +589,6 @@ export async function generateChapter(
   );
   log(`plan: ${plan.exampleCount} examples, formats: ${Array.from(new Set(plan.exampleSpecs.map((s) => s.format))).join(", ")}`);
 
-  const source = loadSourceBundle(book.bookId, chapter.chapterNumber);
-  if (source.available) {
-    log(`source: ch${chapter.chapterNumber} source metadata loaded (${source.chapterSource?.length ?? 0}c)`);
-  }
-
   log(`hook + breakdown: generating in parallel…`);
   if (options.priorChapterShapes && (options.priorChapterShapes.priorHookFirstWords.length > 0 || options.priorChapterShapes.priorCounterShapes.length > 0)) {
     const fw = options.priorChapterShapes.priorHookFirstWords;
@@ -505,19 +596,25 @@ export async function generateChapter(
     log(`prior shapes: ${fw.length} hooks, ${cs.length} counters (writer will steer away from over-used)`);
   }
   const [hook, draftBreakdown] = await Promise.all([
-    runWriterHook({ brief, plan, priorChapterShapes: options.priorChapterShapes }),
-    runWriterBreakdown({
+    agents.runWriterHook({
       brief,
       plan,
-      chapterSource: source.chapterSource ?? undefined,
       priorChapterShapes: options.priorChapterShapes,
+      sourceAnchors: selectAnchorsForClaim(sourceEvidence, ["hook", "core_move", "breakdown_claim"], plan.coreMoveSourceAnchorIds),
+    }),
+    agents.runWriterBreakdown({
+      brief,
+      plan,
+      chapterSource: sourceEvidence.chapterSource ?? renderChapterSourceForPlanner(sourceEvidence),
+      priorChapterShapes: options.priorChapterShapes,
+      sourceAnchors: selectAnchorsForClaim(sourceEvidence, ["breakdown_claim", "core_move"], plan.coreMoveSourceAnchorIds),
     }),
   ]);
   log(`hook: "${hook.hook}"`);
   log(`draft breakdown: fastRead=${draftBreakdown.fastRead.length}c, deepRead=${draftBreakdown.deepRead.length}c, fullRead=${draftBreakdown.fullRead.length}c`);
 
   log(`voice pass: iterating (max ${VOICE_PASS_MAX})…`);
-  let breakdown = await runVoicePass({ brief, plan, draft: draftBreakdown });
+  let breakdown = await agents.runVoicePass({ brief, plan, draft: draftBreakdown });
   log(`voice pass iter 1 done (fastRead=${breakdown.fastRead.length}c, deepRead=${breakdown.deepRead.length}c, fullRead=${breakdown.fullRead.length}c)`);
   const runProseChecksOnBreakdown = (b: typeof breakdown): string[] => {
     const issues: string[] = [];
@@ -541,7 +638,7 @@ export async function generateChapter(
     }
     log(`voice pass iter ${iter}: ${issues.length} findings, re-running`);
     try {
-      breakdown = await runVoicePass({ brief, plan, draft: breakdown, priorFindings: issues });
+      breakdown = await agents.runVoicePass({ brief, plan, draft: breakdown, priorFindings: issues });
     } catch (err) {
       log(`voice pass iter ${iter} failed: ${(err as Error).message}`);
       break;
@@ -552,7 +649,7 @@ export async function generateChapter(
   // been brought home. Closes the editorial-quality gap to commercial apps.
   log(`line editor: surgical polish pass…`);
   try {
-    breakdown = await runLineEditor({ brief, plan, draft: breakdown });
+    breakdown = await agents.runLineEditor({ brief, plan, draft: breakdown });
     log(`line editor: done (fastRead=${breakdown.fastRead.length}c, deepRead=${breakdown.deepRead.length}c, fullRead=${breakdown.fullRead.length}c)`);
   } catch (err) {
     log(`line editor: failed (${(err as Error).message}), keeping voice-passed draft`);
@@ -578,7 +675,14 @@ export async function generateChapter(
 
     const runBatch = async (namesList: string[]) => {
       const promises = Array.from({ length: CANDIDATES_PER_SLOT }, () =>
-        runWriterExample({ brief, plan, spec, specIndex: i, usedNames: [...namesList] })
+        agents.runWriterExample({
+          brief,
+          plan,
+          spec,
+          specIndex: i,
+          usedNames: [...namesList],
+          sourceAnchors: selectAnchorsForClaim(sourceEvidence, ["example"], spec.sourceAnchorIds, 4),
+        })
           .then((ex) => ({ ok: true as const, ex }))
           .catch((err) => ({ ok: false as const, err: (err as Error).message })),
       );
@@ -618,7 +722,7 @@ export async function generateChapter(
     if (candidates.length === 1) {
       winner = candidates[0];
     } else {
-      const curated = await runExampleCurator({ brief, plan, spec, candidates });
+      const curated = await agents.runExampleCurator({ brief, plan, spec, candidates });
       winner = candidates[curated.winnerIndex];
     }
     examples.push(winner);
@@ -630,12 +734,15 @@ export async function generateChapter(
   }
 
   log(`quiz + cards + impl-plan + takeaway + tryThisNow: in parallel…`);
+  const quizAnchors = selectAnchorsForClaim(sourceEvidence, ["quiz_prompt", "quiz_explanation", "quiz_key_evidence"], plan.quizFocus.sourceAnchorIds, 12);
+  const cardAnchors = selectAnchorsForClaim(sourceEvidence, ["review_card"], plan.cardFocus.sourceAnchorIds, 8);
+  const implementationAnchors = selectAnchorsForClaim(sourceEvidence, ["implementation_guidance", "takeaway"], plan.coreMoveSourceAnchorIds, 8);
   const [quiz, cards, ipPlan, keyTakeaway, tryThisNow] = await Promise.all([
-    runWriterQuiz({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any }),
-    runWriterCards({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any }),
-    runWriterImplementationPlan({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any }),
-    generateKeyTakeaway(brief, plan, breakdown.deepRead),
-    runTryThisNow({ brief, plan }).catch((err) => {
+    agents.runWriterQuiz({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: quizAnchors }),
+    agents.runWriterCards({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: cardAnchors }),
+    agents.runWriterImplementationPlan({ brief, plan, breakdown: { easy: breakdown.fastRead, medium: breakdown.deepRead, hard: breakdown.fullRead } as any, sourceAnchors: implementationAnchors }),
+    agents.generateKeyTakeaway(brief, plan, breakdown.deepRead, selectAnchorsForClaim(sourceEvidence, ["takeaway", "core_move"], plan.coreMoveSourceAnchorIds, 6)),
+    agents.runTryThisNow({ brief, plan }).catch((err) => {
       log(`tryThisNow failed: ${(err as Error).message}`);
       return undefined;
     }),
@@ -650,9 +757,12 @@ export async function generateChapter(
     quiz,
     cards,
     implementationPlan: ipPlan,
-    keyTakeaway,
+    keyTakeaway: keyTakeaway.keyTakeaway,
+    keyTakeawaySourceAnchorIds: keyTakeaway.sourceAnchorIds ?? anchorIds(selectAnchorsForClaim(sourceEvidence, ["takeaway", "core_move"], plan.coreMoveSourceAnchorIds, 1)),
     hook,
     tryThisNow: tryThisNow?.tryThisNow,
+    tryThisNowSourceAnchorIds: anchorIds(implementationAnchors.slice(0, 1)),
+    sourceEvidence,
   });
 
   // Memorable-lines pass: read the assembled chapter, mark the 3 most quotable
@@ -660,14 +770,28 @@ export async function generateChapter(
   log(`memorable lines: marking 3 quotable lines…`);
   let memorableLines;
   try {
-    const ml = await runMemorableLines(draftAssembled);
+    const ml = await agents.runMemorableLines(draftAssembled);
     memorableLines = ml.memorableLines;
     log(`memorable lines: ${memorableLines.length} marked`);
   } catch (err) {
     log(`memorable lines failed: ${(err as Error).message}, continuing without`);
   }
 
-  const assembled = { ...draftAssembled, memorableLines };
+  const assembled = assembleChapterV21({
+    plan,
+    breakdown,
+    examples,
+    quiz,
+    cards,
+    implementationPlan: ipPlan,
+    keyTakeaway: keyTakeaway.keyTakeaway,
+    keyTakeawaySourceAnchorIds: keyTakeaway.sourceAnchorIds ?? anchorIds(selectAnchorsForClaim(sourceEvidence, ["takeaway", "core_move"], plan.coreMoveSourceAnchorIds, 1)),
+    hook,
+    tryThisNow: tryThisNow?.tryThisNow,
+    tryThisNowSourceAnchorIds: anchorIds(implementationAnchors.slice(0, 1)),
+    memorableLines,
+    sourceEvidence,
+  });
 
   // Final ship gate. The assembled chapter is run through every critic in
   // the FAILURE-MODES catalog. Blockers fail-close: the chapter does NOT
@@ -676,7 +800,7 @@ export async function generateChapter(
   log(formatGateReport(gate));
   if (!gate.passed) {
     // Save the failed draft to a quarantine path so it can be inspected.
-    const quarantineDir = resolve(STATE, "chapters", "_blocked");
+    const quarantineDir = resolve(stateRoot, "chapters", "_blocked");
     mkdirSync(quarantineDir, { recursive: true });
     writeFileSync(
       resolve(quarantineDir, `${chapter.chapterId}.blocked.${Date.now()}.json`),
@@ -687,7 +811,7 @@ export async function generateChapter(
   }
   const boundaryProblems = validateCachedChapterForReuse(assembled, book, chapter, chapterOutPath);
   if (boundaryProblems.length > 0) {
-    const quarantineDir = resolve(STATE, "chapters", "_blocked");
+    const quarantineDir = resolve(stateRoot, "chapters", "_blocked");
     mkdirSync(quarantineDir, { recursive: true });
     writeFileAtomic(
       resolve(quarantineDir, `${chapter.chapterId}.boundary.${Date.now()}.json`),
@@ -700,14 +824,14 @@ export async function generateChapter(
   // truncated chapter JSON — that torn file crashes loadBookChapters on resume and wedges
   // the walk-away conductor permanently. rename(2) leaves either the old file or the complete
   // new one.
-  const outDir = resolve(STATE, "chapters");
+  const outDir = resolve(stateRoot, "chapters");
   const finalChapterPath = resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`);
   writeFileAtomic(finalChapterPath, JSON.stringify(assembled, null, 2));
   writeStageCacheManifest({
     artifactPath: finalChapterPath,
     artifactType: "chapter",
     artifactId: chapter.chapterId,
-    inputs: buildChapterCacheInputs(book, chapter, provider, codeVersion),
+    inputs: buildChapterCacheInputs(book, chapter, provider, codeVersion, cacheContext),
     generatorName: "generateChapter",
     provider,
     codeVersion,
