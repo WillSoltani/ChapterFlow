@@ -12,6 +12,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, ExampleSpec, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -109,11 +110,8 @@ function buildUserPrompt(input: ExampleInput): string {
     parts.push("");
   }
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
-    parts.push(`# Allowed source anchors for this example`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors for this example", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit sourceAnchorIds with the namedExample/testableFact anchors the scene dramatizes.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
     parts.push("");
   }
   parts.push(`Slug hint for exampleId: "ch${String(input.plan.number).padStart(2, "0")}-ex${String(input.specIndex + 1).padStart(2, "0")}-<protagonist-slug>"`);

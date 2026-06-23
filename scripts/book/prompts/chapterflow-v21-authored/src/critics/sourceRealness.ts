@@ -13,7 +13,7 @@
  *     summarizing grounding strength; never a blocker.
  */
 
-import { SourceCoherenceFinding } from "./sourceCoherence.js";
+import type { SourceCoherenceFinding } from "./sourceCoherence.js";
 import { detectSidecarShape } from "../source/sidecarSchema.js";
 
 const ABSTRACTION = new Set(

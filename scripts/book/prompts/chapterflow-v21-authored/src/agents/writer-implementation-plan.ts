@@ -7,6 +7,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
@@ -54,11 +55,8 @@ export async function runWriterImplementationPlan(input: PlanInput): Promise<Imp
   parts.push(input.breakdown.deepRead);
   parts.push("");
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit titleSourceAnchorIds, coreSkillSourceAnchorIds, ifThenPlans[].sourceAnchorIds, twentyFourHourChallengeSourceAnchorIds, and weeklyPracticeSourceAnchorIds.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
     parts.push("");
   }
   parts.push(`Write the ImplementationPlanOutput JSON now. Include a "title" field: 4–7 words naming the specific skill this plan teaches, derived from the chapter's coreSkill. The title must be specific enough that it could not be swapped with another chapter's plan title.`);

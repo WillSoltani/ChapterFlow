@@ -178,25 +178,49 @@ function writeIndex(stateRoot: string, bookId: string, count: number): void {
 }
 
 function sourceV2Sidecar(n: number): Record<string, unknown> {
+  const nn = String(n).padStart(2, "0");
+  const exampleSummaries = [
+    `Contract ${n} Resolver 1 compares 12 manifest rows before accepting the June 2026 source bundle.`,
+    `Contract ${n} Resolver 2 checks the July 2026 bibliography ledger against 13 persisted chapter specs.`,
+    `Contract ${n} Resolver 3 rejects a 14-row source bundle when the canonical index lists only 13 chapters.`,
+  ];
+  const factRows = [
+    ["12 manifest rows", "June 2026 source bundle", "accepting the manifest before row 12 is checked"],
+    ["13 persisted chapter specs", "July 2026 bibliography ledger", "trusting the chapter specs before the ledger comparison"],
+    ["14-row source bundle", "canonical index lists 13 chapters", "letting the larger bundle override the canonical index"],
+    ["5 resolver warnings", "August 2026 dry run", "hiding resolver warnings until authoring begins"],
+    ["3 incompatible runs", "artifact resolver", "choosing the newest run without compatibility checks"],
+    ["27 source notes", "flat TOC parser", "counting sidecars instead of parsing the TOC"],
+    ["2 duplicate chapter numbers", "canonical sequence audit", "renumbering silently after research"],
+    ["6 section rows", "legacy migration table", "dropping section rows during migration"],
+    ["9 downstream tasks", "single validated chapter list", "letting each task infer its own list"],
+  ];
   return {
     schemaVersion: "source-v2",
+    chapterNumber: n,
+    chapterTitle: `Contract ${n}`,
     centralConcept: {
-      id: `concept-${n}`,
+      id: `ch${nn}.concept.contract-sequence`,
       name: `Contract Concept ${n}`,
-      plainDefinition: `A fixture definition with enough detail for unit ${n}.`,
+      plainDefinition: `Contract ${n} uses a named sequence check so every downstream artifact reads the same source authority.`,
     },
+    keyClaims: [`Contract ${n} keeps one canonical sequence for source coverage.`],
     namedExamples: Array.from({ length: 3 }, (_, i) => ({
-      id: `ex-${n}-${i}`,
-      label: `Example ${n}-${i}`,
-      summary: `A synthetic source example ${i} for unit ${n}.`,
-      hardSpecifics: [`specific-${n}-${i}-a`, `specific-${n}-${i}-b`],
+      id: `ch${nn}.ex.contract-${i + 1}`,
+      label: `Contract ${n} Resolver ${i + 1}`,
+      summary: exampleSummaries[i],
+      teachesWhat: "Validate the source authority before planning.",
+      hardSpecifics: [`Resolver ${i + 1}`, `${12 + i} rows`, i === 0 ? "June 2026" : i === 1 ? "July 2026" : "canonical index"],
+      realWorld: false,
     })),
-    testableFacts: Array.from({ length: 9 }, (_, i) => ({
-      id: `fact-${n}-${i}`,
-      claim: `Claim ${n}-${i}`,
-      becauseMechanism: `Mechanism ${n}-${i}`,
-      commonError: `Error ${n}-${i}`,
-      errorIsWhy: `Why ${n}-${i}`,
+    hardEdge: "A plausible sidecar is not enough; the sequence must contain named, checkable evidence before authoring starts.",
+    testableFacts: factRows.map(([measurement, evidence, error], i) => ({
+      id: `ch${nn}.fact.${i + 1}`,
+      claim: `Contract ${n} fixture fact ${i + 1} verifies ${measurement} against ${evidence}.`,
+      becauseMechanism: `Because ${evidence} is checked before authoring consumes the index, ${measurement} can still be corrected at the source boundary.`,
+      commonError: `The tempting shortcut is ${error}.`,
+      errorIsWhy: `That is wrong because the downstream task would trust an index before ${measurement} had been verified.`,
+      derivedFrom: `ch${nn}.concept.contract-sequence`,
     })),
   };
 }

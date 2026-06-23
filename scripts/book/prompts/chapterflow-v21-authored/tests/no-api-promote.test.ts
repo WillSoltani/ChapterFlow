@@ -84,8 +84,9 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     assert.ok(result.noApiBlockerCount > 0, `expected no-api blockers, got ${result.noApiBlockerCount}`);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
     const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
+    const sourceIntegrityIds = (report.sourceIntegrity?.findings ?? []).map((f: any) => f.checkId);
     const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(noApiIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(sourceIntegrityIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${sourceIntegrityIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC2.manual_keyjudge_missing"), `manual keyjudge blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
     assert.ok((report.majorPolicy?.totalBlockers ?? 0) > 0, "unresolved majors must be production-blocking in the explicit major policy");

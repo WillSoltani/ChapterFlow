@@ -10,6 +10,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 import { sanitizeUserPromptForWriter } from "../lib/brief-sanitizer.js";
@@ -99,11 +100,8 @@ function buildUserPrompt(input: CardsInput): string {
   parts.push(input.breakdown.deepRead);
   parts.push("");
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit sourceAnchorIds for every card.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
     parts.push("");
   }
   parts.push(`Write the CardsOutput JSON now. Emit exactly ${input.plan.cardFocus.count} cards.`);

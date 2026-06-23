@@ -69,6 +69,7 @@ import {
   extractNamesFromText,
 } from "./librarian/libraryState.js";
 import { callClaude } from "./claudeClient.js";
+import { renderUntrustedSourceBlock } from "./providers/types.js";
 import { assembleChapterV21, V21_SCHEMA_VERSION } from "./assembler.js";
 import { sanitizeBriefForWriter } from "./lib/brief-sanitizer.js";
 import { BookBrief, BookPackageV21, ChapterDesignDoc, ChapterV21, PriorChapterShapes, SourceAnchorForPrompt } from "./types.js";
@@ -340,6 +341,7 @@ function validateCachedChapterForReuse(
   book: BookMeta,
   chapter: ChapterSpec,
   filePath: string,
+  roots: { stateRoot?: string; runsRoot?: string } = {},
 ): string[] {
   const problems: string[] = [];
   problems.push(...validateChapterShape(cached).map((problem) => `runtime schema: ${problem}`));
@@ -350,7 +352,7 @@ function validateCachedChapterForReuse(
     problems.push(`filename identity: ${f.message}`);
   }
 
-  const index = readCanonicalChapterIndex(book.bookId);
+  const index = readCanonicalChapterIndex(book.bookId, roots.stateRoot);
   if (!index.ok) {
     problems.push(...index.blockers.map((b) => `canonical index: ${b.message}`));
   } else {
@@ -367,8 +369,8 @@ function validateCachedChapterForReuse(
     }
   }
 
-  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1" || sourceSidecarPathFor(book.bookId, chapter.chapterNumber)) {
-    const sourceGate = checkSourceV2Gate(book.bookId, [chapter.chapterNumber]);
+  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1" || sourceSidecarPathFor(book.bookId, chapter.chapterNumber, { runsRoot: roots.runsRoot })) {
+    const sourceGate = checkSourceV2Gate(book.bookId, [chapter.chapterNumber], roots);
     if (!sourceGate.passed) {
       problems.push(...sourceGate.findings.map((f) => `source-v2: ${f.checkId} ${f.message}`));
     }
@@ -396,7 +398,7 @@ async function generateKeyTakeaway(
   sourceAnchors: SourceAnchorForPrompt[] = [],
 ): Promise<KeyTakeawayOutput> {
   const sourceBlock = sourceAnchors.length > 0
-    ? `\n\n# Allowed source anchors\nUse only these ids and emit sourceAnchorIds for the claim.\n${JSON.stringify(sourceAnchors, null, 2)}`
+    ? `\n\n${renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(sourceAnchors, null, 2), "json")}\nUse only these ids and emit sourceAnchorIds for the claim.`
     : "";
   const result = await callClaude<KeyTakeawayOutput>({
     tier: "writer",
@@ -459,6 +461,7 @@ export async function generateChapter(
   const sourceEvidence = loadPlanningSourceEvidence(book.bookId, chapter.chapterNumber, {
     runsRoot,
     requireSourceV2: options.sourceV2Required,
+    chapterTitle: chapter.chapterTitle,
   });
   if (sourceEvidence.available) {
     log(`source: planning evidence loaded before editorial planning (sourceV2=${sourceEvidence.sourceV2 ? "yes" : "no"}, anchors=${sourceEvidence.anchors.length})`);
@@ -482,7 +485,7 @@ export async function generateChapter(
       let reuseProblems: string[] = [];
       try {
         cached = JSON.parse(readFileSync(chapterOutPath, "utf8")) as ChapterV21;
-        reuseProblems = validateCachedChapterForReuse(cached, book, chapter, chapterOutPath);
+        reuseProblems = validateCachedChapterForReuse(cached, book, chapter, chapterOutPath, { stateRoot, runsRoot });
       } catch (err) {
         reuseProblems = [`cached chapter unreadable: ${(err as Error).message}`];
       }
@@ -605,7 +608,7 @@ export async function generateChapter(
     agents.runWriterBreakdown({
       brief,
       plan,
-      chapterSource: sourceEvidence.chapterSource ?? renderChapterSourceForPlanner(sourceEvidence),
+      chapterSource: renderChapterSourceForPlanner(sourceEvidence),
       priorChapterShapes: options.priorChapterShapes,
       sourceAnchors: selectAnchorsForClaim(sourceEvidence, ["breakdown_claim", "core_move"], plan.coreMoveSourceAnchorIds),
     }),
@@ -809,7 +812,7 @@ export async function generateChapter(
     );
     throw new Error(`Ship gate BLOCKED ${chapter.chapterId}: ${gate.blockers.length} blocker(s). See quarantine.`);
   }
-  const boundaryProblems = validateCachedChapterForReuse(assembled, book, chapter, chapterOutPath);
+  const boundaryProblems = validateCachedChapterForReuse(assembled, book, chapter, chapterOutPath, { stateRoot, runsRoot });
   if (boundaryProblems.length > 0) {
     const quarantineDir = resolve(stateRoot, "chapters", "_blocked");
     mkdirSync(quarantineDir, { recursive: true });

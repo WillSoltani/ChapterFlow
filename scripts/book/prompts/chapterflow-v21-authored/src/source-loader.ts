@@ -9,12 +9,10 @@
  * writer) call loadChapterSource(bookId, chapterNumber) and pass the string
  * into the model as context.
  *
- * Meta-stripping: prose sidecars from v13 frequently contain meta-references
- * ("the chapter should...", "the author argues..."). Feeding those into a
- * writer's context reverse-primes the model into emitting the same phrasing
- * downstream — a failure mode (B9) that masquerades as an instruction-following
- * bug. Every loader in this module strips meta lines before returning content,
- * so writers never see them. See FAILURE-MODES.md (B9, B10) for context.
+ * Source normalization preserves factual source observations even when they
+ * contain words such as "chapter" or "author". It rejects only directive-like
+ * lines that attempt to steer the writer or provider, and exposes diagnostics
+ * so rejected source fields are auditable instead of silently erased.
  */
 
 import { readFileSync } from "fs";
@@ -31,43 +29,57 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // silently returned "no usable source".
 const CHAPTERFLOW_RUNS = resolve(__dirname, "../../../../..", ".chapterflow/runs");
 
-/**
- * Patterns that, if found anywhere on a line, mark that line as meta-content
- * we strip before returning the source to a writer. Mirrors a subset of the
- * critic patterns in config/meta-patterns.json — kept inline so this module
- * stays self-contained and the strip stays in lockstep with what the ship
- * gate later flags.
- */
-const META_TELL_PATTERNS: RegExp[] = [
-  /\bthis chapter\b/i,
-  /\bthe chapter\b/i,
-  /\bthe author\b/i,
-  /\bthe book\b/i,
-  /\bin this (chapter|section|book|law)\b/i,
-  /\bchapter\s+(opens|argues|says|notes|introduces|reframes|shows|treats|warns|installs|closes|reminds|concludes|emphasizes|adds|explains|continues|begins|moves|uses)\b/i,
-  /\b(Clear|Kahneman|Taleb|Housel|Tetlock|Cialdini|Greene|Machiavelli|Duhigg|Eyal|Covey|Ries|Brown|Kolb|Gladwell|Fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
-  /\bChapter\s+\d+\b/,
-  /\bChapter\s+(One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve)\b/i,
+export type SourceRejectedLine = {
+  lineNumber: number;
+  reason: string;
+  raw: string;
+};
+
+export type NormalizedSourceText = {
+  raw: string;
+  normalized: string | null;
+  rejectedFields: SourceRejectedLine[];
+};
+
+const DIRECTIVE_PATTERNS: Array<{ reason: string; re: RegExp }> = [
+  { reason: "prompt-injection directive", re: /\b(ignore|disregard|override)\s+(previous|prior|all|system|developer)\s+instructions?\b/i },
+  { reason: "tool/provider directive", re: /\b(enable|disable|call|use|invoke|run)\s+(websearch|web\s+search|bash|tool|provider|openai|anthropic|claude|api)\b/i },
+  { reason: "response-shaping directive", re: /\b(respond|reply|output|write)\s+(only|as|with)\b.*\b(json|markdown|system|developer|tool)\b/i },
+  { reason: "role/system directive", re: /\b(you are|act as|system prompt|developer message|assistant must)\b/i },
 ];
 
-function isMetaLine(line: string): boolean {
-  return META_TELL_PATTERNS.some((re) => re.test(line));
+function rejectionReason(line: string): string | null {
+  for (const pattern of DIRECTIVE_PATTERNS) {
+    if (pattern.re.test(line)) return pattern.reason;
+  }
+  return null;
+}
+
+export function normalizeSourceText(text: string): NormalizedSourceText {
+  const lines = text.split(/\r?\n/);
+  const rejectedFields: SourceRejectedLine[] = [];
+  const kept: string[] = [];
+  lines.forEach((line, index) => {
+    const reason = rejectionReason(line);
+    if (reason && line.trim()) {
+      rejectedFields.push({ lineNumber: index + 1, reason, raw: line });
+      return;
+    }
+    kept.push(line);
+  });
+  const cleaned = kept.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+  if (!cleaned) return { raw: text, normalized: null, rejectedFields };
+  // If the only thing left is whitespace/punctuation, treat as empty.
+  if (!/[A-Za-z0-9]/.test(cleaned)) return { raw: text, normalized: null, rejectedFields };
+  return { raw: text, normalized: cleaned, rejectedFields };
 }
 
 /**
- * Drops any line containing a meta-reference, then collapses runs of blank
- * lines so the result reads cleanly. Returns null if every non-blank line
- * was meta — calling code treats that as "no usable source" rather than
- * passing an empty string to the model.
+ * Backward-compatible loader API. Returns normalized text only, while
+ * normalizeSourceText exposes raw text plus rejected-line diagnostics.
  */
 export function stripMetaReferences(text: string): string | null {
-  const lines = text.split(/\r?\n/);
-  const kept = lines.filter((line) => !isMetaLine(line));
-  const cleaned = kept.join("\n").replace(/\n{3,}/g, "\n\n").trim();
-  if (!cleaned) return null;
-  // If the only thing left is whitespace/punctuation, treat as empty.
-  if (!/[A-Za-z0-9]/.test(cleaned)) return null;
-  return cleaned;
+  return normalizeSourceText(text).normalized;
 }
 
 // Run resolution is artifact-aware via lib/runDirs: a run dir that doesn't
@@ -100,21 +112,50 @@ export type SourceBundle = {
   bookId: string;
   chapter: number | null;
   chapterSource: string | null;
+  rawChapterSource: string | null;
   bookSource: string | null;
+  rawBookSource: string | null;
   toc: string | null;
+  rejectedFields: SourceRejectedLine[];
   available: boolean;
 };
 
 export function loadSourceBundle(bookId: string, chapterNumber?: number): SourceBundle {
-  const chapterSource = chapterNumber !== undefined ? loadChapterSource(bookId, chapterNumber) : null;
-  const bookSource = loadBookSource(bookId);
+  let chapterSource: string | null = null;
+  let rawChapterSource: string | null = null;
+  let bookSource: string | null = null;
+  let rawBookSource: string | null = null;
+  const rejectedFields: SourceRejectedLine[] = [];
+  if (chapterNumber !== undefined) {
+    const sidecar = findRunArtifact(
+      CHAPTERFLOW_RUNS,
+      bookId,
+      `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.txt`,
+    );
+    if (sidecar) {
+      rawChapterSource = readFileSync(sidecar, "utf8");
+      const normalized = normalizeSourceText(rawChapterSource);
+      chapterSource = normalized.normalized;
+      rejectedFields.push(...normalized.rejectedFields.map((field) => ({ ...field, reason: `chapterSource: ${field.reason}` })));
+    }
+  }
+  const bookSourceMd = findRunArtifact(CHAPTERFLOW_RUNS, bookId, "source-freeze/book-source.md");
+  if (bookSourceMd) {
+    rawBookSource = readFileSync(bookSourceMd, "utf8");
+    const normalized = normalizeSourceText(rawBookSource);
+    bookSource = normalized.normalized;
+    rejectedFields.push(...normalized.rejectedFields.map((field) => ({ ...field, reason: `bookSource: ${field.reason}` })));
+  }
   const toc = loadTableOfContents(bookId);
   return {
     bookId,
     chapter: chapterNumber ?? null,
     chapterSource,
+    rawChapterSource,
     bookSource,
+    rawBookSource,
     toc,
+    rejectedFields,
     available: !!(chapterSource || bookSource || toc),
   };
 }

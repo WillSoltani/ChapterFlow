@@ -65,12 +65,22 @@ function sidecar(chapterNumber = 1): any {
       },
     ],
     hardEdge: "Do not replace source evidence with generic memory.",
-    testableFacts: Array.from({ length: 9 }, (_, i) => ({
+    testableFacts: [
+      ["Lantern Ledger reduced missed beacon checks from 17 to 4 after a Tuesday intake review.", "Because the Tuesday intake review happens before the harbor shift changes hands, the ledger error can be fixed while the beacon record is still fresh.", "Treat the missed beacon checks as a training issue after the shift ends."],
+      ["Compass Review found 8 tide mismatches before the mast inspection window closed.", "Because the tide check happens before the mast inspection, the team can separate a bad reading from a bad repair.", "Wait for the mast inspection before checking the tide record."],
+      ["Quay Handoff caught 6 cargo labels that disagreed with the harbor manifest.", "Because the handoff compares cargo labels to the manifest before loading, the mismatch stays attached to the original crate.", "Assume the loading team will notice the cargo mismatch later."],
+      ["Beacon Desk kept a 24-hour ledger so overnight drift retained its first timestamp.", "Because the timestamp is recorded before morning triage, the team can trace the defect without guessing when it began.", "Let the morning team infer the overnight sequence from memory."],
+      ["Harbor Audit moved 5 scattered notes into one quay log before Friday review.", "Because the quay log gathers the notes before review, the operator sees one source of truth instead of five partial records.", "Keep each note where it first arrived."],
+      ["Mast Crew named Rowan as the single owner for 12 open repair tickets.", "Because Rowan owns the repair queue before assignment, every ticket has one authoritative status.", "Let every crew member update their own version of the repair queue."],
+      ["Anchor Trial paused a launch for 9 minutes after the compass reading jumped twice.", "Because the pause happens at the first jump, the team can test the compass before the launch hides the cause.", "Continue the launch and inspect the compass afterward."],
+      ["Ledger Pilot separated reminder cards from reward cards across 220 practice sessions.", "Because the pilot separates the two card types, the team can tell which prompt changed behavior.", "Blend reminders and rewards because both support practice."],
+      ["Cargo Review documented 31 crate transfers before the evening manifest was signed.", "Because the transfers are documented before signoff, a missing crate can be traced to a specific handoff.", "Sign the manifest first and reconcile transfers later."],
+    ].map(([claim, becauseMechanism, commonError], i) => ({
       id: `ch${nn}.fact.${i + 1}`,
-      claim: `Synthetic fact ${i + 1}`,
-      becauseMechanism: `Synthetic mechanism ${i + 1}`,
-      commonError: `Synthetic error ${i + 1}`,
-      errorIsWhy: `Synthetic correction ${i + 1}`,
+      claim,
+      becauseMechanism,
+      commonError,
+      errorIsWhy: `That misses the timing advantage in fixture fact ${i + 1}: the check works because the original source context is still available.`,
     })),
   };
 }

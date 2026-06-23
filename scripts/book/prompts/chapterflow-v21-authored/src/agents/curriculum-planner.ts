@@ -15,6 +15,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -64,16 +65,12 @@ function buildUserPrompt(input: PlannerInput): string {
   parts.push(`title: ${input.chapterTitle}`);
   if (input.chapterSource) {
     parts.push("");
-    parts.push(`# Chapter source evidence`);
-    parts.push(input.chapterSource);
+    parts.push(renderUntrustedSourceBlock("Chapter source evidence", input.chapterSource));
   }
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
     parts.push("");
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use ONLY these ids in coreMoveSourceAnchorIds, exampleSpecs[].sourceAnchorIds, quizFocus.sourceAnchorIds, and cardFocus.sourceAnchorIds.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
   }
   parts.push("");
   parts.push(`Write the ChapterDesignDoc JSON now.`);

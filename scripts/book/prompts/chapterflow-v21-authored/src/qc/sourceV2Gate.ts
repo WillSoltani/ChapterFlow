@@ -7,6 +7,7 @@ import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
 import { formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
+import { evaluateSourceV2Integrity, rawSourceHash, semanticSourceHash } from "../source/sourceIntegrity.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RUNS_ROOT = resolve(REPO_ROOT, ".chapterflow/runs");
@@ -109,7 +110,17 @@ export function sourceSidecarPathFor(bookId: string, chapterNumber: number, root
 export function sourceHashFor(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): string | null {
   const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
   if (!p || !existsSync(p)) return null;
-  return hashText(readFileSync(p, "utf8"));
+  try {
+    return semanticSourceHash(readJson(p));
+  } catch {
+    return null;
+  }
+}
+
+export function sourceRawHashFor(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): string | null {
+  const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
+  if (!p || !existsSync(p)) return null;
+  return rawSourceHash(readFileSync(p, "utf8"));
 }
 
 export function loadSourceV2Sidecar(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): any | null {
@@ -132,13 +143,13 @@ export function sourceFactsForPack(sc: any): SourceFactForPack[] {
   })).filter((f: SourceFactForPack) => f.id && f.claim);
 }
 
-function nonempty(value: unknown): boolean {
-  return typeof value === "string" && value.trim().length > 0;
-}
-
 export function checkSourceV2Gate(bookId: string, chapterNumbers?: number[], roots: SourceV2Roots = {}): SourceV2GateReport {
   const findings: SourceV2Finding[] = [];
   let expected = chapterNumbers;
+  const canonical = readCanonicalChapterIndex(bookId, roots.stateRoot ?? CANONICAL_STATE);
+  const canonicalTitles = canonical.ok
+    ? new Map(canonical.chapters.map((chapter) => [chapter.chapterNumber, chapter.chapterTitle]))
+    : new Map<number, string>();
   if (!expected) {
     const resolved = resolveExpectedSourceChapters(bookId, roots);
     findings.push(...resolved.findings);
@@ -153,39 +164,21 @@ export function checkSourceV2Gate(bookId: string, chapterNumbers?: number[], roo
       findings.push({ checkId: "SV2.missing_sidecar", severity: "blocker", chapterNumber, message: `Missing source sidecar for ch${String(chapterNumber).padStart(2, "0")}.` });
       continue;
     }
+    let raw = "";
     let sc: any;
     try {
-      sc = readJson(p);
+      raw = readFileSync(p, "utf8");
+      sc = JSON.parse(raw);
     } catch (err) {
       findings.push({ checkId: "SV2.unreadable_sidecar", severity: "blocker", chapterNumber, message: `Unreadable source sidecar ${p}: ${(err as Error).message}` });
       continue;
     }
-    if (sc?.schemaVersion !== "source-v2") {
-      findings.push({ checkId: "SV2.not_source_v2", severity: "blocker", chapterNumber, message: `Sidecar is schemaVersion ${JSON.stringify(sc?.schemaVersion)}; no-api mode requires "source-v2".` });
-    }
-    if (!sc?.centralConcept || !nonempty(sc.centralConcept.name) || !nonempty(sc.centralConcept.plainDefinition)) {
-      findings.push({ checkId: "SV2.central_concept_missing", severity: "blocker", chapterNumber, message: `centralConcept.name and centralConcept.plainDefinition are required.` });
-    }
-    const namedExamples = Array.isArray(sc?.namedExamples) ? sc.namedExamples : [];
-    if (namedExamples.length < 3) {
-      findings.push({ checkId: "SV2.named_examples_floor", severity: "blocker", chapterNumber, message: `namedExamples has ${namedExamples.length}; need at least 3.` });
-    }
-    namedExamples.forEach((ex: any, i: number) => {
-      const specifics = Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics.filter(nonempty) : [];
-      if (specifics.length < 2) {
-        findings.push({ checkId: "SV2.hard_specifics_floor", severity: "blocker", chapterNumber, message: `namedExamples[${i}] has ${specifics.length} hardSpecifics; need at least 2.` });
-      }
+    const decision = evaluateSourceV2Integrity(sc, {
+      chapterNumber,
+      chapterTitle: canonicalTitles.get(chapterNumber),
+      rawText: raw,
     });
-    const facts = Array.isArray(sc?.testableFacts) ? sc.testableFacts : [];
-    if (facts.length < 9) {
-      findings.push({ checkId: "SV2.testable_facts_floor", severity: "blocker", chapterNumber, message: `testableFacts has ${facts.length}; need at least 9.` });
-    }
-    facts.forEach((fact: any, i: number) => {
-      const missing = ["claim", "becauseMechanism", "commonError", "errorIsWhy"].filter((k) => !nonempty(fact?.[k]));
-      if (missing.length > 0) {
-        findings.push({ checkId: "SV2.testable_fact_missing_field", severity: "blocker", chapterNumber, message: `testableFacts[${i}] is missing ${missing.join(", ")}.` });
-      }
-    });
+    findings.push(...decision.findings);
   }
   return { bookId, passed: findings.length === 0, chaptersChecked: expected.length, findings };
 }

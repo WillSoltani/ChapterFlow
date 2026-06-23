@@ -11,6 +11,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, PriorChapterShapes, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -55,11 +56,8 @@ export async function runWriterHook(input: HookInput): Promise<HookOutput> {
     parts.push("");
   }
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit sourceAnchorIds for hook and counterintuitionSourceAnchorIds when counterintuition is present.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
     parts.push("");
   }
   parts.push(`Write the HookOutput JSON now.`);

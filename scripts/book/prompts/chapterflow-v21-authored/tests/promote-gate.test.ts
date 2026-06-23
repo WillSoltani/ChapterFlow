@@ -16,7 +16,7 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
+import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import {
   currentMajorFindings,
   MAJOR_WAIVER_FILE_SCHEMA_VERSION,
@@ -93,23 +93,146 @@ function sourceRunDir(bookId: string, runId: string): string {
   return resolve(PIPELINE_DIR, "../../../../.chapterflow/runs", bookId, runId);
 }
 
-function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: number; chapterId: string }>, runId: string): void {
+function chapterStatePath(chapterId: string): string {
+  return resolve(STATE_CHAPTERS, `${chapterId}.v21-native.chapter.json`);
+}
+
+function sourceAnchorId(chapterNumber: number, kind: "fact" | "ex" | "concept", index = 1): string {
+  const nn = String(chapterNumber).padStart(2, "0");
+  if (kind === "concept") return `ch${nn}.concept.intake-checkpoint`;
+  return `ch${nn}.${kind}.${index}`;
+}
+
+function sourceSpecifics(text: string): string[] {
+  const stop = new Set("about above after again against also because before below between chapter could every first from have into more must only other should their there these those through under where which while with would your".split(" "));
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const word of text.toLowerCase().match(/[a-z][a-z'-]{3,}/g) ?? []) {
+    const clean = word.replace(/^'+|'+$/g, "");
+    if (clean.length < 4 || stop.has(clean) || seen.has(clean)) continue;
+    seen.add(clean);
+    out.push(clean);
+    if (out.length >= 3) break;
+  }
+  return out.length >= 2 ? out : ["source", "fixture"];
+}
+
+function applySourceProvenance(chapter: any): any {
+  const chapterNumber = chapter.number;
+  const nn = String(chapterNumber).padStart(2, "0");
+  const factIds = Array.from({ length: 9 }, (_, i) => sourceAnchorId(chapterNumber, "fact", i + 1));
+  const effectiveAnchors: Record<string, string[]> = {
+    hook: [factIds[0]],
+    counterintuition: [factIds[0]],
+    "breakdown.fastRead": [factIds[0]],
+    "breakdown.deepRead": [factIds[1]],
+    "breakdown.fullRead": [factIds[2]],
+    keyTakeaway: [factIds[3]],
+    tryThisNow: [factIds[4]],
+    "implementationPlan.title": [factIds[4]],
+    "implementationPlan.coreSkill": [factIds[4]],
+    "implementationPlan.twentyFourHourChallenge": [factIds[4]],
+    "implementationPlan.weeklyPractice": [factIds[4]],
+  };
+
+  chapter.hookSourceAnchorIds = [factIds[0]];
+  chapter.counterintuitionSourceAnchorIds = [factIds[0]];
+  chapter.keyTakeawaySourceAnchorIds = [factIds[3]];
+  chapter.tryThisNowSourceAnchorIds = [factIds[4]];
+  chapter.examples?.forEach((example: any, i: number) => {
+    const id = sourceAnchorId(chapterNumber, "ex", i + 1);
+    example.sourceAnchorId = id;
+    example.sourceAnchorIds = [id];
+    effectiveAnchors[`examples[${i}]`] = [id];
+  });
+  chapter.quiz?.questions?.forEach((question: any, i: number) => {
+    const id = factIds[i % factIds.length];
+    question.sourceAnchorId = id;
+    effectiveAnchors[`quiz.questions[${i}]`] = [id];
+    effectiveAnchors[`quiz.questions[${i}].keyEvidence`] = [id];
+  });
+  chapter.reviewCards?.forEach((card: any, i: number) => {
+    const id = factIds[(i + 3) % factIds.length];
+    card.sourceAnchorId = id;
+    card.sourceAnchorIds = [id];
+    effectiveAnchors[`reviewCards[${i}]`] = [id];
+  });
+  if (chapter.implementationPlan) {
+    chapter.implementationPlan.titleSourceAnchorIds = [factIds[4]];
+    chapter.implementationPlan.coreSkillSourceAnchorIds = [factIds[4]];
+    chapter.implementationPlan.twentyFourHourChallengeSourceAnchorIds = [factIds[4]];
+    chapter.implementationPlan.weeklyPracticeSourceAnchorIds = [factIds[4]];
+    chapter.implementationPlan.ifThenPlans?.forEach((item: any, i: number) => {
+      const id = factIds[(i + 4) % factIds.length];
+      item.sourceAnchorId = id;
+      item.sourceAnchorIds = [id];
+      effectiveAnchors[`implementationPlan.ifThenPlans[${i}]`] = [id];
+    });
+  }
+  chapter.memorableLines?.forEach((line: any, i: number) => {
+    const id = factIds[i % factIds.length];
+    line.sourceAnchorIds = [id];
+    effectiveAnchors[`memorableLines[${i}]`] = [id];
+  });
+  chapter.authoring = {
+    ...(chapter.authoring ?? {}),
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: `fixture-source-${chapter.chapterId}`,
+      observedAnchorIds: [
+        sourceAnchorId(chapterNumber, "concept"),
+        ...Array.from({ length: chapter.examples?.length ?? 0 }, (_, i) => sourceAnchorId(chapterNumber, "ex", i + 1)),
+        ...factIds,
+      ],
+      effectiveAnchors,
+    },
+  };
+  if (!chapter.authoring.sourceAnchors.observedAnchorIds.includes(`ch${nn}.concept.intake-checkpoint`)) {
+    throw new Error("source provenance fixture failed to build concept anchor");
+  }
+  return chapter;
+}
+
+function sourceSidecarForChapter(chapter: any, chapterTitle: string): any {
+  const base = makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle });
+  base.namedExamples = (chapter.examples ?? []).map((example: any, i: number) => {
+    const text = [example.title, example.scenario, example.whatToDo, example.whyItMatters].filter(Boolean).join(" ");
+    const specifics = sourceSpecifics(text);
+    return {
+      id: sourceAnchorId(chapter.number, "ex", i + 1),
+      label: String(example.title ?? `Chapter ${chapter.number} sourced example ${i + 1}`),
+      summary: `${String(example.scenario ?? "").slice(0, 260)} ${specifics.join(" ")}.`,
+      teachesWhat: String(example.whyItMatters ?? "Use the chapter's concrete source example."),
+      hardSpecifics: specifics,
+      realWorld: false,
+    };
+  });
+  base.testableFacts = base.testableFacts.map((fact: any) => ({
+    ...fact,
+    derivedFrom: sourceAnchorId(chapter.number, "concept"),
+  }));
+  base.paraphraseNotes = `${chapterTitle} source fixture names ${base.namedExamples.map((ex: any) => ex.hardSpecifics.slice(0, 2).join(" ")).join("; ")}.`;
+  return base;
+}
+
+function writeSourceSidecars(bookId: string, chapters: Array<{ chapterNumber: number; chapterId: string; chapterTitle?: string; title?: string }>, runId: string): void {
   writeResearchRunManifestFixture({
     runDir: sourceRunDir(bookId, runId),
     bookId,
-    chapters: chapters.map((spec) => ({ number: spec.chapterNumber, title: spec.chapterId })),
+    chapters: chapters.map((spec) => ({ number: spec.chapterNumber, title: spec.chapterTitle ?? spec.title ?? spec.chapterId })),
   });
   const dir = resolve(sourceRunDir(bookId, runId), "sidecars", "source");
   mkdirSync(dir, { recursive: true });
   for (const spec of chapters) {
-    writeFileSync(resolve(dir, `ch${String(spec.chapterNumber).padStart(2, "0")}.source.json`), JSON.stringify({
-      schemaVersion: "source-v1",
-      bookId,
-      chapterId: spec.chapterId,
-      chapterNumber: spec.chapterNumber,
-      centralConcept: { name: `concept ${spec.chapterNumber}`, plainDefinition: "Synthetic fixture source evidence." },
-      testableFacts: [{ id: `f${spec.chapterNumber}`, claim: "fixture", becauseMechanism: "fixture", commonError: "fixture", errorIsWhy: "fixture" }],
-    }, null, 2), "utf8");
+    const chapterPath = chapterStatePath(spec.chapterId);
+    const chapter = applySourceProvenance(JSON.parse(readFileSync(chapterPath, "utf8")));
+    writeFileSync(chapterPath, `${JSON.stringify(chapter, null, 2)}\n`, "utf8");
+    writeFileSync(
+      resolve(dir, `ch${String(spec.chapterNumber).padStart(2, "0")}.source.json`),
+      `${JSON.stringify(sourceSidecarForChapter(chapter, spec.chapterTitle ?? spec.title ?? chapter.title), null, 2)}\n`,
+      "utf8",
+    );
   }
 }
 
@@ -323,6 +446,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
   const reportBefore = snapshotFile(reportPath);
   const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
+  const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
 
   try {
     withPromotionEnvCleared(() => {
@@ -361,6 +485,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
       assert.deepEqual(pkg.chapters.map((ch: any) => ch.chapterId), index.map((spec) => spec.chapterId));
     });
   } finally {
+    for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
     restoreFile(waiverPath(bookId), waiverBefore);
@@ -379,6 +504,7 @@ test("promoteBook embeds a production manifest identity instead of trusting time
   const reportBefore = snapshotFile(reportPath);
   const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
+  const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
 
   try {
     withPromotionEnvCleared(() => {
@@ -418,6 +544,7 @@ test("promoteBook embeds a production manifest identity instead of trusting time
       assert.equal(typeof pkg.productionManifest?.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
     });
   } finally {
+    for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
     restoreFile(waiverPath(bookId), waiverBefore);

@@ -11,6 +11,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
@@ -106,11 +107,8 @@ function buildUserPrompt(input: QuizInput): string {
   parts.push(input.breakdown.deepRead);
   parts.push("");
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit sourceAnchorIds and keyEvidenceAnchorIds for every question; keyEvidenceAnchorIds must identify the fact/framework that makes the correct answer true.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
     parts.push("");
   }
   parts.push(`Write the QuizOutput JSON now. Count must equal ${input.plan.quizFocus.count}. Bloom's mix must match ${JSON.stringify(input.plan.quizFocus.bloomsMix)} exactly. Balance correctIndex across positions 0, 1, 2.`);

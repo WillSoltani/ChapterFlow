@@ -350,6 +350,101 @@ export function writeCanonicalIndexFixture(
   })), null, 2)}\n`, "utf8");
 }
 
+export function makeSourceV2SidecarFixture(args: {
+  chapterNumber: number;
+  chapterTitle: string;
+}): any {
+  const chapterNumber = args.chapterNumber;
+  const nn = String(chapterNumber).padStart(2, "0");
+  const suffix = `ch${nn}`;
+  const factClaims = [
+    `Northstar Lab cut ${suffix} ticket reopenings from 37 to 12 after adding a May 2026 intake checkpoint.`,
+    `Harbor Clinic found 18 missing ${suffix} consent forms before its Friday discharge review.`,
+    `Atlas Foods delayed a June 2026 ${suffix} launch by 9 days after a cold-chain sensor failed.`,
+    `Mira Shah's ${suffix} onboarding team reduced handoff errors by 41 percent after naming one owner.`,
+    `The Cedar ${suffix} pilot caught 6 duplicate invoices before the quarterly close on March 31.`,
+    `Riverton Library moved ${suffix} archive requests from 5 inboxes into one Tuesday queue.`,
+    `Apex Transit's ${suffix} depot trial found that 14 late buses shared the same fueling bottleneck.`,
+    `The 2026 Mesa ${suffix} study separated habit reminders from reward messages across 220 participants.`,
+    `Beacon Works kept a 24-hour ${suffix} repair log so overnight defects kept their original context.`,
+  ];
+  const mechanisms = [
+    `Because the ${suffix} support checkpoint captures the first failed ticket before reassignment, the team can correct the original record instead of reconstructing it later.`,
+    `Because the ${suffix} clinic review happens before discharge paperwork leaves the floor, missing consent forms can be fixed while staff still remember the visit.`,
+    `Because the ${suffix} launch delay keeps sensor evidence attached to the cold-chain batch, Atlas Foods can isolate the failed device before product ships.`,
+    `Because Mira Shah names one ${suffix} onboarding owner before the handoff, new hires know which record is authoritative when instructions conflict.`,
+    `Because the Cedar ${suffix} invoice check runs before quarterly close, duplicate bills are removed while the vendor context is still visible.`,
+    `Because Riverton Library uses one ${suffix} Tuesday queue, archive requests stop splitting across inboxes that no one can audit together.`,
+    `Because Apex Transit compares late buses by ${suffix} depot routine, the fueling bottleneck becomes visible instead of looking like separate driver delays.`,
+    `Because the Mesa ${suffix} study separates reminder and reward messages, the habit result can be traced to the correct intervention.`,
+    `Because Beacon Works logs ${suffix} repairs within 24 hours, overnight defects keep enough context for the morning team to act.`,
+  ];
+  const errors = [
+    `Treat the ${suffix} reopened tickets as a coaching issue after reassignment.`,
+    `Assume the ${suffix} discharge review will catch missing consent forms later.`,
+    `Ship the ${suffix} product on schedule and inspect the cold-chain sensor after launch.`,
+    `Let every ${suffix} onboarding helper keep a private version of the handoff.`,
+    `Wait until the ${suffix} quarterly close to search for duplicate invoices.`,
+    `Keep ${suffix} archive requests in whichever inbox first received the question.`,
+    `Treat each ${suffix} late bus as an isolated driver problem.`,
+    `Blend ${suffix} reminders and rewards because both are habit supports.`,
+    `Let the ${suffix} morning team infer what happened without a repair log.`,
+  ];
+
+  return {
+    schemaVersion: "source-v2",
+    chapterNumber,
+    chapterTitle: args.chapterTitle,
+    centralConcept: {
+      id: `ch${nn}.concept.intake-checkpoint`,
+      name: `${args.chapterTitle} intake checkpoint`,
+      plainDefinition: `A ${suffix} checkpoint is the first verifiable moment where the operator can catch drift before it spreads.`,
+      whyItMatters: `It gives ${args.chapterTitle} a concrete decision point instead of a generic call to be careful.`,
+    },
+    keyClaims: [
+      `${args.chapterTitle} uses early checkpoints to preserve context.`,
+      `${args.chapterTitle} names accountable owners before handoffs split.`,
+      `${args.chapterTitle} treats visible logs as cheaper than late reconstruction.`,
+    ],
+    namedExamples: [
+      {
+        id: `ch${nn}.ex.northstar-lab`,
+        label: `${suffix} Northstar Lab ticket audit`,
+        summary: `Northstar Lab used a May 2026 ${suffix} intake checkpoint to cut reopened support tickets from 37 to 12.`,
+        teachesWhat: "Specific intake checks keep defects from traveling downstream.",
+        hardSpecifics: ["Northstar Lab", "May 2026", "37 to 12"],
+        realWorld: false,
+      },
+      {
+        id: `ch${nn}.ex.harbor-clinic`,
+        label: `${suffix} Harbor Clinic consent review`,
+        summary: `Harbor Clinic found 18 missing ${suffix} consent forms before its Friday discharge review.`,
+        teachesWhat: "A visible checkpoint protects the next team from inherited ambiguity.",
+        hardSpecifics: ["Harbor Clinic", "18 forms", "Friday discharge"],
+        realWorld: false,
+      },
+      {
+        id: `ch${nn}.ex.atlas-foods`,
+        label: `${suffix} Atlas Foods cold-chain delay`,
+        summary: `Atlas Foods delayed a June 2026 ${suffix} launch by 9 days after a cold-chain sensor failed.`,
+        teachesWhat: "A single failed signal can be cheap if it is caught before launch.",
+        hardSpecifics: ["Atlas Foods", "June 2026", "9 days"],
+        realWorld: false,
+      },
+    ],
+    hardEdge: `The wrong lesson in ${args.chapterTitle} is to add paperwork everywhere; the useful lesson is to put the check where evidence is still local and cheap to verify.`,
+    paraphraseNotes: `${args.chapterTitle} uses Northstar Lab, Harbor Clinic, and Atlas Foods as synthetic source data, not provider instructions.`,
+    testableFacts: factClaims.map((claim, i) => ({
+      id: `ch${nn}.fact.${i + 1}`,
+      claim,
+      becauseMechanism: mechanisms[i],
+      commonError: errors[i],
+      errorIsWhy: `That misses the ${suffix} timing advantage in fact ${i + 1}: the check matters because the relevant context is still available.`,
+      derivedFrom: i < 3 ? [`ch${nn}.ex.northstar-lab`, `ch${nn}.ex.harbor-clinic`, `ch${nn}.ex.atlas-foods`][i] : `ch${nn}.concept.intake-checkpoint`,
+    })),
+  };
+}
+
 /** True iff a gold book's research run exists on disk. The committed chapter files are
  *  NOT sufficient for `book-gate`: it auto-derives brief/plan artifacts from the research
  *  run and aborts ("No research run … derive-artifacts failed") without it. Book-LEVEL

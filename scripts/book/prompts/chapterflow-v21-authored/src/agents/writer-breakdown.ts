@@ -10,6 +10,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief, ChapterDesignDoc, PriorChapterShapes, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -103,8 +104,8 @@ function buildUserPrompt(input: BreakdownInput): string {
   parts.push("```");
   if (input.chapterSource) {
     parts.push("");
-    parts.push(`# Chapter source excerpt (reference only — do not quote without attribution, do not narrate the source)`);
-    parts.push(input.chapterSource);
+    parts.push(renderUntrustedSourceBlock("Chapter source excerpt", input.chapterSource));
+    parts.push("Reference only. Do not quote without attribution, and do not narrate the source.");
   }
   if (input.priorChapterShapes && input.priorChapterShapes.priorCounterShapes.length > 0) {
     parts.push("");
@@ -117,11 +118,8 @@ function buildUserPrompt(input: BreakdownInput): string {
   }
   if (input.sourceAnchors && input.sourceAnchors.length > 0) {
     parts.push("");
-    parts.push(`# Allowed source anchors`);
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
     parts.push("Use only these ids. Emit sourceAnchorIds.fastRead, sourceAnchorIds.deepRead, and sourceAnchorIds.fullRead with the anchors supporting each tier's claims.");
-    parts.push("```json");
-    parts.push(JSON.stringify(input.sourceAnchors, null, 2));
-    parts.push("```");
   }
   parts.push("");
   parts.push(`Write the BreakdownOutput JSON now (easy, medium, hard).`);

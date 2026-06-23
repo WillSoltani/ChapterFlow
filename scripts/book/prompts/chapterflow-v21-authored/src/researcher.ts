@@ -47,6 +47,7 @@ import {
   runSourceCoherenceCheck,
 } from "./critics/sourceCoherence.js";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
+import { checkSourceV2Gate, formatSourceV2GateReport } from "./qc/sourceV2Gate.js";
 import { buildCanonicalToc } from "./lib/tocContract.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
@@ -296,6 +297,30 @@ export async function researchBook(
 
   if (!coherence.passed && options.failOnCoherenceBlockers !== false) {
     throw new Error(`Source coherence failed with ${coherence.findings.filter((f) => f.severity === "blocker").length} blocker(s). Inspect findings and re-run failing chapters with forceRefresh=true.`);
+  }
+
+  const v2SidecarsPresent = chapters.some((ch) => {
+    const path = sourceJsonPath(activeBundlePath, ch.chapterNumber);
+    try {
+      return JSON.parse(readFileSync(path, "utf8"))?.schemaVersion === "source-v2";
+    } catch {
+      return false;
+    }
+  });
+  if (v2SidecarsPresent) {
+    log("Step 3.5/4: source integrity gate...");
+    const integrity = checkSourceV2Gate(bookId, chapterList.map((ch) => ch.number), { runsRoot, stateRoot });
+    log("  " + formatSourceV2GateReport(integrity).replace(/\n/g, "\n  "));
+    updateManifest(activeBundlePath, runId, ownerId, clock, leaseTtlMs, (m, nowIso) => {
+      appendResearchEvent(m, {
+        type: integrity.passed ? "source_integrity.passed" : "source_integrity.failed",
+        message: formatSourceV2GateReport(integrity),
+      }, nowIso);
+      if (!integrity.passed) m.overallStatus = "coherence_failed";
+    });
+    if (!integrity.passed && options.failOnCoherenceBlockers !== false) {
+      throw new Error(`Source integrity failed with ${integrity.findings.length} blocker(s). Repair source-v2 sidecars before authoring.`);
+    }
   }
 
   // Step 4: Write artifacts
