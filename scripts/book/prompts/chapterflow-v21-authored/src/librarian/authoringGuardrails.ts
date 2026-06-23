@@ -4,9 +4,9 @@
  * catalog-wide stock phrases (the F1/BP13 collision class).
  *
  * It consolidates what already exists but was scattered or unwritten:
- *   - a per-chapter RESERVED NAME allocation (namePlan), unique WITHIN this book, so
- *     two parallel agents never pick the same protagonist (names MAY repeat across
- *     DIFFERENT books — owner policy; only within-book uniqueness is enforced);
+ *   - a per-chapter RESERVED NAME allocation (namePlan), unique WITHIN this book and
+ *     filtered by the shared catalog cooldown policy, so parallel agents never
+ *     pick the same protagonist or a recently reserved catalog name;
  *   - a BANNED-PHRASE REGISTRY (genuinely new): the house tics, the book's own
  *     forbiddenMoves, the banned "salting" connectives, and — the catalog tell —
  *     the signature phrases that already recur across shipped books.
@@ -68,20 +68,26 @@ export type AuthoringGuardrails = {
   bookId: string;
   chapters: number;
   allocation: Record<number, string[]>;
+  namePolicy: {
+    schemaVersion: "name-policy-v1";
+    policyId: string;
+    description: string;
+  };
   bannedPhrases: { houseTics: string[]; forbiddenMoves: string[]; connectives: string[]; catalogTells: string[] };
 };
 
-export function buildAuthoringGuardrails(bookId: string, opts: { chapters?: number } = {}): AuthoringGuardrails {
+export function buildAuthoringGuardrails(bookId: string, opts: { chapters?: number; stateDir?: string; namePlansDir?: string } = {}): AuthoringGuardrails {
   const count = opts.chapters ?? chapterCount(bookId);
   if (count < 1) throw new Error(`Cannot build guardrails for ${bookId}: no chapter index or chapters on disk. Pass --chapters <N>.`);
   // forceFresh so the sheet proposes a clean reserved pool (unique within this
   // book), not an echo of names already on disk.
-  const plan = planNames(bookId, 1, count, 7, { forceFresh: true });
+  const plan = planNames(bookId, 1, count, 7, { forceFresh: true, stateDir: opts.stateDir, namePlansDir: opts.namePlansDir });
   const brief = loadBrief(bookId) as { forbiddenMoves?: string[] } | null;
   return {
     bookId,
     chapters: count,
     allocation: plan.allocation,
+    namePolicy: plan.namePolicy,
     bannedPhrases: {
       houseTics: [...HOUSE_TICS],
       forbiddenMoves: brief?.forbiddenMoves ?? [],
@@ -98,9 +104,10 @@ export function formatGuardrails(g: AuthoringGuardrails): string {
   L.push("Hand this to every chapter author BEFORE writing. It keeps parallel authors from");
   L.push("colliding on names and from reproducing the catalog's stock phrases.");
   L.push("");
-  L.push("## Reserved protagonist names (per chapter — unique within this book)");
-  L.push("Names are American/Canadian and disjoint across this book's chapters (they may repeat in OTHER books — that's fine).");
-  L.push("Use ONLY your chapter's row. Do not reuse another chapter's names or invent recurring ones.");
+  L.push("## Reserved protagonist names (per chapter)");
+  L.push(`Policy: ${g.namePolicy.policyId}`);
+  L.push(g.namePolicy.description);
+  L.push("Use ONLY your chapter's row. Do not reuse another chapter's names, recently reserved catalog names, or invented recurring names.");
   for (const [num, names] of Object.entries(g.allocation).sort((a, b) => Number(a[0]) - Number(b[0]))) {
     L.push(`- ch${String(num).padStart(2, "0")}: ${names.join(", ")}`);
   }
@@ -120,7 +127,7 @@ export function formatGuardrails(g: AuthoringGuardrails): string {
   return L.join("\n");
 }
 
-export function writeAuthoringGuardrails(bookId: string, opts: { chapters?: number } = {}): string {
+export function writeAuthoringGuardrails(bookId: string, opts: { chapters?: number; stateDir?: string; namePlansDir?: string } = {}): string {
   const g = buildAuthoringGuardrails(bookId, opts);
   mkdirSync(GUARDRAILS_DIR, { recursive: true });
   const path = guardrailsPath(bookId);

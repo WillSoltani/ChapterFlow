@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "name-policy-v1",
+  "policyId": "catalog-cooldown-v1",
+  "description": "Planner-allocated protagonist names are unique within a book and cannot be dealt again if they appear in the last 10 other ledgered books.",
+  "primaryNameSource": "planner-allocation",
+  "auditNameSource": "capitalized-word-heuristic",
+  "withinBook": {
+    "maxOccurrencesPerName": 1
+  },
+  "catalogCooldown": {
+    "lookbackBooks": 10,
+    "maxBooksPerName": 1
+  }
+}

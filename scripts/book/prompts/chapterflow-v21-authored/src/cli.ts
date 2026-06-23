@@ -47,7 +47,9 @@ import {
   getForbiddenNames,
   ingestChapter,
   loadLibraryState,
-  saveLibraryState,
+  rebuildLibraryState,
+  verifyLibraryState,
+  withLibraryState,
   getLedgerPath,
 } from "./librarian/libraryState.js";
 
@@ -68,6 +70,9 @@ Commands:
   ledger forbidden-names [--book X]  List protagonist names off-limits for the next book
   ledger ingest <chapter.json> --book-id X --title X --author X
                                      Ingest a generated v21 chapter into the ledger
+  verify-library-state [--json]     Recompute library aggregates from authoritative chapters/packages and report drift
+  rebuild-library-state [--dry-run] [--json]
+                                     Recompute library state, report drift, and replace the JSON ledger atomically
   next-task <bookId>                 INLINE-OPERATOR MODE: scans on-disk state for a book and
                                      prints the next artifact to produce (bibliography, chapter
                                      source, chapter output, finalize), with playbook path and
@@ -172,8 +177,8 @@ Commands:
                                      state/pedagogy-plans/<bookId>.pedagogy-plan.json.
   name-plan <bookId> --from N --to M [--per-chapter K]
                                      PRE-AUTHORING: deal each upcoming chapter a disjoint
-                                     protagonist-name slice (excludes cross-book + already-authored
-                                     names) and emit banned-connective guidance, so parallel STEP-2
+                                     protagonist-name slice (excludes current-book planned names
+                                     and catalog cooldown names) and emit banned-connective guidance, so parallel STEP-2
                                      agents can't collide on book-gate F1 / BP13. Writes
                                      state/name-plans/<bookId>.name-plan.json. Default K=7.
                                      Exit 1 if the name bank ran dry for any chapter.
@@ -607,15 +612,54 @@ async function runLedger(args: string[], flags: Record<string, string | boolean>
       return 2;
     }
     const chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
-    const updated = ingestChapter(state, flags["book-id"] as string, flags["title"] as string, flags["author"] as string, chapter);
-    await saveLibraryState(updated);
-    const book = updated.books[flags["book-id"] as string];
+    let updatedBook: ReturnType<typeof loadLibraryState>["books"][string] | undefined;
+    await withLibraryState((locked) => {
+      const updated = ingestChapter(locked, flags["book-id"] as string, flags["title"] as string, flags["author"] as string, chapter);
+      updatedBook = updated.books[flags["book-id"] as string];
+      return updated;
+    });
+    const book = updatedBook;
+    if (!book) throw new Error(`ledger ingest did not create book entry for ${String(flags["book-id"])}`);
     console.log(`Ingested ${chapterFile} into ${flags["book-id"]}`);
     console.log(`  book now has ${book.chaptersIngested.length} chapter(s), ${book.namesUsed.length} unique protagonist name(s)`);
     return 0;
   }
   console.error(`Unknown ledger sub: ${sub}`);
   return 2;
+}
+
+function printLibraryDriftReport(report: ReturnType<typeof verifyLibraryState>): void {
+  console.log(`Library state: ${report.statePath}`);
+  console.log(`Drift: ${report.drift ? "YES" : "no"}`);
+  for (const diff of report.differences) console.log(`  - ${diff}`);
+}
+
+async function runVerifyLibraryState(flags: Record<string, string | boolean>): Promise<number> {
+  const report = verifyLibraryState();
+  if (flags.json === true) console.log(JSON.stringify(report, null, 2));
+  else printLibraryDriftReport(report);
+  return report.drift ? 1 : 0;
+}
+
+async function runRebuildLibraryState(flags: Record<string, string | boolean>): Promise<number> {
+  const before = verifyLibraryState();
+  if (flags.json === true) {
+    console.log(JSON.stringify({ phase: "before", report: before }, null, 2));
+  } else {
+    console.log("Before rebuild:");
+    printLibraryDriftReport(before);
+  }
+  if (flags["dry-run"] === true) return before.drift ? 1 : 0;
+  await withLibraryState(() => rebuildLibraryState());
+  const after = verifyLibraryState();
+  if (flags.json === true) {
+    console.log(JSON.stringify({ phase: "after", report: after }, null, 2));
+  } else {
+    console.log("");
+    console.log("After rebuild:");
+    printLibraryDriftReport(after);
+  }
+  return after.drift ? 1 : 0;
 }
 
 async function runGenerateBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -2788,8 +2832,8 @@ async function runRhetoricPlan(args: string[], flags: Record<string, string | bo
 
 /** `name-plan <bookId> --from N --to M [--per-chapter K]` — pre-authoring name
  *  allocator. Deals each upcoming chapter a disjoint protagonist-name slice
- *  (excluding cross-book + already-authored names) and emits the banned-
- *  connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
+ *  (excluding current-book planned names and catalog cooldown names) and emits
+ *  the banned-connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
  *  Writes state/name-plans/<bookId>.name-plan.json and prints the allocation. */
 async function runNamePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
@@ -4741,6 +4785,10 @@ async function main() {
     }
     case "ledger":
       return runLedger(args, flags);
+    case "verify-library-state":
+      return runVerifyLibraryState(flags);
+    case "rebuild-library-state":
+      return runRebuildLibraryState(flags);
     case "generate-book":
       return runGenerateBook(args, flags);
     case "next-task":

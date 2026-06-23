@@ -116,9 +116,9 @@ function readVariety(bookId: string, chapters: ChapterV21[]): VarietyRead | null
   const notes: string[] = [];
   const dominantHookShare = dominantHook / hookTotal;
   const ticsPerChapter = ticTotal / chapters.length;
-  // Note: cross-book NAME reuse is intentionally NOT flagged — names may repeat
-  // across books by policy; only within-book duplicates matter (and the gates +
-  // namePlan's disjoint allocation already prevent those).
+  // Note: catalog name cooldown enforcement lives in namePlan/library-state.
+  // This variety read reports prose/name fingerprints only; it does not re-run
+  // planner policy from chapter text heuristics.
   if (dominantHookShare > 0.6) notes.push(`hooks are ${Math.round(dominantHookShare * 100)}% one shape — vary the openings`);
   if (ticsPerChapter > 1.5) notes.push(`house tics ~${ticsPerChapter.toFixed(1)}/chapter — trim stock phrases`);
   if (audit.nominalizationsPer100Words > 12) notes.push(`abstract-noun density ${audit.nominalizationsPer100Words.toFixed(1)}/100w — get concrete sooner`);
