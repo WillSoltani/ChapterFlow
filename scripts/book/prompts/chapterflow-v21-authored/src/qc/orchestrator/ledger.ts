@@ -5,15 +5,24 @@ import { dirname } from "path";
 import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
+import { evidenceSourceRef, type EvidenceSourceKind } from "./evidenceSource.js";
 import { citesNonexistentField, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
 import { sweepFamilyForRepairClass } from "../sweep.js";
 
-export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
+export type LedgerStatus =
+  | "open"
+  | "stale_after_repair"
+  | "still_open"
+  | "needs_qc_rerun"
+  | "dismissed_non_gating"
+  | "superseded_by_effective_decision";
 
 export type LedgerSource = {
   sourceRole: SubmissionRole | "finalizer";
   submissionFile: string;
+  sourceId?: string;
+  sourceKind?: EvidenceSourceKind;
   observedAt: string;
 };
 
@@ -72,11 +81,17 @@ function normalizeForId(value: unknown): string {
   return String(value ?? "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-export function stableFindingId(bookId: string, roundId: string, finding: Pick<SubmissionFinding, "chapterNumber" | "chapters" | "unitId" | "repairClass" | "quote">): string {
+export function stableFindingId(
+  bookId: string,
+  roundId: string,
+  finding: Pick<SubmissionFinding, "chapterNumber" | "chapters" | "unitId" | "repairClass" | "quote">,
+  authority: "raw" | "effective" = "raw",
+): string {
   const chapterKey = finding.chapterNumber !== undefined
     ? String(finding.chapterNumber)
     : (finding.chapters ?? []).slice().sort((a, b) => a - b).join(",");
   const raw = [
+    normalizeForId(authority),
     normalizeForId(bookId),
     normalizeForId(roundId),
     normalizeForId(chapterKey),
@@ -114,12 +129,12 @@ export function effectiveLedger(bookId: string, roundId: string): EffectiveLedge
       } else {
         const existing = byId.get(event.findingId)!;
         for (const source of event.sources) {
-          if (!existing.sources.some((s) => s.sourceRole === source.sourceRole && s.submissionFile === source.submissionFile)) existing.sources.push(source);
+          if (!existing.sources.some((s) => sourceKey(s) === sourceKey(source))) existing.sources.push(source);
         }
       }
     } else if (event.event === "source") {
       const existing = byId.get(event.findingId);
-      if (existing && !existing.sources.some((s) => s.sourceRole === event.source.sourceRole && s.submissionFile === event.source.submissionFile)) {
+      if (existing && !existing.sources.some((s) => sourceKey(s) === sourceKey(event.source))) {
         existing.sources.push(event.source);
       }
     } else if (event.event === "status") {
@@ -132,6 +147,10 @@ export function effectiveLedger(bookId: string, roundId: string): EffectiveLedge
     }
   }
   return [...byId.values()];
+}
+
+function sourceKey(source: Pick<LedgerSource, "sourceRole" | "submissionFile" | "sourceId">): string {
+  return source.sourceId ?? `${source.sourceRole}\0${source.submissionFile}`;
 }
 
 function appendLedgerEvents(bookId: string, roundId: string, events: LedgerEvent[]): void {
@@ -156,6 +175,49 @@ export function appendStatusEvents(bookId: string, roundId: string, updates: Arr
   }));
   appendLedgerEvents(bookId, roundId, events);
   return events.length;
+}
+
+const RAW_SEMANTIC_ROLES = new Set<SubmissionRole>(["sweep", "bar", "confirm", "keyA", "keyB"]);
+
+function activeStatus(status: LedgerStatus): boolean {
+  return status === "open" || status === "still_open" || status === "needs_qc_rerun";
+}
+
+export function isRawSemanticLedgerFinding(finding: Pick<EffectiveLedgerFinding, "sources">): boolean {
+  if (finding.sources.some((s) => s.sourceRole === "finalizer")) return false;
+  return finding.sources.some((s) => RAW_SEMANTIC_ROLES.has(s.sourceRole as SubmissionRole));
+}
+
+export function hasBlockingAuthority(finding: Pick<EffectiveLedgerFinding, "status" | "sources">): boolean {
+  return activeStatus(finding.status) && !isRawSemanticLedgerFinding(finding);
+}
+
+export function migrateRawSemanticLedgerFindings(bookId: string, roundId: string): number {
+  const updates = effectiveLedger(bookId, roundId)
+    .filter((f) => activeStatus(f.status) && isRawSemanticLedgerFinding(f))
+    .map((f) => ({
+      findingId: f.findingId,
+      status: "dismissed_non_gating" as const,
+      reason: "raw reviewer submission is immutable audit evidence only; blocking repair authority is rebuilt from effective finalizer decisions",
+      validation: {
+        sourceRoles: f.sources.map((s) => s.sourceRole),
+        sourceIds: f.sources.map((s) => s.sourceId).filter(Boolean),
+      },
+    }));
+  return appendStatusEvents(bookId, roundId, updates);
+}
+
+export function supersedeMissingEffectiveFindings(bookId: string, roundId: string, currentFindingIds: Iterable<string>): number {
+  const current = new Set(currentFindingIds);
+  const updates = effectiveLedger(bookId, roundId)
+    .filter((f) => activeStatus(f.status) && f.sources.some((s) => s.sourceRole === "finalizer") && !current.has(f.findingId))
+    .map((f) => ({
+      findingId: f.findingId,
+      status: "superseded_by_effective_decision" as const,
+      reason: "this effective finding was not emitted by the latest finalizer decision rebuild for the round",
+      validation: { currentEffectiveFindingIds: [...current].sort() },
+    }));
+  return appendStatusEvents(bookId, roundId, updates);
 }
 
 function hashByChapter(bookId: string): Map<number, string> {
@@ -216,12 +278,45 @@ export function appendFindings(args: {
   let duplicates = 0;
   const findingIds: string[] = [];
   for (const finding of findings) {
-    const findingId = stableFindingId(args.bookId, args.roundId, finding);
+    const authority = args.role === "finalizer" ? "effective" : "raw";
+    const findingId = stableFindingId(args.bookId, args.roundId, finding, authority);
     findingIds.push(findingId);
-    const source: LedgerSource = { sourceRole: args.role, submissionFile: args.submissionFile, observedAt: now };
+    const primary = evidenceSourceRef({
+      bookId: args.bookId,
+      roundId: args.roundId,
+      sourceRole: args.role,
+      submissionFile: args.submissionFile,
+      sourceKind: args.role === "finalizer" ? "effective_decision" : "raw_submission",
+    });
+    const sources: LedgerSource[] = [{
+      sourceRole: primary.sourceRole,
+      submissionFile: primary.submissionFile,
+      sourceId: primary.sourceId,
+      sourceKind: primary.sourceKind,
+      observedAt: now,
+    }];
+    for (const raw of finding.provenanceSources ?? []) {
+      const ref = raw.sourceId
+        ? { sourceRole: raw.sourceRole, submissionFile: raw.submissionFile, sourceId: raw.sourceId, sourceKind: raw.sourceKind ?? "raw_submission" as const }
+        : evidenceSourceRef({
+            bookId: args.bookId,
+            roundId: args.roundId,
+            sourceRole: raw.sourceRole,
+            submissionFile: raw.submissionFile,
+            sourceKind: raw.sourceKind ?? "raw_submission",
+          });
+      const source: LedgerSource = {
+        sourceRole: ref.sourceRole,
+        submissionFile: ref.submissionFile,
+        sourceId: ref.sourceId,
+        sourceKind: ref.sourceKind,
+        observedAt: now,
+      };
+      if (!sources.some((s) => sourceKey(s) === sourceKey(source))) sources.push(source);
+    }
     if (existing.has(findingId)) {
       duplicates++;
-      events.push({ schemaVersion: "qc-repair-ledger-event-v1", event: "source", findingId, bookId: args.bookId, roundId: args.roundId, source });
+      for (const source of sources) events.push({ schemaVersion: "qc-repair-ledger-event-v1", event: "source", findingId, bookId: args.bookId, roundId: args.roundId, source });
       continue;
     }
     existing.add(findingId);
@@ -243,7 +338,7 @@ export function appendFindings(args: {
       globalTheme: finding.globalTheme ?? finding.repairClass,
       status: "open",
       contentHashAtFinding: finding.chapterNumber !== undefined ? chapterHashes.get(finding.chapterNumber) : undefined,
-      sources: [source],
+      sources,
       createdAt: now,
     });
   }

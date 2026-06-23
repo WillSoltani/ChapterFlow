@@ -35,9 +35,9 @@ import {
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "./artifacts.js";
-import { appendFindingsFromSubmission, appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
-import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
+import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 import { currentSessionId } from "../sessionProvenance.js";
 export { finalizeQcRound } from "./finalize.js";
 
@@ -582,7 +582,7 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
   let submissions = 0;
   let appended = 0;
   let duplicates = 0;
-  let latestSweep: ValidatedSweepSubmission | null = null;
+  let latestSweep: { submission: ValidatedSweepSubmission; path: string } | null = null;
   for (const item of submissionFiles(bookId, roundId)) {
     let raw: any;
     try {
@@ -597,19 +597,16 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
       continue;
     }
     submissions++;
-    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant);
-    if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission);
+    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant, item.path);
+    if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission, item.path);
     if (validation.submission.schemaVersion === "qc-key-derive-v2") writeKeyDerivationFromSubmission(validation.submission);
-    if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = validation.submission as ValidatedSweepSubmission;
-    const merged = appendFindingsFromSubmission({ bookId, roundId, role: item.role, submissionFile: item.path, submission: validation.submission as ValidatedSubmission });
-    appended += merged.appended;
-    duplicates += merged.duplicates;
+    if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = { submission: validation.submission as ValidatedSweepSubmission, path: item.path };
   }
   // Write the durable sweep record from the newest valid sweep submission (submissionFiles
   // is oldest→newest, so the last one wins — matching finalize's latestValidSubmission).
   // collect runs BEFORE generateConfirmCandidates, which reads loadSweepRecord; without this
   // the first candidate pass sees no fresh record and falsely blocks every chapter on "sweep".
-  if (latestSweep) writeSweepRecordFromSubmission(latestSweep);
+  if (latestSweep) writeSweepRecordFromSubmission(latestSweep.submission, latestSweep.path);
   const briefPath = writeRepairBrief(bookId, roundId);
   const promptPath = writeRepairPrompt(bookId, roundId);
   const summary = {

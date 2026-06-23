@@ -1,9 +1,13 @@
 import assert from "node:assert/strict";
-import { rmSync } from "fs";
+import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
+import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
+import { collectQcRound } from "../src/qc/orchestrator/index.js";
 import { appendFindingsFromSubmission, effectiveLedger } from "../src/qc/orchestrator/ledger.js";
-import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
+import { orchestratorRoundDir, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
+import { sweepRecordPath } from "../src/qc/sweep.js";
 import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js";
 
 const BOOK = "zz-fixture-ledger";
@@ -11,6 +15,8 @@ const ROUND = "r-ledger";
 
 function cleanup(): void {
   rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
+  rmSync(sweepRecordPath(BOOK), { force: true });
 }
 
 function sweepSubmission(problem = "The same scene skeleton repeats across chapters."): ValidatedSweepSubmission {
@@ -60,6 +66,42 @@ test("repair ledger dedupes equivalent findings but preserves multiple sources",
     assert.equal(findings.length, 1);
     assert.equal(findings[0].sources.length, 2);
     assert.deepEqual(findings[0].sources.map((s) => s.sourceRole).sort(), ["bar", "sweep"]);
+  } finally {
+    cleanup();
+  }
+});
+
+test("collectQcRound stores raw sweep evidence without creating a semantic blocking ledger entry", () => {
+  try {
+    cleanup();
+    const chapter = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    const quote = String(chapter.examples[0].scenario).slice(0, 90);
+    const path = resolve(submissionsDir(BOOK, ROUND, "sweep"), "sweep-revise.json");
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, JSON.stringify({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep",
+      verdict: "REVISE",
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [{
+        family: "scene_skeleton",
+        chapters: [1],
+        unitId: "examples[0]",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote,
+        problem: "Raw sweep evidence should not become a blocking repair finding during collection.",
+        expectedFix: "Let finalization decide whether this effective sweep finding is actionable.",
+      }],
+    }, null, 2) + "\n", "utf8");
+
+    const result = collectQcRound(BOOK, ROUND);
+    assert.equal(result.ok, true, result.errors.join("\n"));
+    assert.equal(effectiveLedger(BOOK, ROUND).length, 0, "raw collection must not author semantic repair-ledger findings");
   } finally {
     cleanup();
   }

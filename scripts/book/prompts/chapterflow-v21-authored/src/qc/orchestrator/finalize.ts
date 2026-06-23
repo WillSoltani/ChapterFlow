@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 
 import { dirname, resolve } from "path";
 
 import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
-import { combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
+import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
@@ -11,10 +11,10 @@ import { loadSweepRecord, sweepChapterStatus, sweepRecordPath, writeSweepRecordF
 import { evaluateDeterministic } from "./deterministicGate.js";
 import {
   barArtifactPath,
+  BAR_READ_VARIANTS,
   confirmArtifactPath,
   evidenceMatrixPath,
   loadBarReadArtifact,
-  loadAllBarReads,
   loadConfirmReadArtifact,
   orchestratorRoundDir,
   qcSummaryPath,
@@ -23,13 +23,14 @@ import {
   repairPromptPath,
   roundRecordPath,
   submissionsDir,
+  type BarReadVariant,
 } from "./artifacts.js";
-import { appendFindings, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { appendFindings, effectiveLedger, hasBlockingAuthority, ledgerStatusSummary, migrateRawSemanticLedgerFindings, supersedeMissingEffectiveFindings, type EffectiveLedgerFinding } from "./ledger.js";
 import { allFindingsFabricated, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
 import { currentSessionId, loadAuthorProvenance, sessionsCollide, sessionsCollideAmong } from "../sessionProvenance.js";
-import { validateSubmission, type SubmissionRole, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
+import { validateSubmission, type FindingProvenanceSource, type SubmissionRole, type ValidatedBarReadSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 
 export type EvidenceStatus =
   | "PASS"
@@ -122,12 +123,12 @@ function submissionFilesForRole(bookId: string, roundId: string, role: Submissio
     .map((f) => resolve(dir, f));
 }
 
-function latestValidSubmission<T extends ValidatedSubmission>(bookId: string, roundId: string, role: SubmissionRole): T | null {
+function latestValidSubmissionWithPath<T extends ValidatedSubmission>(bookId: string, roundId: string, role: SubmissionRole): { submission: T; path: string } | null {
   const files = submissionFilesForRole(bookId, roundId, role);
   for (const path of files.slice().reverse()) {
     const raw = readJson(path);
     const validation = validateSubmission(bookId, roundId, role, raw);
-    if (validation.ok) return validation.submission as T;
+    if (validation.ok) return { submission: validation.submission as T, path };
   }
   return null;
 }
@@ -147,7 +148,7 @@ function injectedBarAxes(bar: NonNullable<ReturnType<typeof loadBarReadArtifact>
 
 function ledgerFindingsForChapter(bookId: string, roundId: string, chapterNumber: number) {
   return effectiveLedger(bookId, roundId).filter((f) => {
-    if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
+    if (!hasBlockingAuthority(f)) return false;
     if (f.chapterNumber === chapterNumber) return true;
     return (f.chapters ?? []).includes(chapterNumber);
   });
@@ -240,11 +241,66 @@ function confirmHasUnactionableDecision(confirm: NonNullable<ReturnType<typeof l
 
 function activeLedgerFindingsForDecision(bookId: string, roundId: string, chapterNumber: number) {
   return effectiveLedger(bookId, roundId).filter((f) => {
-    if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
+    if (!hasBlockingAuthority(f)) return false;
     if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
     if (f.chapterNumber === chapterNumber) return true;
     return (f.chapters ?? []).includes(chapterNumber);
   });
+}
+
+const BAR_AXIS_IDS = new Set(Object.keys(AXIS_WEIGHTS));
+const SWEEP_REPAIR_CLASSES = new Set(["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"]);
+
+function otherwisePublishableExceptLedger(decision: EvidenceChapterDecision): boolean {
+  const c = decision.checks;
+  return c.sourceV2 === "PASS" &&
+    c.shipGate === "PASS" &&
+    c.authorCheck === "PASS" &&
+    c.intraBook === "PASS" &&
+    c.bookGate === "PASS" &&
+    c.sweep === "PASS" &&
+    c.manualKeyJudge === "PASS" &&
+    c.barRead === "GREEN" &&
+    c.confirmRead === "PUBLISHABLE" &&
+    c.majors === "PASS" &&
+    c.planEnforcement === "PASS";
+}
+
+function sameSourceParityContradiction(decision: EvidenceChapterDecision, finding: EffectiveLedgerFinding): boolean {
+  if (SWEEP_REPAIR_CLASSES.has(finding.repairClass) || SWEEP_REPAIR_CLASSES.has(finding.globalTheme)) return decision.checks.sweep === "PASS";
+  if (BAR_AXIS_IDS.has(finding.repairClass) || BAR_AXIS_IDS.has(finding.globalTheme)) return decision.checks.barRead === "GREEN";
+  if (finding.repairClass === "confirm" || finding.repairClass === "confirm_read" || finding.globalTheme === "confirm" || finding.globalTheme === "confirm_read") {
+    return decision.checks.confirmRead === "PUBLISHABLE";
+  }
+  return false;
+}
+
+function sourceKind(value: unknown): "raw_submission" | "derived_artifact" {
+  return value === "raw_submission" || value === "derived_artifact" ? value : "derived_artifact";
+}
+
+function rawProvenance(role: Exclude<SubmissionRole, "keyA" | "keyB" | "major">, fallbackFile: string, artifact: unknown): FindingProvenanceSource {
+  const stamped = artifact as { rawSubmissionFile?: string; rawEvidenceSourceId?: string; rawEvidenceSourceKind?: unknown };
+  return {
+    sourceRole: role,
+    submissionFile: stamped.rawSubmissionFile ?? fallbackFile,
+    sourceId: stamped.rawEvidenceSourceId,
+    sourceKind: sourceKind(stamped.rawEvidenceSourceKind),
+  };
+}
+
+function barReadEntries(bookId: string, roundId: string, chapterNumber: number): Array<{ variant?: BarReadVariant; read: ValidatedBarReadSubmission; path: string }> {
+  const primary = loadBarReadArtifact(bookId, roundId, chapterNumber);
+  if (!primary) return [];
+  const out: Array<{ variant?: BarReadVariant; read: ValidatedBarReadSubmission; path: string }> = [{
+    read: primary,
+    path: barArtifactPath(bookId, roundId, chapterNumber),
+  }];
+  for (const variant of BAR_READ_VARIANTS) {
+    const read = loadBarReadArtifact(bookId, roundId, chapterNumber, variant);
+    if (read) out.push({ variant, read, path: barArtifactPath(bookId, roundId, chapterNumber, variant) });
+  }
+  return out;
 }
 
 export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
@@ -255,8 +311,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   const errors: string[] = [];
   if (!options.dryRun) mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
 
-  const sweepSubmission = latestValidSubmission<ValidatedSweepSubmission>(bookId, roundId, "sweep");
-  if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission);
+  const sweepSubmission = latestValidSubmissionWithPath<ValidatedSweepSubmission>(bookId, roundId, "sweep");
+  if (sweepSubmission && !options.dryRun) writeSweepRecordFromSubmission(sweepSubmission.submission, sweepSubmission.path);
+  if (!options.dryRun) migrateRawSemanticLedgerFindings(bookId, roundId);
 
   const allChapters = loadBookChapters(bookId);
   // Chapter text lookup so the fabrication guard can substring-verify a sweep finding's
@@ -267,7 +324,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   // A sweep whose findings ALL cite non-existent chapter fields, OR whose quotes appear
   // in none of the chapters they name, is fabricated and provides no valid evidence —
   // it must not gate the book as REVISE.
-  const sweepAllFabricated = !!sweepSubmission && allFindingsFabricated(sweepSubmission.findings, { getChapterText });
+  const sweepAllFabricated = !!sweepSubmission && allFindingsFabricated(sweepSubmission.submission.findings, { getChapterText });
   const keyResolution = resolveManualKeyJudges(bookId, roundId);
   if (keyResolution.errors.length) errors.push(...keyResolution.errors.map((e) => `manual-keyjudge: ${e}`));
   // NOTE: we deliberately do NOT backfill round.chapterContentHashes from
@@ -306,9 +363,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
   // WRITTEN-record-empty gap so it fires ONLY on the drop case (not on a reviewer who
   // genuinely cited nothing, which still fails closed).
   const sweepDroppedAllFindings =
-    !!sweepSubmission && (sweepSubmission.findings?.length ?? 0) > 0 && (sweepRecord?.findings?.length ?? 0) === 0;
+    !!sweepSubmission && (sweepSubmission.submission.findings?.length ?? 0) > 0 && (sweepRecord?.findings?.length ?? 0) === 0;
   if (sweepDroppedAllFindings) {
-    console.warn(`[finalize] sweep for ${bookId} round ${roundId}: all ${sweepSubmission!.findings.length} submitted finding(s) were dropped by the family mapper → empty written record; routing to re-run-sweep instead of a targetless REVISE.`);
+    console.warn(`[finalize] sweep for ${bookId} round ${roundId}: all ${sweepSubmission!.submission.findings.length} submitted finding(s) were dropped by the family mapper → empty written record; routing to re-run-sweep instead of a targetless REVISE.`);
   }
   const briefPath = repairBriefPath(bookId, roundId);
   const promptPath = repairPromptPath(bookId, roundId);
@@ -325,6 +382,8 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
     const keyJudge = loadManualKeyJudge(bookId, ch.number);
     const bar = loadBarReadArtifact(bookId, roundId, ch.number);
     const confirm = loadConfirmReadArtifact(bookId, roundId, ch.number);
+    const barEntries = barReadEntries(bookId, roundId, ch.number);
+    let effectiveBar: ValidatedBarReadSubmission | null = null;
     const ledgerFindings = ledgerFindingsForChapter(bookId, roundId, ch.number);
     const needsQcRerun = ledgerFindings.some((f) => f.status === "needs_qc_rerun");
     const openSerious = ledgerFindings.some((f) => f.severity === "blocker" || f.severity === "major");
@@ -369,8 +428,9 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
         // WS-1: fold the primary read together with any matching tiebreak variants (t2/t3)
         // by per-axis median before computing the verdict — variance-smoothing the borderline
         // flap. With one read this is the identity; a cited corruption is never medianed away.
-        const reads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash);
+        const reads = barEntries.map((entry) => entry.read).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash);
         const combinedBar = { ...bar, axes: combineBarAxes(reads.map((r) => r.axes)) };
+        effectiveBar = combinedBar;
         barGate = computeVerdict(ch.chapterId, injectedBarAxes(combinedBar, keyStatus), true).gate;
       }
     }
@@ -445,7 +505,7 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       (!!confirm && sessionsCollide(authorSessionId, confirm.reviewerSessionId))
     );
     const barReadSessions = bar
-      ? loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash).map((r) => r.reviewerSessionId)
+      ? barEntries.map((entry) => entry.read).filter((r) => r.chapterId === ch.chapterId && r.contentHash === contentHash).map((r) => r.reviewerSessionId)
       : [];
     const barVariantSameSession = publishableCandidate && sessionsCollideAmong(barReadSessions);
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
@@ -564,24 +624,51 @@ export function finalizeQcRound(bookId: string, roundId: string, options: { chap
       bookGate,
       sweepRecord,
       keyJudge,
-      bar,
+      bar: effectiveBar ?? bar,
       confirm,
       confirmAccepted: publishableCandidate,
       planFindings: chapterPlanFindings,
+      sweepSources: sweepRecord ? [rawProvenance("sweep", sweepRecordPath(bookId), sweepRecord)] : [],
+      barSources: barEntries.map((entry) => rawProvenance("bar", entry.path, entry.read)),
+      confirmSources: confirm ? [rawProvenance("confirm", confirmArtifactPath(bookId, roundId, ch.number), confirm)] : [],
     });
   }
+
+  const effectiveFailureChapters = {
+    sweep: new Set(decisions.filter((d) => d.checks.sweep === "FAIL").map((d) => d.chapterNumber)),
+    bookGate: new Set(decisions.filter((d) => d.checks.bookGate === "FAIL").map((d) => d.chapterNumber)),
+  };
+  for (const raw of rawByChapter.values()) raw.effectiveFailureChapters = effectiveFailureChapters;
 
   const finalizerFindings = decisions.flatMap((decision) => {
     const raw = rawByChapter.get(decision.chapterNumber);
     return raw ? findingsFromEvidenceDecision(decision, raw) : [];
   });
-  if (!options.dryRun) appendFindings({
-    bookId,
-    roundId,
-    role: "finalizer",
-    submissionFile: "evidence-matrix.json",
-    findings: finalizerFindings,
-  });
+  if (!options.dryRun) {
+    const merged = appendFindings({
+      bookId,
+      roundId,
+      role: "finalizer",
+      submissionFile: "evidence-matrix.json",
+      findings: finalizerFindings,
+    });
+    supersedeMissingEffectiveFindings(bookId, roundId, merged.findingIds);
+  }
+
+  for (const decision of decisions) {
+    if (!carriedSet?.has(decision.chapterNumber)) continue;
+    if (decision.finalVerdict !== "REVISE" || decision.checks.repairLedger === "NO_OPEN_BLOCKERS") continue;
+    if (!otherwisePublishableExceptLedger(decision)) continue;
+    const active = activeLedgerFindingsForDecision(bookId, roundId, decision.chapterNumber);
+    if (active.length === 0 || active.every((f) => sameSourceParityContradiction(decision, f))) {
+      const detail = active.length
+        ? active.map((f) => `${f.findingId}:${f.repairClass}`).join(", ")
+        : "no authoritative active findings remain after effective ledger rebuild";
+      errors.push(`repair-ledger parity contradiction for carried publishable ch${decision.chapterNumber}: ${detail}`);
+      decision.finalVerdict = "NEEDS_MORE_QC";
+      decision.reason = "repair-ledger parity contradiction after effective decision rebuild; refusing to dispatch a repair for a carried publishable chapter";
+    }
+  }
 
   for (const decision of decisions) {
     if ((decision.finalVerdict === "REVISE" || decision.finalVerdict === "CORRUPTION") && activeLedgerFindingsForDecision(bookId, roundId, decision.chapterNumber).length === 0) {

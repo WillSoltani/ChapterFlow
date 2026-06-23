@@ -7,6 +7,7 @@ import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
+import { evidenceSourceRef } from "./orchestrator/evidenceSource.js";
 import type { ValidatedSweepSubmission } from "./orchestrator/schemas.js";
 import { nondistinctiveRepetitionQuote } from "./orchestrator/findingValidity.js";
 
@@ -66,6 +67,9 @@ export type SweepRecord = {
   verdict: "PASS" | "REVISE" | "CORRUPTION";
   reviewer: string;
   attestedAt: string;
+  rawSubmissionFile?: string;
+  rawEvidenceSourceId?: string;
+  rawEvidenceSourceKind?: "raw_submission" | "derived_artifact";
   contentHashes: Record<string, string>;
   checkedFamilies: SweepFamily[];
   findings: Array<{
@@ -248,10 +252,19 @@ export function writeSweepPack(bookId: string, roundId: string): string {
   return p;
 }
 
-export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmission): string {
+export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmission, rawSubmissionFile?: string): string {
   const chapters = loadBookChapters(submission.bookId);
   const contentHashes: Record<string, string> = {};
   for (const ch of chapters) contentHashes[String(ch.number)] = chapterContentHash(ch);
+  const p = sweepRecordPath(submission.bookId);
+  const rawEvidenceSourceKind = rawSubmissionFile ? "raw_submission" as const : "derived_artifact" as const;
+  const source = evidenceSourceRef({
+    bookId: submission.bookId,
+    roundId: submission.roundId,
+    sourceRole: "sweep",
+    submissionFile: rawSubmissionFile ?? p,
+    sourceKind: rawEvidenceSourceKind,
+  });
   const rec: SweepRecord = {
     schemaVersion: "sweep-attest-v1",
     bookId: submission.bookId,
@@ -259,6 +272,9 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
     verdict: submission.verdict,
     reviewer: submission.reviewer,
     attestedAt: new Date().toISOString(),
+    rawSubmissionFile,
+    rawEvidenceSourceId: source.sourceId,
+    rawEvidenceSourceKind,
     contentHashes,
     checkedFamilies: submission.checkedFamilies,
     findings: submission.findings.flatMap((f) => {
@@ -279,7 +295,6 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
       }];
     }),
   };
-  const p = sweepRecordPath(submission.bookId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2));
   appendSweepHistory(rec);
   return p;

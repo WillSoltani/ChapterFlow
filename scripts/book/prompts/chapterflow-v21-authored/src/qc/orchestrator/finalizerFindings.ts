@@ -8,7 +8,7 @@ import type { SourceV2GateReport } from "../sourceV2Gate.js";
 import type { PlanFinding } from "../planEnforcement.js";
 import type { SweepRecord } from "../sweep.js";
 import type { EvidenceChapterDecision } from "./finalize.js";
-import type { SubmissionFinding, ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
+import type { FindingProvenanceSource, SubmissionFinding, ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
 
 export type FinalizerRawEvidence = {
   source: SourceV2GateReport;
@@ -22,6 +22,13 @@ export type FinalizerRawEvidence = {
   confirm: ValidatedConfirmReadSubmission | null;
   confirmAccepted: boolean;
   planFindings: PlanFinding[];
+  sweepSources?: FindingProvenanceSource[];
+  barSources?: FindingProvenanceSource[];
+  confirmSources?: FindingProvenanceSource[];
+  effectiveFailureChapters?: {
+    sweep: Set<number>;
+    bookGate: Set<number>;
+  };
 };
 
 function chapterLabel(n: number): string {
@@ -164,11 +171,17 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
 
   if (decision.checks.bookGate === "FAIL") {
     for (const f of raw.bookGate.findings.filter((x) => x.severity === "blocker" || x.severity === "major")) {
+      const chapters = f.chapters?.length
+        ? raw.effectiveFailureChapters?.bookGate
+          ? f.chapters.filter((n) => raw.effectiveFailureChapters!.bookGate.has(n))
+          : f.chapters
+        : undefined;
+      if (f.chapters?.length && (!chapters || chapters.length === 0)) continue;
       out.push({
         // Chapter-scoped book-gate findings (F1, BP28/BP29, B-class) carry the
         // offending chapters so repair targets only those; book-wide findings
         // (e.g. F3) leave chapters undefined and repair addresses the whole book.
-        chapters: f.chapters,
+        chapters,
         unitId: "book",
         repairClass: f.catalogId,
         severity: severity(f.severity),
@@ -248,8 +261,12 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
     // round (or when the min chapter is STALE while siblings still FAIL) the min
     // chapter may never be processed, which would drop the finding entirely.
     for (const f of raw.sweepRecord.findings.filter((x) => x.chapters.includes(chapterNumber))) {
+      const chapters = raw.effectiveFailureChapters?.sweep
+        ? f.chapters.filter((n) => raw.effectiveFailureChapters!.sweep.has(n))
+        : f.chapters;
+      if (chapters.length === 0) continue;
       out.push({
-        chapters: f.chapters,
+        chapters,
         unitId: f.unitId,
         repairClass: f.family,
         severity: raw.sweepRecord.verdict === "CORRUPTION" ? "blocker" : "major",
@@ -257,6 +274,7 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
         problem: f.problem,
         expectedFix: f.expectedFix,
         globalTheme: f.family,
+        provenanceSources: raw.sweepSources,
       });
     }
   }
@@ -264,7 +282,7 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
   if ((decision.checks.barRead === "YELLOW" || decision.checks.barRead === "RED") && raw.bar) {
     for (const axis of raw.bar.axes) {
       for (const hit of axis.hits) {
-        out.push(axisFinding(chapterNumber, axis, nonemptyText(hit.quote), hit.defect));
+        out.push({ ...axisFinding(chapterNumber, axis, nonemptyText(hit.quote), hit.defect), provenanceSources: raw.barSources });
       }
       if (axis.hits.length === 0) {
         if (axis.score < 0.6) {
@@ -272,21 +290,21 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
           // Always synthesise an actionable (major) finding so the chapter has a
           // repair target and is never demoted to NEEDS_MORE_QC with nothing to
           // fix ("non-publishable decision lacked actionable repair evidence").
-          out.push(axisFinding(
+          out.push({ ...axisFinding(
             chapterNumber,
             axis,
             nonemptyText(raw.bar.notes?.trim(), `bar.${axis.axis} scored ${axis.score.toFixed(2)} below the 0.60 floor`),
             `Bar read scored ${axis.axis} ${axis.score.toFixed(2)} (below the 0.60 floor) but cited no specific hit — re-author this axis to publishable quality.`,
-          ));
+          ), provenanceSources: raw.barSources });
         } else if (axis.score < 0.85 && raw.bar.notes?.trim()) {
-          out.push(axisFinding(chapterNumber, axis, raw.bar.notes.trim(), `Bar read scored ${axis.axis} ${axis.score.toFixed(2)}: ${raw.bar.notes.trim()}`));
+          out.push({ ...axisFinding(chapterNumber, axis, raw.bar.notes.trim(), `Bar read scored ${axis.axis} ${axis.score.toFixed(2)}: ${raw.bar.notes.trim()}`), provenanceSources: raw.barSources });
         }
       }
     }
   }
 
   if (raw.confirmAccepted && (decision.checks.confirmRead === "REVISE" || decision.checks.confirmRead === "CORRUPTION") && raw.confirm) {
-    out.push(...raw.confirm.findings);
+    out.push(...raw.confirm.findings.map((f) => ({ ...f, provenanceSources: raw.confirmSources })));
   }
 
   return out;

@@ -19,6 +19,13 @@ export type SubmissionRole = typeof SUBMISSION_ROLES[number];
 
 export type FindingSeverity = "blocker" | "major" | "minor" | "advisory";
 
+export type FindingProvenanceSource = {
+  sourceRole: SubmissionRole;
+  submissionFile: string;
+  sourceId?: string;
+  sourceKind?: "raw_submission" | "derived_artifact";
+};
+
 export type SubmissionFinding = {
   chapterNumber?: number;
   chapters?: number[];
@@ -29,6 +36,7 @@ export type SubmissionFinding = {
   problem: string;
   expectedFix: string;
   globalTheme?: string;
+  provenanceSources?: FindingProvenanceSource[];
 };
 
 export type ValidatedSweepSubmission = {

@@ -27,7 +27,7 @@ import {
   writeConfirmReadArtifact,
 } from "../src/qc/orchestrator/artifacts.js";
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
-import { generateConfirmCandidates } from "../src/qc/orchestrator/index.js";
+import { collectQcRound, generateConfirmCandidates } from "../src/qc/orchestrator/index.js";
 import { effectiveLedger, appendFindings } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
 import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
@@ -172,6 +172,30 @@ function writeRawSweepSubmission(bookId: string): void {
   const path = resolve(submissionsDir(bookId, ROUND, "sweep"), "sweep-pass.json");
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, JSON.stringify(sweepPassSubmission(bookId), null, 2) + "\n", "utf8");
+}
+
+function writeRawSweepReviseSubmission(bookId: string, chapter: ChapterV21, quote: string, chapters = [chapter.number]): void {
+  const path = resolve(submissionsDir(bookId, ROUND, "sweep"), "sweep-revise.json");
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(path, JSON.stringify({
+    schemaVersion: "qc-sweep-submission-v1",
+    bookId,
+    roundId: ROUND,
+    role: "sweep",
+    reviewer: "codex-qc:sweep-fixture",
+    verdict: "REVISE",
+    checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+    findings: [{
+      family: "scene_skeleton",
+      chapters,
+      unitId: "examples.ex01",
+      repairClass: "scene_skeleton",
+      severity: "major",
+      quote,
+      problem: "A single stochastic sweep read claims a repeated scene shell.",
+      expectedFix: "Only dispatch repair if the effective corroborated sweep decision fails this chapter.",
+    }],
+  }, null, 2) + "\n", "utf8");
 }
 
 function writeKeyDerivations(bookId: string, chapters: ChapterV21[]): void {
@@ -636,6 +660,32 @@ goldTest("P2 GUARD (Fix 2): a GROUNDED sweep FAIL STILL demotes a carried chapte
     assert.equal(result.chapters[0].checks.sweep, "FAIL", "a grounded sweep finding keeps the chapter FAILed");
     assert.equal(result.chapters[0].finalVerdict, "REVISE", "a real cross-chapter collision still demotes a carried chapter");
     assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "a real demotion overwrites the prior PUBLISHABLE so it is re-reviewed, never carried/promoted on a stale pass");
+  } finally {
+    cleanup();
+  }
+});
+
+goldTest("effective ledger: an uncorroborated raw sweep blocker collected for unchanged carried content does not force REVISE", () => {
+  try {
+    cleanup();
+    const chapter = setupCarriedChapter();
+    writeSweepRecordFromSubmission({ ...sweepPassSubmission(GREEN_BOOK), roundId: "r-before-finalize" });
+    const realQuote = String(chapter.examples?.[0]?.scenario ?? "").slice(0, 90);
+    assert.ok(realQuote.replace(/[^a-z0-9]+/gi, " ").trim().length >= 20, "fixture must yield a grounded sweep quote");
+    writeRawSweepReviseSubmission(GREEN_BOOK, chapter, realQuote);
+
+    const collected = collectQcRound(GREEN_BOOK, ROUND);
+    assert.equal(collected.ok, true, collected.errors.join("\n"));
+    assert.equal(
+      effectiveLedger(GREEN_BOOK, ROUND).filter((f) => f.status === "open" && (f.chapterNumber === SOURCE_CHAPTER_NUMBER || (f.chapters ?? []).includes(SOURCE_CHAPTER_NUMBER))).length,
+      0,
+      "collection must store raw sweep evidence without creating a semantic blocking ledger entry",
+    );
+
+    const result = finalizeQcRound(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].checks.sweep, "PASS", "the prior clear read over identical bytes demotes the single stochastic sweep finding");
+    assert.equal(result.chapters[0].checks.repairLedger, "NO_OPEN_BLOCKERS");
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", JSON.stringify(result.chapters[0]));
   } finally {
     cleanup();
   }
