@@ -14,6 +14,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { assertNoShadowStateDir } from "../lib/chapterPaths.js";
+import { compareChapterSetToCanonical, formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -66,6 +67,29 @@ function checkChapterNumbers(bookId: string): DoctorFinding {
   return { level: "ok", check: "chapter-numbers", message: `${bookId}: ${chapters.length} chapters, numbers unique` };
 }
 
+function checkCanonicalChapterSet(bookId: string): DoctorFinding {
+  const canonical = readCanonicalChapterIndex(bookId);
+  if (!canonical.ok) {
+    return { level: "fatal", check: "canonical-chapter-set", message: formatChapterSetBlockers(canonical.blockers) };
+  }
+  let chapters;
+  try {
+    chapters = loadBookChapters(bookId);
+  } catch (e) {
+    return { level: "fatal", check: "canonical-chapter-set", message: (e as Error).message };
+  }
+  const comparison = compareChapterSetToCanonical({
+    bookId,
+    canonical: canonical.chapters,
+    actual: chapters,
+    actualLabel: "state chapter files",
+  });
+  if (!comparison.ok) {
+    return { level: "fatal", check: "canonical-chapter-set", message: formatChapterSetBlockers(comparison.blockers) };
+  }
+  return { level: "ok", check: "canonical-chapter-set", message: `${bookId}: state chapters exactly match canonical index (${canonical.chapters.length})` };
+}
+
 function checkUntrackedImports(): DoctorFinding {
   // Untracked src/*.ts that tracked code imports compile locally (tsconfig globs
   // pick them up) but fail TS2307 on a fresh origin checkout. List untracked
@@ -94,7 +118,7 @@ function checkUntrackedImports(): DoctorFinding {
 export function runDoctorChecks(bookId?: string): DoctorFinding[] {
   const findings: DoctorFinding[] = [checkShadowStateDir(), checkUntrackedImports()];
   if (bookId) {
-    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId));
+    findings.push(checkDualBrief(bookId), checkChapterNumbers(bookId), checkCanonicalChapterSet(bookId));
   } else {
     // sweep every book's chapter-number integrity
     try {

@@ -112,12 +112,13 @@ Commands:
                                      Counts against your Max subscription quota.
   generate-book <bookId> --title X --author Y [--from N] [--to N] [--no-categorizer --categories A,B --tags x,y]
                                      Lower-level: generate (or resume) every chapter of a book
-                                     using an existing chapter index. Auto-promotes on success.
+                                     using an existing chapter index. Full canonical runs auto-promote
+                                     on success; --from/--to range runs stop before production promotion.
                                      For inline-operator mode (no subprocess calls), pre-populate
                                      state/chapters/ and use --no-categorizer with manual metadata.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
-                                     Final gate. Re-validates every chapter + book-level checks + the
-                                     QC-attestation gate, then writes book-packages/<id>.v21.json on
+                                     Final gate. Requires the complete canonical index, then re-validates
+                                     every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
                                      Quarantines to state/books/_blocked/ on failure.

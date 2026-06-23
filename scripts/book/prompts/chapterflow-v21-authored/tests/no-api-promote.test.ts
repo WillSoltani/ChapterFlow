@@ -22,6 +22,7 @@ function cleanup(): void {
     rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-keyjudge.json`), { force: true });
   }
   rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`), { force: true });
   rmSync(qcRoundPath(BOOK, "r-no-api-artifacts"), { force: true });
   rmSync(qcRoundPath(BOOK, "r-legacy-major"), { force: true });
   rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
@@ -33,6 +34,17 @@ function cleanup(): void {
       if (f.startsWith(`${BOOK}.`)) rmSync(resolve(blocked, f), { force: true });
     }
   } catch {}
+}
+
+function writeFixtureBookWithIndex(chapters: ReturnType<typeof makeChapter>[]): void {
+  writeFixtureBook(STATE_CHAPTERS, chapters);
+  const indexPath = resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`);
+  mkdirSync(dirname(indexPath), { recursive: true });
+  writeFileSync(
+    indexPath,
+    JSON.stringify(chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })), null, 2),
+    "utf8",
+  );
 }
 
 test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS, round-backed attestations, and major dispositions", () => {
@@ -47,7 +59,7 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
         `At the kitchen table, a synthetic team repeats the same venue in chapter ${n}. This intentionally creates a current book-gate major for disposition testing.`;
       return ch;
     });
-    writeFixtureBook(STATE_CHAPTERS, chapters);
+    writeFixtureBookWithIndex(chapters);
     for (const ch of chapters) {
       writeAttestation({
         schemaVersion: "qc-attest-v1",
@@ -98,7 +110,7 @@ test("no-api promote enforces the source-verify RECORD gate inside promoteBook (
     console.warn = () => {};
     cleanup();
     const chapters = [1].map((n) => makeChapter(BOOK, n));
-    writeFixtureBook(STATE_CHAPTERS, chapters);
+    writeFixtureBookWithIndex(chapters);
     // A PRESENT-but-rubber-stamped record (one identical note over reused sources) must block
     // promotion via promoteBook itself — not just via the publish-after-qc preflight wrapper.
     const items = [1, 2, 3, 4, 5].map((i) => ({ id: `f${i}`, kind: "testable_fact", verdict: "VERIFIED", sourceRef: `https://example.com/${i % 2}`, note: "stamp" }));
@@ -131,7 +143,7 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
     console.warn = () => {};
     cleanup();
     const chapter = makeChapter(BOOK, 1);
-    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-legacy-major");
     const finding = currentMajorFindings(BOOK, [chapter])[0];
     assert.ok(finding, "fixture should expose at least one current major");
@@ -174,7 +186,7 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
     console.warn = () => {};
     cleanup();
     const chapter = makeChapter(BOOK, 1);
-    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-no-api-artifacts");
     writeAttestation({
       schemaVersion: "qc-attest-v1",

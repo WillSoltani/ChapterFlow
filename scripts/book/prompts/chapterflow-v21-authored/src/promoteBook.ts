@@ -39,6 +39,13 @@ import { checkManualKeyJudge } from "./qc/manualKeyJudge.js";
 import { checkSweep } from "./qc/sweep.js";
 import { unresolvedMajors } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
+import { normSlug } from "./lib/chapterPaths.js";
+import {
+  compareChapterSetToCanonical,
+  formatChapterSetBlockers,
+  readCanonicalChapterIndex,
+  type ChapterSetBlocker,
+} from "./lib/chapterSet.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -61,6 +68,8 @@ export type PromotionResult = {
    *  cannot do — enforced here from the sidecar `quiz-judge` writes. */
   keyJudgeBlockerCount: number;
   noApiBlockerCount: number;
+  canonicalBlockerCount: number;
+  canonicalBlockers?: ChapterSetBlocker[];
   shipGateMajorCount: number;
   bookGateMajorCount: number;
   reason: string;                // human-readable explanation
@@ -109,7 +118,8 @@ export function stripInternalFields(chapter: ChapterV21): ChapterV21 {
 }
 
 export function promoteBook(input: PromotionInput): PromotionResult {
-  const { bookId, title, author, chapters } = input;
+  const bookId = normSlug(input.bookId);
+  const { title, author, chapters } = input;
 
   // Step 0: Quarantine tombstone. quarantine-book used to only MOVE the
   // shipped package aside — every piece of state that made the book
@@ -130,22 +140,66 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     });
   }
 
-  // Step 1: Load every expected chapter from state/chapters/
+  // Step 0.5: Canonical chapter-set proof. The production package must be
+  // complete according to the promoter-loaded state/indexes/<bookId>.json, not
+  // according to a caller-supplied range. This runs before report/quarantine/
+  // package writes so a rejected subset leaves production state untouched.
+  const canonical = readCanonicalChapterIndex(bookId);
+  if (!canonical.ok) {
+    return blockedResult({
+      bookId,
+      canonicalBlockers: canonical.blockers,
+      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(canonical.blockers)}`,
+    });
+  }
+  const inputSet = compareChapterSetToCanonical({
+    bookId,
+    canonical: canonical.chapters,
+    actual: chapters,
+    actualLabel: "promotion input",
+  });
+  if (!inputSet.ok) {
+    return blockedResult({
+      bookId,
+      canonicalBlockers: inputSet.blockers,
+      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(inputSet.blockers)}`,
+    });
+  }
+
+  // Step 1: Load every canonical chapter from state/chapters/
   const loadedChapters: ChapterV21[] = [];
-  const missingChapters: number[] = [];
-  for (const spec of chapters) {
+  const missingChapterBlockers: ChapterSetBlocker[] = [];
+  for (const spec of canonical.chapters) {
     const path = resolve(STATE, "chapters", `${spec.chapterId}.v21-native.chapter.json`);
     if (!existsSync(path)) {
-      missingChapters.push(spec.chapterNumber);
+      missingChapterBlockers.push({
+        checkId: "CHSET.chapter_file_missing",
+        severity: "blocker",
+        message: `Canonical chapter ${spec.chapterId} (chapter ${spec.chapterNumber}) is missing at ${path}.`,
+        expected: spec.chapterId,
+      });
       continue;
     }
     loadedChapters.push(JSON.parse(readFileSync(path, "utf8")) as ChapterV21);
   }
-  if (missingChapters.length > 0) {
+  if (missingChapterBlockers.length > 0) {
     return blockedResult({
       bookId,
-      reason: `Missing chapters: ${missingChapters.join(", ")}. Generate them before promoting.`,
-      missingChapters,
+      canonicalBlockers: missingChapterBlockers,
+      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(missingChapterBlockers)}`,
+    });
+  }
+  const loadedSet = compareChapterSetToCanonical({
+    bookId,
+    canonical: canonical.chapters,
+    actual: loadedChapters,
+    actualLabel: "state chapter files",
+  });
+  if (!loadedSet.ok) {
+    return blockedResult({
+      bookId,
+      canonicalBlockers: loadedSet.blockers,
+      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(loadedSet.blockers)}`,
     });
   }
 
@@ -315,6 +369,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
     quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
     noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
+    canonicalChapterSet: { indexPath: canonical.path, chapterCount: canonical.chapters.length, totalBlockers: 0, findings: [] },
   };
   writeFileSync(reportPath, JSON.stringify(fullReport, null, 2), "utf8");
 
@@ -346,6 +401,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
       intraBookBlockerCount: intraBlockerCount,
       keyJudgeBlockerCount,
       noApiBlockerCount,
+      canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
       reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${noApiSummary}. Quarantined at ${quarantinePath}.`,
@@ -379,7 +435,7 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     // Strip authoring-internal fields (sourceAnchorId provenance + planSpec
     // scaffolding) so they never ship into book-packages/ or reach the web
     // package validator / reader.
-    chapters: loadedChapters.map((c) => stripInternalFields(c)).sort((a, b) => a.number - b.number),
+    chapters: loadedChapters.map((c) => stripInternalFields(c)),
   };
   // Atomic write: the published package is the SHIPPED artifact — a crash mid-write must never
   // leave a truncated book-packages/<id>.v21.json (which the web reader/validator would choke on).
@@ -395,13 +451,14 @@ export function promoteBook(input: PromotionInput): PromotionResult {
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    canonicalBlockerCount: 0,
     shipGateMajorCount: shipMajorCount,
     bookGateMajorCount: bookMajorCount,
     reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Majors logged: ${shipMajorCount} ship + ${bookMajorCount} book.`,
   };
 }
 
-function blockedResult(args: { bookId: string; reason: string; missingChapters?: number[] }): PromotionResult {
+function blockedResult(args: { bookId: string; reason: string; canonicalBlockers?: ChapterSetBlocker[] }): PromotionResult {
   return {
     promoted: false,
     bookId: args.bookId,
@@ -411,6 +468,8 @@ function blockedResult(args: { bookId: string; reason: string; missingChapters?:
     intraBookBlockerCount: 0,
     keyJudgeBlockerCount: 0,
     noApiBlockerCount: 0,
+    canonicalBlockerCount: args.canonicalBlockers?.length ?? 0,
+    canonicalBlockers: args.canonicalBlockers,
     shipGateMajorCount: 0,
     bookGateMajorCount: 0,
     reason: args.reason,
@@ -425,6 +484,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   if (r.reportPath) lines.push(`  Report: ${r.reportPath}`);
   lines.push(`  Ship gate: ${r.shipGateBlockerCount} blockers, ${r.shipGateMajorCount} majors`);
   lines.push(`  Intra-book (AS5–AS12): ${r.intraBookBlockerCount} blockers`);
+  lines.push(`  Canonical chapter set: ${r.canonicalBlockerCount} blockers`);
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
   lines.push(`  Book gate: ${r.bookGateBlockerCount} blockers, ${r.bookGateMajorCount} majors`);

@@ -8,7 +8,7 @@
  * handles cross-book name dedup correctly under sequential ingestion.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileSync, mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -18,6 +18,7 @@ import { runBookGate, formatBookGateReport, BookGateReport } from "./critics/boo
 import { classifyCounterShape } from "./critics/bookPatternAudit.js";
 import { promoteBook, formatPromotionResult, PromotionResult } from "./promoteBook.js";
 import { runCategorizer } from "./agents/categorizer.js";
+import { loadCanonicalChapterIndex } from "./lib/chapterSet.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -109,8 +110,13 @@ export async function generateBook(
   // AND the book gate had no blockers. Even then, promoteBook re-validates.
   let promotion: PromotionResult | undefined;
   const autoPromote = options.autoPromote !== false;
+  const fullCanonicalRange =
+    range.length === chapters.length &&
+    range.every((c, i) => c.chapterId === chapters[i].chapterId && c.chapterNumber === chapters[i].chapterNumber);
   if (autoPromote) {
-    if (failed.length > 0) {
+    if (!fullCanonicalRange) {
+      log(`\n=== Skipping production promotion: chapter range runs are nonproduction (${range.length}/${chapters.length} canonical chapters) ===`);
+    } else if (failed.length > 0) {
       log(`\n=== Skipping promotion: ${failed.length} chapter(s) failed during generation ===`);
     } else if (!bookGate.passed) {
       log(`\n=== Skipping promotion: book gate has blockers ===`);
@@ -193,9 +199,5 @@ function buildPriorChapterShapes(prior: ChapterV21[]): PriorChapterShapes {
 /** Read a chapter index file. The index is an array of ChapterSpec objects
  *  describing every chapter in a book. Stored at state/indexes/<bookId>.json. */
 export function loadChapterIndex(bookId: string): ChapterSpec[] {
-  const path = resolve(STATE, "indexes", `${bookId}.json`);
-  if (!existsSync(path)) {
-    throw new Error(`Chapter index not found at ${path}. Create it before running generateBook.`);
-  }
-  return JSON.parse(readFileSync(path, "utf8")) as ChapterSpec[];
+  return loadCanonicalChapterIndex(bookId);
 }

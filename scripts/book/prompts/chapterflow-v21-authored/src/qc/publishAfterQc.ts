@@ -13,6 +13,7 @@ import { loadChapterIndex } from "../generateBook.js";
 import { promoteBook } from "../promoteBook.js";
 import { V21_SCHEMA_VERSION } from "../types.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
+import { compareChapterSetToCanonical, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
 import { qcRoundPath } from "./qcRound.js";
@@ -338,6 +339,10 @@ export type PreflightCheck = { check: string; blockers: string[] };
  *  the gating behaviour is byte-identical to before. */
 function noApiPreflightChecks(bookId: string): PreflightCheck[] {
   const chapters = loadBookChapters(bookId).sort((a, b) => a.number - b.number);
+  const canonical = readCanonicalChapterIndex(bookId);
+  const canonicalBlockers = canonical.ok
+    ? compareChapterSetToCanonical({ bookId, canonical: canonical.chapters, actual: chapters, actualLabel: "state chapter files" }).blockers
+    : canonical.blockers;
   // H5 defense: a malformed authored chapter (codex writes JSON directly, no schema coercion) could
   // make ANY critic throw. That must surface as a publish BLOCKER, never an unhandled crash that
   // aborts the whole preflight (noApiPreflightChecks is called WITHOUT a try/catch). `safe` turns a
@@ -367,6 +372,7 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     return sc ? verifiableItems(sc) : [];
   });
   return [
+    { check: "canonical-chapter-set", blockers: canonicalBlockers.map((f) => `${f.checkId}: ${f.message}`) },
     { check: "ship-gate", blockers: ship },
     { check: "intra-book", blockers: intra },
     { check: "qc-status", blockers: qcStatus },
