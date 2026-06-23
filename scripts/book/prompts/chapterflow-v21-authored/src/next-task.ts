@@ -21,6 +21,8 @@ import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
+import { createResearchRunId, readResearchRunManifest } from "./lib/researchRunManifest.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(__dirname, "../../../../..");
 const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
@@ -40,15 +42,29 @@ export function findLatestRun(bookId: string): string | null {
   const bookDir = resolve(RUNS_DIR, bookId);
   if (!existsSync(bookDir)) return null;
   const runs = readdirSync(bookDir)
-    .filter((d) => {
+    .filter((runId) => {
       try {
-        return statSync(resolve(bookDir, d)).isDirectory();
+        return statSync(resolve(bookDir, runId)).isDirectory();
       } catch {
         return false;
       }
     })
-    .sort();
-  return runs.length > 0 ? runs[runs.length - 1] : null;
+    .map((runId) => {
+      const parsed = readResearchRunManifest(resolve(bookDir, runId));
+      return {
+        runId,
+        createdAtMs: parsed.ok ? Date.parse(parsed.manifest.createdAt) : null,
+      };
+    })
+    .sort((a, b) => {
+      if (a.createdAtMs !== null || b.createdAtMs !== null) {
+        const at = a.createdAtMs ?? -1;
+        const bt = b.createdAtMs ?? -1;
+        if (at !== bt) return at - bt;
+      }
+      return a.runId.localeCompare(b.runId);
+    });
+  return runs.length > 0 ? runs[runs.length - 1].runId : null;
 }
 
 /** Compute the next missing artifact in the operator workflow for one book. */
@@ -286,15 +302,5 @@ export function formatNextTask(task: NextTask): string {
 }
 
 function makeRunId(): string {
-  const now = new Date();
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return [
-    now.getUTCFullYear(),
-    pad(now.getUTCMonth() + 1),
-    pad(now.getUTCDate()),
-    "-",
-    pad(now.getUTCHours()),
-    pad(now.getUTCMinutes()),
-    pad(now.getUTCSeconds()),
-  ].join("");
+  return createResearchRunId();
 }
