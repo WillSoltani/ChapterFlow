@@ -3,11 +3,15 @@ import { NextResponse } from "next/server";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { requireUser } from "@/app/app/api/_lib/auth";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import {
+  withBookApiErrors,
+  enforceDailyUserLimit,
+  dailyLimitDateKey,
+} from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getUserSnapshot, getUserEvents } from "@/app/app/api/book/_lib/admin-metrics";
-import { bookUserPk } from "@/app/app/api/book/_lib/keys";
+import { bookUserPk, exportLimitSk } from "@/app/app/api/book/_lib/keys";
 import {
   getUserEntitlement,
   getUserProfileItem,
@@ -27,6 +31,14 @@ import {
 } from "@/app/app/api/book/_lib/flow-points-repo";
 
 export const runtime = "nodejs";
+
+/**
+ * GDPR/CCPA export is heavyweight (full-partition paginated scan + analytics
+ * reads). A per-user daily cap stops abuse/runaway looping while staying well
+ * above any legitimate need (a user downloads their own data a handful of times
+ * per day at most). (#8)
+ */
+const EXPORT_DAILY_LIMIT = 5;
 
 type ExportData = {
   exportedAt: string;
@@ -316,6 +328,17 @@ export async function GET(req: Request) {
     if (format !== "json" && format !== "csv" && format !== "markdown") {
       throw new BookApiError(400, "invalid_format", "format must be json, csv, or markdown");
     }
+
+    // Reserve one unit of the per-user daily export allowance BEFORE doing the
+    // heavy paginated reads, so a runaway/abusive caller is rejected cheaply.
+    await enforceDailyUserLimit({
+      tableName,
+      userPk: bookUserPk(user.sub),
+      counterSk: exportLimitSk(dailyLimitDateKey()),
+      limit: EXPORT_DAILY_LIMIT,
+      entity: "BOOK_EXPORT_COUNT",
+      resource: "data exports",
+    });
 
     // Fetch all user data in parallel
     const [

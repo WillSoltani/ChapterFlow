@@ -45,6 +45,10 @@ async function resolveUserIdForEvent(
 // webhook no longer fires any referral payout on Pro conversion.
 
 export async function POST(req: Request) {
+  // skipOriginCheck (#6): Stripe's server-to-server webhook carries no browser
+  // Origin/Sec-Fetch headers, so the same-origin CSRF guard would otherwise
+  // strict-reject it (no Origin on an unsafe method). Authenticity here is
+  // enforced by the Stripe signature verification below, not by origin.
   return withBookApiErrors(req, async () => {
     const tableName = await getBookTableName();
     const stripe = await getStripeClient();
@@ -559,5 +563,5 @@ export async function POST(req: Request) {
       }).catch(() => {});
       throw err;
     }
-  });
+  }, { skipOriginCheck: true });
 }

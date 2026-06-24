@@ -160,6 +160,12 @@ if (!skipFrontend && openNextExists) {
       ...(process.env.AUTH_COOKIE_DOMAIN && {
         AUTH_COOKIE_DOMAIN: process.env.AUTH_COOKIE_DOMAIN,
       }),
+      // CSRF/same-origin guard (#6). Injected UNCONDITIONALLY (default "1" = ON)
+      // so the value is present in the Lambda config and can be flipped to "0"
+      // (observe-only: log, don't block) directly on the live function for a
+      // brief confirmation window after a deploy. CDK resets it to this default
+      // on the next deploy. Read via raw process.env (isCsrfEnforcementOn).
+      CSRF_ORIGIN_ENFORCE: process.env.CSRF_ORIGIN_ENFORCE ?? "1",
       ...(process.env.BOOK_STRIPE_SECRET_KEY && {
         BOOK_STRIPE_SECRET_KEY: process.env.BOOK_STRIPE_SECRET_KEY,
       }),

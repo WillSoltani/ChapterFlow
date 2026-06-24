@@ -416,6 +416,13 @@ export function aiCachedAnswerSk(questionHash: string): string {
   return `AI_CACHE#${questionHash}`;
 }
 
+// ── Per-user daily rate-limit counters (#8) ──────────────────────────────────
+
+/** Daily counter SK for the GDPR data-export endpoint. `date` = `YYYY-MM-DD`. */
+export function exportLimitSk(date: string): string {
+  return `EXPORT_LIMIT#${date}`;
+}
+
 // ── Seasonal Event keys (Feature #17) ────────────────────────────────────────
 
 export function eventParticipationSk(eventId: string): string {
