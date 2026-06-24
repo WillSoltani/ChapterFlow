@@ -484,6 +484,7 @@
               "The committee prefers images because it dislikes technical proof.",
               "The red color created pressure to agree."
             ],
+            "correctIndex": 0,
             "explanation": "The map translates the report into a simple, relevant threat. It does not replace technical proof or coerce agreement; it opens attention so proof can land."
           },
           {
@@ -494,6 +495,7 @@
               "One mislabeled sample bag placed beside the delayed patient roster.",
               "A full comparison of pickup vendors by region."
             ],
+            "correctIndex": 1,
             "explanation": "The sample bag and roster make the risk immediate and local. The manual and vendor comparison may matter later, but both ask for analysis before relevance is clear."
           },
           {
@@ -504,6 +506,7 @@
               "Tell the owners that finance is too complex for shortcuts.",
               "Show one nightly receipt where the fee wiped out the dessert margin, then open the spreadsheet."
             ],
+            "correctIndex": 2,
             "explanation": "The receipt turns leakage into a concrete loss the owners recognize. The spreadsheet then explains the pattern. Color and scolding do not solve first-filter overload."
           },
           {
@@ -514,6 +517,7 @@
               "She abandoned analysis in favor of emotion.",
               "She made the risk seem larger than the model supports."
             ],
+            "correctIndex": 0,
             "explanation": "The amber row is faithful compression because it preserves the real risk and timing. It is not anti-analysis, and it would only exaggerate if the model did not support it."
           },
           {
@@ -524,6 +528,7 @@
               "It places the threat inside their actual workflow before naming the rule.",
               "It avoids the need for any security explanation."
             ],
+            "correctIndex": 1,
             "explanation": "The fake notice gives the rule a local threat. Embarrassment would damage trust, and explanation is still needed after attention opens."
           },
           {
@@ -534,6 +539,7 @@
               "Correct only for nontechnical audiences.",
               "No, lead with one simple cue, then bring the detail that proves it."
             ],
+            "correctIndex": 2,
             "explanation": "Simplicity is the entrance, not the whole case. The cue earns attention for proof. Removing detail entirely risks making the pitch shallow or unsupported."
           },
           {
@@ -544,6 +550,7 @@
               "It created a simple handle for the later braking model.",
               "It hid the complexity of the safety case."
             ],
+            "correctIndex": 1,
             "explanation": "The number gives the room a handle. The braking model can still follow, but now it connects to a clear interval supervisors can picture."
           },
           {
@@ -554,6 +561,7 @@
               "A longer table with five-year utilization trends.",
               "A statement that employers should care more about families."
             ],
+            "correctIndex": 0,
             "explanation": "The voicemail makes the table relevant and emotionally salient without discarding analysis. A longer table adds load, and moral pressure can trigger resistance."
           },
           {
@@ -564,6 +572,7 @@
               "Use the strip only if it represents the real risk the report supports.",
               "Make the strip look as dramatic as possible."
             ],
+            "correctIndex": 1,
             "explanation": "The cue must be faithful to the underlying risk. If it is staged beyond the evidence, it becomes theater. The report should still explain the pattern."
           }
         ]
@@ -782,6 +791,7 @@
               "The room may notice the acronym too quickly.",
               "The pitch may sound too brief."
             ],
+            "correctIndex": 0,
             "explanation": "STRONG is an order of handoffs. A strong piece can weaken if it arrives before the prior move has prepared the room."
           },
           {
@@ -792,6 +802,7 @@
               "Set the frame around what kind of lease decision this commission is really making.",
               "Ask for the lease vote before details distract the room."
             ],
+            "correctIndex": 1,
             "explanation": "Frame comes before output because it shapes how the output will be judged. Asking early pressures the room, and an efficiency chart can be misread inside the wrong frame."
           },
           {
@@ -802,6 +813,7 @@
               "Frame, because pilots never trust software.",
               "Intrigue, because the team jumped from story to decision before curiosity was alive."
             ],
+            "correctIndex": 2,
             "explanation": "The gap is the missing curiosity handoff. The room heard stakes but did not yet feel the unresolved tension that would make the pilot welcome."
           },
           {
@@ -812,6 +824,7 @@
               "Remove attendance numbers because numbers make offers generic.",
               "Start with the contract terms to show seriousness."
             ],
+            "correctIndex": 0,
             "explanation": "Community story changes what the numbers mean. Removing numbers wastes proof, and terms too early turn the package into procurement."
           },
           {
@@ -822,6 +835,7 @@
               "Because repayment logic needs demand evidence before terms are judged.",
               "Because the terms should be hidden until the end."
             ],
+            "correctIndex": 1,
             "explanation": "The rebound story makes the loan financeable. The object creates attention, but demand evidence lets terms feel controlled rather than sentimental."
           },
           {
@@ -832,6 +846,7 @@
               "The commissioners will ask for a longer demo.",
               "The robot will be judged as a gadget instead of an answer."
             ],
+            "correctIndex": 2,
             "explanation": "Without frame and story, the demo has no decision context. The same robot lands better after reputation and cleanup cost are clear."
           },
           {
@@ -842,6 +857,7 @@
               "Add more legal detail to the first page.",
               "Delay all mention of competitors until after signing."
             ],
+            "correctIndex": 0,
             "explanation": "Terms need perceived value before they can land. More legal detail repeats the transactional frame, while competitor timing can create useful intrigue."
           },
           {
@@ -852,6 +868,7 @@
               "Too rigid, because the sequence guides handoffs while pacing still requires judgment.",
               "Incorrect only when the pitch is longer than ten minutes."
             ],
+            "correctIndex": 1,
             "explanation": "The method is a route, not a fixed transcript. Length and pacing change, but the handoffs still protect the pitch from scattering."
           },
           {
@@ -862,6 +879,7 @@
               "The decision will become too easy for the room.",
               "The frame will automatically become stronger."
             ],
+            "correctIndex": 0,
             "explanation": "A peak needs setup. Without story and intrigue, a sharp line has nothing beneath it and can feel like marketing decoration."
           }
         ]

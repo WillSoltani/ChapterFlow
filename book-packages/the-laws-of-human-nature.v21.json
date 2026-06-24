@@ -484,6 +484,7 @@
               "Send the reply immediately so the parent learns that crossing the principal carries a cost.",
               "Delete the email and hope the discomfort fades within the week."
             ],
+            "correctIndex": 0,
             "explanation": "Drafting captures the surge without obeying it; naming the wound and reconstructing sequence buys the rational self a chance to inspect the claim. The impulsive send dignifies embarrassment as policy, while deletion only buries the trigger without resolving anything."
           },
           {
@@ -494,6 +495,7 @@
               "What did I actually see, in order, before my anger named the motive?",
               "Which friend will agree fastest that the other driver was a menace?"
             ],
+            "correctIndex": 1,
             "explanation": "Reconstructing sequence forces a gap between observation and attribution, which is where reason lives. Revenge fantasies and quick allies both feed the surge and cement an interpretation that has not yet earned the title of evidence."
           },
           {
@@ -504,6 +506,7 @@
               "Sharpen the filing's adjectives until its tone matches her humiliation.",
               "Wait one hour, list the judge's stated reasons, and strike every line not anchored to record evidence."
             ],
+            "correctIndex": 2,
             "explanation": "A one-hour pause lets the calmer self prune the filing against the record, which is the only test that survives appeal. The permanent vow inflates pique into principle, and harsher adjectives let anger pose as advocacy."
           },
           {
@@ -514,6 +517,7 @@
               "A finished retention analysis pointing to a precise gap in the lineup.",
               "A neutral judgment that every internet trend deserves equal investment."
             ],
+            "correctIndex": 0,
             "explanation": "The deadline is born from social heat rather than customer data; crowd attention is masquerading as strategic insight. Calling the impulse 'analysis' would let imitation wear the costume of evidence."
           },
           {
@@ -524,6 +528,7 @@
               "Write down the exact words, note her own fatigue in the margin, and delay any interpretation until the next handoff.",
               "Decide that exhaustion makes every clinical judgment worthless and stop charting altogether."
             ],
+            "correctIndex": 1,
             "explanation": "Logging facts and naming her own fatigue separates observation from label, which is what the next nurse actually needs. An instant tag overreads through tiredness, and refusing to chart abandons real information that may matter for the patient."
           },
           {
@@ -534,6 +539,7 @@
               "A loud whispered reminder that confident players never lose pieces.",
               "Write the two moves anger wants beside the quiet best line, and only then choose."
             ],
+            "correctIndex": 2,
             "explanation": "Writing the anger line out exposes the revenge script as a script and gives the board its vote back. Suppression and confidence-talk both leave the impulse running underneath, controlling the next decision."
           },
           {
@@ -544,6 +550,7 @@
               "The critique proves the engineer is angling for her job and must be checked publicly.",
               "Public criticism always demands a public answer within the same meeting."
             ],
+            "correctIndex": 0,
             "explanation": "Naming the surge as embarrassment, before it crystallizes into action, prevents a pride-driven move from being filed as strategy. The disloyalty narrative and the must-answer-now rule both let humiliation pick the evidence."
           },
           {
@@ -554,6 +561,7 @@
               "Shared enthusiasm at the table may be transforming greed and imitation into what feels like proof.",
               "A rising price chart is itself sufficient justification for a buy decision."
             ],
+            "correctIndex": 1,
             "explanation": "Group consensus can convert emotion into the costume of evidence; the bubble effect lives precisely where respectable witnesses meet a climbing chart. Neither social trust nor price alone counts as independent verification."
           },
           {
@@ -564,6 +572,7 @@
               "Treat every chaotic caller as unreliable until evidence proves otherwise.",
               "Require the radio operator to read back the coordinates twice and cross-check them against the tide chart."
             ],
+            "correctIndex": 2,
             "explanation": "A coordinate readback creates a small, mandatory fact-check between contempt and the dispatch decision. Letting the laughter run trains the room's reflexes, while categorical distrust may bury a real distress call under irritation."
           }
         ]
@@ -1107,6 +1116,7 @@
               "The director is clearly lying about caring for anyone in the building tonight.",
               "The smaller donors should ignore the half-step entirely, since speeches at galas are never revealing."
             ],
+            "correctIndex": 0,
             "explanation": "The pitch shift is a leak that thins the mask under status pressure; it tells you the warmth is calibrated, not that it is wholly counterfeit. Calling her a liar inflates a leak into a verdict, and dismissing public ritual as inert ignores how performance bends under audience."
           },
           {
@@ -1117,6 +1127,7 @@
               "Compare the rehearsed line against the repeated blame pattern, then ask one further question about supervision.",
               "Reject him outright on the basis of the tightening shoulders, since posture exposes the soul."
             ],
+            "correctIndex": 1,
             "explanation": "Trusting only the words gives the rehearsed sentence the win, while reading the body alone overclaims from a single leak. The repeated blame pattern, tested against a fresh supervision probe, is where the second language meets verifiable conduct."
           },
           {
@@ -1127,6 +1138,7 @@
               "A dishonest villain role that deserves a public callout at the next meeting.",
               "A peacemaker role whose paraphrasing may be quietly dissolving opposition rather than reconciling it."
             ],
+            "correctIndex": 2,
             "explanation": "The recurring softening pattern suggests control wearing the costume of civility, which is the most useful read. Treating the language as automatically neutral misses the pattern, and casting her as a villain skips the proportion the evidence will support."
           },
           {
@@ -1137,6 +1149,7 @@
               "Only the warm praise, because viewers prefer heroes who stay consistent.",
               "Only the refusal, because the praise has already been exposed as performance."
             ],
+            "correctIndex": 0,
             "explanation": "Holding both clips together shows where the persona meets its border under cost, which is the lesson worth keeping. Cutting only one side flattens Jordan into a tidier mask and discards the most revealing evidence."
           },
           {
@@ -1147,6 +1160,7 @@
               "The repeating sequence in which a joke arrives a moment before any repair is attempted.",
               "The general principle that humor has no place anywhere inside a serious lab."
             ],
+            "correctIndex": 1,
             "explanation": "Naming the recurring joke-before-repair sequence is precise enough to fix without indicting the whole person. Attacking personality invites defense, and banning humor wholesale ignores its legitimate uses outside this pattern."
           },
           {
@@ -1157,6 +1171,7 @@
               "Buy quickly, because the compliment still felt accurate when it was first delivered.",
               "Note the adaptive role at work, let the flattery cool, and judge the wrap against her own criteria."
             ],
+            "correctIndex": 2,
             "explanation": "Recognizing the adaptive sales role drains the flattery of authority without requiring blanket paranoia. Wholesale insult overcorrects, and buying on the warmth lets a practiced compliment do the deciding."
           },
           {
@@ -1167,6 +1182,7 @@
               "Announce at coffee that her body language has already proven she is hiding something.",
               "Dismiss the tightening entirely, because the only data that counts is what people say aloud."
             ],
+            "correctIndex": 0,
             "explanation": "A single mismatch is a clue, not a verdict; repetition under the same pressure is what gives it weight. A public accusation overclaims from a leak, while ignoring the second language throws away the most reliable signal in the room."
           },
           {
@@ -1177,6 +1193,7 @@
               "The performed rebel posture against the repeated dependence on approval whenever real consequences appear.",
               "Your personal annoyance with him, since strong feelings are enough to settle the question."
             ],
+            "correctIndex": 1,
             "explanation": "Role versus actual conduct under consequence is the comparison that holds up; style and irritation are weaker signals that can mislead. The Slack pattern shows where the rebel mask thins, which is where the truer self is visible."
           },
           {
@@ -1187,6 +1204,7 @@
               "How can I make sure I get credit for noticing the performance first?",
               "What function does the carefree role serve, and where does sustained pressure make that role visibly thin?"
             ],
+            "correctIndex": 2,
             "explanation": "Asking about function and breaking point keeps mask-reading proportionate and useful to the friendship. The other framings convert observation into contempt or self-display, which distort the evidence and damage the relationship without illuminating either one."
           }
         ]
@@ -2055,6 +2073,7 @@
               "How much revenue clears in the next single hour if every slip stays open?",
               "Which charter captain on the radio is currently the loudest?"
             ],
+            "correctIndex": 0,
             "explanation": "Pricing tomorrow's damage, insurance, and reputation against today's revenue is exactly the move that widens the horizon. The hourly take and the loudest captain are vivid in the present, which is precisely why they shrink the field of vision."
           },
           {
@@ -2065,6 +2084,7 @@
               "Status panic that makes the imagined traffic spike feel more solid than any future retraction.",
               "A long horizon built around the reputation she wants in five years."
             ],
+            "correctIndex": 1,
             "explanation": "The immediate reward of being first, amplified by status panic, is louder than any abstract retraction cost at 11 p.m. Durable truth and long-horizon credibility exist for her, but they need to be deliberately surfaced or the live wire of being first will win."
           },
           {
@@ -2075,6 +2095,7 @@
               "A stronger reputation for abundance going into August.",
               "A bank of future distrust from buyers who learned his fruit can drop in quality under pressure."
             ],
+            "correctIndex": 2,
             "explanation": "The cash arrived priced in distrust that only matures the following week, which is the classic shortsighted trade. 'Harmless' ignores the refund evidence already on his screen, and 'abundance' becomes a liability the moment buyers learn it bends when revenue does."
           },
           {
@@ -2085,6 +2106,7 @@
               "Send the accusatory paragraph immediately while the anger is still sharp and articulate.",
               "Quietly drop the accountability issue forever, since raising it might produce conflict."
             ],
+            "correctIndex": 0,
             "explanation": "Patching first protects future state; the accountability fight survives a delay, but a midnight breach does not. Sending blame first lets revenge dictate the timeline, and dropping accountability entirely buys peace at the cost of repeat incidents."
           },
           {
@@ -2095,6 +2117,7 @@
               "One weekend of ranking weighed against the season the repeated flare-ups may quietly cancel.",
               "How quickly adrenaline will hide the pain through warmups and the first match."
             ],
+            "correctIndex": 1,
             "explanation": "Weighing one weekend's rank against a season the ankle may erase is the comparison the log already supports. Teammate perception and warmup adrenaline are vivid present forces that conveniently hide the delayed bill the body is about to send."
           },
           {
@@ -2105,6 +2128,7 @@
               "A blanket statement that any form of tax relief is fiscally irresponsible.",
               "A three-year shortfall chart tied to specific potholes, bridge inspections, and lighting routes."
             ],
+            "correctIndex": 2,
             "explanation": "A concrete shortfall chart with named infrastructure pins the delayed cost to something the council can feel without insulting voters. A scolding speech triggers defensiveness, and a blanket rejection of relief loses the chance to shape the policy at all."
           },
           {
@@ -2115,6 +2139,7 @@
               "He is feeling excited, and excitement is itself sufficient proof a trade is wrong.",
               "People he respects never recognize a real opportunity in real time."
             ],
+            "correctIndex": 0,
             "explanation": "Reasoning anchored in crowd urgency rather than fundamentals is the unmistakable shortsighted tell. Excitement alone is not damning, and respectable people are not automatically wrong; what matters is the absence of a future case that survives without the group."
           },
           {
@@ -2125,6 +2150,7 @@
               "A trained habit of postponed buying and weakened trust in her standard pricing.",
               "A guarantee that the rival simply gives up and exits the category."
             ],
+            "correctIndex": 1,
             "explanation": "Training customers to wait is the precise delayed cost the notes already flag, and it will show up in next quarter's full-price conversion. A pure traffic bump ignores the residue, and a rival's collapse is fantasy, not a consequence she can price."
           },
           {
@@ -2135,6 +2161,7 @@
               "Locate every past challenger and assign each one a matching reduction in hours.",
               "Ask how the punishment will feel in ten minutes, affect trust in ten days, and shape his authority in ten months."
             ],
+            "correctIndex": 2,
             "explanation": "Stretching the decision across three time horizons lets the delayed cost to trust and authority push back against the rush of relief. Visible retaliation flatters humiliation in the moment, and blanket punishment generalizes the impulse without ever testing it."
           }
         ]
@@ -2353,6 +2380,7 @@
               "Lead with the fine schedule so the owner immediately knows where the authority sits.",
               "Avoid the rear exit entirely until Frank looks calmer behind the counter."
             ],
+            "correctIndex": 0,
             "explanation": "Anchoring the safety demand inside the owner's chosen identity of long-standing care lets the cases get moved without a fight. Fine-first language reads as pride attack, and dodging the exit dodges the only fix that matters."
           },
           {
@@ -2363,6 +2391,7 @@
               "Silence after his strongest questions, framed as the technique that lets guests reward his curiosity.",
               "A reminder that audiences tend to dislike hosts who talk too much."
             ],
+            "correctIndex": 1,
             "explanation": "Framing silence as the next-level move for an already curious host lets the change ride inside the identity he prizes. Calling him insecure is a direct identity threat, and a general audience-preference rule still reads as a verdict on the man he sees in the mirror."
           },
           {
@@ -2373,6 +2402,7 @@
               "Withdraw the policy entirely, because Estelle's hurt feelings suggest it must be unfair.",
               "Frame the dual signature as a protection for the reputation she has spent eleven years building."
             ],
+            "correctIndex": 2,
             "explanation": "Casting the control as a guard around her hard-won trust converts the policy from accusation into ratification. The blanket honesty rule shames her, and dropping the policy abandons a real safeguard in the name of comfort."
           },
           {
@@ -2383,6 +2413,7 @@
               "Composed people never need correction, so the trainer should simply let him keep working.",
               "He has become overconfident and is showing off in front of the new volunteers."
             ],
+            "correctIndex": 0,
             "explanation": "Redirecting his prized steadiness toward slower hands lets him obey protocol without surrendering self-image. The 'showing off' line invites identity defense, and leaving him uncorrected protects pride at the cost of the birds."
           },
           {
@@ -2393,6 +2424,7 @@
               "Framing simple, readable code as the unmistakable mark of an engineer ready to be relied on by teammates.",
               "A reminder that her cleverness is irrelevant and nobody on the team really cares."
             ],
+            "correctIndex": 1,
             "explanation": "Recasting simplicity as the higher-status engineering skill lets her keep her self-image while rewriting the function. The other framings attack the talent directly, which guarantees the next review meets her in defensive posture."
           },
           {
@@ -2403,6 +2435,7 @@
               "Insist that his self-image is irrelevant and that only the repair estimate matters.",
               "Link the repair to the family-run promise he prizes before presenting the signatures and the cost."
             ],
+            "correctIndex": 2,
             "explanation": "Tying the repair to the steward identity he has chosen for himself makes the fix the natural next move rather than a forced concession. Public shame hardens him, and dismissing his self-image cuts off the lever the photo and signatures need to pull."
           },
           {
@@ -2413,6 +2446,7 @@
               "Tom had no real self-image worth respecting in the first place.",
               "Process problems can never be raised directly in any conversation."
             ],
+            "correctIndex": 0,
             "explanation": "The opening read as 'you are careless,' which forced Tom to defend the self before he could examine the sheet. The fix is not to bury process truth forever, but to attach it to an identity Tom can accept without flinching."
           },
           {
@@ -2423,6 +2457,7 @@
               "It is empty flattery rather than a precise link between the colleague's actual self-image and the change being requested.",
               "The same message would have worked better if it had simply been harsher."
             ],
+            "correctIndex": 1,
             "explanation": "Confirmation has to be specific enough to recognize the real self-image; vague praise reads as transactional and makes the request feel manipulative. A harsher version just raises the defense level rather than fixing the underlying lack of specificity."
           },
           {
@@ -2433,6 +2468,7 @@
               "An assertion that the juniors' needs now outrank his standards.",
               "Documentation is the only way his hard-earned judgment continues to operate after his hands leave the system."
             ],
+            "correctIndex": 2,
             "explanation": "Casting the document as the survival of his judgment ties the task to the prized expert identity, which makes writing it feel like legacy work. The other framings cast him as the obstacle, which guarantees the template stays blank."
           }
         ]
@@ -2651,6 +2687,7 @@
               "Repeat the complaint at every staff meeting until the rest of the team accepts the decline as fact.",
               "Order a stack of random bestsellers and skip reading the slips entirely."
             ],
+            "correctIndex": 0,
             "explanation": "A targeted shelf built from the request slips forces reality to answer her constricted attitude with concrete circulation data. Repeating the complaint freezes the verdict in place, and random ordering deliberately bypasses the evidence already sitting on her desk."
           },
           {
@@ -2661,6 +2698,7 @@
               "It converts a fatalistic feeling into a single argument that can be tested in front of the judge.",
               "It demonstrates that his nerves before the hearing were unjustified and exaggerated."
             ],
+            "correctIndex": 1,
             "explanation": "The clipped timeline turns helplessness into a usable argument without pretending to guarantee a verdict. Sorting does not erase nerves; it stops fatalism from hiding an actionable case that the judge can actually weigh."
           },
           {
@@ -2671,6 +2709,7 @@
               "Ask three friends to promise that nobody, anywhere, will ever laugh at his accent.",
               "Order one item in Spanish from a patient vendor at the corner bodega and treat the response as evidence."
             ],
+            "correctIndex": 2,
             "explanation": "A small live transaction creates fresh evidence the constricted prediction has to meet. Waiting for perfection lets shame block all practice indefinitely, and demanding universal guarantees is asking the world to deliver a condition it cannot offer."
           },
           {
@@ -2681,6 +2720,7 @@
               "Insist out loud that the loss has secretly improved the production and trust the universe.",
               "Cancel the run on the grounds that any constraint at this scale always means decline."
             ],
+            "correctIndex": 0,
             "explanation": "Sorting is an action that lets the constraint itself answer back with form before any verdict is signed. The expansive attitude is not magical optimism; it is the discipline of looking for usable shape inside a setback before surrendering."
           },
           {
@@ -2691,6 +2731,7 @@
               "He is only seeing the original full plan, so every smaller version of the clinic vanishes from view.",
               "The grant rejection proves that the residents of the neighborhood no longer need bike repairs."
             ],
+            "correctIndex": 1,
             "explanation": "The constricted attitude treats the lost grant as the entire field of possibility, hiding the parts crate and the roster that could power a smaller clinic. Naming the crate and the names converts the loss into a scoped problem rather than a closed door."
           },
           {
@@ -2701,6 +2742,7 @@
               "Resubmit the same materials, unchanged, to even more selective programs to demonstrate confidence.",
               "Rewrite the weak narrative and apply to the shorter certificate before accepting that the ceiling is fixed."
             ],
+            "correctIndex": 2,
             "explanation": "Running a smaller, structured experiment tests whether the issue is strategy or destiny, which is what the matrix is already telling her. Quitting and unchanged resubmission both refuse to take new data, which is precisely what the closed attitude needs to stay closed."
           },
           {
@@ -2711,6 +2753,7 @@
               "The team is objectively impossible, since three consecutive standups confirmed it.",
               "The manager should ignore every bad signal coming off the wall and assume the next attempt will succeed."
             ],
+            "correctIndex": 0,
             "explanation": "He has generalized from a narrow, near-identical test, which is the classic constricted move. The expansive correction is not blind optimism; it is running a meaningfully different format before declaring the whole field closed."
           },
           {
@@ -2721,6 +2764,7 @@
               "Interview five former customers from the churn list and shape one small offer around the clearest recurring pattern.",
               "Assume the market will quietly improve if she waits another quarter without action."
             ],
+            "correctIndex": 1,
             "explanation": "Calling five churned customers generates fresh perception and a concrete pattern around which a small offer can be tested. Hopeful copy and passive waiting refuse to confront the attitude with new evidence, which is the only thing that can change it."
           },
           {
@@ -2731,6 +2775,7 @@
               "The chaos should simply be ignored, since an expansive attitude is supposed to reject negative evidence.",
               "The chaos is data about a poorly designed test, not proof that no version of the system can ever work."
             ],
+            "correctIndex": 2,
             "explanation": "Treating the failure as information about conditions, not destiny, is precisely the move that keeps options open without ignoring what went wrong. The fair attitude does not silence negative evidence; it refuses to inflate one botched trial into a verdict on the system itself."
           }
         ]

@@ -99,7 +99,12 @@ function adaptQuiz(raw: unknown): BookPackageQuiz {
         questionId: asString(r.questionId) || `q-${i + 1}`,
         prompt: asString(r.prompt),
         choices: asStringArray(r.choices),
-        correctIndex: typeof r.correctIndex === "number" ? r.correctIndex : 0,
+        // Leave correctIndex undefined when the authored key is missing — do NOT
+        // fabricate 0. Defaulting to 0 silently grades every reader against choice
+        // A and defeats the "quiz_question_missing_answer_key" guards in
+        // quiz-session.ts/content-service.ts/quiz-service.ts, which fire only when
+        // this is not a number. JSON.stringify drops the undefined key on S3 write.
+        correctIndex: typeof r.correctIndex === "number" ? r.correctIndex : undefined,
         explanation: asString(r.explanation),
         bloomsLevel: asString(r.bloomsLevel) || undefined,
         depthLevel: asString(r.depthLevel) || undefined,
