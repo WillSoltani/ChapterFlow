@@ -555,3 +555,99 @@ export function emailSuppressionPk(email: string): string {
 export function emailSuppressionSk(): string {
   return "SUPPRESSION";
 }
+
+// ── Data retention / DynamoDB TTL (#16) ───────────────────────────────────────
+//
+// DynamoDB's TTL attribute MUST be a Number holding the expiry as epoch SECONDS
+// (NOT milliseconds). A row is eligible for deletion once that value is in the
+// past; the actual delete is asynchronous and can lag by up to ~48h, so TTL is a
+// best-effort floor on lifetime, never a precise/secure delete. We stamp it only
+// on HIGH-VOLUME, NON-compliance record classes; durable finance/fraud/legal
+// records carry NO ttl (see retentionPolicyFor + docs/DATA-RETENTION.md).
+
+/** ~30.4 days per month → days for a month-denominated retention period. */
+const DAYS_PER_MONTH = 365 / 12;
+
+/** Default retention for high-volume append-only classes (analytics/ops/share). */
+export const RETENTION_DAYS_18_MONTHS = Math.round(18 * DAYS_PER_MONTH);
+
+/**
+ * Compute a DynamoDB TTL value: the epoch-SECONDS instant `retentionDays` from
+ * `nowMs` (default: now). Pure and dependency-free so it can be unit tested and
+ * reused by any writer. Returns whole seconds (DynamoDB ignores sub-second
+ * precision); never returns milliseconds.
+ */
+export function ttlEpochSeconds(retentionDays: number, nowMs: number = Date.now()): number {
+  return Math.floor(nowMs / 1000) + Math.round(retentionDays * 86400);
+}
+
+/**
+ * Retention classification for the #16-managed record classes — the tested
+ * guard that keeps the durable-vs-event decision honest.
+ *
+ * `true`  → high-volume / append-only telemetry → #16 stamps `ttl` at write
+ *           time from `retentionDays`, so it ages out.
+ * `false` → durable / legal / fraud / compliance → MUST NEVER carry a `ttl`
+ *           (a stray ttl would silently delete finance/fraud/audit history).
+ *
+ * SCOPE: this governs the #16 durable-vs-event classes only. Short-lived
+ * OPERATIONAL keys (rate-limit counters like BOOK_EXPORT_COUNT, dedup markers,
+ * AI answer caches, pair invites) set their OWN short ttl directly at their
+ * writer and are intentionally NOT enumerated here — they are neither the
+ * high-volume telemetry this stamps nor compliance records, so they hit the
+ * fail-safe default below. A `{ttl:false}` from this table therefore means
+ * "not stamped by #16", NOT "guaranteed to live forever". The keys.retention
+ * test pins the compliance classes so a future writer cannot silently flip one
+ * to "expiring".
+ */
+export function retentionPolicyFor(
+  entity: string,
+): { ttl: boolean; retentionDays?: number; reason: string } {
+  switch (entity) {
+    // ── High-volume, append-only EVENT classes → TTL'd ──────────────────────
+    case "BOOK_ANALYTICS_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "append-only analytics event stream; unbounded growth",
+      };
+    case "BOOK_OPS_FAILURE":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "operational-failure log; high-volume, no compliance value once resolved",
+      };
+    case "BOOK_USER_SHARE_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "share-card event stream; high-volume engagement telemetry",
+      };
+
+    // ── Durable / legal / fraud / compliance classes → NEVER TTL'd ──────────
+    case "BOOK_ANALYTICS_SNAPSHOT":
+      return { ttl: false, reason: "durable per-user analytics snapshot (current state, not an event)" };
+    case "BOOK_BILLING_EVENT":
+      return { ttl: false, reason: "retained — legal/tax (refunds, disputes, finance reports)" };
+    case "BOOK_RISK_EVENT":
+      return { ttl: false, reason: "retained — fraud/abuse investigation" };
+    case "BOOK_ACCOUNT_STATUS_CHANGE":
+      return { ttl: false, reason: "retained — immutable account-lifecycle audit trail" };
+    case "BOOK_ERASURE_LOG":
+      return { ttl: false, reason: "retained — permanent GDPR erasure audit (proves an erasure occurred)" };
+    case "BOOK_STRIPE_WEBHOOK_EVENT":
+      // The webhook idempotency marker owns its OWN ttl lifecycle in #10
+      // (PROCESSING leases carry a ttl; the DONE flip REMOVEs it so DONE markers
+      // are retained forever). Retention (#16) must never stamp/alter it.
+      return { ttl: false, reason: "owned by #10 webhook-claim lease; do not stamp here" };
+
+    default:
+      // Unknown class → NO ttl from #16 (fail-safe — never silently expire an
+      // entity nobody has classified here). NOTE: this does NOT assert the class
+      // is durable-forever — a short-lived operational key (e.g. BOOK_EXPORT_COUNT,
+      // dedup markers, the ask cache) may still carry its OWN ttl set at its
+      // writer; #16 simply doesn't govern those. Add a case above to bring a
+      // class under #16 management.
+      return { ttl: false, reason: "not managed by #16 retention (durable, or sets its own ttl at its writer)" };
+  }
+}

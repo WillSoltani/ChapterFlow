@@ -401,6 +401,7 @@ export async function eraseUserData(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (permanent GDPR erasure audit)
           PK: erasureLogPk(),
           SK: erasureLogSk(erasedAt, subjectHash.hash),
           entity: "BOOK_ERASURE_LOG",
