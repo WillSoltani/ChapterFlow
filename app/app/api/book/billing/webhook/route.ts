@@ -135,6 +135,7 @@ export async function POST(req: Request) {
           proSource: "stripe",
           stripeCustomerId: customerId,
           stripeSubscriptionId: session.subscription ?? undefined,
+          stripeEventCreatedAt: event.created,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -233,6 +234,7 @@ export async function POST(req: Request) {
           subscriptionAmountCents: subAmountCents,
           stripePriceId: subPriceId,
           subscriptionInterval: subInterval,
+          stripeEventCreatedAt: event.created,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -295,6 +297,7 @@ export async function POST(req: Request) {
           stripeSubscriptionId: invoice.subscription ?? undefined,
           failedPaymentLastReason:
             declineCode ?? invoice.last_finalization_error?.code ?? "payment_failed",
+          stripeEventCreatedAt: event.created,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -350,6 +353,7 @@ export async function POST(req: Request) {
           billingCountry: billingDetails.billingCountry,
           cardBrand: billingDetails.cardBrand,
           cardCountry: billingDetails.cardCountry,
+          stripeEventCreatedAt: event.created,
         });
         if (analyticsTable) {
           analyticsTrackSubscription(analyticsTable, {
@@ -385,6 +389,7 @@ export async function POST(req: Request) {
           proSource: "stripe",
           stripeCustomerId: invoice.customer,
           stripeSubscriptionId: invoice.subscription ?? undefined,
+          stripeEventCreatedAt: event.created,
         });
       }
     } else if (event.type === "customer.subscription.trial_will_end") {
@@ -521,6 +526,10 @@ export async function POST(req: Request) {
           // (stale invoice.paid / subscription.* reordered after the dispute)
           // until the dispute is won (L13).
           setDisputeOpen: true,
+          // Passed for uniformity; the dispute write is exempt from the
+          // event-ordering high-water mark (the sticky disputeOpen marker is the
+          // guard here, not lastStripeEventAt) — see stripe-entitlement-write-core.
+          stripeEventCreatedAt: event.created,
         });
       }
     } else if (event.type === "charge.dispute.closed") {
@@ -549,6 +558,7 @@ export async function POST(req: Request) {
             proStatus: "canceled",
             stripeCustomerId: customerId ?? undefined,
             clearDisputeOpen: true,
+            stripeEventCreatedAt: event.created,
           });
         }
       }
@@ -563,6 +573,7 @@ export async function POST(req: Request) {
           userId,
           plan: "FREE",
           proStatus: "canceled",
+          stripeEventCreatedAt: event.created,
         });
       }
     } else {

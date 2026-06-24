@@ -97,6 +97,7 @@ import {
   type ExistingWebhookMarker,
 } from "./webhook-claim-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
+import { buildEntitlementUpdateFromStripe } from "./stripe-entitlement-write-core";
 
 function readNum(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
@@ -731,6 +732,7 @@ export async function getUserEntitlement(
     cancelAtPeriodEnd: item.cancelAtPeriodEnd === true,
     licenseKey,
     licenseExpiresAt,
+    lastStripeEventAt: readNum(item.lastStripeEventAt),
     updatedAt: readStr(item.updatedAt) || "",
   };
 }
@@ -2166,136 +2168,18 @@ export async function updateUserEntitlementFromStripe(
     // status="won". A PRO-activation write is refused while it is present.
     setDisputeOpen?: boolean;
     clearDisputeOpen?: boolean;
+    // Stripe webhook envelope `event.created` (epoch seconds). Stamped as the
+    // entitlement's lastStripeEventAt high-water mark and used to reject
+    // out-of-order (reordered/retried) Stripe events. See
+    // stripe-entitlement-write-core.ts for the ordering invariant.
+    stripeEventCreatedAt?: number;
   }
 ): Promise<void> {
-  // When entering a Pro state via Stripe, we must persist proSource so that
-  // entitlement checks (e.g. reserveBookEntitlement) recognize the user as a
-  // Stripe-backed Pro. When leaving Pro (FREE/canceled), clear proSource.
-  const proSourceValue =
-    params.plan === "PRO" ? params.proSource ?? "stripe" : null;
-  const isProActivation = params.plan === "PRO";
-
-  // Build the SET clause dynamically. Only fields explicitly provided by the
-  // event source are written, so e.g. invoice.paid (which has no
-  // cancel_at_period_end signal) does NOT clobber a previously-stored
-  // cancellation flag from a customer.subscription.updated event.
-  const setParts: string[] = [
-    "#plan = :plan",
-    "proStatus = :proStatus",
-    "proSource = :proSource",
-    "stripeCustomerId = :stripeCustomerId",
-    "stripeSubscriptionId = :stripeSubscriptionId",
-    "updatedAt = :updatedAt",
-    "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-    // unlockedBookIds is intentionally NOT initialized here. Writing an empty
-    // Set is impossible now that convertEmptyValues is off (marshal throws), and
-    // initializing it to NULL is what broke reserveBookEntitlement's ADD. The
-    // attribute is created lazily by the first `ADD unlockedBookIds :bookSet`;
-    // reads use parseStringArray which returns [] for a missing attribute.
-  ];
-  const eav: Record<string, unknown> = {
-    ":plan": params.plan,
-    ":proStatus": params.proStatus,
-    ":proSource": proSourceValue,
-    ":stripeSource": "stripe",
-    ":nullSource": null,
-    ":stripeCustomerId": params.stripeCustomerId ?? null,
-    ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
-    ":updatedAt": nowIso(),
-    ":defaultSlots": 2,
-  };
-  if (params.currentPeriodEnd !== undefined) {
-    setParts.push("currentPeriodEnd = :periodEnd");
-    eav[":periodEnd"] = params.currentPeriodEnd;
-  }
-  if (params.cancelAtPeriodEnd !== undefined) {
-    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
-    eav[":cancelAtPeriodEnd"] = params.cancelAtPeriodEnd;
-  }
-  // When fully downgrading to FREE (e.g. customer.subscription.deleted), the
-  // user is no longer in a cancellation-pending state — clear the flag.
-  if (params.plan === "FREE" && params.cancelAtPeriodEnd === undefined) {
-    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
-    eav[":cancelAtPeriodEnd"] = false;
-  }
-
-  // Billing intelligence — merge only when source event provided the field
-  if (params.billingCountry !== undefined) {
-    setParts.push("billingCountry = :bc");
-    eav[":bc"] = params.billingCountry;
-  }
-  if (params.billingCurrency !== undefined) {
-    setParts.push("billingCurrency = :bcur");
-    eav[":bcur"] = params.billingCurrency;
-  }
-  if (params.subscriptionAmountCents !== undefined) {
-    setParts.push("subscriptionAmountCents = :sac");
-    eav[":sac"] = params.subscriptionAmountCents;
-  }
-  if (params.cardBrand !== undefined) {
-    setParts.push("cardBrand = :cbrand");
-    eav[":cbrand"] = params.cardBrand;
-  }
-  if (params.cardCountry !== undefined) {
-    setParts.push("cardCountry = :ccountry");
-    eav[":ccountry"] = params.cardCountry;
-  }
-  if (params.lastInvoiceAmountCents !== undefined) {
-    setParts.push("lastInvoiceAmountCents = :liac");
-    eav[":liac"] = params.lastInvoiceAmountCents;
-  }
-  if (params.lastInvoiceCurrency !== undefined) {
-    setParts.push("lastInvoiceCurrency = :licur");
-    eav[":licur"] = params.lastInvoiceCurrency;
-  }
-  if (params.lastInvoicePaidAt !== undefined) {
-    setParts.push("lastInvoicePaidAt = :lipa");
-    eav[":lipa"] = params.lastInvoicePaidAt;
-  }
-  if (params.failedPaymentLastReason !== undefined) {
-    setParts.push("failedPaymentLastReason = :fplr");
-    eav[":fplr"] = params.failedPaymentLastReason;
-  }
-  if (params.stripePriceId !== undefined) {
-    setParts.push("stripePriceId = :spi");
-    eav[":spi"] = params.stripePriceId;
-  }
-  if (params.subscriptionInterval !== undefined) {
-    setParts.push("subscriptionInterval = :sint");
-    eav[":sint"] = params.subscriptionInterval;
-  }
-
-  // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
-  // dispute clears it. setDisputeOpen wins if both are passed (defensive).
-  const removeParts: string[] = [];
-  if (params.setDisputeOpen) {
-    setParts.push("disputeOpen = :disputeOpen");
-    eav[":disputeOpen"] = true;
-  } else if (params.clearDisputeOpen) {
-    removeParts.push("disputeOpen");
-  }
-
-  // Guard: only allow Stripe to write entitlement when the existing proSource is
-  // absent or already "stripe". This prevents a delayed Stripe webhook from
-  // clobbering a user who upgraded via license key or flow_points after the
-  // Stripe subscription ended.
-  const conditionParts = [
-    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
-  ];
-  // Additionally, a PRO-activation must not re-grant access while an unresolved
-  // chargeback marker is present (L13). After a dispute downgrade proSource is
-  // null, which the proSource guard alone treats as writable — so a stale,
-  // redelivered invoice.paid / customer.subscription.* could otherwise
-  // re-activate a chargebacked user. The dispute downgrade itself (plan FREE,
-  // setDisputeOpen) and the dispute-won clear are not PRO activations, so they
-  // are intentionally exempt from this guard.
-  if (isProActivation && !params.setDisputeOpen) {
-    conditionParts.push("attribute_not_exists(disputeOpen)");
-  }
-
-  const updateExpression =
-    "SET " + setParts.join(", ") +
-    (removeParts.length > 0 ? " REMOVE " + removeParts.join(", ") : "");
+  // All UpdateExpression / ConditionExpression building lives in the pure
+  // stripe-entitlement-write-core module (unit-tested without the AWS SDK).
+  // Notably it adds the event-ordering guard (lastStripeEventAt) that rejects
+  // out-of-order/reordered Stripe events.
+  const built = buildEntitlementUpdateFromStripe(params, nowIso());
 
   try {
     await ddbDoc.send(
@@ -2305,19 +2189,25 @@ export async function updateUserEntitlementFromStripe(
           PK: bookUserPk(params.userId),
           SK: entitlementSk(),
         },
-        ConditionExpression: conditionParts.join(" AND "),
-        UpdateExpression: updateExpression,
-        ExpressionAttributeNames: { "#plan": "plan" },
-        ExpressionAttributeValues: eav,
+        ConditionExpression: built.conditionExpression,
+        UpdateExpression: built.updateExpression,
+        ExpressionAttributeNames: built.expressionAttributeNames,
+        ExpressionAttributeValues: built.expressionAttributeValues,
       })
     );
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) {
-      // Either the user is on a non-Stripe Pro source (license / flow_points),
-      // or an unresolved chargeback marker is blocking PRO re-activation.
-      // Refuse to overwrite. The Stripe customer/subscription IDs themselves
-      // are still safe to attach via attachStripeCustomerToEntitlement; here we
-      // simply skip the entitlement mutation.
+      // The conditional write was refused for one of three reasons, all of
+      // which mean "do not overwrite, drop this event":
+      //   1. the user is on a non-Stripe Pro source (license / flow_points),
+      //   2. an unresolved chargeback marker (disputeOpen) blocks PRO
+      //      re-activation, or
+      //   3. this Stripe event is stale — an event with a newer event.created
+      //      was already applied (lastStripeEventAt ordering guard).
+      // Returning here (2xx to Stripe) is correct: the Stripe customer/
+      // subscription IDs are still safe to attach via
+      // attachStripeCustomerToEntitlement, and a retry of a genuinely stale
+      // event would be refused identically, so there is nothing to retry.
       return;
     }
     throw error;
