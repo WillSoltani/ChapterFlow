@@ -16,7 +16,11 @@ import { STRICT_ENV_ASSIGNMENTS, STRICT_ENV_VAR_NAMES } from "./lib/strictEnv.js
 export const STRICT_ENV = STRICT_ENV_ASSIGNMENTS;
 
 /** The same three, as bare variable names — for live presence checks. Order matches STRICT_ENV. */
-export const STRICT_ENV_VARS = STRICT_ENV_VAR_NAMES;
+// The runbook (operator-facing, manual path) ALSO surfaces CHAPTERFLOW_REQUIRE_SOURCE_VERIFY —
+// the opt-in source check. It is no longer force-set by the autopilot (so an unattended run
+// converges without a human source check), but the runbook still recommends it for a
+// source-verified production run, so it stays in the displayed env list.
+export const STRICT_ENV_VARS: string[] = [...STRICT_ENV_VAR_NAMES, "CHAPTERFLOW_REQUIRE_SOURCE_VERIFY"];
 
 const STRICT = STRICT_ENV.join(" ");
 

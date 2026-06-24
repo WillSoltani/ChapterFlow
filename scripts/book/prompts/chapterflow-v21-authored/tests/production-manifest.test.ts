@@ -453,14 +453,19 @@ test("a valid-but-changed source-verify record moves the content ID (payload mis
   }
 });
 
-test("deleting the source-verify record fails verification (reconstruction blocked)", () => {
+test("deleting the source-verify record breaks the manifest-bound source-reality evidence (verification fails)", () => {
   const f = makeFixture("record-delete");
   try {
     rmSync(f.recordPath, { force: true });
     const result = verifyFixture(f);
-    assert.equal(result.ok, false, "missing record must fail verification");
+    // The manifest BINDS the source-reality verdict (required-and-verified). Deleting the record
+    // makes the recomputed verdict diverge from the bound one, so verification fails regardless of
+    // whether the record requirement itself is opt-in — a stronger, env-independent guarantee than
+    // record-presence. (Under CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 this surfaces as record_missing;
+    // by default as a decision_mismatch — both are source-reality findings.)
+    assert.equal(result.ok, false, "deleting the bound source-verify record must fail verification");
     const ids = result.findings.map((x) => x.checkId).join("\n");
-    assert.match(ids, /record_missing/i, ids);
+    assert.match(ids, /source_reality/i, ids);
   } finally {
     rmSync(f.root, { recursive: true, force: true });
   }

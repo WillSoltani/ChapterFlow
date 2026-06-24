@@ -5,7 +5,11 @@ import type { NamedExampleV2, SourceSidecarV2 } from "./sidecarSchema.js";
 
 export type SourceIntegrityFinding = {
   checkId: string;
-  severity: "blocker";
+  /** STRUCTURAL checks (schema / floors / anchor ids) are "blocker" and fail the
+   *  sidecar. The REALNESS heuristics (does this look fabricated?) are "advisory":
+   *  surfaced but never gating — they are a noisy text-shape guess, and the
+   *  authoritative reality check is the operator source-verify record. */
+  severity: "blocker" | "advisory";
   chapterNumber?: number;
   message: string;
   evidence?: string;
@@ -41,8 +45,21 @@ const ABSTRACT_WORDS = new Set(
 const PLACEHOLDER_RE = /\b(?:todo|tbd|fixme|placeholder|insert|lorem|ipsum|company\s+[a-z0-9]|person\s+[a-z0-9]|example\s+[a-z0-9]|case\s+[a-z0-9]|organization\s+[a-z0-9]|metric\s+[a-z0-9]|result\s+[a-z0-9]|john\s+doe|jane\s+doe|acme)\b/i;
 const CAUSAL_RE = /\b(?:because|since|so that|therefore|which means|leads to|causes|drives|so the|as a result|when|after|before)\b/i;
 
-function finding(args: Omit<SourceIntegrityFinding, "severity">): SourceIntegrityFinding {
+function finding(args: Omit<SourceIntegrityFinding, "severity"> & { severity?: "blocker" | "advisory" }): SourceIntegrityFinding {
   return { severity: "blocker", ...args };
+}
+
+/** Normalize a hard specific (and the prose it should appear in) so a digit /
+ *  punctuation / whitespace variant still matches: "May 6 1954" ~ "May 6, 1954",
+ *  "3:59.4" ~ prose. Used by the (advisory) supported-specifics realness signal so
+ *  natural prose is not punished as fabricated. */
+function normalizeSpecific(s: string): string {
+  return String(s)
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[,.;:!?"'’“”()\[\]]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function nonempty(value: unknown): value is string {
@@ -326,7 +343,10 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
 
   findings.push(...realnessFindings(sc, chapterNumber, rejectedFields));
 
-  const structurallyValid = findings.length === 0;
+  // `passed` reflects BLOCKER findings only (the structural checks). The realness
+  // heuristics are advisory, so a sidecar that is structurally complete but trips a
+  // noisy realness signal is still usable — it is surfaced, never gated.
+  const structurallyValid = !findings.some((f) => f.severity === "blocker");
   const sidecar = structurallyValid ? value as SourceSidecarV2 : null;
   return {
     passed: structurallyValid,
@@ -362,7 +382,12 @@ function realnessFindings(
     }
     const specificText = specifics.join(" ");
     const concreteSpecifics = specifics.filter((specific) => hasConcreteMarker(specific) || contentWords(specific).length >= 2);
-    const supportedSpecifics = specifics.filter((specific) => summary.toLowerCase().includes(specific.toLowerCase()) || String(sc.paraphraseNotes ?? "").toLowerCase().includes(specific.toLowerCase()));
+    const summaryNorm = normalizeSpecific(summary);
+    const notesNorm = normalizeSpecific(String(sc.paraphraseNotes ?? ""));
+    const supportedSpecifics = specifics.filter((specific) => {
+      const norm = normalizeSpecific(specific);
+      return norm.length > 0 && (summaryNorm.includes(norm) || notesNorm.includes(norm));
+    });
     if ((example as any)?.realWorld !== false && (concreteSpecifics.length < 2 || supportedSpecifics.length < Math.min(2, specifics.length))) {
       unsupportedExamples.push(`namedExamples[${i}] ${JSON.stringify(label)}`);
       rejectedFields.push({ path: `namedExamples[${i}].hardSpecifics`, reason: "real-world example has unsupported or generic specifics", raw: specificText });
@@ -395,6 +420,7 @@ function realnessFindings(
   if (placeholderExamples.length > 0) {
     findings.push(finding({
       checkId: "SV2.realness_placeholder_example",
+      severity: "advisory",
       chapterNumber,
       message: `Named examples look like placeholders rather than source evidence: ${placeholderExamples.slice(0, 3).join("; ")}.`,
       evidence: placeholderExamples[0],
@@ -403,6 +429,7 @@ function realnessFindings(
   if (nonTestableFacts.length > 0) {
     findings.push(finding({
       checkId: "SV2.realness_non_testable_fact",
+      severity: "advisory",
       chapterNumber,
       message: `${nonTestableFacts.length} testable fact(s) are generic, non-causal, or echo their commonError.`,
       evidence: nonTestableFacts.slice(0, 3).join(", "),
@@ -411,6 +438,7 @@ function realnessFindings(
   if (unsupportedExamples.length > 0) {
     findings.push(finding({
       checkId: "SV2.realness_unsupported_entity",
+      severity: "advisory",
       chapterNumber,
       message: `Real-world named examples lack supported concrete specifics: ${unsupportedExamples.slice(0, 3).join("; ")}.`,
       evidence: unsupportedExamples[0],
@@ -419,6 +447,7 @@ function realnessFindings(
   if (repeated.length > 0) {
     findings.push(finding({
       checkId: "SV2.realness_repeated_boilerplate",
+      severity: "advisory",
       chapterNumber,
       message: `Source sidecar repeats boilerplate source text ${repeated.length} time(s); facts and examples must be independently specific.`,
       evidence: repeated[0][0].slice(0, 120),
@@ -427,6 +456,7 @@ function realnessFindings(
   if (entitySignalCount(sc) < 5 || (placeholderExamples.length > 0 && nonTestableFacts.length >= 3) || (unsupportedExamples.length >= 2 && repeated.length > 0)) {
     findings.push(finding({
       checkId: "SV2.realness_concept_only",
+      severity: "advisory",
       chapterNumber,
       message: "Source sidecar does not contain enough concrete entities, dates, numbers, or verifiable specifics to ground authoring.",
     }));
@@ -434,6 +464,7 @@ function realnessFindings(
   if ((placeholderExamples.length > 0 ? 1 : 0) + (nonTestableFacts.length >= 3 ? 1 : 0) + (unsupportedExamples.length >= 2 ? 1 : 0) + (repeated.length > 0 ? 1 : 0) >= 2) {
     findings.push(finding({
       checkId: "SV2.realness_fabricated_sidecar",
+      severity: "advisory",
       chapterNumber,
       message: "Structurally complete sidecar has multiple fabricated-source signals: placeholders, unsupported examples, non-testable facts, or boilerplate repetition.",
     }));

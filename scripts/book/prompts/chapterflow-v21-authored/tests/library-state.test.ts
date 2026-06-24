@@ -291,3 +291,42 @@ test("fault-injected writes leave the previous complete state internally consist
   assert.deepEqual(loaded.books[bookId].namesUsed, ["Opal"]);
   assert.equal(loaded.globalPhraseUsage["knowing is not the same as"], undefined);
 });
+
+test("v1 back-compat: loading a pre-v2 ledger (top-level namesUsed, no chapterContributions) PRESERVES the cross-book name ledger instead of wiping it", () => {
+  const { stateDir } = tempState("v1-backcompat");
+  // A v1-shape ledger: per-book top-level namesUsed/phrasesFlagged, NO chapterContributions —
+  // exactly the live 58-book / 7127-name ledger that the v2 loader silently emptied on first load.
+  const v1 = {
+    version: "1.0.0",
+    books: {
+      "getting-things-done": {
+        bookId: "getting-things-done",
+        title: "Getting Things Done",
+        namesUsed: ["Keiko", "Nereida", "Samir", "Zuleikha"],
+        phrasesFlagged: { "two minute rule": 3 },
+        answerPositionCounts: [4, 5, 6],
+        generatedAt: "2026-04-24T00:00:00.000Z",
+      },
+      "deep-work": {
+        bookId: "deep-work",
+        title: "Deep Work",
+        namesUsed: ["Keiko", "Marjan"],
+        generatedAt: "2026-05-01T00:00:00.000Z",
+      },
+    },
+  };
+  writeFileSync(resolve(stateDir, "library-state.json"), JSON.stringify(v1), "utf8");
+
+  const loaded = loadLibraryState({ stateDir });
+  // Per-book names survive the v1→v2 normalization.
+  assert.deepEqual(loaded.books["getting-things-done"].namesUsed, ["Keiko", "Nereida", "Samir", "Zuleikha"]);
+  assert.deepEqual(loaded.books["deep-work"].namesUsed, ["Keiko", "Marjan"]);
+  // Top-level phrase + answer aggregates are preserved (not zeroed).
+  assert.equal(loaded.books["getting-things-done"].phrasesFlagged["two minute rule"], 3);
+  assert.deepEqual(loaded.books["getting-things-done"].answerPositionCounts, [4, 5, 6]);
+  // The cross-book global name ledger is rebuilt from the preserved names — "Keiko" appears in
+  // BOTH books, the dedup signal the wipe destroyed.
+  assert.ok(loaded.globalNameUsage["Keiko"], "preserved v1 names must feed the cross-book global ledger");
+  assert.deepEqual(loaded.globalNameUsage["Keiko"].books.sort(), ["deep-work", "getting-things-done"]);
+  assert.equal(loaded.globalNameUsage["Zuleikha"].total, 1);
+});

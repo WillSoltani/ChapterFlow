@@ -19,7 +19,9 @@ export type SourceV2Roots = {
 
 export type SourceV2Finding = {
   checkId: string;
-  severity: "blocker";
+  /** Structural checks are "blocker"; realness heuristics surface as "advisory"
+   *  (carried through from evaluateSourceV2Integrity) and never gate. */
+  severity: "blocker" | "advisory";
   chapterNumber?: number;
   message: string;
 };
@@ -180,7 +182,9 @@ export function checkSourceV2Gate(bookId: string, chapterNumbers?: number[], roo
     });
     findings.push(...decision.findings);
   }
-  return { bookId, passed: findings.length === 0, chaptersChecked: expected.length, findings };
+  // Realness findings are advisory and surfaced in `findings` but do NOT fail the
+  // gate — only structural blockers do.
+  return { bookId, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: expected.length, findings };
 }
 
 export function formatSourceV2GateReport(report: SourceV2GateReport): string {

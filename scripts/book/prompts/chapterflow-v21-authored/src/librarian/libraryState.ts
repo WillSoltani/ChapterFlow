@@ -307,6 +307,16 @@ function normalizePhraseMap(input: unknown): Record<string, number> {
   return out;
 }
 
+/** Normalize a raw [a,b,c] answer-position triple into a clean non-negative triple. */
+function normalizeAnswerCounts(input: unknown): AnswerPositionCounts {
+  const a = Array.isArray(input) ? input : [];
+  const at = (i: number): number => {
+    const x = Number(a[i]);
+    return Number.isFinite(x) && x >= 0 ? x : 0;
+  };
+  return [at(0), at(1), at(2)];
+}
+
 function normalizeBook(raw: unknown, bookId: string, opts: LibraryStateOptions): BookLedgerEntry {
   const obj = isRecord(raw) ? raw : {};
   const contributions: Record<string, ChapterContribution> = {};
@@ -316,7 +326,7 @@ function normalizeBook(raw: unknown, bookId: string, opts: LibraryStateOptions):
     const c = normalizeContribution(value, { bookId, chapterNumber }, opts);
     if (c) contributions[String(c.chapterNumber)] = c;
   }
-  return recalcBook({
+  const base: BookLedgerEntry = {
     bookId,
     title: typeof obj.title === "string" ? obj.title : bookId,
     author: typeof obj.author === "string" ? obj.author : "",
@@ -327,7 +337,20 @@ function normalizeBook(raw: unknown, bookId: string, opts: LibraryStateOptions):
     phrasesFlagged: {},
     answerPositionCounts: [0, 0, 0],
     chapterContributions: contributions,
-  });
+  };
+  // v2 entry: recompute the aggregates authoritatively from per-chapter contributions.
+  if (Object.keys(contributions).length > 0) return recalcBook(base);
+  // v1 BACK-COMPAT: a pre-v2 ledger entry stored top-level namesUsed/phrasesFlagged/etc. but NO
+  // per-chapter contributions. PRESERVE those aggregates rather than recalc-wiping them to empty —
+  // recalc-wiping silently dropped the live 7127-name cross-book ledger on the first v2 load.
+  base.namesUsed = [...new Set((Array.isArray(obj.namesUsed) ? obj.namesUsed : [])
+    .filter((n): n is string => typeof n === "string" && n.trim().length > 0))].sort();
+  base.phrasesFlagged = normalizePhraseMap(obj.phrasesFlagged);
+  base.answerPositionCounts = normalizeAnswerCounts(obj.answerPositionCounts);
+  base.chapterCount = typeof obj.chapterCount === "number" && Number.isFinite(obj.chapterCount) ? obj.chapterCount : 0;
+  base.chaptersIngested = (Array.isArray(obj.chaptersIngested) ? obj.chaptersIngested : [])
+    .map(Number).filter((n) => Number.isInteger(n) && n > 0);
+  return base;
 }
 
 function recalcBook(book: BookLedgerEntry): BookLedgerEntry {
@@ -376,18 +399,38 @@ function recalcGlobal(state: LibraryState): LibraryState {
   state.globalPhraseUsage = {};
   state.globalAnswerPositionCounts = [0, 0, 0];
   for (const book of Object.values(state.books)) {
-    recalcBook(book);
+    const hasContributions = Object.keys(book.chapterContributions).length > 0;
+    // Only recalc a v2 book FROM its contributions; a v1 book (no contributions) keeps the
+    // top-level aggregates normalizeBook preserved (recalcBook would wipe them back to empty).
+    if (hasContributions) recalcBook(book);
     state.globalAnswerPositionCounts[0] += book.answerPositionCounts[0];
     state.globalAnswerPositionCounts[1] += book.answerPositionCounts[1];
     state.globalAnswerPositionCounts[2] += book.answerPositionCounts[2];
-    for (const c of Object.values(book.chapterContributions)) {
-      for (const name of c.names.effective) {
+    if (hasContributions) {
+      for (const c of Object.values(book.chapterContributions)) {
+        for (const name of c.names.effective) {
+          const usage = state.globalNameUsage[name] ?? { books: [], total: 0 };
+          if (!usage.books.includes(book.bookId)) usage.books.push(book.bookId);
+          usage.total += 1;
+          state.globalNameUsage[name] = usage;
+        }
+        for (const [phrase, count] of Object.entries(c.phrasesFlagged)) {
+          const usage = state.globalPhraseUsage[phrase] ?? { books: [], total: 0 };
+          if (!usage.books.includes(book.bookId)) usage.books.push(book.bookId);
+          usage.total += count;
+          state.globalPhraseUsage[phrase] = usage;
+        }
+      }
+    } else {
+      // v1 book: feed its PRESERVED top-level aggregates into the cross-book global usage, so the
+      // 7127-name dedup ledger survives a v1→v2 load instead of being silently emptied.
+      for (const name of book.namesUsed) {
         const usage = state.globalNameUsage[name] ?? { books: [], total: 0 };
         if (!usage.books.includes(book.bookId)) usage.books.push(book.bookId);
         usage.total += 1;
         state.globalNameUsage[name] = usage;
       }
-      for (const [phrase, count] of Object.entries(c.phrasesFlagged)) {
+      for (const [phrase, count] of Object.entries(book.phrasesFlagged)) {
         const usage = state.globalPhraseUsage[phrase] ?? { books: [], total: 0 };
         if (!usage.books.includes(book.bookId)) usage.books.push(book.bookId);
         usage.total += count;

@@ -11,8 +11,6 @@ import { submitQcArtifact } from "../src/qc/orchestrator/index.js";
 import {
   acquireQcTransaction,
   commitQcTransaction,
-  defaultOwnerLiveness,
-  heartbeatQcTransaction,
   qcTransactionLockPath,
   withQcTransaction,
   type QcTransactionLease,
@@ -67,7 +65,7 @@ function sweepSubmissionPath(): string {
   return path;
 }
 
-// ── Ownership-safe lease behavior ────────────────────────────────────────────
+// ── Lease behavior (TTL recovery + ownerToken-gated release) ──────────────────
 
 test("QC transaction release is gated on the on-disk owner token", () => {
   try {
@@ -82,17 +80,14 @@ test("QC transaction release is gated on the on-disk owner token", () => {
   }
 });
 
-test("a live owner stays protected past the original TTL (same-host liveness gate)", () => {
+test("a live (unexpired) lock cannot be displaced", () => {
   try {
     cleanup();
-    // Expires almost immediately, but the owner pid (this very process) is alive.
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1 });
+    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 10_000 });
     assert.throws(
-      // Default probe: same host + this pid answers signal 0 => alive.
-      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(60 * 60 * 1000) }),
-      /still alive/,
+      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000) }),
+      /already active/,
     );
-    // The displaced acquirer failed closed without touching the live lock.
     assert.equal(readLock().ownerToken, lease.ownerToken, "live lock is untouched");
     commitQcTransaction(lease);
   } finally {
@@ -100,66 +95,12 @@ test("a live owner stays protected past the original TTL (same-host liveness gat
   }
 });
 
-test("a heartbeat pushes expiresAt forward via an atomic replace", () => {
-  try {
-    cleanup();
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 10_000 });
-    const before = Date.parse(readLock().expiresAt);
-    assert.equal(before, T0 + 10_000);
-
-    heartbeatQcTransaction(lease, { now: at(5_000) });
-    const after = Date.parse(readLock().expiresAt);
-    assert.equal(after, T0 + 5_000 + 10_000, "expiresAt re-extended by the lease ttl from the heartbeat moment");
-    assert.ok(after > before);
-    assert.equal(Date.parse(readLock().lastHeartbeatAt), T0 + 5_000);
-    // The lock is never momentarily absent during a heartbeat.
-    assert.ok(existsSync(qcTransactionLockPath(BOOK, ROUND)));
-
-    commitQcTransaction(lease);
-  } finally {
-    cleanup();
-  }
-});
-
-test("a second owner cannot steal a live (unexpired) lock even if it claims the owner is dead", () => {
-  try {
-    cleanup();
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 10_000 });
-    assert.throws(
-      // Not expired yet, so liveness is irrelevant — a "dead" claim must not win.
-      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000), liveness: () => "dead" }),
-      /already active/,
-    );
-    assert.equal(readLock().ownerToken, lease.ownerToken);
-    commitQcTransaction(lease);
-  } finally {
-    cleanup();
-  }
-});
-
-test("a heartbeating owner is protected past the original TTL even when liveness would allow recovery", () => {
-  try {
-    cleanup();
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1_000 });
-    // Without this heartbeat the lock would be stale (expired at T0+1000) by T0+1500.
-    heartbeatQcTransaction(lease, { now: at(900) }); // expires at T0+1900
-    assert.throws(
-      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_500), liveness: () => "dead" }),
-      /already active/,
-    );
-    assert.equal(readLock().ownerToken, lease.ownerToken);
-    commitQcTransaction(lease);
-  } finally {
-    cleanup();
-  }
-});
-
-test("a stale lock with a known-dead owner is recovered", () => {
+test("a stale (expired) lock is recovered and retained as forensic evidence", () => {
   try {
     cleanup();
     acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1 });
-    const recovered = acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000), liveness: () => "dead" });
-    assert.equal(recovered.operation, "collect", "the dead owner's stale lock was recovered");
+    const recovered = acquireQcTransaction(BOOK, ROUND, "collect", { now: at(60 * 60 * 1000) });
+    assert.equal(recovered.operation, "collect", "the abandoned stale lock was recovered");
     const lockDir = dirname(qcTransactionLockPath(BOOK, ROUND));
     assert.ok(
       readdirSync(lockDir).some((name) => name.includes(".qc-transaction.lock.recovered-")),
@@ -171,52 +112,16 @@ test("a stale lock with a known-dead owner is recovered", () => {
   }
 });
 
-test("a stale lock whose owner liveness is unknown is rejected (fail closed)", () => {
-  try {
-    cleanup();
-    // Injected-unknown strategy.
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1 });
-    assert.throws(
-      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000), liveness: () => "unknown" }),
-      /unknown; failing closed/,
-    );
-    assert.equal(readLock().ownerToken, lease.ownerToken, "unknown liveness must not displace the lock");
-    commitQcTransaction(lease);
-  } finally {
-    cleanup();
-  }
-});
-
-test("the default probe treats a remote-host owner as unknown and fails closed", () => {
-  try {
-    cleanup();
-    // Stamp the lock with a host that is not this machine, then acquire with the
-    // DEFAULT probe — it cannot prove a remote owner is dead, so it fails closed.
-    const lease = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1, hostname: "ghost-host-not-here" });
-    assert.throws(
-      () => acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000) }),
-      /unknown; failing closed/,
-    );
-    assert.equal(readLock().ownerToken, lease.ownerToken);
-    commitQcTransaction(lease);
-  } finally {
-    cleanup();
-  }
-});
-
 test("an old lease cannot release a successor's lock", () => {
   try {
     cleanup();
     const stale = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1 });
-    const successor = acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000), liveness: () => "dead" });
+    const successor = acquireQcTransaction(BOOK, ROUND, "collect", { now: at(1_000) });
     assert.notEqual(successor.ownerToken, stale.ownerToken);
 
     // The displaced owner must not delete or rewrite the successor's lock.
     assert.throws(() => commitQcTransaction(stale), /owner mismatch/);
     assert.equal(readLock().ownerToken, successor.ownerToken, "successor's lock survives the old owner's release");
-
-    assert.throws(() => heartbeatQcTransaction(stale, { now: at(2_000) }), /heartbeat owner mismatch/);
-    assert.equal(readLock().ownerToken, successor.ownerToken, "successor's lock survives the old owner's heartbeat");
 
     commitQcTransaction(successor);
     assert.equal(existsSync(qcTransactionLockPath(BOOK, ROUND)), false);
@@ -281,25 +186,6 @@ test("different rounds do not reuse each other's lease", () => {
   } finally {
     cleanup(OUTER, INNER);
   }
-});
-
-test("defaultOwnerLiveness: alive for this pid, unknown for a remote host or missing pid", () => {
-  const base: QcTransactionRecord = {
-    schemaVersion: "qc-transaction-lock-v2",
-    bookId: BOOK,
-    roundId: ROUND,
-    operation: "finalize",
-    ownerId: "qctx-test",
-    ownerToken: "token",
-    hostname: "this-host",
-    pid: process.pid,
-    acquiredAt: at(0).toISOString(),
-    lastHeartbeatAt: at(0).toISOString(),
-    expiresAt: at(1).toISOString(),
-  };
-  assert.equal(defaultOwnerLiveness(base, "this-host"), "alive");
-  assert.equal(defaultOwnerLiveness(base, "some-other-host"), "unknown");
-  assert.equal(defaultOwnerLiveness({ ...base, pid: 0 }, "this-host"), "unknown");
 });
 
 // ── Serialization through the owned transaction (behavior preserved) ─────────

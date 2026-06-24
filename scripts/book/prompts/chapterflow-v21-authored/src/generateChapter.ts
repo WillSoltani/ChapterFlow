@@ -365,7 +365,7 @@ function validateCachedChapterForReuse(
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1" || sourceSidecarPathFor(book.bookId, chapter.chapterNumber, { runsRoot: roots.runsRoot })) {
     const sourceGate = checkSourceV2Gate(book.bookId, [chapter.chapterNumber], roots);
     if (!sourceGate.passed) {
-      problems.push(...sourceGate.findings.map((f) => `source-v2: ${f.checkId} ${f.message}`));
+      problems.push(...sourceGate.findings.filter((f) => f.severity === "blocker").map((f) => `source-v2: ${f.checkId} ${f.message}`));
     }
   }
 

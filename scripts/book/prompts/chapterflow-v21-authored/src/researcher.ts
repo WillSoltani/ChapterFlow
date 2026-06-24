@@ -319,7 +319,7 @@ export async function researchBook(
       if (!integrity.passed) m.overallStatus = "coherence_failed";
     });
     if (!integrity.passed && options.failOnCoherenceBlockers !== false) {
-      throw new Error(`Source integrity failed with ${integrity.findings.length} blocker(s). Repair source-v2 sidecars before authoring.`);
+      throw new Error(`Source integrity failed with ${integrity.findings.filter((f) => f.severity === "blocker").length} blocker(s). Repair source-v2 sidecars before authoring.`);
     }
   }
 

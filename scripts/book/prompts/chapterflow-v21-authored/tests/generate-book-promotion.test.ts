@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
@@ -22,6 +22,11 @@ function restoreFile(path: string, snapshot: string | null): void {
 test("generateBook range runs do not write or overwrite production packages", async () => {
   const bookId = "drive";
   const chapterNumber = 6;
+  // Defensive isolation: clear any leaked `.chapterflow/runs/drive/zz-test-*` source-run dir from a
+  // prior interrupted promote-gate test. A leftover drive source sidecar makes this run's cache key
+  // include source evidence the manually-written manifest can't reproduce → a stale-cache flake.
+  const driveRunsRoot = resolve(PIPELINE_DIR, "../../../../.chapterflow/runs", bookId);
+  try { for (const d of readdirSync(driveRunsRoot)) if (d.startsWith("zz-test")) rmSync(resolve(driveRunsRoot, d), { recursive: true, force: true }); } catch { /* dir absent */ }
   const index = loadChapterIndex(bookId);
   const chapterSpec = index.find((spec) => spec.chapterNumber === chapterNumber);
   assert.ok(chapterSpec, "drive fixture must include chapter 6");

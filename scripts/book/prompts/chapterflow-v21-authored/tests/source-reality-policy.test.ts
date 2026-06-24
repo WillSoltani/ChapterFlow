@@ -76,12 +76,19 @@ function inputs(over: Partial<SourceRealityInputs> = {}): SourceRealityInputs {
 }
 
 // ── The headline fix: new source-v2 book, env unset, no record ⇒ blocked ──────
-test("new source-v2 book with no record + no exemption BLOCKS even with the env unset (missing)", () => {
-  const r = decideSourceRealityPolicy(inputs({ requireEnv: false }));
-  assert.equal(r.decision, "missing");
-  assert.equal(r.blocking, true);
-  assert.equal(r.classification, "new-source-v2");
-  assert.ok(r.findings.some((f) => f.checkId === "SR.record_missing"));
+test("new source-v2 book with no record + no exemption is NON-BLOCKING by default; blocks only under the env opt-in", () => {
+  // Fully-unattended default: a missing record is not-applicable, not a block, so the
+  // autopilot converges without a human source check.
+  const off = decideSourceRealityPolicy(inputs({ requireEnv: false }));
+  assert.equal(off.decision, "not-applicable");
+  assert.equal(off.blocking, false);
+  assert.equal(off.classification, "new-source-v2");
+
+  // Operator opt-in: CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 makes a missing record block.
+  const on = decideSourceRealityPolicy(inputs({ requireEnv: true }));
+  assert.equal(on.decision, "missing");
+  assert.equal(on.blocking, true);
+  assert.ok(on.findings.some((f) => f.checkId === "SR.record_missing"));
 });
 
 test("new source-v2 book with a complete VERIFIED record passes (required-and-verified, non-blocking)", () => {
@@ -127,14 +134,17 @@ test("CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 STRENGTHENS: a no-source book now requ
   assert.equal(r.blocking, true);
 });
 
-test("the env flag cannot downgrade a NEW source-v2 book to legacy — it always applies", () => {
-  // Whatever the env, a book with sidecars is new-source-v2 and requires verification.
-  for (const requireEnv of [false, true]) {
-    const r = decideSourceRealityPolicy(inputs({ hasSourceV2Sidecars: true, requireEnv }));
-    assert.equal(r.classification, "new-source-v2", `requireEnv=${requireEnv}`);
-    assert.equal(r.applies, true);
-    assert.equal(r.decision, "missing"); // no record, no exemption
-  }
+test("a NEW source-v2 book stays classified new-source-v2; the env flag toggles whether a MISSING record applies", () => {
+  // Classification is content-based (sidecars present) regardless of env.
+  const off = decideSourceRealityPolicy(inputs({ hasSourceV2Sidecars: true, requireEnv: false }));
+  assert.equal(off.classification, "new-source-v2");
+  assert.equal(off.applies, false);
+  assert.equal(off.decision, "not-applicable"); // a missing record is non-blocking by default
+
+  const on = decideSourceRealityPolicy(inputs({ hasSourceV2Sidecars: true, requireEnv: true }));
+  assert.equal(on.classification, "new-source-v2");
+  assert.equal(on.applies, true);
+  assert.equal(on.decision, "missing"); // no record, no exemption → blocks under opt-in
 });
 
 // ── Legacy exemption: valid, expired, malformed, wrong-book, content-mismatch ─
@@ -280,10 +290,13 @@ test("evaluateSourceRealityPolicy (disk wrapper) over an isolated source-v2 fixt
     const items = collectSourceVerifyItems(bookId, baseRoots);
     assert.ok(items.length > 0, "fixture sidecars must expose verifiable items");
 
-    // (a) no record, no exemption, env unset ⇒ missing (the headline invariant, via disk).
-    const missing = evaluateSourceRealityPolicy({ bookId, env: {}, roots: baseRoots });
-    assert.equal(missing.decision, "missing");
-    assert.equal(missing.blocking, true);
+    // (a) no record, no exemption: env unset ⇒ not-applicable (opt-in default), env set ⇒ missing.
+    const off = evaluateSourceRealityPolicy({ bookId, env: {}, roots: baseRoots });
+    assert.equal(off.decision, "not-applicable");
+    assert.equal(off.blocking, false);
+    const on = evaluateSourceRealityPolicy({ bookId, env: { CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1" }, roots: baseRoots });
+    assert.equal(on.decision, "missing");
+    assert.equal(on.blocking, true);
 
     // (b) a valid VERIFIED record ⇒ required-and-verified.
     const byChapter = new Map<number, any[]>();
@@ -362,16 +375,20 @@ function cleanupPromoteFixture(): void {
   } catch {}
 }
 
-test("a DIRECT promote-book blocks a new source-v2 book with no record even with the env unset (no bypass)", () => {
+test("a DIRECT promote-book applies the source-verify RECORD requirement only under the env opt-in (no auto-block by default, no bypass when enforced)", () => {
   const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const prevReq = process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
   const oldWarn = console.warn;
+  const promote = () => promoteBook({
+    bookId: PROMOTE_BOOK,
+    title: "Source Reality Fixture",
+    author: "Nobody",
+    chapters: [1, 2].map((n) => ({ chapterId: `${PROMOTE_BOOK}-ch${String(n).padStart(2, "0")}`, chapterNumber: n, chapterTitle: `Chapter ${n}` })) as any,
+  });
   try {
     console.warn = () => {};
     cleanupPromoteFixture();
-    // The most permissive environment possible — the requirement must hold anyway.
     delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-    delete process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
 
     const chapters = [1, 2].map((n) => makeChapter(PROMOTE_BOOK, n));
     writeFixtureBook(STATE_CHAPTERS, chapters);
@@ -379,22 +396,23 @@ test("a DIRECT promote-book blocks a new source-v2 book with no record even with
     writeSourceEvidenceFixture(PROMOTE_BOOK, chapters.map((ch) => ({ number: ch.number, title: ch.title })));
     // Deliberately NO source-verify record.
 
-    const result = promoteBook({
-      bookId: PROMOTE_BOOK,
-      title: "Source Reality Fixture",
-      author: "Nobody",
-      chapters: chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })) as any,
-    });
+    // (1) DEFAULT (fully-unattended): a missing record does NOT block — source-reality is
+    //     not-applicable, so the unattended path converges without a human source check. (The book
+    //     may still be blocked by other gates, but source-reality contributes no blocker.)
+    delete process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
+    const def = promote();
+    assert.equal(def.sourceRealityDecision, "not-applicable", `default: a missing record is non-blocking, got ${def.sourceRealityDecision}`);
+    assert.equal(def.sourceRealityBlockerCount ?? 0, 0, "source-reality must not block by default");
 
-    assert.equal(result.promoted, false, "a new source-v2 book with no record must not promote");
-    assert.equal(result.sourceRealityDecision, "missing", `expected source-reality missing, got ${result.sourceRealityDecision}: ${result.reason}`);
-    assert.ok((result.sourceRealityBlockerCount ?? 0) > 0, "source-reality must contribute a blocker");
-
-    // PARITY: publish-after-qc's preflight evaluates the SAME policy via the SAME call shape, so
-    // its source-reality verdict is identical. (Asserted here directly against the shared
-    // evaluator the preflight delegates to.)
+    // (2) OPT-IN: CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 makes a missing record block, and a direct
+    //     promote-book cannot bypass it — promote + publish-after-qc agree via the shared evaluator.
+    process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY = "1";
+    const enforced = promote();
+    assert.equal(enforced.promoted, false, "under the opt-in a new source-v2 book with no record must not promote");
+    assert.equal(enforced.sourceRealityDecision, "missing", `expected source-reality missing, got ${enforced.sourceRealityDecision}: ${enforced.reason}`);
+    assert.ok((enforced.sourceRealityBlockerCount ?? 0) > 0, "source-reality must contribute a blocker under the opt-in");
     const preflightVerdict = evaluateSourceRealityPolicy({ bookId: PROMOTE_BOOK, env: process.env });
-    assert.equal(preflightVerdict.decision, result.sourceRealityDecision, "promote + publish-after-qc must agree on the source-reality decision");
+    assert.equal(preflightVerdict.decision, enforced.sourceRealityDecision, "promote + publish-after-qc must agree on the source-reality decision");
     assert.equal(preflightVerdict.blocking, true);
   } finally {
     console.warn = oldWarn;

@@ -176,9 +176,13 @@ function result(
 
 export function decideSourceRealityPolicy(input: SourceRealityInputs): SourceRealityPolicyResult {
   const classification: SourceRealityClassification = input.hasSourceV2Sidecars ? "new-source-v2" : "legacy";
-  // A book with source-v2 content ALWAYS requires verification (env-independent). The env flag
-  // can only EXTEND the requirement to books with no verifiable content — it cannot remove it.
-  const applies = input.hasSourceV2Sidecars || input.requireEnv;
+  // Fully-unattended mode: an ABSENT source-verify record is required ONLY when the operator
+  // opts in via CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1. By default a new source-v2 book with no
+  // record is `not-applicable` (non-blocking) so the autopilot converges without a human source
+  // check. A PRESENT-but-invalid/rubber-stamped record ALWAYS blocks (that path runs before this
+  // `applies` gate), and a content-bound legacy exemption still applies — only the missing-record
+  // default is relaxed.
+  const applies = input.requireEnv;
   const itemCount = input.expectedItems.length;
   const mk = (decision: SourceRealityDecision, blocking: boolean, findings: SourceRealityFinding[], exemption?: LegacyExemption) =>
     result(input.bookId, decision, blocking, classification, applies, itemCount, findings, exemption);

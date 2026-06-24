@@ -15,6 +15,7 @@ import {
   QuizV21,
   ReviewCardV21,
   SourceAnchorForPrompt,
+  SourceClaimType,
   V21_SCHEMA_VERSION,
 } from "./types.js";
 import { BreakdownOutput } from "./agents/writer-breakdown.js";
@@ -78,7 +79,12 @@ export function assembleChapterV21OrThrow(input: unknown): ChapterV21 {
 function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
   const { plan, breakdown, examples, quiz, cards, implementationPlan, keyTakeaway, hook } = input;
   const anchorMap: Record<string, string[]> = {};
-  const defaultAnchors = defaultAnchorIds(input.sourceEvidence?.anchors ?? [], plan);
+  const planAnchors = input.sourceEvidence?.anchors ?? [];
+  const defaultAnchors = defaultAnchorIds(planAnchors, plan);
+  // Claim-type-aware default anchor: the fallback for an example / quiz unit must
+  // be an anchor that can SUPPORT that claim type, or SC11.6 false-gates a grounded
+  // unit (a concept anchor cannot support example/quiz claims).
+  const defaultAnchorsFor = (claimType: SourceClaimType): string[] => defaultAnchorIds(planAnchors, plan, claimType);
   const remember = (path: string, ids: unknown, fallback: string[] = defaultAnchors): string[] => {
     const normalized = normalizeAnchorIds(ids);
     const chosen = normalized.length > 0 ? normalized : fallback;
@@ -91,7 +97,7 @@ function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
     const sourceAnchorIds = remember(
       `examples[${i}]`,
       ex.sourceAnchorIds ?? ex.sourceAnchorId,
-      normalizeAnchorIds(spec?.sourceAnchorIds).length > 0 ? normalizeAnchorIds(spec?.sourceAnchorIds) : defaultAnchors,
+      normalizeAnchorIds(spec?.sourceAnchorIds).length > 0 ? normalizeAnchorIds(spec?.sourceAnchorIds) : defaultAnchorsFor("example"),
     );
     return {
       exampleId: ex.exampleId || `ch${String(plan.number).padStart(2, "0")}-ex${String(i + 1).padStart(2, "0")}`,
@@ -115,7 +121,7 @@ function assembleChapterV21Validated(input: AssembleInput): ChapterV21 {
   const assembledQuiz: QuizV21 = {
     passingScorePercent: quiz.passingScorePercent ?? 70,
     questions: quiz.questions.map((q, i) => {
-      const fallback = normalizeAnchorIds(plan.quizFocus.sourceAnchorIds).length > 0 ? normalizeAnchorIds(plan.quizFocus.sourceAnchorIds) : defaultAnchors;
+      const fallback = normalizeAnchorIds(plan.quizFocus.sourceAnchorIds).length > 0 ? normalizeAnchorIds(plan.quizFocus.sourceAnchorIds) : defaultAnchorsFor("quiz_prompt");
       const sourceAnchorIds = remember(`quiz.questions[${i}]`, q.sourceAnchorIds ?? q.sourceAnchorId, fallback);
       const keyEvidenceAnchorIds = remember(`quiz.questions[${i}].keyEvidence`, q.keyEvidenceAnchorIds, sourceAnchorIds);
       return {
@@ -240,9 +246,20 @@ function normalizeAnchorIds(value: unknown): string[] {
   return [];
 }
 
-function defaultAnchorIds(anchors: SourceAnchorForPrompt[], plan: ChapterDesignDoc): string[] {
+function defaultAnchorIds(anchors: SourceAnchorForPrompt[], plan: ChapterDesignDoc, claimType?: SourceClaimType): string[] {
   const planned = normalizeAnchorIds(plan.coreMoveSourceAnchorIds);
   if (planned.length > 0) return planned;
+  // Never fall back to an anchor that CANNOT support the unit's claim type. A
+  // concept anchor cannot support example / quiz claims, so a generic concept
+  // fallback for an example or quiz unit self-inflicts an SC11.6 unsupported_anchor
+  // blocker on perfectly-grounded content. Prefer a claim-type-supporting anchor
+  // (a concept first when it qualifies, else any eligible); only when NO anchor can
+  // support the claim do we fall back to any anchor (the prior behavior — SC11.6 may
+  // then fire, but only because the source genuinely lacks a supporting anchor).
+  const eligible = claimType ? anchors.filter((a) => a.supportsClaimTypes?.includes(claimType)) : anchors;
+  const eligibleConcept = eligible.find((anchor) => anchor.kind === "concept");
+  if (eligibleConcept) return [eligibleConcept.id];
+  if (eligible.length > 0) return eligible.slice(0, 1).map((anchor) => anchor.id);
   const concept = anchors.find((anchor) => anchor.kind === "concept");
   if (concept) return [concept.id];
   return anchors.slice(0, 1).map((anchor) => anchor.id);

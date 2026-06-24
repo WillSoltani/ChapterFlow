@@ -51,6 +51,9 @@ function writeFixtureBookWithIndex(chapters: ReturnType<typeof makeChapter>[]): 
 
 test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS, round-backed attestations, and major dispositions", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  // Majors are advisory by default; this test exercises the FULL blocking stack, so opt in to
+  // deterministic-major enforcement (the production-policy path) alongside the no-api mode.
+  const prevEnforce = process.env.CHAPTERFLOW_ENFORCE_MAJORS;
   const oldWarn = console.warn;
   try {
     console.warn = () => {};
@@ -78,6 +81,7 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
       });
     }
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    process.env.CHAPTERFLOW_ENFORCE_MAJORS = "1";
     const result = promoteBook({
       bookId: BOOK,
       title: "Fixture",
@@ -99,6 +103,8 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    if (prevEnforce === undefined) delete process.env.CHAPTERFLOW_ENFORCE_MAJORS;
+    else process.env.CHAPTERFLOW_ENFORCE_MAJORS = prevEnforce;
     cleanup();
   }
 });

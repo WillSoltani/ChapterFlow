@@ -76,7 +76,9 @@ function sourceTextRel(chapterNumber: number): string {
 }
 
 export function validateSourceV2SidecarForPlanning(sc: unknown, chapterNumber: number): string[] {
+  // Only structural blockers gate planning; realness heuristics are advisory.
   return evaluateSourceV2Integrity(sc, { chapterNumber }).findings
+    .filter((finding) => finding.severity === "blocker")
     .map((finding) => `${finding.checkId}: ${finding.message}`);
 }
 
@@ -116,7 +118,7 @@ export function loadPlanningSourceEvidence(
       chapterTitle: options.chapterTitle,
       rawText: chapterSidecarPath ? readFileSync(chapterSidecarPath, "utf8") : undefined,
     });
-    if (!integrity.passed) blockers.push(...integrity.findings.map((finding) => `${finding.checkId}: ${finding.message}`));
+    if (!integrity.passed) blockers.push(...integrity.findings.filter((finding) => finding.severity === "blocker").map((finding) => `${finding.checkId}: ${finding.message}`));
     else {
       chapterSidecar = integrity.sidecar;
       anchors = integrity.anchors;

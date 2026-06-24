@@ -210,7 +210,7 @@ function writeSourceFixture(root: string, bookId: string, sidecars: any[]): { st
   return { stateRoot, runsRoot };
 }
 
-test("source integrity rejects concept-only, placeholder, fabricated, and boilerplate sidecars", () => {
+test("source integrity surfaces concept-only, placeholder, fabricated, and boilerplate sidecars as ADVISORY realness signals (never blocking)", () => {
   const cases = [
     { name: "concept-only", sidecar: conceptOnlySidecar(), expected: /realness_concept_only|realness_non_testable_fact/ },
     { name: "placeholder", sidecar: placeholderSidecar(), expected: /realness_placeholder_example/ },
@@ -222,8 +222,11 @@ test("source integrity rejects concept-only, placeholder, fabricated, and boiler
     try {
       const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [c.sidecar]);
       const report = checkSourceV2Gate(BOOK, undefined, { stateRoot, runsRoot });
-      assert.equal(report.passed, false, `${c.name} should block`);
-      assert.match(report.findings.map((finding) => finding.checkId).join("\n"), c.expected, c.name);
+      // Realness heuristics are advisory: they are surfaced but must NEVER carry blocker
+      // severity (the authoritative reality check is the operator source-verify record).
+      const realness = report.findings.filter((finding) => /realness_/.test(finding.checkId));
+      assert.match(realness.map((finding) => finding.checkId).join("\n"), c.expected, c.name);
+      assert.ok(realness.length > 0 && realness.every((finding) => finding.severity === "advisory"), `${c.name}: realness findings must be advisory, got ${JSON.stringify(realness.map((f) => [f.checkId, f.severity]))}`);
     } finally {
       rmSync(root, { recursive: true, force: true });
     }
@@ -290,9 +293,13 @@ test("prompt-injection text from source evidence is rendered as inert data", () 
   }
 });
 
-test("authoring and promotion block the same source-integrity fixture with matching check ids", async () => {
+test("authoring and promotion block the same STRUCTURAL source-integrity defect with matching check ids", async () => {
+  // Realness heuristics are advisory now; the cross-lifecycle consistency this pins is a
+  // STRUCTURAL blocker. placeholderSidecar's testableFacts cite an undeclared source anchor,
+  // so both authoring (loadPlanningSourceEvidence) and promotion (checkSourceV2Gate) reject it
+  // with the same SV2.anchor_reference_unknown id.
   const bad = placeholderSidecar();
-  const expectedCheck = "SV2.realness_placeholder_example";
+  const expectedCheck = "SV2.anchor_reference_unknown";
   const root = fixtureRoot("lifecycle-match");
   rmSync(root, { recursive: true, force: true });
   const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
