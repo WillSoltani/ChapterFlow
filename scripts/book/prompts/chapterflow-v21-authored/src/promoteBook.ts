@@ -524,7 +524,11 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // new-book default.
   // Same call shape the publish-after-qc preflight makes (the wrapper itself derives the
   // canonicalIndexHash an exemption binds to), so the two paths cannot disagree.
-  const sourceReality = evaluateSourceRealityPolicy({ bookId, env: process.env, now: now() });
+  // One instant is captured for BOTH the gate verdict here and the manifest evidence
+  // built later, so a sub-second exemption-expiry boundary cannot flip the verdict
+  // between the gate and the bound evidence.
+  const sourceRealityNow = now();
+  const sourceReality = evaluateSourceRealityPolicy({ bookId, env: process.env, now: sourceRealityNow });
   const sourceRealityFindings = sourceReality.blocking
     ? sourceReality.findings.map((f) => ({
         chapter: f.chapterNumber,
@@ -654,6 +658,10 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
         createdAt,
         runId: priorRunId,
         packagePath,
+        // Build the v2 source-reality evidence against the SAME instant the
+        // always-on source-reality gate (Step 3) evaluated, so a stale-exemption
+        // boundary cannot flip between the gate verdict and the bound evidence.
+        now: sourceRealityNow,
       });
       if (!manifestResult.ok) {
         productionManifestFindings = manifestResult.findings;

@@ -15,7 +15,18 @@ import {
   productionManifestPayloadHash,
   validateProductionManifest,
   type ProductionManifestFinding,
+  type ProductionManifestPayloadV2,
+  type ProductionManifestVersion,
+  type ProductionSourceRealityEvidence,
 } from "./productionManifest.js";
+import {
+  buildPipelineFingerprints,
+  firstFingerprintFileDelta,
+  type FingerprintRoots,
+  type PipelineFingerprint,
+} from "./lib/pipelineFingerprint.js";
+import { evaluateSourceRealityPolicy } from "./qc/sourceRealityPolicy.js";
+import { parseSourceVerifyRecord, sourceVerifyRecordPath } from "./critics/sourceVerify.js";
 
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const DEFAULT_RUNS_ROOT = resolve(REPO_ROOT, ".chapterflow", "runs");
@@ -28,6 +39,13 @@ export type VerifyProductionPackageOptions = {
   stateRoot?: string;
   runsRoot?: string;
   compareLooseState?: boolean;
+  /** v2 build-input fingerprint root overrides (tests). Production omits these. */
+  fingerprintRoots?: FingerprintRoots;
+  /** v2 source-reality record/exemption read-location overrides (tests). */
+  recordPath?: string;
+  exemptionsFile?: string;
+  env?: NodeJS.ProcessEnv;
+  now?: Date;
 };
 
 export type VerifyProductionPackageResult = {
@@ -35,6 +53,9 @@ export type VerifyProductionPackageResult = {
   bookId: string | null;
   packagePath: string | null;
   contentId: string | null;
+  /** The embedded manifest schema version ("v1" | "v2"), or null when unverifiable.
+   *  Lets a caller distinguish a v1-legacy PASS from a v2 (source-reality-bound) PASS. */
+  manifestSchemaVersion: ProductionManifestVersion | null;
   findings: ProductionPackageVerificationFinding[];
 };
 
@@ -121,16 +142,157 @@ function compareCanonicalPayloads(actual: unknown, expected: unknown): Productio
   if (canonicalJson(actual) === canonicalJson(expected)) return [];
   return [blocker({
     checkId: "PPKG.manifest_payload_mismatch",
-    message: "Embedded production manifest payload does not match the canonical index, package chapters, source evidence, and QC evidence recomputed by the verifier.",
+    message: "Embedded production manifest payload does not match the canonical index, package chapters, source evidence, source-reality evidence, build-input fingerprints, and QC evidence recomputed by the verifier.",
     expected: canonicalJsonSha256(expected),
     actual: canonicalJsonSha256(actual),
   })];
 }
 
+/**
+ * v2-only independent recompute: re-derive the source-reality verdict and the
+ * three build-input fingerprints FROM DISK and check them against the bytes the
+ * embedded payload bound. This is in addition to the whole-payload equality
+ * check above; it exists to produce PRECISE findings (which evidence drifted,
+ * which file moved) and to satisfy "recompute this evidence from disk and detect
+ * tampering, deletion, replacement, wrong-book records, or stale exemptions"
+ * (req 4, 11). Equality of the whole payload remains the authoritative gate.
+ */
+function verifyV2Evidence(
+  bookId: string | null,
+  payload: ProductionManifestPayloadV2,
+  options: VerifyProductionPackageOptions,
+  stateRoot: string,
+  runsRoot: string,
+): ProductionPackageVerificationFinding[] {
+  const findings: ProductionPackageVerificationFinding[] = [];
+  const evidence: ProductionSourceRealityEvidence | undefined = payload.sourceRealityEvidence;
+  if (!isObject(evidence as unknown)) {
+    return [blocker({ checkId: "PPKG.source_reality_evidence_missing", message: "v2 payload is missing sourceRealityEvidence." })];
+  }
+
+  // The trusted identity is the package's bookId (already validated upstream), not
+  // the evidence's self-declared bookId. Recompute the verdict against it, and ALWAYS
+  // flag a self-declared bookId that disagrees — independent of whether the policy
+  // blocks. (The whole-payload compare is the authoritative gate; this is the precise
+  // diagnostic.) `bookId` is non-null here: a missing book id fails closed upstream
+  // before this function is reached.
+  const subjectBookId = bookId ?? evidence.bookId;
+  if (bookId && evidence.bookId !== bookId) {
+    findings.push(blocker({
+      checkId: "PPKG.source_reality_bookid_mismatch",
+      message: "sourceRealityEvidence.bookId does not match the package book id.",
+      expected: bookId,
+      actual: evidence.bookId,
+    }));
+  }
+
+  // 1) Source-reality verdict, recomputed from disk against the trusted bookId.
+  const policy = evaluateSourceRealityPolicy({
+    bookId: subjectBookId,
+    env: options.env ?? process.env,
+    now: options.now ?? new Date(),
+    roots: { stateRoot, runsRoot, recordPath: options.recordPath, exemptionsFile: options.exemptionsFile },
+  });
+  if (policy.blocking) {
+    // Deletion, tampering-to-invalid, wrong-book record (item-coverage miss),
+    // or a stale/mismatched exemption all land here.
+    for (const f of policy.findings) {
+      findings.push(blocker({ checkId: `PPKG.source_reality.${f.checkId}`, chapterNumber: f.chapterNumber, message: f.message }));
+    }
+  } else {
+    if (policy.decision !== evidence.policyResult) {
+      findings.push(blocker({
+        checkId: "PPKG.source_reality_decision_mismatch",
+        message: "Recomputed source-reality decision does not match the decision bound in the manifest.",
+        expected: evidence.policyResult,
+        actual: policy.decision,
+      }));
+    }
+    // Record-branch: recompute the record's semantic hash + bound bookId from disk.
+    if (policy.decision === "required-and-verified" && isObject(evidence.record as unknown)) {
+      const recordPath = options.recordPath ?? sourceVerifyRecordPath(subjectBookId);
+      let parsed: any = null;
+      try {
+        parsed = parseSourceVerifyRecord(readFileSync(recordPath, "utf8")).record;
+      } catch {
+        parsed = null;
+      }
+      if (!parsed) {
+        findings.push(blocker({ checkId: "PPKG.source_reality_record_unreadable", path: recordPath, message: `Source-verify record at ${recordPath} could not be re-read for verification.` }));
+      } else {
+        const recomputedHash = canonicalJsonSha256(parsed);
+        if (recomputedHash !== evidence.record!.semanticHash) {
+          findings.push(blocker({
+            checkId: "PPKG.source_reality_record_hash_mismatch",
+            message: "Source-verify record on disk does not match the semantic hash bound in the manifest (record was replaced or tampered).",
+            expected: evidence.record!.semanticHash,
+            actual: recomputedHash,
+          }));
+        }
+        const diskBookId = typeof parsed.bookId === "string" ? parsed.bookId : null;
+        if (diskBookId !== null && diskBookId !== subjectBookId) {
+          findings.push(blocker({
+            checkId: "PPKG.source_reality_record_wrong_book",
+            message: "Source-verify record on disk names a different bookId than the package (wrong-book record).",
+            expected: subjectBookId,
+            actual: diskBookId,
+          }));
+        }
+      }
+    }
+    // Exemption-branch: recompute the bound exemption's hash from disk.
+    if (policy.decision === "legacy-exempt" && isObject(evidence.exemption as unknown) && policy.exemption) {
+      const recomputedHash = canonicalJsonSha256(policy.exemption);
+      if (recomputedHash !== evidence.exemption!.semanticHash) {
+        findings.push(blocker({
+          checkId: "PPKG.source_reality_exemption_hash_mismatch",
+          message: "Legacy exemption on disk does not match the semantic hash bound in the manifest.",
+          expected: evidence.exemption!.semanticHash,
+          actual: recomputedHash,
+        }));
+      }
+    }
+  }
+
+  // 2) Build-input fingerprints, recomputed from disk. Guard the embedded shape so a
+  // malformed/forged v2 payload fails CLOSED with a structured finding rather than
+  // throwing on a missing `versions` bundle (validateProductionManifest already
+  // enforces this shape; this is defense in depth for direct callers).
+  const versions = (payload as { versions?: ProductionManifestPayloadV2["versions"] }).versions;
+  if (!isObject(versions as unknown)) {
+    findings.push(blocker({ checkId: "PPKG.manifest_versions_missing", message: "v2 payload is missing the versions block with build-input fingerprints." }));
+    return findings;
+  }
+  const fps = buildPipelineFingerprints(options.fingerprintRoots);
+  if (!fps.ok) {
+    for (const message of fps.errors) findings.push(blocker({ checkId: "PPKG.fingerprint_unbuildable", message }));
+    return findings;
+  }
+  const compareBundle = (label: "prompt" | "config" | "code", embedded: PipelineFingerprint | undefined, actual: PipelineFingerprint): void => {
+    if (!isObject(embedded as unknown) || typeof embedded!.bundleHash !== "string") {
+      findings.push(blocker({ checkId: `PPKG.${label}_fingerprint_missing`, message: `v2 payload is missing a well-formed ${label} fingerprint bundle.` }));
+      return;
+    }
+    if (embedded!.bundleHash === actual.bundleHash) return;
+    const delta = firstFingerprintFileDelta(embedded!, actual);
+    findings.push(blocker({
+      checkId: `PPKG.${label}_fingerprint_mismatch`,
+      message: `Recomputed ${label} fingerprint does not match the manifest${delta ? ` (first delta: ${delta.path} ${delta.reason})` : ""}.`,
+      expected: embedded!.bundleHash,
+      actual: actual.bundleHash,
+    }));
+  };
+  compareBundle("prompt", versions!.promptBundle, fps.fingerprints.promptBundle);
+  compareBundle("config", versions!.configBundle, fps.fingerprints.configBundle);
+  compareBundle("code", versions!.codeFingerprint, fps.fingerprints.codeFingerprint);
+
+  return findings;
+}
+
 export function verifyProductionPackage(options: VerifyProductionPackageOptions): VerifyProductionPackageResult {
   const loaded = loadPackage(options);
   if (!loaded.ok) {
-    return { ok: false, bookId: null, packagePath: loaded.packagePath, contentId: null, findings: loaded.findings };
+    return { ok: false, bookId: null, packagePath: loaded.packagePath, contentId: null, manifestSchemaVersion: null, findings: loaded.findings };
   }
 
   // Prove the top-level shape is a non-null, non-array object BEFORE reading any
@@ -143,6 +305,7 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
       bookId: null,
       packagePath: loaded.packagePath,
       contentId: null,
+      manifestSchemaVersion: null,
       findings: [blocker({ checkId: "PPKG.package_malformed", message: "Production package must be a JSON object." })],
     };
   }
@@ -183,10 +346,11 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
   const manifestCheck = validateProductionManifest((pkg as any).productionManifest);
   if (!manifestCheck.ok) findings.push(...manifestCheck.findings);
   if (findings.length > 0 || !manifestCheck.ok) {
-    return { ok: false, bookId, packagePath: loaded.packagePath, contentId: null, findings };
+    return { ok: false, bookId, packagePath: loaded.packagePath, contentId: null, manifestSchemaVersion: manifestCheck.ok ? manifestCheck.version : null, findings };
   }
 
   const manifest = manifestCheck.manifest;
+  const version = manifestCheck.version;
   if (pkg.packageId !== manifest.contentId) {
     findings.push(blocker({
       checkId: "PPKG.package_id_mismatch",
@@ -229,8 +393,20 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     generator: manifest.metadata.generator,
     runId: manifest.metadata.runId,
     packagePath: loaded.packagePath ?? undefined,
+    // Reconstruct the expected manifest at the SAME schema version the package
+    // declares — a v1 package is recomputed under v1 rules and is never granted
+    // v2 (source-reality / fingerprint) evidence it does not actually carry.
+    manifestVersion: version,
+    fingerprintRoots: options.fingerprintRoots,
+    recordPath: options.recordPath,
+    exemptionsFile: options.exemptionsFile,
+    env: options.env,
+    now: options.now,
   });
   if (!expected.ok) {
+    // Requirement 12: when the expected manifest cannot be reconstructed (e.g. a
+    // v2 source-reality record was deleted, tampered to invalid, or its exemption
+    // went stale), verification fails — promotion must not publish.
     findings.push(...expected.findings);
   } else {
     findings.push(...compareCanonicalPayloads(manifest.payload, expected.manifest.payload));
@@ -258,6 +434,12 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     }
   }
 
+  // v2-only: independent recompute of source-reality evidence + fingerprints, for
+  // precise diagnostics (the whole-payload compare above is the authoritative gate).
+  if (version === "v2") {
+    findings.push(...verifyV2Evidence(bookId, manifest.payload as ProductionManifestPayloadV2, options, stateRoot, runsRoot));
+  }
+
   if (options.compareLooseState) {
     findings.push(...compareLooseStateChapters(pkg, stateRoot));
   }
@@ -267,6 +449,7 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     bookId,
     packagePath: loaded.packagePath,
     contentId: manifest.contentId,
+    manifestSchemaVersion: version,
     findings,
   };
 }
@@ -278,6 +461,7 @@ export function packagePathForBook(bookId: string): string {
 export function formatVerifyProductionPackageResult(result: VerifyProductionPackageResult): string {
   const lines: string[] = [];
   lines.push(`verify-production-package: ${result.ok ? "PASS" : "BLOCK"}${result.bookId ? ` (${result.bookId})` : ""}`);
+  if (result.manifestSchemaVersion) lines.push(`manifest: ${result.manifestSchemaVersion}`);
   if (result.packagePath) lines.push(`package: ${result.packagePath}`);
   if (result.contentId) lines.push(`contentId: ${result.contentId}`);
   if (result.findings.length > 0) {

@@ -131,9 +131,10 @@ Commands:
                                      Unresolved serious generation-debt events block; exact-content
                                      waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
-  verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p]
+  verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p] [--record-path p] [--exemptions-file p]
                                      Read-only production verifier: recomputes the manifest payload from
-                                     the canonical index, package chapters, source evidence, and QC evidence.
+                                     the canonical index, package chapters, source evidence, source-reality
+                                     evidence, build-input fingerprints, and QC evidence.
                                      Exits 0 only when the package content ID is independently verified.
   publish "<book name or id>" [--title X --author Y] [--categories A,B] [--tags x,y]
                                      One-verb ship. Resolves the book, auto-fills title/author from its
@@ -1436,6 +1437,10 @@ async function runVerifyProductionPackage(args: string[], flags: Record<string, 
     packagePath,
     stateRoot: typeof flags["state-root"] === "string" ? resolve(process.cwd(), flags["state-root"] as string) : undefined,
     runsRoot: typeof flags["runs-root"] === "string" ? resolve(process.cwd(), flags["runs-root"] as string) : undefined,
+    // v2: read-location overrides for the source-reality record/exemption registry
+    // (keeps automated verification sandboxable without polluting the real pipeline dir).
+    recordPath: typeof flags["record-path"] === "string" ? resolve(process.cwd(), flags["record-path"] as string) : undefined,
+    exemptionsFile: typeof flags["exemptions-file"] === "string" ? resolve(process.cwd(), flags["exemptions-file"] as string) : undefined,
     compareLooseState: flags["compare-loose-state"] === true || flags["loose-state"] === true,
   });
   if (flags["json"] === true) console.log(JSON.stringify(result, null, 2));

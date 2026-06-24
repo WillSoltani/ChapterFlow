@@ -19,6 +19,7 @@ import {
 } from "../src/generateChapter.js";
 import { stripInternalFields } from "../src/lib/readerContent.js";
 import { buildProductionManifest } from "../src/productionManifest.js";
+import { collectSourceVerifyItems } from "../src/qc/sourceRealityPolicy.js";
 import { loadPlanningSourceEvidence } from "../src/source/sourceEvidence.js";
 import type { BookBrief, ChapterDesignDoc, ChapterV21 } from "../src/types.js";
 import { makeChapter, TMP_DIR, writeCanonicalIndexFixture, writeResearchRunManifestFixture } from "./helpers.js";
@@ -483,6 +484,24 @@ test("promotion projection strips public internals but manifest retains state au
       roundId: "round-source-anchor-test",
       roundRole: "attest",
     });
+    // A source-v2 book requires a verified source-reality record before a v2
+    // manifest can bind it. Write one covering every verifiable item.
+    const recordPath = resolve(root, ".chapterflow", `source-verify-${BOOK}.md`);
+    const items = collectSourceVerifyItems(BOOK, { stateRoot, runsRoot });
+    const byChapter = new Map<number, Array<{ id: string; kind: string; verdict: string; sourceRef: string; note: string }>>();
+    for (const it of items) {
+      const arr = byChapter.get(it.chapterNumber) ?? [];
+      arr.push({ id: it.id, kind: it.kind, verdict: "VERIFIED", sourceRef: `https://example.com/${BOOK}/${it.id}`, note: `verified ${it.id} against its cited source` });
+      byChapter.set(it.chapterNumber, arr);
+    }
+    const record = {
+      schemaVersion: "source-verify-record-v1",
+      bookId: BOOK,
+      chapters: [...byChapter.keys()].sort((a, b) => a - b).map((chapterNumber) => ({ chapterNumber, items: byChapter.get(chapterNumber)! })),
+    };
+    mkdirSync(resolve(recordPath, ".."), { recursive: true });
+    writeFileSync(recordPath, "```json\n" + JSON.stringify(record, null, 2) + "\n```\n", "utf8");
+
     const manifest = buildProductionManifest({
       bookId: BOOK,
       title: "Source Anchors",
@@ -491,6 +510,7 @@ test("promotion projection strips public internals but manifest retains state au
       chapters: [shipped],
       stateRoot,
       runsRoot,
+      recordPath,
       createdAt: "2026-06-23T00:00:00.000Z",
       runId: "run-a",
       packagePath: resolve(root, "book-packages", `${BOOK}.v21.json`),
