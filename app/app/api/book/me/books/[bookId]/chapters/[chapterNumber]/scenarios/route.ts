@@ -28,6 +28,7 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { validateScenario, type ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-service";
+import { prefilterScenario } from "@/app/app/api/book/_lib/scenario-prefilter";
 import {
   coarseReason,
   getScenarioValidationModel,
@@ -240,6 +241,14 @@ export async function POST(
       throw e;
     }
 
+    // ── Deterministic pre-filter (before any model call) ─────────────────────
+    // Cheap, code-only screen for the obvious abuse the LLM shouldn't pay tokens
+    // to adjudicate: links, an inline blocklist, and degenerate repetition /
+    // gibberish. A hit ROUTES TO HUMAN REVIEW (queue_for_review) — never an
+    // auto-reject — preserving the conservative fail-safe-to-queue bias. When it
+    // fires we skip the model call entirely and emit a metric for visibility.
+    const prefilter = prefilterScenario({ title, scenario, whatToDo, whyItMatters });
+
     // ── AI Validation ───────────────────────────────────────────────────────
     const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
     // Default to the queue-for-review fallback (records the configured model so
@@ -248,7 +257,18 @@ export async function POST(
       await getScenarioValidationModel()
     );
 
-    if (apiKey) {
+    if (prefilter.flagged) {
+      // Emit ALL fired reasons (sorted+joined) so multi-reason hits aren't
+      // invisible in CloudWatch — reasons is already de-duplicated and sorted.
+      void putOpsMetric("ScenarioPrefilterHit", 1, {
+        reason: [...prefilter.reasons].sort().join(","),
+      });
+      aiResult = {
+        decision: "queue_for_review",
+        reason: `Flagged for review by automated pre-filter (${prefilter.reasons.join(", ")}).`,
+        model: await getScenarioValidationModel(),
+      };
+    } else if (apiKey) {
       let chapterTitle = `Chapter ${chapterNumberInt}`;
       let bookTitle = "";
       try {
