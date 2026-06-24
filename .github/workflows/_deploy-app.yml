@@ -123,6 +123,14 @@ jobs:
           # AI providers
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          # Same-origin / CSRF guard (#6/#293). Defaults to "1" (ENFORCE) when the
+          # variable is unset. Set the environment variable CSRF_ORIGIN_ENFORCE=0
+          # (Settings → Environments → <env> → Variables, or `gh variable set
+          # CSRF_ORIGIN_ENFORCE --env <env> --body 0`) to bring a deploy up in
+          # OBSERVE-ONLY mode — rejections log `csrf_origin_rejected`/
+          # `csrf_origin_observe_only` but requests proceed. After confirming no
+          # legitimate host trips a 403, delete the variable and re-deploy to enforce.
+          CSRF_ORIGIN_ENFORCE: ${{ vars.CSRF_ORIGIN_ENFORCE || '1' }}
 
       - name: Resolve CloudFront distribution
         id: cf
