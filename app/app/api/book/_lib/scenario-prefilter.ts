@@ -38,8 +38,11 @@ export function wrapUntrustedField(tag: string, value: string): string {
   const close = `</${tag}>`;
   // Strip ALL `user_*` delimiters (this field's and any sibling's), tolerant of
   // surrounding whitespace and case, so the content can't close its own block
-  // early or forge a sibling boundary.
-  const escaped = value.replace(/<\/?\s*user_[a-z_]*\s*>/gi, "");
+  // early or forge a sibling boundary. The whitespace tolerance must include a
+  // gap BETWEEN "<" and the "/" of a closing tag — "< /user_scenario>" is just as
+  // forge-able as "</user_scenario>" (C12) — so allow `\s*` on BOTH sides of the
+  // optional slash.
+  const escaped = value.replace(/<\s*\/?\s*user_[a-z_]*\s*>/gi, "");
   return `${open}\n${escaped}\n${close}`;
 }
 
@@ -77,8 +80,22 @@ export interface PrefilterInput {
 // to, gl, tk) so bit.ly, t.me, discord.gg and bare .ly/.me/.gg/.app hosts are
 // caught. A pre-filter hit only routes to queue_for_review (never a reject), so
 // erring toward over-matching here is acceptable.
+//
+// Three alternatives with DIFFERENT case rules (no /i flag — case is encoded per
+// alternative so it can't bleed across them):
+//  1. explicit scheme / www. — case-INsensitive (URLs may be typed "HTTP://").
+//  2. host.tld FOLLOWED BY A PATH (/?#) — case-INsensitive: a trailing path is a
+//     strong link signal, so "Bit.Ly/scam" / "SPAM.SHOP/buy" must still match
+//     even though they carry uppercase (a false-NEGATIVE here would let a spam
+//     link evade the deterministic backstop entirely).
+//  3. bare host.tld with NO path — case-SENSITIVE lowercase + a curated TLD list:
+//     real shortened links are lowercase (bit.ly, spam.shop), whereas an ordinary
+//     sentence boundary like "deadline.To be honest" / "app.Co-workers" has an
+//     UPPERCASE next-sentence word and (lacking a path) must NOT read as a domain
+//     (C10). The path requirement on alt 2 is what keeps prose out of it: prose
+//     reads "word.Word be honest", not "word.Word/...".
 const LINK_RE =
-  /\b(?:https?:\/\/|www\.)\S+|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|io|co|info|biz|xyz|ru|cn|link|click|shop|store|ly|me|gg|app|to|gl|tk)\b(?:[/?#]\S*)?/i;
+  /\b(?:[Hh][Tt][Tt][Pp][Ss]?:\/\/|[Ww][Ww][Ww]\.)\S+|\b[A-Za-z0-9][A-Za-z0-9-]*\.[A-Za-z]{2,}[/?#]\S*|\b[a-z0-9][a-z0-9-]*\.(?:com|net|org|io|co|info|biz|xyz|ru|cn|link|click|shop|store|ly|me|gg|app|to|gl|tk)\b/;
 const MARKDOWN_LINK_RE = /\]\(\s*(?:https?:\/\/|www\.)/i;
 
 // Small inline blocklist (no env injection point — deliberately code-only so it
@@ -106,14 +123,59 @@ const BLOCKLIST = [
   "porn",
 ];
 
+// Chars that may appear in an email local-part (RFC-5321 dot-atom subset) — used
+// to scan backward from a matched host to decide whether the host is the domain
+// part of an email address. Hosts also use [a-z0-9.-] label chars, so the
+// backward scan accepts label chars too before requiring an '@'.
+const EMAIL_LOCALPART_CHARS = /[A-Za-z0-9._%+-]/;
+
+/**
+ * Decide whether a matched host is the domain of an email address (so it should
+ * NOT count as a link). The regex match can begin at ANY label of a subdomained
+ * host (e.g. it may start at "company.com" inside "alex@mail.company.com"), so a
+ * single-char "@ immediately before" check is insufficient (C11/C13).
+ *
+ * We scan backward from the match start over the host's own label chars and the
+ * email local-part charset, looking for an '@' that introduces a plausible
+ * local-part. The match is treated as an email ONLY when:
+ *   - such an '@' exists with at least one local-part char before the host, AND
+ *   - the matched host is NOT followed by a path/query/fragment.
+ * The trailing-path exclusion is what keeps a disguised link like
+ * "x@spam.shop/buy-now" flagged: the "@local-part" shape is present, but the
+ * "/buy-now" tail marks it as a link, not an address.
+ */
+function matchIsEmailAddress(text: string, matchStart: number, matchEnd: number): boolean {
+  // A real email host has no trailing path/query/fragment. If the match captured
+  // one (e.g. "spam.shop/buy-now"), it's a disguised link, never an address.
+  const matched = text.slice(matchStart, matchEnd);
+  if (/[/?#]/.test(matched)) return false;
+  // Also reject if a path/query/fragment immediately follows the matched host.
+  const nextChar = matchEnd < text.length ? text[matchEnd] : "";
+  if (nextChar === "/" || nextChar === "?" || nextChar === "#") return false;
+
+  // Walk backward over host-label / local-part chars (a subdomained host like
+  // mail.company.* may sit between the '@' and the matched label) until we reach
+  // an '@' or leave the charset.
+  let i = matchStart - 1;
+  while (i >= 0 && EMAIL_LOCALPART_CHARS.test(text[i])) i--;
+  // For this to be an email, the boundary char must be '@' AND there must be at
+  // least one local-part char immediately before that '@' (so "@host" alone, with
+  // no addressee, is NOT treated as an address).
+  if (i < 0 || text[i] !== "@") return false;
+  const beforeAt = i - 1;
+  return beforeAt >= 0 && EMAIL_LOCALPART_CHARS.test(text[beforeAt]);
+}
+
 function containsLink(text: string): boolean {
   if (MARKDOWN_LINK_RE.test(text)) return true;
-  // Scan all LINK_RE matches; ignore any whose host is immediately preceded by
-  // '@' (it's the domain part of an email address like a@b.com, not a link).
-  const re = new RegExp(LINK_RE.source, "gi");
+  // Scan all LINK_RE matches; ignore any that is the domain part of an email
+  // address (e.g. alex@mail.company.com), but NOT a disguised "@host/path" link.
+  // LINK_RE is case-sensitive by design (bare-domain alt is lowercase-only), so
+  // we add only the global flag here — adding 'i' would resurrect the C10 false
+  // positives on ".To"/".Co"/".Me" sentence boundaries.
+  const re = new RegExp(LINK_RE.source, "g");
   for (let m = re.exec(text); m !== null; m = re.exec(text)) {
-    const before = m.index > 0 ? text[m.index - 1] : "";
-    if (before === "@") continue;
+    if (matchIsEmailAddress(text, m.index, m.index + m[0].length)) continue;
     return true;
   }
   return false;
