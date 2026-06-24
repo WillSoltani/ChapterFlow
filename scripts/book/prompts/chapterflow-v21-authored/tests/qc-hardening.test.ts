@@ -257,3 +257,40 @@ test("checkQcAttestation: no-api mode classifies missing provenance as legacy/un
     cleanup();
   }
 });
+
+// I5·W1 (promote side): a PUBLISHABLE attestation is a certificate that independence was verified when it
+// was written, so a LATER-lost author sidecar (untracked → gone on a fresh checkout/resume) must not
+// re-block it at promote. Crucially, this is done by trusting the certificate — NOT by manufacturing a
+// synthetic author — so a RECORDED self-grade (author == reviewer) is still caught.
+test("checkQcAttestation: a PUBLISHABLE attestation is not re-blocked on a LOST author sidecar, but a RECORDED self-grade still is (I5·W1)", () => {
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    cleanup();
+    const ch = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [ch]);
+    const attest = (verdict: "PUBLISHABLE" | "REVISE") => writeAttestation({
+      schemaVersion: "qc-attest-v1", bookId: BOOK, chapterNumber: 1, chapterId: ch.chapterId,
+      verdict, contentHash: chapterContentHash(ch), hashVersion: "v2",
+      reviewer: "codex-qc:reviewer-1", reviewerSessionId: "auto-finalize-xyz", // present → passes the reviewer-session check
+      reviewedAt: "2026-06-13T00:00:00.000Z", roundId: ROUND, roundRole: "confirm",
+    });
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+
+    // (1) PUBLISHABLE + reviewer recorded + author sidecar ABSENT (lost on checkout) ⇒ NOT re-blocked on author.
+    attest("PUBLISHABLE");
+    const lostSidecar = checkQcAttestation(ch, true);
+    assert.ok(!lostSidecar.some((f) => f.checkId === "QC0.legacy_unknown_author_session"),
+      `a PUBLISHABLE attestation must not re-block on a lost author sidecar: ${JSON.stringify(lostSidecar)}`);
+
+    // (2) The exemption does NOT launder a RECORDED self-grade: author sidecar present AND equal to the
+    // reviewer session ⇒ author_graded_own_work still fires (caught at line 307, before the exemption).
+    recordAuthorProvenance(ch.chapterId, "auto-finalize-xyz");
+    const selfGrade = checkQcAttestation(ch, true);
+    assert.ok(selfGrade.some((f) => f.checkId === "QC0.author_graded_own_work"),
+      `a recorded author==reviewer self-grade must still be caught: ${JSON.stringify(selfGrade)}`);
+  } finally {
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
+    cleanup();
+  }
+});

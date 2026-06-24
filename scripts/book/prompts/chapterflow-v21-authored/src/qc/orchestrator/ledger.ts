@@ -1,5 +1,5 @@
 import { createHash } from "crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync } from "fs";
 import { dirname } from "path";
 
 import { chapterContentHash } from "../../critics/qcAttestation.js";
@@ -200,6 +200,28 @@ export function readLedgerEvents(bookId: string, roundId: string): LedgerEvent[]
   return parsed.events;
 }
 
+/**
+ * effectiveLedger for the UNATTENDED conductor path. A malformed/torn repair-ledger line makes the
+ * strict effectiveLedger throw LedgerIntegrityError, which is uncaught across finalize/collect/publish
+ * and HALTs the run with manual-only recovery (quarantineMalformedLedger --confirm) the conductor never
+ * runs — the W2 wedge. Here a corrupt ledger AUTO-quarantines (raw lines preserved in a sibling
+ * .quarantine file, never lost) and the VALID events are returned, so the run self-heals. The
+ * supervised audit/CLI keeps the strict {@link effectiveLedger} so corruption is surfaced as a blocker,
+ * not silently healed.
+ */
+export function effectiveLedgerResilient(bookId: string, roundId: string, onQuarantine?: (msg: string) => void): EffectiveLedgerFinding[] {
+  try {
+    return effectiveLedger(bookId, roundId);
+  } catch (err) {
+    if (!(err instanceof LedgerIntegrityError)) throw err;
+    const repaired = quarantineMalformedLedger(bookId, roundId, { confirm: true });
+    onQuarantine?.(repaired.ok
+      ? `auto-quarantined ${repaired.issues.length} malformed repair-ledger line(s) for ${bookId}/${roundId} → ${repaired.quarantinePath} (preserved ${repaired.eventsPreserved} valid event(s))`
+      : `repair-ledger for ${bookId}/${roundId} is malformed and could not be auto-quarantined: ${repaired.error}`);
+    return repaired.ok ? effectiveLedger(bookId, roundId) : [];
+  }
+}
+
 export function effectiveLedger(bookId: string, roundId: string): EffectiveLedgerFinding[] {
   const byId = new Map<string, EffectiveLedgerFinding>();
   for (const event of readLedgerEvents(bookId, roundId)) {
@@ -239,7 +261,14 @@ function appendLedgerEvents(bookId: string, roundId: string, events: LedgerEvent
   withQcTransaction(bookId, roundId, "status", () => {
     const path = repairLedgerPath(bookId, roundId);
     mkdirSync(dirname(path), { recursive: true });
-    appendFileSync(path, events.map((e) => JSON.stringify(e)).join("\n") + "\n", "utf8");
+    // Atomic append: a bare appendFileSync KILLED mid-write leaves a torn partial line that then
+    // hard-throws (LedgerIntegrityError) across every later finalize/collect/publish read — a halt with
+    // manual-only recovery during the multi-hour unattended run. Read + concatenate + writeFileAtomic
+    // (temp + rename) makes the append all-or-nothing. The enclosing status-lock transaction serializes
+    // the read-modify-write so concurrent appends can't interleave or lose events.
+    const existing = existsSync(path) ? readFileSync(path, "utf8") : "";
+    const prefix = existing.length === 0 || existing.endsWith("\n") ? existing : existing + "\n";
+    writeFileAtomic(path, prefix + events.map((e) => JSON.stringify(e)).join("\n") + "\n");
   });
 }
 

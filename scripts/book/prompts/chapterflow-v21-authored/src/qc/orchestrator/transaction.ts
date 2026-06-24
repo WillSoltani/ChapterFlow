@@ -204,7 +204,16 @@ export function withQcTransaction<T>(
   activeTransactions.push(lease);
   try {
     const result = fn(lease);
-    commitQcTransaction(lease);
+    try {
+      commitQcTransaction(lease);
+    } catch {
+      // The operation SUCCEEDED; only the lock RELEASE failed because a successor reclaimed our lease
+      // (we exceeded DEFAULT_TTL_MS during a long finalize and a concurrent acquirer
+      // recoverStaleLock-renamed it). Releasing is moot — the successor owns the lock and runs its own
+      // commit — so do NOT mask a successful finalize with a lock-cleanup owner-mismatch throw. (Same
+      // tolerance the error-path below already applies; previously only the error path was guarded, so
+      // a TTL breach on the SUCCESS path surfaced as an infra failure of an otherwise-good round.)
+    }
     return result;
   } catch (err) {
     try {

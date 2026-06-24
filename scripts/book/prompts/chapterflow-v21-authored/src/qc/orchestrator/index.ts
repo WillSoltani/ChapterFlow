@@ -37,7 +37,7 @@ import {
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "./artifacts.js";
-import { appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { appendStatusEvents, effectiveLedger, effectiveLedgerResilient, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
 import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 import { currentSessionId } from "../sessionProvenance.js";
@@ -425,7 +425,7 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     // WS-1: combine the primary read with any matching tiebreak variants (t2/t3) so the
     // GREEN check uses the variance-smoothed per-axis median, not one noisy sample.
     const barReads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === chapterContentHash(ch));
-    const ledgerFindings = effectiveLedger(bookId, roundId).filter((f) => {
+    const ledgerFindings = effectiveLedgerResilient(bookId, roundId).filter((f) => {
       if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
       if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
       if (f.chapterNumber === ch.number) return true;
@@ -729,7 +729,7 @@ export function isSemanticFinding(sourceRoles: string[], repairClass: string, gl
 
 export function verifyRepair(bookId: string, roundId: string): { ok: boolean; summary: Record<string, unknown>; errors: string[] } {
   return withQcTransaction(bookId, roundId, "verify-repair", () => {
-  const findings = effectiveLedger(bookId, roundId);
+  const findings = effectiveLedgerResilient(bookId, roundId);
   const chapters = loadBookChapters(bookId);
   const byNumber = new Map(chapters.map((ch) => [ch.number, ch]));
   const edited = new Set<number>();
@@ -810,5 +810,5 @@ export function renderRepair(bookId: string, roundId: string): string {
 }
 
 export function ledgerStatus(bookId: string, roundId: string): { summary: Record<string, number>; findings: ReturnType<typeof effectiveLedger> } {
-  return { summary: ledgerStatusSummary(bookId, roundId), findings: effectiveLedger(bookId, roundId) };
+  return { summary: ledgerStatusSummary(bookId, roundId), findings: effectiveLedgerResilient(bookId, roundId) };
 }

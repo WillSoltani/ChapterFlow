@@ -26,7 +26,7 @@ import {
   submissionsDir,
   type BarReadVariant,
 } from "./artifacts.js";
-import { appendFindings, effectiveLedger, hasBlockingAuthority, ledgerStatusSummary, migrateRawSemanticLedgerFindings, supersedeMissingEffectiveFindings, type EffectiveLedgerFinding } from "./ledger.js";
+import { appendFindings, effectiveLedgerResilient, hasBlockingAuthority, ledgerStatusSummary, migrateRawSemanticLedgerFindings, supersedeMissingEffectiveFindings, type EffectiveLedgerFinding } from "./ledger.js";
 import { allFindingsFabricated, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromEvidenceDecision, type FinalizerRawEvidence } from "./finalizerFindings.js";
 import { writeRepairBrief } from "./repairBrief.js";
@@ -149,7 +149,7 @@ function injectedBarAxes(bar: NonNullable<ReturnType<typeof loadBarReadArtifact>
 }
 
 function ledgerFindingsForChapter(bookId: string, roundId: string, chapterNumber: number) {
-  return effectiveLedger(bookId, roundId).filter((f) => {
+  return effectiveLedgerResilient(bookId, roundId).filter((f) => {
     if (!hasBlockingAuthority(f)) return false;
     if (f.chapterNumber === chapterNumber) return true;
     return (f.chapters ?? []).includes(chapterNumber);
@@ -242,7 +242,7 @@ function confirmHasUnactionableDecision(confirm: NonNullable<ReturnType<typeof l
 }
 
 function activeLedgerFindingsForDecision(bookId: string, roundId: string, chapterNumber: number) {
-  return effectiveLedger(bookId, roundId).filter((f) => {
+  return effectiveLedgerResilient(bookId, roundId).filter((f) => {
     if (!hasBlockingAuthority(f)) return false;
     if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
     if (f.chapterNumber === chapterNumber) return true;
@@ -531,15 +531,23 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
         })
       : [];
     // A carried chapter inherited its bar/confirm axes (P2 above) from a FRESH prior PUBLISHABLE
-    // attestation whose OWN round already certified bar/confirm independence at THIS exact content
-    // hash. A sweep-only item-B confirming round — or any incremental round that gave this chapter no
-    // fresh bar/confirm cards — legitimately has no this-round bar/confirm session ids, so re-demanding
-    // them would falsely demote an already-certified, unchanged chapter to NEEDS_MORE_QC (→ a false
-    // INCOMPLETE halt). Trust the carry for bar/confirm provenance ONLY; author + the fresh
-    // cross-chapter sweep provenance, and EVERY collision check, still apply unchanged.
+    // attestation whose OWN round already certified author + bar/confirm independence at THIS exact
+    // content hash. A sweep-only item-B confirming round — or any incremental round that gave this
+    // chapter no fresh bar/confirm cards — legitimately has no this-round bar/confirm session ids; and
+    // a resumed run / fresh checkout can have lost its author-provenance sidecar (sidecars are not
+    // git-tracked). The carry was NOT authored or reviewed in THIS round, so this round's reviewers
+    // cannot be its author — author≠reviewer holds by construction. So re-demanding any of those
+    // MISSING ids would falsely demote an already-certified, unchanged chapter to NEEDS_MORE_QC (→ a
+    // false INCOMPLETE halt). Trust the carry for the MISSING author/bar/confirm ids ONLY; the fresh
+    // cross-chapter sweep provenance and EVERY collision check (a PRESENT author/reviewer that actually
+    // collides — caught below) still apply unchanged. The conductor also backfills absent author
+    // sidecars before finalize (autopilot startup), so this is the caller-agnostic floor for a
+    // manual/CI finalize of a carried chapter. (Promote independently re-checks reviewer provenance,
+    // so a legacy/uncertified prior attestation carried past here still cannot ship.)
+    const carriedExemptMissing = new Set(["missing_author", "missing_bar", "missing_confirm"]);
     const missingIndependentProvenance = provenanceFailures.filter((failure) =>
       failure.code.startsWith("missing_") &&
-      !(carriedPublishable && (failure.code === "missing_bar" || failure.code === "missing_confirm")),
+      !(carriedPublishable && carriedExemptMissing.has(failure.code)),
     );
     const collisionProvenance = provenanceFailures.find((failure) => !failure.code.startsWith("missing_"));
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":

@@ -14,7 +14,7 @@ import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
 import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
-import { publishAfterQc, formatPreflightChecklist } from "../src/qc/publishAfterQc.js";
+import { publishAfterQc, formatPreflightChecklist, hermeticSelfTestEnv } from "../src/qc/publishAfterQc.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const GREEN_BOOK = "zz-fixture-publish-green";
@@ -299,6 +299,27 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
     findings: [],
   });
 }
+
+// I3 regression: the publish self-test gate must run HERMETIC. The old code spread process.env and
+// deleted only 2 strict vars, so REQUIRE_KEYJUDGE / ENFORCE_MAJORS / STATE_DIR leaked in and could
+// nondeterministically block an otherwise-converged publish (the flake hit during the dopamine run).
+// hermeticSelfTestEnv strips EVERY CHAPTERFLOW_* flag and forces only no-api. This guards that strip
+// (it FAILS if reverted to the 2-var denylist — the keyjudge/majors/state-dir keys would survive).
+test("hermeticSelfTestEnv strips every CHAPTERFLOW_* operator flag and forces only no-api (I3)", () => {
+  const env = hermeticSelfTestEnv({
+    PATH: "/usr/bin:/bin", HOME: "/home/x", LANG: "en_US.UTF-8",
+    CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1", CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE: "1",
+    CHAPTERFLOW_REQUIRE_KEYJUDGE: "1", CHAPTERFLOW_ENFORCE_MAJORS: "1",
+    CHAPTERFLOW_STATE_DIR: "/elsewhere", CHAPTERFLOW_SESSION_ID: "leak-me",
+  });
+  assert.equal(env.CHAPTERFLOW_NO_API_CODEX_QC, "1", "no-api mode forced on for the slice");
+  for (const k of ["CHAPTERFLOW_REQUIRE_SOURCE_VERIFY", "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE", "CHAPTERFLOW_REQUIRE_KEYJUDGE", "CHAPTERFLOW_ENFORCE_MAJORS", "CHAPTERFLOW_STATE_DIR", "CHAPTERFLOW_SESSION_ID"]) {
+    assert.equal(env[k], undefined, `${k} must be stripped so a real-book operator flag cannot block the synthetic fixture slice`);
+  }
+  assert.equal(env.PATH, "/usr/bin:/bin", "non-CHAPTERFLOW env preserved so npx/tsx still run");
+  assert.equal(env.HOME, "/home/x");
+  assert.equal(env.LANG, "en_US.UTF-8");
+});
 
 function setupGreen(bookId: string): void {
   const chapter = clonedChapter(bookId);

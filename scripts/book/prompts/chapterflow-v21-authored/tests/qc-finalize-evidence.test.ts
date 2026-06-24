@@ -711,6 +711,45 @@ goldTest("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter with
   }
 });
 
+// I2 regression: a carried chapter with NO current-round bar/confirm ARTIFACTS (a sweep-only item-B
+// confirming round, or any incremental round that re-reviewed only siblings) falls into the P2 carry
+// path (checks.barRead === MISSING) and must rely on the carriedPublishable suppression of
+// missing_bar/missing_confirm. WITHOUT removing the artifacts (as setupCarriedChapter leaves them) the
+// suppression branch is never entered — so this is the test the suite was missing (a revert of the
+// suppression passes the old carry test but FAILS this one).
+goldTest("carried chapter with NO this-round bar/confirm artifacts still certifies PUBLISHABLE (I2 carriedPublishable suppression)", () => {
+  try {
+    cleanup();
+    setupCarriedChapter();
+    rmSync(barArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+    rmSync(confirmArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+    const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", `carried chapter must NOT false-demote on missing this-round bar/confirm: ${JSON.stringify(result.chapters[0])}`);
+    assert.equal(result.attestationsWritten, 0, "carried-publishable keeps its prior attestation (no re-attest)");
+  } finally {
+    cleanup();
+  }
+});
+
+// I5·W1 regression: the carried chapter ALSO lost its author-provenance sidecar (a resumed run or a
+// fresh checkout — sidecars are not git-tracked). Pre-fix this raised missing_author and demoted the
+// chapter to NEEDS_MORE_QC with no repair path → the conductor INCOMPLETE-halted a good book. The carry
+// was authored in a PRIOR round, so this round's reviewers can't be its author — author≠reviewer holds
+// and it must stay PUBLISHABLE.
+goldTest("carried chapter with NO author-provenance sidecar still certifies PUBLISHABLE (I5·W1 missing_author suppression)", () => {
+  try {
+    cleanup();
+    const chapter = setupCarriedChapter();
+    rmSync(barArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+    rmSync(confirmArtifactPath(GREEN_BOOK, ROUND, SOURCE_CHAPTER_NUMBER), { force: true });
+    rmSync(provenancePath(chapter.chapterId), { force: true }); // untracked sidecar lost on checkout/resume
+    const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", `carried chapter must NOT false-halt on missing_author: ${JSON.stringify(result.chapters[0])}`);
+  } finally {
+    cleanup();
+  }
+});
+
 goldTest("P2 GUARD (Fix 2): an UNGROUNDED sweep FAIL does NOT demote a carried chapter and keeps its high-water-mark", () => {
   try {
     cleanup();

@@ -5,7 +5,7 @@ import { dirname, resolve } from "path";
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { collectQcRound } from "../src/qc/orchestrator/index.js";
-import { appendFindingsFromSubmission, effectiveLedger, quarantineMalformedLedger, readLedgerEvents } from "../src/qc/orchestrator/ledger.js";
+import { appendFindingsFromSubmission, effectiveLedger, effectiveLedgerResilient, quarantineMalformedLedger, readLedgerEvents } from "../src/qc/orchestrator/ledger.js";
 import { orchestratorRoundDir, repairLedgerPath, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
 import { sweepRecordPath } from "../src/qc/sweep.js";
 import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js";
@@ -132,6 +132,29 @@ test("repair ledger readers fail closed and report the malformed JSONL line", ()
       (err: unknown) => err instanceof Error && /repair-ledger\.jsonl:2/.test(err.message) && /malformed/i.test(err.message),
       "a corrupt ledger byte must be a loud integrity failure with the exact line number",
     );
+  } finally {
+    cleanup();
+  }
+});
+
+test("effectiveLedgerResilient AUTO-quarantines a malformed ledger instead of throwing — the unattended finalize/publish path self-heals instead of wedging (I5·W2)", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({ schemaVersion: "qc-repair-ledger-event-v1", event: "status", findingId: "qcf-x", bookId: BOOK, roundId: ROUND, status: "still_open", reason: "valid first line", updatedAt: "2026-06-23T00:00:00.000Z" }),
+      "{ torn partial line from a killed append",
+    ].join("\n") + "\n", "utf8");
+    // The strict reader (supervised audit path) still throws — corruption stays LOUD there.
+    assert.throws(() => effectiveLedger(BOOK, ROUND), /malformed/i);
+    // The resilient reader (unattended path) self-heals: no throw, the corrupt line is quarantined.
+    let msg = "";
+    const findings = effectiveLedgerResilient(BOOK, ROUND, (m) => { msg = m; });
+    assert.ok(Array.isArray(findings), "resilient reader returns events instead of throwing");
+    assert.match(msg, /quarantined/i, "the malformed line is reported as quarantined (raw line preserved in a sibling .quarantine file)");
+    // The ledger is now clean, so a strict re-read no longer throws — the wedge is gone.
+    assert.doesNotThrow(() => effectiveLedger(BOOK, ROUND), "ledger self-healed");
   } finally {
     cleanup();
   }

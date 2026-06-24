@@ -24,7 +24,7 @@ import { evaluateSourceRealityPolicy } from "./sourceRealityPolicy.js";
 import { checkSweep } from "./sweep.js";
 import { resolveBookIdentifier } from "./auto/resolveBook.js";
 import { finalizeQcRound } from "./orchestrator/finalize.js";
-import { effectiveLedger } from "./orchestrator/ledger.js";
+import { effectiveLedgerResilient } from "./orchestrator/ledger.js";
 import {
   evidenceMatrixPath,
   orchestratorRoundDir,
@@ -128,7 +128,7 @@ function safeRm(path: string): boolean {
 }
 
 function ledgerHasOpenFindings(bookId: string, roundId: string): boolean {
-  return effectiveLedger(bookId, roundId).some((f) =>
+  return effectiveLedgerResilient(bookId, roundId).some((f) =>
     f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun",
   );
 }
@@ -255,24 +255,32 @@ export function dirtySourceOutsidePlan(runner: Runner, plan: string[]): string[]
 
 function runPublishTests(runner: Runner): void {
   runner("npx", ["tsc", "-p", ".", "--noEmit"], { cwd: PIPELINE_DIR, timeoutMs: 300_000 });
-  // The self-test validates the pipeline CODE, on synthetic fixtures — it must run in a
-  // HERMETIC env. The operator's book-publish flags (REQUIRE_SOURCE_VERIFY /
-  // ENFORCE_SESSION_INDEPENDENCE) gate the REAL book's preflight, which has already
-  // passed; leaking them here imposes real-book requirements on fixtures. The
-  // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY strip in particular keeps a fixture with NO source-v2
-  // content (and no record) from being held to the strengthened "record required even with
-  // nothing to verify" bar. (A source-v2 fixture like zz-fixture-publish-green now ships its own
-  // VERIFIED source-verify record — the source-reality invariant is content-driven, not
-  // env-driven, so that fixture passes regardless of this strip.) Tests that exercise the strict
-  // flags set them themselves; strip the ambient values so the self-test is deterministic.
-  const env: NodeJS.ProcessEnv = { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1" };
-  delete env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
-  delete env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+  // The self-test validates the pipeline CODE on synthetic fixtures, so it must run in a HERMETIC env.
+  // Strip EVERY CHAPTERFLOW_* operator flag (REQUIRE_SOURCE_VERIFY / ENFORCE_SESSION_INDEPENDENCE /
+  // REQUIRE_KEYJUDGE / ENFORCE_MAJORS / STATE_DIR / SESSION_ID / …): each imposes a REAL-book
+  // requirement on a fixture that doesn't carry it and can nondeterministically block an
+  // otherwise-converged publish (the REQUIRE_SOURCE_VERIFY ordeal the old two-var strip only partly
+  // patched; REQUIRE_KEYJUDGE is the same class — a green fixture writes no keyjudge record). An
+  // allowlist beats the old denylist: a future strict var can't reopen the leak, and we stop fighting
+  // ENFORCE_SESSION_INDEPENDENCE which the autopilot itself force-sets. Tests that need a strict flag
+  // set it themselves; only no-api mode is forced on. Non-CHAPTERFLOW env (PATH/HOME/…) is preserved so
+  // npx/tsx still run.
   runner("npx", ["tsx", "tests/run.ts", "qc-orchestrator", "qc-finalize", "no-api-promote", "qc-auto", "qc-submission", "publish-after-qc"], {
     cwd: PIPELINE_DIR,
-    env,
+    env: hermeticSelfTestEnv(),
     timeoutMs: 600_000,
   });
+}
+
+/** Build the HERMETIC child env for the self-test slice: strip EVERY CHAPTERFLOW_* operator flag (an
+ *  allowlist beats the old delete-two-vars denylist — a future strict var can't reopen the leak) and
+ *  force only CHAPTERFLOW_NO_API_CODEX_QC=1, preserving all non-CHAPTERFLOW env (PATH/HOME/…) so npx/tsx
+ *  still run. Exported so the regression test can assert the strip without spawning the slice. */
+export function hermeticSelfTestEnv(base: NodeJS.ProcessEnv = process.env): NodeJS.ProcessEnv {
+  const env: NodeJS.ProcessEnv = { ...base };
+  for (const k of Object.keys(env)) if (k.startsWith("CHAPTERFLOW_")) delete env[k];
+  env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+  return env;
 }
 
 function roundExists(bookId: string, roundId: string): boolean {
@@ -663,7 +671,9 @@ function stageAndMaybeCommit(args: {
   }
   git(["diff", "--check"], args.runner);
   git(["diff", "--cached", "--check"], args.runner);
-  runPublishTests(args.runner);
+  // (The self-test gate now runs UP FRONT in publishAfterQc, before promote/register/cleanup mutate
+  // anything — see the "Gate BEFORE any on-disk mutation" block — so a gate failure can no longer
+  // leave a half-published working tree.)
   const msg = [
     `Publish ${args.bookId} v21 package`,
     "",
@@ -752,6 +762,15 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   }
 
   let finalized;
+  // The non-dry-run re-finalize stamps attestations (attest=true), which REQUIRES a
+  // CHAPTERFLOW_SESSION_ID or finalize SKIPS the write and pushes an error → ok:false below (the I1
+  // wedge: the conductor's publish subprocess — and a bare `publish-after-qc` CLI run — inherit no
+  // session id). Self-supply a DISTINCT finalizer id when none is set so the (re-)attest lands;
+  // author≠reviewer still holds (this id ≠ any author/reviewer id). Restore so we never leak it.
+  const priorPublishSession = process.env.CHAPTERFLOW_SESSION_ID;
+  if (!options.dryRun && !priorPublishSession) {
+    process.env.CHAPTERFLOW_SESSION_ID = `publish-finalize:${bookId}-${roundId}`;
+  }
   try {
     // A --dry-run preflight must be READ-ONLY: compute the verdict from current
     // QC state without re-finalizing/re-attesting (which would overwrite a fresh
@@ -759,6 +778,8 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
     finalized = finalizeQcRound(bookId, roundId, { attest: !options.dryRun, dryRun: options.dryRun });
   } catch (err) {
     return { ok: false, bookId, roundId, errors: [`QC finalization failed: ${(err as Error).message}`], warnings, next: [repairPrompt] };
+  } finally {
+    if (!options.dryRun && !priorPublishSession) delete process.env.CHAPTERFLOW_SESSION_ID;
   }
   if (finalized.errors.length) errors.push(...finalized.errors.map((e) => `finalize: ${e}`));
   if (!finalized.allPublishable || finalized.incomplete || finalized.repairRequired) {
@@ -821,6 +842,19 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
     next.push(`publish: CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts publish-after-qc ${JSON.stringify(bookId)} --round ${roundId} --title ${JSON.stringify(meta.title)} --author ${JSON.stringify(meta.author)}`);
     if (options.commit || options.push) next.push("add --commit --push after reviewing the dry run");
     return { ok: true, bookId, roundId, packagePath, registeredFiles, cleaned, preserved, staged, pushed: false, errors, warnings, checks: preflightChecks, next };
+  }
+
+  // Gate BEFORE any on-disk mutation: run the self-test (tsc + the publish test slice) up front so a
+  // failure aborts with the working tree UNTOUCHED — instead of after promote/register/cleanup have
+  // already half-published (new package, regenerated registries, deleted round artifacts) with no
+  // rollback. Only when actually committing (a dry-run already returned; a no-commit generate doesn't
+  // gate). This also avoids the prior flake where the slice ran AGAINST the just-written package/catalog.
+  if (options.commit === true) {
+    try {
+      runPublishTests(runner);
+    } catch (err) {
+      return { ok: false, bookId, roundId, errors: [`pre-publish self-test failed (no mutation performed): ${(err as Error).message}`], warnings, next };
+    }
   }
 
   try {

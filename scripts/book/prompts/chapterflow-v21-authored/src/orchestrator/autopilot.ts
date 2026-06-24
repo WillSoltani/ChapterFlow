@@ -1479,7 +1479,15 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
   // go-ahead, never a gate. This commits the package to main; it does NOT deploy to live
   // users (that stays a separate manual step), so a bad publish is reversible via git
   // before the next deploy.
-  const pub = await deps.runVerb(["publish-after-qc", bookId, "--round", roundId, "--commit", "--push"]);
+  // publish-after-qc re-finalizes the round in-process with attest=true. Like the conductor's own
+  // qc-orchestrate --finalize, that write needs a CHAPTERFLOW_SESSION_ID or it skips the attestation
+  // and surfaces an error → ok:false → this HALT (the I1 wedge, single-round-converge variant). Pass a
+  // DISTINCT finalizer id so the re-attest lands and author≠reviewer still holds. (publish-after-qc
+  // also self-supplies one if none is inherited — this makes the conductor's intent explicit.)
+  const pub = await deps.runVerb(
+    ["publish-after-qc", bookId, "--round", roundId, "--commit", "--push"],
+    { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("publish-finalize") },
+  );
   if (pub.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-after-qc failed (exit ${pub.code}): ${(pub.stderr || pub.stdout).slice(0, 300)}`);
   return {
     status: "published",

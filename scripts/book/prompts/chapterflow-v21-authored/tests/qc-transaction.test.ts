@@ -67,6 +67,26 @@ function sweepSubmissionPath(): string {
 
 // ── Lease behavior (TTL recovery + ownerToken-gated release) ──────────────────
 
+test("withQcTransaction SUCCESS path tolerates a successor reclaiming the lock mid-operation (TTL breach) — a slow finalize is not masked by a lock-cleanup throw (I5·W3)", () => {
+  try {
+    cleanup();
+    let ran = false;
+    const result = withQcTransaction(BOOK, ROUND, "finalize", (lease) => {
+      ran = true;
+      // Simulate a successor that recoverStaleLock-renamed our lease after we exceeded DEFAULT_TTL_MS:
+      // rewrite the lock with a DIFFERENT ownerToken so our success-path commit cannot match it.
+      const rec = JSON.parse(readFileSync(lease.lockPath, "utf8"));
+      writeFileSync(lease.lockPath, JSON.stringify({ ...rec, ownerToken: "successor-token" }), "utf8");
+      return "finalize-result";
+    });
+    assert.equal(ran, true);
+    assert.equal(result, "finalize-result", "the operation result is returned even though the lock was reclaimed (success-path commit owner-mismatch swallowed, not propagated)");
+  } finally {
+    rmSync(qcTransactionLockPath(BOOK, ROUND), { force: true });
+    cleanup();
+  }
+});
+
 test("QC transaction release is gated on the on-disk owner token", () => {
   try {
     cleanup();
