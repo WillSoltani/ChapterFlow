@@ -172,6 +172,15 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      // App writers stamp a numeric `ttl` (epoch seconds) on the high-volume,
+      // append-only analytics EVENT rows only (`putEvent` in analytics-repo.ts).
+      // The durable per-user analytics SNAPSHOT row is written via UpdateCommand
+      // and never carries `ttl`, so it is NOT reaped — only the unbounded event
+      // stream ages out (default 18 months). Enabling TTL on an existing table is
+      // a non-destructive online operation; existing rows without `ttl` are never
+      // reaped (we deliberately do NOT backfill — that would mass-delete history).
+      // See docs/DATA-RETENTION.md for the full retention matrix.
+      timeToLiveAttribute: "ttl",
       pointInTimeRecoverySpecification: {
         pointInTimeRecoveryEnabled: props.pointInTimeRecovery,
       },

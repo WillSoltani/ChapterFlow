@@ -60,6 +60,8 @@ import {
   accountStatusSk,
   accountStatusChangeSk,
   shareEventSk,
+  ttlEpochSeconds,
+  RETENTION_DAYS_18_MONTHS,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -2036,6 +2038,7 @@ export async function recordBillingEvent(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (finance audit: refunds & disputes)
           PK: billingEventPk(),
           SK: billingEventSk(skKind, e.createdAt, e.eventId),
           entity: "BOOK_BILLING_EVENT",
@@ -2739,6 +2742,7 @@ export async function recordRiskEvent(
           Put: {
             TableName: tableName,
             Item: {
+              // no TTL — retained for legal/fraud/compliance (abuse/fraud investigation)
               PK: riskEventPk(event.scope, event.fingerprint),
               SK: riskEventSk(event.createdAt, event.eventType, event.userId),
               entity: "BOOK_RISK_EVENT",
@@ -2877,6 +2881,7 @@ export async function setAccountStatus(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (immutable account-lifecycle audit)
           PK: bookUserPk(userId),
           SK: accountStatusChangeSk(now),
           entity: "BOOK_ACCOUNT_STATUS_CHANGE",
@@ -3755,6 +3760,12 @@ export async function putShareEvent(
         SK: shareEventSk(event.createdAt, event.shareId),
         entity: "BOOK_USER_SHARE_EVENT",
         ...event,
+        // Data retention (#16): share events are high-volume engagement telemetry
+        // with no compliance value — stamp a DynamoDB TTL (epoch SECONDS) so they
+        // age out after ~18 months. Written to the main app table (its `ttl`
+        // attribute is enabled). Placed AFTER the spread so a future `event` field
+        // can never clobber it. See retentionPolicyFor + docs/DATA-RETENTION.md.
+        ttl: ttlEpochSeconds(RETENTION_DAYS_18_MONTHS),
       },
     }),
   );

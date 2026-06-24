@@ -3,7 +3,7 @@ import "server-only";
 import { GetCommand, PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError } from "./errors";
-import { nowIso, opsFailurePk, opsFailureSk } from "./keys";
+import { nowIso, opsFailurePk, opsFailureSk, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { putOpsMetric } from "./cloudwatch-metrics";
 import type { OpsFailureItem, OpsFailureKind } from "./types";
 
@@ -76,6 +76,12 @@ export async function recordOpsFailure(
           // Cap the message so a verbose stack can't bloat the item.
           errorMessage: input.errorMessage?.slice(0, 1000),
           createdAt,
+          // Data retention (#16): ops-failure rows are high-volume and have no
+          // compliance value once acted on, so stamp a DynamoDB TTL (epoch
+          // SECONDS) to age them out after ~18 months. Written to the main app
+          // table, whose `ttl` attribute is already enabled. NOT a finance/fraud
+          // record — see retentionPolicyFor + docs/DATA-RETENTION.md.
+          ttl: ttlEpochSeconds(RETENTION_DAYS_18_MONTHS),
         },
       })
     );

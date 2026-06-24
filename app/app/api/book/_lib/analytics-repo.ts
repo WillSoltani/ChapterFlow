@@ -39,7 +39,7 @@
 
 import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { nowIso } from "./keys";
+import { nowIso, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 
 const SCHEMA_V = "1";
 
@@ -49,6 +49,11 @@ function pk(userId: string): string {
   return `USER#${userId}`;
 }
 
+// The durable per-user analytics snapshot (current rollup state, not an event).
+// no TTL — every snapshot write below uses UpdateCommand (SET/ADD) and NEVER
+// sets `ttl`, so DynamoDB's TTL sweep can't reap it; only the append-only EVENT
+// rows from putEvent() carry a ttl and age out (#16, retentionPolicyFor =
+// BOOK_ANALYTICS_SNAPSHOT → ttl:false). See docs/DATA-RETENTION.md.
 const SNAPSHOT_SK = "SNAPSHOT";
 
 function eventSk(iso: string, eventType: string): string {
@@ -76,6 +81,12 @@ async function putEvent(
     // GSI2 used on snapshots only; on events it's informational
     plan,
     occurredAt: iso,
+    // Data retention (#16): these append-only EVENT rows are the high-volume,
+    // non-compliance analytics stream — stamp a DynamoDB TTL (epoch SECONDS) so
+    // they age out after ~18 months. The durable per-user SNAPSHOT row is written
+    // via UpdateCommand (never through putEvent), so it carries NO `ttl` and is
+    // never reaped — see retentionPolicyFor + docs/DATA-RETENTION.md.
+    ttl: ttlEpochSeconds(RETENTION_DAYS_18_MONTHS),
   };
 
   // Merge payload, omitting undefined values

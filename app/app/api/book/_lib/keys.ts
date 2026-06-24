@@ -555,3 +555,86 @@ export function emailSuppressionPk(email: string): string {
 export function emailSuppressionSk(): string {
   return "SUPPRESSION";
 }
+
+// ── Data retention / DynamoDB TTL (#16) ───────────────────────────────────────
+//
+// DynamoDB's TTL attribute MUST be a Number holding the expiry as epoch SECONDS
+// (NOT milliseconds). A row is eligible for deletion once that value is in the
+// past; the actual delete is asynchronous and can lag by up to ~48h, so TTL is a
+// best-effort floor on lifetime, never a precise/secure delete. We stamp it only
+// on HIGH-VOLUME, NON-compliance record classes; durable finance/fraud/legal
+// records carry NO ttl (see retentionPolicyFor + docs/DATA-RETENTION.md).
+
+/** ~30.4 days per month → days for a month-denominated retention period. */
+const DAYS_PER_MONTH = 365 / 12;
+
+/** Default retention for high-volume append-only classes (analytics/ops/share). */
+export const RETENTION_DAYS_18_MONTHS = Math.round(18 * DAYS_PER_MONTH);
+
+/**
+ * Compute a DynamoDB TTL value: the epoch-SECONDS instant `retentionDays` from
+ * `nowMs` (default: now). Pure and dependency-free so it can be unit tested and
+ * reused by any writer. Returns whole seconds (DynamoDB ignores sub-second
+ * precision); never returns milliseconds.
+ */
+export function ttlEpochSeconds(retentionDays: number, nowMs: number = Date.now()): number {
+  return Math.floor(nowMs / 1000) + Math.round(retentionDays * 86400);
+}
+
+/**
+ * Single source of truth for "does this entity class get a DynamoDB TTL?".
+ *
+ * `true`  → high-volume / non-compliance → stamp `ttl` at write time, ages out.
+ * `false` → durable / legal / fraud / compliance → MUST NEVER carry a `ttl`
+ *           (a stray ttl would silently delete finance/fraud/audit history).
+ *
+ * This table is the guard a future writer is tested against: adding a new
+ * entity here forces an explicit retention decision rather than a silent default.
+ */
+export function retentionPolicyFor(
+  entity: string,
+): { ttl: boolean; retentionDays?: number; reason: string } {
+  switch (entity) {
+    // ── High-volume, append-only EVENT classes → TTL'd ──────────────────────
+    case "BOOK_ANALYTICS_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "append-only analytics event stream; unbounded growth",
+      };
+    case "BOOK_OPS_FAILURE":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "operational-failure log; high-volume, no compliance value once resolved",
+      };
+    case "BOOK_USER_SHARE_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "share-card event stream; high-volume engagement telemetry",
+      };
+
+    // ── Durable / legal / fraud / compliance classes → NEVER TTL'd ──────────
+    case "BOOK_ANALYTICS_SNAPSHOT":
+      return { ttl: false, reason: "durable per-user analytics snapshot (current state, not an event)" };
+    case "BOOK_BILLING_EVENT":
+      return { ttl: false, reason: "retained — legal/tax (refunds, disputes, finance reports)" };
+    case "BOOK_RISK_EVENT":
+      return { ttl: false, reason: "retained — fraud/abuse investigation" };
+    case "BOOK_ACCOUNT_STATUS_CHANGE":
+      return { ttl: false, reason: "retained — immutable account-lifecycle audit trail" };
+    case "BOOK_ERASURE_LOG":
+      return { ttl: false, reason: "retained — permanent GDPR erasure audit (proves an erasure occurred)" };
+    case "BOOK_STRIPE_WEBHOOK_EVENT":
+      // The webhook idempotency marker owns its OWN ttl lifecycle in #10
+      // (PROCESSING leases carry a ttl; the DONE flip REMOVEs it so DONE markers
+      // are retained forever). Retention (#16) must never stamp/alter it.
+      return { ttl: false, reason: "owned by #10 webhook-claim lease; do not stamp here" };
+
+    default:
+      // Unknown class: default to NO ttl (fail safe — never silently expire an
+      // entity nobody has classified). Add a case above to make it eligible.
+      return { ttl: false, reason: "unclassified — defaults to durable (no ttl)" };
+  }
+}
