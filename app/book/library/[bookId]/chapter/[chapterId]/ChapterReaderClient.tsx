@@ -950,24 +950,46 @@ export function ChapterReaderClient({
   ) {
     // Branch the copy on the failed content read's HTTP status (#1). In prod the
     // local fallback is gated off, so a real outage reaches here with a status:
-    // 402/403 = access blocked (re-auth / paywall / locked), 404 = chapter not
-    // found, everything else (5xx / null network error) = a transient "try
-    // again". Only the transient case offers the retry button; access/not-found
-    // are not fixed by a refetch, so we point the user back to the book.
+    // 401 = expired/invalid token (re-authenticate), 402/403 = access blocked
+    // (paywall / locked), 404 = chapter not found, everything else (5xx / null
+    // network error) = a transient "try again". Only the transient case offers
+    // the retry button; access/not-found are not fixed by a refetch, so we point
+    // the user back to the book.
+    //
+    // C9: a 401 is special — the chapter GET runs requireActiveBookUser() →
+    // requireUser(), and middleware does NOT verify the JWT, so a server-side
+    // expired/invalid token reaches the route and 401s here. The retry button can
+    // never fix that; the user must re-authenticate. Route them to /auth/login
+    // with a RELATIVE returnTo of the current chapter URL (the codebase invariant
+    // — middleware/login only honor relative returnTo paths) so the deep link
+    // survives the bounce and they land back on this chapter after signing in.
+    const isAuthExpired = contentStatus === 401;
     const isBlocked = contentStatus === 402 || contentStatus === 403;
     const isNotFound = contentStatus === 404;
-    const CardIcon = isBlocked ? BookLock : isNotFound ? FileQuestion : CloudOff;
-    const cardHeading = isBlocked
-      ? "You don't have access to this chapter"
-      : isNotFound
-        ? "We couldn't find this chapter"
-        : "Couldn't load this chapter";
-    const cardBody = isBlocked
-      ? "Your access to this chapter couldn't be confirmed. It may be locked, or your session may have expired — head back to the book to continue."
-      : isNotFound
-        ? "This chapter doesn't seem to exist anymore. It may have been moved or unpublished."
-        : "We hit a problem loading this chapter's content. Check your connection and try again.";
-    const showRetry = !isBlocked && !isNotFound;
+    const search = searchParams.toString();
+    const reauthReturnTo = encodeURIComponent(`${pathname}${search ? `?${search}` : ""}`);
+    const CardIcon = isAuthExpired
+      ? BookLock
+      : isBlocked
+        ? BookLock
+        : isNotFound
+          ? FileQuestion
+          : CloudOff;
+    const cardHeading = isAuthExpired
+      ? "Your session has expired"
+      : isBlocked
+        ? "You don't have access to this chapter"
+        : isNotFound
+          ? "We couldn't find this chapter"
+          : "Couldn't load this chapter";
+    const cardBody = isAuthExpired
+      ? "You've been signed out. Sign in again to pick up right where you left off."
+      : isBlocked
+        ? "Your access to this chapter couldn't be confirmed. It may be locked, or your session may have expired — head back to the book to continue."
+        : isNotFound
+          ? "This chapter doesn't seem to exist anymore. It may have been moved or unpublished."
+          : "We hit a problem loading this chapter's content. Check your connection and try again.";
+    const showRetry = !isAuthExpired && !isBlocked && !isNotFound;
     return (
       <main className="relative min-h-screen overflow-x-hidden">
         <ChapterBackgroundOrbs />
@@ -977,6 +999,14 @@ export function ChapterReaderClient({
             <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">{cardHeading}</h1>
             <p className="mt-2 text-(--cr-text-secondary)">{cardBody}</p>
             <div className="mt-5 flex flex-col items-center gap-3">
+              {isAuthExpired && (
+                <a
+                  href={`/auth/login?returnTo=${reauthReturnTo}`}
+                  className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+                >
+                  Sign in to continue
+                </a>
+              )}
               {showRetry && (
                 <button
                   type="button"
