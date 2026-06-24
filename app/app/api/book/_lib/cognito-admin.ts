@@ -3,6 +3,7 @@ import "server-only";
 import {
   CognitoIdentityProviderClient,
   AdminUserGlobalSignOutCommand,
+  ListUsersCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
 import { REGION } from "@/app/app/api/_lib/aws";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
@@ -30,8 +31,12 @@ export function getCognitoClient(): CognitoIdentityProviderClient {
  * self-deletes or deactivates. (Cognito access/ID tokens already issued stay
  * valid until their short ~1h expiry; refresh-driven renewal is what this kills.)
  *
- * `userId` is the Cognito `sub`. AdminUserGlobalSignOut's `Username` accepts the
- * sub for a standard user pool.
+ * `userId` is the Cognito `sub`. The `sub` is NOT a valid `Username` for a
+ * federated user (Cognito stores those as `Google_<id>` / `SignInWithApple_<id>`),
+ * so we resolve the real `Username` via a `sub` filter (mirroring
+ * account-erasure.ts) before the sign-out — otherwise the call throws
+ * `UserNotFoundException` for every federated account and the revoke silently
+ * no-ops, defeating the whole point of Tier 2.
  *
  * This is BEST-EFFORT and MUST NOT fail the calling flow: the account-status
  * write (the authoritative soft-delete/deactivate) has already committed before
@@ -51,8 +56,23 @@ export async function revokeUserSessions(
   }
 
   try {
-    await getCognitoClient().send(
-      new AdminUserGlobalSignOutCommand({ UserPoolId: userPoolId, Username: userId })
+    const cognito = getCognitoClient();
+    // Resolve the real Username from the sub. The sub is interpolated into a
+    // SCIM filter, so strip anything outside the sub charset to prevent filter
+    // injection (same sanitization as account-erasure.ts).
+    const safeSub = userId.replace(/[^\w:.@-]/g, "");
+    const listed = await cognito.send(
+      new ListUsersCommand({ UserPoolId: userPoolId, Filter: `sub = "${safeSub}"`, Limit: 1 })
+    );
+    const username = listed.Users?.[0]?.Username;
+    if (!username) {
+      // No matching user (already deleted, or a brand-new race). Nothing to
+      // revoke; report for operator follow-up but don't fail the flow.
+      await onError?.(new Error("No matching Cognito user for this sub — sessions NOT revoked."));
+      return false;
+    }
+    await cognito.send(
+      new AdminUserGlobalSignOutCommand({ UserPoolId: userPoolId, Username: username })
     );
     return true;
   } catch (error) {
