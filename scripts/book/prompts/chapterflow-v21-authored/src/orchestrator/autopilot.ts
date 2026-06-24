@@ -439,6 +439,18 @@ function defaultChapterHashes(bookId: string): Record<string, string> {
   return out;
 }
 
+/** Content hash of a single on-disk chapter, for binding author provenance to the
+ *  content a writer/repair session actually produced. Returns undefined on any read
+ *  failure so the best-effort provenance stamp degrades safely (never sinks a phase). */
+function chapterContentHashByNumber(bookId: string, n: number): string | undefined {
+  try {
+    const ch = loadBookChapters(bookId).find((c) => c.number === n);
+    return ch ? chapterContentHash(ch) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /** Fail-safe: any read error (no chapters dir, half-written chapter) → false, i.e. a
  *  full (non-incremental) round. We never force a carry on uncertain state. */
 function defaultAnyCarryable(bookId: string): boolean {
@@ -937,7 +949,13 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     // never runs → the headline independence check silently no-op'd). Best-effort; a sidecar
     // write failure must never sink the write phase. (Reviewers get DISTINCT session ids by
     // construction, so this never false-collides.)
-    if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, writerSessionId); } catch { /* best-effort */ } }
+    // Bind to the authored content hash: provenance is create-once per content, so a
+    // no-op writer that reproduced identical content can never overwrite a prior author
+    // (the conflict throws and is swallowed here, preserving the real author).
+    if (n != null) {
+      try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, writerSessionId, chapterContentHashByNumber(bookId, n)); }
+      catch (e) { deps.log(`[autopilot] write ch${n}: author provenance unchanged (${(e as Error).message.split(".")[0]})`); }
+    }
     return r;
   });
 }
@@ -1113,9 +1131,13 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const repairSessionId = deps.mkSessionId(sid);
       const rr = await spawnAndLog(bookId, { task, sessionId: repairSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!rr.ok) deps.log(`[autopilot] repair session ${sid} exited ${rr.exitCode}`);
-      // A repair RE-AUTHORS the chapter → update author provenance to this session, so the
-      // author≠reviewer invariant tracks the latest authoring session (best-effort).
-      if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, repairSessionId); } catch { /* best-effort */ } }
+      // A repair that actually CHANGES the chapter re-authors it → author provenance moves
+      // to this session (content-bound transition). A no-op repair leaves content identical,
+      // so the create-once guard throws and the prior author is preserved (best-effort).
+      if (n != null) {
+        try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, repairSessionId, chapterContentHashByNumber(bookId, n)); }
+        catch (e) { deps.log(`[autopilot] repair ch${n}: author provenance unchanged (${(e as Error).message.split(".")[0]})`); }
+      }
     }
     const postHashes = deps.chapterHashes(bookId);
     const collateral = Object.keys(postHashes).filter((n) => !flagged.has(Number(n)) && preHashes[n] !== undefined && preHashes[n] !== postHashes[n]);

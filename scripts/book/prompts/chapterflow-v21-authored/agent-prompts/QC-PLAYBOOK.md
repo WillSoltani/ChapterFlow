@@ -19,6 +19,17 @@ different humans did the work. Fresh no-API QC requires recorded author/reviewer
 session provenance; legacy/unknown provenance remains readable but cannot certify
 publishability.
 
+Author provenance identifies the session that AUTHORED the current chapter content,
+not one that accepted or reused a cache. It is **create-once per content hash**
+(`state/provenance/<chapterId>.json`): re-stamping IDENTICAL content under a different
+session is refused loudly, and only a deliberate re-authoring that CHANGES the content
+may replace an existing author (the old→new transition is logged). A session that only
+ACCEPTS a cached chapter is recorded — if at all — in a separate, append-only
+cache-acceptance audit log (`state/cache-acceptance/<chapterId>.jsonl`) and is **never**
+read as author evidence. A chapter with no author provenance stays legacy/unknown; cache
+acceptance must never invent it, so an accepter can never masquerade as the author and
+defeat the author≠reviewer independence check.
+
 
 > **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,
 > Claude QC sessions, every CLI command — runs in `~/ChapterFlow-books`

@@ -13,26 +13,102 @@
  * those are classified as legacy/unknown and cannot satisfy a new independent
  * certification requirement.
  *
+ * AUTHOR vs ACCEPTER. Author provenance must identify the session that AUTHORED the
+ * current chapter content — never a session that merely accepted, reused, or ingested
+ * a cached chapter. v2 records bind to the authored content hash so provenance is
+ * create-once per content: an identical-content re-stamp under a DIFFERENT session is
+ * refused loudly (AuthorProvenanceConflictError), and only a deliberate re-authoring
+ * that CHANGES the content may replace an existing author (logging the old→new
+ * transition). A cache accepter is recorded — if at all — as a separate, append-only
+ * cache-acceptance audit event (state/cache-acceptance/<chapterId>.jsonl) that is
+ * NEVER read as author evidence. Absence of author provenance stays legacy/unknown;
+ * accepting a cache must never invent it.
+ *
  * Session id source: CHAPTERFLOW_SESSION_ID. A genuinely fresh QC session sets a
  * different id (or none); the same session authoring AND grading sets the same id,
  * which is exactly the violation this catches.
  */
 
-import { existsSync, mkdirSync, readFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 export const PROVENANCE_DIR = resolve(CANONICAL_STATE, "provenance");
+/** Append-only audit log of cache acceptances, kept STRICTLY SEPARATE from author
+ *  provenance. A session that only accepts a cached chapter is not its author, so
+ *  its evidence must never be readable as author evidence (it lives in a different
+ *  directory with a different schema and is loaded by a different function). */
+export const CACHE_ACCEPTANCE_DIR = resolve(CANONICAL_STATE, "cache-acceptance");
 export const SESSION_INDEPENDENCE_ENV = "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE";
 
+/**
+ * Author provenance identifies the session that AUTHORED the current chapter
+ * content — never a session that merely accepted, reused, or ingested a cache.
+ *
+ * v2 binds the record to the authored content hash so provenance is create-once
+ * per content: a re-stamp with IDENTICAL content under a DIFFERENT session is
+ * refused (loud conflict), and only a deliberate re-authoring that CHANGES the
+ * content may replace an existing author (recording the old→new transition).
+ *
+ * v1 records (no `contentHash`) predate content binding; they remain readable and
+ * their `authorSessionId` still counts for independence, but they are not content-
+ * bound, so a genuine authoring caller that supplies a new hash upgrades them.
+ */
 export type AuthorProvenance = {
-  schemaVersion: "author-provenance-v1";
+  schemaVersion: "author-provenance-v1" | "author-provenance-v2";
   chapterId: string;
   authorSessionId: string;
   stampedAt: string;
+  /** v2: chapterContentHash() of the authored content this record attests. */
+  contentHash?: string;
+  /** v2: content hash this record's authoring moved away from (re-authoring audit). */
+  previousContentHash?: string;
+  /** v2: the author session this record replaced (re-authoring/upgrade audit). */
+  previousAuthorSessionId?: string;
 };
+
+/** A cache acceptance is an audit event, NOT author evidence. */
+export type CacheAcceptanceEvent = {
+  schemaVersion: "cache-acceptance-v1";
+  chapterId: string;
+  cacheAcceptedBySessionId: string;
+  acceptedAt: string;
+  /** Content hash of the accepted output (chapterContentHash). */
+  contentHash: string;
+  /** Hash of the stage-cache manifest that blessed the reuse. */
+  cacheManifestHash: string;
+};
+
+/** Thrown when a session tries to overwrite author provenance for content it did
+ *  not author. A cache accepter or reviewer is not an author; only a deliberate
+ *  re-authoring that CHANGES the content may replace an existing author record. */
+export class AuthorProvenanceConflictError extends Error {
+  readonly chapterId: string;
+  readonly existingAuthorSessionId: string;
+  readonly attemptedAuthorSessionId: string;
+  readonly contentHash: string;
+  constructor(
+    chapterId: string,
+    existingAuthorSessionId: string,
+    attemptedAuthorSessionId: string,
+    contentHash: string,
+    detail = "the content is IDENTICAL",
+  ) {
+    super(
+      `author provenance conflict for ${chapterId}: content ${contentHash} is already attributed to author ` +
+        `session "${existingAuthorSessionId}"; refusing to record "${attemptedAuthorSessionId}" as author ` +
+        `(${detail}). A cache accepter or reviewer is not an author — only a deliberate re-authoring that ` +
+        `changes the chapter content may replace existing author provenance.`,
+    );
+    this.name = "AuthorProvenanceConflictError";
+    this.chapterId = chapterId;
+    this.existingAuthorSessionId = existingAuthorSessionId;
+    this.attemptedAuthorSessionId = attemptedAuthorSessionId;
+    this.contentHash = contentHash;
+  }
+}
 
 export type SessionProvenanceState =
   | { kind: "present"; sessionId: string }
@@ -102,21 +178,131 @@ export function loadAuthorProvenance(chapterId: string): AuthorProvenance | null
   }
 }
 
-/** Record the authoring session for a chapter. No-op when no session id is set
- *  (nothing to record), so legacy/manual read-only flows can still call this
- *  safely. New authoring entrypoints should require a session before writing. */
-export function recordAuthorProvenance(chapterId: string, sessionId = currentSessionId()): string | null {
-  if (!sessionId) return null;
+function writeAuthorProvenance(
+  chapterId: string,
+  sessionId: string,
+  contentHash: string | undefined,
+  extra: { previousContentHash?: string; previousAuthorSessionId?: string },
+): string {
   mkdirSync(PROVENANCE_DIR, { recursive: true });
   const rec: AuthorProvenance = {
-    schemaVersion: "author-provenance-v1",
+    schemaVersion: contentHash != null ? "author-provenance-v2" : "author-provenance-v1",
     chapterId,
     authorSessionId: sessionId,
     stampedAt: new Date().toISOString(),
+    ...(contentHash != null ? { contentHash } : {}),
+    ...(extra.previousContentHash != null ? { previousContentHash: extra.previousContentHash } : {}),
+    ...(extra.previousAuthorSessionId != null ? { previousAuthorSessionId: extra.previousAuthorSessionId } : {}),
   };
   const p = provenancePath(chapterId);
   writeFileAtomic(p, JSON.stringify(rec, null, 2) + "\n");
   return p;
+}
+
+/**
+ * Record the session that AUTHORED a chapter's current content. No-op when no
+ * session id is set (nothing to record), so legacy/manual read-only flows can
+ * still call this safely. New authoring entrypoints should require a session.
+ *
+ * Pass the authored content's `chapterContentHash` to bind the record to its
+ * content. With a hash, provenance is create-once per content:
+ *   - no existing record            → create it (create-once);
+ *   - same content, same session    → idempotent no-op;
+ *   - same content, OTHER session   → throw AuthorProvenanceConflictError;
+ *   - changed content               → permitted re-authoring transition (old→new logged).
+ * Without a hash (legacy callers/manual stamping), the historical overwrite
+ * semantics are preserved EXCEPT that a content-bound (v2) record is never
+ * silently clobbered by a hash-less re-stamp from a different session.
+ *
+ * Cache acceptance MUST NOT call this — use {@link recordCacheAcceptance}.
+ */
+export function recordAuthorProvenance(
+  chapterId: string,
+  sessionId: string | undefined = currentSessionId(),
+  contentHash?: string,
+): string | null {
+  if (!sessionId) return null;
+  const p = provenancePath(chapterId);
+  const existing = loadAuthorProvenance(chapterId);
+
+  if (existing && existing.contentHash != null) {
+    // Existing record is content-bound (v2): create-once per content hash.
+    if (contentHash == null) {
+      // A re-stamp that cannot name the content it authored must not blindly
+      // replace a content-bound author. Same session ⇒ harmless no-op.
+      if (existing.authorSessionId === sessionId) return p;
+      throw new AuthorProvenanceConflictError(
+        chapterId,
+        existing.authorSessionId,
+        sessionId,
+        existing.contentHash,
+        "no new content hash was supplied to prove a re-authoring",
+      );
+    }
+    if (existing.contentHash === contentHash) {
+      if (existing.authorSessionId === sessionId) return p; // idempotent re-stamp of identical content
+      throw new AuthorProvenanceConflictError(chapterId, existing.authorSessionId, sessionId, contentHash);
+    }
+    // Content changed ⇒ a deliberate re-authoring transition is allowed.
+    return writeAuthorProvenance(chapterId, sessionId, contentHash, {
+      previousContentHash: existing.contentHash,
+      previousAuthorSessionId: existing.authorSessionId !== sessionId ? existing.authorSessionId : undefined,
+    });
+  }
+
+  // No existing record (create-once) OR a legacy record with no content binding.
+  // Legacy/no-hash callers keep their historical overwrite semantics; when a hash
+  // is supplied the record is upgraded to v2 and the prior author is logged.
+  const extra =
+    existing && existing.authorSessionId !== sessionId ? { previousAuthorSessionId: existing.authorSessionId } : {};
+  return writeAuthorProvenance(chapterId, sessionId, contentHash, extra);
+}
+
+export function cacheAcceptancePath(chapterId: string): string {
+  return resolve(CACHE_ACCEPTANCE_DIR, `${chapterId}.jsonl`);
+}
+
+/** Record that `sessionId` ACCEPTED a cached chapter (append-only audit log).
+ *  This is acceptance evidence, never author evidence: it is written to a separate
+ *  directory/schema and is never consulted by author-independence certification.
+ *  No-op without a session id. */
+export function recordCacheAcceptance(args: {
+  chapterId: string;
+  contentHash: string;
+  cacheManifestHash: string;
+  sessionId?: string;
+}): string | null {
+  const sessionId = args.sessionId ?? currentSessionId();
+  if (!sessionId) return null;
+  mkdirSync(CACHE_ACCEPTANCE_DIR, { recursive: true });
+  const event: CacheAcceptanceEvent = {
+    schemaVersion: "cache-acceptance-v1",
+    chapterId: args.chapterId,
+    cacheAcceptedBySessionId: sessionId,
+    acceptedAt: new Date().toISOString(),
+    contentHash: args.contentHash,
+    cacheManifestHash: args.cacheManifestHash,
+  };
+  const p = cacheAcceptancePath(args.chapterId);
+  appendFileSync(p, JSON.stringify(event) + "\n");
+  return p;
+}
+
+/** Read the append-only cache-acceptance audit log for a chapter (oldest first). */
+export function loadCacheAcceptances(chapterId: string): CacheAcceptanceEvent[] {
+  const p = cacheAcceptancePath(chapterId);
+  if (!existsSync(p)) return [];
+  const out: CacheAcceptanceEvent[] = [];
+  for (const line of readFileSync(p, "utf8").split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+    try {
+      out.push(JSON.parse(trimmed) as CacheAcceptanceEvent);
+    } catch {
+      // Skip a torn/partial line rather than throwing on an audit read.
+    }
+  }
+  return out;
 }
 
 /** True only when independence is ENFORCED, BOTH ids are present, and they match

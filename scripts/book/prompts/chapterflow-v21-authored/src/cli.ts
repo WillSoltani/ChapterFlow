@@ -1508,7 +1508,8 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
     console.error("Usage: qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]");
     return 2;
   }
-  const { recordAuthorProvenance, currentSessionId } = await import("./qc/sessionProvenance.js");
+  const { recordAuthorProvenance, currentSessionId, AuthorProvenanceConflictError } = await import("./qc/sessionProvenance.js");
+  const { chapterContentHash } = await import("./critics/qcAttestation.js");
   const session = typeof flags["session"] === "string" ? flags["session"] : currentSessionId();
   if (!session) {
     console.error("No author session id. Set CHAPTERFLOW_SESSION_ID or pass --session <id>.");
@@ -1520,10 +1521,25 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
     : null;
   const chapters = loadBookChapters(bookId).filter((ch) => !only || only.has(ch.number));
   let wrote = 0;
+  const conflicts: string[] = [];
   for (const ch of chapters) {
-    if (recordAuthorProvenance(ch.chapterId, session)) wrote++;
+    try {
+      // Bind to the on-disk content so re-stamping IDENTICAL content under a
+      // different session is refused (a cache accepter is not an author).
+      if (recordAuthorProvenance(ch.chapterId, session, chapterContentHash(ch))) wrote++;
+    } catch (err) {
+      if (err instanceof AuthorProvenanceConflictError) conflicts.push(`${ch.chapterId}: ${err.message}`);
+      else throw err;
+    }
   }
   console.log(`qc-stamp-author: recorded ${wrote} author-provenance sidecar(s) for session "${session}".`);
+  if (conflicts.length) {
+    console.error(
+      `qc-stamp-author: refused to re-stamp ${conflicts.length} chapter(s) whose content is already attributed ` +
+        `to a different author session:\n  ${conflicts.join("\n  ")}`,
+    );
+    return 1;
+  }
   return 0;
 }
 

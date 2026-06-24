@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, RUNS_DIR, STATE_CHAPTERS, TMP_DIR, cleanTmp, makeChapter, writeSourceEvidenceFixture } from "./helpers.js";
 import { buildChapterCacheInputs, generateChapter } from "../src/generateChapter.js";
-import { loadAuthorProvenance, provenancePath } from "../src/qc/sessionProvenance.js";
+import { cacheAcceptancePath, loadAuthorProvenance, loadCacheAcceptances, provenancePath } from "../src/qc/sessionProvenance.js";
 import {
   currentProviderIdentity,
   stringDependency,
@@ -45,6 +45,7 @@ function cleanup(): void {
   rmSync(INDEX_PATH, { force: true });
   rmSync(resolve(RUNS_DIR, BOOK), { recursive: true, force: true });
   rmSync(provenancePath(CHAPTER_ID), { force: true });
+  rmSync(cacheAcceptancePath(CHAPTER_ID), { force: true });
 }
 
 async function withEnv<T>(updates: Record<string, string | undefined>, fn: () => T | Promise<T>): Promise<T> {
@@ -239,7 +240,13 @@ test("valid unchanged cached chapter reuses without provider call while gates st
     );
 
     assert.equal(produced.chapterId, CHAPTER_ID);
-    assert.equal(loadAuthorProvenance(CHAPTER_ID)?.authorSessionId, "author-cache-session", "generateChapter cache acceptance must stamp author provenance");
+    // A session that only ACCEPTS the cache is not the author: it must NOT stamp author
+    // provenance (this chapter was never authored here). It is recorded as a separate,
+    // append-only cache-acceptance audit event instead.
+    assert.equal(loadAuthorProvenance(CHAPTER_ID), null, "cache acceptance must not stamp author provenance");
+    const acceptances = loadCacheAcceptances(CHAPTER_ID);
+    assert.equal(acceptances.at(-1)?.cacheAcceptedBySessionId, "author-cache-session", "cache acceptance is recorded as a separate audit event");
+    assert.equal(acceptances.at(-1)?.schemaVersion, "cache-acceptance-v1");
     const after = JSON.parse(readFileSync(LEDGER_PATH, "utf8"));
     assert.deepEqual(after.books[BOOK].chaptersIngested, [1], "validated cache is ingested after gates pass");
   } finally {

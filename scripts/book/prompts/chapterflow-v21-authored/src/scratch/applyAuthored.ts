@@ -22,7 +22,8 @@ import { readFileSync } from "fs";
 import { resolve } from "path";
 
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { recordAuthorProvenance, requireCurrentSessionId } from "../qc/sessionProvenance.js";
+import { AuthorProvenanceConflictError, recordAuthorProvenance, requireCurrentSessionId } from "../qc/sessionProvenance.js";
+import { chapterContentHash } from "../critics/qcAttestation.js";
 
 const chapterFile = process.argv[2];
 const patchFile = process.argv[3];
@@ -100,7 +101,25 @@ if (patch.ifThenPlans) {
   }
 }
 
+// This is a DELIBERATE re-authoring: the patch has been merged into `ch`, so the
+// content hash here reflects the newly-authored content. Binding provenance to it
+// lets recordAuthorProvenance permit the transition (changed content) while still
+// refusing to let a different session claim authorship of IDENTICAL content.
 const authorSessionId = requireCurrentSessionId(`applyAuthored ${ch.chapterId ?? chapterFile}`);
-if (typeof ch.chapterId === "string" && ch.chapterId.trim()) recordAuthorProvenance(ch.chapterId, authorSessionId);
+if (typeof ch.chapterId === "string" && ch.chapterId.trim()) {
+  try {
+    recordAuthorProvenance(ch.chapterId, authorSessionId, chapterContentHash(ch));
+  } catch (err) {
+    // Idempotent re-apply: the patched content is byte-identical to a version already
+    // authored under a DIFFERENT session. The re-applier did not author content it did
+    // not change, so the original author is preserved (create-once). The write below is
+    // a no-op (or touches only hash-excluded fields), so this stays a safe no-crash re-run.
+    if (err instanceof AuthorProvenanceConflictError) {
+      console.warn(`applyAuthored: author provenance preserved — ${err.message}`);
+    } else {
+      throw err;
+    }
+  }
+}
 writeFileAtomic(resolve(chapterFile), JSON.stringify(ch, null, 2) + "\n");
 console.log(`applied patch to ${chapterFile}`);

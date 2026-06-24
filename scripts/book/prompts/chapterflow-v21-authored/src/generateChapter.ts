@@ -30,6 +30,7 @@ import {
   currentProviderIdentity,
   defaultCacheDependencies,
   fileDependency,
+  hashJson,
   loadOrBuildCachedJson,
   promptDependencies,
   quarantineInvalidArtifact,
@@ -77,7 +78,8 @@ import { checkChapterIdentity, CANONICAL_STATE } from "./lib/chapterPaths.js";
 import { canonicalChapterIndexPath, readCanonicalChapterIndex } from "./lib/chapterSet.js";
 import { checkSourceV2Gate, sourceSidecarPathFor } from "./qc/sourceV2Gate.js";
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
-import { currentSessionId, recordAuthorProvenance, requireCurrentSessionId } from "./qc/sessionProvenance.js";
+import { currentSessionId, recordAuthorProvenance, recordCacheAcceptance, requireCurrentSessionId } from "./qc/sessionProvenance.js";
+import { chapterContentHash } from "./critics/qcAttestation.js";
 import {
   createGenerationRunManifest,
   generationInputHash,
@@ -481,8 +483,20 @@ export async function generateChapter(
         reuseProblems = [`cached chapter unreadable: ${(err as Error).message}`];
       }
       if (cached && reuseProblems.length === 0) {
-        const authorSessionId = requireCurrentSessionId(`generateChapter ${chapter.chapterId} cache acceptance`);
-        recordAuthorProvenance(chapter.chapterId, authorSessionId);
+        // A session that only ACCEPTS a cached chapter is NOT its author. Author
+        // provenance written at the original authoring time must survive untouched;
+        // recording the accepter here would let a cache accepter masquerade as the
+        // author and defeat author≠reviewer independence. Record the acceptance as a
+        // separate, append-only audit event instead (never read as author evidence).
+        const accepterSessionId = currentSessionId();
+        if (accepterSessionId) {
+          recordCacheAcceptance({
+            chapterId: chapter.chapterId,
+            sessionId: accepterSessionId,
+            contentHash: chapterContentHash(cached),
+            cacheManifestHash: hashJson(cache.manifest),
+          });
+        }
         let alreadyIngested = false;
         const updated = await withLibraryState((state) => {
           const existingBook = state.books[book.bookId];
@@ -1017,7 +1031,8 @@ export async function generateChapter(
       generation: generationManifest,
     },
   };
-  recordAuthorProvenance(finalChapter.chapterId, authorSessionId);
+  // Bind author provenance to the authored content hash (create-once per content).
+  recordAuthorProvenance(finalChapter.chapterId, authorSessionId, chapterContentHash(finalChapter));
   const outDir = resolve(stateRoot, "chapters");
   const finalChapterPath = resolve(outDir, `${chapter.chapterId}.v21-native.chapter.json`);
   writeFileAtomic(finalChapterPath, JSON.stringify(finalChapter, null, 2));

@@ -6,7 +6,7 @@ import { chapterContentHash, attestationPath, writeAttestation } from "../src/cr
 import { currentProviderIdentity, writeStageCacheManifest } from "../src/cache/stageCache.js";
 import { buildChapterCacheInputs } from "../src/generateChapter.js";
 import { generateBook, loadChapterIndex } from "../src/generateBook.js";
-import { loadAuthorProvenance, provenancePath } from "../src/qc/sessionProvenance.js";
+import { cacheAcceptancePath, loadAuthorProvenance, loadCacheAcceptances, provenancePath } from "../src/qc/sessionProvenance.js";
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS } from "./helpers.js";
 
@@ -34,6 +34,7 @@ test("generateBook range runs do not write or overwrite production packages", as
   const chapterPath = resolve(STATE_CHAPTERS, `${chapterSpec.chapterId}.v21-native.chapter.json`);
   const cacheManifestPath = `${chapterPath}.cache-manifest.json`;
   const authorProvenancePath = provenancePath(chapterSpec.chapterId);
+  const cacheAcceptanceFile = cacheAcceptancePath(chapterSpec.chapterId);
   const packageBefore = readFileSync(packagePath, "utf8");
   const gateReportBefore = snapshotFile(gateReportPath);
   const bookGateReportBefore = snapshotFile(bookGateReportPath);
@@ -41,6 +42,7 @@ test("generateBook range runs do not write or overwrite production packages", as
   const qcBefore = snapshotFile(qcPath);
   const cacheManifestBefore = snapshotFile(cacheManifestPath);
   const authorProvenanceBefore = snapshotFile(authorProvenancePath);
+  const cacheAcceptanceBefore = snapshotFile(cacheAcceptanceFile);
   const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const prevRequireKeyJudge = process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
   const prevSessionId = process.env.CHAPTERFLOW_SESSION_ID;
@@ -88,7 +90,18 @@ test("generateBook range runs do not write or overwrite production packages", as
     );
 
     assert.equal(result.failed.length, 0);
-    assert.equal(loadAuthorProvenance(chapterSpec.chapterId)?.authorSessionId, "author-generate-range-regression");
+    // The chapter is ACCEPTED from cache here, not authored: the accepting session must
+    // not be recorded as author. It is logged as a separate cache-acceptance audit event.
+    assert.notEqual(
+      loadAuthorProvenance(chapterSpec.chapterId)?.authorSessionId,
+      "author-generate-range-regression",
+      "a cache accepter must not be recorded as the chapter author",
+    );
+    assert.equal(
+      loadCacheAcceptances(chapterSpec.chapterId).at(-1)?.cacheAcceptedBySessionId,
+      "author-generate-range-regression",
+      "the accepting session is recorded as a cache acceptance, not as author",
+    );
     assert.equal(result.promotion, undefined, "partial range generation must stop before production promotion");
     assert.equal(readFileSync(packagePath, "utf8"), packageBefore, "range generation must not overwrite the existing production package");
   } finally {
@@ -99,6 +112,7 @@ test("generateBook range runs do not write or overwrite production packages", as
     restoreFile(packagePath, packageBefore);
     restoreFile(cacheManifestPath, cacheManifestBefore);
     restoreFile(authorProvenancePath, authorProvenanceBefore);
+    restoreFile(cacheAcceptanceFile, cacheAcceptanceBefore);
     if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
     if (prevRequireKeyJudge === undefined) delete process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
