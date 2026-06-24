@@ -114,6 +114,9 @@ npm run pipeline:doctor
 npm run pipeline:build
 ```
 
+For automation, `npx tsx src/cli.ts doctor --json` emits the same findings,
+summary counts, and planned exit code as structured JSON.
+
 The package pins Node `>=20.20.0 <21`, npm `10.8.2`, exact pipeline tool
 versions, and declares `openai` plus `@anthropic-ai/sdk` as optional provider
 dependencies. The default test script sets `CHAPTERFLOW_NO_API_CODEX_QC=1` and

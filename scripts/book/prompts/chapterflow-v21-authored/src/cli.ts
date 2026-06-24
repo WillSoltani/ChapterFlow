@@ -147,7 +147,7 @@ Commands:
                                      The whole lifecycle in one view: research → written → gate-clean →
                                      QC'd → publishable, a cross-book variety read (advisory), and the
                                      single exact next command. Read-only.
-  doctor [<bookId>]                  Preflight: catches the shadow state dir, dual brief shapes,
+  doctor [<bookId>] [--json]         Preflight: catches the shadow state dir, dual brief shapes,
                                      chapter-number drift, and untracked-but-imported source files before
                                      they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
   authoring-guardrails <bookId> [--chapters N]
@@ -1575,8 +1575,26 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
   }
   const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
   const findings = runDoctorChecks(bookId);
-  console.log(formatDoctor(findings));
-  return doctorExitCode(findings);
+  const exitCode = doctorExitCode(findings);
+  if (_flags.json === true) {
+    const fatal = findings.filter((f) => f.level === "fatal").length;
+    const warnings = findings.filter((f) => f.level === "warn").length;
+    console.log(JSON.stringify({
+      status: exitCode === 0 ? "ok" : exitCode === 1 ? "warn" : "fatal",
+      exitCode,
+      bookId,
+      summary: {
+        fatal,
+        warnings,
+        ok: findings.filter((f) => f.level === "ok").length,
+        total: findings.length,
+      },
+      findings,
+    }, null, 2));
+  } else {
+    console.log(formatDoctor(findings));
+  }
+  return exitCode;
 }
 
 /** `authoring-guardrails <bookId> [--chapters N]` — write the pre-authoring sheet

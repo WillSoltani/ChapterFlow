@@ -42,6 +42,11 @@ function client(): Anthropic {
   return _client;
 }
 
+export function anthropicModelOmitsSamplingFields(model: string): boolean {
+  const normalized = model.toLowerCase();
+  return normalized.includes("opus-4-7") || normalized.includes("opus-4.7");
+}
+
 export const AnthropicApiProvider: Provider = {
   name: "anthropic-api",
   defaultModelForTier(tier: AgentTier): string {
@@ -66,14 +71,17 @@ export const AnthropicApiProvider: Provider = {
     messages.push({ role: "user", content: opts.user });
 
     const startedAt = Date.now();
+    const request: Anthropic.MessageCreateParamsNonStreaming = {
+      model,
+      max_tokens: opts.maxTokens ?? 4096,
+      system,
+      messages,
+    };
+    if (!anthropicModelOmitsSamplingFields(model)) {
+      request.temperature = opts.temperature ?? 0.7;
+    }
     const response = await withProviderTimeout("anthropic-api", opts.timeoutMs ?? 240_000, (signal) =>
-      client().messages.create({
-        model,
-        max_tokens: opts.maxTokens ?? 4096,
-        temperature: opts.temperature ?? 0.7,
-        system,
-        messages,
-      }, { signal }),
+      client().messages.create(request, { signal }),
     );
     const durationMs = Date.now() - startedAt;
 

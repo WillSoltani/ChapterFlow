@@ -99,7 +99,7 @@ class Anthropic {
   constructor(options) {
     marker("anthropic:construct:" + JSON.stringify({ maxRetries: options && options.maxRetries }));
     this.messages = { create: (request, options = {}) => {
-      marker("anthropic:create:" + JSON.stringify({ hasSignal: !!options.signal, messages: request.messages, system: request.system }));
+      marker("anthropic:create:" + JSON.stringify({ hasSignal: !!options.signal, model: request.model, temperature: request.temperature, top_p: request.top_p, top_k: request.top_k, messages: request.messages, system: request.system }));
       return Promise.resolve({
         content: [{ type: "text", text: "anthropic ok" }],
         usage: { input_tokens: 13, output_tokens: 5, cache_read_input_tokens: 2, cache_creation_input_tokens: 3 }
@@ -234,6 +234,37 @@ test("provider selection imports only the selected adapter", () => {
     rmSync(marker, { force: true });
     runNode(`const m = await import("./src/providers/router.ts"); const { callModel } = m.callModel ? m : m.default; await callModel({ provider: "anthropic-cli", tier: "critic", system: "s", user: "u", maxTokens: 8, timeoutMs: 1000 });`, baseEnv);
     assert.deepEqual(readLines(marker).filter((l) => l.endsWith(":import")), []);
+  } finally {
+    cleanupFakeSdks();
+  }
+});
+
+test("Anthropic Opus 4.7-class payload omits unsupported sampling fields", () => {
+  resetTmp();
+  installFakeSdks("normal");
+  const marker = resolve(TMP_DIR, "provider-contract", "sdk-marker.log");
+  try {
+    runNode(
+      `const m = await import("./src/providers/router.ts"); const { callModel } = m.callModel ? m : m.default; await callModel({ provider: "anthropic-api", model: "claude-opus-4-7", tier: "writer", system: "s", user: "u", maxTokens: 8, temperature: 0.2, timeoutMs: 1000 });`,
+      { CHAPTERFLOW_FAKE_SDK_MARKER: marker, ANTHROPIC_API_KEY: "sk-ant-test" },
+    );
+    const create = readLines(marker).find((line) => line.startsWith("anthropic:create:"));
+    assert.ok(create, "fake SDK must record the Anthropic request");
+    const payload = JSON.parse(create!.slice("anthropic:create:".length)) as Record<string, unknown>;
+    assert.equal(payload.model, "claude-opus-4-7");
+    assert.equal(Object.hasOwn(payload, "temperature"), false, "Opus 4.7-class requests must not send temperature");
+    assert.equal(Object.hasOwn(payload, "top_p"), false, "Opus 4.7-class requests must not send top_p");
+    assert.equal(Object.hasOwn(payload, "top_k"), false, "Opus 4.7-class requests must not send top_k");
+
+    rmSync(marker, { force: true });
+    runNode(
+      `const m = await import("./src/providers/router.ts"); const { callModel } = m.callModel ? m : m.default; await callModel({ provider: "anthropic-api", model: "claude-sonnet-4-6", tier: "writer", system: "s", user: "u", maxTokens: 8, temperature: 0.2, timeoutMs: 1000 });`,
+      { CHAPTERFLOW_FAKE_SDK_MARKER: marker, ANTHROPIC_API_KEY: "sk-ant-test" },
+    );
+    const sonnetCreate = readLines(marker).find((line) => line.startsWith("anthropic:create:"));
+    assert.ok(sonnetCreate, "fake SDK must record the Sonnet request");
+    const sonnetPayload = JSON.parse(sonnetCreate!.slice("anthropic:create:".length)) as Record<string, unknown>;
+    assert.equal(sonnetPayload.temperature, 0.2, "non-Opus Anthropic requests keep the caller's sampling setting");
   } finally {
     cleanupFakeSdks();
   }

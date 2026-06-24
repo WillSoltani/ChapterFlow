@@ -409,17 +409,39 @@ function registryFiles(): string[] {
   return [
     resolve(REPO_ROOT, "app/book/data/bookPackages.ts"),
     resolve(REPO_ROOT, "app/book/data/booksCatalog.metadata.json"),
+    // The pipeline INPUT registry (the {id,title,author} the operator adds to run a book).
+    // Including it means: (1) the registration is COMMITTED with the publish, so it persists for
+    // re-runs (it kept getting orphaned/reverted before); and (2) a pre-staged/dirty books.json is
+    // now IN-PLAN, so it no longer trips the "pre-existing staged file outside publish plan" guard
+    // and halts an unattended publish (the behave halt). Only included when actually dirty (see
+    // dirtyVsHead) — a no-op when no new registration is pending.
+    resolve(PIPELINE_DIR, "books.json"),
   ];
 }
 
-function readFiles(paths: string[]): Map<string, string | null> {
-  const out = new Map<string, string | null>();
-  for (const p of paths) out.set(p, existsSync(p) ? readFileSync(p, "utf8") : null);
-  return out;
-}
-
-function changedFiles(before: Map<string, string | null>, paths: string[]): string[] {
-  return paths.filter((p) => (before.get(p) ?? null) !== (existsSync(p) ? readFileSync(p, "utf8") : null));
+/** Of `paths`, the ones that DIFFER FROM HEAD (modified or untracked) per `git status`. Used to
+ *  pick which registry/registration files to promote: not just what THIS publish's register-web
+ *  call changed, but anything a PRIOR partial run (or the operator's books.json edit) already left
+ *  dirty. The old before/after-content diff missed those — register-web saw "no change this call"
+ *  and dropped the file, orphaning the catalog wiring (the behave incident). Best-effort: a git
+ *  failure yields [] (publish then stages only the package, as before). */
+export function dirtyVsHead(paths: string[], runner: Runner): string[] {
+  if (paths.length === 0) return [];
+  let status = "";
+  try {
+    status = git(["status", "--porcelain", "--", ...paths], runner);
+  } catch {
+    return [];
+  }
+  const dirty = new Set<string>();
+  for (const line of status.split(/\r?\n/)) {
+    if (!line.trim()) continue;
+    let p = line.slice(3).trim(); // porcelain: "XY <path>"
+    const arrow = p.indexOf(" -> ");
+    if (arrow !== -1) p = p.slice(arrow + 4).trim(); // renamed → destination
+    dirty.add(resolve(REPO_ROOT, p));
+  }
+  return paths.filter((p) => dirty.has(resolve(p)));
 }
 
 function durableStateFiles(bookId: string, roundId: string): string[] {
@@ -821,13 +843,15 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   }
 
   const registry = registryFiles();
-  const beforeRegistry = readFiles(registry);
   try {
     runner("npx", ["tsx", "src/cli.ts", "register-web", bookId, "--skip-ingest"], {
       cwd: PIPELINE_DIR,
       env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1" },
     });
-    registeredFiles = changedFiles(beforeRegistry, registry);
+    // Promote every registry/registration file that DIFFERS FROM HEAD — register-web's output for
+    // THIS book PLUS anything a prior partial run or the operator's books.json edit left dirty —
+    // instead of only what this register-web call changed (which orphaned the wiring on a re-run).
+    registeredFiles = dirtyVsHead(registry, runner);
   } catch (err) {
     return { ok: false, bookId, roundId, packagePath, errors: [`register-web failed: ${(err as Error).message}`], warnings, next };
   }
