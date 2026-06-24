@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { BookLock, CheckCircle2, CloudOff, Lightbulb, X } from "lucide-react";
+import { BookLock, CheckCircle2, CloudOff, FileQuestion, Lightbulb, X } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import {
@@ -948,27 +948,44 @@ export function ChapterReaderClient({
     contentHydrated &&
     !chapter
   ) {
+    // Branch the copy on the failed content read's HTTP status (#1). In prod the
+    // local fallback is gated off, so a real outage reaches here with a status:
+    // 402/403 = access blocked (re-auth / paywall / locked), 404 = chapter not
+    // found, everything else (5xx / null network error) = a transient "try
+    // again". Only the transient case offers the retry button; access/not-found
+    // are not fixed by a refetch, so we point the user back to the book.
+    const isBlocked = contentStatus === 402 || contentStatus === 403;
+    const isNotFound = contentStatus === 404;
+    const CardIcon = isBlocked ? BookLock : isNotFound ? FileQuestion : CloudOff;
+    const cardHeading = isBlocked
+      ? "You don't have access to this chapter"
+      : isNotFound
+        ? "We couldn't find this chapter"
+        : "Couldn't load this chapter";
+    const cardBody = isBlocked
+      ? "Your access to this chapter couldn't be confirmed. It may be locked, or your session may have expired — head back to the book to continue."
+      : isNotFound
+        ? "This chapter doesn't seem to exist anymore. It may have been moved or unpublished."
+        : "We hit a problem loading this chapter's content. Check your connection and try again.";
+    const showRetry = !isBlocked && !isNotFound;
     return (
       <main className="relative min-h-screen overflow-x-hidden">
         <ChapterBackgroundOrbs />
         <section className="mx-auto flex min-h-screen w-full max-w-3xl items-center px-4 py-10 sm:px-6">
           <div role="alert" className="w-full cr-glass-reading p-8 text-center">
-            <CloudOff className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
-            <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">
-              Couldn&apos;t load this chapter
-            </h1>
-            <p className="mt-2 text-(--cr-text-secondary)">
-              We hit a problem loading this chapter&apos;s content. Check your connection and try
-              again.
-            </p>
+            <CardIcon className="mx-auto h-10 w-10 text-(--cr-text-disabled)" />
+            <h1 className="mt-4 text-3xl font-bold text-(--cr-text-heading)">{cardHeading}</h1>
+            <p className="mt-2 text-(--cr-text-secondary)">{cardBody}</p>
             <div className="mt-5 flex flex-col items-center gap-3">
-              <button
-                type="button"
-                onClick={() => setContentRefetchKey((k) => k + 1)}
-                className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
-              >
-                Try again
-              </button>
+              {showRetry && (
+                <button
+                  type="button"
+                  onClick={() => setContentRefetchKey((k) => k + 1)}
+                  className="inline-flex min-h-11 items-center rounded-xl bg-(--cr-accent) px-5 py-2.5 text-sm font-semibold text-(--cr-text-inverse) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-(--cr-bg-root) focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)]"
+                >
+                  Try again
+                </button>
+              )}
               <Link
                 href={`/book/library/${encodeURIComponent(bookId)}`}
                 className="inline-flex min-h-11 items-center rounded-xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-4 py-2 text-sm font-medium text-(--cr-accent)"
