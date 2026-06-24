@@ -10,13 +10,17 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
-import { getUserSnapshot, getUserEvents } from "@/app/app/api/book/_lib/admin-metrics";
+import { getUserSnapshot, getAllUserEvents } from "@/app/app/api/book/_lib/admin-metrics";
 import { bookUserPk, exportLimitSk } from "@/app/app/api/book/_lib/keys";
 import {
   getUserEntitlement,
   getUserProfileItem,
   getUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
+import {
+  ExportSourceTracker,
+  type ExportManifest,
+} from "@/app/app/api/book/_lib/export-manifest-core";
 import type {
   BookUserBadgeAwardItem,
   BookUserBookStateItem,
@@ -27,7 +31,7 @@ import type {
 } from "@/app/app/api/book/_lib/types";
 import {
   getUserFlowPointsState,
-  listRecentFlowPointsLedger,
+  listAllFlowPointsLedger,
 } from "@/app/app/api/book/_lib/flow-points-repo";
 
 export const runtime = "nodejs";
@@ -65,6 +69,12 @@ type ExportData = {
     snapshot: Record<string, unknown> | null;
     recentEvents: Array<Record<string, unknown>>;
   };
+  /**
+   * Completeness manifest (#3): per-source exported counts + whether the export
+   * is complete. `complete:false` means at least one source failed to read or
+   * was truncated — the export still succeeds, this just tells the truth.
+   */
+  manifest: ExportManifest;
 };
 
 /** Strip internal key/index attributes from an analytics-table item. */
@@ -348,6 +358,13 @@ export async function GET(req: Request) {
       resource: "data exports",
     });
 
+    // Track per-source completeness so the manifest can flag a silently-failed
+    // or truncated source (#3). Array sources go through runSource (records
+    // read_failed on a thrown read, truncated on a paginated cap); scalar
+    // sources go through runScalar so a thrown read is recorded too, instead of
+    // a silent `.catch` emitting an indistinguishable null with complete:true.
+    const tracker = new ExportSourceTracker();
+
     // Fetch all user data in parallel
     const [
       profile,
@@ -364,24 +381,42 @@ export async function GET(req: Request) {
       analyticsSnapshot,
       analyticsEvents,
     ] = await Promise.all([
-      getUserProfileItem(tableName, user.sub).catch(() => null),
-      getUserSettingsItem(tableName, user.sub).catch(() => null),
-      getUserEntitlement(tableName, user.sub).catch(() => null),
-      exportAllReadingDays(tableName, user.sub).catch(() => []),
-      exportAllProgress(tableName, user.sub).catch(() => []),
-      exportAllBookStates(tableName, user.sub).catch(() => []),
-      exportAllChapterStates(tableName, user.sub).catch(() => []),
-      exportAllSavedBooks(tableName, user.sub).catch(() => []),
-      exportAllBadgeAwards(tableName, user.sub).catch(() => []),
-      getUserFlowPointsState(tableName, user.sub).catch(() => ({ points: 0 })),
-      listRecentFlowPointsLedger(tableName, user.sub).catch(() => []),
+      tracker.runScalar("profile", () => getUserProfileItem(tableName, user.sub), null),
+      tracker.runScalar("settings", () => getUserSettingsItem(tableName, user.sub), null),
+      tracker.runScalar("entitlement", () => getUserEntitlement(tableName, user.sub), null),
+      tracker.runSource("readingDays", () => exportAllReadingDays(tableName, user.sub), []),
+      tracker.runSource("bookProgress", () => exportAllProgress(tableName, user.sub), []),
+      tracker.runSource("bookStates", () => exportAllBookStates(tableName, user.sub), []),
+      tracker.runSource("chapterStates", () => exportAllChapterStates(tableName, user.sub), []),
+      tracker.runSource("savedBooks", () => exportAllSavedBooks(tableName, user.sub), []),
+      tracker.runSource("badges", () => exportAllBadgeAwards(tableName, user.sub), []),
+      tracker.runScalar<{ points: number }>(
+        "flowPointsBalance",
+        () => getUserFlowPointsState(tableName, user.sub),
+        { points: 0 },
+      ),
+      tracker.runSource(
+        "flowPointsLedger",
+        () => listAllFlowPointsLedger(tableName, user.sub),
+        [],
+      ),
       analyticsTable
-        ? getUserSnapshot(analyticsTable, user.sub).catch(() => null)
+        ? tracker.runScalar("analyticsSnapshot", () => getUserSnapshot(analyticsTable, user.sub), null)
         : Promise.resolve(null),
       analyticsTable
-        ? getUserEvents(analyticsTable, user.sub, 200).catch(() => [])
+        ? tracker.runSource(
+            "analyticsEvents",
+            () => getAllUserEvents(analyticsTable, user.sub),
+            [] as Record<string, unknown>[],
+          )
         : Promise.resolve([] as Record<string, unknown>[]),
     ]);
+    // When analytics isn't configured we never read events/snapshot; record them
+    // as complete (empty) sources rather than leaving holes in the manifest.
+    if (!analyticsTable) {
+      tracker.record({ name: "analyticsSnapshot", count: 0, complete: true });
+      tracker.record({ name: "analyticsEvents", count: 0, complete: true });
+    }
 
     // Respect saveReadingHistory privacy preference
     const privacy = settings?.settings?.privacy as
@@ -391,8 +426,11 @@ export async function GET(req: Request) {
 
     const rawProfile = (profile?.profile ?? {}) as Record<string, unknown>;
 
+    const exportedAt = new Date().toISOString();
+    const manifest = tracker.build(exportedAt);
+
     const data: ExportData = {
-      exportedAt: new Date().toISOString(),
+      exportedAt,
       userId: user.sub,
       profile: profile?.profile ?? null,
       settings: settings?.settings ?? null,
@@ -476,6 +514,7 @@ export async function GET(req: Request) {
         snapshot: analyticsSnapshot ? cleanAnalyticsItem(analyticsSnapshot) : null,
         recentEvents: analyticsEvents.map(cleanAnalyticsItem),
       },
+      manifest,
     };
 
     const timestamp = new Date().toISOString().slice(0, 10);
@@ -649,6 +688,21 @@ function exportToCsv(data: ExportData): string {
     );
   }
 
+  // Export Manifest — completeness of every source. Always emitted so a partial
+  // export is never mistaken for a complete one.
+  sections.push(
+    csvSection(
+      `Export Manifest (complete=${data.manifest.complete ? "yes" : "no"})`,
+      ["Source", "Records", "Complete", "Reason"],
+      data.manifest.sources.map((s) => [
+        s.name,
+        s.count,
+        s.complete ? "yes" : "no",
+        s.reason ?? "",
+      ])
+    )
+  );
+
   return sections.join("\n\n");
 }
 
@@ -770,14 +824,31 @@ function exportToMarkdown(data: ExportData): string {
       lines.push("");
     }
     if (data.analytics.recentEvents.length > 0) {
+      const evSrc = data.manifest.sources.find((s) => s.name === "analyticsEvents");
+      const completeness =
+        evSrc && !evSrc.complete ? "PARTIAL — see Export Manifest below" : "complete history";
       lines.push(
-        `**Recent events:** ${data.analytics.recentEvents.length} (most recent first; up to the latest 200)`,
-        "",
-        "For your full event history beyond the most recent 200 events, email support@chapterflow.ca.",
+        `**Events:** ${data.analytics.recentEvents.length} (most recent first; ${completeness})`,
         ""
       );
     }
   }
+
+  // Export manifest — completeness of every source in this export.
+  lines.push("## Export Manifest", "");
+  lines.push(`- **Complete:** ${data.manifest.complete ? "yes" : "no"}`);
+  if (data.manifest.partialSources.length > 0) {
+    lines.push(`- **Incomplete sources:** ${data.manifest.partialSources.join(", ")}`);
+    lines.push(
+      "",
+      "> Some data sources could not be read in full for this export. The data above is still yours, but is partial for the sources listed. Try again later or email support@chapterflow.ca.",
+    );
+  }
+  lines.push("", "| Source | Records | Complete |", "| ------ | ------- | -------- |");
+  for (const s of data.manifest.sources) {
+    lines.push(`| ${s.name} | ${s.count} | ${s.complete ? "yes" : `no (${s.reason ?? "?"})`} |`);
+  }
+  lines.push("");
 
   return lines.join("\n");
 }

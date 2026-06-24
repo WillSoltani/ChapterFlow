@@ -1,12 +1,13 @@
 import "server-only";
-import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
+import { withBookApiErrors, bookOk, bookErr } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import {
   getUserIdByStripeCustomer,
-  hasStripeWebhookEventBeenProcessed,
+  claimStripeWebhookEvent,
+  completeStripeWebhookEvent,
+  releaseStripeWebhookClaim,
   mapStripeCustomerToUser,
   recordBillingEvent,
-  recordStripeWebhookEvent,
   updateUserEntitlementFromStripe,
 } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackSubscription } from "@/app/app/api/book/_lib/analytics-repo";
@@ -77,12 +78,28 @@ export async function POST(req: Request) {
     // stack alarms on. Signature/format failures above are client errors, not
     // processing failures, so they're deliberately outside this block.
     try {
-    const [alreadyProcessed, analyticsTable] = await Promise.all([
-      hasStripeWebhookEventBeenProcessed(tableName, event.id),
+    // CLAIM-BEFORE-PROCESS (#10): atomically take an exclusive PROCESSING lease
+    // on this event id BEFORE running any side effects. Under parallel Stripe
+    // redelivery exactly one invocation wins the conditional Put; every other
+    // sees "duplicate" and short-circuits, so the side effects run at most once.
+    // A prior attempt that crashed mid-processing leaves a PROCESSING marker
+    // with a finite TTL; once its lease expires a Stripe retry reclaims and
+    // reprocesses — a crash can never permanently mark an event processed.
+    const [claim, analyticsTable] = await Promise.all([
+      claimStripeWebhookEvent(tableName, event.id, event.type),
       getBookAnalyticsTableName(),
     ]);
-    if (alreadyProcessed) {
+    if (claim === "done") {
+      // Already fully processed under the claim-lease (or the legacy record-last
+      // scheme) — safe to acknowledge.
       return bookOk({ ok: true, duplicate: true });
+    }
+    if (claim === "in_progress") {
+      // Another delivery holds a live PROCESSING lease (or a crashed worker's
+      // lease has not yet expired). Return NON-2xx so Stripe RETRIES instead of
+      // marking the event delivered — acknowledging here would permanently drop
+      // an event whose first delivery failed mid-processing.
+      return bookErr(req, 409, "webhook_in_progress", "Event is already being processed; please retry.");
     }
 
     // checkout.session.completed fires for synchronous payment methods (cards).
@@ -399,9 +416,23 @@ export async function POST(req: Request) {
             }).catch(() => {});
           }
         }
-        await sendTrialEndingEmail(stripe, tableName, subscription).catch((e) => {
-          console.error("[webhook] trial-ending email failed:", e);
-        });
+        const trialEmail = await sendTrialEndingEmail(stripe, tableName, subscription);
+        // A transient send failure (reason-less sent:false — sendTrialEndingEmail
+        // already RELEASED its dedup marker) MUST make Stripe retry, or the
+        // card-network-required pre-charge notice is lost forever (Stripe stops
+        // retrying after the first 2xx). Throw so the event is NOT completed DONE
+        // and a redelivery re-attempts the send. Terminal outcomes (suppressed /
+        // no_email / already_sent / no_trial / no_customer / no_sender) carry a
+        // `reason` and complete normally — retrying them is futile. A thrown
+        // Stripe/SES transport error likewise propagates to the outer catch
+        // (release claim → non-2xx), which is the desired retry.
+        if (!trialEmail.sent && !trialEmail.reason) {
+          throw new BookApiError(
+            500,
+            "trial_email_retry",
+            "Trial-ending email send failed transiently; retrying.",
+          );
+        }
       }
     } else if (event.type === "charge.refunded") {
       // Persist a durable refund record for the admin finance report. We do NOT
@@ -447,8 +478,9 @@ export async function POST(req: Request) {
       };
       // Resolve the customer via the charge. We intentionally do NOT swallow a
       // retrieve failure: letting it throw makes the handler 500 so Stripe
-      // retries (recordStripeWebhookEvent hasn't run yet) — a transient Stripe
-      // blip must not silently skip revoking access. A charge that genuinely has
+      // retries. Because the event is NOT completed (the PROCESSING lease just
+      // expires and a retry reclaims it) — a transient Stripe blip must not
+      // silently skip revoking access. A charge that genuinely has
       // no customer just yields null → record-only, no downgrade.
       let customerId: string | null = null;
       let chargeCreatedUnix: number | undefined;
@@ -540,23 +572,20 @@ export async function POST(req: Request) {
       console.warn(`[stripe-webhook] unhandled event type: ${event.type}`);
     }
 
-    // Only record the event as processed AFTER all side effects succeed.
-    // If recordStripeWebhookEvent itself was the only idempotency gate and
-    // an update threw, we'd permanently lose the upgrade because retries
-    // would short-circuit on "duplicate". By recording last, any failure
-    // above causes Stripe to retry the entire handler.
-    //
-    // Concurrent-delivery race: if Stripe redelivers in parallel, both
-    // invocations will pass the hasStripeWebhookEventBeenProcessed check.
-    // The PutCommand here uses a ConditionExpression so exactly one wins;
-    // the loser sees ConditionalCheckFailed and we treat it as duplicate.
-    const recorded = await recordStripeWebhookEvent(tableName, event.id, event.type);
-    if (!recorded) {
-      return bookOk({ ok: true, duplicate: true });
-    }
+    // Complete the lease only AFTER all side effects above succeed: flip the
+    // PROCESSING marker to DONE and REMOVE its TTL so the idempotency record is
+    // kept forever (#10). If any side effect threw, we never reach here — the
+    // marker stays PROCESSING with a finite TTL and a Stripe retry reclaims it
+    // once the lease expires, so a failure can NEVER permanently mark the event
+    // processed (preserving the prior retry-after-failure guarantee).
+    await completeStripeWebhookEvent(tableName, event.id);
 
     return bookOk({ ok: true });
     } catch (err) {
+      // Release our PROCESSING lease so a Stripe retry can re-claim and reprocess
+      // immediately rather than waiting out the full lease. Conditional on
+      // PROCESSING, so a marker already flipped to DONE is never deleted.
+      await releaseStripeWebhookClaim(tableName, event.id).catch(() => {});
       // Fire-and-forget so a metrics outage never masks the underlying error.
       await putOpsMetric("StripeWebhookFailure", 1, {
         type: event.type ?? "unknown",

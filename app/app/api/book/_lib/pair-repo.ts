@@ -10,6 +10,7 @@ import {
 import crypto from "crypto";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
+import { buildPairInvitePointer } from "./erasure-pointers-core";
 import { getBookContentBucket } from "./env";
 import { listPublishedLibraryCatalog } from "./library-catalog";
 import { getUserProfileItem, listAllUserProgress } from "./repo";
@@ -47,23 +48,46 @@ export async function createPairInvite(
     };
 
     try {
+      // Write the invite (keyed by code, OUTSIDE the user partition) AND an
+      // erasure reverse-pointer into the inviter's partition (#4a), atomically,
+      // so account-erasure can later reach and delete the invite. Forward-only:
+      // only invites created after this deploy carry a pointer.
       await ddbDoc.send(
-        new PutCommand({
-          TableName: tableName,
-          Item: {
-            PK: pairInvitePk(inviteCode),
-            SK: pairInviteSk(),
-            entity: "BOOK_PAIR_INVITE",
-            ...item,
-            ttl,
-          },
-          ConditionExpression: "attribute_not_exists(PK)",
+        new TransactWriteCommand({
+          TransactItems: [
+            {
+              Put: {
+                TableName: tableName,
+                Item: {
+                  PK: pairInvitePk(inviteCode),
+                  SK: pairInviteSk(),
+                  entity: "BOOK_PAIR_INVITE",
+                  ...item,
+                  ttl,
+                },
+                ConditionExpression: "attribute_not_exists(PK)",
+              },
+            },
+            {
+              Put: {
+                // Stamp the SAME 7-day ttl as the invite target so the pointer is
+                // reaped together with it (otherwise the pointer outlives the
+                // reaped invite forever — dead per-user accumulation).
+                TableName: tableName,
+                Item: { ...buildPairInvitePointer(userId, inviteCode), ttl },
+                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              },
+            },
+          ],
         }),
       );
       return item;
     } catch (err: unknown) {
       const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
-      if (name === "ConditionalCheckFailedException") continue;
+      // A code collision surfaces as ConditionalCheckFailed (legacy single-Put)
+      // or, now that the invite + pointer write in one transaction, as
+      // TransactionCanceledException — retry with a fresh code in either case.
+      if (name === "ConditionalCheckFailedException" || name === "TransactionCanceledException") continue;
       throw err;
     }
   }

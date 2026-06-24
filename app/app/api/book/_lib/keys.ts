@@ -423,6 +423,47 @@ export function exportLimitSk(date: string): string {
   return `EXPORT_LIMIT#${date}`;
 }
 
+// ── Erasure reverse-pointers (#4) ────────────────────────────────────────────
+//
+// Some records are written OUTSIDE the user's own partition and keyed by
+// something other than userId (risk events by device/network fingerprint;
+// referral & pair invites by code), so an erasure that only sweeps
+// `bookUserPk(userId)` can't reach them and there's no userId GSI to find them.
+//
+// Fix WITHOUT a GSI (forward-only): at write time we ALSO write a tiny
+// reverse-pointer item INTO the user's own partition that carries exactly the
+// fields needed to reconstruct the external target key byte-for-byte. The
+// existing partition sweep then deletes both the pointer and (after
+// reconstruction) the target. SKs embed the reconstruction inputs verbatim so
+// account-erasure can rebuild `riskEventPk/Sk`, `referralCodePk`, and
+// `pairInvitePk` exactly as they were written.
+
+/**
+ * Pointer to one externally-keyed risk/fraud event. Embeds (scope, fingerprint,
+ * createdAt, eventType) — every input `riskEventPk`/`riskEventSk` need (userId
+ * is the partition owner). A user can produce up to 3 risk rows per signal
+ * (device/network/network_ua) sharing createdAt+eventType, so scope+fingerprint
+ * disambiguate. The createdAt ISO can contain ':' which is SK-safe.
+ */
+export function riskEventPointerSk(
+  scope: string,
+  fingerprint: string,
+  createdAt: string,
+  eventType: string,
+): string {
+  return `RISKPTR#${scope.toUpperCase()}#${fingerprint}#${createdAt}#${eventType.toUpperCase()}`;
+}
+
+/** Pointer to one referral-code reverse-index item, by the (uppercased) code. */
+export function referralCodePointerSk(inviteCode: string): string {
+  return `REFCODEPTR#${inviteCode.toUpperCase()}`;
+}
+
+/** Pointer to one pair-invite reverse-index item, by the (uppercased) code. */
+export function pairInvitePointerSk(inviteCode: string): string {
+  return `PAIRINVITEPTR#${inviteCode.toUpperCase()}`;
+}
+
 // ── Seasonal Event keys (Feature #17) ────────────────────────────────────────
 
 export function eventParticipationSk(eventId: string): string {
@@ -476,8 +517,15 @@ export function erasureLogPk(): string {
   return "BOOKERASURE#LOG";
 }
 
-export function erasureLogSk(erasedAtIso: string, userId: string): string {
-  return `${erasedAtIso}#${userId}`;
+/**
+ * SK for a permanent erasure-audit row. The second segment is an HMAC/SHA-256
+ * hash of the erased user's sub (NOT the raw sub) so the audit proves an erasure
+ * occurred without retaining a durable plaintext identifier for the erased
+ * subject (#4b). The hash is deterministic, so an operator holding a sub can
+ * still locate "was THIS sub erased?" without the table leaking subs.
+ */
+export function erasureLogSk(erasedAtIso: string, subjectHash: string): string {
+  return `${erasedAtIso}#${subjectHash}`;
 }
 
 // ── Account-status audit log keys ────────────────────────────────────────────
