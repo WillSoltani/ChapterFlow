@@ -463,12 +463,14 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
     // REVISE below). The fresh prior PUBLISHABLE attestation is the authority; if
     // the chapter was edited after round creation, isAttestationFresh fails and it
     // is NOT carried (→ NEEDS_MORE_QC, correctly re-reviewed).
+    let carriedPublishable = false;
     if (carriedSet?.has(ch.number) && checks.barRead === "MISSING") {
       const carried = loadAttestation(bookId, ch.number);
       if (carried && carried.verdict === "PUBLISHABLE" && isAttestationFresh(carried, ch)) {
         checks.barRead = "GREEN";
         checks.confirmRead = "PUBLISHABLE";
         checks.manualKeyJudge = "PASS";
+        carriedPublishable = true;
       }
     }
 
@@ -528,7 +530,17 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
           barReadSessionIds: barReadSessions,
         })
       : [];
-    const missingIndependentProvenance = provenanceFailures.filter((failure) => failure.code.startsWith("missing_"));
+    // A carried chapter inherited its bar/confirm axes (P2 above) from a FRESH prior PUBLISHABLE
+    // attestation whose OWN round already certified bar/confirm independence at THIS exact content
+    // hash. A sweep-only item-B confirming round — or any incremental round that gave this chapter no
+    // fresh bar/confirm cards — legitimately has no this-round bar/confirm session ids, so re-demanding
+    // them would falsely demote an already-certified, unchanged chapter to NEEDS_MORE_QC (→ a false
+    // INCOMPLETE halt). Trust the carry for bar/confirm provenance ONLY; author + the fresh
+    // cross-chapter sweep provenance, and EVERY collision check, still apply unchanged.
+    const missingIndependentProvenance = provenanceFailures.filter((failure) =>
+      failure.code.startsWith("missing_") &&
+      !(carriedPublishable && (failure.code === "missing_bar" || failure.code === "missing_confirm")),
+    );
     const collisionProvenance = provenanceFailures.find((failure) => !failure.code.startsWith("missing_"));
     // P1.5 — a sub-0.6 bar axis with no cited hit is no longer "unactionable":
     // finalizerFindings now synthesises a major repair finding for it, so it

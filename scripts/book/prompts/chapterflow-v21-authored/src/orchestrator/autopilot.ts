@@ -1230,7 +1230,12 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
     submissionPresent: (card) => deps.submissionPresent(bookId, roundId, card),
     collect: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--collect", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
     generateConfirmCandidates: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--confirm-candidates", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
-    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId]); return parseFinalizeResult(r.stdout, r.code); },
+    // finalize STAMPS each attestation's reviewerSessionId from CHAPTERFLOW_SESSION_ID, and the
+    // provenance hardening makes a missing id THROW → the write is skipped (attestationsWritten:0)
+    // → the book can never satisfy promote's fresh-PUBLISHABLE-attestation gate → no convergence.
+    // The conductor runs finalize in-process with no session id, so give it a DISTINCT finalizer id
+    // (≠ every author/reviewer id by construction) so author≠reviewer still holds AND the write lands.
+    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId], { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("finalize") }); return parseFinalizeResult(r.stdout, r.code); },
     ledgerOpenCount: () => 0,
     recordMetrics: () => { /* autopilot run-telemetry deferred to the eval layer; qc-auto records metrics */ },
     verifyFullBook: async () => (await deps.runVerb(["qc-status", bookId])).code === 0,
