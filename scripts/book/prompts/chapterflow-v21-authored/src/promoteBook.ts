@@ -44,8 +44,11 @@ import { runIntraBookChecks } from "./critics/intraBook.js";
 import { checkQcAttestation } from "./critics/qcAttestation.js";
 import { checkKeyJudge } from "./critics/quizKeyGate.js";
 import { isNoApiCodexQcMode } from "./qc/noApiMode.js";
-import { checkSourceV2Gate, expectedSourceChapters, loadSourceV2Sidecar } from "./qc/sourceV2Gate.js";
-import { verifiableItems, sourceVerifyGateFindings } from "./critics/sourceVerify.js";
+import { checkSourceV2Gate } from "./qc/sourceV2Gate.js";
+import {
+  evaluateSourceRealityPolicy,
+  type SourceRealityDecision,
+} from "./qc/sourceRealityPolicy.js";
 import { checkPlanEnforcement } from "./qc/planEnforcement.js";
 import { checkManualKeyJudge } from "./qc/manualKeyJudge.js";
 import { checkSweep } from "./qc/sweep.js";
@@ -114,6 +117,12 @@ export type PromotionResult = {
   noApiBlockerCount: number;
   majorBlockerCount: number;
   sourceIntegrityBlockerCount: number;
+  /** WS-4 source-REALITY policy: 0 unless the policy blocks (missing/invalid/stale record or
+   *  exemption). Always-on production invariant — independent of the no-API mode or any env var. */
+  sourceRealityBlockerCount: number;
+  /** The reported source-reality decision: required-and-verified | legacy-exempt | missing |
+   *  invalid | stale | not-applicable. */
+  sourceRealityDecision: SourceRealityDecision;
   generationDebtBlockerCount: number;
   generationDebtAdvisoryCount: number;
   productionManifestBlockerCount: number;
@@ -504,6 +513,28 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     message: f.message,
   }));
   const sourceIntegrityBlockerCount = sourceIntegrityFindings.length;
+
+  // WS-4 source-REALITY policy — the single point ALL promotion paths share, so a direct
+  // `promote-book` produces the same verdict as `publish-after-qc` (which also runs it in
+  // preflight). This is a PRODUCTION INVARIANT, not a no-API-mode or env-var convention: a newly
+  // produced source-v2 book (one with sidecars) MUST carry a valid VERIFIED source-verify record
+  // before it can ship. Absence blocks unless a content-bound legacy exemption covers it; a
+  // present-but-bad record always blocks. CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 only STRENGTHENS
+  // (extends the requirement to books with no verifiable content) — it can never weaken the
+  // new-book default.
+  // Same call shape the publish-after-qc preflight makes (the wrapper itself derives the
+  // canonicalIndexHash an exemption binds to), so the two paths cannot disagree.
+  const sourceReality = evaluateSourceRealityPolicy({ bookId, env: process.env, now: now() });
+  const sourceRealityFindings = sourceReality.blocking
+    ? sourceReality.findings.map((f) => ({
+        chapter: f.chapterNumber,
+        checkId: f.checkId,
+        severity: "blocker" as const,
+        message: f.message,
+      }))
+    : [];
+  const sourceRealityBlockerCount = sourceRealityFindings.length;
+
   const generationDebt = evaluateGenerationDebt(bookId, loadedChapters);
   const generationDebtBlockerCount = generationDebt.totalBlockers;
   const generationDebtAdvisoryCount = generationDebt.totalAdvisories;
@@ -537,23 +568,9 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // compatible; this stricter stack is active only when explicitly enabled.
   const noApiFindings: Array<{ chapter?: number; checkId: string; severity: "blocker"; message: string }> = [];
   if (noApiMode) {
-    // Source REALITY gate (WS-4) — enforced HERE, the single point ALL promotion paths pass
-    // through, so a direct `promote-book` cannot bypass it (publish-after-qc also runs it in
-    // preflight as an early catch). check-source above proves STRUCTURE; this rejects a filled
-    // record that is rubber-stamped or non-VERIFIED. Present-but-bad always blocks; an absent
-    // record blocks only under CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (keeps the gold corpus safe).
-    const svItems = expectedSourceChapters(bookId).flatMap((n) => {
-      const sc = loadSourceV2Sidecar(bookId, n);
-      return sc ? verifiableItems(sc) : [];
-    });
-    noApiFindings.push(...sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" })
-      .filter((f) => f.severity === "blocker")
-      .map((f) => ({
-        chapter: f.chapterNumber,
-        checkId: f.checkId,
-        severity: "blocker" as const,
-        message: f.message,
-      })));
+    // NOTE: the WS-4 source-REALITY gate moved OUT of this no-API block to an always-on
+    // production invariant above (sourceReality) — a direct `promote-book` cannot skip it by
+    // omitting an env var or the no-API mode. The rest of the stricter no-API stack stays here.
     noApiFindings.push(...checkPlanEnforcement(bookId, loadedChapters).map((f) => ({
       chapter: f.chapterNumber,
       checkId: f.checkId,
@@ -576,7 +593,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   }
   const noApiBlockerCount = noApiFindings.length;
   const preManifestBlockerCount =
-    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount + sourceIntegrityBlockerCount + generationDebtBlockerCount;
+    shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount + sourceIntegrityBlockerCount + sourceRealityBlockerCount + generationDebtBlockerCount;
 
   // ── Per-book promotion lease ───────────────────────────────────────────────
   // Acquire BEFORE any transaction recovery, candidate construction, or staging,
@@ -692,6 +709,17 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
       quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
       sourceIntegrity: { totalBlockers: sourceIntegrityBlockerCount, findings: sourceIntegrityFindings },
+      sourceReality: {
+        schemaVersion: "source-reality-policy-v1",
+        decision: sourceReality.decision,
+        classification: sourceReality.classification,
+        applies: sourceReality.applies,
+        itemCount: sourceReality.itemCount,
+        totalBlockers: sourceRealityBlockerCount,
+        findings: sourceRealityFindings,
+        summary: sourceReality.summary,
+        exemption: sourceReality.exemption ?? null,
+      },
       generationDebt: {
         schemaVersion: generationDebt.schemaVersion,
         totalBlockers: generationDebtBlockerCount,
@@ -741,6 +769,9 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       const sourceIntegritySummary = sourceIntegrityBlockerCount > 0
         ? ` + ${sourceIntegrityBlockerCount} source-integrity blocker(s): ${sourceIntegrityFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${sourceIntegrityBlockerCount > 3 ? ", …" : ""}`
         : "";
+      const sourceRealitySummary = sourceRealityBlockerCount > 0
+        ? ` + source-reality ${sourceReality.decision} (${sourceRealityBlockerCount} blocker(s)): ${sourceRealityFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${sourceRealityBlockerCount > 3 ? ", …" : ""}`
+        : "";
       const generationDebtSummary = generationDebtBlockerCount > 0
         ? ` + ${generationDebtBlockerCount} generation-debt blocker(s): ${generationDebt.findings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.stage}`).join(", ")}${generationDebtBlockerCount > 3 ? ", …" : ""}`
         : "";
@@ -759,13 +790,15 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
         noApiBlockerCount,
         majorBlockerCount,
         sourceIntegrityBlockerCount,
+        sourceRealityBlockerCount,
+        sourceRealityDecision: sourceReality.decision,
         generationDebtBlockerCount,
         generationDebtAdvisoryCount,
         productionManifestBlockerCount,
         canonicalBlockerCount: 0,
         shipGateMajorCount: shipMajorCount,
         bookGateMajorCount: bookMajorCount,
-        reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
+        reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${sourceRealitySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
       };
     }
 
@@ -798,13 +831,15 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
       noApiBlockerCount: 0,
       majorBlockerCount: 0,
       sourceIntegrityBlockerCount: 0,
+      sourceRealityBlockerCount: 0,
+      sourceRealityDecision: sourceReality.decision,
       generationDebtBlockerCount: 0,
       generationDebtAdvisoryCount,
       productionManifestBlockerCount: 0,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
+      reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Source-reality: ${sourceReality.decision}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
     };
   } finally {
     // Compare-by-owner-token release. A lease that lost the lock mid-flight (a
@@ -827,6 +862,10 @@ function blockedResult(args: { bookId: string; reason: string; canonicalBlockers
     noApiBlockerCount: 0,
     majorBlockerCount: 0,
     sourceIntegrityBlockerCount: 0,
+    // A pre-gate fail-closed return (quarantine tombstone, canonical-set rejection, unreadable
+    // chapter file, lease unavailable): promotion never reached the source-reality evaluation.
+    sourceRealityBlockerCount: 0,
+    sourceRealityDecision: "not-applicable",
     generationDebtBlockerCount: 0,
     generationDebtAdvisoryCount: 0,
     productionManifestBlockerCount: 0,
@@ -850,6 +889,7 @@ export function formatPromotionResult(r: PromotionResult): string {
   lines.push(`  Quiz answer-key judge: ${r.keyJudgeBlockerCount} blockers`);
   lines.push(`  No-api Codex QC: ${r.noApiBlockerCount} blockers`);
   lines.push(`  Source integrity: ${r.sourceIntegrityBlockerCount} blockers`);
+  lines.push(`  Source reality: ${r.sourceRealityDecision} (${r.sourceRealityBlockerCount} blockers)`);
   lines.push(`  Generation debt: ${r.generationDebtBlockerCount} blockers, ${r.generationDebtAdvisoryCount} advisories`);
   lines.push(`  Major policy: ${r.majorBlockerCount} blockers`);
   lines.push(`  Production manifest: ${r.productionManifestBlockerCount} blockers`);

@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "source-reality-legacy-exemptions-v1",
+  "_doc": "Durable, auditable legacy exemptions from the source-REALITY verification invariant. A new source-v2 book (one with source-v2 sidecars) MUST carry a valid source-verify-record-v1 before any production promotion; absence blocks. The ONLY acceptable absence for an existing checked-in legacy package is an explicit, content-bound entry here. An env var can never make a book legacy — only a human-approved entry below does. Each exemption is validated at promote + publish-preflight: a malformed, wrong-book, content-mismatched, or expired exemption BLOCKS. See docs/pipeline/SOURCE-REALITY-POLICY.md.",
+  "_entrySchema": "config/source-reality-legacy-exemptions.schema.json",
+  "exemptions": []
+}

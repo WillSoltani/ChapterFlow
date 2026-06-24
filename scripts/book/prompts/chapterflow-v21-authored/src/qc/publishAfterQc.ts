@@ -19,8 +19,8 @@ import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
 import { qcRoundPath } from "./qcRound.js";
 import { checkPlanEnforcement } from "./planEnforcement.js";
-import { checkSourceV2Gate, expectedSourceChapters, loadSourceV2Sidecar } from "./sourceV2Gate.js";
-import { verifiableItems, sourceVerifyGateFindings } from "../critics/sourceVerify.js";
+import { checkSourceV2Gate } from "./sourceV2Gate.js";
+import { evaluateSourceRealityPolicy } from "./sourceRealityPolicy.js";
 import { checkSweep } from "./sweep.js";
 import { resolveBookIdentifier } from "./auto/resolveBook.js";
 import { finalizeQcRound } from "./orchestrator/finalize.js";
@@ -258,11 +258,13 @@ function runPublishTests(runner: Runner): void {
   // The self-test validates the pipeline CODE, on synthetic fixtures — it must run in a
   // HERMETIC env. The operator's book-publish flags (REQUIRE_SOURCE_VERIFY /
   // ENFORCE_SESSION_INDEPENDENCE) gate the REAL book's preflight, which has already
-  // passed; leaking them here imposes real-book requirements on fixtures (e.g.
-  // zz-fixture-publish-green has no source-verify record, so SV1 fails the slice under
-  // REQUIRE_SOURCE_VERIFY=1 and blocks EVERY strict publish — the eat-that-frog/hyperfocus
-  // publish ordeal). Tests that exercise those gates set the flag themselves; strip the
-  // ambient values so the self-test is deterministic regardless of the publish env.
+  // passed; leaking them here imposes real-book requirements on fixtures. The
+  // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY strip in particular keeps a fixture with NO source-v2
+  // content (and no record) from being held to the strengthened "record required even with
+  // nothing to verify" bar. (A source-v2 fixture like zz-fixture-publish-green now ships its own
+  // VERIFIED source-verify record — the source-reality invariant is content-driven, not
+  // env-driven, so that fixture passes regardless of this strip.) Tests that exercise the strict
+  // flags set them themselves; strip the ambient values so the self-test is deterministic.
   const env: NodeJS.ProcessEnv = { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1" };
   delete env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
   delete env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
@@ -332,7 +334,7 @@ function chapterSpecs(bookId: string) {
   }
 }
 
-export type PreflightCheck = { check: string; blockers: string[] };
+export type PreflightCheck = { check: string; blockers: string[]; decision?: string };
 
 /** The publish-preflight as a STRUCTURED per-check battery — every check appears whether it
  *  passed (empty blockers) or failed, so publish-after-qc can print a "definition of done"
@@ -365,13 +367,21 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
       ship.push(`ship ch${ch.number} GATE_CRASH: a critic threw on a malformed chapter — ${(err as Error)?.message ?? String(err)}`);
     }
   }
-  // WS-4 source-reality gate: a PRESENT-but-rubber-stamped verification record (the
-  // digital-minimalism failure) blocks; an absent record blocks only under the opt-in
-  // CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1, so the gold corpus is not retroactively bricked.
-  const svItems = expectedSourceChapters(bookId).flatMap((n) => {
-    const sc = loadSourceV2Sidecar(bookId, n);
-    return sc ? verifiableItems(sc) : [];
-  });
+  // WS-4 source-REALITY policy — the SAME central evaluator promoteBook runs, so the preflight
+  // verdict matches the actual promote. A newly produced source-v2 book MUST carry a valid VERIFIED
+  // record before publish; absence blocks unless a content-bound legacy exemption covers it; a
+  // present-but-bad record always blocks. CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 only strengthens.
+  let srDecision = "invalid";
+  let srBlockers: string[] = [];
+  try {
+    const r = evaluateSourceRealityPolicy({ bookId, env: process.env });
+    srDecision = r.decision;
+    srBlockers = r.blocking
+      ? r.findings.map((f) => `source-reality ${r.decision} ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`)
+      : [];
+  } catch (err) {
+    srBlockers = [`source-reality GATE_CRASH: ${(err as Error)?.message ?? String(err)}`];
+  }
   return [
     { check: "canonical-chapter-set", blockers: canonicalBlockers.map((f) => `${f.checkId}: ${f.message}`) },
     { check: "ship-gate", blockers: ship },
@@ -384,7 +394,7 @@ function noApiPreflightChecks(bookId: string): PreflightCheck[] {
     { check: "plan-enforcement", blockers: safe("plan-enforcement", () => checkPlanEnforcement(bookId, chapters).map((f) => `plan ch${f.chapterNumber} ${f.checkId}: ${f.message}`)) },
     { check: "sweep", blockers: safe("sweep", () => checkSweep(chapters, true).map((f) => `sweep ${f.checkId}: ${f.message}`)) },
     { check: "majors", blockers: safe("majors", () => unresolvedMajors(bookId, chapters, true).map((f) => `major ${f.id} ${f.scope} ${f.checkId}: ${f.message}`)) },
-    { check: "source-verify", blockers: safe("source-verify", () => sourceVerifyGateFindings(bookId, svItems, { require: process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY === "1" }).filter((f) => f.severity === "blocker").map((f) => `source-verify ${f.checkId}${f.chapterNumber ? ` ch${f.chapterNumber}` : ""}: ${f.message}`)) },
+    { check: "source-reality", blockers: srBlockers, decision: srDecision },
   ];
 }
 
@@ -396,7 +406,10 @@ function noApiPreflightBlockers(bookId: string): string[] {
 export function formatPreflightChecklist(checks: PreflightCheck[]): string {
   const passed = checks.filter((c) => c.blockers.length === 0).length;
   const lines = [`publish preflight — ${passed}/${checks.length} checks passed:`];
-  for (const c of checks) lines.push(c.blockers.length === 0 ? `  ✓ ${c.check}` : `  ✗ ${c.check} (${c.blockers.length} blocker(s))`);
+  for (const c of checks) {
+    const tag = c.decision ? ` [${c.decision}]` : "";
+    lines.push(c.blockers.length === 0 ? `  ✓ ${c.check}${tag}` : `  ✗ ${c.check}${tag} (${c.blockers.length} blocker(s))`);
+  }
   return lines.join("\n");
 }
 

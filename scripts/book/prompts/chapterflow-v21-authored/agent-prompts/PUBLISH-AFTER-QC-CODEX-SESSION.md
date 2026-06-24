@@ -78,11 +78,17 @@ CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 npx tsx src/cl
 (`--push` requires `--commit`. Drop `--include-state` if your repo keeps generated book
 state out of git and tracks only the package.)
 
-**New books: always set `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1`** (on the dry run too), mirroring
-`CHAPTERFLOW_REQUIRE_KEYJUDGE=1`. With it, publish refuses a book whose source-verify record is
-missing OR rubber-stamped — a present-but-bad record blocks even without the flag, but the flag
-also blocks an ABSENT record, closing the "just don't produce a record" bypass. Omit it only for a
-legacy/gold book that predates the gate and legitimately has no record.
+**Source-reality is now a production INVARIANT for new source-v2 books — not an env-var choice.**
+A book that has source-v2 sidecars MUST carry a valid VERIFIED `source-verify` record (or a
+content-bound legacy exemption) before publish/promote succeeds; an absent, malformed, or
+rubber-stamped record blocks on its own, whether or not any flag is set, and `promote-book` enforces
+the identical gate (no "just run promote-book directly" bypass). `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1`
+now only **strengthens** the policy (it extends the requirement to books with no verifiable source
+content); **always set it for new books** (on the dry run too), mirroring
+`CHAPTERFLOW_REQUIRE_KEYJUDGE=1`. A genuine legacy/gold package that predates the gate is kept
+publishable ONLY through an explicit, content-bound entry in
+`config/source-reality-legacy-exemptions.json` — there is no longer a silent "omit the flag" path.
+See `docs/pipeline/SOURCE-REALITY-POLICY.md`.
 
 **Also set `CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1`** for new books. It blocks a chapter whose
 QC reviewer session id equals its author session id (a writer rubber-stamping their own chapter),

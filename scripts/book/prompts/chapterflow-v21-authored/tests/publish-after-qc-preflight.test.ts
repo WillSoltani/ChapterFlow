@@ -3,7 +3,8 @@ import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSy
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, runCli, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
+import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, runCli, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
+import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import type { ChapterV21 } from "../src/types.js";
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
@@ -49,6 +50,7 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(attestationPath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
     rmSync(manualKeyJudgePath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
     rmSync(provenancePath(`${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`), { force: true });
+    rmSync(sourceVerifyRecordPath(bookId), { force: true });
   }
 }
 
@@ -301,6 +303,9 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
 function setupGreen(bookId: string): void {
   const chapter = clonedChapter(bookId);
   writeBookState(bookId, chapter);
+  // Source-reality is an always-on production invariant: this source-v2 fixture publishes only
+  // with a valid VERIFIED source-verify record covering every sidecar item (no env var involved).
+  writeVerifiedSourceVerifyRecord(bookId);
   openQcRound(bookId, ROUND);
   writeRoundRecord(bookId, chapter);
   writeKeys(bookId, chapter);
@@ -444,11 +449,9 @@ test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ wit
 
 test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  // Hermetic: this fixture is a synthetic green book with no source-verify record, so an
-  // ambient CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (the operator's publish env, which the
-  // publish wrapper used to leak into this self-test) would fail SV1 and make the
-  // "every check passes" assertion env-dependent. Source-verify-when-required is covered
-  // by the source-verify gate tests; pin it OFF here so this green-path test is deterministic.
+  // This fixture ships a real VERIFIED source-verify record (setupGreen), so source-reality
+  // resolves required-and-verified regardless of CHAPTERFLOW_REQUIRE_SOURCE_VERIFY — the strip
+  // below only keeps the assertion hermetic against an ambient strict env from the host shell.
   const prevSV = process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
   const stagedBefore = runCli(["help"]).status; // cheap CLI smoke; dry-run should not need git.
   assert.equal(stagedBefore, 0);

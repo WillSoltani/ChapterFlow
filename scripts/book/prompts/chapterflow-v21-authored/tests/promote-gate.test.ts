@@ -23,13 +23,14 @@ import {
   releasePromotionLease,
 } from "../src/promotionLease.js";
 import { test } from "./harness.js";
-import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
+import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
 import {
   currentMajorFindings,
   MAJOR_WAIVER_FILE_SCHEMA_VERSION,
   MAJOR_WAIVER_RECORD_SCHEMA_VERSION,
   waiverPath,
 } from "../src/qc/majorDisposition.js";
+import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 
 const BOOK = "zz-fixture-promote";
 const MAJOR_BOOK = "zz-fixture-promote-major-clean";
@@ -46,6 +47,8 @@ function cleanupFixture(): void {
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), { force: true });
   rmSync(waiverPath(MAJOR_BOOK), { force: true });
   rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+  rmSync(sourceVerifyRecordPath(BOOK), { force: true });
+  rmSync(sourceVerifyRecordPath(MAJOR_BOOK), { force: true });
   rmSync(sourceRunDir(MAJOR_BOOK, "zz-test-major-clean"), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", "_transactions"), { recursive: true, force: true });
   // Clear the promotion LOCK dir too. The lease lock lives under _locks (NOT
@@ -274,6 +277,10 @@ function setupMajorCleanFixture(): ReturnType<typeof loadChapterIndex> {
   const index = chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title }));
   writeFixtureIndex(MAJOR_BOOK, chapters.map((ch) => ({ chapterId: ch.chapterId, number: ch.number, title: ch.title })));
   writeSourceSidecars(MAJOR_BOOK, index, "zz-test-major-clean");
+  // Source-reality is now an always-on production invariant — a source-v2 fixture promotes only
+  // with a valid VERIFIED record. Write one covering every sidecar item so the MAJOR_BOOK
+  // success-path tests exercise the required-and-verified path (not a record-missing block).
+  writeVerifiedSourceVerifyRecord(MAJOR_BOOK);
   mkdirSync(resolve(PIPELINE_DIR, "state", "briefs"), { recursive: true });
   writeFileSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), JSON.stringify({
     schemaVersion: "manual-book-brief-v1",
@@ -468,10 +475,13 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
   const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
   const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
+  const sourceRecordBefore = snapshotFile(sourceVerifyRecordPath(bookId));
 
   try {
     withPromotionEnvCleared(() => {
       writeSourceSidecars(bookId, index, runId);
+      // Source-reality invariant: a source-v2 book promotes only with a valid VERIFIED record.
+      writeVerifiedSourceVerifyRecord(bookId);
       for (const spec of index) {
         const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
         writeAttestation({
@@ -509,6 +519,7 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
     for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
+    restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
     restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
     restoreFile(packagePath, packageBefore);
@@ -526,10 +537,13 @@ test("promoteBook embeds a production manifest identity instead of trusting time
   const waiverBefore = snapshotFile(waiverPath(bookId));
   const qcBefore = new Map(index.map((spec) => [spec.chapterNumber, snapshotFile(attestationPath(bookId, spec.chapterNumber))]));
   const chapterBefore = new Map(index.map((spec) => [spec.chapterId, snapshotFile(chapterStatePath(spec.chapterId))]));
+  const sourceRecordBefore = snapshotFile(sourceVerifyRecordPath(bookId));
 
   try {
     withPromotionEnvCleared(() => {
       writeSourceSidecars(bookId, index, runId);
+      // Source-reality invariant: a source-v2 book promotes only with a valid VERIFIED record.
+      writeVerifiedSourceVerifyRecord(bookId);
       for (const spec of index) {
         const chapter = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, `${spec.chapterId}.v21-native.chapter.json`), "utf8"));
         writeAttestation({
@@ -568,6 +582,7 @@ test("promoteBook embeds a production manifest identity instead of trusting time
     for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
     for (const spec of index) restoreFile(attestationPath(bookId, spec.chapterNumber), qcBefore.get(spec.chapterNumber) ?? null);
     rmSync(sourceRunDir(bookId, runId), { recursive: true, force: true });
+    restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
     restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
     restoreFile(packagePath, packageBefore);

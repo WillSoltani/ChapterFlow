@@ -127,8 +127,12 @@ test("no-api promote enforces the source-verify RECORD gate inside promoteBook (
     });
     assert.equal(result.promoted, false);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
-    const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(noApiIds.includes("SV4"), `source-verify rubber-stamp (SV4) blocker missing from promoteBook: ${noApiIds.join(", ")}`);
+    // The source-REALITY gate is an always-on production invariant (its own report section), not
+    // part of the no-API stack — a direct promote-book runs it regardless of mode or env.
+    const srIds = (report.sourceReality?.findings ?? []).map((f: any) => f.checkId);
+    assert.equal(report.sourceReality?.decision, "invalid", `present rubber-stamp record must yield an "invalid" decision: ${JSON.stringify(report.sourceReality)}`);
+    assert.ok(srIds.includes("SV4"), `source-verify rubber-stamp (SV4) blocker missing from promoteBook source-reality gate: ${srIds.join(", ")}`);
+    assert.ok((result.sourceRealityBlockerCount ?? 0) > 0, "source-reality blocker count must be > 0");
   } finally {
     console.warn = oldWarn;
     rmSync(recordPath, { force: true });

@@ -18,6 +18,8 @@ import {
   RESEARCH_RUN_CODE_VERSION,
   type ResearchRunOverallStatus,
 } from "../src/lib/researchRunManifest.js";
+import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
+import { collectSourceVerifyItems } from "../src/qc/sourceRealityPolicy.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -372,6 +374,32 @@ export function writeSourceEvidenceFixture(
     );
   }
   return runDir;
+}
+
+/**
+ * Write a genuinely VERIFIED source-verify record covering every verifiable item the book's
+ * source-v2 sidecars expose, with DISTINCT per-item sources + notes (so it is not a rubber-stamp).
+ * This is the required-and-verified path of the always-on source-reality production invariant: a
+ * source-v2 book promotes/publishes only with a real record (or a content-bound legacy exemption).
+ * Returns the canonical record path it wrote (clean it up in the test's finally).
+ */
+export function writeVerifiedSourceVerifyRecord(bookId: string): string {
+  const items = collectSourceVerifyItems(bookId);
+  const byChapter = new Map<number, Array<{ id: string; kind: string; verdict: string; sourceRef: string; note: string }>>();
+  for (const it of items) {
+    const arr = byChapter.get(it.chapterNumber) ?? [];
+    arr.push({ id: it.id, kind: it.kind, verdict: "VERIFIED", sourceRef: `https://example.com/${bookId}/${it.id}`, note: `verified ${it.id} against its cited source` });
+    byChapter.set(it.chapterNumber, arr);
+  }
+  const record = {
+    schemaVersion: "source-verify-record-v1",
+    bookId,
+    chapters: [...byChapter.keys()].sort((a, b) => a - b).map((chapterNumber) => ({ chapterNumber, items: byChapter.get(chapterNumber)! })),
+  };
+  const recordPath = sourceVerifyRecordPath(bookId);
+  mkdirSync(dirname(recordPath), { recursive: true });
+  writeFileSync(recordPath, "```json\n" + JSON.stringify(record, null, 2) + "\n```\n", "utf8");
+  return recordPath;
 }
 
 export function makeSourceV2SidecarFixture(args: {

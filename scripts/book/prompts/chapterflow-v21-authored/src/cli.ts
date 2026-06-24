@@ -1063,7 +1063,7 @@ async function runSourceVerifyWorkbench(args: string[], flags: Record<string, st
  *  downloaded source-verify-record.json) to the CANONICAL path `source-verify-check` and the
  *  publish gate read by default (`.chapterflow/source-verify-<book>.md`), after validating it
  *  parses. Closes the two-path footgun: the workbench writes to its own dir, but the publish
- *  preflight (`sourceVerifyGateFindings`) only reads the canonical path. */
+ *  preflight (`evaluateSourceRealityPolicy`) only reads the canonical path. */
 async function runSourceVerifyImport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   const recordFlag = flags["record"];

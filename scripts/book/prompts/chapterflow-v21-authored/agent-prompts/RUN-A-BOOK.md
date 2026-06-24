@@ -48,11 +48,18 @@ own grading. Within the write and QC phases, a subagent does ONE unit and never 
 Export these so a thin / unverified / self-graded book fails BEFORE it can ship:
 ```bash
 export CHAPTERFLOW_NO_API_CODEX_QC=1               # no-API operator QC mode
-export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1         # source REALITY required (an ABSENT record blocks, not just a bad one)
+export CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1         # STRENGTHENS source-reality (see note) — extends it to books with no verifiable source content
 export CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE=1  # the author session cannot QC its own chapter
 ```
-With all three: source STRUCTURE (source-v2) **and** source REALITY (`source-verify-check`) are
-required, QC is role-separated, attestations must be fresh, and the publish-after-qc preflight
+Source REALITY for a NEW source-v2 book is a **production invariant**, not an env choice: a book with
+source-v2 sidecars MUST carry a valid VERIFIED `source-verify` record (or a content-bound legacy
+exemption) before promote/publish — an absent or bad record blocks regardless of any flag, and a
+direct `promote-book` enforces the identical gate. `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1` now only
+**strengthens** (extends the requirement to books with no verifiable content); it can never weaken
+the new-book default or reclassify a new book as legacy. Legacy packages are grandfathered only via
+`config/source-reality-legacy-exemptions.json` (`docs/pipeline/SOURCE-REALITY-POLICY.md`). With all
+three flags: source STRUCTURE (source-v2) **and** source REALITY (`source-verify-check`) are
+enforced, QC is role-separated, attestations must be fresh, and the publish-after-qc preflight
 hard-gates. A thin or unverified source fails at the research phase, before a word is written.
 
 **Footgun — do NOT also `export CHAPTERFLOW_SESSION_ID` once for the whole run.** That id is what
