@@ -94,8 +94,20 @@ test("the snapshot is durable while the analytics EVENT is ttl'd (the core disti
   assert.equal(retentionPolicyFor("BOOK_ANALYTICS_EVENT").ttl, true);
 });
 
-test("an unclassified entity defaults to durable (fail-safe: never silently expire)", () => {
+test("a class #16 doesn't manage returns ttl:false (fail-safe: #16 never silently expires it)", () => {
   const policy = retentionPolicyFor("BOOK_SOME_FUTURE_DURABLE_THING");
   assert.equal(policy.ttl, false);
   assert.equal(policy.retentionDays, undefined);
+});
+
+test("ephemeral operational classes are OUT of #16 scope (they set their own ttl at their writer)", () => {
+  // C8: retentionPolicyFor governs the #16 durable-vs-event decision only. A
+  // short-lived counter like BOOK_EXPORT_COUNT carries its OWN 3-day ttl set by
+  // enforceDailyUserLimit — so #16 reports ttl:false here (it doesn't stamp it),
+  // which is NOT a contradiction: ttl:false means "not stamped by #16", not
+  // "durable forever". Pinned so this isn't re-filed as a mismatch.
+  const policy = retentionPolicyFor("BOOK_EXPORT_COUNT");
+  assert.equal(policy.ttl, false, "#16 does not stamp the rate-limit counter");
+  assert.equal(policy.retentionDays, undefined);
+  assert.match(policy.reason, /not managed by #16/);
 });

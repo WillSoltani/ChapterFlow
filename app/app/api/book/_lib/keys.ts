@@ -582,14 +582,23 @@ export function ttlEpochSeconds(retentionDays: number, nowMs: number = Date.now(
 }
 
 /**
- * Single source of truth for "does this entity class get a DynamoDB TTL?".
+ * Retention classification for the #16-managed record classes — the tested
+ * guard that keeps the durable-vs-event decision honest.
  *
- * `true`  → high-volume / non-compliance → stamp `ttl` at write time, ages out.
+ * `true`  → high-volume / append-only telemetry → #16 stamps `ttl` at write
+ *           time from `retentionDays`, so it ages out.
  * `false` → durable / legal / fraud / compliance → MUST NEVER carry a `ttl`
  *           (a stray ttl would silently delete finance/fraud/audit history).
  *
- * This table is the guard a future writer is tested against: adding a new
- * entity here forces an explicit retention decision rather than a silent default.
+ * SCOPE: this governs the #16 durable-vs-event classes only. Short-lived
+ * OPERATIONAL keys (rate-limit counters like BOOK_EXPORT_COUNT, dedup markers,
+ * AI answer caches, pair invites) set their OWN short ttl directly at their
+ * writer and are intentionally NOT enumerated here — they are neither the
+ * high-volume telemetry this stamps nor compliance records, so they hit the
+ * fail-safe default below. A `{ttl:false}` from this table therefore means
+ * "not stamped by #16", NOT "guaranteed to live forever". The keys.retention
+ * test pins the compliance classes so a future writer cannot silently flip one
+ * to "expiring".
  */
 export function retentionPolicyFor(
   entity: string,
@@ -633,8 +642,12 @@ export function retentionPolicyFor(
       return { ttl: false, reason: "owned by #10 webhook-claim lease; do not stamp here" };
 
     default:
-      // Unknown class: default to NO ttl (fail safe — never silently expire an
-      // entity nobody has classified). Add a case above to make it eligible.
-      return { ttl: false, reason: "unclassified — defaults to durable (no ttl)" };
+      // Unknown class → NO ttl from #16 (fail-safe — never silently expire an
+      // entity nobody has classified here). NOTE: this does NOT assert the class
+      // is durable-forever — a short-lived operational key (e.g. BOOK_EXPORT_COUNT,
+      // dedup markers, the ask cache) may still carry its OWN ttl set at its
+      // writer; #16 simply doesn't govern those. Add a case above to bring a
+      // class under #16 management.
+      return { ttl: false, reason: "not managed by #16 retention (durable, or sets its own ttl at its writer)" };
   }
 }
