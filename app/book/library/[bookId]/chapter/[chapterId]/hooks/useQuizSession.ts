@@ -7,6 +7,8 @@ import type { ToneKey } from "@/app/book/data/bookPackages";
 import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
 import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
 import { buildCarryForwardAnswers, scoreSessionLocally, type CheckedResults } from "../lib/quizScoring";
+import { IS_DEV } from "@/app/book/_lib/client-env";
+import { shouldUseLocalFallback } from "../lib/fallbackPolicy";
 
 type QuizSubmitResponse = {
   quiz: QuizSessionView;
@@ -263,8 +265,17 @@ export function useQuizSession(params: {
   // one (the API content path ships `{ questions: [] }` because the quiz loads
   // separately). That null makes the load() catch and retry() below fall through
   // to the retryable error state instead of a terminal 0-question session. (RF-1)
+  //
+  // Gated to dev/CI (#1): in PROD this always returns null so a failed quiz fetch
+  // surfaces the retryable error card instead of an offline local session graded
+  // on the divergent local choiceId scheme. Dev (no AWS) keeps the local bundle.
+  // retry()'s fresh-rebuild also reads this, so prod retry falls through to a
+  // genuine server load() rather than a local session.
   const buildLocalSession = useCallback(
-    (): QuizSessionView | null => buildLocalQuizSession(localQuizRef.current, chapterNumber),
+    (): QuizSessionView | null =>
+      shouldUseLocalFallback(IS_DEV, null)
+        ? buildLocalQuizSession(localQuizRef.current, chapterNumber)
+        : null,
     [chapterNumber]
   );
 
@@ -508,15 +519,22 @@ export function useQuizSession(params: {
       setError(null);
       return { session: payload.quiz, loopPipeline: payload.loopPipeline ?? null };
     } catch (submitError: unknown) {
-      // Fall back to local scoring — mark as provisional so UI can indicate
-      // this result is unverified and needs server re-validation
-      const local = scoreLocally();
-      if (local) {
-        local.provisional = true;
-        setSession(local);
-        syncFromSession(local);
-        setError(null);
-        return { session: local, loopPipeline: null };
+      // Dev/CI only: fall back to local provisional scoring — mark as provisional
+      // so the UI can indicate the result is unverified and needs server
+      // re-validation. In PROD we never grade locally (#1): the local scheme can
+      // diverge from the server's, so an offline "pass" must not unlock a chapter
+      // or award IP. Prod re-throws so the quiz error UI surfaces a retry (the
+      // existing attempt_cooldown reload is preserved on both paths).
+      const status = submitError instanceof BookClientError ? submitError.status : null;
+      if (shouldUseLocalFallback(IS_DEV, status)) {
+        const local = scoreLocally();
+        if (local) {
+          local.provisional = true;
+          setSession(local);
+          syncFromSession(local);
+          setError(null);
+          return { session: local, loopPipeline: null };
+        }
       }
       if (
         submitError instanceof BookClientError &&

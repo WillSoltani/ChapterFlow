@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { CheckCircle, CheckCircle2, Clock, SkipForward, X } from "lucide-react";
+import { CheckCircle, CheckCircle2, Clock, SkipForward, TriangleAlert, X } from "lucide-react";
 import { JetBrains_Mono } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedBackground } from "./AnimatedBackground";
@@ -1023,7 +1023,7 @@ export function WorkspacePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const prefersReducedMotion = useReducedMotion();
-  const { analytics, error, refetch } = useBookAnalytics(ALL_BOOK_IDS, 20);
+  const { analytics, error, partial, refetch } = useBookAnalytics(ALL_BOOK_IDS, 20);
   const { identity } = useBookViewer();
   const firstName = (identity.displayName || "").split(" ")[0] || "Reader";
   const isLoading = !analytics && !error;
@@ -1132,10 +1132,28 @@ export function WorkspacePage() {
           ) : isLoading || !data ? (
             <DashboardSkeleton />
           ) : (
-            <DashboardContent
-              data={data}
-              prefersReducedMotion={prefersReducedMotion}
-            />
+            <>
+              {/* Partial-load notice (#2): the critical data loaded (else the
+                  route 503s and we render the error state above), but some
+                  optional data couldn't be fetched. Non-blocking — the dashboard
+                  is still usable, we just tell the user it isn't complete. */}
+              {partial && (
+                <div
+                  role="status"
+                  className="cf-banner cf-banner-warning mb-5 flex items-start gap-2 rounded-xl px-4 py-3 text-sm"
+                >
+                  <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>
+                    We couldn’t load everything — some of your stats may be out of date.
+                    Refresh to try again.
+                  </span>
+                </div>
+              )}
+              <DashboardContent
+                data={data}
+                prefersReducedMotion={prefersReducedMotion}
+              />
+            </>
           )}
 
           {/* Spacer so content clears TopNav's fixed mobile bottom bar (bar ≈ 4.375rem + safe-area; add slack) */}

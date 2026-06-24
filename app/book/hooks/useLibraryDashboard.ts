@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
 import type { LibraryCatalogBook, LibraryBookEntry } from "@/app/book/_lib/library-data";
 import {
@@ -14,6 +14,10 @@ type DashboardResponse = DashboardCatalogPayload & {
   entitlement: DashboardEntitlement;
   saved?: Array<{ bookId: string }>;
   insightPointsBalance?: number;
+  /** Server (#2): some OPTIONAL data couldn't be loaded; critical data is still
+   *  authoritative. The library/saved screens render with a non-blocking banner. */
+  partial?: boolean;
+  warnings?: string[];
 };
 
 const EMPTY: DashboardResponse = {
@@ -23,14 +27,22 @@ const EMPTY: DashboardResponse = {
   entitlement: null,
   saved: [],
   insightPointsBalance: 0,
+  partial: false,
+  warnings: [],
 };
 
 /**
  * Hydrates the library list from the production `/api/book/me/dashboard`
  * aggregate (catalog + progress + bookStates + entitlement + saved + insight
  * points in one call). Mirrors `useLibraryCatalogData` but exposes the full set
- * the redesigned library UI needs. Empty/partial payloads are normal (the
- * dashboard route `.catch`'s each source independently).
+ * the redesigned library UI needs.
+ *
+ * The dashboard route now fails LOUD (503) when a CRITICAL read (catalog,
+ * entitlement, progress, bookStates, chapterStates) fails (#2), so a thrown error
+ * here is a genuine outage — surfaced via `error` so the screen can show a
+ * retryable state and NEVER collapse a missing entitlement to FREE. Only OPTIONAL
+ * data degrades; the server sets `partial`/`warnings` so the screen can show a
+ * non-blocking "couldn't load everything" banner.
  */
 export function useLibraryDashboard(enabled = true) {
   const [hydrated, setHydrated] = useState(false);
@@ -38,6 +50,11 @@ export function useLibraryDashboard(enabled = true) {
   const [error, setError] = useState<string | null>(null);
   const [payload, setPayload] = useState<DashboardResponse>(EMPTY);
   const [revision, setRevision] = useState(0);
+
+  const refetch = useCallback(() => {
+    setError(null);
+    setRevision((value) => value + 1);
+  }, []);
 
   useEffect(() => {
     if (!enabled) return;
@@ -75,6 +92,8 @@ export function useLibraryDashboard(enabled = true) {
           entitlement: data.entitlement ?? null,
           saved: data.saved ?? [],
           insightPointsBalance: data.insightPointsBalance ?? 0,
+          partial: data.partial === true,
+          warnings: Array.isArray(data.warnings) ? data.warnings : [],
         });
         setError(null);
       })
@@ -113,5 +132,8 @@ export function useLibraryDashboard(enabled = true) {
     saved: payload.saved ?? [],
     savedSet,
     insightPointsBalance: payload.insightPointsBalance ?? 0,
+    partial: payload.partial ?? false,
+    warnings: payload.warnings ?? [],
+    refetch,
   };
 }

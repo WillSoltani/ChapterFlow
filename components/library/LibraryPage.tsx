@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
+import { TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { TopNav } from "@/app/book/home/components/TopNav";
@@ -100,7 +101,7 @@ export function LibraryPage() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const { hydrated, error, catalog, entries, entitlement, insightPointsBalance } =
+  const { hydrated, error, catalog, entries, entitlement, insightPointsBalance, partial } =
     useLibraryDashboard();
   const { identity } = useBookViewer();
   const { savedSet, toggleSaved } = useSavedBooks(true);
@@ -303,6 +304,22 @@ export function LibraryPage() {
           />
 
           <div className="px-5 pb-24 md:px-7">
+            {/* Partial-load notice (#2): critical data is present (the dashboard
+                route 503s → `error` above otherwise), but some optional source
+                (saved / insightPoints / readingDays / settings / profile /
+                badgeAwards) couldn't be fetched. Non-blocking — mirrors the same
+                banner the sibling surfaces (SavedBooksClient / WorkspacePage)
+                render so an optional-source failure doesn't degrade silently. */}
+            {!error && partial && (
+              <div
+                role="status"
+                className="cf-banner cf-banner-warning mb-5 flex items-start gap-2 rounded-xl px-4 py-3 text-sm"
+              >
+                <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+                <span>We couldn’t load everything — some details may be out of date.</span>
+              </div>
+            )}
+
             {/* Section 2: Active Reads (any in-progress book beyond the hero) */}
             {otherInProgress.length >= 1 && <ActiveReads books={otherInProgress} />}
 
