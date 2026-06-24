@@ -7,7 +7,9 @@ import {
   buildUnsubscribeUrl,
   unsubscribeHeaders,
   emailFooter,
+  isEmailCategoryEnabled,
   TOKEN_TTL_SECONDS,
+  type EmailCategory,
   type EmailComplianceConfig,
 } from "./email-compliance-core";
 
@@ -126,4 +128,74 @@ test("emailFooter omits the address line when no postal address is set", () => {
   });
   assert.ok(!footer.html.includes("<br/></strong>"));
   assert.ok(footer.text.includes("ChapterFlow\n\nYou enabled reminders."));
+});
+
+// isEmailCategoryEnabled is the gate that makes a one-click category unsubscribe
+// actually stop emails. It MUST be the inverse of `applyUnsubscribe` in
+// app/app/api/book/email/unsubscribe/route.ts. If the two maps drift, the
+// unsubscribe link silently stops working — a CASL/CAN-SPAM violation.
+
+const ALL_CATEGORIES: readonly EmailCategory[] = [
+  "reading_reminder",
+  "streak",
+  "weekly_digest",
+  "welcome_back",
+  "celebration",
+  "all",
+];
+
+test("isEmailCategoryEnabled defaults every category to enabled when no flag is set", () => {
+  for (const category of ALL_CATEGORIES) {
+    assert.equal(isEmailCategoryEnabled({}, category), true, category);
+  }
+});
+
+test("isEmailCategoryEnabled honors a one-click category unsubscribe (mirrors applyUnsubscribe)", () => {
+  // Each row is the exact flag state `applyUnsubscribe` writes for that category;
+  // the email gate must then report the category disabled.
+  assert.equal(
+    isEmailCategoryEnabled({ readingReminderEnabled: false }, "reading_reminder"),
+    false,
+  );
+  assert.equal(isEmailCategoryEnabled({ streakReminderEnabled: false }, "streak"), false);
+  assert.equal(
+    isEmailCategoryEnabled({ weeklyDigestEnabled: false }, "weekly_digest"),
+    false,
+  );
+  assert.equal(
+    isEmailCategoryEnabled({ welcomeBackEnabled: false }, "welcome_back"),
+    false,
+  );
+  // "celebration" unsubscribe sets BOTH flags false.
+  assert.equal(
+    isEmailCategoryEnabled(
+      { badgeCelebrationEnabled: false, achievementAlertsEnabled: false },
+      "celebration",
+    ),
+    false,
+  );
+});
+
+test("isEmailCategoryEnabled suppresses celebration when EITHER flag is false", () => {
+  assert.equal(
+    isEmailCategoryEnabled({ badgeCelebrationEnabled: false }, "celebration"),
+    false,
+  );
+  assert.equal(
+    isEmailCategoryEnabled({ achievementAlertsEnabled: false }, "celebration"),
+    false,
+  );
+  assert.equal(
+    isEmailCategoryEnabled(
+      { badgeCelebrationEnabled: true, achievementAlertsEnabled: true },
+      "celebration",
+    ),
+    true,
+  );
+});
+
+test("isEmailCategoryEnabled does not cross-suppress unrelated categories", () => {
+  // Opting out of streak must not silence celebration emails, and vice-versa.
+  assert.equal(isEmailCategoryEnabled({ streakReminderEnabled: false }, "celebration"), true);
+  assert.equal(isEmailCategoryEnabled({ badgeCelebrationEnabled: false }, "streak"), true);
 });

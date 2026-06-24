@@ -9,6 +9,7 @@ import {
   buildUnsubscribeUrl,
   emailFooter,
   getEmailComplianceConfig,
+  isEmailCategoryEnabled,
   reasonLineForCategory,
   signUnsubscribeToken,
   unsubscribeHeaders,
@@ -84,8 +85,16 @@ export async function createNotification(
   // Email notification (if enabled and email available). These are commercial
   // (engagement) emails, so they carry full CASL/CAN-SPAM compliance: sender
   // identification, reply-to, a postal-address footer, and a working one-click
-  // unsubscribe + List-Unsubscribe headers.
-  if (notifPrefs.channels?.email === true && params.userEmail) {
+  // unsubscribe + List-Unsubscribe headers. The gate honors BOTH the master
+  // channel toggle AND the per-category preference — `isEmailCategoryEnabled`
+  // is the inverse of the unsubscribe route's `applyUnsubscribe`, so a one-click
+  // category opt-out actually stops these emails (CASL §6 / CAN-SPAM §5(a)(4)).
+  const category = emailCategoryForNotificationType(params.type);
+  if (
+    notifPrefs.channels?.email === true &&
+    isEmailCategoryEnabled(notifPrefs, category) &&
+    params.userEmail
+  ) {
     const config = await getEmailComplianceConfig();
     // Commercial email requires a postal address (CASL/CAN-SPAM). Without one we
     // skip sending — set EMAIL_POSTAL_ADDRESS to enable. (Transactional email,
@@ -94,7 +103,6 @@ export async function createNotification(
     const suppressed =
       config.postalAddress && (await isEmailSuppressed(tableName, params.userEmail));
     if (config.senderEmail && config.postalAddress && !suppressed) {
-      const category = emailCategoryForNotificationType(params.type);
       const token = signUnsubscribeToken(params.userId, category, config.secret);
       const unsubscribeUrl = buildUnsubscribeUrl(config.appBaseUrl, token);
       const mailto = `mailto:${config.supportAddress}?subject=unsubscribe`;

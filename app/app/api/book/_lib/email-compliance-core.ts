@@ -172,3 +172,52 @@ const REASON_BY_CATEGORY: Record<EmailCategory, string> = {
 export function reasonLineForCategory(category: EmailCategory): string {
   return REASON_BY_CATEGORY[category];
 }
+
+/**
+ * The per-category notification preference flags that gate whether a commercial
+ * email in each {@link EmailCategory} may be sent. A flag defaults to ENABLED:
+ * only an explicit `false` suppresses (matching the cron nudge handlers and the
+ * unsubscribe route's `applyUnsubscribe`, which writes `false` on opt-out).
+ */
+export type EmailCategoryPreferences = {
+  readingReminderEnabled?: boolean;
+  streakReminderEnabled?: boolean;
+  weeklyDigestEnabled?: boolean;
+  welcomeBackEnabled?: boolean;
+  badgeCelebrationEnabled?: boolean;
+  achievementAlertsEnabled?: boolean;
+};
+
+/**
+ * Whether the user's per-category preference permits an email in `category`.
+ * This is the INVERSE of `applyUnsubscribe` in the unsubscribe route: a one-click
+ * category unsubscribe writes the matching flag(s) to `false`, so every
+ * email-sending path MUST consult this or the legally-required opt-out is ignored
+ * (CASL §6 / CAN-SPAM §5(a)(4)). The master `channels.email` toggle (the "all"
+ * unsubscribe) is checked separately by the caller.
+ */
+export function isEmailCategoryEnabled(
+  prefs: EmailCategoryPreferences,
+  category: EmailCategory,
+): boolean {
+  switch (category) {
+    case "reading_reminder":
+      return prefs.readingReminderEnabled !== false;
+    case "streak":
+      return prefs.streakReminderEnabled !== false;
+    case "weekly_digest":
+      return prefs.weeklyDigestEnabled !== false;
+    case "welcome_back":
+      return prefs.welcomeBackEnabled !== false;
+    case "celebration":
+      // The "celebration" unsubscribe sets BOTH flags false, so either one being
+      // false means the user opted out of this category.
+      return (
+        prefs.badgeCelebrationEnabled !== false &&
+        prefs.achievementAlertsEnabled !== false
+      );
+    case "all":
+      // "all" maps to the master channels.email toggle, gated by the caller.
+      return true;
+  }
+}
