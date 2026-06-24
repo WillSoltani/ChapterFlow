@@ -779,7 +779,10 @@ export type OpsFailureKind =
   | "stripe_cancel"
   | "stripe_cancel_at_period_end"
   | "stripe_customer_delete"
-  | "cognito_delete";
+  | "cognito_delete"
+  // Step-up session revocation (AdminUserGlobalSignOut) on self-delete /
+  // deactivate failed — sessions may NOT have been revoked. Operator follow-up.
+  | "cognito_global_signout";
 
 /**
  * A recorded operational failure that a human operator should follow up on.

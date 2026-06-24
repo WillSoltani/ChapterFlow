@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { adminGet, adminPost } from "@/app/book/admin/_components/admin-api";
+import { handleReauthRequired } from "@/app/book/_lib/book-api";
 import { downloadCSV } from "@/app/book/admin/_components/csv";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
@@ -530,6 +531,10 @@ function AccountLifecycleSection({
       setEraseConfirm("");
       onRefresh();
     } catch (e) {
+      // Erase requires a recent sign-in (step-up, #5). A stale-session admin
+      // gets 401 reauth_required — redirect through a forced re-auth instead of
+      // showing a dead-end error.
+      if (handleReauthRequired(e, "/book/admin/users")) return;
       setErr(e instanceof Error ? e.message : "Erase failed");
     } finally {
       setBusy(null);
