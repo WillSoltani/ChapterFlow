@@ -88,6 +88,13 @@ import type {
   AccountStatus,
   BookUserShareEventItem,
 } from "./types";
+import {
+  classifyWebhookClaim,
+  leaseExpiryMs,
+  leaseTtlEpochSeconds,
+  type ExistingWebhookMarker,
+} from "./webhook-claim-core";
+import { buildRiskEventPointer } from "./erasure-pointers-core";
 
 function readNum(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
@@ -1696,26 +1703,54 @@ export async function getManifestFromVersion(
   };
 }
 
-export async function hasStripeWebhookEventBeenProcessed(
-  tableName: string,
-  eventId: string
-): Promise<boolean> {
-  const res = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: { PK: webhookPk(), SK: webhookSk(eventId) },
-      ProjectionExpression: "eventId",
-    })
-  );
-  return !!res.Item;
-}
+/**
+ * Outcome of a claim attempt on a Stripe-webhook event lease (#10):
+ *  - "claim"     → no prior marker existed; this worker owns it and must process.
+ *  - "reclaim"   → a prior PROCESSING lease had expired (crash/timeout); this
+ *                  worker took over and must process.
+ *  - "duplicate" → the event is DONE, or a non-expired PROCESSING lease is held
+ *                  by another in-flight worker; this worker must NOT process.
+ */
+export type StripeWebhookClaim = "claimed" | "done" | "in_progress";
 
-export async function recordStripeWebhookEvent(
+/**
+ * Claim the exclusive right to process a Stripe-webhook event BEFORE running any
+ * side effects (#10). Conditionally writes a PROCESSING marker that only one of
+ * N parallel redeliveries can win:
+ *
+ *   - succeeds (claim) iff no marker exists, OR
+ *   - succeeds (reclaim) iff the existing marker is PROCESSING with an EXPIRED
+ *     lease (a prior attempt crashed/timed out before completing), OR
+ *   - fails (duplicate) iff the marker is DONE or a live PROCESSING lease is held.
+ *
+ * The condition is expressed atomically so the DynamoDB write itself is the
+ * race arbiter — exactly one concurrent claimer wins. On a ConditionalCheck
+ * failure we re-read the marker once to distinguish DONE (true idempotent
+ * duplicate) from a live PROCESSING lease (another worker) — both map to
+ * "duplicate" for the caller, but the read keeps the decision auditable.
+ *
+ * CRASH SAFETY: on a processing failure we deliberately do NOT call
+ * completeStripeWebhookEvent, so the marker stays PROCESSING with a finite TTL.
+ * Once the lease expires a Stripe retry reclaims and reprocesses — a crash can
+ * never permanently mark an event processed.
+ *
+ * LEASE >> RUNTIME INVARIANT: the default 900s lease is far longer than the
+ * server Lambda's 30s timeout, so a lease can only expire AFTER its worker is
+ * dead. A reclaim therefore never races a still-running original worker, and a
+ * "zombie" completing another worker's lease is structurally impossible. The
+ * webhook side effects are independently idempotent anyway (guarded entitlement
+ * upserts, deterministic billing-event SKs), so even a pathological overlap
+ * corrupts nothing.
+ */
+export async function claimStripeWebhookEvent(
   tableName: string,
   eventId: string,
-  eventType: string
-): Promise<boolean> {
-  const ts = nowIso();
+  eventType: string,
+  leaseSeconds = 900
+): Promise<StripeWebhookClaim> {
+  const nowMs = Date.now();
+  const leaseExpiresAt = leaseExpiryMs(nowMs, leaseSeconds);
+  const ttl = leaseTtlEpochSeconds(nowMs, leaseSeconds);
   try {
     await ddbDoc.send(
       new PutCommand({
@@ -1726,15 +1761,106 @@ export async function recordStripeWebhookEvent(
           entity: "BOOK_STRIPE_WEBHOOK_EVENT",
           eventId,
           eventType,
-          createdAt: ts,
+          status: "PROCESSING",
+          leaseExpiresAt,
+          claimedAt: nowIso(),
+          ttl,
         },
-        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        // Win the claim iff there is no marker, OR the existing one is a
+        // PROCESSING lease that has already expired (strict `<`, so
+        // exactly-at-expiry still belongs to the holder). A DONE marker (no
+        // `leaseExpiresAt`) or a live PROCESSING lease fails the condition.
+        ConditionExpression:
+          "attribute_not_exists(PK) OR (#status = :processing AND leaseExpiresAt < :now)",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":processing": "PROCESSING", ":now": nowMs },
       })
     );
-    return true;
+    // The conditional Put won (a fresh claim or a reclaim of an expired lease) —
+    // we own the lease and must run the side effects.
+    return "claimed";
   } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) return false;
-    throw error;
+    if (!isConditionalCheckFailed(error)) throw error;
+    // The conditional Put failed: the marker is DONE or a live PROCESSING lease.
+    // Re-read once and classify so we acknowledge (2xx) ONLY a genuinely-DONE
+    // event. A live (or just-released) PROCESSING lease → "in_progress": the
+    // route must return non-2xx so Stripe RETRIES — acking here would permanently
+    // drop an event whose first delivery failed mid-processing.
+    const existing = await ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        ProjectionExpression: "#status, leaseExpiresAt",
+        ExpressionAttributeNames: { "#status": "status" },
+      })
+    );
+    return classifyWebhookClaim(
+      existing.Item as ExistingWebhookMarker | undefined,
+      Date.now(),
+      leaseSeconds * 1000
+    ) === "done"
+      ? "done"
+      : "in_progress";
+  }
+}
+
+/**
+ * Mark a successfully-processed webhook event DONE and REMOVE its TTL so the
+ * idempotency marker is retained forever (#10). Called only after ALL side
+ * effects succeed. Uses an UpdateCommand (not a Put) so the existing PROCESSING
+ * item — which this worker claimed — is flipped in place.
+ */
+export async function completeStripeWebhookEvent(
+  tableName: string,
+  eventId: string
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        // SET status=DONE + completedAt, and REMOVE ttl + leaseExpiresAt so the
+        // DONE marker is permanent (no TTL sweep) and unambiguously terminal.
+        UpdateExpression: "SET #status = :done, completedAt = :now REMOVE #ttl, leaseExpiresAt",
+        ExpressionAttributeNames: { "#status": "status", "#ttl": "ttl" },
+        ExpressionAttributeValues: { ":done": "DONE", ":now": nowIso(), ":processing": "PROCESSING" },
+        // Defense-in-depth: only flip a marker that is STILL PROCESSING, so an
+        // already-DONE or swept marker is a no-op rather than a clobber. The
+        // PRIMARY guarantee that this worker still holds the lease is the
+        // lease(900s) >> ServerFn timeout(30s) invariant (a reclaim can't race a
+        // live worker) — this condition does not arbitrate concurrent holders.
+        ConditionExpression: "attribute_exists(PK) AND #status = :processing",
+      })
+    );
+  } catch (error: unknown) {
+    // Lost a benign race (already DONE or swept) — nothing to complete.
+    if (!isConditionalCheckFailed(error)) throw error;
+  }
+}
+
+/**
+ * Best-effort: drop OUR PROCESSING marker after a webhook side-effect failure so
+ * a Stripe retry can re-claim and reprocess IMMEDIATELY rather than waiting out
+ * the full lease. Conditional on PROCESSING, so a DONE marker (which must persist
+ * forever for idempotency) is never deleted; a benign conditional miss (already
+ * DONE, swept, or never written) is swallowed.
+ */
+export async function releaseStripeWebhookClaim(
+  tableName: string,
+  eventId: string
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new DeleteCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        ConditionExpression: "#status = :processing",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":processing": "PROCESSING" },
+      })
+    );
+  } catch (error: unknown) {
+    if (!isConditionalCheckFailed(error)) throw error;
   }
 }
 
@@ -1744,7 +1870,7 @@ export async function recordStripeWebhookEvent(
  * wins via a ConditionExpression, every redelivery loses and gets false (skip
  * the send). This prevents duplicate pre-charge notices when the
  * customer.subscription.trial_will_end webhook is retried after a successful
- * send but a later step (recordStripeWebhookEvent / metrics) fails (L12).
+ * send but a later step (completeStripeWebhookEvent / metrics) fails (L12).
  */
 export async function markTrialEndingEmailSent(
   tableName: string,
@@ -2563,15 +2689,37 @@ export async function recordRiskEvent(
   tableName: string,
   event: BookRiskEventItem
 ): Promise<void> {
+  // Write the externally-keyed risk event AND a reverse-pointer into the user's
+  // own partition (#4a) so account-erasure — which sweeps only the user
+  // partition — can later reconstruct this event's key and delete it. Forward-
+  // only: pointers exist only for events written after this deploy.
+  const pointer = buildRiskEventPointer({
+    userId: event.userId,
+    scope: event.scope,
+    fingerprint: event.fingerprint,
+    createdAt: event.createdAt,
+    eventType: event.eventType,
+  });
+  // Atomic: write the risk event AND its erasure reverse-pointer together so a
+  // partial failure can never leave a risk event with no pointer — which would be
+  // unreachable at account-erasure (exactly the gap #4a closes). Matches the
+  // referral/pair pointers, which are also written via TransactWrite.
   await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: riskEventPk(event.scope, event.fingerprint),
-        SK: riskEventSk(event.createdAt, event.eventType, event.userId),
-        entity: "BOOK_RISK_EVENT",
-        ...event,
-      },
+    new TransactWriteCommand({
+      TransactItems: [
+        {
+          Put: {
+            TableName: tableName,
+            Item: {
+              PK: riskEventPk(event.scope, event.fingerprint),
+              SK: riskEventSk(event.createdAt, event.eventType, event.userId),
+              entity: "BOOK_RISK_EVENT",
+              ...event,
+            },
+          },
+        },
+        { Put: { TableName: tableName, Item: pointer } },
+      ],
     })
   );
 }

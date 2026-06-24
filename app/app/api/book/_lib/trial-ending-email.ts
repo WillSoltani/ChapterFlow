@@ -117,7 +117,7 @@ export async function sendTrialEndingEmail(
 
   // Per-(customer, trial_end) dedup (L12). Claim the send marker conditionally
   // BEFORE dispatching so a webhook redelivery of trial_will_end (e.g. after a
-  // successful send but a failing recordStripeWebhookEvent) cannot re-send this
+  // successful send but a failing completeStripeWebhookEvent) cannot re-send this
   // transactional pre-charge notice. The loser of the claim skips the send.
   const claimed = await markTrialEndingEmailSent(
     tableName,
