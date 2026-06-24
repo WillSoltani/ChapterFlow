@@ -159,7 +159,11 @@ function adaptQuiz(rawQuiz: unknown): PackageQuiz {
       questionId: asStringOrUndefined(r.questionId) ?? `q-${idx + 1}`,
       prompt: asStringOrUndefined(r.prompt) ?? "",
       choices,
-      correctIndex: typeof r.correctIndex === "number" ? r.correctIndex : 0,
+      // Leave correctIndex undefined when the authored key is missing — do NOT
+      // fabricate 0 (parallel to the server adapter). A fabricated 0 grades every
+      // reader against choice A. Downstream consumers treat a missing key as a
+      // content defect rather than a real answer.
+      correctIndex: typeof r.correctIndex === "number" ? r.correctIndex : undefined,
       explanation: asStringOrUndefined(r.explanation) ?? "",
     };
   });
