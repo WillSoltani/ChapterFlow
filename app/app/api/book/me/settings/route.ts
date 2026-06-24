@@ -5,6 +5,8 @@ import {
   bookOk,
   requireBodyObject,
   withBookApiErrors,
+  assertWithinSizeLimits,
+  SETTINGS_VALUE_MAX_CHARS,
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { isValidLearningMode } from "@/app/app/api/book/_lib/learning-mode";
@@ -114,6 +116,12 @@ export async function PATCH(req: Request) {
         );
       }
     }
+
+    // Cap every string VALUE anywhere in the settings tree. The key allowlist
+    // above bounds the shape but not the size — without this, a caller could
+    // Put an arbitrarily large string under a legitimate key (e.g.
+    // reading.* / appearance.*) and blow the DynamoDB item. (#8)
+    assertWithinSizeLimits(settings, SETTINGS_VALUE_MAX_CHARS, "settings");
 
     if (settings.notifications !== undefined) {
       validateNotificationPreferences(settings.notifications);
