@@ -3,7 +3,7 @@ import { resolve } from "path";
 
 import type { ChapterSpec } from "../generateChapter.js";
 import type { ChapterV21 } from "../types.js";
-import { CANONICAL_STATE, normSlug, parseChapterId } from "./chapterPaths.js";
+import { CANONICAL_STATE, CHAPTERS_DIR, chapterFileName, normSlug, parseChapterId } from "./chapterPaths.js";
 
 export type ChapterSetBlocker = {
   checkId: string;
@@ -112,6 +112,62 @@ export function loadCanonicalChapterIndex(bookId: string, stateRoot = CANONICAL_
   const result = readCanonicalChapterIndex(bookId, stateRoot);
   if (!result.ok) throw new Error(formatChapterSetBlockers(result.blockers));
   return result.chapters;
+}
+
+export type ChapterFileLoadResult =
+  | { ok: true; chapters: ChapterV21[]; blockers: [] }
+  | { ok: false; chapters: []; blockers: ChapterSetBlocker[] };
+
+/**
+ * Safe canonical chapter-file loader — the single read/JSON.parse boundary for
+ * promotion. Every canonical chapter file is read and parsed inside a try/catch,
+ * so a missing file, an unreadable file, or invalid JSON becomes a structured
+ * ChapterSetBlocker (CHSET.chapter_file_missing / CHSET.chapter_file_unreadable)
+ * instead of a raw exception. promoteBook used to `JSON.parse(readFileSync(...))`
+ * these files inline; one corrupt file threw before promotion could return a
+ * deterministic PromotionResult, so unattended automation received a stack trace
+ * instead of a fail-closed verdict (and could not tell which file was at fault).
+ *
+ * Shape is intentionally NOT validated here: valid JSON is returned UNVERIFIED
+ * (typed as ChapterV21 for the caller) so a malformed ChapterV21 still flows
+ * into the schema-first ship gate, which is where shape findings belong. Invalid
+ * JSON syntax is caught HERE and never reaches the deeper critics.
+ *
+ * No chapter is silently skipped: every canonical spec yields exactly one loaded
+ * chapter OR one blocker, and ANY blocker fails the whole load closed (the
+ * partial chapter set is discarded so no incomplete bundle can leak downstream).
+ */
+export function loadCanonicalChapterFiles(
+  canonicalChapters: ChapterSpec[],
+  chaptersDir = CHAPTERS_DIR,
+): ChapterFileLoadResult {
+  const chapters: ChapterV21[] = [];
+  const blockers: ChapterSetBlocker[] = [];
+  for (const spec of canonicalChapters) {
+    const path = resolve(chaptersDir, chapterFileName(spec.chapterId));
+    if (!existsSync(path)) {
+      blockers.push(blocker(
+        "CHSET.chapter_file_missing",
+        `Canonical chapter ${spec.chapterId} (chapter ${spec.chapterNumber}) is missing at ${path}.`,
+        { expected: spec.chapterId, actual: path },
+      ));
+      continue;
+    }
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(readFileSync(path, "utf8"));
+    } catch (err) {
+      blockers.push(blocker(
+        "CHSET.chapter_file_unreadable",
+        `Canonical chapter ${spec.chapterId} (chapter ${spec.chapterNumber}) at ${path} could not be read or parsed: ${(err as Error).message}`,
+        { expected: spec.chapterId, actual: path },
+      ));
+      continue;
+    }
+    chapters.push(parsed as ChapterV21);
+  }
+  if (blockers.length > 0) return { ok: false, chapters: [], blockers };
+  return { ok: true, chapters, blockers: [] };
 }
 
 export function compareChapterSetToCanonical(args: {

@@ -48,6 +48,7 @@ import { evaluateGenerationDebt } from "./generationDegradation.js";
 import {
   compareChapterSetToCanonical,
   formatChapterSetBlockers,
+  loadCanonicalChapterFiles,
   readCanonicalChapterIndex,
   type ChapterSetBlocker,
 } from "./lib/chapterSet.js";
@@ -263,29 +264,24 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     });
   }
 
-  // Step 1: Load every canonical chapter from state/chapters/
-  const loadedChapters: ChapterV21[] = [];
-  const missingChapterBlockers: ChapterSetBlocker[] = [];
-  for (const spec of canonical.chapters) {
-    const path = resolve(STATE, "chapters", `${spec.chapterId}.v21-native.chapter.json`);
-    if (!existsSync(path)) {
-      missingChapterBlockers.push({
-        checkId: "CHSET.chapter_file_missing",
-        severity: "blocker",
-        message: `Canonical chapter ${spec.chapterId} (chapter ${spec.chapterNumber}) is missing at ${path}.`,
-        expected: spec.chapterId,
-      });
-      continue;
-    }
-    loadedChapters.push(JSON.parse(readFileSync(path, "utf8")) as ChapterV21);
-  }
-  if (missingChapterBlockers.length > 0) {
+  // Step 1: Load every canonical chapter from state/chapters/ through the single
+  // safe loader. Read + JSON.parse happen inside CHSET (try/catch per file), so a
+  // missing file, an unreadable file, or invalid JSON becomes a structured
+  // CHSET.chapter_file_missing / CHSET.chapter_file_unreadable blocker instead of
+  // a raw exception. The old inline `JSON.parse(readFileSync(...))` threw before
+  // promotion could return a deterministic PromotionResult — unattended
+  // automation got a stack trace, not a fail-closed verdict. Valid JSON is
+  // returned unverified so a malformed shape still reaches the schema-first ship
+  // gate below; invalid syntax never reaches the deeper critics.
+  const loaded = loadCanonicalChapterFiles(canonical.chapters);
+  if (!loaded.ok) {
     return blockedResult({
       bookId,
-      canonicalBlockers: missingChapterBlockers,
-      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(missingChapterBlockers)}`,
+      canonicalBlockers: loaded.blockers,
+      reason: `CANONICAL_CHAPTER_SET_BLOCKED: ${formatChapterSetBlockers(loaded.blockers)}`,
     });
   }
+  const loadedChapters: ChapterV21[] = loaded.chapters;
   const loadedSet = compareChapterSetToCanonical({
     bookId,
     canonical: canonical.chapters,

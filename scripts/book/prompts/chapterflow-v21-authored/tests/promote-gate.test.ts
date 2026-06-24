@@ -9,14 +9,14 @@
 
 import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
 
 import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
 import { test } from "./harness.js";
-import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
+import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import {
   currentMajorFindings,
   MAJOR_WAIVER_FILE_SCHEMA_VERSION,
@@ -741,4 +741,201 @@ test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without 
   assert.equal(shipped.examples[0].scenario, ch.examples[0].scenario, "reader content untouched");
   assert.equal(chapterContentHash(shipped), before, "the strip must never stale a QC attestation");
   assert.ok((ch.examples[0] as any).planSpec, "strip works on a copy — state chapters are not mutated");
+});
+
+// ── Safe canonical chapter-file loader (CHSET.chapter_file_unreadable) ────────
+// promoteBook used to `JSON.parse(readFileSync(...))` each canonical chapter file
+// inline; one corrupt file threw before promotion could return a structured
+// PromotionResult, so unattended automation got a raw exception instead of a
+// deterministic fail-closed verdict. These pin the safe-loader boundary.
+
+const LOADER_TX_DIR = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+
+function loaderIndexPath(bookId: string): string {
+  return resolve(PIPELINE_DIR, "state", "indexes", `${bookId}.json`);
+}
+
+/** Remove every piece of state a loader-fixture book could have written. */
+function cleanupLoaderFixture(bookId: string): void {
+  const chapterId = `${bookId}-ch01`;
+  rmSync(chapterStatePath(chapterId), { recursive: true, force: true });
+  rmSync(loaderIndexPath(bookId), { force: true });
+  rmSync(productionPackagePath(bookId), { force: true });
+  rmSync(gateReportPath(bookId), { force: true });
+  const blocked = resolve(PIPELINE_DIR, "state", "books", "_blocked");
+  try {
+    for (const f of readdirSync(blocked)) if (f.startsWith(`${bookId}.`)) rmSync(resolve(blocked, f), { force: true });
+  } catch {}
+  try {
+    for (const f of readdirSync(LOADER_TX_DIR)) if (f.startsWith(`${bookId}.`)) rmSync(resolve(LOADER_TX_DIR, f), { recursive: true, force: true });
+  } catch {}
+}
+
+function promoteLoaderFixture(bookId: string, title = "Loader Fixture") {
+  const chapterId = `${bookId}-ch01`;
+  return promoteBook({
+    bookId,
+    title,
+    author: "Nobody",
+    chapters: [{ chapterId, chapterNumber: 1, chapterTitle: "One" }],
+  });
+}
+
+test("promoteBook does not throw on invalid JSON in a canonical chapter and returns CHSET.chapter_file_unreadable naming the chapter and path", () => {
+  const bookId = "zz-loader-badjson";
+  const chapterId = `${bookId}-ch01`;
+  const chapterPath = chapterStatePath(chapterId);
+  const packagePath = productionPackagePath(bookId);
+  const reportPath = gateReportPath(bookId);
+  const blockedBefore = blockedReports(bookId);
+  try {
+    cleanupLoaderFixture(bookId);
+    writeFixtureIndex(bookId, [{ chapterId, number: 1, title: "One" }]);
+    writeFileSync(chapterPath, "{ this is : not valid json", "utf8");
+
+    // A throw here fails the test — that throw IS the regression being guarded.
+    const result = promoteLoaderFixture(bookId);
+
+    assert.equal(result.promoted, false, "an unreadable chapter must not promote");
+    assert.ok(
+      result.canonicalBlockers?.some((b) => b.checkId === "CHSET.chapter_file_unreadable"),
+      `expected CHSET.chapter_file_unreadable, got ${result.reason}`,
+    );
+    assert.match(result.reason, new RegExp(chapterId), "the blocker must name the chapter");
+    assert.ok(result.reason.includes(chapterPath), `the blocker must name the file path; reason: ${result.reason}`);
+    // Fail-closed: no production state written on the loader path.
+    assert.equal(existsSync(packagePath), false, "an unreadable chapter must not write a production package");
+    assert.equal(existsSync(reportPath), false, "an unreadable chapter must not write a gate report");
+    assert.deepEqual(blockedReports(bookId), blockedBefore, "an unreadable chapter must not write a quarantine report");
+  } finally {
+    cleanupLoaderFixture(bookId);
+  }
+});
+
+test("promoteBook fails closed on an unreadable or a missing canonical chapter file", () => {
+  // Case A: the path exists but cannot be read as a file — a directory at the
+  //         chapter path makes readFileSync throw EISDIR (cross-platform).
+  // Case B: the chapter file is absent entirely.
+  const cases = [
+    { bookId: "zz-loader-unreadable", make: (p: string) => mkdirSync(p, { recursive: true }), expected: "CHSET.chapter_file_unreadable" },
+    { bookId: "zz-loader-missing", make: (_p: string) => {}, expected: "CHSET.chapter_file_missing" },
+  ];
+  for (const c of cases) {
+    const chapterId = `${c.bookId}-ch01`;
+    const chapterPath = chapterStatePath(chapterId);
+    const packagePath = productionPackagePath(c.bookId);
+    const reportPath = gateReportPath(c.bookId);
+    try {
+      cleanupLoaderFixture(c.bookId);
+      writeFixtureIndex(c.bookId, [{ chapterId, number: 1, title: "One" }]);
+      c.make(chapterPath);
+
+      const result = promoteLoaderFixture(c.bookId);
+
+      assert.equal(result.promoted, false, `${c.expected} must not promote`);
+      assert.ok(
+        result.canonicalBlockers?.some((b) => b.checkId === c.expected),
+        `expected ${c.expected}, got ${result.reason}`,
+      );
+      assert.equal(existsSync(packagePath), false, `${c.expected} must not write a production package`);
+      assert.equal(existsSync(reportPath), false, `${c.expected} must not write a gate report`);
+    } finally {
+      cleanupLoaderFixture(c.bookId);
+    }
+  }
+});
+
+test("promoteBook routes valid JSON with a malformed chapter shape to the schema-first ship gate and returns schema findings", () => {
+  const bookId = "zz-loader-badshape";
+  const chapterId = `${bookId}-ch01`;
+  const chapterPath = chapterStatePath(chapterId);
+  const reportPath = gateReportPath(bookId);
+  const packagePath = productionPackagePath(bookId);
+  try {
+    cleanupLoaderFixture(bookId);
+    // Structurally complete (so the deeper critics don't crash) with ONE schema
+    // violation: readingTimeMinutes must be a finite number, not a string.
+    const ch = makeChapter(bookId, 1);
+    (ch as any).readingTimeMinutes = "seven";
+    writeFileSync(chapterPath, JSON.stringify(ch, null, 2), "utf8");
+    writeFixtureIndex(bookId, [{ chapterId, number: 1, title: ch.title }]);
+
+    const result = promoteBook({
+      bookId,
+      title: "Loader Fixture",
+      author: "Nobody",
+      chapters: [{ chapterId, chapterNumber: 1, chapterTitle: ch.title }],
+    });
+
+    assert.equal(result.promoted, false, "a malformed chapter shape must not promote");
+    assert.equal(result.canonicalBlockerCount, 0, "valid JSON with a bad shape is NOT a canonical-set/loader blocker");
+    assert.ok(result.shipGateBlockerCount > 0, "the malformed shape must surface as ship-gate blockers");
+    const report = JSON.parse(readFileSync(reportPath, "utf8"));
+    const shipBlockers = report.shipGate.perChapter.flatMap((g: any) => g.blockers ?? []);
+    assert.ok(
+      shipBlockers.some((b: any) => String(b.catalogId).startsWith("schema.")),
+      `expected a schema.* ship-gate finding; got ${JSON.stringify(shipBlockers.map((b: any) => b.catalogId))}`,
+    );
+  } finally {
+    cleanupLoaderFixture(bookId);
+  }
+});
+
+test("a failed loader promotion preserves an existing production package byte-for-byte and leaves no transaction directory", () => {
+  const bookId = "zz-loader-preserve";
+  const chapterId = `${bookId}-ch01`;
+  const chapterPath = chapterStatePath(chapterId);
+  const packagePath = productionPackagePath(bookId);
+  try {
+    cleanupLoaderFixture(bookId);
+    // Seed a pre-existing production package with recognizable bytes.
+    mkdirSync(dirname(packagePath), { recursive: true });
+    const seeded = `{"seed":"do-not-touch","schemaVersion":"prior"}\n`;
+    writeFileSync(packagePath, seeded, "utf8");
+
+    writeFixtureIndex(bookId, [{ chapterId, number: 1, title: "One" }]);
+    writeFileSync(chapterPath, "{ not json", "utf8");
+
+    const result = promoteLoaderFixture(bookId);
+    assert.equal(result.promoted, false, "the corrupt chapter must block promotion");
+    assert.equal(
+      readFileSync(packagePath, "utf8"),
+      seeded,
+      "a failed loader promotion must leave the existing production package byte-identical",
+    );
+
+    let txLeftovers: string[] = [];
+    try { txLeftovers = readdirSync(LOADER_TX_DIR).filter((f) => f.startsWith(`${bookId}.`)); } catch {}
+    assert.deepEqual(txLeftovers, [], "a failed loader promotion must not leave a live promotion transaction directory");
+  } finally {
+    cleanupLoaderFixture(bookId);
+  }
+});
+
+test("CLI promote-book exits nonzero WITHOUT a raw stack trace when a canonical chapter is invalid JSON", () => {
+  const bookId = "zz-loader-cli";
+  const chapterId = `${bookId}-ch01`;
+  const chapterPath = chapterStatePath(chapterId);
+  try {
+    cleanupLoaderFixture(bookId);
+    writeFixtureIndex(bookId, [{ chapterId, number: 1, title: "One" }]);
+    writeFileSync(chapterPath, "{ not valid json", "utf8");
+
+    const { status, out } = runCli([
+      "promote-book", bookId,
+      "--title", "Loader Fixture",
+      "--author", "Nobody",
+      "--categories", "Business",
+      "--tags", "fixture",
+    ]);
+
+    assert.notEqual(status, 0, `promote-book must exit nonzero on a corrupt chapter; output tail:\n${out.slice(-1500)}`);
+    assert.match(out, /CHSET\.chapter_file_unreadable/, `the structured blocker must be reported; output tail:\n${out.slice(-1500)}`);
+    // A thrown error printed by the CLI top-level (`console.error(err)`) renders
+    // stack frames like "    at <fn> (<file>:line:col)". The deterministic
+    // fail-closed verdict must not contain any.
+    assert.doesNotMatch(out, /\n\s+at .+:\d+:\d+/, `a raw stack trace leaked:\n${out.slice(-2000)}`);
+  } finally {
+    cleanupLoaderFixture(bookId);
+  }
 });
