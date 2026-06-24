@@ -21,10 +21,11 @@ import {
 } from "fs";
 import { randomBytes } from "crypto";
 import { hostname as osHostname } from "os";
-import { basename, dirname, resolve } from "path";
+import { basename, dirname, relative, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { chapterContentHash } from "../critics/qcAttestation.js";
+import { chapterIdFromFileName, normSlug } from "../lib/chapterPaths.js";
 import { ChapterV21 } from "../types.js";
 import {
   forbiddenNamesByPolicy,
@@ -97,6 +98,7 @@ export type LibraryStatePaths = {
   chaptersDir: string;
   namePlansDir: string;
   bookPackagesDir: string;
+  indexesDir: string;
 };
 
 export type OwnerLiveness = "alive" | "dead" | "unknown";
@@ -125,6 +127,7 @@ export type LibraryStateOptions = {
   chaptersDir?: string;
   namePlansDir?: string;
   bookPackagesDir?: string;
+  indexesDir?: string;
   bookMetadata?: Record<string, { title: string; author: string }>;
   now?: () => number;
   sleep?: (ms: number) => Promise<void>;
@@ -218,6 +221,7 @@ function pathsFor(opts: LibraryStateOptions = {}): LibraryStatePaths {
       : opts.stateDir
         ? resolve(stateDir, "book-packages")
         : DEFAULT_BOOK_PACKAGES_DIR,
+    indexesDir: opts.indexesDir ? resolve(opts.indexesDir) : resolve(stateDir, "indexes"),
   };
 }
 
@@ -742,7 +746,10 @@ export function chapterContribution(
       source: effective.length > 0 ? "planner-allocation" : "missing-authoritative-source",
       audit: {
         capitalizedWordHeuristic: auditNames(chapter),
-        namePlanPath: allocation.path,
+        // Store repo-root-relative so the ledger carries no machine-absolute
+        // path — keeps the committed canonical state portable and the drift
+        // comparison deterministic across checkouts (invariant #7).
+        namePlanPath: allocation.path ? relReport(allocation.path) : undefined,
         policyId: policy.policyId,
       },
     },
@@ -818,70 +825,259 @@ export function getForbiddenNames(
   return [...forbiddenNamesByPolicy(books, currentBookId, effectivePolicy)].sort();
 }
 
-function bookIdFromChapterPath(path: string, chapter: ChapterV21): string {
-  const fromChapterId = chapter.chapterId.match(/^(.+)-ch\d{1,3}$/i)?.[1];
-  if (fromChapterId) return fromChapterId;
-  const fromFile = basename(path).match(/^(.+)-ch\d{1,3}\.v21-native\.chapter\.json$/i)?.[1];
-  return fromFile ?? chapter.chapterId;
+export type LibraryAuditSeverity = "blocker" | "warning" | "info";
+
+/** A single structured finding from the authoritative-inputs audit. Every
+ *  rejection that used to be a silent `continue` now becomes one of these. */
+export type LibraryAuditFinding = {
+  checkId: string;
+  severity: LibraryAuditSeverity;
+  /** Repo-root-relative when the file is inside the checkout (so the report is
+   *  deterministic across checkout paths), absolute otherwise. */
+  path: string;
+  bookId?: string;
+  chapter?: number;
+  reason: string;
+};
+
+export type LibraryAcceptedFile = {
+  path: string;
+  kind: "package" | "loose";
+  authority: "published-package" | "loose-authoring" | "loose-shadow-of-published";
+  bookId: string;
+  chapters: number[];
+};
+
+type AuthoritativeBook = {
+  title: string;
+  author: string;
+  /** True once a production package claims this bookId — the package is then the
+   *  sole authoritative source for the ledger and loose files are non-ingested
+   *  drafts. */
+  published: boolean;
+  chapters: Map<number, ChapterV21>;
+};
+
+export type AuthoritativeChapters = {
+  byBook: Map<string, AuthoritativeBook>;
+  accepted: LibraryAcceptedFile[];
+  findings: LibraryAuditFinding[];
+};
+
+/** Render an absolute path repo-root-relative so audit output is identical
+ *  regardless of where the checkout lives (determinism invariant #7). */
+function relReport(abs: string): string {
+  const rel = relative(REPO_ROOT, abs);
+  return rel && !rel.startsWith("..") ? rel : abs;
 }
 
-function readJsonFile(path: string): unknown | null {
+type ReadResult = { ok: true; value: unknown } | { ok: false; error: string };
+
+function readJsonResult(path: string): ReadResult {
   try {
-    return JSON.parse(readFileSync(path, "utf8"));
-  } catch {
-    return null;
+    return { ok: true, value: JSON.parse(readFileSync(path, "utf8")) };
+  } catch (err) {
+    return { ok: false, error: (err as Error).message };
   }
 }
 
-function collectAuthoritativeChapters(opts: LibraryStateOptions = {}): Map<string, { title: string; author: string; chapters: Map<number, ChapterV21> }> {
+const LOOSE_FILE_RE = /^(.+)-ch\d{1,3}\.v21-native\.chapter\.json$/i;
+
+/**
+ * Walk the authoritative inputs (production packages + loose chapter state) and
+ * return the resolved per-book chapter set ALONGSIDE a structured finding for
+ * every file or chapter that was rejected, conflicted, or fell outside the
+ * canonical index. Nothing is skipped silently.
+ *
+ * Authority policy:
+ *   - A book with a production package is PUBLISHED; the package is the sole
+ *     authoritative reader content. Loose files for that book are unpublished
+ *     drafts — never ingested, never allowed to overwrite the package. When a
+ *     loose draft diverges from (or has no counterpart in) the package, that is
+ *     reported as a non-blocking package/loose conflict; the package still wins.
+ *   - A book with no package is UNPUBLISHED; its loose chapter files are the
+ *     authoritative authoring state and ARE ingested.
+ *   - Corrupt, malformed, identity-mismatched, or duplicate inputs are blockers
+ *     — a real rebuild refuses to write while any blocker stands.
+ */
+export function collectAuthoritativeChapters(opts: LibraryStateOptions = {}): AuthoritativeChapters {
   const paths = pathsFor(opts);
-  const byBook = new Map<string, { title: string; author: string; chapters: Map<number, ChapterV21> }>();
-  const ensureBook = (bookId: string, title = bookId, author = "") => {
+  const byBook = new Map<string, AuthoritativeBook>();
+  const accepted: LibraryAcceptedFile[] = [];
+  const findings: LibraryAuditFinding[] = [];
+  const add = (f: LibraryAuditFinding) => findings.push(f);
+
+  const ensureBook = (bookId: string, title: string, author: string, published: boolean): AuthoritativeBook => {
     const meta = opts.bookMetadata?.[bookId];
-    const existing = byBook.get(bookId);
-    if (existing) {
-      if (meta) { existing.title = meta.title; existing.author = meta.author; }
-      return existing;
+    let book = byBook.get(bookId);
+    if (!book) {
+      book = { title: meta?.title ?? title, author: meta?.author ?? author, published, chapters: new Map() };
+      byBook.set(bookId, book);
+      return book;
     }
-    const entry = { title: meta?.title ?? title, author: meta?.author ?? author, chapters: new Map<number, ChapterV21>() };
-    byBook.set(bookId, entry);
-    return entry;
+    if (meta) { book.title = meta.title; book.author = meta.author; }
+    else { if (title) book.title = title; if (author) book.author = author; }
+    book.published = book.published || published;
+    return book;
   };
 
+  // Pass 1 — production packages (authoritative for published reader content).
+  const packageOf = new Map<string, string>();
   if (existsSync(paths.bookPackagesDir)) {
     for (const file of readdirSync(paths.bookPackagesDir).filter((f) => f.endsWith(".json")).sort()) {
-      const path = resolve(paths.bookPackagesDir, file);
-      const raw = readJsonFile(path);
-      if (!isRecord(raw) || !isRecord(raw.book) || !Array.isArray(raw.chapters)) continue;
-      const bookId = typeof raw.book.bookId === "string" ? raw.book.bookId : file.replace(/\.json$/, "");
+      const abs = resolve(paths.bookPackagesDir, file);
+      const read = readJsonResult(abs);
+      if (!read.ok) {
+        add({ checkId: "library.unreadable_json", severity: "blocker", path: relReport(abs), reason: `package JSON did not parse: ${read.error}` });
+        continue;
+      }
+      const raw = read.value;
+      if (!isRecord(raw) || !isRecord(raw.book) || !Array.isArray(raw.chapters)) {
+        add({ checkId: "library.malformed_package", severity: "blocker", path: relReport(abs), reason: "package must have an object `book` and an array `chapters`" });
+        continue;
+      }
+      const rawBookId = typeof raw.book.bookId === "string" && raw.book.bookId ? raw.book.bookId : file.replace(/\.v21\.json$|\.json$/i, "");
+      const bookId = normSlug(rawBookId);
+      const prior = packageOf.get(bookId);
+      if (prior) {
+        add({ checkId: "library.duplicate_book_identity", severity: "blocker", path: relReport(abs), bookId, reason: `package "${file}" normalizes to bookId "${bookId}" already claimed by "${prior}"` });
+        continue;
+      }
+      packageOf.set(bookId, file);
       const book = ensureBook(
         bookId,
         typeof raw.book.title === "string" ? raw.book.title : bookId,
         typeof raw.book.author === "string" ? raw.book.author : "",
+        true,
       );
-      for (const chapter of raw.chapters) {
-        if (isRecord(chapter) && Number.isInteger(chapter.number)) book.chapters.set(Number(chapter.number), chapter as ChapterV21);
+      const acceptedNums: number[] = [];
+      for (let i = 0; i < raw.chapters.length; i++) {
+        const chapter = raw.chapters[i];
+        if (!isRecord(chapter) || !Number.isInteger(chapter.number)) {
+          add({ checkId: "library.malformed_chapter", severity: "blocker", path: relReport(abs), bookId, reason: `chapters[${i}] is missing an integer \`number\`` });
+          continue;
+        }
+        const num = Number(chapter.number);
+        if (book.chapters.has(num)) {
+          add({ checkId: "library.duplicate_chapter_number", severity: "blocker", path: relReport(abs), bookId, chapter: num, reason: `package lists chapter number ${num} more than once` });
+          continue;
+        }
+        book.chapters.set(num, chapter as ChapterV21);
+        acceptedNums.push(num);
       }
+      accepted.push({ path: relReport(abs), kind: "package", authority: "published-package", bookId, chapters: acceptedNums.sort((a, b) => a - b) });
+    }
+  }
+  // A book that has a package FILE on disk is "packaged" — its loose files are
+  // drafts, never authoritative for the ledger — even if the package failed to
+  // parse. Deriving this from the FILENAME (not just successfully-parsed
+  // packages) is what stops a corrupt/torn package from letting its loose drafts
+  // be silently promoted to published reader content, and what keeps quarantine
+  // from inverting authority.
+  const packagedIds = new Set<string>(byBook.keys());
+  if (existsSync(paths.bookPackagesDir)) {
+    for (const file of readdirSync(paths.bookPackagesDir).filter((f) => f.endsWith(".json"))) {
+      packagedIds.add(normSlug(file.replace(/\.v21\.json$|\.json$/i, "")));
     }
   }
 
+  // Pass 2 — loose chapter state.
   if (existsSync(paths.chaptersDir)) {
+    const looseSeen = new Map<string, Map<number, string>>();
     for (const file of readdirSync(paths.chaptersDir).filter((f) => f.endsWith(".v21-native.chapter.json")).sort()) {
-      const path = resolve(paths.chaptersDir, file);
-      const raw = readJsonFile(path);
-      if (!isRecord(raw) || !Number.isInteger(raw.number) || typeof raw.chapterId !== "string") continue;
+      const abs = resolve(paths.chaptersDir, file);
+      const fileMatch = basename(file).match(LOOSE_FILE_RE);
+      const bookId = normSlug(fileMatch ? fileMatch[1] : chapterIdFromFileName(file));
+      const fileNumMatch = basename(file).match(/-ch0*(\d{1,3})\.v21-native\.chapter\.json$/i);
+      const fileChapter = fileNumMatch ? parseInt(fileNumMatch[1], 10) : undefined;
+      const packaged = packagedIds.has(bookId);
+      // For a packaged book the package is authoritative; a loose-draft anomaly
+      // is a non-blocking conflict (the draft is never ingested). For an
+      // unpublished book the loose chapter IS the authoritative content, so the
+      // same anomaly is a blocker.
+      const anomaly = (checkId: string, reason: string, chapter?: number) =>
+        add({
+          checkId,
+          severity: packaged ? "warning" : "blocker",
+          path: relReport(abs),
+          bookId,
+          chapter,
+          reason: packaged ? `${reason} — book is published; package is authoritative, loose draft not ingested` : reason,
+        });
+
+      const read = readJsonResult(abs);
+      if (!read.ok) {
+        anomaly("library.unreadable_json", `chapter JSON did not parse: ${read.error}`, fileChapter);
+        continue;
+      }
+      const raw = read.value;
+      if (!isRecord(raw) || !Number.isInteger(raw.number) || typeof raw.chapterId !== "string" || !raw.chapterId) {
+        anomaly("library.malformed_chapter", "loose chapter must carry an integer `number` and a non-empty string `chapterId`", fileChapter);
+        continue;
+      }
+      const stem = chapterIdFromFileName(file);
+      const num = Number(raw.number);
+      if (raw.chapterId !== stem) {
+        anomaly("library.chapterid_filename_mismatch", `in-file chapterId "${raw.chapterId}" != filename stem "${stem}"; reconcile with \`migrate-chapter-identity ${bookId}\``, num);
+        if (packaged) accepted.push({ path: relReport(abs), kind: "loose", authority: "loose-shadow-of-published", bookId, chapters: [num] });
+        continue;
+      }
       const chapter = raw as ChapterV21;
-      const bookId = bookIdFromChapterPath(path, chapter);
-      ensureBook(bookId).chapters.set(chapter.number, chapter);
+      if (packaged) {
+        const pkgBook = byBook.get(bookId);
+        const pkgChapter = pkgBook?.chapters.get(num);
+        if (!pkgBook) {
+          add({ checkId: "library.package_loose_unverifiable", severity: "warning", path: relReport(abs), bookId, chapter: num, reason: `loose draft cannot be compared — "${bookId}" has a package file that did not load; the package remains authoritative and the draft is not ingested` });
+        } else if (!pkgChapter) {
+          add({ checkId: "library.package_loose_orphan_chapter", severity: "warning", path: relReport(abs), bookId, chapter: num, reason: `loose chapter ${num} has no counterpart in the published package; package is authoritative, loose treated as an unpublished draft` });
+        } else if (chapterContentHash(chapter) !== chapterContentHash(pkgChapter)) {
+          add({ checkId: "library.package_loose_divergence", severity: "warning", path: relReport(abs), bookId, chapter: num, reason: `loose chapter ${num} diverges from the published package; package is authoritative (loose not ingested)` });
+        }
+        accepted.push({ path: relReport(abs), kind: "loose", authority: "loose-shadow-of-published", bookId, chapters: [num] });
+        continue;
+      }
+      const seen = looseSeen.get(bookId) ?? new Map<number, string>();
+      const dupOf = seen.get(num);
+      if (dupOf) {
+        add({ checkId: "library.duplicate_chapter_number", severity: "blocker", path: relReport(abs), bookId, chapter: num, reason: `loose file collides on chapter ${num} for "${bookId}" with "${dupOf}"` });
+        continue;
+      }
+      seen.set(num, file);
+      looseSeen.set(bookId, seen);
+      const book = ensureBook(bookId, bookId, "", false);
+      book.chapters.set(num, chapter);
+      accepted.push({ path: relReport(abs), kind: "loose", authority: "loose-authoring", bookId, chapters: [num] });
     }
   }
 
-  return byBook;
+  // Pass 3 — canonical-index membership (advisory: report, never block).
+  for (const [bookId, book] of [...byBook].sort((a, b) => a[0].localeCompare(b[0]))) {
+    const idxAbs = resolve(paths.indexesDir, `${bookId}.json`);
+    if (!existsSync(idxAbs)) {
+      add({ checkId: "library.missing_canonical_index", severity: "warning", path: relReport(idxAbs), bookId, reason: `no canonical index for on-disk book "${bookId}"` });
+      continue;
+    }
+    const read = readJsonResult(idxAbs);
+    if (!read.ok || !Array.isArray(read.value)) {
+      add({ checkId: "library.malformed_canonical_index", severity: "warning", path: relReport(idxAbs), bookId, reason: "canonical index is unreadable or not an array" });
+      continue;
+    }
+    const indexed = new Set<number>();
+    for (const entry of read.value) if (isRecord(entry) && Number.isInteger(entry.chapterNumber)) indexed.add(Number(entry.chapterNumber));
+    for (const numKey of [...book.chapters.keys()].sort((a, b) => a - b)) {
+      if (!indexed.has(numKey)) add({ checkId: "library.missing_canonical_index_membership", severity: "warning", path: relReport(idxAbs), bookId, chapter: numKey, reason: `authoritative chapter ${numKey} is absent from the canonical index` });
+    }
+  }
+
+  return { byBook, accepted, findings };
 }
 
-export function rebuildLibraryState(opts: LibraryStateOptions = {}): LibraryState {
+/** Ingest an already-resolved authoritative collection into a fresh ledger.
+ *  Split out so a single audit can reuse one directory walk for both the
+ *  findings and the rebuild instead of collecting twice. */
+function rebuildFromCollection(byBook: AuthoritativeChapters["byBook"], opts: LibraryStateOptions): LibraryState {
   const state = emptyState(opts);
-  for (const [bookId, book] of [...collectAuthoritativeChapters(opts)].sort((a, b) => a[0].localeCompare(b[0]))) {
+  for (const [bookId, book] of [...byBook].sort((a, b) => a[0].localeCompare(b[0]))) {
     for (const chapter of [...book.chapters.values()].sort((a, b) => a.number - b.number)) {
       ingestChapter(state, bookId, book.title, book.author, chapter, opts);
     }
@@ -891,12 +1087,26 @@ export function rebuildLibraryState(opts: LibraryStateOptions = {}): LibraryStat
   return normalizeState(state, opts);
 }
 
+export function rebuildLibraryState(opts: LibraryStateOptions = {}): LibraryState {
+  return rebuildFromCollection(collectAuthoritativeChapters(opts).byBook, opts);
+}
+
 function stable(value: unknown): string {
   if (Array.isArray(value)) return `[${value.map(stable).join(",")}]`;
   if (value && typeof value === "object") {
     return `{${Object.keys(value as Record<string, unknown>).sort().map((key) => `${JSON.stringify(key)}:${stable((value as Record<string, unknown>)[key])}`).join(",")}}`;
   }
   return JSON.stringify(value);
+}
+
+/** Project a contribution to its content-bound fields. `ingestedAt` is a
+ *  wall-clock provenance stamp, fresh on every rebuild — excluding it (like the
+ *  state-level lastUpdatedAt/revision and book-level generatedAt already are)
+ *  is what makes the drift comparison deterministic across time, so a rebuilt
+ *  ledger can actually verify clean. */
+function logicalContribution(c: ChapterContribution): unknown {
+  const { ingestedAt: _ingestedAt, ...rest } = c;
+  return rest;
 }
 
 function logicalState(state: LibraryState): unknown {
@@ -914,7 +1124,11 @@ function logicalState(state: LibraryState): unknown {
         namesUsed: book.namesUsed,
         phrasesFlagged: book.phrasesFlagged,
         answerPositionCounts: book.answerPositionCounts,
-        chapterContributions: Object.fromEntries(Object.entries(book.chapterContributions).sort((a, b) => Number(a[0]) - Number(b[0]))),
+        chapterContributions: Object.fromEntries(
+          Object.entries(book.chapterContributions)
+            .sort((a, b) => Number(a[0]) - Number(b[0]))
+            .map(([key, contribution]) => [key, logicalContribution(contribution)]),
+        ),
       },
     ])),
     globalNameUsage: normalized.globalNameUsage,
@@ -939,6 +1153,127 @@ export function verifyLibraryState(opts: LibraryStateOptions = {}): LibraryState
     actual,
     expected,
   };
+}
+
+export type LibraryAuditReport = {
+  ledgerPath: string;
+  drift: boolean;
+  blockerCount: number;
+  accepted: LibraryAcceptedFile[];
+  /** Files/chapters rejected from the authoritative set (all blocker severity). */
+  rejected: LibraryAuditFinding[];
+  /** Package-vs-loose conflicts on published books (advisory; package wins). */
+  conflicts: LibraryAuditFinding[];
+  /** Other advisory findings (e.g. canonical-index membership). */
+  warnings: LibraryAuditFinding[];
+  findings: LibraryAuditFinding[];
+  expectedLogicalState: unknown;
+  actualLogicalState: unknown;
+  plannedWrites: Array<{ path: string; action: string; reason: string }>;
+};
+
+const PACKAGE_LOOSE_CONFLICT_PREFIX = "library.package_loose";
+
+/**
+ * Full read-only audit of the authoritative inputs vs the stored ledger. This
+ * is what `rebuild-library-state --dry-run --json` prints: accepted files,
+ * rejected files, conflicts, the expected vs actual logical state, and the
+ * writes a real rebuild WOULD perform. It never mutates state.
+ */
+export function auditLibraryInputs(opts: LibraryStateOptions = {}): LibraryAuditReport {
+  const { byBook, accepted, findings } = collectAuthoritativeChapters(opts);
+  // A corrupt stored ledger is itself a "corrupt input" — report it as a blocker
+  // and treat the actual state as empty, so a dry run reports it deterministically
+  // instead of crashing with an unhandled throw.
+  let actualState: LibraryState;
+  try {
+    actualState = loadLibraryState(opts);
+  } catch (err) {
+    findings.push({ checkId: "library.unreadable_ledger", severity: "blocker", path: relReport(pathsFor(opts).ledgerPath), reason: `stored ledger could not be parsed: ${(err as Error).message}` });
+    actualState = emptyState(opts);
+  }
+  const rejected = findings.filter((f) => f.severity === "blocker");
+  const conflicts = findings.filter((f) => f.checkId.startsWith(PACKAGE_LOOSE_CONFLICT_PREFIX));
+  const warnings = findings.filter((f) => f.severity !== "blocker" && !f.checkId.startsWith(PACKAGE_LOOSE_CONFLICT_PREFIX));
+  const expected = logicalState(rebuildFromCollection(byBook, opts));
+  const actual = logicalState(actualState);
+  const drift = stable(actual) !== stable(expected);
+  const plannedWrites =
+    rejected.length === 0 && drift
+      ? [{ path: relReport(pathsFor(opts).ledgerPath), action: "replace-ledger", reason: "stored ledger drifts from the authoritative inputs" }]
+      : [];
+  return {
+    ledgerPath: relReport(pathsFor(opts).ledgerPath),
+    drift,
+    blockerCount: rejected.length,
+    accepted,
+    rejected,
+    conflicts,
+    warnings,
+    findings,
+    expectedLogicalState: expected,
+    actualLogicalState: actual,
+    plannedWrites,
+  };
+}
+
+export type LibraryQuarantineResult = {
+  quarantineDir: string;
+  reportPath: string;
+  movedFiles: Array<{ from: string; to: string }>;
+  findings: LibraryAuditFinding[];
+};
+
+/**
+ * Move every file that produced a blocker out of the authoritative set into a
+ * timestamped quarantine dir (preserving its repo-relative layout) and write a
+ * report capturing the findings. The original bytes are PRESERVED — the file is
+ * renamed, never deleted — so the evidence survives for forensic review. This
+ * is the dedicated, explicit escape hatch a real rebuild requires before it
+ * will write past blockers.
+ */
+export function quarantineLibraryBlockers(opts: LibraryStateOptions = {}, label = "manual"): LibraryQuarantineResult {
+  const paths = pathsFor(opts);
+  const { findings } = collectAuthoritativeChapters(opts);
+  const blockers = findings.filter((f) => f.severity === "blocker");
+  const stamp = iso(nowMs(opts)).replace(/[:.]/g, "-");
+  const quarantineDir = resolve(paths.stateDir, "_quarantine", `library-${stamp}-${label}`);
+  mkdirSync(quarantineDir, { recursive: true });
+  const movedFiles: Array<{ from: string; to: string }> = [];
+  const movedAbs = new Set<string>();
+  const move = (fromAbs: string, reason: string) => {
+    if (movedAbs.has(fromAbs) || !existsSync(fromAbs)) return;
+    const rel = relReport(fromAbs);
+    const toAbs = resolve(quarantineDir, rel);
+    mkdirSync(dirname(toAbs), { recursive: true });
+    renameSync(fromAbs, toAbs);
+    movedAbs.add(fromAbs);
+    movedFiles.push({ from: `${rel} (${reason})`, to: relReport(toAbs) });
+  };
+  for (const finding of blockers) move(resolve(REPO_ROOT, finding.path), finding.checkId);
+  // Quarantining a corrupt PACKAGE must not silently promote that book's loose
+  // drafts to authoritative on the next rebuild. Pull the drafts of any
+  // quarantined packaged book out together, so the book is removed entirely
+  // (package + drafts) pending repair — never half-removed into a draft swap.
+  const quarantinedPackageBooks = new Set<string>();
+  for (const finding of blockers) {
+    if (resolve(REPO_ROOT, finding.path).startsWith(paths.bookPackagesDir + "/")) {
+      quarantinedPackageBooks.add(normSlug(basename(finding.path).replace(/\.v21\.json$|\.json$/i, "")));
+    }
+  }
+  if (quarantinedPackageBooks.size > 0 && existsSync(paths.chaptersDir)) {
+    for (const file of readdirSync(paths.chaptersDir).filter((f) => f.endsWith(".v21-native.chapter.json")).sort()) {
+      const m = basename(file).match(LOOSE_FILE_RE);
+      if (m && quarantinedPackageBooks.has(normSlug(m[1]))) move(resolve(paths.chaptersDir, file), "draft-of-quarantined-package");
+    }
+  }
+  const reportPath = resolve(quarantineDir, "quarantine-report.json");
+  writeFileSync(
+    reportPath,
+    JSON.stringify({ schemaVersion: "library-quarantine-v1", quarantinedAt: iso(nowMs(opts)), label, movedFiles, findings: blockers }, null, 2),
+    "utf8",
+  );
+  return { quarantineDir, reportPath, movedFiles, findings: blockers };
 }
 
 export async function replaceWithRebuiltLibraryState(opts: LibraryStateOptions = {}): Promise<LibraryStateDriftReport> {

@@ -45,13 +45,17 @@ function shadowGuard(): number {
   }
 }
 import {
+  auditLibraryInputs,
   getForbiddenNames,
   ingestChapter,
   loadLibraryState,
+  quarantineLibraryBlockers,
   rebuildLibraryState,
   verifyLibraryState,
   withLibraryState,
   getLedgerPath,
+  type LibraryAuditFinding,
+  type LibraryAuditReport,
 } from "./librarian/libraryState.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -72,8 +76,16 @@ Commands:
   ledger ingest <chapter.json> --book-id X --title X --author X
                                      Ingest a generated v21 chapter into the ledger
   verify-library-state [--json]     Recompute library aggregates from authoritative chapters/packages and report drift
-  rebuild-library-state [--dry-run] [--json]
-                                     Recompute library state, report drift, and replace the JSON ledger atomically
+  rebuild-library-state [--dry-run] [--json] [--quarantine]
+                                     Audit authoritative inputs (published package wins; loose state authoritative only
+                                     for unpublished books) and replace the JSON ledger atomically. Reports accepted/
+                                     rejected files, package-vs-loose conflicts, expected vs actual state, and planned
+                                     writes. A dry run never writes; a real rebuild refuses while blockers stand unless
+                                     --quarantine moves corrupt files aside (preserving evidence) first.
+  migrate-chapter-identity <bookId> [--apply] [--json]
+                                     Safe migration for chapterId/filename/index drift: plans first, refuses ambiguous
+                                     mappings, then atomically aligns filename + chapterId + canonical index and writes a
+                                     migration report. Dry-run by default.
   next-task <bookId>                 INLINE-OPERATOR MODE: scans on-disk state for a book and
                                      prints the next artifact to produce (bibliography, chapter
                                      source, chapter output, finalize), with playbook path and
@@ -648,25 +660,171 @@ async function runVerifyLibraryState(flags: Record<string, string | boolean>): P
   return report.drift ? 1 : 0;
 }
 
-async function runRebuildLibraryState(flags: Record<string, string | boolean>): Promise<number> {
-  const before = verifyLibraryState();
-  if (flags.json === true) {
-    console.log(JSON.stringify({ phase: "before", report: before }, null, 2));
-  } else {
-    console.log("Before rebuild:");
-    printLibraryDriftReport(before);
+function formatLibraryFinding(f: LibraryAuditFinding): string {
+  const where = `${f.bookId ? ` ${f.bookId}` : ""}${f.chapter !== undefined ? ` ch${f.chapter}` : ""}`;
+  return `  [${f.severity}] ${f.checkId}${where} — ${f.reason}\n      ↳ ${f.path}`;
+}
+
+function printLibraryAudit(report: LibraryAuditReport): void {
+  console.log(`Library state: ${report.ledgerPath}`);
+  console.log(`Drift: ${report.drift ? "YES" : "no"}   Blockers: ${report.blockerCount}   Accepted files: ${report.accepted.length}`);
+  console.log(`Conflicts (package/loose, package wins): ${report.conflicts.length}   Advisory warnings: ${report.warnings.length}`);
+  if (report.rejected.length) {
+    console.log(`\nBLOCKERS (rejected authoritative inputs — nothing is silently skipped):`);
+    for (const f of report.rejected) console.log(formatLibraryFinding(f));
   }
-  if (flags["dry-run"] === true) return before.drift ? 1 : 0;
-  await withLibraryState(() => rebuildLibraryState());
-  const after = verifyLibraryState();
-  if (flags.json === true) {
-    console.log(JSON.stringify({ phase: "after", report: after }, null, 2));
-  } else {
-    console.log("");
-    console.log("After rebuild:");
-    printLibraryDriftReport(after);
+  if (report.conflicts.length) {
+    console.log(`\nPACKAGE/LOOSE CONFLICTS (published package is authoritative; loose drafts not ingested):`);
+    for (const f of report.conflicts.slice(0, 40)) console.log(formatLibraryFinding(f));
+    if (report.conflicts.length > 40) console.log(`  …and ${report.conflicts.length - 40} more`);
+  }
+  if (report.warnings.length) {
+    console.log(`\nADVISORY:`);
+    for (const f of report.warnings.slice(0, 40)) console.log(formatLibraryFinding(f));
+    if (report.warnings.length > 40) console.log(`  …and ${report.warnings.length - 40} more`);
+  }
+  if (report.plannedWrites.length) {
+    console.log(`\nPLANNED WRITES:`);
+    for (const w of report.plannedWrites) console.log(`  ${w.action}: ${w.path} — ${w.reason}`);
+  }
+}
+
+/**
+ * `rebuild-library-state [--dry-run] [--json] [--quarantine]`
+ *
+ * Recompute the ledger from the authoritative inputs under an explicit authority
+ * policy (published package wins; loose state is authoritative only for
+ * unpublished books). A dry run NEVER writes. A real rebuild REFUSES to write
+ * while any blocker stands, unless `--quarantine` first moves the offending
+ * files aside (preserving evidence). Exit: 2 = blockers present, 1 = drift
+ * remains, 0 = clean.
+ */
+/** Library-state opts, overridable via CHAPTERFLOW_STATE_DIR so the CLI contract
+ *  (exit codes, no-write dry runs, quarantine) is testable against an isolated
+ *  state dir instead of the real one. */
+function libraryOpts(): { stateDir?: string } {
+  const dir = process.env.CHAPTERFLOW_STATE_DIR;
+  return dir ? { stateDir: resolve(dir) } : {};
+}
+
+async function runRebuildLibraryState(flags: Record<string, string | boolean>): Promise<number> {
+  const dryRun = flags["dry-run"] === true;
+  const json = flags.json === true;
+  const opts = libraryOpts();
+
+  if (!dryRun && flags["quarantine"] === true) {
+    const pre = auditLibraryInputs(opts);
+    if (pre.blockerCount > 0) {
+      const q = quarantineLibraryBlockers(opts, "rebuild");
+      if (!json) {
+        console.log(`Quarantined ${q.movedFiles.length} blocker file(s) → ${q.reportPath}`);
+        for (const m of q.movedFiles) console.log(`  ${m.from}  →  ${m.to}`);
+      }
+    }
+  }
+
+  const report = auditLibraryInputs(opts);
+
+  if (dryRun) {
+    if (json) console.log(JSON.stringify(report, null, 2));
+    else printLibraryAudit(report);
+    if (report.blockerCount > 0) return 2;
+    return report.drift ? 1 : 0;
+  }
+
+  if (report.blockerCount > 0) {
+    if (json) console.log(JSON.stringify(report, null, 2));
+    else {
+      printLibraryAudit(report);
+      console.error(
+        `\nREFUSING to rebuild: ${report.blockerCount} blocker(s) above. Reconcile fixable identity drift with ` +
+          `\`migrate-chapter-identity <bookId>\`, or re-run with \`--quarantine\` to move corrupt files aside first.`,
+      );
+    }
+    return 2;
+  }
+
+  // Idempotent: when the stored ledger already matches the authoritative inputs
+  // there is nothing to write, so a second rebuild leaves the file byte-identical
+  // (no spurious revision/timestamp churn, no diff).
+  if (!report.drift) {
+    if (json) console.log(JSON.stringify({ phase: "noop", report }, null, 2));
+    else {
+      console.log("Library ledger already matches the authoritative inputs; nothing to rebuild.");
+      printLibraryAudit(report);
+    }
+    return 0;
+  }
+
+  await withLibraryState(() => rebuildLibraryState(opts), opts);
+  const after = auditLibraryInputs(opts);
+  if (json) console.log(JSON.stringify({ phase: "after", report: after }, null, 2));
+  else {
+    console.log("Rebuilt the library ledger from authoritative inputs.");
+    printLibraryAudit(after);
   }
   return after.drift ? 1 : 0;
+}
+
+/**
+ * `migrate-chapter-identity <bookId> [--apply] [--json]` — the safe migration
+ * path for chapterId/filename/index drift. Plans first, refuses ambiguous
+ * mappings, and (with --apply) updates filename + chapterId + canonical index
+ * atomically while preserving a migration report.
+ */
+async function runMigrateChapterIdentity(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const guard = shadowGuard();
+  if (guard) return guard;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: migrate-chapter-identity <bookId> [--apply] [--json]");
+    return 2;
+  }
+  const { planChapterIdentityMigration, applyChapterIdentityMigration } = await import("./librarian/identityMigration.js");
+  const mopts = process.env.CHAPTERFLOW_STATE_DIR ? { stateDir: resolve(process.env.CHAPTERFLOW_STATE_DIR) } : {};
+  const plan = planChapterIdentityMigration(bookId, mopts);
+  const apply = flags["apply"] === true;
+  const json = flags.json === true;
+
+  if (!plan.ok) {
+    if (json) console.log(JSON.stringify({ plan }, null, 2));
+    else {
+      console.error(`migrate-chapter-identity — ${plan.bookId}: AMBIGUOUS, refusing to apply.`);
+      for (const a of plan.ambiguities) console.error(`  - ${a}`);
+    }
+    return 2;
+  }
+
+  if (!apply) {
+    if (json) console.log(JSON.stringify({ plan, dryRun: true }, null, 2));
+    else {
+      console.log(`migrate-chapter-identity — ${plan.bookId} (dry-run, no files written)`);
+      console.log(`  canonical index: ${plan.indexPath}${plan.indexPresent ? "" : " (absent)"}`);
+      console.log(`  ${plan.changeCount} chapter(s) need alignment:`);
+      for (const s of plan.steps) {
+        const ops = [s.renameFile ? "rename" : null, s.rewriteChapterId ? "chapterId" : null, s.updateIndex ? "index" : null].filter(Boolean).join("+");
+        console.log(`    ch${s.chapterNumber}: ${s.fromChapterId || "(none)"} → ${s.toChapterId}  [${ops}]`);
+      }
+      if (plan.changeCount === 0) console.log("    already aligned; nothing to do.");
+      console.log("  re-run with --apply to write.");
+    }
+    return 0;
+  }
+
+  if (plan.changeCount === 0) {
+    if (json) console.log(JSON.stringify({ plan, applied: [] }, null, 2));
+    else console.log(`migrate-chapter-identity — ${plan.bookId}: already aligned; nothing to apply.`);
+    return 0;
+  }
+
+  const result = applyChapterIdentityMigration(plan, mopts);
+  if (json) console.log(JSON.stringify({ plan, result }, null, 2));
+  else {
+    console.log(`migrate-chapter-identity — ${plan.bookId}: applied ${result.applied.length} change(s), index ${result.indexUpdated ? "updated" : "unchanged"}.`);
+    console.log(`  plan:   ${result.planPath}`);
+    console.log(`  report: ${result.reportPath}`);
+  }
+  return 0;
 }
 
 async function runGenerateBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -5021,6 +5179,8 @@ async function main() {
       return runAuthorCheck(args);
     case "fix-chapter-ids":
       return runFixChapterIds(args, flags);
+    case "migrate-chapter-identity":
+      return runMigrateChapterIdentity(args, flags);
     case "toc-migrate":
       return runTocMigrate(args, flags);
     case "migrate-state":
