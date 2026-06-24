@@ -110,3 +110,38 @@ test("mixed sources: one failure makes the whole export incomplete but still bui
   assert.deepEqual(m.partialSources, ["badges"]);
   assert.equal(m.counts.readingDays, 2);
 });
+
+// ─── runScalar (#3 — scalar-source completeness; C6) ─────────────────────────
+
+test("runScalar: a present value records complete with count 1", async () => {
+  const tracker = new ExportSourceTracker();
+  const v = await tracker.runScalar("entitlement", async () => ({ plan: "PRO" }), null);
+  assert.deepEqual(v, { plan: "PRO" });
+  const m = tracker.build(AT);
+  assert.equal(m.complete, true);
+  assert.equal(m.counts.entitlement, 1);
+});
+
+test("runScalar: a null value records complete with count 0 (genuinely absent)", async () => {
+  const tracker = new ExportSourceTracker();
+  const v = await tracker.runScalar("profile", async () => null, null);
+  assert.equal(v, null);
+  const m = tracker.build(AT);
+  assert.equal(m.complete, true);
+  assert.equal(m.counts.profile, 0);
+});
+
+test("runScalar: a THROWN read records read_failed → manifest incomplete (C6 — no silent null)", async () => {
+  const tracker = new ExportSourceTracker();
+  // Previously these scalar reads used a silent `.catch(() => null)`, so a
+  // transient DynamoDB failure emitted null with complete:true — a partial
+  // export that looked complete. Now the failure is recorded.
+  const v = await tracker.runScalar("analyticsSnapshot", async () => {
+    throw new Error("transient GetItem failure");
+  }, null);
+  assert.equal(v, null, "still returns the fallback so the export succeeds");
+  const m = tracker.build(AT);
+  assert.equal(m.complete, false);
+  assert.deepEqual(m.partialSources, ["analyticsSnapshot"]);
+  assert.equal(m.sources.find((s) => s.name === "analyticsSnapshot")?.reason, "read_failed");
+});

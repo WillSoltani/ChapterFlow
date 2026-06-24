@@ -19,7 +19,7 @@ import {
   erasureLogSk,
   nowIso,
 } from "./keys";
-import { targetKeysFromUserItems } from "./erasure-pointers-core";
+import { targetKeysFromUserItems, isErasurePointerEntity } from "./erasure-pointers-core";
 import { hashErasureSubject } from "./erasure-audit-core";
 import { getStripeClient } from "./stripe-service";
 import { getUserEntitlement } from "./repo";
@@ -142,6 +142,17 @@ function quizAttemptPksFromUserItems(userId: string, items: Record<string, unkno
 function pairInviteKeysFromUserItems(items: Record<string, unknown>[]): DdbKey[] {
   const codes = new Set<string>();
   for (const it of items) {
+    // Harvest ONLY genuine pair-invite codes. Two classes of user-partition items
+    // also carry an `inviteCode` and must be skipped, or they synthesize a
+    // spurious no-op pairInvitePk(<wrong code>) delete:
+    //   - #4a reverse-pointers (handled by the pointer path, targetKeysFromUserItems), and
+    //   - the referral PROFILE/CLAIM items, whose `inviteCode` is a REFERRAL code.
+    // (In practice no non-pointer item carries a pair code today — createPairInvite
+    // writes the keyed BOOK_PAIR_INVITE record + a pointer, never a partition item
+    // with the code — so this harvest is effectively empty; the explicit skips
+    // keep it correct and drift-proof if a pair code ever lands here.)
+    if (isErasurePointerEntity(it.entity)) continue;
+    if (it.entity === "BOOK_USER_REFERRAL_PROFILE" || it.entity === "BOOK_USER_REFERRAL_CLAIM") continue;
     if (typeof it.inviteCode === "string" && it.inviteCode.trim()) codes.add(it.inviteCode.trim());
   }
   return [...codes].map((code) => ({ PK: pairInvitePk(code), SK: pairInviteSk() }));

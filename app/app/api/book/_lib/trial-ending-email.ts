@@ -3,7 +3,11 @@ import "server-only";
 import type Stripe from "stripe";
 import { sendEmail } from "@/app/app/api/book/_lib/email-service";
 import { getEmailComplianceConfig } from "@/app/app/api/book/_lib/email-compliance";
-import { isEmailSuppressed, markTrialEndingEmailSent } from "@/app/app/api/book/_lib/repo";
+import {
+  isEmailSuppressed,
+  markTrialEndingEmailSent,
+  releaseTrialEndingEmailClaim,
+} from "@/app/app/api/book/_lib/repo";
 
 /**
  * Sends the "your free trial ends soon" reminder when Stripe fires
@@ -126,16 +130,33 @@ export async function sendTrialEndingEmail(
   );
   if (!claimed) return { sent: false, reason: "already_sent" };
 
-  const result = await sendEmail({
-    to: email,
-    subject,
-    textBody,
-    htmlBody,
-    senderEmail: config.senderName
-      ? `${config.senderName} <${config.senderEmail}>`
-      : config.senderEmail,
-    replyTo: config.supportAddress,
-    configurationSet: config.configurationSet,
-  });
+  let result: { sent: boolean };
+  try {
+    result = await sendEmail({
+      to: email,
+      subject,
+      textBody,
+      htmlBody,
+      senderEmail: config.senderName
+        ? `${config.senderName} <${config.senderEmail}>`
+        : config.senderEmail,
+      replyTo: config.supportAddress,
+      configurationSet: config.configurationSet,
+    });
+  } catch (error) {
+    // sendEmail normally catches internally and returns {sent:false}, but guard
+    // the throw path too: release the dedup claim so the marker can't permanently
+    // suppress this pre-charge notice after a transient failure.
+    await releaseTrialEndingEmailClaim(tableName, subscription.customer, subscription.trial_end);
+    throw error;
+  }
+
+  // A failed send (transient SES error → sent:false) must NOT leave the dedup
+  // marker set, or the webhook completes DONE (Stripe stops retrying) and the
+  // card-network-required notice is permanently lost. Release so a redelivery
+  // re-attempts. (#10 release-on-failure discipline.)
+  if (!result.sent) {
+    await releaseTrialEndingEmailClaim(tableName, subscription.customer, subscription.trial_end);
+  }
   return { sent: result.sent };
 }

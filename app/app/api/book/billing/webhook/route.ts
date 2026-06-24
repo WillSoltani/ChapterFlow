@@ -416,9 +416,23 @@ export async function POST(req: Request) {
             }).catch(() => {});
           }
         }
-        await sendTrialEndingEmail(stripe, tableName, subscription).catch((e) => {
-          console.error("[webhook] trial-ending email failed:", e);
-        });
+        const trialEmail = await sendTrialEndingEmail(stripe, tableName, subscription);
+        // A transient send failure (reason-less sent:false — sendTrialEndingEmail
+        // already RELEASED its dedup marker) MUST make Stripe retry, or the
+        // card-network-required pre-charge notice is lost forever (Stripe stops
+        // retrying after the first 2xx). Throw so the event is NOT completed DONE
+        // and a redelivery re-attempts the send. Terminal outcomes (suppressed /
+        // no_email / already_sent / no_trial / no_customer / no_sender) carry a
+        // `reason` and complete normally — retrying them is futile. A thrown
+        // Stripe/SES transport error likewise propagates to the outer catch
+        // (release claim → non-2xx), which is the desired retry.
+        if (!trialEmail.sent && !trialEmail.reason) {
+          throw new BookApiError(
+            500,
+            "trial_email_retry",
+            "Trial-ending email send failed transiently; retrying.",
+          );
+        }
       }
     } else if (event.type === "charge.refunded") {
       // Persist a durable refund record for the admin finance report. We do NOT

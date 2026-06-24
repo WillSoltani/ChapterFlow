@@ -359,9 +359,10 @@ export async function GET(req: Request) {
     });
 
     // Track per-source completeness so the manifest can flag a silently-failed
-    // or truncated source (#3). Array sources go through the tracker (which
-    // records read_failed on a thrown read and truncated on a paginated cap);
-    // scalar sources keep their plain `.catch` fallback.
+    // or truncated source (#3). Array sources go through runSource (records
+    // read_failed on a thrown read, truncated on a paginated cap); scalar
+    // sources go through runScalar so a thrown read is recorded too, instead of
+    // a silent `.catch` emitting an indistinguishable null with complete:true.
     const tracker = new ExportSourceTracker();
 
     // Fetch all user data in parallel
@@ -380,23 +381,27 @@ export async function GET(req: Request) {
       analyticsSnapshot,
       analyticsEvents,
     ] = await Promise.all([
-      getUserProfileItem(tableName, user.sub).catch(() => null),
-      getUserSettingsItem(tableName, user.sub).catch(() => null),
-      getUserEntitlement(tableName, user.sub).catch(() => null),
+      tracker.runScalar("profile", () => getUserProfileItem(tableName, user.sub), null),
+      tracker.runScalar("settings", () => getUserSettingsItem(tableName, user.sub), null),
+      tracker.runScalar("entitlement", () => getUserEntitlement(tableName, user.sub), null),
       tracker.runSource("readingDays", () => exportAllReadingDays(tableName, user.sub), []),
       tracker.runSource("bookProgress", () => exportAllProgress(tableName, user.sub), []),
       tracker.runSource("bookStates", () => exportAllBookStates(tableName, user.sub), []),
       tracker.runSource("chapterStates", () => exportAllChapterStates(tableName, user.sub), []),
       tracker.runSource("savedBooks", () => exportAllSavedBooks(tableName, user.sub), []),
       tracker.runSource("badges", () => exportAllBadgeAwards(tableName, user.sub), []),
-      getUserFlowPointsState(tableName, user.sub).catch(() => ({ points: 0 })),
+      tracker.runScalar<{ points: number }>(
+        "flowPointsBalance",
+        () => getUserFlowPointsState(tableName, user.sub),
+        { points: 0 },
+      ),
       tracker.runSource(
         "flowPointsLedger",
         () => listAllFlowPointsLedger(tableName, user.sub),
         [],
       ),
       analyticsTable
-        ? getUserSnapshot(analyticsTable, user.sub).catch(() => null)
+        ? tracker.runScalar("analyticsSnapshot", () => getUserSnapshot(analyticsTable, user.sub), null)
         : Promise.resolve(null),
       analyticsTable
         ? tracker.runSource(
@@ -406,9 +411,10 @@ export async function GET(req: Request) {
           )
         : Promise.resolve([] as Record<string, unknown>[]),
     ]);
-    // When analytics isn't configured we never read events; record it as a
-    // complete (empty) source rather than leaving a hole in the manifest.
+    // When analytics isn't configured we never read events/snapshot; record them
+    // as complete (empty) sources rather than leaving holes in the manifest.
     if (!analyticsTable) {
+      tracker.record({ name: "analyticsSnapshot", count: 0, complete: true });
       tracker.record({ name: "analyticsEvents", count: 0, complete: true });
     }
 

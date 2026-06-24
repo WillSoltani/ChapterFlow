@@ -6,6 +6,7 @@ import {
   buildPairInvitePointer,
   targetKeyFromPointer,
   targetKeysFromUserItems,
+  isErasurePointerEntity,
 } from "./erasure-pointers-core";
 import {
   bookUserPk,
@@ -119,4 +120,26 @@ test("targetKeysFromUserItems collects all pointer targets and dedupes", () => {
   assert.ok(keys.some((k) => k.PK === ptrA.targetPK && k.SK === ptrA.targetSK));
   assert.ok(keys.some((k) => k.PK === ptrB.targetPK && k.SK === ptrB.targetSK));
   assert.ok(keys.some((k) => k.PK === ptrC.targetPK && k.SK === ptrC.targetSK));
+});
+
+// ─── isErasurePointerEntity (C7 — single source of truth for pointer entities) ─
+
+test("isErasurePointerEntity: recognizes all three pointer entities, rejects others", () => {
+  assert.equal(isErasurePointerEntity("BOOK_RISK_EVENT_POINTER"), true);
+  assert.equal(isErasurePointerEntity("BOOK_REFERRAL_CODE_POINTER"), true);
+  assert.equal(isErasurePointerEntity("BOOK_PAIR_INVITE_POINTER"), true);
+  // A real pair invite / referral item (non-pointer) and noise must be rejected,
+  // so the legacy inviteCode harvest does NOT skip genuine legacy items.
+  assert.equal(isErasurePointerEntity("BOOK_USER_PAIR"), false);
+  assert.equal(isErasurePointerEntity("BOOK_PROGRESS"), false);
+  assert.equal(isErasurePointerEntity(undefined), false);
+  assert.equal(isErasurePointerEntity(42), false);
+});
+
+test("the built pointers all report as pointer entities (keeps the harvest skip in sync)", () => {
+  assert.equal(isErasurePointerEntity(buildRiskEventPointer({
+    userId: USER, scope: "device", fingerprint: "fp", createdAt: "2026-01-01T00:00:00Z", eventType: "signup",
+  }).entity), true);
+  assert.equal(isErasurePointerEntity(buildReferralCodePointer(USER, "CODE1").entity), true);
+  assert.equal(isErasurePointerEntity(buildPairInvitePointer(USER, "INVITE1").entity), true);
 });

@@ -106,6 +106,28 @@ export class ExportSourceTracker {
     }
   }
 
+  /**
+   * Run a SCALAR (single-object) source read, recording its completeness so a
+   * silently-caught read failure is reflected in the manifest instead of being
+   * emitted as an indistinguishable null/empty value. On rejection, records
+   * read_failed and returns the supplied fallback so the export still succeeds.
+   * `count` is 1 when a value is present, 0 when null/undefined (or on failure).
+   */
+  async runScalar<T>(
+    name: string,
+    read: () => Promise<T>,
+    fallback: T,
+  ): Promise<T> {
+    try {
+      const value = await read();
+      this.record({ name, count: value == null ? 0 : 1, complete: true });
+      return value;
+    } catch {
+      this.record({ name, count: 0, complete: false, reason: "read_failed" });
+      return fallback;
+    }
+  }
+
   build(generatedAt: string): ExportManifest {
     return buildExportManifest(this.statuses, generatedAt);
   }

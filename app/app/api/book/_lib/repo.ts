@@ -1899,6 +1899,34 @@ export async function markTrialEndingEmailSent(
   }
 }
 
+/**
+ * Release a trial-ending-email claim taken by {@link markTrialEndingEmailSent}
+ * when the send did NOT succeed, so a later Stripe redelivery of
+ * trial_will_end can re-attempt the (card-network-required) pre-charge notice
+ * instead of being permanently suppressed by the dedup marker. Best-effort:
+ * a failed release just leaves the marker (the pre-fix behavior). Mirrors
+ * releaseStripeWebhookClaim's release-on-failure discipline (L12).
+ */
+export async function releaseTrialEndingEmailClaim(
+  tableName: string,
+  customerId: string,
+  trialEndUnix: number
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new DeleteCommand({
+        TableName: tableName,
+        Key: {
+          PK: trialEndingEmailPk(customerId),
+          SK: trialEndingEmailSk(trialEndUnix),
+        },
+      })
+    );
+  } catch {
+    // Best-effort — leaving the marker is the safe-ish pre-fix default.
+  }
+}
+
 // ── Email suppression (bounce/complaint deliverability) ───────────────────────
 
 export type EmailSuppressionRecord = {
