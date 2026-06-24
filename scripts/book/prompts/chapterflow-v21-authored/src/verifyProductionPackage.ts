@@ -46,9 +46,12 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
-function loadPackage(options: VerifyProductionPackageOptions): { ok: true; pkg: BookPackageV21; packagePath: string | null } | { ok: false; findings: ProductionPackageVerificationFinding[]; packagePath: string | null } {
+function loadPackage(options: VerifyProductionPackageOptions): { ok: true; pkg: unknown; packagePath: string | null } | { ok: false; findings: ProductionPackageVerificationFinding[]; packagePath: string | null } {
+  // The package is `unknown` here on purpose: neither caller-supplied data nor
+  // file-loaded JSON is trusted to be an object until verifyProductionPackage
+  // validates its top-level shape. No cast to BookPackageV21 happens at load.
   if (options.packageData !== undefined) {
-    return { ok: true, pkg: options.packageData as BookPackageV21, packagePath: options.packagePath ?? null };
+    return { ok: true, pkg: options.packageData, packagePath: options.packagePath ?? null };
   }
   const packagePath = options.packagePath ? resolve(options.packagePath) : null;
   if (!packagePath) {
@@ -58,7 +61,7 @@ function loadPackage(options: VerifyProductionPackageOptions): { ok: true; pkg: 
     return { ok: false, packagePath, findings: [blocker({ checkId: "PPKG.package_missing", path: packagePath, message: `Production package is missing at ${packagePath}.` })] };
   }
   try {
-    return { ok: true, pkg: JSON.parse(readFileSync(packagePath, "utf8")) as BookPackageV21, packagePath };
+    return { ok: true, pkg: JSON.parse(readFileSync(packagePath, "utf8")) as unknown, packagePath };
   } catch (err) {
     return {
       ok: false,
@@ -130,15 +133,26 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     return { ok: false, bookId: null, packagePath: loaded.packagePath, contentId: null, findings: loaded.findings };
   }
 
-  const pkg = loaded.pkg;
+  // Prove the top-level shape is a non-null, non-array object BEFORE reading any
+  // property. Valid JSON that is null, a primitive (boolean/number/string), or an
+  // array would otherwise throw on `pkg.book` / `pkg.chapters` access. Such input
+  // fails closed with a single structured blocker instead of a stack trace.
+  if (!isObject(loaded.pkg)) {
+    return {
+      ok: false,
+      bookId: null,
+      packagePath: loaded.packagePath,
+      contentId: null,
+      findings: [blocker({ checkId: "PPKG.package_malformed", message: "Production package must be a JSON object." })],
+    };
+  }
+
+  const pkg = loaded.pkg as BookPackageV21;
   const stateRoot = options.stateRoot ?? CANONICAL_STATE;
   const runsRoot = options.runsRoot ?? DEFAULT_RUNS_ROOT;
   const findings: ProductionPackageVerificationFinding[] = [];
   const bookId = isObject(pkg.book) && typeof pkg.book.bookId === "string" ? normSlug(pkg.book.bookId) : null;
 
-  if (!isObject(pkg)) {
-    findings.push(blocker({ checkId: "PPKG.package_malformed", message: "Production package must be a JSON object." }));
-  }
   if (pkg.schemaVersion !== V21_SCHEMA_VERSION) {
     findings.push(blocker({
       checkId: "PPKG.package_schema_mismatch",
