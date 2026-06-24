@@ -22,9 +22,20 @@
 
 import { randomBytes } from "crypto";
 import { readFileSync, mkdirSync, existsSync, renameSync, rmSync, readdirSync, statSync } from "fs";
+import { hostname as osHostname } from "os";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+
+import {
+  acquirePromotionLease,
+  defaultPromotionOwnerLiveness,
+  heartbeatPromotionLease,
+  releasePromotionLease,
+  type OwnerLivenessProbe,
+  type PromotionLease,
+  type PromotionLeaseOptions,
+} from "./promotionLease.js";
 
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
 import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
@@ -73,6 +84,17 @@ export type PromotionOptions = {
   /** Stable transaction id for deterministic fault/recovery tests. */
   transactionId?: string;
   now?: () => Date;
+  /** Test seam: override the promotion lease TTL (ms). */
+  leaseTtlMs?: number;
+  /** Test seam: override the recorded host for the lease + transaction owner stamps. */
+  leaseHostname?: string;
+  /** Test seam: override the owner-liveness probe for lease recovery + tx-dir reaping. */
+  leaseLiveness?: OwnerLivenessProbe;
+  /** Test seam: invoked once, after verification, immediately before the final
+   *  ownership re-assert + atomic rename. Used to simulate a successor stealing
+   *  the lock mid-publish so the test can prove the owner aborts at the rename
+   *  rather than force-publishing (requirement 15). */
+  onBeforeFinalRename?: () => void;
 };
 
 export type PromotionResult = {
@@ -151,17 +173,103 @@ function writeJournal(args: {
   }, null, 2) + "\n");
 }
 
-function recoverPromotionTransactions(bookId: string): void {
-  if (!existsSync(PROMOTION_TX_DIR)) return;
+const PROMOTION_TX_OWNER_SCHEMA = "promotion-tx-owner-v1" as const;
+
+/** Owner stamp written into every staging transaction directory, tying the
+ *  directory to the lease that created it. This is the proof a later recovery
+ *  needs to decide a leftover directory belongs to a now-dead owner before it
+ *  may remove it (requirements 10 + 11). */
+type PromotionTxOwnerStamp = {
+  schemaVersion: typeof PROMOTION_TX_OWNER_SCHEMA;
+  bookId: string;
+  transactionId: string;
+  ownerId: string;
+  ownerToken: string;
+  pid: number;
+  hostname: string;
+  createdAt: string;
+};
+
+function txOwnerStampPath(txDir: string): string {
+  return resolve(txDir, "owner.json");
+}
+
+function writeTxOwnerStamp(txDir: string, lease: PromotionLease, now: () => Date): void {
+  const stamp: PromotionTxOwnerStamp = {
+    schemaVersion: PROMOTION_TX_OWNER_SCHEMA,
+    bookId: lease.bookId,
+    transactionId: lease.transactionId,
+    ownerId: lease.ownerId,
+    ownerToken: lease.ownerToken,
+    pid: lease.pid,
+    hostname: lease.hostname,
+    createdAt: now().toISOString(),
+  };
+  writeFileAtomic(txOwnerStampPath(txDir), JSON.stringify(stamp, null, 2) + "\n");
+}
+
+function readTxOwnerStamp(txDir: string): PromotionTxOwnerStamp | null {
+  try {
+    const raw = JSON.parse(readFileSync(txOwnerStampPath(txDir), "utf8")) as PromotionTxOwnerStamp;
+    return raw?.schemaVersion === PROMOTION_TX_OWNER_SCHEMA ? raw : null;
+  } catch {
+    return null;
+  }
+}
+
+type ReapOptions = {
+  /** The current owner's transaction — never reaped even if its stamp is present. */
+  excludeTransactionId?: string;
+  hostname?: string;
+  liveness?: OwnerLivenessProbe;
+};
+
+/**
+ * Owner-proven, scoped cleanup of abandoned promotion transaction directories —
+ * the safe replacement for the old broad `recoverPromotionTransactions` that
+ * `rmSync`-removed EVERY `<bookId>.*` directory unconditionally (and so could
+ * delete a live promotion's staging directory). A directory is removed ONLY when
+ * its owner stamp proves the owner is DEAD (same host, pid gone). Directories
+ * whose owner is alive, of unknown liveness, or that carry no readable owner
+ * stamp are LEFT in place as forensic evidence — recovery never destroys a
+ * directory it cannot prove is abandoned (requirements 11, 12).
+ *
+ * Only sound while the caller holds the per-book promotion lease: the lease
+ * guarantees no other live promotion for this book exists, so any leftover
+ * directory is from a crashed/dead prior owner, never a concurrent one.
+ *
+ * @returns the transactionIds reaped (for logging).
+ */
+function reapAbandonedTransactionDirs(bookId: string, options: ReapOptions = {}): string[] {
+  if (!existsSync(PROMOTION_TX_DIR)) return [];
+  const host = options.hostname ?? osHostname();
+  const probe = options.liveness ?? ((owner) => defaultPromotionOwnerLiveness(owner, host));
+  const reaped: string[] = [];
   for (const name of readdirSync(PROMOTION_TX_DIR)) {
     if (!name.startsWith(`${bookId}.`)) continue;
     const dir = resolve(PROMOTION_TX_DIR, name);
-    try {
-      if (statSync(dir).isDirectory()) rmSync(dir, { recursive: true, force: true });
-    } catch {
-      rmSync(dir, { recursive: true, force: true });
-    }
+    let isDir = false;
+    try { isDir = statSync(dir).isDirectory(); } catch { continue; }
+    if (!isDir) continue;
+    const stamp = readTxOwnerStamp(dir);
+    // No readable owner stamp => cannot prove abandonment => leave it.
+    if (!stamp) continue;
+    if (options.excludeTransactionId && stamp.transactionId === options.excludeTransactionId) continue;
+    if (probe({ hostname: stamp.hostname, pid: stamp.pid }) !== "dead") continue;
+    rmSync(dir, { recursive: true, force: true });
+    reaped.push(stamp.transactionId);
   }
+  return reaped;
+}
+
+/** Map promotion options onto the lease module's options (now-thunk -> instant). */
+function leaseOptionsFrom(options: PromotionOptions): PromotionLeaseOptions {
+  return {
+    now: options.now ? options.now() : undefined,
+    ttlMs: options.leaseTtlMs,
+    hostname: options.leaseHostname,
+    liveness: options.leaseLiveness,
+  };
 }
 
 function injectFault(options: PromotionOptions, point: PromotionFaultPoint): void {
@@ -174,17 +282,35 @@ function publishPackageTransactionally(args: {
   candidatePackage: BookPackageV21;
   contentId: string | null;
   options: PromotionOptions;
+  /** The held per-book lease. Heartbeated at every durable transition and
+   *  re-asserted immediately before the final rename. */
+  lease: PromotionLease;
+  /** The transaction id this publish owns — identical to the lease's, so the
+   *  lock and the staging directory `<bookId>.<txId>` share one identity. */
+  txId: string;
 }): void {
   const now = args.options.now ?? (() => new Date());
-  recoverPromotionTransactions(args.bookId);
-  const txId = newTransactionId(args.options);
+  const txId = args.txId;
   const txDir = transactionDir(args.bookId, txId);
   const stagedPackagePath = resolve(txDir, "package.v21.json");
+  // Refresh the lease heartbeat (and re-assert ownership) at each durable
+  // transition. heartbeat THROWS if a successor has taken the lock, so a lease
+  // we have lost can never advance the transaction or reach the rename.
+  const beat = (): void => { heartbeatPromotionLease(args.lease, leaseOptionsFrom(args.options)); };
+
+  // Create + owner-stamp the transaction directory before the first journal, so
+  // even a crash one instruction later leaves recoverable, owner-attributed
+  // evidence (requirement 10).
+  mkdirSync(txDir, { recursive: true });
+  writeTxOwnerStamp(txDir, args.lease, now);
+
   writeJournal({ bookId: args.bookId, txId, state: "started", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  beat();
   injectFault(args.options, "beforeStaging");
 
   writeFileAtomic(stagedPackagePath, JSON.stringify(args.candidatePackage, null, 2));
   writeJournal({ bookId: args.bookId, txId, state: "staged", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  beat();
   injectFault(args.options, "afterStaging");
 
   const verification = verifyProductionPackage({ packagePath: stagedPackagePath, compareLooseState: true });
@@ -192,15 +318,24 @@ function publishPackageTransactionally(args: {
     throw new Error(`Staged package verification failed: ${verification.findings.map((f) => f.message).join("; ")}`);
   }
   writeJournal({ bookId: args.bookId, txId, state: "verified", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  beat();
   injectFault(args.options, "afterVerification");
   injectFault(args.options, "beforeFinalRename");
   // promoteBook itself does not write web registries. This seam marks the final
   // pre-visibility point before any caller can safely run a registry update.
   injectFault(args.options, "beforeRegistryUpdate");
 
+  // FINAL PUBLICATION. Re-assert ownership immediately before the atomic rename:
+  // if a successor recovered the lock because we appeared dead, this throws and
+  // we never force the package live behind the new owner's back (requirement 15).
+  // The rename itself is unchanged — the atomic single-step publication and the
+  // fault seams above are preserved exactly (requirement 14).
+  args.options.onBeforeFinalRename?.();
+  beat();
   mkdirSync(dirname(args.packagePath), { recursive: true });
   renameSync(stagedPackagePath, args.packagePath);
   writeJournal({ bookId: args.bookId, txId, state: "published", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
+  beat();
   writeJournal({ bookId: args.bookId, txId, state: "complete", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
   rmSync(txDir, { recursive: true, force: true });
 }
@@ -443,200 +578,241 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   const preManifestBlockerCount =
     shipBlockerCount + intraBlockerCount + bookBlockerCount + qcBlockerCount + keyJudgeBlockerCount + noApiBlockerCount + majorBlockerCount + sourceIntegrityBlockerCount + generationDebtBlockerCount;
 
-  mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
-  const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
-  let existingPkg: Partial<BookPackageV21> | null = null;
-  if (existsSync(packagePath)) {
-    try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
+  // ── Per-book promotion lease ───────────────────────────────────────────────
+  // Acquire BEFORE any transaction recovery, candidate construction, or staging,
+  // so only one promotion per book runs at a time and recovery can never destroy
+  // a live owner's transaction. The lock and the staging directory share one
+  // transaction id. Fail closed — touch no production state — when the lease is
+  // unavailable: held live by another promotion, or held stale by an owner whose
+  // death we cannot prove (alive, or unknown liveness).
+  const txId = newTransactionId(options);
+  let lease: PromotionLease;
+  try {
+    lease = acquirePromotionLease(bookId, txId, leaseOptionsFrom(options));
+    console.error(`[ACQ] book=${bookId} tx=${txId} token=${lease.ownerToken.slice(0,6)} exp=${lease.expiresAt} recovered=${!!lease.recoveredFrom}`);
+  } catch (err) {
+    return blockedResult({
+      bookId,
+      reason: `PROMOTION_LEASE_UNAVAILABLE: ${(err as Error).message}`,
+    });
   }
-  const existingManifest = existingPkg?.productionManifest;
-  const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : now().toISOString();
-  const priorRunId = typeof existingManifest?.metadata?.runId === "string" ? existingManifest.metadata.runId : undefined;
-  const contentOwner = input.contentOwner ?? "chapterflow";
-  const shippedChapters = loadedChapters.map((c) => stripInternalFields(c));
 
-  let candidatePackage: BookPackageV21 | null = null;
-  let productionManifestFindings: ProductionManifestFinding[] = [];
-  let verificationFindings: ProductionManifestFinding[] = [];
-  let manifestContentId: string | null = null;
+  try {
+    // Owner-proven, scoped reap of abandoned transaction directories left by DEAD
+    // prior owners. Runs under the held lease (so no concurrent owner can exist)
+    // and never removes a directory it cannot prove is abandoned (requirements
+    // 11, 12) — the safe replacement for the old broad delete.
+    reapAbandonedTransactionDirs(bookId, {
+      excludeTransactionId: txId,
+      hostname: options.leaseHostname,
+      liveness: options.leaseLiveness,
+    });
 
-  if (preManifestBlockerCount === 0) {
-    const manifestResult = buildProductionManifest({
+    mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
+    const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
+    let existingPkg: Partial<BookPackageV21> | null = null;
+    if (existsSync(packagePath)) {
+      try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
+    }
+    const existingManifest = existingPkg?.productionManifest;
+    const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : now().toISOString();
+    const priorRunId = typeof existingManifest?.metadata?.runId === "string" ? existingManifest.metadata.runId : undefined;
+    const contentOwner = input.contentOwner ?? "chapterflow";
+    const shippedChapters = loadedChapters.map((c) => stripInternalFields(c));
+
+    let candidatePackage: BookPackageV21 | null = null;
+    let productionManifestFindings: ProductionManifestFinding[] = [];
+    let verificationFindings: ProductionManifestFinding[] = [];
+    let manifestContentId: string | null = null;
+
+    if (preManifestBlockerCount === 0) {
+      const manifestResult = buildProductionManifest({
+        bookId,
+        title,
+        author,
+        contentOwner,
+        categories: input.categories,
+        tags: input.tags,
+        chapters: shippedChapters,
+        createdAt,
+        runId: priorRunId,
+        packagePath,
+      });
+      if (!manifestResult.ok) {
+        productionManifestFindings = manifestResult.findings;
+      } else {
+        manifestContentId = manifestResult.manifest.contentId;
+        candidatePackage = {
+          schemaVersion: V21_SCHEMA_VERSION,
+          packageId: manifestResult.manifest.contentId,
+          createdAt: manifestResult.manifest.metadata.createdAt,
+          contentOwner,
+          book: {
+            bookId,
+            title,
+            author,
+            categories: input.categories,
+            tags: input.tags,
+          },
+          productionManifest: manifestResult.manifest,
+          chapters: shippedChapters,
+        };
+        const verification = verifyProductionPackage({
+          packagePath,
+          packageData: candidatePackage,
+          compareLooseState: true,
+        });
+        if (!verification.ok) verificationFindings = verification.findings;
+      }
+    }
+    const productionManifestBlockerCount = productionManifestFindings.length + verificationFindings.length;
+
+    // Step 4: Write the report regardless of pass/fail.
+    mkdirSync(resolve(STATE, "books"), { recursive: true });
+    const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
+    const fullReport = {
       bookId,
       title,
       author,
-      contentOwner,
-      categories: input.categories,
-      tags: input.tags,
-      chapters: shippedChapters,
-      createdAt,
-      runId: priorRunId,
-      packagePath,
-    });
-    if (!manifestResult.ok) {
-      productionManifestFindings = manifestResult.findings;
-    } else {
-      manifestContentId = manifestResult.manifest.contentId;
-      candidatePackage = {
-        schemaVersion: V21_SCHEMA_VERSION,
-        packageId: manifestResult.manifest.contentId,
-        createdAt: manifestResult.manifest.metadata.createdAt,
-        contentOwner,
-        book: {
-          bookId,
-          title,
-          author,
-          categories: input.categories,
-          tags: input.tags,
-        },
-        productionManifest: manifestResult.manifest,
-        chapters: shippedChapters,
+      promotedAt: now().toISOString(),
+      chapterCount: loadedChapters.length,
+      shipGate: {
+        perChapter: perChapterGates.map((g) => ({
+          chapter: g.chapter,
+          passed: g.report.passed,
+          blockers: g.report.blockers,
+          majors: g.report.majors,
+          minors: g.report.minors,
+        })),
+        totalBlockers: shipBlockerCount,
+        totalMajors: shipMajorCount,
+      },
+      bookGate,
+      intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
+      qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
+      quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
+      sourceIntegrity: { totalBlockers: sourceIntegrityBlockerCount, findings: sourceIntegrityFindings },
+      generationDebt: {
+        schemaVersion: generationDebt.schemaVersion,
+        totalBlockers: generationDebtBlockerCount,
+        totalAdvisories: generationDebtAdvisoryCount,
+        findings: generationDebt.findings,
+        waived: generationDebt.waived,
+      },
+      noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
+      majorPolicy: {
+        schemaVersion: "major-production-policy-v1",
+        totalCurrent: majorPolicy.current.length,
+        totalBlockers: majorBlockerCount,
+        current: majorPolicy.current,
+        decisions: majorPolicy.decisions,
+      },
+      canonicalChapterSet: { indexPath: canonical.path, chapterCount: canonical.chapters.length, totalBlockers: 0, findings: [] },
+      productionManifest: {
+        contentId: manifestContentId,
+        skipped: preManifestBlockerCount > 0,
+        totalBlockers: productionManifestBlockerCount,
+        findings: [...productionManifestFindings, ...verificationFindings],
+      },
+    };
+
+    // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
+    // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
+    // quiz answer-key judge gate.
+    if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage) {
+      mkdirSync(QUARANTINE_DIR, { recursive: true });
+      const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
+      writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
+      const qcSummary = qcBlockerCount > 0
+        ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
+        : "";
+      const intraSummary = intraBlockerCount > 0
+        ? ` + ${intraBlockerCount} intra-book blocker(s): ${intraFindings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${intraBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const keyJudgeSummary = keyJudgeBlockerCount > 0
+        ? ` + ${keyJudgeBlockerCount} quiz-key blocker(s): ${keyJudgeFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${keyJudgeBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const noApiSummary = noApiBlockerCount > 0
+        ? ` + ${noApiBlockerCount} no-api QC blocker(s): ${noApiFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${noApiBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const majorSummary = majorBlockerCount > 0
+        ? ` + ${majorBlockerCount} unresolved major(s): ${majorPolicy.unresolved.slice(0, 3).map((f) => `${f.scope} ${f.checkId}`).join(", ")}${majorBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const sourceIntegritySummary = sourceIntegrityBlockerCount > 0
+        ? ` + ${sourceIntegrityBlockerCount} source-integrity blocker(s): ${sourceIntegrityFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${sourceIntegrityBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const generationDebtSummary = generationDebtBlockerCount > 0
+        ? ` + ${generationDebtBlockerCount} generation-debt blocker(s): ${generationDebt.findings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.stage}`).join(", ")}${generationDebtBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      const manifestSummary = productionManifestBlockerCount > 0
+        ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
+        : "";
+      writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
+      return {
+        promoted: false,
+        bookId,
+        reportPath,
+        shipGateBlockerCount: shipBlockerCount,
+        bookGateBlockerCount: bookBlockerCount,
+        intraBookBlockerCount: intraBlockerCount,
+        keyJudgeBlockerCount,
+        noApiBlockerCount,
+        majorBlockerCount,
+        sourceIntegrityBlockerCount,
+        generationDebtBlockerCount,
+        generationDebtAdvisoryCount,
+        productionManifestBlockerCount,
+        canonicalBlockerCount: 0,
+        shipGateMajorCount: shipMajorCount,
+        bookGateMajorCount: bookMajorCount,
+        reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
       };
-      const verification = verifyProductionPackage({
-        packagePath,
-        packageData: candidatePackage,
-        compareLooseState: true,
-      });
-      if (!verification.ok) verificationFindings = verification.findings;
     }
-  }
-  const productionManifestBlockerCount = productionManifestFindings.length + verificationFindings.length;
 
-  // Step 4: Write the report regardless of pass/fail.
-  mkdirSync(resolve(STATE, "books"), { recursive: true });
-  const reportPath = resolve(STATE, "books", `${bookId}.gate.json`);
-  const fullReport = {
-    bookId,
-    title,
-    author,
-    promotedAt: now().toISOString(),
-    chapterCount: loadedChapters.length,
-    shipGate: {
-      perChapter: perChapterGates.map((g) => ({
-        chapter: g.chapter,
-        passed: g.report.passed,
-        blockers: g.report.blockers,
-        majors: g.report.majors,
-        minors: g.report.minors,
-      })),
-      totalBlockers: shipBlockerCount,
-      totalMajors: shipMajorCount,
-    },
-    bookGate,
-    intraBook: { totalBlockers: intraBlockerCount, findings: intraFindings },
-    qcAttestation: { totalBlockers: qcBlockerCount, findings: qcFindings },
-    quizKeyJudge: { totalBlockers: keyJudgeBlockerCount, findings: keyJudgeFindings },
-    sourceIntegrity: { totalBlockers: sourceIntegrityBlockerCount, findings: sourceIntegrityFindings },
-    generationDebt: {
-      schemaVersion: generationDebt.schemaVersion,
-      totalBlockers: generationDebtBlockerCount,
-      totalAdvisories: generationDebtAdvisoryCount,
-      findings: generationDebt.findings,
-      waived: generationDebt.waived,
-    },
-    noApiCodexQc: { enabled: noApiMode, totalBlockers: noApiBlockerCount, findings: noApiFindings },
-    majorPolicy: {
-      schemaVersion: "major-production-policy-v1",
-      totalCurrent: majorPolicy.current.length,
-      totalBlockers: majorBlockerCount,
-      current: majorPolicy.current,
-      decisions: majorPolicy.decisions,
-    },
-    canonicalChapterSet: { indexPath: canonical.path, chapterCount: canonical.chapters.length, totalBlockers: 0, findings: [] },
-    productionManifest: {
-      contentId: manifestContentId,
-      skipped: preManifestBlockerCount > 0,
-      totalBlockers: productionManifestBlockerCount,
-      findings: [...productionManifestFindings, ...verificationFindings],
-    },
-  };
-
-  // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
-  // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
-  // quiz answer-key judge gate.
-  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage) {
-    mkdirSync(QUARANTINE_DIR, { recursive: true });
-    const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
-    writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
-    const qcSummary = qcBlockerCount > 0
-      ? ` + ${qcBlockerCount} QC-attestation blocker(s): ${qcFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${qcFindings.length > 3 ? ", …" : ""}`
-      : "";
-    const intraSummary = intraBlockerCount > 0
-      ? ` + ${intraBlockerCount} intra-book blocker(s): ${intraFindings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${intraBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const keyJudgeSummary = keyJudgeBlockerCount > 0
-      ? ` + ${keyJudgeBlockerCount} quiz-key blocker(s): ${keyJudgeFindings.slice(0, 3).map((f) => `ch${f.chapter} ${f.checkId}`).join(", ")}${keyJudgeBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const noApiSummary = noApiBlockerCount > 0
-      ? ` + ${noApiBlockerCount} no-api QC blocker(s): ${noApiFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${noApiBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const majorSummary = majorBlockerCount > 0
-      ? ` + ${majorBlockerCount} unresolved major(s): ${majorPolicy.unresolved.slice(0, 3).map((f) => `${f.scope} ${f.checkId}`).join(", ")}${majorBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const sourceIntegritySummary = sourceIntegrityBlockerCount > 0
-      ? ` + ${sourceIntegrityBlockerCount} source-integrity blocker(s): ${sourceIntegrityFindings.slice(0, 3).map((f) => `${f.chapter ? `ch${f.chapter} ` : ""}${f.checkId}`).join(", ")}${sourceIntegrityBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const generationDebtSummary = generationDebtBlockerCount > 0
-      ? ` + ${generationDebtBlockerCount} generation-debt blocker(s): ${generationDebt.findings.filter((f) => f.severity === "blocker").slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.stage}`).join(", ")}${generationDebtBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    const manifestSummary = productionManifestBlockerCount > 0
-      ? ` + ${productionManifestBlockerCount} production-manifest blocker(s): ${[...productionManifestFindings, ...verificationFindings].slice(0, 3).map((f) => `${f.chapterNumber ? `ch${f.chapterNumber} ` : ""}${f.checkId}`).join(", ")}${productionManifestBlockerCount > 3 ? ", …" : ""}`
-      : "";
-    writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
-    return {
-      promoted: false,
+    // Step 6: Write the independently verified BookPackageV21 to the library.
+    // The packageId is the manifest content ID, so timestamp metadata no longer
+    // defines production identity. createdAt remains metadata and is preserved
+    // from the prior package to keep unchanged re-promotes byte-stable. The lease
+    // is held across construction, staging, verification, the final rename,
+    // journal completion, and cleanup (requirement 13).
+    publishPackageTransactionally({
       bookId,
+      packagePath,
+      candidatePackage,
+      contentId: manifestContentId,
+      options,
+      lease,
+      txId,
+    });
+    writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
+
+    return {
+      promoted: true,
+      bookId,
+      packagePath,
       reportPath,
-      shipGateBlockerCount: shipBlockerCount,
-      bookGateBlockerCount: bookBlockerCount,
-      intraBookBlockerCount: intraBlockerCount,
-      keyJudgeBlockerCount,
-      noApiBlockerCount,
-      majorBlockerCount,
-      sourceIntegrityBlockerCount,
-      generationDebtBlockerCount,
+      shipGateBlockerCount: 0,
+      bookGateBlockerCount: 0,
+      intraBookBlockerCount: 0,
+      keyJudgeBlockerCount: 0,
+      noApiBlockerCount: 0,
+      majorBlockerCount: 0,
+      sourceIntegrityBlockerCount: 0,
+      generationDebtBlockerCount: 0,
       generationDebtAdvisoryCount,
-      productionManifestBlockerCount,
+      productionManifestBlockerCount: 0,
       canonicalBlockerCount: 0,
       shipGateMajorCount: shipMajorCount,
       bookGateMajorCount: bookMajorCount,
-      reason: `BLOCKED: ${shipBlockerCount} ship-gate blocker(s)${intraSummary} + ${bookBlockerCount} book-gate blocker(s)${qcSummary}${keyJudgeSummary}${sourceIntegritySummary}${generationDebtSummary}${noApiSummary}${majorSummary}${manifestSummary}. Quarantined at ${quarantinePath}.`,
+      reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
     };
+  } finally {
+    // Compare-by-owner-token release. A lease that lost the lock mid-flight (a
+    // successor recovered it) is a no-op here, so we never delete a successor's
+    // lock (requirement 9). Best-effort; never masks the in-flight error.
+    const __r = releasePromotionLease(lease);
+    console.error(`[REL] book=${bookId} tx=${txId} token=${lease.ownerToken.slice(0,6)} removed=${__r} stillOnDisk=${require("fs").existsSync(lease.lockPath)}`);
   }
-
-  // Step 6: Write the independently verified BookPackageV21 to the library.
-  // The packageId is the manifest content ID, so timestamp metadata no longer
-  // defines production identity. createdAt remains metadata and is preserved
-  // from the prior package to keep unchanged re-promotes byte-stable.
-  publishPackageTransactionally({
-    bookId,
-    packagePath,
-    candidatePackage,
-    contentId: manifestContentId,
-    options,
-  });
-  writeFileAtomic(reportPath, JSON.stringify(fullReport, null, 2) + "\n");
-
-  return {
-    promoted: true,
-    bookId,
-    packagePath,
-    reportPath,
-    shipGateBlockerCount: 0,
-    bookGateBlockerCount: 0,
-    intraBookBlockerCount: 0,
-    keyJudgeBlockerCount: 0,
-    noApiBlockerCount: 0,
-    majorBlockerCount: 0,
-    sourceIntegrityBlockerCount: 0,
-    generationDebtBlockerCount: 0,
-    generationDebtAdvisoryCount,
-    productionManifestBlockerCount: 0,
-    canonicalBlockerCount: 0,
-    shipGateMajorCount: shipMajorCount,
-    bookGateMajorCount: bookMajorCount,
-    reason: `PROMOTED: ${loadedChapters.length} chapter(s) shipped to ${packagePath}. Major policy clean with ${majorPolicy.current.length} current major(s) waived or absent.`,
-  };
 }
 
 function blockedResult(args: { bookId: string; reason: string; canonicalBlockers?: ChapterSetBlocker[] }): PromotionResult {

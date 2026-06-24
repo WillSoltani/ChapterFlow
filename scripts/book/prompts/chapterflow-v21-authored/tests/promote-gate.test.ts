@@ -15,6 +15,13 @@ import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
+import { hostname as osHostname } from "os";
+import {
+  acquirePromotionLease,
+  promotionLockDir,
+  promotionLockPath,
+  releasePromotionLease,
+} from "../src/promotionLease.js";
 import { test } from "./harness.js";
 import { makeChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import {
@@ -41,6 +48,20 @@ function cleanupFixture(): void {
   rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
   rmSync(sourceRunDir(MAJOR_BOOK, "zz-test-major-clean"), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "books", "_transactions"), { recursive: true, force: true });
+  // Clear the promotion LOCK dir too. The lease lock lives under _locks (NOT
+  // _transactions), so a leaked canonical lock or `.recovered-*` sibling for
+  // either fixture book would otherwise survive into the next test and make a
+  // later MAJOR_BOOK/BOOK promote fail-closed at lease acquisition. Every test
+  // that uses these fixtures starts via setupMajorCleanFixture (-> cleanupFixture),
+  // so clearing here guarantees a clean-lock START, not only a clean finally.
+  const locksDir = resolve(PIPELINE_DIR, "state", "books", "_locks");
+  try {
+    for (const f of readdirSync(locksDir)) {
+      if (f.startsWith(`${BOOK}.promotion.lock`) || f.startsWith(`${MAJOR_BOOK}.promotion.lock`)) {
+        rmSync(resolve(locksDir, f), { force: true });
+      }
+    }
+  } catch {}
   for (const n of Array.from({ length: 20 }, (_, i) => i + 1)) {
     rmSync(attestationPath(MAJOR_BOOK, n), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "plans", `${MAJOR_BOOK}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
@@ -937,5 +958,341 @@ test("CLI promote-book exits nonzero WITHOUT a raw stack trace when a canonical 
     assert.doesNotMatch(out, /\n\s+at .+:\d+:\d+/, `a raw stack trace leaked:\n${out.slice(-2000)}`);
   } finally {
     cleanupLoaderFixture(bookId);
+  }
+});
+
+// ── Concurrency-safe promotion: per-book lease + owner-proven recovery ────────
+// promoteBook used to call recoverPromotionTransactions(bookId) at the start of
+// every publish, broadly `rmSync`-removing EVERY `<bookId>.*` staging directory
+// with no ownership/liveness/age check — a second promotion's "recovery" could
+// delete a live promotion's staging transaction. These pin the replacement: a
+// per-book lease serializes promotion, and recovery removes only directories
+// proven to belong to a dead prior owner.
+
+const PROMO_TX_DIR = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+const FIXED_NOW = "2026-06-23T00:00:00.000Z";
+// A lease acquired here (with a tiny TTL) is genuinely EXPIRED by the time a
+// promotion running at FIXED_NOW evaluates it — so the liveness gate, not the
+// "still live" short-circuit, decides whether it may be recovered.
+const STALE_AT = new Date(Date.parse(FIXED_NOW) - 60_000);
+
+/** Remove the per-book promotion lock and any `.recovered-*` forensic siblings.
+ *  cleanupFixture clears `_transactions` but not the separate `_locks` dir. */
+function clearPromotionLocks(bookId: string): void {
+  try {
+    for (const f of readdirSync(promotionLockDir())) {
+      if (f.startsWith(`${bookId}.promotion.lock`)) rmSync(resolve(promotionLockDir(), f), { force: true });
+    }
+  } catch { /* dir may not exist */ }
+}
+
+/** Fabricate a leftover staging transaction directory with an owner stamp,
+ *  standing in for a prior (crashed) promotion's transaction. */
+function writeFakeStagingTx(bookId: string, txId: string, owner: { pid: number; hostname: string; ownerToken?: string }): string {
+  const dir = resolve(PROMO_TX_DIR, `${bookId}.${txId}`);
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(resolve(dir, "owner.json"), JSON.stringify({
+    schemaVersion: "promotion-tx-owner-v1",
+    bookId,
+    transactionId: txId,
+    ownerId: `promote-fake-${txId}`,
+    ownerToken: owner.ownerToken ?? `fake-owner-token-${txId}`,
+    pid: owner.pid,
+    hostname: owner.hostname,
+    createdAt: FIXED_NOW,
+  }, null, 2) + "\n", "utf8");
+  // Staged bytes that the old broad delete would have destroyed.
+  writeFileSync(resolve(dir, "package.v21.json"), `{"staged":"${txId}"}\n`, "utf8");
+  return dir;
+}
+
+function promoteMajorWith(index: ReturnType<typeof loadChapterIndex>, options: Record<string, unknown>) {
+  return promoteBook({
+    bookId: MAJOR_BOOK,
+    title: "Major Clean Fixture",
+    author: "Test Author",
+    chapters: index,
+    categories: ["Business"],
+    tags: ["fixture"],
+  }, { now: () => new Date(FIXED_NOW), ...options } as any);
+}
+
+test("a live promotion lease blocks a second promotion and never touches its staging directory", () => {
+  try {
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // Process A: holds a LIVE lease (expires an hour after the fixed clock B uses)
+      // and has a staging directory mid-publish.
+      const a = acquirePromotionLease(MAJOR_BOOK, "tx-A", { now: new Date(FIXED_NOW), ttlMs: 60 * 60 * 1000 });
+      const aStaging = writeFakeStagingTx(MAJOR_BOOK, "tx-A", { pid: process.pid, hostname: osHostname(), ownerToken: a.ownerToken });
+
+      // Process B: a full promote. It must fail closed and leave A untouched.
+      const b = promoteMajorFixture(index);
+      assert.equal(b.promoted, false, "B must not publish while A holds the lease");
+      // Require the LEASE-specific reason (not a permissive OR) so the test fails
+      // loud if B were blocked by an upstream gate instead of the lease, rather
+      // than passing for the wrong reason.
+      assert.match(b.reason, /PROMOTION_LEASE_UNAVAILABLE: Promotion already active/, b.reason);
+      assert.ok(existsSync(aStaging), "B must NOT delete A's staging directory (the old broad-delete hazard)");
+      assert.ok(existsSync(resolve(aStaging, "package.v21.json")), "A's staged bytes survive B's attempt");
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "B must not publish a production package");
+
+      assert.equal(releasePromotionLease(a), true);
+    });
+  } finally {
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("a stale lease whose owner is still alive cannot be stolen by a second promotion", () => {
+  try {
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // Lease A is long past its TTL relative to B's clock, but its owner pid
+      // (this very process) is alive — the long-running-promotion case a bare
+      // wall-clock TTL would have wrongly stolen.
+      const a = acquirePromotionLease(MAJOR_BOOK, "tx-A", { now: STALE_AT, ttlMs: 1 });
+
+      const b = promoteMajorFixture(index); // B's now = FIXED_NOW, so A is "expired"
+      assert.equal(b.promoted, false, "an expired-but-alive owner must not be displaced");
+      // Require the liveness-gate reason specifically: if a future edit made the
+      // lease look still-live (so the gate never ran), this fails instead of
+      // silently passing via the lease-unavailable alternative.
+      assert.match(b.reason, /PROMOTION_LEASE_UNAVAILABLE:[\s\S]*still alive/, b.reason);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false);
+
+      assert.equal(releasePromotionLease(a), true);
+    });
+  } finally {
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("an expired lease whose owner liveness is unknown fails the promotion closed", () => {
+  try {
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // A foreign-host owner: expired, but its death cannot be proven.
+      acquirePromotionLease(MAJOR_BOOK, "tx-ghost", { now: STALE_AT, ttlMs: 1, hostname: "ghost-host-not-here" });
+
+      const b = promoteMajorFixture(index); // default probe -> remote host -> unknown
+      assert.equal(b.promoted, false, "unknown liveness must fail closed, not steal the lock");
+      assert.match(b.reason, /PROMOTION_LEASE_UNAVAILABLE:[\s\S]*unknown; failing closed/, b.reason);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false);
+    });
+  } finally {
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("an expired lease with a known-dead owner is recovered and the promotion proceeds", () => {
+  try {
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // A stale lease left by a now-dead owner. Capture its token so the test can
+      // prove the recovered evidence is THIS owner's, not a leftover sibling.
+      const dead = acquirePromotionLease(MAJOR_BOOK, "tx-dead", { now: STALE_AT, ttlMs: 1 });
+
+      const result = promoteMajorWith(index, { leaseLiveness: () => "dead" });
+      assert.equal(result.promoted, true, result.reason);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), true, "a provably-dead owner's lease is recoverable");
+      // Scope the evidence check to THIS book's recovered sibling AND confirm it
+      // carries the displaced dead owner's token — so a leftover `.recovered-*`
+      // from another fixture/run cannot satisfy this for the wrong reason.
+      const recovered = readdirSync(promotionLockDir()).filter((name) =>
+        name.startsWith(`${MAJOR_BOOK}.promotion.lock.recovered-`),
+      );
+      assert.equal(recovered.length, 1, `exactly one recovered sibling expected, got ${JSON.stringify(recovered)}`);
+      const recoveredRecord = JSON.parse(readFileSync(resolve(promotionLockDir(), recovered[0]), "utf8"));
+      assert.equal(recoveredRecord.ownerToken, dead.ownerToken, "the forensic sibling is the displaced dead owner's lock");
+    });
+  } finally {
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("two simulated promotions for one book cannot both publish", () => {
+  try {
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // Promotion A is in progress: it holds the live lease.
+      const a = acquirePromotionLease(MAJOR_BOOK, "tx-A", { now: new Date(FIXED_NOW), ttlMs: 60 * 60 * 1000 });
+
+      // Promotion B cannot publish while A is live.
+      const blockedB = promoteMajorFixture(index);
+      assert.equal(blockedB.promoted, false, "B cannot publish concurrently with A");
+      assert.match(blockedB.reason, /PROMOTION_LEASE_UNAVAILABLE: Promotion already active/, blockedB.reason);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "no package while A holds the lease");
+
+      // A finishes and releases — now exactly one promotion may publish.
+      assert.equal(releasePromotionLease(a), true);
+      const published = promoteMajorFixture(index);
+      assert.equal(published.promoted, true, published.reason);
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), true, "after A releases, a single promotion publishes");
+    });
+  } finally {
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("promotion fault injection leaves owner-attributed, recoverable transaction evidence", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      assert.throws(() => promoteMajorFixture(index, "afterStaging"), /afterStaging/);
+
+      const txDir = resolve(PROMO_TX_DIR, `${MAJOR_BOOK}.tx-afterStaging`);
+      assert.ok(existsSync(txDir), "the faulted transaction directory survives as recovery evidence");
+      const owner = JSON.parse(readFileSync(resolve(txDir, "owner.json"), "utf8"));
+      assert.equal(owner.schemaVersion, "promotion-tx-owner-v1");
+      assert.equal(owner.transactionId, "tx-afterStaging");
+      assert.equal(owner.pid, process.pid, "the evidence attributes the transaction to its owner pid");
+      assert.ok(typeof owner.ownerToken === "string" && owner.ownerToken.length > 0, "owner token recorded");
+      const journal = JSON.parse(readFileSync(resolve(txDir, "journal.json"), "utf8"));
+      assert.equal(journal.state, "staged", "the journal records the last durable transition reached");
+      assert.ok(existsSync(resolve(txDir, "package.v21.json")), "the staged package bytes are recoverable");
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a fault exposes no production package");
+
+      // The lease was released on the way out, so a clean re-promote can proceed.
+      assert.equal(existsSync(promotionLockPath(MAJOR_BOOK)), false, "the faulted owner released its lease");
+    });
+  } finally {
+    console.warn = oldWarn;
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("recovery removes only the dead prior owner's transaction, never a live or unknown one", () => {
+  const oldWarn = console.warn;
+  const DEAD_PID = 424242;
+  const LIVE_PID = 424243;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // Two orphan staging directories from prior runs on this host.
+      const deadDir = writeFakeStagingTx(MAJOR_BOOK, "dead-orphan", { pid: DEAD_PID, hostname: osHostname() });
+      const liveDir = writeFakeStagingTx(MAJOR_BOOK, "live-orphan", { pid: LIVE_PID, hostname: osHostname() });
+
+      // Promote with an injected probe: only DEAD_PID is provably dead. (The probe
+      // is consulted only by recovery here — the fresh lease wx-creates cleanly.)
+      const result = promoteMajorWith(index, {
+        leaseLiveness: (owner: { pid: number }) =>
+          owner.pid === DEAD_PID ? "dead" : owner.pid === LIVE_PID ? "alive" : "unknown",
+      });
+
+      assert.equal(result.promoted, true, result.reason);
+      assert.equal(existsSync(deadDir), false, "the provably-dead owner's transaction is reaped");
+      assert.ok(existsSync(liveDir), "a live (or unknown) owner's transaction is NEVER reaped");
+      assert.ok(existsSync(resolve(liveDir, "package.v21.json")), "the spared owner's staged bytes are intact");
+    });
+  } finally {
+    console.warn = oldWarn;
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("a successor stealing the lock mid-publish aborts the owner at the rename and never force-publishes (req 15)", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // Simulate a successor recovering the lock between staging and the final
+      // rename: overwrite the on-disk lock with a foreign owner token at the seam
+      // promoteBook exposes immediately before its pre-rename ownership re-assert.
+      const foreignToken = "successor-token-deadbeefdeadbeef";
+      const steal = (): void => {
+        const lockPath = promotionLockPath(MAJOR_BOOK);
+        const rec = JSON.parse(readFileSync(lockPath, "utf8"));
+        rec.ownerToken = foreignToken;
+        writeFileSync(lockPath, JSON.stringify(rec, null, 2), "utf8");
+      };
+
+      assert.throws(
+        () => promoteMajorWith(index, { transactionId: "tx-steal", onBeforeFinalRename: steal }),
+        /no longer holds the lock/,
+        "the original owner must abort at the ownership re-assert, not force the rename",
+      );
+
+      // Requirement 15: the package was NOT force-published behind the successor.
+      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "ownership loss must NOT publish a package");
+      // The successor's lock survives — the aborted owner's release is a no-op.
+      const surviving = JSON.parse(readFileSync(promotionLockPath(MAJOR_BOOK), "utf8"));
+      assert.equal(surviving.ownerToken, foreignToken, "the successor's lock must survive the aborted owner");
+      // The journal never advanced to 'published' (the rename never ran).
+      const journal = JSON.parse(readFileSync(resolve(PROMO_TX_DIR, `${MAJOR_BOOK}.tx-steal`, "journal.json"), "utf8"));
+      assert.notEqual(journal.state, "published", "a lost-ownership publish must not reach the published state");
+    });
+  } finally {
+    console.warn = oldWarn;
+    // The foreign-token lock is not ours to release via the API; clear directly.
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
+  }
+});
+
+test("a promotion that cannot acquire the lease performs NO transaction recovery (reap is gated behind acquisition: req 1)", () => {
+  const oldWarn = console.warn;
+  try {
+    console.warn = () => {};
+    withPromotionEnvCleared(() => {
+      const index = setupMajorCleanFixture();
+      waiveCurrentMajors(MAJOR_BOOK);
+      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+
+      // A dead-owner orphan that recovery WOULD reap — if recovery ran.
+      const deadDir = writeFakeStagingTx(MAJOR_BOOK, "dead-orphan", { pid: 424242, hostname: osHostname() });
+
+      // Another process holds the lease live, so B cannot acquire it.
+      const a = acquirePromotionLease(MAJOR_BOOK, "tx-A", { now: new Date(FIXED_NOW), ttlMs: 60 * 60 * 1000 });
+
+      // B fails closed at acquisition. Because reap runs strictly AFTER a
+      // successful acquire, the dead-owner orphan must SURVIVE — proving recovery
+      // is gated behind the lease and never runs lock-free (requirement 1).
+      const b = promoteMajorFixture(index);
+      assert.equal(b.promoted, false, "B cannot acquire while A holds the lease");
+      assert.match(b.reason, /PROMOTION_LEASE_UNAVAILABLE: Promotion already active/, b.reason);
+      assert.ok(existsSync(deadDir), "recovery must NOT run when the lease is unavailable (it is gated behind acquisition)");
+
+      assert.equal(releasePromotionLease(a), true);
+    });
+  } finally {
+    console.warn = oldWarn;
+    clearPromotionLocks(MAJOR_BOOK);
+    cleanupFixture();
   }
 });
