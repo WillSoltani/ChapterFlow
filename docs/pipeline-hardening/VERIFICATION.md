@@ -1,133 +1,189 @@
-# ChapterFlow v21 Hardening Verification
+# ChapterFlow v21 Hardening — Final Verification
 
-Date: 2026-06-23 America/Halifax
+Date: 2026-06-24 (America/Halifax)
+
+## Verdict
+
+**NOT CLEARED FOR RELEASE.** Verification was performed against the exact remote
+tip. Eight of nine command gates pass on a clean checkout, but **three open
+release blockers remain** (library-state drift, a `books.json` merge conflict
+with `main`, and required CI that has not — and currently cannot — run on the
+SHA). The release-blocker count must be zero; it is currently **3**. See
+[Open Release Blockers](#open-release-blockers).
+
+This document **replaces** the prior `VERIFICATION.md`, which was invalid: it
+certified the *parent* commit `dd8e4370a` (not the branch tip), ran its "final
+verification" from a **dirty working tree**, and concluded "safe for unattended
+production promotion" *despite* an open drift finding. Those are precisely the
+anti-patterns this re-verification was required to avoid.
 
 ## Scope
 
 - Branch: `fix/v21-pipeline-hardening-2026-06`
-- Fetched remote: `origin/fix/v21-pipeline-hardening-2026-06`
-- Baseline verified commit: `dd8e4370a1273e54cb3de93d36483f4ba4eb532d`
-- Repository: `/Users/radinsoltani/ChapterFlow-books`
+- Remote: `origin/fix/v21-pipeline-hardening-2026-06`
+- **Exact verified commit (code + committed state):** `4a8906b2c21a438a17ad9cb336f96f5ea5e59663`
+  - Subject: `fix(pipeline): enforce explicit library-state authority + fail-loud audit; repair UH identity drift`
+  - Author date: `2026-06-24T12:03:55-03:00`
+  - The local branch was **9 commits ahead** of the stale remote tip
+    (`436c18677…`) at the start; it was fast-forward pushed
+    (`436c18677..4a8906b2c`) so the remote reflects the intended-for-merge tip
+    **before** verification. Local and remote then matched (`0  0` ahead/behind).
 - Primary pipeline package: `scripts/book/prompts/chapterflow-v21-authored`
+- Merge-base with `origin/main`: `0355902252dbcd80e506f012e4c2e695e32d22d9`
+- `origin/main` tip at verification time: `7c6897300` (`Remove excluded book artifacts`)
 
-## Baseline Environment
+## Clean-Checkout Procedure & Invariants
 
-- Node: `v20.20.2`
-- npm: `10.8.2`
-- pnpm/yarn: not installed
-- OS: `Darwin WillInBC-Shell-I.local 25.5.0 Darwin Kernel Version 25.5.0: Mon Apr 27 20:38:00 PDT 2026; root:xnu-12377.121.6~2/RELEASE_ARM64_T8103 arm64`
-- Initial tracked worktree: modified `src/qc/publishAfterQc.ts` and `tests/publish-after-qc-git.test.ts` already present before this verification; many untracked local production/state artifacts were present and not staged broadly.
+The verification ran in a **fresh detached `git worktree` checked out at exactly
+`4a8906b2c…`**, located in an ephemeral, gitignored session scratchpad **outside
+the repository** (machine-specific absolute path intentionally omitted). The
+primary working tree was **not** used as release proof (it carried 831
+uncommitted/untracked entries).
 
-## Clean Clone Procedure
-
-Fresh clone path: `/private/tmp/chapterflow-v21-verify.Zkym7n/ChapterFlow`
-
-Commands and results:
-
-| Command | Result |
+| Invariant | Result |
 | --- | --- |
-| `git fetch --all --prune` | PASS, local branch and origin both at `dd8e4370a1273e54cb3de93d36483f4ba4eb532d` |
-| `git clone --no-hardlinks --branch fix/v21-pipeline-hardening-2026-06 /Users/radinsoltani/ChapterFlow-books /private/tmp/chapterflow-v21-verify.Zkym7n/ChapterFlow` | PASS |
-| `npm ci` | PASS, 635 packages installed from `package-lock.json`; npm reported 5 audit findings unrelated to this verification |
-| `npm run pipeline:typecheck` | PASS |
-| `npm run pipeline:test` | PASS after rerun outside sandbox because `tsx` IPC pipe creation was blocked by the sandbox; result `pass 765 fail 0 xfail 0 xpass 0 skip 0` |
-| `npm run pipeline:build` | PASS |
-| `npm run pipeline:doctor` | PASS, `DOCTOR - 0 fatal, 0 warning(s)` |
-| `npx tsx src/cli.ts migrate-state` | PASS, no shadow state to migrate in clean clone |
-| `npx tsx src/cli.ts state-status` | PASS, no untracked chapters in clean clone; deterministically reported 20 `unreasonable-hospitality` chapterId/filename mismatches |
-| `npx tsx src/cli.ts rebuild-library-state --dry-run --json` | EXIT 1 by design: deterministic drift report, no write; `stored logical state differs from recomputed authoritative chapter/package state` |
+| `git fetch --all --prune --tags` | OK |
+| Recorded remote SHA | `4a8906b2c21a438a17ad9cb336f96f5ea5e59663` |
+| `git status --porcelain` in checkout | **empty (0 lines — pristine)** |
+| `HEAD == origin/fix/v21-pipeline-hardening-2026-06` | **MATCH** |
+| Detached HEAD | yes |
+| Node | `v20.20.2` (satisfies `engines: >=20.20.0 <21`) |
+| npm | `10.8.2` (matches `packageManager: npm@10.8.2`) |
+| OS | macOS / Darwin `25.5.0`, arm64 (hostname omitted) |
 
-## Root Causes Confirmed
+## Model-Credential Isolation (Proof)
 
-- `doctor --json` accepted the flag but printed human text, so machine-readable doctor could not be consumed by automation. Regression first failed with `Unexpected token 'D', "DOCTOR - 0"... is not valid JSON`.
-- `publish-after-qc` detected registry files only by comparing before/after bytes for the current `register-web` invocation. A prior partial run or operator edit could leave `books.json` or registry files dirty from `HEAD` but unchanged during this invocation, so the publish plan could omit required registration files or flag a pre-staged `books.json` as outside the plan.
-- The Anthropic API adapter always sent `temperature`; the hermetic fake-SDK regression showed Opus 4.7-class payloads included unsupported sampling fields. Per the operator request, no live Claude/Anthropic/Claude-CLI verification was performed.
+Before every command, all live-provider credentials were `unset` in the
+executing shell and the absence asserted with `printenv` (which returns
+non-zero / empty when unset):
 
-## Fixes Applied
-
-- Added `doctor --json` structured output with `status`, `exitCode`, summary counts, and findings while preserving existing human output and exit-code policy.
-- Updated publish-after-QC registry planning to include pipeline `books.json` and to stage registry/registration files that differ from `HEAD` according to `git status --porcelain`, including modified, staged, untracked, and renamed destination paths.
-- Added a provider-boundary guard that omits sampling fields for Anthropic Opus 4.7-class model names; the regression uses a fake local SDK module only.
-- Updated operator README only for the new `doctor --json` automation behavior.
-
-## Final Verification Commands
-
-Final verification was run from `/Users/radinsoltani/ChapterFlow-books` with live model environment variables removed:
-
-```bash
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npm run pipeline:typecheck
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npm run pipeline:test
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npm run pipeline:build
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npx tsx src/cli.ts doctor --json
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npx tsx src/cli.ts migrate-state
-env -u ANTHROPIC_API_KEY -u OPENAI_API_KEY -u CHAPTERFLOW_PROVIDER -u CHAPTERFLOW_CLAUDE_BIN npx tsx src/cli.ts state-status
-```
-
-Results:
-
-- Typecheck: PASS.
-- Complete no-network/no-API test suite: PASS, `pass 769 fail 0 xfail 0 xpass 0 skip 0`.
-- Build: PASS.
-- Doctor JSON: PASS, `status: ok`, `exitCode: 0`, `summary: fatal 0, warnings 0, ok 38, total 38`.
-- Migration dry-run: PASS, shadow `/state/chapters` has no chapter files in the working tree.
-- State audit in the working tree: PASS as an audit command, but reports local untracked production chapter artifacts and the known `unreasonable-hospitality` ID mismatch. These artifacts were pre-existing/unrelated and were not staged.
-
-## Regression Matrix
-
-| Required regression | Result | Evidence |
+| Variable | State before unset | State during runs |
 | --- | --- | --- |
-| 1-of-N, missing, extra, duplicate, reordered promotion fail without production mutation | PASS | `tests/chapter-set.test.ts`, `tests/promote-gate.test.ts` |
-| Valid full book promotes transactionally and manifest independently verifies; tampering fails | PASS | `tests/promote-gate.test.ts`, `tests/production-manifest.test.ts` |
-| Cached malformed/edited/stale chapters are re-gated before ingestion | PASS | `tests/cache-validation.test.ts` |
-| Interrupted research persists completed sidecars and resumes only missing calls | PASS | `tests/research-resume.test.ts` |
-| Flat, sectioned, and legacy TOCs canonicalize; partial sidecars never define completeness | PASS | `tests/toc-contract.test.ts`, `tests/source-anchored-planning.test.ts` |
-| Source-realness and source-integrity failures block authoring and promotion | PASS | `tests/source-integrity.test.ts`, `tests/source-verify.test.ts`, `tests/no-api-promote.test.ts` |
-| Live library lock cannot be stolen and old owner cannot release successor | PASS | `tests/library-state.test.ts`, `tests/autopilot.test.ts` |
-| Revising a chapter subtracts old and adds new library contributions; rebuild matches incremental state | PASS | `tests/library-state.test.ts` |
-| Malformed chapter/book/config/QC JSON returns structured findings and never crashes a public gate | PASS | `tests/runtime-schema-boundary.test.ts`, `tests/qc-repair-ledger.test.ts` |
-| Deterministic/no-API commands work without provider SDKs or model CLIs | PASS | `tests/provider-contract.test.ts`, `tests/package-contract.test.ts` |
-| Anthropic Opus 4.7-class payload omits unsupported sampling fields | PASS | `tests/provider-contract.test.ts`; fake SDK only, no live Claude/Anthropic call |
-| Generation fallback debt is persisted and unresolved serious debt blocks promotion | PASS | `tests/generation-degradation.test.ts`, `src/promoteBook.ts` |
-| Raw uncorroborated sweep evidence on unchanged carried content yields effective PASS, no blocking ledger finding, and PUBLISHABLE | PASS | `tests/qc-finalize-evidence.test.ts`, `tests/sweep-chapter-status.test.ts` |
-| Mixed sweep membership writes only effective failed chapters to ledger | PASS | `tests/qc-effective-ledger.test.ts`, `tests/sweep-chapter-status.test.ts` |
-| Two independent same-defect sweep reads block; unrelated defects on same chapter do not corroborate | PASS | `tests/sweep-chapter-status.test.ts`, `tests/sweep-two-round-confirm.test.ts` |
-| Raw primary bar major plus GREEN tiebreak aggregate leaves no blocking raw-bar ledger finding | PASS | `tests/qc-effective-ledger.test.ts`, `tests/bar-tiebreak.test.ts` |
-| Malformed repair-ledger JSONL fails closed with a line number | PASS | `tests/qc-repair-ledger.test.ts` |
-| QC provenance/session independence and concurrent transaction tests pass | PASS | `tests/qc-session-independence.test.ts`, `tests/qc-transaction.test.ts` |
-| Publish-after-QC registry/registration dirty files are in-plan and committed atomically | PASS | `tests/publish-after-qc-git.test.ts` |
-| Doctor supports machine-readable mode | PASS | `tests/generation-experience.test.ts`, `src/cli.ts doctor --json` |
+| `OPENAI_API_KEY` | **SET in ambient env** | `unset` (asserted) |
+| `ANTHROPIC_API_KEY` | unset | `unset` (asserted) |
+| `CHAPTERFLOW_PROVIDER` | unset | `unset` (asserted) |
+| `CHAPTERFLOW_CLAUDE_BIN` | unset | `unset` (asserted) |
+| `ANTHROPIC_AUTH_TOKEN`, `ANTHROPIC_BASE_URL`, `CLAUDE_API_KEY`, `CLAUDE_CODE_OAUTH_TOKEN`, `OPENAI_BASE_URL`, `OPENAI_ORG_ID`, `GEMINI_API_KEY`, `GOOGLE_API_KEY`, `XAI_API_KEY`, `MISTRAL_API_KEY`, `COHERE_API_KEY` | unset | `unset` (asserted) |
 
-## Package Manifest Verification Example
+After unsetting, the only provider-pattern variable remaining in the environment
+was `CLAUDE_CODE_EXECPATH` (a Claude Code **harness** path, not a model
+credential). No live OpenAI / Anthropic / Claude-CLI or other model service was
+called. `pipeline:doctor` additionally forces offline mode via
+`CHAPTERFLOW_NO_API_CODEX_QC=1`. Network use was limited to the clean-checkout
+`npm ci` dependency install from the committed lockfile.
 
-`tests/production-manifest.test.ts` builds a synthetic v21 package, runs `verifyProductionPackage`, and exercises the CLI path:
+## Commands, Exit Codes, Counts
 
-```bash
-npx tsx src/cli.ts verify-production-package <synthetic-package-path> --compare-loose-state
-```
+All run from the clean detached checkout with credentials unset.
 
-The test verifies PASS on the valid package and FAIL on package content, canonical index, source/QC evidence, manifest hash, and package ordering tampering. Missing claimed source evidence fails closed and leaves package bytes unchanged.
+| Command | Exit | Result |
+| --- | --- | --- |
+| `npm ci --include=optional` | **0** | 635 packages installed; 5 `npm audit` findings (1 low, 4 moderate) noted, unrelated to this change |
+| `npm run pipeline:typecheck` | **0** | `tsc -p . --noEmit` clean |
+| `npm run pipeline:test` | **0** | **`pass 896  fail 0  xfail 0  xpass 0  skip 0`** |
+| `npm run pipeline:build` | **0** | clean (`build` == typecheck) |
+| `npm run pipeline:doctor` | **0** | `DOCTOR — 0 fatal, 0 warning(s)`, **26 checks passed** (offline) |
+| `npx tsx …/src/cli.ts doctor --json` | **0** | `status: ok`, `fatal 0, warnings 0, ok 26, total 26`; `unreasonable-hospitality` identity drift **repaired**; no repo-root shadow state |
+| `npx tsx …/src/cli.ts migrate-state` | **0** | "No shadow dir … nothing to migrate. State is canonical." |
+| `npx tsx …/src/cli.ts state-status` | **0** | **"All chapters tracked and identity-clean"** (24 books, 0 untracked, 0 idMismatch) |
+| `npx tsx …/src/cli.ts rebuild-library-state --dry-run --json` | **1** | ⚠️ **DRIFT — open blocker** (`drift: true`, `blockerCount 0`, 11 conflicts, 12 warnings, 23 findings, all `severity: warning`) |
 
-## Proof Of No Live Model Call
+### Authoritative-state caveat (test hermeticity)
 
-- Final verification commands explicitly unset `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`, `CHAPTERFLOW_PROVIDER`, and `CHAPTERFLOW_CLAUDE_BIN`.
-- The pipeline test script forces `CHAPTERFLOW_NO_API_CODEX_QC=1`.
-- `tests/provider-contract.test.ts` installs fake local SDK modules under the provider test fixture and records payloads locally; it does not import or call real OpenAI/Anthropic services.
-- No `claude`, OpenAI, Anthropic, or Claude CLI command was run during verification after the operator requested no Claude part.
-- Network use was limited to the required clean-clone `npm ci` dependency install from the declared lockfile.
+`pipeline:test` is **not** hermetic with respect to the state tree: it writes
+untracked `zz-fixture-*` artifacts and several empty scaffold directories (e.g.
+`state/qc-packs/`, `state/qc-rounds/`, `state/waivers/`, `state/provenance/`)
+into `…/state/`. These are test scratch (not committed and never shipped). To
+audit only the **committed** state, the checkout was restored to pristine
+(`git clean -fd …/state/`, porcelain `0`) **before** the authoritative
+`state-status` and `rebuild-library-state --dry-run` runs reported above. This
+non-hermeticity is a minor observation, not a release blocker.
 
-## State Migration And Audit Summary
+## Open Release Blockers
 
-- Clean clone `migrate-state`: no shadow `state/chapters` directory to migrate; canonical state used.
-- Clean clone `state-status`: no untracked chapter artifacts; deterministic report of 20 `unreasonable-hospitality` `chapterId != filename` mismatches.
-- Clean clone `rebuild-library-state --dry-run --json`: parsed authoritative state and reported deterministic library drift (`stored logical state differs from recomputed authoritative chapter/package state`) without writing.
-- Working tree `state-status`: reports many local untracked production chapter artifacts and the same `unreasonable-hospitality` ID mismatch class. These were not staged for this verification commit.
+### 1. `library-state.json` drift (`rebuild-library-state --dry-run` exits 1)
 
-## Remaining Accepted Risks
+On the **pristine committed tree**, the dry-run reports `drift: true` and a
+planned `replace-ledger` write because *"stored ledger drifts from the
+authoritative inputs."* Classification: `blockerCount 0`; all 23 findings are
+`severity: warning` (11 × `library.package_loose_divergence`, 12 ×
+`library.missing_canonical_index`). The exit-1 is the dry-run's `--check`-style
+drift signal, not a fatal.
 
-- The repository contains pre-existing untracked local production/state artifacts in this checkout. They are intentionally excluded from the commit and should be handled by the operator outside this hardening verification.
-- `rebuild-library-state --dry-run --json` reports deterministic library-state drift. The command is fail-closed and made no writes; this verification treats it as catalog/index drift surfaced for operator remediation, not as a silent blocker bypass.
-- No live provider/network model smoke test was run, per the operator instruction not to do the Claude part.
+Root cause — the committed ledger is a **stale snapshot**:
+- `stolen-focus` is registered in committed `books.json` but its built inputs
+  are **not committed** (104 untracked files live only in the primary working
+  tree). The stored ledger lists 126 books; a rebuild from committed inputs
+  yields 125.
+- Independently, the stored ledger carries **331 `globalNameUsage` entries that
+  no current committed input justifies** (it reflects an older, larger corpus
+  state). Committing the `stolen-focus` inputs reconciles the *book count* but
+  **still leaves `drift: true`** (stored 1245 vs rebuild 914 name entries) — so
+  a ledger rebuild is required either way.
 
-## Recommendation
+Resolution is **owner-owned and intentionally out of scope** for this
+verification (no product/state change was made). A `rebuild-library-state`
+(write) clears it (`Drift: no  Blockers: 0`), regenerating the ledger
+(≈ `+4118 / −10807` lines if `stolen-focus` is dropped, or `+4431 / −9125` if
+its inputs are committed first). Per Rule 4 this drift is **not** dismissed as
+acceptable.
 
-Safe for unattended production promotion after this commit, subject to the existing policy that promotion must still pass `publish-after-qc`, source verification, QC provenance/session checks, production manifest verification, and the local operator's cleanup of unrelated untracked production artifacts before those artifacts are intended to ship.
+### 2. `books.json` merge conflict with `main`
+
+The branch **conflicts with `origin/main`** in exactly one file —
+`scripts/book/prompts/chapterflow-v21-authored/books.json` (the book-catalog
+registry). `main`'s tip `7c6897300` ("Remove excluded book artifacts") pruned
+catalog entries while the branch edited the same file. PR #297 reports
+`mergeable: CONFLICTING`, `mergeStateStatus: DIRTY`. The branch cannot be merged
+until this is resolved.
+
+### 3. Required CI has not (and currently cannot) run on the SHA
+
+At verification time the exact SHA `4a8906b2c…` had **0 check-runs and 0 commit
+statuses** (combined status `pending`). The CI workflow `.github/workflows/ci.yml`
+runs its gating jobs — `app-checks` (typecheck + unit tests + Next build +
+OpenNext bundle), `lambda-checks`, and the **new `pipeline-checks` job this
+branch adds** (`pipeline:typecheck/test/doctor/build`) — only on the
+`pull_request` event and on `push` to `main`. A PR (**#297**, base `main`) was
+opened to trigger them, but **GitHub created no `pull_request` run** because the
+PR is in merge-conflict (blocker #2): the merge ref cannot be built, so the
+checks never start. The `push`-event run that exists for the SHA
+(`28108939744`) has **0 jobs** (a feature-branch push matches no job's branch
+filter) and is not green evidence.
+
+GitHub Actions itself is healthy — other PRs (`fix/auth-hardening`,
+`fix/data-retention`, `fix/gdpr-erasure-billing`, …) ran `pull_request` CI to
+`success` minutes before. The local run above already demonstrates the new
+`pipeline-checks` job would pass; once blocker #2 is resolved and CI runs green,
+the run/job identifiers must be recorded here.
+
+| CI item | Value |
+| --- | --- |
+| PR | #297 (`fix/v21-pipeline-hardening-2026-06` → `main`) |
+| Required jobs (from `ci.yml`) | `app-checks`, `lambda-checks`, `pipeline-checks` |
+| `pull_request` run on `4a8906b2c…` | **none created (PR conflicting)** |
+| Check-runs / statuses on `4a8906b2c…` | **0 / 0** |
+| Stray `push`-event run | `28108939744` — 0 jobs, not gating |
+
+## Re-verification After Documentation Commit (Procedure §11)
+
+This document is committed atop the verified SHA `4a8906b2c…` as a
+**documentation-only** delta (no code or state change). After the commit, an
+exact-tip re-verification is performed against the resulting branch tip
+(re-running `npm ci` + `pipeline:typecheck/test/build/doctor` and the
+state/library audits in a fresh clean checkout) to confirm the documentation
+commit does not alter any gate result. The resulting tip and re-verification
+outcome are recorded in the session log accompanying this commit.
+
+## Summary of Remaining Risks (must be zero for release)
+
+| # | Risk | Severity | Status |
+| --- | --- | --- | --- |
+| 1 | `library-state.json` stale-ledger drift (`rebuild --dry-run` exit 1) | Release blocker | **OPEN** (owner-owned) |
+| 2 | `books.json` merge conflict with `main` | Release blocker | **OPEN** |
+| 3 | Required CI not green on the SHA (blocked by #2) | Release blocker | **OPEN** |
+| — | Test suite writes untracked `zz-fixture` state artifacts | Minor / hygiene | Noted, non-blocking |
+| — | 5 `npm audit` advisories (1 low, 4 moderate) | Minor | Noted, unrelated |
+
+**Three release blockers are open. This branch is not cleared for merge or
+production until all three are zero.**
