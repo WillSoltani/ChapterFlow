@@ -3,17 +3,28 @@ import { cookies } from "next/headers";
 import { jwtVerify, createRemoteJWKSet, errors as joseErrors } from "jose";
 import { mustServerEnv } from "./server-env";
 import { DEV_BYPASS_USER, isDevAuthBypassEnabled } from "@/app/app/_lib/dev-auth-bypass";
+import { evaluateAuthRecency, mapIdTokenClaims } from "./auth-recency-core";
 
 // UNAUTHENTICATED   — no credential presented (missing cookie).
 // INVALID_TOKEN     — a credential was presented but it is genuinely bad
-//                     (expired / wrong signature / failed claim / no matching
-//                     key in the current JWKS). The user must re-authenticate.
+//                     (expired / wrong signature / failed claim / wrong
+//                     token_use / no matching key in the current JWKS). The user
+//                     must re-authenticate.
 // VERIFIER_UNAVAILABLE — we could NOT decide validity because the JWKS could
 //                     not be retrieved (transport/timeout error fetching an
 //                     uncached key). This is transient: callers should return a
 //                     5xx and let the client retry rather than flipping a
 //                     genuinely-logged-in user to logged-out.
-export type AuthErrorCode = "UNAUTHENTICATED" | "INVALID_TOKEN" | "VERIFIER_UNAVAILABLE";
+// REAUTH_REQUIRED   — the token is valid but the authentication is too old for a
+//                     sensitive action (step-up auth, #5). The caller must
+//                     re-authenticate (fresh login) before retrying. Maps to a
+//                     401 `reauth_required`, NOT a generic 401 — the client uses
+//                     the distinct code to trigger a forced fresh login.
+export type AuthErrorCode =
+  | "UNAUTHENTICATED"
+  | "INVALID_TOKEN"
+  | "VERIFIER_UNAVAILABLE"
+  | "REAUTH_REQUIRED";
 
 export class AuthError extends Error {
   constructor(message: AuthErrorCode) {
@@ -98,6 +109,13 @@ export type AuthedUser = {
   familyName?: string;
   preferredUsername?: string;
   groups?: string[];
+  /**
+   * OIDC `auth_time` claim — seconds since epoch at which the END-USER actually
+   * authenticated (NOT when the token was minted; a silent refresh keeps the
+   * original auth_time). Used by `requireRecentAuth` for step-up auth (#5).
+   * Undefined when the IdP did not emit the claim.
+   */
+  authTime?: number;
 };
 
 export async function requireUser(): Promise<AuthedUser> {
@@ -107,6 +125,8 @@ export async function requireUser(): Promise<AuthedUser> {
       email: DEV_BYPASS_USER.email,
       emailVerified: true,
       name: DEV_BYPASS_USER.email?.split("@")[0] || "Developer",
+      // Dev bypass authenticates "now" so step-up gates pass locally.
+      authTime: Math.floor(Date.now() / 1000),
     };
   }
 
@@ -122,34 +142,41 @@ export async function requireUser(): Promise<AuthedUser> {
     throw new AuthError(classifyVerifyError(err));
   }
 
-  const p = payload as Record<string, unknown>;
+  // Map verified claims into the identity subset. This enforces:
+  //  - token_use === "id" (#15): jwtVerify already checks issuer + audience, but
+  //    an access token from the SAME pool shares the issuer and (for app-client
+  //    tokens) can present a matching aud/client_id, so it could otherwise slip
+  //    through and be treated as identity. The wrong credential type is a
+  //    DETERMINISTIC "no" → INVALID_TOKEN (force re-auth, 4xx), NOT
+  //    verifier-unavailable.
+  //  - a non-empty string `sub`.
+  // The `auth_time` claim is extracted here for step-up auth (#5). Pure mapping
+  // lives in mapIdTokenClaims so it is unit-testable without `server-only`.
+  const mapped = mapIdTokenClaims(payload as Record<string, unknown>);
+  if (!mapped.valid) throw new AuthError("INVALID_TOKEN");
+  return mapped.user;
+}
 
-  const sub = p.sub;
-  if (!sub || typeof sub !== "string") throw new AuthError("INVALID_TOKEN");
-
-  const email = typeof p.email === "string" ? p.email : undefined;
-  const emailVerified = typeof p.email_verified === "boolean" ? p.email_verified : undefined;
-  const name = typeof p.name === "string" ? p.name : undefined;
-  const givenName = typeof p.given_name === "string" ? p.given_name : undefined;
-  const familyName = typeof p.family_name === "string" ? p.family_name : undefined;
-  const preferredUsername =
-    typeof p.preferred_username === "string" ? p.preferred_username : undefined;
-
-  const rawGroups = p["cognito:groups"];
-  const groups = Array.isArray(rawGroups)
-    ? rawGroups.filter((v): v is string => typeof v === "string")
-    : typeof rawGroups === "string"
-      ? [rawGroups]
-      : undefined;
-
-  return {
-    sub,
-    email,
-    emailVerified,
-    name,
-    givenName,
-    familyName,
-    preferredUsername,
-    groups,
-  };
+/**
+ * Step-up auth gate (#5). Throws `AuthError("REAUTH_REQUIRED")` when the user's
+ * authentication (`authTime`) is missing or older than `maxAgeMinutes`. Pure
+ * decision lives in {@link evaluateAuthRecency}; this wrapper supplies the clock.
+ *
+ * IMPORTANT ordering: call this AFTER the auth + account-status guard
+ * (`requireUser()` / `requireActiveBookUser()`) has resolved the user — it only
+ * decides recency, it does not authenticate. `withBookApiErrors` maps the thrown
+ * AuthError to `BookApiError(401, "reauth_required", …)`.
+ *
+ * This NEVER locks out a legitimate user whose token is merely old-but-valid: it
+ * forces a fresh login (`prompt=login`) and the action can then be retried. A
+ * silent token refresh does NOT reset `auth_time`, so a long-lived session that
+ * has not genuinely re-authenticated WILL be asked to — by design.
+ */
+export function requireRecentAuth(user: AuthedUser, maxAgeMinutes: number): void {
+  const decision = evaluateAuthRecency({
+    authTimeSeconds: user.authTime,
+    maxAgeMinutes,
+    nowSeconds: Math.floor(Date.now() / 1000),
+  });
+  if (!decision.ok) throw new AuthError("REAUTH_REQUIRED");
 }

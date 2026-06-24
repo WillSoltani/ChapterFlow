@@ -2,12 +2,12 @@ import "server-only";
 
 import { QueryCommand, BatchWriteCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import {
-  CognitoIdentityProviderClient,
   ListUsersCommand,
   AdminDeleteUserCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
-import { ddbDoc, REGION } from "@/app/app/api/_lib/aws";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { getCognitoClient } from "./cognito-admin";
 import {
   bookUserPk,
   quizAttemptPk,
@@ -143,12 +143,6 @@ function pairInviteKeysFromUserItems(items: Record<string, unknown>[]): DdbKey[]
   return [...codes].map((code) => ({ PK: pairInvitePk(code), SK: pairInviteSk() }));
 }
 
-let cognitoClient: CognitoIdentityProviderClient | null = null;
-function getCognito(): CognitoIdentityProviderClient {
-  if (!cognitoClient) cognitoClient = new CognitoIdentityProviderClient({ region: REGION });
-  return cognitoClient;
-}
-
 /**
  * Permanently erase ALL of a user's data we can reach: the user's main-table
  * partition, their derived quiz-attempt partitions, their analytics partition,
@@ -278,7 +272,7 @@ export async function eraseUserData(
   const userPoolId = await getServerEnv("COGNITO_USER_POOL_ID");
   if (userPoolId) {
     try {
-      const cognito = getCognito();
+      const cognito = getCognitoClient();
       const safeSub = userId.replace(/[^\w:.@-]/g, "");
       const listed = await cognito.send(
         new ListUsersCommand({

@@ -4,7 +4,11 @@ import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getUserEntitlement, setAccountStatus } from "@/app/app/api/book/_lib/repo";
 import { getStripeClient } from "@/app/app/api/book/_lib/stripe-service";
-import { captureStripeCancelFailure } from "@/app/app/api/book/_lib/ops-failure-repo";
+import {
+  captureStripeCancelFailure,
+  recordOpsFailure,
+} from "@/app/app/api/book/_lib/ops-failure-repo";
+import { revokeUserSessions } from "@/app/app/api/book/_lib/cognito-admin";
 
 export const runtime = "nodejs";
 
@@ -30,6 +34,22 @@ export async function POST(req: Request) {
       statusReason: "user_requested",
       previousPlan: entitlement?.plan,
       previousProSource: entitlement?.proSource,
+    });
+
+    // Revoke Cognito sessions (parity with self-delete, #5 Tier 2): deactivating
+    // is a "lock my account now" action, so the user's outstanding refresh
+    // tokens should die immediately rather than letting a stale credential
+    // silently auto-reactivate via /auth/refresh → requireActiveBookUser. The
+    // user can still sign back in to reactivate (that's an explicit re-auth).
+    // Best-effort, runs AFTER the status write, never fails the deactivate.
+    await revokeUserSessions(user.sub, async (error) => {
+      await recordOpsFailure(tableName, {
+        kind: "cognito_global_signout",
+        context: "account_deactivate",
+        userId: user.sub,
+        errorCode: (error as { name?: string; code?: string })?.code ?? (error as { name?: string })?.name,
+        errorMessage: error instanceof Error ? error.message : String(error),
+      });
     });
 
     // Cancel Stripe subscription at period end if active. A failure must NOT

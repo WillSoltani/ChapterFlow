@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson, handleReauthRequired } from "@/app/book/_lib/book-api";
 
 export type BillingInterval = "monthly" | "annual" | "annual_upfront";
 
@@ -57,10 +57,20 @@ async function openBillingDestination(
     options.body = JSON.stringify({ interval });
   }
 
-  const payload = await fetchBookJson<{ checkoutUrl?: string; portalUrl?: string }>(
-    route,
-    options
-  );
+  let payload: { checkoutUrl?: string; portalUrl?: string };
+  try {
+    payload = await fetchBookJson<{ checkoutUrl?: string; portalUrl?: string }>(
+      route,
+      options
+    );
+  } catch (error) {
+    // Step-up re-auth (#5): the billing portal can require a recent sign-in. On
+    // 401 `reauth_required`, send the user through a forced fresh login and
+    // return to settings so they can retry. handleReauthRequired navigates away
+    // (and returns true) when it applies; otherwise re-throw for normal handling.
+    if (handleReauthRequired(error, "/book/settings")) return;
+    throw error;
+  }
   const target = kind === "upgrade" ? payload.checkoutUrl : payload.portalUrl;
   if (!target) throw new Error("Billing link unavailable.");
   if (kind === "upgrade" && typeof window !== "undefined") {

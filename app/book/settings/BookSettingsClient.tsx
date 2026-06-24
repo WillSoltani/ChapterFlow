@@ -27,7 +27,7 @@ import { useToast } from "@/app/book/hooks/useToast";
 import { Toast } from "@/app/book/components/ui/Toast";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
 
 // New settings hooks
 import { useSettingsPage } from "./hooks/useSettingsPage";
@@ -1640,6 +1640,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     const res = await fetch("/app/api/book/me/account/deactivate", { method: "POST" });
                     if (res.ok) {
                       window.location.href = "/auth/logout";
+                    } else if (await isReauthResponse(res)) {
+                      // Step-up auth (#5): stale session → force a fresh login and
+                      // return to settings to retry.
+                      redirectToReauth("/book/settings");
                     } else {
                       showToast("Failed to deactivate account. Please try again.", "error");
                     }
@@ -1656,6 +1660,10 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                     });
                     if (res.ok) {
                       window.location.href = "/auth/logout";
+                    } else if (await isReauthResponse(res)) {
+                      // Step-up auth (#5): self-delete requires a recent sign-in.
+                      // Force a fresh login and return to settings to retry.
+                      redirectToReauth("/book/settings");
                     } else {
                       showToast("Failed to delete account. Please try again.", "error");
                     }
