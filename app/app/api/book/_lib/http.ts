@@ -14,11 +14,13 @@ import {
 // so it stays unit-testable; see that file.
 export {
   assertWithinSizeLimits,
+  assertWithinTotalSize,
   dailyLimitDateKey,
   isWithinDailyLimit,
   evaluateSameOrigin,
   isCsrfEnforcementOn,
   SETTINGS_VALUE_MAX_CHARS,
+  SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
 } from "./http-guards-core";
 

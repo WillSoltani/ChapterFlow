@@ -124,6 +124,12 @@ export function evaluateSameOrigin(params: {
 export const SETTINGS_VALUE_MAX_CHARS = 4000;
 /** Default cap for chapter-state free-text notes (≈20k chars ≤ 80KB worst case). */
 export const CHAPTER_NOTES_MAX_CHARS = 20000;
+/**
+ * Aggregate cap for the WHOLE settings item (≈32k chars ≤ 128KB worst case,
+ * safely under the 400KB DynamoDB ceiling with PK/SK/metadata overhead). Bounds
+ * the merged item — see {@link assertWithinTotalSize}.
+ */
+export const SETTINGS_TOTAL_MAX_CHARS = 32000;
 
 /**
  * Recursively assert that no string anywhere inside `value` exceeds `maxChars`.
@@ -164,6 +170,43 @@ export function assertWithinSizeLimits(
     }
   };
   visit(value, field, 0);
+}
+
+/**
+ * Assert the AGGREGATE serialized size of `value` is within `maxTotalChars`.
+ * {@link assertWithinSizeLimits} bounds each individual string but neither the
+ * key COUNT nor the total size, so a read-modify-write merge (e.g. the settings
+ * PATCH) can grow an item across many requests — every string in-limit — until
+ * it blows DynamoDB's 400KB item ceiling and 500s the user out of their own
+ * data. We use JSON length as a cheap, monotonic proxy for stored size. Throws
+ * `BookApiError(413, "payload_too_large")`. Pure + synchronous.
+ *
+ * `previousLength` (default 0) makes the cap GROWTH-only: a write is rejected
+ * only when it breaches the cap AND is larger than what was already stored, so a
+ * user whose item already legitimately exceeds the cap (e.g. legacy accumulation
+ * before this guard existed) is never locked out of saving or SHRINKING it.
+ * Callers that want a hard cap (no prior state) simply omit the argument.
+ */
+export function assertWithinTotalSize(
+  value: unknown,
+  maxTotalChars: number,
+  field = "value",
+  previousLength = 0
+): void {
+  let total: number;
+  try {
+    total = JSON.stringify(value)?.length ?? 0;
+  } catch {
+    // Circular/unserializable structure → treat as over-limit, never crash.
+    throw new BookApiError(413, "payload_too_large", `${field} is too large.`);
+  }
+  if (total > maxTotalChars && total > previousLength) {
+    throw new BookApiError(
+      413,
+      "payload_too_large",
+      `${field} is too large (max ${maxTotalChars} characters total).`
+    );
+  }
 }
 
 // ─── Per-user daily rate limit (#8) — pure parts ─────────────────────────────

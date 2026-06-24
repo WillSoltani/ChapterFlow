@@ -4,11 +4,13 @@ import { isBookApiError } from "./errors";
 import {
   evaluateSameOrigin,
   assertWithinSizeLimits,
+  assertWithinTotalSize,
   dailyLimitDateKey,
   isWithinDailyLimit,
   isCsrfEnforcementOn,
   originOf,
   SETTINGS_VALUE_MAX_CHARS,
+  SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
 } from "./http-guards-core";
 
@@ -262,6 +264,59 @@ test("assertWithinSizeLimits: caps recursion depth on adversarial nesting", () =
   const err = thrown as { status: number; message: string };
   assert.equal(err.status, 413);
   assert.match(err.message, /nested too deeply/);
+});
+
+// ─── assertWithinTotalSize (#8 — aggregate item cap) ──────────────────────────
+
+test("assertWithinTotalSize: an item under the aggregate cap passes", () => {
+  assert.doesNotThrow(() =>
+    assertWithinTotalSize({ reading: { fontFamily: "serif" }, goals: { weekly: 5 } }, SETTINGS_TOTAL_MAX_CHARS, "settings")
+  );
+});
+
+test("assertWithinTotalSize: MANY in-limit strings still trip the aggregate cap (the cross-request growth case)", () => {
+  // Each value is well under SETTINGS_VALUE_MAX_CHARS, so the per-string guard
+  // passes — but the key COUNT blows the aggregate ceiling. This is exactly the
+  // additive-merge growth assertWithinSizeLimits cannot catch.
+  const extended: Record<string, string> = {};
+  for (let i = 0; i < 5000; i++) extended[`k${i}`] = "value";
+  let thrown: unknown;
+  try {
+    assertWithinTotalSize({ extended }, SETTINGS_TOTAL_MAX_CHARS, "settings");
+  } catch (e) {
+    thrown = e;
+  }
+  assert.ok(isBookApiError(thrown), "must throw a BookApiError");
+  const err = thrown as { status: number; code: string; message: string };
+  assert.equal(err.status, 413);
+  assert.equal(err.code, "payload_too_large");
+  assert.match(err.message, /settings is too large/);
+  // Sanity: the same payload's individual strings all PASS the per-string guard,
+  // proving the two checks are complementary, not redundant.
+  assert.doesNotThrow(() => assertWithinSizeLimits({ extended }, SETTINGS_VALUE_MAX_CHARS, "settings"));
+});
+
+test("assertWithinTotalSize: GROWTH-only — an already-over-cap item can still be saved if it does NOT grow (P1)", () => {
+  // A user whose stored settings already exceed the cap must not be locked out of
+  // editing. previousLength >= the new total means the write isn't growing, so it
+  // is allowed even though it breaches the cap.
+  const big: Record<string, string> = {};
+  for (let i = 0; i < 5000; i++) big[`k${i}`] = "value";
+  const total = JSON.stringify({ extended: big }).length;
+  assert.ok(total > SETTINGS_TOTAL_MAX_CHARS, "fixture must exceed the cap");
+  // Same size (not growing) → allowed.
+  assert.doesNotThrow(() =>
+    assertWithinTotalSize({ extended: big }, SETTINGS_TOTAL_MAX_CHARS, "settings", total)
+  );
+  // Shrinking from an even larger prior size → allowed.
+  assert.doesNotThrow(() =>
+    assertWithinTotalSize({ extended: big }, SETTINGS_TOTAL_MAX_CHARS, "settings", total + 1000)
+  );
+  // But GROWING past the cap from a smaller prior size → still rejected.
+  assert.throws(
+    () => assertWithinTotalSize({ extended: big }, SETTINGS_TOTAL_MAX_CHARS, "settings", total - 1),
+    (e: unknown) => isBookApiError(e) && (e as { status: number }).status === 413
+  );
 });
 
 // ─── daily-limit pure helpers (#8) ────────────────────────────────────────────
