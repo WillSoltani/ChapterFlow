@@ -339,6 +339,13 @@ export type BookUserEntitlement = {
   lastInvoicePaidAt?: string;
   discountCouponId?: string;
   failedPaymentLastReason?: string;
+  /**
+   * High-water mark of the most recent Stripe webhook `event.created` (epoch
+   * seconds) applied to this entitlement. Set by updateUserEntitlementFromStripe
+   * to reject out-of-order/reordered Stripe events; see
+   * stripe-entitlement-write-core.ts. Dispute writes do not touch it.
+   */
+  lastStripeEventAt?: number;
   updatedAt: string;
 };
 
