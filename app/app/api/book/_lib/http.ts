@@ -184,6 +184,21 @@ export async function withBookApiErrors<T>(
           requestId
         );
       }
+      // Step-up auth (#5): the token is valid but the authentication is too old
+      // for this sensitive action. A DISTINCT 401 code (`reauth_required`) the
+      // client detects to force a fresh login then retry — NOT a plain
+      // "unauthenticated" (which would log the user out). The `details.reauth`
+      // hint tells the client to redirect through a forced re-auth.
+      if (error.message === "REAUTH_REQUIRED") {
+        return bookErr(
+          req,
+          401,
+          "reauth_required",
+          "Please re-authenticate to continue. This action requires a recent sign-in.",
+          { reauth: true },
+          requestId
+        );
+      }
       return bookErr(req, 401, "unauthenticated", "Authentication is required.", undefined, requestId);
     }
     if (isBookApiError(error)) {

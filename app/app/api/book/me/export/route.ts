@@ -1,7 +1,7 @@
 import "server-only";
 import { NextResponse } from "next/server";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { requireUser } from "@/app/app/api/_lib/auth";
+import { requireUser, requireRecentAuth } from "@/app/app/api/_lib/auth";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   withBookApiErrors,
@@ -39,6 +39,13 @@ export const runtime = "nodejs";
  * per day at most). (#8)
  */
 const EXPORT_DAILY_LIMIT = 5;
+
+/**
+ * Step-up window (#5, Tier 3): exporting ALL personal data is a sensitive
+ * read — require a sign-in within the last 10 minutes so a walk-up/stolen-cookie
+ * session can't quietly exfiltrate the full account.
+ */
+const EXPORT_MAX_AUTH_AGE_MINUTES = 10;
 
 type ExportData = {
   exportedAt: string;
@@ -320,6 +327,7 @@ async function exportAllBadgeAwards(
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
+    requireRecentAuth(user, EXPORT_MAX_AUTH_AGE_MINUTES);
     const tableName = await getBookTableName();
     const analyticsTable = await getBookAnalyticsTableName();
 

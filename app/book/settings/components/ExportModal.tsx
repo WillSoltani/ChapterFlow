@@ -5,6 +5,7 @@ import { X, Download, Loader2, AlertCircle } from "lucide-react";
 import type { ExportFormat } from "../types/settings";
 import { cn } from "@/app/book/components/ui/cn";
 import { Dialog } from "@/components/ui/Dialog";
+import { redirectToReauth } from "@/app/book/_lib/book-api";
 
 type ExportModalProps = {
   open: boolean;
@@ -59,6 +60,18 @@ export function ExportModal({ open, onClose }: ExportModalProps) {
       );
 
       if (!response.ok) {
+        // Step-up re-auth (#5): an old session gets 401 `reauth_required`.
+        // Send the user through a forced fresh login and return to settings so
+        // they can retry the export. Read the JSON error envelope to detect it.
+        if (response.status === 401) {
+          const body = (await response.json().catch(() => null)) as
+            | { error?: { code?: string } }
+            | null;
+          if (body?.error?.code === "reauth_required") {
+            redirectToReauth("/book/settings");
+            return;
+          }
+        }
         throw new Error(`Export failed (${response.status})`);
       }
 

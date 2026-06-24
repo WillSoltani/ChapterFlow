@@ -323,13 +323,25 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     // Cognito admin access — the admin "erase user" tool resolves a user by
     // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
-    // of a GDPR-style complete erasure. Scoped to the configured pool when its
-    // id is known at synth, otherwise to all pools.
+    // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
+    // revokes a user's outstanding refresh tokens server-side on self-delete /
+    // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
+    // immediately. Scoped to the configured pool when its id is known at synth,
+    // otherwise to all pools.
+    //
+    // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
+    // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
+    // is swallowed into an ops-failure, and the delete still returns success
+    // (sessions look revoked but aren't).
     const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "CognitoAdminUserErasure",
-        actions: ["cognito-idp:ListUsers", "cognito-idp:AdminDeleteUser"],
+        actions: [
+          "cognito-idp:ListUsers",
+          "cognito-idp:AdminDeleteUser",
+          "cognito-idp:AdminUserGlobalSignOut",
+        ],
         resources: cognitoUserPoolId
           ? [
               `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,

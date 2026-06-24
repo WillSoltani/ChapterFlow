@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
+import { timingSafeStrEqual } from "../_lib/timing-safe-equal";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
@@ -64,7 +65,7 @@ async function resolveAuthState(
   const nonce = req.cookies.get("oauth_state")?.value ?? null;
   const rawReturnTo = req.cookies.get("post_auth_redirect")?.value;
 
-  if (!nonce || nonce !== stateParam) {
+  if (!nonce || !timingSafeStrEqual(nonce, stateParam)) {
     return { verifier: null, returnTo: sanitizeReturnTo(rawReturnTo, "/book") };
   }
 
@@ -74,6 +75,21 @@ async function resolveAuthState(
     verifier,
     returnTo: sanitizeReturnTo(rawReturnTo, "/book"),
   };
+}
+
+/**
+ * Clear the ephemeral OAuth flow cookies (#15). These are single-use and must be
+ * cleared on EVERY exit path — success, failure, and the verifier-restart
+ * redirect-to-login — so a stale pkce_verifier / oauth_state / post_auth_redirect
+ * cannot be replayed against a later code-exchange attempt. Mutates `res` and
+ * returns it for chaining.
+ */
+function clearTransientOAuthCookies(res: NextResponse): NextResponse {
+  const cookieBase = getAuthCookieBase();
+  res.cookies.set("pkce_verifier", "", { ...cookieBase, maxAge: 0 });
+  res.cookies.set("oauth_state", "", { ...cookieBase, maxAge: 0 });
+  res.cookies.set("post_auth_redirect", "", { ...cookieBase, maxAge: 0 });
+  return res;
 }
 
 export async function GET(req: NextRequest) {
@@ -93,7 +109,7 @@ export async function GET(req: NextRequest) {
     const stateParam = url.searchParams.get("state");
 
     if (!code || !stateParam) {
-      return NextResponse.redirect(new URL("/?auth=error", origin));
+      return clearTransientOAuthCookies(NextResponse.redirect(new URL("/?auth=error", origin)));
     }
 
     // Recover PKCE verifier + returnTo from encrypted state (primary)
@@ -104,11 +120,12 @@ export async function GET(req: NextRequest) {
     );
 
     if (!verifier) {
-      // Neither encrypted state nor cookies had the verifier.
-      // Redirect to login to start a fresh flow.
+      // Neither encrypted state nor cookies had the verifier (or the nonce did
+      // not match). Redirect to login to start a fresh flow, clearing the stale
+      // transient cookies so they cannot be replayed — login will set fresh ones.
       const loginUrl = new URL("/auth/login", origin);
       loginUrl.searchParams.set("returnTo", returnTo);
-      return NextResponse.redirect(loginUrl);
+      return clearTransientOAuthCookies(NextResponse.redirect(loginUrl));
     }
 
     // Exchange authorization code + PKCE verifier for tokens
@@ -129,7 +146,9 @@ export async function GET(req: NextRequest) {
     });
 
     if (!tokenRes.ok) {
-      return NextResponse.redirect(new URL("/?auth=token_error", origin));
+      return clearTransientOAuthCookies(
+        NextResponse.redirect(new URL("/?auth=token_error", origin))
+      );
     }
 
     const tokens = (await tokenRes.json()) as Record<string, unknown>;
@@ -138,7 +157,9 @@ export async function GET(req: NextRequest) {
     const refreshToken = readString(tokens.refresh_token);
 
     if (!idToken || !accessToken) {
-      return NextResponse.redirect(new URL("/?auth=token_error", origin));
+      return clearTransientOAuthCookies(
+        NextResponse.redirect(new URL("/?auth=token_error", origin))
+      );
     }
 
     const res = NextResponse.redirect(
@@ -182,10 +203,8 @@ export async function GET(req: NextRequest) {
       maxAge: REFRESH_TOKEN_MAX_AGE,
     });
 
-    // Clear ephemeral OAuth cookies
-    res.cookies.set("pkce_verifier", "", { ...cookieBase, maxAge: 0 });
-    res.cookies.set("oauth_state", "", { ...cookieBase, maxAge: 0 });
-    res.cookies.set("post_auth_redirect", "", { ...cookieBase, maxAge: 0 });
+    // Clear ephemeral OAuth cookies (single-use; cleared on every exit path).
+    clearTransientOAuthCookies(res);
 
     const { deviceId, issued } = getOrCreateDeviceId(req);
     if (issued) {
@@ -215,6 +234,10 @@ export async function GET(req: NextRequest) {
     console.error("auth_callback_error", {
       message: error instanceof Error ? error.message : String(error),
     });
-    return NextResponse.redirect(new URL("/?auth=server_error", origin));
+    // Clear the transient OAuth cookies even on an unexpected failure so a stale
+    // verifier/nonce can't linger for a replay.
+    return clearTransientOAuthCookies(
+      NextResponse.redirect(new URL("/?auth=server_error", origin))
+    );
   }
 }
