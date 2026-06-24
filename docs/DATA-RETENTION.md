@@ -47,7 +47,7 @@ for account-deletion vs erasure mechanics see
 | Risk / fraud events (`BOOK_RISK_EVENT`) | app table | **Retained — fraud** | Indefinite | Abuse/fraud investigation. Period is an owner/counsel decision. Reachable by erasure via #4 reverse-pointers. |
 | Account-status changes (`BOOK_ACCOUNT_STATUS_CHANGE`) | app table | **Retained — compliance** | Indefinite (within user partition) | Immutable account-lifecycle audit; swept by erasure with the rest of the user partition. |
 | Erasure audit log (`BOOK_ERASURE_LOG`) | app table | **Retained — compliance** | Indefinite | Permanent proof an erasure occurred (HMAC of the sub, no plaintext identifier — #4b). Lives **outside** the user partition so it survives erasure. |
-| Core user data — entitlement, progress, profile, settings, book/chapter state, quiz state, notes, FSRS cards | app table | Account lifetime | On-request erasure | Kept while the account is active/deactivated; removed on deletion/erasure. |
+| Core user data — entitlement, progress, profile, settings, book/chapter state, quiz state, notes, FSRS cards | app table | Account lifetime | On-request erasure | Retained while the account is active, deactivated, **or deleted** — account deletion is a soft status flip (`setAccountStatus → "deleted"`) that preserves this data and only makes the account non-functional. It is removed **only** by on-request erasure ([`account-erasure.ts`](../app/app/api/book/_lib/account-erasure.ts)), never by the delete action itself. |
 
 ## TTL defaults summary
 

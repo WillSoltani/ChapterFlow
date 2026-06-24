@@ -124,8 +124,9 @@ export default function PrivacyPolicyPage() {
           </p>
           <p className="mb-3">
             If you deactivate your account, your data is preserved and your account becomes inactive until you sign back in.
-            If you delete your account, it is marked as deleted and becomes non-functional, and we remove or de-identify
-            your personal data, retaining only what we must keep for legal compliance and fraud prevention.
+            If you delete your account, it is marked as deleted and becomes permanently non-functional; we retain your
+            backend data for legal-compliance, security, and fraud-prevention purposes, but it is no longer used in the
+            product. To fully erase or de-identify your personal data, request erasure as described below.
           </p>
           <p>
             To request complete erasure of your data, contact us at{" "}
