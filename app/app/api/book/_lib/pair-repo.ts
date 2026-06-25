@@ -1,16 +1,21 @@
 import "server-only";
 
 import {
+  DeleteCommand,
   GetCommand,
   PutCommand,
-  QueryCommand,
   TransactWriteCommand,
-  UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import crypto from "crypto";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { bookUserPk, pairSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
+import { bookUserPk, pairActiveSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
 import { buildPairInvitePointer } from "./erasure-pointers-core";
+import { isTransactionConditionFailedAt } from "./errors";
+import {
+  ACCEPT_PAIR_CONDITION,
+  buildActivePairItem,
+  buildEndedPairHistoryItem,
+} from "./pair-write-core";
 import { getBookContentBucket } from "./env";
 import { listPublishedLibraryCatalog } from "./library-catalog";
 import { getUserProfileItem, listAllUserProgress } from "./repo";
@@ -114,7 +119,10 @@ export async function acceptPairInvite(
   if (new Date(invite.expiresAt) < new Date()) return { pair: null as never, error: "Invite expired" };
   if (invite.inviterUserId === acceptingUserId) return { pair: null as never, error: "Cannot pair with yourself" };
 
-  // Check if either user already has an active pair
+  // Best-effort early-exit (friendlier error than a generic "Invite already
+  // used"), but NOT the correctness gate: this read is separate from the write,
+  // so it can race. Atomicity is enforced below by the per-user singleton Put
+  // condition, which is what actually prevents two active partners.
   const existingA = await getUserActivePair(tableName, invite.inviterUserId);
   if (existingA) return { pair: null as never, error: "Inviter already has a partner" };
   const existingB = await getUserActivePair(tableName, acceptingUserId);
@@ -132,11 +140,13 @@ export async function acceptPairInvite(
     updatedAt: now,
   };
 
-  // Commit all three writes atomically so a losing concurrent accept fails
-  // cleanly instead of clobbering. The pair Puts require the records not to
-  // already exist (attribute_not_exists) and the invite Put requires it to still
-  // be pending; if any condition fails the whole transaction is cancelled and we
-  // surface "Invite already used" rather than a half-written/duplicated link.
+  // Commit all three writes atomically. Both pair Puts target each user's SINGLE
+  // active-pair slot (`PAIR#ACTIVE`) and require it to be empty
+  // (attribute_not_exists(SK)); the invite Put requires the invite to still be
+  // pending. Because the slot is a FIXED per-user SK, a second concurrent accept
+  // — even one pairing the user with a DIFFERENT partner — fails this condition,
+  // cancelling the whole transaction (H6: at most one active partner). A prior
+  // ended pair leaves no row on this slot, so re-pairing succeeds (H7).
   try {
     await ddbDoc.send(
       new TransactWriteCommand({
@@ -144,30 +154,21 @@ export async function acceptPairInvite(
           {
             Put: {
               TableName: tableName,
-              Item: {
-                PK: bookUserPk(invite.inviterUserId),
-                SK: pairSk(acceptingUserId),
-                entity: "BOOK_USER_PAIR",
-                ...pairItem,
-              },
-              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              Item: buildActivePairItem(pairItem),
+              ConditionExpression: ACCEPT_PAIR_CONDITION,
             },
           },
           {
             Put: {
               TableName: tableName,
-              Item: {
-                PK: bookUserPk(acceptingUserId),
-                SK: pairSk(invite.inviterUserId),
-                entity: "BOOK_USER_PAIR",
+              Item: buildActivePairItem({
                 userId: acceptingUserId,
                 partnerId: invite.inviterUserId,
                 pairedAt: now,
-                status: "active",
                 createdAt: now,
                 updatedAt: now,
-              },
-              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              }),
+              ConditionExpression: ACCEPT_PAIR_CONDITION,
             },
           },
           {
@@ -192,6 +193,16 @@ export async function acceptPairInvite(
   } catch (err: unknown) {
     const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
     if (name === "TransactionCanceledException" || name === "ConditionalCheckFailedException") {
+      // Index-aligned with TransactItems above: 0 = inviter's active-pair slot,
+      // 1 = accepting user's slot, 2 = invite-still-pending. A slot collision
+      // (0/1) means that user already gained an active partner since the pre-read
+      // — the H6 race — so report it precisely rather than as "Invite already used".
+      if (isTransactionConditionFailedAt(err, 0)) {
+        return { pair: null as never, error: "Inviter already has a partner" };
+      }
+      if (isTransactionConditionFailedAt(err, 1)) {
+        return { pair: null as never, error: "You already have a partner" };
+      }
       return { pair: null as never, error: "Invite already used" };
     }
     throw err;
@@ -204,19 +215,18 @@ export async function getUserActivePair(
   tableName: string,
   userId: string,
 ): Promise<BookUserPairItem | null> {
+  // The active pair lives at the single fixed `PAIR#ACTIVE` SK, so this is an
+  // exact GetItem (no Query + in-memory status filter). Ended pairs are stored
+  // under separate PAIRHISTORY# SKs and are never returned here.
   const result = await ddbDoc.send(
-    new QueryCommand({
+    new GetCommand({
       TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "PAIR#",
-      },
+      Key: { PK: bookUserPk(userId), SK: pairActiveSk() },
     }),
   );
 
-  const pairs = (result.Items ?? []) as BookUserPairItem[];
-  return pairs.find((p) => p.status === "active") ?? null;
+  const item = result.Item as BookUserPairItem | undefined;
+  return item && item.status === "active" ? item : null;
 }
 
 /**
@@ -357,27 +367,48 @@ export async function deletePair(
   partnerId: string,
 ): Promise<void> {
   const now = nowIso();
-  // Soft-delete both sides (ConditionExpression prevents creating stub records)
-  const update = (pk: string, sk: string) =>
+  // End BOTH sides. We DELETE the `PAIR#ACTIVE` marker (rather than soft-update it
+  // in place) so the slot is free for the same two users to re-pair later (H7) —
+  // the old soft-delete left a row that permanently failed the accept's
+  // attribute_not_exists guard. The pre-delete state is preserved as an immutable
+  // ended-history row under a distinct PAIRHISTORY# SK, so we keep the audit trail
+  // without blocking the slot. Delete-then-put is one atomic TransactWrite per
+  // side so we never strand a side with no active marker AND no history row.
+  const endSide = (owner: string, other: string) =>
     ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: pk, SK: sk },
-        UpdateExpression: "SET #s = :ended, endedAt = :now, updatedAt = :now",
-        ExpressionAttributeNames: { "#s": "status" },
-        ExpressionAttributeValues: { ":ended": "ended", ":now": now },
-        ConditionExpression: "attribute_exists(PK)",
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Delete: {
+              TableName: tableName,
+              Key: { PK: bookUserPk(owner), SK: pairActiveSk() },
+              // Only act when an active marker actually exists; a no-op otherwise.
+              ConditionExpression: "attribute_exists(PK)",
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: buildEndedPairHistoryItem({
+                userId: owner,
+                partnerId: other,
+                pairedAt: now,
+                createdAt: now,
+                endedAt: now,
+              }),
+            },
+          },
+        ],
       }),
     ).catch((err: unknown) => {
       const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
-      if (name === "ConditionalCheckFailedException") return; // no-op if record doesn't exist
+      // No active marker on this side → nothing to end; swallow so deletePair is
+      // idempotent and a one-sided dangling record can still be cleaned up.
+      if (name === "TransactionCanceledException" || name === "ConditionalCheckFailedException") return;
       throw err;
     });
 
-  await Promise.all([
-    update(bookUserPk(userId), pairSk(partnerId)),
-    update(bookUserPk(partnerId), pairSk(userId)),
-  ]);
+  await Promise.all([endSide(userId, partnerId), endSide(partnerId, userId)]);
 }
 
 export async function canSendNudge(

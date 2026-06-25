@@ -370,8 +370,27 @@ export function journeySk(journeyId: string): string {
 
 // ── Reading Partner keys (Feature #7) ────────────────────────────────────────
 
-export function pairSk(partnerId: string): string {
-  return `PAIR#${partnerId}`;
+/**
+ * SK for a user's single ACTIVE reading partner. A FIXED constant (not keyed by
+ * partnerId) so each user can hold at most one active-pair item: the accept Put
+ * guards on `attribute_not_exists(SK)`, which atomically rejects a second active
+ * partner regardless of who it is with (the H6 singleton invariant). Replaces the
+ * old partner-keyed `PAIR#<partnerId>` SK — that scheme allowed N concurrent
+ * active partners and, once soft-deleted, permanently blocked re-pairing the same
+ * two users (the H7 bug). No prod data used the old scheme at the time of change.
+ */
+export function pairActiveSk(): string {
+  return "PAIR#ACTIVE";
+}
+
+/**
+ * SK for an immutable ended-pair history row. Keyed by (partnerId, endedAt) so
+ * dissolving and re-forming a pair leaves a distinct audit row each time and none
+ * of them occupy `PAIR#ACTIVE` (which must stay free for re-pairing). Lives in the
+ * user's own partition so the account-erasure partition sweep reaches it.
+ */
+export function pairHistorySk(partnerId: string, endedAtIso: string): string {
+  return `PAIRHISTORY#${partnerId}#${endedAtIso}`;
 }
 
 export function pairInvitePk(inviteCode: string): string {
