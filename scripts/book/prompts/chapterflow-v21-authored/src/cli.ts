@@ -1145,14 +1145,15 @@ async function runSourceFit(args: string[], flags: Record<string, string | boole
 async function runPruneBookState(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const input = args.join(" ").trim();
   if (!input) {
-    console.error("Usage: prune-book-state <bookId> [--apply] [--json]   (dry-run by default; removes ONLY untracked working state of a PUBLISHED book)");
+    console.error("Usage: prune-book-state <bookId> [--apply] [--keep-audit] [--json]   (dry-run by default; only a PUBLISHED book. DEFAULT = package-only: removes ALL untracked per-book state, leaving just the committed package. --keep-audit = slim sweep preserving chapters + QC attestations + source-verify for a re-publish.)");
     return 2;
   }
   const { resolveBookIdentifier } = await import("./qc/auto/resolveBook.js");
   const resolved = resolveBookIdentifier(input);
   const bookId = resolved.ok === false ? input : resolved.bookId;
   const { pruneBookStatePlan, applyPruneBookState, formatPruneBookState } = await import("./qc/pruneBookState.js");
-  const plan = pruneBookStatePlan(bookId);
+  const scope: "transient" | "all" = flags["keep-audit"] === true ? "transient" : "all";
+  const plan = pruneBookStatePlan(bookId, scope);
   if (flags["json"] === true) {
     console.log(JSON.stringify(plan, null, 2));
     return plan.status === "ok" ? 0 : 1;
@@ -1164,7 +1165,7 @@ async function runPruneBookState(args: string[], flags: Record<string, string | 
   if (flags["apply"] === true) {
     const r = applyPruneBookState(plan);
     console.log(formatPruneBookState(plan, true));
-    console.log(`\nprune-book-state: removed ${r.removed} file(s), freed ~${(r.bytes / (1024 * 1024)).toFixed(1)} MB. Committed artifacts + the source-verify record are untouched.`);
+    console.log(`\nprune-book-state: removed ${r.removed} file(s), freed ~${(r.bytes / (1024 * 1024)).toFixed(1)} MB. ${scope === "all" ? "Only the committed package remains (re-publish needs a regen)." : "Committed artifacts + the source-verify record are untouched."}`);
   } else {
     console.log(formatPruneBookState(plan));
   }

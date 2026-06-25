@@ -40,6 +40,8 @@ import { REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
+import { normalizeChapterProvenance } from "../qc/normalizeProvenance.js";
+import { pruneBookStatePlan, applyPruneBookState } from "../qc/pruneBookState.js";
 import { carryableChapter } from "../qc/orchestrator/index.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
 import {
@@ -1168,6 +1170,14 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const cv = await deps.runVerb(["qc-converge", bookId]);
       if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during regression-fix convergence — inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
     }
+    // Provenance hygiene: a CORRUPTION-tier repair can rewrite a chapter's authoring.sourceAnchors
+    // and mislabel its schemaVersion (the willpower ch5 wedge → PPKG.authoring_provenance_missing).
+    // Re-stamp the canonical label on any structurally-valid block the repair drifted, so artifacts
+    // stay publish-clean between here and promote (publish-after-qc self-heals too, as a backstop).
+    // Content is untouched (authoring is excluded from the content hash), so this never stales an
+    // attestation or forces a re-review.
+    const provNorm = normalizeChapterProvenance(bookId);
+    if (provNorm.length) deps.log(`[autopilot] normalized source-anchor schemaVersion (repair drift) on ${provNorm.map((p) => `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")}`);
     // loop → drive a FRESH round (a repair invalidates the prior one)
   }
   return null;
@@ -1489,6 +1499,25 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
     { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("publish-finalize") },
   );
   if (pub.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-after-qc failed (exit ${pub.code}): ${(pub.stderr || pub.stdout).slice(0, 300)}`);
+
+  // End-to-end hygiene: the book is now PUBLISHED (package committed + pushed). The web app serves
+  // ONLY the committed package, so sweep ALL of this book's untracked working state — chapters, QC
+  // attestations, plans, provenance, the sidecar cache, and any stale _blocked report (package-only,
+  // the owner's chosen post-publish policy). A walk-away run then leaves just the committed package.
+  // prune-book-state is safe-by-construction (untracked-only, only on a COMMITTED package, book-scoped).
+  // Best-effort: a prune failure must NEVER undo a successful publish — the book is already on main.
+  try {
+    const plan = pruneBookStatePlan(bookId, "all");
+    if (plan.status === "ok" && plan.remove.length) {
+      const r = applyPruneBookState(plan);
+      deps.log(`[autopilot] post-publish prune (package-only): removed ${r.removed} untracked file(s), freed ~${(r.bytes / (1024 * 1024)).toFixed(1)} MB — only the committed package remains`);
+    } else if (plan.status === "git-error") {
+      deps.log(`[autopilot] post-publish prune skipped: ${plan.message}`);
+    }
+  } catch (e) {
+    deps.log(`[autopilot] post-publish prune skipped (${(e as Error).message.split("\n")[0]})`);
+  }
+
   return {
     status: "published",
     bookId,

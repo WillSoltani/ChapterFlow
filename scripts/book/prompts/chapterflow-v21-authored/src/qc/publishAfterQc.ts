@@ -15,6 +15,7 @@ import { V21_SCHEMA_VERSION } from "../types.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
 import { compareChapterSetToCanonical, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { verifyProductionPackage } from "../verifyProductionPackage.js";
+import { normalizeChapterProvenance } from "./normalizeProvenance.js";
 import { checkManualKeyJudge, loadBookChapters } from "./manualKeyJudge.js";
 import { unresolvedMajors } from "./majorDisposition.js";
 import { qcRoundPath } from "./qcRound.js";
@@ -855,6 +856,18 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
     } catch (err) {
       return { ok: false, bookId, roundId, errors: [`pre-publish self-test failed (no mutation performed): ${(err as Error).message}`], warnings, next };
     }
+  }
+
+  // Self-heal a repair-mislabeled provenance schemaVersion BEFORE the production-manifest gate
+  // (inside promoteBook) does its exact-string compare. A CORRUPTION-tier surgical repair can stamp
+  // a same-family variant ("source-anchor-map-v1") on an otherwise-valid source-anchor map; without
+  // this, that fail-closes publish (PPKG.authoring_provenance_missing) DESPITE QC PASS — the willpower
+  // wedge. This corrects the label on a structurally-valid block; it never fabricates a missing one
+  // (those still — correctly — block). Runs only on the real publish: a --dry-run already returned
+  // above, and this sits AFTER the self-test gate so that gate still sees an untouched tree.
+  const provFixed = normalizeChapterProvenance(bookId);
+  if (provFixed.length) {
+    warnings.push(`normalized source-anchor schemaVersion (repair drift) on ${provFixed.map((p) => `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")} before promote`);
   }
 
   try {

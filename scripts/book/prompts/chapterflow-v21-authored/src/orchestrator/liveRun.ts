@@ -413,7 +413,11 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     try {
       const chapters = loadBookChapters(bookId).slice().sort((a, b) => a.number - b.number);
       if (chapters.length === 0) {
-        console.log(dim("\n(no authored chapters found on disk to print for review.)"));
+        // On the published path the conductor prunes the working chapters (package-only policy), so
+        // there is nothing to preview — point at the durable artifact instead of looking like a failure.
+        console.log(dim(outcome.status === "published"
+          ? "\n(published — working chapters were pruned; the committed package is the durable artifact for review.)"
+          : "\n(no authored chapters found on disk to print for review.)"));
       } else {
         const mid = chapters[middleChapterNumber(chapters.length) - 1];
         console.log(

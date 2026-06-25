@@ -9,8 +9,11 @@
 
 import assert from "node:assert/strict";
 
+import { resolve } from "path";
+
 import { test } from "./harness.js";
-import { applyPruneBookState, formatPruneBookState, pruneBookStatePlan } from "../src/qc/pruneBookState.js";
+import { CANONICAL_STATE } from "../src/lib/chapterPaths.js";
+import { applyPruneBookState, belongsToBook, formatPruneBookState, pruneBookStatePlan } from "../src/qc/pruneBookState.js";
 
 const NOT_A_BOOK = "zz-fixture-prune-not-a-real-book";
 
@@ -34,6 +37,7 @@ test("formatPruneBookState renders SKIP for not-published and a dry-run summary 
   const ok = formatPruneBookState(
     {
       bookId: "zz",
+      scope: "transient",
       status: "ok",
       message: "",
       remove: ["/repo/scripts/book/prompts/chapterflow-v21-authored/state/qc-packs/zz/keyA.answers.json"],
@@ -46,4 +50,22 @@ test("formatPruneBookState renders SKIP for not-published and a dry-run summary 
   assert.match(ok, /qc-packs/);
   assert.match(ok, /keeping 1 essential/);
   assert.match(ok, /dry-run/);
+});
+
+test("belongsToBook is boundary-safe: matches a book's per-book state, never a sibling book or shared ledger", () => {
+  const S = (rel: string) => resolve(CANONICAL_STATE, rel);
+  // belongs to "willpower"
+  assert.equal(belongsToBook(S("chapters/willpower-ch05.v21-native.chapter.json"), "willpower"), true);
+  assert.equal(belongsToBook(S("qc/willpower-ch05.manual-keyjudge.json"), "willpower"), true);
+  assert.equal(belongsToBook(S("qc/willpower.sweep.json"), "willpower"), true);
+  assert.equal(belongsToBook(S("name-plans/willpower.json"), "willpower"), true);
+  assert.equal(belongsToBook(S("qc-orchestrator/willpower/r123/evidence-matrix.json"), "willpower"), true);
+  assert.equal(belongsToBook(S("autopilot-logs/willpower/broker.jsonl"), "willpower"), true);
+  // does NOT belong: a sibling book that merely shares a prefix, or another book entirely
+  assert.equal(belongsToBook(S("chapters/the-willpower-instinct-ch01.v21-native.chapter.json"), "willpower"), false);
+  assert.equal(belongsToBook(S("qc/the-willpower-instinct.sweep.json"), "willpower"), false);
+  assert.equal(belongsToBook(S("chapters/the-molecule-of-more-ch03.v21-native.chapter.json"), "willpower"), false);
+  // never a top-level shared ledger
+  assert.equal(belongsToBook(S("library-state.json"), "willpower"), false);
+  assert.equal(belongsToBook(S("gate-attempts.json"), "willpower"), false);
 });
