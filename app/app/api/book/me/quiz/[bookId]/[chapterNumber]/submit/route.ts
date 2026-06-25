@@ -23,6 +23,7 @@ import { resolvePinnedChapterCount } from "@/app/app/api/book/_lib/book-completi
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import type { BookManifest } from "@/app/app/api/book/_lib/types";
 import { initializeCardsForChapter } from "@/app/app/api/book/_lib/fsrs-repo";
+import { updateDepthModel } from "@/app/app/api/book/_lib/depth-routing";
 import {
   analyticsTrackBookCompleted,
   analyticsTrackFlowPointsTransaction,
@@ -633,19 +634,34 @@ export async function POST(
           })
         ).catch(() => {});
 
-      // ── Step 1.5: Seed FSRS spaced-repetition cards (idempotent) ──────
-      // This is the load-bearing seam: without it /me/reviews stays empty
-      // and the dashboard has nothing real to show. initializeCardsForChapter
-      // dedupes per card, so re-passes / retries are safe.
+      // Chapter content is read once here and reused by the FSRS-seed (1.5) and
+      // depth-model (1.6) side effects below, so neither pays a second S3 read.
+      // Both are non-critical: a read failure leaves chapterContent null and each
+      // step no-ops without poisoning the loop pipeline.
+      let chapterContent: Awaited<
+        ReturnType<typeof getUserAccessibleChapter>
+      >["chapter"] | null = null;
       try {
-        const { chapter: chapterContent } = await getUserAccessibleChapter({
+        ({ chapter: chapterContent } = await getUserAccessibleChapter({
           tableName,
           contentBucket,
           userId: user.sub,
           bookId,
           chapterNumber: chapterNumberInt,
+        }));
+      } catch (e) {
+        console.error("[chapter-content-read-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          error: String(e),
         });
-        const reviewCards = chapterContent.reviewCards ?? [];
+      }
+
+      // ── Step 1.5: Seed FSRS spaced-repetition cards (idempotent) ──────
+      // This is the load-bearing seam: without it /me/reviews stays empty
+      // and the dashboard has nothing real to show. initializeCardsForChapter
+      // dedupes per card, so re-passes / retries are safe.
+      try {
+        const reviewCards = chapterContent?.reviewCards ?? [];
         if (reviewCards.length > 0) {
           await initializeCardsForChapter(
             tableName,
@@ -662,6 +678,35 @@ export async function POST(
         // to pipelineErrors (that would block markLoopPipelineCompleted and force
         // the whole loop pipeline to re-run). The next pass or the backfill seeds it.
         console.error("[fsrs-seed-failure]", {
+          userId: user.sub, bookId, chapterNumber: chapterNumberInt,
+          error: String(e),
+        });
+      }
+
+      // ── Step 1.6: Update adaptive depth-routing model ────────────────
+      // Folds this chapter's quiz score + actual reading time into the per-user
+      // depth model so GET /me/books/:bookId/depth-recommendation returns a real
+      // recommendation instead of the cold-start fallback. This is the ONLY
+      // writer of the depth model; without it the feature is inert.
+      //
+      // Non-critical + idempotent-enough: it overwrites with a fresh EMA each
+      // pass, so a re-pass just re-folds the same score. A failure is logged but
+      // NOT added to pipelineErrors (it must not force the whole loop to re-run).
+      try {
+        if (chapterContent && timeSpentSeconds !== undefined) {
+          await updateDepthModel(
+            tableName,
+            user.sub,
+            bookId,
+            chapterNumberInt,
+            graded.scorePercent,
+            timeSpentSeconds / 60,
+            chapterContent.readingTimeMinutes,
+          );
+          await markLoopStep("depthModelUpdatedAt");
+        }
+      } catch (e) {
+        console.error("[depth-model-update-failure]", {
           userId: user.sub, bookId, chapterNumber: chapterNumberInt,
           error: String(e),
         });
