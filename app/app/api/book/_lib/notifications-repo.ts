@@ -2,6 +2,7 @@ import "server-only";
 
 import { PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { MAX_PUSH_FANOUT } from "@/app/app/api/book/_lib/device-cap-core";
 import { bookUserPk, notificationSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { getUserSettingsItem, isEmailSuppressed } from "@/app/app/api/book/_lib/repo";
 import { sendEmail } from "@/app/app/api/book/_lib/email-service";
@@ -138,7 +139,11 @@ export async function createNotification(
   if (notifPrefs.channels?.push === true) {
     try {
       const { sendPushNotification } = await import("@/app/app/api/book/_lib/push-service");
-      const { deviceTokenSk: _dtSk, ..._ } = await import("@/app/app/api/book/_lib/keys");
+      // Bound the fan-out (E4): cap how many device rows we POST to per
+      // notification. The register route caps a user at MAX_DEVICES_PER_USER
+      // rows, but legacy partitions may still hold more (a register only prunes
+      // on its own write), so `Limit` bounds the read and the loop bound below
+      // is belt-and-suspenders if a page returns more than the cap.
       const deviceRes = await ddbDoc.send(
         new QueryCommand({
           TableName: tableName,
@@ -147,9 +152,11 @@ export async function createNotification(
             ":pk": bookUserPk(params.userId),
             ":prefix": "DEVICE#",
           },
+          Limit: MAX_PUSH_FANOUT,
         })
       );
-      for (const device of deviceRes.Items ?? []) {
+      const devices = (deviceRes.Items ?? []).slice(0, MAX_PUSH_FANOUT);
+      for (const device of devices) {
         const endpoint = device.endpoint as string;
         const keys = device.keys as { p256dh: string; auth: string };
         if (endpoint && keys?.p256dh && keys?.auth) {
