@@ -63,6 +63,47 @@ export function sanitizeLastOpenedAt(value: unknown, now: string): string {
   return new Date(ms).toISOString();
 }
 
+/**
+ * Forward-only clamp for the user-VISIBLE cursor in the BOOK_USER_BOOK_STATE projection
+ * (`currentChapterId`). The canonical BOOK_PROGRESS `currentChapterNumber` is already
+ * forward-only (buildInteractionTouchUpdate); this keeps the projection — the surface the
+ * reader's /state GET actually returns — consistent with it.
+ *
+ * THE BUG this fixes: the /state PATCH resolved `currentChapterId` only by constraining it
+ * to the UNLOCKED set, then PUT the projection unconditionally. So a stale tab (or a retried
+ * request) carrying an OLDER chapter could drag the reader's visible cursor BACKWARD — and
+ * diverge the projection (backward) from the canonical row (forward-only).
+ *
+ * FIX: pick whichever of (existing projection cursor, requested cursor) maps to the HIGHER
+ * chapter number — never regress. `numberOf` maps a chapterId to its 1-based chapter number
+ * on the reader's pinned manifest (unknown ids resolve to -Infinity so they lose to any real
+ * id; a candidate that maps to nothing falls back to `existing`, then to `candidate`).
+ *
+ * Returns the chapterId the projection should store.
+ */
+export function clampCursorForward(params: {
+  candidate: string;
+  existing: string | undefined;
+  numberOf: (chapterId: string) => number | undefined;
+}): string {
+  const rank = (chapterId: string | undefined): number => {
+    if (!chapterId) return Number.NEGATIVE_INFINITY;
+    const n = params.numberOf(chapterId);
+    return typeof n === "number" && Number.isFinite(n)
+      ? n
+      : Number.NEGATIVE_INFINITY;
+  };
+  const candidateRank = rank(params.candidate);
+  const existingRank = rank(params.existing);
+  // Only keep `existing` when it is a KNOWN, strictly-more-advanced cursor. If neither
+  // resolves to a real number (both -Infinity), fall through to the candidate so we never
+  // return an empty/garbage existing value over a concrete candidate.
+  if (params.existing && existingRank > candidateRank) {
+    return params.existing;
+  }
+  return params.candidate;
+}
+
 export type ProgressUpdateSpec = {
   UpdateExpression: string;
   ConditionExpression?: string;

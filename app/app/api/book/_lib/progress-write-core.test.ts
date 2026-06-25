@@ -14,6 +14,7 @@ import {
   buildInteractionTouchUpdate,
   buildQuizPassProgressUpdate,
   classifyQuizOutcomeCancellation,
+  clampCursorForward,
   isResetFullyCleared,
   resolveProgressConflictRetry,
   sanitizeLastOpenedAt,
@@ -669,4 +670,64 @@ test("A12: an oddly-but-validly formatted input is normalized to canonical ISO-8
   // A valid Date input that is NOT already canonical ISO should be normalized.
   const result = sanitizeLastOpenedAt("2026-06-20T08:30:00Z", A12_NOW);
   assert.equal(result, "2026-06-20T08:30:00.000Z");
+});
+
+// ── #9 (projection): the user-VISIBLE cursor (BOOK_USER_BOOK_STATE.currentChapterId,
+// returned verbatim by /state GET) must be FORWARD-ONLY too, consistent with the
+// canonical BOOK_PROGRESS currentChapterNumber. Without this clamp a stale tab carrying
+// an older chapter would drag the reader's visible cursor backward and diverge the
+// projection (backward) from the canonical row (forward). clampCursorForward is the pure
+// seam the /state PATCH applies before putUserBookState.
+
+// A 3-chapter pinned manifest: ch1→"a", ch2→"b", ch3→"c".
+const NUM_BY_ID = new Map([
+  ["a", 1],
+  ["b", 2],
+  ["c", 3],
+]);
+const numberOf = (chapterId: string): number | undefined => NUM_BY_ID.get(chapterId);
+
+test("REGRESSION #9: a stale (lower-chapter) PATCH does NOT move the visible cursor backward", () => {
+  // Reader is at chapter 3 ("c"); a stale tab PATCHes currentChapterId back to chapter 1.
+  const next = clampCursorForward({
+    candidate: "a", // chapter 1 — would regress
+    existing: "c", // chapter 3 — the committed, more-advanced cursor
+    numberOf,
+  });
+  assert.equal(next, "c", "the projection cursor must stay at the more-advanced chapter, not regress");
+});
+
+test("#9: the projection cursor DOES advance forward (chapter 2 → 3)", () => {
+  assert.equal(
+    clampCursorForward({ candidate: "c", existing: "b", numberOf }),
+    "c",
+    "a genuine forward move is accepted"
+  );
+});
+
+test("#9: equal chapter is a no-op (keeps the candidate, not a regression)", () => {
+  assert.equal(clampCursorForward({ candidate: "b", existing: "b", numberOf }), "b");
+});
+
+test("#9: no existing projection cursor → the candidate is used as-is", () => {
+  assert.equal(clampCursorForward({ candidate: "b", existing: undefined, numberOf }), "b");
+  assert.equal(clampCursorForward({ candidate: "b", existing: "", numberOf }), "b");
+});
+
+test("#9: an existing cursor that is unknown on the pinned manifest can't block a real candidate", () => {
+  // existing maps to nothing (stale/renamed id) → it must NOT win over a concrete candidate.
+  assert.equal(
+    clampCursorForward({ candidate: "b", existing: "ghost", numberOf }),
+    "b",
+    "an unresolvable existing cursor never out-ranks a real candidate"
+  );
+});
+
+test("#9: when the candidate is unknown but existing is a real advanced cursor, keep existing", () => {
+  // A candidate that resolves to nothing (-Infinity) must not erase a known forward cursor.
+  assert.equal(
+    clampCursorForward({ candidate: "ghost", existing: "c", numberOf }),
+    "c",
+    "a garbage candidate can't drag a known cursor to an unresolvable value"
+  );
 });

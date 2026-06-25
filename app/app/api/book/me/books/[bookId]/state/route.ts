@@ -14,6 +14,7 @@ import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-servic
 import { resolvePinnedManifestChaptersWithFallback } from "@/app/app/api/book/_lib/pinned-manifest-core";
 import {
   buildInteractionTouchUpdate,
+  clampCursorForward,
   sanitizeLastOpenedAt,
 } from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
@@ -264,11 +265,22 @@ export async function PATCH(
     // so it can't point at locked content (which would 403 on read anyway).
     const requestedCurrent =
       typeof rawState.currentChapterId === "string" ? rawState.currentChapterId : "";
-    const currentChapterId = unlockedSet.has(requestedCurrent)
+    const unlockConstrainedCurrent = unlockedSet.has(requestedCurrent)
       ? requestedCurrent
       : existing?.currentChapterId && unlockedSet.has(existing.currentChapterId)
         ? existing.currentChapterId
         : firstChapterId;
+    // FORWARD-ONLY (finding #9): the canonical BOOK_PROGRESS currentChapterNumber is already
+    // forward-only, but the user-VISIBLE cursor is THIS projection's currentChapterId, which
+    // the GET returns verbatim. Without clamping, a stale tab carrying an older chapter would
+    // drag the reader's visible cursor backward AND diverge the projection (backward) from the
+    // canonical row (forward). Keep whichever of (existing, candidate) is the more-advanced
+    // chapter number on the pinned manifest, so the projection only ever advances.
+    const currentChapterId = clampCursorForward({
+      candidate: unlockConstrainedCurrent,
+      existing: existing?.currentChapterId,
+      numberOf: (chapterId) => chapterNumberById.get(chapterId),
+    });
 
     const requestedLastRead =
       typeof rawState.lastReadChapterId === "string" ? rawState.lastReadChapterId : "";
