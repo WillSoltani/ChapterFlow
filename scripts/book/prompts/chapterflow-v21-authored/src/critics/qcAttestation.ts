@@ -28,15 +28,16 @@
  */
 
 import { createHash } from "crypto";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync } from "fs";
 import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
 import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
-import { loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
+import { classifySessionProvenance, loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -158,9 +159,31 @@ export function chapterContentHashV0(chapter: ChapterV21): string {
  *  reorders never stale an attestation. A new reader-facing field added to
  *  ChapterV21 is covered BY DEFAULT (the v1 include-list silently missed
  *  additions; that's how passingScorePercent etc. escaped).
- *  tests/hash-coverage.test.ts pins the coverage to the type. */
+ *  tests/hash-coverage.test.ts pins the coverage to the type.
+ *
+ *  ⚠️  DO NOT EDIT THIS SET IN PLACE. It defines the v2 hash ALGORITHM. Adding/removing a key changes
+ *  the v2 hash VALUE for every chapter carrying that key, which SILENTLY re-stales their (git-tracked)
+ *  QC attestations the moment another checkout/branch/merge recomputes them under the changed set
+ *  (QC0.stale_attestation), with no marker distinguishing "algorithm changed" from "content edited" —
+ *  this is exactly how this branch's added `authoring`/`*SourceAnchorIds` keys made main unable to
+ *  validate branch-authored books (issue I4). Today the blast radius is zero (no committed chapter
+ *  carries those keys), but a future edit could break live attestations. If the v2 algorithm must
+ *  change: add a NEW `"v3"` to QcHashVersion, FREEZE this set as the v2 path, branch the new set under
+ *  v3 in hashForVersion/isAttestationFresh, and stamp new attestations v3 — never mutate v2 in place.
+ *  tests/hash-version-pin.test.ts golden-pins the v2 value so an in-place change fails loudly. */
 const V2_EXCLUDE_DEEP = new Set([
+  "authoring",
   "sourceAnchorId", // gate-time provenance, stripped at promote
+  "sourceAnchorIds",
+  "keyEvidenceAnchorIds",
+  "titleSourceAnchorIds",
+  "coreSkillSourceAnchorIds",
+  "twentyFourHourChallengeSourceAnchorIds",
+  "weeklyPracticeSourceAnchorIds",
+  "hookSourceAnchorIds",
+  "counterintuitionSourceAnchorIds",
+  "keyTakeawaySourceAnchorIds",
+  "tryThisNowSourceAnchorIds",
   "planSpec",       // writer scaffolding — "not shown to readers" (types.ts)
   "exampleId",      // unit identity, not content
   "questionId",
@@ -223,7 +246,7 @@ export function loadAttestation(bookId: string, chapterNumber: number): QcAttest
 export function writeAttestation(att: QcAttestation): string {
   mkdirSync(QC_DIR, { recursive: true });
   const p = attestationPath(att.bookId, att.chapterNumber);
-  writeFileSync(p, JSON.stringify(att, null, 2), "utf8");
+  writeFileAtomic(p, JSON.stringify(att, null, 2) + "\n");
   return p;
 }
 
@@ -298,6 +321,28 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
     }
   }
   if (isNoApiCodexQcMode()) {
+    const reviewerState = classifySessionProvenance(att.reviewerSessionId, `attestation reviewer ${att.chapterId}`);
+    if (reviewerState.kind === "legacy_unknown") {
+      return [{ checkId: "QC0.legacy_unknown_reviewer_session", severity: sev,
+        message: `No-api QC mode requires recorded reviewer session provenance; ${reviewerState.reason}. Re-review in a fresh session with CHAPTERFLOW_SESSION_ID set.` }];
+    }
+    const authorState = classifySessionProvenance(loadAuthorProvenance(chapter.chapterId)?.authorSessionId, `author ${chapter.chapterId}`);
+    // A PUBLISHABLE attestation is ITSELF a certificate that independence was verified WHEN IT WAS WRITTEN:
+    // finalize only stamps PUBLISHABLE after certificationSessionFailures passes (author present + distinct
+    // from every reviewer — OR a carried chapter inheriting a prior such certificate). The author-provenance
+    // SIDECAR is untracked, so a fresh checkout / resume can lose it — but that is a LOST RECORD, not a
+    // certification gap, and must NOT re-block an already-certified chapter at promote (the I5·W1 wedge).
+    // We do NOT exempt by manufacturing a synthetic author (that would silently DEFEAT author_graded_own_work
+    // at line 307); we trust the recorded certificate. This cannot launder a legacy/self-graded chapter: a
+    // legacy attestation has no reviewerSessionId and is already blocked at line 313 above; a manual qc-attest
+    // without a backing round is blocked at the round checks below; and a genuine self-grade (author == reviewer,
+    // both stamped) was caught by line 307 / certificationSessionFailures when the attestation was written, so it
+    // never became PUBLISHABLE in the first place. A non-PUBLISHABLE attestation still requires recorded author
+    // provenance (it is not yet certified).
+    if (authorState.kind === "legacy_unknown" && att.verdict !== "PUBLISHABLE") {
+      return [{ checkId: "QC0.legacy_unknown_author_session", severity: sev,
+        message: `No-api QC mode requires recorded author provenance; ${authorState.reason}. Re-stamp the authored chapter before QC.` }];
+    }
     if (!att.roundId || !att.roundRole || !["bar", "confirm", "attest"].includes(att.roundRole)) {
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];

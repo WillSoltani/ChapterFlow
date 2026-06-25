@@ -1,9 +1,13 @@
 import assert from "node:assert/strict";
-import { rmSync } from "fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
-import { appendFindingsFromSubmission, effectiveLedger } from "../src/qc/orchestrator/ledger.js";
-import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
+import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
+import { collectQcRound } from "../src/qc/orchestrator/index.js";
+import { appendFindingsFromSubmission, effectiveLedger, effectiveLedgerResilient, quarantineMalformedLedger, readLedgerEvents } from "../src/qc/orchestrator/ledger.js";
+import { orchestratorRoundDir, repairLedgerPath, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
+import { sweepRecordPath } from "../src/qc/sweep.js";
 import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js";
 
 const BOOK = "zz-fixture-ledger";
@@ -11,6 +15,8 @@ const ROUND = "r-ledger";
 
 function cleanup(): void {
   rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
+  rmSync(sweepRecordPath(BOOK), { force: true });
 }
 
 function sweepSubmission(problem = "The same scene skeleton repeats across chapters."): ValidatedSweepSubmission {
@@ -60,6 +66,131 @@ test("repair ledger dedupes equivalent findings but preserves multiple sources",
     assert.equal(findings.length, 1);
     assert.equal(findings[0].sources.length, 2);
     assert.deepEqual(findings[0].sources.map((s) => s.sourceRole).sort(), ["bar", "sweep"]);
+  } finally {
+    cleanup();
+  }
+});
+
+test("collectQcRound stores raw sweep evidence without creating a semantic blocking ledger entry", () => {
+  try {
+    cleanup();
+    const chapter = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    const quote = String(chapter.examples[0].scenario).slice(0, 90);
+    const path = resolve(submissionsDir(BOOK, ROUND, "sweep"), "sweep-revise.json");
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, JSON.stringify({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep",
+      verdict: "REVISE",
+      checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"],
+      findings: [{
+        family: "scene_skeleton",
+        chapters: [1],
+        unitId: "examples[0]",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote,
+        problem: "Raw sweep evidence should not become a blocking repair finding during collection.",
+        expectedFix: "Let finalization decide whether this effective sweep finding is actionable.",
+      }],
+    }, null, 2) + "\n", "utf8");
+
+    const result = collectQcRound(BOOK, ROUND);
+    assert.equal(result.ok, true, result.errors.join("\n"));
+    assert.equal(effectiveLedger(BOOK, ROUND).length, 0, "raw collection must not author semantic repair-ledger findings");
+  } finally {
+    cleanup();
+  }
+});
+
+test("repair ledger readers fail closed and report the malformed JSONL line", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({
+        schemaVersion: "qc-repair-ledger-event-v1",
+        event: "status",
+        findingId: "qcf-existing",
+        bookId: BOOK,
+        roundId: ROUND,
+        status: "still_open",
+        reason: "synthetic first line",
+        updatedAt: "2026-06-23T00:00:00.000Z",
+      }),
+      "{ malformed json",
+      "",
+    ].join("\n"), "utf8");
+
+    assert.throws(
+      () => effectiveLedger(BOOK, ROUND),
+      (err: unknown) => err instanceof Error && /repair-ledger\.jsonl:2/.test(err.message) && /malformed/i.test(err.message),
+      "a corrupt ledger byte must be a loud integrity failure with the exact line number",
+    );
+  } finally {
+    cleanup();
+  }
+});
+
+test("effectiveLedgerResilient AUTO-quarantines a malformed ledger instead of throwing — the unattended finalize/publish path self-heals instead of wedging (I5·W2)", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({ schemaVersion: "qc-repair-ledger-event-v1", event: "status", findingId: "qcf-x", bookId: BOOK, roundId: ROUND, status: "still_open", reason: "valid first line", updatedAt: "2026-06-23T00:00:00.000Z" }),
+      "{ torn partial line from a killed append",
+    ].join("\n") + "\n", "utf8");
+    // The strict reader (supervised audit path) still throws — corruption stays LOUD there.
+    assert.throws(() => effectiveLedger(BOOK, ROUND), /malformed/i);
+    // The resilient reader (unattended path) self-heals: no throw, the corrupt line is quarantined.
+    let msg = "";
+    const findings = effectiveLedgerResilient(BOOK, ROUND, (m) => { msg = m; });
+    assert.ok(Array.isArray(findings), "resilient reader returns events instead of throwing");
+    assert.match(msg, /quarantined/i, "the malformed line is reported as quarantined (raw line preserved in a sibling .quarantine file)");
+    // The ledger is now clean, so a strict re-read no longer throws — the wedge is gone.
+    assert.doesNotThrow(() => effectiveLedger(BOOK, ROUND), "ledger self-healed");
+  } finally {
+    cleanup();
+  }
+});
+
+test("repair ledger quarantine requires confirmation and preserves corrupt raw lines", () => {
+  try {
+    cleanup();
+    const path = repairLedgerPath(BOOK, ROUND);
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, [
+      JSON.stringify({
+        schemaVersion: "qc-repair-ledger-event-v1",
+        event: "status",
+        findingId: "qcf-existing",
+        bookId: BOOK,
+        roundId: ROUND,
+        status: "still_open",
+        reason: "synthetic first line",
+        updatedAt: "2026-06-23T00:00:00.000Z",
+      }),
+      "{ malformed json",
+      "",
+    ].join("\n"), "utf8");
+
+    const preview = quarantineMalformedLedger(BOOK, ROUND);
+    assert.equal(preview.ok, false, "operator must explicitly confirm before a corrupt ledger is rewritten");
+    assert.equal(preview.issues[0].lineNumber, 2);
+
+    const repaired = quarantineMalformedLedger(BOOK, ROUND, { confirm: true, now: new Date("2026-06-23T00:00:00.000Z") });
+    assert.equal(repaired.ok, true, repaired.error);
+    assert.ok(repaired.quarantinePath);
+    const quarantine = readFileSync(repaired.quarantinePath!, "utf8");
+    assert.match(quarantine, /"lineNumber":2/);
+    assert.match(quarantine, /\{ malformed json/);
+    assert.equal(readLedgerEvents(BOOK, ROUND).length, 1, "valid events remain readable after corrupt raw lines are quarantined");
   } finally {
     cleanup();
   }

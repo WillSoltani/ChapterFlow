@@ -1,19 +1,30 @@
 import { createHash } from "crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync } from "fs";
 import { dirname } from "path";
 
 import { chapterContentHash } from "../../critics/qcAttestation.js";
+import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { loadBookChapters } from "../manualKeyJudge.js";
 import { repairLedgerPath } from "./artifacts.js";
-import { citesNonexistentField, nondistinctiveRepetitionQuote, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
+import { evidenceSourceRef, type EvidenceSourceKind } from "./evidenceSource.js";
+import { citesNonexistentField, quoteGroundedInChapter, searchableChapterText } from "./findingValidity.js";
 import { findingsFromSubmission, type SubmissionFinding, type SubmissionRole, type ValidatedSubmission } from "./schemas.js";
-import { sweepFamilyForRepairClass } from "../sweep.js";
+import { sweepFamilyForRepairClass, sweepFindingBlocks } from "../sweep.js";
+import { withQcTransaction } from "./transaction.js";
 
-export type LedgerStatus = "open" | "stale_after_repair" | "still_open" | "needs_qc_rerun";
+export type LedgerStatus =
+  | "open"
+  | "stale_after_repair"
+  | "still_open"
+  | "needs_qc_rerun"
+  | "dismissed_non_gating"
+  | "superseded_by_effective_decision";
 
 export type LedgerSource = {
   sourceRole: SubmissionRole | "finalizer";
   submissionFile: string;
+  sourceId?: string;
+  sourceKind?: EvidenceSourceKind;
   observedAt: string;
 };
 
@@ -68,15 +79,38 @@ export type EffectiveLedgerFinding = Omit<LedgerFindingEvent, "event" | "schemaV
   sources: LedgerSource[];
 };
 
+export type LedgerIntegrityIssue = {
+  path: string;
+  lineNumber: number;
+  rawLine: string;
+  message: string;
+};
+
+export class LedgerIntegrityError extends Error {
+  readonly issues: LedgerIntegrityIssue[];
+
+  constructor(issues: LedgerIntegrityIssue[]) {
+    super(`Malformed QC repair ledger:\n${issues.map((issue) => `${issue.path}:${issue.lineNumber}: ${issue.message}`).join("\n")}`);
+    this.name = "LedgerIntegrityError";
+    this.issues = issues;
+  }
+}
+
 function normalizeForId(value: unknown): string {
   return String(value ?? "").trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-export function stableFindingId(bookId: string, roundId: string, finding: Pick<SubmissionFinding, "chapterNumber" | "chapters" | "unitId" | "repairClass" | "quote">): string {
+export function stableFindingId(
+  bookId: string,
+  roundId: string,
+  finding: Pick<SubmissionFinding, "chapterNumber" | "chapters" | "unitId" | "repairClass" | "quote">,
+  authority: "raw" | "effective" = "raw",
+): string {
   const chapterKey = finding.chapterNumber !== undefined
     ? String(finding.chapterNumber)
     : (finding.chapters ?? []).slice().sort((a, b) => a - b).join(",");
   const raw = [
+    normalizeForId(authority),
     normalizeForId(bookId),
     normalizeForId(roundId),
     normalizeForId(chapterKey),
@@ -87,21 +121,105 @@ export function stableFindingId(bookId: string, roundId: string, finding: Pick<S
   return `qcf-${createHash("sha256").update(raw, "utf8").digest("hex").slice(0, 16)}`;
 }
 
-function parseJsonl(text: string): LedgerEvent[] {
-  return text.split(/\r?\n/).filter((line) => line.trim()).flatMap((line) => {
+function isLedgerEvent(value: unknown): value is LedgerEvent {
+  if (!value || typeof value !== "object") return false;
+  const rec = value as Partial<LedgerEvent>;
+  if (rec.schemaVersion !== "qc-repair-ledger-event-v1") return false;
+  return rec.event === "finding" || rec.event === "source" || rec.event === "status";
+}
+
+function parseJsonlStrict(path: string, text: string): { events: LedgerEvent[]; issues: LedgerIntegrityIssue[] } {
+  const events: LedgerEvent[] = [];
+  const issues: LedgerIntegrityIssue[] = [];
+  const lines = text.split(/\r?\n/);
+  lines.forEach((line, index) => {
+    if (!line.trim()) return;
     try {
-      const parsed = JSON.parse(line) as LedgerEvent;
-      return parsed?.schemaVersion === "qc-repair-ledger-event-v1" ? [parsed] : [];
-    } catch {
-      return [];
+      const parsed = JSON.parse(line) as unknown;
+      if (!isLedgerEvent(parsed)) {
+        issues.push({ path, lineNumber: index + 1, rawLine: line, message: "invalid ledger event schema" });
+        return;
+      }
+      events.push(parsed);
+    } catch (err) {
+      issues.push({ path, lineNumber: index + 1, rawLine: line, message: `malformed JSON (${(err as Error).message})` });
     }
+  });
+  return { events, issues };
+}
+
+function readLedgerParseResult(bookId: string, roundId: string): { path: string; events: LedgerEvent[]; issues: LedgerIntegrityIssue[] } {
+  const path = repairLedgerPath(bookId, roundId);
+  if (!existsSync(path)) return { path, events: [], issues: [] };
+  const parsed = parseJsonlStrict(path, readFileSync(path, "utf8"));
+  return { path, ...parsed };
+}
+
+export function quarantineMalformedLedger(bookId: string, roundId: string, options: { confirm?: boolean; now?: Date } = {}): {
+  ok: boolean;
+  ledgerPath: string;
+  quarantinePath?: string;
+  issues: LedgerIntegrityIssue[];
+  eventsPreserved: number;
+  error?: string;
+} {
+  return withQcTransaction(bookId, roundId, "repair-ledger-quarantine", () => {
+    const parsed = readLedgerParseResult(bookId, roundId);
+    if (parsed.issues.length === 0) return { ok: true, ledgerPath: parsed.path, issues: [], eventsPreserved: parsed.events.length };
+    if (!options.confirm) {
+      return {
+        ok: false,
+        ledgerPath: parsed.path,
+        issues: parsed.issues,
+        eventsPreserved: parsed.events.length,
+        error: "Refusing to rewrite a malformed ledger without explicit operator confirmation.",
+      };
+    }
+    const stamp = (options.now ?? new Date()).toISOString().replace(/[^0-9A-Za-z]/g, "");
+    const quarantinePath = `${parsed.path}.quarantine-${stamp}.jsonl`;
+    const quarantineLines = parsed.issues.map((issue) => JSON.stringify({
+      schemaVersion: "qc-repair-ledger-quarantine-v1",
+      bookId,
+      roundId,
+      originalLedgerPath: parsed.path,
+      lineNumber: issue.lineNumber,
+      rawLine: issue.rawLine,
+      message: issue.message,
+      quarantinedAt: (options.now ?? new Date()).toISOString(),
+    })).join("\n") + "\n";
+    mkdirSync(dirname(parsed.path), { recursive: true });
+    writeFileAtomic(quarantinePath, quarantineLines);
+    writeFileAtomic(parsed.path, parsed.events.map((event) => JSON.stringify(event)).join("\n") + (parsed.events.length ? "\n" : ""));
+    return { ok: true, ledgerPath: parsed.path, quarantinePath, issues: parsed.issues, eventsPreserved: parsed.events.length };
   });
 }
 
 export function readLedgerEvents(bookId: string, roundId: string): LedgerEvent[] {
-  const p = repairLedgerPath(bookId, roundId);
-  if (!existsSync(p)) return [];
-  return parseJsonl(readFileSync(p, "utf8"));
+  const parsed = readLedgerParseResult(bookId, roundId);
+  if (parsed.issues.length > 0) throw new LedgerIntegrityError(parsed.issues);
+  return parsed.events;
+}
+
+/**
+ * effectiveLedger for the UNATTENDED conductor path. A malformed/torn repair-ledger line makes the
+ * strict effectiveLedger throw LedgerIntegrityError, which is uncaught across finalize/collect/publish
+ * and HALTs the run with manual-only recovery (quarantineMalformedLedger --confirm) the conductor never
+ * runs — the W2 wedge. Here a corrupt ledger AUTO-quarantines (raw lines preserved in a sibling
+ * .quarantine file, never lost) and the VALID events are returned, so the run self-heals. The
+ * supervised audit/CLI keeps the strict {@link effectiveLedger} so corruption is surfaced as a blocker,
+ * not silently healed.
+ */
+export function effectiveLedgerResilient(bookId: string, roundId: string, onQuarantine?: (msg: string) => void): EffectiveLedgerFinding[] {
+  try {
+    return effectiveLedger(bookId, roundId);
+  } catch (err) {
+    if (!(err instanceof LedgerIntegrityError)) throw err;
+    const repaired = quarantineMalformedLedger(bookId, roundId, { confirm: true });
+    onQuarantine?.(repaired.ok
+      ? `auto-quarantined ${repaired.issues.length} malformed repair-ledger line(s) for ${bookId}/${roundId} → ${repaired.quarantinePath} (preserved ${repaired.eventsPreserved} valid event(s))`
+      : `repair-ledger for ${bookId}/${roundId} is malformed and could not be auto-quarantined: ${repaired.error}`);
+    return repaired.ok ? effectiveLedger(bookId, roundId) : [];
+  }
 }
 
 export function effectiveLedger(bookId: string, roundId: string): EffectiveLedgerFinding[] {
@@ -114,12 +232,12 @@ export function effectiveLedger(bookId: string, roundId: string): EffectiveLedge
       } else {
         const existing = byId.get(event.findingId)!;
         for (const source of event.sources) {
-          if (!existing.sources.some((s) => s.sourceRole === source.sourceRole && s.submissionFile === source.submissionFile)) existing.sources.push(source);
+          if (!existing.sources.some((s) => sourceKey(s) === sourceKey(source))) existing.sources.push(source);
         }
       }
     } else if (event.event === "source") {
       const existing = byId.get(event.findingId);
-      if (existing && !existing.sources.some((s) => s.sourceRole === event.source.sourceRole && s.submissionFile === event.source.submissionFile)) {
+      if (existing && !existing.sources.some((s) => sourceKey(s) === sourceKey(event.source))) {
         existing.sources.push(event.source);
       }
     } else if (event.event === "status") {
@@ -134,11 +252,24 @@ export function effectiveLedger(bookId: string, roundId: string): EffectiveLedge
   return [...byId.values()];
 }
 
+function sourceKey(source: Pick<LedgerSource, "sourceRole" | "submissionFile" | "sourceId">): string {
+  return source.sourceId ?? `${source.sourceRole}\0${source.submissionFile}`;
+}
+
 function appendLedgerEvents(bookId: string, roundId: string, events: LedgerEvent[]): void {
   if (events.length === 0) return;
-  const path = repairLedgerPath(bookId, roundId);
-  mkdirSync(dirname(path), { recursive: true });
-  appendFileSync(path, events.map((e) => JSON.stringify(e)).join("\n") + "\n", "utf8");
+  withQcTransaction(bookId, roundId, "status", () => {
+    const path = repairLedgerPath(bookId, roundId);
+    mkdirSync(dirname(path), { recursive: true });
+    // Atomic append: a bare appendFileSync KILLED mid-write leaves a torn partial line that then
+    // hard-throws (LedgerIntegrityError) across every later finalize/collect/publish read — a halt with
+    // manual-only recovery during the multi-hour unattended run. Read + concatenate + writeFileAtomic
+    // (temp + rename) makes the append all-or-nothing. The enclosing status-lock transaction serializes
+    // the read-modify-write so concurrent appends can't interleave or lose events.
+    const existing = existsSync(path) ? readFileSync(path, "utf8") : "";
+    const prefix = existing.length === 0 || existing.endsWith("\n") ? existing : existing + "\n";
+    writeFileAtomic(path, prefix + events.map((e) => JSON.stringify(e)).join("\n") + "\n");
+  });
 }
 
 export function appendStatusEvents(bookId: string, roundId: string, updates: Array<{ findingId: string; status: Exclude<LedgerStatus, "open">; reason: string; validation?: Record<string, unknown> }>): number {
@@ -156,6 +287,49 @@ export function appendStatusEvents(bookId: string, roundId: string, updates: Arr
   }));
   appendLedgerEvents(bookId, roundId, events);
   return events.length;
+}
+
+const RAW_SEMANTIC_ROLES = new Set<SubmissionRole>(["sweep", "bar", "confirm", "keyA", "keyB"]);
+
+function activeStatus(status: LedgerStatus): boolean {
+  return status === "open" || status === "still_open" || status === "needs_qc_rerun";
+}
+
+export function isRawSemanticLedgerFinding(finding: Pick<EffectiveLedgerFinding, "sources">): boolean {
+  if (finding.sources.some((s) => s.sourceRole === "finalizer")) return false;
+  return finding.sources.some((s) => RAW_SEMANTIC_ROLES.has(s.sourceRole as SubmissionRole));
+}
+
+export function hasBlockingAuthority(finding: Pick<EffectiveLedgerFinding, "status" | "sources">): boolean {
+  return activeStatus(finding.status) && !isRawSemanticLedgerFinding(finding);
+}
+
+export function migrateRawSemanticLedgerFindings(bookId: string, roundId: string): number {
+  const updates = effectiveLedger(bookId, roundId)
+    .filter((f) => activeStatus(f.status) && isRawSemanticLedgerFinding(f))
+    .map((f) => ({
+      findingId: f.findingId,
+      status: "dismissed_non_gating" as const,
+      reason: "raw reviewer submission is immutable audit evidence only; blocking repair authority is rebuilt from effective finalizer decisions",
+      validation: {
+        sourceRoles: f.sources.map((s) => s.sourceRole),
+        sourceIds: f.sources.map((s) => s.sourceId).filter(Boolean),
+      },
+    }));
+  return appendStatusEvents(bookId, roundId, updates);
+}
+
+export function supersedeMissingEffectiveFindings(bookId: string, roundId: string, currentFindingIds: Iterable<string>): number {
+  const current = new Set(currentFindingIds);
+  const updates = effectiveLedger(bookId, roundId)
+    .filter((f) => activeStatus(f.status) && f.sources.some((s) => s.sourceRole === "finalizer") && !current.has(f.findingId))
+    .map((f) => ({
+      findingId: f.findingId,
+      status: "superseded_by_effective_decision" as const,
+      reason: "this effective finding was not emitted by the latest finalizer decision rebuild for the round",
+      validation: { currentEffectiveFindingIds: [...current].sort() },
+    }));
+  return appendStatusEvents(bookId, roundId, updates);
 }
 
 function hashByChapter(bookId: string): Map<number, string> {
@@ -195,7 +369,19 @@ export function appendFindings(args: {
     // for repair. Without this the finding is cleared at the sweep gate yet kept OPEN in the ledger,
     // and ledger=OPEN_FINDINGS keeps the chapter REVISE forever (the-undoing-project run #3: a sweep
     // 'has already' demoted exactly the 7 chapters it named, all sweep=PASS).
-    .filter((f) => { const fam = sweepFamilyOf(f); return !fam || !nondistinctiveRepetitionQuote({ family: fam, quote: f.quote, chapters: f.chapters }); })
+    .filter((f) => {
+      const fam = sweepFamilyOf(f);
+      if (!fam) return true;
+      return sweepFindingBlocks({
+        family: fam,
+        severity: f.severity === "blocker" || f.severity === "major" ? "blocker" : "advisory",
+        chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
+        unitId: f.unitId,
+        quote: f.quote,
+        problem: f.problem,
+        expectedFix: f.expectedFix,
+      });
+    })
     // Mirror finalize's per-chapter GROUNDEDNESS: a cross-chapter sweep finding is only carried OPEN
     // for the chapters its quote is actually grounded in. An over-named finding ('in the Hebrew
     // University seminar room' claimed across 12, present in 1) must not keep the 11 ungrounded
@@ -216,12 +402,45 @@ export function appendFindings(args: {
   let duplicates = 0;
   const findingIds: string[] = [];
   for (const finding of findings) {
-    const findingId = stableFindingId(args.bookId, args.roundId, finding);
+    const authority = args.role === "finalizer" ? "effective" : "raw";
+    const findingId = stableFindingId(args.bookId, args.roundId, finding, authority);
     findingIds.push(findingId);
-    const source: LedgerSource = { sourceRole: args.role, submissionFile: args.submissionFile, observedAt: now };
+    const primary = evidenceSourceRef({
+      bookId: args.bookId,
+      roundId: args.roundId,
+      sourceRole: args.role,
+      submissionFile: args.submissionFile,
+      sourceKind: args.role === "finalizer" ? "effective_decision" : "raw_submission",
+    });
+    const sources: LedgerSource[] = [{
+      sourceRole: primary.sourceRole,
+      submissionFile: primary.submissionFile,
+      sourceId: primary.sourceId,
+      sourceKind: primary.sourceKind,
+      observedAt: now,
+    }];
+    for (const raw of finding.provenanceSources ?? []) {
+      const ref = raw.sourceId
+        ? { sourceRole: raw.sourceRole, submissionFile: raw.submissionFile, sourceId: raw.sourceId, sourceKind: raw.sourceKind ?? "raw_submission" as const }
+        : evidenceSourceRef({
+            bookId: args.bookId,
+            roundId: args.roundId,
+            sourceRole: raw.sourceRole,
+            submissionFile: raw.submissionFile,
+            sourceKind: raw.sourceKind ?? "raw_submission",
+          });
+      const source: LedgerSource = {
+        sourceRole: ref.sourceRole,
+        submissionFile: ref.submissionFile,
+        sourceId: ref.sourceId,
+        sourceKind: ref.sourceKind,
+        observedAt: now,
+      };
+      if (!sources.some((s) => sourceKey(s) === sourceKey(source))) sources.push(source);
+    }
     if (existing.has(findingId)) {
       duplicates++;
-      events.push({ schemaVersion: "qc-repair-ledger-event-v1", event: "source", findingId, bookId: args.bookId, roundId: args.roundId, source });
+      for (const source of sources) events.push({ schemaVersion: "qc-repair-ledger-event-v1", event: "source", findingId, bookId: args.bookId, roundId: args.roundId, source });
       continue;
     }
     existing.add(findingId);
@@ -243,7 +462,7 @@ export function appendFindings(args: {
       globalTheme: finding.globalTheme ?? finding.repairClass,
       status: "open",
       contentHashAtFinding: finding.chapterNumber !== undefined ? chapterHashes.get(finding.chapterNumber) : undefined,
-      sources: [source],
+      sources,
       createdAt: now,
     });
   }

@@ -1,6 +1,6 @@
 # QC Playbook — ChapterFlow v21 Quality Control
 
-## Two ways to run QC (same protocol, same trust guarantees)
+## Two ways to run QC (same protocol, same procedural guarantees)
 
 1. **Claude Workflow fleet** (fast, parallel): `qc-run <bookId>` generates a
    workflow file; a Claude session launches it. Sweep-first with systemic
@@ -12,8 +12,23 @@
    qc-attest), sweep-first with the same early-exit rule. Reader identity
    goes in --reviewer (claude-qc:/codex-qc:).
 
-The trust boundary is the SESSION, not the model: whoever authored a chapter
-never attests it; the replay guard and hash pinning hold for every reader.
+The trust boundary is the local SESSION, not the model: whoever authored a chapter
+never attests it. `CHAPTERFLOW_SESSION_ID` and round tokens provide attributable
+procedural separation and auditability; they are not cryptographic proof that two
+different humans did the work. Fresh no-API QC requires recorded author/reviewer
+session provenance; legacy/unknown provenance remains readable but cannot certify
+publishability.
+
+Author provenance identifies the session that AUTHORED the current chapter content,
+not one that accepted or reused a cache. It is **create-once per content hash**
+(`state/provenance/<chapterId>.json`): re-stamping IDENTICAL content under a different
+session is refused loudly, and only a deliberate re-authoring that CHANGES the content
+may replace an existing author (the old→new transition is logged). A session that only
+ACCEPTS a cached chapter is recorded — if at all — in a separate, append-only
+cache-acceptance audit log (`state/cache-acceptance/<chapterId>.jsonl`) and is **never**
+read as author evidence. A chapter with no author provenance stays legacy/unknown; cache
+acceptance must never invent it, so an accepter can never masquerade as the author and
+defeat the author≠reviewer independence check.
 
 
 > **CANONICAL WORKSPACE (2026-06-12): all pipeline work — Codex sessions,

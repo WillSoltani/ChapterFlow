@@ -10,7 +10,7 @@ import { resolve } from "path";
 import { loadNameBank, planNames } from "../src/librarian/namePlan.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import { test } from "./harness.js";
-import { PIPELINE_DIR } from "./helpers.js";
+import { PIPELINE_DIR, writeResearchRunManifestFixture } from "./helpers.js";
 
 const BOOK = "zz-fixture-source-name";
 const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");
@@ -24,6 +24,11 @@ function resetFixture(): void {
 function writeSourceSidecar(): void {
   const dir = resolve(RUN_DIR, "sidecars", "source");
   mkdirSync(dir, { recursive: true });
+  writeResearchRunManifestFixture({
+    runDir: RUN_DIR,
+    bookId: BOOK,
+    chapters: [{ number: 1, title: "Source Name" }],
+  });
   writeFileSync(
     resolve(dir, "ch01.source.json"),
     JSON.stringify(

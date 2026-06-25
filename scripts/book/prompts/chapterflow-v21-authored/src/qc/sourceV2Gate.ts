@@ -1,17 +1,27 @@
 import { createHash } from "crypto";
-import { existsSync, readFileSync, readdirSync, statSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { CANONICAL_STATE, REPO_ROOT } from "../lib/chapterPaths.js";
+import { formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chapterSet.js";
 import { findRunArtifact } from "../lib/runDirs.js";
+import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
+import { evaluateSourceV2Integrity, rawSourceHash, semanticSourceHash } from "../source/sourceIntegrity.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RUNS_ROOT = resolve(REPO_ROOT, ".chapterflow/runs");
 
+export type SourceV2Roots = {
+  stateRoot?: string;
+  runsRoot?: string;
+};
+
 export type SourceV2Finding = {
   checkId: string;
-  severity: "blocker";
+  /** Structural checks are "blocker"; realness heuristics surface as "advisory"
+   *  (carried through from evaluateSourceV2Integrity) and never gate. */
+  severity: "blocker" | "advisory";
   chapterNumber?: number;
   message: string;
 };
@@ -22,6 +32,10 @@ export type SourceV2GateReport = {
   chaptersChecked: number;
   findings: SourceV2Finding[];
 };
+
+export type ExpectedSourceChaptersReport =
+  | { ok: true; chapters: number[]; findings: SourceV2Finding[] }
+  | { ok: false; chapters: []; findings: SourceV2Finding[] };
 
 export type SourceFactForPack = {
   id: string;
@@ -39,76 +53,80 @@ function readJson(path: string): any {
   return JSON.parse(readFileSync(path, "utf8"));
 }
 
-function latestTocPath(bookId: string): string | null {
-  return findRunArtifact(RUNS_ROOT, bookId, "source-freeze/toc.json");
+function latestTocPath(bookId: string, roots: SourceV2Roots = {}): string | null {
+  return findRunArtifact(roots.runsRoot ?? RUNS_ROOT, bookId, "source-freeze/toc.json");
 }
 
-function chaptersFromToc(bookId: string): number[] {
-  const tocPath = latestTocPath(bookId);
+function tocCrossCheckFindings(bookId: string, expectedNumbers: number[], roots: SourceV2Roots = {}): SourceV2Finding[] {
+  const tocPath = latestTocPath(bookId, roots);
   if (!tocPath) return [];
-  const toc = readJson(tocPath);
-  const flat = (toc.flatChapters && toc.flatChapters.length > 0
-    ? toc.flatChapters
-    : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? []))
-    .slice()
-    .sort((a: any, b: any) => a.number - b.number);
-  return flat.map((ch: any) => Number(ch.number)).filter((n: number) => Number.isFinite(n));
-}
-
-function chaptersFromIndex(bookId: string): number[] {
-  const p = resolve(CANONICAL_STATE, "indexes", `${bookId}.json`);
-  if (!existsSync(p)) return [];
-  try {
-    const idx = readJson(p) as Array<{ chapterNumber?: number }>;
-    return idx.map((ch) => Number(ch.chapterNumber)).filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
-  } catch {
-    return [];
+  const parsed = parseTocFile(tocPath, { bookId });
+  if (!parsed.ok) {
+    return [{
+      checkId: "SV2.toc_malformed",
+      severity: "blocker",
+      message: `TOC cross-check failed at ${tocPath}: ${formatTocIssues(parsed.issues)}`,
+    }];
   }
-}
-
-function chaptersFromSourceDir(bookId: string): number[] {
-  const bookRunsDir = resolve(RUNS_ROOT, bookId);
-  try {
-    const runs = readdirSync(bookRunsDir)
-      .filter((d) => statSync(resolve(bookRunsDir, d)).isDirectory())
-      .sort()
-      .reverse();
-    for (const run of runs) {
-      const dir = resolve(bookRunsDir, run, "sidecars", "source");
-      if (!existsSync(dir)) continue;
-      const nums = readdirSync(dir)
-        .map((f) => f.match(/^ch(\d{1,3})\.source\.json$/)?.[1])
-        .filter(Boolean)
-        .map((n) => Number(n))
-        .sort((a, b) => a - b);
-      if (nums.length > 0) return nums;
-    }
-  } catch {
-    return [];
+  const tocNumbers = parsed.chapters.map((ch) => ch.number);
+  if (tocNumbers.length !== expectedNumbers.length || tocNumbers.some((n, i) => n !== expectedNumbers[i])) {
+    return [{
+      checkId: "SV2.toc_index_mismatch",
+      severity: "blocker",
+      message: `TOC chapter sequence [${tocNumbers.join(", ")}] does not match canonical index [${expectedNumbers.join(", ")}].`,
+    }];
   }
   return [];
 }
 
-export function expectedSourceChapters(bookId: string): number[] {
-  const fromIndex = chaptersFromIndex(bookId);
-  if (fromIndex.length > 0) return fromIndex;
-  const fromToc = chaptersFromToc(bookId);
-  if (fromToc.length > 0) return fromToc;
-  return chaptersFromSourceDir(bookId);
+export function resolveExpectedSourceChapters(bookId: string, roots: SourceV2Roots = {}): ExpectedSourceChaptersReport {
+  const canonical = readCanonicalChapterIndex(bookId, roots.stateRoot ?? CANONICAL_STATE);
+  if (!canonical.ok) {
+    return {
+      ok: false,
+      chapters: [],
+      findings: [{
+        checkId: "SV2.canonical_index_blocked",
+        severity: "blocker",
+        message: formatChapterSetBlockers(canonical.blockers),
+      }],
+    };
+  }
+  const chapters = canonical.chapters.map((ch) => ch.chapterNumber);
+  return { ok: true, chapters, findings: tocCrossCheckFindings(bookId, chapters, roots) };
 }
 
-export function sourceSidecarPathFor(bookId: string, chapterNumber: number): string | null {
-  return findRunArtifact(RUNS_ROOT, bookId, `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.json`);
+export function expectedSourceChapters(bookId: string, roots: SourceV2Roots = {}): number[] {
+  const resolved = resolveExpectedSourceChapters(bookId, roots);
+  return resolved.ok ? resolved.chapters : [];
 }
 
-export function sourceHashFor(bookId: string, chapterNumber: number): string | null {
-  const p = sourceSidecarPathFor(bookId, chapterNumber);
+export function expectedSourceChapterFindings(bookId: string, roots: SourceV2Roots = {}): SourceV2Finding[] {
+  return resolveExpectedSourceChapters(bookId, roots).findings;
+}
+
+export function sourceSidecarPathFor(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): string | null {
+  return findRunArtifact(roots.runsRoot ?? RUNS_ROOT, bookId, `sidecars/source/ch${String(chapterNumber).padStart(2, "0")}.source.json`);
+}
+
+export function sourceHashFor(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): string | null {
+  const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
   if (!p || !existsSync(p)) return null;
-  return hashText(readFileSync(p, "utf8"));
+  try {
+    return semanticSourceHash(readJson(p));
+  } catch {
+    return null;
+  }
 }
 
-export function loadSourceV2Sidecar(bookId: string, chapterNumber: number): any | null {
-  const p = sourceSidecarPathFor(bookId, chapterNumber);
+export function sourceRawHashFor(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): string | null {
+  const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
+  if (!p || !existsSync(p)) return null;
+  return rawSourceHash(readFileSync(p, "utf8"));
+}
+
+export function loadSourceV2Sidecar(bookId: string, chapterNumber: number, roots: SourceV2Roots = {}): any | null {
+  const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
   if (!p || !existsSync(p)) return null;
   try {
     return readJson(p);
@@ -127,56 +145,46 @@ export function sourceFactsForPack(sc: any): SourceFactForPack[] {
   })).filter((f: SourceFactForPack) => f.id && f.claim);
 }
 
-function nonempty(value: unknown): boolean {
-  return typeof value === "string" && value.trim().length > 0;
-}
-
-export function checkSourceV2Gate(bookId: string, chapterNumbers = expectedSourceChapters(bookId)): SourceV2GateReport {
+export function checkSourceV2Gate(bookId: string, chapterNumbers?: number[], roots: SourceV2Roots = {}): SourceV2GateReport {
   const findings: SourceV2Finding[] = [];
-  if (chapterNumbers.length === 0) {
+  let expected = chapterNumbers;
+  const canonical = readCanonicalChapterIndex(bookId, roots.stateRoot ?? CANONICAL_STATE);
+  const canonicalTitles = canonical.ok
+    ? new Map(canonical.chapters.map((chapter) => [chapter.chapterNumber, chapter.chapterTitle]))
+    : new Map<number, string>();
+  if (!expected) {
+    const resolved = resolveExpectedSourceChapters(bookId, roots);
+    findings.push(...resolved.findings);
+    expected = resolved.ok ? resolved.chapters : [];
+  }
+  if (expected.length === 0) {
     findings.push({ checkId: "SV2.no_chapters", severity: "blocker", message: `No expected source chapters found for ${bookId}.` });
   }
-  for (const chapterNumber of chapterNumbers) {
-    const p = sourceSidecarPathFor(bookId, chapterNumber);
+  for (const chapterNumber of expected) {
+    const p = sourceSidecarPathFor(bookId, chapterNumber, roots);
     if (!p || !existsSync(p)) {
       findings.push({ checkId: "SV2.missing_sidecar", severity: "blocker", chapterNumber, message: `Missing source sidecar for ch${String(chapterNumber).padStart(2, "0")}.` });
       continue;
     }
+    let raw = "";
     let sc: any;
     try {
-      sc = readJson(p);
+      raw = readFileSync(p, "utf8");
+      sc = JSON.parse(raw);
     } catch (err) {
       findings.push({ checkId: "SV2.unreadable_sidecar", severity: "blocker", chapterNumber, message: `Unreadable source sidecar ${p}: ${(err as Error).message}` });
       continue;
     }
-    if (sc?.schemaVersion !== "source-v2") {
-      findings.push({ checkId: "SV2.not_source_v2", severity: "blocker", chapterNumber, message: `Sidecar is schemaVersion ${JSON.stringify(sc?.schemaVersion)}; no-api mode requires "source-v2".` });
-    }
-    if (!sc?.centralConcept || !nonempty(sc.centralConcept.name) || !nonempty(sc.centralConcept.plainDefinition)) {
-      findings.push({ checkId: "SV2.central_concept_missing", severity: "blocker", chapterNumber, message: `centralConcept.name and centralConcept.plainDefinition are required.` });
-    }
-    const namedExamples = Array.isArray(sc?.namedExamples) ? sc.namedExamples : [];
-    if (namedExamples.length < 3) {
-      findings.push({ checkId: "SV2.named_examples_floor", severity: "blocker", chapterNumber, message: `namedExamples has ${namedExamples.length}; need at least 3.` });
-    }
-    namedExamples.forEach((ex: any, i: number) => {
-      const specifics = Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics.filter(nonempty) : [];
-      if (specifics.length < 2) {
-        findings.push({ checkId: "SV2.hard_specifics_floor", severity: "blocker", chapterNumber, message: `namedExamples[${i}] has ${specifics.length} hardSpecifics; need at least 2.` });
-      }
+    const decision = evaluateSourceV2Integrity(sc, {
+      chapterNumber,
+      chapterTitle: canonicalTitles.get(chapterNumber),
+      rawText: raw,
     });
-    const facts = Array.isArray(sc?.testableFacts) ? sc.testableFacts : [];
-    if (facts.length < 9) {
-      findings.push({ checkId: "SV2.testable_facts_floor", severity: "blocker", chapterNumber, message: `testableFacts has ${facts.length}; need at least 9.` });
-    }
-    facts.forEach((fact: any, i: number) => {
-      const missing = ["claim", "becauseMechanism", "commonError", "errorIsWhy"].filter((k) => !nonempty(fact?.[k]));
-      if (missing.length > 0) {
-        findings.push({ checkId: "SV2.testable_fact_missing_field", severity: "blocker", chapterNumber, message: `testableFacts[${i}] is missing ${missing.join(", ")}.` });
-      }
-    });
+    findings.push(...decision.findings);
   }
-  return { bookId, passed: findings.length === 0, chaptersChecked: chapterNumbers.length, findings };
+  // Realness findings are advisory and surfaced in `findings` but do NOT fail the
+  // gate — only structural blockers do.
+  return { bookId, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: expected.length, findings };
 }
 
 export function formatSourceV2GateReport(report: SourceV2GateReport): string {

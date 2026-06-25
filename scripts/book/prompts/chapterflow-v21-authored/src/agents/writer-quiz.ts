@@ -11,7 +11,8 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
+import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -21,6 +22,9 @@ export type QuizOutput = {
   passingScorePercent: number;
   questions: Array<{
     questionId: string;
+    sourceAnchorId?: string;
+    sourceAnchorIds?: string[];
+    keyEvidenceAnchorIds?: string[];
     prompt: string;
     choices: string[];
     correctIndex: number;
@@ -34,6 +38,7 @@ export type QuizInput = {
   brief: BookBrief;
   plan: ChapterDesignDoc;
   breakdown: BreakdownOutput;
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 export async function runWriterQuiz(input: QuizInput): Promise<QuizOutput> {
@@ -101,6 +106,11 @@ function buildUserPrompt(input: QuizInput): string {
   parts.push("## deepRead");
   parts.push(input.breakdown.deepRead);
   parts.push("");
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
+    parts.push("Use only these ids. Emit sourceAnchorIds and keyEvidenceAnchorIds for every question; keyEvidenceAnchorIds must identify the fact/framework that makes the correct answer true.");
+    parts.push("");
+  }
   parts.push(`Write the QuizOutput JSON now. Count must equal ${input.plan.quizFocus.count}. Bloom's mix must match ${JSON.stringify(input.plan.quizFocus.bloomsMix)} exactly. Balance correctIndex across positions 0, 1, 2.`);
   return parts.join("\n");
 }
@@ -117,7 +127,7 @@ const IDENTIFIER_TOKEN_PATTERN = /\b(q\d{1,3}|p\d{1,3}|ex\d{1,3}|c\d{1,3}|card\d
 const JAMMED_NOUN_PATTERN = /\b[A-Z][a-z]{3,}[A-Z][a-z]{3,}\b/;
 const DOUBLED_PERIOD_PATTERN = /\w\.\.\s+[A-Z]/;
 const ALLOWED_QUESTION_KEYS = new Set([
-  "questionId","prompt","choices","correctIndex","correctAnswerIndex","explanation","bloomsLevel","depthLevel",
+  "questionId","sourceAnchorId","sourceAnchorIds","keyEvidenceAnchorIds","prompt","choices","correctIndex","correctAnswerIndex","explanation","bloomsLevel","depthLevel",
 ]);
 const VERB_HINT = /\b(is|are|was|were|be|been|being|has|have|had|do|does|did|can|could|should|would|will|may|might|must|name|build|cut|add|delete|remove|stop|start|run|pause|wait|trust|review|reset|reroute|track|set|map|check|read|write|ask|tell|listen|use|apply|treat|test|show|prove|reduce|increase|require|create|allow|prevent|enable|involve|describe|mean|reflect|indicate|imply|produce|stem|come|happen|occur|signal|aggregate|average|weight|filter|combine|compare|see|find|know|understand|expect|predict|forecast|estimate|interpret|choose|select|decide|consider|note|claim|argue|assert|deny|accept|reject|hold|prefer|favor|advise|recommend|lead|drive|influence|affect|change|shift|move|raise|lower|grow|shrink|focus|skip|cancel|withdraw|hand|devote)\b/i;
 const QUIZ_BANNED_TAILS: ReadonlyArray<string> = [
@@ -259,6 +269,23 @@ function validateQuiz(q: QuizOutput, input: QuizInput): QuizOutput {
         problems.push(`q${i} carries unexpected field "${key}" — upstream validator returns 422`);
         break;
       }
+    }
+    if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+      const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+      const ids = question.sourceAnchorIds ?? (question.sourceAnchorId ? [question.sourceAnchorId] : []);
+      const keyIds = question.keyEvidenceAnchorIds ?? ids;
+      if (ids.length === 0) {
+        problems.push(`q${i} sourceAnchorIds must cite at least one allowed source anchor`);
+      }
+      if (keyIds.length === 0) {
+        problems.push(`q${i} keyEvidenceAnchorIds must cite the source fact/framework that supports the correct key`);
+      }
+      for (const id of [...ids, ...keyIds]) {
+        if (typeof id !== "string" || !allowed.has(id)) problems.push(`q${i} cites unsupported source anchor ${JSON.stringify(id)}`);
+      }
+      if (!question.sourceAnchorId && ids[0]) question.sourceAnchorId = ids[0];
+      if (!question.sourceAnchorIds && ids.length > 0) question.sourceAnchorIds = ids;
+      if (!question.keyEvidenceAnchorIds && keyIds.length > 0) question.keyEvidenceAnchorIds = keyIds;
     }
     // enforce questionId format
     question.questionId = `q${String(i + 1).padStart(2, "0")}`;

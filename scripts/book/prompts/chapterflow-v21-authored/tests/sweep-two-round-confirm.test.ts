@@ -8,7 +8,8 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync, readFileSync } from "node:fs";
+import { mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { makeChapter } from "./helpers.js";
@@ -18,10 +19,14 @@ import {
   appendSweepHistory,
   loadSweepHistory,
   priorSweepRecord,
+  rebuildSweepHistory,
+  sweepRecordPath,
   sweepTwoRoundConfirmed,
   sweepHistoryPath,
+  sweepRoundRecordPath,
   type SweepRecord,
 } from "../src/qc/sweep.js";
+import { QC_ORCHESTRATOR_DIR, roundRecordPath, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-sweep-confirm";
 const CHAPTERS = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
@@ -29,15 +34,18 @@ const HASHES = Object.fromEntries(CHAPTERS.map((ch) => [String(ch.number), chapt
 
 function reset(): void {
   rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(sweepRecordPath(BOOK), { force: true });
+  rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
 }
 
-function rec(opts: { roundId: string; at: string; verdict?: SweepRecord["verdict"]; reviewer?: string; gating?: boolean; hashes?: Record<string, string> }): SweepRecord {
+function rec(opts: { roundId: string; at: string; verdict?: SweepRecord["verdict"]; reviewer?: string; reviewerSessionId?: string; gating?: boolean; hashes?: Record<string, string> }): SweepRecord {
   return {
     schemaVersion: "sweep-attest-v1",
     bookId: BOOK,
     roundId: opts.roundId,
     verdict: opts.verdict ?? (opts.gating ? "REVISE" : "PASS"),
     reviewer: opts.reviewer ?? "codex-qc:sweep",
+    reviewerSessionId: opts.reviewerSessionId ?? `session-${opts.roundId}`,
     attestedAt: opts.at,
     contentHashes: opts.hashes ?? HASHES,
     checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
@@ -47,22 +55,25 @@ function rec(opts: { roundId: string; at: string; verdict?: SweepRecord["verdict
   };
 }
 
-test("history: append is newest-first and de-duplicates by roundId (a re-finalized round keeps its LAST write)", () => {
+test("history: immutable round records are newest-first and reject conflicting rewrites", () => {
   reset();
   try {
     appendSweepHistory(rec({ roundId: "r1", at: "2026-01-01T00:00:00.000Z" }));
     appendSweepHistory(rec({ roundId: "r2", at: "2026-01-02T00:00:00.000Z", gating: true }));
-    appendSweepHistory(rec({ roundId: "r2", at: "2026-01-03T00:00:00.000Z" })); // r2 re-finalized → clear
+    appendSweepHistory(rec({ roundId: "r2", at: "2026-01-03T00:00:00.000Z", gating: true })); // same evidence → idempotent
+    assert.throws(
+      () => appendSweepHistory(rec({ roundId: "r2", at: "2026-01-04T00:00:00.000Z" })),
+      /Immutable sweep record already exists/,
+      "a conflicting re-finalize must not replace per-round evidence",
+    );
     const hist = loadSweepHistory(BOOK);
     assert.deepEqual(hist.map((r) => r.roundId), ["r2", "r1"], "newest-first, one entry per round");
-    assert.equal(hist[0].verdict, "PASS", "the LAST write for r2 wins (the re-finalize)");
+    assert.equal(hist[0].verdict, "REVISE", "the original immutable r2 evidence remains authoritative");
     assert.equal(priorSweepRecord(BOOK, "r2")?.roundId, "r1", "prior of r2 is r1");
     assert.equal(priorSweepRecord(BOOK, "r1"), null, "r1 has no prior");
-    // Dedup happens ON DISK, not just on load: the re-finalize of r2 replaced its prior line, so the
-    // raw file has exactly one line per round (no bloat — roundIds were landing 2-18x pre-fix).
     const rawRoundIds = readFileSync(sweepHistoryPath(BOOK), "utf8").split("\n").filter((l) => l.trim()).map((l) => (JSON.parse(l) as SweepRecord).roundId);
     assert.deepEqual(rawRoundIds.filter((r) => r === "r2").length, 1, "exactly one r2 line on disk after the re-finalize");
-    assert.equal(rawRoundIds.length, 2, "two lines total (r1, r2) — deduped on append");
+    assert.equal(rawRoundIds.length, 2, "two cache lines total (r1, r2), rebuilt from immutable records");
   } finally {
     reset();
   }
@@ -156,6 +167,50 @@ test("item B: confirmation needs TWO INDEPENDENT (non-carry) reads — carry-for
     // a SECOND genuine independent read → confirmed
     appendSweepHistory(rec({ roundId: "r4", at: "2026-01-04T00:00:00.000Z", reviewer: "codex-qc:sweep" }));
     assert.equal(sweepTwoRoundConfirmed(BOOK, CHAPTERS).ok, true, "two genuine independent clear reads over identical content confirm");
+  } finally {
+    reset();
+  }
+});
+
+test("item B: two clear records from the same reviewer session do NOT self-confirm", () => {
+  reset();
+  try {
+    appendSweepHistory(rec({ roundId: "r1", at: "2026-01-01T00:00:00.000Z", reviewerSessionId: "same-session" }));
+    appendSweepHistory(rec({ roundId: "r2", at: "2026-01-02T00:00:00.000Z", reviewerSessionId: "same-session" }));
+    assert.equal(sweepTwoRoundConfirmed(BOOK, CHAPTERS).ok, false, "copied/re-finalized evidence from one session is one read, not two");
+  } finally {
+    reset();
+  }
+});
+
+test("history: corrupt or delete the global cache, rebuild from immutable round records keeps the same effective result", () => {
+  reset();
+  try {
+    appendSweepHistory(rec({ roundId: "r1", at: "2026-01-01T00:00:00.000Z" }));
+    appendSweepHistory(rec({ roundId: "r2", at: "2026-01-02T00:00:00.000Z" }));
+    assert.equal(sweepTwoRoundConfirmed(BOOK, CHAPTERS).ok, true);
+    writeFileSync(sweepHistoryPath(BOOK), "{not jsonl\n", "utf8");
+    rmSync(sweepRecordPath(BOOK), { force: true });
+    const rebuilt = rebuildSweepHistory(BOOK);
+    assert.deepEqual(rebuilt.map((r) => r.roundId), ["r2", "r1"]);
+    assert.equal(sweepTwoRoundConfirmed(BOOK, CHAPTERS).ok, true, "effective decision survives cache corruption");
+  } finally {
+    reset();
+  }
+});
+
+test("history: corrupt or remove a required immutable round record fails with round/path details", () => {
+  reset();
+  try {
+    appendSweepHistory(rec({ roundId: "r1", at: "2026-01-01T00:00:00.000Z" }));
+    const p = sweepRoundRecordPath(BOOK, "r1");
+    writeFileSync(p, "{broken", "utf8");
+    assert.throws(() => loadSweepHistory(BOOK), new RegExp(`Sweep history integrity failure[\\s\\S]*${p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`));
+    reset();
+    mkdirSync(submissionsDir(BOOK, "r-missing", "sweep"), { recursive: true });
+    writeFileSync(roundRecordPath(BOOK, "r-missing"), "{}\n", "utf8");
+    writeFileSync(resolve(submissionsDir(BOOK, "r-missing", "sweep"), "submission.json"), "{}\n", "utf8");
+    assert.throws(() => loadSweepHistory(BOOK), /Missing immutable sweep record.*r-missing.*sweep-record\.json/);
   } finally {
     reset();
   }

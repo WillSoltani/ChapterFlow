@@ -31,10 +31,9 @@ import {
   saveLibraryState,
 } from "../librarian/libraryState.js";
 import { callClaude } from "../claudeClient.js";
-import { assembleChapterV21, V21_SCHEMA_VERSION } from "../assembler.js";
+import { assembleChapterV21OrThrow, V21_SCHEMA_VERSION } from "../assembler.js";
 import {
   BookBrief,
-  BookPackageV21,
   ChapterDesignDoc,
 } from "../types.js";
 import {
@@ -255,7 +254,7 @@ async function main() {
   log(`key takeaway: ${keyTakeaway.length}c`);
 
   // Assemble v21-native chapter
-  const chapter = assembleChapterV21({ plan, breakdown, examples, quiz, cards, implementationPlan: ipPlan, keyTakeaway, hook });
+  const chapter = assembleChapterV21OrThrow({ plan, breakdown, examples, quiz, cards, implementationPlan: ipPlan, keyTakeaway, hook });
 
   // Prose-quality critics (advisory)
   log(`prose critics: scoring…`);
@@ -308,7 +307,7 @@ async function main() {
   }
 
   // Wrap as a v21 BookPackage
-  const pkg: BookPackageV21 = {
+  const pkg = {
     schemaVersion: V21_SCHEMA_VERSION,
     packageId: `${BOOK.bookId}-v21-preview`,
     createdAt: new Date().toISOString(),

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "banned-phrases.schema.json",
+  "title": "ChapterFlow Banned Phrases",
+  "type": "object",
+  "required": ["version", "hardBanned"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "hardBanned": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/phraseEntry" }
+    },
+    "softBanned": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/$defs/phraseEntry" },
+          {
+            "type": "object",
+            "required": ["perBookBudget"],
+            "properties": {
+              "perBookBudget": { "type": "number" }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "phraseEntry": {
+      "type": "object",
+      "required": ["phrase", "reason"],
+      "properties": {
+        "phrase": { "type": "string" },
+        "reason": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

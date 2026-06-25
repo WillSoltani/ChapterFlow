@@ -20,7 +20,6 @@
  * the job of the factual-accuracy axis downstream.
  */
 
-import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -273,23 +272,8 @@ export function checkSourceVerifyRecord(expectedItems: SourceVerifyItem[], recor
   return out;
 }
 
-/**
- * Publish-time source-reality gate. Reads the canonical filled record and checks it.
- * A PRESENT-but-bad record (rubber-stamped or non-VERIFIED) always blocks — that is
- * the digital-minimalism failure mode. An ABSENT record blocks only when `require`
- * (mirrors CHAPTERFLOW_REQUIRE_KEYJUDGE) so the gold corpus / pre-feature books are
- * not retroactively bricked.
- */
-export function sourceVerifyGateFindings(bookId: string, expectedItems: SourceVerifyItem[], opts: { require?: boolean } = {}): SourceVerifyFinding[] {
-  const path = sourceVerifyRecordPath(bookId);
-  if (!existsSync(path)) {
-    return opts.require
-      ? [{ checkId: "SV1", severity: "blocker", message: `no source-verify record at ${path} (CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1). Run \`source-verify ${bookId} --write ${path}\`, verify every item, then re-check.` }]
-      : [];
-  }
-  const { record, error } = parseSourceVerifyRecord(readFileSync(path, "utf8"));
-  if (error || !record) {
-    return [{ checkId: "SV1", severity: "blocker", message: `source-verify record at ${path} could not be parsed: ${error ?? "unknown error"}` }];
-  }
-  return checkSourceVerifyRecord(expectedItems, record);
-}
+// NOTE: the old `sourceVerifyGateFindings(bookId, items, { require })` lived here and was the
+// env-var bypass — an ABSENT record blocked only under `require`. It has been REMOVED. Source-reality
+// is now a content-driven production invariant; the single point of truth is
+// `evaluateSourceRealityPolicy` in src/qc/sourceRealityPolicy.ts, which both `promote-book` and the
+// `publish-after-qc` preflight consult. Do not reintroduce a require-flag gate here.

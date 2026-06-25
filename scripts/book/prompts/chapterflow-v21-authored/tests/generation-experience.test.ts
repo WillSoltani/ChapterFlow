@@ -53,6 +53,16 @@ test("doctor: a clean book passes the chapter-numbers check", () => {
   }
 });
 
+test("doctor --json emits machine-readable findings and planned exit code", () => {
+  const cli = runCli(["doctor", "--json"]);
+  assert.equal(cli.status, 0, cli.out);
+  const parsed = JSON.parse(cli.out) as { status: string; exitCode: number; findings: Array<{ level: string; check: string; message: string }> };
+  assert.equal(parsed.status, "ok");
+  assert.equal(parsed.exitCode, 0);
+  assert.ok(Array.isArray(parsed.findings), "findings must be an array");
+  assert.ok(parsed.findings.some((f) => f.check === "shadow-state-dir" && f.level === "ok"), "global doctor checks must be represented structurally");
+});
+
 test("book-status: an un-QC'd book is never publishable and points past generation", () => {
   try {
     cleanup();

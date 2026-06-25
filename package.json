@@ -2,6 +2,13 @@
   "name": "chapterflow",
   "version": "1.0.0",
   "private": true,
+  "packageManager": "npm@10.8.2",
+  "engines": {
+    "node": ">=20.20.0 <21"
+  },
+  "workspaces": [
+    "scripts/book/prompts/chapterflow-v21-authored"
+  ],
   "scripts": {
     "dev": "DEV_AUTH_BYPASS=1 CHAPTERFLOW_DEPLOYMENT_MODE=standalone NEXT_DIST_DIR=.next-chapterflow APP_BASE_URL=http://localhost:3000 NEXT_PUBLIC_SITE_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_SITE_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_APP_URL=http://localhost:3000 NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL=http://localhost:3000 CHAPTERFLOW_SITE_BASE_URL=http://localhost:3000 CHAPTERFLOW_APP_BASE_URL=http://localhost:3000 CHAPTERFLOW_AUTH_BASE_URL=http://localhost:3000 COGNITO_REDIRECT_URI=http://localhost:3000/auth/callback COGNITO_LOGOUT_REDIRECT_URI=http://localhost:3000/ next dev --hostname 127.0.0.1 --port 3000",
     "dev:3001": "DEV_AUTH_BYPASS=1 CHAPTERFLOW_DEPLOYMENT_MODE=standalone NEXT_DIST_DIR=.next-chapterflow PORT=3001 APP_BASE_URL=http://localhost:3001 NEXT_PUBLIC_SITE_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_SITE_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_APP_URL=http://localhost:3001 NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL=http://localhost:3001 CHAPTERFLOW_SITE_BASE_URL=http://localhost:3001 CHAPTERFLOW_APP_BASE_URL=http://localhost:3001 CHAPTERFLOW_AUTH_BASE_URL=http://localhost:3001 COGNITO_REDIRECT_URI=http://localhost:3001/auth/callback COGNITO_LOGOUT_REDIRECT_URI=http://localhost:3001/ next dev --hostname 127.0.0.1 --port 3001",
@@ -13,6 +20,11 @@
     "scan:style": "node scripts/ci/scan-style-drift.mjs --selftest && node scripts/ci/scan-style-drift.mjs --all",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "pipeline:typecheck": "npm run typecheck --workspace @chapterflow/v21-authored",
+    "pipeline:test": "npm run test --workspace @chapterflow/v21-authored",
+    "pipeline:build": "npm run build --workspace @chapterflow/v21-authored",
+    "pipeline:doctor": "npm run doctor --workspace @chapterflow/v21-authored",
+    "pipeline:test:focused": "npm run test:focused --workspace @chapterflow/v21-authored",
     "verify": "npm run typecheck && npm run test && npm run scan:style && npm run build",
     "test": "FILES=$(find app lib -name '*.test.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no test files found' >&2; exit 1; fi; tsx --test $FILES",
     "test:integration": "FILES=$(find app lib tests -name '*.itest.ts' -not -path '*/node_modules/*'); if [ -z \"$FILES\" ]; then echo 'no integration test files found' >&2; exit 1; fi; tsx --test $FILES",

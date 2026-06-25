@@ -63,9 +63,10 @@ npx tsx src/cli.ts authoring-guardrails <bookId>
 Then, for EVERY chapter you write, paste `state/guardrails/<bookId>.guardrails.md`
 into the authoring context: use ONLY your chapter's reserved-name row, and never use
 the banned phrases (house tics, salting connectives, cross-book signature tells).
-Names are American/Canadian and unique WITHIN this book; they may repeat in other
-books — that's fine. This is the same prevention pattern as the voice bible — set it
-before authoring, not in repair. The guardrails sheet is REQUIRED, not optional —
+Names are American/Canadian, unique within this book, and filtered by the
+catalog cooldown policy in `config/name-policy.json`. This is the same
+prevention pattern as the voice bible — set it before authoring, not in repair.
+The guardrails sheet is REQUIRED, not optional —
 if `state/guardrails/<bookId>.guardrails.md` does not exist, generate it before
 writing any chapter.
 

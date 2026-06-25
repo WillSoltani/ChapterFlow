@@ -1,8 +1,10 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
-import { basename, dirname, resolve } from "path";
+import { existsSync, mkdirSync, readFileSync, readdirSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { runBookGate } from "../../critics/bookGate.js";
 import { runShipGate } from "../../critics/finalGate.js";
+import { canonicalJsonSha256 } from "../../lib/canonicalJson.js";
+import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { checkPlanEnforcement } from "../planEnforcement.js";
 import { evaluateDeterministic } from "./deterministicGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
@@ -35,10 +37,11 @@ import {
   writeBarReadArtifact,
   writeConfirmReadArtifact,
 } from "./artifacts.js";
-import { appendFindingsFromSubmission, appendStatusEvents, effectiveLedger, ledgerStatusSummary } from "./ledger.js";
+import { appendStatusEvents, effectiveLedger, effectiveLedgerResilient, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
 import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 import { currentSessionId } from "../sessionProvenance.js";
+import { withQcTransaction } from "./transaction.js";
 export { finalizeQcRound } from "./finalize.js";
 
 export type QcOrchestratorRoundRecord = {
@@ -67,6 +70,9 @@ export type QcOrchestratorRoundRecord = {
    *  chapter whose first bar read lands borderline gets 2 extra independent reads
    *  (t2/t3) and the per-axis MEDIAN decides — variance-smoothing the 84/85 flap. */
   tiebreak?: boolean;
+  /** Item-B confirmation over a frozen all-carried book: only the fresh sweep
+   *  reviewer is required; per-chapter key/bar/major sessions would be waste. */
+  sweepOnlyConfirmation?: boolean;
 };
 
 export type OrchestratorResult = {
@@ -90,7 +96,7 @@ function ensureRoundLayout(bookId: string, roundId: string): void {
   mkdirSync(taskCardsDir(bookId, roundId), { recursive: true });
   for (const role of SUBMISSION_ROLES) mkdirSync(submissionsDir(bookId, roundId, role), { recursive: true });
   const ledger = repairLedgerPath(bookId, roundId);
-  if (!existsSync(ledger)) writeFileSync(ledger, "", "utf8");
+  if (!existsSync(ledger)) writeFileAtomic(ledger, "");
 }
 
 function chapterHashRecord(chapters: ChapterV21[]): Record<string, string> {
@@ -108,7 +114,7 @@ export function carryableChapter(bookId: string, ch: ChapterV21): boolean {
 
 function writeText(path: string, text: string): string {
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, text, "utf8");
+  writeFileAtomic(path, text);
   return path;
 }
 
@@ -125,7 +131,7 @@ function cardHeader(bookId: string, roundId: string, role: string, token: string
   ].join("\n");
 }
 
-function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>, opts: { skipSweep?: boolean } = {}): string[] {
+function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], tokens: Record<QcRoundRole, string>, opts: { skipSweep?: boolean; sweepOnly?: boolean } = {}): string[] {
   const root = taskCardsDir(bookId, roundId);
   const paths: string[] = [];
   // When the book is byte-identical to a prior PASS sweep the sweep is carried forward
@@ -141,6 +147,7 @@ function taskCardPaths(bookId: string, roundId: string, chapters: ChapterV21[], 
     `Command: npx tsx src/cli.ts qc-submit ${bookId} --round ${roundId} --role sweep --token ${tokens.sweep} --file <submission.json>`,
     "",
   ].join("\n")));
+  if (opts.sweepOnly) return paths;
   for (const role of ["keyA", "keyB"] as const) {
     paths.push(writeText(resolve(root, role === "keyA" ? "01-keyA.md" : "02-keyB.md"), cardHeader(bookId, roundId, role, tokens[role]) + [
       "Read ONLY the blind key packs and their sourceFacts.",
@@ -249,6 +256,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   const carriedChapters = incremental ? selected.filter((ch) => carryableChapter(bookId, ch)) : [];
   const carriedNumbers = new Set(carriedChapters.map((ch) => ch.number));
   const reviewChapters = incremental ? selected.filter((ch) => !carriedNumbers.has(ch.number)) : selected;
+  const sweepOnlyConfirmation = incremental && !!options.noSweepCarry && reviewChapters.length === 0;
   // All per-chapter reviews carry ⇒ normally nothing to re-QC, skip the round. EXCEPT when
   // noSweepCarry is set (the item-B confirming round): the book-wide SWEEP must still run fresh
   // over the frozen book to produce an INDEPENDENT second read, even though no chapter needs a
@@ -272,18 +280,27 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   // this round and skip the session. ANY changed/added/removed chapter ⇒ a fresh sweep.
   // `noSweepCarry` forces a FRESH sweep even when carryable — used by the item-B confirming
   // round, which needs a genuinely INDEPENDENT second read (a carry would just copy the prior).
-  const priorSweep = loadSweepRecord(bookId);
+  let priorSweep: ReturnType<typeof loadSweepRecord> = null;
+  try {
+    priorSweep = loadSweepRecord(bookId);
+  } catch (err) {
+    errors.push(`sweep-history failed: ${(err as Error).message}`);
+  }
   const sweepCarried = incremental && !options.noSweepCarry && sweepCarryable(priorSweep, selected);
   if (sweepCarried && priorSweep) carryForwardSweep(bookId, priorSweep, roundId);
 
   let keyPackPaths: string[] = [];
   let keyPackError: string | undefined;
-  try {
-    keyPackPaths = writeKeyPacks(bookId, roundId);
-    messages.push(`key-pack: wrote ${keyPackPaths.length} pack(s)`);
-  } catch (err) {
-    keyPackError = (err as Error).message;
-    errors.push(`key-pack failed: ${keyPackError}`);
+  if (sweepOnlyConfirmation) {
+    messages.push("key-pack: skipped for sweep-only confirmation round");
+  } else {
+    try {
+      keyPackPaths = writeKeyPacks(bookId, roundId);
+      messages.push(`key-pack: wrote ${keyPackPaths.length} pack(s)`);
+    } catch (err) {
+      keyPackError = (err as Error).message;
+      errors.push(`key-pack failed: ${keyPackError}`);
+    }
   }
   let sweepPackPath: string | undefined;
   let sweepPackError: string | undefined;
@@ -298,13 +315,15 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
       errors.push(`sweep-pack failed: ${sweepPackError}`);
     }
   }
-  const barPack = writeBarPack(bookId, roundId);
-  if (barPack.errors.length) {
+  const barPack = sweepOnlyConfirmation ? { packPath: undefined, templatePath: undefined, errors: [] } : writeBarPack(bookId, roundId);
+  if (sweepOnlyConfirmation) {
+    messages.push("bar-pack: skipped for sweep-only confirmation round");
+  } else if (barPack.errors.length) {
     errors.push(...barPack.errors.map((e) => `bar-pack failed: ${e}`));
   } else {
     messages.push(`bar-pack: wrote ${barPack.packPath}`);
   }
-  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens, { skipSweep: sweepCarried });
+  const cards = taskCardPaths(bookId, roundId, reviewChapters, opened.tokens, { skipSweep: sweepCarried, sweepOnly: sweepOnlyConfirmation });
   // Self-contained reviewer packet (content/rubric pointers + per-role submit
   // commands + invalid-until-filled JSON skeletons). Written here because the
   // plaintext round tokens only exist at creation time.
@@ -333,6 +352,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     chapterContentHashes: chapterHashRecord(selected),
     ...(incremental ? { reviewChapters: reviewChapters.map((ch) => ch.number), carriedChapters: carriedChapters.map((ch) => ch.number) } : {}),
     ...(options.tiebreak ? { tiebreak: true } : {}),
+    ...(sweepOnlyConfirmation ? { sweepOnlyConfirmation: true } : {}),
   };
   writeText(roundRecordPath(bookId, roundId), JSON.stringify(record, null, 2) + "\n");
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify({ bookId, roundId, createdAt: record.createdAt, submissions: 0, ledger: {}, attestationsWritten: 0 }, null, 2) + "\n");
@@ -377,7 +397,12 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   resolveManualKeyJudges(bookId, roundId);
   const roundRecord = existsSync(roundRecordPath(bookId, roundId)) ? JSON.parse(readFileSync(roundRecordPath(bookId, roundId), "utf8")) as QcOrchestratorRoundRecord : null;
   const tiebreakOn = roundRecord?.tiebreak === true;
-  const sweep = loadSweepRecord(bookId);
+  let sweep: ReturnType<typeof loadSweepRecord> = null;
+  try {
+    sweep = loadSweepRecord(bookId);
+  } catch (err) {
+    errors.push(`sweep-history failed: ${(err as Error).message}`);
+  }
   // E1: the SIX deterministic gates (source-v2, ship-gate, author-check, intra-book,
   // book-gate, plan-enforcement) come from the SHARED evaluator that finalize + qc-converge
   // use, so a chapter's confirm-candidate eligibility can't DRIFT from finalize's
@@ -400,7 +425,7 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
     // WS-1: combine the primary read with any matching tiebreak variants (t2/t3) so the
     // GREEN check uses the variance-smoothed per-axis median, not one noisy sample.
     const barReads = loadAllBarReads(bookId, roundId, ch.number).filter((r) => r.chapterId === ch.chapterId && r.contentHash === chapterContentHash(ch));
-    const ledgerFindings = effectiveLedger(bookId, roundId).filter((f) => {
+    const ledgerFindings = effectiveLedgerResilient(bookId, roundId).filter((f) => {
       if (!(f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun")) return false;
       if (f.chapterNumber === undefined && (!f.chapters || f.chapters.length === 0)) return true;
       if (f.chapterNumber === ch.number) return true;
@@ -469,6 +494,33 @@ function stripPlaintextSecrets(raw: any): any {
   return raw;
 }
 
+function safePathComponent(value: string): string {
+  return value.replace(/[^a-zA-Z0-9._-]/g, "_").slice(0, 120);
+}
+
+function submissionContentHash(raw: unknown): string {
+  return canonicalJsonSha256(raw).replace(/^sha256:/, "");
+}
+
+function submissionIdentity(submission: ValidatedSubmission, variant?: BarReadVariant): string {
+  const rec = submission as any;
+  const reviewer = typeof rec.reviewer === "string" && rec.reviewer.trim() ? rec.reviewer.trim() : "anonymous";
+  const session = typeof rec.reviewerSessionId === "string" && rec.reviewerSessionId.trim() ? rec.reviewerSessionId.trim() : "legacy-unknown";
+  const target = rec.role === "bar" || rec.role === "confirm"
+    ? `ch${String(rec.chapterNumber).padStart(2, "0")}${variant ? `-${variant}` : ""}`
+    : rec.role;
+  return safePathComponent(`${rec.role}.${target}.${reviewer}.${session}`);
+}
+
+function findExistingSubmissionForIdentity(dir: string, identity: string): string[] {
+  if (!existsSync(dir)) return [];
+  const prefix = `${identity}.`;
+  return readdirSync(dir)
+    .filter((name) => name.startsWith(prefix) && name.endsWith(".json") && !name.endsWith(".meta.json"))
+    .sort()
+    .map((name) => resolve(dir, name));
+}
+
 export function submitQcArtifact(bookId: string, roundId: string, role: SubmissionRole, file: string, token: string, variant?: BarReadVariant): { ok: boolean; path?: string; errors: string[]; messages: string[] } {
   if (!SUBMISSION_ROLES.includes(role)) return { ok: false, errors: [`Unknown role ${role}.`], messages: [] };
   if (!token) return { ok: false, errors: [`qc-submit requires --token for role ${role}.`], messages: [] };
@@ -476,58 +528,74 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
   if (!verifyQcRoundToken(bookId, roundId, role as QcRoundRole, token)) {
     return { ok: false, errors: [`Invalid ${role} token for ${bookId} round ${roundId}.`], messages: [] };
   }
-  let raw: any;
-  try {
-    raw = loadJsonFile(file);
-  } catch (err) {
-    return { ok: false, errors: [`Could not read submission file: ${(err as Error).message}`], messages: [] };
-  }
-  // Capture the SUBMITTER's session (CHAPTERFLOW_SESSION_ID) as the authoritative
-  // reviewerSessionId — taken from the ENV, never the file (a subagent can't claim
-  // whose session produced it). This flows through validation into the stored raw +
-  // the bar/confirm artifacts + the keyA/keyB derivation, so collect/finalize can
-  // enforce keyA≠keyB / bar≠confirm / bar≠tiebreak / reviewer≠author independence.
-  // Absent env → strip any file-provided value, keeping enforcement absence-safe.
-  const reviewerSessionId = currentSessionId();
-  if (raw && typeof raw === "object") {
-    if (reviewerSessionId) raw.reviewerSessionId = reviewerSessionId;
-    else delete raw.reviewerSessionId;
-  }
-  const validation = validateSubmission(bookId, roundId, role, raw);
-  if (validation.ok === false) return { ok: false, errors: validation.errors, messages: [] };
-  // Reviewer-identity gate at the fresh-ingest door. A submission's reviewer must
-  // carry an approved QC role prefix (codex-qc:/claude-qc:/harness:/human:), so a
-  // writer can't self-certify under an arbitrary string. Enforced here (not in the
-  // schema validator) so re-collecting historical rounds with legacy bare-string
-  // reviewers is unaffected. keyA/keyB carry an optional reviewer and are exempt.
-  if (role !== "keyA" && role !== "keyB") {
-    const reviewer = (validation.submission as { reviewer?: unknown }).reviewer;
-    if (typeof reviewer === "string" && !isApprovedReviewer(reviewer)) {
-      return { ok: false, errors: [`reviewer "${reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). Use e.g. "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change allowed roles).`], messages: [] };
+  return withQcTransaction(bookId, roundId, "submit", () => {
+    let raw: any;
+    try {
+      raw = loadJsonFile(file);
+    } catch (err) {
+      return { ok: false, errors: [`Could not read submission file: ${(err as Error).message}`], messages: [] };
     }
-  }
-  const dir = submissionsDir(bookId, roundId, role);
-  mkdirSync(dir, { recursive: true });
-  const safeName = basename(file).replace(/[^a-zA-Z0-9._-]/g, "_");
-  const dest = resolve(dir, `${new Date().toISOString().replace(/[:.]/g, "-")}.${safeName}`);
-  writeFileSync(dest, JSON.stringify(stripPlaintextSecrets(raw), null, 2) + "\n", "utf8");
-  writeFileSync(`${dest}.meta.json`, JSON.stringify({
-    roleVerified: true,
-    verifiedRole: role,
-    submittedAt: new Date().toISOString(),
-    copiedFrom: resolve(file),
-    ...(variant ? { variant } : {}),
-  }, null, 2) + "\n", "utf8");
-  const messages = [`submission stored: ${dest}`];
-  if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") {
-    const artifact = writeBarReadArtifact(validation.submission, variant);
-    messages.push(`bar-read${variant ? ` (${variant})` : ""} artifact stored: ${artifact}`);
-  }
-  if (validation.submission.schemaVersion === "qc-confirm-read-v1") {
-    const artifact = writeConfirmReadArtifact(validation.submission);
-    messages.push(`confirm-read artifact stored: ${artifact}`);
-  }
-  return { ok: true, path: dest, errors: [], messages };
+    // Capture the SUBMITTER's session (CHAPTERFLOW_SESSION_ID) as the authoritative
+    // reviewerSessionId — taken from the ENV, never the file (a subagent can't claim
+    // whose session produced it). Fresh qc-submit requires it; legacy files remain
+    // parseable through collect without satisfying independence certification.
+    const reviewerSessionId = currentSessionId();
+    if (raw && typeof raw === "object") {
+      if (reviewerSessionId) raw.reviewerSessionId = reviewerSessionId;
+      else delete raw.reviewerSessionId;
+    }
+    const validation = validateSubmission(bookId, roundId, role, raw, { requireReviewerSessionId: true });
+    if (validation.ok === false) return { ok: false, errors: validation.errors, messages: [] };
+    // Reviewer-identity gate at the fresh-ingest door. A submission's reviewer must
+    // carry an approved QC role prefix (codex-qc:/claude-qc:/harness:/human:), so a
+    // writer can't self-certify under an arbitrary string. Enforced here (not in the
+    // schema validator) so re-collecting historical rounds with legacy bare-string
+    // reviewers is unaffected. keyA/keyB carry an optional reviewer and are exempt.
+    if (role !== "keyA" && role !== "keyB") {
+      const reviewer = (validation.submission as { reviewer?: unknown }).reviewer;
+      if (typeof reviewer === "string" && !isApprovedReviewer(reviewer)) {
+        return { ok: false, errors: [`reviewer "${reviewer}" is not an approved QC role (${approvedReviewerRoles().join(", ")}). Use e.g. "codex-qc:<id>" (set CHAPTERFLOW_QC_REVIEWERS to change allowed roles).`], messages: [] };
+      }
+    }
+    const dir = submissionsDir(bookId, roundId, role);
+    mkdirSync(dir, { recursive: true });
+    const sanitized = stripPlaintextSecrets(raw);
+    const identity = submissionIdentity(validation.submission, variant);
+    const contentHash = submissionContentHash(sanitized);
+    const dest = resolve(dir, `${identity}.${contentHash}.json`);
+    const existing = findExistingSubmissionForIdentity(dir, identity);
+    if (existing.length > 0 && !existing.includes(dest)) {
+      return {
+        ok: false,
+        errors: [`Submission identity ${identity} already exists with different content. Start a fresh QC round or use a different reviewer session instead of overwriting evidence.`],
+        messages: [],
+      };
+    }
+    const submittedAt = new Date().toISOString();
+    if (!existsSync(dest)) {
+      writeFileAtomic(dest, JSON.stringify(sanitized, null, 2) + "\n");
+      writeFileAtomic(`${dest}.meta.json`, JSON.stringify({
+        roleVerified: true,
+        verifiedRole: role,
+        submittedAt,
+        copiedFrom: resolve(file),
+        identity,
+        contentHash: `sha256:${contentHash}`,
+        idempotent: true,
+        ...(variant ? { variant } : {}),
+      }, null, 2) + "\n");
+    }
+    const messages = [`submission stored: ${dest}`];
+    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") {
+      const artifact = writeBarReadArtifact(validation.submission, variant, dest);
+      messages.push(`bar-read${variant ? ` (${variant})` : ""} artifact stored: ${artifact}`);
+    }
+    if (validation.submission.schemaVersion === "qc-confirm-read-v1") {
+      const artifact = writeConfirmReadArtifact(validation.submission, dest);
+      messages.push(`confirm-read artifact stored: ${artifact}`);
+    }
+    return { ok: true, path: dest, errors: [], messages };
+  });
 }
 
 function submissionFiles(bookId: string, roundId: string): Array<{ role: SubmissionRole; path: string; variant?: BarReadVariant }> {
@@ -573,16 +641,17 @@ function writeKeyDerivationFromSubmission(submission: ValidatedKeyDeriveSubmissi
   };
   const path = keyDerivationPath(submission.bookId, submission.roundId, submission.role);
   mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, JSON.stringify(rec, null, 2), "utf8");
+  writeFileAtomic(path, JSON.stringify(rec, null, 2) + "\n");
   return path;
 }
 
 export function collectQcRound(bookId: string, roundId: string): { ok: boolean; errors: string[]; summary: Record<string, unknown> } {
+  return withQcTransaction(bookId, roundId, "collect", () => {
   const errors: string[] = [];
   let submissions = 0;
   let appended = 0;
   let duplicates = 0;
-  let latestSweep: ValidatedSweepSubmission | null = null;
+  let latestSweep: { submission: ValidatedSweepSubmission; path: string } | null = null;
   for (const item of submissionFiles(bookId, roundId)) {
     let raw: any;
     try {
@@ -597,19 +666,22 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
       continue;
     }
     submissions++;
-    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant);
-    if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission);
+    if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant, item.path);
+    if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission, item.path);
     if (validation.submission.schemaVersion === "qc-key-derive-v2") writeKeyDerivationFromSubmission(validation.submission);
-    if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = validation.submission as ValidatedSweepSubmission;
-    const merged = appendFindingsFromSubmission({ bookId, roundId, role: item.role, submissionFile: item.path, submission: validation.submission as ValidatedSubmission });
-    appended += merged.appended;
-    duplicates += merged.duplicates;
+    if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = { submission: validation.submission as ValidatedSweepSubmission, path: item.path };
   }
   // Write the durable sweep record from the newest valid sweep submission (submissionFiles
   // is oldest→newest, so the last one wins — matching finalize's latestValidSubmission).
   // collect runs BEFORE generateConfirmCandidates, which reads loadSweepRecord; without this
   // the first candidate pass sees no fresh record and falsely blocks every chapter on "sweep".
-  if (latestSweep) writeSweepRecordFromSubmission(latestSweep);
+  if (latestSweep) {
+    try {
+      writeSweepRecordFromSubmission(latestSweep.submission, latestSweep.path);
+    } catch (err) {
+      errors.push(`sweep-record failed: ${(err as Error).message}`);
+    }
+  }
   const briefPath = writeRepairBrief(bookId, roundId);
   const promptPath = writeRepairPrompt(bookId, roundId);
   const summary = {
@@ -627,6 +699,7 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
   };
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify(summary, null, 2) + "\n");
   return { ok: errors.length === 0, errors, summary };
+  });
 }
 
 // A "semantic" finding is one a clean deterministic re-gate CANNOT prove fixed
@@ -655,7 +728,8 @@ export function isSemanticFinding(sourceRoles: string[], repairClass: string, gl
 }
 
 export function verifyRepair(bookId: string, roundId: string): { ok: boolean; summary: Record<string, unknown>; errors: string[] } {
-  const findings = effectiveLedger(bookId, roundId);
+  return withQcTransaction(bookId, roundId, "verify-repair", () => {
+  const findings = effectiveLedgerResilient(bookId, roundId);
   const chapters = loadBookChapters(bookId);
   const byNumber = new Map(chapters.map((ch) => [ch.number, ch]));
   const edited = new Set<number>();
@@ -728,6 +802,7 @@ export function verifyRepair(bookId: string, roundId: string): { ok: boolean; su
   };
   writeText(qcSummaryPath(bookId, roundId), JSON.stringify(summary, null, 2) + "\n");
   return { ok: true, summary, errors: [] };
+  });
 }
 
 export function renderRepair(bookId: string, roundId: string): string {
@@ -735,5 +810,5 @@ export function renderRepair(bookId: string, roundId: string): string {
 }
 
 export function ledgerStatus(bookId: string, roundId: string): { summary: Record<string, number>; findings: ReturnType<typeof effectiveLedger> } {
-  return { summary: ledgerStatusSummary(bookId, roundId), findings: effectiveLedger(bookId, roundId) };
+  return { summary: ledgerStatusSummary(bookId, roundId), findings: effectiveLedgerResilient(bookId, roundId) };
 }

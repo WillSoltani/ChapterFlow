@@ -115,6 +115,8 @@ import auto_emotional_intelligence_Json from "@/book-packages/emotional-intellig
 import auto_the_happiness_hypothesis_Json from "@/book-packages/the-happiness-hypothesis.v21.json";
 import auto_stumbling_on_happiness_Json from "@/book-packages/stumbling-on-happiness.v21.json";
 import auto_behave_Json from "@/book-packages/behave.v21.json";
+import auto_dopamine_nation_Json from "@/book-packages/dopamine-nation.v21.json";
+import auto_the_molecule_of_more_Json from "@/book-packages/the-molecule-of-more.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1929,4 +1931,18 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_behave_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["behave"] = (tone) => normalizeAnyPackage(auto_behave_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "dopamine-nation" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_dopamine_nation_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["dopamine-nation"] = (tone) => normalizeAnyPackage(auto_dopamine_nation_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-molecule-of-more" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_molecule_of_more_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-molecule-of-more"] = (tone) => normalizeAnyPackage(auto_the_molecule_of_more_Json, tone);
 }

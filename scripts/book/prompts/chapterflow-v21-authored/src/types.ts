@@ -1,3 +1,6 @@
+import type { ProductionPackageManifest } from "./productionManifest.js";
+import type { GenerationRunManifestV1 } from "./generationDegradation.js";
+
 /**
  * ChapterFlow v21 — shared typed contracts.
  *
@@ -170,6 +173,7 @@ export type BookBrief = {
   title: string;
   author: string;
   thesisParagraph: string;        // 1 paragraph, the book's core argument
+  sourceAnchorIds?: string[];      // internal provenance for the thesis paragraph
   coreIdeas: CoreIdea[];          // 3–5 load-bearing ideas
   targetReader: string;           // who this teaches and why they care
   voiceCharter: VoiceCharter;     // how prose should sound for THIS book
@@ -216,6 +220,7 @@ export type ChapterDesignDoc = {
   number: number;
   title: string;
   coreMove: string;               // the one mental move this chapter teaches
+  coreMoveSourceAnchorIds?: string[]; // internal provenance for the coreMove
   exampleCount: number;           // 3–9, chosen by planner (not fixed)
   exampleSpecs: ExampleSpec[];    // one per example slot, each with unique domain
   quizFocus: QuizFocus;
@@ -229,17 +234,20 @@ export type ExampleSpec = {
   stakes: string;                 // what's at risk in the scenario
   format: ExampleFormat;
   requiredBeat: string;           // the exact beat the example must hit
+  sourceAnchorIds?: string[];      // internal provenance for this example spec
 };
 
 export type QuizFocus = {
   count: number;                  // 6–12, planner-chosen
   bloomsMix: Partial<Record<BloomsLevel, number>>; // e.g., { apply: 4, analyze: 3, evaluate: 2, understand: 1 }
   transferEmphasis: number;       // 0–1: fraction that must use novel scenarios
+  sourceAnchorIds?: string[];      // internal provenance for quiz design/key evidence
 };
 
 export type CardFocus = {
   count: number;
   retrievalPractice: boolean;     // true = novel-scenario cards; false = summary cards
+  sourceAnchorIds?: string[];      // internal provenance for card design
 };
 
 // ── Critic results ──────────────────────────────────────────────────────────
@@ -398,9 +406,11 @@ export type BookPackageV21 = {
     edition?: BookEdition;
   };
   chapters: ChapterV21[];
+  productionManifest: ProductionPackageManifest;
 };
 
 export type ChapterV21 = {
+  schemaVersion: typeof V21_SCHEMA_VERSION;
   chapterId: string;
   number: number;
   title: string;
@@ -426,7 +436,11 @@ export type ChapterV21 = {
     text: string;                       // exact sentence from the chapter
     location: string;                   // e.g., "breakdown.deepRead", "hook", "example[2].whyItMatters"
     why: string;                        // 1 sentence on what makes it stick
+    sourceAnchorIds?: string[];         // internal provenance; stripped before reader packaging
   }>;
+  /** Authoring-only audit payload. This stays in state/chapters and is stripped
+   * from reader packages by lib/readerContent.ts. */
+  authoring?: ChapterAuthoringEvidenceV21;
   /**
    * Behavior-change layer (Layer A). Optional, authored per-chapter — NEVER
    * dealt as a card with a copyable example (that is the card-seed convergence
@@ -436,6 +450,48 @@ export type ChapterV21 = {
    * "Layer B" can be added without schema churn.
    */
   experiencePlan?: ExperiencePlanV21;
+};
+
+export type SourceAnchorKind = "concept" | "testable_fact" | "named_example" | "framework";
+
+export type SourceClaimType =
+  | "book_thesis"
+  | "core_idea"
+  | "core_move"
+  | "hook"
+  | "breakdown_claim"
+  | "example"
+  | "quiz_prompt"
+  | "quiz_explanation"
+  | "quiz_key_evidence"
+  | "review_card"
+  | "implementation_guidance"
+  | "takeaway"
+  | "memorable_line";
+
+export type SourceAnchorForPrompt = {
+  id: string;
+  kind: SourceAnchorKind;
+  label: string;
+  text: string;
+  hardSpecifics?: string[];
+  supportsClaimTypes: SourceClaimType[];
+};
+
+export type ChapterSourceAnchorMapV1 = {
+  schemaVersion: "chapter-source-anchor-map-v1";
+  sourceHash: string;
+  sourceSidecarPath?: string;
+  /** Raw anchor ids observed in the validated sidecar/catalog before planning. */
+  observedAnchorIds: string[];
+  /** Effective authoring decisions: reader/internal unit path -> source anchor ids. */
+  effectiveAnchors: Record<string, string[]>;
+};
+
+export type ChapterAuthoringEvidenceV21 = {
+  schemaVersion: "chapter-authoring-v1";
+  sourceAnchors?: ChapterSourceAnchorMapV1;
+  generation?: GenerationRunManifestV1;
 };
 
 /** A "which pattern fits you?" reader personalization tag (RDRP*). The label is a
@@ -478,6 +534,7 @@ export type ExampleV21 = {
   /** Phase 3 provenance (v2): the source sidecar anchor id this scenario dramatizes.
    *  Enforced by SC11 only when the chapter's sidecar is schemaVersion source-v2. */
   sourceAnchorId?: string;
+  sourceAnchorIds?: string[];
   title: string;
   /** Short descriptors for filtering/display. 1–4 items, each ≤40 chars. */
   tags: string[];
@@ -503,6 +560,8 @@ export type QuizV21 = {
   questions: Array<{
     questionId: string;
     sourceAnchorId?: string;             // Phase 3 (v2): the testableFact this question tests
+    sourceAnchorIds?: string[];
+    keyEvidenceAnchorIds?: string[];
     prompt: string;
     choices: string[];                   // exactly 3
     correctIndex: number;                // 0, 1, 2
@@ -515,6 +574,7 @@ export type QuizV21 = {
 export type ReviewCardV21 = {
   cardId: string;
   sourceAnchorId?: string;              // Phase 3 (v2): the fact/concept this card retrieves
+  sourceAnchorIds?: string[];
   front: string;                        // 30–200 chars
   back: string;                         // 80–400 chars
   difficulty: "easy" | "medium" | "hard";
@@ -522,14 +582,19 @@ export type ReviewCardV21 = {
 
 export type ImplementationPlanV21 = {
   title: string;                        // 4–7 words naming the specific skill this plan teaches
+  titleSourceAnchorIds?: string[];
   coreSkill: string;                    // 2–4 sentences
+  coreSkillSourceAnchorIds?: string[];
   ifThenPlans: Array<{
     sourceAnchorId?: string;            // Phase 3 (v2): the anchor this if-then applies
+    sourceAnchorIds?: string[];
     context: string;                    // free-form; planner chooses relevant contexts for this book
     plan: string;                       // 1–2 sentences; "If X, then Y"
   }>;
   twentyFourHourChallenge: string;
+  twentyFourHourChallengeSourceAnchorIds?: string[];
   weeklyPractice: string;
+  weeklyPracticeSourceAnchorIds?: string[];
 };
 
 // ── Per-book prior-chapter shape awareness ──────────────────────────────────

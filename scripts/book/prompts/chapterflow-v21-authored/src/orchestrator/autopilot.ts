@@ -439,6 +439,18 @@ function defaultChapterHashes(bookId: string): Record<string, string> {
   return out;
 }
 
+/** Content hash of a single on-disk chapter, for binding author provenance to the
+ *  content a writer/repair session actually produced. Returns undefined on any read
+ *  failure so the best-effort provenance stamp degrades safely (never sinks a phase). */
+function chapterContentHashByNumber(bookId: string, n: number): string | undefined {
+  try {
+    const ch = loadBookChapters(bookId).find((c) => c.number === n);
+    return ch ? chapterContentHash(ch) : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 /** Fail-safe: any read error (no chapters dir, half-written chapter) → false, i.e. a
  *  full (non-incremental) round. We never force a carry on uncertain state. */
 function defaultAnyCarryable(bookId: string): boolean {
@@ -937,7 +949,13 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     // never runs → the headline independence check silently no-op'd). Best-effort; a sidecar
     // write failure must never sink the write phase. (Reviewers get DISTINCT session ids by
     // construction, so this never false-collides.)
-    if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, writerSessionId); } catch { /* best-effort */ } }
+    // Bind to the authored content hash: provenance is create-once per content, so a
+    // no-op writer that reproduced identical content can never overwrite a prior author
+    // (the conflict throws and is swallowed here, preserving the real author).
+    if (n != null) {
+      try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, writerSessionId, chapterContentHashByNumber(bookId, n)); }
+      catch (e) { deps.log(`[autopilot] write ch${n}: author provenance unchanged (${(e as Error).message.split(".")[0]})`); }
+    }
     return r;
   });
 }
@@ -1113,9 +1131,13 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const repairSessionId = deps.mkSessionId(sid);
       const rr = await spawnAndLog(bookId, { task, sessionId: repairSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
       if (!rr.ok) deps.log(`[autopilot] repair session ${sid} exited ${rr.exitCode}`);
-      // A repair RE-AUTHORS the chapter → update author provenance to this session, so the
-      // author≠reviewer invariant tracks the latest authoring session (best-effort).
-      if (n != null) { try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, repairSessionId); } catch { /* best-effort */ } }
+      // A repair that actually CHANGES the chapter re-authors it → author provenance moves
+      // to this session (content-bound transition). A no-op repair leaves content identical,
+      // so the create-once guard throws and the prior author is preserved (best-effort).
+      if (n != null) {
+        try { recordAuthorProvenance(`${bookId}-ch${String(n).padStart(2, "0")}`, repairSessionId, chapterContentHashByNumber(bookId, n)); }
+        catch (e) { deps.log(`[autopilot] repair ch${n}: author provenance unchanged (${(e as Error).message.split(".")[0]})`); }
+      }
     }
     const postHashes = deps.chapterHashes(bookId);
     const collateral = Object.keys(postHashes).filter((n) => !flagged.has(Number(n)) && preHashes[n] !== undefined && preHashes[n] !== postHashes[n]);
@@ -1208,7 +1230,12 @@ async function driveQcRound(bookId: string, maxParallel: number, deps: Autopilot
     submissionPresent: (card) => deps.submissionPresent(bookId, roundId, card),
     collect: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--collect", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
     generateConfirmCandidates: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--confirm-candidates", "--round", roundId]); return { ok: r.code === 0, errors: r.code === 0 ? [] : [(r.stderr || r.stdout).slice(0, 200)] }; },
-    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId]); return parseFinalizeResult(r.stdout, r.code); },
+    // finalize STAMPS each attestation's reviewerSessionId from CHAPTERFLOW_SESSION_ID, and the
+    // provenance hardening makes a missing id THROW → the write is skipped (attestationsWritten:0)
+    // → the book can never satisfy promote's fresh-PUBLISHABLE-attestation gate → no convergence.
+    // The conductor runs finalize in-process with no session id, so give it a DISTINCT finalizer id
+    // (≠ every author/reviewer id by construction) so author≠reviewer still holds AND the write lands.
+    finalize: async () => { const r = await deps.runVerb(["qc-orchestrate", bookId, "--finalize", "--round", roundId], { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("finalize") }); return parseFinalizeResult(r.stdout, r.code); },
     ledgerOpenCount: () => 0,
     recordMetrics: () => { /* autopilot run-telemetry deferred to the eval layer; qc-auto records metrics */ },
     verifyFullBook: async () => (await deps.runVerb(["qc-status", bookId])).code === 0,
@@ -1452,7 +1479,15 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
   // go-ahead, never a gate. This commits the package to main; it does NOT deploy to live
   // users (that stays a separate manual step), so a bad publish is reversible via git
   // before the next deploy.
-  const pub = await deps.runVerb(["publish-after-qc", bookId, "--round", roundId, "--commit", "--push"]);
+  // publish-after-qc re-finalizes the round in-process with attest=true. Like the conductor's own
+  // qc-orchestrate --finalize, that write needs a CHAPTERFLOW_SESSION_ID or it skips the attestation
+  // and surfaces an error → ok:false → this HALT (the I1 wedge, single-round-converge variant). Pass a
+  // DISTINCT finalizer id so the re-attest lands and author≠reviewer still holds. (publish-after-qc
+  // also self-supplies one if none is inherited — this makes the conductor's intent explicit.)
+  const pub = await deps.runVerb(
+    ["publish-after-qc", bookId, "--round", roundId, "--commit", "--push"],
+    { CHAPTERFLOW_SESSION_ID: deps.mkSessionId("publish-finalize") },
+  );
   if (pub.code !== 0) return mkHalt(bookId, "ready", "infra", `publish-after-qc failed (exit ${pub.code}): ${(pub.stderr || pub.stdout).slice(0, 300)}`);
   return {
     status: "published",

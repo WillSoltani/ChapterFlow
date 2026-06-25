@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
+import { runCli } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { stagingPlan, formatPublishAfterQcResult, publishBranchError, dirtySourceOutsidePlan, pushWithRebase, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
+import { stagingPlan, formatPublishAfterQcResult, publishBranchError, dirtySourceOutsidePlan, pushWithRebase, dirtyVsHead, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
 
 const BOOK = "zz-fixture-publish-git";
 const ROUND = "r-git";
@@ -27,6 +28,67 @@ test("publish-after-qc staging plan includes only package unless register-web ch
 
     const withRegistry = stagingPlan(BOOK, ROUND, { registeredFiles: [REGISTRY] });
     assert.deepEqual(withRegistry, [REGISTRY, PACKAGE].sort());
+  } finally {
+    cleanup();
+  }
+});
+
+test("dirtyVsHead: returns registry files that DIFFER FROM HEAD (modified/untracked/renamed), not just what one register-web call changed", () => {
+  const bookPackages = resolve(REPO_ROOT, "app/book/data/bookPackages.ts");
+  const catalog = resolve(REPO_ROOT, "app/book/data/booksCatalog.metadata.json");
+  const booksJson = resolve(REPO_ROOT, "scripts/book/prompts/chapterflow-v21-authored/books.json");
+  const registry = [bookPackages, catalog, booksJson];
+
+  // git status --porcelain: catalog modified (M ), books.json modified+staged (M ), bookPackages CLEAN
+  // (absent). The behave orphan: a prior run left the catalog dirty though THIS call changed nothing —
+  // diffing vs HEAD still picks it up. Paths are repo-relative in porcelain.
+  const status =
+    " M app/book/data/booksCatalog.metadata.json\n" +
+    "M  scripts/book/prompts/chapterflow-v21-authored/books.json\n";
+  const runner = (_cmd: string, a: string[]): string => (a[0] === "status" ? status : "");
+  assert.deepEqual(dirtyVsHead(registry, runner).sort(), [catalog, booksJson].sort(), "dirty registry files (incl. books.json) are picked up; the clean one is dropped");
+
+  // A renamed entry → take the destination path.
+  const renamed = (_cmd: string, a: string[]): string => (a[0] === "status" ? "R  app/book/data/old.ts -> app/book/data/bookPackages.ts\n" : "");
+  assert.deepEqual(dirtyVsHead(registry, renamed), [bookPackages]);
+
+  // Clean tree / git failure → [] (publish then stages only the package, as before).
+  assert.deepEqual(dirtyVsHead(registry, () => ""), []);
+  assert.deepEqual(dirtyVsHead(registry, () => { throw new Error("git unavailable"); }), []);
+  assert.deepEqual(dirtyVsHead([], runner), []);
+});
+
+test("stagingPlan: the default promote set now includes books.json (so a dirty registration is committed, not orphaned, and a pre-staged books.json is in-plan)", () => {
+  cleanup();
+  try {
+    mkdirSync(dirname(PACKAGE), { recursive: true });
+    writeFileSync(PACKAGE, JSON.stringify({ schemaVersion: "chapterflow-book-v21", book: { bookId: BOOK }, chapters: [] }) + "\n", "utf8");
+    const booksJson = resolve(REPO_ROOT, "scripts/book/prompts/chapterflow-v21-authored/books.json");
+    assert.ok(existsSync(booksJson), "fixture expects the pipeline books.json to exist");
+    // No registeredFiles override ⇒ uses registryFiles(), which now lists books.json.
+    const plan = stagingPlan(BOOK, ROUND);
+    assert.ok(plan.includes(booksJson), "books.json is part of the default promote set");
+    assert.ok(plan.includes(PACKAGE), "the package is always staged");
+  } finally {
+    cleanup();
+  }
+});
+
+test("register-web refuses to update registries for an unverified package", () => {
+  cleanup();
+  const before = readFileSync(REGISTRY, "utf8");
+  try {
+    mkdirSync(dirname(PACKAGE), { recursive: true });
+    writeFileSync(PACKAGE, JSON.stringify({
+      schemaVersion: "chapterflow-book-v21",
+      book: { bookId: BOOK, title: "Bad Fixture", author: "Nobody" },
+      chapters: [],
+    }, null, 2) + "\n", "utf8");
+
+    const result = runCli(["register-web", BOOK, "--skip-ingest"]);
+    assert.equal(result.status, 1);
+    assert.match(result.out, /not verified|refusing/i);
+    assert.equal(readFileSync(REGISTRY, "utf8"), before, "registry bytes must stay untouched when package verification fails");
   } finally {
     cleanup();
   }

@@ -19,9 +19,19 @@ export type SubmissionRole = typeof SUBMISSION_ROLES[number];
 
 export type FindingSeverity = "blocker" | "major" | "minor" | "advisory";
 
+export type FindingProvenanceSource = {
+  sourceRole: SubmissionRole;
+  submissionFile: string;
+  sourceId?: string;
+  sourceKind?: "raw_submission" | "derived_artifact";
+};
+
 export type SubmissionFinding = {
   chapterNumber?: number;
   chapters?: number[];
+  /** Optional reviewer-supplied stable key for a grounded sweep defect. Sweep
+   *  ingestion verifies this against the server-derived key before persisting. */
+  defectKey?: string;
   unitId: string;
   repairClass: string;
   severity: FindingSeverity;
@@ -29,6 +39,7 @@ export type SubmissionFinding = {
   problem: string;
   expectedFix: string;
   globalTheme?: string;
+  provenanceSources?: FindingProvenanceSource[];
 };
 
 export type ValidatedSweepSubmission = {
@@ -123,6 +134,13 @@ export type SubmissionValidationResult =
   | { ok: true; submission: ValidatedSubmission }
   | { ok: false; errors: string[] };
 
+export type SubmissionValidationOptions = {
+  /** Fresh qc-submit ingestion requires a local session id. Historical files are
+   *  still parseable without it, but legacy/unknown provenance cannot certify
+   *  reviewer independence at finalize. */
+  requireReviewerSessionId?: boolean;
+};
+
 const AXES = Object.keys(AXIS_WEIGHTS) as AxisId[];
 const NON_KEY_AXES = AXES.filter((axis) => axis !== "quiz_key_correctness");
 const TIERS: FailureTier[] = ["CORRUPTION", "GENERATED_DRAFT", "PUBLISHABLE"];
@@ -156,6 +174,7 @@ function normalizeFinding(raw: any, errors: string[], context: string, defaults:
   const f: SubmissionFinding = {
     chapterNumber: Number.isFinite(chapterNumber) ? chapterNumber : undefined,
     chapters,
+    defectKey: nonempty(raw?.defectKey) ? String(raw.defectKey) : defaults.defectKey,
     unitId: String(raw?.unitId ?? raw?.unit ?? defaults.unitId ?? ""),
     repairClass: String(raw?.repairClass ?? raw?.axis ?? raw?.family ?? defaults.repairClass ?? ""),
     severity: normalizeSeverity(raw?.severity ?? defaults.severity),
@@ -187,14 +206,21 @@ function validateEnvelope(bookId: string, roundId: string, role: SubmissionRole,
   if (!roleMatches(role, raw?.role, schema)) errors.push(`role mismatch: expected ${role}, got ${String(raw?.role)}`);
 }
 
+function validateReviewerSession(raw: any, errors: string[], options: SubmissionValidationOptions): void {
+  if (options.requireReviewerSessionId && !nonempty(raw?.reviewerSessionId)) {
+    errors.push("reviewerSessionId is required for new QC submissions; set CHAPTERFLOW_SESSION_ID before qc-submit");
+  }
+}
+
 function confidenceValid(value: unknown): boolean {
   if (typeof value === "number") return Number.isFinite(value) && value >= 0 && value <= 1;
   return value === "low" || value === "medium" || value === "high";
 }
 
-function validateSweep(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
+function validateSweep(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, "qc-sweep-submission-v1", errors);
+  validateReviewerSession(raw, errors, options);
   if (role !== "sweep") errors.push("qc-sweep-submission-v1 must be submitted with role sweep");
   if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
   if (!(VERDICTS as readonly string[]).includes(raw?.verdict)) errors.push("verdict must be PASS, REVISE, or CORRUPTION");
@@ -246,9 +272,10 @@ function validateSweep(bookId: string, roundId: string, role: SubmissionRole, ra
   };
 }
 
-function validateKeyDerive(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
+function validateKeyDerive(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, "qc-key-derive-v2", errors);
+  validateReviewerSession(raw, errors, options);
   if (role !== "keyA" && role !== "keyB") errors.push("qc-key-derive-v2 must be submitted with role keyA or keyB");
   if (!Array.isArray(raw?.chapters)) errors.push("chapters[] is required");
   const chapters = Array.isArray(raw?.chapters) ? raw.chapters.map((entry: any, ci: number) => {
@@ -297,9 +324,10 @@ function normalizeHit(raw: any, errors: string[], context: string): AxisHit {
   return hit;
 }
 
-function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw: any, schema: "qc-bar-read-v1" | "qc-bar-read-v2"): SubmissionValidationResult {
+function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw: any, schema: "qc-bar-read-v1" | "qc-bar-read-v2", options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, schema, errors);
+  validateReviewerSession(raw, errors, options);
   if (role !== "bar") errors.push(`${schema} must be submitted with role bar`);
   if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
   const chapterNumber = Number(raw?.chapterNumber);
@@ -361,9 +389,10 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
   };
 }
 
-function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
+function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, "qc-confirm-read-v1", errors);
+  validateReviewerSession(raw, errors, options);
   if (role !== "confirm") errors.push("qc-confirm-read-v1 must be submitted with role confirm");
   if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
   const chapterNumber = Number(raw?.chapterNumber);
@@ -380,9 +409,10 @@ function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, 
   return { ok: true, submission: { schemaVersion: "qc-confirm-read-v1", bookId, roundId, role: "confirm", reviewer: String(raw.reviewer), reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined, chapterNumber, chapterId: String(raw.chapterId), contentHash: String(raw.contentHash), decision: raw.decision, reason, findings } };
 }
 
-function validateMajor(bookId: string, roundId: string, role: SubmissionRole, raw: any): SubmissionValidationResult {
+function validateMajor(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, "qc-major-triage-v1", errors);
+  validateReviewerSession(raw, errors, options);
   if (role !== "major") errors.push("qc-major-triage-v1 must be submitted with role major");
   if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
   const findings = normalizeFindings(raw?.findings ?? [], errors, "major", { repairClass: "major_triage", severity: "major" });
@@ -398,21 +428,21 @@ function validateMajor(bookId: string, roundId: string, role: SubmissionRole, ra
   return { ok: true, submission: { schemaVersion: "qc-major-triage-v1", bookId, roundId, role: "major", reviewer: String(raw.reviewer), reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined, findings, dispositions } };
 }
 
-export function validateSubmission(bookId: string, roundId: string, role: SubmissionRole, raw: unknown): SubmissionValidationResult {
+export function validateSubmission(bookId: string, roundId: string, role: SubmissionRole, raw: unknown, options: SubmissionValidationOptions = {}): SubmissionValidationResult {
   if (!isObject(raw)) return { ok: false, errors: ["submission must be a JSON object"] };
   switch (raw.schemaVersion) {
     case "qc-sweep-submission-v1":
-      return validateSweep(bookId, roundId, role, raw);
+      return validateSweep(bookId, roundId, role, raw, options);
     case "qc-key-derive-v2":
-      return validateKeyDerive(bookId, roundId, role, raw);
+      return validateKeyDerive(bookId, roundId, role, raw, options);
     case "qc-bar-read-v1":
-      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v1");
+      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v1", options);
     case "qc-bar-read-v2":
-      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v2");
+      return validateBar(bookId, roundId, role, raw, "qc-bar-read-v2", options);
     case "qc-confirm-read-v1":
-      return validateConfirm(bookId, roundId, role, raw);
+      return validateConfirm(bookId, roundId, role, raw, options);
     case "qc-major-triage-v1":
-      return validateMajor(bookId, roundId, role, raw);
+      return validateMajor(bookId, roundId, role, raw, options);
     default:
       return { ok: false, errors: [`unknown schemaVersion: ${String((raw as any).schemaVersion)}`] };
   }

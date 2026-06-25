@@ -7,11 +7,13 @@
 
 import assert from "node:assert/strict";
 import { rmSync } from "node:fs";
+import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { makeChapter } from "./helpers.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { REQUIRED_SWEEP_FAMILIES, carryForwardSweep, loadSweepRecord, sweepCarryable, sweepRecordPath, type SweepRecord } from "../src/qc/sweep.js";
+import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-sweep-carry";
 const ROUND = "r-prior-sweep";
@@ -70,5 +72,6 @@ test("carryForwardSweep: re-stamps the prior PASS onto a new round without re-ju
     assert.deepEqual(loaded?.contentHashes, prior.contentHashes, "the carried hashes still match the book");
   } finally {
     rmSync(sweepRecordPath(BOOK), { force: true });
+    rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   }
 });

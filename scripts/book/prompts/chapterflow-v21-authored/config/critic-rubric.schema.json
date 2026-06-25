@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "critic-rubric.schema.json",
+  "title": "ChapterFlow Critic Rubric",
+  "type": "object",
+  "required": ["version", "shipGate", "checks"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "shipGate": { "type": "object" },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "appliesTo", "severity", "kind", "description"],
+        "properties": {
+          "id": { "type": "string" },
+          "appliesTo": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "severity": { "type": "string" },
+          "kind": { "type": "string" },
+          "description": { "type": "string" },
+          "regex": { "type": "object" },
+          "rules": { "type": "object" },
+          "field": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

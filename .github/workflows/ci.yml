@@ -84,6 +84,40 @@ jobs:
         working-directory: infra
         run: npm test
 
+  # ── Hard gate: v21 pipeline workspace package ───────────────────────────
+  # This runs from the same clean checkout and root package-lock as the app.
+  # The pipeline tests force no-API mode and use synthetic fixtures only.
+  pipeline-checks:
+    name: v21 Pipeline Typecheck + Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CHAPTERFLOW_NO_API_CODEX_QC: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: Pipeline typecheck
+        run: npm run pipeline:typecheck
+
+      - name: Pipeline tests
+        run: npm run pipeline:test
+
+      - name: Pipeline doctor
+        run: npm run pipeline:doctor
+
+      - name: Pipeline build
+        run: npm run pipeline:build
+
   # ── Non-required: golden-journey integration test (DynamoDB Local) ────────
   # PR-G / issue #17. Drives the REAL repo modules (entitlement reserve, quiz
   # outcome transaction, flow-points award, account-status, webhook idempotency,
@@ -375,42 +409,6 @@ jobs:
 
       - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
         run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev
-
-  # ── Hard gate: v21 book-pipeline typecheck + tests ───────────────────────
-  # The pipeline (scripts/book/prompts/chapterflow-v21-authored) has NO package.json
-  # of its own — it runs on the repo-root node_modules via `tsx`, and its tests live
-  # under a bespoke runner (tests/run.ts). The app's `npm run test` glob is app/ + lib/
-  # ONLY, so WITHOUT this job the pipeline's behavior tests (the autopilot conductor,
-  # qc-converge, finalize evidence, reviewer identity, …) are NOT executed by CI —
-  # "green" would not have exercised them. Hard gate on every PR + push to main.
-  pipeline-checks:
-    name: Book Pipeline Tests + Typecheck
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: scripts/book/prompts/chapterflow-v21-authored
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 20
-          cache: npm
-          # The pipeline dir has no lockfile; deps resolve from the repo-root install.
-          cache-dependency-path: package-lock.json
-
-      - name: Install dependencies (repo root)
-        working-directory: .
-        run: npm ci --include=optional
-
-      - name: Type-check pipeline
-        run: npx tsc -p . --noEmit
-
-      - name: Run pipeline tests
-        run: npx tsx tests/run.ts
 
   # ── Hard gate: no committed build artifacts or hardcoded secrets ─────────
   # Public repo. A committed Turbopack cache once leaked a live Stripe key;

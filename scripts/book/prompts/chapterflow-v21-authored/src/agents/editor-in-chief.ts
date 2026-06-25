@@ -11,6 +11,7 @@ import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
 import { getAuthorVoiceProfile } from "../critics/shared.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
 import { BookBrief } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -78,8 +79,9 @@ function buildUserPrompt(input: EditorInChiefInput): string {
   parts.push(`author: ${input.author}`);
   if (input.sourceExcerpt) {
     parts.push("");
-    parts.push(`# Source excerpt`);
-    parts.push(input.sourceExcerpt);
+    parts.push(input.sourceExcerpt.includes("UNTRUSTED SOURCE DATA")
+      ? input.sourceExcerpt
+      : renderUntrustedSourceBlock("Source excerpt", input.sourceExcerpt));
   }
   if (input.additionalGuidance) {
     parts.push("");

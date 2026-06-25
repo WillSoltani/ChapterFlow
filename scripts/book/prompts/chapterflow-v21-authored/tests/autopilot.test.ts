@@ -46,15 +46,17 @@ function chap(n: number, written = true, gate = true, qc: ChapterStatus["qcVerdi
 }
 
 /** Happy stub deps: research→write→qc→ready all pass; records spawns + verbs. */
-function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { deps: Partial<AutopilotDeps>; spawns: { sessionId: string }[]; verbs: string[][] } {
+function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { deps: Partial<AutopilotDeps>; spawns: { sessionId: string }[]; verbs: string[][]; verbEnvs: Array<Record<string, string> | undefined> } {
   const spawns: { sessionId: string }[] = [];
   const verbs: string[][] = [];
+  const verbEnvs: Array<Record<string, string> | undefined> = [];
   let si = 0;
   let n = 0;
   const deps: Partial<AutopilotDeps> = {
     statusOf: () => statuses[Math.min(si++, statuses.length - 1)],
-    runVerb: async (args) => {
+    runVerb: async (args, env) => {
       verbs.push(args);
+      verbEnvs.push(env);
       if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
       return { code: 0, stdout: "", stderr: "" };
     },
@@ -90,7 +92,7 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
     log: () => {},
     ...over,
   };
-  return { deps, spawns, verbs };
+  return { deps, spawns, verbs, verbEnvs };
 }
 
 // ── pure helpers ─────────────────────────────────────────────────────────────
@@ -367,6 +369,22 @@ test("auto-publish ships on a clean QC pass — runs the promote gate, then comm
   assert.ok(publish, "auto-publish runs publish-after-qc");
   assert.ok(publish!.includes("--commit"), "auto-publish commits the package to main");
   assert.ok(publish!.includes("--push"), "auto-publish pushes to main");
+});
+
+test("auto-publish passes a finalizer CHAPTERFLOW_SESSION_ID to publish-after-qc (I1) — so the publish subprocess's in-process re-finalize can attest instead of wedging", async () => {
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  const { deps, verbs, verbEnvs } = happyDeps(statuses);
+  const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
+  assert.equal(outcome.status, "published");
+  const i = verbs.findIndex((v) => v[0] === "publish-after-qc");
+  assert.ok(i >= 0, "auto-publish runs publish-after-qc");
+  // publish-after-qc re-finalizes in-process with attest=true; without a session id finalize SKIPS
+  // every attestation and surfaces an error → ok:false → HALT (the I1 wedge). The conductor must pass a
+  // distinct finalizer session id (≠ author/reviewer ids) so the re-attest lands.
+  assert.ok(verbEnvs[i]?.CHAPTERFLOW_SESSION_ID, "the conductor passes a distinct finalizer session id to publish-after-qc (I1)");
 });
 
 test("auto-publish HALTS (never bypasses) when the promote gate fails", async () => {

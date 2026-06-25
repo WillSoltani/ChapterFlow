@@ -82,10 +82,10 @@ test("cli: catalog-audit runs on the real corpus and reports the known fingerpri
   assert.match(out, /deadline tic: \d+%/);
 });
 
-test("name-plan: names are unique WITHIN a book; cross-book reuse is allowed (owner policy)", () => {
-  // Policy (2026-06-13): names MAY repeat across books — only within-book
-  // uniqueness is enforced. The cross-book overlap is reported for visibility,
-  // never excluded (the bank is curated American/Canadian, so reuse is fine).
+test("name-plan: names are unique within a book and report catalog overlap diagnostics", () => {
+  // The shared policy excludes current-book planned names and recent ledgered
+  // cooldown names. The raw chapter scan remains an audit diagnostic, not the
+  // accounting source of truth.
   const { planNames, bankNamesUsedByOtherBooks } = require("../src/librarian/namePlan.js") as typeof import("../src/librarian/namePlan.js");
   const plan = planNames("zz-fixture-fresh-names", 1, 3);
   const dealt = Object.values(plan.allocation).flat();
@@ -93,7 +93,7 @@ test("name-plan: names are unique WITHIN a book; cross-book reuse is allowed (ow
   // WITHIN-book uniqueness: no protagonist name is dealt to two chapters.
   assert.equal(new Set(dealt).size, dealt.length, "names must be unique within a book");
 
-  // cross-book reuse is permitted; diagnostics expose it as an informational count.
+  // The raw cross-book scan is still exposed as an informational audit count.
   assert.equal(typeof plan.diagnostics.crossBookReused, "number", "diagnostics must expose the cross-book reuse count");
   const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
   assert.ok(taken.size > 100, `cross-book scan should still see the real catalog (got ${taken.size})`);

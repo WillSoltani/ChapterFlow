@@ -22,6 +22,7 @@ function baseRec(verdict: SweepRecord["verdict"], findings: FindingInput[]): Swe
     roundId: ROUND,
     verdict,
     reviewer: "test",
+    reviewerSessionId: `session-${ROUND}`,
     attestedAt: "2026-01-01T00:00:00.000Z",
     contentHashes: { "2": "h2", "5": "h5" },
     checkedFamilies: [],
@@ -101,6 +102,10 @@ const FQ = (family: SweepRecord["findings"][number]["family"], quote: string, ch
   expectedFix: "f",
 });
 
+function priorRec(rec: SweepRecord, reviewerSessionId = "session-prior"): SweepRecord {
+  return { ...rec, roundId: "r-prior-sweep-status", reviewerSessionId };
+}
+
 test("sweepChapterStatus: a repeated_unit BLOCKER anchored on a non-distinctive quote ('had already') does NOT gate (the-undoing-project regression)", () => {
   // r20260620130507-d0c017: three blocker repeated_unit findings quoting the tense auxiliaries
   // 'had already' / 'has already' / 'was already' demoted 7/12 -> 1/12. A 2-word common phrase
@@ -143,8 +148,20 @@ test("Mechanism 1: an UNCORROBORATED gate on byte-frozen content (prior PASSed i
 
 test("Mechanism 1: a CORROBORATED gate (prior ALSO gated the chapter) STILL FAILs over frozen content", () => {
   const cur = baseRec("REVISE", [F([2], "blocker")]);
-  const priorGated = baseRec("REVISE", [F([2], "blocker")]); // prior gated ch2 too → corroborated
+  const priorGated = priorRec(baseRec("REVISE", [F([2], "blocker")])); // same defect, different session → corroborated
   assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorGated), "FAIL", "two independent reads agreeing on a gate must block");
+});
+
+test("Mechanism 1: a prior persona defect does NOT corroborate a current unrelated location defect on frozen content", () => {
+  const cur = baseRec("REVISE", [FQ("location_stamping", "the dock", [2], "blocker")]);
+  const priorDifferentDefect = priorRec(baseRec("REVISE", [FQ("persona_drift", "Genevieve", [2], "blocker")]));
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, priorDifferentDefect), "PASS", "corroboration requires the same grounded defect, not just the same chapter");
+});
+
+test("Mechanism 1: the same submission copied into two rounds does NOT count as two independent reads", () => {
+  const cur = baseRec("REVISE", [F([2], "blocker")]);
+  const copiedPrior = priorRec(baseRec("REVISE", [F([2], "blocker")]), cur.reviewerSessionId);
+  assert.equal(sweepChapterStatus(cur, 2, "h2", ROUND, copiedPrior), "PASS", "same reviewer session cannot corroborate itself");
 });
 
 test("Mechanism 1: when the chapter's CONTENT CHANGED since the prior round, a fresh single read is trusted (gate stands)", () => {

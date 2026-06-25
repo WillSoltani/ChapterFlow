@@ -2,13 +2,14 @@ import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-import { attestationPath, loadAttestation } from "../src/critics/qcAttestation.js";
+import { attestationPath, chapterContentHash, loadAttestation } from "../src/critics/qcAttestation.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { barScoresTemplatePath, validateAndWriteBarAttestations, writeBarPack } from "../src/qc/barReview.js";
-import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
+import { orchestratorRoundDir, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
+import type { ChapterV21 } from "../src/types.js";
 import { test } from "./harness.js";
-import { cleanTmp, makeChapter, STATE_CHAPTERS, TMP_DIR } from "./helpers.js";
+import { RUNS_DIR, cleanTmp, makeChapter, STATE_CHAPTERS, STATE_INDEXES, TMP_DIR, writeCanonicalIndexFixture, writeSourceEvidenceFixture } from "./helpers.js";
 
 const BOOK = "zz-fixture-bar-review";
 const ROUND = "r-bar-review";
@@ -18,6 +19,8 @@ function cleanup(): void {
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
     rmSync(attestationPath(BOOK, n), { force: true });
   }
+  rmSync(resolve(STATE_INDEXES, `${BOOK}.json`), { force: true });
+  rmSync(resolve(RUNS_DIR, BOOK), { recursive: true, force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
   rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
@@ -27,11 +30,34 @@ function cleanup(): void {
 function setup(): ReturnType<typeof openQcRound>["tokens"] {
   cleanup();
   mkdirSync(STATE_CHAPTERS, { recursive: true });
+  const chapterSpecs = [];
+  const chapterBodies: ChapterV21[] = [];
   for (let n = 1; n <= 2; n++) {
     const ch = makeChapter(BOOK, n);
+    chapterSpecs.push({ chapterId: ch.chapterId, number: ch.number, title: ch.title });
+    chapterBodies.push(ch);
     writeFileSync(resolve(STATE_CHAPTERS, `${ch.chapterId}.v21-native.chapter.json`), JSON.stringify(ch, null, 2), "utf8");
   }
-  return openQcRound(BOOK, ROUND).tokens;
+  writeCanonicalIndexFixture(BOOK, chapterSpecs);
+  writeSourceEvidenceFixture(BOOK, chapterSpecs);
+  const tokens = openQcRound(BOOK, ROUND).tokens;
+  for (const ch of chapterBodies) {
+    writeConfirmReadArtifact({
+      schemaVersion: "qc-confirm-read-v1",
+      bookId: BOOK,
+      roundId: ROUND,
+      role: "confirm",
+      reviewer: "codex-qc:bar-review-confirm-fixture",
+      reviewerSessionId: `fixture-bar-confirm-${ch.number}`,
+      chapterNumber: ch.number,
+      chapterId: ch.chapterId,
+      contentHash: chapterContentHash(ch),
+      decision: "PUBLISHABLE",
+      reason: "Synthetic confirm fixture agrees the chapter is publishable.",
+      findings: [],
+    });
+  }
+  return tokens;
 }
 
 function writeFilledScores(mutator?: (scores: any) => void): string {

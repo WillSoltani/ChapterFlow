@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { test, skip } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, runCli, writeFixtureBook } from "./helpers.js";
+import { test } from "./harness.js";
+import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, runCli, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
+import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import type { ChapterV21 } from "../src/types.js";
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
@@ -12,24 +13,21 @@ import { keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKe
 import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
 import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
-import { sourceHashFor, sourceSidecarPathFor } from "../src/qc/sourceV2Gate.js";
-import { publishAfterQc, formatPreflightChecklist } from "../src/qc/publishAfterQc.js";
+import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
+import { publishAfterQc, formatPreflightChecklist, hermeticSelfTestEnv } from "../src/qc/publishAfterQc.js";
+import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const GREEN_BOOK = "zz-fixture-publish-green";
 const REVISE_BOOK = "zz-fixture-publish-revise";
 const INCOMPLETE_BOOK = "zz-fixture-publish-incomplete";
 const ROUND = "r-publish";
 const RUN = "20260613T000000Z";
-const SOURCE_BOOK = "stillness-is-the-key";
 const SOURCE_CHAPTER_NUMBER = 5;
-
-// Gold-corpus fixtures (clone a real chapter + its uncommitted source sidecar): run on the
-// authoring box, SKIP (loudly) where .chapterflow/runs is absent (CI / fresh checkout), per
-// the fixture policy. The no-fixture tests (env guard, formatPreflightChecklist) stay live.
-const goldTest: (name: string, fn: () => void | Promise<void>) => void =
-  sourceSidecarPathFor(SOURCE_BOOK, SOURCE_CHAPTER_NUMBER)
-    ? test
-    : (name) => skip(name, `gold source sidecar for ${SOURCE_BOOK} ch${SOURCE_CHAPTER_NUMBER} (.chapterflow/runs) not present`);
+const AUTHOR_SESSION = "fixture-publish-author";
+const SWEEP_SESSION = "fixture-publish-sweep";
+const BAR_SESSION = "fixture-publish-bar";
+const CONFIRM_SESSION = "fixture-publish-confirm";
+const ATTEST_SESSION = "fixture-publish-attest";
 
 function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
   for (const bookId of bookIds) {
@@ -51,27 +49,92 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(resolve(PIPELINE_DIR, "state", "plans", `${bookId}-ch05.manual-plan.json`), { force: true });
     rmSync(attestationPath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
     rmSync(manualKeyJudgePath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
+    rmSync(provenancePath(`${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`), { force: true });
+    rmSync(sourceVerifyRecordPath(bookId), { force: true });
   }
 }
 
 function clonedChapter(bookId: string): ChapterV21 {
-  const sourcePath = resolve(STATE_CHAPTERS, `${SOURCE_BOOK}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.v21-native.chapter.json`);
-  const chapter = JSON.parse(readFileSync(sourcePath, "utf8")) as ChapterV21;
-  chapter.chapterId = `${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`;
+  const chapter = makeGateCleanChapter(bookId, SOURCE_CHAPTER_NUMBER);
+  const nn = String(SOURCE_CHAPTER_NUMBER).padStart(2, "0");
+  const factAnchor = `ch${nn}.fact.1`;
+  const exampleAnchors = [
+    `ch${nn}.ex.northstar-lab`,
+    `ch${nn}.ex.harbor-clinic`,
+    `ch${nn}.ex.atlas-foods`,
+    `ch${nn}.ex.shah-onboarding`,
+    `ch${nn}.ex.cedar-invoice`,
+    `ch${nn}.ex.riverton-library`,
+  ];
+  const scenarios = [
+    "On Monday morning at Northstar Lab's intake desk, Rina sees that the support ticket count no longer matches the May 2026 source note. She pauses the queue, checks the 37 to 12 audit record, and fixes the entry before another team uses it.",
+    "At Harbor Clinic before Friday discharge, Quin finds 18 forms missing from the signed consent packet. He compares the consent list with the source note and keeps the discharge review from moving on a guessed count.",
+    "During Atlas Foods' June 2026 launch review at the warehouse dock, Bria is the operations manager reviewing a cold-chain sensor note that conflicts with the release label. The team delays the shipment by 9 days, traces the failed device, and repairs the batch record before product leaves.",
+    "In Shah's onboarding room at 9:00 a.m., Soren is the training lead reading two handoff sheets that name different owners. She checks the source note, names one owner, and keeps the new hire from following a private version.",
+    "At the Cedar invoice pilot before quarterly close, Ivo catches 6 duplicate invoices in the source packet. He restores the vendor context and assigns the follow-up before the summary is approved.",
+    "Inside Riverton Library's Tuesday archive queue, Yara finds requests split across 5 inboxes. The group chooses the source queue, links the evidence, and blocks the scattered histories from becoming policy.",
+  ];
+  chapter.counterintuition = "Unit5 restraint works because the original custody record has not gone stale.";
+  chapter.breakdown.fastRead =
+    "Northstar Lab saw ticket reopenings fall from 37 to 12 after a May 2026 intake checkpoint. The lesson is simple: pause early, compare the record, and name one owner. Harbor Clinic found 18 missing consent forms before Friday discharge because Quin checked the packet. Atlas Foods delayed the June launch by 9 days when Bria found the bad cold-chain sensor. A small check keeps the wrong value from spreading.";
+  chapter.breakdown.deepRead += " Early verification keeps the rhythm problem small enough for one owner to repair.";
+  chapter.breakdown.fullRead += " A visible owner turns scattered sonata signals into one decision trail.";
+  chapter.memorableLines = [
+    { text: "Northstar Lab saw ticket reopenings fall from 37 to 12 after a May 2026 intake checkpoint.", location: "fastRead", why: "It names the source-backed checkpoint." },
+    { text: "Early verification keeps the rhythm problem small enough for one owner to repair.", location: "deepRead", why: "It explains why early repair is cheaper." },
+    { text: "A visible owner turns scattered sonata signals into one decision trail.", location: "fullRead", why: "It ties ownership to evidence." },
+  ];
   for (let i = 0; i < chapter.examples.length; i++) {
+    chapter.examples[i].sourceAnchorIds = [exampleAnchors[i]];
+    chapter.examples[i].scenario = scenarios[i];
     (chapter.examples[i] as any).planSpec = {
       ...(chapter.examples[i] as any).planSpec,
       venue: `Fixture venue ${i + 1}`,
       exemplar: "",
     };
   }
+  const effectiveAnchors: Record<string, string[]> = {
+    hook: [factAnchor],
+    counterintuition: [factAnchor],
+    "breakdown.fastRead": [factAnchor],
+    "breakdown.deepRead": [factAnchor],
+    "breakdown.fullRead": [factAnchor],
+    keyTakeaway: [factAnchor],
+    tryThisNow: [factAnchor],
+    "implementationPlan.title": [factAnchor],
+    "implementationPlan.coreSkill": [factAnchor],
+    "implementationPlan.twentyFourHourChallenge": [factAnchor],
+    "implementationPlan.weeklyPractice": [factAnchor],
+  };
+  chapter.examples.forEach((_, i) => { effectiveAnchors[`examples[${i}]`] = [exampleAnchors[i]]; });
+  chapter.quiz.questions.forEach((_, i) => { effectiveAnchors[`quiz.questions[${i}]`] = [factAnchor]; });
+  chapter.reviewCards.forEach((card, i) => {
+    effectiveAnchors[`reviewCards[${i}]`] = [factAnchor];
+    card.sourceAnchorIds = [factAnchor];
+  });
+  chapter.implementationPlan.ifThenPlans.forEach((plan, i) => {
+    effectiveAnchors[`implementationPlan.ifThenPlans[${i}]`] = [factAnchor];
+    plan.sourceAnchorIds = [factAnchor];
+  });
+  chapter.memorableLines?.forEach((line, i) => {
+    effectiveAnchors[`memorableLines[${i}]`] = [factAnchor];
+    line.sourceAnchorIds = [factAnchor];
+  });
+  chapter.authoring = {
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: "sha256:publish-preflight-fixture",
+      observedAnchorIds: [factAnchor, ...exampleAnchors],
+      effectiveAnchors,
+    },
+  };
   return chapter;
 }
 
 function writeSourceSidecar(bookId: string): void {
-  const sourcePath = sourceSidecarPathFor(SOURCE_BOOK, SOURCE_CHAPTER_NUMBER);
-  assert.ok(sourcePath, `missing source sidecar for ${SOURCE_BOOK} ch${SOURCE_CHAPTER_NUMBER}`);
-  const sidecar = JSON.parse(readFileSync(sourcePath, "utf8"));
+  const chapter = clonedChapter(bookId);
+  const sidecar = makeSourceV2SidecarFixture({ chapterNumber: SOURCE_CHAPTER_NUMBER, chapterTitle: chapter.title });
   sidecar.namedExamples = [
     ...(Array.isArray(sidecar.namedExamples) ? sidecar.namedExamples : []),
     {
@@ -80,10 +143,36 @@ function writeSourceSidecar(bookId: string): void {
       summary: "A synthetic fixture example that gives the source-v2 gate a third named example without changing the chapter text under test.",
       teachesWhat: "Stillness can be practiced as a deliberate pause before action.",
       hardSpecifics: ["Fixture deliberation", "deliberate pause", "response choice"],
-      realWorld: true,
+      realWorld: false,
     },
-  ].slice(0, 3);
-  const dir = resolve(REPO_ROOT, ".chapterflow/runs", bookId, RUN, "sidecars/source");
+    {
+      id: "ch05.ex.shah-onboarding",
+      label: "ch05 Shah onboarding owner",
+      summary: "Shah's onboarding team reduced handoff errors by 41 percent after naming one owner.",
+      teachesWhat: "A single owner keeps conflicting handoff records from becoming private instructions.",
+      hardSpecifics: ["Shah", "41 percent", "one owner"],
+      realWorld: false,
+    },
+    {
+      id: "ch05.ex.cedar-invoice",
+      label: "ch05 Cedar invoice pilot",
+      summary: "The Cedar invoice pilot caught 6 duplicate invoices before the quarterly close on March 31.",
+      teachesWhat: "An invoice check works while vendor context is still close enough to repair.",
+      hardSpecifics: ["Cedar", "6 duplicate invoices", "March 31"],
+      realWorld: false,
+    },
+    {
+      id: "ch05.ex.riverton-library",
+      label: "ch05 Riverton Library archive queue",
+      summary: "Riverton Library moved archive requests from 5 inboxes into one Tuesday queue.",
+      teachesWhat: "A shared queue preserves the audit path when requests would otherwise scatter.",
+      hardSpecifics: ["Riverton Library", "5 inboxes", "Tuesday queue"],
+      realWorld: false,
+    },
+  ];
+  const runDir = resolve(REPO_ROOT, ".chapterflow/runs", bookId, RUN);
+  writeResearchRunManifestFixture({ runDir, bookId, chapters: [{ number: SOURCE_CHAPTER_NUMBER, title: chapter.title }] });
+  const dir = resolve(runDir, "sidecars/source");
   mkdirSync(dir, { recursive: true });
   writeFileSync(resolve(dir, `ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}.source.json`), JSON.stringify(sidecar, null, 2), "utf8");
 }
@@ -91,6 +180,7 @@ function writeSourceSidecar(bookId: string): void {
 function writeBookState(bookId: string, chapter: ChapterV21): void {
   writeFixtureBook(STATE_CHAPTERS, [chapter]);
   writeSourceSidecar(bookId);
+  recordAuthorProvenance(chapter.chapterId, AUTHOR_SESSION);
   const indexPath = resolve(PIPELINE_DIR, "state", "indexes", `${bookId}.json`);
   mkdirSync(dirname(indexPath), { recursive: true });
   writeFileSync(indexPath, JSON.stringify([{ chapterNumber: chapter.number, chapterId: chapter.chapterId, chapterTitle: chapter.title }], null, 2) + "\n", "utf8");
@@ -133,6 +223,7 @@ function sweepPassSubmission(bookId: string) {
     roundId: ROUND,
     role: "sweep" as const,
     reviewer: "codex-qc:publish-sweep",
+    reviewerSessionId: SWEEP_SESSION,
     verdict: "PASS" as const,
     checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
     findings: [],
@@ -151,6 +242,7 @@ function writeKeys(bookId: string, chapter: ChapterV21): void {
       bookId,
       roundId: ROUND,
       role,
+      reviewerSessionId: role === "keyA" ? "fixture-publish-keyA" : "fixture-publish-keyB",
       derivedAt: "2026-06-13T00:00:00.000Z",
       chapters: [{
         chapterNumber: chapter.number,
@@ -183,6 +275,7 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
     roundId: ROUND,
     role: "bar",
     reviewer: "codex-qc:publish-bar",
+    reviewerSessionId: BAR_SESSION,
     chapterNumber: chapter.number,
     chapterId: chapter.chapterId,
     contentHash: chapterContentHash(chapter),
@@ -197,6 +290,7 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
     roundId: ROUND,
     role: "confirm",
     reviewer: "codex-qc:publish-confirm",
+    reviewerSessionId: CONFIRM_SESSION,
     chapterNumber: chapter.number,
     chapterId: chapter.chapterId,
     contentHash: chapterContentHash(chapter),
@@ -206,9 +300,33 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
   });
 }
 
+// I3 regression: the publish self-test gate must run HERMETIC. The old code spread process.env and
+// deleted only 2 strict vars, so REQUIRE_KEYJUDGE / ENFORCE_MAJORS / STATE_DIR leaked in and could
+// nondeterministically block an otherwise-converged publish (the flake hit during the dopamine run).
+// hermeticSelfTestEnv strips EVERY CHAPTERFLOW_* flag and forces only no-api. This guards that strip
+// (it FAILS if reverted to the 2-var denylist — the keyjudge/majors/state-dir keys would survive).
+test("hermeticSelfTestEnv strips every CHAPTERFLOW_* operator flag and forces only no-api (I3)", () => {
+  const env = hermeticSelfTestEnv({
+    PATH: "/usr/bin:/bin", HOME: "/home/x", LANG: "en_US.UTF-8", NODE_ENV: "test",
+    CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1", CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE: "1",
+    CHAPTERFLOW_REQUIRE_KEYJUDGE: "1", CHAPTERFLOW_ENFORCE_MAJORS: "1",
+    CHAPTERFLOW_STATE_DIR: "/elsewhere", CHAPTERFLOW_SESSION_ID: "leak-me",
+  });
+  assert.equal(env.CHAPTERFLOW_NO_API_CODEX_QC, "1", "no-api mode forced on for the slice");
+  for (const k of ["CHAPTERFLOW_REQUIRE_SOURCE_VERIFY", "CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE", "CHAPTERFLOW_REQUIRE_KEYJUDGE", "CHAPTERFLOW_ENFORCE_MAJORS", "CHAPTERFLOW_STATE_DIR", "CHAPTERFLOW_SESSION_ID"]) {
+    assert.equal(env[k], undefined, `${k} must be stripped so a real-book operator flag cannot block the synthetic fixture slice`);
+  }
+  assert.equal(env.PATH, "/usr/bin:/bin", "non-CHAPTERFLOW env preserved so npx/tsx still run");
+  assert.equal(env.HOME, "/home/x");
+  assert.equal(env.LANG, "en_US.UTF-8");
+});
+
 function setupGreen(bookId: string): void {
   const chapter = clonedChapter(bookId);
   writeBookState(bookId, chapter);
+  // Source-reality is an always-on production invariant: this source-v2 fixture publishes only
+  // with a valid VERIFIED source-verify record covering every sidecar item (no env var involved).
+  writeVerifiedSourceVerifyRecord(bookId);
   openQcRound(bookId, ROUND);
   writeRoundRecord(bookId, chapter);
   writeKeys(bookId, chapter);
@@ -223,6 +341,7 @@ function setupGreen(bookId: string): void {
     contentHash: chapterContentHash(chapter),
     hashVersion: "v2",
     reviewer: "codex-qc:publish-confirm",
+    reviewerSessionId: ATTEST_SESSION,
     reviewedAt: "2026-06-13T00:00:00.000Z",
     roundId: ROUND,
     roundRole: "confirm",
@@ -262,7 +381,7 @@ function appendOpenLedgerFinding(bookId: string): void {
     expectedFix: "close the fixture finding",
     globalTheme: "example_coherence",
     status: "open",
-    sources: [{ sourceRole: "bar", submissionFile: "fixture.json", observedAt: "2026-06-13T00:00:00.000Z" }],
+    sources: [{ sourceRole: "finalizer", submissionFile: "evidence-matrix.json", observedAt: "2026-06-13T00:00:00.000Z" }],
     createdAt: "2026-06-13T00:00:00.000Z",
   }) + "\n", "utf8");
 }
@@ -280,7 +399,7 @@ test("publish-after-qc fails when CHAPTERFLOW_NO_API_CODEX_QC is missing", () =>
   }
 });
 
-goldTest("publish-after-qc fails on missing book or missing round before publish", () => {
+test("publish-after-qc fails on missing book or missing round before publish", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -299,7 +418,7 @@ goldTest("publish-after-qc fails on missing book or missing round before publish
   }
 });
 
-goldTest("publish-after-qc blocks incomplete QC and reports repair prompt resume path", () => {
+test("publish-after-qc blocks incomplete QC and reports repair prompt resume path", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -319,7 +438,7 @@ goldTest("publish-after-qc blocks incomplete QC and reports repair prompt resume
   }
 });
 
-goldTest("publish-after-qc blocks REVISE evidence and prints repair prompt path", () => {
+test("publish-after-qc blocks REVISE evidence and prints repair prompt path", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
@@ -349,13 +468,11 @@ test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ wit
   assert.match(out, /✓ majors/);
 });
 
-goldTest("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
+test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  // Hermetic: this fixture is a synthetic green book with no source-verify record, so an
-  // ambient CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 (the operator's publish env, which the
-  // publish wrapper used to leak into this self-test) would fail SV1 and make the
-  // "every check passes" assertion env-dependent. Source-verify-when-required is covered
-  // by the source-verify gate tests; pin it OFF here so this green-path test is deterministic.
+  // This fixture ships a real VERIFIED source-verify record (setupGreen), so source-reality
+  // resolves required-and-verified regardless of CHAPTERFLOW_REQUIRE_SOURCE_VERIFY — the strip
+  // below only keeps the assertion hermetic against an ambient strict env from the host shell.
   const prevSV = process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
   const stagedBefore = runCli(["help"]).status; // cheap CLI smoke; dry-run should not need git.
   assert.equal(stagedBefore, 0);

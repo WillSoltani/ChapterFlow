@@ -81,8 +81,21 @@ assertCovered("memorableLines", (c) => { c.memorableLines![0].text = "A differen
 // ── Provenance / metadata exclusions (the promote-strip invariant) ──────────
 
 assertExcluded("sourceAnchorId on an example", (c) => { c.examples[0].sourceAnchorId = "anchor-99"; });
+assertExcluded("sourceAnchorIds on an example", (c) => { c.examples[0].sourceAnchorIds = ["anchor-99", "anchor-100"]; });
 assertExcluded("sourceAnchorId on a quiz question", (c) => { c.quiz.questions[0].sourceAnchorId = "anchor-7"; });
+assertExcluded("keyEvidenceAnchorIds on a quiz question", (c) => { c.quiz.questions[0].keyEvidenceAnchorIds = ["anchor-7"]; });
 assertExcluded("sourceAnchorId on a review card", (c) => { c.reviewCards[0].sourceAnchorId = "anchor-3"; });
+assertExcluded("authoring source anchor map", (c) => {
+  c.authoring = {
+    schemaVersion: "chapter-authoring-v1",
+    sourceAnchors: {
+      schemaVersion: "chapter-source-anchor-map-v1",
+      sourceHash: "hash-a",
+      observedAnchorIds: ["anchor-1"],
+      effectiveAnchors: { hook: ["anchor-1"] },
+    },
+  };
+});
 assertExcluded("chapterId / number (identity metadata)", (c) => { c.chapterId = "other-book-ch09"; c.number = 9; });
 assertExcluded("questionId convention", (c) => { c.quiz.questions[0].questionId = "renamed-q1"; });
 assertExcluded("planSpec (writer scaffolding, not shown to readers)", (c) => {

@@ -10,7 +10,8 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc, PriorChapterShapes } from "../types.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
+import { BookBrief, ChapterDesignDoc, PriorChapterShapes, SourceAnchorForPrompt } from "../types.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -19,6 +20,11 @@ export type BreakdownOutput = {
   fastRead: string;
   deepRead: string;
   fullRead: string;
+  sourceAnchorIds?: {
+    fastRead?: string[];
+    deepRead?: string[];
+    fullRead?: string[];
+  };
 };
 
 export type BreakdownInput = {
@@ -28,6 +34,7 @@ export type BreakdownInput = {
   /** Shapes of every prior chapter in this book. The writer uses this to
    *  diversify the counterintuition shape away from over-used patterns. */
   priorChapterShapes?: PriorChapterShapes;
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 const MAX_BREAKDOWN_RETRIES = 2;
@@ -59,7 +66,7 @@ export async function runWriterBreakdown(input: BreakdownInput): Promise<Breakdo
     });
 
     try {
-      return validateBreakdown(result.content);
+      return validateBreakdown(result.content, input);
     } catch (err) {
       lastError = err instanceof Error ? err : new Error(String(err));
       if (attempt === MAX_BREAKDOWN_RETRIES) break;
@@ -97,8 +104,8 @@ function buildUserPrompt(input: BreakdownInput): string {
   parts.push("```");
   if (input.chapterSource) {
     parts.push("");
-    parts.push(`# Chapter source excerpt (reference only — do not quote without attribution, do not narrate the source)`);
-    parts.push(input.chapterSource);
+    parts.push(renderUntrustedSourceBlock("Chapter source excerpt", input.chapterSource));
+    parts.push("Reference only. Do not quote without attribution, and do not narrate the source.");
   }
   if (input.priorChapterShapes && input.priorChapterShapes.priorCounterShapes.length > 0) {
     parts.push("");
@@ -108,6 +115,11 @@ function buildUserPrompt(input: BreakdownInput): string {
     parts.push("```json");
     parts.push(JSON.stringify(input.priorChapterShapes, null, 2));
     parts.push("```");
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push("");
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
+    parts.push("Use only these ids. Emit sourceAnchorIds.fastRead, sourceAnchorIds.deepRead, and sourceAnchorIds.fullRead with the anchors supporting each tier's claims.");
   }
   parts.push("");
   parts.push(`Write the BreakdownOutput JSON now (easy, medium, hard).`);
@@ -131,7 +143,7 @@ function findMetaReference(text: string): string | null {
   return null;
 }
 
-function validateBreakdown(b: BreakdownOutput): BreakdownOutput {
+function validateBreakdown(b: BreakdownOutput, input: BreakdownInput): BreakdownOutput {
   const problems: string[] = [];
   const tiers = ["fastRead", "deepRead", "fullRead"] as const;
   for (const tier of tiers) {
@@ -175,6 +187,19 @@ function validateBreakdown(b: BreakdownOutput): BreakdownOutput {
     const h = firstSentence(b.fullRead);
     if (f && h && f === h) {
       problems.push(`fastRead and fullRead open with identical first sentence`);
+    }
+  }
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+    for (const tier of tiers) {
+      const ids = b.sourceAnchorIds?.[tier];
+      if (!Array.isArray(ids) || ids.length === 0) {
+        problems.push(`sourceAnchorIds.${tier} must cite at least one allowed source anchor`);
+        continue;
+      }
+      for (const id of ids) {
+        if (typeof id !== "string" || !allowed.has(id)) problems.push(`sourceAnchorIds.${tier} cites unsupported source anchor ${JSON.stringify(id)}`);
+      }
     }
   }
 

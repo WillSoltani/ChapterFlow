@@ -8,18 +8,17 @@
  * book-gate catches it after the fact; this prevents it before.
  *
  * `planNames` deals each upcoming chapter a DISJOINT slice of protagonist names
- * drawn from config/name-bank.json, excluding ONLY names already present in THIS
- * book's authored chapter files. Names MAY repeat ACROSS books (owner's policy),
- * so there is no cross-book exclusion — the bank never exhausts under volume,
- * which is what lets mass production scale. A per-book rotation offset still gives
- * different books different opening casts.
+ * drawn from config/name-bank.json under config/name-policy.json. Names are unique
+ * within the current book and blocked by a catalog cooldown budget across recent
+ * ledgered books. A per-book rotation offset still gives different books
+ * different opening casts.
  *
  * Dealing is deterministic (stable bank order, sequential cursor) so the same
  * request always yields the same allocation, and authoring in ascending batches
- * is naturally incremental: later batches exclude earlier chapters' real names
- * and continue past them. Already-authored chapters in a requested range carry
- * their REAL names through (read from the file) and do NOT consume fresh bank
- * names, so a re-plan is idempotent and never re-deals a sibling's name.
+ * is naturally incremental: later batches exclude earlier planned allocations
+ * and continue past them. Already-planned chapters in a requested range carry
+ * their RESERVED names through and do NOT consume fresh bank names, so a re-plan
+ * is idempotent and never re-deals a sibling's name.
  *
  * SCOPE: the name plan prevents NAME collisions (F1) only — it deals disjoint
  * protagonist names. It does NOT by itself prevent BP13, which fires on verbatim
@@ -35,9 +34,10 @@ import { fileURLToPath } from "url";
 import { ChapterV21 } from "../types.js";
 import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
-import { extractNamesFromText } from "./libraryState.js";
+import { extractNamesFromText, loadLibraryState, type LibraryStateOptions } from "./libraryState.js";
 import { findSourceSidecar } from "./sourceSidecars.js";
 import { fnv1a } from "../lib/fnv1a.js";
+import { forbiddenNamesByPolicy, loadNamePolicy, type NamePolicyV1 } from "./namePolicy.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/librarian
 const CONFIG_DIR = resolve(__dirname, "../../config");
@@ -54,11 +54,16 @@ export type NamePlan = {
   allocation: Record<number, string[]>;
   bannedConnectives: string[];
   connectivePrinciple: string;
+  namePolicy: {
+    schemaVersion: "name-policy-v1";
+    policyId: string;
+    description: string;
+  };
   diagnostics: {
     bankSize: number;
     excludedCount: number;
-    /** bank names that also appear in OTHER books — INFORMATIONAL only. Names may
-     *  repeat across books (owner policy); only within-book uniqueness is enforced. */
+    /** bank names that also appear in OTHER chapter files — audit signal only.
+     *  Policy enforcement comes from the ledger cooldown below. */
     crossBookReused: number;
     availableCount: number;
     /** chapters that got fewer than perChapter names because the bank ran dry */
@@ -67,6 +72,8 @@ export type NamePlan = {
     alreadyAuthored: number[];
     /** bank names excluded because this book's source sidecars use them for source figures/cases. */
     sourceFigureExcluded: number;
+    /** bank names excluded by the shared catalog cooldown policy. */
+    policyExcluded: number;
   };
 };
 
@@ -132,8 +139,8 @@ export function loadBannedConnectives(): BannedConnectivesConfig {
   };
 }
 
-/** Protagonist names per authored chapter (file-slot number -> names), scenarios
- *  only, matching ingestChapter's extraction. The number is taken from the
+/** Audit-only capitalized-word names per authored chapter (file-slot number -> names),
+ *  scenarios only. The number is taken from the
  *  FILENAME slot (case-insensitive via isSiblingFile), not chapter.number, so it
  *  stays correct even under the chapterId/filename casing drift. Robust to
  *  chapters on disk that were never ingested into the ledger. A present-but-empty
@@ -164,8 +171,7 @@ export function usedNamesByChapter(bookId: string): Record<number, string[]> {
   return out;
 }
 
-/** Flattened union of usedNamesByChapter — every protagonist name already in
- *  this book's authored chapters. */
+/** Flattened audit union of usedNamesByChapter. Not a policy/accounting source. */
 export function usedNamesInBook(bookId: string): Set<string> {
   const used = new Set<string>();
   for (const names of Object.values(usedNamesByChapter(bookId))) {
@@ -175,10 +181,9 @@ export function usedNamesInBook(bookId: string): Set<string> {
 }
 
 /** Bank names already used by any OTHER book in state/chapters — INFORMATIONAL
- *  ONLY (the diagnostics.crossBookReused count). Names may repeat across books by
- *  owner policy, so this is NOT excluded from the pool. Scans every chapter file
- *  once (fast enough for plan time). Only BANK members count: junk capitalized
- *  tokens from prose must not poison the count. */
+ *  ONLY (the diagnostics.crossBookReused count). Policy exclusion comes from the
+ *  ledger cooldown, not this heuristic scan. Only BANK members count: junk
+ *  capitalized tokens from prose must not poison the audit signal. */
 export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
   const bank = new Set(loadNameBank());
   const used = new Set<string>();
@@ -202,6 +207,25 @@ export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
     }
   }
   return used;
+}
+
+function plannedNamesByChapter(bookId: string, opts: Pick<LibraryStateOptions, "stateDir" | "namePlansDir"> = {}): Record<number, string[]> {
+  const stateDir = opts.stateDir ? resolve(opts.stateDir) : resolve(__dirname, "../../state");
+  const dir = opts.namePlansDir ? resolve(opts.namePlansDir) : resolve(stateDir, "name-plans");
+  const path = resolve(dir, `${bookId}.name-plan.json`);
+  try {
+    const raw = JSON.parse(readFileSync(path, "utf8"));
+    if (!isRecord(raw) || !isRecord(raw.allocation)) return {};
+    const out: Record<number, string[]> = {};
+    for (const [chapter, names] of Object.entries(raw.allocation)) {
+      const n = Number(chapter);
+      if (!Number.isInteger(n) || !Array.isArray(names)) continue;
+      out[n] = [...new Set(names.filter((name): name is string => typeof name === "string").map((name) => name.trim()).filter(Boolean))].sort();
+    }
+    return out;
+  } catch {
+    return {};
+  }
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -265,11 +289,13 @@ export function planNames(
   perChapter = 7,
   opts: {
     lookback?: number;
-    /** Deal fresh names even for already-authored chapters. The REFRESH path
-     *  needs this to produce RENAME MAPS: carried allocations only echo the
-     *  on-disk names (incl. cross-book collisions), so a refresh pilot that
-     *  ran name-plan saw nothing to rename (reviewer-caught, 2026-06-10). */
+    /** Deal fresh names even for already-planned chapters. The refresh path
+     *  needs this to produce rename maps instead of carrying the prior reserved
+     *  allocation through unchanged. */
     forceFresh?: boolean;
+    stateDir?: string;
+    namePlansDir?: string;
+    namePolicy?: NamePolicyV1;
   } = {},
 ): NamePlan {
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
@@ -278,17 +304,22 @@ export function planNames(
   // filename key off the SAME id (the case-sensitivity asymmetry the review flagged).
   const bookId = normSlug(rawBookId);
 
-  const usedByChapter = usedNamesByChapter(bookId);
+  const usedByChapter = plannedNamesByChapter(bookId, opts);
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
-  // POLICY (owner, 2026-06-13): names MAY repeat ACROSS books — only WITHIN-book
-  // uniqueness matters (no two chapters of the same book share a protagonist
-  // name). The bank is curated to read as contemporary American/Canadian, so
-  // cross-book reuse is fine; what would actually hurt is a duplicate inside one
-  // book. So the available pool excludes only THIS book's already-used names and
-  // its source figures — NOT names used by other books. (The cross-book overlap
-  // is still reported in diagnostics for visibility, never excluded.)
+  const policy = opts.namePolicy ?? loadNamePolicy();
+  const ledger = loadLibraryState({ stateDir: opts.stateDir, namePlansDir: opts.namePlansDir, namePolicy: policy });
+  const policyForbidden = forbiddenNamesByPolicy(
+    Object.values(ledger.books).map((book) => ({ bookId: book.bookId, generatedAt: book.generatedAt, namesUsed: book.namesUsed })),
+    bookId,
+    opts.lookback === undefined
+      ? policy
+      : { ...policy, catalogCooldown: { ...policy.catalogCooldown, lookbackBooks: opts.lookback } },
+  );
+
+  // The shared policy blocks current-book planned names plus recent catalog
+  // cooldown names. Capitalized-word extraction is only a diagnostic/audit signal.
   const bank = loadNameBank();
   const bankSet = new Set(bank);
   const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
@@ -300,12 +331,12 @@ export function planNames(
   // the chapter is on disk (the echo-loophole) — so a dealt banned name becomes a
   // guaranteed late blocker. Subtracting it here keeps deal↔gate consistent up front.
   const bannedC7 = new Set(C7_BANNED_NAMES);
-  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && !bannedC7.has(n));
+  const available = rotated.filter((n) => !usedAll.has(n) && !sourceFigures.has(n) && !bannedC7.has(n) && !policyForbidden.has(n));
   const needed = perChapter * Math.max(0, toChapter - fromChapter + 1);
   if (available.length < needed) {
     console.warn(
-      `name-plan: only ${available.length}/${needed} names available for "${bookId}" after excluding its own used names — ` +
-        `grow config/name-bank.json (the bank must cover one book's within-book-unique needs).`,
+        `name-plan: only ${available.length}/${needed} names available for "${bookId}" after applying ${policy.policyId} — ` +
+        `grow config/name-bank.json or adjust config/name-policy.json.`,
     );
   }
 
@@ -323,9 +354,9 @@ export function planNames(
   let cursor = opts.forceFresh ? Math.min((fromChapter - 1) * perChapter, Math.max(0, available.length - perChapter)) : 0;
   for (let ch = fromChapter; ch <= toChapter; ch++) {
     if (!opts.forceFresh && usedByChapter[ch] !== undefined) {
-      // Authored already: carry its REAL names through (idempotent re-plan) and
-      // do NOT consume fresh bank names — so a re-plan can never re-deal a name a
-      // sibling already owns (the F1-reintroduction the review flagged).
+      // Planned already: carry its RESERVED names through (idempotent re-plan)
+      // and do NOT consume fresh bank names — so a re-plan can never re-deal a
+      // name a sibling already owns.
       allocation[ch] = usedByChapter[ch];
       alreadyAuthored.push(ch);
       continue;
@@ -346,6 +377,11 @@ export function planNames(
     allocation,
     bannedConnectives,
     connectivePrinciple: principle,
+    namePolicy: {
+      schemaVersion: policy.schemaVersion,
+      policyId: policy.policyId,
+      description: policy.description,
+    },
     diagnostics: {
       bankSize: bank.length,
       excludedCount: usedAll.size,
@@ -354,6 +390,7 @@ export function planNames(
       shortChapters,
       alreadyAuthored,
       sourceFigureExcluded: sourceFigures.size,
+      policyExcluded: [...policyForbidden].filter((n) => bankSet.has(n)).length,
     },
   };
 }
@@ -374,9 +411,11 @@ export function formatNamePlan(plan: NamePlan): string {
   lines.push(
     `  bank:${d.bankSize}  excluded:${d.excludedCount}  available:${d.availableCount}` +
       (d.sourceFigureExcluded ? `  source-figures-excluded:${d.sourceFigureExcluded}` : "") +
+      (d.policyExcluded ? `  policy-excluded:${d.policyExcluded}` : "") +
       (d.shortChapters.length ? `  ⚠ SHORT (bank dry) in ch: ${d.shortChapters.join(",")}` : "") +
-      (d.alreadyAuthored.length ? `  ℹ already-authored in range: ${d.alreadyAuthored.join(",")} (showing their real names; only un-authored chapters get fresh allocations)` : ""),
+      (d.alreadyAuthored.length ? `  ℹ already-planned in range: ${d.alreadyAuthored.join(",")} (showing reserved names; only unplanned chapters get fresh allocations)` : ""),
   );
+  lines.push(`  policy: ${plan.namePolicy.policyId} — ${plan.namePolicy.description}`);
   lines.push("");
   for (let ch = plan.fromChapter; ch <= plan.toChapter; ch++) {
     lines.push(`  ch${ch}: ${(plan.allocation[ch] ?? []).join(", ")}`);

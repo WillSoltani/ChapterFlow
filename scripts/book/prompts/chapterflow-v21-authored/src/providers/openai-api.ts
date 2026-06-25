@@ -17,20 +17,11 @@ import OpenAI from "openai";
 import {
   AgentTier,
   CallOptions,
-  CallResult,
   Provider,
-  appendJsonInstruction,
-  extractJson,
+  ProviderRawResult,
+  defaultModelForProvider,
+  withProviderTimeout,
 } from "./types.js";
-
-const TIER_DEFAULT_MODELS: Record<AgentTier, string> = {
-  // gpt-5.5 is the user's request; resolved via env CHAPTERFLOW_WRITER_MODEL
-  // override if the actual model name differs in their account. gpt-4o is the
-  // safe fallback that exists today.
-  writer: process.env.CHAPTERFLOW_OPENAI_WRITER ?? "gpt-4o",
-  researcher: process.env.CHAPTERFLOW_OPENAI_RESEARCHER ?? "gpt-4o-mini",
-  critic: process.env.CHAPTERFLOW_OPENAI_CRITIC ?? "gpt-4o-mini",
-};
 
 // Approximate prices per 1M tokens.
 const PRICE_PER_M: Record<string, { in: number; out: number }> = {
@@ -49,22 +40,20 @@ function client(): OpenAI {
   if (_client) return _client;
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error("OPENAI_API_KEY not set");
-  _client = new OpenAI({ apiKey });
+  _client = new OpenAI({ apiKey, maxRetries: 0 });
   return _client;
 }
 
 export const OpenAiApiProvider: Provider = {
   name: "openai-api",
   defaultModelForTier(tier: AgentTier): string {
-    return TIER_DEFAULT_MODELS[tier];
+    return defaultModelForProvider("openai-api", tier);
   },
   isConfigured(): boolean {
     return !!process.env.OPENAI_API_KEY;
   },
-  async call<T = string>(opts: CallOptions): Promise<CallResult<T>> {
-    const model = opts.model ?? TIER_DEFAULT_MODELS[opts.tier];
-    const userText = opts.jsonMode ? appendJsonInstruction(opts.user) : opts.user;
-
+  async call(opts: CallOptions & { model: string }): Promise<ProviderRawResult> {
+    const model = opts.model;
     const messages: OpenAI.ChatCompletionMessageParam[] = [
       { role: "system", content: opts.system },
     ];
@@ -73,14 +62,14 @@ export const OpenAiApiProvider: Provider = {
         messages.push({ role: turn.role, content: turn.content });
       }
     }
-    messages.push({ role: "user", content: userText });
+    messages.push({ role: "user", content: opts.user });
 
     const startedAt = Date.now();
     const tokenLimit = opts.maxTokens ?? 4096;
     const request: OpenAI.ChatCompletionCreateParamsNonStreaming = {
       model,
       messages,
-      response_format: opts.jsonMode ? { type: "json_object" } : undefined,
+      response_format: openAiResponseFormat(opts),
     };
     if (usesCompletionTokenLimit(model)) {
       request.max_completion_tokens = tokenLimit;
@@ -88,37 +77,43 @@ export const OpenAiApiProvider: Provider = {
       request.max_tokens = tokenLimit;
       request.temperature = opts.temperature ?? 0.7;
     }
-    const response = await client().chat.completions.create(request);
+    const response = await withProviderTimeout("openai-api", opts.timeoutMs ?? 240_000, (signal) =>
+      client().chat.completions.create(request, { signal }),
+    );
     const durationMs = Date.now() - startedAt;
 
     const raw = response.choices[0]?.message?.content ?? "";
-
-    let content: T;
-    if (opts.jsonMode) {
-      const jsonText = extractJson(raw);
-      try {
-        content = JSON.parse(jsonText) as T;
-      } catch (err) {
-        throw new Error(`Failed to parse JSON from ${model}: ${(err as Error).message}\n---\n${raw.slice(0, 500)}`);
-      }
-    } else {
-      content = raw as unknown as T;
-    }
 
     const inputTokens = response.usage?.prompt_tokens ?? 0;
     const outputTokens = response.usage?.completion_tokens ?? 0;
     const price = PRICE_PER_M[model];
     const estimatedCostUsd = price ? (inputTokens / 1e6) * price.in + (outputTokens / 1e6) * price.out : undefined;
+    const usage = { inputTokens, outputTokens, estimatedCostUsd };
 
     return {
       provider: "openai-api",
       model,
       durationMs,
-      content,
       raw,
+      usage,
       inputTokens,
       outputTokens,
       estimatedCostUsd,
     };
   },
 };
+
+function openAiResponseFormat(opts: CallOptions): OpenAI.ChatCompletionCreateParamsNonStreaming["response_format"] {
+  if (!opts.jsonMode) return undefined;
+  if (opts.jsonSchema) {
+    return {
+      type: "json_schema",
+      json_schema: {
+        name: opts.jsonSchemaName ?? "chapterflow_response",
+        strict: true,
+        schema: opts.jsonSchema as Record<string, unknown>,
+      },
+    };
+  }
+  return { type: "json_object" };
+}

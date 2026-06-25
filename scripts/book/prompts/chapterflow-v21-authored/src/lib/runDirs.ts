@@ -16,14 +16,51 @@
  *   2. Raw-vs-normalized bookId split: half the pipeline resolved run dirs
  *      with the raw id, half with normSlug — both spellings exist on disk.
  *
- * findRunArtifact() walks run dirs newest-first across BOTH id spellings and
- * returns the first run that actually contains the requested artifact.
+ * findRunArtifact() walks manifest-valid run dirs newest-first across BOTH id
+ * spellings and returns the first compatible run that actually contains the
+ * requested artifact.
  */
 
 import { existsSync, readdirSync, statSync } from "fs";
 import { resolve } from "path";
 
 import { normSlug } from "./chapterPaths.js";
+import {
+  readResearchRunManifest,
+  type ResearchCompatibility,
+  type ResearchRunManifest,
+  type ResearchRunOverallStatus,
+} from "./researchRunManifest.js";
+
+export type RunResolutionRejection = {
+  runDir: string;
+  reason: string;
+};
+
+export type RunResolutionOptions = {
+  requiredArtifactRelPath?: string;
+  requiredArtifactRelPaths?: string[];
+  allowedStatuses?: ResearchRunOverallStatus[];
+  inputHash?: string;
+  compatibility?: Partial<ResearchCompatibility>;
+  expectedChaptersHash?: string;
+};
+
+export type RunResolutionResult =
+  | {
+      ok: true;
+      runDir: string;
+      manifest: ResearchRunManifest;
+      artifacts: Record<string, string>;
+      rejected: RunResolutionRejection[];
+    }
+  | {
+      ok: false;
+      rejected: RunResolutionRejection[];
+    };
+
+const READER_STATUSES: ResearchRunOverallStatus[] = ["complete"];
+const WRITER_STATUSES: ResearchRunOverallStatus[] = ["running", "failed", "coherence_failed", "complete"];
 
 function runDirsNewestFirst(runsRoot: string, bookDirName: string): string[] {
   const bookDir = resolve(runsRoot, bookDirName);
@@ -67,30 +104,120 @@ function matchingBookDirs(runsRoot: string, bookId: string): string[] {
 /** All run dirs across every matching book-dir spelling, sorted globally
  *  newest-first by run-dir NAME (not per-spelling — an older run in one
  *  spelling must not beat a strictly newer run in another). */
-function allRunDirsNewestFirst(runsRoot: string, bookId: string): string[] {
+function allRunDirs(runsRoot: string, bookId: string): Array<{ name: string; path: string }> {
   const runs: Array<{ name: string; path: string }> = [];
   for (const dirName of matchingBookDirs(runsRoot, bookId)) {
     for (const runPath of runDirsNewestFirst(runsRoot, dirName)) {
       runs.push({ name: runPath.split("/").pop() ?? "", path: runPath });
     }
   }
-  return runs.sort((a, b) => (a.name < b.name ? 1 : a.name > b.name ? -1 : 0)).map((r) => r.path);
+  return runs;
 }
 
-/** Absolute path of `relPath` inside the NEWEST run that contains it, across
- *  every normSlug-equivalent bookId dir spelling. Null when no run has it. */
-export function findRunArtifact(runsRoot: string, bookId: string, relPath: string): string | null {
-  for (const runDir of allRunDirsNewestFirst(runsRoot, bookId)) {
-    const p = resolve(runDir, relPath);
-    if (existsSync(p)) return p;
+export function resolveResearchRun(
+  runsRoot: string,
+  bookId: string,
+  options: RunResolutionOptions = {},
+): RunResolutionResult {
+  const rejected: RunResolutionRejection[] = [];
+  const wantedBookId = normSlug(bookId);
+  const requiredArtifacts = [
+    ...(options.requiredArtifactRelPath ? [options.requiredArtifactRelPath] : []),
+    ...(options.requiredArtifactRelPaths ?? []),
+  ];
+  const allowedStatuses = new Set(options.allowedStatuses ?? READER_STATUSES);
+
+  const candidates = allRunDirs(runsRoot, wantedBookId)
+    .map((candidate) => {
+      const parsed = readResearchRunManifest(candidate.path);
+      const createdAtMs = parsed.ok ? Date.parse(parsed.manifest.createdAt) : null;
+      return {
+        ...candidate,
+        parsed,
+        createdAtMs: Number.isFinite(createdAtMs) ? createdAtMs : null,
+      };
+    })
+    .sort((a, b) => {
+      const at = a.createdAtMs ?? -1;
+      const bt = b.createdAtMs ?? -1;
+      if (at !== bt) return bt - at;
+      return a.name < b.name ? 1 : a.name > b.name ? -1 : 0;
+    });
+
+  for (const candidate of candidates) {
+    if (!candidate.parsed.ok) {
+      rejected.push({ runDir: candidate.path, reason: candidate.parsed.errors.join("; ") });
+      continue;
+    }
+    const manifest = candidate.parsed.manifest;
+    const reasons = runRejectionReasons(manifest, wantedBookId, allowedStatuses, options);
+    if (reasons.length > 0) {
+      rejected.push({ runDir: candidate.path, reason: reasons.join("; ") });
+      continue;
+    }
+    const artifacts: Record<string, string> = {};
+    const missing = requiredArtifacts.filter((relPath) => {
+      const path = resolve(candidate.path, relPath);
+      if (!existsSync(path)) return true;
+      artifacts[relPath] = path;
+      return false;
+    });
+    if (missing.length > 0) {
+      rejected.push({ runDir: candidate.path, reason: `missing artifact(s): ${missing.join(", ")}` });
+      continue;
+    }
+    return { ok: true, runDir: candidate.path, manifest, artifacts, rejected };
   }
-  return null;
+  return { ok: false, rejected };
+}
+
+/** Absolute path of `relPath` inside the newest manifest-compatible run that
+ *  contains it, across every normSlug-equivalent bookId dir spelling. Null
+ *  when no compatible run has it. */
+export function findRunArtifact(
+  runsRoot: string,
+  bookId: string,
+  relPath: string,
+  options: Omit<RunResolutionOptions, "requiredArtifactRelPath" | "requiredArtifactRelPaths"> = {},
+): string | null {
+  const result = resolveResearchRun(runsRoot, bookId, { ...options, requiredArtifactRelPath: relPath });
+  return result.ok ? result.artifacts[relPath] : null;
 }
 
 /** The newest run dir regardless of contents — for writers/continuation
- *  (e.g. next-task appends artifacts to the run in progress). Readers should
- *  use findRunArtifact instead. */
-export function findLatestRunDir(runsRoot: string, bookId: string): string | null {
-  const dirs = allRunDirsNewestFirst(runsRoot, bookId);
-  return dirs.length > 0 ? dirs[0] : null;
+ *  (e.g. next-task appends artifacts to the run in progress). Still requires a
+ *  valid manifest/bookId so raw directory names cannot define identity. Readers
+ *  should use findRunArtifact instead. */
+export function findLatestRunDir(
+  runsRoot: string,
+  bookId: string,
+  options: Omit<RunResolutionOptions, "requiredArtifactRelPath" | "requiredArtifactRelPaths"> = {},
+): string | null {
+  const result = resolveResearchRun(runsRoot, bookId, {
+    allowedStatuses: options.allowedStatuses ?? WRITER_STATUSES,
+    inputHash: options.inputHash,
+    compatibility: options.compatibility,
+    expectedChaptersHash: options.expectedChaptersHash,
+  });
+  return result.ok ? result.runDir : null;
+}
+
+function runRejectionReasons(
+  manifest: ResearchRunManifest,
+  wantedBookId: string,
+  allowedStatuses: Set<ResearchRunOverallStatus>,
+  options: RunResolutionOptions,
+): string[] {
+  const reasons: string[] = [];
+  if (normSlug(manifest.bookId) !== wantedBookId) reasons.push(`manifest bookId ${manifest.bookId} does not match ${wantedBookId}`);
+  if (!allowedStatuses.has(manifest.overallStatus)) reasons.push(`status ${manifest.overallStatus} not allowed`);
+  if (options.inputHash && manifest.input.hash !== options.inputHash) reasons.push("input hash changed");
+  if (options.expectedChaptersHash && manifest.expectedChaptersHash !== options.expectedChaptersHash) reasons.push("expected chapter set changed");
+  if (options.compatibility) {
+    for (const key of ["codeVersion", "promptHash", "configHash", "provider", "model"] as const) {
+      const expected = options.compatibility[key];
+      if (expected !== undefined && manifest.compatibility[key] !== expected) reasons.push(`${key} changed`);
+    }
+  }
+  return reasons;
 }

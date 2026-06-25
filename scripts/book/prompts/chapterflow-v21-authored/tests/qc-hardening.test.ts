@@ -40,6 +40,17 @@ function cleanup(): void {
   rmSync(TMP_DIR, { recursive: true, force: true });
 }
 
+function withSession<T>(sessionId: string, fn: () => T): T {
+  const prev = process.env.CHAPTERFLOW_SESSION_ID;
+  try {
+    process.env.CHAPTERFLOW_SESSION_ID = sessionId;
+    return fn();
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_SESSION_ID;
+    else process.env.CHAPTERFLOW_SESSION_ID = prev;
+  }
+}
+
 function writeRoundRecord(hashes: Record<string, string> | undefined): void {
   const path = roundRecordPath(BOOK, ROUND);
   mkdirSync(dirname(path), { recursive: true });
@@ -138,13 +149,13 @@ test("submitQcArtifact rejects a non-approved reviewer and accepts an approved o
 
     const bareFile = resolve(TMP_DIR, "sweep-bare.json");
     writeFileSync(bareFile, JSON.stringify(sweepSubmission("wave-a-sweep-codex")), "utf8");
-    const bad = submitQcArtifact(BOOK, ROUND, "sweep", bareFile, opened.tokens.sweep);
+    const bad = withSession("qc-hardening-submit-session", () => submitQcArtifact(BOOK, ROUND, "sweep", bareFile, opened.tokens.sweep));
     assert.equal(bad.ok, false, "a bare-string reviewer must be rejected");
     assert.match(bad.errors.join(" "), /not an approved QC role/);
 
     const okFile = resolve(TMP_DIR, "sweep-ok.json");
     writeFileSync(okFile, JSON.stringify(sweepSubmission("codex-qc:reviewer-1")), "utf8");
-    const good = submitQcArtifact(BOOK, ROUND, "sweep", okFile, opened.tokens.sweep);
+    const good = withSession("qc-hardening-submit-session", () => submitQcArtifact(BOOK, ROUND, "sweep", okFile, opened.tokens.sweep));
     assert.equal(good.ok, true, good.errors.join("; "));
   } finally {
     cleanup();
@@ -155,8 +166,10 @@ test("submitQcArtifact rejects a non-approved reviewer and accepts an approved o
 test("session independence is OFF by default and short-circuits on absent ids", async () => {
   const { violatesSessionIndependence } = await import("../src/qc/sessionProvenance.js");
   const prev = process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   try {
     delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
+    delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     assert.equal(violatesSessionIndependence("s1", "s1"), false, "off by default");
     process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = "1";
     assert.equal(violatesSessionIndependence("s1", "s1"), true, "same session author+reviewer ⇒ violation");
@@ -166,6 +179,8 @@ test("session independence is OFF by default and short-circuits on absent ids", 
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prev;
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
   }
 });
 
@@ -206,6 +221,74 @@ test("checkQcAttestation: enforcement ON but no author provenance ⇒ no finding
   } finally {
     if (prevEnf === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prevEnf;
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
+    cleanup();
+  }
+});
+
+test("checkQcAttestation: no-api mode classifies missing provenance as legacy/unknown and blocks certification", () => {
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    cleanup();
+    const ch = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [ch]);
+    writeAttestation({
+      schemaVersion: "qc-attest-v1",
+      bookId: BOOK,
+      chapterNumber: 1,
+      chapterId: ch.chapterId,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(ch),
+      hashVersion: "v2",
+      reviewer: "codex-qc:reviewer-1",
+      reviewedAt: "2026-06-13T00:00:00.000Z",
+      roundId: ROUND,
+      roundRole: "confirm",
+    });
+
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    const findings = checkQcAttestation(ch, true);
+    assert.equal(findings[0].checkId, "QC0.legacy_unknown_reviewer_session");
+    assert.match(findings[0].message, /legacy\/unknown/i);
+  } finally {
+    if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
+    cleanup();
+  }
+});
+
+// I5·W1 (promote side): a PUBLISHABLE attestation is a certificate that independence was verified when it
+// was written, so a LATER-lost author sidecar (untracked → gone on a fresh checkout/resume) must not
+// re-block it at promote. Crucially, this is done by trusting the certificate — NOT by manufacturing a
+// synthetic author — so a RECORDED self-grade (author == reviewer) is still caught.
+test("checkQcAttestation: a PUBLISHABLE attestation is not re-blocked on a LOST author sidecar, but a RECORDED self-grade still is (I5·W1)", () => {
+  const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  try {
+    cleanup();
+    const ch = makeChapter(BOOK, 1);
+    writeFixtureBook(STATE_CHAPTERS, [ch]);
+    const attest = (verdict: "PUBLISHABLE" | "REVISE") => writeAttestation({
+      schemaVersion: "qc-attest-v1", bookId: BOOK, chapterNumber: 1, chapterId: ch.chapterId,
+      verdict, contentHash: chapterContentHash(ch), hashVersion: "v2",
+      reviewer: "codex-qc:reviewer-1", reviewerSessionId: "auto-finalize-xyz", // present → passes the reviewer-session check
+      reviewedAt: "2026-06-13T00:00:00.000Z", roundId: ROUND, roundRole: "confirm",
+    });
+    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+
+    // (1) PUBLISHABLE + reviewer recorded + author sidecar ABSENT (lost on checkout) ⇒ NOT re-blocked on author.
+    attest("PUBLISHABLE");
+    const lostSidecar = checkQcAttestation(ch, true);
+    assert.ok(!lostSidecar.some((f) => f.checkId === "QC0.legacy_unknown_author_session"),
+      `a PUBLISHABLE attestation must not re-block on a lost author sidecar: ${JSON.stringify(lostSidecar)}`);
+
+    // (2) The exemption does NOT launder a RECORDED self-grade: author sidecar present AND equal to the
+    // reviewer session ⇒ author_graded_own_work still fires (caught at line 307, before the exemption).
+    recordAuthorProvenance(ch.chapterId, "auto-finalize-xyz");
+    const selfGrade = checkQcAttestation(ch, true);
+    assert.ok(selfGrade.some((f) => f.checkId === "QC0.author_graded_own_work"),
+      `a recorded author==reviewer self-grade must still be caught: ${JSON.stringify(selfGrade)}`);
+  } finally {
     if (prevNoApi === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
     cleanup();

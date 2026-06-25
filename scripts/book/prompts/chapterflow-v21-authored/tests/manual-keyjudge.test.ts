@@ -3,7 +3,7 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, writeFixtureBook } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import {
@@ -50,6 +50,11 @@ function setup(): { chapter: ReturnType<typeof makeChapter>; tokens: ReturnType<
   writeFixtureBook(STATE_CHAPTERS, [chapter]);
   const sourceDir = resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN, "sidecars/source");
   mkdirSync(sourceDir, { recursive: true });
+  writeResearchRunManifestFixture({
+    runDir: resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN),
+    bookId: BOOK,
+    chapters: [{ number: 1, title: "Chapter 1" }],
+  });
   writeFileSync(resolve(sourceDir, "ch01.source.json"), JSON.stringify(sourceSidecar(1), null, 2), "utf8");
   const roundId = "r-manual";
   const { tokens } = openQcRound(BOOK, roundId);
@@ -273,6 +278,11 @@ test("manual keyjudge: an incremental round CARRIES FORWARD a prior resolution f
     writeFixtureBook(STATE_CHAPTERS, [chapter]);
     const sourceDir = resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN, "sidecars/source");
     mkdirSync(sourceDir, { recursive: true });
+    writeResearchRunManifestFixture({
+      runDir: resolve(REPO_ROOT, ".chapterflow/runs", BOOK, RUN),
+      bookId: BOOK,
+      chapters: [{ number: 1, title: "Chapter 1" }],
+    });
     writeFileSync(resolve(sourceDir, "ch01.source.json"), JSON.stringify(sourceSidecar(1), null, 2), "utf8");
 
     // Round OLD: full derivation of ch1 → PASS.

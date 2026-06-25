@@ -22,22 +22,35 @@
  *   export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
  */
 
-import { AgentTier, CallOptions, CallResult, Provider, ProviderName } from "./types.js";
-import { ClaudeCliProvider } from "./cli.js";
-import { AnthropicApiProvider } from "./anthropic-api.js";
-import { OpenAiApiProvider } from "./openai-api.js";
+import { formatRuntimeFindings, validateProviderCallResult } from "../runtimeSchemas.js";
+import {
+  AgentTier,
+  CallOptions,
+  CallResult,
+  Provider,
+  ProviderAttemptMetadata,
+  ProviderName,
+  ProviderRawResult,
+  StructuredJsonError,
+  appendJsonInstruction,
+  defaultModelForProvider,
+  defaultProviderName,
+  parseStructuredJson,
+  providerNameFromEnv,
+} from "./types.js";
 
-const PROVIDERS: Record<ProviderName, Provider> = {
-  "anthropic-cli": ClaudeCliProvider,
-  "anthropic-api": AnthropicApiProvider,
-  "openai-api":    OpenAiApiProvider,
+type ProviderLoader = () => Promise<Provider>;
+
+const PROVIDERS: Record<ProviderName, ProviderLoader> = {
+  "anthropic-cli": async () => (await import("./cli.js")).ClaudeCliProvider,
+  "anthropic-api": async () => (await import("./anthropic-api.js")).AnthropicApiProvider,
+  "openai-api": async () => (await import("./openai-api.js")).OpenAiApiProvider,
 };
 
+const providerCache = new Map<ProviderName, Provider>();
+
 function envProvider(): ProviderName | null {
-  const raw = process.env.CHAPTERFLOW_PROVIDER;
-  if (!raw) return null;
-  if (raw in PROVIDERS) return raw as ProviderName;
-  throw new Error(`CHAPTERFLOW_PROVIDER=${raw} is not a known provider. Use one of: ${Object.keys(PROVIDERS).join(", ")}`);
+  return providerNameFromEnv();
 }
 
 function envModelForTier(tier: AgentTier): string | null {
@@ -45,9 +58,23 @@ function envModelForTier(tier: AgentTier): string | null {
   return process.env[key] ?? null;
 }
 
-export function selectProvider(opts: CallOptions): Provider {
-  const name = opts.provider ?? envProvider() ?? "anthropic-cli";
-  const provider = PROVIDERS[name];
+export function resolveProviderName(opts: Pick<CallOptions, "provider">): ProviderName {
+  return opts.provider ?? envProvider() ?? defaultProviderName();
+}
+
+async function loadProvider(name: ProviderName): Promise<Provider> {
+  const cached = providerCache.get(name);
+  if (cached) return cached;
+  const loader = PROVIDERS[name];
+  if (!loader) throw new Error(`Unknown provider: ${name}`);
+  const provider = await loader();
+  providerCache.set(name, provider);
+  return provider;
+}
+
+export async function selectProvider(opts: CallOptions): Promise<Provider> {
+  const name = resolveProviderName(opts);
+  const provider = await loadProvider(name);
   if (!provider) throw new Error(`Unknown provider: ${name}`);
   if (!provider.isConfigured()) {
     throw new Error(`Provider "${name}" is not configured. ${configHint(name)}`);
@@ -67,13 +94,159 @@ export async function callModel<T = string>(opts: CallOptions): Promise<CallResu
   // no-API mode promises it won't. This is the single architectural enforcement the invariant
   // previously lacked (it was only avoided by convention). The subscription CLI provider is not a
   // funded API, so it stays exempt; to intentionally spend on the API, unset the env.
-  const name: ProviderName = opts.provider ?? envProvider() ?? "anthropic-cli";
+  const name = resolveProviderName(opts);
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1" && (name === "anthropic-api" || name === "openai-api")) {
     throw new Error(`no-API mode (CHAPTERFLOW_NO_API_CODEX_QC=1) forbids a billed "${name}" model call (tier=${opts.tier}). All model work must run via codex exec. To spend on the API, unset CHAPTERFLOW_NO_API_CODEX_QC.`);
   }
-  const provider = selectProvider(opts);
+  const provider = await selectProvider(opts);
   const model = resolveModel(opts, provider);
-  return provider.call<T>({ ...opts, model });
+  const rawResponses: string[] = [];
+  const attemptMetadata: ProviderAttemptMetadata[] = [];
+  const startedAt = Date.now();
+  const first = await callWithOwnedRetries(provider, prepareCallOptions(opts, model), attemptMetadata, rawResponses);
+
+  let effective = first;
+  let content: T;
+  if (opts.jsonMode) {
+    try {
+      content = parseStructuredJson<T>(first.raw, opts.jsonSchema);
+    } catch (err) {
+      const repair = await runJsonRepair(provider, opts, model, first.raw, err, attemptMetadata, rawResponses);
+      effective = repair;
+      try {
+        content = parseStructuredJson<T>(repair.raw, opts.jsonSchema);
+      } catch (repairErr) {
+        const detail = repairErr instanceof StructuredJsonError ? repairErr.issues.join("; ") : (repairErr as Error).message;
+        throw new Error(`Structured JSON from ${name}/${model} failed after 1 repair attempt: ${detail}`);
+      }
+    }
+  } else {
+    content = first.raw as unknown as T;
+  }
+
+  const totalDurationMs = Date.now() - startedAt;
+  const result: CallResult<T> = {
+    ...effective,
+    provider: name,
+    model,
+    durationMs: totalDurationMs,
+    content,
+    attempts: attemptMetadata.length,
+    attemptMetadata,
+    rawResponses,
+  };
+  const validation = validateProviderCallResult(result);
+  if (!validation.ok) {
+    throw new Error(`Provider "${name}" returned an invalid CallResult: ${formatRuntimeFindings(validation.findings)}`);
+  }
+  return result;
+}
+
+function prepareCallOptions(opts: CallOptions, model: string): CallOptions & { model: string } {
+  return {
+    ...opts,
+    model,
+    user: opts.jsonMode ? appendJsonInstruction(opts.user, opts.jsonSchema) : opts.user,
+  };
+}
+
+async function callWithOwnedRetries(
+  provider: Provider,
+  opts: CallOptions & { model: string },
+  attemptMetadata: ProviderAttemptMetadata[],
+  rawResponses: string[],
+): Promise<ProviderRawResult> {
+  const maxAttempts = normalizeMaxAttempts(opts.maxAttempts);
+  let lastError: unknown = null;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    const kind: ProviderAttemptMetadata["kind"] = attempt === 1 ? "initial" : "retry";
+    const startedAt = Date.now();
+    try {
+      const raw = await provider.call(opts);
+      rawResponses.push(raw.raw);
+      attemptMetadata.push({
+        attempt: attemptMetadata.length + 1,
+        durationMs: raw.durationMs,
+        kind,
+        rawBytes: Buffer.byteLength(raw.raw, "utf8"),
+      });
+      return raw;
+    } catch (err) {
+      lastError = err;
+      attemptMetadata.push({
+        attempt: attemptMetadata.length + 1,
+        durationMs: Date.now() - startedAt,
+        kind,
+        error: (err as Error).message,
+      });
+      if (attempt === maxAttempts) break;
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error(String(lastError));
+}
+
+async function runJsonRepair(
+  provider: Provider,
+  opts: CallOptions,
+  model: string,
+  raw: string,
+  cause: unknown,
+  attemptMetadata: ProviderAttemptMetadata[],
+  rawResponses: string[],
+): Promise<ProviderRawResult> {
+  const repairUser = appendJsonInstruction(buildJsonRepairPrompt(raw, cause), opts.jsonSchema);
+  const repairOpts: CallOptions & { model: string } = {
+    ...opts,
+    model,
+    user: repairUser,
+    maxAttempts: 1,
+    priorTurns: [
+      ...(opts.priorTurns ?? []),
+      { role: "user", content: opts.jsonMode ? appendJsonInstruction(opts.user, opts.jsonSchema) : opts.user },
+      { role: "assistant", content: raw },
+    ],
+  };
+  const startedAt = Date.now();
+  try {
+    const repaired = await provider.call(repairOpts);
+    rawResponses.push(repaired.raw);
+    attemptMetadata.push({
+      attempt: attemptMetadata.length + 1,
+      durationMs: repaired.durationMs,
+      kind: "json-repair",
+      rawBytes: Buffer.byteLength(repaired.raw, "utf8"),
+    });
+    return repaired;
+  } catch (err) {
+    attemptMetadata.push({
+      attempt: attemptMetadata.length + 1,
+      durationMs: Date.now() - startedAt,
+      kind: "json-repair",
+      error: (err as Error).message,
+    });
+    throw err;
+  }
+}
+
+function buildJsonRepairPrompt(raw: string, cause: unknown): string {
+  const issues = cause instanceof StructuredJsonError ? cause.issues.join("; ") : (cause as Error).message;
+  const boundedRaw = raw.length > 4_000 ? `${raw.slice(0, 4_000)}\n[previous response truncated for repair prompt]` : raw;
+  return [
+    "Your previous response was not accepted as structured JSON.",
+    `Validation error: ${issues}`,
+    "Return only a corrected JSON value. Preserve the intended data, but do not include prose or markdown.",
+    "",
+    "Previous response:",
+    boundedRaw,
+  ].join("\n");
+}
+
+function normalizeMaxAttempts(value: number | undefined): number {
+  if (value === undefined) return 1;
+  if (!Number.isInteger(value) || value < 1 || value > 5) {
+    throw new Error(`maxAttempts must be an integer from 1 to 5; got ${String(value)}`);
+  }
+  return value;
 }
 
 function configHint(name: ProviderName): string {
@@ -86,6 +259,13 @@ function configHint(name: ProviderName): string {
 
 /** Convenience: ping the active provider with a single tiny call. */
 export async function pingProvider(): Promise<{ ok: boolean; provider: ProviderName; model: string; message: string }> {
+  const providerName = (() => {
+    try {
+      return resolveProviderName({});
+    } catch {
+      return defaultProviderName();
+    }
+  })();
   try {
     const result = await callModel<string>({
       tier: "critic",
@@ -96,6 +276,10 @@ export async function pingProvider(): Promise<{ ok: boolean; provider: ProviderN
     });
     return { ok: true, provider: result.provider, model: result.model, message: result.content.trim() };
   } catch (err) {
-    return { ok: false, provider: "anthropic-cli", model: "?", message: (err as Error).message };
+    return { ok: false, provider: providerName, model: "?", message: (err as Error).message };
   }
+}
+
+export function defaultModelForProviderName(provider: ProviderName, tier: AgentTier): string {
+  return defaultModelForProvider(provider, tier);
 }

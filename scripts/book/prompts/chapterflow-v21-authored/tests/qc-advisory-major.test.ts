@@ -1,17 +1,10 @@
 /**
- * H3 fix guard — deterministic majors are ADVISORY at QC.
+ * Major-clean production policy guard.
  *
- * Before: finalize collected EVERY deterministic major via unresolvedMajors and
- * REVISE'd/HALTed on it, even though the gate documents whole classes (SC9, BP28-32,
- * C23 …) as "shadow / does not flip the gate". A corpus calibration shows every
- * deterministic major fires on at least one clean/gold reference chapter (SC9 on
- * 16/21 gold), so blocking on them demanded manual waivers on good content — the
- * documented convergence-killer.
- *
- * After: unresolvedMajors (the QC-blocking aggregator) filters through the empty
- * QC_ENFORCED_MAJORS allowlist, so deterministic majors SURFACE (currentMajorFindings
- * / formatMajorStatus) but never block the verdict. Semantic quality is gated by the
- * model QC (bar/sweep/confirm) + the deterministic BLOCKERS.
+ * Deterministic majors are raw observations, not automatic passes. They remain
+ * visible through currentMajorFindings, and unresolvedMajors now returns every
+ * current major until a narrow, reviewer-attributed, content-bound waiver closes
+ * that exact finding/content.
  */
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync, rmSync } from "fs";
@@ -31,7 +24,7 @@ function cleanup(): void {
   }
 }
 
-test("deterministic majors surface in currentMajorFindings but are advisory-at-QC (unresolvedMajors filters to QC_ENFORCED_MAJORS)", () => {
+test("deterministic majors surface and are unresolved by default until a content-bound waiver closes them", () => {
   const oldWarn = console.warn;
   console.warn = () => {};
   try {
@@ -41,10 +34,7 @@ test("deterministic majors surface in currentMajorFindings but are advisory-at-Q
     const surfaced = currentMajorFindings(BOOK, [chapter]);
     assert.ok(surfaced.length > 0, "fixture should trip at least one deterministic major (the visibility path must keep working)");
     const blocking = unresolvedMajors(BOOK, [chapter], true);
-    // Every blocking major must be in the QC allowlist...
-    assert.ok(blocking.every((f) => QC_ENFORCED_MAJORS.has(f.checkId)), "unresolvedMajors must only return QC-enforced majors");
-    // ...and since the allowlist is empty, NONE of the surfaced majors blocks the verdict.
-    assert.equal(blocking.length, 0, "advisory-at-QC: a surfaced deterministic major must not, by itself, block the QC verdict");
+    assert.deepEqual(blocking.map((f) => f.id).sort(), surfaced.map((f) => f.id).sort(), "every surfaced major is unresolved without an explicit content-bound waiver");
   } finally {
     console.warn = oldWarn;
     cleanup();

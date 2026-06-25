@@ -13,15 +13,22 @@ research and write checks run in their own phases (`runbook <book>` shows where 
 - `check-source` PASS — the bibliography + sidecars are structurally coherent.
 - `source-v2-gate` PASS — every chapter sidecar has the required structured fields.
 - `source-verify-check` PASS — every named case + testable fact verified against a DISTINCT real
-  source (not a rubber-stamp). Run under `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1` so an ABSENT record
-  blocks, not just a bad one.
+  source (not a rubber-stamp). For a NEW source-v2 book (one with source-v2 sidecars) this is a
+  **production invariant**, not an entrypoint convention: a missing, malformed, incomplete,
+  non-VERIFIED, uncited, or rubber-stamped record blocks promotion AND publish on its own — no env
+  var required. The central `evaluateSourceRealityPolicy` decides; `CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1`
+  only **strengthens** it (extends the requirement to books with no verifiable source content) and
+  can never weaken the new-book default. Absence of a record is acceptable only through an explicit,
+  durable, content-bound **legacy exemption** — see `SOURCE-REALITY-POLICY.md`.
 - `source-fit` not RISKY (advisory) — the source is varied enough for v21 (catch a doomed run early).
 
 ## Write
 - `author-check` clean for every chapter (advisory shadow rollout — surfaces, drives repair).
 - `gate-chapter` PASS for every chapter (deterministic per-chapter ship gate).
 - `fanout --barrier` PASS — book-gate clean and no write-barrier-actionable sameness offenders.
-- `major-status` clean OR every major explicitly triaged (`major-disposition`) — no silent debt.
+- `major-status` PASS — every current major is either absent or closed by a reviewer-attributed,
+  content-bound `major-disposition` waiver for the exact finding/content. Legacy/unbound waivers
+  remain audit history but do not make production major-clean.
 
 ## QC
 - `sweep` PASS — no cross-chapter templating.
@@ -36,7 +43,8 @@ research and write checks run in their own phases (`runbook <book>` shows where 
 - `publish-after-qc --commit --push` PASS — package written, committed, pushed.
 - transient cleanup done — no `REVIEW-PACKET.md` / task cards / `qc-auto.workflow.js` committed
   (the pre-commit hook also blocks these + live `cfq-*` round tokens).
-- package exists (`book-packages/<book>.v21.json`) and the catalog is registered (`register-web`).
+- package exists (`book-packages/<book>.v21.json`), `verify-production-package` PASS, and the
+  catalog is registered (`register-web`, which refuses unverified packages).
 
 ## The enforced checklist (runtime)
 The QC + publish half of this stack is a real gate inside `promoteBook` / `publish-after-qc` — it
@@ -44,7 +52,8 @@ re-runs every check from scratch at promote time, so a book that hasn't earned i
 `publish-after-qc` (dry-run or real) now prints which items passed:
 
 ```
-publish preflight — 10/11 checks passed:
+publish preflight — 11/12 checks passed:
+  ✓ canonical-chapter-set
   ✓ ship-gate
   ✓ intra-book
   ✓ qc-status
@@ -55,8 +64,13 @@ publish preflight — 10/11 checks passed:
   ✓ plan-enforcement
   ✓ sweep
   ✓ majors
-  ✗ source-verify (1 blocker(s))
+  ✗ source-reality [missing] (1 blocker(s))
 ```
 
-Each `✗` line is followed by its blocking reason. A book is publish-done only when this reads
-`N/N checks passed`. (The checklist is `noApiPreflightChecks` in `src/qc/publishAfterQc.ts`.)
+Each `✗` line is followed by its blocking reason. The `source-reality` line carries the policy
+**decision** in brackets — one of `required-and-verified`, `legacy-exempt`, `missing`, `invalid`,
+`stale`, or `not-applicable` — and `promote-book` reports the same decision in its result + gate
+report (`sourceReality`). A book is publish-done only when this reads `N/N checks passed`. (The
+checklist is `noApiPreflightChecks` in `src/qc/publishAfterQc.ts`; the source-reality verdict comes
+from the shared `evaluateSourceRealityPolicy` in `src/qc/sourceRealityPolicy.ts`, so the preflight
+and the actual promote cannot disagree.)

@@ -220,13 +220,16 @@ ChapterFlow is for a WIDE audience. The rules:
 - Bad: choices arranged so the index reads `[0,1,2,0,1,2,…]`, with the "correct" one chosen to fit the pattern.
 
 **R5 — Declare provenance, then write (v2 sidecars only).** If the sidecar is
-`schemaVersion: "source-v2"`, set each unit's `sourceAnchorId` to the anchor it is
-built from BEFORE you write it — the `namedExample`/`testableFact`/`concept` id from
-the Bind Block — and then build the unit FROM that anchor's `hardSpecifics` (use ≥2 of
-its concrete tokens). This is declare-then-write: grounding becomes a forward act, not a
-post-hoc check. `SC11` verifies the unit actually uses the anchor it claims — a generic
-sentence that merely name-drops the anchor fails. (v1 sidecars: no `sourceAnchorId`
-needed; SC11 skips them.)
+`schemaVersion: "source-v2"`, every claim-bearing unit must carry source anchors BEFORE
+you write it. This includes hook, counterintuition, every breakdown tier, examples, quiz
+prompt/explanation/key evidence, review cards, implementation-plan title/coreSkill/if-thens/
+challenge/weekly practice, keyTakeaway, tryThisNow, and memorableLines. Use the stable
+`namedExample`/`testableFact`/`concept` ids from the Bind Block (`sourceAnchorId` for legacy
+single-anchor fields, `sourceAnchorIds` for multi-anchor fields, and
+`authoring.sourceAnchors.effectiveAnchors` as the full audit map). Then build the unit FROM
+that anchor; named examples must use ≥2 of their `hardSpecifics`. `SC11` verifies missing,
+fabricated, wrong-chapter, unsupported, and name-dropped anchors. (v1 sidecars: no source
+anchors needed; SC11 skips them.)
 
 **R6 — Vary the SHAPE of each scene, not just the nouns (the systemic templating
 defect).** This is the single defect that put whole books at REVISE (Rich Dad Poor Dad:

@@ -90,6 +90,39 @@ export CHAPTERFLOW_CRITIC_MODEL=gpt-4o-mini
 **Critic agents are deterministic code** — they don't call any model — so they
 behave identically regardless of provider. Only writer/researcher calls vary.
 
+Provider adapters are lazy-loaded only after a provider is selected. Deterministic
+commands such as `book-status`, `doctor`, and gates do not require the optional
+`openai` or `@anthropic-ai/sdk` packages at import time. The router owns provider
+attempt counts and the single JSON repair attempt; adapters make one raw call with
+SDK retries disabled, honor per-call timeouts, return bounded raw evidence, and
+include usage/latency metadata for validation.
+
+## Package and CI contract
+
+The v21 pipeline is an explicit npm workspace package at
+`scripts/book/prompts/chapterflow-v21-authored`. The repository root
+`package-lock.json` is the single dependency lockfile; do not add a second
+lockfile under this directory.
+
+From a clean checkout:
+
+```bash
+npm ci --include=optional
+npm run pipeline:typecheck
+npm run pipeline:test
+npm run pipeline:doctor
+npm run pipeline:build
+```
+
+For automation, `npx tsx src/cli.ts doctor --json` emits the same findings,
+summary counts, and planned exit code as structured JSON.
+
+The package pins Node `>=20.20.0 <21`, npm `10.8.2`, exact pipeline tool
+versions, and declares `openai` plus `@anthropic-ai/sdk` as optional provider
+dependencies. The default test script sets `CHAPTERFLOW_NO_API_CODEX_QC=1` and
+uses synthetic fixtures, so it must not require production `state/` artifacts,
+global model CLIs, API keys, or private `.chapterflow/runs` data.
+
 ## Autopilot — the Codex control plane (no API metering)
 
 The three providers above are the paid path. The **default** needs no funded API:
@@ -114,7 +147,8 @@ npx tsx src/cli.ts book-autopilot <bookId>
 Invariants the conductor enforces **in code** (not prose):
 - **No API metering** — every model call is a `codex exec` session, never a billed provider.
 - **Strict env, fail-closed** — `CHAPTERFLOW_NO_API_CODEX_QC` / `_REQUIRE_SOURCE_VERIFY` / `_ENFORCE_SESSION_INDEPENDENCE` are force-set on every subprocess (canonical list in `src/lib/strictEnv.ts`), so finalize's author≠reviewer collision check and the source-verify gate can't silently no-op when the shell didn't export them.
-- **Reviewer integrity** — reviewers run in a read-only sandbox behind a submission broker (they emit their submission JSON; the conductor records it under the reviewer's own session id), with a chapter-content hash fence as a backstop that voids a round if a chapter changes.
+- **Reviewer integrity** — reviewers run in a read-only sandbox behind a submission broker (they emit their submission JSON; the conductor records it under the reviewer's own session id), with a chapter-content hash fence as a backstop that voids a round if a chapter changes. Session ids are attributable local workflow evidence, not cryptographic proof of different humans; fresh no-API certification requires them and blocks legacy/unknown provenance.
+- **QC state integrity** — submit, collect, verify-repair, finalize, and ledger status writes serialize through an owned round transaction. Malformed `repair-ledger.jsonl` lines fail closed; use `qc-ledger-repair <bookId> --round <roundId> --confirm` to quarantine corrupt raw lines and rewrite only valid events.
 - **One QC engine** — `qc-auto` (human-driven) and the conductor share a single round-driver (`src/qc/auto/driver.ts`); the conductor adds `--incremental` repair rounds, `--tiebreak`, and full-book `qc-status` verification.
 - **Typed halts** — every stop carries a category (`infra` / `content` / `governance` / `progress` / `integrity`) + durable per-agent logs under `state/autopilot-logs/<bookId>/`.
 
@@ -153,7 +187,7 @@ chapterflow-v21-authored/
 ├── README.md                   (this file)
 ├── src/
 │   ├── types.ts                typed contracts between agents
-│   ├── claudeClient.ts         SDK wrapper with prompt caching
+│   ├── claudeClient.ts         provider-router wrapper used by agents
 │   ├── cli.ts                  entry: critic, generate, repair, ledger
 │   ├── critics/                runnable binary checks
 │   │   ├── narrative.ts
@@ -215,6 +249,14 @@ npx tsx $CLI gate-chapter scripts/.../state/chapters/atomic-habits-ch01.v21-nati
 npx tsx $CLI generate-book atomic-habits --title "Atomic Habits" --author "James Clear" \
   --no-categorizer --categories "Productivity,Habits" --tags "habits,systems,compounding,identity"
 ```
+
+`generate-book` resumes only from content-addressed cache manifests. A chapter
+file that exists without a matching `.cache-manifest.json`, whose output hash
+changed, whose declared input hashes changed, or whose current deterministic
+gates fail is reported as stale instead of being ingested. Use `--force` only
+when `CHAPTERFLOW_ALLOW_MODEL_GEN=1` is intentionally set; it bypasses reuse
+but the newly generated chapter still runs the full boundary validation before
+being written and added to the library ledger.
 
 Playbooks for the model-driven steps:
 - [prompts/PLAYBOOK-OPERATOR-RESEARCH.md](prompts/PLAYBOOK-OPERATOR-RESEARCH.md)

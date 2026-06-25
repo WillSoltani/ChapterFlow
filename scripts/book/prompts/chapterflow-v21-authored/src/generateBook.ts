@@ -8,7 +8,7 @@
  * handles cross-book name dedup correctly under sequential ingestion.
  */
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
+import { writeFileSync, mkdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -18,6 +18,15 @@ import { runBookGate, formatBookGateReport, BookGateReport } from "./critics/boo
 import { classifyCounterShape } from "./critics/bookPatternAudit.js";
 import { promoteBook, formatPromotionResult, PromotionResult } from "./promoteBook.js";
 import { runCategorizer } from "./agents/categorizer.js";
+import { loadCanonicalChapterIndex } from "./lib/chapterSet.js";
+import { currentProviderIdentity } from "./cache/stageCache.js";
+import { currentSessionId } from "./qc/sessionProvenance.js";
+import {
+  createGenerationRunManifest,
+  generationInputHashes,
+  recordGenerationDegradation,
+  writeGenerationManifestSidecar,
+} from "./generationDegradation.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../state");
@@ -40,6 +49,10 @@ export type GenerateBookOptions = {
   manualCategories?: string[];
   /** Operator-supplied tags; used when noCategorizer is true. */
   manualTags?: string[];
+  /** Bypass chapter/intermediate cache reuse. Newly generated output still gates normally. */
+  force?: boolean;
+  /** Test/tooling hook for deterministic cache-version invalidation. */
+  cacheCodeVersion?: string;
 };
 
 export type GenerateBookResult = {
@@ -79,7 +92,12 @@ export async function generateBook(
     log(`\n--- Chapter ${ch.chapterNumber}/${range[range.length - 1].chapterNumber}: ${ch.chapterTitle} ---`);
     try {
       const priorChapterShapes = buildPriorChapterShapes(succeeded);
-      const produced = await generateChapter(book, ch, { priorChapterShapes });
+      const produced = await generateChapter(book, ch, {
+        logger: log,
+        priorChapterShapes,
+        force: options.force,
+        cacheCodeVersion: options.cacheCodeVersion,
+      });
       succeeded.push(produced);
     } catch (err) {
       const msg = (err as Error).message;
@@ -109,8 +127,13 @@ export async function generateBook(
   // AND the book gate had no blockers. Even then, promoteBook re-validates.
   let promotion: PromotionResult | undefined;
   const autoPromote = options.autoPromote !== false;
+  const fullCanonicalRange =
+    range.length === chapters.length &&
+    range.every((c, i) => c.chapterId === chapters[i].chapterId && c.chapterNumber === chapters[i].chapterNumber);
   if (autoPromote) {
-    if (failed.length > 0) {
+    if (!fullCanonicalRange) {
+      log(`\n=== Skipping production promotion: chapter range runs are nonproduction (${range.length}/${chapters.length} canonical chapters) ===`);
+    } else if (failed.length > 0) {
       log(`\n=== Skipping promotion: ${failed.length} chapter(s) failed during generation ===`);
     } else if (!bookGate.passed) {
       log(`\n=== Skipping promotion: book gate has blockers ===`);
@@ -143,7 +166,32 @@ export async function generateBook(
           // Categorizer failure shouldn't block promotion. Categories are
           // optional metadata; the book is still shippable. Operator can rerun
           // the categorizer later (it caches once it succeeds).
-          log(`categorizer failed (${(err as Error).message}); promoting without categories — rerun the categorizer separately to backfill`);
+          const categorizerManifest = createGenerationRunManifest({
+            runId: process.env.CHAPTERFLOW_RUN_ID ?? `${book.bookId}.categorizer.${Date.now()}`,
+            chapterId: `${book.bookId}.categorizer`,
+            authorSessionId: currentSessionId() ?? "legacy-unknown",
+            provider: currentProviderIdentity("critic"),
+            codeVersion: options.cacheCodeVersion,
+            sourceHash: null,
+            sourceAnchorCatalogHash: null,
+            planHash: null,
+          });
+          const event = recordGenerationDegradation(categorizerManifest, {
+            stage: "categorizer",
+            inputHashes: generationInputHashes({ book, chapterTitles: chapters.map((c) => c.chapterTitle) }),
+            error: err,
+            attemptCount: 1,
+            fallbackUsed: {
+              kind: "omitted-categories-and-tags",
+              policy: "metadata-only",
+              reason: "Categorizer failed; promotion can continue because categories/tags are optional metadata.",
+            },
+            fallbackOutput: { categories: null, tags: null },
+            severity: "advisory",
+            requiredDisposition: "visible_advisory",
+          });
+          writeGenerationManifestSidecar(categorizerManifest);
+          log(`categorizer failed (${(err as Error).message}); promoting without categories — recorded advisory degradation ${event.eventId}`);
         }
       }
 
@@ -193,9 +241,5 @@ function buildPriorChapterShapes(prior: ChapterV21[]): PriorChapterShapes {
 /** Read a chapter index file. The index is an array of ChapterSpec objects
  *  describing every chapter in a book. Stored at state/indexes/<bookId>.json. */
 export function loadChapterIndex(bookId: string): ChapterSpec[] {
-  const path = resolve(STATE, "indexes", `${bookId}.json`);
-  if (!existsSync(path)) {
-    throw new Error(`Chapter index not found at ${path}. Create it before running generateBook.`);
-  }
-  return JSON.parse(readFileSync(path, "utf8")) as ChapterSpec[];
+  return loadCanonicalChapterIndex(bookId);
 }

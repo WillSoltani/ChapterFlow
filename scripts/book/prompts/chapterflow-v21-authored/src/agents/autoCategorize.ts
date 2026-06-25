@@ -20,10 +20,12 @@ import { existsSync, readFileSync, readdirSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { findLatestRun } from "../next-task.js";
+import { findRunArtifact } from "../lib/runDirs.js";
+import { flattenTocChapters, parseToc } from "../lib/tocContract.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // src/agents
 const REPO = resolve(__dirname, "../../../../../..");
+const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
 const CONFIG_PATH = resolve(__dirname, "../../config/categories.json");
 const CHAPTERS_DIR = resolve(__dirname, "../../state/chapters");
 
@@ -104,19 +106,19 @@ export function deriveCategoriesAndTags(
   let tocCats: string[] = [];
   let tocTags: string[] = [];
 
-  const runId = findLatestRun(bookId);
-  if (runId) {
-    const tocPath = resolve(REPO, ".chapterflow/runs", bookId, runId, "source-freeze", "toc.json");
-    if (existsSync(tocPath)) {
-      try {
-        const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+  const tocPath = findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json");
+  if (tocPath) {
+    const runDir = resolve(tocPath, "../..");
+    try {
+      const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+      const parsed = parseToc(toc, { bookId, path: tocPath });
+      if (parsed.ok) {
         if (Array.isArray(toc.categories)) tocCats = toc.categories;
         if (Array.isArray(toc.tags)) tocTags = toc.tags;
-        const flat = toc.flatChapters?.length ? toc.flatChapters : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? []);
-        for (const ch of flat) if (ch?.title) textParts.push(ch.title);
-      } catch {/* ignore */}
-    }
-    const srcDir = resolve(REPO, ".chapterflow/runs", bookId, runId, "sidecars", "source");
+        for (const ch of flattenTocChapters(toc, { bookId, path: tocPath })) if (ch.title) textParts.push(ch.title);
+      }
+    } catch {/* ignore */}
+    const srcDir = resolve(runDir, "sidecars", "source");
     if (existsSync(srcDir)) {
       for (const f of readdirSync(srcDir).filter((x) => x.endsWith(".source.json"))) {
         try {

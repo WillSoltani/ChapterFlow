@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from "fs";
+import { createHash } from "crypto";
+import { existsSync, readFileSync, readdirSync } from "fs";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { resolve } from "path";
 
@@ -7,6 +8,8 @@ import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadQcRound, verifyQcRoundToken } from "./qcRound.js";
 import { loadBookChapters } from "./manualKeyJudge.js";
+import { evidenceSourceRef } from "./orchestrator/evidenceSource.js";
+import { QC_ORCHESTRATOR_DIR, roundRecordPath as orchestratorRoundRecordPath, submissionsDir, sweepRoundRecordPath } from "./orchestrator/artifacts.js";
 import type { ValidatedSweepSubmission } from "./orchestrator/schemas.js";
 import { nondistinctiveRepetitionQuote } from "./orchestrator/findingValidity.js";
 
@@ -59,6 +62,9 @@ export type SweepPack = {
   }>;
 };
 
+export const SWEEP_DEFECT_FINGERPRINT_VERSION = "sweep-defect-v2" as const;
+export type SweepDefectFingerprintVersion = typeof SWEEP_DEFECT_FINGERPRINT_VERSION;
+
 export type SweepRecord = {
   schemaVersion: "sweep-attest-v1";
   bookId: string;
@@ -66,10 +72,30 @@ export type SweepRecord = {
   verdict: "PASS" | "REVISE" | "CORRUPTION";
   reviewer: string;
   attestedAt: string;
+  rawSubmissionFile?: string;
+  rawEvidenceSourceId?: string;
+  rawEvidenceSourceKind?: "raw_submission" | "derived_artifact";
+  reviewerSessionId?: string;
+  carriedFromRoundId?: string;
+  /** Version marker for the per-affected-chapter defect fingerprints carried on each
+   *  finding (`defectFingerprints`). New records set "sweep-defect-v2"; legacy records
+   *  omit it and have their v2 fingerprints derived at read time (never rewritten on disk). */
+  fingerprintVersion?: SweepDefectFingerprintVersion;
   contentHashes: Record<string, string>;
   checkedFamilies: SweepFamily[];
   findings: Array<{
     family: SweepFamily;
+    /** Stable server-derived WHOLE-FINDING key (sweep-defect-v1) for the exact grounded
+     *  sweep defect. New records always carry it; legacy records derive it at read time.
+     *  Retained for v1 history compatibility; the effective corroboration evaluator now
+     *  keys on the per-chapter `defectFingerprints` (sweep-defect-v2) instead. */
+    defectKey?: string;
+    /** Per-affected-chapter sweep-defect-v2 fingerprints — one entry per named chapter that
+     *  has a content hash on this record. Server-derived & validated like `defectKey`; legacy
+     *  records derive them at read time. Cross-round corroboration keys on THESE (per chapter),
+     *  so two independent reads corroborate on the chapters they SHARE even when they phrase the
+     *  problem differently or name overlapping (not identical) chapter sets. */
+    defectFingerprints?: Array<{ chapter: number; fingerprint: string }>;
     // Whether this finding gates the chapters it names. Mirrors finalize's `openSerious`
     // ledger contract: a blocker (or major) sweep finding blocks; an advisory (or minor)
     // observation is surfaced but never gates. Collapsed to two tiers at write time.
@@ -95,49 +121,268 @@ export function sweepRecordPath(bookId: string): string {
   return resolve(QC_DIR, `${bookId}.sweep.json`);
 }
 
-/** Append-only per-round sweep history (one JSON record per line). The single
- *  `{bookId}.sweep.json` is only the LATEST pointer (overwritten each round); this
- *  preserves every round's record so the gate can reason ACROSS rounds — the basis for
- *  (1) the sticky per-chapter carry that ignores a single stochastic verdict flip on
- *  byte-frozen content, and (2) item B (require two consecutive independent clear reads
- *  over identical content before auto-publish). */
+export { sweepRoundRecordPath } from "./orchestrator/artifacts.js";
+
+/** Cache/index path. The authoritative history is the immutable
+ *  `qc-orchestrator/<book>/<round>/sweep-record.json` files; this JSONL is rebuilt
+ *  from them and may be deleted without losing evidence. */
 export function sweepHistoryPath(bookId: string): string {
   return resolve(QC_DIR, `${bookId}.sweep-history.jsonl`);
 }
 
-/** Append a record to the per-round history. Best-effort + crash-safe: it must never throw
- *  into a sweep write path (a failed history append must not fail the round). One JSON object
- *  per line, appended via an atomic read-modify-write (the records are small + few per book). */
-export function appendSweepHistory(rec: SweepRecord): void {
-  try {
-    const p = sweepHistoryPath(rec.bookId);
-    const prior = existsSync(p) ? readFileSync(p, "utf8").split("\n").filter((l) => l.trim()) : [];
-    // Drop any prior line(s) for THIS roundId (a re-finalize/carry re-appends the same round) and
-    // re-add the fresh record LAST — last-write-wins per round, matching loadSweepHistory's dedup so
-    // the on-disk file equals the loaded view (no bloat). Unparseable lines are kept verbatim
-    // (forensics). The dedup is purely cosmetic for consumers (they already dedup on load), so item-B
-    // independent-read counting is unchanged.
-    const kept: string[] = [];
-    for (const line of prior) {
-      try {
-        const r = JSON.parse(line) as SweepRecord;
-        if (r && r.roundId === rec.roundId) continue; // replace the prior record for this round
-      } catch {
-        /* keep an unparseable line as-is */
-      }
-      kept.push(line);
-    }
-    kept.push(JSON.stringify(rec));
-    writeFileAtomic(p, `${kept.join("\n")}\n`);
-  } catch {
-    /* history is an optimization layer; never let it break a sweep write */
-  }
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
-/** Load the per-round sweep history NEWEST-FIRST, de-duplicated by roundId (a re-finalized
- *  round appends again — keep its LAST record). Returns [] when absent/unreadable (fail-safe:
- *  every consumer then behaves exactly as it did before history existed). */
-export function loadSweepHistory(bookId: string): SweepRecord[] {
+function normalizeDefectComponent(value: unknown): string {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .trim()
+    .toLowerCase()
+    .replace(/[“”]/g, "\"")
+    .replace(/[‘’]/g, "'")
+    .replace(/\s+/g, " ");
+}
+
+function hashKey(payload: unknown): string {
+  return `sweep-defect-v1:${createHash("sha256").update(JSON.stringify(payload)).digest("hex").slice(0, 24)}`;
+}
+
+export function sweepDefectKey(rec: Pick<SweepRecord, "bookId" | "contentHashes">, finding: SweepRecord["findings"][number]): string {
+  const chapters = [...new Set((finding.chapters ?? []).map(Number).filter((n) => Number.isInteger(n) && n > 0))].sort((a, b) => a - b);
+  return hashKey({
+    bookId: normalizeDefectComponent(rec.bookId),
+    family: finding.family,
+    unitId: normalizeDefectComponent(finding.unitId),
+    quote: normalizeDefectComponent(finding.quote),
+    problem: normalizeDefectComponent(finding.problem),
+    chapters,
+    content: chapters.map((n) => [n, rec.contentHashes?.[String(n)] ?? ""]),
+  });
+}
+
+// Edge punctuation a reviewer may wrap a quote in WITHOUT changing the words it contains
+// (leading/trailing quotation marks, sentence punctuation, brackets, ellipsis, dashes). Stripped
+// from both ends of the quote signature; internal characters are preserved verbatim so materially
+// different quotes never collapse. Kept in a character class (escaped) and applied as anchored runs.
+const QUOTE_EDGE_PUNCT = "\\s\"'.,;:!?()\\[\\]{}\\u2026\\u00b7*\\-\\u2013\\u2014";
+
+/**
+ * Distinctive-quote signature for sweep-defect-v2. STRONGER than `normalizeDefectComponent`
+ * (which v1 uses and must stay frozen, or stored v1 keys stop validating):
+ *   - NFKC (Unicode form) + lowercase (case) + collapse whitespace runs (whitespace),
+ *   - fold curly/smart quotation marks to straight (quote style),
+ *   - fold Unicode dash/hyphen/minus variants to ASCII "-" and the ellipsis char to "...",
+ *   - strip ONLY the punctuation that BRACKETS a quote (leading/trailing) — punctuation that
+ *     does not change the quoted words.
+ * Internal word content is preserved exactly, so two MATERIALLY different quotes keep distinct
+ * signatures (the requirement: normalize style, not meaning). Non-distinctive generic phrases are
+ * filtered upstream by `sweepFindingBlocks`/`nondistinctiveRepetitionQuote` and never reach here.
+ */
+function normalizeQuoteSignature(value: unknown): string {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .toLowerCase()
+    .replace(/[“”„‟＂]/g, "\"")
+    .replace(/[‘’‚‛＇`´]/g, "'")
+    .replace(/[‐-―−]/g, "-")
+    .replace(/…/g, "...")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(new RegExp(`^[${QUOTE_EDGE_PUNCT}]+`), "")
+    .replace(new RegExp(`[${QUOTE_EDGE_PUNCT}]+$`), "")
+    .trim();
+}
+
+export type SweepDefectFingerprintInput = Pick<SweepRecord["findings"][number], "family" | "unitId" | "quote">;
+
+/**
+ * sweep-defect-v2 — the per-affected-chapter sweep defect FINGERPRINT.
+ *
+ * The v1 key (`sweepDefectKey`) bound the WHOLE finding: family + unitId + quote + the free-form
+ * `problem` prose + the ENTIRE chapter array + a per-chapter content map over that whole array.
+ * That over-bound identity stopped UNRELATED findings from corroborating (good) but it ALSO stopped
+ * two independent reviewers from corroborating the SAME real defect whenever they worded the problem
+ * differently or named overlapping-but-not-identical chapter sets (bad — a real gate then read as an
+ * uncorroborated stochastic flip and was demoted, shipping the defect).
+ *
+ * v2 computes identity ONE CHAPTER AT A TIME and binds only the fields that make two reads "the same
+ * defect on the same bytes". Why each BOUND field is here:
+ *   - bookId       scopes identity to one book (no cross-book fingerprint collisions).
+ *   - family       the defect CLASS (scene_skeleton / persona_drift / repeated_unit /
+ *                  location_stamping). A different class on the same chapter is a DIFFERENT defect →
+ *                  must not corroborate. This is the safety floor: unrelated same-chapter findings
+ *                  cannot merge.
+ *   - unitId       the field/unit the defect lives in (e.g. `tryThisNow.timer-anchor`). Two distinct
+ *                  units on one chapter are two distinct defects → must not corroborate.
+ *   - quote        the distinctive grounded cite, run through `normalizeQuoteSignature` so the SAME
+ *                  cite matches across reads but materially different cites stay distinct.
+ *   - chapter      the single affected chapter — the unit of corroboration (we corroborate per
+ *                  shared chapter, NOT over identical full membership).
+ *   - contentHash  the bytes of THAT chapter as THIS sweep read them. A defect on changed bytes is a
+ *                  fresh first-read gate: a different hash yields a different fingerprint, so a prior
+ *                  read over the old bytes cannot corroborate it (and the gate stands on one read).
+ *
+ * EXCLUDED on purpose: `problem` and `expectedFix` (free-form reviewer prose) and the OTHER chapters
+ * in the finding's array (membership is per-chapter here). Excluding them is exactly what lets honest
+ * reviewers corroborate a real defect they described differently.
+ *
+ * Returns null when this chapter has no content hash on the record (cannot bind the bytes-read
+ * component → no v2 identity) or the family/chapter is not well-formed.
+ */
+export function sweepDefectFingerprintV2(
+  rec: Pick<SweepRecord, "bookId" | "contentHashes">,
+  finding: SweepDefectFingerprintInput,
+  chapterNumber: number,
+): string | null {
+  const n = Number(chapterNumber);
+  if (!Number.isInteger(n) || n <= 0) return null;
+  if (!isSweepFamily(finding.family)) return null;
+  const contentHash = rec.contentHashes?.[String(n)];
+  if (!contentHash) return null;
+  const payload = {
+    v: 2,
+    bookId: normalizeDefectComponent(rec.bookId),
+    family: finding.family,
+    unitId: normalizeDefectComponent(finding.unitId),
+    quote: normalizeQuoteSignature(finding.quote),
+    chapter: n,
+    contentHash,
+  };
+  return `${SWEEP_DEFECT_FINGERPRINT_VERSION}:${createHash("sha256").update(JSON.stringify(payload)).digest("hex").slice(0, 24)}`;
+}
+
+/** Per-named-chapter v2 fingerprints for a finding (one per chapter that has a content hash).
+ *  Chapters without a hash are skipped — they cannot form a v2 identity. Sorted by chapter. */
+function deriveDefectFingerprints(
+  rec: Pick<SweepRecord, "bookId" | "contentHashes">,
+  finding: SweepDefectFingerprintInput & { chapters: number[] },
+): Array<{ chapter: number; fingerprint: string }> {
+  const out: Array<{ chapter: number; fingerprint: string }> = [];
+  for (const n of [...new Set((finding.chapters ?? []).map(Number))].sort((a, b) => a - b)) {
+    const fingerprint = sweepDefectFingerprintV2(rec, finding, n);
+    if (fingerprint) out.push({ chapter: n, fingerprint });
+  }
+  return out;
+}
+
+function canonicalFingerprints(arr?: Array<{ chapter: number; fingerprint: string }>): string {
+  return JSON.stringify(
+    [...(arr ?? [])]
+      .map((e) => [Number(e.chapter), String(e.fingerprint)] as const)
+      .sort((a, b) => a[0] - b[0]),
+  );
+}
+
+function normalizeSweepRecord(rec: SweepRecord): SweepRecord {
+  const contentHashes = Object.fromEntries(Object.entries(rec.contentHashes ?? {}).map(([k, v]) => [String(k), String(v)]));
+  const base = { ...rec, contentHashes };
+  return {
+    ...base,
+    // New records carry the v2 fingerprint version; reading a legacy record derives v2 in memory
+    // (its on-disk evidence is never rewritten) and the normalized form is marked v2 as well.
+    fingerprintVersion: SWEEP_DEFECT_FINGERPRINT_VERSION,
+    findings: (rec.findings ?? []).map((f) => {
+      const normalized = {
+        ...f,
+        severity: f.severity ?? "blocker",
+        chapters: [...new Set((f.chapters ?? []).map(Number).filter((n) => Number.isInteger(n) && n > 0))].sort((a, b) => a - b),
+        unitId: String(f.unitId ?? ""),
+        quote: String(f.quote ?? ""),
+        problem: String(f.problem ?? ""),
+        expectedFix: String(f.expectedFix ?? ""),
+      };
+      // v1 whole-finding key — kept for history compatibility; a stored v1 key must still validate.
+      const derived = sweepDefectKey(base, normalized);
+      if (normalized.defectKey && normalized.defectKey !== derived) {
+        throw new Error(`sweep defectKey mismatch for ${rec.bookId} ${rec.roundId} ${normalized.family}/${normalized.unitId}: expected ${derived}, got ${normalized.defectKey}`);
+      }
+      // v2 per-chapter fingerprints — derive when enough fields are present; if a record already
+      // carries them, they must match the re-derivation (tamper-evidence, same contract as defectKey).
+      const fingerprints = deriveDefectFingerprints(base, normalized);
+      if (normalized.defectFingerprints && canonicalFingerprints(normalized.defectFingerprints) !== canonicalFingerprints(fingerprints)) {
+        throw new Error(`sweep defectFingerprints mismatch for ${rec.bookId} ${rec.roundId} ${normalized.family}/${normalized.unitId}: expected ${canonicalFingerprints(fingerprints)}, got ${canonicalFingerprints(normalized.defectFingerprints)}`);
+      }
+      return { ...normalized, defectKey: derived, defectFingerprints: fingerprints };
+    }),
+  };
+}
+
+function assertSweepRecordIntegrity(rec: SweepRecord, path: string, expected?: { bookId?: string; roundId?: string }): SweepRecord {
+  if (rec.schemaVersion !== "sweep-attest-v1") throw new Error(`${path}: schemaVersion must be sweep-attest-v1`);
+  if (expected?.bookId && rec.bookId !== expected.bookId) throw new Error(`${path}: bookId mismatch, expected ${expected.bookId}, got ${String(rec.bookId)}`);
+  if (expected?.roundId && rec.roundId !== expected.roundId) throw new Error(`${path}: roundId mismatch, expected ${expected.roundId}, got ${String(rec.roundId)}`);
+  if (!rec.bookId || !rec.roundId) throw new Error(`${path}: bookId and roundId are required`);
+  if (!["PASS", "REVISE", "CORRUPTION"].includes(rec.verdict)) throw new Error(`${path}: verdict must be PASS, REVISE, or CORRUPTION`);
+  if (!rec.reviewer) throw new Error(`${path}: reviewer is required`);
+  if (!isRecord(rec.contentHashes) || Object.keys(rec.contentHashes).length === 0) throw new Error(`${path}: contentHashes is required and must not be empty`);
+  for (const [chapter, hash] of Object.entries(rec.contentHashes)) {
+    if (!/^\d+$/.test(chapter) || typeof hash !== "string" || !hash) throw new Error(`${path}: contentHashes.${chapter} must be a non-empty string hash`);
+  }
+  if (!Array.isArray(rec.checkedFamilies)) throw new Error(`${path}: checkedFamilies[] is required`);
+  for (const family of rec.checkedFamilies) if (!isSweepFamily(family)) throw new Error(`${path}: unknown checkedFamily ${String(family)}`);
+  if (!Array.isArray(rec.findings)) throw new Error(`${path}: findings[] is required`);
+  const normalized = normalizeSweepRecord(rec);
+  normalized.findings.forEach((f, i) => {
+    if (!isSweepFamily(f.family)) throw new Error(`${path}: findings[${i}].family must be one of ${REQUIRED_SWEEP_FAMILIES.join(", ")}`);
+    if (f.severity !== "blocker" && f.severity !== "advisory") throw new Error(`${path}: findings[${i}].severity must be blocker or advisory`);
+    if (f.chapters.length === 0) throw new Error(`${path}: findings[${i}].chapters must list affected chapters`);
+    for (const n of f.chapters) {
+      if (!normalized.contentHashes[String(n)]) throw new Error(`${path}: findings[${i}] names chapter ${n} but contentHashes.${n} is missing`);
+    }
+    for (const key of ["unitId", "quote", "problem", "expectedFix"] as const) {
+      if (!String(f[key] ?? "").trim()) throw new Error(`${path}: findings[${i}].${key} is required`);
+    }
+  });
+  return normalized;
+}
+
+function readSweepRecordFile(path: string, expected?: { bookId?: string; roundId?: string }): SweepRecord {
+  let raw: unknown;
+  try {
+    raw = JSON.parse(readFileSync(path, "utf8"));
+  } catch (err) {
+    throw new Error(`${path}: corrupt sweep record (${(err as Error).message})`);
+  }
+  if (!isRecord(raw)) throw new Error(`${path}: sweep record must be a JSON object`);
+  return assertSweepRecordIntegrity(raw as SweepRecord, path, expected);
+}
+
+function sameImmutableSweepEvidence(a: SweepRecord, b: SweepRecord): boolean {
+  const strip = (rec: SweepRecord) => {
+    const { attestedAt: _attestedAt, ...rest } = normalizeSweepRecord(rec);
+    return rest;
+  };
+  return JSON.stringify(strip(a)) === JSON.stringify(strip(b));
+}
+
+function writeSweepHistoryCache(bookId: string, records: SweepRecord[]): void {
+  const ordered = [...records].sort((a, b) => a.roundId.localeCompare(b.roundId));
+  writeFileAtomic(sweepHistoryPath(bookId), `${ordered.map((r) => JSON.stringify(normalizeSweepRecord(r))).join("\n")}${ordered.length ? "\n" : ""}`);
+  if (records[0]) writeFileAtomic(sweepRecordPath(bookId), JSON.stringify(normalizeSweepRecord(records[0]), null, 2));
+}
+
+function writeImmutableSweepRoundRecord(rec: SweepRecord): SweepRecord {
+  const candidate = assertSweepRecordIntegrity(rec, sweepRoundRecordPath(rec.bookId, rec.roundId), { bookId: rec.bookId, roundId: rec.roundId });
+  const p = sweepRoundRecordPath(candidate.bookId, candidate.roundId);
+  if (existsSync(p)) {
+    const existing = readSweepRecordFile(p, { bookId: candidate.bookId, roundId: candidate.roundId });
+    if (!sameImmutableSweepEvidence(existing, candidate)) {
+      throw new Error(`Immutable sweep record already exists with different evidence: ${p}. Start a fresh QC round instead of replacing per-round sweep evidence.`);
+    }
+    return existing;
+  }
+  writeFileAtomic(p, JSON.stringify(candidate, null, 2));
+  return candidate;
+}
+
+function roundHasSweepSubmission(bookId: string, roundId: string): boolean {
+  const dir = submissionsDir(bookId, roundId, "sweep");
+  if (!existsSync(dir)) return false;
+  return readdirSync(dir).some((f) => f.endsWith(".json") && !f.endsWith(".meta.json"));
+}
+
+function loadLegacySweepHistoryCache(bookId: string): SweepRecord[] {
   const p = sweepHistoryPath(bookId);
   if (!existsSync(p)) return [];
   let lines: string[];
@@ -149,16 +394,62 @@ export function loadSweepHistory(bookId: string): SweepRecord[] {
   const byRound = new Map<string, SweepRecord>();
   for (const line of lines) {
     try {
-      const rec = JSON.parse(line) as SweepRecord;
-      if (rec && typeof rec.roundId === "string") byRound.set(rec.roundId, rec); // last write per round wins
+      const rec = normalizeSweepRecord(JSON.parse(line) as SweepRecord);
+      if (rec && typeof rec.roundId === "string") byRound.set(rec.roundId, rec);
     } catch {
-      /* skip a corrupt line */
+      return [];
     }
   }
-  // Newest-first by roundId. roundIds are creation-ordered (r<YYYYMMDDhhmmss>-<hash>, qcRound.ts),
-  // so this is stable even when a round is RE-FINALIZED out of order (which would give it a newer
-  // attestedAt than a later round — sorting by attestedAt could then make a FUTURE round look prior).
   return [...byRound.values()].sort((a, b) => String(b.roundId ?? "").localeCompare(String(a.roundId ?? "")));
+}
+
+function scanSweepRoundRecords(bookId: string): SweepRecord[] {
+  const root = resolve(QC_ORCHESTRATOR_DIR, bookId);
+  if (!existsSync(root)) return [];
+  const records: SweepRecord[] = [];
+  const seen = new Map<string, string>();
+  const errors: string[] = [];
+  for (const entry of readdirSync(root).sort()) {
+    const roundPath = orchestratorRoundRecordPath(bookId, entry);
+    const recordPath = sweepRoundRecordPath(bookId, entry);
+    if (existsSync(recordPath)) {
+      try {
+        const rec = readSweepRecordFile(recordPath, { bookId, roundId: entry });
+        const prior = seen.get(rec.roundId);
+        if (prior) errors.push(`duplicate sweep round record for ${rec.roundId}: ${prior} and ${recordPath}`);
+        else seen.set(rec.roundId, recordPath);
+        records.push(rec);
+      } catch (err) {
+        errors.push((err as Error).message);
+      }
+    } else if (existsSync(roundPath) && roundHasSweepSubmission(bookId, entry)) {
+      errors.push(`Missing immutable sweep record for ${bookId} ${entry}: expected ${recordPath}`);
+    }
+  }
+  if (errors.length) throw new Error(`Sweep history integrity failure for ${bookId}:\n${errors.map((e) => `- ${e}`).join("\n")}`);
+  return records.sort((a, b) => b.roundId.localeCompare(a.roundId));
+}
+
+export function rebuildSweepHistory(bookId: string): SweepRecord[] {
+  const records = scanSweepRoundRecords(bookId);
+  if (records.length > 0) writeSweepHistoryCache(bookId, records);
+  return records;
+}
+
+/** Persist one immutable per-round sweep record and rebuild the non-authoritative
+ *  latest/history cache from round records. Conflicting rewrites fail loudly. */
+export function appendSweepHistory(rec: SweepRecord): SweepRecord {
+  const stored = writeImmutableSweepRoundRecord(rec);
+  rebuildSweepHistory(rec.bookId);
+  return stored;
+}
+
+/** Load per-round sweep history NEWEST-FIRST. Immutable round records are the
+ *  authority; the JSONL cache is used only as a legacy fallback when no round
+ *  records exist yet. */
+export function loadSweepHistory(bookId: string): SweepRecord[] {
+  const authoritative = scanSweepRoundRecords(bookId);
+  return authoritative.length > 0 ? authoritative : loadLegacySweepHistoryCache(bookId);
 }
 
 /** The sweep record from the round immediately PRIOR to `currentRoundId` (the next-older record
@@ -178,7 +469,7 @@ export function priorSweepRecord(bookId: string, currentRoundId: string): SweepR
 export function recordGatesChapter(rec: SweepRecord | null, chapterNumber: number): boolean {
   if (!rec) return false;
   if (rec.verdict === "PASS") return false;
-  return (rec.findings ?? []).filter(sweepFindingGates).some((f) => (f.chapters ?? []).includes(chapterNumber));
+  return (rec.findings ?? []).filter(sweepFindingBlocks).some((f) => (f.chapters ?? []).includes(chapterNumber));
 }
 
 // Per-field excerpt cap for the sweep pack. The sweep is the ONE book-wide reviewer (a
@@ -248,17 +539,30 @@ export function writeSweepPack(bookId: string, roundId: string): string {
   return p;
 }
 
-export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmission): string {
+export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmission, rawSubmissionFile?: string): string {
   const chapters = loadBookChapters(submission.bookId);
   const contentHashes: Record<string, string> = {};
   for (const ch of chapters) contentHashes[String(ch.number)] = chapterContentHash(ch);
+  const p = sweepRecordPath(submission.bookId);
+  const rawEvidenceSourceKind = rawSubmissionFile ? "raw_submission" as const : "derived_artifact" as const;
+  const source = evidenceSourceRef({
+    bookId: submission.bookId,
+    roundId: submission.roundId,
+    sourceRole: "sweep",
+    submissionFile: rawSubmissionFile ?? p,
+    sourceKind: rawEvidenceSourceKind,
+  });
   const rec: SweepRecord = {
     schemaVersion: "sweep-attest-v1",
     bookId: submission.bookId,
     roundId: submission.roundId,
     verdict: submission.verdict,
     reviewer: submission.reviewer,
+    reviewerSessionId: submission.reviewerSessionId,
     attestedAt: new Date().toISOString(),
+    rawSubmissionFile,
+    rawEvidenceSourceId: source.sourceId,
+    rawEvidenceSourceKind,
     contentHashes,
     checkedFamilies: submission.checkedFamilies,
     findings: submission.findings.flatMap((f) => {
@@ -268,7 +572,7 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
       // so it stays actionable instead of collapsing the round into an empty fail-closed REVISE.
       const family = sweepFamilyForRepairClass(f.repairClass);
       if (!family) return [];
-      return [{
+      const mapped = {
         family,
         severity: f.severity === "blocker" || f.severity === "major" ? "blocker" as const : "advisory" as const,
         chapters: f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : []),
@@ -276,12 +580,16 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
         quote: f.quote,
         problem: f.problem,
         expectedFix: f.expectedFix,
-      }];
+      };
+      const defectKey = sweepDefectKey({ bookId: submission.bookId, contentHashes }, mapped);
+      if (f.defectKey && f.defectKey !== defectKey) {
+        throw new Error(`sweep submission defectKey mismatch for ${submission.bookId} ${submission.roundId} ${family}/${f.unitId}: expected ${defectKey}, got ${f.defectKey}`);
+      }
+      return [{ ...mapped, defectKey }];
     }),
   };
-  const p = sweepRecordPath(submission.bookId);
-  writeFileAtomic(p, JSON.stringify(rec, null, 2));
-  appendSweepHistory(rec);
+  const stored = appendSweepHistory(rec);
+  writeFileAtomic(p, JSON.stringify(stored, null, 2));
   return p;
 }
 
@@ -383,8 +691,8 @@ export function writeSweepAttestation(bookId: string, roundId: string, token: st
     notes,
   };
   const p = sweepRecordPath(bookId);
-  writeFileAtomic(p, JSON.stringify(rec, null, 2));
-  appendSweepHistory(rec);
+  const stored = appendSweepHistory(rec);
+  writeFileAtomic(p, JSON.stringify(stored, null, 2));
   return { path: p };
 }
 
@@ -420,19 +728,23 @@ export function carryForwardSweep(bookId: string, priorRec: SweepRecord, roundId
     ...priorRec,
     roundId,
     reviewer: "carry-forward",
+    reviewerSessionId: undefined,
+    carriedFromRoundId: priorRec.roundId,
     attestedAt: new Date().toISOString(),
   };
   const p = sweepRecordPath(bookId);
-  writeFileAtomic(p, JSON.stringify(rec, null, 2));
-  appendSweepHistory(rec);
+  const stored = appendSweepHistory(rec);
+  writeFileAtomic(p, JSON.stringify(stored, null, 2));
   return p;
 }
 
 export function loadSweepRecord(bookId: string): SweepRecord | null {
+  const hist = loadSweepHistory(bookId);
+  if (hist[0]) return hist[0];
   const p = sweepRecordPath(bookId);
   if (!existsSync(p)) return null;
   try {
-    return JSON.parse(readFileSync(p, "utf8")) as SweepRecord;
+    return normalizeSweepRecord(JSON.parse(readFileSync(p, "utf8")) as SweepRecord);
   } catch {
     return null;
   }
@@ -454,25 +766,86 @@ export function loadSweepRecord(bookId: string): SweepRecord | null {
  *  — same non-gating contract as an advisory. Both the per-chapter gate (sweepChapterStatus) and the
  *  publish gate (checkSweep) route their blocker filter through this ONE predicate so they can never
  *  drift. See `nondistinctiveRepetitionQuote`. */
-function sweepFindingGates(f: SweepRecord["findings"][number]): boolean {
+export function sweepFindingBlocks(f: SweepRecord["findings"][number]): boolean {
   return f.severity !== "advisory" && !nondistinctiveRepetitionQuote(f);
 }
 
-/** Mechanism 1 — sticky per-chapter carry / cross-round corroboration. A gate raised by the
- *  CURRENT round on a chapter SURVIVES (really gates) unless it is an UNCORROBORATED verdict
- *  flip on byte-frozen content: the chapter's content is unchanged since the prior sweep round
- *  AND the prior round did NOT gate it. The cross-chapter sweep is the noisiest, most stochastic
- *  reviewer (a fresh whole-book read flags a rotating subset round to round) — so a single read
- *  newly flagging a chapter whose bytes never moved is far more likely a stochastic flip than a
- *  genuinely new cross-chapter pattern. The prior CLEAR verdict is sticky until either the
- *  chapter's content changes (a fresh read is then trusted on its own) or a second independent
- *  read corroborates the gate. Fail-safe: no prior record / content changed ⇒ the gate stands
- *  (exactly today's behavior). This both kills the false-positive treadmill AND, applied in BOTH
- *  the per-chapter gate and the publish gate, keeps the two from ever drifting. */
-function gateSurvivesCorroboration(prior: SweepRecord | null, chapterNumber: number, currentContentHash: string): boolean {
+function sweepReadIdentity(rec: SweepRecord): string | null {
+  if (rec.reviewer === "carry-forward") return null;
+  if (rec.reviewerSessionId) return `session:${rec.reviewerSessionId}`;
+  return null;
+}
+
+function independentSweepReads(a: SweepRecord, b: SweepRecord): boolean {
+  if (a.roundId === b.roundId) return false;
+  if (a.reviewer === "carry-forward" || b.reviewer === "carry-forward") return false;
+  const ai = sweepReadIdentity(a);
+  const bi = sweepReadIdentity(b);
+  return !!ai && !!bi && ai !== bi;
+}
+
+function findingKey(rec: SweepRecord, finding: SweepRecord["findings"][number]): string {
+  return finding.defectKey ?? sweepDefectKey(rec, finding);
+}
+
+/** Mechanism 1 — sticky per-defect carry / cross-round corroboration. A gate raised by the
+ *  current round survives over byte-frozen content only when an INDEPENDENT prior sweep read named
+ *  the SAME grounded defect ON THIS CHAPTER. Corroboration is decided per chapter on the v2
+ *  fingerprint (family + unit + distinctive quote + chapter + bytes) — NOT the whole-finding v1 key
+ *  — so two honest reads agree on a real defect even when they word the problem differently or name
+ *  overlapping (not identical) chapter sets, while two UNRELATED defects on the same chapter (a
+ *  different family/unit/quote) still cannot corroborate. */
+function gateSurvivesCorroboration(current: SweepRecord, finding: SweepRecord["findings"][number], prior: SweepRecord | null, chapterNumber: number, currentContentHash: string): boolean {
   const frozenSincePrior = !!prior && prior.contentHashes?.[String(chapterNumber)] === currentContentHash;
-  if (frozenSincePrior && !recordGatesChapter(prior, chapterNumber)) return false; // uncorroborated upward flip on frozen content → demote
-  return true;
+  if (!frozenSincePrior) return true;
+  if (!prior) return true;
+  if (!independentSweepReads(prior, current)) return false;
+  const fingerprint = sweepDefectFingerprintV2(current, finding, chapterNumber);
+  // No v2 identity (chapter has no bytes on this record) → fail-safe: never demote a gate without
+  // positive evidence that it is an uncorroborated flip.
+  if (!fingerprint) return true;
+  const priorNorm = normalizeSweepRecord(prior);
+  return (priorNorm.findings ?? []).filter(sweepFindingBlocks).some((priorFinding) =>
+    (priorFinding.chapters ?? []).includes(chapterNumber) &&
+    sweepDefectFingerprintV2(priorNorm, priorFinding, chapterNumber) === fingerprint);
+}
+
+export type EffectiveSweepFinding = {
+  finding: SweepRecord["findings"][number];
+  defectKey: string;
+  effectiveChapters: number[];
+};
+
+export type EffectiveSweepDecision = {
+  record: SweepRecord;
+  prior: SweepRecord | null;
+  blockingFindings: EffectiveSweepFinding[];
+  blockingChapters: Set<number>;
+  failClosed: boolean;
+};
+
+export function effectiveSweepFindings(rec: SweepRecord, currentHashes: Record<string, string>, prior?: SweepRecord | null): EffectiveSweepDecision {
+  const current = normalizeSweepRecord(rec);
+  const priorRec = prior !== undefined ? (prior ? normalizeSweepRecord(prior) : null) : priorSweepRecord(current.bookId, current.roundId);
+  const blockingFindings: EffectiveSweepFinding[] = [];
+  const blockingChapters = new Set<number>();
+  if (current.verdict !== "PASS") {
+    for (const f of (current.findings ?? []).filter(sweepFindingBlocks)) {
+      const effectiveChapters: number[] = [];
+      for (const n of f.chapters ?? []) {
+        const h = currentHashes[String(n)] ?? current.contentHashes[String(n)];
+        if (current.verdict === "CORRUPTION" || h === undefined || gateSurvivesCorroboration(current, f, priorRec, n, h)) {
+          effectiveChapters.push(n);
+          blockingChapters.add(n);
+        }
+      }
+      if (effectiveChapters.length > 0) blockingFindings.push({ finding: f, defectKey: findingKey(current, f), effectiveChapters });
+    }
+  }
+  const blockers = (current.findings ?? []).filter(sweepFindingBlocks);
+  const hasNamedBlocker = blockers.some((f) => (f.chapters ?? []).length > 0);
+  const failClosed = current.verdict !== "PASS" && (current.verdict === "CORRUPTION" || (!hasNamedBlocker && (current.findings ?? []).length === 0));
+  return { record: current, prior: priorRec, blockingFindings, blockingChapters, failClosed };
 }
 
 export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: number, contentHash: string, roundId: string, prior?: SweepRecord | null): "PASS" | "FAIL" | "STALE" | "MISSING" {
@@ -485,14 +858,14 @@ export function sweepChapterStatus(rec: SweepRecord | null, chapterNumber: numbe
   // chapter — this mirrors finalize's `openSerious` ledger gate so the sweep can't be a
   // STRICTER gate than the publish decision it feeds. A finding with no severity (a legacy,
   // pre-severity record) is treated as a blocker (fail-closed).
-  const blockers = findings.filter(sweepFindingGates);
+  const blockers = findings.filter(sweepFindingBlocks);
   // Mechanism 1: a gate on THIS chapter only FAILs it if it survives cross-round corroboration
   // (an uncorroborated stochastic flip on byte-frozen content is demoted — see
   // gateSurvivesCorroboration). `prior` is injectable for tests; default loads the prior round.
   // A CORRUPTION verdict is NEVER demoted — corroboration suppresses only stochastic REVISE flips,
   // and checkSweep keeps an unconditional CORRUPTION block, so demoting it here would break parity.
-  const priorRec = prior !== undefined ? prior : priorSweepRecord(rec.bookId, roundId);
-  if (blockers.some((f) => (f.chapters ?? []).includes(chapterNumber)) && (rec.verdict === "CORRUPTION" || gateSurvivesCorroboration(priorRec, chapterNumber, contentHash))) return "FAIL";
+  const decision = effectiveSweepFindings(rec, { [String(chapterNumber)]: contentHash }, prior);
+  if (decision.blockingChapters.has(chapterNumber)) return "FAIL";
   // A blocker exists but does not name THIS chapter → this chapter passes (a global verdict
   // must not strand a clean, unnamed chapter).
   if (blockers.some((f) => (f.chapters ?? []).length > 0)) return "PASS";
@@ -521,21 +894,10 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   // loosening); an uncited CORRUPTION or an unexplained non-PASS (no findings) still blocks.
   if (rec.verdict !== "PASS") {
     const findings = rec.findings ?? [];
-    // Mechanism 1: count a chapter as blocking only if its gate survives cross-round corroboration
-    // (an uncorroborated stochastic flip on byte-frozen content is demoted) — the SAME predicate
-    // sweepChapterStatus uses, so the publish gate and the per-chapter gate can never disagree.
-    const prior = priorSweepRecord(bookId, rec.roundId);
-    const hashByCh = new Map<number, string>();
-    for (const ch of chapters) hashByCh.set(ch.number, chapterContentHash(ch));
-    const gatedChapters = new Set<number>();
-    for (const f of findings.filter(sweepFindingGates)) {
-      for (const n of f.chapters ?? []) {
-        const h = hashByCh.get(n);
-        if (h === undefined || gateSurvivesCorroboration(prior, n, h)) gatedChapters.add(n); // unknown bytes ⇒ fail closed
-      }
-    }
-    if (gatedChapters.size > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
-      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${gatedChapters.size} blocking chapter(s).` }];
+    const currentHashes = Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)]));
+    const effective = effectiveSweepFindings(rec, currentHashes);
+    if (effective.blockingChapters.size > 0 || rec.verdict === "CORRUPTION" || findings.length === 0) {
+      return [{ checkId: "QC3.sweep_not_pass", severity: sev, message: `Sweep verdict is ${rec.verdict} with ${effective.blockingChapters.size} blocking chapter(s).` }];
     }
   }
   // Family-completeness is a PASS-only requirement (only a PASS attestation claims it checked all 4
@@ -567,7 +929,7 @@ function sweepRecordClearOver(rec: SweepRecord, currentHashes: Record<string, st
   if (!sweepReadOverCurrent(rec, currentHashes)) return false;
   if (rec.verdict === "CORRUPTION") return false;
   if (!REQUIRED_SWEEP_FAMILIES.every((fam) => (rec.checkedFamilies ?? []).includes(fam))) return false;
-  return !(rec.findings ?? []).some(sweepFindingGates);
+  return !(rec.findings ?? []).some(sweepFindingBlocks);
 }
 
 /** Item B — two-round confirmation before AUTO-PUBLISH. The cross-chapter sweep is the noisiest,
@@ -589,19 +951,18 @@ export function sweepTwoRoundConfirmed(bookId: string, chapters: ChapterV21[]): 
   // poison history and false-HALT a genuinely converged book. CORRUPTION always disqualifies.
   const disagreeing = overCurrent.filter((r) => {
     if (r.verdict === "CORRUPTION") return true;
-    const prior = priorSweepRecord(bookId, r.roundId);
-    return (r.findings ?? []).filter(sweepFindingGates).some((f) =>
-      (f.chapters ?? []).some((n) => {
-        const h = currentHashes[String(n)];
-        return h !== undefined && gateSurvivesCorroboration(prior, n, h);
-      }));
+    return effectiveSweepFindings(r, currentHashes).blockingChapters.size > 0;
   });
   if (disagreeing.length > 0) return { ok: false, reason: `a sweep read over the current content has a corroborated gate (${disagreeing.length}); not corroborated-clear` };
   // (2) ≥2 INDEPENDENT clear reads (carry-forward copies don't count toward the corroboration total).
   const clears = overCurrent.filter((r) => sweepRecordClearOver(r, currentHashes));
-  const independentClears = clears.filter((r) => r.reviewer !== "carry-forward");
-  if (independentClears.length >= 2) return { ok: true };
-  return { ok: false, reason: `auto-publish needs TWO independent clear sweep reads over identical content (have ${clears.length} clear, ${independentClears.length} independent) — run one more confirming QC round` };
+  const independentClearIdentities = new Set<string>();
+  for (const r of clears) {
+    const id = sweepReadIdentity(r);
+    if (id) independentClearIdentities.add(id);
+  }
+  if (independentClearIdentities.size >= 2) return { ok: true };
+  return { ok: false, reason: `auto-publish needs TWO independent clear sweep reads over identical content (have ${clears.length} clear, ${independentClearIdentities.size} independent) — run one more confirming QC round` };
 }
 
 export function formatSweepStatus(bookId: string): string {

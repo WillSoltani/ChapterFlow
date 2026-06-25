@@ -10,7 +10,8 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { callClaude } from "../claudeClient.js";
-import { BookBrief, ChapterDesignDoc } from "../types.js";
+import { renderUntrustedSourceBlock } from "../providers/types.js";
+import { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 import { sanitizeUserPromptForWriter } from "../lib/brief-sanitizer.js";
 
@@ -20,6 +21,8 @@ const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 export type CardsOutput = {
   cards: Array<{
     cardId: string;
+    sourceAnchorId?: string;
+    sourceAnchorIds?: string[];
     front: string;
     back: string;
     difficulty: "easy" | "medium" | "hard";
@@ -30,6 +33,7 @@ export type CardsInput = {
   brief: BookBrief;
   plan: ChapterDesignDoc;
   breakdown: BreakdownOutput;
+  sourceAnchors?: SourceAnchorForPrompt[];
 };
 
 const MAX_CARDS_RETRIES = 2;
@@ -95,6 +99,11 @@ function buildUserPrompt(input: CardsInput): string {
   parts.push("## deepRead");
   parts.push(input.breakdown.deepRead);
   parts.push("");
+  if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+    parts.push(renderUntrustedSourceBlock("Allowed source anchors", JSON.stringify(input.sourceAnchors, null, 2), "json"));
+    parts.push("Use only these ids. Emit sourceAnchorIds for every card.");
+    parts.push("");
+  }
   parts.push(`Write the CardsOutput JSON now. Emit exactly ${input.plan.cardFocus.count} cards.`);
   return parts.join("\n");
 }
@@ -124,6 +133,18 @@ function validateCards(c: CardsOutput, input: CardsInput): CardsOutput {
     }
     if (!["easy","medium","hard"].includes(card.difficulty)) {
       problems.push(`rc${i} non-canonical difficulty "${card.difficulty}"`);
+    }
+    if (input.sourceAnchors && input.sourceAnchors.length > 0) {
+      const allowed = new Set(input.sourceAnchors.map((anchor) => anchor.id));
+      const ids = card.sourceAnchorIds ?? (card.sourceAnchorId ? [card.sourceAnchorId] : []);
+      if (ids.length === 0) {
+        problems.push(`rc${i} sourceAnchorIds must cite at least one allowed source anchor`);
+      }
+      for (const id of ids) {
+        if (typeof id !== "string" || !allowed.has(id)) problems.push(`rc${i} cites unsupported source anchor ${JSON.stringify(id)}`);
+      }
+      if (!card.sourceAnchorId && ids[0]) card.sourceAnchorId = ids[0];
+      if (!card.sourceAnchorIds && ids.length > 0) card.sourceAnchorIds = ids;
     }
     const cardText = `${card.front} ${card.back}`;
     for (const re of metaRegexes) {

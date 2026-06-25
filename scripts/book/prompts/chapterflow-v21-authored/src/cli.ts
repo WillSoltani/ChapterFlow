@@ -23,6 +23,7 @@ import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
 import type { RunbookStatus } from "./runbook.js";
+import type { BibliographyResult } from "./agents/researcher-bibliography.js";
 import { roleHintHeader } from "./roles.js";
 import { runAllCritics } from "./critics/runAllCritics.js";
 import { pingClaude } from "./claudeClient.js";
@@ -30,6 +31,7 @@ import { parseChapterId, isSiblingFile, checkChapterIdentity, chapterIdFromFileN
 import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
+import { formatRuntimeFindings, validateAllConfigFiles } from "./runtimeSchemas.js";
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -43,11 +45,17 @@ function shadowGuard(): number {
   }
 }
 import {
+  auditLibraryInputs,
   getForbiddenNames,
   ingestChapter,
   loadLibraryState,
-  saveLibraryState,
+  quarantineLibraryBlockers,
+  rebuildLibraryState,
+  verifyLibraryState,
+  withLibraryState,
   getLedgerPath,
+  type LibraryAuditFinding,
+  type LibraryAuditReport,
 } from "./librarian/libraryState.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -67,6 +75,17 @@ Commands:
   ledger forbidden-names [--book X]  List protagonist names off-limits for the next book
   ledger ingest <chapter.json> --book-id X --title X --author X
                                      Ingest a generated v21 chapter into the ledger
+  verify-library-state [--json]     Recompute library aggregates from authoritative chapters/packages and report drift
+  rebuild-library-state [--dry-run] [--json] [--quarantine]
+                                     Audit authoritative inputs (published package wins; loose state authoritative only
+                                     for unpublished books) and replace the JSON ledger atomically. Reports accepted/
+                                     rejected files, package-vs-loose conflicts, expected vs actual state, and planned
+                                     writes. A dry run never writes; a real rebuild refuses while blockers stand unless
+                                     --quarantine moves corrupt files aside (preserving evidence) first.
+  migrate-chapter-identity <bookId> [--apply] [--json]
+                                     Safe migration for chapterId/filename/index drift: plans first, refuses ambiguous
+                                     mappings, then atomically aligns filename + chapterId + canonical index and writes a
+                                     migration report. Dry-run by default.
   next-task <bookId>                 INLINE-OPERATOR MODE: scans on-disk state for a book and
                                      prints the next artifact to produce (bibliography, chapter
                                      source, chapter output, finalize), with playbook path and
@@ -107,20 +126,28 @@ Commands:
   research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
                                      SUBPROCESS MODE: run the researcher via claude -p subprocess
                                      calls. Counts against your Max subscription quota.
-  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research]
+  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research] [--force]
                                      SUBPROCESS MODE: end-to-end fresh generation.
                                      Counts against your Max subscription quota.
-  generate-book <bookId> --title X --author Y [--from N] [--to N] [--no-categorizer --categories A,B --tags x,y]
+  generate-book <bookId> --title X --author Y [--from N] [--to N] [--force] [--no-categorizer --categories A,B --tags x,y]
                                      Lower-level: generate (or resume) every chapter of a book
-                                     using an existing chapter index. Auto-promotes on success.
+                                     using an existing chapter index. Full canonical runs auto-promote
+                                     on success; --from/--to range runs stop before production promotion.
                                      For inline-operator mode (no subprocess calls), pre-populate
                                      state/chapters/ and use --no-categorizer with manual metadata.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
-                                     Final gate. Re-validates every chapter + book-level checks + the
-                                     QC-attestation gate, then writes book-packages/<id>.v21.json on
+                                     Final gate. Requires the complete canonical index, then re-validates
+                                     every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
+                                     Unresolved serious generation-debt events block; exact-content
+                                     waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
+  verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p] [--record-path p] [--exemptions-file p]
+                                     Read-only production verifier: recomputes the manifest payload from
+                                     the canonical index, package chapters, source evidence, source-reality
+                                     evidence, build-input fingerprints, and QC evidence.
+                                     Exits 0 only when the package content ID is independently verified.
   publish "<book name or id>" [--title X --author Y] [--categories A,B] [--tags x,y]
                                      One-verb ship. Resolves the book, auto-fills title/author from its
                                      brief, then runs promote-book (so it CANNOT ship a book that has not
@@ -133,7 +160,7 @@ Commands:
                                      The whole lifecycle in one view: research → written → gate-clean →
                                      QC'd → publishable, a cross-book variety read (advisory), and the
                                      single exact next command. Read-only.
-  doctor [<bookId>]                  Preflight: catches the shadow state dir, dual brief shapes,
+  doctor [<bookId>] [--json]         Preflight: catches the shadow state dir, dual brief shapes,
                                      chapter-number drift, and untracked-but-imported source files before
                                      they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
   authoring-guardrails <bookId> [--chapters N]
@@ -166,8 +193,8 @@ Commands:
                                      state/pedagogy-plans/<bookId>.pedagogy-plan.json.
   name-plan <bookId> --from N --to M [--per-chapter K]
                                      PRE-AUTHORING: deal each upcoming chapter a disjoint
-                                     protagonist-name slice (excludes cross-book + already-authored
-                                     names) and emit banned-connective guidance, so parallel STEP-2
+                                     protagonist-name slice (excludes current-book planned names
+                                     and catalog cooldown names) and emit banned-connective guidance, so parallel STEP-2
                                      agents can't collide on book-gate F1 / BP13. Writes
                                      state/name-plans/<bookId>.name-plan.json. Default K=7.
                                      Exit 1 if the name bank ran dry for any chapter.
@@ -213,6 +240,9 @@ Commands:
                                      the final production outputs.
   qc-ledger-status <bookId> --round <roundId>
                                      Summarize the append-only orchestrator repair ledger.
+  qc-ledger-repair <bookId> --round <roundId> [--confirm]
+                                     Quarantine malformed repair-ledger JSONL lines and rewrite
+                                     only the valid events. Without --confirm, reports what would move.
   qc-repair-brief <bookId> --round <roundId>
                                      Render and print the repair brief and pasteable repair prompt paths.
   qc-repair-prompt <bookId> --round <roundId>
@@ -303,6 +333,7 @@ Commands:
   state-status                       Per-book: chapters on disk, untracked-in-git, chapterId mismatches, promoted.
   migrate-state [--apply]            Reconcile the repo-root shadow state/chapters into the canonical dir.
                                      [--prefer-canonical|--prefer-shadow] to resolve divergent files.
+  toc-migrate <bookId> [--path p]    Report TOC shape; with --apply, rewrite canonical chapterflow.toc.v1.
   fix-chapter-ids [<bookId>]         Normalize chapterId to match filename stem (--dry-run to preview).
   quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
   unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
@@ -343,6 +374,43 @@ function parseCsvFlag(value: string | boolean | undefined): string[] | undefined
   if (typeof value !== "string") return undefined;
   const items = value.split(",").map((s) => s.trim()).filter(Boolean);
   return items.length ? items : undefined;
+}
+
+function recordOrEmpty(value: unknown): Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value) ? value as Record<string, unknown> : {};
+}
+
+function stringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
+}
+
+function tocAuthorVoice(value: unknown): BibliographyResult["authorVoice"] {
+  const voice = recordOrEmpty(value);
+  const register = typeof voice.register === "string" && ["warm", "analytical", "plainspoken", "literary", "clinical"].includes(voice.register)
+    ? voice.register as BibliographyResult["authorVoice"]["register"]
+    : "plainspoken";
+  return {
+    register,
+    signatureMoves: stringArray(voice.signatureMoves),
+    avoidMoves: stringArray(voice.avoidMoves),
+  };
+}
+
+function tocEdition(value: unknown, chapterCount: number): BibliographyResult["edition"] {
+  const edition = recordOrEmpty(value);
+  return {
+    name: typeof edition.name === "string" ? edition.name : undefined,
+    publisher: typeof edition.publisher === "string" ? edition.publisher : undefined,
+    publishedYear: typeof edition.publishedYear === "number" ? edition.publishedYear : undefined,
+    isbn13: typeof edition.isbn13 === "string" ? edition.isbn13 : undefined,
+    language: typeof edition.language === "string" ? edition.language : undefined,
+    chapterCount: typeof edition.chapterCount === "number" ? edition.chapterCount : chapterCount,
+    sectionCount: typeof edition.sectionCount === "number" ? edition.sectionCount : undefined,
+  };
+}
+
+function stringOrEmpty(value: unknown): string {
+  return typeof value === "string" ? value : "";
 }
 
 function loadBookPackage(file: string): BookPackage {
@@ -563,9 +631,14 @@ async function runLedger(args: string[], flags: Record<string, string | boolean>
       return 2;
     }
     const chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
-    const updated = ingestChapter(state, flags["book-id"] as string, flags["title"] as string, flags["author"] as string, chapter);
-    await saveLibraryState(updated);
-    const book = updated.books[flags["book-id"] as string];
+    let updatedBook: ReturnType<typeof loadLibraryState>["books"][string] | undefined;
+    await withLibraryState((locked) => {
+      const updated = ingestChapter(locked, flags["book-id"] as string, flags["title"] as string, flags["author"] as string, chapter);
+      updatedBook = updated.books[flags["book-id"] as string];
+      return updated;
+    });
+    const book = updatedBook;
+    if (!book) throw new Error(`ledger ingest did not create book entry for ${String(flags["book-id"])}`);
     console.log(`Ingested ${chapterFile} into ${flags["book-id"]}`);
     console.log(`  book now has ${book.chaptersIngested.length} chapter(s), ${book.namesUsed.length} unique protagonist name(s)`);
     return 0;
@@ -574,10 +647,190 @@ async function runLedger(args: string[], flags: Record<string, string | boolean>
   return 2;
 }
 
+function printLibraryDriftReport(report: ReturnType<typeof verifyLibraryState>): void {
+  console.log(`Library state: ${report.statePath}`);
+  console.log(`Drift: ${report.drift ? "YES" : "no"}`);
+  for (const diff of report.differences) console.log(`  - ${diff}`);
+}
+
+async function runVerifyLibraryState(flags: Record<string, string | boolean>): Promise<number> {
+  const report = verifyLibraryState();
+  if (flags.json === true) console.log(JSON.stringify(report, null, 2));
+  else printLibraryDriftReport(report);
+  return report.drift ? 1 : 0;
+}
+
+function formatLibraryFinding(f: LibraryAuditFinding): string {
+  const where = `${f.bookId ? ` ${f.bookId}` : ""}${f.chapter !== undefined ? ` ch${f.chapter}` : ""}`;
+  return `  [${f.severity}] ${f.checkId}${where} — ${f.reason}\n      ↳ ${f.path}`;
+}
+
+function printLibraryAudit(report: LibraryAuditReport): void {
+  console.log(`Library state: ${report.ledgerPath}`);
+  console.log(`Drift: ${report.drift ? "YES" : "no"}   Blockers: ${report.blockerCount}   Accepted files: ${report.accepted.length}`);
+  console.log(`Conflicts (package/loose, package wins): ${report.conflicts.length}   Advisory warnings: ${report.warnings.length}`);
+  if (report.rejected.length) {
+    console.log(`\nBLOCKERS (rejected authoritative inputs — nothing is silently skipped):`);
+    for (const f of report.rejected) console.log(formatLibraryFinding(f));
+  }
+  if (report.conflicts.length) {
+    console.log(`\nPACKAGE/LOOSE CONFLICTS (published package is authoritative; loose drafts not ingested):`);
+    for (const f of report.conflicts.slice(0, 40)) console.log(formatLibraryFinding(f));
+    if (report.conflicts.length > 40) console.log(`  …and ${report.conflicts.length - 40} more`);
+  }
+  if (report.warnings.length) {
+    console.log(`\nADVISORY:`);
+    for (const f of report.warnings.slice(0, 40)) console.log(formatLibraryFinding(f));
+    if (report.warnings.length > 40) console.log(`  …and ${report.warnings.length - 40} more`);
+  }
+  if (report.plannedWrites.length) {
+    console.log(`\nPLANNED WRITES:`);
+    for (const w of report.plannedWrites) console.log(`  ${w.action}: ${w.path} — ${w.reason}`);
+  }
+}
+
+/**
+ * `rebuild-library-state [--dry-run] [--json] [--quarantine]`
+ *
+ * Recompute the ledger from the authoritative inputs under an explicit authority
+ * policy (published package wins; loose state is authoritative only for
+ * unpublished books). A dry run NEVER writes. A real rebuild REFUSES to write
+ * while any blocker stands, unless `--quarantine` first moves the offending
+ * files aside (preserving evidence). Exit: 2 = blockers present, 1 = drift
+ * remains, 0 = clean.
+ */
+/** Library-state opts, overridable via CHAPTERFLOW_STATE_DIR so the CLI contract
+ *  (exit codes, no-write dry runs, quarantine) is testable against an isolated
+ *  state dir instead of the real one. */
+function libraryOpts(): { stateDir?: string } {
+  const dir = process.env.CHAPTERFLOW_STATE_DIR;
+  return dir ? { stateDir: resolve(dir) } : {};
+}
+
+async function runRebuildLibraryState(flags: Record<string, string | boolean>): Promise<number> {
+  const dryRun = flags["dry-run"] === true;
+  const json = flags.json === true;
+  const opts = libraryOpts();
+
+  if (!dryRun && flags["quarantine"] === true) {
+    const pre = auditLibraryInputs(opts);
+    if (pre.blockerCount > 0) {
+      const q = quarantineLibraryBlockers(opts, "rebuild");
+      if (!json) {
+        console.log(`Quarantined ${q.movedFiles.length} blocker file(s) → ${q.reportPath}`);
+        for (const m of q.movedFiles) console.log(`  ${m.from}  →  ${m.to}`);
+      }
+    }
+  }
+
+  const report = auditLibraryInputs(opts);
+
+  if (dryRun) {
+    if (json) console.log(JSON.stringify(report, null, 2));
+    else printLibraryAudit(report);
+    if (report.blockerCount > 0) return 2;
+    return report.drift ? 1 : 0;
+  }
+
+  if (report.blockerCount > 0) {
+    if (json) console.log(JSON.stringify(report, null, 2));
+    else {
+      printLibraryAudit(report);
+      console.error(
+        `\nREFUSING to rebuild: ${report.blockerCount} blocker(s) above. Reconcile fixable identity drift with ` +
+          `\`migrate-chapter-identity <bookId>\`, or re-run with \`--quarantine\` to move corrupt files aside first.`,
+      );
+    }
+    return 2;
+  }
+
+  // Idempotent: when the stored ledger already matches the authoritative inputs
+  // there is nothing to write, so a second rebuild leaves the file byte-identical
+  // (no spurious revision/timestamp churn, no diff).
+  if (!report.drift) {
+    if (json) console.log(JSON.stringify({ phase: "noop", report }, null, 2));
+    else {
+      console.log("Library ledger already matches the authoritative inputs; nothing to rebuild.");
+      printLibraryAudit(report);
+    }
+    return 0;
+  }
+
+  await withLibraryState(() => rebuildLibraryState(opts), opts);
+  const after = auditLibraryInputs(opts);
+  if (json) console.log(JSON.stringify({ phase: "after", report: after }, null, 2));
+  else {
+    console.log("Rebuilt the library ledger from authoritative inputs.");
+    printLibraryAudit(after);
+  }
+  return after.drift ? 1 : 0;
+}
+
+/**
+ * `migrate-chapter-identity <bookId> [--apply] [--json]` — the safe migration
+ * path for chapterId/filename/index drift. Plans first, refuses ambiguous
+ * mappings, and (with --apply) updates filename + chapterId + canonical index
+ * atomically while preserving a migration report.
+ */
+async function runMigrateChapterIdentity(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const guard = shadowGuard();
+  if (guard) return guard;
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: migrate-chapter-identity <bookId> [--apply] [--json]");
+    return 2;
+  }
+  const { planChapterIdentityMigration, applyChapterIdentityMigration } = await import("./librarian/identityMigration.js");
+  const mopts = process.env.CHAPTERFLOW_STATE_DIR ? { stateDir: resolve(process.env.CHAPTERFLOW_STATE_DIR) } : {};
+  const plan = planChapterIdentityMigration(bookId, mopts);
+  const apply = flags["apply"] === true;
+  const json = flags.json === true;
+
+  if (!plan.ok) {
+    if (json) console.log(JSON.stringify({ plan }, null, 2));
+    else {
+      console.error(`migrate-chapter-identity — ${plan.bookId}: AMBIGUOUS, refusing to apply.`);
+      for (const a of plan.ambiguities) console.error(`  - ${a}`);
+    }
+    return 2;
+  }
+
+  if (!apply) {
+    if (json) console.log(JSON.stringify({ plan, dryRun: true }, null, 2));
+    else {
+      console.log(`migrate-chapter-identity — ${plan.bookId} (dry-run, no files written)`);
+      console.log(`  canonical index: ${plan.indexPath}${plan.indexPresent ? "" : " (absent)"}`);
+      console.log(`  ${plan.changeCount} chapter(s) need alignment:`);
+      for (const s of plan.steps) {
+        const ops = [s.renameFile ? "rename" : null, s.rewriteChapterId ? "chapterId" : null, s.updateIndex ? "index" : null].filter(Boolean).join("+");
+        console.log(`    ch${s.chapterNumber}: ${s.fromChapterId || "(none)"} → ${s.toChapterId}  [${ops}]`);
+      }
+      if (plan.changeCount === 0) console.log("    already aligned; nothing to do.");
+      console.log("  re-run with --apply to write.");
+    }
+    return 0;
+  }
+
+  if (plan.changeCount === 0) {
+    if (json) console.log(JSON.stringify({ plan, applied: [] }, null, 2));
+    else console.log(`migrate-chapter-identity — ${plan.bookId}: already aligned; nothing to apply.`);
+    return 0;
+  }
+
+  const result = applyChapterIdentityMigration(plan, mopts);
+  if (json) console.log(JSON.stringify({ plan, result }, null, 2));
+  else {
+    console.log(`migrate-chapter-identity — ${plan.bookId}: applied ${result.applied.length} change(s), index ${result.indexUpdated ? "updated" : "unchanged"}.`);
+    console.log(`  plan:   ${result.planPath}`);
+    console.log(`  report: ${result.reportPath}`);
+  }
+  return 0;
+}
+
 async function runGenerateBook(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: generate-book <bookId> --title X --author Y [--from N] [--to N] [--no-categorizer --categories A,B --tags x,y]");
+    console.error("Usage: generate-book <bookId> --title X --author Y [--from N] [--to N] [--force] [--no-categorizer --categories A,B --tags x,y]");
     return 2;
   }
   const title = typeof flags["title"] === "string" ? flags["title"] : null;
@@ -591,6 +844,7 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
   const noCategorizer = flags["no-categorizer"] === true;
   const manualCategories = parseCsvFlag(flags["categories"]);
   const manualTags = parseCsvFlag(flags["tags"]);
+  const force = flags["force"] === true;
 
   const { generateBook, loadChapterIndex } = await import("./generateBook.js");
   const chapters = loadChapterIndex(bookId);
@@ -604,6 +858,7 @@ async function runGenerateBook(args: string[], flags: Record<string, string | bo
       noCategorizer,
       manualCategories,
       manualTags,
+      force,
     },
   );
   // Failed chapters are a failure even when the book gate over the PARTIAL
@@ -626,27 +881,29 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     console.error("Usage: derive-artifacts <bookId>");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Run the research playbook first.`);
-    return 2;
-  }
   const REPO = resolve(__dirname, "../../../../..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
   const STATE_DIR = resolve(__dirname, "../state");
-  const tocPath = resolve(RUNS_DIR, bookId, runId, "source-freeze", "toc.json");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const tocPath = findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json");
   const indexPath = resolve(STATE_DIR, "indexes", `${bookId}.json`);
 
-  if (!existsSyncFs(tocPath)) {
-    console.error(`Bibliography missing: ${tocPath}`);
+  if (!tocPath) {
+    console.error(`No compatible research run with a toc.json for "${bookId}". Run the research playbook first.`);
     return 2;
   }
   if (!existsSyncFs(indexPath)) {
     console.error(`Chapter index missing: ${indexPath}`);
     return 2;
   }
-  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const tocParsed = parseTocFile(tocPath, { bookId });
+  if (!tocParsed.ok) {
+    console.error(`Bibliography invalid: ${formatTocIssues(tocParsed.issues)}`);
+    return 2;
+  }
+  const toc = tocParsed.toc;
+  const voice = tocAuthorVoice(toc.authorVoice);
   const index: Array<{ chapterId: string; chapterNumber: number; chapterTitle: string }> =
     JSON.parse(readFileSync(indexPath, "utf8"));
 
@@ -662,11 +919,11 @@ async function runDeriveArtifacts(args: string[]): Promise<number> {
     coreIdeas: [],
     targetReader: "",
     voiceCharter: {
-      register: toc.authorVoice?.register ?? "plainspoken",
+      register: voice.register,
       person: "third",
       cadence: "medium",
-      signatureMoves: toc.authorVoice?.signatureMoves ?? [],
-      avoidMoves: toc.authorVoice?.avoidMoves ?? [],
+      signatureMoves: voice.signatureMoves,
+      avoidMoves: voice.avoidMoves,
     },
     teachingArc: toc.teachingArc ?? "",
     forbiddenMoves: [],
@@ -747,27 +1004,31 @@ async function runCheckSource(args: string[]): Promise<number> {
     console.error("Usage: check-source <bookId>");
     return 2;
   }
-  const { findLatestRun } = await import("./next-task.js");
-  const runId = findLatestRun(bookId);
-  if (!runId) {
-    console.error(`No research run for "${bookId}". Run the research playbook first.`);
-    return 2;
-  }
   const REPO = resolve(__dirname, "../../../../..");
   const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
-  const runDir = resolve(RUNS_DIR, bookId, runId);
+  const { resolveResearchRun } = await import("./lib/runDirs.js");
+  const run = resolveResearchRun(RUNS_DIR, bookId, {
+    requiredArtifactRelPath: "source-freeze/toc.json",
+    allowedStatuses: ["running", "failed", "coherence_failed", "complete"],
+  });
+  if (!run.ok) {
+    console.error(`No compatible research run with a toc.json for "${bookId}". Run the research playbook first.`);
+    return 2;
+  }
+  const runDir = run.runDir;
   const tocPath = resolve(runDir, "source-freeze", "toc.json");
   if (!existsSyncFs(tocPath)) {
     console.error(`Bibliography missing: ${tocPath}`);
     return 2;
   }
-  const toc = JSON.parse(readFileSync(tocPath, "utf8"));
-  const flat: Array<{ number: number; title: string }> =
-    (toc.flatChapters && toc.flatChapters.length > 0
-      ? toc.flatChapters
-      : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? []))
-      .slice()
-      .sort((a: any, b: any) => a.number - b.number);
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const tocParsed = parseTocFile(tocPath, { bookId });
+  if (!tocParsed.ok) {
+    console.error(`Bibliography invalid: ${formatTocIssues(tocParsed.issues)}`);
+    return 2;
+  }
+  const toc = tocParsed.toc;
+  const flat: Array<{ number: number; title: string }> = tocParsed.chapters;
   const sourceDir = resolve(runDir, "sidecars", "source");
   const chapters: any[] = [];
   for (const ch of flat) {
@@ -779,19 +1040,18 @@ async function runCheckSource(args: string[]): Promise<number> {
     }
     chapters.push(JSON.parse(readFileSync(p, "utf8")));
   }
-  const bibliography = {
+  const bibliography: BibliographyResult = {
     bookId: toc.bookId ?? bookId,
     title: toc.title,
     author: toc.author,
-    edition: toc.edition,
-    introduction: toc.introduction,
-    sections: toc.sections,
-    flatChapters: toc.flatChapters,
-    thesis: toc.thesis,
-    teachingArc: toc.teachingArc,
-    authorVoice: toc.authorVoice,
-    confidence: toc.confidence,
-    notes: toc.notes,
+    edition: tocEdition(toc.edition, flat.length),
+    introduction: typeof toc.introduction === "string" ? toc.introduction : undefined,
+    flatChapters: flat,
+    thesis: stringOrEmpty(toc.thesis),
+    teachingArc: stringOrEmpty(toc.teachingArc),
+    authorVoice: tocAuthorVoice(toc.authorVoice),
+    confidence: toc.confidence === "medium" || toc.confidence === "low" ? toc.confidence : "high",
+    notes: typeof toc.notes === "string" ? toc.notes : undefined,
   };
   const { runSourceCoherenceCheck, formatSourceCoherenceReport } = await import("./critics/sourceCoherence.js");
   const report = runSourceCoherenceCheck({ bibliography, chapters });
@@ -962,7 +1222,7 @@ async function runSourceVerifyWorkbench(args: string[], flags: Record<string, st
  *  downloaded source-verify-record.json) to the CANONICAL path `source-verify-check` and the
  *  publish gate read by default (`.chapterflow/source-verify-<book>.md`), after validating it
  *  parses. Closes the two-path footgun: the workbench writes to its own dir, but the publish
- *  preflight (`sourceVerifyGateFindings`) only reads the canonical path. */
+ *  preflight (`evaluateSourceRealityPolicy`) only reads the canonical path. */
 async function runSourceVerifyImport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   const recordFlag = flags["record"];
@@ -1236,6 +1496,7 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
   const skipResearch = flags["skip-research"] === true;
   const fromChapter = typeof flags["from"] === "string" ? parseInt(flags["from"] as string, 10) : undefined;
   const toChapter = typeof flags["to"] === "string" ? parseInt(flags["to"] as string, 10) : undefined;
+  const force = flags["force"] === true;
 
   // Resolve bookId. Prefer the flag, else slugify the title for a quick
   // is-research-already-done check before the model call.
@@ -1264,7 +1525,7 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
   const result = await generateBook(
     { bookId: resolvedBookId, title, author },
     chapters,
-    { fromChapter, toChapter, continueOnError: false },
+    { fromChapter, toChapter, continueOnError: false, force },
   );
   if (result.failed.length > 0) return 1;
   return result.bookGate.passed ? 0 : 1;
@@ -1282,9 +1543,10 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   // key-judge) ONLY when CHAPTERFLOW_NO_API_CODEX_QC=1. The codex/no-API flow is the canonical
   // operating mode for these verbs, and a book-level SWEEP REVISE has NO other enforcer at
   // promote time — so an env-less invocation (the command book-status used to print) silently
-  // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. (The deterministic
-  // `unresolved majors` promote gate is now ADVISORY — post-H3 it gates only on the empty
-  // QC_ENFORCED_MAJORS allowlist — so the teeth here are sweep + source-verify + manual key-judge.)
+  // skipped the sweep gate and could ship a REVISE book. Enforce the mode here. Unresolved
+  // majors are also production-blocking by default unless a content-bound reviewer waiver closes
+  // the exact current finding. Serious generation degradation follows the same production rule:
+  // it must be resolved or closed by an exact-content waiver before promoteBook ships.
   if (process.env.CHAPTERFLOW_NO_API_CODEX_QC !== "1") {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     console.log("promote/publish: enforcing the no-API QC gate stack (CHAPTERFLOW_NO_API_CODEX_QC=1) — sweep + source-verify + manual key-judge must pass before shipping.");
@@ -1317,6 +1579,31 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
   console.log(formatPromotionResult(result));
   return result.promoted ? 0 : 1;
+}
+
+async function runVerifyProductionPackage(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const input = args[0];
+  if (!input) {
+    console.error("Usage: verify-production-package <bookId|package.json> [--compare-loose-state] [--json]");
+    return 2;
+  }
+  const { verifyProductionPackage, formatVerifyProductionPackageResult, packagePathForBook } = await import("./verifyProductionPackage.js");
+  const packagePath = input.endsWith(".json") || input.includes("/")
+    ? resolve(process.cwd(), input)
+    : packagePathForBook(input);
+  const result = verifyProductionPackage({
+    packagePath,
+    stateRoot: typeof flags["state-root"] === "string" ? resolve(process.cwd(), flags["state-root"] as string) : undefined,
+    runsRoot: typeof flags["runs-root"] === "string" ? resolve(process.cwd(), flags["runs-root"] as string) : undefined,
+    // v2: read-location overrides for the source-reality record/exemption registry
+    // (keeps automated verification sandboxable without polluting the real pipeline dir).
+    recordPath: typeof flags["record-path"] === "string" ? resolve(process.cwd(), flags["record-path"] as string) : undefined,
+    exemptionsFile: typeof flags["exemptions-file"] === "string" ? resolve(process.cwd(), flags["exemptions-file"] as string) : undefined,
+    compareLooseState: flags["compare-loose-state"] === true || flags["loose-state"] === true,
+  });
+  if (flags["json"] === true) console.log(JSON.stringify(result, null, 2));
+  else console.log(formatVerifyProductionPackageResult(result));
+  return result.ok ? 0 : 1;
 }
 
 /** `publish "<book name or id>"` — one-verb ship. Resolves the book, auto-fills
@@ -1384,7 +1671,8 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
     console.error("Usage: qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]");
     return 2;
   }
-  const { recordAuthorProvenance, currentSessionId } = await import("./qc/sessionProvenance.js");
+  const { recordAuthorProvenance, currentSessionId, AuthorProvenanceConflictError } = await import("./qc/sessionProvenance.js");
+  const { chapterContentHash } = await import("./critics/qcAttestation.js");
   const session = typeof flags["session"] === "string" ? flags["session"] : currentSessionId();
   if (!session) {
     console.error("No author session id. Set CHAPTERFLOW_SESSION_ID or pass --session <id>.");
@@ -1396,10 +1684,25 @@ async function runStampAuthor(args: string[], flags: Record<string, string | boo
     : null;
   const chapters = loadBookChapters(bookId).filter((ch) => !only || only.has(ch.number));
   let wrote = 0;
+  const conflicts: string[] = [];
   for (const ch of chapters) {
-    if (recordAuthorProvenance(ch.chapterId, session)) wrote++;
+    try {
+      // Bind to the on-disk content so re-stamping IDENTICAL content under a
+      // different session is refused (a cache accepter is not an author).
+      if (recordAuthorProvenance(ch.chapterId, session, chapterContentHash(ch))) wrote++;
+    } catch (err) {
+      if (err instanceof AuthorProvenanceConflictError) conflicts.push(`${ch.chapterId}: ${err.message}`);
+      else throw err;
+    }
   }
   console.log(`qc-stamp-author: recorded ${wrote} author-provenance sidecar(s) for session "${session}".`);
+  if (conflicts.length) {
+    console.error(
+      `qc-stamp-author: refused to re-stamp ${conflicts.length} chapter(s) whose content is already attributed ` +
+        `to a different author session:\n  ${conflicts.join("\n  ")}`,
+    );
+    return 1;
+  }
   return 0;
 }
 
@@ -1451,8 +1754,26 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
   }
   const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
   const findings = runDoctorChecks(bookId);
-  console.log(formatDoctor(findings));
-  return doctorExitCode(findings);
+  const exitCode = doctorExitCode(findings);
+  if (_flags.json === true) {
+    const fatal = findings.filter((f) => f.level === "fatal").length;
+    const warnings = findings.filter((f) => f.level === "warn").length;
+    console.log(JSON.stringify({
+      status: exitCode === 0 ? "ok" : exitCode === 1 ? "warn" : "fatal",
+      exitCode,
+      bookId,
+      summary: {
+        fatal,
+        warnings,
+        ok: findings.filter((f) => f.level === "ok").length,
+        total: findings.length,
+      },
+      findings,
+    }, null, 2));
+  } else {
+    console.log(formatDoctor(findings));
+  }
+  return exitCode;
 }
 
 /** `authoring-guardrails <bookId> [--chapters N]` — write the pre-authoring sheet
@@ -1633,6 +1954,60 @@ async function runStateStatus(_args: string[], _flags: Record<string, string | b
   if (totalUntracked > 0) console.log(`⚠️  ${totalUntracked} chapter file(s) UNTRACKED in git — commit them so Step-2 work isn't lost (manual-commit mode).`);
   if (totalMismatch > 0) console.log(`⚠️  ${totalMismatch} chapter file(s) have chapterId != filename — run \`fix-chapter-ids\` before promoting IDN1 to a blocker.`);
   if (!totalUntracked && !totalMismatch) console.log("All chapters tracked and identity-clean.");
+  return 0;
+}
+
+/** `toc-migrate <bookId> [--path p] [--apply]` — audit a research TOC and
+ *  optionally rewrite it to the canonical v1 shape. Legacy `chapters`,
+ *  `flatChapters`, and `sections[].chapters` are accepted only through the
+ *  shared parser, so the migration is deterministic and preserves the flattened
+ *  chapter sequence. */
+async function runTocMigrate(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: toc-migrate <bookId> [--path <toc.json>] [--apply]");
+    return 2;
+  }
+  const REPO = resolve(__dirname, "../../../../..");
+  const RUNS_DIR = resolve(REPO, ".chapterflow/runs");
+  const { findRunArtifact } = await import("./lib/runDirs.js");
+  const tocPath = typeof flags["path"] === "string"
+    ? resolve(process.cwd(), flags["path"] as string)
+    : findRunArtifact(RUNS_DIR, bookId, "source-freeze/toc.json", {
+        allowedStatuses: ["running", "failed", "coherence_failed", "complete"],
+      });
+  if (!tocPath) {
+    console.error(`No TOC found for "${bookId}". Pass --path <toc.json> to audit a specific legacy file.`);
+    return 2;
+  }
+  const { parseTocFile, formatTocIssues } = await import("./lib/tocContract.js");
+  const parsed = parseTocFile(tocPath, { bookId });
+  if (!parsed.ok) {
+    console.log(`toc-migrate — ${bookId}`);
+    console.log(`  path: ${tocPath}`);
+    console.log(`  status: INVALID`);
+    console.log(`  issues: ${formatTocIssues(parsed.issues)}`);
+    return 2;
+  }
+  const canonical = `${JSON.stringify(parsed.toc, null, 2)}\n`;
+  const current = readFileSync(tocPath, "utf8");
+  const changed = current !== canonical;
+  console.log(`toc-migrate — ${bookId}`);
+  console.log(`  path: ${tocPath}`);
+  console.log(`  shape: ${parsed.migration.inputShape}`);
+  console.log(`  chapters: ${parsed.migration.chapterCount}`);
+  console.log(`  canonical rewrite needed: ${changed ? "yes" : "no"}`);
+  for (const warning of parsed.migration.warnings) console.log(`  warning: ${warning}`);
+  if (flags["apply"] === true) {
+    if (changed) {
+      writeFileAtomic(tocPath, canonical);
+      console.log("  wrote canonical chapterflow.toc.v1 TOC");
+    } else {
+      console.log("  already canonical; no file written");
+    }
+  } else {
+    console.log("  dry-run: no file written (use --apply to rewrite)");
+  }
   return 0;
 }
 
@@ -1917,6 +2292,15 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
     return 2;
   }
+  const { verifyProductionPackage } = await import("./verifyProductionPackage.js");
+  const verification = verifyProductionPackage({ packagePath: pkgPath, compareLooseState: true });
+  if (!verification.ok) {
+    console.error(
+      `Package at ${pkgPath} is not verified; refusing to update web registries: ` +
+        verification.findings.slice(0, 5).map((f) => f.message).join("; "),
+    );
+    return 1;
+  }
   const bpPath = resolve(REPO, "app/book/data/bookPackages.ts");
   if (!existsSyncFs(bpPath)) {
     console.error(`Web registry not found at ${bpPath}. (Are you on the web-app branch / is app/ present?)`);
@@ -1946,7 +2330,7 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
       `  BOOK_PACKAGE_TONE_GETTERS["${bookId}"] = (tone) => normalizeAnyPackage(${ident}, tone);\n` +
       `}\n`;
     src = src.replace(/\s*$/, "\n") + block;
-    writeFileSync(bpPath, src, "utf8");
+    writeFileAtomic(bpPath, src);
     console.log(`Registered "${bookId}" in app/book/data/bookPackages.ts (import + BOOK_PACKAGES + tone getter; presentation auto-infers).`);
   }
   // Regenerate the catalog metadata — this imports BOOK_PACKAGES, so success also
@@ -2059,20 +2443,18 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     return 2;
   }
   const toc = JSON.parse(readFileSync(tocPath, "utf8"));
-  const title = toc.title ?? toc.book?.title ?? bookId;
-  const flat: Array<{ number: number; title: string }> = (
-    toc.flatChapters && toc.flatChapters.length > 0 ? toc.flatChapters : (toc.sections ?? []).flatMap((s: any) => s.chapters ?? [])
-  )
-    .slice()
-    .sort((a: any, b: any) => a.number - b.number);
-  if (flat.length === 0) {
-    console.error(`Chapter list at ${tocPath} is empty.`);
+  const { flattenTocChapters, formatTocIssues, parseToc } = await import("./lib/tocContract.js");
+  const tocParsed = parseToc(toc, { bookId, path: tocPath });
+  if (!tocParsed.ok) {
+    console.error(`Chapter list at ${tocPath} is invalid: ${formatTocIssues(tocParsed.issues)}`);
     return 2;
   }
+  const title = tocParsed.toc.title ?? bookId;
+  const flat: Array<{ number: number; title: string }> = flattenTocChapters(toc, { bookId, path: tocPath });
   const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
   if (isNoApiCodexQcMode()) {
     const { checkSourceV2Gate, formatSourceV2GateReport } = await import("./qc/sourceV2Gate.js");
-    const sourceGate = checkSourceV2Gate(bookId, flat.map((ch) => ch.number));
+    const sourceGate = checkSourceV2Gate(bookId);
     if (!sourceGate.passed) {
       console.error(formatSourceV2GateReport(sourceGate));
       console.error("fanout refuses to print authoring prompts in CHAPTERFLOW_NO_API_CODEX_QC=1 until source-v2-gate passes.");
@@ -2654,8 +3036,8 @@ async function runRhetoricPlan(args: string[], flags: Record<string, string | bo
 
 /** `name-plan <bookId> --from N --to M [--per-chapter K]` — pre-authoring name
  *  allocator. Deals each upcoming chapter a disjoint protagonist-name slice
- *  (excluding cross-book + already-authored names) and emits the banned-
- *  connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
+ *  (excluding current-book planned names and catalog cooldown names) and emits
+ *  the banned-connective guidance, so parallel STEP-2 agents can't collide on F1/BP13.
  *  Writes state/name-plans/<bookId>.name-plan.json and prints the allocation. */
 async function runNamePlan(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
@@ -3233,6 +3615,26 @@ async function runQcLedgerStatus(args: string[], flags: Record<string, string | 
   for (const [status, count] of Object.entries(result.summary).sort()) console.log(`  ${status}: ${count}`);
   console.log(`  total: ${result.findings.length}`);
   return result.findings.some((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun") ? 1 : 0;
+}
+
+async function runQcLedgerRepair(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+  if (!bookId || !roundId) {
+    console.error("Usage: qc-ledger-repair <bookId> --round <roundId> [--confirm]");
+    return 2;
+  }
+  const { quarantineMalformedLedger } = await import("./qc/orchestrator/ledger.js");
+  const result = quarantineMalformedLedger(bookId, roundId, { confirm: flags["confirm"] === true });
+  if (result.ok) {
+    console.log(`qc-ledger-repair: ${result.issues.length} malformed line(s), ${result.eventsPreserved} valid event(s) preserved`);
+    if (result.quarantinePath) console.log(`quarantine: ${result.quarantinePath}`);
+    return 0;
+  }
+  console.error(result.error ?? "repair ledger contains malformed lines");
+  for (const issue of result.issues) console.error(`${issue.path}:${issue.lineNumber}: ${issue.message}`);
+  console.error("Re-run with --confirm to quarantine corrupt raw lines and rewrite the valid-event ledger.");
+  return 1;
 }
 
 async function runQcRepairBrief(args: string[], flags: Record<string, string | boolean>): Promise<number> {
@@ -4273,19 +4675,28 @@ async function runBookGate(args: string[]): Promise<number> {
     return 2;
   }
 
-  // Auto-derive brief + plan artifacts. BP7 (book gate) fails closed
-  // without these, but derive-artifacts is a deterministic side-effect-
-  // free pass over what's already on disk, so it's safe to run
-  // unconditionally on every book-gate invocation. Eliminates the
-  // recurring "derive-artifacts forgotten" defect that turned book-gate
-  // into a 2-blocker false alarm every time.
-  console.log(`Auto-deriving brief + plan artifacts for ${bookId} (so BP7 doesn't false-fire)...`);
-  const deriveCode = await runDeriveArtifacts([bookId]);
-  if (deriveCode !== 0) {
-    console.error(`derive-artifacts failed for ${bookId}; aborting book-gate.`);
-    return deriveCode;
+  const hasBriefArtifact =
+    existsSyncFs(resolve(STATE_DIR, "briefs", `${bookId}.manual-brief.json`)) ||
+    existsSyncFs(resolve(STATE_DIR, "briefs", `${bookId}.brief.json`));
+  const missingPlanArtifacts = chapterFiles
+    .map((f) => chapterIdFromFileName(f))
+    .filter((chapterId) =>
+      !existsSyncFs(resolve(STATE_DIR, "plans", `${chapterId}.manual-plan.json`)) &&
+      !existsSyncFs(resolve(STATE_DIR, "plans", `${chapterId}.plan.json`)),
+    );
+  if (!hasBriefArtifact || missingPlanArtifacts.length > 0) {
+    // Auto-derive brief + plan artifacts. BP7 (book gate) fails closed
+    // without these, but derive-artifacts is a deterministic pass over what's
+    // already on disk. If the artifacts already exist, keep the command
+    // hermetic and avoid requiring a private research run just to re-check.
+    console.log(`Auto-deriving brief + plan artifacts for ${bookId} (so BP7 doesn't false-fire)...`);
+    const deriveCode = await runDeriveArtifacts([bookId]);
+    if (deriveCode !== 0) {
+      console.error(`derive-artifacts failed for ${bookId}; aborting book-gate.`);
+      return deriveCode;
+    }
+    console.log("");
   }
-  console.log("");
 
   const chapters: ChapterV21[] = [];
   for (const f of chapterFiles) {
@@ -4597,6 +5008,11 @@ async function main() {
     );
     return 3;
   }
+  const configFindings = validateAllConfigFiles();
+  if (configFindings.length > 0) {
+    console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
+    return 2;
+  }
   switch (cmd) {
     case "critic":
       return runCritic(args, flags);
@@ -4607,6 +5023,10 @@ async function main() {
     }
     case "ledger":
       return runLedger(args, flags);
+    case "verify-library-state":
+      return runVerifyLibraryState(flags);
+    case "rebuild-library-state":
+      return runRebuildLibraryState(flags);
     case "generate-book":
       return runGenerateBook(args, flags);
     case "next-task":
@@ -4649,6 +5069,8 @@ async function main() {
       return runAuthoringGuardrails(args, flags);
     case "promote-book":
       return runPromoteBook(args, flags);
+    case "verify-production-package":
+      return runVerifyProductionPackage(args, flags);
     case "gate-chapter":
       return runGateChapter(args);
     case "book-gate":
@@ -4685,6 +5107,8 @@ async function main() {
       return runPublishAfterQc(args, flags);
     case "qc-ledger-status":
       return runQcLedgerStatus(args, flags);
+    case "qc-ledger-repair":
+      return runQcLedgerRepair(args, flags);
     case "qc-repair-brief":
       return runQcRepairBrief(args, flags);
     case "qc-repair-prompt":
@@ -4755,6 +5179,10 @@ async function main() {
       return runAuthorCheck(args);
     case "fix-chapter-ids":
       return runFixChapterIds(args, flags);
+    case "migrate-chapter-identity":
+      return runMigrateChapterIdentity(args, flags);
+    case "toc-migrate":
+      return runTocMigrate(args, flags);
     case "migrate-state":
       return runMigrateState(args, flags);
     case "state-status":

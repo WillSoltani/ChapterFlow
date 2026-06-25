@@ -10,6 +10,7 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { currentMajorFindings, unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
+import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-no-api-promote";
 
@@ -19,9 +20,11 @@ function cleanup(): void {
   }
   for (const n of [1, 2, 3]) {
     rmSync(attestationPath(BOOK, n), { force: true });
+    rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-keyjudge.json`), { force: true });
   }
   rmSync(resolve(PIPELINE_DIR, "state", "qc", `${BOOK}.sweep.json`), { force: true });
+  rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`), { force: true });
   rmSync(qcRoundPath(BOOK, "r-no-api-artifacts"), { force: true });
   rmSync(qcRoundPath(BOOK, "r-legacy-major"), { force: true });
   rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
@@ -35,8 +38,22 @@ function cleanup(): void {
   } catch {}
 }
 
+function writeFixtureBookWithIndex(chapters: ReturnType<typeof makeChapter>[]): void {
+  writeFixtureBook(STATE_CHAPTERS, chapters);
+  const indexPath = resolve(PIPELINE_DIR, "state", "indexes", `${BOOK}.json`);
+  mkdirSync(dirname(indexPath), { recursive: true });
+  writeFileSync(
+    indexPath,
+    JSON.stringify(chapters.map((ch) => ({ chapterId: ch.chapterId, chapterNumber: ch.number, chapterTitle: ch.title })), null, 2),
+    "utf8",
+  );
+}
+
 test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS, round-backed attestations, and major dispositions", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
+  // Majors are advisory by default; this test exercises the FULL blocking stack, so opt in to
+  // deterministic-major enforcement (the production-policy path) alongside the no-api mode.
+  const prevEnforce = process.env.CHAPTERFLOW_ENFORCE_MAJORS;
   const oldWarn = console.warn;
   try {
     console.warn = () => {};
@@ -47,8 +64,9 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
         `At the kitchen table, a synthetic team repeats the same venue in chapter ${n}. This intentionally creates a current book-gate major for disposition testing.`;
       return ch;
     });
-    writeFixtureBook(STATE_CHAPTERS, chapters);
+    writeFixtureBookWithIndex(chapters);
     for (const ch of chapters) {
+      recordAuthorProvenance(ch.chapterId, `author-session-${ch.number}`);
       writeAttestation({
         schemaVersion: "qc-attest-v1",
         bookId: BOOK,
@@ -59,9 +77,11 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
         hashVersion: "v2",
         reviewer: "human:legacy",
         reviewedAt: "2026-06-12T00:00:00.000Z",
+        reviewerSessionId: `reviewer-session-${ch.number}`,
       });
     }
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
+    process.env.CHAPTERFLOW_ENFORCE_MAJORS = "1";
     const result = promoteBook({
       bookId: BOOK,
       title: "Fixture",
@@ -72,20 +92,19 @@ test("no-api promote blocks without source-v2, sweep PASS, manual keyjudge PASS,
     assert.ok(result.noApiBlockerCount > 0, `expected no-api blockers, got ${result.noApiBlockerCount}`);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
     const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
+    const sourceIntegrityIds = (report.sourceIntegrity?.findings ?? []).map((f: any) => f.checkId);
     const qcIds = (report.qcAttestation.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(noApiIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${noApiIds.join(", ")}`);
+    assert.ok(sourceIntegrityIds.some((id: string) => id.startsWith("SV2.")), `source-v2 blocker missing: ${sourceIntegrityIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC2.manual_keyjudge_missing"), `manual keyjudge blocker missing: ${noApiIds.join(", ")}`);
     assert.ok(noApiIds.includes("QC3.sweep_missing"), `sweep blocker missing: ${noApiIds.join(", ")}`);
-    // H3: deterministic majors (e.g. the BP27 venue-stamping the fixture plants) are now ADVISORY
-    // at QC AND promote — they SURFACE (currentMajorFindings) but no longer emit a QC4 blocker
-    // (every deterministic major fires on the clean/gold corpus, so blocking on them retroactively
-    // fails good books). The real promote teeth are source-v2 + sweep + manual key-judge + blockers.
-    assert.ok(!noApiIds.includes("QC4.major_unresolved"), `deterministic majors must be advisory post-H3, not a promote blocker: ${noApiIds.join(", ")}`);
+    assert.ok((report.majorPolicy?.totalBlockers ?? 0) > 0, "unresolved majors must be production-blocking in the explicit major policy");
     assert.ok(qcIds.includes("QC0.no_api_round_missing"), `round-backed attestation blocker missing: ${qcIds.join(", ")}`);
   } finally {
     console.warn = oldWarn;
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
+    if (prevEnforce === undefined) delete process.env.CHAPTERFLOW_ENFORCE_MAJORS;
+    else process.env.CHAPTERFLOW_ENFORCE_MAJORS = prevEnforce;
     cleanup();
   }
 });
@@ -98,7 +117,7 @@ test("no-api promote enforces the source-verify RECORD gate inside promoteBook (
     console.warn = () => {};
     cleanup();
     const chapters = [1].map((n) => makeChapter(BOOK, n));
-    writeFixtureBook(STATE_CHAPTERS, chapters);
+    writeFixtureBookWithIndex(chapters);
     // A PRESENT-but-rubber-stamped record (one identical note over reused sources) must block
     // promotion via promoteBook itself — not just via the publish-after-qc preflight wrapper.
     const items = [1, 2, 3, 4, 5].map((i) => ({ id: `f${i}`, kind: "testable_fact", verdict: "VERIFIED", sourceRef: `https://example.com/${i % 2}`, note: "stamp" }));
@@ -114,8 +133,12 @@ test("no-api promote enforces the source-verify RECORD gate inside promoteBook (
     });
     assert.equal(result.promoted, false);
     const report = JSON.parse(readFileSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), "utf8"));
-    const noApiIds = (report.noApiCodexQc.findings ?? []).map((f: any) => f.checkId);
-    assert.ok(noApiIds.includes("SV4"), `source-verify rubber-stamp (SV4) blocker missing from promoteBook: ${noApiIds.join(", ")}`);
+    // The source-REALITY gate is an always-on production invariant (its own report section), not
+    // part of the no-API stack — a direct promote-book runs it regardless of mode or env.
+    const srIds = (report.sourceReality?.findings ?? []).map((f: any) => f.checkId);
+    assert.equal(report.sourceReality?.decision, "invalid", `present rubber-stamp record must yield an "invalid" decision: ${JSON.stringify(report.sourceReality)}`);
+    assert.ok(srIds.includes("SV4"), `source-verify rubber-stamp (SV4) blocker missing from promoteBook source-reality gate: ${srIds.join(", ")}`);
+    assert.ok((result.sourceRealityBlockerCount ?? 0) > 0, "source-reality blocker count must be > 0");
   } finally {
     console.warn = oldWarn;
     rmSync(recordPath, { force: true });
@@ -131,7 +154,7 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
     console.warn = () => {};
     cleanup();
     const chapter = makeChapter(BOOK, 1);
-    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-legacy-major");
     const finding = currentMajorFindings(BOOK, [chapter])[0];
     assert.ok(finding, "fixture should expose at least one current major");
@@ -149,7 +172,11 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
         timestamp: "2026-06-12T00:00:00.000Z",
       }],
     }, null, 2) + "\n", "utf8");
-    assert.equal(unresolvedMajors(BOOK, [chapter], true).some((f) => f.id === finding.id), false);
+    assert.equal(
+      unresolvedMajors(BOOK, [chapter], true).some((f) => f.id === finding.id),
+      true,
+      "legacy unbound waivers remain auditable but no longer close production-blocking majors",
+    );
     const cli = runCli([
       "major-disposition",
       BOOK,
@@ -174,8 +201,9 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
     console.warn = () => {};
     cleanup();
     const chapter = makeChapter(BOOK, 1);
-    writeFixtureBook(STATE_CHAPTERS, [chapter]);
+    writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-no-api-artifacts");
+    recordAuthorProvenance(chapter.chapterId, "author-session-artifact-test");
     writeAttestation({
       schemaVersion: "qc-attest-v1",
       bookId: BOOK,
@@ -186,6 +214,7 @@ test("no-api promote requires fresh bar and confirm artifacts for a PUBLISHABLE 
       hashVersion: "v2",
       reviewer: "human:artifact-test",
       reviewedAt: "2026-06-12T00:00:00.000Z",
+      reviewerSessionId: "reviewer-session-artifact-test",
       roundId: "r-no-api-artifacts",
       roundRole: "confirm",
     });

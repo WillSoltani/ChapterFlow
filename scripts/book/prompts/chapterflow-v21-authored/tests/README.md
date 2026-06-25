@@ -1,13 +1,13 @@
 # Pipeline test suite
 
-Zero-dependency tests for the v21 gating system, run by the same `tsx` the
-pipeline itself uses. No framework, no install.
+Zero-framework tests for the v21 gating system, run by the same `tsx` the
+pipeline itself uses.
 
 ```bash
-# from scripts/book/prompts/chapterflow-v21-authored/
-npx tsx tests/run.ts            # everything
-npx tsx tests/run.ts hash gold  # only files whose names match a term
-npx tsc -p . --noEmit           # typecheck (tsx ignores types; this doesn't)
+# from the repository root after npm ci --include=optional
+npm run pipeline:test             # everything, no-API mode
+npm run pipeline:test:focused     # package/provider/corpus/finalize focus
+npm run pipeline:typecheck        # typecheck (tsx ignores types; this doesn't)
 ```
 
 Exit code 0 = healthy. Both commands are CI-ready as-is.
@@ -18,7 +18,8 @@ Exit code 0 = healthy. Both commands are CI-ready as-is.
 |---|---|
 | `hash-coverage.test.ts` | The QC-attestation hash covers every reader-facing `ChapterV21` field and excludes provenance — the attestation gate is only as strong as this. |
 | `check-registry.test.ts` | No duplicate keys in `SEVERITY_FROM_CATALOG` (a dup silently last-wins); catalog-id namespace integrity; AS5–AS12 ids stay registered. |
-| `gold-corpus.test.ts` | **Zero blocker false-positives on `daring-greatly` + `start-with-why`** — the calibration claim that previously lived in comments (and rotted once, SC9). Reads `state/chapters/` at runtime; skips loudly if absent. |
+| `package-contract.test.ts` | The root npm workspace, single lockfile, pipeline scripts, optional SDK declaration, CI commands, and README contract stay in sync. |
+| `gold-corpus.test.ts` | **Zero blocker false-positives on synthetic gold fixtures** — the calibration claim that previously lived in comments (and rotted once, SC9), without depending on private production chapters. |
 | `defect-corpus.test.ts` | Known shipped-incident classes, reproduced synthetically, must be CAUGHT: AS7 identical card backs (unreasonable-hospitality), AS5 quiz template substitution (Covey/rich-dad), F1 protagonist reuse (HWF). |
 | `cli-contract.test.ts` | The exit-code contract operators script against (0/1/2), the `Gate verdict:` line, and end-to-end sibling loading on the ship path. |
 
@@ -44,8 +45,10 @@ specific failure inside the xfail body where practical.
 ## Fixture policy
 
 Fixtures are **synthetic** (see `helpers.ts` — disjoint per-chapter word
-banks and per-chapter sentence shapes). No copyrighted book text is committed.
-Gold-corpus tests read real chapters from `state/chapters/` at runtime.
+banks, generated gate-clean corpus files under `tests/.tmp/corpus`, and
+per-chapter sentence shapes). No copyrighted book text is committed. Required
+tests must not read production `state/chapters/` or private `.chapterflow/runs`
+data; any future private-corpus exercise must be opt-in integration coverage.
 
 Clean fixtures must vary sentence *structure* across chapters, not just
 nouns: a shared skeleton with swapped nouns is exactly the templating defect
