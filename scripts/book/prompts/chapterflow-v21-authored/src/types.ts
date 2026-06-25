@@ -325,7 +325,10 @@ export type CriticCheckId =
   | "AS12.chapter_quiz_position_matches_prior"
   | "BP24.cross_tier_breakdown_verbatim"
   | "BP25.quiz_correct_longest_rate"
-  | "SC9.example_not_source_grounded";
+  | "SC9.example_not_source_grounded"
+  // Evidence integrity — testimonials must never masquerade as research.
+  | "EI1.testimonial_as_evidence"
+  | "EI2.quiz_key_testimonial";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

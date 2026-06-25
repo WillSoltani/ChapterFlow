@@ -290,6 +290,36 @@ central scene on the dealt move, and do NOT reach for a favorite device unless i
 dealt to this chapter. Like R6, the gates cannot see this — it is on you, and the cross-chapter
 model QC sweep is the only backstop.
 
+**R7 — Evidence integrity: never dress a testimonial as research (deterministic blockers `EI1`/`EI2`).**
+Trust is load-bearing. The instant a reader senses the "evidence" is a hollow anecdote wearing a
+finding's costume, they discount the teaching. So **every load-bearing claim must resolve to one of
+two things, never a third:**
+- **(a) a REAL named source with specifics** — a person, company, study, place, or date you can
+  point to (`namedExample` with `realWorld: true`, a `testableFact`, a `hardSpecific`): *"In 1939
+  Coco Chanel closed every workshop except the perfume operation; in 1954, at seventy-one, she
+  reopened."* Real sources are cited by surname or full name + concrete detail.
+- **(b) a PLAIN illustration that carries NO evidentiary verb** — an invented character (the sidecar
+  may mark a device `realWorld: false`) simply *acts*; nobody calls their experience proof. *"A nurse
+  eyes the breakroom donut and says, 'I'm not a donut person tonight.'"* — she acts; her anecdote is
+  never "named the hinge."
+
+**The forbidden third thing — a testimonial dressed as research.** A first-name- or initial-only
+subject (no surname, no verifiable identity — `Brad`, `John`, `Candace P.`, `Jean B.`, "the success
+report") whose personal **report / account** is given the grammar of a finding: *"Brad's report names
+the hinge," "Candace P.'s report gives her the test," "John's Maui habit report makes the rule," "the
+success report names ketogenic diet adherence."* `EI1` blocks this in any reader field. If you want to
+use a person's experience, do ONE of: give them a real surname + specifics (→ a, but only if the
+source actually supports it — never invent attribution), or strip the evidentiary verb and let them
+act as a plain illustration (→ b). **Do not merely delete the name — a vague claim is not the fix.**
+A related trap is the Piper move: inserting an *invented* character into a *real* researcher's
+documented setting to act out the finding (a fictional "Piper" voicing the discovery in Schultz's real
+lab). The real researcher's documented result is the evidence; an invented witness narrating it is not.
+
+**Hard rule: a quiz answer may NEVER be keyed to a testimonial (`EI2`, blocker).** Every correct
+answer must derive from a verifiable source fact (`testableFact`) — never from "what Brad's report
+said." If the only support for a keyed choice is a first-name account, the question is unsound: re-key
+it to a `testableFact` or rewrite the claim.
+
 ---
 
 ## False-positive allowances (write freely)

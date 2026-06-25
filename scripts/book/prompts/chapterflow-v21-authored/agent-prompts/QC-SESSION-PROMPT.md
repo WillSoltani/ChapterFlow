@@ -242,9 +242,30 @@ Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
 | quiz_distractor_quality (13) | distractors are real wrong answers, not the key in disguise / format-findable | DRAFT |
 | card_learning_value (11) | front is a question; back answers it & tests understanding, not recall; not pasted from breakdown | DRAFT/CORRUPTION |
 | plan_actionability (11) | context = a situation; plan = an imperative using the chapter's named tool | DRAFT |
-| factual_accuracy (7) | named-framework enumerations complete & correct vs source | CORRUPTION |
+| factual_accuracy (7) | named-framework enumerations complete & correct vs source; **evidence integrity** (see callout) — testimonial dressed as research, or fiction smuggled into a real lab | CORRUPTION |
 | behavioral_naturalness (7) | the prescribed micro-actions (tryThisNow / plans / 24h challenge) are functional things a real person would DO — not performative theater (write TARGET on a wall), contrived rituals (move a pen, turn around), 3+-prop staging, or shame/coercion. Specificity is NOT the defect; behavioral implausibility is. Clean structural action ≥0.85 — NEVER floor a plausible action <0.6. | DRAFT |
 | memorable_line_quality (6) | portable aphorisms, not 20-word explanations | DRAFT |
+
+**Evidence integrity (a `factual_accuracy` CORRUPTION — the deterministic gate `EI1`/`EI2`
+catches the obvious cases; you catch the SEMANTIC ones it cannot).** Trust is load-bearing: the
+moment the "evidence" reads as a hollow anecdote in a finding's costume, the teaching is
+discounted. Every load-bearing claim must resolve to a **real named source with specifics** (a
+person/company/study/place/date cited by surname or full name) OR a **plain illustration that uses
+no evidentiary verb** (an invented character who simply *acts*). Two CORRUPTION hits:
+- **Testimonial dressed as research** — a first-name/initial-only subject (Brad, Candace P., "the
+  success report") whose personal report/account is given the grammar of a finding ("Brad's report
+  names the hinge", "Candace P.'s report proves the rule").
+- **The Piper move** — an INVENTED character inserted into a REAL researcher's documented setting to
+  voice or act out the finding ("Piper, in Schultz's real lab, says the cell reads the promise"). The
+  documented result is the evidence; the invented witness is not. The deterministic gate cannot tell
+  invented "Piper" from real "Schultz" — this one is **on you**.
+- **Hard rule (overlaps the hidden-key protocol):** a quiz answer KEYED to a testimonial is CORRUPTION
+  — the correct answer must derive from a verifiable source fact, never "what Brad's report said".
+
+FP-guard — do NOT flag the clean book: a real source cited by surname + a documentary noun is GOOD
+("Kosfeld's case shows", "Enron's 2001 bankruptcy"); an invented illustration character who acts with
+no evidentiary verb is GOOD (the nurse who eyes the donut). The defect is the first-name account WORN
+AS PROOF, or fiction smuggled into a real lab — not specificity, and not named real sources.
 
 **Example-slate coherence (the 4HWW miss — read the 6 scenes TOGETHER, not one at a
 time).** A chapter can be clean scene-by-scene yet fail at the slate level. Three

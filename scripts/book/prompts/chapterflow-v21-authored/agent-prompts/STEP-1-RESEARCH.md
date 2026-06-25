@@ -194,6 +194,17 @@ chapter needs **≥3 `namedExamples`** (the source-v2 gate hard-blocks fewer tha
 which **≥2 are real-world named entities** in `namedExamples`/`hardSpecifics` (SC10 blocks "nothing
 to check"). Generate stable ids as shown so STEP-2 can cite them as provenance.
 
+**Evidence integrity — a testimonial is NOT a `testableFact`.** Many books carry anonymized reader
+success stories ("Candace P.", "Brad", "John's Maui habit"). These are TESTIMONIALS — a person's
+account of their own experience — not verifiable propositions. A `testableFact.claim` must be a
+**checkable, source-grounded proposition** (a mechanism, a study finding, a datable event), never
+"what a named reader reported." Do **not** log a first-name/initial-only testimonial as a
+`testableFact`: downstream, `testableFacts` are the quiz-key correctness spine, and a quiz keyed to a
+testimonial is a deterministic blocker (`EI2`). A reader anecdote may appear at most as an
+ILLUSTRATION (`namedExamples`, `realWorld: false`) the writer dramatizes WITHOUT evidentiary framing;
+it must never key an answer or stand in as the chapter's proof (`EI1`). Reserve `realWorld: true` for
+a genuinely verifiable named entity (a real person/company/study with `hardSpecifics`).
+
 **Hard rules for chapter sources:**
 
 1. **Paraphrase only, never verbatim.** Restate every claim in your own words. The pipeline checks for long quoted spans.

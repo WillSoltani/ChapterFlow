@@ -43,6 +43,7 @@ import {
 } from "./antiSalting.js";
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
+import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -317,6 +318,16 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SC11.4.wrong_chapter_anchor": "blocker",
   "SC11.5.unknown_anchor": "blocker",
   "SC11.6.unsupported_anchor": "blocker",
+  // EI — evidence integrity. A testimonial (a first-name/initial-only personal
+  // account, e.g. "Brad's report names the hinge", "Candace P.'s report gives the
+  // test") dressed in the grammar of research, or a quiz answer KEYED to one. The
+  // noun-class split (testimonial nouns fire for any given-name subject; research
+  // nouns only for a lone-initial testimonial subject) is calibrated ZERO-FP on the
+  // gold corpus (daring-greatly + start-with-why) AND leaves real cited sources
+  // ("Kosfeld's case shows", "Michael Kosfeld's result") untouched — see
+  // critics/evidenceIntegrity.ts + tests/evidence-integrity.test.ts.
+  "EI1.testimonial_as_evidence": "blocker",
+  "EI2.quiz_key_testimonial": "blocker",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -730,6 +741,15 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // SC11 — declared provenance (Phase 3, v2-gated; v1 chapters return [] → skip).
   for (const f of checkChapterProvenance(chapter)) {
     push(f.checkId as string, f.message.split(" ")[0] || "provenance", f.message, f.evidence);
+  }
+  // EI1/EI2 — evidence integrity. A testimonial (first-name/initial-only personal
+  // account) dressed as research, or a quiz answer keyed to one. Runs on v1 + v2
+  // alike (the prose form), complementing SC11.6's v2-only structural anchor check.
+  for (const f of checkTestimonialEvidence(chapter)) {
+    push(f.checkId as string, "evidence-integrity", f.message, f.evidence);
+  }
+  for (const f of checkQuizKeyTestimonial(chapter)) {
+    push(f.checkId as string, "quiz-key", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
