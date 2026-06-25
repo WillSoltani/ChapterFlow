@@ -8,6 +8,7 @@ import {
   resolveLearningMode,
   resolveStrictQuizQuestionCount,
 } from "./learning-mode";
+import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/quiz-question-counts";
 
 test("isValidLearningMode accepts only the three canonical modes", () => {
   assert.equal(isValidLearningMode("guided"), true);
@@ -74,17 +75,21 @@ test("quizQuestionCountForMode is keyed by learning mode (server-trusted), not c
   assert.equal(quizQuestionCountForMode("challenge"), 10);
 });
 
-test("quizQuestionCountForMode stays in lockstep with the client QUIZ_QUESTION_COUNTS map", () => {
-  // QUIZ_QUESTION_COUNTS (app/book/_lib/flow-points-economy.ts) is the client's
-  // source of truth for per-mode question counts; it can't be imported here
-  // (it pulls lucide-react via the badge UI chain). Pin the values so the two
-  // maps can't silently diverge — a divergence would mis-size the strict quiz
-  // (different question set ⇒ different choiceId scheme ⇒ mis-grade) on the GET,
-  // /check and submit routes that all now route through quizQuestionCountForMode.
-  const CLIENT_QUIZ_QUESTION_COUNTS = { guided: 5, standard: 7, challenge: 10 } as const;
-  assert.equal(quizQuestionCountForMode("guided"), CLIENT_QUIZ_QUESTION_COUNTS.guided);
-  assert.equal(quizQuestionCountForMode("standard"), CLIENT_QUIZ_QUESTION_COUNTS.standard);
-  assert.equal(quizQuestionCountForMode("challenge"), CLIENT_QUIZ_QUESTION_COUNTS.challenge);
+test("quizQuestionCountForMode reads the single shared QUIZ_QUESTION_COUNTS source of truth", () => {
+  // quizQuestionCountForMode now resolves the SAME dependency-free map the client
+  // economy module (app/book/_lib/flow-points-economy.ts) re-exports as
+  // QUIZ_QUESTION_COUNTS — extracted to quiz-question-counts.ts precisely so it
+  // can be imported here without the badge UI's lucide-react chain. Asserting
+  // against the real imported map (not a hand-copied literal) makes any future
+  // divergence impossible: there is only one definition. A divergence would
+  // mis-size the strict quiz (different question set ⇒ different choiceId scheme
+  // ⇒ mis-grade) on the GET, /check and submit routes that all route through it.
+  assert.equal(quizQuestionCountForMode("guided"), QUIZ_QUESTION_COUNTS.guided);
+  assert.equal(quizQuestionCountForMode("standard"), QUIZ_QUESTION_COUNTS.standard);
+  assert.equal(quizQuestionCountForMode("challenge"), QUIZ_QUESTION_COUNTS.challenge);
+  // Pin the absolute values too, so a change to the shared map is a deliberate,
+  // reviewed edit rather than a silent drift.
+  assert.deepEqual(QUIZ_QUESTION_COUNTS, { guided: 5, standard: 7, challenge: 10 });
 });
 
 test("the resolved mode for malformed settings yields the standard (7-question) count, never the smallest", () => {

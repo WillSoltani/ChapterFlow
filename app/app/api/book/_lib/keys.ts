@@ -178,9 +178,11 @@ export function quizAttemptSk(timestampIso: string): string {
  * `buildQuizStateFromAttempts` reconstructs a stale `passed:true` from the
  * surviving attempts and the reader stays locked).
  *
- * Greedy bookId capture (`(.+)#(\d+)$`) mirrors `quizAttemptPksFromUserItems` in
- * account-erasure.ts so a bookId that itself contains "#" still reconstructs the
- * exact PK the attempts were written under. Returns `null` for a non-quiz-state SK.
+ * Greedy bookId capture (`(.+)#(\d+)$`) means a bookId that itself contains "#"
+ * still reconstructs the exact PK the attempts were written under. This is the
+ * single shared parse: both the per-book reset (resetUserBookLearningState) AND
+ * account-erasure's `quizAttemptPksFromUserItems` call it, so the two can't
+ * drift. Returns `null` for a non-quiz-state SK.
  */
 export function quizAttemptPkFromQuizStateSk(
   userId: string,

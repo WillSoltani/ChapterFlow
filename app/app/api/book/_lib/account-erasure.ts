@@ -1,6 +1,6 @@
 import "server-only";
 
-import { QueryCommand, BatchWriteCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
+import { QueryCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import {
   ListUsersCommand,
   AdminDeleteUserCommand,
@@ -10,7 +10,7 @@ import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { getCognitoClient } from "./cognito-admin";
 import {
   bookUserPk,
-  quizAttemptPk,
+  quizAttemptPkFromQuizStateSk,
   stripeCustomerPk,
   stripeCustomerSk,
   pairInvitePk,
@@ -21,12 +21,11 @@ import {
 } from "./keys";
 import { targetKeysFromUserItems, isErasurePointerEntity } from "./erasure-pointers-core";
 import { hashErasureSubject } from "./erasure-audit-core";
+import { batchDeleteKeys, type DdbKey } from "./ddb-batch-delete";
 import { getStripeClient } from "./stripe-service";
 import { getUserEntitlement } from "./repo";
 import { recordOpsFailure } from "./ops-failure-repo";
 import { putOpsMetric } from "./cloudwatch-metrics";
-
-type DdbKey = { PK: string; SK: string };
 
 /** Outcome of a per-store erasure step. */
 type StepOutcome = "deleted" | "skipped" | "failed";
@@ -74,42 +73,6 @@ async function queryAllItems(
   return items;
 }
 
-/**
- * Delete keys in chunks of 25, retrying UnprocessedItems a few times.
- * Returns BOTH the count actually deleted and the count that survived all
- * retries (still in the table). A non-zero `unprocessed` means the erasure is
- * incomplete — callers MUST surface it, never report it as deleted.
- */
-async function batchDeleteKeys(
-  tableName: string,
-  keys: DdbKey[]
-): Promise<{ deleted: number; unprocessed: number }> {
-  let deleted = 0;
-  let unprocessed = 0;
-  for (let i = 0; i < keys.length; i += 25) {
-    const chunk = keys.slice(i, i + 25);
-    let requestItems: Record<string, { DeleteRequest: { Key: DdbKey } }[]> = {
-      [tableName]: chunk.map((Key) => ({ DeleteRequest: { Key } })),
-    };
-    let remaining = chunk.length;
-    for (let attempt = 0; attempt < 4; attempt++) {
-      const pending = requestItems[tableName]?.length ?? 0;
-      if (pending === 0) {
-        remaining = 0;
-        break;
-      }
-      const res = await ddbDoc.send(new BatchWriteCommand({ RequestItems: requestItems }));
-      const leftover = (res.UnprocessedItems ?? {}) as typeof requestItems;
-      remaining = leftover[tableName]?.length ?? 0;
-      deleted += pending - remaining;
-      requestItems = remaining ? leftover : { [tableName]: [] };
-    }
-    // Whatever is still pending after the final retry was NOT deleted.
-    unprocessed += remaining;
-  }
-  return { deleted, unprocessed };
-}
-
 function asKeys(items: Record<string, unknown>[]): DdbKey[] {
   return items
     .filter((it) => typeof it.PK === "string" && typeof it.SK === "string")
@@ -118,22 +81,16 @@ function asKeys(items: Record<string, unknown>[]): DdbKey[] {
 
 /**
  * Derive the quiz-attempt partitions for a user from their QUIZSTATE# items.
- * The SK shape is `QUIZSTATE#<bookId>#<paddedChapter>` (see `quizStateSk`). We
- * match the trailing digit group as the chapter and treat everything between as
- * the bookId — a greedy capture so a bookId that itself contains "#" still
- * reconstructs the exact same `quizAttemptPk` the attempts were written under.
+ * Reconstruction (greedy bookId capture, exact `quizAttemptPk` rebuild) lives in
+ * the shared `quizAttemptPkFromQuizStateSk` helper (keys.ts) — the SAME parse the
+ * per-book reset uses — so the two can never drift.
  */
 function quizAttemptPksFromUserItems(userId: string, items: Record<string, unknown>[]): string[] {
   const pks = new Set<string>();
   for (const it of items) {
     const sk = typeof it.SK === "string" ? it.SK : "";
-    const match = /^QUIZSTATE#(.+)#(\d+)$/.exec(sk);
-    if (!match) continue;
-    const bookId = match[1];
-    const chapter = Number(match[2]);
-    if (bookId && Number.isFinite(chapter)) {
-      pks.add(quizAttemptPk(userId, bookId, chapter));
-    }
+    const attemptPk = quizAttemptPkFromQuizStateSk(userId, sk);
+    if (attemptPk) pks.add(attemptPk);
   }
   return [...pks];
 }

@@ -116,12 +116,13 @@ export const QUIZ_RETRIES_PER_QUESTION = {
   challenge: 0,
 } as const;
 
-/** Number of quiz questions shown per learning mode */
-export const QUIZ_QUESTION_COUNTS = {
-  guided: 5,
-  standard: 7,
-  challenge: 10,
-} as const;
+/**
+ * Number of quiz questions shown per learning mode. Re-exported from the
+ * dependency-free single source of truth (quiz-question-counts.ts) so the server
+ * learning-mode seam can import the same map without pulling this module's
+ * lucide-react chain — see learning-mode.ts / quiz-question-counts.ts.
+ */
+export { QUIZ_QUESTION_COUNTS } from "./quiz-question-counts";
 
 /** Auto-advance delay per mode (ms) */
 export const QUIZ_AUTO_ADVANCE_DELAY = {

@@ -6,11 +6,11 @@ import {
   type TransactWriteCommandInput,
   UpdateCommand,
   DeleteCommand,
-  BatchWriteCommand,
   TransactWriteCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
+import { batchDeleteKeys } from "./ddb-batch-delete";
 import { isBookCompleted } from "./book-completion-core";
 import { paginateQuery } from "./query-pagination-core";
 import { buildLicenseEntitlementGrant } from "./license-grant-core";
@@ -996,45 +996,6 @@ export async function upsertUserProgress(
   await send(cursor);
 }
 
-/**
- * Persist a quiz-pass progress mutation safely under concurrency. `nextProgress` is the
- * full recomputed row from buildProgressAfterQuizPass; `expectedRev` is the progressRev
- * read in the same snapshot. The write is a field-scoped UpdateCommand guarded by the
- * optimistic progressRev check, so a stale write can't clobber a concurrently-advanced
- * row — instead it surfaces as ConditionalCheckFailed and the caller recomputes + retries.
- *
- * Returns true when applied, false when the optimistic guard lost (stale write).
- */
-async function writeQuizPassProgress(
-  tableName: string,
-  params: { nextProgress: BookUserProgress; expectedRev: number }
-): Promise<boolean> {
-  const spec = buildQuizPassProgressUpdate({
-    nextProgress: params.nextProgress,
-    expectedRev: params.expectedRev,
-    nextRev: params.expectedRev + 1,
-  });
-  try {
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(params.nextProgress.userId),
-          SK: progressSk(params.nextProgress.bookId),
-        },
-        UpdateExpression: spec.UpdateExpression,
-        ConditionExpression: spec.ConditionExpression,
-        ExpressionAttributeNames: spec.ExpressionAttributeNames,
-        ExpressionAttributeValues: spec.ExpressionAttributeValues,
-      })
-    );
-    return true;
-  } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) return false;
-    throw error;
-  }
-}
-
 export async function createProgressIfMissing(
   tableName: string,
   progress: BookUserProgress
@@ -1381,6 +1342,10 @@ export async function resetUserBookLearningState(
           TableName: tableName,
           KeyConditionExpression: "PK = :pk",
           ExpressionAttributeValues: { ":pk": attemptPk },
+          // These rows are read ONLY to delete them, so project just the key
+          // attributes the BatchWrite needs — never the heavy BOOK_QUIZ_ATTEMPT
+          // graded-response bodies. PK/SK aren't reserved words, so no aliasing.
+          ProjectionExpression: "PK, SK",
         })
       )
     );
@@ -1393,32 +1358,10 @@ export async function resetUserBookLearningState(
     }
   }
 
-  let deleted = 0;
-  let unprocessed = 0;
-  for (let i = 0; i < keys.length; i += 25) {
-    const chunk = keys.slice(i, i + 25);
-    let requestItems: Record<string, { DeleteRequest: { Key: { PK: string; SK: string } } }[]> = {
-      [tableName]: chunk.map((Key) => ({ DeleteRequest: { Key } })),
-    };
-    let remaining = chunk.length;
-    for (let attempt = 0; attempt < 4; attempt++) {
-      const pending = requestItems[tableName]?.length ?? 0;
-      if (pending === 0) {
-        remaining = 0;
-        break;
-      }
-      const res = await ddbDoc.send(
-        new BatchWriteCommand({ RequestItems: requestItems })
-      );
-      const leftover = (res.UnprocessedItems ?? {}) as typeof requestItems;
-      remaining = leftover[tableName]?.length ?? 0;
-      deleted += pending - remaining;
-      requestItems = remaining ? leftover : { [tableName]: [] };
-    }
-    unprocessed += remaining;
-  }
-
-  return { deleted, unprocessed };
+  // Chunk-and-retry BatchWrite delete (shared with account erasure). Preserves
+  // the { deleted, unprocessed } shape the reset route relies on to detect a
+  // partial sweep (isResetFullyCleared → retryable 503).
+  return batchDeleteKeys(tableName, keys);
 }
 
 export async function countRecentQuizAttempts(
@@ -2864,67 +2807,6 @@ export async function getBookMeta(
     })
   );
   return (res.Item as Record<string, unknown> | undefined) ?? null;
-}
-
-export async function updateProgressAfterQuizPass(
-  tableName: string,
-  params: {
-    userId: string;
-    bookId: string;
-    chapterNumber: number;
-    scorePercent: number;
-  }
-): Promise<void> {
-  // NOTE: upsertUserProgress is now a cursor/activity-only touch and intentionally does
-  // NOT persist the gating fields. This standalone quiz-pass writer therefore uses the
-  // optimistic, field-scoped writeQuizPassProgress helper with a re-read/retry loop so a
-  // concurrent writer's completed chapters / unlock can't be clobbered.
-  const MAX_ATTEMPTS = 4;
-  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
-    const progress = await getUserProgress(tableName, params.userId, params.bookId);
-    if (!progress) {
-      throw new BookApiError(404, "progress_not_found", "Progress record not found.");
-    }
-
-    const completed = new Set(progress.completedChapters);
-    completed.add(params.chapterNumber);
-
-    const bestScoreByChapter = {
-      ...progress.bestScoreByChapter,
-      [String(params.chapterNumber)]: Math.max(
-        params.scorePercent,
-        progress.bestScoreByChapter[String(params.chapterNumber)] || 0
-      ),
-    };
-
-    const updatedAt = nowIso();
-    const applied = await writeQuizPassProgress(tableName, {
-      expectedRev: progress.progressRev ?? 0,
-      nextProgress: {
-        ...progress,
-        currentChapterNumber: Math.max(
-          progress.currentChapterNumber,
-          params.chapterNumber + 1
-        ),
-        unlockedThroughChapterNumber: Math.max(
-          progress.unlockedThroughChapterNumber,
-          params.chapterNumber + 1
-        ),
-        completedChapters: Array.from(completed).sort((a, b) => a - b),
-        bestScoreByChapter,
-        lastActiveAt: updatedAt,
-        lastOpenedAt: updatedAt,
-        updatedAt,
-      },
-    });
-    if (applied) return;
-    // Lost the optimistic guard — re-read and recompute against the fresh row.
-  }
-  throw new BookApiError(
-    503,
-    "progress_write_contended",
-    "Saving your progress hit heavy contention. Please try again."
-  );
 }
 
 export async function readManifest(
