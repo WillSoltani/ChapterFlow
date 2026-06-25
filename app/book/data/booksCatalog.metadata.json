@@ -296,6 +296,31 @@
     "synopsis": "A modern reading of vulnerability, shame resilience, courage, wholeheartedness, and connection with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
+    "id": "decisive",
+    "title": "Decisive: How to Make Better Choices in Life and Work",
+    "author": "Chip Heath & Dan Heath",
+    "categories": [
+      "Decision Making"
+    ],
+    "category": "Decision Making",
+    "tags": [
+      "four-decision-villains",
+      "narrow-frame",
+      "multitracking",
+      "analogical-search",
+      "consider-the-opposite",
+      "outside-view-plus-close-up",
+      "ooching",
+      "emotional-distance"
+    ],
+    "chapterCount": 12,
+    "estimatedMinutes": 123,
+    "icon": "📙",
+    "coverImage": "/book-covers/decisive.webp",
+    "difficulty": "Hard",
+    "synopsis": "A modern reading of four-decision-villains, narrow-frame, multitracking, analogical-search, and consider-the-opposite with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
     "id": "deep-work",
     "title": "Deep Work",
     "author": "Cal Newport",
@@ -651,10 +676,10 @@
     ],
     "chapterCount": 13,
     "estimatedMinutes": 302,
-    "icon": "✅",
+    "icon": "📊",
     "coverImage": "/book-covers/getting-things-done.webp",
     "difficulty": "Medium",
-    "synopsis": "A modern reading of attention, focus, habits, productivity, and self improvement with concise summaries, scenarios, quizzes, and gated chapter progression."
+    "synopsis": "A modern reading of David Allen's thirteen chapters on capturing commitments, clarifying next actions, organizing trusted lists, reviewing consistently, and defining outcomes clearly."
   },
   {
     "id": "good-strategy-bad-strategy",
@@ -2268,6 +2293,31 @@
     "coverImage": "/book-covers/the-molecule-of-more.webp",
     "difficulty": "Medium",
     "synopsis": "A modern reading of anticipatory-wanting, pathological-wanting, control-dopamine, salience-without-sufficient-filtering, and political-temperament with concise summaries, scenarios, quizzes, and gated chapter progression."
+  },
+  {
+    "id": "the-now-habit",
+    "title": "The Now Habit: A Strategic Program for Overcoming Procrastination and Enjoying Guilt-Free Play",
+    "author": "Neil A. Fiore",
+    "categories": [
+      "Productivity"
+    ],
+    "category": "Productivity",
+    "tags": [
+      "protective-delay",
+      "avoidance-patterns",
+      "agency-language",
+      "guilt-free-play",
+      "starter-actions",
+      "the-unschedule",
+      "flow-conditions",
+      "progress-tuning"
+    ],
+    "chapterCount": 9,
+    "estimatedMinutes": 96,
+    "icon": "📌",
+    "coverImage": "/book-covers/the-now-habit.webp",
+    "difficulty": "Medium",
+    "synopsis": "A modern reading of protective-delay, avoidance-patterns, agency-language, guilt-free-play, and starter-actions with concise summaries, scenarios, quizzes, and gated chapter progression."
   },
   {
     "id": "the-obstacle-is-the-way",
