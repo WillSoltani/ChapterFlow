@@ -550,12 +550,36 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     const emailEventsTopic = new sns.Topic(this, "ChapterFlowEmailEvents", {
       topicName: `ChapterFlowEmailEvents${suffix}`,
     });
-    // Allow SES to publish bounce/complaint events to the topic.
+    // ARN of the SES configuration set whose event destination publishes here.
+    // Used as aws:SourceArn below so only OUR config set (in OUR account) can
+    // drive the publish — see the confused-deputy guard on the policy.
+    const emailConfigSetArn = cdk.Arn.format(
+      {
+        service: "ses",
+        resource: "configuration-set",
+        resourceName: emailConfigSetName,
+      },
+      this
+    );
+    // Allow SES to publish bounce/complaint events to the topic — but ONLY when
+    // the publish originates from THIS account (aws:SourceAccount) and from THIS
+    // configuration set's event destination (aws:SourceArn). Without these
+    // conditions the ses.amazonaws.com service principal is unconstrained, so
+    // SES acting on behalf of ANY AWS account could be induced to publish to
+    // this topic, injecting forged bounce/complaint events into the suppression
+    // handler (confused-deputy). This is AWS's documented guard for granting a
+    // service principal publish access. (F9)
     emailEventsTopic.addToResourcePolicy(
       new iam.PolicyStatement({
         principals: [new iam.ServicePrincipal("ses.amazonaws.com")],
         actions: ["sns:Publish"],
         resources: [emailEventsTopic.topicArn],
+        conditions: {
+          StringEquals: {
+            "aws:SourceAccount": cdk.Aws.ACCOUNT_ID,
+            "aws:SourceArn": emailConfigSetArn,
+          },
+        },
       })
     );
 
