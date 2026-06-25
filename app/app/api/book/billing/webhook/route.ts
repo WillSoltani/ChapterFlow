@@ -18,6 +18,7 @@ import {
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-status";
+import { classifyDisputeResolution } from "@/app/app/api/book/_lib/dispute-event-core";
 import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
 import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
 import { BILLING_CURRENCY } from "@/lib/pricing";
@@ -501,6 +502,9 @@ export async function POST(req: Request) {
       const userId = customerId
         ? await getUserIdByStripeCustomer(tableName, customerId)
         : null;
+      // Record the durable finance row FIRST. It is idempotent on a deterministic
+      // SK (recordBillingEvent's attribute_not_exists(SK) guard), so writing it
+      // before a possible retry-throw below cannot duplicate it across redeliveries.
       await recordBillingEvent(tableName, {
         kind: "dispute",
         eventId: dispute.id,
@@ -520,9 +524,25 @@ export async function POST(req: Request) {
           isoFromUnix(chargeCreatedUnix) ??
           new Date().toISOString(),
       });
-      if (userId) {
+      const disputeOutcome = classifyDisputeResolution(customerId, userId);
+      if (disputeOutcome === "retry") {
+        // The charge HAS a customer but the customer→user map has not propagated
+        // yet (it is written by the first PRO event on this same webhook surface,
+        // and Stripe does not guarantee delivery order). Throw 500 — exactly like
+        // every other handler that resolves a user from a present customer — so
+        // the event is NOT completed (status stays PROCESSING, lease expires) and a
+        // Stripe redelivery reprocesses it once the mapping lands. Completing here
+        // would permanently drop the access-revocation: a chargebacked user would
+        // keep Pro forever because the "done" claim short-circuits every retry.
+        throw new BookApiError(
+          500,
+          "user_resolution_failed",
+          `charge.dispute.created: could not resolve user for customer ${customerId}; dispute ${dispute.id} not yet revocable`
+        );
+      }
+      if (disputeOutcome === "revoke") {
         await updateUserEntitlementFromStripe(tableName, {
-          userId,
+          userId: userId as string,
           plan: "FREE",
           proStatus: "canceled",
           stripeCustomerId: customerId ?? undefined,
@@ -539,8 +559,11 @@ export async function POST(req: Request) {
         // refused by the proSource guard (non-stripe-PRO account). Un-gated by
         // proSource; idempotent, so harmless on the stripe-source path where the
         // marker was already set atomically with the downgrade.
-        await setEntitlementDisputeMarker(tableName, userId, true);
+        await setEntitlementDisputeMarker(tableName, userId as string, true);
       }
+      // disputeOutcome === "record_only": the charge genuinely carries no customer,
+      // so no user can ever be resolved. The finance row above is the complete
+      // outcome; fall through to completeStripeWebhookEvent (retrying is futile).
     } else if (event.type === "charge.dispute.closed") {
       // A dispute resolved. If we WON, the chargeback was reversed in our favor,
       // so lift the sticky marker that blocks PRO re-activation (L13). A LOST
