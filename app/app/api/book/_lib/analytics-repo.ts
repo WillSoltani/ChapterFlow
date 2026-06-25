@@ -5,10 +5,10 @@
  *
  * Table design (single-table):
  *
- *   PK                    SK                                Item type
- *   ─────────────────     ───────────────────────────────   ──────────────────────
- *   USER#<userId>         SNAPSHOT                          User analytics snapshot
- *   USER#<userId>         EVENT#<isoTs>#<eventType>         Individual event record
+ *   PK                    SK                                         Item type
+ *   ─────────────────     ────────────────────────────────────────   ─────────────────────
+ *   USER#<userId>         SNAPSHOT                                   User analytics snapshot
+ *   USER#<userId>         EVENT#<isoTs>#<eventType>#<uniqueId>       Individual event record
  *
  * GSI1 "eventDate-eventType-index":  PK=eventDate (YYYY-MM-DD), SK=eventType
  *   → Query all events of a type on a given date
@@ -41,6 +41,7 @@ import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { nowIso, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { redactLicenseCode } from "./license-redaction-core";
+import { eventSk } from "./analytics-event-key-core";
 
 const SCHEMA_V = "1";
 
@@ -57,13 +58,20 @@ function pk(userId: string): string {
 // BOOK_ANALYTICS_SNAPSHOT → ttl:false). See docs/DATA-RETENTION.md.
 const SNAPSHOT_SK = "SNAPSHOT";
 
-function eventSk(iso: string, eventType: string): string {
-  return `EVENT#${iso}#${eventType}`;
-}
-
 // ─── Internal helpers ────────────────────────────────────────────────────────
 
-/** Append-only event record. Never blocks the response — callers fire-and-forget. */
+/**
+ * Append-only event record. Never blocks the response — callers fire-and-forget.
+ *
+ * The SK carries a per-write uniqueness discriminant (see analytics-event-key-core.ts)
+ * so two events of the SAME eventType for the SAME user that land in the same
+ * millisecond (`nowIso()` is ms-resolution) get DISTINCT rows instead of the
+ * second Put silently overwriting the first. The Put is additionally guarded with
+ * `attribute_not_exists(SK)` as defense-in-depth: the unique SK already makes a
+ * collision astronomically unlikely, but the condition means that — should one
+ * ever occur — the write fails loudly (caught/logged by the fire-and-forget
+ * caller) rather than corrupting an existing event.
+ */
 async function putEvent(
   table: string,
   userId: string,
@@ -95,7 +103,16 @@ async function putEvent(
     if (value !== undefined) item[key] = value;
   }
 
-  await ddbDoc.send(new PutCommand({ TableName: table, Item: item }));
+  await ddbDoc.send(
+    new PutCommand({
+      TableName: table,
+      Item: item,
+      // Defense-in-depth: never silently clobber an existing event row. The
+      // unique SK suffix already prevents same-millisecond same-type collisions;
+      // this makes any residual collision a loud failure, not a lost event.
+      ConditionExpression: "attribute_not_exists(SK)",
+    })
+  );
 }
 
 // ─── Public analytics functions ──────────────────────────────────────────────
