@@ -12,28 +12,17 @@ import type {
 import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
+import {
+  buildLibraryCatalogIndexMap,
+  shouldDegradeLibraryCatalogIndex,
+  type LibraryCatalogIndex,
+  type LibraryCatalogIndexBook,
+} from "./library-catalog-index-core";
 import { getCatalogBook, listPublishedCatalogItems } from "./repo";
 import { readJsonFromS3 } from "./storage";
 import type { BookCatalogItem } from "./types";
 
 const LIBRARY_CATALOG_KEY = "book-content/library/catalog.json";
-
-type LibraryCatalogIndexBook = {
-  bookId: string;
-  icon?: string;
-  difficulty?: BookDifficulty;
-  synopsis?: string;
-  pages?: number;
-  estimatedMinutes?: number;
-  chapterCount?: number;
-  coverAssetKey?: string;
-};
-
-type LibraryCatalogIndex = {
-  schemaVersion: string;
-  generatedAt: string;
-  books: LibraryCatalogIndexBook[];
-};
 
 function encodeS3Key(key: string): string {
   return key
@@ -113,17 +102,18 @@ async function readLibraryCatalogIndex(
 ): Promise<Map<string, LibraryCatalogIndexBook>> {
   try {
     const index = await readJsonFromS3<LibraryCatalogIndex>(contentBucket, LIBRARY_CATALOG_KEY);
-    const books = Array.isArray(index.books) ? index.books : [];
-    return new Map(
-      books
-        .filter((book): book is LibraryCatalogIndexBook => Boolean(book?.bookId))
-        .map((book) => [book.bookId, book])
-    );
+    return buildLibraryCatalogIndexMap(index);
   } catch (error: unknown) {
-    if (
-      error instanceof BookApiError &&
-      (error.code === "content_not_found" || error.code === "empty_content")
-    ) {
+    // The presentation index is non-authoritative decoration; a missing/empty
+    // object, a malformed/truncated catalog.json (invalid_json — the B6 defect
+    // that 422'd the whole library), or any transient S3 error must DEGRADE to
+    // DynamoDB-only data, not fail the listing. See library-catalog-index-core.
+    if (shouldDegradeLibraryCatalogIndex(error)) {
+      console.warn("library_catalog_index_degraded", {
+        key: LIBRARY_CATALOG_KEY,
+        code: error instanceof BookApiError ? error.code : undefined,
+        message: error instanceof Error ? error.message : String(error),
+      });
       return new Map();
     }
     throw error;
