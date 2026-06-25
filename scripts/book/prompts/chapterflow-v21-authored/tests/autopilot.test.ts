@@ -108,6 +108,10 @@ test("decidePhase maps bookStatus to the right conductor phase", () => {
   assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] })), "gate");
   assert.equal(decidePhase(makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2 })), "ready");
   assert.equal(decidePhase(makeStatus({ packaged: true })), "shipped");
+  // --regen (3rd arg): a published (packaged) book is NOT skipped as "shipped" — it re-runs from the top
+  // WITHOUT moving the package aside (so the web registry import never dangles — the concurrent-regen fix).
+  assert.notEqual(decidePhase(makeStatus({ packaged: true }), true, true), "shipped");
+  assert.equal(decidePhase(makeStatus({ packaged: true, writtenChapters: 0, expectedChapters: null, stage: "research-bibliography" }), true, true), "research");
 });
 
 test("parseRoundId / chapterNumberFromCard / stuck-detect helpers", () => {

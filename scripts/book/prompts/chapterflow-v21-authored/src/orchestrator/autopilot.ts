@@ -77,8 +77,12 @@ export type AutopilotPhase = "research" | "write" | "gate" | "qc" | "ready" | "s
 
 /** Map a BookStatus to the conductor's discrete phase, using the SAME structured
  *  conditions computeBookStatus uses (kept in sync by deriving from its fields). */
-export function decidePhase(s: BookStatus, sweepConfirmed = true): AutopilotPhase {
-  if (s.packaged) return "shipped";
+export function decidePhase(s: BookStatus, sweepConfirmed = true, regen = false): AutopilotPhase {
+  // `regen` = the operator asked to REGENERATE an already-published book. Ignore the "shipped" skip
+  // so the conductor re-runs research→write→gate→qc→publish over the existing package (which promote
+  // overwrites). This lets a regen keep the package file in place — so the web registry's static
+  // import never dangles — instead of the move-aside hack that deadlocks a concurrent regen.
+  if (s.packaged && !regen) return "shipped";
   const allWritten = s.expectedChapters != null && s.writtenChapters >= s.expectedChapters && s.writtenChapters > 0;
   // Gate gate→qc on the FULL deterministic battery (deterministicClean), not just ship-gate +
   // book-gate. Otherwise a chapter that is ship/book-clean but source-v2 / author-check /
@@ -183,6 +187,7 @@ export type AutopilotOptions = {
   maxParallel?: number; // default 6
   autoPublish?: boolean; // library default false (→ HALT at ready). The CLI (book-run / book-autopilot) defaults this ON; when true, handleReady runs publish-after-qc --commit --push.
   plan?: boolean; // dry-run: print the spawn plan, take no action
+  regen?: boolean; // regenerate an already-PACKAGED book: ignore the "shipped" skip (decidePhase) so the conductor re-runs end-to-end WITHOUT moving the package aside — the package stays, so the web registry import never dangles (fixes the concurrent-regen deadlock).
   deps?: Partial<AutopilotDeps>;
 };
 
@@ -809,12 +814,13 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   const maxRepair = opts.maxRepairRounds ?? 4; // 4 (was 3): one extra round of headroom so a single noisy QC round doesn't doom convergence; the absolute loop cap (MAX_LOOP_ITERS) still backstops a treadmill.
   const maxParallel = opts.maxParallel ?? 6;
   const autoPublish = opts.autoPublish ?? false;
+  const regen = opts.regen ?? false;
 
   // plan is a read-only dry-run (takes no action, acquires no lock). Guard the status read so a
   // corrupt chapter surfaces as a clean infra halt instead of an uncaught crash (this path runs
   // BEFORE the try/catch below). It deliberately does NOT quarantine — a dry-run must not mutate.
   if (opts.plan) {
-    try { return planOnly(bookId, deps); }
+    try { return planOnly(bookId, deps, regen); }
     catch (err) { return mkHalt(bookId, "research", "infra", `--plan could not read book status (likely a corrupt chapter file): ${(err as Error)?.message ?? String(err)}`); }
   }
 
@@ -822,7 +828,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   // racing the same book's state). Released in `finally` on every exit path.
   const lock = deps.acquireLock(bookId);
   if (!lock.ok) {
-    return mkHalt(bookId, safePhase(bookId, deps), "infra", `could not acquire the run lock for ${bookId} (${lock.heldBy ?? "unknown"}). If a previous run died, remove state/autopilot-locks/${bookId}.lock and retry.`);
+    return mkHalt(bookId, safePhase(bookId, deps, regen), "infra", `could not acquire the run lock for ${bookId} (${lock.heldBy ?? "unknown"}). If a previous run died, remove state/autopilot-locks/${bookId}.lock and retry.`);
   }
   deps.log(`[autopilot] strict invariants ENFORCED (no-API · source-verify-required · session-independence); lock acquired for ${bookId}`);
 
@@ -853,11 +859,11 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
       // than keep conducting — never two conductors driving the same book.
       if (lock.refresh && !lock.refresh()) {
-        return mkHalt(bookId, safePhase(bookId, deps), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
+        return mkHalt(bookId, safePhase(bookId, deps, regen), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
       }
       const status = deps.statusOf(bookId);
       const sweepConfirmed = deps.sweepConfirmed(bookId);
-      const phase = decidePhase(status, sweepConfirmed);
+      const phase = decidePhase(status, sweepConfirmed, regen);
       // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
       // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.
       const sig = `${phase}:${status.writtenChapters}/${status.expectedChapters ?? "?"}:${status.gatedChapters}:${status.qcdChapters}:${sweepConfirmed ? "c" : "u"}`;
@@ -893,20 +899,20 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
     }
-    return mkHalt(bookId, safePhase(bookId, deps), "progress", `loop iteration cap (${MAX_LOOP_ITERS}) hit — likely a stuck phase`);
+    return mkHalt(bookId, safePhase(bookId, deps, regen), "progress", `loop iteration cap (${MAX_LOOP_ITERS}) hit — likely a stuck phase`);
   } catch (err) {
     // A codex spawn rejection (timeout / ENOENT) or any unexpected throw becomes a
     // structured infra halt with a resume hint — never an unhandled rejection that
     // crashes the walk-away run with a bare stack trace.
-    return mkHalt(bookId, safePhase(bookId, deps), "infra", `unexpected failure: ${(err as Error)?.message ?? String(err)} — re-run \`book-autopilot ${bookId}\` to resume from the current phase (logs: state/autopilot-logs/${bookId}).`);
+    return mkHalt(bookId, safePhase(bookId, deps, regen), "infra", `unexpected failure: ${(err as Error)?.message ?? String(err)} — re-run \`book-autopilot ${bookId}\` to resume from the current phase (logs: state/autopilot-logs/${bookId}).`);
   } finally {
     lock.release();
   }
 }
 
 /** decidePhase guarded against a statusOf that itself throws (used only in halt/error paths). */
-function safePhase(bookId: string, deps: AutopilotDeps): AutopilotPhase {
-  try { return decidePhase(deps.statusOf(bookId), deps.sweepConfirmed(bookId)); } catch { return "research"; }
+function safePhase(bookId: string, deps: AutopilotDeps, regen = false): AutopilotPhase {
+  try { return decidePhase(deps.statusOf(bookId), deps.sweepConfirmed(bookId), regen); } catch { return "research"; }
 }
 
 // ── Phase: research ──────────────────────────────────────────────────────────
@@ -1170,14 +1176,14 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       const cv = await deps.runVerb(["qc-converge", bookId]);
       if (cv.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${cv.code}) during regression-fix convergence — inspect: ${(cv.stderr || cv.stdout).slice(0, 300)}`);
     }
-    // Provenance hygiene: a CORRUPTION-tier repair can rewrite a chapter's authoring.sourceAnchors
-    // and mislabel its schemaVersion (the willpower ch5 wedge → PPKG.authoring_provenance_missing).
-    // Re-stamp the canonical label on any structurally-valid block the repair drifted, so artifacts
-    // stay publish-clean between here and promote (publish-after-qc self-heals too, as a backstop).
-    // Content is untouched (authoring is excluded from the content hash), so this never stales an
-    // attestation or forces a re-review.
+    // Provenance hygiene: a CORRUPTION-tier repair can damage a chapter's authoring.sourceAnchors
+    // — mislabel its schemaVersion (willpower ch5) or GUT the wrapper fields while effectiveAnchors
+    // survives (tiny-habits ch3) → PPKG.authoring_provenance_missing at publish. normalizeChapterProvenance
+    // re-stamps / re-derives from the chapter's own retained real data, so artifacts stay publish-clean
+    // between here and promote (publish-after-qc self-heals too, as a backstop). Content is untouched
+    // (authoring is excluded from the content hash), so this never stales an attestation.
     const provNorm = normalizeChapterProvenance(bookId);
-    if (provNorm.length) deps.log(`[autopilot] normalized source-anchor schemaVersion (repair drift) on ${provNorm.map((p) => `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")}`);
+    if (provNorm.length) deps.log(`[autopilot] normalized source-anchor provenance (repair drift) on ${provNorm.map((p) => p.kind === "reconstruct" ? `ch${p.chapterNumber} (reconstructed from effectiveAnchors)` : `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")}`);
     // loop → drive a FRESH round (a repair invalidates the prior one)
   }
   return null;
@@ -1528,9 +1534,9 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
 
 // ── --plan dry-run (cost preview; takes NO action) ────────────────────────────
 
-function planOnly(bookId: string, deps: AutopilotDeps): AutopilotOutcome {
+function planOnly(bookId: string, deps: AutopilotDeps, regen = false): AutopilotOutcome {
   const status = deps.statusOf(bookId);
-  const phase = decidePhase(status, deps.sweepConfirmed(bookId));
+  const phase = decidePhase(status, deps.sweepConfirmed(bookId), regen);
   const expected = deps.expectedChapterNumbers(bookId);
   const written = new Set(status.chapters.filter((c) => c.written).map((c) => c.number));
   const toWrite = expected.filter((n) => !written.has(n)).length || Math.max(0, (status.expectedChapters ?? 0) - status.writtenChapters);

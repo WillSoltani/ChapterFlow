@@ -867,7 +867,7 @@ export function publishAfterQc(options: PublishAfterQcOptions, internals: Publis
   // above, and this sits AFTER the self-test gate so that gate still sees an untouched tree.
   const provFixed = normalizeChapterProvenance(bookId);
   if (provFixed.length) {
-    warnings.push(`normalized source-anchor schemaVersion (repair drift) on ${provFixed.map((p) => `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")} before promote`);
+    warnings.push(`normalized source-anchor provenance (repair drift) on ${provFixed.map((p) => p.kind === "reconstruct" ? `ch${p.chapterNumber} (reconstructed from effectiveAnchors)` : `ch${p.chapterNumber} (${p.from}→canonical)`).join(", ")} before promote`);
   }
 
   try {
