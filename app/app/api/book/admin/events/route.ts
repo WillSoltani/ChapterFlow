@@ -15,6 +15,7 @@ import {
 } from "@/app/app/api/book/_lib/admin-events-repo";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { validateEventBadge } from "@/app/app/api/book/_lib/event-badge-validate-core";
 import type { EventDefinitionItem } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -54,10 +55,7 @@ export async function POST(req: Request) {
     }
     const books = body.books.map((b) => (b as string).trim());
 
-    const badge = body.badge as { badgeId: string; name: string; icon: string } | undefined;
-    if (!badge || !badge.badgeId || !badge.name || !badge.icon) {
-      throw new BookApiError(400, "invalid_badge", "badge must include badgeId, name, and icon.");
-    }
+    const badge = validateEventBadge(body.badge);
 
     const now = nowIso();
     const item: EventDefinitionItem = {
