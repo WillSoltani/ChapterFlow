@@ -121,6 +121,32 @@ export function canSendCommercialEmail(
   return Boolean(config.senderEmail && config.postalAddress && config.appBaseUrl);
 }
 
+/**
+ * Outcome of a `BOOKSUPPRESS#<email>` suppression lookup, decoupled from the
+ * DynamoDB SDK so the policy can be unit-tested without the server-only client.
+ * `ok:true` carries whether the suppression item exists; `ok:false` marks a read
+ * error.
+ */
+export type SuppressionLookupOutcome =
+  | { ok: true; itemFound: boolean }
+  | { ok: false; error: unknown };
+
+/**
+ * Decide whether an address must be treated as suppressed (skip the send).
+ *
+ * FAIL CLOSED: a suppression-read error is treated as suppressed. This check is
+ * compliance-critical — the `BOOKSUPPRESS#` record exists because the address
+ * hard-bounced or filed a spam complaint (an implied opt-out). A transient
+ * DynamoDB blip MUST NOT re-enable sends to those addresses, so on a read error
+ * we skip the individual send rather than risk re-mailing a complained address
+ * (a CASL/CAN-SPAM violation and a deliverability hazard). Callers should log /
+ * emit a metric when `outcome.ok === false` so operators see the skip.
+ */
+export function isAddressSuppressed(outcome: SuppressionLookupOutcome): boolean {
+  if (!outcome.ok) return true; // fail closed on read error
+  return outcome.itemFound;
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
