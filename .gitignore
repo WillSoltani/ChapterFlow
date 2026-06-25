@@ -80,13 +80,22 @@ scripts/book/prompts/chapterflow-v21-authored/.chapterflow/
 # Chapters + indexes ARE the product of Step-2 work and MUST stay tracked
 # (do NOT ignore state/chapters/*.chapter.json). Only the derived/churny and
 # accidental-shadow paths are excluded:
-/state/                                                                   # repo-root SHADOW state dir — forbidden (gates read the pipeline copy)
-scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json    # machine churn, rewritten every gate run
+# NOTE: gitignore treats `#` as a comment ONLY at the start of a line. Keep each
+# comment on its OWN line — a trailing `pattern  # note` makes the note part of the
+# pattern, so it silently matches nothing (that bug left gate-attempts.json tracked
+# and churning every gate run).
+# repo-root SHADOW state dir — forbidden (gates read the pipeline copy)
+/state/
+# machine churn, rewritten every gate run
+scripts/book/prompts/chapterflow-v21-authored/state/gate-attempts.json
 # append-only quality telemetry — local accrual, not durable product state
 scripts/book/prompts/chapterflow-v21-authored/state/metrics/
-scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/        # derived verdict sidecars (later phases)
-scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/   # ad-hoc backup snapshots — use git, not dirs
-scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/  # Phase-0 migration backup
+# derived verdict sidecars (later phases)
+scripts/book/prompts/chapterflow-v21-authored/state/gate-verdicts/
+# ad-hoc backup snapshots — use git, not dirs
+scripts/book/prompts/chapterflow-v21-authored/state/chapters/.backup-*/
+# Phase-0 migration backup
+scripts/book/prompts/chapterflow-v21-authored/scratch/_shadow-drive-backup-*/
 
 # Per-round cross-chapter sweep history — a best-effort, machine-LOCAL optimization that backs the
 # sticky-gate corroboration + item-B two-read confirmation. checkSweep is fail-safe without it (no
