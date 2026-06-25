@@ -57,7 +57,7 @@ export function NotificationsClient() {
 
   return (
     <div>
-      <PageHeader title="Notifications" description="Send & engagement by type and channel" />
+      <PageHeader title="Notifications" description="Send & engagement by type and channel (last 7 days)" />
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
@@ -71,7 +71,7 @@ export function NotificationsClient() {
           Array.from({ length: 4 }).map((_, i) => <KPITileSkeleton key={i} />)
         ) : (
           <>
-            <KPITile label="Total sent" value={totalSent} hint="last ~5k" />
+            <KPITile label="Total sent" value={totalSent} hint="last 7 days" />
             <KPITile label="Read rate" value={overallReadRate} format="percent" hint="in-app" />
             <KPITile label="Email opt-in" value={emailPct} format="percent" hint={`${prefs?.emailEnabled ?? 0}/${prefs?.total ?? 0}`} />
             <KPITile label="Push opt-in" value={pushPct} format="percent" hint={`${prefs?.pushEnabled ?? 0}/${prefs?.total ?? 0}`} />
