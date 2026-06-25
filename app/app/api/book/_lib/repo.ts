@@ -108,6 +108,7 @@ import {
   buildInteractionTouchUpdate,
   buildQuizPassProgressUpdate,
   classifyQuizOutcomeCancellation,
+  resolveProgressConflictRetry,
 } from "./progress-write-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
 import { isAddressSuppressed } from "./email-compliance-core";
@@ -958,31 +959,41 @@ export async function upsertUserProgress(
   progress: BookUserProgress
 ): Promise<void> {
   const touchedAt = progress.updatedAt || nowIso();
-  const spec = buildInteractionTouchUpdate({
+  const { timestamps, cursor } = buildInteractionTouchUpdate({
     nextCurrentChapterNumber: progress.currentChapterNumber,
     lastOpenedAt: progress.lastOpenedAt ?? touchedAt,
     lastActiveAt: progress.lastActiveAt ?? touchedAt,
     updatedAt: touchedAt,
   });
-  try {
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(progress.userId),
-          SK: progressSk(progress.bookId),
-        },
-        UpdateExpression: spec.UpdateExpression,
-        ConditionExpression: spec.ConditionExpression,
-        ExpressionAttributeNames: spec.ExpressionAttributeNames,
-        ExpressionAttributeValues: spec.ExpressionAttributeValues,
-      })
-    );
-  } catch (error: unknown) {
-    // Lost the cursor max-guard to a concurrent (more-advanced) writer → no-op.
-    if (isConditionalCheckFailed(error)) return;
-    throw error;
-  }
+  const Key = {
+    PK: bookUserPk(progress.userId),
+    SK: progressSk(progress.bookId),
+  };
+  // Two decoupled writes (see buildInteractionTouchUpdate): the activity timestamps
+  // ALWAYS land (gated only by attribute_exists(PK)); the forward-only cursor advance
+  // is best-effort. A lost cursor race must NOT cost the timestamps, so they are sent
+  // separately rather than under one shared ConditionExpression.
+  const send = async (spec: typeof timestamps): Promise<void> => {
+    try {
+      await ddbDoc.send(
+        new UpdateCommand({
+          TableName: tableName,
+          Key,
+          UpdateExpression: spec.UpdateExpression,
+          ConditionExpression: spec.ConditionExpression,
+          ExpressionAttributeNames: spec.ExpressionAttributeNames,
+          ExpressionAttributeValues: spec.ExpressionAttributeValues,
+        })
+      );
+    } catch (error: unknown) {
+      // Lost the cursor max-guard to a concurrent (more-advanced) writer, OR the row
+      // was deleted between read and write (attribute_exists(PK) failed) → benign no-op.
+      if (isConditionalCheckFailed(error)) return;
+      throw error;
+    }
+  };
+  await send(timestamps);
+  await send(cursor);
 }
 
 /**
@@ -1591,32 +1602,52 @@ export async function recordQuizAttemptOutcome(
       }
 
       const isLastAttempt = attemptNo === MAX_ATTEMPTS - 1;
+      const contended503 = (): BookApiError =>
+        new BookApiError(
+          503,
+          "progress_write_contended",
+          "Saving your progress hit heavy contention. Please try again."
+        );
 
       if (klass === "progress_conflict") {
-        // The optimistic progressRev guard lost: another writer advanced the row in
-        // between. Re-read, recompute the merge against the fresh row, and retry so we
-        // never drop this pass nor clobber the concurrent writer's chapters.
+        // The optimistic progressRev guard lost (another writer advanced the row), OR the
+        // attribute_exists(PK) guard failed (the row is absent). Either way: re-read the
+        // committed row, recompute the merge against it, and retry — never drop this pass
+        // nor clobber the concurrent writer's chapters.
         if (isLastAttempt || !nextProgress) {
-          throw new BookApiError(
-            503,
-            "progress_write_contended",
-            "Saving your progress hit heavy contention. Please try again."
-          );
+          throw contended503();
         }
+        // Strongly-consistent re-read: the eventually-consistent default could still
+        // observe the PRE-conflict snapshot, so the recompute would carry the SAME stale
+        // expectedRev and the retry would just lose the guard again — spinning until the
+        // attempt budget is exhausted and 503-ing a quiz that actually passed. Mirrors the
+        // ensureUserBookStarted A10 init re-read.
         const fresh = await getUserProgress(
           tableName,
           nextProgress.userId,
-          nextProgress.bookId
+          nextProgress.bookId,
+          { consistentRead: true }
         );
-        if (!fresh) {
-          // The row vanished (erasure?) — fall back to the originally-computed row at
-          // rev 0 for one more attempt rather than dropping the pass.
-          expectedRev = 0;
+        // Pure decision (resolveProgressConflictRetry): a null re-read is treated as
+        // RETRYABLE (back off + re-read) — it must NEVER fall through to re-write the
+        // stale snapshot at expectedRev=0, which would re-lower gating fields.
+        const decision = resolveProgressConflictRetry({
+          attemptNo,
+          maxAttempts: MAX_ATTEMPTS,
+          hasNextProgress: true,
+          freshProgressRev: fresh ? (fresh.progressRev ?? 0) : null,
+        });
+        if (decision.action === "give_up_503") {
+          throw contended503();
+        }
+        if (decision.action === "backoff_retry") {
+          await new Promise((resolve) => setTimeout(resolve, 25 * (attemptNo + 1)));
           continue;
         }
-        expectedRev = fresh.progressRev ?? 0;
+        // recompute against the fresh row.
+        expectedRev = decision.freshRev;
         nextProgress = params.recomputeNextProgress
-          ? params.recomputeNextProgress(fresh)
+          ? params.recomputeNextProgress(fresh!)
           : { ...nextProgress, progressRev: expectedRev };
         continue;
       }

@@ -11,8 +11,11 @@ import {
   getBookTableName,
 } from "@/app/app/api/book/_lib/env";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
-import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
-import { sanitizeLastOpenedAt } from "@/app/app/api/book/_lib/progress-write-core";
+import { resolvePinnedManifestChaptersWithFallback } from "@/app/app/api/book/_lib/pinned-manifest-core";
+import {
+  buildInteractionTouchUpdate,
+  sanitizeLastOpenedAt,
+} from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import {
   getUserBookState,
@@ -92,12 +95,21 @@ export async function GET(
     // those numbers are frozen on the pinned version. A catalog advance that
     // reordered/renamed chapters would otherwise mis-map them. Reuses the
     // already-fetched live manifest when the pin matches it (no extra S3 read).
-    const chapters = await resolvePinnedManifestChapters({
+    // The pinned read is a NEW S3 GET, so it must DEGRADE gracefully: a transient S3
+    // error falls back to the live manifest already in hand rather than 500-ing the
+    // whole essential progress read (the pinned-vs-live id divergence only matters on
+    // a rare reorder/rename republish — see resolvePinnedManifestChaptersWithFallback).
+    const chapters = await resolvePinnedManifestChaptersWithFallback({
       pinnedBookVersion: progress?.pinnedBookVersion ?? null,
       liveVersion: published.version,
       liveManifest: published.manifest,
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
+      onDegrade: (err) =>
+        console.error(
+          `[state] pinned-manifest read failed for book ${bookId}; degrading chapter map to the live manifest`,
+          err,
+        ),
     });
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])
@@ -194,13 +206,19 @@ export async function PATCH(
     //
     // Resolve the chapter list from the reader's PINNED manifest (see the GET
     // handler) so the number→chapterId mapping matches the frozen version their
-    // progress is pinned to, not a later catalog republish.
-    const chapters = await resolvePinnedManifestChapters({
+    // progress is pinned to, not a later catalog republish. DEGRADES to the live
+    // manifest on a transient S3 read error so a blip can't 500 the PATCH.
+    const chapters = await resolvePinnedManifestChaptersWithFallback({
       pinnedBookVersion: progress?.pinnedBookVersion ?? null,
       liveVersion: published.version,
       liveManifest: published.manifest,
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
+      onDegrade: (err) =>
+        console.error(
+          `[state] pinned-manifest read failed for book ${bookId} (PATCH); degrading chapter map to the live manifest`,
+          err,
+        ),
     });
     const firstChapterId = chapters[0]?.chapterId ?? "";
     const chapterIdByNumber = new Map(
@@ -290,38 +308,53 @@ export async function PATCH(
     // leave the gating fields (unlockedThroughChapterNumber / completedChapters /
     // bestScoreByChapter) exactly as the quiz-pass and quiz-gated unlock paths
     // wrote them.
+    //
+    // Reuse the SHARED buildInteractionTouchUpdate seam (same as upsertUserProgress)
+    // so this PATCH gets the SAME two guarantees the interaction touch has:
+    //  - currentChapterNumber is FORWARD-ONLY — the previous unconditional write moved
+    //    the cursor to wherever the client's body pointed, so a stale tab could drag a
+    //    concurrently-advanced cursor backward;
+    //  - the activity timestamps ALWAYS land even when the cursor advance loses its race
+    //    (decoupled writes), so a lost cursor guard can't drop lastOpenedAt/lastActiveAt.
     if (progress) {
       const currentChapterNumber =
         chapterNumberById.get(currentChapterId) ?? progress.currentChapterNumber;
-      try {
-        await ddbDoc.send(
-          new UpdateCommand({
-            TableName: tableName,
-            Key: { PK: bookUserPk(user.sub), SK: progressSk(bookId) },
-            ConditionExpression: "attribute_exists(SK)",
-            UpdateExpression:
-              "SET currentChapterNumber = :currentChapterNumber, lastOpenedAt = :lastOpenedAt, lastActiveAt = :lastActiveAt, updatedAt = :updatedAt",
-            ExpressionAttributeValues: {
-              ":currentChapterNumber": currentChapterNumber,
-              ":lastOpenedAt": lastOpenedAt,
-              ":lastActiveAt": now,
-              ":updatedAt": now,
-            },
-          })
-        );
-      } catch (error: unknown) {
-        // Progress row vanished between read and write (e.g. account erasure) —
-        // there is nothing to sync, and we must never (re)create a partial
-        // BOOK_PROGRESS item. Any other error is real and re-thrown.
-        const name =
-          error && typeof error === "object"
-            ? (error as Record<string, unknown>).name ??
-              (error as Record<string, unknown>).__type
-            : undefined;
-        if (name !== "ConditionalCheckFailedException") {
-          throw error;
+      const { timestamps, cursor } = buildInteractionTouchUpdate({
+        nextCurrentChapterNumber: currentChapterNumber,
+        lastOpenedAt,
+        lastActiveAt: now,
+        updatedAt: now,
+      });
+      const Key = { PK: bookUserPk(user.sub), SK: progressSk(bookId) };
+      const sync = async (spec: typeof timestamps): Promise<void> => {
+        try {
+          await ddbDoc.send(
+            new UpdateCommand({
+              TableName: tableName,
+              Key,
+              UpdateExpression: spec.UpdateExpression,
+              ConditionExpression: spec.ConditionExpression,
+              ExpressionAttributeNames: spec.ExpressionAttributeNames,
+              ExpressionAttributeValues: spec.ExpressionAttributeValues,
+            })
+          );
+        } catch (error: unknown) {
+          // Progress row vanished between read and write (attribute_exists(PK) failed,
+          // e.g. account erasure) OR the cursor lost its forward-only guard — both are
+          // benign no-ops. We must never (re)create a partial BOOK_PROGRESS item; any
+          // other error is real and re-thrown.
+          const name =
+            error && typeof error === "object"
+              ? (error as Record<string, unknown>).name ??
+                (error as Record<string, unknown>).__type
+              : undefined;
+          if (name !== "ConditionalCheckFailedException") {
+            throw error;
+          }
         }
-      }
+      };
+      await sync(timestamps);
+      await sync(cursor);
     }
 
     return bookOk({ state: nextState });

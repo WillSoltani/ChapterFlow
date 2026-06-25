@@ -13,6 +13,7 @@ import {
   resetUserBookLearningState,
 } from "@/app/app/api/book/_lib/repo";
 import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
+import { isResetFullyCleared } from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type { BookManifest, BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
@@ -104,10 +105,16 @@ export async function POST(
             TableName: tableName,
             Key: { PK: bookUserPk(user.sub), SK: progressSk(bookId) },
             ConditionExpression: "attribute_exists(SK)",
+            // Bump progressRev as part of the reset. The quiz-pass write is guarded by an
+            // optimistic `progressRev = :expectedRev` check (buildQuizPassProgressUpdate);
+            // incrementing it here CANCELS any concurrently in-flight quiz-pass that read
+            // the pre-reset rev, so it can't commit a completion on top of the just-reset
+            // row using its stale snapshot. (if_not_exists covers legacy rows with no rev.)
             UpdateExpression:
-              "SET currentChapterNumber = :one, unlockedThroughChapterNumber = :one, completedChapters = :empty, bestScoreByChapter = :emptyMap, lastOpenedAt = :now, lastActiveAt = :now, updatedAt = :now",
+              "SET currentChapterNumber = :one, unlockedThroughChapterNumber = :one, completedChapters = :empty, bestScoreByChapter = :emptyMap, lastOpenedAt = :now, lastActiveAt = :now, updatedAt = :now, progressRev = if_not_exists(progressRev, :zero) + :one",
             ExpressionAttributeValues: {
               ":one": 1,
+              ":zero": 0,
               ":empty": [] as number[],
               ":emptyMap": {} as Record<string, number>,
               ":now": now,
@@ -147,7 +154,27 @@ export async function POST(
         // deletes all three (quiz-state + loop + the per-chapter quiz-ATTEMPT
         // partitions) so the next submit is a genuine fresh attempt. Idempotent
         // and scoped to this book only.
-        await resetUserBookLearningState(tableName, user.sub, bookId);
+        //
+        // A throttled BatchWrite can leave items UNPROCESSED after the bounded
+        // retry budget. If ANY QUIZSTATE# / QUIZATTEMPT# row survives, the submit
+        // fallback can reconstruct passed:true and silently re-lock the reader at
+        // chapter 1 (the A5 brick) — while we'd otherwise report a clean 200. So we
+        // surface a RETRYABLE failure instead of a false success: the reset is
+        // idempotent, so the client safely retries and the next pass clears the
+        // leftovers. The canonical gating row is already reset above, so re-running
+        // only re-deletes the stragglers.
+        const sweep = await resetUserBookLearningState(
+          tableName,
+          user.sub,
+          bookId
+        );
+        if (!isResetFullyCleared(sweep)) {
+          throw new BookApiError(
+            503,
+            "reset_incomplete",
+            "Resetting your progress hit heavy load and didn't fully clear. Please try again."
+          );
+        }
       }
     }
 
