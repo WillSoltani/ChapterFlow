@@ -17,6 +17,7 @@ import {
   getStripeWebhookSecretOrThrow,
 } from "@/app/app/api/book/_lib/stripe-service";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { isStripeSignatureVerificationError } from "@/app/app/api/book/_lib/webhook-signature-core";
 import { mapSubscriptionStatus } from "@/app/app/api/book/_lib/subscription-status";
 import { classifyDisputeResolution } from "@/app/app/api/book/_lib/dispute-event-core";
 import { buildRefundRecords, type RefundCharge } from "@/app/app/api/book/_lib/refund-events";
@@ -67,9 +68,16 @@ export async function POST(req: Request) {
     try {
       event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
     } catch (err) {
-      // Only return 400 for signature verification failures.
-      // Let genuine server errors bubble as 500 so Stripe retries.
-      if (err instanceof Error && err.message.includes("signature")) {
+      // Only return 400 for signature verification failures (a CLIENT error:
+      // Stripe must NOT retry and the processing-failure ops alarm must NOT
+      // fire). Detect by the StripeSignatureVerificationError TYPE, not the
+      // message text — the SDK throws this error with five distinct messages,
+      // two of which ("Timestamp outside the tolerance zone" from a
+      // replayed/clock-skewed delivery, and "No webhook payload was provided.")
+      // contain no "signature" substring and previously leaked out as a 500,
+      // triggering up to 3 days of Stripe retries + false ops alarms.
+      // Genuine server errors still bubble as 500 so Stripe legitimately retries.
+      if (isStripeSignatureVerificationError(err)) {
         throw new BookApiError(400, "invalid_signature", "Invalid Stripe webhook signature.");
       }
       throw err;
