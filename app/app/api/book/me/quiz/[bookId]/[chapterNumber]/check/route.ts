@@ -11,8 +11,8 @@ import {
 } from "@/app/app/api/book/_lib/content-service";
 import { buildQuizAttemptQuestions } from "@/app/app/api/book/_lib/quiz-session";
 import {
-  quizQuestionCountForMode,
   resolveLearningMode,
+  resolveStrictQuizQuestionCount,
 } from "@/app/app/api/book/_lib/learning-mode";
 import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
@@ -183,12 +183,13 @@ export async function POST(
     const localQuestions = await getLocalQuizQuestions(bookId, chapterNumberInt, tone);
     const quiz = localQuestions ? { ...s3Quiz, questions: localQuestions } : s3Quiz;
     const strictV12 = await isLocalV12Package(bookId);
-    // Question count comes from the server-resolved learning mode, never a
-    // client `difficulty` body param — the count must match the GET route's
-    // exactly (a divergence mis-grades) AND must not be reader-selectable so the
-    // strict path can't be probed against the smallest 5-question set.
+    // Question count comes ENTIRELY from server-stored settings (profile-
+    // customized flag + learning mode), never a client `difficulty` body param —
+    // it must match the GET route's exactly (a divergence mis-grades) AND must
+    // not be reader-selectable so the strict path can't be probed against the
+    // smallest 5-question set. See resolveStrictQuizQuestionCount.
     const maxQuestions = strictV12
-      ? quizQuestionCountForMode(learningMode)
+      ? resolveStrictQuizQuestionCount(userSettings?.settings)
       : QUIZ_QUESTION_COUNTS[learningMode];
 
     const attemptQuestions = buildQuizAttemptQuestions({

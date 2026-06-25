@@ -6,6 +6,7 @@ import {
   isValidLearningMode,
   quizQuestionCountForMode,
   resolveLearningMode,
+  resolveStrictQuizQuestionCount,
 } from "./learning-mode";
 
 test("isValidLearningMode accepts only the three canonical modes", () => {
@@ -112,4 +113,97 @@ test("resolveLearningMode defaults to standard when absent / malformed", () => {
   assert.equal(resolveLearningMode({ extended: "challenge" }), DEFAULT_LEARNING_MODE);
   assert.equal(resolveLearningMode({ extended: null }), DEFAULT_LEARNING_MODE);
   assert.equal(DEFAULT_LEARNING_MODE, "standard");
+});
+
+// ── resolveStrictQuizQuestionCount — the actual route-level seam (A9) ──────────
+// The strict GET / /check / submit routes size the quiz attempt through THIS
+// function (not quizQuestionCountForMode directly). It must hold two properties
+// at once: (a) a customized reader cannot shrink their quiz via the request body
+// — the count is a pure function of stored settings; and (b) an un-customized
+// reader (the default first-visit "Fast short-path") still gets the 5-question
+// set even though their mode resolves to "standard".
+
+test("resolveStrictQuizQuestionCount: un-customized reader keeps the Fast 5-question short-path", () => {
+  // Regression for the PR's UX bug: defaults are learningMode:"standard" +
+  // profileCustomized:false, and on `main` the client sent difficulty=simple → 5
+  // for these readers. The server must reproduce that 5, NOT collapse them to the
+  // 7-question standard count. Mode resolves to standard here, yet count is 5.
+  assert.equal(resolveLearningMode({}), "standard");
+
+  // No settings at all (brand-new reader, no settings item yet) → fast path.
+  assert.equal(resolveStrictQuizQuestionCount(undefined), 5);
+  assert.equal(resolveStrictQuizQuestionCount(null), 5);
+  assert.equal(resolveStrictQuizQuestionCount({}), 5);
+  // Explicit un-customized flag → fast path, even with a non-guided mode stored.
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      learningMode: "standard",
+      extended: { profileCustomized: false },
+    }),
+    5,
+  );
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      learningMode: "challenge",
+      extended: { profileCustomized: false },
+    }),
+    5,
+  );
+  // Non-boolean / corrupt profileCustomized shapes → treated as un-customized.
+  assert.equal(
+    resolveStrictQuizQuestionCount({ extended: { profileCustomized: "true" } }),
+    5,
+  );
+  assert.equal(resolveStrictQuizQuestionCount({ extended: "nope" }), 5);
+});
+
+test("resolveStrictQuizQuestionCount: a customized reader is sized by mode and can't shrink via the request body", () => {
+  // (a) the anti-gaming property — once a reader customizes (which is exactly
+  // what picking a learning mode does in the reader/settings UI), the count is a
+  // pure function of their STORED mode. There is no request-body input here, so a
+  // challenge reader who tries to be served / graded on the 5-question set has no
+  // lever to do it: the count is 10 and stays 10.
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      learningMode: "challenge",
+      extended: { profileCustomized: true },
+    }),
+    10,
+  );
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      learningMode: "standard",
+      extended: { profileCustomized: true },
+    }),
+    7,
+  );
+  // A customized guided reader genuinely wants the small set — still 5, but now
+  // because their mode says so, not because the request asked for it.
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      learningMode: "guided",
+      extended: { profileCustomized: true },
+    }),
+    5,
+  );
+  // Self-heal: mode only ever written under extended (pre-mirror reader) is still
+  // honored for a customized reader.
+  assert.equal(
+    resolveStrictQuizQuestionCount({
+      extended: { learningMode: "challenge", profileCustomized: true },
+    }),
+    10,
+  );
+});
+
+test("resolveStrictQuizQuestionCount stays in lockstep with quizQuestionCountForMode for customized readers", () => {
+  // The customized branch is literally quizQuestionCountForMode(resolveLearningMode(...)),
+  // so it must equal that composition across all three modes — the GET / /check /
+  // submit routes rely on this identity to keep the choiceId scheme aligned.
+  for (const mode of ["guided", "standard", "challenge"] as const) {
+    assert.equal(
+      resolveStrictQuizQuestionCount({ learningMode: mode, extended: { profileCustomized: true } }),
+      quizQuestionCountForMode(mode),
+    );
+  }
 });

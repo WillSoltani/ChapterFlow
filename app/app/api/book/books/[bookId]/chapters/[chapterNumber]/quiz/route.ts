@@ -9,8 +9,8 @@ import {
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import {
-  quizQuestionCountForMode,
   resolveLearningMode,
+  resolveStrictQuizQuestionCount,
 } from "@/app/app/api/book/_lib/learning-mode";
 import {
   getLocalQuizQuestions,
@@ -98,13 +98,18 @@ export async function GET(
       ? { ...s3Quiz, questions: localQuestions }
       : s3Quiz;
     const strictV12 = await isLocalV12Package(bookId);
-    // Derive the question count from the SERVER-RESOLVED learning mode, never the
-    // client `difficulty` query param. A client-chosen difficulty previously let a
-    // reader pick the smallest quiz (simple=5) to pass on a strict-package book.
-    // For honest requests the count is unchanged: the reader maps its chosen mode
-    // to a depth (guided→5, standard→7, challenge→10) on the way in.
+    // Derive the strict-quiz question count ENTIRELY from server-stored settings,
+    // never the client `difficulty` query param. resolveStrictQuizQuestionCount
+    // honors both server-trusted inputs the client uses: an un-customized reader
+    // (profileCustomized false/absent) keeps the Fast short-path's 5-question set
+    // regardless of mode; a customized reader gets their mode's count (guided→5,
+    // standard→7, challenge→10). A client-chosen difficulty previously let a
+    // reader pick the smallest quiz to pass on a strict-package book; moving both
+    // levers server-side keeps the un-customized UX while making the count
+    // un-gameable per-request. Must stay identical to /check and submit (shared
+    // resolver) or the choiceId scheme diverges and grading breaks.
     const maxQuestions = strictV12
-      ? quizQuestionCountForMode(learningMode)
+      ? resolveStrictQuizQuestionCount(userSettings?.settings)
       : QUIZ_QUESTION_COUNTS[learningMode];
 
     const quizState =
