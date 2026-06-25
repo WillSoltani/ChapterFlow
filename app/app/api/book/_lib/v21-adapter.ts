@@ -310,12 +310,20 @@ export function isV21Raw(raw: unknown): boolean {
  * Convert a v21-authored raw package to the v13-shape BookPackage that the
  * existing validator and ingestion pipeline expect. Performs its OWN structural
  * coercion (incl. the v21-only extras like experiencePlan/behaviorLoop) as it
- * goes — validateBookPackage returns this output directly and does NOT re-run the
- * v13 parser on it. That is deliberate: re-validating through parseV21Extras would
- * strip experiencePlan (it carries only hook/counterintuition/tryThisNow/
- * keyTakeaway/memorableLines). Do not add a re-validation pass here without first
- * teaching parseV21Extras to passthrough experiencePlan, or the behavior-loop
- * layer would silently vanish.
+ * goes.
+ *
+ * validateBookPackage does NOT re-run the v13 FIELD parser
+ * (parseChapter/parseQuiz/parseQuestion) on this output — that pipeline would
+ * strip the v21-only extras (experiencePlan carries only hook/counterintuition/
+ * tryThisNow/keyTakeaway/memorableLines and the behavior-loop layer would
+ * silently vanish). It DOES, however, run the read-only SEMANTIC gates on the
+ * adapted package (enforceSemanticRules + enforceV21QuizFieldRules: chapter
+ * id/number uniqueness, variant completeness, questionId uniqueness, answer-key
+ * presence, correctIndex range, passingScore range) and throws BookApiError(422)
+ * on any issue — those gates only read the package, so the v21 extras survive.
+ * If you change the adapted shape, keep those gates in sync with the v13 field
+ * parser; do NOT swap them for a parseV21Extras round-trip without first
+ * teaching it to passthrough experiencePlan.
  */
 export function adaptV21ToV13(raw: unknown): BookPackage {
   const r = isRecord(raw) ? raw : {};

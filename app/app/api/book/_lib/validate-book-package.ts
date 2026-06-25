@@ -1212,6 +1212,63 @@ function enforceSemanticRules(pkg: BookPackage, issues: ValidationIssue[]) {
   }
 }
 
+/**
+ * Field-level semantic gates for v21-adapted packages that the v13 field parser
+ * (parseChapter/parseQuiz/parseQuestion) would normally enforce but which we
+ * cannot re-run on the adapted output without stripping v21-only extras.
+ *
+ * Read-only: only pushes issues, never mutates `pkg` — so experiencePlan /
+ * behaviorLoop on the adapted chapters survive untouched.
+ *
+ * Mirrors the v13 checks one-for-one:
+ *  - chapter number must be a positive integer (parseChapter/readInteger min:1)
+ *  - quiz.passingScorePercent in [50, 100] (parseQuiz, line ~992)
+ *  - every quiz/retry question carries a numeric answer key, resolved the same
+ *    way the runtime does (`correctAnswerIndex ?? correctIndex`); a missing key
+ *    silently grades every reader against choice A downstream
+ *    (quiz-session.ts / content-service.ts / quiz-service.ts all guard on it)
+ *  - that answer key is in range for the choices (parseQuestion, line ~1035)
+ */
+function enforceV21QuizFieldRules(pkg: BookPackage, issues: ValidationIssue[]) {
+  for (const chapter of pkg.chapters) {
+    if (!Number.isInteger(chapter.number) || chapter.number < 1) {
+      issues.push({
+        path: `chapters.${chapter.chapterId}.number`,
+        message: "chapter number must be a positive integer.",
+      });
+    }
+
+    const quiz = chapter.quiz;
+    const passing = quiz.passingScorePercent;
+    if (typeof passing !== "number" || passing < 50 || passing > 100) {
+      issues.push({
+        path: `chapters.${chapter.number}.quiz.passingScorePercent`,
+        message: "passingScorePercent must be a number between 50 and 100.",
+      });
+    }
+
+    const retryQuestions = quiz.retryQuestions ?? [];
+    const allQuestions = [...quiz.questions, ...retryQuestions];
+    for (const question of allQuestions) {
+      const correctIndex = question.correctAnswerIndex ?? question.correctIndex;
+      const choices = question.choices ?? [];
+      if (typeof correctIndex !== "number" || !Number.isInteger(correctIndex)) {
+        issues.push({
+          path: `chapters.${chapter.number}.quiz.questions.${question.questionId}`,
+          message: "quiz question is missing a numeric answer key (correctIndex/correctAnswerIndex).",
+        });
+        continue;
+      }
+      if (choices.length > 0 && (correctIndex < 0 || correctIndex >= choices.length)) {
+        issues.push({
+          path: `chapters.${chapter.number}.quiz.questions.${question.questionId}`,
+          message: "Correct answer index is out of range for choices.",
+        });
+      }
+    }
+  }
+}
+
 export function validateBookPackage(raw: unknown): BookPackage {
   const issues: ValidationIssue[] = [];
 
@@ -1225,8 +1282,29 @@ export function validateBookPackage(raw: unknown): BookPackage {
   // and downstream pipeline continue to operate on v13 shape; the v21 client
   // adapter (app/book/lib/v21-adapter.ts) keeps v21-only fields accessible to
   // the reader at runtime.
+  //
+  // v21 is the CANONICAL authoring format (every shipped book), so ingestion
+  // is the last server-side defense before content hits S3/DynamoDB. We do NOT
+  // re-run the v13 field parser (parseChapter/parseQuiz) on the adapted package:
+  // that pipeline strips v21-only extras (experiencePlan/behaviorLoop) which the
+  // reader needs. Instead we run the READ-ONLY semantic gates directly on the
+  // adapted BookPackage — enforceSemanticRules (chapter id/number uniqueness,
+  // variant completeness, questionId uniqueness) plus enforceV21QuizFieldRules
+  // (answer-key presence, correctIndex in range, positive chapter numbers,
+  // passingScore range). Neither mutates pkg, so the v21 extras survive.
   if (isV21Raw(raw)) {
-    return adaptV21ToV13(raw);
+    const adapted = adaptV21ToV13(raw);
+    enforceSemanticRules(adapted, issues);
+    enforceV21QuizFieldRules(adapted, issues);
+    if (issues.length > 0) {
+      throw new BookApiError(
+        422,
+        "invalid_package",
+        "Book package validation failed.",
+        issues,
+      );
+    }
+    return adapted;
   }
 
   hasOnlyKeys(raw, ROOT_KEYS, "$", issues);
