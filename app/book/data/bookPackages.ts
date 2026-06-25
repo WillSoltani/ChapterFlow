@@ -885,7 +885,7 @@ const BOOK_PACKAGE_TONE_GETTERS: Partial<Record<string, (tone: ToneKey) => BookP
   "clear-thinking": getClearThinkingPackageForTone,
   antifragile: getAntifragilePackageForTone,
   "blue-ocean-strategy": getBlueOceanStrategyPackageForTone,
-  "Getting-Things-Done": getGettingThingsDonePackageForTone,
+  "getting-things-done": getGettingThingsDonePackageForTone,
   "deep-work": getDeepWorkPackageForTone,
   "so-good-they-cant-ignore-you": getSoGoodTheyCantIgnoreYouPackageForTone,
   "predictably-irrational": getPredictablyIrrationalPackageForTone,
@@ -1065,9 +1065,9 @@ export const BOOK_PACKAGE_PRESENTATION: Record<string, BookPackagePresentation> 
       "A modern reading of value innovation, strategy canvases, noncustomers, fair process, renewal, and the traps that pull market creation back into rivalry.",
     pages: 320,
   },
-  "Getting-Things-Done": {
+  "getting-things-done": {
     icon: "📊",
-    coverImage: getBookCoverPath("Getting-Things-Done"),
+    coverImage: getBookCoverPath("getting-things-done"),
     difficulty: "Medium",
     synopsis:
       "A modern reading of David Allen's thirteen chapters on capturing commitments, clarifying next actions, organizing trusted lists, reviewing consistently, and defining outcomes clearly.",
