@@ -20,10 +20,14 @@
  * Every server read MUST resolve through `resolveLearningMode` so the question
  * set — and therefore the choiceId scheme — stays identical across the quiz GET,
  * /check and submit routes; a divergence there silently mis-grades. Kept free of
- * `server-only` / AWS imports so it can be unit-tested directly.
+ * `server-only` / AWS imports (and of the badge UI's lucide-react chain — the
+ * per-mode count comes from the dependency-free quiz-question-counts.ts, NOT
+ * flow-points-economy.ts) so it can be unit-tested directly.
  *
  * See docs/audit-fixes/SET-1.md.
  */
+
+import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/quiz-question-counts";
 
 export type LearningMode = "guided" | "standard" | "challenge";
 
@@ -56,12 +60,11 @@ export function resolveLearningMode(
 }
 
 /**
- * Quiz question count per learning mode — the SERVER-SIDE source of truth for
- * how many questions a strict (v21/v12) quiz attempt contains.
- *
- * Mirrors `QUIZ_QUESTION_COUNTS` in app/book/_lib/flow-points-economy.ts
- * (which can't be imported here — it pulls in lucide-react via the badge UI
- * chain — see learning-mode.test.ts for the pin that keeps the two in sync).
+ * Quiz question count per learning mode — resolved from the single
+ * dependency-free source of truth (quiz-question-counts.ts), the SAME map the
+ * client economy module re-exports as `QUIZ_QUESTION_COUNTS`. Imported from the
+ * neutral module (not flow-points-economy.ts) so this seam stays free of the
+ * badge UI's lucide-react chain and remains unit-testable under `tsx --test`.
  *
  * SECURITY: this is intentionally keyed by the server-resolved learning mode,
  * NOT by a client-supplied `difficulty` query/body param. Previously the strict
@@ -74,19 +77,12 @@ export function resolveLearningMode(
  * reading depth (guided→simple/5, standard→standard/7, challenge→deeper/10),
  * so the count a reader sees is unchanged for an honest request — only the
  * trust source moves from the request body to settings.
- */
-const QUIZ_QUESTION_COUNT_BY_MODE: Record<LearningMode, number> = {
-  guided: 5,
-  standard: 7,
-  challenge: 10,
-};
-
-/**
+ *
  * The number of questions a strict-package quiz attempt should contain for a
  * given (server-resolved) learning mode. Pure — safe to unit-test directly.
  */
 export function quizQuestionCountForMode(mode: LearningMode): number {
-  return QUIZ_QUESTION_COUNT_BY_MODE[mode];
+  return QUIZ_QUESTION_COUNTS[mode];
 }
 
 /**
@@ -102,7 +98,7 @@ export function quizQuestionCountForMode(mode: LearningMode): number {
  * a reader OFF this short-path and onto their mode's count. Pinned to the guided
  * count so the fast path and the guided mode stay one number.
  */
-const FAST_PATH_QUIZ_QUESTION_COUNT = QUIZ_QUESTION_COUNT_BY_MODE.guided;
+const FAST_PATH_QUIZ_QUESTION_COUNT = QUIZ_QUESTION_COUNTS.guided;
 
 /**
  * Whether the reader has customized their learning profile, read from the same

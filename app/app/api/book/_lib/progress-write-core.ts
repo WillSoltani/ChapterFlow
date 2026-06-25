@@ -20,6 +20,7 @@
 //    rather than blindly clobbering a concurrently-advanced row.
 
 import type { BookUserProgress } from "./types";
+import { transactionCancellationReasons } from "./errors";
 
 /**
  * Validate + clamp a client-supplied `lastOpenedAt` before it reaches the canonical
@@ -310,19 +311,6 @@ export const QUIZ_OUTCOME_TX_INDEX = {
   progress: 2,
 } as const;
 
-type CancellationReason = { Code?: string };
-
-function cancellationReasons(error: unknown): CancellationReason[] | null {
-  if (!error || typeof error !== "object") return null;
-  const rec = error as Record<string, unknown>;
-  const isCancel =
-    rec.name === "TransactionCanceledException" ||
-    rec.__type === "TransactionCanceledException";
-  if (!isCancel) return null;
-  const reasons = rec.CancellationReasons;
-  return Array.isArray(reasons) ? (reasons as CancellationReason[]) : [];
-}
-
 /**
  * Reason-aware classification of a failed quiz-outcome TransactWrite. Replaces the old
  * "any TransactionCanceledException → quiz_state_conflict" catch, which silently turned
@@ -348,7 +336,10 @@ export function classifyQuizOutcomeCancellation(error: unknown): QuizOutcomeCanc
     }
   }
 
-  const reasons = cancellationReasons(error);
+  // Canonical parse shared with the repo's per-item error mapping (errors.ts) —
+  // returns the index-aligned CancellationReasons (possibly empty) or null when
+  // `error` is not a transaction cancellation at all.
+  const reasons = transactionCancellationReasons(error);
   if (reasons === null) return "not_a_cancellation";
 
   const failedAt = (index: number): boolean =>
