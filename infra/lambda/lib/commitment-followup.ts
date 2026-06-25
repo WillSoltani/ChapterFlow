@@ -8,6 +8,7 @@ import {
 import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { commitmentFollowupEmail } from "./email-templates/commitment-followup";
 import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
+import { emailChannelConsented } from "./email-consent";
 
 // Scanned BOOK_USER_SETTINGS rows the cron already has in memory — reused here so
 // this handler doesn't trigger a second full-table scan. We only read `channels.email`
@@ -88,7 +89,7 @@ export async function processCommitmentFollowup(
     // the master email toggle AND the "celebration" category opt-out, so the
     // unsubscribe link on the email actually suppresses it.
     const emailAllowed =
-      notifPrefs?.channels?.email !== false &&
+      emailChannelConsented(notifPrefs) &&
       notifPrefs?.achievementAlertsEnabled !== false &&
       notifPrefs?.badgeCelebrationEnabled !== false;
 

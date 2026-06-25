@@ -21,6 +21,7 @@ import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
+import { buildWebAclRules } from "./waf-rules";
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -323,13 +324,25 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     // Cognito admin access — the admin "erase user" tool resolves a user by
     // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
-    // of a GDPR-style complete erasure. Scoped to the configured pool when its
-    // id is known at synth, otherwise to all pools.
+    // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
+    // revokes a user's outstanding refresh tokens server-side on self-delete /
+    // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
+    // immediately. Scoped to the configured pool when its id is known at synth,
+    // otherwise to all pools.
+    //
+    // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
+    // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
+    // is swallowed into an ops-failure, and the delete still returns success
+    // (sessions look revoked but aren't).
     const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "CognitoAdminUserErasure",
-        actions: ["cognito-idp:ListUsers", "cognito-idp:AdminDeleteUser"],
+        actions: [
+          "cognito-idp:ListUsers",
+          "cognito-idp:AdminDeleteUser",
+          "cognito-idp:AdminUserGlobalSignOut",
+        ],
         resources: cognitoUserPoolId
           ? [
               `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
@@ -722,42 +735,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         metricName: name("ChapterFlowWebAcl"),
         sampledRequestsEnabled: true,
       },
-      rules: [
-        {
-          name: "AWSManagedCommonRuleSet",
-          priority: 1,
-          overrideAction: { none: {} },
-          statement: {
-            managedRuleGroupStatement: {
-              vendorName: "AWS",
-              name: "AWSManagedRulesCommonRuleSet",
-            },
-          },
-          visibilityConfig: {
-            cloudWatchMetricsEnabled: true,
-            metricName: "AWSManagedCommonRuleSet",
-            sampledRequestsEnabled: true,
-          },
-        },
-        {
-          // Per-IP rate limit: block a source IP sending >2000 requests in any
-          // rolling 5-minute window (baseline volumetric/bot mitigation).
-          name: "RateLimitPerIp",
-          priority: 2,
-          action: { block: {} },
-          statement: {
-            rateBasedStatement: {
-              limit: 2000,
-              aggregateKeyType: "IP",
-            },
-          },
-          visibilityConfig: {
-            cloudWatchMetricsEnabled: true,
-            metricName: "RateLimitPerIp",
-            sampledRequestsEnabled: true,
-          },
-        },
-      ],
+      // Rule list (incl. the AWS managed common rule set with ruleActionOverrides
+      // that downgrade XSS-lookalike body/query/cookie + body-size sub-rules to
+      // Count) is built in waf-rules.ts so its shape is unit-testable without an
+      // App/Stack synth context. See that file for the false-positive rationale.
+      rules: buildWebAclRules(),
     });
 
     this.distribution = new cloudfront.Distribution(this, "Distribution", {

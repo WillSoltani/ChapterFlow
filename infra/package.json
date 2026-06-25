@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "cdk": "cdk",
-    "test": "tsx --test lambda/lib/*.test.ts"
+    "test": "tsx --test lambda/lib/*.test.ts lib/*.test.ts"
   },
   "dependencies": {
     "aws-cdk-lib": "^2.259.0",

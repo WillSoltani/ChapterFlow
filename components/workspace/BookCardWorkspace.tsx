@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { ProBadge } from "./ProBadge";
 import { BookCover } from "@/components/ui/BookCover";
-import { formatRatingsCount } from "@/app/book/data/bookRatings";
+import { formatAttributedRatingsCount } from "@/app/book/data/bookRatings";
 import { Star } from "lucide-react";
 
 interface UserBookData {
@@ -192,8 +192,12 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
                 {(book as ProBookData).readerCount > 0 && (
                   <>
                     <span style={{ color: "var(--cf-text-soft)" }}>·</span>
+                    {/* These stars are a curated snapshot of public Goodreads
+                       aggregate data (app/book/data/bookRatings.ts), NOT in-app
+                       reader ratings — attribute the source inline so users don't
+                       read "4.4 · 1.2M ratings" as a ChapterFlow community score. */}
                     <span>
-                      {formatRatingsCount((book as ProBookData).readerCount)} ratings
+                      {formatAttributedRatingsCount((book as ProBookData).readerCount)}
                     </span>
                   </>
                 )}

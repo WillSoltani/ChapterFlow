@@ -30,6 +30,7 @@ import {
   rewardClaimSk,
   rewardRedemptionSk,
 } from "@/app/app/api/book/_lib/keys";
+import { buildReferralCodePointer } from "@/app/app/api/book/_lib/erasure-pointers-core";
 import type {
   BookReferralCodeLookupItem,
   BookUserEngagementItem,
@@ -247,6 +248,48 @@ export async function listRecentFlowPointsLedger(
     .filter((item): item is BookUserFlowPointsLedgerItem => item !== null);
 }
 
+/**
+ * Exhaustively read the ENTIRE Insight-Points ledger for a user by paginating on
+ * LastEvaluatedKey (the bounded `listRecentFlowPointsLedger` returns at most 20).
+ * Used by the GDPR/CCPA export where a complete transaction history is required.
+ *
+ * A `maxPages` hard cap bounds a runaway partition; `truncated` is set when the
+ * cap is hit so the export can flag the artifact as incomplete.
+ */
+export async function listAllFlowPointsLedger(
+  tableName: string,
+  userId: string,
+  maxPages = 200,
+): Promise<{ items: BookUserFlowPointsLedgerItem[]; truncated: boolean }> {
+  const items: BookUserFlowPointsLedgerItem[] = [];
+  let ExclusiveStartKey: Record<string, unknown> | undefined;
+  let pages = 0;
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({
+        TableName: tableName,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        ExpressionAttributeValues: {
+          ":pk": bookUserPk(userId),
+          ":prefix": "FLOWPOINTS#",
+        },
+        ScanIndexForward: false,
+        ExclusiveStartKey,
+      }),
+    );
+    for (const raw of res.Items ?? []) {
+      const parsed = parseLedgerItem(raw as Record<string, unknown>, userId);
+      if (parsed) items.push(parsed);
+    }
+    ExclusiveStartKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+    pages += 1;
+    if (pages >= maxPages) {
+      return { items, truncated: ExclusiveStartKey != null };
+    }
+  } while (ExclusiveStartKey);
+  return { items, truncated: false };
+}
+
 export async function listRewardRedemptions(
   tableName: string,
   userId: string,
@@ -374,6 +417,17 @@ export async function getOrCreateUserReferralProfile(
                   createdAt,
                   updatedAt: createdAt,
                 },
+                ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+              },
+            },
+            {
+              // Erasure reverse-pointer (#4a): the referral-code lookup lives
+              // OUTSIDE the user partition (keyed by code), so without this
+              // pointer account-erasure couldn't reach it. Written atomically in
+              // the same transaction as the lookup so the two never diverge.
+              Put: {
+                TableName: tableName,
+                Item: buildReferralCodePointer(userId, inviteCode),
                 ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
               },
             },
@@ -807,6 +861,16 @@ export async function redeemFlowPointsReward(
           Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
         })
       );
+      // Sticky chargeback hold (C3): an unresolved dispute blocks every PRO
+      // (re)grant, including this pro-pass, until dispute.closed(won) clears the
+      // marker. Points were not spent (the transaction rolled back atomically).
+      if (entRes.Item?.disputeOpen) {
+        throw new BookApiError(
+          409,
+          "dispute_hold",
+          "Your account is on hold pending resolution of a payment dispute, so the Pro pass could not be applied. Your Insight Points were not spent."
+        );
+      }
       if (entRes.Item?.proSource === "stripe") {
         throw new BookApiError(
           409,

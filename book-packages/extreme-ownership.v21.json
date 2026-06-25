@@ -2651,6 +2651,7 @@
               "Take direct control of the courtyard yourself by talking each breach team through the door one at a time so nothing is missed.",
               "Wait quietly until the team leaders stop calling up and figure out on their own that you will not answer."
             ],
+            "correctIndex": 0,
             "explanation": "On a stalled urban clearance, the platoon stops because the chief still holds a decision he meant to push down. Re-stating the breach authority on the net with the ROE attached gets the teams moving inside the seconds they have. Taking each door yourself confirms the bad pattern and freezes the other two stacks. Silent withholding looks like decentralization but in a firefight it reads as no answer at all, so leaders default upward by habit."
           },
           {
@@ -2661,6 +2662,7 @@
               "Restate the intent in one sentence, name the boundary they may not cross, and require each platoon leader to brief back the first three buildings they will hit.",
               "Delay SP until both platoons rewrite their own scheme of maneuver from the intent paragraph."
             ],
+            "correctIndex": 1,
             "explanation": "The leaders are reaching up because the intent has not been forced into a concrete decision they can defend. A one-sentence restate plus a hard boundary plus a brief-back closes the gap without taking the planning back. Handing out building lists meets the timeline but trains the platoons to wait for the next list. Sliding SP punishes the column for a leader-development problem and gives ground the enemy will use."
           },
           {
@@ -2671,6 +2673,7 @@
               "Walk back through three of the routed decisions, mark the level each one should have been called at, and have each squad leader publish his decision rights before rehearsal.",
               "Tighten the chain by holding all contact decisions at the platoon level until trust is rebuilt over the next rotation."
             ],
+            "correctIndex": 1,
             "explanation": "After a public miss the trap is to punish a person or pull authority upward, both of which look like accountability and quietly make the same failure more likely. Re-walking the actual routed decisions, naming the right level for each, and forcing squad leaders to publish their own decision rights makes the next contact resolvable below the platoon net. Reassigning the slowest squad leader treats the symptom. Centralizing contact decisions guarantees the same delay next cycle."
           },
           {
@@ -2967,6 +2970,7 @@
               "Pull the three squad leaders in now, assign each branch by name with the trigger and the first action, and rehearse the call-out on the room mock-up before the OIC arrives.",
               "Compress the schedule by removing the JTAC-link branch since the link has been reliable on the last two rotations."
             ],
+            "correctIndex": 1,
             "explanation": "Unassigned branches survive planning only because no one has been forced to own them out loud. Putting a name on each, with a trigger and a first action rehearsed against the mock-up, turns paper into a reflex the platoon can execute under fire. Bumping the assignment up to the brief-back hides the planning gap behind rank. Dropping the JTAC branch is the classic mistake of pruning a contingency because the recent past was kind."
           },
           {
@@ -2977,6 +2981,7 @@
               "Stop the brief-back, put the three principals at one map, force a single exfil contingency with one trigger and one route, and reprint kneeboards before the general sits down.",
               "Let the assault element's exfil stand and tell the AMC and JTAC to conform to it after the brief."
             ],
+            "correctIndex": 1,
             "explanation": "Three exfils on three kneeboards is not a paperwork problem; it is the next dead radio call. The only acceptable move inside ten minutes is to converge the three principals on one map and one trigger and reprint. Running the brief on conflicting boards trades a clean appearance for an actual disaster. Telling the air and fires elements to conform after the brief invites the gap to survive into the helo when no one has time to fix it."
           },
           {
@@ -2987,6 +2992,7 @@
               "Replace the lead planner before the next iteration so the room understands the seriousness of the omission.",
               "Stop the iteration, put the worst-case ROE branch at the top of every variant on the wall, and require each variant to show the call-out, the authority, and the brake before any other branch is reviewed."
             ],
+            "correctIndex": 2,
             "explanation": "After a CIVCAS, the worst-case ROE branch is the only branch that matters first, because the same room that just produced one is now producing the next plan. Forcing the branch to the top of every variant, with call-out, authority, and brake visible, is the discipline that protects the next checkpoint. Letting the deadline win invites a repeat. Replacing the planner makes the chain feel decisive while leaving the actual planning habit intact."
           },
           {
@@ -3283,6 +3289,7 @@
               "Sit with the platoon chief and squad leaders, walk through the brigade-level reason battalion needs the daylight SSE, and have each squad leader brief his team in his own words within the next two hours.",
               "Hold the tasking, draft a memo back to battalion arguing for a night option, and tell the platoons the daylight plan is on pause."
             ],
+            "correctIndex": 1,
             "explanation": "When operators read a tasking as stupid, the failure is almost always that the why has not traveled. The leader's job is to carry the brigade-level reason down to the squad in language the squad can repeat, then let each leader own the brief with his team. Pushing the order without the reason buys obedience and loses initiative. Pausing the tasking to fight battalion teaches the team that orders are negotiable and burns the window the brigade needs."
           },
           {
@@ -3293,6 +3300,7 @@
               "Give him the grids and the CONOP update he asked for first, then ask for the QRF once the paperwork is clean.",
               "Send one transmission that names the casualty status, the time clock, the two unflagged buildings, and the specific QRF asset and route you need, then keep the net open for his decision."
             ],
+            "correctIndex": 2,
             "explanation": "Leading up the chain in contact means giving the higher commander exactly the picture and the ask he needs to authorize, in the order he needs to hear it. Casualty status, clock, threat, and ask in one transmission lets the battle captain make the call inside the golden hour. Staying off the net withholds the truth the higher commander has to have. Walking him through the paperwork in his order trades a man's life for the chain's comfort."
           },
           {
@@ -3303,6 +3311,7 @@
               "Walk into the Iraqi battalion commander's tent with your platoon leaders, own the previous incident on behalf of your task unit, name the next combined patrol you will run together, and report to brigade with the specific joint task you have agreed to.",
               "Run U.S.-only operations next week to keep the schedule on track, and rebuild the Iraqi relationship quietly over the rotation."
             ],
+            "correctIndex": 1,
             "explanation": "A broken partner relationship is fixed in person, by owning what happened before you, naming the next concrete thing you will do together, and only then reporting up with the specific task. That covers both directions of the chain in one move. Asking brigade to suspend combined operations protects the schedule but cedes the mission. Running unilaterally for a week looks tidy and quietly hardens the rift you inherited."
           },
           {
@@ -3599,6 +3608,7 @@
               "Switch the breach to the rear courtyard now based on what the point man sees, push the change over the platoon net in one sentence, and accept that the new picture may force another change inside the building.",
               "Execute the original front-gate breach plan exactly as briefed since the team rehearsed it and any deviation under time pressure invites error."
             ],
+            "correctIndex": 1,
             "explanation": "Forty seconds and a point-man report is enough truth to act on, and waiting for a clean picture trades the initiative for a feeling of certainty that will not arrive. Switching to the rear with a one-line net call commits the element on the best information available and keeps the next revision possible inside the building. Holding for fresh ISR burns the window. Executing the briefed plan unchanged ignores the new ground truth and is decisiveness in the wrong direction."
           },
           {
@@ -3609,6 +3619,7 @@
               "Order all friendlies to hold fire while you push runners to the building and reestablish comms with your sniper element before any engagement is approved.",
               "Wait silently on the net so the friendly unit commander, who is closer to the fight, can make the call without your interference."
             ],
+            "correctIndex": 1,
             "explanation": "Blue-on-blue risk is the kind of uncertainty where the decisive call is the cautious one: a hold-fire order, runners, and reestablished comms before any trigger is pulled. Authorizing engagement on incomplete information is decisiveness aimed at the wrong target and can kill your own men. Silence on the net abdicates the decision to a unit that does not know your sniper element is in the building. Decisiveness here is the discipline to stop the wrong action while the picture is built."
           },
           {
@@ -3619,6 +3630,7 @@
               "Set a clear go/no-go condition tied to a single named threshold, assign one officer to work that threshold by 1800, and brief the launch plan against the current picture so the platoon can move if the threshold is met.",
               "Launch on the current picture inside the twenty minutes so the brigade window is preserved and your platoons see that you act on what you have."
             ],
+            "correctIndex": 1,
             "explanation": "A grounded call under uncertainty does not mean launching blind or waiting forever; it means naming the single threshold that changes the answer, owning who works it, and briefing both branches so the team can move when the threshold resolves. Standing down preserves comfort and cedes the window. Launching on the current fragmentary picture is decisiveness without humility and is how the next incident is made. The threshold approach keeps revision alive while still committing the company."
           },
           {
@@ -3915,6 +3927,7 @@
               "Stop the next iteration at the first skipped sweep, hold the platoon on the line until every entry runs the full muzzle-discipline sequence cleanly, and require the team leaders to walk the standard at the brief.",
               "Pull the three operators aside privately so the rest of the platoon does not lose tempo, and handle the correction off the line."
             ],
+            "correctIndex": 1,
             "explanation": "Disciplined basics are the freedom to handle the next complication, and the moment a basic erodes inside a green-scoring drill is the moment the leader has to plant a flag. Stopping the line, holding the full sequence, and forcing team leaders to brief the standard makes the basic visible to the whole platoon. Letting the drift go to protect the schedule is how rooftops in Ramadi become casualty events. A private aside hides the standard from the rest of the platoon, which is the audience that needs to see it most."
           },
           {
@@ -3925,6 +3938,7 @@
               "Run the full inspection yourself for the next two nights, side by side with the platoon chiefs, and brief the relieving unit's leadership on the standard you expect them to inherit on day one.",
               "Replace the platoon chiefs for the final five days with operators who have not been in contact as long."
             ],
+            "correctIndex": 1,
             "explanation": "Discipline at the end of a deployment is the part the team you are about to relieve will inherit, so the leader's job is to run the basic himself in front of the chiefs and pass the standard forward by name. Loosening the step in the last five days is the precise moment a negligent discharge or lost weapon is most likely. Replacing the chiefs trades a leadership problem for a personnel rotation that does not fix the basic. Standing on the standard, with the next unit watching, is the dichotomy in motion."
           },
           {
@@ -3935,6 +3949,7 @@
               "Recommend the cautious approach as the new standard since both task units took the same casualties and caution preserves the force.",
               "Recommend that the next workup teach both edges of the dichotomy explicitly, name three concrete decisions from this rotation where aggression was correct and three where caution was, and refuse to pick a winner."
             ],
+            "correctIndex": 2,
             "explanation": "Equal casualties on opposite approaches is exactly the evidence that leadership lives on a dichotomy and not on a single setting. Naming three decisions on each side, and teaching both edges in the next workup, gives the relief unit the judgment they will actually need. Recommending the aggressive setting flatters your task unit and trains the next one to over-commit. Recommending the cautious setting flatters the sister unit and trains the next one to under-commit. The discipline of holding both is the point."
           },
           {

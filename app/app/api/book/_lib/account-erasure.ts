@@ -2,12 +2,12 @@ import "server-only";
 
 import { QueryCommand, BatchWriteCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import {
-  CognitoIdentityProviderClient,
   ListUsersCommand,
   AdminDeleteUserCommand,
 } from "@aws-sdk/client-cognito-identity-provider";
-import { ddbDoc, REGION } from "@/app/app/api/_lib/aws";
+import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { getCognitoClient } from "./cognito-admin";
 import {
   bookUserPk,
   quizAttemptPk,
@@ -19,6 +19,8 @@ import {
   erasureLogSk,
   nowIso,
 } from "./keys";
+import { targetKeysFromUserItems, isErasurePointerEntity } from "./erasure-pointers-core";
+import { hashErasureSubject } from "./erasure-audit-core";
 import { getStripeClient } from "./stripe-service";
 import { getUserEntitlement } from "./repo";
 import { recordOpsFailure } from "./ops-failure-repo";
@@ -38,6 +40,8 @@ export type ErasureResult = {
   quizAttemptItemsDeleted: number;
   analyticsItemsDeleted: number;
   pairInviteItemsDeleted: number;
+  /** Externally-keyed items (risk/referral/pair) deleted via reverse-pointers (#4a). */
+  pointerTargetItemsDeleted: number;
   stripeCustomer: StepOutcome;
   cognitoUser: StepOutcome;
   /** Items that survived all BatchWrite retries — they were NOT deleted. */
@@ -138,15 +142,20 @@ function quizAttemptPksFromUserItems(userId: string, items: Record<string, unkno
 function pairInviteKeysFromUserItems(items: Record<string, unknown>[]): DdbKey[] {
   const codes = new Set<string>();
   for (const it of items) {
+    // Harvest ONLY genuine pair-invite codes. Two classes of user-partition items
+    // also carry an `inviteCode` and must be skipped, or they synthesize a
+    // spurious no-op pairInvitePk(<wrong code>) delete:
+    //   - #4a reverse-pointers (handled by the pointer path, targetKeysFromUserItems), and
+    //   - the referral PROFILE/CLAIM items, whose `inviteCode` is a REFERRAL code.
+    // (In practice no non-pointer item carries a pair code today — createPairInvite
+    // writes the keyed BOOK_PAIR_INVITE record + a pointer, never a partition item
+    // with the code — so this harvest is effectively empty; the explicit skips
+    // keep it correct and drift-proof if a pair code ever lands here.)
+    if (isErasurePointerEntity(it.entity)) continue;
+    if (it.entity === "BOOK_USER_REFERRAL_PROFILE" || it.entity === "BOOK_USER_REFERRAL_CLAIM") continue;
     if (typeof it.inviteCode === "string" && it.inviteCode.trim()) codes.add(it.inviteCode.trim());
   }
   return [...codes].map((code) => ({ PK: pairInvitePk(code), SK: pairInviteSk() }));
-}
-
-let cognitoClient: CognitoIdentityProviderClient | null = null;
-function getCognito(): CognitoIdentityProviderClient {
-  if (!cognitoClient) cognitoClient = new CognitoIdentityProviderClient({ region: REGION });
-  return cognitoClient;
 }
 
 /**
@@ -184,10 +193,14 @@ export async function eraseUserData(
   let mainItemsDeleted = 0;
   let quizPks: string[] = [];
   let pairInviteKeys: DdbKey[] = [];
+  // External targets (risk events, referral codes, pair invites) reconstructed
+  // byte-exactly from reverse-pointer items in the user partition (#4a).
+  let pointerTargetKeys: DdbKey[] = [];
   try {
     const mainItems = await queryAllItems(tableName, bookUserPk(userId));
     quizPks = quizAttemptPksFromUserItems(userId, mainItems);
     pairInviteKeys = pairInviteKeysFromUserItems(mainItems);
+    pointerTargetKeys = targetKeysFromUserItems(mainItems);
     const r = await batchDeleteKeys(tableName, asKeys(mainItems));
     mainItemsDeleted = r.deleted;
     unprocessedItems += r.unprocessed;
@@ -219,6 +232,25 @@ export async function eraseUserData(
       unprocessedItems += r.unprocessed;
     } catch (e) {
       fail(`Pair-invite erase failed: ${errMsg(e)}`);
+    }
+  }
+
+  // 3b. Externally-keyed targets reached via reverse-pointers (#4a): risk/fraud
+  //     events (device/network fingerprint keys), referral-code reverse-index,
+  //     and pair-invite reverse-index. The target keys were reconstructed
+  //     byte-exactly above from the pointer items (which themselves were already
+  //     deleted as part of the main partition sweep).
+  let pointerTargetItemsDeleted = 0;
+  if (pointerTargetKeys.length) {
+    try {
+      const r = await batchDeleteKeys(tableName, pointerTargetKeys);
+      pointerTargetItemsDeleted = r.deleted;
+      unprocessedItems += r.unprocessed;
+      if (r.unprocessed) {
+        fail(`${r.unprocessed} pointer-referenced item(s) (risk/referral/pair) were NOT deleted.`);
+      }
+    } catch (e) {
+      fail(`Pointer-referenced (risk/referral/pair) erase failed: ${errMsg(e)}`);
     }
   }
 
@@ -278,7 +310,7 @@ export async function eraseUserData(
   const userPoolId = await getServerEnv("COGNITO_USER_POOL_ID");
   if (userPoolId) {
     try {
-      const cognito = getCognito();
+      const cognito = getCognitoClient();
       const safeSub = userId.replace(/[^\w:.@-]/g, "");
       const listed = await cognito.send(
         new ListUsersCommand({
@@ -312,13 +344,33 @@ export async function eraseUserData(
     fail("COGNITO_USER_POOL_ID not configured — Cognito user was NOT deleted.");
   }
 
-  // Known residuals the single-table design can't reach without a userId GSI
-  // (informational — not a failure):
+  // Forward-only residual (#4a): risk/fraud events, referral-code and pair-invite
+  // reverse-indexes are now auto-erased via reverse-pointers written at WRITE
+  // time — but only for records created AFTER that change deployed. Pre-deploy
+  // records have no pointer and remain unreachable without a userId GSI.
   residualWarnings.push(
-    "Risk/fraud events keyed by device fingerprint and any referral-code reverse-index are not auto-erased (no userId GSI)."
+    "Risk/fraud events, referral codes, and pair invites are auto-erased only for records created after the reverse-pointer rollout; any PRE-EXISTING such records (no pointer, no userId GSI) are not auto-erased."
   );
 
   const erasedAt = nowIso();
+
+  // #4b — store an HMAC of the sub (not the raw sub) in the audit SK and item, so
+  // the permanent audit proves an erasure occurred WITHOUT retaining a durable
+  // plaintext identifier for the erased user. Prefer the keyed HMAC
+  // (EMAIL_UNSUBSCRIBE_SECRET, reused — no new SSM param); fall back to unkeyed
+  // SHA-256 + a residual warning if the secret is absent (never lose the audit).
+  const unsubscribeSecret = await getServerEnv("EMAIL_UNSUBSCRIBE_SECRET").catch(() => null);
+  const subjectHash = hashErasureSubject(userId, unsubscribeSecret);
+  if (!subjectHash.keyed) {
+    // Audit-key DOWNGRADE only — the erasure itself fully succeeded. Record a
+    // residual warning (surfaced to the admin) but do NOT mark the erasure
+    // `partial` or fire the OpsFailure alarm: a missing optional secret must not
+    // page the operator on every otherwise-clean erasure (`fail()` would).
+    residualWarnings.push(
+      "Erasure-audit subject stored as UNKEYED SHA-256 (EMAIL_UNSUBSCRIBE_SECRET absent) — configure the secret for a keyed HMAC."
+    );
+  }
+
   const result: ErasureResult = {
     userId,
     erasedAt,
@@ -328,6 +380,7 @@ export async function eraseUserData(
     quizAttemptItemsDeleted,
     analyticsItemsDeleted,
     pairInviteItemsDeleted,
+    pointerTargetItemsDeleted,
     stripeCustomer,
     cognitoUser,
     unprocessedItems,
@@ -337,20 +390,29 @@ export async function eraseUserData(
 
   // Permanent erasure audit, written OUTSIDE the (now-deleted) user partition.
   // Reached even when a step above failed, so a partial erasure is still logged.
+  // The raw `userId` is deliberately OMITTED from the persisted item; only the
+  // hash identifies the subject (the SK uses the hash too). `erasedBy` (the
+  // ADMIN/actor sub or "self") is retained — that is the accountable operator,
+  // not the erased subject.
   try {
+    const { userId: _erasedSubjectSub, ...auditRest } = result;
+    void _erasedSubjectSub;
     await ddbDoc.send(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (permanent GDPR erasure audit)
           PK: erasureLogPk(),
-          SK: erasureLogSk(erasedAt, userId),
+          SK: erasureLogSk(erasedAt, subjectHash.hash),
           entity: "BOOK_ERASURE_LOG",
-          ...result,
+          subjectHash: subjectHash.hash,
+          subjectHashAlgorithm: subjectHash.algorithm,
+          ...auditRest,
         },
       })
     );
   } catch (error) {
-    console.error("erasure_audit_write_failed", { userId, message: errMsg(error) });
+    console.error("erasure_audit_write_failed", { subjectHash: subjectHash.hash, message: errMsg(error) });
   }
 
   // A partial erasure is an operational condition that needs follow-up — page it.

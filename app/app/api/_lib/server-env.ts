@@ -1,5 +1,9 @@
 import "server-only";
 import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
+import {
+  candidateParameterNames,
+  classifySsmCandidateError,
+} from "./server-env-core";
 
 const REGION =
   process.env.AWS_REGION ||
@@ -37,73 +41,25 @@ async function getSsmClient() {
 }
 
 // SSM lookups walk a list of candidate parameter names (the env-prefixed name
-// first, then bare-name fallbacks). Two error classes mean "this candidate is
-// unusable, try the next one" rather than "SSM is broken":
-//   - ParameterNotFound — the name simply doesn't exist.
-//   - AccessDenied — the Lambda role is scoped to this env's SSM prefix (see the
-//     CDK SsmConfigAccess statement), so the unscoped bare-name fallbacks are
-//     denied. That denial is expected; skip past it instead of failing the
-//     request (the prefixed candidate is always tried first).
-function isSkippableSsmError(error: unknown): boolean {
-  if (typeof error !== "object" || error === null) return false;
-  const maybe = error as { name?: unknown; Code?: unknown; __type?: unknown };
-  const fields = [maybe.name, maybe.Code, maybe.__type].filter(
-    (v): v is string => typeof v === "string",
-  );
-  return fields.some(
-    (f) => f.includes("ParameterNotFound") || f.includes("AccessDenied"),
-  );
-}
-
-function uniqueNames(names: string[]): string[] {
-  const out: string[] = [];
-  const seen = new Set<string>();
-  for (const n of names) {
-    const value = n.trim();
-    if (!value || seen.has(value)) continue;
-    seen.add(value);
-    out.push(value);
-  }
-  return out;
-}
-
-function candidateParameterNames(key: string): string[] {
-  const lower = key.toLowerCase();
-  const explicit =
-    process.env[`SSM_PARAM_${key}`] ||
-    process.env[`${key}_SSM_PARAM`] ||
-    process.env[`${key}_SSM_PARAMETER`];
-
-  const names = [explicit || ""];
-
-  if (SSM_PREFIX) {
-    const prefix = SSM_PREFIX.endsWith("/")
-      ? SSM_PREFIX.slice(0, -1)
-      : SSM_PREFIX;
-    // Prefer environment-scoped parameters when a prefix is configured.
-    names.push(`${prefix}/${key}`);
-    names.push(`${prefix}/${lower}`);
-  }
-
-  names.push(key);
-  names.push(lower);
-  names.push(`/${key}`);
-  names.push(`/${lower}`);
-
-  return uniqueNames(names);
-}
+// first, then bare-name fallbacks). `classifySsmCandidateError` (server-env-core)
+// decides per-candidate whether a failed GetParameter is an expected miss to skip
+// past (ParameterNotFound anywhere; AccessDenied on the UNSCOPED fallbacks the
+// prefix-scoped IAM role legitimately can't read) or a real error to record. An
+// AccessDenied on the PREFIX-SCOPED candidate is the latter — that name is the
+// one the role is supposed to read, so a denial there is an IAM mis-scope/KMS
+// denial that must surface instead of being cached as a permanent miss.
 
 async function loadFromSsm(key: string): Promise<string | undefined> {
-  const candidates = candidateParameterNames(key);
+  const candidates = candidateParameterNames(key, SSM_PREFIX);
   if (candidates.length === 0) return undefined;
   const ssm = await getSsmClient();
 
   let lastError: unknown;
-  for (const paramName of candidates) {
+  for (const candidate of candidates) {
     try {
       const res = await ssm.send(
         new GetParameterCommand({
-          Name: paramName,
+          Name: candidate.name,
           WithDecryption: true,
         })
       );
@@ -112,7 +68,9 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
         return value;
       }
     } catch (error: unknown) {
-      if (isSkippableSsmError(error)) continue;
+      if (classifySsmCandidateError(error, candidate.prefixScoped) === "skip") {
+        continue;
+      }
       lastError = error;
     }
   }

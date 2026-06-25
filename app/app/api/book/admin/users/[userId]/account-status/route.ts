@@ -17,6 +17,10 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { getStripeClient } from "@/app/app/api/book/_lib/stripe-service";
 import { captureStripeCancelFailure } from "@/app/app/api/book/_lib/ops-failure-repo";
+import {
+  applyAccountStatusTransition,
+  type AccountTransitionAction,
+} from "@/app/app/api/book/_lib/account-status-transition";
 import type { AccountStatus } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -88,38 +92,33 @@ export async function POST(
         ? `${mapping.reason}: ${body.reason.trim().slice(0, 300)}`
         : mapping.reason;
 
-    await setAccountStatus(tableName, userId, mapping.status, {
-      statusReason: reason,
-      changedBy: `admin:${admin.sub}`,
+    // Mirror the self-service routes' handling (read-first, no error swallowing,
+    // best-effort cancel) so an admin-driven deactivate/delete doesn't leave a
+    // paying subscription running. A transient entitlement-read failure fails
+    // the whole transition (the admin retries) rather than silently skipping the
+    // cancel; reactivate touches no billing. See account-status-transition.ts.
+    await applyAccountStatusTransition(action as AccountTransitionAction, {
+      getEntitlement: () => getUserEntitlement(tableName, userId),
+      setStatus: () =>
+        setAccountStatus(tableName, userId, mapping.status, {
+          statusReason: reason,
+          changedBy: `admin:${admin.sub}`,
+        }),
+      cancelImmediately: async (subscriptionId) => {
+        const stripe = await getStripeClient();
+        await stripe.subscriptions.cancel(subscriptionId);
+      },
+      cancelAtPeriodEnd: async (subscriptionId) => {
+        const stripe = await getStripeClient();
+        await stripe.subscriptions.update(subscriptionId, { cancel_at_period_end: true });
+      },
+      captureCancelFailure: (input) =>
+        captureStripeCancelFailure(tableName, {
+          ...input,
+          context: action === "delete" ? "admin_account_delete" : "admin_account_deactivate",
+          userId,
+        }),
     });
-
-    // Mirror the self-service routes' Stripe handling so an admin-driven
-    // deactivate/delete doesn't leave a paying subscription running (the user
-    // would keep being billed). reactivate touches no billing.
-    if (action === "delete" || action === "deactivate") {
-      const entitlement = await getUserEntitlement(tableName, userId).catch(() => null);
-      if (entitlement?.stripeSubscriptionId && entitlement.proStatus === "active") {
-        try {
-          const stripe = await getStripeClient();
-          if (action === "delete") {
-            await stripe.subscriptions.cancel(entitlement.stripeSubscriptionId);
-          } else {
-            await stripe.subscriptions.update(entitlement.stripeSubscriptionId, {
-              cancel_at_period_end: true,
-            });
-          }
-        } catch (error) {
-          await captureStripeCancelFailure(tableName, {
-            kind: action === "delete" ? "stripe_cancel" : "stripe_cancel_at_period_end",
-            context: action === "delete" ? "admin_account_delete" : "admin_account_deactivate",
-            userId,
-            subscriptionId: entitlement.stripeSubscriptionId,
-            stripeCustomerId: entitlement.stripeCustomerId,
-            error,
-          });
-        }
-      }
-    }
 
     const history = await listAccountStatusChanges(tableName, userId, 50).catch(() => []);
     return bookOk({ userId, status: mapping.status, history });

@@ -5,6 +5,7 @@ import {
   bookOk,
   requireBodyObject,
   withBookApiErrors,
+  CHAPTER_NOTES_MAX_CHARS,
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
@@ -21,7 +22,8 @@ export const runtime = "nodejs";
 // body verbatim, letting a caller store arbitrarily large/deeply-nested objects
 // and inject arbitrary keys into downstream features (notebook feed, export).
 // Validate against this allowlist with per-field type/size caps before storing.
-const NOTES_MAX_LENGTH = 20_000;
+// The notes cap is the shared CHAPTER_NOTES_MAX_CHARS (http-guards-core) so the
+// exported constant is the single source of truth, not a divergent local literal.
 const MAX_QUIZ_ANSWERS = 200;
 const MAX_EXPLANATION_ENTRIES = 200;
 const MAX_BOOKMARKED_TAKEAWAYS = 200;
@@ -93,7 +95,7 @@ function sanitizeChapterState(input: unknown): Record<string, unknown> {
         if (typeof value !== "string") {
           invalidState("state.notes must be a string.");
         }
-        if (value.length > NOTES_MAX_LENGTH) {
+        if (value.length > CHAPTER_NOTES_MAX_CHARS) {
           invalidState("state.notes is too long.");
         }
         next[key] = value;

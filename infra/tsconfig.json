@@ -15,5 +15,11 @@
     "skipLibCheck": true
   },
   "include": ["bin", "lib"],
-  "exclude": ["node_modules", "dist", "lambda", "lib/lambdas"]
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lambda",
+    "lib/lambdas",
+    "lib/**/*.test.ts"
+  ]
 }

@@ -60,3 +60,22 @@ test("requires the candidate to outlast BOTH expiry fields", () => {
     false
   );
 });
+
+test("C3: an unresolved chargeback (disputeOpen) blocks every grant regardless of plan/expiry", () => {
+  // A charged-back user is downgraded to FREE with disputeOpen=true. The
+  // FREE/no-plan "always apply" branch must NOT readmit them via license/gift/
+  // flow_points while the marker is present.
+  assert.equal(grantUpgradeApplies({ plan: "FREE", disputeOpen: true }, SOON), false);
+  assert.equal(grantUpgradeApplies({ disputeOpen: true }, SOON), false);
+  // Even an otherwise-expired grant (which would normally refresh) stays blocked.
+  assert.equal(
+    grantUpgradeApplies(
+      { plan: "PRO", proSource: "license", licenseExpiresAt: PAST, disputeOpen: true },
+      SOON
+    ),
+    false
+  );
+  // Once the dispute is won the marker is removed (absent/false) → grants resume.
+  assert.equal(grantUpgradeApplies({ plan: "FREE", disputeOpen: false }, SOON), true);
+  assert.equal(grantUpgradeApplies({ plan: "FREE" }, SOON), true);
+});

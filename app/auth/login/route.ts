@@ -85,6 +85,16 @@ export async function GET(req: NextRequest) {
     const identityProvider = idpParam && ALLOWED_IDPS.has(idpParam) ? idpParam : null;
     const loginHint = sanitizeLoginHint(req.nextUrl.searchParams.get("login_hint"));
 
+    // Step-up re-auth (#5, Tier 3). When a sensitive action returns 401
+    // `reauth_required`, the client redirects here with `?prompt=login` (and a
+    // returnTo back to the originating action). We forward `prompt=login` to the
+    // Cognito authorize URL so the hosted UI forces a FRESH interactive
+    // authentication — even if the IdP session is still live — which mints a
+    // token with a current `auth_time`, clearing the step-up gate on retry.
+    // Boolean-flag only (any presence of the param enables it).
+    const forceReauth =
+      req.nextUrl.searchParams.has("prompt") || req.nextUrl.searchParams.get("reauth") === "1";
+
     const codeVerifier = randomBase64Url(32);
     const codeChallenge = await sha256Base64Url(codeVerifier);
 
@@ -122,6 +132,14 @@ export async function GET(req: NextRequest) {
     }
     if (loginHint) {
       url += `&login_hint=${encodeURIComponent(loginHint)}`;
+    }
+    if (forceReauth) {
+      // `prompt=login` is Cognito's supported mechanism to force a fresh
+      // interactive authentication (even with a live IdP session), which mints a
+      // token with a current `auth_time` and clears the step-up gate on retry.
+      // (`max_age` is not a documented Cognito /oauth2/authorize parameter, so we
+      // rely on `prompt=login` alone.)
+      url += `&prompt=login`;
     }
 
     const res = NextResponse.redirect(url);

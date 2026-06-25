@@ -10,6 +10,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
+import { buildLicenseEntitlementGrant } from "./license-grant-core";
 import {
   badgeAwardSk,
   approvedScenarioPk,
@@ -60,6 +61,8 @@ import {
   accountStatusSk,
   accountStatusChangeSk,
   shareEventSk,
+  ttlEpochSeconds,
+  RETENTION_DAYS_18_MONTHS,
 } from "./keys";
 import type {
   BookCatalogItem,
@@ -88,6 +91,27 @@ import type {
   AccountStatus,
   BookUserShareEventItem,
 } from "./types";
+import {
+  classifyWebhookClaim,
+  leaseExpiryMs,
+  leaseTtlEpochSeconds,
+  type ExistingWebhookMarker,
+} from "./webhook-claim-core";
+import {
+  buildInteractionTouchUpdate,
+  buildQuizPassProgressUpdate,
+  classifyQuizOutcomeCancellation,
+} from "./progress-write-core";
+import { buildRiskEventPointer } from "./erasure-pointers-core";
+import {
+  buildEntitlementUpdateFromStripe,
+  buildDisputeMarkerUpdate,
+} from "./stripe-entitlement-write-core";
+import {
+  buildBookMetaAndCatalogItems,
+  planMetaCatalogRollback,
+  type MetaCatalogSnapshot,
+} from "./ingest-rollback-core";
 
 function readNum(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
@@ -455,50 +479,93 @@ export async function upsertBookMetaAndCatalog(
   }
 ): Promise<void> {
   const updatedAt = nowIso();
+  const { metaItem, catalogItem } = buildBookMetaAndCatalogItems(params, updatedAt);
 
+  // META and CATALOG carry the SAME version pointer and MUST move together.
+  // Two independent PutCommands let META advance while CATALOG threw (throttle /
+  // transient), diverging the pair and — on an ingest rollback — stranding the
+  // book on a deleted version. One TransactWrite makes the pair atomic. (B5.)
   await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookPk(params.bookId),
-        SK: bookMetaSk(),
-        entity: "BOOK_META",
-        bookId: params.bookId,
-        title: params.title,
-        author: params.author,
-        categories: params.categories,
-        tags: params.tags,
-        cover: params.cover,
-        variantFamily: params.variantFamily,
-        latestVersion: params.latestVersion,
-        currentPublishedVersion: params.currentPublishedVersion,
-        status: params.status,
-        updatedAt,
-      },
+    new TransactWriteCommand({
+      TransactItems: [
+        { Put: { TableName: tableName, Item: metaItem } },
+        { Put: { TableName: tableName, Item: catalogItem } },
+      ],
     })
   );
+}
 
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: catalogPk(),
-        SK: catalogSk(params.bookId),
-        entity: "BOOK_CATALOG",
-        bookId: params.bookId,
-        title: params.title,
-        author: params.author,
-        categories: params.categories,
-        tags: params.tags,
-        cover: params.cover,
-        variantFamily: params.variantFamily,
-        latestVersion: params.latestVersion,
-        currentPublishedVersion: params.currentPublishedVersion,
-        status: params.status,
-        updatedAt,
-      },
-    })
-  );
+/**
+ * Snapshot the raw META + CATALOG rows for a book before an ingest advances
+ * their version pointer, so an ingest rollback can restore the previous pointer
+ * (or delete a freshly-created one). A side is `null` when no such row exists.
+ */
+export async function getMetaCatalogSnapshot(
+  tableName: string,
+  bookId: string
+): Promise<MetaCatalogSnapshot> {
+  const [metaRes, catalogRes] = await Promise.all([
+    ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: bookPk(bookId), SK: bookMetaSk() },
+      })
+    ),
+    ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: catalogPk(), SK: catalogSk(bookId) },
+      })
+    ),
+  ]);
+  return {
+    meta: (metaRes.Item as Record<string, unknown> | undefined) ?? null,
+    catalog: (catalogRes.Item as Record<string, unknown> | undefined) ?? null,
+  };
+}
+
+/**
+ * Undo an ingest's META/CATALOG pointer advance using a pre-write snapshot.
+ *
+ * - `wrotePointer === false`: the upsert never ran -> nothing to revert.
+ * - prior rows existed: put each prior row back exactly (a side that did NOT
+ *   exist before is deleted so the pair returns to its exact prior shape).
+ * - neither existed: the ingest created the very first pointer for this book, so
+ *   both rows are deleted (returning the table to its pre-ingest state) rather
+ *   than left pointing at the now-deleted version.
+ *
+ * Best-effort by design: the caller invokes this from a rollback `catch`, so a
+ * transient failure here is swallowed (the original error is what propagates).
+ */
+export async function restoreOrDeleteMetaCatalog(
+  tableName: string,
+  bookId: string,
+  snapshot: MetaCatalogSnapshot,
+  wrotePointer: boolean
+): Promise<void> {
+  const plan = planMetaCatalogRollback(snapshot, wrotePointer);
+  if (plan.kind === "noop") return;
+
+  const metaKey = { PK: bookPk(bookId), SK: bookMetaSk() };
+  const catalogKey = { PK: catalogPk(), SK: catalogSk(bookId) };
+
+  if (plan.kind === "delete") {
+    await Promise.all([
+      ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: metaKey })),
+      ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: catalogKey })),
+    ]);
+    return;
+  }
+
+  // restore: put back each prior row, delete the side that had no prior.
+  await Promise.all([
+    plan.meta
+      ? ddbDoc.send(new PutCommand({ TableName: tableName, Item: plan.meta }))
+      : ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: metaKey })),
+    plan.catalog
+      ? ddbDoc.send(new PutCommand({ TableName: tableName, Item: plan.catalog }))
+      : ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: catalogKey })),
+  ]);
 }
 
 export async function publishBookVersion(
@@ -722,6 +789,7 @@ export async function getUserEntitlement(
     cancelAtPeriodEnd: item.cancelAtPeriodEnd === true,
     licenseKey,
     licenseExpiresAt,
+    lastStripeEventAt: readNum(item.lastStripeEventAt),
     updatedAt: readStr(item.updatedAt) || "",
   };
 }
@@ -860,21 +928,92 @@ async function reserveBookEntitlementOnce(
   }
 }
 
+/**
+ * Persist an interaction "touch" of a started reader's progress (book opened /
+ * chapter navigated / a reading-session heartbeat).
+ *
+ * This is a FIELD-SCOPED, CONDITIONAL update — NOT a full-object Put. It SETs only
+ * the activity timestamps and bumps `currentChapterNumber` upward, and it NEVER writes
+ * the gating fields (`unlockedThroughChapterNumber` / `completedChapters` /
+ * `bestScoreByChapter`). The previous full-object Put re-wrote those stale, snapshot-read
+ * values, so a touch racing a concurrent quiz-pass (every quiz submit calls
+ * ensureUserBookStarted first) could roll back a freshly-completed chapter or unlock.
+ *
+ * The `currentChapterNumber` max-guard is enforced by the update's ConditionExpression;
+ * a lost cursor race surfaces as ConditionalCheckFailed and is swallowed as a benign
+ * no-op (the row is already at least as advanced), mirroring repointProgressVersion /
+ * createProgressIfMissing. Pass `progress` as the already-touched row (the caller's
+ * touchProgressForInteraction output); only its cursor + timestamps are read here.
+ */
 export async function upsertUserProgress(
   tableName: string,
   progress: BookUserProgress
 ): Promise<void> {
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookUserPk(progress.userId),
-        SK: progressSk(progress.bookId),
-        entity: "BOOK_PROGRESS",
-        ...progress,
-      },
-    })
-  );
+  const touchedAt = progress.updatedAt || nowIso();
+  const spec = buildInteractionTouchUpdate({
+    nextCurrentChapterNumber: progress.currentChapterNumber,
+    lastOpenedAt: progress.lastOpenedAt ?? touchedAt,
+    lastActiveAt: progress.lastActiveAt ?? touchedAt,
+    updatedAt: touchedAt,
+  });
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(progress.userId),
+          SK: progressSk(progress.bookId),
+        },
+        UpdateExpression: spec.UpdateExpression,
+        ConditionExpression: spec.ConditionExpression,
+        ExpressionAttributeNames: spec.ExpressionAttributeNames,
+        ExpressionAttributeValues: spec.ExpressionAttributeValues,
+      })
+    );
+  } catch (error: unknown) {
+    // Lost the cursor max-guard to a concurrent (more-advanced) writer → no-op.
+    if (isConditionalCheckFailed(error)) return;
+    throw error;
+  }
+}
+
+/**
+ * Persist a quiz-pass progress mutation safely under concurrency. `nextProgress` is the
+ * full recomputed row from buildProgressAfterQuizPass; `expectedRev` is the progressRev
+ * read in the same snapshot. The write is a field-scoped UpdateCommand guarded by the
+ * optimistic progressRev check, so a stale write can't clobber a concurrently-advanced
+ * row — instead it surfaces as ConditionalCheckFailed and the caller recomputes + retries.
+ *
+ * Returns true when applied, false when the optimistic guard lost (stale write).
+ */
+async function writeQuizPassProgress(
+  tableName: string,
+  params: { nextProgress: BookUserProgress; expectedRev: number }
+): Promise<boolean> {
+  const spec = buildQuizPassProgressUpdate({
+    nextProgress: params.nextProgress,
+    expectedRev: params.expectedRev,
+    nextRev: params.expectedRev + 1,
+  });
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(params.nextProgress.userId),
+          SK: progressSk(params.nextProgress.bookId),
+        },
+        UpdateExpression: spec.UpdateExpression,
+        ConditionExpression: spec.ConditionExpression,
+        ExpressionAttributeNames: spec.ExpressionAttributeNames,
+        ExpressionAttributeValues: spec.ExpressionAttributeValues,
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
 }
 
 export async function createProgressIfMissing(
@@ -990,6 +1129,7 @@ export async function getUserProgress(
     lastActiveAt: readStr(item.lastActiveAt),
     streakDays: readNum(item.streakDays),
     preferredVariant: readStr(item.preferredVariant) as BookUserProgress["preferredVariant"],
+    progressRev: readNum(item.progressRev) ?? 0,
     updatedAt: readStr(item.updatedAt) || "",
     createdAt: readStr(item.createdAt) || "",
   };
@@ -1029,6 +1169,7 @@ export async function listAllUserProgress(
       lastActiveAt: readStr(item.lastActiveAt),
       streakDays: readNum(item.streakDays),
       preferredVariant: readStr(item.preferredVariant) as BookUserProgress["preferredVariant"],
+      progressRev: readNum(item.progressRev) ?? 0,
       updatedAt: readStr(item.updatedAt) || "",
       createdAt: readStr(item.createdAt) || "",
     });
@@ -1206,6 +1347,23 @@ export async function listRecentQuizAttempts(
   return attempts;
 }
 
+/**
+ * Atomically record the outcome of a quiz attempt: the attempt row, the per-chapter
+ * quiz-state (guarded by the attemptsCount optimistic check), and — on a pass — the
+ * canonical PROGRESS#<bookId> mutation.
+ *
+ * Concurrency safety (prog-write cluster):
+ *  - The progress mutation is an `Update` action guarded by an optimistic `progressRev`
+ *    check (NOT a blind full-object Put), so a concurrent writer's completed-chapter /
+ *    unlock can't be rolled back.
+ *  - A failed TransactWrite is classified by its index-aligned CancellationReasons
+ *    (classifyQuizOutcomeCancellation) rather than blanket-mapped to quiz_state_conflict:
+ *      • attempt(0) / quiz-state(1) condition failed → real 409 quiz_state_conflict.
+ *      • progress-rev(2) condition failed → re-read progress, recompute nextProgress
+ *        via `recomputeNextProgress`, and retry (the pass is NOT dropped).
+ *      • a transient cancel (TransactionConflict / throttle / capacity) → retry with
+ *        backoff, then a retriable 503 — never a silent quiz_state_conflict.
+ */
 export async function recordQuizAttemptOutcome(
   tableName: string,
   params: {
@@ -1213,81 +1371,141 @@ export async function recordQuizAttemptOutcome(
     attempt: QuizAttemptItem;
     nextQuizState: BookUserQuizStateItem;
     nextProgress?: BookUserProgress;
+    // Recompute nextProgress against a freshly-read row when the optimistic
+    // progressRev guard loses a race. Defaults to keeping the originally-computed row
+    // (the snapshot merge already includes this chapter), which is still correct but a
+    // recompute keeps a concurrent writer's other completed chapters.
+    recomputeNextProgress?: (freshProgress: BookUserProgress) => BookUserProgress;
   }
 ): Promise<void> {
-  const transactItems: NonNullable<TransactWriteCommandInput["TransactItems"]> = [
-    {
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: quizAttemptPk(
-            params.attempt.userId,
-            params.attempt.bookId,
-            params.attempt.chapterNumber
-          ),
-          SK: quizAttemptSk(params.attempt.createdAt),
-          entity: "BOOK_QUIZ_ATTEMPT",
-          quizScope: quizScopeKey(params.attempt.bookId, params.attempt.chapterNumber),
-          ...params.attempt,
-        },
-        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-      },
-    },
-    {
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(params.nextQuizState.userId),
-          SK: quizStateSk(
-            params.nextQuizState.bookId,
-            params.nextQuizState.chapterNumber
-          ),
-          entity: "BOOK_USER_QUIZ_STATE",
-          ...params.nextQuizState,
-        },
-        ConditionExpression:
-          "attribute_not_exists(PK) OR attribute_not_exists(attemptsCount) OR attemptsCount = :previousAttemptsCount",
-        ExpressionAttributeValues: {
-          ":previousAttemptsCount": params.previousAttemptsCount,
-        },
-      },
-    },
-  ];
+  const MAX_ATTEMPTS = 4;
+  // `expectedRev` for the progress guard is the rev carried by the row the caller built
+  // nextProgress from (0 for legacy rows that never had one).
+  let expectedRev = params.nextProgress?.progressRev ?? 0;
+  let nextProgress = params.nextProgress;
 
-  if (params.nextProgress) {
-    transactItems.push({
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(params.nextProgress.userId),
-          SK: progressSk(params.nextProgress.bookId),
-          entity: "BOOK_PROGRESS",
-          ...params.nextProgress,
+  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
+    const transactItems: NonNullable<TransactWriteCommandInput["TransactItems"]> = [
+      {
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: quizAttemptPk(
+              params.attempt.userId,
+              params.attempt.bookId,
+              params.attempt.chapterNumber
+            ),
+            SK: quizAttemptSk(params.attempt.createdAt),
+            entity: "BOOK_QUIZ_ATTEMPT",
+            quizScope: quizScopeKey(params.attempt.bookId, params.attempt.chapterNumber),
+            ...params.attempt,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
         },
       },
-    });
-  }
+      {
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: bookUserPk(params.nextQuizState.userId),
+            SK: quizStateSk(
+              params.nextQuizState.bookId,
+              params.nextQuizState.chapterNumber
+            ),
+            entity: "BOOK_USER_QUIZ_STATE",
+            ...params.nextQuizState,
+          },
+          ConditionExpression:
+            "attribute_not_exists(PK) OR attribute_not_exists(attemptsCount) OR attemptsCount = :previousAttemptsCount",
+          ExpressionAttributeValues: {
+            ":previousAttemptsCount": params.previousAttemptsCount,
+          },
+        },
+      },
+    ];
 
-  try {
-    await ddbDoc.send(
-      new TransactWriteCommand({
-        TransactItems: transactItems,
-      })
-    );
-  } catch (error: unknown) {
-    if (
-      isConditionalCheckFailed(error) ||
-      (error &&
-        typeof error === "object" &&
-        (error as Record<string, unknown>).name === "TransactionCanceledException")
-    ) {
-      throw new BookApiError(
-        409,
-        "quiz_state_conflict",
-        "Quiz state changed. Refresh and try again."
-      );
+    if (nextProgress) {
+      const spec = buildQuizPassProgressUpdate({
+        nextProgress,
+        expectedRev,
+        nextRev: expectedRev + 1,
+      });
+      // Index 2 in transactItems — must match QUIZ_OUTCOME_TX_INDEX.progress.
+      transactItems.push({
+        Update: {
+          TableName: tableName,
+          Key: {
+            PK: bookUserPk(nextProgress.userId),
+            SK: progressSk(nextProgress.bookId),
+          },
+          UpdateExpression: spec.UpdateExpression,
+          ConditionExpression: spec.ConditionExpression,
+          ExpressionAttributeNames: spec.ExpressionAttributeNames,
+          ExpressionAttributeValues: spec.ExpressionAttributeValues,
+        },
+      });
     }
-    throw error;
+
+    try {
+      await ddbDoc.send(new TransactWriteCommand({ TransactItems: transactItems }));
+      return;
+    } catch (error: unknown) {
+      const klass = classifyQuizOutcomeCancellation(error);
+
+      if (klass === "quiz_state_conflict") {
+        throw new BookApiError(
+          409,
+          "quiz_state_conflict",
+          "Quiz state changed. Refresh and try again."
+        );
+      }
+
+      const isLastAttempt = attemptNo === MAX_ATTEMPTS - 1;
+
+      if (klass === "progress_conflict") {
+        // The optimistic progressRev guard lost: another writer advanced the row in
+        // between. Re-read, recompute the merge against the fresh row, and retry so we
+        // never drop this pass nor clobber the concurrent writer's chapters.
+        if (isLastAttempt || !nextProgress) {
+          throw new BookApiError(
+            503,
+            "progress_write_contended",
+            "Saving your progress hit heavy contention. Please try again."
+          );
+        }
+        const fresh = await getUserProgress(
+          tableName,
+          nextProgress.userId,
+          nextProgress.bookId
+        );
+        if (!fresh) {
+          // The row vanished (erasure?) — fall back to the originally-computed row at
+          // rev 0 for one more attempt rather than dropping the pass.
+          expectedRev = 0;
+          continue;
+        }
+        expectedRev = fresh.progressRev ?? 0;
+        nextProgress = params.recomputeNextProgress
+          ? params.recomputeNextProgress(fresh)
+          : { ...nextProgress, progressRev: expectedRev };
+        continue;
+      }
+
+      if (klass === "transient") {
+        if (isLastAttempt) {
+          throw new BookApiError(
+            503,
+            "quiz_write_contended",
+            "Saving your quiz result hit heavy contention. Please try again."
+          );
+        }
+        await new Promise((resolve) => setTimeout(resolve, 25 * (attemptNo + 1)));
+        continue;
+      }
+
+      // not_a_cancellation → an unexpected error: rethrow as-is.
+      throw error;
+    }
   }
 }
 
@@ -1696,26 +1914,54 @@ export async function getManifestFromVersion(
   };
 }
 
-export async function hasStripeWebhookEventBeenProcessed(
-  tableName: string,
-  eventId: string
-): Promise<boolean> {
-  const res = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: { PK: webhookPk(), SK: webhookSk(eventId) },
-      ProjectionExpression: "eventId",
-    })
-  );
-  return !!res.Item;
-}
+/**
+ * Outcome of a claim attempt on a Stripe-webhook event lease (#10):
+ *  - "claim"     → no prior marker existed; this worker owns it and must process.
+ *  - "reclaim"   → a prior PROCESSING lease had expired (crash/timeout); this
+ *                  worker took over and must process.
+ *  - "duplicate" → the event is DONE, or a non-expired PROCESSING lease is held
+ *                  by another in-flight worker; this worker must NOT process.
+ */
+export type StripeWebhookClaim = "claimed" | "done" | "in_progress";
 
-export async function recordStripeWebhookEvent(
+/**
+ * Claim the exclusive right to process a Stripe-webhook event BEFORE running any
+ * side effects (#10). Conditionally writes a PROCESSING marker that only one of
+ * N parallel redeliveries can win:
+ *
+ *   - succeeds (claim) iff no marker exists, OR
+ *   - succeeds (reclaim) iff the existing marker is PROCESSING with an EXPIRED
+ *     lease (a prior attempt crashed/timed out before completing), OR
+ *   - fails (duplicate) iff the marker is DONE or a live PROCESSING lease is held.
+ *
+ * The condition is expressed atomically so the DynamoDB write itself is the
+ * race arbiter — exactly one concurrent claimer wins. On a ConditionalCheck
+ * failure we re-read the marker once to distinguish DONE (true idempotent
+ * duplicate) from a live PROCESSING lease (another worker) — both map to
+ * "duplicate" for the caller, but the read keeps the decision auditable.
+ *
+ * CRASH SAFETY: on a processing failure we deliberately do NOT call
+ * completeStripeWebhookEvent, so the marker stays PROCESSING with a finite TTL.
+ * Once the lease expires a Stripe retry reclaims and reprocesses — a crash can
+ * never permanently mark an event processed.
+ *
+ * LEASE >> RUNTIME INVARIANT: the default 900s lease is far longer than the
+ * server Lambda's 30s timeout, so a lease can only expire AFTER its worker is
+ * dead. A reclaim therefore never races a still-running original worker, and a
+ * "zombie" completing another worker's lease is structurally impossible. The
+ * webhook side effects are independently idempotent anyway (guarded entitlement
+ * upserts, deterministic billing-event SKs), so even a pathological overlap
+ * corrupts nothing.
+ */
+export async function claimStripeWebhookEvent(
   tableName: string,
   eventId: string,
-  eventType: string
-): Promise<boolean> {
-  const ts = nowIso();
+  eventType: string,
+  leaseSeconds = 900
+): Promise<StripeWebhookClaim> {
+  const nowMs = Date.now();
+  const leaseExpiresAt = leaseExpiryMs(nowMs, leaseSeconds);
+  const ttl = leaseTtlEpochSeconds(nowMs, leaseSeconds);
   try {
     await ddbDoc.send(
       new PutCommand({
@@ -1726,15 +1972,106 @@ export async function recordStripeWebhookEvent(
           entity: "BOOK_STRIPE_WEBHOOK_EVENT",
           eventId,
           eventType,
-          createdAt: ts,
+          status: "PROCESSING",
+          leaseExpiresAt,
+          claimedAt: nowIso(),
+          ttl,
         },
-        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        // Win the claim iff there is no marker, OR the existing one is a
+        // PROCESSING lease that has already expired (strict `<`, so
+        // exactly-at-expiry still belongs to the holder). A DONE marker (no
+        // `leaseExpiresAt`) or a live PROCESSING lease fails the condition.
+        ConditionExpression:
+          "attribute_not_exists(PK) OR (#status = :processing AND leaseExpiresAt < :now)",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":processing": "PROCESSING", ":now": nowMs },
       })
     );
-    return true;
+    // The conditional Put won (a fresh claim or a reclaim of an expired lease) —
+    // we own the lease and must run the side effects.
+    return "claimed";
   } catch (error: unknown) {
-    if (isConditionalCheckFailed(error)) return false;
-    throw error;
+    if (!isConditionalCheckFailed(error)) throw error;
+    // The conditional Put failed: the marker is DONE or a live PROCESSING lease.
+    // Re-read once and classify so we acknowledge (2xx) ONLY a genuinely-DONE
+    // event. A live (or just-released) PROCESSING lease → "in_progress": the
+    // route must return non-2xx so Stripe RETRIES — acking here would permanently
+    // drop an event whose first delivery failed mid-processing.
+    const existing = await ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        ProjectionExpression: "#status, leaseExpiresAt",
+        ExpressionAttributeNames: { "#status": "status" },
+      })
+    );
+    return classifyWebhookClaim(
+      existing.Item as ExistingWebhookMarker | undefined,
+      Date.now(),
+      leaseSeconds * 1000
+    ) === "done"
+      ? "done"
+      : "in_progress";
+  }
+}
+
+/**
+ * Mark a successfully-processed webhook event DONE and REMOVE its TTL so the
+ * idempotency marker is retained forever (#10). Called only after ALL side
+ * effects succeed. Uses an UpdateCommand (not a Put) so the existing PROCESSING
+ * item — which this worker claimed — is flipped in place.
+ */
+export async function completeStripeWebhookEvent(
+  tableName: string,
+  eventId: string
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        // SET status=DONE + completedAt, and REMOVE ttl + leaseExpiresAt so the
+        // DONE marker is permanent (no TTL sweep) and unambiguously terminal.
+        UpdateExpression: "SET #status = :done, completedAt = :now REMOVE #ttl, leaseExpiresAt",
+        ExpressionAttributeNames: { "#status": "status", "#ttl": "ttl" },
+        ExpressionAttributeValues: { ":done": "DONE", ":now": nowIso(), ":processing": "PROCESSING" },
+        // Defense-in-depth: only flip a marker that is STILL PROCESSING, so an
+        // already-DONE or swept marker is a no-op rather than a clobber. The
+        // PRIMARY guarantee that this worker still holds the lease is the
+        // lease(900s) >> ServerFn timeout(30s) invariant (a reclaim can't race a
+        // live worker) — this condition does not arbitrate concurrent holders.
+        ConditionExpression: "attribute_exists(PK) AND #status = :processing",
+      })
+    );
+  } catch (error: unknown) {
+    // Lost a benign race (already DONE or swept) — nothing to complete.
+    if (!isConditionalCheckFailed(error)) throw error;
+  }
+}
+
+/**
+ * Best-effort: drop OUR PROCESSING marker after a webhook side-effect failure so
+ * a Stripe retry can re-claim and reprocess IMMEDIATELY rather than waiting out
+ * the full lease. Conditional on PROCESSING, so a DONE marker (which must persist
+ * forever for idempotency) is never deleted; a benign conditional miss (already
+ * DONE, swept, or never written) is swallowed.
+ */
+export async function releaseStripeWebhookClaim(
+  tableName: string,
+  eventId: string
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new DeleteCommand({
+        TableName: tableName,
+        Key: { PK: webhookPk(), SK: webhookSk(eventId) },
+        ConditionExpression: "#status = :processing",
+        ExpressionAttributeNames: { "#status": "status" },
+        ExpressionAttributeValues: { ":processing": "PROCESSING" },
+      })
+    );
+  } catch (error: unknown) {
+    if (!isConditionalCheckFailed(error)) throw error;
   }
 }
 
@@ -1744,7 +2081,7 @@ export async function recordStripeWebhookEvent(
  * wins via a ConditionExpression, every redelivery loses and gets false (skip
  * the send). This prevents duplicate pre-charge notices when the
  * customer.subscription.trial_will_end webhook is retried after a successful
- * send but a later step (recordStripeWebhookEvent / metrics) fails (L12).
+ * send but a later step (completeStripeWebhookEvent / metrics) fails (L12).
  */
 export async function markTrialEndingEmailSent(
   tableName: string,
@@ -1770,6 +2107,34 @@ export async function markTrialEndingEmailSent(
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) return false;
     throw error;
+  }
+}
+
+/**
+ * Release a trial-ending-email claim taken by {@link markTrialEndingEmailSent}
+ * when the send did NOT succeed, so a later Stripe redelivery of
+ * trial_will_end can re-attempt the (card-network-required) pre-charge notice
+ * instead of being permanently suppressed by the dedup marker. Best-effort:
+ * a failed release just leaves the marker (the pre-fix behavior). Mirrors
+ * releaseStripeWebhookClaim's release-on-failure discipline (L12).
+ */
+export async function releaseTrialEndingEmailClaim(
+  tableName: string,
+  customerId: string,
+  trialEndUnix: number
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new DeleteCommand({
+        TableName: tableName,
+        Key: {
+          PK: trialEndingEmailPk(customerId),
+          SK: trialEndingEmailSk(trialEndUnix),
+        },
+      })
+    );
+  } catch {
+    // Best-effort — leaving the marker is the safe-ish pre-fix default.
   }
 }
 
@@ -1882,6 +2247,7 @@ export async function recordBillingEvent(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (finance audit: refunds & disputes)
           PK: billingEventPk(),
           SK: billingEventSk(skKind, e.createdAt, e.eventId),
           entity: "BOOK_BILLING_EVENT",
@@ -2009,136 +2375,18 @@ export async function updateUserEntitlementFromStripe(
     // status="won". A PRO-activation write is refused while it is present.
     setDisputeOpen?: boolean;
     clearDisputeOpen?: boolean;
+    // Stripe webhook envelope `event.created` (epoch seconds). Stamped as the
+    // entitlement's lastStripeEventAt high-water mark and used to reject
+    // out-of-order (reordered/retried) Stripe events. See
+    // stripe-entitlement-write-core.ts for the ordering invariant.
+    stripeEventCreatedAt?: number;
   }
 ): Promise<void> {
-  // When entering a Pro state via Stripe, we must persist proSource so that
-  // entitlement checks (e.g. reserveBookEntitlement) recognize the user as a
-  // Stripe-backed Pro. When leaving Pro (FREE/canceled), clear proSource.
-  const proSourceValue =
-    params.plan === "PRO" ? params.proSource ?? "stripe" : null;
-  const isProActivation = params.plan === "PRO";
-
-  // Build the SET clause dynamically. Only fields explicitly provided by the
-  // event source are written, so e.g. invoice.paid (which has no
-  // cancel_at_period_end signal) does NOT clobber a previously-stored
-  // cancellation flag from a customer.subscription.updated event.
-  const setParts: string[] = [
-    "#plan = :plan",
-    "proStatus = :proStatus",
-    "proSource = :proSource",
-    "stripeCustomerId = :stripeCustomerId",
-    "stripeSubscriptionId = :stripeSubscriptionId",
-    "updatedAt = :updatedAt",
-    "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-    // unlockedBookIds is intentionally NOT initialized here. Writing an empty
-    // Set is impossible now that convertEmptyValues is off (marshal throws), and
-    // initializing it to NULL is what broke reserveBookEntitlement's ADD. The
-    // attribute is created lazily by the first `ADD unlockedBookIds :bookSet`;
-    // reads use parseStringArray which returns [] for a missing attribute.
-  ];
-  const eav: Record<string, unknown> = {
-    ":plan": params.plan,
-    ":proStatus": params.proStatus,
-    ":proSource": proSourceValue,
-    ":stripeSource": "stripe",
-    ":nullSource": null,
-    ":stripeCustomerId": params.stripeCustomerId ?? null,
-    ":stripeSubscriptionId": params.stripeSubscriptionId ?? null,
-    ":updatedAt": nowIso(),
-    ":defaultSlots": 2,
-  };
-  if (params.currentPeriodEnd !== undefined) {
-    setParts.push("currentPeriodEnd = :periodEnd");
-    eav[":periodEnd"] = params.currentPeriodEnd;
-  }
-  if (params.cancelAtPeriodEnd !== undefined) {
-    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
-    eav[":cancelAtPeriodEnd"] = params.cancelAtPeriodEnd;
-  }
-  // When fully downgrading to FREE (e.g. customer.subscription.deleted), the
-  // user is no longer in a cancellation-pending state — clear the flag.
-  if (params.plan === "FREE" && params.cancelAtPeriodEnd === undefined) {
-    setParts.push("cancelAtPeriodEnd = :cancelAtPeriodEnd");
-    eav[":cancelAtPeriodEnd"] = false;
-  }
-
-  // Billing intelligence — merge only when source event provided the field
-  if (params.billingCountry !== undefined) {
-    setParts.push("billingCountry = :bc");
-    eav[":bc"] = params.billingCountry;
-  }
-  if (params.billingCurrency !== undefined) {
-    setParts.push("billingCurrency = :bcur");
-    eav[":bcur"] = params.billingCurrency;
-  }
-  if (params.subscriptionAmountCents !== undefined) {
-    setParts.push("subscriptionAmountCents = :sac");
-    eav[":sac"] = params.subscriptionAmountCents;
-  }
-  if (params.cardBrand !== undefined) {
-    setParts.push("cardBrand = :cbrand");
-    eav[":cbrand"] = params.cardBrand;
-  }
-  if (params.cardCountry !== undefined) {
-    setParts.push("cardCountry = :ccountry");
-    eav[":ccountry"] = params.cardCountry;
-  }
-  if (params.lastInvoiceAmountCents !== undefined) {
-    setParts.push("lastInvoiceAmountCents = :liac");
-    eav[":liac"] = params.lastInvoiceAmountCents;
-  }
-  if (params.lastInvoiceCurrency !== undefined) {
-    setParts.push("lastInvoiceCurrency = :licur");
-    eav[":licur"] = params.lastInvoiceCurrency;
-  }
-  if (params.lastInvoicePaidAt !== undefined) {
-    setParts.push("lastInvoicePaidAt = :lipa");
-    eav[":lipa"] = params.lastInvoicePaidAt;
-  }
-  if (params.failedPaymentLastReason !== undefined) {
-    setParts.push("failedPaymentLastReason = :fplr");
-    eav[":fplr"] = params.failedPaymentLastReason;
-  }
-  if (params.stripePriceId !== undefined) {
-    setParts.push("stripePriceId = :spi");
-    eav[":spi"] = params.stripePriceId;
-  }
-  if (params.subscriptionInterval !== undefined) {
-    setParts.push("subscriptionInterval = :sint");
-    eav[":sint"] = params.subscriptionInterval;
-  }
-
-  // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
-  // dispute clears it. setDisputeOpen wins if both are passed (defensive).
-  const removeParts: string[] = [];
-  if (params.setDisputeOpen) {
-    setParts.push("disputeOpen = :disputeOpen");
-    eav[":disputeOpen"] = true;
-  } else if (params.clearDisputeOpen) {
-    removeParts.push("disputeOpen");
-  }
-
-  // Guard: only allow Stripe to write entitlement when the existing proSource is
-  // absent or already "stripe". This prevents a delayed Stripe webhook from
-  // clobbering a user who upgraded via license key or flow_points after the
-  // Stripe subscription ended.
-  const conditionParts = [
-    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
-  ];
-  // Additionally, a PRO-activation must not re-grant access while an unresolved
-  // chargeback marker is present (L13). After a dispute downgrade proSource is
-  // null, which the proSource guard alone treats as writable — so a stale,
-  // redelivered invoice.paid / customer.subscription.* could otherwise
-  // re-activate a chargebacked user. The dispute downgrade itself (plan FREE,
-  // setDisputeOpen) and the dispute-won clear are not PRO activations, so they
-  // are intentionally exempt from this guard.
-  if (isProActivation && !params.setDisputeOpen) {
-    conditionParts.push("attribute_not_exists(disputeOpen)");
-  }
-
-  const updateExpression =
-    "SET " + setParts.join(", ") +
-    (removeParts.length > 0 ? " REMOVE " + removeParts.join(", ") : "");
+  // All UpdateExpression / ConditionExpression building lives in the pure
+  // stripe-entitlement-write-core module (unit-tested without the AWS SDK).
+  // Notably it adds the event-ordering guard (lastStripeEventAt) that rejects
+  // out-of-order/reordered Stripe events.
+  const built = buildEntitlementUpdateFromStripe(params, nowIso());
 
   try {
     await ddbDoc.send(
@@ -2148,19 +2396,71 @@ export async function updateUserEntitlementFromStripe(
           PK: bookUserPk(params.userId),
           SK: entitlementSk(),
         },
-        ConditionExpression: conditionParts.join(" AND "),
-        UpdateExpression: updateExpression,
-        ExpressionAttributeNames: { "#plan": "plan" },
-        ExpressionAttributeValues: eav,
+        ConditionExpression: built.conditionExpression,
+        UpdateExpression: built.updateExpression,
+        ExpressionAttributeNames: built.expressionAttributeNames,
+        ExpressionAttributeValues: built.expressionAttributeValues,
       })
     );
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) {
-      // Either the user is on a non-Stripe Pro source (license / flow_points),
-      // or an unresolved chargeback marker is blocking PRO re-activation.
-      // Refuse to overwrite. The Stripe customer/subscription IDs themselves
-      // are still safe to attach via attachStripeCustomerToEntitlement; here we
-      // simply skip the entitlement mutation.
+      // The conditional write was refused for one of three reasons, all of
+      // which mean "do not overwrite, drop this event":
+      //   1. the user is on a non-Stripe Pro source (license / flow_points),
+      //   2. an unresolved chargeback marker (disputeOpen) blocks PRO
+      //      re-activation, or
+      //   3. this Stripe event is stale — an event with a newer event.created
+      //      was already applied (lastStripeEventAt ordering guard).
+      // Returning here (2xx to Stripe) is correct: the Stripe customer/
+      // subscription IDs are still safe to attach via
+      // attachStripeCustomerToEntitlement, and a retry of a genuinely stale
+      // event would be refused identically, so there is nothing to retry.
+      return;
+    }
+    throw error;
+  }
+}
+
+/**
+ * Stamp (open=true) or remove (open=false) the sticky `disputeOpen` chargeback
+ * marker on a user's entitlement, INDEPENDENT of plan/proSource.
+ *
+ * `updateUserEntitlementFromStripe`'s combined dispute write carries the marker
+ * under its proSource guard, so for a non-stripe-PRO account (license /
+ * flow_points / gift_code / admin) the whole write — marker included — is
+ * refused, and the chargeback leaves no `disputeOpen` to block a later stale
+ * Stripe re-activation. The dispute webhook branches call this dedicated,
+ * un-gated write so the marker is always recorded (and symmetrically cleared on
+ * a won dispute) regardless of how the user obtained PRO.
+ *
+ * Condition is `attribute_exists(PK)` only: a missing entitlement row is a
+ * no-op (that case is already covered by the branch's
+ * updateUserEntitlementFromStripe upsert). Idempotent, so it is safe to call
+ * alongside the combined write on the stripe-source path.
+ */
+export async function setEntitlementDisputeMarker(
+  tableName: string,
+  userId: string,
+  open: boolean
+): Promise<void> {
+  const built = buildDisputeMarkerUpdate(open, nowIso());
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(userId),
+          SK: entitlementSk(),
+        },
+        ConditionExpression: built.conditionExpression,
+        UpdateExpression: built.updateExpression,
+        ExpressionAttributeValues: built.expressionAttributeValues,
+      })
+    );
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) {
+      // No entitlement row for this user → nothing to mark. (For a chargeback the
+      // row normally exists; this just guards the degenerate case.)
       return;
     }
     throw error;
@@ -2397,34 +2697,56 @@ export async function updateProgressAfterQuizPass(
     scorePercent: number;
   }
 ): Promise<void> {
-  const progress = await getUserProgress(tableName, params.userId, params.bookId);
-  if (!progress) {
-    throw new BookApiError(404, "progress_not_found", "Progress record not found.");
+  // NOTE: upsertUserProgress is now a cursor/activity-only touch and intentionally does
+  // NOT persist the gating fields. This standalone quiz-pass writer therefore uses the
+  // optimistic, field-scoped writeQuizPassProgress helper with a re-read/retry loop so a
+  // concurrent writer's completed chapters / unlock can't be clobbered.
+  const MAX_ATTEMPTS = 4;
+  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
+    const progress = await getUserProgress(tableName, params.userId, params.bookId);
+    if (!progress) {
+      throw new BookApiError(404, "progress_not_found", "Progress record not found.");
+    }
+
+    const completed = new Set(progress.completedChapters);
+    completed.add(params.chapterNumber);
+
+    const bestScoreByChapter = {
+      ...progress.bestScoreByChapter,
+      [String(params.chapterNumber)]: Math.max(
+        params.scorePercent,
+        progress.bestScoreByChapter[String(params.chapterNumber)] || 0
+      ),
+    };
+
+    const updatedAt = nowIso();
+    const applied = await writeQuizPassProgress(tableName, {
+      expectedRev: progress.progressRev ?? 0,
+      nextProgress: {
+        ...progress,
+        currentChapterNumber: Math.max(
+          progress.currentChapterNumber,
+          params.chapterNumber + 1
+        ),
+        unlockedThroughChapterNumber: Math.max(
+          progress.unlockedThroughChapterNumber,
+          params.chapterNumber + 1
+        ),
+        completedChapters: Array.from(completed).sort((a, b) => a - b),
+        bestScoreByChapter,
+        lastActiveAt: updatedAt,
+        lastOpenedAt: updatedAt,
+        updatedAt,
+      },
+    });
+    if (applied) return;
+    // Lost the optimistic guard — re-read and recompute against the fresh row.
   }
-
-  const completed = new Set(progress.completedChapters);
-  completed.add(params.chapterNumber);
-
-  const bestScoreByChapter = {
-    ...progress.bestScoreByChapter,
-    [String(params.chapterNumber)]: Math.max(
-      params.scorePercent,
-      progress.bestScoreByChapter[String(params.chapterNumber)] || 0
-    ),
-  };
-
-  const nextUnlocked = Math.max(progress.unlockedThroughChapterNumber, params.chapterNumber + 1);
-  const updatedAt = nowIso();
-  await upsertUserProgress(tableName, {
-    ...progress,
-    currentChapterNumber: Math.max(progress.currentChapterNumber, params.chapterNumber + 1),
-    unlockedThroughChapterNumber: nextUnlocked,
-    completedChapters: Array.from(completed).sort((a, b) => a - b),
-    bestScoreByChapter,
-    lastActiveAt: updatedAt,
-    lastOpenedAt: updatedAt,
-    updatedAt,
-  });
+  throw new BookApiError(
+    503,
+    "progress_write_contended",
+    "Saving your progress hit heavy contention. Please try again."
+  );
 }
 
 export async function readManifest(
@@ -2563,15 +2885,38 @@ export async function recordRiskEvent(
   tableName: string,
   event: BookRiskEventItem
 ): Promise<void> {
+  // Write the externally-keyed risk event AND a reverse-pointer into the user's
+  // own partition (#4a) so account-erasure — which sweeps only the user
+  // partition — can later reconstruct this event's key and delete it. Forward-
+  // only: pointers exist only for events written after this deploy.
+  const pointer = buildRiskEventPointer({
+    userId: event.userId,
+    scope: event.scope,
+    fingerprint: event.fingerprint,
+    createdAt: event.createdAt,
+    eventType: event.eventType,
+  });
+  // Atomic: write the risk event AND its erasure reverse-pointer together so a
+  // partial failure can never leave a risk event with no pointer — which would be
+  // unreachable at account-erasure (exactly the gap #4a closes). Matches the
+  // referral/pair pointers, which are also written via TransactWrite.
   await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: riskEventPk(event.scope, event.fingerprint),
-        SK: riskEventSk(event.createdAt, event.eventType, event.userId),
-        entity: "BOOK_RISK_EVENT",
-        ...event,
-      },
+    new TransactWriteCommand({
+      TransactItems: [
+        {
+          Put: {
+            TableName: tableName,
+            Item: {
+              // no TTL — retained for legal/fraud/compliance (abuse/fraud investigation)
+              PK: riskEventPk(event.scope, event.fingerprint),
+              SK: riskEventSk(event.createdAt, event.eventType, event.userId),
+              entity: "BOOK_RISK_EVENT",
+              ...event,
+            },
+          },
+        },
+        { Put: { TableName: tableName, Item: pointer } },
+      ],
     })
   );
 }
@@ -2701,6 +3046,7 @@ export async function setAccountStatus(
       new PutCommand({
         TableName: tableName,
         Item: {
+          // no TTL — retained for legal/fraud/compliance (immutable account-lifecycle audit)
           PK: bookUserPk(userId),
           SK: accountStatusChangeSk(now),
           entity: "BOOK_ACCOUNT_STATUS_CHANGE",
@@ -3366,43 +3712,26 @@ export async function redeemLicenseKey(
             },
           },
           {
-            // Upgrade the user's entitlement to PRO (license-based)
+            // Upgrade the user's entitlement to PRO (license-based). The grant is
+            // applied via the SHARED pro-grant guard (license-grant-core): apply
+            // only when it does not shorten/destroy a longer or open-ended grant
+            // (active Stripe sub, admin comp, or a license/flow_points/gift window
+            // that outlasts this license). The route also pre-checks Stripe
+            // (license/route.ts), but that read is not atomic with this write — the
+            // condition closes that race and the broader stomp cases. On refusal the
+            // whole transaction rolls back, so the key is NOT consumed.
             Update: {
               TableName: tableName,
               Key: {
                 PK: bookUserPk(params.userId),
                 SK: entitlementSk(),
               },
-              UpdateExpression: [
-                "SET #plan = :pro,",
-                "proStatus = :active,",
-                "proSource = :licenseSource,",
-                "licenseKey = :code,",
-                "licenseExpiresAt = :expiresAt,",
-                "updatedAt = :now,",
-                // unlockedBookIds is created lazily by reserveBookEntitlement's
-                // ADD; do not initialize it here (an empty Set can no longer be
-                // marshalled). Note: this clause must stay last so the preceding
-                // element carries no trailing comma after the .join(" ").
-                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-              ].join(" "),
-              // Atomically refuse to clobber an active paid Stripe subscription.
-              // The route also pre-checks this (license/route.ts), but the read is
-              // not atomic with this write — this closes that race. proSource is
-              // only "stripe" while a sub is active/retrying.
-              ConditionExpression:
-                "attribute_not_exists(proSource) OR proSource <> :stripeSource",
-              ExpressionAttributeNames: { "#plan": "plan" },
-              ExpressionAttributeValues: {
-                ":pro": "PRO",
-                ":active": "active",
-                ":licenseSource": "license",
-                ":stripeSource": "stripe",
-                ":code": normalized,
-                ":expiresAt": expiresAt,
-                ":now": now,
-                ":defaultSlots": 2,
-              },
+              ...buildLicenseEntitlementGrant({
+                code: normalized,
+                expiresAt,
+                now,
+                defaultSlots: 2,
+              }),
             },
           },
           {
@@ -3429,13 +3758,33 @@ export async function redeemLicenseKey(
   } catch (error: unknown) {
     const reasons = transactionCancellationReasons(error);
     if (reasons) {
-      // Index 1 = entitlement guard: the user already has an active paid Stripe
-      // subscription, so we refuse to switch them onto a license grant.
+      // Index 1 = entitlement guard (the shared pro-grant guard): the redemption
+      // would clobber/shorten a longer-lived or open-ended Pro grant — an active
+      // paid Stripe sub, an admin comp, or a license/flow_points/gift window that
+      // outlasts this license — OR an unresolved chargeback marker (disputeOpen)
+      // blocks the (re)grant entirely (C3). We refuse so the longer grant / hold
+      // survives; the transaction rolled back, so the key was NOT consumed.
       if (reasons[1]?.Code === "ConditionalCheckFailed") {
+        // Re-read to report the accurate reason. The dispute hold takes priority:
+        // a charged-back user must not be told their key is "still valid for later"
+        // as if they merely had longer access.
+        const entRes = await ddbDoc.send(
+          new GetCommand({
+            TableName: tableName,
+            Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
+          })
+        );
+        if (entRes.Item?.disputeOpen) {
+          throw new BookApiError(
+            409,
+            "dispute_hold",
+            "Your account is on hold pending resolution of a payment dispute, so the license key was not applied. The key remains valid once the dispute is resolved."
+          );
+        }
         throw new BookApiError(
           409,
-          "already_subscribed",
-          "You already have an active Pro subscription via Stripe. License keys are for free-pass access only."
+          "pro_grant_active",
+          "You already have Pro access that lasts at least as long as this license, so the key was not applied. It remains valid for later use."
         );
       }
       // Index 0 (or unspecified) = the key was redeemed or revoked between our
@@ -3579,6 +3928,12 @@ export async function putShareEvent(
         SK: shareEventSk(event.createdAt, event.shareId),
         entity: "BOOK_USER_SHARE_EVENT",
         ...event,
+        // Data retention (#16): share events are high-volume engagement telemetry
+        // with no compliance value — stamp a DynamoDB TTL (epoch SECONDS) so they
+        // age out after ~18 months. Written to the main app table (its `ttl`
+        // attribute is enabled). Placed AFTER the spread so a future `event` field
+        // can never clobber it. See retentionPolicyFor + docs/DATA-RETENTION.md.
+        ttl: ttlEpochSeconds(RETENTION_DAYS_18_MONTHS),
       },
     }),
   );

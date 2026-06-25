@@ -19,6 +19,9 @@ import {
   getUserAccessibleQuiz,
   isLocalV12Package,
 } from "@/app/app/api/book/_lib/content-service";
+import { resolvePinnedChapterCount } from "@/app/app/api/book/_lib/book-completion-core";
+import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
+import type { BookManifest } from "@/app/app/api/book/_lib/types";
 import { initializeCardsForChapter } from "@/app/app/api/book/_lib/fsrs-repo";
 import {
   analyticsTrackBookCompleted,
@@ -200,7 +203,7 @@ export async function POST(
       bookId,
       interactionChapterNumber: chapterNumberInt,
     });
-    const [{ progress, quiz: s3Quiz }, { manifest }, persistedQuizState, recentAttempts, userSettings] = await Promise.all([
+    const [{ progress, quiz: s3Quiz }, { manifest, version: liveManifestVersion }, persistedQuizState, recentAttempts, userSettings] = await Promise.all([
       getUserAccessibleQuiz({
         tableName,
         contentBucket,
@@ -217,6 +220,19 @@ export async function POST(
       listRecentQuizAttempts(tableName, user.sub, bookId, chapterNumberInt, 20),
       getUserSettingsItem(tableName, user.sub),
     ]);
+
+    // Whole-book completion must be judged against the user's PINNED version's chapter
+    // count, not the live catalog's (`manifest` above is the latest published version).
+    // The catalog can advance to a different chapterCount after this user started, while
+    // their `completedChapters` stay pinned — see book-completion-core.ts. Reuses the
+    // already-fetched live manifest when the pin matches it (no extra S3 read).
+    const pinnedChapterCount = await resolvePinnedChapterCount({
+      pinnedBookVersion: progress.pinnedBookVersion,
+      liveVersion: liveManifestVersion,
+      liveManifest: manifest,
+      readPinnedManifest: () =>
+        readJsonFromS3<BookManifest>(contentBucket, progress.manifestKey),
+    });
 
     // Resolve learning mode from server-stored settings (not client request body)
     // to prevent gaming (e.g., submitting with "guided" mode for a lower threshold).
@@ -471,6 +487,14 @@ export async function POST(
       attempt,
       nextQuizState,
       nextProgress,
+      // When the optimistic progressRev guard loses a concurrency race, recompute the
+      // pass merge against the freshly-read row so a concurrent writer's completed
+      // chapters / unlocks are preserved (the pass is never silently dropped).
+      recomputeNextProgress: (freshProgress) =>
+        buildProgressAfterQuizPass(freshProgress, {
+          chapterNumber: chapterNumberInt,
+          scorePercent: graded.scorePercent,
+        }),
     });
 
     // Mode-dependent Insight Points (quiz-pass portion only — §1.1).
@@ -505,8 +529,8 @@ export async function POST(
     const completedBookNow =
       graded.passed &&
       completedChapterCount > 0 &&
-      manifest.chapterCount > 0 &&
-      completedChapterCount >= manifest.chapterCount;
+      pinnedChapterCount > 0 &&
+      completedChapterCount >= pinnedChapterCount;
     const bookCompleteAward =
       completedBookNow
         ? await awardFlowPoints(tableName, {
@@ -706,7 +730,7 @@ export async function POST(
             latestIsFirstAttempt: isFirstAttempt,
             bookId,
             bookCompleted: completedBookNow,
-            bookChapterCount: manifest.chapterCount,
+            bookChapterCount: pinnedChapterCount,
             loopCompletedAt: ts,
             userTimezone: timezone,
             bookStartedAt,
@@ -1006,7 +1030,7 @@ export async function POST(
             analyticsTrackBookCompleted(analyticsTable, {
               userId: user.sub,
               bookId,
-              totalChapterCount: manifest.chapterCount,
+              totalChapterCount: pinnedChapterCount,
             })
           );
         }

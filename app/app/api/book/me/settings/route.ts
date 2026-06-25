@@ -5,6 +5,10 @@ import {
   bookOk,
   requireBodyObject,
   withBookApiErrors,
+  assertWithinSizeLimits,
+  assertWithinTotalSize,
+  SETTINGS_VALUE_MAX_CHARS,
+  SETTINGS_TOTAL_MAX_CHARS,
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { isValidLearningMode } from "@/app/app/api/book/_lib/learning-mode";
@@ -115,6 +119,12 @@ export async function PATCH(req: Request) {
       }
     }
 
+    // Cap every string VALUE anywhere in the settings tree. The key allowlist
+    // above bounds the shape but not the size — without this, a caller could
+    // Put an arbitrarily large string under a legitimate key (e.g.
+    // reading.* / appearance.*) and blow the DynamoDB item. (#8)
+    assertWithinSizeLimits(settings, SETTINGS_VALUE_MAX_CHARS, "settings");
+
     if (settings.notifications !== undefined) {
       validateNotificationPreferences(settings.notifications);
     }
@@ -139,10 +149,24 @@ export async function PATCH(req: Request) {
     }
 
     // Read-modify-write under optimistic concurrency so a concurrent write
-    // (e.g. a one-click email unsubscribe) cannot be silently clobbered.
-    const saved = await updateUserSettingsItem(tableName, user.sub, (current) =>
-      mergeSettings(current, settings),
-    );
+    // (e.g. a one-click email unsubscribe) cannot be silently clobbered. The
+    // per-string cap above bounds each value but not the key count or aggregate
+    // size; since the merge is additive (deep-merges, never deletes), bound the
+    // MERGED item here so it can't grow across requests past DynamoDB's 400KB
+    // item ceiling (a >400KB Put 500s the user out of their own settings). (#8)
+    const saved = await updateUserSettingsItem(tableName, user.sub, (current) => {
+      const merged = mergeSettings(current, settings);
+      // Growth-only: reject only a write that BOTH breaches the cap AND grows the
+      // item, so a user whose stored settings already exceed it isn't locked out
+      // of saving/reducing. (Passing the current item's serialized length.)
+      assertWithinTotalSize(
+        merged,
+        SETTINGS_TOTAL_MAX_CHARS,
+        "settings",
+        JSON.stringify(current).length,
+      );
+      return merged;
+    });
 
     return bookOk({
       settings: saved.settings,

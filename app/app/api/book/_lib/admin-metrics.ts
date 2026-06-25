@@ -246,6 +246,47 @@ export async function getUserEvents(
 }
 
 /**
+ * Exhaustively read ALL of a user's analytics EVENT# rows by paginating on
+ * LastEvaluatedKey until the partition is drained (mirrors the queryAll* loops
+ * in the export route / account-erasure). Used by the GDPR/CCPA data export,
+ * where the bounded `getUserEvents` would silently truncate a heavy user.
+ *
+ * A `maxPages` hard cap bounds a pathological/runaway partition; when hit,
+ * `truncated` is true so the export can flag the artifact as incomplete rather
+ * than silently dropping the tail.
+ */
+export async function getAllUserEvents(
+  analyticsTable: string,
+  userId: string,
+  maxPages = 200,
+): Promise<{ items: Record<string, unknown>[]; truncated: boolean }> {
+  const items: Record<string, unknown>[] = [];
+  let ExclusiveStartKey: Record<string, unknown> | undefined;
+  let pages = 0;
+  do {
+    const res = await ddbDoc.send(
+      new QueryCommand({
+        TableName: analyticsTable,
+        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+        ExpressionAttributeValues: {
+          ":pk": `USER#${userId}`,
+          ":prefix": "EVENT#",
+        },
+        ScanIndexForward: false,
+        ExclusiveStartKey,
+      }),
+    );
+    for (const item of res.Items ?? []) items.push(item);
+    ExclusiveStartKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
+    pages += 1;
+    if (pages >= maxPages) {
+      return { items, truncated: ExclusiveStartKey != null };
+    }
+  } while (ExclusiveStartKey);
+  return { items, truncated: false };
+}
+
+/**
  * Search users by email substring. Scans the analytics table snapshot rows.
  * Cheap at solo-founder scale; bounded by `limit`.
  *

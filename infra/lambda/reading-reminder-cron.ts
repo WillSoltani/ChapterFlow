@@ -49,6 +49,7 @@ import {
   sendCompliantEmail,
   type EmailConfig,
 } from "./lib/email-compliance";
+import { emailChannelConsented } from "./lib/email-consent";
 
 const tableName = process.env.BOOK_TABLE_NAME!;
 
@@ -192,7 +193,7 @@ async function processReminderUser(
     );
 
     // Send email if available.
-    if (email && (notifPrefs.channels as Record<string, unknown>)?.email === true) {
+    if (email && emailChannelConsented(notifPrefs as { channels?: { email?: boolean } })) {
       try {
         const tpl = readingReminderEmail({ name, appBaseUrl: emailConfig.appBaseUrl });
         await sendCompliantEmail(ses, ddb, tableName, emailConfig, {

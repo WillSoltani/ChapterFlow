@@ -370,8 +370,27 @@ export function journeySk(journeyId: string): string {
 
 // ── Reading Partner keys (Feature #7) ────────────────────────────────────────
 
-export function pairSk(partnerId: string): string {
-  return `PAIR#${partnerId}`;
+/**
+ * SK for a user's single ACTIVE reading partner. A FIXED constant (not keyed by
+ * partnerId) so each user can hold at most one active-pair item: the accept Put
+ * guards on `attribute_not_exists(SK)`, which atomically rejects a second active
+ * partner regardless of who it is with (the H6 singleton invariant). Replaces the
+ * old partner-keyed `PAIR#<partnerId>` SK — that scheme allowed N concurrent
+ * active partners and, once soft-deleted, permanently blocked re-pairing the same
+ * two users (the H7 bug). No prod data used the old scheme at the time of change.
+ */
+export function pairActiveSk(): string {
+  return "PAIR#ACTIVE";
+}
+
+/**
+ * SK for an immutable ended-pair history row. Keyed by (partnerId, endedAt) so
+ * dissolving and re-forming a pair leaves a distinct audit row each time and none
+ * of them occupy `PAIR#ACTIVE` (which must stay free for re-pairing). Lives in the
+ * user's own partition so the account-erasure partition sweep reaches it.
+ */
+export function pairHistorySk(partnerId: string, endedAtIso: string): string {
+  return `PAIRHISTORY#${partnerId}#${endedAtIso}`;
 }
 
 export function pairInvitePk(inviteCode: string): string {
@@ -414,6 +433,54 @@ export function aiCachedAnswerPk(bookId: string): string {
 
 export function aiCachedAnswerSk(questionHash: string): string {
   return `AI_CACHE#${questionHash}`;
+}
+
+// ── Per-user daily rate-limit counters (#8) ──────────────────────────────────
+
+/** Daily counter SK for the GDPR data-export endpoint. `date` = `YYYY-MM-DD`. */
+export function exportLimitSk(date: string): string {
+  return `EXPORT_LIMIT#${date}`;
+}
+
+// ── Erasure reverse-pointers (#4) ────────────────────────────────────────────
+//
+// Some records are written OUTSIDE the user's own partition and keyed by
+// something other than userId (risk events by device/network fingerprint;
+// referral & pair invites by code), so an erasure that only sweeps
+// `bookUserPk(userId)` can't reach them and there's no userId GSI to find them.
+//
+// Fix WITHOUT a GSI (forward-only): at write time we ALSO write a tiny
+// reverse-pointer item INTO the user's own partition that carries exactly the
+// fields needed to reconstruct the external target key byte-for-byte. The
+// existing partition sweep then deletes both the pointer and (after
+// reconstruction) the target. SKs embed the reconstruction inputs verbatim so
+// account-erasure can rebuild `riskEventPk/Sk`, `referralCodePk`, and
+// `pairInvitePk` exactly as they were written.
+
+/**
+ * Pointer to one externally-keyed risk/fraud event. Embeds (scope, fingerprint,
+ * createdAt, eventType) — every input `riskEventPk`/`riskEventSk` need (userId
+ * is the partition owner). A user can produce up to 3 risk rows per signal
+ * (device/network/network_ua) sharing createdAt+eventType, so scope+fingerprint
+ * disambiguate. The createdAt ISO can contain ':' which is SK-safe.
+ */
+export function riskEventPointerSk(
+  scope: string,
+  fingerprint: string,
+  createdAt: string,
+  eventType: string,
+): string {
+  return `RISKPTR#${scope.toUpperCase()}#${fingerprint}#${createdAt}#${eventType.toUpperCase()}`;
+}
+
+/** Pointer to one referral-code reverse-index item, by the (uppercased) code. */
+export function referralCodePointerSk(inviteCode: string): string {
+  return `REFCODEPTR#${inviteCode.toUpperCase()}`;
+}
+
+/** Pointer to one pair-invite reverse-index item, by the (uppercased) code. */
+export function pairInvitePointerSk(inviteCode: string): string {
+  return `PAIRINVITEPTR#${inviteCode.toUpperCase()}`;
 }
 
 // ── Seasonal Event keys (Feature #17) ────────────────────────────────────────
@@ -469,8 +536,15 @@ export function erasureLogPk(): string {
   return "BOOKERASURE#LOG";
 }
 
-export function erasureLogSk(erasedAtIso: string, userId: string): string {
-  return `${erasedAtIso}#${userId}`;
+/**
+ * SK for a permanent erasure-audit row. The second segment is an HMAC/SHA-256
+ * hash of the erased user's sub (NOT the raw sub) so the audit proves an erasure
+ * occurred without retaining a durable plaintext identifier for the erased
+ * subject (#4b). The hash is deterministic, so an operator holding a sub can
+ * still locate "was THIS sub erased?" without the table leaking subs.
+ */
+export function erasureLogSk(erasedAtIso: string, subjectHash: string): string {
+  return `${erasedAtIso}#${subjectHash}`;
 }
 
 // ── Account-status audit log keys ────────────────────────────────────────────
@@ -499,4 +573,100 @@ export function emailSuppressionPk(email: string): string {
 
 export function emailSuppressionSk(): string {
   return "SUPPRESSION";
+}
+
+// ── Data retention / DynamoDB TTL (#16) ───────────────────────────────────────
+//
+// DynamoDB's TTL attribute MUST be a Number holding the expiry as epoch SECONDS
+// (NOT milliseconds). A row is eligible for deletion once that value is in the
+// past; the actual delete is asynchronous and can lag by up to ~48h, so TTL is a
+// best-effort floor on lifetime, never a precise/secure delete. We stamp it only
+// on HIGH-VOLUME, NON-compliance record classes; durable finance/fraud/legal
+// records carry NO ttl (see retentionPolicyFor + docs/DATA-RETENTION.md).
+
+/** ~30.4 days per month → days for a month-denominated retention period. */
+const DAYS_PER_MONTH = 365 / 12;
+
+/** Default retention for high-volume append-only classes (analytics/ops/share). */
+export const RETENTION_DAYS_18_MONTHS = Math.round(18 * DAYS_PER_MONTH);
+
+/**
+ * Compute a DynamoDB TTL value: the epoch-SECONDS instant `retentionDays` from
+ * `nowMs` (default: now). Pure and dependency-free so it can be unit tested and
+ * reused by any writer. Returns whole seconds (DynamoDB ignores sub-second
+ * precision); never returns milliseconds.
+ */
+export function ttlEpochSeconds(retentionDays: number, nowMs: number = Date.now()): number {
+  return Math.floor(nowMs / 1000) + Math.round(retentionDays * 86400);
+}
+
+/**
+ * Retention classification for the #16-managed record classes — the tested
+ * guard that keeps the durable-vs-event decision honest.
+ *
+ * `true`  → high-volume / append-only telemetry → #16 stamps `ttl` at write
+ *           time from `retentionDays`, so it ages out.
+ * `false` → durable / legal / fraud / compliance → MUST NEVER carry a `ttl`
+ *           (a stray ttl would silently delete finance/fraud/audit history).
+ *
+ * SCOPE: this governs the #16 durable-vs-event classes only. Short-lived
+ * OPERATIONAL keys (rate-limit counters like BOOK_EXPORT_COUNT, dedup markers,
+ * AI answer caches, pair invites) set their OWN short ttl directly at their
+ * writer and are intentionally NOT enumerated here — they are neither the
+ * high-volume telemetry this stamps nor compliance records, so they hit the
+ * fail-safe default below. A `{ttl:false}` from this table therefore means
+ * "not stamped by #16", NOT "guaranteed to live forever". The keys.retention
+ * test pins the compliance classes so a future writer cannot silently flip one
+ * to "expiring".
+ */
+export function retentionPolicyFor(
+  entity: string,
+): { ttl: boolean; retentionDays?: number; reason: string } {
+  switch (entity) {
+    // ── High-volume, append-only EVENT classes → TTL'd ──────────────────────
+    case "BOOK_ANALYTICS_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "append-only analytics event stream; unbounded growth",
+      };
+    case "BOOK_OPS_FAILURE":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "operational-failure log; high-volume, no compliance value once resolved",
+      };
+    case "BOOK_USER_SHARE_EVENT":
+      return {
+        ttl: true,
+        retentionDays: RETENTION_DAYS_18_MONTHS,
+        reason: "share-card event stream; high-volume engagement telemetry",
+      };
+
+    // ── Durable / legal / fraud / compliance classes → NEVER TTL'd ──────────
+    case "BOOK_ANALYTICS_SNAPSHOT":
+      return { ttl: false, reason: "durable per-user analytics snapshot (current state, not an event)" };
+    case "BOOK_BILLING_EVENT":
+      return { ttl: false, reason: "retained — legal/tax (refunds, disputes, finance reports)" };
+    case "BOOK_RISK_EVENT":
+      return { ttl: false, reason: "retained — fraud/abuse investigation" };
+    case "BOOK_ACCOUNT_STATUS_CHANGE":
+      return { ttl: false, reason: "retained — immutable account-lifecycle audit trail" };
+    case "BOOK_ERASURE_LOG":
+      return { ttl: false, reason: "retained — permanent GDPR erasure audit (proves an erasure occurred)" };
+    case "BOOK_STRIPE_WEBHOOK_EVENT":
+      // The webhook idempotency marker owns its OWN ttl lifecycle in #10
+      // (PROCESSING leases carry a ttl; the DONE flip REMOVEs it so DONE markers
+      // are retained forever). Retention (#16) must never stamp/alter it.
+      return { ttl: false, reason: "owned by #10 webhook-claim lease; do not stamp here" };
+
+    default:
+      // Unknown class → NO ttl from #16 (fail-safe — never silently expire an
+      // entity nobody has classified here). NOTE: this does NOT assert the class
+      // is durable-forever — a short-lived operational key (e.g. BOOK_EXPORT_COUNT,
+      // dedup markers, the ask cache) may still carry its OWN ttl set at its
+      // writer; #16 simply doesn't govern those. Add a case above to bring a
+      // class under #16 management.
+      return { ttl: false, reason: "not managed by #16 retention (durable, or sets its own ttl at its writer)" };
+  }
 }

@@ -339,6 +339,13 @@ export type BookUserEntitlement = {
   lastInvoicePaidAt?: string;
   discountCouponId?: string;
   failedPaymentLastReason?: string;
+  /**
+   * High-water mark of the most recent Stripe webhook `event.created` (epoch
+   * seconds) applied to this entitlement. Set by updateUserEntitlementFromStripe
+   * to reject out-of-order/reordered Stripe events; see
+   * stripe-entitlement-write-core.ts. Dispute writes do not touch it.
+   */
+  lastStripeEventAt?: number;
   updatedAt: string;
 };
 
@@ -369,6 +376,11 @@ export type BookUserProgress = {
   lastActiveAt?: string;
   streakDays?: number;
   preferredVariant?: VariantKey;
+  // Monotonic optimistic-concurrency counter for the canonical PROGRESS#<bookId> item.
+  // Bumped on every quiz-pass mutation and used as the write guard so a stale full-row
+  // write can't clobber a concurrently-advanced row. Absent on legacy items (treated
+  // as 0). See progress-write-core.ts.
+  progressRev?: number;
   updatedAt: string;
   createdAt: string;
 };
@@ -779,7 +791,10 @@ export type OpsFailureKind =
   | "stripe_cancel"
   | "stripe_cancel_at_period_end"
   | "stripe_customer_delete"
-  | "cognito_delete";
+  | "cognito_delete"
+  // Step-up session revocation (AdminUserGlobalSignOut) on self-delete /
+  // deactivate failed — sessions may NOT have been revoked. Operator follow-up.
+  | "cognito_global_signout";
 
 /**
  * A recorded operational failure that a human operator should follow up on.

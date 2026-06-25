@@ -2,6 +2,7 @@
 
 import { useCallback, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { TriangleAlert } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -23,7 +24,8 @@ import { toLibraryBooks } from "@/components/library/dashboardToLibraryUi";
 export function SavedBooksClient() {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const { identity } = useBookViewer();
-  const { hydrated, catalog, entries, entitlement } = useLibraryDashboard();
+  const { hydrated, catalog, entries, entitlement, error, partial, refetch } =
+    useLibraryDashboard();
   const { savedSet, toggleSaved, hydrated: savedHydrated } = useSavedBooks(true);
 
   const books = useMemo(() => toLibraryBooks(catalog, entries), [catalog, entries]);
@@ -104,8 +106,49 @@ export function SavedBooksClient() {
           )}
         </div>
 
+        {/* Partial-load notice (#2): critical data is present (the route 503s
+            otherwise), but some optional data couldn't be fetched. Non-blocking. */}
+        {!loading && !error && partial && (
+          <div
+            role="status"
+            className="cf-banner cf-banner-warning mb-5 flex items-start gap-2 rounded-xl px-4 py-3 text-sm"
+          >
+            <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+            <span>We couldn’t load everything — some details may be out of date.</span>
+          </div>
+        )}
+
         {loading ? (
           <LibraryGridSkeleton count={8} />
+        ) : error ? (
+          // A dashboard outage (incl. 503 dashboard_unavailable) must surface a
+          // RETRYABLE error — NOT the "No saved books" empty state, which would
+          // falsely imply the user has nothing saved, and NOT a FREE-collapsed
+          // locked grid. We never read entitlement as FREE on failure.
+          <div
+            role="alert"
+            className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
+            style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
+          >
+            <TriangleAlert
+              className="mx-auto h-8 w-8 text-(--cf-warning-text)"
+              aria-hidden="true"
+            />
+            <p className="mt-3 text-[16px] font-semibold" style={{ color: "var(--cf-text-1)" }}>
+              We couldn’t load your saved books
+            </p>
+            <p className="mt-2 text-[13px]" style={{ color: "var(--cf-text-3)" }}>
+              Something went wrong loading this page. Please try again.
+            </p>
+            <button
+              type="button"
+              onClick={refetch}
+              className="mt-5 inline-block rounded-lg px-5 py-2.5 text-[13px] font-semibold transition-colors"
+              style={{ background: "var(--cf-accent)", color: "var(--cf-page-bg)" }}
+            >
+              Try again
+            </button>
+          </div>
         ) : savedBooks.length === 0 ? (
           <div
             className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"

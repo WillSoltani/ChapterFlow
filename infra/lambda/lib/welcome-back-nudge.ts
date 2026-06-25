@@ -6,6 +6,7 @@ import {
 import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { welcomeBackEmail } from "./email-templates/welcome-back";
 import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
+import { emailChannelConsented } from "./email-consent";
 
 type UserSettings = {
   PK: string;
@@ -112,7 +113,7 @@ export async function processWelcomeBackNudge(
 
     // Best-effort email (second channel). A send failure is logged but not
     // retried: the in-app notification already counts as the delivered nudge.
-    if (email && notifications?.channels?.email !== false) {
+    if (email && emailChannelConsented(notifications)) {
       try {
         const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
         await sendCompliantEmail(ses, ddb, tableName, config, {

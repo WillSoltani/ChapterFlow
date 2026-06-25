@@ -78,6 +78,40 @@ test("normalizeV21Package rejects a non-v21 package", () => {
 });
 
 /**
+ * Regression guard (client adapter, parallel to the server adapter). A v21 quiz
+ * question with NO authored correctIndex must normalize to
+ * `correctIndex === undefined`, NOT a fabricated 0. A fabricated 0 silently
+ * grades the local-fallback reader against choice A for a content defect.
+ */
+test("normalizeV21Package leaves a missing quiz correctIndex undefined (not 0)", () => {
+  const quiz = {
+    passingScorePercent: 70,
+    questions: [
+      { questionId: "missing", prompt: "p", choices: ["A", "B", "C"], explanation: "e" },
+      {
+        questionId: "present",
+        prompt: "p",
+        choices: ["A", "B", "C"],
+        correctIndex: 1,
+        explanation: "e",
+      },
+    ],
+  };
+  const [first, ...rest] = (rawPkg as { chapters: Record<string, unknown>[] }).chapters;
+  const patched = { ...(rawPkg as object), chapters: [{ ...first, quiz }, ...rest] };
+
+  const pkg = normalizeV21Package(patched);
+  const questions = pkg.chapters[0].quiz.questions;
+  const missing = questions.find((q) => q.questionId === "missing");
+  const present = questions.find((q) => q.questionId === "present");
+  assert.ok(missing && present, "expected both fixture questions to survive normalization");
+
+  assert.notEqual(missing!.correctIndex, 0, "a missing key must NOT be fabricated as 0");
+  assert.equal(missing!.correctIndex, undefined, "a missing key must stay undefined");
+  assert.equal(present!.correctIndex, 1, "an authored correctIndex must be preserved");
+});
+
+/**
  * experiencePlan must survive the full raw → BookChapter pipeline
  * (extractV21ChapterExtras + the merge-spread in buildBundle). Wiring the
  * adapter but forgetting the merge-spread silently drops the field — this is

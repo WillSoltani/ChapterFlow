@@ -115,6 +115,25 @@ if (!skipFrontend && openNextExists) {
           "Set them as prod GitHub Environment secrets before deploying.",
       );
     }
+
+    // OAuth strictness (#15): AUTH_STATE_SECRET keys the AES-256-GCM encryption
+    // of the OAuth `state` (PKCE verifier + returnTo + nonce). A short secret
+    // weakens that integrity guarantee, and the app code (app/auth/_lib/
+    // state-crypto.ts getSecret) hard-rejects anything < 32 chars at RUNTIME —
+    // which would silently degrade every login to the weaker cookie-only
+    // fallback in prod. Fail the prod SYNTH loudly instead so the deploy can't
+    // ship a too-short secret. Literal kept in sync with state-crypto.ts (infra
+    // is a separate package; do NOT import app code).
+    const AUTH_STATE_SECRET_MIN_LENGTH = 32; // MUST match app/auth/_lib/state-crypto.ts
+    const authStateSecret = process.env.AUTH_STATE_SECRET ?? "";
+    if (authStateSecret.length < AUTH_STATE_SECRET_MIN_LENGTH) {
+      throw new Error(
+        "Refusing to synth the prod ChapterFlowFrontend stack — AUTH_STATE_SECRET " +
+          `must be at least ${AUTH_STATE_SECRET_MIN_LENGTH} characters (got ` +
+          `${authStateSecret.length}). Rotate the prod secret to a longer value ` +
+          "before deploying.",
+      );
+    }
   }
 
   new ChapterFlowFrontendStack(app, cfg.frontendStackId, {
@@ -160,6 +179,12 @@ if (!skipFrontend && openNextExists) {
       ...(process.env.AUTH_COOKIE_DOMAIN && {
         AUTH_COOKIE_DOMAIN: process.env.AUTH_COOKIE_DOMAIN,
       }),
+      // CSRF/same-origin guard (#6). Injected UNCONDITIONALLY (default "1" = ON)
+      // so the value is present in the Lambda config and can be flipped to "0"
+      // (observe-only: log, don't block) directly on the live function for a
+      // brief confirmation window after a deploy. CDK resets it to this default
+      // on the next deploy. Read via raw process.env (isCsrfEnforcementOn).
+      CSRF_ORIGIN_ENFORCE: process.env.CSRF_ORIGIN_ENFORCE ?? "1",
       ...(process.env.BOOK_STRIPE_SECRET_KEY && {
         BOOK_STRIPE_SECRET_KEY: process.env.BOOK_STRIPE_SECRET_KEY,
       }),

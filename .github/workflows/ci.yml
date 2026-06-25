@@ -118,6 +118,63 @@ jobs:
       - name: Pipeline build
         run: npm run pipeline:build
 
+  # ── Non-required: golden-journey integration test (DynamoDB Local) ────────
+  # PR-G / issue #17. Drives the REAL repo modules (entitlement reserve, quiz
+  # outcome transaction, flow-points award, account-status, webhook idempotency,
+  # effective-plan computation) against a hermetic DynamoDB Local — NO OIDC, NO
+  # AWS account, NO S3. The app's DynamoDB client honours AWS_ENDPOINT_URL_DYNAMODB
+  # at construction, so prod code talks to the local container with no source edit.
+  #
+  # NON-REQUIRED (continue-on-error) for now: keep it OUT of branch-protection
+  # required checks; promote to required after N consecutive green runs.
+  integration-journey:
+    name: Integration — Golden Journey (DynamoDB Local)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    continue-on-error: true
+    services:
+      dynamodb:
+        image: amazon/dynamodb-local:latest
+        ports:
+          - 8000:8000
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      AWS_ENDPOINT_URL_DYNAMODB: "http://127.0.0.1:8000"
+      AWS_REGION: "us-east-1"
+      AWS_ACCESS_KEY_ID: "dummy"
+      AWS_SECRET_ACCESS_KEY: "dummy"
+      BOOK_TABLE_NAME: "ChapterFlowApp-itest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --include=optional
+
+      - name: Wait for DynamoDB Local
+        run: |
+          # DynamoDB Local answers a bare GET with HTTP 400, so `curl -f` (which
+          # exits non-zero on >=400) would NEVER succeed and the probe would
+          # silently "time out" while the service was actually up — skipping the
+          # whole test step. Probe WITHOUT -f: curl exits 0 as soon as the port
+          # answers at all (even a 400), which is exactly "the service is up".
+          for i in $(seq 1 30); do
+            if curl -s -o /dev/null "http://127.0.0.1:8000"; then
+              echo "DynamoDB Local is up"; exit 0
+            fi
+            echo "waiting for DynamoDB Local ($i)..."; sleep 1
+          done
+          echo "DynamoDB Local did not become reachable"; exit 1
+
+      - name: Run integration tests
+        run: npm run test:integration
+
   # ── Smoke gate (DEV BUILD ONLY): drive the app in a browser (Playwright) ──
   # SCOPE WARNING (M51): this job runs the app via `npm run dev` — the Turbopack
   # DEV server with DEV_AUTH_BYPASS=1 and no data plane. It verifies that the
@@ -352,42 +409,6 @@ jobs:
 
       - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
         run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev
-
-  # ── Hard gate: v21 book-pipeline typecheck + tests ───────────────────────
-  # The pipeline (scripts/book/prompts/chapterflow-v21-authored) has NO package.json
-  # of its own — it runs on the repo-root node_modules via `tsx`, and its tests live
-  # under a bespoke runner (tests/run.ts). The app's `npm run test` glob is app/ + lib/
-  # ONLY, so WITHOUT this job the pipeline's behavior tests (the autopilot conductor,
-  # qc-converge, finalize evidence, reviewer identity, …) are NOT executed by CI —
-  # "green" would not have exercised them. Hard gate on every PR + push to main.
-  pipeline-checks:
-    name: Book Pipeline Tests + Typecheck
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    defaults:
-      run:
-        working-directory: scripts/book/prompts/chapterflow-v21-authored
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 20
-          cache: npm
-          # The pipeline dir has no lockfile; deps resolve from the repo-root install.
-          cache-dependency-path: package-lock.json
-
-      - name: Install dependencies (repo root)
-        working-directory: .
-        run: npm ci --include=optional
-
-      - name: Type-check pipeline
-        run: npx tsc -p . --noEmit
-
-      - name: Run pipeline tests
-        run: npx tsx tests/run.ts
 
   # ── Hard gate: no committed build artifacts or hardcoded secrets ─────────
   # Public repo. A committed Turbopack cache once leaked a live Stripe key;

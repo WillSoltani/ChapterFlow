@@ -77,6 +77,10 @@ type DashboardPayload = {
     };
     dailyGoal?: number;
   } | null;
+  /** Set by the server (#2) when some OPTIONAL dashboard data couldn't be loaded;
+   *  the critical data is still authoritative, so the page renders with a banner. */
+  partial?: boolean;
+  warnings?: string[];
 };
 
 type CompletionActivity = {
@@ -422,6 +426,11 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
   const [hydrated, setHydrated] = useState(false);
   const [analytics, setAnalytics] = useState<AnalyticsState | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // Set true when the server served the dashboard with some OPTIONAL data missing
+  // (#2). The page still renders the (authoritative) critical data; the banner
+  // tells the user not everything loaded. `warnings` names the missing sources.
+  const [partial, setPartial] = useState(false);
+  const [warnings, setWarnings] = useState<string[]>([]);
   const [revision, setRevision] = useState(0);
 
   const refetch = useCallback(() => {
@@ -456,6 +465,12 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
       try {
         const payload = await fetchBookJson<DashboardPayload>("/app/api/book/me/dashboard");
         if (!mounted) return;
+
+        // Surface the server's partial-load flag (#2). Critical data is present
+        // (the route 503s otherwise), so we render normally + a non-blocking
+        // banner naming the optional sources that failed.
+        setPartial(payload.partial === true);
+        setWarnings(Array.isArray(payload.warnings) ? payload.warnings : []);
 
         const progressRows = Array.isArray(payload.progress) ? payload.progress : [];
         const bookStateRows = Array.isArray(payload.bookStates) ? payload.bookStates : [];
@@ -835,7 +850,16 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
         // (focus/storage events) we keep the last-good analytics so a transient
         // blip doesn't wipe a working dashboard — the error is held but the
         // page keeps rendering real data.
+        //
+        // A 503 `dashboard_unavailable` (#2: a CRITICAL read failed) lands here
+        // too — it is a retryable error, NEVER a reason to fall back to a FREE
+        // plan. We never synthesize an entitlement on failure: `analytics` stays
+        // null (initial) or last-good (refetch), so the plan is never downgraded
+        // to FREE by an outage. The partial banner is for the success-with-gaps
+        // case only, so clear it on a hard error.
         console.error("Dashboard API failed:", err);
+        setPartial(false);
+        setWarnings([]);
         setError(getBookErrorMessage(err));
         setHydrated(true);
       }
@@ -852,6 +876,8 @@ export function useBookAnalytics(selectedBookIds: string[], dailyGoalMinutes: nu
     hydrated,
     analytics,
     error,
+    partial,
+    warnings,
     refetch,
   };
 }

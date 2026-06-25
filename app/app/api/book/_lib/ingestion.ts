@@ -18,14 +18,17 @@ import type {
 } from "./types";
 import { validateBookPackage } from "./validate-book-package";
 import { CategoryTaxonomyError, enforceCanonicalCategories } from "@/lib/category-taxonomy";
+import { shouldPublishReusedVersion } from "./ingestion-publish-policy";
 import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
 import {
   createBookVersionDraft,
   deleteBookVersion,
   getCatalogBook,
+  getMetaCatalogSnapshot,
   getNextVersionNumber,
   listBookVersions,
   publishBookVersion,
+  restoreOrDeleteMetaCatalog,
   upsertBookMetaAndCatalog,
 } from "./repo";
 import { evaluatePublishGuard } from "@/lib/book-slug-aliases";
@@ -109,6 +112,12 @@ export async function ingestBookPackageFromS3(params: {
     if (existing) {
       const existingPrefix = existing.contentPrefix || buildContentPrefix(pkg.book.bookId, existing.version);
       const existingManifestKey = existing.manifestKey || buildManifestKey(existingPrefix);
+      // Honor publishNow on the reuse path: a prior DRAFT ingest re-run with
+      // publishNow=true must actually publish, not silently no-op (the version
+      // would otherwise stay DRAFT and the book never go live).
+      if (shouldPublishReusedVersion(params.publishNow, existing.state)) {
+        await publishBookVersion(params.tableName, pkg.book.bookId, existing.version, params.createdBy);
+      }
       return {
         bookId: pkg.book.bookId,
         version: existing.version,
@@ -174,6 +183,15 @@ export async function ingestBookPackageFromS3(params: {
     })),
   };
 
+  // Snapshot the book's prior META/CATALOG pointer BEFORE we advance it, so the
+  // rollback below can put it back. `upsertBookMetaAndCatalog` moves the META +
+  // CATALOG rows to this new version; if a failure then triggers the rollback
+  // (which deletes this version's content prefix + VERSION row), an un-reverted
+  // pointer would strand the book on a now-deleted version (readManifest -> a
+  // missing VERSION row -> the whole book 500s). (B5.)
+  const metaCatalogSnapshot = await getMetaCatalogSnapshot(params.tableName, pkg.book.bookId);
+  let metaCatalogAdvanced = false;
+
   // The canonical book.json must match what is actually served (manifest /
   // chapters / quizzes are built from the validated+adapted pkg, not the raw
   // blob). Writing JSON.stringify(raw) here would diverge from every served
@@ -216,10 +234,24 @@ export async function ingestBookPackageFromS3(params: {
       currentPublishedVersion: params.publishNow ? version : undefined,
       status: params.publishNow ? "PUBLISHED" : "DRAFT",
     });
+    metaCatalogAdvanced = true;
   } catch (error: unknown) {
     // A mid-write failure would otherwise leave the DRAFT row + a partial
-    // content prefix orphaned for manual cleanup. Best-effort roll both back so
-    // a retry (or the idempotency check above) starts from a clean slate.
+    // content prefix orphaned for manual cleanup, AND (if the META/CATALOG
+    // pointer already advanced to this version) strand the book on a version
+    // we are about to delete. Best-effort roll back all three so a retry (or
+    // the idempotency check above) starts from a clean slate:
+    //   1. restore/clear the META/CATALOG pointer (revert the version advance),
+    //   2. delete the partial content prefix,
+    //   3. delete the DRAFT version row.
+    // Order matters: revert the pointer FIRST so the book never resolves to a
+    // version whose content/row is gone, even if a later delete also fails.
+    await restoreOrDeleteMetaCatalog(
+      params.tableName,
+      pkg.book.bookId,
+      metaCatalogSnapshot,
+      metaCatalogAdvanced
+    ).catch(() => {});
     await deleteContentPrefix(params.contentBucket, contentPrefix).catch(() => {});
     await deleteBookVersion(params.tableName, pkg.book.bookId, version).catch(() => {});
     throw error;

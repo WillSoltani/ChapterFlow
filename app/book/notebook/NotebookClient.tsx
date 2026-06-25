@@ -11,7 +11,7 @@ import {
   AlertTriangle,
   RefreshCw,
 } from "lucide-react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson, isReauthResponse, redirectToReauth } from "@/app/book/_lib/book-api";
 import type { NotebookEntry, NotebookEntryType } from "@/app/app/api/book/_lib/types";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { useBookViewer } from "@/app/book/hooks/useBookViewer";
@@ -92,7 +92,12 @@ export function NotebookClient() {
   const handleExport = async (format: string) => {
     try {
       const res = await fetch(`/app/api/book/me/export?format=${format}`);
-      if (!res.ok) return;
+      if (!res.ok) {
+        // Step-up auth (#5): a >10-min session gets 401 reauth_required here —
+        // redirect through a forced re-auth instead of silently doing nothing.
+        if (await isReauthResponse(res)) redirectToReauth("/book/notebook");
+        return;
+      }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");

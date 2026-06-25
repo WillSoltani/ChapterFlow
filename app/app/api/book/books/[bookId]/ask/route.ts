@@ -1,7 +1,9 @@
 import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
-import { bookErr } from "@/app/app/api/book/_lib/http";
+import { bookErr, requireSameOrigin } from "@/app/app/api/book/_lib/http";
+import { isBookApiError } from "@/app/app/api/book/_lib/errors";
+import { AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { getAskBookModel, getAnthropicClient, recordAiUsage } from "@/app/app/api/book/_lib/ai-config";
@@ -19,6 +21,11 @@ type Params = { params: Promise<{ bookId: string }> };
 
 export async function POST(req: Request, ctx: Params) {
   try {
+    // Same-origin/CSRF guard (#6): this route is hand-rolled (no
+    // withBookApiErrors wrapper), so it must call the guard explicitly or it
+    // would be the only cookie-authed Anthropic-spending mutation with no
+    // origin check. The catch below maps the thrown BookApiError(403).
+    await requireSameOrigin(req);
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { bookId } = await ctx.params;
@@ -420,6 +427,21 @@ ${bookContext}`,
       },
     });
   } catch (err) {
+    // Map typed errors so the same-origin guard's 403 (and an expired-token
+    // 401) surface with the right status instead of a blanket 500. Mirror
+    // withBookApiErrors' AuthError handling: a transient JWKS-verifier outage
+    // (VERIFIER_UNAVAILABLE) is a retryable 503, NOT a definitive 401 that the
+    // client would treat as a logout. (REAUTH_REQUIRED is N/A here — this route
+    // uses plain requireActiveBookUser, no step-up auth.)
+    if (err instanceof AuthError) {
+      if (err.message === "VERIFIER_UNAVAILABLE") {
+        return bookErr(req, 503, "verifier_unavailable", "Authentication is temporarily unavailable. Please retry.");
+      }
+      return bookErr(req, 401, "unauthenticated", "Authentication is required.");
+    }
+    if (isBookApiError(err)) {
+      return bookErr(req, err.status, err.code, err.message, err.details);
+    }
     console.error("[ask-book] Error:", err);
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }

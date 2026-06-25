@@ -111,13 +111,22 @@ export default function PrivacyPolicyPage() {
             6. Data Retention
           </h2>
           <p className="mb-3">
-            We retain your account data for as long as your account is active. If you cancel your subscription,
-            your reading progress and preferences are preserved so you can resume if you return.
+            We retain your account data — reading progress, notes, preferences, and entitlements — for as long as
+            your account is active. If you cancel your subscription, your reading progress and preferences are
+            preserved so you can resume if you return.
+          </p>
+          <p className="mb-3">
+            Some high-volume records are kept only for a limited time and then deleted automatically:
+            usage analytics events, share activity, and operational logs are retained for approximately
+            18 months. Certain records are kept longer where the law requires it — for example, billing and
+            tax records and fraud-prevention logs are retained for as long as needed to meet legal,
+            accounting, and security obligations.
           </p>
           <p className="mb-3">
             If you deactivate your account, your data is preserved and your account becomes inactive until you sign back in.
-            If you delete your account, it is marked as deleted and becomes non-functional. Backend data is retained
-            for operational and legal compliance purposes but is no longer used in the product.
+            If you delete your account, it is marked as deleted and becomes permanently non-functional; we retain your
+            backend data for legal-compliance, security, and fraud-prevention purposes, but it is no longer used in the
+            product. To fully erase or de-identify your personal data, request erasure as described below.
           </p>
           <p>
             To request complete erasure of your data, contact us at{" "}

@@ -94,3 +94,21 @@ export function formatRatingsCount(count: number): string {
   if (count >= 1_000) return `${Math.round(count / 1_000)}k`;
   return count.toString();
 }
+
+/**
+ * Source of these stars. The numbers in `BOOK_RATINGS` are a curated snapshot of
+ * public Goodreads aggregate data — they are NOT in-app/ChapterFlow reader
+ * ratings. Every UI surface that renders a `BookRating` MUST attribute the source
+ * (e.g. "… ratings on Goodreads") so users don't mistake them for a community
+ * score generated inside the app.
+ */
+export const RATINGS_SOURCE_LABEL = "Goodreads" as const;
+
+/**
+ * Compact, attributed ratings-count string for a render site, e.g.
+ * `1180000 -> "1.2M ratings on Goodreads"`. Centralizes the attribution copy so
+ * no render site can show the count without naming the source.
+ */
+export function formatAttributedRatingsCount(count: number): string {
+  return `${formatRatingsCount(count)} ratings on ${RATINGS_SOURCE_LABEL}`;
+}
