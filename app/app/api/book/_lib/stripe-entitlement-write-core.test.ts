@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   buildEntitlementUpdateFromStripe,
+  buildDisputeMarkerUpdate,
   type StripeEntitlementWriteParams,
 } from "./stripe-entitlement-write-core";
 
@@ -13,11 +14,15 @@ const PROSOURCE_GUARD =
 const ORDERING_GUARD =
   "(attribute_not_exists(lastStripeEventAt) OR lastStripeEventAt <= :eventCreated)";
 const DISPUTE_GUARD = "attribute_not_exists(disputeOpen)";
+const EXISTS_PK = "attribute_exists(PK)";
 const STAMP_SET = "lastStripeEventAt = :eventCreated";
 
 const UPDATED_AT = "2026-06-24T00:00:00.000Z";
 
 type StoredItem = {
+  // Whether the entitlement row exists at all (for attribute_exists(PK)).
+  // Defaults to true — an existing item is the common case.
+  pkExists?: boolean;
   proSource?: "stripe" | "license" | "flow_points" | "gift_code" | "admin" | null;
   lastStripeEventAt?: number;
   disputeOpen?: boolean;
@@ -53,6 +58,9 @@ function conditionApplies(
     }
     if (clause === DISPUTE_GUARD) {
       return stored.disputeOpen === undefined;
+    }
+    if (clause === EXISTS_PK) {
+      return stored.pkExists !== false;
     }
     throw new Error(`unrecognized condition clause: ${clause}`);
   });
@@ -275,5 +283,79 @@ test("dispute revocation always wins; disputeOpen then blocks even a newer activ
     ),
     false,
     "disputeOpen blocks re-activation regardless of event ordering",
+  );
+});
+
+// ── disputeOpen marker must be recorded for NON-stripe-PRO accounts ───────────
+// Regression: the combined dispute write (buildEntitlementUpdateFromStripe with
+// setDisputeOpen) carries the marker under the proSource guard, so a chargeback
+// on a license/flow_points/gift_code account is refused outright and the sticky
+// marker is silently lost — letting a later stale Stripe activation re-grant
+// PRO. The dedicated buildDisputeMarkerUpdate is the un-gated complement.
+
+test("BUG: combined dispute write is refused on a non-stripe item, dropping the disputeOpen marker", () => {
+  // A flow_points-PRO user (per the documented no-already-PRO checkout gap)
+  // opened a 2nd Stripe sub and charged it back.
+  const stored: StoredItem = { proSource: "flow_points" };
+  const built = buildEntitlementUpdateFromStripe(
+    {
+      plan: "FREE",
+      proStatus: "canceled",
+      setDisputeOpen: true,
+      stripeEventCreatedAt: 5000,
+    },
+    UPDATED_AT,
+  );
+  // The proSource guard rejects the whole write — including disputeOpen.
+  assert.ok(built.conditionParts.includes(PROSOURCE_GUARD));
+  assert.equal(
+    conditionApplies(built.conditionParts, built.expressionAttributeValues, stored),
+    false,
+    "the combined write does not apply, so the marker would be lost — this is the bug the dedicated write fixes",
+  );
+});
+
+test("FIX: buildDisputeMarkerUpdate(true) is un-gated by proSource — applies for every PRO source", () => {
+  const built = buildDisputeMarkerUpdate(true, UPDATED_AT);
+  // Only attribute_exists(PK); none of the entitlement-write guards.
+  assert.equal(built.conditionExpression, EXISTS_PK);
+  assert.doesNotMatch(built.conditionExpression, /proSource/);
+  assert.doesNotMatch(built.conditionExpression, /lastStripeEventAt/);
+  assert.doesNotMatch(built.conditionExpression, /disputeOpen/);
+  // Stamps the marker.
+  assert.match(built.updateExpression, /SET disputeOpen = :disputeOpen/);
+  assert.equal(built.expressionAttributeValues[":disputeOpen"], true);
+
+  const parts = [built.conditionExpression];
+  for (const src of ["flow_points", "license", "gift_code", "stripe"] as const) {
+    assert.equal(
+      conditionApplies(parts, built.expressionAttributeValues, { proSource: src }),
+      true,
+      `marker write must apply for proSource=${src}`,
+    );
+  }
+  // A missing entitlement row is a deliberate no-op (handled upstream by the
+  // branch's updateUserEntitlementFromStripe upsert).
+  assert.equal(
+    conditionApplies(parts, built.expressionAttributeValues, { pkExists: false }),
+    false,
+    "missing row → no-op",
+  );
+});
+
+test("FIX: buildDisputeMarkerUpdate(false) REMOVEs the marker, same un-gated condition (won-dispute clear)", () => {
+  const built = buildDisputeMarkerUpdate(false, UPDATED_AT);
+  assert.equal(built.conditionExpression, EXISTS_PK);
+  assert.match(built.updateExpression, /REMOVE disputeOpen/);
+  assert.equal(built.expressionAttributeValues[":disputeOpen"], undefined);
+  // A won dispute can clear a marker we planted on a non-stripe-PRO account.
+  assert.equal(
+    conditionApplies(
+      [built.conditionExpression],
+      built.expressionAttributeValues,
+      { proSource: "flow_points", disputeOpen: true },
+    ),
+    true,
+    "won-dispute clear must apply for a non-stripe account",
   );
 });

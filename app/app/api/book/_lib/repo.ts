@@ -97,7 +97,10 @@ import {
   type ExistingWebhookMarker,
 } from "./webhook-claim-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
-import { buildEntitlementUpdateFromStripe } from "./stripe-entitlement-write-core";
+import {
+  buildEntitlementUpdateFromStripe,
+  buildDisputeMarkerUpdate,
+} from "./stripe-entitlement-write-core";
 
 function readNum(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
@@ -2208,6 +2211,52 @@ export async function updateUserEntitlementFromStripe(
       // subscription IDs are still safe to attach via
       // attachStripeCustomerToEntitlement, and a retry of a genuinely stale
       // event would be refused identically, so there is nothing to retry.
+      return;
+    }
+    throw error;
+  }
+}
+
+/**
+ * Stamp (open=true) or remove (open=false) the sticky `disputeOpen` chargeback
+ * marker on a user's entitlement, INDEPENDENT of plan/proSource.
+ *
+ * `updateUserEntitlementFromStripe`'s combined dispute write carries the marker
+ * under its proSource guard, so for a non-stripe-PRO account (license /
+ * flow_points / gift_code / admin) the whole write — marker included — is
+ * refused, and the chargeback leaves no `disputeOpen` to block a later stale
+ * Stripe re-activation. The dispute webhook branches call this dedicated,
+ * un-gated write so the marker is always recorded (and symmetrically cleared on
+ * a won dispute) regardless of how the user obtained PRO.
+ *
+ * Condition is `attribute_exists(PK)` only: a missing entitlement row is a
+ * no-op (that case is already covered by the branch's
+ * updateUserEntitlementFromStripe upsert). Idempotent, so it is safe to call
+ * alongside the combined write on the stripe-source path.
+ */
+export async function setEntitlementDisputeMarker(
+  tableName: string,
+  userId: string,
+  open: boolean
+): Promise<void> {
+  const built = buildDisputeMarkerUpdate(open, nowIso());
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(userId),
+          SK: entitlementSk(),
+        },
+        ConditionExpression: built.conditionExpression,
+        UpdateExpression: built.updateExpression,
+        ExpressionAttributeValues: built.expressionAttributeValues,
+      })
+    );
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) {
+      // No entitlement row for this user → nothing to mark. (For a chargeback the
+      // row normally exists; this just guards the degenerate case.)
       return;
     }
     throw error;
