@@ -4,7 +4,11 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { getDepthModel, computeDepthRecommendation } from "@/app/app/api/book/_lib/depth-routing";
+import {
+  getDepthModel,
+  computeDepthRecommendation,
+  depthModelDataPoints,
+} from "@/app/app/api/book/_lib/depth-routing";
 
 export const runtime = "nodejs";
 
@@ -36,9 +40,13 @@ export async function GET(
       });
     }
 
+    // computeDepthRecommendation's second arg is the count of scored chapters
+    // ("data points"), NOT a chapter number. Older models predate the explicit
+    // counter, so resolve it via depthModelDataPoints (which falls back to
+    // lastUpdatedChapter for legacy rows).
     const recommendation = computeDepthRecommendation(
       model.featureVector,
-      model.lastUpdatedChapter
+      depthModelDataPoints(model)
     );
 
     return bookOk({
@@ -46,6 +54,7 @@ export async function GET(
       confidence: recommendation.confidence,
       reason: recommendation.reason,
       featureVector: model.featureVector,
+      dataPoints: depthModelDataPoints(model),
       lastUpdatedChapter: model.lastUpdatedChapter,
       hasData: true,
     });

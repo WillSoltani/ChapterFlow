@@ -919,6 +919,10 @@ export type BookUserDepthModelItem = {
   recommendedDepth: VariantKey;
   confidence: number;
   featureVector: DepthFeatureVector;
+  // Count of scored chapters folded into this model (NOT a chapter number).
+  // Drives the recommendation's "enough data" gate. Optional for backward-compat
+  // with items written before this counter existed — see depthModelDataPoints().
+  dataPoints?: number;
   lastUpdatedChapter: number;
   updatedAt: string;
 };
