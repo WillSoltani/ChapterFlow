@@ -8,6 +8,7 @@ import {
   unsubscribeHeaders,
   emailFooter,
   isEmailCategoryEnabled,
+  canSendCommercialEmail,
   TOKEN_TTL_SECONDS,
   type EmailCategory,
   type EmailComplianceConfig,
@@ -198,4 +199,40 @@ test("isEmailCategoryEnabled does not cross-suppress unrelated categories", () =
   // Opting out of streak must not silence celebration emails, and vice-versa.
   assert.equal(isEmailCategoryEnabled({ streakReminderEnabled: false }, "celebration"), true);
   assert.equal(isEmailCategoryEnabled({ badgeCelebrationEnabled: false }, "streak"), true);
+});
+
+// canSendCommercialEmail is the app-side commercial-email kill-switch. It MUST
+// mirror the cron Lambda's sendCompliantEmail gate (infra/lambda/lib/
+// email-compliance.ts): refuse to send unless there's a sender, a postal address,
+// AND a live app host. The appBaseUrl clause is the regression guard for the dead
+// `chapterflow.siliconx.ca` legacy-host fallback — an empty/missing host must skip
+// the send, not mint a non-working one-click unsubscribe link (a CASL violation).
+
+const FULL_CONFIG: Pick<
+  EmailComplianceConfig,
+  "senderEmail" | "postalAddress" | "appBaseUrl"
+> = {
+  senderEmail: "info@chapterflow.ca",
+  postalAddress: "123 Example St, Toronto, ON",
+  appBaseUrl: "https://app.chapterflow.ca",
+};
+
+test("canSendCommercialEmail passes only when sender, postal address, and app host are all set", () => {
+  assert.equal(canSendCommercialEmail(FULL_CONFIG), true);
+});
+
+test("canSendCommercialEmail refuses when the app host is empty (dead legacy-host fallback removed)", () => {
+  // Regression: getEmailComplianceConfig used to fall back to the dead
+  // "https://chapterflow.siliconx.ca" host, so this returned a (broken) URL and
+  // the app sent commercial email with a non-working unsubscribe link. With the
+  // fallback removed, appBaseUrl is "" and the send must be refused.
+  assert.equal(canSendCommercialEmail({ ...FULL_CONFIG, appBaseUrl: "" }), false);
+});
+
+test("canSendCommercialEmail refuses when the sender email is empty", () => {
+  assert.equal(canSendCommercialEmail({ ...FULL_CONFIG, senderEmail: "" }), false);
+});
+
+test("canSendCommercialEmail refuses when the postal address is empty", () => {
+  assert.equal(canSendCommercialEmail({ ...FULL_CONFIG, postalAddress: "" }), false);
 });

@@ -96,6 +96,31 @@ export type EmailComplianceConfig = {
   configurationSet: string;
 };
 
+/**
+ * Whether the runtime config permits sending a *commercial* (engagement) email.
+ * This is the kill-switch the cron Lambda's `sendCompliantEmail` already enforces
+ * (infra/lambda/lib/email-compliance.ts) and that the app-side commercial sender
+ * (`createNotification`) MUST mirror, or the two surfaces diverge:
+ *
+ *  - `senderEmail`    — nothing to send from.
+ *  - `postalAddress`  — CASL §6 / CAN-SPAM §5(a)(5) require a physical mailing
+ *                       address in every commercial email; the footer is invalid
+ *                       without one.
+ *  - `appBaseUrl`     — the one-click unsubscribe link, `List-Unsubscribe` header,
+ *                       and CTA links all need the live app host. An empty/dead
+ *                       host yields a non-working unsubscribe link, which is itself
+ *                       a CASL/CAN-SPAM violation — so refuse to send rather than
+ *                       point recipients at the dead legacy host.
+ *
+ * Transactional email (e.g. the trial-ending pre-charge notice) is exempt from
+ * the unsubscribe requirement and does NOT use this gate.
+ */
+export function canSendCommercialEmail(
+  config: Pick<EmailComplianceConfig, "senderEmail" | "postalAddress" | "appBaseUrl">,
+): boolean {
+  return Boolean(config.senderEmail && config.postalAddress && config.appBaseUrl);
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
