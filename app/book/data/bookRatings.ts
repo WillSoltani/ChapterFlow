@@ -19,7 +19,7 @@ export type BookRating = {
 export const BOOK_RATINGS: Record<string, BookRating> = {
   "clear-thinking": { rating: 4.06, ratingsCount: 12000 },
   "smarter-faster-better": { rating: 3.86, ratingsCount: 41000 },
-  "Getting-Things-Done": { rating: 3.98, ratingsCount: 150000 },
+  "getting-things-done": { rating: 3.98, ratingsCount: 150000 },
   "seven-powers": { rating: 4.23, ratingsCount: 4200 },
   "atomic-habits": { rating: 4.35, ratingsCount: 1180000 },
   "built-to-last": { rating: 4.02, ratingsCount: 79000 },
