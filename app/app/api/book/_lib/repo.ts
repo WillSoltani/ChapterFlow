@@ -107,6 +107,11 @@ import {
   buildEntitlementUpdateFromStripe,
   buildDisputeMarkerUpdate,
 } from "./stripe-entitlement-write-core";
+import {
+  buildBookMetaAndCatalogItems,
+  planMetaCatalogRollback,
+  type MetaCatalogSnapshot,
+} from "./ingest-rollback-core";
 
 function readNum(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
@@ -474,50 +479,93 @@ export async function upsertBookMetaAndCatalog(
   }
 ): Promise<void> {
   const updatedAt = nowIso();
+  const { metaItem, catalogItem } = buildBookMetaAndCatalogItems(params, updatedAt);
 
+  // META and CATALOG carry the SAME version pointer and MUST move together.
+  // Two independent PutCommands let META advance while CATALOG threw (throttle /
+  // transient), diverging the pair and — on an ingest rollback — stranding the
+  // book on a deleted version. One TransactWrite makes the pair atomic. (B5.)
   await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookPk(params.bookId),
-        SK: bookMetaSk(),
-        entity: "BOOK_META",
-        bookId: params.bookId,
-        title: params.title,
-        author: params.author,
-        categories: params.categories,
-        tags: params.tags,
-        cover: params.cover,
-        variantFamily: params.variantFamily,
-        latestVersion: params.latestVersion,
-        currentPublishedVersion: params.currentPublishedVersion,
-        status: params.status,
-        updatedAt,
-      },
+    new TransactWriteCommand({
+      TransactItems: [
+        { Put: { TableName: tableName, Item: metaItem } },
+        { Put: { TableName: tableName, Item: catalogItem } },
+      ],
     })
   );
+}
 
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: catalogPk(),
-        SK: catalogSk(params.bookId),
-        entity: "BOOK_CATALOG",
-        bookId: params.bookId,
-        title: params.title,
-        author: params.author,
-        categories: params.categories,
-        tags: params.tags,
-        cover: params.cover,
-        variantFamily: params.variantFamily,
-        latestVersion: params.latestVersion,
-        currentPublishedVersion: params.currentPublishedVersion,
-        status: params.status,
-        updatedAt,
-      },
-    })
-  );
+/**
+ * Snapshot the raw META + CATALOG rows for a book before an ingest advances
+ * their version pointer, so an ingest rollback can restore the previous pointer
+ * (or delete a freshly-created one). A side is `null` when no such row exists.
+ */
+export async function getMetaCatalogSnapshot(
+  tableName: string,
+  bookId: string
+): Promise<MetaCatalogSnapshot> {
+  const [metaRes, catalogRes] = await Promise.all([
+    ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: bookPk(bookId), SK: bookMetaSk() },
+      })
+    ),
+    ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: catalogPk(), SK: catalogSk(bookId) },
+      })
+    ),
+  ]);
+  return {
+    meta: (metaRes.Item as Record<string, unknown> | undefined) ?? null,
+    catalog: (catalogRes.Item as Record<string, unknown> | undefined) ?? null,
+  };
+}
+
+/**
+ * Undo an ingest's META/CATALOG pointer advance using a pre-write snapshot.
+ *
+ * - `wrotePointer === false`: the upsert never ran -> nothing to revert.
+ * - prior rows existed: put each prior row back exactly (a side that did NOT
+ *   exist before is deleted so the pair returns to its exact prior shape).
+ * - neither existed: the ingest created the very first pointer for this book, so
+ *   both rows are deleted (returning the table to its pre-ingest state) rather
+ *   than left pointing at the now-deleted version.
+ *
+ * Best-effort by design: the caller invokes this from a rollback `catch`, so a
+ * transient failure here is swallowed (the original error is what propagates).
+ */
+export async function restoreOrDeleteMetaCatalog(
+  tableName: string,
+  bookId: string,
+  snapshot: MetaCatalogSnapshot,
+  wrotePointer: boolean
+): Promise<void> {
+  const plan = planMetaCatalogRollback(snapshot, wrotePointer);
+  if (plan.kind === "noop") return;
+
+  const metaKey = { PK: bookPk(bookId), SK: bookMetaSk() };
+  const catalogKey = { PK: catalogPk(), SK: catalogSk(bookId) };
+
+  if (plan.kind === "delete") {
+    await Promise.all([
+      ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: metaKey })),
+      ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: catalogKey })),
+    ]);
+    return;
+  }
+
+  // restore: put back each prior row, delete the side that had no prior.
+  await Promise.all([
+    plan.meta
+      ? ddbDoc.send(new PutCommand({ TableName: tableName, Item: plan.meta }))
+      : ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: metaKey })),
+    plan.catalog
+      ? ddbDoc.send(new PutCommand({ TableName: tableName, Item: plan.catalog }))
+      : ddbDoc.send(new DeleteCommand({ TableName: tableName, Key: catalogKey })),
+  ]);
 }
 
 export async function publishBookVersion(
