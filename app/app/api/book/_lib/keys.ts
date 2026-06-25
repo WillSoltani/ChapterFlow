@@ -164,8 +164,49 @@ export function quizAttemptSk(timestampIso: string): string {
   return timestampIso;
 }
 
+/**
+ * Reconstruct the `quizAttemptPk` for a book+chapter from a `BOOK_USER_QUIZ_STATE`
+ * sort key (`QUIZSTATE#<bookId>#<paddedChapter>`, see `quizStateSk`).
+ *
+ * Quiz-ATTEMPT rows do NOT live under the user partition — they sit in their own
+ * partition keyed `QUIZATTEMPT#<userId>#<bookId>#<chapter>` (`quizAttemptPk`), so
+ * a `begins_with(SK, …)` sweep of the user partition (which clears QUIZSTATE#/LOOP#)
+ * cannot reach them. The submit route writes a quiz-state row alongside every
+ * recorded attempt, so the quiz-state SKs the reset already queries enumerate
+ * exactly the chapters that have an attempt partition. We rebuild the attempt PK
+ * from each one to delete those partitions during a reset (otherwise
+ * `buildQuizStateFromAttempts` reconstructs a stale `passed:true` from the
+ * surviving attempts and the reader stays locked).
+ *
+ * Greedy bookId capture (`(.+)#(\d+)$`) mirrors `quizAttemptPksFromUserItems` in
+ * account-erasure.ts so a bookId that itself contains "#" still reconstructs the
+ * exact PK the attempts were written under. Returns `null` for a non-quiz-state SK.
+ */
+export function quizAttemptPkFromQuizStateSk(
+  userId: string,
+  quizStateSkValue: string
+): string | null {
+  const match = /^QUIZSTATE#(.+)#(\d+)$/.exec(quizStateSkValue);
+  if (!match) return null;
+  const bookId = match[1];
+  const chapter = Number(match[2]);
+  if (!bookId || !Number.isFinite(chapter)) return null;
+  return quizAttemptPk(userId, bookId, chapter);
+}
+
 export function quizStateSk(bookId: string, chapterNumber: number): string {
   return `QUIZSTATE#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+/**
+ * SK prefix matching EVERY per-chapter quiz-state row for one book under a user
+ * partition (`begins_with(SK, …)`). Used by the per-book progress reset to
+ * sweep stale `BOOK_USER_QUIZ_STATE` rows. Must stay byte-identical to the
+ * `quizStateSk` prefix up to (and including) the trailing `#` so it can't match
+ * a sibling book whose id is a prefix of this one.
+ */
+export function quizStateSkPrefix(bookId: string): string {
+  return `QUIZSTATE#${bookId}#`;
 }
 
 export function quizScopeKey(bookId: string, chapterNumber: number): string {
@@ -258,6 +299,16 @@ export function achievementSk(achievementId: string): string {
 
 export function loopSk(bookId: string, chapterNumber: number): string {
   return `LOOP#${bookId}#${padChapterNumber(chapterNumber)}`;
+}
+
+/**
+ * SK prefix matching EVERY per-chapter learning-loop row for one book under a
+ * user partition (`begins_with(SK, …)`). Used by the per-book progress reset to
+ * sweep stale `BOOK_USER_LOOP` rows alongside the quiz-state rows. Must stay
+ * byte-identical to the `loopSk` prefix up to (and including) the trailing `#`.
+ */
+export function loopSkPrefix(bookId: string): string {
+  return `LOOP#${bookId}#`;
 }
 
 export function inventorySk(itemType: string, itemId: string): string {
