@@ -209,8 +209,14 @@ function parsePrefs(value: string | null): ReaderPrefs | null {
   }
 }
 
-function inferChapterNumber(chapterId: string) {
-  const match = chapterId.match(/(\d+)/);
+// G6: chapterIds are `<book-id>-ch<NN>` (e.g. "atomic-habits-ch02",
+// "the-5-am-club-ch01"). The old regex grabbed the FIRST digit run anywhere in
+// the id, so any book whose bookId contains a digit ("the-5-am-club") inferred
+// the WRONG chapter (5 instead of 1). Anchor on the `-ch<NN>` suffix instead;
+// only fall back to a loose digit scan if the suffix is absent.
+export function inferChapterNumber(chapterId: string) {
+  const suffixMatch = chapterId.match(/-ch0*(\d+)$/i) ?? chapterId.match(/ch0*(\d+)$/i);
+  const match = suffixMatch ?? chapterId.match(/(\d+)/);
   const value = match ? Number(match[1]) : NaN;
   const result = Number.isFinite(value) && value > 0 ? Math.floor(value) : 1;
   if (!match || result === 1) {

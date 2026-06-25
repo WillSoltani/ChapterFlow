@@ -1,6 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildDocumentThemeBootstrapScript, isWithinDarkWindow } from "./document-theme";
+import {
+  applyStoredDocumentTheme,
+  BOOK_THEME_STORAGE_KEY,
+  buildDocumentThemeBootstrapScript,
+  createSystemThemeChangeHandler,
+  isWithinDarkWindow,
+} from "./document-theme";
 
 // SET-8 / D3: scheduled night mode applies app-wide. The window math lives in
 // exactly one place (isWithinDarkWindow) and is mirrored, character for
@@ -130,4 +136,108 @@ test("bootstrap: schedule on but times missing → guarded, no theme blanking", 
   );
   assert.equal(r.dark, false);
   assert.equal(r.colorScheme, "light");
+});
+
+// --- H8: applyStoredDocumentTheme re-applies a live OS color-scheme change ---
+// The "system"-preference user keeps the app open and flips their OS to dark.
+// useThemePreference's prefers-color-scheme change handler now calls
+// applyStoredDocumentTheme(), which must re-read matchMedia and toggle the DOM
+// (.dark / colorScheme), not just React state. This locks that DOM behavior.
+
+type RootStubDOM = {
+  classList: { toggle(name: string, force?: boolean): void };
+  style: Record<string, string>;
+  dataset: Record<string, string>;
+};
+
+function withSystemTheme(
+  systemDark: boolean,
+  run: (root: { hasDark: () => boolean; colorScheme: () => string }) => void
+) {
+  const classes = new Set<string>();
+  const root: RootStubDOM = {
+    classList: {
+      toggle(name: string, force?: boolean) {
+        const shouldAdd = force === undefined ? !classes.has(name) : force;
+        if (shouldAdd) classes.add(name);
+        else classes.delete(name);
+      },
+    },
+    style: {},
+    dataset: {},
+  };
+
+  const g = globalThis as unknown as {
+    document?: unknown;
+    window?: unknown;
+  };
+  const prevDocument = g.document;
+  const prevWindow = g.window;
+
+  g.document = { documentElement: root };
+  g.window = {
+    matchMedia: (query: string) => ({
+      matches: query.includes("dark") ? systemDark : false,
+    }),
+    localStorage: {
+      // theme === "system" → resolution defers entirely to matchMedia.
+      getItem: (key: string) =>
+        key === BOOK_THEME_STORAGE_KEY
+          ? JSON.stringify({ appearance: { theme: "system" } })
+          : null,
+    },
+  };
+
+  try {
+    run({
+      hasDark: () => classes.has("dark"),
+      colorScheme: () => root.style.colorScheme,
+    });
+  } finally {
+    g.document = prevDocument;
+    g.window = prevWindow;
+  }
+}
+
+test("applyStoredDocumentTheme: system preference + OS dark → toggles .dark on", () => {
+  withSystemTheme(true, (root) => {
+    applyStoredDocumentTheme();
+    assert.equal(root.hasDark(), true);
+    assert.equal(root.colorScheme(), "dark");
+  });
+});
+
+test("applyStoredDocumentTheme: system preference + OS light → toggles .dark off", () => {
+  withSystemTheme(false, (root) => {
+    applyStoredDocumentTheme();
+    assert.equal(root.hasDark(), false);
+    assert.equal(root.colorScheme(), "light");
+  });
+});
+
+test("createSystemThemeChangeHandler: re-applies the DOM theme AND syncs state on an OS scheme flip", () => {
+  // This is the exact wiring useThemePreference attaches to the
+  // prefers-color-scheme 'change' event. Before H8 the handler only synced
+  // React state, leaving the document stale; it must now toggle the DOM too.
+  withSystemTheme(true, (root) => {
+    let synced = 0;
+    const handler = createSystemThemeChangeHandler(() => {
+      synced += 1;
+    });
+
+    handler();
+
+    assert.equal(root.hasDark(), true, "DOM .dark must be re-applied on OS flip");
+    assert.equal(root.colorScheme(), "dark");
+    assert.equal(synced, 1, "React-state sync must still run");
+  });
+});
+
+test("createSystemThemeChangeHandler: OS flip back to light untoggles .dark on the DOM", () => {
+  withSystemTheme(false, (root) => {
+    const handler = createSystemThemeChangeHandler(() => {});
+    handler();
+    assert.equal(root.hasDark(), false);
+    assert.equal(root.colorScheme(), "light");
+  });
 });

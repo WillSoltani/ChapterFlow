@@ -7,6 +7,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight } from "lucide-react";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
 import type { ActiveBook, LearningStep } from "./progressTypes";
+import { getBookHref } from "./book-href";
 import { StepIndicator } from "./StepIndicator";
 import { ChapterProgressBar } from "./ChapterProgressBar";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
@@ -25,13 +26,6 @@ const STEP_CTA: Record<LearningStep, string> = {
   quiz: "Take Quiz",
   unlock: "Unlock Next Chapter",
 };
-
-function getBookHref(book: ActiveBook): string {
-  if (book.completedChapters > 0 || book.currentStep !== "summary") {
-    return `/book/library/${encodeURIComponent(book.id)}/chapter/${encodeURIComponent(book.resumeChapterId)}`;
-  }
-  return `/book/library/${encodeURIComponent(book.id)}`;
-}
 
 export function ContinueLearningCard({
   primaryBook,
