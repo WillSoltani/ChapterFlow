@@ -1099,7 +1099,8 @@ export async function repointProgressVersion(
 export async function getUserProgress(
   tableName: string,
   userId: string,
-  bookId: string
+  bookId: string,
+  options?: { consistentRead?: boolean }
 ): Promise<BookUserProgress | null> {
   const res = await ddbDoc.send(
     new GetCommand({
@@ -1108,6 +1109,10 @@ export async function getUserProgress(
         PK: bookUserPk(userId),
         SK: progressSk(bookId),
       },
+      // Default stays eventually-consistent (every existing caller). The post-create
+      // re-read in ensureUserBookStarted opts into a strongly-consistent read so a
+      // just-written BOOK_PROGRESS row is guaranteed visible (A10 init-500 race).
+      ConsistentRead: options?.consistentRead === true ? true : undefined,
     })
   );
   const item = res.Item;
