@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import type {
   BookPackage,
   BookPackageBook,
@@ -307,6 +308,37 @@ export function isV21Raw(raw: unknown): boolean {
 }
 
 /**
+ * Derive a STABLE packageId from a v21 raw package when the author omitted one.
+ *
+ * The ingest idempotency mechanism (ingestion.ts) keys on `packageId` so that
+ * identical re-uploads (e.g. a retry after a transient failure) reuse the same
+ * version instead of multiplying versions and orphaning S3 content prefixes.
+ * A time-based fallback (`pkg-${Date.now()}`) defeats that entirely: a v21
+ * upload lacking packageId would get a DIFFERENT id on every attempt, so the
+ * idempotency check could never match. (B9.)
+ *
+ * Instead we hash the package's CONTENT — bookId plus the chapters array — so
+ * that re-uploading byte-identical content collides on the same id while a
+ * genuine content change yields a new id (correctly allocating a new version).
+ * `packageId` and `createdAt` are excluded from the hash because they are the
+ * synthesized/non-content fields themselves; including them would reintroduce
+ * non-determinism (createdAt defaults to `new Date()` per call). The result is
+ * `pkg-<24 hex chars>` (well under the validator's 120-char bound).
+ */
+function deriveStablePackageId(raw: Record<string, unknown>): string {
+  const bookId = isRecord(raw.book) ? asString(raw.book.bookId) : "";
+  // JSON.stringify gives a deterministic serialization for the content we read
+  // back (object key order is preserved from the parsed JSON, and arrays are
+  // ordered). We deliberately hash only the content-bearing fields.
+  const material = JSON.stringify({
+    bookId,
+    chapters: Array.isArray(raw.chapters) ? raw.chapters : [],
+  });
+  const digest = createHash("sha256").update(material).digest("hex").slice(0, 24);
+  return `pkg-${digest}`;
+}
+
+/**
  * Convert a v21-authored raw package to the v13-shape BookPackage that the
  * existing validator and ingestion pipeline expect. Performs its OWN structural
  * coercion (incl. the v21-only extras like experiencePlan/behaviorLoop) as it
@@ -330,7 +362,10 @@ export function adaptV21ToV13(raw: unknown): BookPackage {
   const chapters = Array.isArray(r.chapters) ? r.chapters : [];
   return {
     schemaVersion: "chapterflow-v21-authored",
-    packageId: asString(r.packageId) || `pkg-${Date.now()}`,
+    // Deterministic content-derived id when the author omits packageId, so
+    // ingest idempotency (keyed on packageId) survives retries. A time-based
+    // fallback would mint a fresh id per call and orphan content prefixes. (B9.)
+    packageId: asString(r.packageId) || deriveStablePackageId(r),
     createdAt: asString(r.createdAt) || new Date().toISOString(),
     contentOwner: asString(r.contentOwner) || "chapterflow",
     book: adaptBook(r.book),
