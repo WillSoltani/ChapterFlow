@@ -106,4 +106,10 @@ test("a redeemed license never shortens a longer existing grant", () => {
   apply({});
   apply({ plan: "PRO", proSource: "license", licenseExpiresAt: EARLIER });
   apply({ plan: "PRO", proSource: "flow_points", currentPeriodEnd: EARLIER, licenseExpiresAt: null });
+
+  // C3: a charged-back user (disputeOpen) is blocked even when the license would
+  // otherwise renew an expired window — repo.ts re-reads on this failure and returns
+  // a dispute_hold error rather than consuming the key.
+  refuse({ plan: "FREE", disputeOpen: true });
+  refuse({ plan: "PRO", proSource: "license", licenseExpiresAt: EARLIER, disputeOpen: true });
 });

@@ -3536,9 +3536,26 @@ export async function redeemLicenseKey(
       // Index 1 = entitlement guard (the shared pro-grant guard): the redemption
       // would clobber/shorten a longer-lived or open-ended Pro grant — an active
       // paid Stripe sub, an admin comp, or a license/flow_points/gift window that
-      // outlasts this license. We refuse so the longer grant survives; the
-      // transaction rolled back, so the key was NOT consumed and stays valid.
+      // outlasts this license — OR an unresolved chargeback marker (disputeOpen)
+      // blocks the (re)grant entirely (C3). We refuse so the longer grant / hold
+      // survives; the transaction rolled back, so the key was NOT consumed.
       if (reasons[1]?.Code === "ConditionalCheckFailed") {
+        // Re-read to report the accurate reason. The dispute hold takes priority:
+        // a charged-back user must not be told their key is "still valid for later"
+        // as if they merely had longer access.
+        const entRes = await ddbDoc.send(
+          new GetCommand({
+            TableName: tableName,
+            Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
+          })
+        );
+        if (entRes.Item?.disputeOpen) {
+          throw new BookApiError(
+            409,
+            "dispute_hold",
+            "Your account is on hold pending resolution of a payment dispute, so the license key was not applied. The key remains valid once the dispute is resolved."
+          );
+        }
         throw new BookApiError(
           409,
           "pro_grant_active",

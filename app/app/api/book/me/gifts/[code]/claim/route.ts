@@ -157,6 +157,16 @@ export async function POST(
               Key: { PK: bookUserPk(user.sub), SK: entitlementSk() },
             })
           );
+          // Sticky chargeback hold (C3): an unresolved dispute blocks every PRO
+          // (re)grant, including this gift, until dispute.closed(won) clears the
+          // marker. Reported first — it takes priority over plan/expiry state.
+          if (entRes.Item?.disputeOpen) {
+            throw new BookApiError(
+              409,
+              "dispute_hold",
+              "Your account is on hold pending resolution of a payment dispute, so the gift could not be applied. Once the dispute is resolved you can redeem it."
+            );
+          }
           if (entRes.Item?.proSource === "stripe") {
             throw new BookApiError(
               409,

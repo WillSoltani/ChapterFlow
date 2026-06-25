@@ -861,6 +861,16 @@ export async function redeemFlowPointsReward(
           Key: { PK: bookUserPk(params.userId), SK: entitlementSk() },
         })
       );
+      // Sticky chargeback hold (C3): an unresolved dispute blocks every PRO
+      // (re)grant, including this pro-pass, until dispute.closed(won) clears the
+      // marker. Points were not spent (the transaction rolled back atomically).
+      if (entRes.Item?.disputeOpen) {
+        throw new BookApiError(
+          409,
+          "dispute_hold",
+          "Your account is on hold pending resolution of a payment dispute, so the Pro pass could not be applied. Your Insight Points were not spent."
+        );
+      }
       if (entRes.Item?.proSource === "stripe") {
         throw new BookApiError(
           409,

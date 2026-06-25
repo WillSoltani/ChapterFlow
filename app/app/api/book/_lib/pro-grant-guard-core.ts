@@ -14,12 +14,24 @@ export interface ExistingGrant {
   proSource?: string | null; // "stripe" | "admin" | "license" | "gift_code" | "flow_points" | null | absent
   licenseExpiresAt?: string | null; // ISO-8601, or null/absent
   currentPeriodEnd?: string | null; // ISO-8601, or null/absent
+  // Sticky chargeback marker (L13/C3). Set true by the charge.dispute.created
+  // downgrade (stripe-entitlement-write-core), cleared (REMOVEd) only by a
+  // dispute.closed(won). While present, NO PRO grant may be (re)applied — not via
+  // Stripe and not via license / gift / flow_points — so a charged-back user can't
+  // immediately restore PRO through a non-Stripe path.
+  disputeOpen?: boolean | null; // true while a chargeback is unresolved, else absent
 }
 
 export function grantUpgradeApplies(
   existing: ExistingGrant,
   candidateExpiryIso: string
 ): boolean {
+  // Sticky chargeback hold (C3): an unresolved dispute blocks EVERY PRO (re)grant,
+  // regardless of plan/source/expiry. Mirrors the Stripe path's
+  // `attribute_not_exists(disputeOpen)` guard so the three non-Stripe grant sites
+  // can't readmit a charged-back user. The marker is removed (not set false) when a
+  // dispute is won, so "present at all" is the hold.
+  if (existing.disputeOpen) return false;
   // No active PRO grant → always apply (the gift/pass starts or refreshes access).
   if (existing.plan !== "PRO") return true;
   // Never overwrite a stripe-billed sub (would orphan billing) or an open-ended
@@ -35,18 +47,27 @@ export function grantUpgradeApplies(
 }
 
 // ── ENFORCEMENT: the DynamoDB ConditionExpression implementing grantUpgradeApplies ──
-// Both write sites build the condition from this single function so the long
-// expression cannot drift between them (the prior bug: the gift route was fixed
-// while the flow_points sibling kept the old stripe-only guard). `expiryRef` is the
-// ExpressionAttributeValues key holding the candidate-expiry ISO string — the same
+// All three non-Stripe grant sites build the condition from this single function so
+// the long expression cannot drift between them (the prior bug: the gift route was
+// fixed while the flow_points sibling kept the old stripe-only guard). `expiryRef` is
+// the ExpressionAttributeValues key holding the candidate-expiry ISO string — the same
 // key the caller's SET clause assigns to currentPeriodEnd (":expires" / ":periodEnd").
+//
+// The outer `AND attribute_not_exists(disputeOpen)` is the sticky-chargeback hold
+// (C3): an unresolved dispute blocks EVERY (re)grant, mirroring the Stripe path's
+// guard (stripe-entitlement-write-core: `attribute_not_exists(disputeOpen)`). It is a
+// top-level AND so it overrides the "no PRO grant → always apply" branch — otherwise a
+// charged-back user (downgraded to FREE, disputeOpen=true) could restore PRO via
+// license / gift / flow_points. On the conditional failure each caller re-reads the
+// entitlement and returns an "account on hold pending dispute" error.
 export function grantUpgradeConditionExpression(expiryRef: string): string {
   return (
-    `(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ` +
+    `((attribute_not_exists(#plan) OR #plan <> :proPlan) OR ` +
     `((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND ` +
     `(attribute_not_exists(proSource) OR proSource <> :adminSource) AND ` +
     `(attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < ${expiryRef}) AND ` +
-    `(attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < ${expiryRef}))`
+    `(attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < ${expiryRef}))) ` +
+    `AND attribute_not_exists(disputeOpen)`
   );
 }
 
