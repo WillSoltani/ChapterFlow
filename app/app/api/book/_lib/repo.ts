@@ -12,6 +12,7 @@ import {
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
 import { isBookCompleted } from "./book-completion-core";
+import { paginateQuery } from "./query-pagination-core";
 import { buildLicenseEntitlementGrant } from "./license-grant-core";
 import { buildIngestionJobUpdate } from "./ingestion-job-update-core";
 import {
@@ -227,18 +228,15 @@ function isConditionalCheckFailed(error: unknown): boolean {
 }
 
 /**
- * Hard cap on the number of 1MB pages a full-partition query will follow.
- * Guards against a pathological/runaway partition pinning a request forever.
- * 50 pages × 1MB is well beyond any realistic per-user or catalog partition.
- */
-const MAX_QUERY_PAGES = 50;
-
-/**
  * Run a DynamoDB Query and follow `LastEvaluatedKey` until the full result set
  * has been read, accumulating every page's `Items`. A single `QueryCommand`
  * returns at most 1MB, so any unbounded full-partition list must paginate or it
  * silently truncates as the partition grows. Mirrors the loop already used in
  * admin-metrics.ts / economy-health.ts / soft-decay.ts.
+ *
+ * The page-following loop itself lives in `query-pagination-core.ts` (a pure,
+ * `server-only`-free seam so it can be unit-tested); this wrapper just supplies
+ * `ddbDoc.send`.
  *
  * Pass the same input you would give `QueryCommand` (without
  * `ExclusiveStartKey`); a `Limit`, if supplied, is treated as a per-page hint.
@@ -246,20 +244,15 @@ const MAX_QUERY_PAGES = 50;
 async function queryAllItems(
   input: Omit<QueryCommandInput, "ExclusiveStartKey">
 ): Promise<Record<string, unknown>[]> {
-  const items: Record<string, unknown>[] = [];
-  let lastKey: Record<string, unknown> | undefined;
-  let pages = 0;
-  do {
+  return paginateQuery(async (exclusiveStartKey) => {
     const res = await ddbDoc.send(
-      new QueryCommand({ ...input, ExclusiveStartKey: lastKey })
+      new QueryCommand({ ...input, ExclusiveStartKey: exclusiveStartKey })
     );
-    for (const item of res.Items ?? []) {
-      items.push(item);
-    }
-    lastKey = res.LastEvaluatedKey as Record<string, unknown> | undefined;
-    pages += 1;
-  } while (lastKey && pages < MAX_QUERY_PAGES);
-  return items;
+    return {
+      items: res.Items ?? [],
+      lastEvaluatedKey: res.LastEvaluatedKey as Record<string, unknown> | undefined,
+    };
+  });
 }
 
 export async function listPublishedCatalogItems(tableName: string): Promise<BookCatalogItem[]> {
@@ -376,19 +369,25 @@ export async function getBookVersion(
 }
 
 export async function listBookVersions(tableName: string, bookId: string): Promise<BookVersionItem[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookPk(bookId),
-        ":prefix": "VERSION#",
-      },
-      ScanIndexForward: false,
-    })
-  );
+  // Route through queryAllItems (like listPublishedCatalogItems / listLicenseKeys /
+  // listAllUserProgress) so every 1MB page is read. A single QueryCommand returns at
+  // most 1MB; this is a full-partition list with no Limit, so without pagination a book
+  // that accumulates enough VERSION# items past one page silently drops the oldest
+  // versions — which would break the ingestion idempotency check (a missed packageId
+  // match allocates a duplicate version and orphans its content prefix). queryAllItems
+  // continues each page from LastEvaluatedKey, so ScanIndexForward:false (newest-first)
+  // order is preserved across page boundaries.
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookPk(bookId),
+      ":prefix": "VERSION#",
+    },
+    ScanIndexForward: false,
+  });
   const out: BookVersionItem[] = [];
-  for (const item of res.Items ?? []) {
+  for (const item of rows) {
     const version = readNum(item.version);
     if (!version) continue;
     out.push({
