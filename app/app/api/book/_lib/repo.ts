@@ -11,6 +11,7 @@ import {
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
 import { buildLicenseEntitlementGrant } from "./license-grant-core";
+import { buildIngestionJobUpdate } from "./ingestion-job-update-core";
 import {
   badgeAwardSk,
   approvedScenarioPk,
@@ -685,6 +686,17 @@ export async function updateIngestionJob(
   }
 ) {
   const ts = nowIso();
+  // Build the update dynamically so a partial transition (e.g. RUNNING -> FAILED,
+  // which passes no bookId) does not clobber a previously stored bookId/details/
+  // errorReportKey to NULL. Only fields the caller actually supplied are written.
+  // Spec + truth-table: ingestion-job-update-core.ts.
+  const update = buildIngestionJobUpdate({
+    status: params.status,
+    updatedAt: ts,
+    details: params.details,
+    errorReportKey: params.errorReportKey,
+    bookId: params.bookId,
+  });
   await ddbDoc.send(
     new UpdateCommand({
       TableName: tableName,
@@ -692,18 +704,9 @@ export async function updateIngestionJob(
         PK: ingestJobPk(jobId),
         SK: ingestJobSk(),
       },
-      UpdateExpression:
-        "SET #status = :status, details = :details, errorReportKey = :errorReportKey, bookId = :bookId, updatedAt = :updatedAt",
-      ExpressionAttributeNames: {
-        "#status": "status",
-      },
-      ExpressionAttributeValues: {
-        ":status": params.status,
-        ":details": params.details ?? null,
-        ":errorReportKey": params.errorReportKey ?? null,
-        ":bookId": params.bookId ?? null,
-        ":updatedAt": ts,
-      },
+      UpdateExpression: update.UpdateExpression,
+      ExpressionAttributeNames: update.ExpressionAttributeNames,
+      ExpressionAttributeValues: update.ExpressionAttributeValues,
     })
   );
 }
