@@ -389,7 +389,7 @@ export function checkAuthoringContract(ch: ChapterV21, opts?: { sidecar?: any; f
   // generator) was prototyped here but DROPPED — on a frozen/restored repo many
   // legitimate chapters share a batch timeframe with the generators, so it
   // false-fired on the clean gold book. Slot-fill protection is instead: the
-  // generators are quarantined (scratch/_QUARANTINED-slot-fill/), and the
+  // slot-fill generators were removed (formerly scratch/_QUARANTINED-slot-fill/), and the
   // content checks above catch slot-fill OUTPUT regardless of when it was saved.
 
   return out;
