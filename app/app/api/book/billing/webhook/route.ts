@@ -9,6 +9,7 @@ import {
   mapStripeCustomerToUser,
   recordBillingEvent,
   updateUserEntitlementFromStripe,
+  setEntitlementDisputeMarker,
 } from "@/app/app/api/book/_lib/repo";
 import { analyticsTrackSubscription } from "@/app/app/api/book/_lib/analytics-repo";
 import {
@@ -469,9 +470,12 @@ export async function POST(req: Request) {
       // A chargeback. Policy: record it AND revoke access immediately — the
       // customer reversed payment, so Pro ends now. The proSource guard inside
       // updateUserEntitlementFromStripe protects license/gift/flow_points users;
-      // only a stripe-source entitlement is downgraded. The Dispute object
-      // carries the charge id but not the customer, so retrieve the charge to
-      // resolve customer → user.
+      // only a stripe-source entitlement is downgraded. The sticky disputeOpen
+      // marker, however, is recorded for ALL account types via the dedicated
+      // un-gated setEntitlementDisputeMarker below — otherwise a chargeback on a
+      // non-stripe-PRO account would leave no marker and a later stale Stripe
+      // activation could re-grant Pro. The Dispute object carries the charge id
+      // but not the customer, so retrieve the charge to resolve customer → user.
       const dispute = event.data.object as {
         id: string;
         charge?: string | null;
@@ -531,6 +535,11 @@ export async function POST(req: Request) {
           // guard here, not lastStripeEventAt) — see stripe-entitlement-write-core.
           stripeEventCreatedAt: event.created,
         });
+        // Guarantee the sticky marker even when the combined write above is
+        // refused by the proSource guard (non-stripe-PRO account). Un-gated by
+        // proSource; idempotent, so harmless on the stripe-source path where the
+        // marker was already set atomically with the downgrade.
+        await setEntitlementDisputeMarker(tableName, userId, true);
       }
     } else if (event.type === "charge.dispute.closed") {
       // A dispute resolved. If we WON, the chargeback was reversed in our favor,
@@ -560,6 +569,11 @@ export async function POST(req: Request) {
             clearDisputeOpen: true,
             stripeEventCreatedAt: event.created,
           });
+          // Symmetric to dispute-created: guarantee the marker is lifted even
+          // when the combined write is refused by the proSource guard (a marker
+          // we planted on a non-stripe-PRO account), so a won dispute always
+          // restores the ability to legitimately re-subscribe via Stripe.
+          await setEntitlementDisputeMarker(tableName, userId, false);
         }
       }
     } else if (event.type === "customer.deleted") {

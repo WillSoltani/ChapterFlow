@@ -247,3 +247,52 @@ export function buildEntitlementUpdateFromStripe(
     conditionParts,
   };
 }
+
+export type DisputeMarkerUpdate = {
+  updateExpression: string;
+  conditionExpression: string;
+  expressionAttributeValues: Record<string, unknown>;
+};
+
+/**
+ * Build the UpdateCommand pieces for stamping (or removing) the sticky
+ * `disputeOpen` chargeback marker INDEPENDENT of plan/proSource.
+ *
+ * `buildEntitlementUpdateFromStripe` carries `disputeOpen` on the same write as
+ * the plan downgrade, gated by the proSource guard. That is correct for the
+ * downgrade (a chargeback must not clobber a legitimate license/flow_points/gift
+ * grant), but it means the marker is LOST whenever the guard refuses the write —
+ * exactly the accounts (non-stripe proSource) for which a stale, reordered
+ * Stripe activation later needs blocking. This builder is the dedicated,
+ * un-gated marker path used by both dispute branches so the marker is recorded
+ * (set on dispute-created, removed on dispute-won) regardless of proSource.
+ *
+ * Condition is only `attribute_exists(PK)`: the entitlement row must exist, but
+ * its proSource is irrelevant. A missing row is intentionally a no-op here — the
+ * dispute branch's `updateUserEntitlementFromStripe` call upserts a fresh row
+ * (its `attribute_not_exists(proSource)` clause holds) and stamps the marker
+ * there, so only the existing-non-stripe-row case needs this complementary write.
+ *
+ * Boolean attribute only — never writes an empty Set (keeps the
+ * convertEmptyValues-off marshalling invariant intact).
+ */
+export function buildDisputeMarkerUpdate(
+  open: boolean,
+  updatedAtIso: string,
+): DisputeMarkerUpdate {
+  if (open) {
+    return {
+      updateExpression: "SET disputeOpen = :disputeOpen, updatedAt = :updatedAt",
+      conditionExpression: "attribute_exists(PK)",
+      expressionAttributeValues: {
+        ":disputeOpen": true,
+        ":updatedAt": updatedAtIso,
+      },
+    };
+  }
+  return {
+    updateExpression: "SET updatedAt = :updatedAt REMOVE disputeOpen",
+    conditionExpression: "attribute_exists(PK)",
+    expressionAttributeValues: { ":updatedAt": updatedAtIso },
+  };
+}
