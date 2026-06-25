@@ -12,6 +12,7 @@ import {
 } from "@/app/app/api/book/_lib/env";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
 import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
+import { sanitizeLastOpenedAt } from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import {
   getUserBookState,
@@ -257,8 +258,13 @@ export async function PATCH(
       ? requestedLastRead
       : currentChapterId;
 
-    const lastOpenedAt =
-      typeof rawState.lastOpenedAt === "string" ? rawState.lastOpenedAt : now;
+    // `lastOpenedAt` is client-supplied UI metadata, but it feeds the "book started"
+    // badge clause (lastOpenedAt !== epoch) and recency / last-read sorting — so it
+    // must be validated and clamped (numeric, parseable, never in the future) before
+    // it lands in BOTH the BOOK_USER_BOOK_STATE projection (nextState below) and the
+    // canonical BOOK_PROGRESS row (the UpdateCommand further down). A garbage or
+    // far-future value would otherwise corrupt those surfaces.
+    const lastOpenedAt = sanitizeLastOpenedAt(rawState.lastOpenedAt, now);
 
     const nextState: BookUserBookStateItem = {
       userId: user.sub,
