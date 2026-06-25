@@ -94,3 +94,74 @@ test("scheduleCard: omitting the target keeps the proven 0.9 default (backward-c
   assert.equal(implicit.scheduledDays, explicit.scheduledDays);
   assert.equal(implicit.dueAt, explicit.dueAt);
 });
+
+// ── C4: a lapse must never INCREASE stability (post-lapse clamp) ───────────────
+//
+// The raw FSRS-5 forget-stability formula can return S_forget > S_prior for a
+// low-difficulty, low-stability card reviewed well overdue (low retrievability).
+// Without the `min(S_forget, S_prior)` clamp, pressing "Again" (rating 1) would
+// schedule the just-failed card FURTHER out than it was before the failure —
+// the opposite of what a lapse should do.
+
+/**
+ * A card crafted to trigger the unclamped-formula bug: minimum difficulty
+ * (d=1 ⇒ d^-w12 is largest), small prior stability, and reviewed a year
+ * overdue (low retrievability). With the default weights the raw forget
+ * formula overshoots to ~5.08 here — far above the prior stability of 2 —
+ * which (unclamped) would schedule the just-FAILED card ~5 days out vs the
+ * ~2 days the clamped value gives.
+ */
+function staleLapseCard(): FSRSCardState {
+  return {
+    ...createNewCard("book:ch01-c2", "user-1", "book", 1, "front", "back"),
+    state: "review",
+    stability: 2, // prior stability the lapse must not exceed
+    difficulty: 1, // minimum difficulty ⇒ formula yields its largest output
+    reps: 4,
+    lapses: 0,
+    // Last reviewed 365 days before NOW ⇒ retrievability ≈ 0.15.
+    lastReviewAt: new Date(NOW.getTime() - 365 * 86400000).toISOString(),
+  };
+}
+
+test("scheduleCard: a lapse never increases stability (clamped to prior) — C4", () => {
+  const card = staleLapseCard();
+  const lapsed = scheduleCard(card, 1, NOW);
+
+  // The headline invariant: post-lapse stability must not exceed the prior.
+  // Pre-fix the raw forget formula returns ~5.08 here, violating this.
+  assert.ok(
+    lapsed.stability <= card.stability,
+    `post-lapse stability (${lapsed.stability}) must be ≤ prior stability (${card.stability})`
+  );
+  // It transitions to relearning and counts the lapse.
+  assert.equal(lapsed.state, "relearning");
+  assert.equal(lapsed.lapses, card.lapses + 1);
+});
+
+test("scheduleCard: failing a card schedules it no FURTHER out than the unclamped formula would — C4", () => {
+  const card = staleLapseCard();
+  const lapsed = scheduleCard(card, 1, NOW);
+
+  // With the clamp, stability stays at the prior 2 ⇒ a short relearning
+  // interval. Pre-fix the ~5.08 stability scheduled it ~5 days out — the
+  // opposite of what a failure should do. Assert the concrete clamped interval
+  // so a regression that drops the clamp is caught at the schedule level too.
+  assert.equal(lapsed.stability, card.stability); // clamped exactly to prior (2)
+  assert.equal(lapsed.scheduledDays, 2);
+});
+
+test("scheduleCard: lapse stability is floored at 0.1 — C4", () => {
+  // A genuinely tiny prior stability still yields the 0.1 floor (matching
+  // initStability), never 0 or negative, so retrievability/interval stay sane.
+  const card: FSRSCardState = {
+    ...staleLapseCard(),
+    stability: 0.05,
+    lastReviewAt: new Date(NOW.getTime() - 1 * 86400000).toISOString(),
+  };
+  const lapsed = scheduleCard(card, 1, NOW);
+  assert.ok(
+    lapsed.stability >= 0.1,
+    `lapse stability (${lapsed.stability}) must be floored at 0.1`
+  );
+});
