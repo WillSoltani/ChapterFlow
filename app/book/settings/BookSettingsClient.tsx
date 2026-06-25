@@ -30,6 +30,10 @@ import { useBookViewer } from "@/app/book/hooks/useBookViewer";
 import { fetchBookJson, redirectToReauth, isReauthResponse } from "@/app/book/_lib/book-api";
 
 // New settings hooks
+import {
+  buildReminderSchedulePatch,
+  buildReadingReminderTogglePatch,
+} from "./lib/reminder-consent-core";
 import { useSettingsPage } from "./hooks/useSettingsPage";
 import { useSettingsSearch } from "./hooks/useSettingsSearch";
 import { usePersonalizationScore } from "./hooks/usePersonalizationScore";
@@ -302,16 +306,34 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   const persistReminderSchedule = useCallback((timeLocal: string) => {
     fetchBookJson("/app/api/book/me/settings", {
       method: "PATCH",
-      body: JSON.stringify({
-        settings: {
-          notifications: {
-            reminderTimeLocal: timeLocal,
-            reminderTimezone: detectReminderTimezone(),
-          },
-        },
-      }),
+      body: JSON.stringify(
+        buildReminderSchedulePatch(timeLocal, detectReminderTimezone()),
+      ),
     }).catch(() => {});
   }, []);
+
+  // F4: The reading-reminder cron only sends the reminder EMAIL when the user
+  // has opted into the email channel (`settings.notifications.channels.email ===
+  // true`, the canonical opt-IN gate shared by every nudge sender — see PR 309).
+  // Nothing in the settings UI ever wrote that flag, so the email NEVER sent and
+  // users got only the in-app notification. Enabling reading reminders is the
+  // explicit opt-in moment: record `channels.email: true` on the same dedicated
+  // PATCH that carries the canonical send-time fields. Disabling reminders does
+  // NOT clear it — that would silently opt the user out of unrelated email
+  // categories (weekly digest, welcome-back); the one-click unsubscribe route is
+  // the sole email opt-out path. (Deep-merge means we only ADD channels.email.)
+  const persistReminderEmailOptIn = useCallback((enabled: boolean) => {
+    const patch = buildReadingReminderTogglePatch(
+      enabled,
+      detectReminderTimezone(),
+      onboarding.reminderTime || undefined,
+    );
+    if (!patch) return;
+    fetchBookJson("/app/api/book/me/settings", {
+      method: "PATCH",
+      body: JSON.stringify(patch),
+    }).catch(() => {});
+  }, [onboarding.reminderTime]);
 
   // H26 backfill: users who chose a reminder time before this fix have
   // profile.reminderTime but no settings.notifications.reminderTimeLocal/zone,
@@ -321,6 +343,12 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
   // full-state sync (≤500ms) so the read sees a settled row and the write lands
   // last (those keys are never carried by the full-state sync, so it can only
   // preserve them, never overwrite).
+  //
+  // F4 backfill: the same one-shot effect also seeds the email opt-in
+  // (`channels.email: true`) for users who already had reminders ON before the
+  // opt-in was ever written — including those H26 already gave a reminderTime, who
+  // would otherwise short-circuit the seed below. Without this their reminder
+  // email stays gated off forever (the cron requires channels.email === true).
   const reminderBackfilledRef = useRef(false);
   useEffect(() => {
     if (!hydrated || reminderBackfilledRef.current) return;
@@ -330,19 +358,28 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     const timer = window.setTimeout(() => {
       fetchBookJson<{
         settings: {
-          notifications?: { reminderTimeLocal?: unknown; reminderTimezone?: unknown };
+          notifications?: {
+            reminderTimeLocal?: unknown;
+            reminderTimezone?: unknown;
+            channels?: { email?: unknown };
+          };
         } | null;
       }>("/app/api/book/me/settings")
         .then((payload) => {
           if (cancelled) return;
           const notif = payload.settings?.notifications;
-          if (
+          const hasSchedule =
             typeof notif?.reminderTimeLocal === "string" &&
-            typeof notif?.reminderTimezone === "string"
-          ) {
+            typeof notif?.reminderTimezone === "string";
+          if (!hasSchedule) {
+            // Seeding the schedule already carries channels.email: true.
+            persistReminderSchedule(onboarding.reminderTime || "20:00");
             return;
           }
-          persistReminderSchedule(onboarding.reminderTime || "20:00");
+          // Schedule already canonical (H26) — only the email opt-in may be missing.
+          if (notif?.channels?.email !== true) {
+            persistReminderEmailOptIn(true);
+          }
         })
         .catch(() => {});
     }, 1200);
@@ -355,6 +392,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     preferences.notifications.readingReminderEnabled,
     onboarding.reminderTime,
     persistReminderSchedule,
+    persistReminderEmailOptIn,
   ]);
 
   // Derived state
@@ -1338,7 +1376,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
             >
               <ToggleSwitch
                 checked={hydrated ? preferences.notifications.readingReminderEnabled : true}
-                onChange={(v) => { patchSection("notifications", { readingReminderEnabled: v }); announce(`Reading reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
+                onChange={(v) => { patchSection("notifications", { readingReminderEnabled: v }); persistReminderEmailOptIn(v); announce(`Reading reminders ${v ? "enabled" : "disabled"}`); triggerToast(); }}
                 label="Reading reminders"
               />
             </SettingRow>
