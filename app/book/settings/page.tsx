@@ -1,19 +1,10 @@
 import { requireDashboardAccess } from "@/app/_lib/require-dashboard-access";
 import { requireUser } from "@/app/app/api/_lib/auth";
+import { getBookAdminGroupName } from "@/app/app/api/book/_lib/env";
+import { isUserInAdminGroup } from "@/app/app/api/book/_lib/admin-group-core";
 import { BookSettingsClient } from "@/app/book/settings/BookSettingsClient";
 import type { BillingInterval } from "@/app/book/hooks/useBookEntitlements";
 import packageJson from "@/package.json";
-
-function splitCsv(value: string | undefined): string[] {
-  return String(value ?? "")
-    .split(",")
-    .map((item) => item.trim())
-    .filter(Boolean);
-}
-
-function normalizeEmail(value: string | undefined) {
-  return String(value ?? "").trim().toLowerCase();
-}
 
 /** The upgrade deep-link (e.g. from the landing "Annual" toggle) may carry a
  *  `plan` hint so the billing card pre-selects that interval. Validate it before
@@ -39,10 +30,14 @@ export default async function BookSettingsPage({
     const user = await requireUser();
     userEmail = user.email ?? null;
 
-    const allowedSubs = new Set(splitCsv(process.env.ADMIN_SUBS));
-    const allowedEmails = new Set(splitCsv(process.env.ADMIN_EMAILS).map(normalizeEmail));
-
-    isAdmin = allowedSubs.has(user.sub) || (user.email ? allowedEmails.has(normalizeEmail(user.email)) : false);
+    // Admin status is Cognito-group membership — the SAME mechanism the API's
+    // `requireAdminUser()` enforces. The previous `ADMIN_SUBS`/`ADMIN_EMAILS`
+    // allowlist was read via raw `process.env`, which is NOT injected into the
+    // prod OpenNext Lambda (see CLAUDE.md env model), so it was always empty in
+    // prod and `isAdmin` was permanently false. `cognito:groups` rides on the
+    // verified id_token, so it works everywhere with no extra injection.
+    const adminGroup = await getBookAdminGroupName();
+    isAdmin = isUserInAdminGroup(user.groups, adminGroup);
   } catch {
     isAdmin = false;
   }
