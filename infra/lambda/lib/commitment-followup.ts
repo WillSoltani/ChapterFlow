@@ -9,6 +9,7 @@ import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { commitmentFollowupEmail } from "./email-templates/commitment-followup";
 import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
 import { emailChannelConsented } from "./email-consent";
+import { REMINDER_CONCURRENCY, runWithConcurrency } from "./concurrency";
 
 // Scanned BOOK_USER_SETTINGS rows the cron already has in memory — reused here so
 // this handler doesn't trigger a second full-table scan. We only read `channels.email`
@@ -76,12 +77,21 @@ export async function processCommitmentFollowup(
   config: EmailConfig,
   userItems: UserSettings[],
 ): Promise<{ sent: number; skipped: number; errors: number }> {
-  let sent = 0;
-  let skipped = 0;
-  let errors = 0;
   const nowMs = Date.now();
 
-  for (const item of userItems) {
+  // Per-user follow-up pass: one Query for the user's commitments, then the inner
+  // per-commitment claim→notify→mark sequence. Processed with bounded concurrency
+  // below (across users) instead of a serial per-user await-chain so a large
+  // commitment fan-out can't push the cron past its timeout and drop the tail. The
+  // inner per-commitment conditional-claim idempotency is unchanged — each
+  // commitment is still nudged AT MOST ONCE regardless of how users interleave.
+  // Returns this user's partial tally; the run total is summed afterwards.
+  async function processUser(
+    item: UserSettings,
+  ): Promise<{ sent: number; skipped: number; errors: number }> {
+    let sent = 0;
+    let skipped = 0;
+    let errors = 0;
     const userId = item.PK.replace("BOOKUSER#", "");
     const notifPrefs = item.settings?.notifications;
     // The in-app nudge always fires (the user explicitly committed and chose the
@@ -108,7 +118,7 @@ export async function processCommitmentFollowup(
     } catch (err) {
       console.error(`[commitment-followup] query failed for ${userId}:`, err);
       errors++;
-      continue;
+      return { sent, skipped, errors };
     }
 
     const due = rows.filter(
@@ -118,7 +128,7 @@ export async function processCommitmentFollowup(
         Number.isFinite(Date.parse(c.followUpDate)) &&
         Date.parse(c.followUpDate) <= nowMs,
     );
-    if (due.length === 0) continue;
+    if (due.length === 0) return { sent, skipped, errors };
 
     // Look up the email/name once per user (best-effort; only needed for the email
     // channel). PROFILE is the same record welcome-back-nudge reads.
@@ -240,7 +250,17 @@ export async function processCommitmentFollowup(
         continue;
       }
     }
+
+    return { sent, skipped, errors };
   }
 
-  return { sent, skipped, errors };
+  const tallies = await runWithConcurrency(userItems, REMINDER_CONCURRENCY, processUser);
+  return tallies.reduce(
+    (acc, t) => ({
+      sent: acc.sent + t.sent,
+      skipped: acc.skipped + t.skipped,
+      errors: acc.errors + t.errors,
+    }),
+    { sent: 0, skipped: 0, errors: 0 },
+  );
 }

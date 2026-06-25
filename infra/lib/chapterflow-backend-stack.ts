@@ -431,13 +431,23 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       retentionPeriod: cdk.Duration.days(14),
       enforceSSL: true,
     });
-    const reminderTimeout = cdk.Duration.minutes(5);
+    // 10-minute budget (well under Lambda's 15-min ceiling) gives the hourly run
+    // real headroom: the reminder pass AND all four nudge sub-handlers
+    // (weekly-digest / welcome-back / streak-at-risk / commitment-followup) now
+    // process users with bounded concurrency (REMINDER_CONCURRENCY) instead of a
+    // serial per-user await-chain, but a large fan-out — especially the Sunday
+    // weekly digest's ~5 DynamoDB round-trips per user — still needs margin so it
+    // can't silently drop the tail at the old 5-minute cliff (F5). The duration
+    // alarm below scales off this value (fires at >=80% of budget), and 512MB
+    // (up from 256MB) buys proportionally more CPU/network for the concurrent
+    // fan-out. If a future run still approaches the budget, shard by hour/GSI.
+    const reminderTimeout = cdk.Duration.minutes(10);
     const reminderFn = new lambda.Function(this, "ReadingReminderCron", {
       functionName: `ChapterFlowReadingReminder${suffix}`,
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "reading-reminder-cron.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
-      memorySize: 256,
+      memorySize: 512,
       timeout: reminderTimeout,
       deadLetterQueue: reminderDlq,
       environment: {
@@ -520,9 +530,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     reminderErrorsAlarm.addAlarmAction(opsAlarmAction);
 
     // Alarm when an invocation approaches the function timeout (>=80% of the
-    // 5-minute budget) — the known-unfinished signal flagged in
+    // 10-minute budget) — the known-unfinished signal flagged in
     // reading-reminder-cron.ts. A slow hourly run risks timing out and dropping
-    // that hour's reminders before the per-user isolation can complete.
+    // that hour's reminders/nudges before the per-user isolation can complete. The
+    // threshold tracks reminderTimeout, so raising the timeout moves it in lockstep.
     const reminderDurationAlarm = new cloudwatch.Alarm(this, "ChapterFlowReminderDurationAlarm", {
       metric: reminderFn.metricDuration({ period: cdk.Duration.minutes(5), statistic: "Maximum" }),
       threshold: reminderTimeout.toMilliseconds() * 0.8,
@@ -531,7 +542,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       comparisonOperator: cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
       treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
       alarmDescription:
-        "The reading-reminder cron is approaching its 5-minute timeout (>=80% of budget). A timed-out run drops that hour's reminders/nudges — raise the timeout/memory or shard the workload.",
+        "The reading-reminder cron is approaching its 10-minute timeout (>=80% of budget). A timed-out run drops that hour's reminders/nudges — raise the timeout/memory or shard the workload.",
     });
     reminderDurationAlarm.addAlarmAction(opsAlarmAction);
 
