@@ -190,11 +190,11 @@ test("evaluator: AND/OR precedence and grouping", () => {
 test("condition builder matches the audited literal (both expiry refs)", () => {
   assert.equal(
     grantUpgradeConditionExpression(":expires"),
-    "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :expires) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :expires))"
+    "((attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :expires) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :expires))) AND attribute_not_exists(disputeOpen)"
   );
   assert.equal(
     grantUpgradeConditionExpression(":periodEnd"),
-    "(attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :periodEnd) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :periodEnd))"
+    "((attribute_not_exists(#plan) OR #plan <> :proPlan) OR ((attribute_not_exists(proSource) OR proSource <> :stripeSource) AND (attribute_not_exists(proSource) OR proSource <> :adminSource) AND (attribute_not_exists(licenseExpiresAt) OR attribute_type(licenseExpiresAt, :nullType) OR licenseExpiresAt < :periodEnd) AND (attribute_not_exists(currentPeriodEnd) OR attribute_type(currentPeriodEnd, :nullType) OR currentPeriodEnd < :periodEnd))) AND attribute_not_exists(disputeOpen)"
   );
 });
 
@@ -222,6 +222,10 @@ test("live ConditionExpression matches grantUpgradeApplies across the full truth
     "flow_points",
   ];
   const expiries: Cell[] = [undefined, null, PAST, FUTURE];
+  // Sticky chargeback marker: absent (no hold) or present (hold). Stored as a
+  // boolean true on the live item; for the `attribute_not_exists` operator the only
+  // thing that matters is presence, so model "present" with any non-absent attr.
+  const disputes: (boolean | undefined)[] = [undefined, true];
 
   const toAttr = (v: Cell): Attr | undefined =>
     v === undefined ? undefined : v === null ? { NULL: true } : { S: v };
@@ -230,31 +234,40 @@ test("live ConditionExpression matches grantUpgradeApplies across the full truth
   for (const plan of plans)
     for (const proSource of sources)
       for (const licenseExpiresAt of expiries)
-        for (const currentPeriodEnd of expiries) {
-          const existing: ExistingGrant = {
-            plan,
-            proSource,
-            licenseExpiresAt,
-            currentPeriodEnd,
-          };
-          const item: Item = {
-            plan: toAttr(plan),
-            proSource: toAttr(proSource),
-            licenseExpiresAt: toAttr(licenseExpiresAt),
-            currentPeriodEnd: toAttr(currentPeriodEnd),
-          };
-          const live = evalCondition(condition, names, values, item);
-          const spec = grantUpgradeApplies(existing, CANDIDATE);
-          assert.equal(
-            live,
-            spec,
-            `enforcement≠spec for ${JSON.stringify(existing)}: live=${live} spec=${spec}`
-          );
-          count++;
-        }
+        for (const currentPeriodEnd of expiries)
+          for (const disputeOpen of disputes) {
+            const existing: ExistingGrant = {
+              plan,
+              proSource,
+              licenseExpiresAt,
+              currentPeriodEnd,
+              disputeOpen,
+            };
+            const item: Item = {
+              plan: toAttr(plan),
+              proSource: toAttr(proSource),
+              licenseExpiresAt: toAttr(licenseExpiresAt),
+              currentPeriodEnd: toAttr(currentPeriodEnd),
+              // Live items store disputeOpen as BOOL true; the evaluator only checks
+              // presence via attribute_not_exists, so a sentinel string is faithful.
+              disputeOpen: disputeOpen ? { S: "true" } : undefined,
+            };
+            const live = evalCondition(condition, names, values, item);
+            const spec = grantUpgradeApplies(existing, CANDIDATE);
+            assert.equal(
+              live,
+              spec,
+              `enforcement≠spec for ${JSON.stringify(existing)}: live=${live} spec=${spec}`
+            );
+            count++;
+          }
   assert.equal(
     count,
-    plans.length * sources.length * expiries.length * expiries.length
+    plans.length *
+      sources.length *
+      expiries.length *
+      expiries.length *
+      disputes.length
   );
 });
 
@@ -293,6 +306,48 @@ test("flow_points pass cannot shorten a longer non-stripe grant (the sibling bug
       licenseExpiresAt: { NULL: true },
     }),
     true
+  );
+});
+
+test("C3: a charged-back user (disputeOpen) cannot restore PRO via any non-stripe path", () => {
+  const cond = grantUpgradeConditionExpression(":candidateExpiry");
+  const names = { ...GRANT_UPGRADE_CONDITION_NAMES };
+  const candidate = "2026-06-15T00:00:00.000Z";
+  const values = { ...GRANT_UPGRADE_CONDITION_VALUES, ":candidateExpiry": candidate };
+
+  // After charge.dispute.created the webhook downgrades to FREE and stamps
+  // disputeOpen=true. A grant that would otherwise apply (plan FREE → "always
+  // apply" branch) must now be REFUSED while the marker is present.
+  assert.equal(
+    grantUpgradeApplies({ plan: "FREE", disputeOpen: true }, candidate),
+    false,
+    "spec: FREE + disputeOpen must not apply"
+  );
+  assert.equal(
+    evalCondition(cond, names, values, {
+      plan: { S: "FREE" },
+      disputeOpen: { S: "true" }, // present marker (live: BOOL true)
+    }),
+    false,
+    "enforcement: FREE + disputeOpen must not apply"
+  );
+  // Even a brand-new account (no plan at all) is blocked if a dispute marker
+  // somehow remains — present-at-all is the hold.
+  assert.equal(
+    evalCondition(cond, names, values, { disputeOpen: { S: "true" } }),
+    false,
+    "enforcement: no-plan + disputeOpen must not apply"
+  );
+  // Once the dispute is won the marker is REMOVEd (absent again) → grants resume.
+  assert.equal(
+    grantUpgradeApplies({ plan: "FREE" }, candidate),
+    true,
+    "spec: FREE after dispute cleared applies again"
+  );
+  assert.equal(
+    evalCondition(cond, names, values, { plan: { S: "FREE" } }),
+    true,
+    "enforcement: FREE after dispute cleared applies again"
   );
 });
 
