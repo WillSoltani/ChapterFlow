@@ -3,7 +3,7 @@ import "server-only";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { canSendNudge, recordNudgeSent, getUserActivePair } from "@/app/app/api/book/_lib/pair-repo";
+import { recordNudgeSent, getUserActivePair } from "@/app/app/api/book/_lib/pair-repo";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 
 export const runtime = "nodejs";
@@ -21,12 +21,15 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 404, "pair_not_found", "No active pair with this partner");
     }
 
-    const canNudge = await canSendNudge(tableName, user.sub, partnerId);
-    if (!canNudge) {
+    // Atomically claim today's nudge slot. The daily cap is enforced by the
+    // conditional write inside recordNudgeSent (not a separate read-then-write), so
+    // two concurrent POSTs can't both pass the cap and double-notify the partner
+    // (H15). Only the writer that actually claimed the slot proceeds to notify;
+    // every other caller (same-day repeat or concurrent racer) gets nudge_limit.
+    const claimed = await recordNudgeSent(tableName, user.sub, partnerId);
+    if (!claimed) {
       return bookErr(req, 429, "nudge_limit", "You can only nudge once per day");
     }
-
-    await recordNudgeSent(tableName, user.sub, partnerId);
 
     // Best-effort notification — don't fail the nudge if delivery errors
     try {

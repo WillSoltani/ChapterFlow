@@ -21,7 +21,7 @@
  *       a later accept can write a fresh `PAIR#ACTIVE` without colliding with a
  *       stale soft-deleted row.
  */
-import { bookUserPk, pairActiveSk, pairHistorySk } from "./keys";
+import { bookUserPk, pairActiveSk, pairHistorySk, pairNudgeSk } from "./keys";
 
 export type PairSide = {
   userId: string;
@@ -86,3 +86,34 @@ export function buildEndedPairHistoryItem(input: {
  * SK rejects any second active pair for the same user, regardless of partner.
  */
 export const ACCEPT_PAIR_CONDITION = "attribute_not_exists(SK)";
+
+/**
+ * The per-day nudge-dedup marker. Keyed by (partnerId, dayKey) in the nudging
+ * user's own partition, so it bounds nudges to one-per-partner-per-day and is
+ * reaped by account-erasure's partition sweep + a short TTL. `dayKey` is a
+ * YYYY-MM-DD UTC day string.
+ */
+export function buildNudgeDedupItem(input: {
+  userId: string;
+  partnerId: string;
+  dayKey: string;
+  createdAt: string;
+  ttl: number;
+}): DdbPutItem & { ttl: number } {
+  return {
+    PK: bookUserPk(input.userId),
+    SK: pairNudgeSk(input.partnerId, input.dayKey),
+    entity: "NUDGE_DEDUP",
+    createdAt: input.createdAt,
+    ttl: input.ttl,
+  };
+}
+
+/**
+ * ConditionExpression for the nudge-dedup Put: the per-day marker must not already
+ * exist. This is the daily-cap guard (H15) — making the cap an ATOMIC conditional
+ * write rather than a non-atomic check-then-write, so two concurrent nudges to the
+ * same partner can't both win the slot and double-notify them. `attribute_not_exists(SK)`
+ * fails on the second writer, who is then treated as the rate-limited case.
+ */
+export const NUDGE_DEDUP_CONDITION = "attribute_not_exists(SK)";
