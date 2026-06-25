@@ -14,6 +14,13 @@
 export type EscalationMilestone = {
   activations: number;
   ipBonus: number;
+  /**
+   * 30-Day Pro Pass for FREE inviters at the 10-activation tier. When set, a FREE
+   * inviter receives a Pro pass of this many days INSTEAD OF ipBonus IP, while a
+   * PRO inviter (who can't use a pass) receives proInviterIPAlternative IP. Tiers
+   * without this field always pay out ipBonus regardless of plan.
+   */
+  proPassDaysForFreeInviter?: number;
   /** IP for Pro inviters at 10-activation tier (instead of Pro pass) */
   proInviterIPAlternative?: number;
   exclusiveReward: string | null;
@@ -35,9 +42,13 @@ export const ESCALATION_MILESTONES: ReadonlyArray<EscalationMilestone> = [
   },
   {
     activations: 10,
+    // ipBonus is the FREE-inviter IP fallback only — a FREE inviter is paid in a
+    // 30-Day Pro Pass (proPassDaysForFreeInviter), NOT IP. resolveMilestoneReward
+    // is the single source of truth for which of these actually pays out.
     ipBonus: 1200,
-    proInviterIPAlternative: 1200,
-    exclusiveReward: null, // 30-Day Pro Pass for free inviter, or 1,200 IP for Pro inviter
+    proPassDaysForFreeInviter: 30, // 30-Day Pro Pass for a free inviter
+    proInviterIPAlternative: 1200, // …or 1,200 IP for a pro inviter (can't use a pass)
+    exclusiveReward: null,
     exclusiveRewardType: null,
   },
   {
@@ -82,4 +93,41 @@ export function highestPassedTier(activatedInvites: number): number {
     }
   }
   return highest;
+}
+
+/**
+ * What a milestone actually pays out, given the inviter's plan. Pure so the
+ * branch — the part the previous bug got wrong — is unit-tested without DynamoDB.
+ *
+ * Most tiers pay `ipBonus` IP regardless of plan. The 10-activation tier is the
+ * exception (§6.3): a FREE inviter is rewarded with a 30-day Pro pass (and NO IP,
+ * since a pass is the headline reward); a PRO inviter — who already has Pro and
+ * can't use a pass — gets `proInviterIPAlternative` IP instead. Exactly one of
+ * `ipAmount > 0` / `proPassDays != null` is the chosen reward; cosmetics are
+ * orthogonal and handled separately by the caller.
+ */
+export type MilestoneReward = {
+  /** IP to award (0 when the reward is a Pro pass instead). */
+  ipAmount: number;
+  /** Pro-pass duration in days, or null when the reward is IP. */
+  proPassDays: number | null;
+};
+
+export function resolveMilestoneReward(
+  milestone: EscalationMilestone,
+  inviterPlan: "FREE" | "PRO"
+): MilestoneReward {
+  // Pro-pass tier: split FREE (pass) vs PRO (IP alternative).
+  if (milestone.proPassDaysForFreeInviter && milestone.proPassDaysForFreeInviter > 0) {
+    if (inviterPlan === "FREE") {
+      return { ipAmount: 0, proPassDays: milestone.proPassDaysForFreeInviter };
+    }
+    // PRO inviter: award the explicit alternative if set, else fall back to ipBonus.
+    return {
+      ipAmount: milestone.proInviterIPAlternative ?? milestone.ipBonus,
+      proPassDays: null,
+    };
+  }
+  // Ordinary tier: flat IP for everyone.
+  return { ipAmount: milestone.ipBonus, proPassDays: null };
 }
