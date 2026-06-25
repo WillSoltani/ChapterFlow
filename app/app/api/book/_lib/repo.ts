@@ -11,6 +11,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
+import { isBookCompleted } from "./book-completion-core";
 import { buildLicenseEntitlementGrant } from "./license-grant-core";
 import { buildIngestionJobUpdate } from "./ingestion-job-update-core";
 import {
@@ -2896,11 +2897,12 @@ export async function readManifest(
 export function summarizeProgress(
   entries: BookUserProgress[],
   ent: BookUserEntitlement | null,
-  // Per-book total chapter count (e.g. from book manifests / catalog). When a
-  // book's real chapterCount is supplied, "completed" means every chapter is
-  // done (completedChapters.length >= chapterCount), which is exact and handles
-  // out-of-order completion. When a count is unknown the legacy heuristic is
-  // used so callers that cannot supply counts keep their previous behaviour.
+  // Per-book total chapter count, keyed by bookId — supply each user's PINNED
+  // version's chapterCount (see /me/progress route). "Completed" then means every
+  // chapter is done (completedChapters.length >= chapterCount), which is exact and
+  // handles out-of-order completion. When a book's count is missing (omitted, or a
+  // transient manifest-read failure) it is NOT counted as completed — see
+  // isBookCompleted: there is no correct count-free completion heuristic.
   chapterCounts?: Map<string, number> | Record<string, number>
 ): {
   booksStarted: number;
@@ -2926,14 +2928,12 @@ export function summarizeProgress(
   for (const p of entries) {
     chaptersCompleted += p.completedChapters.length;
     const totalChapters = chapterCountFor(p.bookId);
-    const isCompleted =
-      totalChapters !== undefined
-        ? // Exact: every chapter of the book has been completed.
-          p.completedChapters.length >= totalChapters
-        : // Fallback heuristic when the book's real chapter count is unknown.
-          p.completedChapters.length > 0 &&
-          p.currentChapterNumber <= p.completedChapters.length;
-    if (isCompleted) {
+    // Completion is decided by the pure core: exact when the (pinned) chapter
+    // count is known, and conservatively `false` when it isn't — the old
+    // count-free heuristic could never credit a sequentially-finished book
+    // because `buildProgressAfterQuizPass` always advances currentChapterNumber
+    // past completedChapters.length. See book-completion-core.ts / isBookCompleted.
+    if (isBookCompleted(p, totalChapters)) {
       booksCompleted += 1;
     }
     for (const value of Object.values(p.bestScoreByChapter)) {
