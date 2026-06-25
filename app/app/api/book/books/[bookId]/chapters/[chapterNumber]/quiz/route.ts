@@ -8,7 +8,10 @@ import {
 } from "@/app/app/api/book/_lib/ensure-book-started";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
+import {
+  quizQuestionCountForMode,
+  resolveLearningMode,
+} from "@/app/app/api/book/_lib/learning-mode";
 import {
   getLocalQuizQuestions,
   getUserAccessibleQuiz,
@@ -24,23 +27,9 @@ import {
   listRecentQuizAttempts,
 } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
-
-const QUIZ_QUESTION_COUNTS_BY_DIFFICULTY: Record<ReadingDepth, number> = {
-  simple: 5,
-  standard: 7,
-  deeper: 10,
-};
-
-function parseDifficulty(value: string | null): ReadingDepth {
-  if (value === "simple" || value === "standard" || value === "deeper") {
-    return value;
-  }
-  return "standard";
-}
 
 function parseTone(value: string | null): ToneKey {
   if (value === "gentle" || value === "direct" || value === "competitive") {
@@ -65,7 +54,6 @@ export async function GET(
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const searchParams = new URL(req.url).searchParams;
-    const difficulty = parseDifficulty(searchParams.get("difficulty"));
     const { bookId, chapterNumber } = await params;
     const chapterNum = Number(chapterNumber);
     if (!bookId || !Number.isFinite(chapterNum) || chapterNum < 1) {
@@ -110,8 +98,13 @@ export async function GET(
       ? { ...s3Quiz, questions: localQuestions }
       : s3Quiz;
     const strictV12 = await isLocalV12Package(bookId);
+    // Derive the question count from the SERVER-RESOLVED learning mode, never the
+    // client `difficulty` query param. A client-chosen difficulty previously let a
+    // reader pick the smallest quiz (simple=5) to pass on a strict-package book.
+    // For honest requests the count is unchanged: the reader maps its chosen mode
+    // to a depth (guided→5, standard→7, challenge→10) on the way in.
     const maxQuestions = strictV12
-      ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
+      ? quizQuestionCountForMode(learningMode)
       : QUIZ_QUESTION_COUNTS[learningMode];
 
     const quizState =

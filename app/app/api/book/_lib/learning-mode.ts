@@ -54,3 +54,37 @@ export function resolveLearningMode(
 
   return DEFAULT_LEARNING_MODE;
 }
+
+/**
+ * Quiz question count per learning mode — the SERVER-SIDE source of truth for
+ * how many questions a strict (v21/v12) quiz attempt contains.
+ *
+ * Mirrors `QUIZ_QUESTION_COUNTS` in app/book/_lib/flow-points-economy.ts
+ * (which can't be imported here — it pulls in lucide-react via the badge UI
+ * chain — see learning-mode.test.ts for the pin that keeps the two in sync).
+ *
+ * SECURITY: this is intentionally keyed by the server-resolved learning mode,
+ * NOT by a client-supplied `difficulty` query/body param. Previously the strict
+ * path computed the count from `parseDifficulty(req.difficulty)`, which let a
+ * reader hand-pick `difficulty=simple` (5 questions) to pass — and unlock the
+ * next chapter / farm Insight Points — on the smallest possible set, regardless
+ * of the mode they actually chose. Routing the count through the same
+ * server-stored mode that already governs the pass threshold and the IP economy
+ * closes that gaming vector. The client's reader maps the chosen mode to a
+ * reading depth (guided→simple/5, standard→standard/7, challenge→deeper/10),
+ * so the count a reader sees is unchanged for an honest request — only the
+ * trust source moves from the request body to settings.
+ */
+const QUIZ_QUESTION_COUNT_BY_MODE: Record<LearningMode, number> = {
+  guided: 5,
+  standard: 7,
+  challenge: 10,
+};
+
+/**
+ * The number of questions a strict-package quiz attempt should contain for a
+ * given (server-resolved) learning mode. Pure — safe to unit-test directly.
+ */
+export function quizQuestionCountForMode(mode: LearningMode): number {
+  return QUIZ_QUESTION_COUNT_BY_MODE[mode];
+}
