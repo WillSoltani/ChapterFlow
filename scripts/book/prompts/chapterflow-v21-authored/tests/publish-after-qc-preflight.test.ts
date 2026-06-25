@@ -307,7 +307,7 @@ function writeBarConfirm(bookId: string, chapter: ChapterV21): void {
 // (it FAILS if reverted to the 2-var denylist — the keyjudge/majors/state-dir keys would survive).
 test("hermeticSelfTestEnv strips every CHAPTERFLOW_* operator flag and forces only no-api (I3)", () => {
   const env = hermeticSelfTestEnv({
-    PATH: "/usr/bin:/bin", HOME: "/home/x", LANG: "en_US.UTF-8",
+    PATH: "/usr/bin:/bin", HOME: "/home/x", LANG: "en_US.UTF-8", NODE_ENV: "test",
     CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1", CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE: "1",
     CHAPTERFLOW_REQUIRE_KEYJUDGE: "1", CHAPTERFLOW_ENFORCE_MAJORS: "1",
     CHAPTERFLOW_STATE_DIR: "/elsewhere", CHAPTERFLOW_SESSION_ID: "leak-me",

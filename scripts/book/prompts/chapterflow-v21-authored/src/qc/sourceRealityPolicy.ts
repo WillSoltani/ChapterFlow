@@ -292,7 +292,11 @@ export type SourceRealityRoots = SourceV2Roots & {
 
 export type EvaluateSourceRealityOptions = {
   bookId: string;
-  env?: NodeJS.ProcessEnv;
+  // A plain string map (not NodeJS.ProcessEnv): a read-only input the caller supplies, often a
+  // partial literal in tests. The webapp's root tsconfig augments ProcessEnv to REQUIRE NODE_ENV,
+  // which would reject `{}`/`{CHAPTERFLOW_…}` literals; process.env stays assignable here as a
+  // subtype, and the policy only reads specific keys.
+  env?: Record<string, string | undefined>;
   now?: Date;
   roots?: SourceRealityRoots;
   /** Optional ADDITIONAL content identities a caller may bind (e.g. a manifest contentId).
