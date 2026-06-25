@@ -69,19 +69,16 @@ import {
   QUIZ_QUESTION_COUNTS,
   type LoopPipelineResult,
 } from "@/app/book/_lib/flow-points-economy";
-import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
+import {
+  resolveLearningMode,
+  resolveStrictQuizQuestionCount,
+} from "@/app/app/api/book/_lib/learning-mode";
 import { resolveStreakMode, resolveStreakSkipDays } from "@/app/app/api/book/_lib/streak-mode";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
 
 const MAX_ATTEMPTS_PER_HOUR = 5;
-const QUIZ_QUESTION_COUNTS_BY_DIFFICULTY: Record<ReadingDepth, number> = {
-  simple: 5,
-  standard: 7,
-  deeper: 10,
-};
 
 type RequestResponse = {
   questionId: string;
@@ -141,12 +138,6 @@ function parseResponses(body: Record<string, unknown>): RequestResponse[] {
   });
 }
 
-function parseDifficulty(value: unknown): ReadingDepth {
-  return value === "simple" || value === "standard" || value === "deeper"
-    ? value
-    : "standard";
-}
-
 function parseTone(value: unknown): ToneKey {
   return value === "gentle" || value === "direct" || value === "competitive"
     ? value
@@ -187,7 +178,6 @@ export async function POST(
       typeof body.attemptNumber === "number" && Number.isFinite(body.attemptNumber)
         ? Math.max(1, Math.floor(body.attemptNumber))
         : 1;
-    const difficulty = parseDifficulty(body.difficulty);
     const timeSpentSeconds =
       typeof body.timeSpentSeconds === "number" && Number.isFinite(body.timeSpentSeconds)
         ? Math.max(0, Math.min(60 * 60, Math.floor(body.timeSpentSeconds)))
@@ -260,8 +250,17 @@ export async function POST(
         attempts: recentAttempts,
       });
 
+    // Resolve the attempt's question count ENTIRELY from server-stored settings
+    // (profile-customized flag + learning mode), never the client `difficulty`
+    // body param. This is the pass / next-chapter-unlock gate: a client-chosen
+    // difficulty previously let a reader submit against the smallest set
+    // (simple=5) to clear a strict-package quiz and farm Insight Points. The
+    // un-customized fast path still yields 5 (matching the GET the reader was
+    // served and the client's default short-path) while a customized reader is
+    // sized at their mode's count and cannot shrink it. Must equal the GET +
+    // /check routes exactly (shared resolver) or grading mis-counts.
     const maxQuestions = strictV12
-      ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
+      ? resolveStrictQuizQuestionCount(userSettings?.settings)
       : QUIZ_QUESTION_COUNTS[learningMode];
 
     if (quizState?.passed) {

@@ -10,19 +10,15 @@ import {
   isLocalV12Package,
 } from "@/app/app/api/book/_lib/content-service";
 import { buildQuizAttemptQuestions } from "@/app/app/api/book/_lib/quiz-session";
-import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
+import {
+  resolveLearningMode,
+  resolveStrictQuizQuestionCount,
+} from "@/app/app/api/book/_lib/learning-mode";
 import { getUserSettingsItem } from "@/app/app/api/book/_lib/repo";
 import { QUIZ_QUESTION_COUNTS } from "@/app/book/_lib/flow-points-economy";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
 import type { ToneKey } from "@/app/book/data/book-package-core";
 
 export const runtime = "nodejs";
-
-const QUIZ_QUESTION_COUNTS_BY_DIFFICULTY: Record<ReadingDepth, number> = {
-  simple: 5,
-  standard: 7,
-  deeper: 10,
-};
 
 // Bound a single request so it can't be used to grade an arbitrarily large
 // batch in one call. The real authoritative grade + rate limiting + cooldown
@@ -87,10 +83,6 @@ function parseResponses(body: Record<string, unknown>): CheckResponseInput[] {
     seen.add(questionId);
     return { questionId, selectedChoiceId };
   });
-}
-
-function parseDifficulty(value: unknown): ReadingDepth {
-  return value === "simple" || value === "standard" || value === "deeper" ? value : "standard";
 }
 
 function parseTone(value: unknown): ToneKey {
@@ -187,13 +179,17 @@ export async function POST(
     // SET-1: the shared resolver guarantees this stays identical to the GET +
     // submit routes (a divergence here would mis-grade).
     const learningMode = resolveLearningMode(userSettings?.settings);
-    const difficulty = parseDifficulty(body.difficulty);
     const tone = parseTone(body.tone ?? readSavedTone(userSettings?.settings));
     const localQuestions = await getLocalQuizQuestions(bookId, chapterNumberInt, tone);
     const quiz = localQuestions ? { ...s3Quiz, questions: localQuestions } : s3Quiz;
     const strictV12 = await isLocalV12Package(bookId);
+    // Question count comes ENTIRELY from server-stored settings (profile-
+    // customized flag + learning mode), never a client `difficulty` body param —
+    // it must match the GET route's exactly (a divergence mis-grades) AND must
+    // not be reader-selectable so the strict path can't be probed against the
+    // smallest 5-question set. See resolveStrictQuizQuestionCount.
     const maxQuestions = strictV12
-      ? QUIZ_QUESTION_COUNTS_BY_DIFFICULTY[difficulty]
+      ? resolveStrictQuizQuestionCount(userSettings?.settings)
       : QUIZ_QUESTION_COUNTS[learningMode];
 
     const attemptQuestions = buildQuizAttemptQuestions({
