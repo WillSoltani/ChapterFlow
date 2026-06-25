@@ -32,13 +32,40 @@ export async function POST(
 
     await publishBookVersion(tableName, bookId, versionItem.version, admin.sub);
 
-    // Rebuild the global search index (non-blocking — publish succeeds even if this fails)
-    let searchIndexCount = 0;
+    // Rebuild the global search index. This is non-blocking for the publish
+    // itself (the version is already PUBLISHED above), but a failed/partial
+    // rebuild must be VISIBLE rather than swallowed: rebuildSearchIndex now
+    // refuses to overwrite the authoritative index with an incomplete result
+    // and throws, so we report that status in the response instead of only
+    // console.error-ing it.
+    let searchIndex: {
+      ok: boolean;
+      documentCount: number;
+      code?: string;
+      message?: string;
+      details?: unknown;
+    } = { ok: false, documentCount: 0 };
     try {
       const indexResult = await rebuildSearchIndex();
-      searchIndexCount = indexResult.documentCount;
+      searchIndex = { ok: true, documentCount: indexResult.documentCount };
     } catch (err) {
       console.error("[publish] Search index rebuild failed:", err);
+      if (err instanceof BookApiError) {
+        searchIndex = {
+          ok: false,
+          documentCount: 0,
+          code: err.code,
+          message: err.message,
+          details: err.details,
+        };
+      } else {
+        searchIndex = {
+          ok: false,
+          documentCount: 0,
+          code: "search_index_rebuild_failed",
+          message: err instanceof Error ? err.message : String(err),
+        };
+      }
     }
 
     return bookOk({
@@ -46,7 +73,9 @@ export async function POST(
       bookId,
       version: versionItem.version,
       state: "PUBLISHED",
-      searchIndexDocuments: searchIndexCount,
+      // Back-compat field (0 when the rebuild failed/was refused).
+      searchIndexDocuments: searchIndex.documentCount,
+      searchIndex,
     });
   });
 }
