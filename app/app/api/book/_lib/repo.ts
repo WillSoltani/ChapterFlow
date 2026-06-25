@@ -10,6 +10,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError, transactionCancellationReasons } from "./errors";
+import { buildLicenseEntitlementGrant } from "./license-grant-core";
 import {
   badgeAwardSk,
   approvedScenarioPk,
@@ -3437,43 +3438,26 @@ export async function redeemLicenseKey(
             },
           },
           {
-            // Upgrade the user's entitlement to PRO (license-based)
+            // Upgrade the user's entitlement to PRO (license-based). The grant is
+            // applied via the SHARED pro-grant guard (license-grant-core): apply
+            // only when it does not shorten/destroy a longer or open-ended grant
+            // (active Stripe sub, admin comp, or a license/flow_points/gift window
+            // that outlasts this license). The route also pre-checks Stripe
+            // (license/route.ts), but that read is not atomic with this write — the
+            // condition closes that race and the broader stomp cases. On refusal the
+            // whole transaction rolls back, so the key is NOT consumed.
             Update: {
               TableName: tableName,
               Key: {
                 PK: bookUserPk(params.userId),
                 SK: entitlementSk(),
               },
-              UpdateExpression: [
-                "SET #plan = :pro,",
-                "proStatus = :active,",
-                "proSource = :licenseSource,",
-                "licenseKey = :code,",
-                "licenseExpiresAt = :expiresAt,",
-                "updatedAt = :now,",
-                // unlockedBookIds is created lazily by reserveBookEntitlement's
-                // ADD; do not initialize it here (an empty Set can no longer be
-                // marshalled). Note: this clause must stay last so the preceding
-                // element carries no trailing comma after the .join(" ").
-                "freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
-              ].join(" "),
-              // Atomically refuse to clobber an active paid Stripe subscription.
-              // The route also pre-checks this (license/route.ts), but the read is
-              // not atomic with this write — this closes that race. proSource is
-              // only "stripe" while a sub is active/retrying.
-              ConditionExpression:
-                "attribute_not_exists(proSource) OR proSource <> :stripeSource",
-              ExpressionAttributeNames: { "#plan": "plan" },
-              ExpressionAttributeValues: {
-                ":pro": "PRO",
-                ":active": "active",
-                ":licenseSource": "license",
-                ":stripeSource": "stripe",
-                ":code": normalized,
-                ":expiresAt": expiresAt,
-                ":now": now,
-                ":defaultSlots": 2,
-              },
+              ...buildLicenseEntitlementGrant({
+                code: normalized,
+                expiresAt,
+                now,
+                defaultSlots: 2,
+              }),
             },
           },
           {
@@ -3500,13 +3484,16 @@ export async function redeemLicenseKey(
   } catch (error: unknown) {
     const reasons = transactionCancellationReasons(error);
     if (reasons) {
-      // Index 1 = entitlement guard: the user already has an active paid Stripe
-      // subscription, so we refuse to switch them onto a license grant.
+      // Index 1 = entitlement guard (the shared pro-grant guard): the redemption
+      // would clobber/shorten a longer-lived or open-ended Pro grant — an active
+      // paid Stripe sub, an admin comp, or a license/flow_points/gift window that
+      // outlasts this license. We refuse so the longer grant survives; the
+      // transaction rolled back, so the key was NOT consumed and stays valid.
       if (reasons[1]?.Code === "ConditionalCheckFailed") {
         throw new BookApiError(
           409,
-          "already_subscribed",
-          "You already have an active Pro subscription via Stripe. License keys are for free-pass access only."
+          "pro_grant_active",
+          "You already have Pro access that lasts at least as long as this license, so the key was not applied. It remains valid for later use."
         );
       }
       // Index 0 (or unspecified) = the key was redeemed or revoked between our
