@@ -4,16 +4,40 @@ import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { listPublishedCatalogItems } from "@/app/app/api/book/_lib/repo";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type { SearchDocument } from "@/app/book/types/search";
+import {
+  decideSearchIndexWrite,
+  type SearchIndexRebuildFailure,
+} from "./search-index-core";
 
 const s3 = new S3Client({});
 
-export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
+export type RebuildSearchIndexResult = {
+  documentCount: number;
+  booksConsidered: number;
+};
+
+function errorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
+}
+
+/**
+ * Rebuild the global search index from the published catalog + S3 chapter
+ * content and write it to `book-content/library/search-index.json`.
+ *
+ * Read failures (per-book manifest or per-chapter content) are TRACKED, not
+ * swallowed. If ANY read failed we refuse to overwrite the authoritative index
+ * with a partial result and throw a `BookApiError` so the caller can surface the
+ * failure — see {@link decideSearchIndexWrite} for the policy and rationale.
+ */
+export async function rebuildSearchIndex(): Promise<RebuildSearchIndexResult> {
   const [bucket, tableName] = await Promise.all([
     getBookContentBucket(),
     getBookTableName(),
   ]);
   const documents: SearchDocument[] = [];
+  const failures: SearchIndexRebuildFailure[] = [];
 
   // Source-of-truth catalog: DynamoDB. Filter to PUBLISHED entries with a
   // currentPublishedVersion set. The previous implementation read a stale
@@ -55,7 +79,15 @@ export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
         contentBucket: bucket,
         bookId: book.id,
       });
-    } catch {
+    } catch (err) {
+      // A manifest read failure means this book is entirely missing from the
+      // index. Record it so we don't silently overwrite the live index with a
+      // version that's missing whole books.
+      failures.push({
+        scope: "manifest",
+        bookId: book.id,
+        message: errorMessage(err),
+      });
       continue;
     }
     const manifestChapters = manifestPayload.manifest.chapters ?? [];
@@ -136,11 +168,31 @@ export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
             });
           }
         }
-      } catch {
-        // Chapter doesn't exist or isn't readable — skip
+      } catch (err) {
+        // Chapter doesn't exist or isn't readable. Record it so a transient S3
+        // blip on one chapter can't quietly ship an index missing that chapter.
+        failures.push({
+          scope: "chapter",
+          bookId: book.id,
+          chapterNumber: ch,
+          message: errorMessage(err),
+        });
         continue;
       }
     }
+  }
+
+  // Refuse to overwrite the authoritative index with a partial result. A stale
+  // but COMPLETE index is preferable to a fresh but INCOMPLETE one for a global
+  // search surface, and the caller surfaces this failure rather than swallowing
+  // it. The PutObject below only runs on a fully-successful rebuild.
+  const decision = decideSearchIndexWrite({
+    booksConsidered: catalog.length,
+    documentCount: documents.length,
+    failures,
+  });
+  if (!decision.write) {
+    throw new BookApiError(502, decision.code, decision.message, decision.details);
   }
 
   // Write the search index to S3
@@ -154,5 +206,5 @@ export async function rebuildSearchIndex(): Promise<{ documentCount: number }> {
     }),
   );
 
-  return { documentCount: documents.length };
+  return { documentCount: documents.length, booksConsidered: catalog.length };
 }

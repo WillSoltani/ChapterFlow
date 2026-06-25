@@ -38,8 +38,13 @@ async function main() {
   restore();
 
   console.log("Rebuilding search index ...");
+  // rebuildSearchIndex THROWS if any per-book/per-chapter read failed (it refuses
+  // to overwrite the live index with a partial result); the main().catch below
+  // turns that into a non-zero exit instead of a false "success".
   const result = await rebuildSearchIndex();
-  console.log(`✓ Wrote ${result.documentCount} documents to s3://...book-content/library/search-index.json`);
+  console.log(
+    `✓ Wrote ${result.documentCount} documents (${result.booksConsidered} books) to s3://...book-content/library/search-index.json`,
+  );
 }
 
 main().catch((err) => {
