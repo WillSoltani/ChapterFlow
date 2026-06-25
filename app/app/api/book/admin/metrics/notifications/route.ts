@@ -6,16 +6,13 @@ import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName, getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
 import { lastNDays } from "@/app/app/api/book/_lib/admin-metrics";
+import {
+  aggregateNotificationMetrics,
+  windowCutoff,
+  type NotificationMetricRow,
+} from "@/app/app/api/book/_lib/notifications-metrics-core";
 
 export const runtime = "nodejs";
-
-type NotifAgg = {
-  type: string;
-  channel: string;
-  sent: number;
-  read: number;
-  readRate: number;
-};
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -29,11 +26,19 @@ export async function GET(req: Request) {
     const warnings: string[] = [];
     const days = lastNDays(7);
 
-    // Scan recent notifications from main table (capped)
-    const aggMap = new Map<string, NotifAgg>();
-    // Per-day send counts, bucketed by createdAt (YYYY-MM-DD). Populated from the
-    // same scan so the daily-volume chart needs no extra reads.
-    const dayVolume = new Map<string, number>();
+    // Scan notifications WITHIN the metrics window only. Notifications live under
+    // per-user partitions (PK BOOKUSER#<id>, SK NOTIF#<createdAt>#<id>) with no
+    // cross-user GSI on createdAt, so there is no global recency-ordered Query.
+    // A bare capped Scan returns items in DynamoDB hash order, so once the table
+    // exceeds the cap the items examined are a non-recency-correlated SAMPLE and
+    // the 7-day chart silently under/random-counts recent days (H14).
+    //
+    // Instead, bound the scan SERVER-SIDE to the window with `createdAt >= :cut`:
+    // only in-window rows are ever returned, so every notification the chart
+    // covers is counted (the cap now only bites on a genuinely huge RECENT volume,
+    // and hitting it means we dropped RECENT items — a truthful "sampled" state).
+    const cutoff = windowCutoff(days);
+    const rows: NotificationMetricRow[] = [];
     let lastKey: Record<string, unknown> | undefined;
     let scanned = 0;
     const maxItems = 5000;
@@ -43,8 +48,8 @@ export async function GET(req: Request) {
         const res = await ddbDoc.send(
           new ScanCommand({
             TableName: tableName,
-            FilterExpression: "entity = :e",
-            ExpressionAttributeValues: { ":e": "BOOK_USER_NOTIFICATION" },
+            FilterExpression: "entity = :e AND createdAt >= :cut",
+            ExpressionAttributeValues: { ":e": "BOOK_USER_NOTIFICATION", ":cut": cutoff },
             ProjectionExpression: "#t, channel, readAt, createdAt",
             ExpressionAttributeNames: { "#t": "type" },
             ExclusiveStartKey: lastKey,
@@ -52,16 +57,7 @@ export async function GET(req: Request) {
           }),
         );
         for (const item of res.Items ?? []) {
-          const type = String(item.type ?? "unknown");
-          const channel = String(item.channel ?? "in_app");
-          const key = `${type}::${channel}`;
-          const agg =
-            aggMap.get(key) ?? { type, channel, sent: 0, read: 0, readRate: 0 };
-          agg.sent += 1;
-          if (item.readAt) agg.read += 1;
-          aggMap.set(key, agg);
-          const day = String(item.createdAt ?? "").slice(0, 10);
-          if (day) dayVolume.set(day, (dayVolume.get(day) ?? 0) + 1);
+          rows.push(item as NotificationMetricRow);
           scanned += 1;
           if (scanned >= maxItems) break;
         }
@@ -73,21 +69,19 @@ export async function GET(req: Request) {
     }
 
     if (scanned >= maxItems) {
-      warnings.push(`Showing first ${maxItems} notifications. Older items not included.`);
+      // The cap was reached WITHIN the 7-day window — recent days are sampled,
+      // not complete. (Pre-fix this warning was about "older items"; now the only
+      // way to hit it is genuinely huge recent volume, so it errs by under-counting
+      // the most recent days.)
+      warnings.push(
+        `Volume sampled from the first ${maxItems.toLocaleString()} notifications in the last 7 days; recent days may be under-counted.`,
+      );
     }
 
-    const aggregates = Array.from(aggMap.values()).map((a) => ({
-      ...a,
-      readRate: a.sent > 0 ? Math.round((a.read / a.sent) * 100) : 0,
-    }));
-    aggregates.sort((a, b) => b.sent - a.sent);
-
-    // Daily send volume, bucketed from the notifications scanned above by their
-    // createdAt date. Bounded by the same `maxItems` scan cap as the aggregates
-    // (the warning above already surfaces when that cap is hit), so on a very
-    // large table recent days may be under-counted — a createdAt GSI would lift
-    // that, but this is real data rather than a permanently-zero placeholder.
-    const dailyVolume = days.map((d) => ({ date: d, value: dayVolume.get(d) ?? 0 }));
+    // Pure, unit-tested aggregation: per-day volume across `days` + per-type/channel
+    // send/read rates, all over the SAME in-window population so the chart and the
+    // engagement table describe the same data.
+    const { dailyVolume, aggregates } = aggregateNotificationMetrics(rows, days);
 
     // Channel preference distribution from settings — count NotificationPreferences.
     // Capped at the same `maxItems` budget as the notifications scan above so a
