@@ -14,21 +14,62 @@ import {
   buildInteractionTouchUpdate,
   buildQuizPassProgressUpdate,
   classifyQuizOutcomeCancellation,
+  clampCursorForward,
+  isResetFullyCleared,
+  resolveProgressConflictRetry,
   sanitizeLastOpenedAt,
   QUIZ_OUTCOME_TX_INDEX,
+  type ProgressUpdateSpec,
 } from "./progress-write-core";
 import type { BookUserProgress } from "./types";
 
 // ── A minimal SET-only UpdateExpression + ConditionExpression applier ──
 // Supports exactly the subset the builders emit: `SET a = :v, #n = :v, ...` plus the
-// guards `attribute_not_exists(x)`, `x = :v`, `x <= :v`, joined by OR. Faithful enough
-// to prove the live expressions do what we claim.
+// guards `attribute_exists(x)`, `attribute_not_exists(x)`, `x = :v`, `x <= :v`, joined
+// by OR / AND with at most one parenthesized group. Faithful enough to prove the live
+// expressions do what we claim.
 
 type Item = Record<string, unknown>;
 
 function resolvePath(item: Item, names: Record<string, string> | undefined, token: string): unknown {
   const name = token.startsWith("#") ? (names?.[token] ?? token) : token;
   return item[name];
+}
+
+// Evaluate a single leaf clause (no AND/OR/parens).
+function evalLeaf(
+  clauseRaw: string,
+  names: Record<string, string> | undefined,
+  values: Record<string, unknown>,
+  item: Item
+): boolean {
+  const clause = clauseRaw.trim();
+  let m = /^attribute_not_exists\(([#\w]+)\)$/.exec(clause);
+  if (m) return resolvePath(item, names, m[1]) === undefined;
+  m = /^attribute_exists\(([#\w]+)\)$/.exec(clause);
+  if (m) return resolvePath(item, names, m[1]) !== undefined;
+  m = /^([#\w]+)\s*=\s*(:[\w]+)$/.exec(clause);
+  if (m) return resolvePath(item, names, m[1]) === values[m[2]];
+  m = /^([#\w]+)\s*<=\s*(:[\w]+)$/.exec(clause);
+  if (m) {
+    const left = resolvePath(item, names, m[1]);
+    const right = values[m[2]];
+    if (typeof left !== "number" || typeof right !== "number") return false;
+    return left <= right;
+  }
+  throw new Error(`unsupported guard clause: ${clause}`);
+}
+
+// Evaluate a parens-free OR/AND expression (OR binds looser than AND, as in SQL/DDB).
+function evalFlat(
+  expr: string,
+  names: Record<string, string> | undefined,
+  values: Record<string, unknown>,
+  item: Item
+): boolean {
+  return expr.split(" OR ").some((orPart) =>
+    orPart.split(" AND ").every((andPart) => evalLeaf(andPart, names, values, item))
+  );
 }
 
 function evalGuard(
@@ -38,22 +79,17 @@ function evalGuard(
   item: Item
 ): boolean {
   if (!cond) return true;
-  // Only OR-joined clauses appear in these builders.
-  return cond.split(" OR ").some((clauseRaw) => {
-    const clause = clauseRaw.trim();
-    let m = /^attribute_not_exists\(([#\w]+)\)$/.exec(clause);
-    if (m) return resolvePath(item, names, m[1]) === undefined;
-    m = /^([#\w]+)\s*=\s*(:[\w]+)$/.exec(clause);
-    if (m) return resolvePath(item, names, m[1]) === values[m[2]];
-    m = /^([#\w]+)\s*<=\s*(:[\w]+)$/.exec(clause);
-    if (m) {
-      const left = resolvePath(item, names, m[1]);
-      const right = values[m[2]];
-      if (typeof left !== "number" || typeof right !== "number") return false;
-      return left <= right;
-    }
-    throw new Error(`unsupported guard clause: ${clause}`);
-  });
+  // Support at most one parenthesized group joined by a leading `AND` (the exact shape
+  // buildQuizPassProgressUpdate / the touch cursor guard emit), e.g.
+  // `attribute_exists(PK) AND (attribute_not_exists(progressRev) OR progressRev = :v)`.
+  const grouped = /^(.*?)\s+AND\s+\((.+)\)\s*$/.exec(cond.trim());
+  if (grouped) {
+    return (
+      evalFlat(grouped[1], names, values, item) &&
+      evalFlat(grouped[2], names, values, item)
+    );
+  }
+  return evalFlat(cond, names, values, item);
 }
 
 function applySet(
@@ -113,22 +149,40 @@ function makeProgress(over: Partial<BookUserProgress> = {}): BookUserProgress {
 
 // ── A7: the interaction touch never writes the gating fields ──
 
+// The touch is now TWO decoupled specs (A8-followup #8): an UNCONDITIONAL timestamps
+// write + a forward-only cursor write. Apply them in order against an item, mirroring
+// upsertUserProgress (each lost guard is swallowed as a no-op).
+function applyTouch(
+  touch: { timestamps: ProgressUpdateSpec; cursor: ProgressUpdateSpec },
+  item: Item
+): { item: Item; timestampsApplied: boolean; cursorApplied: boolean } {
+  let next = item;
+  const tsResult = applyUpdate(touch.timestamps, next);
+  const timestampsApplied = tsResult !== null;
+  if (tsResult) next = tsResult;
+  const cursorResult = applyUpdate(touch.cursor, next);
+  const cursorApplied = cursorResult !== null;
+  if (cursorResult) next = cursorResult;
+  return { item: next, timestampsApplied, cursorApplied };
+}
+
 test("touch update SETs only cursor/activity fields, never the gating fields", () => {
-  const spec = buildInteractionTouchUpdate({
+  const touch = buildInteractionTouchUpdate({
     nextCurrentChapterNumber: 2,
     lastOpenedAt: "2026-02-01T00:00:00.000Z",
     lastActiveAt: "2026-02-01T00:00:00.000Z",
     updatedAt: "2026-02-01T00:00:00.000Z",
   });
-  // The gating fields must not appear in the update at all.
-  assert.ok(!/unlockedThroughChapterNumber/.test(spec.UpdateExpression));
-  assert.ok(!/completedChapters/.test(spec.UpdateExpression));
-  assert.ok(!/bestScoreByChapter/.test(spec.UpdateExpression));
+  const combined = touch.timestamps.UpdateExpression + touch.cursor.UpdateExpression;
+  // The gating fields must not appear in either update at all.
+  assert.ok(!/unlockedThroughChapterNumber/.test(combined));
+  assert.ok(!/completedChapters/.test(combined));
+  assert.ok(!/bestScoreByChapter/.test(combined));
 });
 
 test("REGRESSION A7: a touch cannot roll back a concurrently-completed chapter / unlock", () => {
   // Stored row already advanced by a concurrent quiz pass: chapter 1 completed, ch2 unlocked.
-  // PK is present because this is an EXISTING row (so attribute_not_exists(PK) is false).
+  // PK is present because this is an EXISTING row (so attribute_exists(PK) holds).
   const stored: Item = {
     PK: "BOOKUSER#u1",
     SK: "PROGRESS#b1",
@@ -140,50 +194,109 @@ test("REGRESSION A7: a touch cannot roll back a concurrently-completed chapter /
     lastActiveAt: "2026-01-01T00:00:00.000Z",
   };
   // A stale "touch" built from a pre-pass snapshot (cursor still 1).
-  const spec = buildInteractionTouchUpdate({
+  const touch = buildInteractionTouchUpdate({
     nextCurrentChapterNumber: 1,
     lastOpenedAt: "2026-03-01T00:00:00.000Z",
     lastActiveAt: "2026-03-01T00:00:00.000Z",
     updatedAt: "2026-03-01T00:00:00.000Z",
   });
-  const after = applyUpdate(spec, stored);
-  // Whatever happens, the gating fields are preserved (the old full-Put would have
-  // reset completedChapters → [] and unlocked → 1, re-locking the chapter).
-  const result = after ?? stored;
+  const { item: result } = applyTouch(touch, stored);
+  // The gating fields are preserved (the old full-Put would have reset completedChapters
+  // → [] and unlocked → 1, re-locking the chapter).
   assert.deepEqual(result.completedChapters, [1]);
   assert.equal(result.unlockedThroughChapterNumber, 2);
   assert.deepEqual(result.bestScoreByChapter, { "1": 100 });
-  // The cursor max-guard never moves it backward either.
+  // The cursor forward-only guard never moves it backward either.
   assert.equal((result.currentChapterNumber as number) >= 2, true);
 });
 
 test("touch update advances the cursor and timestamps when not behind", () => {
   const stored: Item = {
+    PK: "BOOKUSER#u1",
     currentChapterNumber: 1,
     unlockedThroughChapterNumber: 3,
     completedChapters: [1, 2],
     progressRev: 2,
     lastActiveAt: "2026-01-01T00:00:00.000Z",
   };
-  const spec = buildInteractionTouchUpdate({
+  const touch = buildInteractionTouchUpdate({
     nextCurrentChapterNumber: 2,
     lastOpenedAt: "2026-03-01T00:00:00.000Z",
     lastActiveAt: "2026-03-01T00:00:00.000Z",
     updatedAt: "2026-03-01T00:00:00.000Z",
   });
-  const after = applyUpdate(spec, stored);
-  assert.notEqual(after, null);
-  assert.equal(after!.currentChapterNumber, 2);
-  assert.equal(after!.lastActiveAt, "2026-03-01T00:00:00.000Z");
+  const { item: after, timestampsApplied, cursorApplied } = applyTouch(touch, stored);
+  assert.equal(timestampsApplied, true);
+  assert.equal(cursorApplied, true);
+  assert.equal(after.currentChapterNumber, 2);
+  assert.equal(after.lastActiveAt, "2026-03-01T00:00:00.000Z");
   // Gating fields untouched.
-  assert.deepEqual(after!.completedChapters, [1, 2]);
-  assert.equal(after!.unlockedThroughChapterNumber, 3);
+  assert.deepEqual(after.completedChapters, [1, 2]);
+  assert.equal(after.unlockedThroughChapterNumber, 3);
+});
+
+// ── #8: a lost cursor race must NOT drop the activity timestamps ──
+
+test("REGRESSION #8: a touch that LOSES the cursor race still persists the activity timestamps", () => {
+  // The stored cursor is already AHEAD (a concurrent quiz pass moved it to 3). A stale
+  // heartbeat touch wants cursor 2 — it loses the forward-only cursor guard. With the OLD
+  // single combined update, the shared ConditionExpression failed and dropped lastOpenedAt
+  // / lastActiveAt / updatedAt too (streak / goals / heatmap silently lose the activity).
+  const stored: Item = {
+    PK: "BOOKUSER#u1",
+    currentChapterNumber: 3,
+    unlockedThroughChapterNumber: 3,
+    completedChapters: [1, 2],
+    progressRev: 5,
+    lastOpenedAt: "2026-01-01T00:00:00.000Z",
+    lastActiveAt: "2026-01-01T00:00:00.000Z",
+    updatedAt: "2026-01-01T00:00:00.000Z",
+  };
+  const touch = buildInteractionTouchUpdate({
+    nextCurrentChapterNumber: 2, // behind the stored cursor → loses the cursor race
+    lastOpenedAt: "2026-03-01T00:00:00.000Z",
+    lastActiveAt: "2026-03-01T00:00:00.000Z",
+    updatedAt: "2026-03-01T00:00:00.000Z",
+  });
+  const { item: after, timestampsApplied, cursorApplied } = applyTouch(touch, stored);
+  // The cursor write is correctly rejected (forward-only)…
+  assert.equal(cursorApplied, false);
+  assert.equal(after.currentChapterNumber, 3, "cursor never moves backward");
+  // …but the activity timestamps STILL land (the whole point of decoupling the writes).
+  assert.equal(timestampsApplied, true);
+  assert.equal(after.lastOpenedAt, "2026-03-01T00:00:00.000Z");
+  assert.equal(after.lastActiveAt, "2026-03-01T00:00:00.000Z");
+  assert.equal(after.updatedAt, "2026-03-01T00:00:00.000Z");
+  // Gating fields untouched throughout.
+  assert.deepEqual(after.completedChapters, [1, 2]);
+  assert.equal(after.unlockedThroughChapterNumber, 3);
+});
+
+test("REGRESSION #8: a touch can never CREATE a partial row (attribute_exists(PK) gates BOTH writes)", () => {
+  // No PK → the row does not exist (deleted / never created). Neither the timestamps nor
+  // the cursor write may upsert a malformed partial BOOK_PROGRESS item.
+  const absent: Item = {};
+  const touch = buildInteractionTouchUpdate({
+    nextCurrentChapterNumber: 1,
+    lastOpenedAt: "2026-03-01T00:00:00.000Z",
+    lastActiveAt: "2026-03-01T00:00:00.000Z",
+    updatedAt: "2026-03-01T00:00:00.000Z",
+  });
+  const { item: after, timestampsApplied, cursorApplied } = applyTouch(touch, absent);
+  assert.equal(timestampsApplied, false, "timestamps write must not create a row");
+  assert.equal(cursorApplied, false, "cursor write must not create a row");
+  assert.deepEqual(after, {}, "no attributes written to a non-existent row");
 });
 
 // ── A6: the quiz-pass write is optimistic and can't clobber a concurrent advance ──
 
 test("quiz-pass update applies and bumps progressRev when the rev guard matches", () => {
-  const stored: Item = makeProgress({ progressRev: 3 }) as unknown as Item;
+  // PK present — an EXISTING row (the quiz-pass guard requires attribute_exists(PK)).
+  const stored: Item = {
+    PK: "BOOKUSER#u1",
+    SK: "PROGRESS#b1",
+    ...(makeProgress({ progressRev: 3 }) as unknown as Item),
+  };
   const nextProgress = makeProgress({
     progressRev: 3,
     currentChapterNumber: 2,
@@ -202,7 +315,10 @@ test("quiz-pass update applies and bumps progressRev when the rev guard matches"
 
 test("REGRESSION A6: a stale quiz-pass write is REJECTED when another writer bumped the rev", () => {
   // Concurrent writer already advanced the row: rev 3 → 4, completed [1, 2].
+  // PK present — this is an EXISTING row (the quiz-pass guard requires attribute_exists(PK)).
   const stored: Item = {
+    PK: "BOOKUSER#u1",
+    SK: "PROGRESS#b1",
     progressRev: 4,
     currentChapterNumber: 3,
     unlockedThroughChapterNumber: 3,
@@ -239,6 +355,7 @@ test("REGRESSION A6: a stale quiz-pass write is REJECTED when another writer bum
 
 test("quiz-pass update applies on a legacy row with no progressRev attribute", () => {
   const legacy: Item = {
+    PK: "BOOKUSER#u1",
     currentChapterNumber: 1,
     unlockedThroughChapterNumber: 1,
     completedChapters: [],
@@ -256,6 +373,26 @@ test("quiz-pass update applies on a legacy row with no progressRev attribute", (
   assert.notEqual(after, null);
   assert.equal(after!.progressRev, 1);
   assert.deepEqual(after!.completedChapters, [1]);
+});
+
+test("REGRESSION #1: the quiz-pass update can NEVER create a new (malformed) PROGRESS row", () => {
+  // The PROGRESS row is absent (no PK) — ensureUserBookStarted is supposed to create it
+  // first. Without attribute_exists(PK) the Update would UPSERT, birthing a partial row
+  // that lacks entity / pinnedBookVersion / manifestKey / contentPrefix. The guard must
+  // reject the write so the tx fails (→ progress_conflict → re-read + retry / 503).
+  const absent: Item = {};
+  const nextProgress = makeProgress({
+    progressRev: 0,
+    currentChapterNumber: 2,
+    unlockedThroughChapterNumber: 2,
+    completedChapters: [1],
+  });
+  const spec = buildQuizPassProgressUpdate({ nextProgress, expectedRev: 0, nextRev: 1 });
+  // The expression must carry the existence guard…
+  assert.ok(/attribute_exists\(PK\)/.test(spec.ConditionExpression ?? ""));
+  // …and applying it to a non-existent row is REJECTED (no upsert of a partial row).
+  const after = applyUpdate(spec, absent);
+  assert.equal(after, null, "quiz-pass write must not create a new PROGRESS row");
 });
 
 // ── A8: reason-aware cancellation classification ──
@@ -371,8 +508,226 @@ test("A12: a non-epoch valid timestamp stays non-epoch (badge 'started' clause s
   assert.notEqual(result, new Date(0).toISOString());
 });
 
+// ── #6: lower floor — the epoch sentinel can't be written back ──
+// lastOpenedAt feeds the "book started" badge clause (lastOpenedAt !== epoch). Without a
+// lower floor a client could PATCH `new Date(0).toISOString()` to write the epoch back and
+// flip a started book OFF. The floor clamps the epoch (and any pre-epoch value) up to now.
+
+test("REGRESSION #6: the exact Unix epoch is rejected (clamped to now), never echoed back", () => {
+  const epoch = new Date(0).toISOString(); // 1970-01-01T00:00:00.000Z
+  const result = sanitizeLastOpenedAt(epoch, A12_NOW);
+  assert.notEqual(result, epoch, "epoch sentinel must not survive — it would un-start the book");
+  assert.equal(result, A12_NOW);
+});
+
+test("#6: a pre-epoch / negative timestamp is rejected (clamped to now)", () => {
+  // A date before 1970 parses to a negative epoch ms.
+  assert.equal(sanitizeLastOpenedAt("1969-06-01T00:00:00.000Z", A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt("1900-01-01T00:00:00.000Z", A12_NOW), A12_NOW);
+});
+
+test("#6: a value one millisecond after epoch is still rejected (ms <= 0 floor is exclusive of epoch)", () => {
+  // 0 ms is rejected; 1 ms is technically valid but absurd — it parses fine and is well
+  // before `now`, so it is preserved (the floor only rejects ms <= 0, by design, so we
+  // don't over-reject merely-old values). This pins that exact boundary.
+  assert.equal(sanitizeLastOpenedAt(new Date(0).toISOString(), A12_NOW), A12_NOW);
+  assert.equal(
+    sanitizeLastOpenedAt(new Date(1).toISOString(), A12_NOW),
+    new Date(1).toISOString()
+  );
+});
+
+// ── #2 + #3: the progress_conflict retry must converge, and a null re-read must be
+// treated as RETRYABLE — never a stale rev-0 write. resolveProgressConflictRetry is the
+// pure decision the repo retry loop delegates to (it can't be imported under tsx --test).
+
+test("REGRESSION #3: a null fresh re-read is RETRYABLE (backoff), never a stale rev-0 write", () => {
+  // Mid-budget, the conflict re-read returned no row (erasure racing the submit). The OLD
+  // code set expectedRev=0 and continued, re-writing the stale snapshot. The decision must
+  // be a backoff-retry instead — it NEVER recomputes/writes against a null row.
+  const decision = resolveProgressConflictRetry({
+    attemptNo: 0,
+    maxAttempts: 4,
+    hasNextProgress: true,
+    freshProgressRev: null,
+  });
+  assert.deepEqual(decision, { action: "backoff_retry" });
+  // It is NOT a recompute (which is the path that would carry a fresh rev and write).
+  assert.notEqual((decision as { action: string }).action, "recompute");
+});
+
+test("#3: a null re-read near the end of the budget gives up with a 503 (still no stale write)", () => {
+  // attemptNo 2 of maxAttempts 4 → attemptNo >= maxAttempts-2 → no point re-reading again.
+  assert.deepEqual(
+    resolveProgressConflictRetry({
+      attemptNo: 2,
+      maxAttempts: 4,
+      hasNextProgress: true,
+      freshProgressRev: null,
+    }),
+    { action: "give_up_503" }
+  );
+});
+
+test("#2: a fresh row is RECOMPUTED against its committed rev (the retry converges)", () => {
+  // The re-read (strongly-consistent in the repo) observed the committed rev 7. The retry
+  // must recompute against THAT rev so the next write's optimistic guard matches.
+  assert.deepEqual(
+    resolveProgressConflictRetry({
+      attemptNo: 1,
+      maxAttempts: 4,
+      hasNextProgress: true,
+      freshProgressRev: 7,
+    }),
+    { action: "recompute", freshRev: 7 }
+  );
+});
+
+test("#2: the final attempt (or a missing nextProgress) gives up with a 503, never dropping the pass silently", () => {
+  assert.deepEqual(
+    resolveProgressConflictRetry({
+      attemptNo: 3,
+      maxAttempts: 4,
+      hasNextProgress: true,
+      freshProgressRev: 9,
+    }),
+    { action: "give_up_503" }
+  );
+  assert.deepEqual(
+    resolveProgressConflictRetry({
+      attemptNo: 0,
+      maxAttempts: 4,
+      hasNextProgress: false,
+      freshProgressRev: 9,
+    }),
+    { action: "give_up_503" }
+  );
+});
+
+// ── #5: a reset bumps progressRev, so a concurrently in-flight quiz-pass holding the
+// pre-reset rev is CANCELLED (its optimistic guard fails) and can't re-complete a
+// just-reset chapter using its stale snapshot. The reset Update does
+// `progressRev = if_not_exists(progressRev, 0) + 1`; we model that bump and assert the
+// in-flight pass (built from buildQuizPassProgressUpdate at the old rev) is rejected.
+
+test("REGRESSION #5: a reset's progressRev bump CANCELS a concurrent in-flight quiz-pass", () => {
+  // Row at rev 4 with a completed chapter 1, about to be reset.
+  const beforeReset: Item = {
+    PK: "BOOKUSER#u1",
+    SK: "PROGRESS#b1",
+    currentChapterNumber: 2,
+    unlockedThroughChapterNumber: 2,
+    completedChapters: [1],
+    bestScoreByChapter: { "1": 90 },
+    progressRev: 4,
+  };
+  // An in-flight quiz-pass read rev 4 and built nextProgress to (re-)complete chapter 1.
+  const inFlightPass = makeProgress({
+    progressRev: 4,
+    currentChapterNumber: 2,
+    unlockedThroughChapterNumber: 2,
+    completedChapters: [1],
+    bestScoreByChapter: { "1": 100 },
+  });
+  const passSpec = buildQuizPassProgressUpdate({
+    nextProgress: inFlightPass,
+    expectedRev: 4,
+    nextRev: 5,
+  });
+
+  // The reset commits FIRST: clears gating fields and bumps the rev 4 → 5.
+  const afterReset: Item = {
+    ...beforeReset,
+    currentChapterNumber: 1,
+    unlockedThroughChapterNumber: 1,
+    completedChapters: [],
+    bestScoreByChapter: {},
+    progressRev: 5, // if_not_exists(progressRev,0) + 1
+  };
+
+  // The in-flight pass (still carrying expectedRev=4) now hits the reset row at rev 5 and
+  // is REJECTED — it cannot re-complete the just-reset chapter behind the reset's back.
+  const result = applyUpdate(passSpec, afterReset);
+  assert.equal(result, null, "stale-rev quiz-pass must be cancelled by the reset's rev bump");
+  assert.deepEqual(afterReset.completedChapters, [], "reset state survives intact");
+  assert.equal(afterReset.unlockedThroughChapterNumber, 1);
+});
+
+// ── #4: the reset must NOT report success while learning-state rows survive ──
+// A throttled BatchWrite can leave unprocessed > 0; if any QUIZSTATE#/QUIZATTEMPT# row
+// survives, the submit fallback rebuilds passed:true and re-locks the reader (A5 brick).
+
+test("REGRESSION #4: a reset with unprocessed > 0 is NOT considered cleared (route surfaces a 503)", () => {
+  assert.equal(isResetFullyCleared({ unprocessed: 3 }), false);
+  assert.equal(isResetFullyCleared({ unprocessed: 1 }), false);
+});
+
+test("#4: a reset that fully drained (unprocessed === 0) IS cleared (route returns 200)", () => {
+  assert.equal(isResetFullyCleared({ unprocessed: 0 }), true);
+});
+
 test("A12: an oddly-but-validly formatted input is normalized to canonical ISO-8601", () => {
   // A valid Date input that is NOT already canonical ISO should be normalized.
   const result = sanitizeLastOpenedAt("2026-06-20T08:30:00Z", A12_NOW);
   assert.equal(result, "2026-06-20T08:30:00.000Z");
+});
+
+// ── #9 (projection): the user-VISIBLE cursor (BOOK_USER_BOOK_STATE.currentChapterId,
+// returned verbatim by /state GET) must be FORWARD-ONLY too, consistent with the
+// canonical BOOK_PROGRESS currentChapterNumber. Without this clamp a stale tab carrying
+// an older chapter would drag the reader's visible cursor backward and diverge the
+// projection (backward) from the canonical row (forward). clampCursorForward is the pure
+// seam the /state PATCH applies before putUserBookState.
+
+// A 3-chapter pinned manifest: ch1→"a", ch2→"b", ch3→"c".
+const NUM_BY_ID = new Map([
+  ["a", 1],
+  ["b", 2],
+  ["c", 3],
+]);
+const numberOf = (chapterId: string): number | undefined => NUM_BY_ID.get(chapterId);
+
+test("REGRESSION #9: a stale (lower-chapter) PATCH does NOT move the visible cursor backward", () => {
+  // Reader is at chapter 3 ("c"); a stale tab PATCHes currentChapterId back to chapter 1.
+  const next = clampCursorForward({
+    candidate: "a", // chapter 1 — would regress
+    existing: "c", // chapter 3 — the committed, more-advanced cursor
+    numberOf,
+  });
+  assert.equal(next, "c", "the projection cursor must stay at the more-advanced chapter, not regress");
+});
+
+test("#9: the projection cursor DOES advance forward (chapter 2 → 3)", () => {
+  assert.equal(
+    clampCursorForward({ candidate: "c", existing: "b", numberOf }),
+    "c",
+    "a genuine forward move is accepted"
+  );
+});
+
+test("#9: equal chapter is a no-op (keeps the candidate, not a regression)", () => {
+  assert.equal(clampCursorForward({ candidate: "b", existing: "b", numberOf }), "b");
+});
+
+test("#9: no existing projection cursor → the candidate is used as-is", () => {
+  assert.equal(clampCursorForward({ candidate: "b", existing: undefined, numberOf }), "b");
+  assert.equal(clampCursorForward({ candidate: "b", existing: "", numberOf }), "b");
+});
+
+test("#9: an existing cursor that is unknown on the pinned manifest can't block a real candidate", () => {
+  // existing maps to nothing (stale/renamed id) → it must NOT win over a concrete candidate.
+  assert.equal(
+    clampCursorForward({ candidate: "b", existing: "ghost", numberOf }),
+    "b",
+    "an unresolvable existing cursor never out-ranks a real candidate"
+  );
+});
+
+test("#9: when the candidate is unknown but existing is a real advanced cursor, keep existing", () => {
+  // A candidate that resolves to nothing (-Infinity) must not erase a known forward cursor.
+  assert.equal(
+    clampCursorForward({ candidate: "ghost", existing: "c", numberOf }),
+    "c",
+    "a garbage candidate can't drag a known cursor to an unresolvable value"
+  );
 });
