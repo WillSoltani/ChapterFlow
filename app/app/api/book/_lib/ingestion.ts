@@ -18,6 +18,7 @@ import type {
 } from "./types";
 import { validateBookPackage } from "./validate-book-package";
 import { CategoryTaxonomyError, enforceCanonicalCategories } from "@/lib/category-taxonomy";
+import { shouldPublishReusedVersion } from "./ingestion-publish-policy";
 import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
 import {
   createBookVersionDraft,
@@ -109,6 +110,12 @@ export async function ingestBookPackageFromS3(params: {
     if (existing) {
       const existingPrefix = existing.contentPrefix || buildContentPrefix(pkg.book.bookId, existing.version);
       const existingManifestKey = existing.manifestKey || buildManifestKey(existingPrefix);
+      // Honor publishNow on the reuse path: a prior DRAFT ingest re-run with
+      // publishNow=true must actually publish, not silently no-op (the version
+      // would otherwise stay DRAFT and the book never go live).
+      if (shouldPublishReusedVersion(params.publishNow, existing.state)) {
+        await publishBookVersion(params.tableName, pkg.book.bookId, existing.version, params.createdBy);
+      }
       return {
         bookId: pkg.book.bookId,
         version: existing.version,
