@@ -18,6 +18,7 @@ export type FlowPointsSourceType =
   | "badge_earned"
   | "achievement_earned"
   | "scenario_approved"
+  | "scenario_reversal"
   | "streak_day"
   | "welcome_back"
   | "streak_milestone"
@@ -272,6 +273,8 @@ export function getInsightPointsSourceTitle(sourceType: string): string {
       return "Achievement earned";
     case "scenario_approved":
       return "Scenario approved";
+    case "scenario_reversal":
+      return "Scenario approval reversed";
     case "referral_activation_inviter":
       return "Referral became active";
     case "referral_activation_invitee":
