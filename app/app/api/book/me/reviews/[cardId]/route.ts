@@ -42,7 +42,13 @@ export async function POST(
       throw new BookApiError(400, "invalid_card_id", "cardId is required.");
     }
 
-    const body = requireBodyObject(await req.json());
+    let bodyRaw: unknown;
+    try {
+      bodyRaw = await req.json();
+    } catch {
+      bodyRaw = {};
+    }
+    const body = requireBodyObject(bodyRaw);
     const rating = body.rating as number;
 
     if (!VALID_RATINGS.has(rating as FSRSRating)) {

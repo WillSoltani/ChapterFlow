@@ -110,7 +110,12 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
-    const bodyRaw = await req.json();
+    let bodyRaw: unknown;
+    try {
+      bodyRaw = await req.json();
+    } catch {
+      bodyRaw = {};
+    }
     const body = requireBodyObject(bodyRaw);
     const itemId = requireString(body.itemId, "itemId", { maxLength: 100 });
 
