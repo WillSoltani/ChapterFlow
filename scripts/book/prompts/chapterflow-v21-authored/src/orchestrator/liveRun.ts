@@ -321,7 +321,7 @@ function parseArgv(raw: string[]): { args: string[]; flags: Flags } {
 export async function runLive(args: string[], flags: Flags): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]");
+    console.error("Usage: book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]   (--regen re-runs an already-published book end-to-end)");
     return 2;
   }
 
@@ -367,12 +367,16 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // fails SAFE: any --no-publish disables auto-publish.
   const autoPublish = !("no-publish" in flags);
   const plan = flags["plan"] === true;
+  // --regen: REGENERATE an already-published book. Without it, the conductor sees the committed
+  // package and skips as "shipped". With it, it re-runs end-to-end over the existing package (promote
+  // overwrites it) — no move-the-package-aside hack, so the web registry's static import never dangles.
+  const regen = "regen" in flags;
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
   console.log(
     dim(
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
-        `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}` +
+        `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}${regen ? " · REGEN (re-run a published book)" : ""}` +
         `${autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
@@ -389,6 +393,7 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
     bookId,
     plan,
     autoPublish,
+    regen,
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
     deps: { log: (m) => emit(bookId, m) },

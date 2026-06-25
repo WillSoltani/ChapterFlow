@@ -255,14 +255,15 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
-  book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]
+  book-autopilot <bookId> [--regen] [--plan] [--no-publish] [--max-repair N] [--max-parallel N]
                                      END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
                                      → ready-to-publish, spawning codex exec agentic sub-sessions for the
                                      WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
                                      the DECISIONS. Runs on the Codex subscription (NO API metering). On QC
                                      convergence AUTO-PUBLISHES (full promote gate, then commit+push to main —
                                      NOT a live deploy); --no-publish halts for review. --plan previews the plan.
-  book-run <bookId> [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]
+                                     --regen RE-RUNS an already-published book (else it's skipped as "shipped").
+  book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--no-notify] [--sound] [--log <file>]
                                      SAME conductor as book-autopilot, wrapped to print a clean timestamped
                                      update AND a macOS notification on every MAJOR event (research / write /
                                      gate / QC round + publishable tally / repair / warnings / final). One
@@ -3778,6 +3779,7 @@ async function runBookAutopilot(args: string[], flags: Record<string, string | b
     // check, not `!== true`, so a parser that binds a following token as the flag's value
     // can't make the opt-out fail OPEN.
     autoPublish: !("no-publish" in flags),
+    regen: "regen" in flags,
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });

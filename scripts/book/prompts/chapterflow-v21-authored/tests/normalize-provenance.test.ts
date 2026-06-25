@@ -64,7 +64,7 @@ test("normalizeChapterProvenance re-stamps a mislabeled-but-valid block; leaves 
     const fixed = normalizeChapterProvenance(BOOK);
 
     // Only ch1 corrected, reported with its prior label.
-    assert.deepEqual(fixed, [{ chapterNumber: 1, chapterId: `${BOOK}-ch01`, from: "source-anchor-map-v1" }]);
+    assert.deepEqual(fixed, [{ chapterNumber: 1, chapterId: `${BOOK}-ch01`, from: "source-anchor-map-v1", kind: "relabel" }]);
     assert.equal(readSchema(1), CANONICAL_SOURCE_ANCHOR_SCHEMA, "ch1 re-stamped to canonical");
     // ch1 content otherwise intact (observed anchors preserved).
     const ch1 = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, chapterFileName(`${BOOK}-ch01`)), "utf8"));
@@ -75,6 +75,39 @@ test("normalizeChapterProvenance re-stamps a mislabeled-but-valid block; leaves 
     assert.equal(readSchema(4), "totally-different-v9", "ch4 alien schema left for the gate");
 
     // Idempotent: a second pass changes nothing.
+    assert.deepEqual(normalizeChapterProvenance(BOOK), []);
+  } finally {
+    cleanup();
+  }
+});
+
+test("normalizeChapterProvenance RECONSTRUCTS a gutted block from retained effectiveAnchors; skips a gut with none", () => {
+  try {
+    if (!existsSync(CHAPTERS_DIR)) mkdirSync(CHAPTERS_DIR, { recursive: true });
+    cleanup();
+    // ch1: a valid canonical sibling (no change).
+    writeChapter(1, { schemaVersion: "chapter-authoring-v1", sourceAnchors: { schemaVersion: CANONICAL_SOURCE_ANCHOR_SCHEMA, ...VALID_ANCHORS(1) } });
+    // ch2: the tiny-habits ch3 GUT — schemaVersion + observedAnchorIds + sourceSidecarPath DROPPED; only effectiveAnchors survived.
+    writeChapter(2, { schemaVersion: "chapter-authoring-v1", sourceAnchors: { effectiveAnchors: { hook: ["ch2.concept", "ch2.fact.1"], keyTakeaway: ["ch2.fact.2", "ch2.concept"] } } });
+    // ch3: gut with EMPTY effectiveAnchors → nothing real to derive from → must NOT reconstruct.
+    writeChapter(3, { schemaVersion: "chapter-authoring-v1", sourceAnchors: { effectiveAnchors: {} } });
+
+    const fixed = normalizeChapterProvenance(BOOK);
+
+    // Only ch2 reconstructed (via the gut path).
+    assert.deepEqual(fixed.map((f) => ({ n: f.chapterNumber, kind: f.kind })), [{ n: 2, kind: "reconstruct" }]);
+    const ch2 = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, chapterFileName(`${BOOK}-ch02`)), "utf8"));
+    assert.equal(ch2.authoring.sourceAnchors.schemaVersion, CANONICAL_SOURCE_ANCHOR_SCHEMA, "ch2 schemaVersion re-derived → canonical");
+    // observedAnchorIds re-derived from effectiveAnchors (unique + sorted): {ch2.concept, ch2.fact.1, ch2.fact.2}.
+    assert.deepEqual(ch2.authoring.sourceAnchors.observedAnchorIds, ["ch2.concept", "ch2.fact.1", "ch2.fact.2"]);
+    // the real provenance (effectiveAnchors) is preserved verbatim.
+    assert.deepEqual(ch2.authoring.sourceAnchors.effectiveAnchors, { hook: ["ch2.concept", "ch2.fact.1"], keyTakeaway: ["ch2.fact.2", "ch2.concept"] });
+
+    // ch3 (empty effectiveAnchors) was NOT reconstructed — never fabricate.
+    const ch3 = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, chapterFileName(`${BOOK}-ch03`)), "utf8"));
+    assert.equal(ch3.authoring.sourceAnchors.schemaVersion, undefined, "empty-effectiveAnchors gut NOT reconstructed");
+
+    // Idempotent.
     assert.deepEqual(normalizeChapterProvenance(BOOK), []);
   } finally {
     cleanup();
