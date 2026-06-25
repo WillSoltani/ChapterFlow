@@ -10,8 +10,11 @@
  *   (c) Raw hex / rgba() color literals in components/**, app/book/**, and the
  *       auth-flow surfaces (app/signup,auth,ref,onboarding,account-deleted) TSX
  *       (use tokens). Baselined: only NEW literals fail.
- *   (d) Literal catalog-size counts ("93 more books", "60+ books", …) that
- *       bypass lib/catalog-stats. Baselined: only NEW literals fail.
+ *   (d) Literal catalog-size counts ("93 more books", "60+ books", "21
+ *       categories", …) that bypass lib/catalog-stats. Scans .tsx/.ts/.md under
+ *       app/, components/, lib/, docs/ (copy can leak from any of them), matching
+ *       both book counts AND category/topic/genre counts. Baselined: only NEW
+ *       literals fail.
  *
  * Guards (a) and (b) must be clean (no baseline). Guards (c) and (d) carry a
  * baseline (scripts/ci/style-drift-allowlist.txt) seeded from the pre-Wave-0
@@ -49,9 +52,13 @@ const RE_RGBA = /\brgba?\([^)]*\)/gi; // (c)
 const RE_FRAGMENT_ATTR = /\b(?:href|xlinkHref|to|id)\s*=\s*["']#[\w-]*["']/g;
 const stripFragmentRefs = (line) => line.replace(RE_FRAGMENT_ATTR, "");
 const RE_CATALOG = [
-  /\b\d{2,3}\+?\s+more\s+books?\b/i, // "93 more books", "93+ more books"
-  /\b\d{2,3}\+\s*books?\b/i, // "60+ books", "95+ books"
-]; // (d)
+  /\b\d{1,3}\+?\s+more\s+books?\b/i, // "93 more books", "93+ more books", "9 more books"
+  /\b\d{1,3}\+\s*books?\b/i, // "60+ books", "95+ books", "9+ books"
+  // Catalog-size category/topic/genre claims, e.g. "21 categories", "13+ topics".
+  // Matches the "of 21 categories" / "across 21 topics" marketing/profile shape;
+  // legitimate per-badge thresholds and code comments are absorbed by the baseline.
+  /\b\d{1,3}\+?\s+(?:categories|topics|genres)\b/i,
+]; // (d) — see lib/catalog-stats.ts (CATALOG_BOOK_COUNT_DISPLAY / CATALOG_CATEGORY_COUNT_DISPLAY)
 
 // Tokens set by JS at runtime (style.setProperty / inline style) or consumed
 // with a fallback — legitimately undeclared in globals.css.
@@ -94,6 +101,8 @@ const read = (rel) => {
 const inApp = (f) => f.startsWith("app/");
 const inComponents = (f) => f.startsWith("components/");
 const inBook = (f) => f.startsWith("app/book/");
+const inLib = (f) => f.startsWith("lib/");
+const inDocs = (f) => f.startsWith("docs/");
 // Neglected surfaces that also ship raw UI but previously escaped the (c) scan.
 const AUTH_FLOW_PREFIXES = [
   "app/signup/",
@@ -105,6 +114,9 @@ const AUTH_FLOW_PREFIXES = [
 const inAuthFlows = (f) => AUTH_FLOW_PREFIXES.some((p) => f.startsWith(p));
 const isTsx = (f) => f.endsWith(".tsx");
 const isStyleConsumer = (f) => /\.(tsx|ts|css)$/.test(f);
+// guard (d) scans copy wherever it can leak a hardcoded count: TSX/TS components &
+// copy-constant modules, plus committed Markdown docs/copy.
+const isCatalogCopy = (f) => /\.(tsx|ts|md)$/.test(f);
 const norm = (s) => s.replace(/\s+/g, ""); // signature normalization
 
 // ── allowlist (baseline) for guards (c) + (d) ────────────────────────────────
@@ -192,7 +204,8 @@ function guardCatalogCounts(files, allow) {
   const out = [];
   let baselined = 0;
   for (const f of files) {
-    if (!isTsx(f) || !(inApp(f) || inComponents(f))) continue;
+    if (f === SELF_REL || f === ALLOWLIST_REL) continue; // this script & its baseline name catalog literals
+    if (!isCatalogCopy(f) || !(inApp(f) || inComponents(f) || inLib(f) || inDocs(f))) continue;
     const src = read(f);
     if (src == null) continue;
     src.split("\n").forEach((line, i) => {
@@ -271,9 +284,14 @@ function selftest() {
   // (d) catalog counts
   expect(RE_CATALOG.some((r) => r.test("Unlock 93 more books with Pro")), "(d) missed '93 more books'");
   expect(RE_CATALOG.some((r) => r.test("60+ books across")), "(d) missed '60+ books'");
+  expect(RE_CATALOG.some((r) => r.test("Unlock 9 more books")), "(d) missed single-digit '9 more books'");
+  expect(RE_CATALOG.some((r) => r.test("across 21 categories")), "(d) missed '21 categories'");
+  expect(RE_CATALOG.some((r) => r.test("13+ topics to explore")), "(d) missed '13+ topics'");
+  expect(RE_CATALOG.some((r) => r.test("9 genres")), "(d) missed '9 genres'");
   expect(!RE_CATALOG.some((r) => r.test("${CATALOG_BOOK_COUNT_DISPLAY} books")), "(d) false-positive on interpolation");
   expect(!RE_CATALOG.some((r) => r.test("2 books free")), "(d) false-positive on free-tier '2 books'");
   expect(!RE_CATALOG.some((r) => r.test("added 12 books from requests")), "(d) false-positive on '12 books'");
+  expect(!RE_CATALOG.some((r) => r.test("category counts as one")), "(d) false-positive on bare 'category'");
 
   if (fails === 0) {
     console.log("✓ selftest OK — all four guards detect samples with no false positives");
