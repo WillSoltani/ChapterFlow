@@ -64,6 +64,74 @@ test("adaptV21ToV13 leaves a missing quiz correctIndex undefined (not 0)", () =>
 });
 
 /**
+ * Idempotency guard (B9). When a v21 package omits `packageId`, the server
+ * adapter must synthesize a STABLE, content-derived id — NOT a time-based one.
+ *
+ * Ingest idempotency (ingestion.ts) keys on packageId so identical re-uploads
+ * (e.g. a retry after a transient failure) reuse the same version instead of
+ * multiplying versions and orphaning S3 content prefixes. A `pkg-${Date.now()}`
+ * fallback minted a fresh id on every call, so the idempotency check could
+ * never match for any packageId-less upload. These assertions FAIL against the
+ * old timestamp fallback (two calls produced two different ids) and PASS once
+ * the id is derived deterministically from bookId + chapters.
+ */
+test("adaptV21ToV13 synthesizes a stable, deterministic packageId when one is absent", () => {
+  const { packageId: _omit, ...withoutPackageId } = baseRawPkg as Record<string, unknown>;
+  void _omit;
+
+  const first = adaptV21ToV13(withoutPackageId);
+  const second = adaptV21ToV13(withoutPackageId);
+
+  assert.equal(
+    first.packageId,
+    second.packageId,
+    "two adaptations of the same packageId-less input must produce the SAME id (idempotency)",
+  );
+  assert.match(
+    first.packageId,
+    /^pkg-[0-9a-f]{24}$/,
+    "a synthesized packageId must be a content hash, not a timestamp",
+  );
+  // A bare `pkg-<digits>` (Date.now) would slip past the hex-charset match only
+  // if all chars happened to be 0-9; assert it is not purely numeric to nail it.
+  assert.equal(
+    /^pkg-\d+$/.test(first.packageId),
+    false,
+    "a synthesized packageId must NOT be the time-based `pkg-<ms>` fallback",
+  );
+});
+
+test("adaptV21ToV13 derives a DIFFERENT packageId for different content", () => {
+  const { packageId: _omit, ...withoutPackageId } = baseRawPkg as Record<string, unknown>;
+  void _omit;
+
+  const baseId = adaptV21ToV13(withoutPackageId).packageId;
+
+  // Change content (a chapter title) — the derived id must change so a genuine
+  // content edit allocates a new ingest version instead of colliding.
+  const chapters = (withoutPackageId.chapters as Record<string, unknown>[]).map((c, i) =>
+    i === 0 ? { ...c, title: `${String(c.title)} (edited)` } : c,
+  );
+  const edited = adaptV21ToV13({ ...withoutPackageId, chapters });
+
+  assert.notEqual(
+    edited.packageId,
+    baseId,
+    "a content change must yield a different synthesized packageId",
+  );
+});
+
+test("adaptV21ToV13 preserves an explicitly authored packageId verbatim", () => {
+  const authored = { ...(baseRawPkg as Record<string, unknown>), packageId: "atomic-habits-v21-fixed" };
+  const pkg = adaptV21ToV13(authored);
+  assert.equal(
+    pkg.packageId,
+    "atomic-habits-v21-fixed",
+    "an authored packageId must pass through untouched (no synthesis)",
+  );
+});
+
+/**
  * Content-integrity guard. Every authored v21 quiz question (and retryQuestions)
  * must declare an in-bounds correct-answer index. A question with no key is a
  * silent-grading defect: the adapter leaves it undefined and the runtime grader
