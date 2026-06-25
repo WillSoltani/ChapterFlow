@@ -8,13 +8,15 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import crypto from "crypto";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { bookUserPk, pairActiveSk, pairInvitePk, pairInviteSk, pairNudgeSk, streakSk, nowIso } from "./keys";
+import { bookUserPk, pairActiveSk, pairInvitePk, pairInviteSk, streakSk, nowIso } from "./keys";
 import { buildPairInvitePointer } from "./erasure-pointers-core";
 import { isTransactionConditionFailedAt } from "./errors";
 import {
   ACCEPT_PAIR_CONDITION,
+  NUDGE_DEDUP_CONDITION,
   buildActivePairItem,
   buildEndedPairHistoryItem,
+  buildNudgeDedupItem,
 } from "./pair-write-core";
 import { getBookContentBucket } from "./env";
 import { listPublishedLibraryCatalog } from "./library-catalog";
@@ -411,38 +413,42 @@ export async function deletePair(
   await Promise.all([endSide(userId, partnerId), endSide(partnerId, userId)]);
 }
 
-export async function canSendNudge(
+/**
+ * Atomically claim today's one-nudge-per-partner slot. The daily cap is enforced
+ * here as a CONDITIONAL write (`attribute_not_exists(SK)` on the per-day marker),
+ * NOT a separate read-then-write — so two concurrent nudges to the same partner
+ * can't both pass a stale "no marker yet" read and both deliver a notification
+ * (H15). Returns true only for the writer that actually created the marker; a
+ * loser (ConditionalCheckFailed) returns false and the caller treats it as the
+ * `nudge_limit` (429) case. The marker carries a 2-day TTL so the slot self-clears.
+ */
+export async function recordNudgeSent(
   tableName: string,
   userId: string,
   partnerId: string,
 ): Promise<boolean> {
   const today = new Date().toISOString().slice(0, 10);
-  const result = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: { PK: bookUserPk(userId), SK: pairNudgeSk(partnerId, today) },
-    }),
-  );
-  return !result.Item;
-}
-
-export async function recordNudgeSent(
-  tableName: string,
-  userId: string,
-  partnerId: string,
-): Promise<void> {
-  const today = new Date().toISOString().slice(0, 10);
   const ttl = Math.floor(Date.now() / 1000) + 2 * 86400;
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookUserPk(userId),
-        SK: pairNudgeSk(partnerId, today),
-        entity: "NUDGE_DEDUP",
-        createdAt: nowIso(),
-        ttl,
-      },
-    }),
-  );
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: buildNudgeDedupItem({
+          userId,
+          partnerId,
+          dayKey: today,
+          createdAt: nowIso(),
+          ttl,
+        }),
+        ConditionExpression: NUDGE_DEDUP_CONDITION,
+      }),
+    );
+    return true;
+  } catch (err: unknown) {
+    const name = err && typeof err === "object" && "name" in err ? (err as { name: string }).name : "";
+    // The per-day marker already exists — either a same-day prior nudge or a
+    // concurrent racer that won the slot. Either way this caller is over the cap.
+    if (name === "ConditionalCheckFailedException") return false;
+    throw err;
+  }
 }
