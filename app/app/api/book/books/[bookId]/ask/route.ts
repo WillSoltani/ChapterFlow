@@ -29,7 +29,15 @@ export async function POST(req: Request, ctx: Params) {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
     const { bookId } = await ctx.params;
-    const body = await req.json();
+    // An empty/malformed body makes req.json() throw a SyntaxError. Caught here
+    // (rather than at the outer catch, which would map it to a generic 500) so a
+    // bad payload surfaces as a typed 400 like every other validation below.
+    let body: Record<string, unknown>;
+    try {
+      body = (await req.json()) as Record<string, unknown>;
+    } catch {
+      return bookErr(req, 400, "invalid_json", "Request body must be valid JSON.");
+    }
 
     const question = typeof body.question === "string" ? body.question.trim() : "";
     if (!question || question.length > 500) {
