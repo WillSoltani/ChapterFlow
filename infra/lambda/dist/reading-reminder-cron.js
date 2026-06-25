@@ -40,20 +40,6 @@ var import_client_sesv22 = require("@aws-sdk/client-sesv2");
 // lambda/lib/streak-at-risk.ts
 var import_lib_dynamodb2 = require("@aws-sdk/lib-dynamodb");
 
-// lambda/lib/email-templates/streak-at-risk.ts
-function streakAtRiskEmail(params) {
-  const cta = `${params.appBaseUrl}/dashboard`;
-  return {
-    subject: `Your ${params.currentStreak}-day streak ends in ${params.hoursRemaining} hours`,
-    textBody: `Hi ${params.name},
-
-Your ${params.currentStreak}-day reading streak ends tonight. Open ChapterFlow and complete one chapter to keep it alive.
-
-Keep your streak alive: ${cta}`,
-    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">${params.currentStreak}-Day Streak at Risk</h2><p>Hi ${params.name},</p><p>Your <strong>${params.currentStreak}-day</strong> reading streak ends in <strong>${params.hoursRemaining} hours</strong>.</p><p>Open ChapterFlow and complete one chapter to keep it alive.</p><p><a href="${cta}" style="color:#6366f1">Keep your streak alive</a></p></div>`
-  };
-}
-
 // lambda/lib/email-compliance.ts
 var import_node_crypto = __toESM(require("node:crypto"));
 var import_client_sesv2 = require("@aws-sdk/client-sesv2");
@@ -150,7 +136,7 @@ async function resolveEmailConfig() {
   return cachedConfig;
 }
 function escapeHtml(value) {
-  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 function buildUnsubscribeUrl(appBaseUrl, token) {
   return `${appBaseUrl.replace(/\/+$/, "")}/app/api/book/email/unsubscribe?token=${encodeURIComponent(token)}`;
@@ -225,6 +211,21 @@ async function sendCompliantEmail(ses2, ddb2, tableName2, config, params) {
       }
     })
   );
+}
+
+// lambda/lib/email-templates/streak-at-risk.ts
+function streakAtRiskEmail(params) {
+  const cta = `${params.appBaseUrl}/dashboard`;
+  const name = escapeHtml(params.name);
+  return {
+    subject: `Your ${params.currentStreak}-day streak ends in ${params.hoursRemaining} hours`,
+    textBody: `Hi ${params.name},
+
+Your ${params.currentStreak}-day reading streak ends tonight. Open ChapterFlow and complete one chapter to keep it alive.
+
+Keep your streak alive: ${cta}`,
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">${params.currentStreak}-Day Streak at Risk</h2><p>Hi ${name},</p><p>Your <strong>${params.currentStreak}-day</strong> reading streak ends in <strong>${params.hoursRemaining} hours</strong>.</p><p>Open ChapterFlow and complete one chapter to keep it alive.</p><p><a href="${cta}" style="color:#6366f1">Keep your streak alive</a></p></div>`
+  };
 }
 
 // lambda/lib/email-consent.ts
@@ -361,6 +362,7 @@ var import_lib_dynamodb3 = require("@aws-sdk/lib-dynamodb");
 function weeklyDigestEmail(params) {
   const encouragement = params.chaptersCompleted > 0 ? "Great progress this week! Keep the momentum going." : "Take 15 minutes today to get back on track.";
   const cta = `${params.appBaseUrl}/dashboard`;
+  const name = escapeHtml(params.name);
   return {
     subject: `Your ChapterFlow Week: ${params.chaptersCompleted} chapters completed`,
     textBody: `Hi ${params.name},
@@ -368,7 +370,7 @@ function weeklyDigestEmail(params) {
 Your ChapterFlow week: ${params.chaptersCompleted} chapters, ${params.currentStreak}-day streak, ${params.ipBalance} IP. ${encouragement}
 
 Open ChapterFlow: ${cta}`,
-    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Your Week in Review</h2><p>Hi ${params.name},</p><ul><li><strong>${params.chaptersCompleted}</strong> chapters completed</li><li><strong>${params.currentStreak}</strong>-day streak</li><li><strong>${params.ipBalance}</strong> Insight Points</li></ul><p>${encouragement}</p><p><a href="${cta}" style="color:#6366f1">Open ChapterFlow</a></p></div>`
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Your Week in Review</h2><p>Hi ${name},</p><ul><li><strong>${params.chaptersCompleted}</strong> chapters completed</li><li><strong>${params.currentStreak}</strong>-day streak</li><li><strong>${params.ipBalance}</strong> Insight Points</li></ul><p>${encouragement}</p><p><a href="${cta}" style="color:#6366f1">Open ChapterFlow</a></p></div>`
   };
 }
 
@@ -481,6 +483,7 @@ var import_lib_dynamodb4 = require("@aws-sdk/lib-dynamodb");
 // lambda/lib/email-templates/welcome-back.ts
 function welcomeBackEmail(params) {
   const cta = `${params.appBaseUrl}/dashboard`;
+  const name = escapeHtml(params.name);
   return {
     subject: `We saved your spot, ${params.name}`,
     textBody: `Hi ${params.name},
@@ -490,7 +493,7 @@ It's been ${params.daysSinceActive} days since your last reading session. Your p
 Jump back in and earn 30 Insight Points just for returning.
 
 Pick up where you left off: ${cta}`,
-    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Welcome Back, ${params.name}</h2><p>It's been ${params.daysSinceActive} days since your last reading session. Your progress is right where you left it.</p><p>Jump back in and earn <strong>30 Insight Points</strong> just for returning.</p><p><a href="${cta}" style="color:#6366f1">Pick up where you left off</a></p></div>`
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Welcome Back, ${name}</h2><p>It's been ${params.daysSinceActive} days since your last reading session. Your progress is right where you left it.</p><p>Jump back in and earn <strong>30 Insight Points</strong> just for returning.</p><p><a href="${cta}" style="color:#6366f1">Pick up where you left off</a></p></div>`
   };
 }
 
@@ -587,6 +590,8 @@ var import_lib_dynamodb5 = require("@aws-sdk/lib-dynamodb");
 function commitmentFollowupEmail(params) {
   const cta = `${params.appBaseUrl}/dashboard?focusCommitment=${encodeURIComponent(params.commitmentId)}`;
   const plan = params.ifThenPlan.length > 120 ? `${params.ifThenPlan.slice(0, 117)}...` : params.ifThenPlan;
+  const name = escapeHtml(params.name);
+  const planHtml = escapeHtml(plan);
   return {
     subject: `How did it go, ${params.name}?`,
     textBody: `Hi ${params.name},
@@ -598,7 +603,7 @@ A little while ago you committed to one small action:
 Did you get a chance to try it? Take a moment to reflect on how it went \u2014 and earn 25 Insight Points for closing the loop.
 
 Reflect now: ${cta}`,
-    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">How did it go, ${params.name}?</h2><p>A little while ago you committed to one small action:</p><blockquote style="margin:12px 0;padding:8px 14px;border-left:3px solid #6366f1;color:#444">${plan}</blockquote><p>Did you get a chance to try it? Take a moment to reflect on how it went \u2014 and earn <strong>25 Insight Points</strong> for closing the loop.</p><p><a href="${cta}" style="color:#6366f1">Reflect now</a></p></div>`
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">How did it go, ${name}?</h2><p>A little while ago you committed to one small action:</p><blockquote style="margin:12px 0;padding:8px 14px;border-left:3px solid #6366f1;color:#444">${planHtml}</blockquote><p>Did you get a chance to try it? Take a moment to reflect on how it went \u2014 and earn <strong>25 Insight Points</strong> for closing the loop.</p><p><a href="${cta}" style="color:#6366f1">Reflect now</a></p></div>`
   };
 }
 
@@ -735,6 +740,7 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
 // lambda/lib/email-templates/reading-reminder.ts
 function readingReminderEmail(params) {
   const cta = `${params.appBaseUrl}/dashboard`;
+  const name = escapeHtml(params.name);
   return {
     subject: "Time to read!",
     textBody: `Hi ${params.name},
@@ -742,7 +748,7 @@ function readingReminderEmail(params) {
 This is your daily reading reminder. A few minutes of focused reading can make a real difference.
 
 Open ChapterFlow: ${cta}`,
-    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Time to Read</h2><p>Hi ${params.name},</p><p>This is your daily reading reminder. A few minutes of focused reading can make a real difference.</p><p><a href="${cta}" style="color:#6366f1">Open ChapterFlow</a></p></div>`
+    htmlBody: `<div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:24px"><h2 style="color:#6366f1">Time to Read</h2><p>Hi ${name},</p><p>This is your daily reading reminder. A few minutes of focused reading can make a real difference.</p><p><a href="${cta}" style="color:#6366f1">Open ChapterFlow</a></p></div>`
   };
 }
 
