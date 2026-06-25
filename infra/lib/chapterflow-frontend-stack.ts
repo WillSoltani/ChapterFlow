@@ -21,6 +21,7 @@ import * as eventSources from "aws-cdk-lib/aws-lambda-event-sources";
 import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
+import { buildWebAclRules } from "./waf-rules";
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -734,42 +735,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         metricName: name("ChapterFlowWebAcl"),
         sampledRequestsEnabled: true,
       },
-      rules: [
-        {
-          name: "AWSManagedCommonRuleSet",
-          priority: 1,
-          overrideAction: { none: {} },
-          statement: {
-            managedRuleGroupStatement: {
-              vendorName: "AWS",
-              name: "AWSManagedRulesCommonRuleSet",
-            },
-          },
-          visibilityConfig: {
-            cloudWatchMetricsEnabled: true,
-            metricName: "AWSManagedCommonRuleSet",
-            sampledRequestsEnabled: true,
-          },
-        },
-        {
-          // Per-IP rate limit: block a source IP sending >2000 requests in any
-          // rolling 5-minute window (baseline volumetric/bot mitigation).
-          name: "RateLimitPerIp",
-          priority: 2,
-          action: { block: {} },
-          statement: {
-            rateBasedStatement: {
-              limit: 2000,
-              aggregateKeyType: "IP",
-            },
-          },
-          visibilityConfig: {
-            cloudWatchMetricsEnabled: true,
-            metricName: "RateLimitPerIp",
-            sampledRequestsEnabled: true,
-          },
-        },
-      ],
+      // Rule list (incl. the AWS managed common rule set with ruleActionOverrides
+      // that downgrade XSS-lookalike body/query/cookie + body-size sub-rules to
+      // Count) is built in waf-rules.ts so its shape is unit-testable without an
+      // App/Stack synth context. See that file for the false-positive rationale.
+      rules: buildWebAclRules(),
     });
 
     this.distribution = new cloudfront.Distribution(this, "Distribution", {
