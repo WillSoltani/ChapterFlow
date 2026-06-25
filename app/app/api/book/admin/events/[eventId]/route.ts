@@ -9,6 +9,7 @@ import {
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { validateEventBadge } from "@/app/app/api/book/_lib/event-badge-validate-core";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import {
   getEventDefinition,
@@ -82,6 +83,13 @@ export async function PATCH(req: Request, ctx: Params) {
         ? requireInteger(body.bonusIP, "bonusIP", { min: 0, max: 5000 })
         : existing.bonusIP;
 
+    // H12 — validate `badge` on update with the same rule the POST creator
+    // enforces (badge must include non-empty badgeId, name, and icon) so a
+    // PATCH with `badge: {}` or a partial badge can't overwrite the event's
+    // badge with a malformed object. The old guard only checked `typeof === "object"`.
+    const badge =
+      body.badge !== undefined ? validateEventBadge(body.badge) : existing.badge;
+
     const updated: EventDefinitionItem = {
       ...existing,
       title: typeof body.title === "string" ? body.title : existing.title,
@@ -92,7 +100,7 @@ export async function PATCH(req: Request, ctx: Params) {
       dailyChapterTarget,
       targetChapters,
       bonusIP,
-      badge: body.badge && typeof body.badge === "object" ? (body.badge as EventDefinitionItem["badge"]) : existing.badge,
+      badge,
       active: typeof body.active === "boolean" ? body.active : existing.active,
     };
 
