@@ -1,5 +1,6 @@
 import { mustServerEnv, getServerEnv } from "@/app/app/api/_lib/server-env";
 import { MONTHLY_PRICE_PER_MONTH } from "@/lib/pricing";
+import { resolveAppBaseUrl } from "./app-base-url-core";
 
 const DEFAULT_ADMIN_GROUP = "admin";
 
@@ -59,14 +60,14 @@ export async function getAppBaseUrl(reqUrl: string): Promise<string> {
   const chapterFlowExplicit =
     (await getServerEnv("CHAPTERFLOW_APP_BASE_URL")) ||
     (await getServerEnv("NEXT_PUBLIC_CHAPTERFLOW_APP_URL"));
-  if (chapterFlowExplicit) return chapterFlowExplicit.replace(/\/+$/, "");
-  // In production we MUST have an explicit base URL. Falling back to the
-  // request host can produce internal hostnames or http://localhost which
-  // Stripe rejects (or which redirect users to the wrong place).
-  if (process.env.NODE_ENV === "production") {
-    throw new Error(
-      "CHAPTERFLOW_APP_BASE_URL is not set. Refusing to fall back to the request host in production."
-    );
-  }
-  return `${url.protocol}//${url.host}`;
+  // resolveAppBaseUrl (app-base-url-core.ts) owns the decision: an explicit base
+  // URL wins, but in production a loopback/invalid value is REJECTED (it would
+  // point Stripe success/return URLs at localhost) and we throw rather than ship
+  // a broken redirect — mirroring resolvePublicOrigin's prod loopback guard.
+  return resolveAppBaseUrl({
+    explicit: chapterFlowExplicit,
+    reqProtocol: url.protocol,
+    reqHost: url.host,
+    isProduction: process.env.NODE_ENV === "production",
+  });
 }
