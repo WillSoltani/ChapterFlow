@@ -10,6 +10,10 @@ import {
   setAccountStatus,
   getUserSettingsItem,
 } from "@/app/app/api/book/_lib/repo";
+import {
+  isNextRedirectError,
+  runReactivationWrite,
+} from "@/app/_lib/account-reactivation-core";
 
 let warnedLocalBypass = false;
 
@@ -48,6 +52,41 @@ async function resolveReturnTo(): Promise<string> {
   } catch {
     return FALLBACK;
   }
+}
+
+/**
+ * Best-effort, bounded-retry auto-reactivation of a deactivated account on page
+ * load (the user holds a valid token, so they have signed back in).
+ *
+ * Returns `true` if the account is now `active` in DynamoDB, `false` if every
+ * attempt failed. The caller must NOT swallow a `false` silently — that is the
+ * exact F10 defect (rendered dashboard while the row stays `deactivated`). On
+ * terminal failure we log a DISTINCT event (`account_reactivation_write_failed`,
+ * not the generic `account_status_check_error`) and still let the authenticated
+ * user in: locking out a legitimately signed-in user over a transient write blip
+ * would be worse, and the next page load idempotently retries.
+ *
+ * A Next.js `redirect()` (digest-carrying) thrown from inside the write path is
+ * never retried/swallowed — it is re-thrown so control flow is preserved.
+ */
+async function reactivateDeactivatedAccount(
+  tableName: string,
+  userId: string
+): Promise<boolean> {
+  const outcome = await runReactivationWrite(
+    () =>
+      setAccountStatus(tableName, userId, "active", {
+        statusReason: "user_reactivated",
+      }),
+    {
+      log: (level, event, detail) => {
+        // Tag every signal with the userId for observability.
+        if (level === "error") console.error(event, { userId, ...detail });
+        else console.warn(event, { userId, ...detail });
+      },
+    }
+  );
+  return outcome.ok;
 }
 
 /**
@@ -99,10 +138,17 @@ export async function requireDashboardAccess(options?: {
     const tableName = await getBookTableName();
     const status = await getAccountStatus(tableName, userId);
     if (status?.status === "deactivated") {
-      // Auto-reactivate on page load (user signed back in)
-      await setAccountStatus(tableName, userId, "active", {
-        statusReason: "user_reactivated",
-      });
+      // Auto-reactivate on page load (user signed back in). This is a real
+      // DynamoDB write isolated in its own bounded-retry/try-catch — a failure
+      // here must NOT fall into the generic catch below and silently render the
+      // dashboard while the row stays `deactivated` (F10). On terminal failure
+      // the helper logs `account_reactivation_write_failed` and we still let the
+      // authenticated user in (the next load retries idempotently); we just
+      // don't pretend the write succeeded.
+      await reactivateDeactivatedAccount(tableName, userId);
+      // Reactivation already cleared the onboarding-deferred funnel below in the
+      // legacy code path via an early `return`; keep that behavior so a returning
+      // user lands straight on the page they requested.
       return;
     }
     if (status?.status === "deleted") {
@@ -110,8 +156,10 @@ export async function requireDashboardAccess(options?: {
     }
   } catch (error: unknown) {
     // If it's a redirect, re-throw it (Next.js redirect throws an error)
-    if (error && typeof error === "object" && "digest" in error) throw error;
-    // For DynamoDB errors, don't block the user — fail open
+    if (isNextRedirectError(error)) throw error;
+    // For DynamoDB read errors, don't block the user — fail open. (A
+    // reactivation WRITE failure is handled inside the helper above with its own
+    // distinct log, so it never reaches here as a generic error.)
     console.error("account_status_check_error", error);
   }
 
