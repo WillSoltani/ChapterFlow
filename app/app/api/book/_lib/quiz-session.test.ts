@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildQuizClientSession } from "./quiz-session";
+import { buildQuizAttemptQuestions, buildQuizClientSession } from "./quiz-session";
+import { BookApiError } from "./errors";
 import type {
   BookUserQuizStateItem,
   ChapterQuizPayload,
@@ -83,6 +84,100 @@ test("H3 CLOSED: correctChoiceId is NOT emitted on a ready attempt (the answer k
   // And the redundant index copy must likewise never appear on a ready question.
   assert.equal(session.questions[0].correctIndex, undefined);
   assert.ok(!("correctIndex" in session.questions[0]));
+});
+
+// ─── out-of-range authored answer key (A4 — permanently-failing question) ─────
+
+/**
+ * An out-of-range authored correctIndex (>= choice count, or negative) used to
+ * pass the only upstream guard (`typeof !== "number"`): findIndex returned -1
+ * and correctChoiceId fell back to `${qid}::choice::${authoredIndex}` — a key
+ * that matches NO emitted choice (whose ids are `${qid}::choice::<0..n-1>`).
+ * Grading (correctChoiceId === selectedChoiceId) then marked every reader wrong
+ * forever with no operator signal. It must now fail loud as a content error.
+ */
+function quizWithCorrectIndex(index: number): ChapterQuizPayload {
+  return {
+    chapterId: "bookX:1",
+    number: 1,
+    title: "Chapter 1",
+    passingScorePercent: 80,
+    questions: [
+      { questionId: "q1", prompt: "P1", choices: ["a", "b", "c", "d"], correctAnswerIndex: index, explanation: "e1" },
+    ],
+  };
+}
+
+/** Capture a thrown error (assert.throws returns undefined, not the error). */
+function captureThrow(fn: () => unknown): unknown {
+  try {
+    fn();
+  } catch (error) {
+    return error;
+  }
+  throw new assert.AssertionError({ message: "expected the call to throw, but it did not" });
+}
+
+test("A4: an out-of-range correctAnswerIndex throws quiz_answer_key_out_of_range (not a fabricated unmatchable key)", () => {
+  // index 4 with only 4 choices (valid: 0..3) — the historic permanently-fail case.
+  const err = captureThrow(() =>
+    buildQuizAttemptQuestions({
+      quiz: quizWithCorrectIndex(4),
+      userId: "u1",
+      bookId: "bookX",
+      chapterNumber: 1,
+      attemptNumber: 1,
+      preserveAuthoredOrder: true,
+    }),
+  );
+  assert.ok(err instanceof BookApiError);
+  assert.equal(err.status, 500);
+  assert.equal(err.code, "quiz_answer_key_out_of_range");
+});
+
+test("A4: a negative correctAnswerIndex also throws quiz_answer_key_out_of_range", () => {
+  const err = captureThrow(() =>
+    buildQuizAttemptQuestions({
+      quiz: quizWithCorrectIndex(-1),
+      userId: "u1",
+      bookId: "bookX",
+      chapterNumber: 1,
+      attemptNumber: 1,
+      preserveAuthoredOrder: true,
+    }),
+  );
+  assert.ok(err instanceof BookApiError);
+  assert.equal(err.code, "quiz_answer_key_out_of_range");
+});
+
+test("A4: the out-of-range guard surfaces through buildQuizClientSession too (the live GET/submit seam)", () => {
+  const err = captureThrow(() =>
+    buildQuizClientSession({
+      quiz: quizWithCorrectIndex(99),
+      userId: "u1",
+      bookId: "bookX",
+      chapterNumber: 1,
+      quizState: null,
+      latestAttempt: null,
+      history: [],
+      preserveAuthoredOrder: true,
+    }),
+  );
+  assert.ok(err instanceof BookApiError);
+  assert.equal(err.code, "quiz_answer_key_out_of_range");
+});
+
+test("A4: an in-range correctAnswerIndex still resolves to the matching choice (no false positive)", () => {
+  const questions = buildQuizAttemptQuestions({
+    quiz: quizWithCorrectIndex(2),
+    userId: "u1",
+    bookId: "bookX",
+    chapterNumber: 1,
+    attemptNumber: 1,
+    preserveAuthoredOrder: true,
+  });
+  assert.equal(questions[0].correctChoiceId, "q1::choice::2");
+  assert.equal(questions[0].correctIndex, 2);
 });
 
 // ─── post-submit (review) projection ──────────────────────────────────────────

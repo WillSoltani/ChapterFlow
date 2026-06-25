@@ -175,9 +175,29 @@ export function buildQuizAttemptQuestions(params: {
     const correctIndex = choices.findIndex(
       (choice) => choice.canonicalIndex === authoredCorrectIndex
     );
-    const correctChoiceId =
-      choices[correctIndex]?.choiceId ??
-      `${question.questionId}::choice::${authoredCorrectIndex}`;
+    // Fail loudly when the authored answer index is out of range for the
+    // emitted choices (whose canonicalIndex values are 0..n-1). findIndex
+    // returns -1 in that case; fabricating
+    // `${questionId}::choice::${authoredCorrectIndex}` would mint a
+    // correctChoiceId that matches NO selectable choice, so grading
+    // (correctChoiceId === selectedChoiceId) marks every reader wrong forever —
+    // a silent permanently-failing question with no operator signal. Treat it as
+    // the content defect it is, mirroring the missing-answer-key guard above.
+    if (correctIndex < 0) {
+      throw new BookApiError(
+        500,
+        "quiz_answer_key_out_of_range",
+        "This quiz is temporarily unavailable. Please try again later.",
+        {
+          bookId,
+          chapterNumber,
+          questionId: question.questionId,
+          authoredCorrectIndex,
+          choiceCount: choices.length,
+        }
+      );
+    }
+    const correctChoiceId = choices[correctIndex].choiceId;
     const prompt =
       typeof question.prompt === "string"
         ? question.prompt
@@ -190,7 +210,9 @@ export function buildQuizAttemptQuestions(params: {
       explanation: typeof question.explanation === "string" ? question.explanation : undefined,
       choices,
       correctChoiceId,
-      correctIndex: Math.max(0, correctIndex),
+      // correctIndex is guaranteed >= 0 here: the out-of-range guard above throws
+      // before we reach this point, so the answer always resolves to a real choice.
+      correctIndex,
     };
   });
 }
