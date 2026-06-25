@@ -117,6 +117,8 @@ import auto_stumbling_on_happiness_Json from "@/book-packages/stumbling-on-happi
 import auto_behave_Json from "@/book-packages/behave.v21.json";
 import auto_dopamine_nation_Json from "@/book-packages/dopamine-nation.v21.json";
 import auto_the_molecule_of_more_Json from "@/book-packages/the-molecule-of-more.v21.json";
+import auto_stolen_focus_Json from "@/book-packages/stolen-focus.v21.json";
+import auto_the_year_of_less_Json from "@/book-packages/the-year-of-less.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1945,4 +1947,18 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_molecule_of_more_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-molecule-of-more"] = (tone) => normalizeAnyPackage(auto_the_molecule_of_more_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "stolen-focus" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_stolen_focus_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["stolen-focus"] = (tone) => normalizeAnyPackage(auto_stolen_focus_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-year-of-less" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_year_of_less_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-year-of-less"] = (tone) => normalizeAnyPackage(auto_the_year_of_less_Json, tone);
 }
