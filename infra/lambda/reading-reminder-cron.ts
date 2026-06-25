@@ -18,17 +18,23 @@
 // A failure on one user is isolated (logged + counted) so it can no longer
 // abort the whole run.
 //
-// KNOWN REMAINING WORK (needs files outside this Lambda — see H16 handoff):
+// The four nudge sub-handlers (weekly-digest / welcome-back / streak-at-risk /
+// commitment-followup) now ALSO process users with bounded concurrency
+// (REMINDER_CONCURRENCY, shared from ./lib/concurrency) instead of a serial
+// per-user await-chain — the weekly digest in particular does ~5 serial DynamoDB
+// round-trips per user every Sunday, so a large fan-out could exceed the timeout
+// and silently drop the tail. The CDK timeout was also raised to 10 min with the
+// 80%-of-budget duration alarm scaling off it (F5).
+//
+// KNOWN REMAINING WORK (still out of scope — see H16 handoff):
 //   - The hourly full-table ScanCommand below still scans every row and filters
 //     entity = BOOK_USER_SETTINGS after RCU is spent: there is no GSI on
 //     `entity`. The real fix is a sparse GSI keyed on `entity` (or a
 //     reminder-hour GSI) added in infra/lib/chapterflow-backend-stack.ts so
-//     this becomes a Query; that file is out of scope here.
-//   - Sharing the PROFILE/STREAK reads with the three nudge sub-handlers (which
-//     re-Get them per user) requires changing their signatures in
-//     infra/lambda/lib/*, also out of scope here.
-//   - Raising the 5-minute timeout + adding a CloudWatch duration/timeout alarm
-//     (so any future silent drop is visible) lives in the backend stack too.
+//     this becomes a Query.
+//   - Sharing the PROFILE/STREAK reads across the reminder pass and the nudge
+//     sub-handlers (which still re-Get them per user) would need a shared
+//     per-user read cache.
 
 import {
   BatchGetCommand,
@@ -43,6 +49,7 @@ import { processStreakAtRisk } from "./lib/streak-at-risk";
 import { processWeeklyDigest } from "./lib/weekly-digest";
 import { processWelcomeBackNudge } from "./lib/welcome-back-nudge";
 import { processCommitmentFollowup } from "./lib/commitment-followup";
+import { REMINDER_CONCURRENCY, runWithConcurrency } from "./lib/concurrency";
 import { readingReminderEmail } from "./lib/email-templates/reading-reminder";
 import {
   resolveEmailConfig,
@@ -53,11 +60,10 @@ import { emailChannelConsented } from "./lib/email-consent";
 
 const tableName = process.env.BOOK_TABLE_NAME!;
 
-// Max users processed simultaneously in the reminder pass. Bounds fan-out so a
-// large active-user base doesn't open thousands of concurrent DynamoDB/SES
-// calls, while keeping the pass far shallower than the old one-per-user serial
-// chain. On-demand (PAY_PER_REQUEST) tables absorb this comfortably.
-const REMINDER_CONCURRENCY = 8;
+// REMINDER_CONCURRENCY + runWithConcurrency now live in ./lib/concurrency so the
+// nudge sub-handlers (weekly-digest / welcome-back / streak-at-risk /
+// commitment-followup) parallelize their per-user loops with the SAME bound
+// instead of each iterating users in a serial await-chain (the H16/F5 residual).
 
 const ddb = DynamoDBDocumentClient.from(new DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true },
@@ -74,29 +80,6 @@ function resolveHour(timeLocal: string, timezone: string): number {
   } catch {
     return -1;
   }
-}
-
-/**
- * Run `task` over `items` with at most `limit` promises in flight at once.
- * Workers pull from a shared cursor; because the increment is synchronous
- * (no await between read and bump) no two workers ever take the same index.
- */
-async function runWithConcurrency<T, R>(
-  items: T[],
-  limit: number,
-  task: (item: T) => Promise<R>,
-): Promise<R[]> {
-  const results = new Array<R>(items.length);
-  let cursor = 0;
-  const workerCount = Math.min(Math.max(1, limit), items.length);
-  const workers = Array.from({ length: workerCount }, async () => {
-    while (cursor < items.length) {
-      const index = cursor++;
-      results[index] = await task(items[index]);
-    }
-  });
-  await Promise.all(workers);
-  return results;
 }
 
 /**

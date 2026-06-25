@@ -68,8 +68,12 @@ async function isEmailSuppressed(ddb2, tableName2, email) {
       })
     );
     return !!res.Item;
-  } catch {
-    return false;
+  } catch (error) {
+    console.error(
+      "[email-compliance] suppression lookup failed \u2014 failing CLOSED (treating address as suppressed, skipping this send)",
+      error
+    );
+    return true;
   }
 }
 var warnedMissingSecret = false;
@@ -233,6 +237,23 @@ function emailChannelConsented(notifications) {
   return notifications?.channels?.email === true;
 }
 
+// lambda/lib/concurrency.ts
+var REMINDER_CONCURRENCY = 8;
+async function runWithConcurrency(items, limit, task) {
+  const results = new Array(items.length);
+  if (items.length === 0) return results;
+  let cursor = 0;
+  const workerCount = Math.min(Math.max(1, limit), items.length);
+  const workers = Array.from({ length: workerCount }, async () => {
+    while (cursor < items.length) {
+      const index = cursor++;
+      results[index] = await task(items[index]);
+    }
+  });
+  await Promise.all(workers);
+  return results;
+}
+
 // lambda/lib/streak-at-risk.ts
 function getTodayInTimezone(tz) {
   try {
@@ -247,111 +268,111 @@ function getTodayInTimezone(tz) {
   }
 }
 async function processStreakAtRisk(ddb2, ses2, tableName2, config, userItems) {
-  let sent = 0;
-  let skipped = 0;
-  for (const item of userItems) {
+  async function processUser(item) {
     const notifications = item.settings?.notifications;
     if (notifications?.streakReminderEnabled === false) {
-      skipped++;
-      continue;
+      return "skipped";
     }
     if (item.settings?.extended?.streakMode === "off") {
-      skipped++;
-      continue;
+      return "skipped";
     }
     const userId = item.PK.replace("BOOKUSER#", "");
-    const streakResult = await ddb2.send(
-      new import_lib_dynamodb2.GetCommand({
-        TableName: tableName2,
-        Key: { PK: item.PK, SK: "STREAK" }
-      })
-    );
-    const streak = streakResult.Item;
-    if (!streak || !streak.currentStreak || streak.currentStreak < 2 || !streak.lastActiveDate) {
-      skipped++;
-      continue;
-    }
-    const tz = streak.lastActiveTimezone || "UTC";
-    const today = getTodayInTimezone(tz);
-    if (streak.lastActiveDate === today) {
-      skipped++;
-      continue;
-    }
-    const dedupKey = `NUDGE_SENT#streak_at_risk#${today}`;
-    const dedupResult = await ddb2.send(
-      new import_lib_dynamodb2.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
-    );
-    if (dedupResult.Item) {
-      skipped++;
-      continue;
-    }
-    let hoursRemaining = 6;
     try {
-      const nowInTz = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", { timeZone: tz, hour12: false });
-      const currentHour = parseInt(nowInTz.split(":")[0], 10);
-      hoursRemaining = Math.max(0, 24 - currentHour);
-    } catch {
-    }
-    if (hoursRemaining > 8) {
-      skipped++;
-      continue;
-    }
-    const notifId = crypto.randomUUID();
-    const now = (/* @__PURE__ */ new Date()).toISOString();
-    await ddb2.send(
-      new import_lib_dynamodb2.PutCommand({
-        TableName: tableName2,
-        Item: {
-          PK: item.PK,
-          SK: `NOTIF#${now}#${notifId}`,
-          entity: "BOOK_USER_NOTIFICATION",
-          userId,
-          notificationId: notifId,
-          type: "streak_at_risk",
-          title: `Your ${streak.currentStreak}-day streak is at risk`,
-          body: `You have ${hoursRemaining} hours to complete a chapter and keep your streak alive.`,
-          channel: "in_app",
-          readAt: null,
-          createdAt: now
-        }
-      })
-    );
-    if (emailChannelConsented(notifications)) {
-      try {
-        const profileResult = await ddb2.send(
-          new import_lib_dynamodb2.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
-        );
-        const email = profileResult.Item?.email;
-        const name = profileResult.Item?.displayName ?? "Reader";
-        if (email) {
-          const tpl = streakAtRiskEmail({
-            name,
-            currentStreak: streak.currentStreak,
-            hoursRemaining,
-            appBaseUrl: config.appBaseUrl
-          });
-          await sendCompliantEmail(ses2, ddb2, tableName2, config, {
-            to: email,
-            userId,
-            category: "streak",
-            subject: tpl.subject,
-            textBody: tpl.textBody,
-            htmlBody: tpl.htmlBody
-          });
-        }
-      } catch (err) {
-        console.error(`[streak-at-risk] Failed to send email for ${userId}:`, err);
+      const streakResult = await ddb2.send(
+        new import_lib_dynamodb2.GetCommand({
+          TableName: tableName2,
+          Key: { PK: item.PK, SK: "STREAK" }
+        })
+      );
+      const streak = streakResult.Item;
+      if (!streak || !streak.currentStreak || streak.currentStreak < 2 || !streak.lastActiveDate) {
+        return "skipped";
       }
+      const tz = streak.lastActiveTimezone || "UTC";
+      const today = getTodayInTimezone(tz);
+      if (streak.lastActiveDate === today) {
+        return "skipped";
+      }
+      const dedupKey = `NUDGE_SENT#streak_at_risk#${today}`;
+      const dedupResult = await ddb2.send(
+        new import_lib_dynamodb2.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
+      );
+      if (dedupResult.Item) {
+        return "skipped";
+      }
+      let hoursRemaining = 6;
+      try {
+        const nowInTz = (/* @__PURE__ */ new Date()).toLocaleTimeString("en-US", { timeZone: tz, hour12: false });
+        const currentHour = parseInt(nowInTz.split(":")[0], 10);
+        hoursRemaining = Math.max(0, 24 - currentHour);
+      } catch {
+      }
+      if (hoursRemaining > 8) {
+        return "skipped";
+      }
+      const notifId = crypto.randomUUID();
+      const now = (/* @__PURE__ */ new Date()).toISOString();
+      await ddb2.send(
+        new import_lib_dynamodb2.PutCommand({
+          TableName: tableName2,
+          Item: {
+            PK: item.PK,
+            SK: `NOTIF#${now}#${notifId}`,
+            entity: "BOOK_USER_NOTIFICATION",
+            userId,
+            notificationId: notifId,
+            type: "streak_at_risk",
+            title: `Your ${streak.currentStreak}-day streak is at risk`,
+            body: `You have ${hoursRemaining} hours to complete a chapter and keep your streak alive.`,
+            channel: "in_app",
+            readAt: null,
+            createdAt: now
+          }
+        })
+      );
+      if (emailChannelConsented(notifications)) {
+        try {
+          const profileResult = await ddb2.send(
+            new import_lib_dynamodb2.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
+          );
+          const email = profileResult.Item?.email;
+          const name = profileResult.Item?.displayName ?? "Reader";
+          if (email) {
+            const tpl = streakAtRiskEmail({
+              name,
+              currentStreak: streak.currentStreak,
+              hoursRemaining,
+              appBaseUrl: config.appBaseUrl
+            });
+            await sendCompliantEmail(ses2, ddb2, tableName2, config, {
+              to: email,
+              userId,
+              category: "streak",
+              subject: tpl.subject,
+              textBody: tpl.textBody,
+              htmlBody: tpl.htmlBody
+            });
+          }
+        } catch (err) {
+          console.error(`[streak-at-risk] Failed to send email for ${userId}:`, err);
+        }
+      }
+      const ttl = Math.floor(Date.now() / 1e3) + 2 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb2.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: (/* @__PURE__ */ new Date()).toISOString(), ttl }
+        })
+      );
+      return "sent";
+    } catch (err) {
+      console.error(`[streak-at-risk] nudge failed for ${userId}:`, err);
+      return "error";
     }
-    const ttl = Math.floor(Date.now() / 1e3) + 2 * 86400;
-    await ddb2.send(
-      new import_lib_dynamodb2.PutCommand({
-        TableName: tableName2,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: (/* @__PURE__ */ new Date()).toISOString(), ttl }
-      })
-    );
-    sent++;
   }
+  const outcomes = await runWithConcurrency(userItems, REMINDER_CONCURRENCY, processUser);
+  const sent = outcomes.filter((o) => o === "sent").length;
+  const skipped = outcomes.filter((o) => o === "skipped").length;
   return { sent, skipped };
 }
 
@@ -379,101 +400,105 @@ async function processWeeklyDigest(ddb2, ses2, tableName2, config, userItems) {
   if ((/* @__PURE__ */ new Date()).getUTCDay() !== 0) {
     return { sent: 0, skipped: 0 };
   }
-  let sent = 0;
-  let skipped = 0;
   const weekAgo = new Date(Date.now() - 7 * 864e5).toISOString();
   const weekKey = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
-  for (const item of userItems) {
+  async function processUser(item) {
     const notifications = item.settings?.notifications;
     if (notifications?.weeklyDigestEnabled === false) {
-      skipped++;
-      continue;
+      return "skipped";
     }
     const userId = item.PK.replace("BOOKUSER#", "");
-    const dedupKey = `NUDGE_SENT#weekly_digest#${weekKey}`;
-    const dedupResult = await ddb2.send(
-      new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
-    );
-    if (dedupResult.Item) {
-      skipped++;
-      continue;
-    }
-    const loopsResult = await ddb2.send(
-      new import_lib_dynamodb3.QueryCommand({
-        TableName: tableName2,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        FilterExpression: "completedAt >= :weekAgo",
-        ExpressionAttributeValues: {
-          ":pk": item.PK,
-          ":prefix": "LOOP#",
-          ":weekAgo": weekAgo
-        }
-      })
-    );
-    const chaptersCompleted = loopsResult.Items?.length ?? 0;
-    const streakResult = await ddb2.send(
-      new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "STREAK" } })
-    );
-    const currentStreak = streakResult.Item?.currentStreak ?? 0;
-    const engResult = await ddb2.send(
-      new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "ENGAGEMENT" } })
-    );
-    const ipBalance = engResult.Item?.points ?? 0;
-    const profileResult = await ddb2.send(
-      new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
-    );
-    const email = profileResult.Item?.email;
-    const name = profileResult.Item?.displayName ?? "Reader";
-    const notifId = crypto.randomUUID();
-    const now = (/* @__PURE__ */ new Date()).toISOString();
-    await ddb2.send(
-      new import_lib_dynamodb3.PutCommand({
-        TableName: tableName2,
-        Item: {
-          PK: item.PK,
-          SK: `NOTIF#${now}#${notifId}`,
-          entity: "BOOK_USER_NOTIFICATION",
-          userId,
-          notificationId: notifId,
-          type: "weekly_digest",
-          title: "Your week in review",
-          body: `${chaptersCompleted} chapters completed \xB7 ${currentStreak}-day streak \xB7 ${ipBalance} IP`,
-          channel: "in_app",
-          readAt: null,
-          createdAt: now
-        }
-      })
-    );
-    const ttl = Math.floor(Date.now() / 1e3) + 8 * 86400;
-    await ddb2.send(
-      new import_lib_dynamodb3.PutCommand({
-        TableName: tableName2,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
-      })
-    );
-    sent++;
-    if (email && emailChannelConsented(notifications)) {
-      try {
-        const tpl = weeklyDigestEmail({
-          name,
-          chaptersCompleted,
-          currentStreak,
-          ipBalance,
-          appBaseUrl: config.appBaseUrl
-        });
-        await sendCompliantEmail(ses2, ddb2, tableName2, config, {
-          to: email,
-          userId,
-          category: "weekly_digest",
-          subject: tpl.subject,
-          textBody: tpl.textBody,
-          htmlBody: tpl.htmlBody
-        });
-      } catch (err) {
-        console.error(`[weekly-digest] email send failed for ${userId}:`, err);
+    try {
+      const dedupKey = `NUDGE_SENT#weekly_digest#${weekKey}`;
+      const dedupResult = await ddb2.send(
+        new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
+      );
+      if (dedupResult.Item) {
+        return "skipped";
       }
+      const loopsResult = await ddb2.send(
+        new import_lib_dynamodb3.QueryCommand({
+          TableName: tableName2,
+          KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+          FilterExpression: "completedAt >= :weekAgo",
+          ExpressionAttributeValues: {
+            ":pk": item.PK,
+            ":prefix": "LOOP#",
+            ":weekAgo": weekAgo
+          }
+        })
+      );
+      const chaptersCompleted = loopsResult.Items?.length ?? 0;
+      const streakResult = await ddb2.send(
+        new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "STREAK" } })
+      );
+      const currentStreak = streakResult.Item?.currentStreak ?? 0;
+      const engResult = await ddb2.send(
+        new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "ENGAGEMENT" } })
+      );
+      const ipBalance = engResult.Item?.points ?? 0;
+      const profileResult = await ddb2.send(
+        new import_lib_dynamodb3.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
+      );
+      const email = profileResult.Item?.email;
+      const name = profileResult.Item?.displayName ?? "Reader";
+      const notifId = crypto.randomUUID();
+      const now = (/* @__PURE__ */ new Date()).toISOString();
+      await ddb2.send(
+        new import_lib_dynamodb3.PutCommand({
+          TableName: tableName2,
+          Item: {
+            PK: item.PK,
+            SK: `NOTIF#${now}#${notifId}`,
+            entity: "BOOK_USER_NOTIFICATION",
+            userId,
+            notificationId: notifId,
+            type: "weekly_digest",
+            title: "Your week in review",
+            body: `${chaptersCompleted} chapters completed \xB7 ${currentStreak}-day streak \xB7 ${ipBalance} IP`,
+            channel: "in_app",
+            readAt: null,
+            createdAt: now
+          }
+        })
+      );
+      const ttl = Math.floor(Date.now() / 1e3) + 8 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb3.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
+        })
+      );
+      if (email && emailChannelConsented(notifications)) {
+        try {
+          const tpl = weeklyDigestEmail({
+            name,
+            chaptersCompleted,
+            currentStreak,
+            ipBalance,
+            appBaseUrl: config.appBaseUrl
+          });
+          await sendCompliantEmail(ses2, ddb2, tableName2, config, {
+            to: email,
+            userId,
+            category: "weekly_digest",
+            subject: tpl.subject,
+            textBody: tpl.textBody,
+            htmlBody: tpl.htmlBody
+          });
+        } catch (err) {
+          console.error(`[weekly-digest] email send failed for ${userId}:`, err);
+        }
+      }
+      return "sent";
+    } catch (err) {
+      console.error(`[weekly-digest] digest failed for ${userId}:`, err);
+      return "error";
     }
   }
+  const outcomes = await runWithConcurrency(userItems, REMINDER_CONCURRENCY, processUser);
+  const sent = outcomes.filter((o) => o === "sent").length;
+  const skipped = outcomes.filter((o) => o === "skipped").length;
   return { sent, skipped };
 }
 
@@ -499,87 +524,89 @@ Pick up where you left off: ${cta}`,
 
 // lambda/lib/welcome-back-nudge.ts
 async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems) {
-  let sent = 0;
-  let skipped = 0;
-  for (const item of userItems) {
+  async function processUser(item) {
     const notifications = item.settings?.notifications;
     if (notifications?.welcomeBackEnabled === false) {
-      skipped++;
-      continue;
+      return "skipped";
     }
     const userId = item.PK.replace("BOOKUSER#", "");
-    const streakResult = await ddb2.send(
-      new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "STREAK" } })
-    );
-    const lastActiveDate = streakResult.Item?.lastActiveDate;
-    if (!lastActiveDate) {
-      skipped++;
-      continue;
-    }
-    const daysSinceActive = Math.floor(
-      (Date.now() - new Date(lastActiveDate).getTime()) / 864e5
-    );
-    if (daysSinceActive < 7) {
-      skipped++;
-      continue;
-    }
-    const dedupKey = `NUDGE_SENT#welcome_back`;
-    const dedupResult = await ddb2.send(
-      new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
-    );
-    if (dedupResult.Item) {
-      skipped++;
-      continue;
-    }
-    const progressResult = await ddb2.send(
-      new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
-    );
-    const email = progressResult.Item?.email;
-    const name = progressResult.Item?.displayName ?? "Reader";
-    const notifId = crypto.randomUUID();
-    const now = (/* @__PURE__ */ new Date()).toISOString();
-    await ddb2.send(
-      new import_lib_dynamodb4.PutCommand({
-        TableName: tableName2,
-        Item: {
-          PK: item.PK,
-          SK: `NOTIF#${now}#${notifId}`,
-          entity: "BOOK_USER_NOTIFICATION",
-          userId,
-          notificationId: notifId,
-          type: "welcome_back_nudge",
-          title: `We saved your spot, ${name}`,
-          body: `It's been ${daysSinceActive} days. Jump back in and earn 30 Insight Points.`,
-          channel: "in_app",
-          readAt: null,
-          createdAt: now
-        }
-      })
-    );
-    const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
-    await ddb2.send(
-      new import_lib_dynamodb4.PutCommand({
-        TableName: tableName2,
-        Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
-      })
-    );
-    sent++;
-    if (email && emailChannelConsented(notifications)) {
-      try {
-        const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
-        await sendCompliantEmail(ses2, ddb2, tableName2, config, {
-          to: email,
-          userId,
-          category: "welcome_back",
-          subject: tpl.subject,
-          textBody: tpl.textBody,
-          htmlBody: tpl.htmlBody
-        });
-      } catch (err) {
-        console.error(`[welcome-back] email send failed for ${userId}:`, err);
+    try {
+      const streakResult = await ddb2.send(
+        new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "STREAK" } })
+      );
+      const lastActiveDate = streakResult.Item?.lastActiveDate;
+      if (!lastActiveDate) {
+        return "skipped";
       }
+      const daysSinceActive = Math.floor(
+        (Date.now() - new Date(lastActiveDate).getTime()) / 864e5
+      );
+      if (daysSinceActive < 7) {
+        return "skipped";
+      }
+      const dedupKey = `NUDGE_SENT#welcome_back`;
+      const dedupResult = await ddb2.send(
+        new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: dedupKey } })
+      );
+      if (dedupResult.Item) {
+        return "skipped";
+      }
+      const progressResult = await ddb2.send(
+        new import_lib_dynamodb4.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
+      );
+      const email = progressResult.Item?.email;
+      const name = progressResult.Item?.displayName ?? "Reader";
+      const notifId = crypto.randomUUID();
+      const now = (/* @__PURE__ */ new Date()).toISOString();
+      await ddb2.send(
+        new import_lib_dynamodb4.PutCommand({
+          TableName: tableName2,
+          Item: {
+            PK: item.PK,
+            SK: `NOTIF#${now}#${notifId}`,
+            entity: "BOOK_USER_NOTIFICATION",
+            userId,
+            notificationId: notifId,
+            type: "welcome_back_nudge",
+            title: `We saved your spot, ${name}`,
+            body: `It's been ${daysSinceActive} days. Jump back in and earn 30 Insight Points.`,
+            channel: "in_app",
+            readAt: null,
+            createdAt: now
+          }
+        })
+      );
+      const ttl = Math.floor(Date.now() / 1e3) + 30 * 86400;
+      await ddb2.send(
+        new import_lib_dynamodb4.PutCommand({
+          TableName: tableName2,
+          Item: { PK: item.PK, SK: dedupKey, entity: "NUDGE_DEDUP", createdAt: now, ttl }
+        })
+      );
+      if (email && emailChannelConsented(notifications)) {
+        try {
+          const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
+          await sendCompliantEmail(ses2, ddb2, tableName2, config, {
+            to: email,
+            userId,
+            category: "welcome_back",
+            subject: tpl.subject,
+            textBody: tpl.textBody,
+            htmlBody: tpl.htmlBody
+          });
+        } catch (err) {
+          console.error(`[welcome-back] email send failed for ${userId}:`, err);
+        }
+      }
+      return "sent";
+    } catch (err) {
+      console.error(`[welcome-back] nudge failed for ${userId}:`, err);
+      return "error";
     }
   }
+  const outcomes = await runWithConcurrency(userItems, REMINDER_CONCURRENCY, processUser);
+  const sent = outcomes.filter((o) => o === "sent").length;
+  const skipped = outcomes.filter((o) => o === "skipped").length;
   return { sent, skipped };
 }
 
@@ -609,11 +636,11 @@ Reflect now: ${cta}`,
 
 // lambda/lib/commitment-followup.ts
 async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userItems) {
-  let sent = 0;
-  let skipped = 0;
-  let errors = 0;
   const nowMs = Date.now();
-  for (const item of userItems) {
+  async function processUser(item) {
+    let sent = 0;
+    let skipped = 0;
+    let errors = 0;
     const userId = item.PK.replace("BOOKUSER#", "");
     const notifPrefs = item.settings?.notifications;
     const emailAllowed = emailChannelConsented(notifPrefs) && notifPrefs?.achievementAlertsEnabled !== false && notifPrefs?.badgeCelebrationEnabled !== false;
@@ -630,12 +657,12 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
     } catch (err) {
       console.error(`[commitment-followup] query failed for ${userId}:`, err);
       errors++;
-      continue;
+      return { sent, skipped, errors };
     }
     const due = rows.filter(
       (c) => c.status === "active" && !c.notificationSentAt && Number.isFinite(Date.parse(c.followUpDate)) && Date.parse(c.followUpDate) <= nowMs
     );
-    if (due.length === 0) continue;
+    if (due.length === 0) return { sent, skipped, errors };
     let email;
     let name = "Reader";
     if (emailAllowed) {
@@ -733,8 +760,17 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
         continue;
       }
     }
+    return { sent, skipped, errors };
   }
-  return { sent, skipped, errors };
+  const tallies = await runWithConcurrency(userItems, REMINDER_CONCURRENCY, processUser);
+  return tallies.reduce(
+    (acc, t) => ({
+      sent: acc.sent + t.sent,
+      skipped: acc.skipped + t.skipped,
+      errors: acc.errors + t.errors
+    }),
+    { sent: 0, skipped: 0, errors: 0 }
+  );
 }
 
 // lambda/lib/email-templates/reading-reminder.ts
@@ -754,7 +790,6 @@ Open ChapterFlow: ${cta}`,
 
 // lambda/reading-reminder-cron.ts
 var tableName = process.env.BOOK_TABLE_NAME;
-var REMINDER_CONCURRENCY = 8;
 var ddb = import_lib_dynamodb6.DynamoDBDocumentClient.from(new import_client_dynamodb.DynamoDBClient({}), {
   marshallOptions: { removeUndefinedValues: true }
 });
@@ -769,19 +804,6 @@ function resolveHour(timeLocal, timezone) {
   } catch {
     return -1;
   }
-}
-async function runWithConcurrency(items, limit, task) {
-  const results = new Array(items.length);
-  let cursor = 0;
-  const workerCount = Math.min(Math.max(1, limit), items.length);
-  const workers = Array.from({ length: workerCount }, async () => {
-    while (cursor < items.length) {
-      const index = cursor++;
-      results[index] = await task(items[index]);
-    }
-  });
-  await Promise.all(workers);
-  return results;
 }
 async function batchGetByKeys(keys, projection) {
   const collected = [];
