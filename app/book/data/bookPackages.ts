@@ -121,6 +121,7 @@ import auto_stolen_focus_Json from "@/book-packages/stolen-focus.v21.json";
 import auto_the_year_of_less_Json from "@/book-packages/the-year-of-less.v21.json";
 import auto_decisive_Json from "@/book-packages/decisive.v21.json";
 import auto_the_now_habit_Json from "@/book-packages/the-now-habit.v21.json";
+import auto_willpower_Json from "@/book-packages/willpower.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1977,4 +1978,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_now_habit_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-now-habit"] = (tone) => normalizeAnyPackage(auto_the_now_habit_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "willpower" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_willpower_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["willpower"] = (tone) => normalizeAnyPackage(auto_willpower_Json, tone);
 }
