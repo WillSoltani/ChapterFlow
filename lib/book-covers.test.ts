@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { readdirSync, statSync, existsSync } from "node:fs";
+import { statSync, existsSync, writeFileSync, rmSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import path from "node:path";
 import { getBookCoverCandidates, getBookCoverPath } from "./book-covers";
 
@@ -13,6 +14,24 @@ import { getBookCoverCandidates, getBookCoverPath } from "./book-covers";
 
 const COVERS_DIR = path.join(process.cwd(), "public", "book-covers");
 const MIN_RASTER_BYTES = 2_000;
+
+// The committed-cover invariant must hold over GIT-TRACKED files only, never the
+// raw working tree: the pipeline drops untracked cover artifacts into this dir
+// (e.g. a stray `behave.webp` with no AVIF sibling, or a `*.svg` left by a local
+// render) that are absent on CI, and `readdirSync` would let those local strays
+// fail `npm test`. Enumerating via `git ls-files` keeps the assertion about what
+// actually ships.
+function trackedCovers(suffix: string): string[] {
+  const out = execFileSync(
+    "git",
+    ["ls-files", "-z", "--", `public/book-covers/*${suffix}`],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+  return out
+    .split("\0")
+    .filter(Boolean)
+    .map((p) => path.basename(p));
+}
 
 function publicFileFor(urlPath: string): string {
   return path.join(process.cwd(), "public", urlPath.replace(/^\//, ""));
@@ -82,7 +101,7 @@ test("cover aliases resolve to a real raster", () => {
 });
 
 test("every committed cover WebP is non-trivial and has an AVIF sibling", () => {
-  const webps = readdirSync(COVERS_DIR).filter((f) => f.endsWith(".webp"));
+  const webps = trackedCovers(".webp");
   assert.ok(
     webps.length >= 60,
     `expected the full catalog of cover rasters, found only ${webps.length}`,
@@ -104,5 +123,43 @@ test("no committed cover is still an SVG", () => {
     for (const candidate of getBookCoverCandidates(id)) {
       assert.ok(!candidate.endsWith(".svg"));
     }
+  }
+});
+
+// Regression for the AVIF-sibling invariant being scoped to git-tracked files.
+// Before this fix the test did `readdirSync`, so a stray untracked cover in the
+// working tree (e.g. `behave.webp` with no `behave.avif`) failed local `npm test`
+// even though it was absent on CI. This proves untracked strays are excluded.
+test("committed-cover enumeration ignores untracked working-tree strays", () => {
+  const tracked = trackedCovers(".webp");
+  assert.ok(tracked.length > 0, "expected at least one tracked cover");
+
+  // Every name `trackedCovers` returns must actually be tracked by git — i.e.
+  // `git ls-files --error-unmatch` succeeds for it (untracked files exit non-zero).
+  const sample = tracked[0];
+  assert.doesNotThrow(() => {
+    execFileSync(
+      "git",
+      ["ls-files", "--error-unmatch", "--", `public/book-covers/${sample}`],
+      { cwd: process.cwd(), stdio: "ignore" },
+    );
+  }, `trackedCovers returned an untracked file: ${sample}`);
+
+  // Create a genuinely untracked stray (no AVIF sibling) and confirm the helper
+  // never surfaces it — the exact shape that used to break the suite.
+  const strayName = "__regression-untracked-stray.webp";
+  const strayPath = path.join(COVERS_DIR, strayName);
+  writeFileSync(strayPath, Buffer.alloc(MIN_RASTER_BYTES + 1, 0x42));
+  try {
+    assert.ok(
+      existsSync(strayPath),
+      "fixture stray cover should exist on disk for the test window",
+    );
+    assert.ok(
+      !trackedCovers(".webp").includes(strayName),
+      "an untracked stray cover must be excluded from the tracked-cover invariant",
+    );
+  } finally {
+    rmSync(strayPath, { force: true });
   }
 });
