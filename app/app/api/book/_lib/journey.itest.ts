@@ -103,7 +103,9 @@ async function seedProgress(
     createdAt: now,
     ...overrides,
   };
-  await repo.upsertUserProgress(TABLE_NAME, progress);
+  // upsertUserProgress is now a cursor/activity-only touch (it intentionally does NOT
+  // write the gating fields). Seed the full row via createProgressIfMissing instead.
+  await repo.createProgressIfMissing(TABLE_NAME, progress);
   return progress;
 }
 

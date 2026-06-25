@@ -376,6 +376,11 @@ export type BookUserProgress = {
   lastActiveAt?: string;
   streakDays?: number;
   preferredVariant?: VariantKey;
+  // Monotonic optimistic-concurrency counter for the canonical PROGRESS#<bookId> item.
+  // Bumped on every quiz-pass mutation and used as the write guard so a stale full-row
+  // write can't clobber a concurrently-advanced row. Absent on legacy items (treated
+  // as 0). See progress-write-core.ts.
+  progressRev?: number;
   updatedAt: string;
   createdAt: string;
 };
