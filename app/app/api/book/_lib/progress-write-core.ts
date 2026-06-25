@@ -21,6 +21,38 @@
 
 import type { BookUserProgress } from "./types";
 
+/**
+ * Validate + clamp a client-supplied `lastOpenedAt` before it reaches the canonical
+ * BOOK_PROGRESS row (and the per-book BOOK_USER_BOOK_STATE projection).
+ *
+ * THE PROBLEM: the /state PATCH took `lastOpenedAt` as any client string with no
+ * validation (`typeof x === "string" ? x : now`) and SET it straight into the
+ * canonical progress item. `lastOpenedAt` feeds the "book started" badge clause
+ * (`lastOpenedAt !== epoch`) and recency / last-read sorting, so a client could PATCH
+ * a garbage string ("not-a-date") or a far-future value ("9999-12-31...") to corrupt
+ * those surfaces.
+ *
+ * FIX (pure, here in the *-core seam so it's unit-testable without DynamoDB):
+ *  - reject non-strings and anything that doesn't parse to a finite epoch → fall back
+ *    to `now`;
+ *  - clamp anything strictly AFTER `now` back to `now` (no future timestamps);
+ *  - otherwise normalize to a canonical ISO-8601 string so an oddly-but-validly
+ *    formatted input is stored consistently.
+ *
+ * `now` must itself be a valid ISO timestamp (the caller's `nowIso()`); it is the
+ * floor/ceiling the result is measured against and the fallback on any rejection.
+ */
+export function sanitizeLastOpenedAt(value: unknown, now: string): string {
+  const nowMs = new Date(now).getTime();
+  if (typeof value !== "string") return now;
+  const ms = new Date(value).getTime();
+  if (!Number.isFinite(ms)) return now;
+  // No future timestamps: a clock-skewed or adversarial value can't push activity
+  // ahead of server time.
+  if (Number.isFinite(nowMs) && ms > nowMs) return now;
+  return new Date(ms).toISOString();
+}
+
 export type ProgressUpdateSpec = {
   UpdateExpression: string;
   ConditionExpression?: string;

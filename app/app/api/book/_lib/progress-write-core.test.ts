@@ -14,6 +14,7 @@ import {
   buildInteractionTouchUpdate,
   buildQuizPassProgressUpdate,
   classifyQuizOutcomeCancellation,
+  sanitizeLastOpenedAt,
   QUIZ_OUTCOME_TX_INDEX,
 } from "./progress-write-core";
 import type { BookUserProgress } from "./types";
@@ -325,4 +326,53 @@ test("A8: a non-cancellation error is reported as not_a_cancellation (rethrown b
     classifyQuizOutcomeCancellation({ name: "ResourceNotFoundException" }),
     "not_a_cancellation"
   );
+});
+
+// ── A12: /state PATCH must validate + clamp client-supplied lastOpenedAt ──
+// The PATCH took `lastOpenedAt` as any client string with no validation and SET it
+// into the canonical BOOK_PROGRESS row (and the BOOK_USER_BOOK_STATE projection).
+// lastOpenedAt feeds the "book started" badge clause (lastOpenedAt !== epoch) and
+// recency / last-read sorting, so a garbage or far-future value would corrupt those
+// surfaces. sanitizeLastOpenedAt is the pure guard the route now applies to BOTH writes.
+
+const A12_NOW = "2026-06-24T12:00:00.000Z";
+
+test("A12: a sane past ISO timestamp is preserved (normalized to canonical ISO)", () => {
+  const past = "2026-06-20T08:30:00.000Z";
+  assert.equal(sanitizeLastOpenedAt(past, A12_NOW), past);
+});
+
+test("A12: exactly-now is accepted (boundary, not treated as future)", () => {
+  assert.equal(sanitizeLastOpenedAt(A12_NOW, A12_NOW), A12_NOW);
+});
+
+test("A12: a non-string (number / object / null / undefined / array) falls back to now", () => {
+  assert.equal(sanitizeLastOpenedAt(1750000000000, A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt({ when: "soon" }, A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt(null, A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt(undefined, A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt(["2026-06-20T00:00:00Z"], A12_NOW), A12_NOW);
+});
+
+test("A12: an unparseable garbage string falls back to now", () => {
+  assert.equal(sanitizeLastOpenedAt("not-a-date", A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt("", A12_NOW), A12_NOW);
+  assert.equal(sanitizeLastOpenedAt("Infinity", A12_NOW), A12_NOW);
+});
+
+test("A12: a far-future timestamp is clamped down to now (no future activity)", () => {
+  assert.equal(sanitizeLastOpenedAt("9999-12-31T23:59:59.000Z", A12_NOW), A12_NOW);
+  // even one second past now is rejected
+  assert.equal(sanitizeLastOpenedAt("2026-06-24T12:00:01.000Z", A12_NOW), A12_NOW);
+});
+
+test("A12: a non-epoch valid timestamp stays non-epoch (badge 'started' clause stays correct)", () => {
+  const result = sanitizeLastOpenedAt("2026-06-22T09:00:00.000Z", A12_NOW);
+  assert.notEqual(result, new Date(0).toISOString());
+});
+
+test("A12: an oddly-but-validly formatted input is normalized to canonical ISO-8601", () => {
+  // A valid Date input that is NOT already canonical ISO should be normalized.
+  const result = sanitizeLastOpenedAt("2026-06-20T08:30:00Z", A12_NOW);
+  assert.equal(result, "2026-06-20T08:30:00.000Z");
 });
