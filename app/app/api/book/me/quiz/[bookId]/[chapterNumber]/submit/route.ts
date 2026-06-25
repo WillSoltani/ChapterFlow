@@ -487,6 +487,14 @@ export async function POST(
       attempt,
       nextQuizState,
       nextProgress,
+      // When the optimistic progressRev guard loses a concurrency race, recompute the
+      // pass merge against the freshly-read row so a concurrent writer's completed
+      // chapters / unlocks are preserved (the pass is never silently dropped).
+      recomputeNextProgress: (freshProgress) =>
+        buildProgressAfterQuizPass(freshProgress, {
+          chapterNumber: chapterNumberInt,
+          scorePercent: graded.scorePercent,
+        }),
     });
 
     // Mode-dependent Insight Points (quiz-pass portion only — §1.1).

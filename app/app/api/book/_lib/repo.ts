@@ -97,6 +97,11 @@ import {
   leaseTtlEpochSeconds,
   type ExistingWebhookMarker,
 } from "./webhook-claim-core";
+import {
+  buildInteractionTouchUpdate,
+  buildQuizPassProgressUpdate,
+  classifyQuizOutcomeCancellation,
+} from "./progress-write-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
 import {
   buildEntitlementUpdateFromStripe,
@@ -875,21 +880,92 @@ async function reserveBookEntitlementOnce(
   }
 }
 
+/**
+ * Persist an interaction "touch" of a started reader's progress (book opened /
+ * chapter navigated / a reading-session heartbeat).
+ *
+ * This is a FIELD-SCOPED, CONDITIONAL update — NOT a full-object Put. It SETs only
+ * the activity timestamps and bumps `currentChapterNumber` upward, and it NEVER writes
+ * the gating fields (`unlockedThroughChapterNumber` / `completedChapters` /
+ * `bestScoreByChapter`). The previous full-object Put re-wrote those stale, snapshot-read
+ * values, so a touch racing a concurrent quiz-pass (every quiz submit calls
+ * ensureUserBookStarted first) could roll back a freshly-completed chapter or unlock.
+ *
+ * The `currentChapterNumber` max-guard is enforced by the update's ConditionExpression;
+ * a lost cursor race surfaces as ConditionalCheckFailed and is swallowed as a benign
+ * no-op (the row is already at least as advanced), mirroring repointProgressVersion /
+ * createProgressIfMissing. Pass `progress` as the already-touched row (the caller's
+ * touchProgressForInteraction output); only its cursor + timestamps are read here.
+ */
 export async function upsertUserProgress(
   tableName: string,
   progress: BookUserProgress
 ): Promise<void> {
-  await ddbDoc.send(
-    new PutCommand({
-      TableName: tableName,
-      Item: {
-        PK: bookUserPk(progress.userId),
-        SK: progressSk(progress.bookId),
-        entity: "BOOK_PROGRESS",
-        ...progress,
-      },
-    })
-  );
+  const touchedAt = progress.updatedAt || nowIso();
+  const spec = buildInteractionTouchUpdate({
+    nextCurrentChapterNumber: progress.currentChapterNumber,
+    lastOpenedAt: progress.lastOpenedAt ?? touchedAt,
+    lastActiveAt: progress.lastActiveAt ?? touchedAt,
+    updatedAt: touchedAt,
+  });
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(progress.userId),
+          SK: progressSk(progress.bookId),
+        },
+        UpdateExpression: spec.UpdateExpression,
+        ConditionExpression: spec.ConditionExpression,
+        ExpressionAttributeNames: spec.ExpressionAttributeNames,
+        ExpressionAttributeValues: spec.ExpressionAttributeValues,
+      })
+    );
+  } catch (error: unknown) {
+    // Lost the cursor max-guard to a concurrent (more-advanced) writer → no-op.
+    if (isConditionalCheckFailed(error)) return;
+    throw error;
+  }
+}
+
+/**
+ * Persist a quiz-pass progress mutation safely under concurrency. `nextProgress` is the
+ * full recomputed row from buildProgressAfterQuizPass; `expectedRev` is the progressRev
+ * read in the same snapshot. The write is a field-scoped UpdateCommand guarded by the
+ * optimistic progressRev check, so a stale write can't clobber a concurrently-advanced
+ * row — instead it surfaces as ConditionalCheckFailed and the caller recomputes + retries.
+ *
+ * Returns true when applied, false when the optimistic guard lost (stale write).
+ */
+async function writeQuizPassProgress(
+  tableName: string,
+  params: { nextProgress: BookUserProgress; expectedRev: number }
+): Promise<boolean> {
+  const spec = buildQuizPassProgressUpdate({
+    nextProgress: params.nextProgress,
+    expectedRev: params.expectedRev,
+    nextRev: params.expectedRev + 1,
+  });
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(params.nextProgress.userId),
+          SK: progressSk(params.nextProgress.bookId),
+        },
+        UpdateExpression: spec.UpdateExpression,
+        ConditionExpression: spec.ConditionExpression,
+        ExpressionAttributeNames: spec.ExpressionAttributeNames,
+        ExpressionAttributeValues: spec.ExpressionAttributeValues,
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
 }
 
 export async function createProgressIfMissing(
@@ -1005,6 +1081,7 @@ export async function getUserProgress(
     lastActiveAt: readStr(item.lastActiveAt),
     streakDays: readNum(item.streakDays),
     preferredVariant: readStr(item.preferredVariant) as BookUserProgress["preferredVariant"],
+    progressRev: readNum(item.progressRev) ?? 0,
     updatedAt: readStr(item.updatedAt) || "",
     createdAt: readStr(item.createdAt) || "",
   };
@@ -1044,6 +1121,7 @@ export async function listAllUserProgress(
       lastActiveAt: readStr(item.lastActiveAt),
       streakDays: readNum(item.streakDays),
       preferredVariant: readStr(item.preferredVariant) as BookUserProgress["preferredVariant"],
+      progressRev: readNum(item.progressRev) ?? 0,
       updatedAt: readStr(item.updatedAt) || "",
       createdAt: readStr(item.createdAt) || "",
     });
@@ -1221,6 +1299,23 @@ export async function listRecentQuizAttempts(
   return attempts;
 }
 
+/**
+ * Atomically record the outcome of a quiz attempt: the attempt row, the per-chapter
+ * quiz-state (guarded by the attemptsCount optimistic check), and — on a pass — the
+ * canonical PROGRESS#<bookId> mutation.
+ *
+ * Concurrency safety (prog-write cluster):
+ *  - The progress mutation is an `Update` action guarded by an optimistic `progressRev`
+ *    check (NOT a blind full-object Put), so a concurrent writer's completed-chapter /
+ *    unlock can't be rolled back.
+ *  - A failed TransactWrite is classified by its index-aligned CancellationReasons
+ *    (classifyQuizOutcomeCancellation) rather than blanket-mapped to quiz_state_conflict:
+ *      • attempt(0) / quiz-state(1) condition failed → real 409 quiz_state_conflict.
+ *      • progress-rev(2) condition failed → re-read progress, recompute nextProgress
+ *        via `recomputeNextProgress`, and retry (the pass is NOT dropped).
+ *      • a transient cancel (TransactionConflict / throttle / capacity) → retry with
+ *        backoff, then a retriable 503 — never a silent quiz_state_conflict.
+ */
 export async function recordQuizAttemptOutcome(
   tableName: string,
   params: {
@@ -1228,81 +1323,141 @@ export async function recordQuizAttemptOutcome(
     attempt: QuizAttemptItem;
     nextQuizState: BookUserQuizStateItem;
     nextProgress?: BookUserProgress;
+    // Recompute nextProgress against a freshly-read row when the optimistic
+    // progressRev guard loses a race. Defaults to keeping the originally-computed row
+    // (the snapshot merge already includes this chapter), which is still correct but a
+    // recompute keeps a concurrent writer's other completed chapters.
+    recomputeNextProgress?: (freshProgress: BookUserProgress) => BookUserProgress;
   }
 ): Promise<void> {
-  const transactItems: NonNullable<TransactWriteCommandInput["TransactItems"]> = [
-    {
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: quizAttemptPk(
-            params.attempt.userId,
-            params.attempt.bookId,
-            params.attempt.chapterNumber
-          ),
-          SK: quizAttemptSk(params.attempt.createdAt),
-          entity: "BOOK_QUIZ_ATTEMPT",
-          quizScope: quizScopeKey(params.attempt.bookId, params.attempt.chapterNumber),
-          ...params.attempt,
-        },
-        ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-      },
-    },
-    {
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(params.nextQuizState.userId),
-          SK: quizStateSk(
-            params.nextQuizState.bookId,
-            params.nextQuizState.chapterNumber
-          ),
-          entity: "BOOK_USER_QUIZ_STATE",
-          ...params.nextQuizState,
-        },
-        ConditionExpression:
-          "attribute_not_exists(PK) OR attribute_not_exists(attemptsCount) OR attemptsCount = :previousAttemptsCount",
-        ExpressionAttributeValues: {
-          ":previousAttemptsCount": params.previousAttemptsCount,
-        },
-      },
-    },
-  ];
+  const MAX_ATTEMPTS = 4;
+  // `expectedRev` for the progress guard is the rev carried by the row the caller built
+  // nextProgress from (0 for legacy rows that never had one).
+  let expectedRev = params.nextProgress?.progressRev ?? 0;
+  let nextProgress = params.nextProgress;
 
-  if (params.nextProgress) {
-    transactItems.push({
-      Put: {
-        TableName: tableName,
-        Item: {
-          PK: bookUserPk(params.nextProgress.userId),
-          SK: progressSk(params.nextProgress.bookId),
-          entity: "BOOK_PROGRESS",
-          ...params.nextProgress,
+  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
+    const transactItems: NonNullable<TransactWriteCommandInput["TransactItems"]> = [
+      {
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: quizAttemptPk(
+              params.attempt.userId,
+              params.attempt.bookId,
+              params.attempt.chapterNumber
+            ),
+            SK: quizAttemptSk(params.attempt.createdAt),
+            entity: "BOOK_QUIZ_ATTEMPT",
+            quizScope: quizScopeKey(params.attempt.bookId, params.attempt.chapterNumber),
+            ...params.attempt,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
         },
       },
-    });
-  }
+      {
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: bookUserPk(params.nextQuizState.userId),
+            SK: quizStateSk(
+              params.nextQuizState.bookId,
+              params.nextQuizState.chapterNumber
+            ),
+            entity: "BOOK_USER_QUIZ_STATE",
+            ...params.nextQuizState,
+          },
+          ConditionExpression:
+            "attribute_not_exists(PK) OR attribute_not_exists(attemptsCount) OR attemptsCount = :previousAttemptsCount",
+          ExpressionAttributeValues: {
+            ":previousAttemptsCount": params.previousAttemptsCount,
+          },
+        },
+      },
+    ];
 
-  try {
-    await ddbDoc.send(
-      new TransactWriteCommand({
-        TransactItems: transactItems,
-      })
-    );
-  } catch (error: unknown) {
-    if (
-      isConditionalCheckFailed(error) ||
-      (error &&
-        typeof error === "object" &&
-        (error as Record<string, unknown>).name === "TransactionCanceledException")
-    ) {
-      throw new BookApiError(
-        409,
-        "quiz_state_conflict",
-        "Quiz state changed. Refresh and try again."
-      );
+    if (nextProgress) {
+      const spec = buildQuizPassProgressUpdate({
+        nextProgress,
+        expectedRev,
+        nextRev: expectedRev + 1,
+      });
+      // Index 2 in transactItems — must match QUIZ_OUTCOME_TX_INDEX.progress.
+      transactItems.push({
+        Update: {
+          TableName: tableName,
+          Key: {
+            PK: bookUserPk(nextProgress.userId),
+            SK: progressSk(nextProgress.bookId),
+          },
+          UpdateExpression: spec.UpdateExpression,
+          ConditionExpression: spec.ConditionExpression,
+          ExpressionAttributeNames: spec.ExpressionAttributeNames,
+          ExpressionAttributeValues: spec.ExpressionAttributeValues,
+        },
+      });
     }
-    throw error;
+
+    try {
+      await ddbDoc.send(new TransactWriteCommand({ TransactItems: transactItems }));
+      return;
+    } catch (error: unknown) {
+      const klass = classifyQuizOutcomeCancellation(error);
+
+      if (klass === "quiz_state_conflict") {
+        throw new BookApiError(
+          409,
+          "quiz_state_conflict",
+          "Quiz state changed. Refresh and try again."
+        );
+      }
+
+      const isLastAttempt = attemptNo === MAX_ATTEMPTS - 1;
+
+      if (klass === "progress_conflict") {
+        // The optimistic progressRev guard lost: another writer advanced the row in
+        // between. Re-read, recompute the merge against the fresh row, and retry so we
+        // never drop this pass nor clobber the concurrent writer's chapters.
+        if (isLastAttempt || !nextProgress) {
+          throw new BookApiError(
+            503,
+            "progress_write_contended",
+            "Saving your progress hit heavy contention. Please try again."
+          );
+        }
+        const fresh = await getUserProgress(
+          tableName,
+          nextProgress.userId,
+          nextProgress.bookId
+        );
+        if (!fresh) {
+          // The row vanished (erasure?) — fall back to the originally-computed row at
+          // rev 0 for one more attempt rather than dropping the pass.
+          expectedRev = 0;
+          continue;
+        }
+        expectedRev = fresh.progressRev ?? 0;
+        nextProgress = params.recomputeNextProgress
+          ? params.recomputeNextProgress(fresh)
+          : { ...nextProgress, progressRev: expectedRev };
+        continue;
+      }
+
+      if (klass === "transient") {
+        if (isLastAttempt) {
+          throw new BookApiError(
+            503,
+            "quiz_write_contended",
+            "Saving your quiz result hit heavy contention. Please try again."
+          );
+        }
+        await new Promise((resolve) => setTimeout(resolve, 25 * (attemptNo + 1)));
+        continue;
+      }
+
+      // not_a_cancellation → an unexpected error: rethrow as-is.
+      throw error;
+    }
   }
 }
 
@@ -2494,34 +2649,56 @@ export async function updateProgressAfterQuizPass(
     scorePercent: number;
   }
 ): Promise<void> {
-  const progress = await getUserProgress(tableName, params.userId, params.bookId);
-  if (!progress) {
-    throw new BookApiError(404, "progress_not_found", "Progress record not found.");
+  // NOTE: upsertUserProgress is now a cursor/activity-only touch and intentionally does
+  // NOT persist the gating fields. This standalone quiz-pass writer therefore uses the
+  // optimistic, field-scoped writeQuizPassProgress helper with a re-read/retry loop so a
+  // concurrent writer's completed chapters / unlock can't be clobbered.
+  const MAX_ATTEMPTS = 4;
+  for (let attemptNo = 0; attemptNo < MAX_ATTEMPTS; attemptNo += 1) {
+    const progress = await getUserProgress(tableName, params.userId, params.bookId);
+    if (!progress) {
+      throw new BookApiError(404, "progress_not_found", "Progress record not found.");
+    }
+
+    const completed = new Set(progress.completedChapters);
+    completed.add(params.chapterNumber);
+
+    const bestScoreByChapter = {
+      ...progress.bestScoreByChapter,
+      [String(params.chapterNumber)]: Math.max(
+        params.scorePercent,
+        progress.bestScoreByChapter[String(params.chapterNumber)] || 0
+      ),
+    };
+
+    const updatedAt = nowIso();
+    const applied = await writeQuizPassProgress(tableName, {
+      expectedRev: progress.progressRev ?? 0,
+      nextProgress: {
+        ...progress,
+        currentChapterNumber: Math.max(
+          progress.currentChapterNumber,
+          params.chapterNumber + 1
+        ),
+        unlockedThroughChapterNumber: Math.max(
+          progress.unlockedThroughChapterNumber,
+          params.chapterNumber + 1
+        ),
+        completedChapters: Array.from(completed).sort((a, b) => a - b),
+        bestScoreByChapter,
+        lastActiveAt: updatedAt,
+        lastOpenedAt: updatedAt,
+        updatedAt,
+      },
+    });
+    if (applied) return;
+    // Lost the optimistic guard — re-read and recompute against the fresh row.
   }
-
-  const completed = new Set(progress.completedChapters);
-  completed.add(params.chapterNumber);
-
-  const bestScoreByChapter = {
-    ...progress.bestScoreByChapter,
-    [String(params.chapterNumber)]: Math.max(
-      params.scorePercent,
-      progress.bestScoreByChapter[String(params.chapterNumber)] || 0
-    ),
-  };
-
-  const nextUnlocked = Math.max(progress.unlockedThroughChapterNumber, params.chapterNumber + 1);
-  const updatedAt = nowIso();
-  await upsertUserProgress(tableName, {
-    ...progress,
-    currentChapterNumber: Math.max(progress.currentChapterNumber, params.chapterNumber + 1),
-    unlockedThroughChapterNumber: nextUnlocked,
-    completedChapters: Array.from(completed).sort((a, b) => a - b),
-    bestScoreByChapter,
-    lastActiveAt: updatedAt,
-    lastOpenedAt: updatedAt,
-    updatedAt,
-  });
+  throw new BookApiError(
+    503,
+    "progress_write_contended",
+    "Saving your progress hit heavy contention. Please try again."
+  );
 }
 
 export async function readManifest(
