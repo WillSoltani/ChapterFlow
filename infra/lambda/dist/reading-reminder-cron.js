@@ -227,6 +227,11 @@ async function sendCompliantEmail(ses2, ddb2, tableName2, config, params) {
   );
 }
 
+// lambda/lib/email-consent.ts
+function emailChannelConsented(notifications) {
+  return notifications?.channels?.email === true;
+}
+
 // lambda/lib/streak-at-risk.ts
 function getTodayInTimezone(tz) {
   try {
@@ -310,7 +315,7 @@ async function processStreakAtRisk(ddb2, ses2, tableName2, config, userItems) {
         }
       })
     );
-    if (notifications?.channels?.email !== false) {
+    if (emailChannelConsented(notifications)) {
       try {
         const profileResult = await ddb2.send(
           new import_lib_dynamodb2.GetCommand({ TableName: tableName2, Key: { PK: item.PK, SK: "PROFILE" } })
@@ -445,7 +450,7 @@ async function processWeeklyDigest(ddb2, ses2, tableName2, config, userItems) {
       })
     );
     sent++;
-    if (email && notifications?.channels?.email !== false) {
+    if (email && emailChannelConsented(notifications)) {
       try {
         const tpl = weeklyDigestEmail({
           name,
@@ -556,7 +561,7 @@ async function processWelcomeBackNudge(ddb2, ses2, tableName2, config, userItems
       })
     );
     sent++;
-    if (email && notifications?.channels?.email !== false) {
+    if (email && emailChannelConsented(notifications)) {
       try {
         const tpl = welcomeBackEmail({ name, daysSinceActive, appBaseUrl: config.appBaseUrl });
         await sendCompliantEmail(ses2, ddb2, tableName2, config, {
@@ -606,7 +611,7 @@ async function processCommitmentFollowup(ddb2, ses2, tableName2, config, userIte
   for (const item of userItems) {
     const userId = item.PK.replace("BOOKUSER#", "");
     const notifPrefs = item.settings?.notifications;
-    const emailAllowed = notifPrefs?.channels?.email !== false && notifPrefs?.achievementAlertsEnabled !== false && notifPrefs?.badgeCelebrationEnabled !== false;
+    const emailAllowed = emailChannelConsented(notifPrefs) && notifPrefs?.achievementAlertsEnabled !== false && notifPrefs?.badgeCelebrationEnabled !== false;
     let rows;
     try {
       const res = await ddb2.send(
@@ -834,7 +839,7 @@ async function processReminderUser(user, today, emailConfig) {
         }
       })
     );
-    if (email && notifPrefs.channels?.email === true) {
+    if (email && emailChannelConsented(notifPrefs)) {
       try {
         const tpl = readingReminderEmail({ name, appBaseUrl: emailConfig.appBaseUrl });
         await sendCompliantEmail(ses, ddb, tableName, emailConfig, {

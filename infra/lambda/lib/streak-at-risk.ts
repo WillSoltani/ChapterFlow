@@ -6,6 +6,7 @@ import {
 import { SESv2Client } from "@aws-sdk/client-sesv2";
 import { streakAtRiskEmail } from "./email-templates/streak-at-risk";
 import { sendCompliantEmail, type EmailConfig } from "./email-compliance";
+import { emailChannelConsented } from "./email-consent";
 
 type UserSettings = {
   PK: string;
@@ -141,7 +142,7 @@ export async function processStreakAtRisk(
     );
 
     // Send email notification
-    if (notifications?.channels?.email !== false) {
+    if (emailChannelConsented(notifications)) {
       try {
         const profileResult = await ddb.send(
           new GetCommand({ TableName: tableName, Key: { PK: item.PK, SK: "PROFILE" } }),
