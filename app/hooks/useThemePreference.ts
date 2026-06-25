@@ -6,6 +6,7 @@ import {
   type ThemePreference,
   BOOK_THEME_STORAGE_KEY,
   applyAndPersistDocumentTheme,
+  createSystemThemeChangeHandler,
   readStoredDocumentThemeSettings,
   resolveDocumentThemeLabel,
 } from "@/app/_lib/document-theme";
@@ -57,7 +58,12 @@ export function useThemePreference(options?: UseThemePreferenceOptions) {
         ? window.matchMedia("(prefers-color-scheme: dark)")
         : null;
 
-    const handleMediaChange = () => syncTheme();
+    // H8: When the OS light/dark setting flips while a "system"-preference user
+    // has the app open, syncTheme alone only updates React state — the DOM
+    // (<html>.dark, colorScheme, token set) would stay stale. The handler
+    // re-applies the stored theme to the document first (resolving system→dark
+    // via matchMedia), then syncs React state.
+    const handleMediaChange = createSystemThemeChangeHandler(syncTheme);
     window.addEventListener("storage", syncTheme);
     window.addEventListener("book-theme-change", syncTheme);
     mediaQuery?.addEventListener("change", handleMediaChange);
