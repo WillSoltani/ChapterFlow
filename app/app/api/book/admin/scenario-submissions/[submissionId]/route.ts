@@ -23,7 +23,11 @@ import {
   analyticsTrackFlowPointsTransaction,
   analyticsTrackScenario,
 } from "@/app/app/api/book/_lib/analytics-repo";
-import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import {
+  awardFlowPoints,
+  reverseFlowPointsAward,
+} from "@/app/app/api/book/_lib/flow-points-repo";
+import { decideScenarioReversal } from "@/app/app/api/book/_lib/scenario-reversal-core";
 import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
@@ -172,6 +176,51 @@ export async function PATCH(
           ]);
         })
         .catch(() => {});
+    }
+
+    // H4 clawback: re-rejecting a previously-approved scenario reverses the IP
+    // it earned. The award path fired exactly `existing.pointsAwarded` on the
+    // approve, idempotent on submissionId; this deducts the same (clamped to the
+    // current balance, idempotent on submissionId) so a mis-approval / flagged
+    // abuse can't leave the user holding unearned points.
+    const reversal = decideScenarioReversal({
+      wasApprovedAlready,
+      status,
+      pointsAwarded: existing.pointsAwarded,
+    });
+    if (reversal.reverse) {
+      const reversed = await reverseFlowPointsAward(tableName, {
+        userId: existing.userId,
+        amount: reversal.amount,
+        sourceType: "scenario_reversal",
+        sourceId: submissionId,
+        metadata: {
+          scope: existing.scope,
+          bookId: existing.bookId,
+          reversedSourceType: "scenario_approved",
+          reviewedBy: admin.sub,
+        },
+        createdAt: now,
+      });
+
+      if (reversed.reversed && reversed.pointsDeducted > 0) {
+        getBookAnalyticsTableName()
+          .then((analyticsTable) => {
+            if (!analyticsTable) return;
+            return analyticsTrackFlowPointsTransaction(analyticsTable, {
+              userId: existing.userId,
+              deltaPoints: reversed.pointsDeducted,
+              direction: "spend",
+              sourceType: "scenario_reversal",
+              sourceId: submissionId,
+              metadata: {
+                scope: existing.scope,
+                bookId: existing.bookId,
+              },
+            });
+          })
+          .catch(() => {});
+      }
     }
 
     // Notify user — fire-and-forget
