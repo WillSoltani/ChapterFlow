@@ -9,6 +9,7 @@ import {
   emailFooter,
   isEmailCategoryEnabled,
   canSendCommercialEmail,
+  isAddressSuppressed,
   TOKEN_TTL_SECONDS,
   type EmailCategory,
   type EmailComplianceConfig,
@@ -235,4 +236,24 @@ test("canSendCommercialEmail refuses when the sender email is empty", () => {
 
 test("canSendCommercialEmail refuses when the postal address is empty", () => {
   assert.equal(canSendCommercialEmail({ ...FULL_CONFIG, postalAddress: "" }), false);
+});
+
+// ── Suppression must FAIL CLOSED on a read error ──────────────────────────────
+// Regression for the suppression-fail-open defect (cluster T4 / finding E5): a
+// transient DynamoDB error during the BOOKSUPPRESS# lookup must NOT re-enable
+// sends to hard-bounced / complained addresses. The previous behavior swallowed
+// the error and returned "not suppressed" (fail open), re-mailing an implied
+// opt-out — a CASL/CAN-SPAM violation + deliverability hazard.
+
+test("isAddressSuppressed: suppression record present → suppressed", () => {
+  assert.equal(isAddressSuppressed({ ok: true, itemFound: true }), true);
+});
+
+test("isAddressSuppressed: no suppression record → not suppressed (send allowed)", () => {
+  assert.equal(isAddressSuppressed({ ok: true, itemFound: false }), false);
+});
+
+test("isAddressSuppressed: read ERROR fails CLOSED (treated as suppressed)", () => {
+  // The whole point of the fix: a lookup failure must skip the send, not send.
+  assert.equal(isAddressSuppressed({ ok: false, error: new Error("ddb blip") }), true);
 });

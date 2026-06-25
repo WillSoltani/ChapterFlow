@@ -109,6 +109,7 @@ import {
   classifyQuizOutcomeCancellation,
 } from "./progress-write-core";
 import { buildRiskEventPointer } from "./erasure-pointers-core";
+import { isAddressSuppressed } from "./email-compliance-core";
 import {
   buildEntitlementUpdateFromStripe,
   buildDisputeMarkerUpdate,
@@ -2278,20 +2279,37 @@ export type EmailSuppressionRecord = {
   createdAt: string;
 };
 
-/** True if the address has been suppressed by a hard bounce or complaint. */
+/**
+ * True if the address has been suppressed by a hard bounce or complaint.
+ *
+ * FAILS CLOSED: a read error returns `true` (treat as suppressed) so a transient
+ * DynamoDB blip cannot re-enable sends to a hard-bounced/complained address —
+ * an implied opt-out is compliance-critical (CASL/CAN-SPAM) and re-mailing it is
+ * a violation + deliverability hazard. We skip the individual send and log,
+ * rather than swallow the error and send (the previous, fail-open behavior).
+ * Mirrors `infra/lambda/lib/email-compliance.ts:isEmailSuppressed`.
+ */
 export async function isEmailSuppressed(
   tableName: string,
   email: string
 ): Promise<boolean> {
   if (!email) return false;
-  const res = await ddbDoc.send(
-    new GetCommand({
-      TableName: tableName,
-      Key: { PK: emailSuppressionPk(email), SK: emailSuppressionSk() },
-      ProjectionExpression: "email",
-    })
-  );
-  return !!res.Item;
+  try {
+    const res = await ddbDoc.send(
+      new GetCommand({
+        TableName: tableName,
+        Key: { PK: emailSuppressionPk(email), SK: emailSuppressionSk() },
+        ProjectionExpression: "email",
+      })
+    );
+    return isAddressSuppressed({ ok: true, itemFound: !!res.Item });
+  } catch (error) {
+    console.error(
+      "[repo] email suppression lookup failed — failing CLOSED (treating address as suppressed, skipping this send)",
+      error
+    );
+    return isAddressSuppressed({ ok: false, error });
+  }
 }
 
 export async function getEmailSuppression(

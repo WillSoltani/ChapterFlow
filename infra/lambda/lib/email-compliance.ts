@@ -56,8 +56,16 @@ export type EmailConfig = {
 /**
  * True if the address was suppressed by a hard bounce or complaint. Replicates
  * the `BOOKSUPPRESS#<email>` key from app/app/api/book/_lib/keys.ts (separate
- * build root). Fails open (returns false) on a lookup error so a transient
- * DynamoDB issue doesn't silently drop all email.
+ * build root).
+ *
+ * FAILS CLOSED: a lookup error returns `true` (treat as suppressed) so a
+ * transient DynamoDB blip cannot re-enable sends to a hard-bounced/complained
+ * address. The previous behavior failed OPEN (returned false), which meant a
+ * partial DynamoDB outage silently re-mailed addresses that had already
+ * hard-bounced or filed a spam complaint — a CASL/CAN-SPAM violation (an implied
+ * opt-out) and a deliverability hazard. Because the cron sends per-recipient,
+ * failing closed skips only the individual at-risk send, not all email. We log
+ * so operators see the skip. Mirrors app/app/api/book/_lib/repo.ts:isEmailSuppressed.
  */
 export async function isEmailSuppressed(
   ddb: DynamoDBDocumentClient,
@@ -74,8 +82,13 @@ export async function isEmailSuppressed(
       }),
     );
     return !!res.Item;
-  } catch {
-    return false;
+  } catch (error) {
+    console.error(
+      "[email-compliance] suppression lookup failed — failing CLOSED " +
+        "(treating address as suppressed, skipping this send)",
+      error,
+    );
+    return true;
   }
 }
 
