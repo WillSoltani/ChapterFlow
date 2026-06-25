@@ -14,6 +14,7 @@ import {
   repointProgressVersion,
 } from "./repo";
 import { buildChapterKey, buildQuizKey, nowIso } from "./keys";
+import { buildPinnedChapterCountMap } from "./book-completion-core";
 import { planProgressVersionUpgrade } from "./version-upgrade-core";
 import { getServerBookPackage } from "./book-package-source";
 import { isStrictReaderSchema } from "@/app/book/data/book-package-core";
@@ -174,6 +175,36 @@ export async function getPublishedBookManifest(params: {
     version.manifestKey
   );
   return { version: version.version, manifest };
+}
+
+/**
+ * Best-effort: read each progress row's PINNED-version chapter count, keyed by
+ * bookId, for feeding `summarizeProgress` so whole-book completion is exact.
+ *
+ * Each `BookUserProgress.manifestKey` already points at the user's pinned version
+ * (frozen by ensure-book-started.ts), so we read that manifest directly — no
+ * catalog/version lookup, and no live-vs-pinned divergence to reconcile.
+ *
+ * Reads are isolated per book: a single manifest that fails to read (missing
+ * object, transient S3 error) is simply omitted from the map rather than failing
+ * the whole summary. A missing entry means `summarizeProgress` won't credit that
+ * one book as completed (see isBookCompleted), which is the safe default. Entries
+ * with no usable `manifestKey` are skipped.
+ */
+export async function readPinnedChapterCounts(params: {
+  contentBucket: string;
+  entries: Array<{ bookId: string; manifestKey: string }>;
+}): Promise<Map<string, number>> {
+  return buildPinnedChapterCountMap({
+    entries: params.entries,
+    readManifestChapterCount: async (manifestKey) => {
+      const manifest = await readJsonFromS3<BookManifest>(
+        params.contentBucket,
+        manifestKey
+      );
+      return manifest.chapterCount;
+    },
+  });
 }
 
 export async function getUserAccessibleChapter(params: {

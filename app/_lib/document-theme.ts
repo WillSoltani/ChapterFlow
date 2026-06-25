@@ -217,6 +217,21 @@ export function applyStoredDocumentTheme() {
   );
 }
 
+/**
+ * H8: Build the `(prefers-color-scheme: dark)` change handler for the theme
+ * hook. When the OS light/dark setting flips while a "system"-preference user
+ * has the app open, the DOM (<html>.dark, colorScheme, token set) must be
+ * re-applied — React-state-only sync leaves the document stale. This factory
+ * keeps that "re-apply to the DOM, THEN sync state" ordering in one tested
+ * place; `syncTheme` updates the React state mirror afterward.
+ */
+export function createSystemThemeChangeHandler(syncTheme: () => void): () => void {
+  return () => {
+    applyStoredDocumentTheme();
+    syncTheme();
+  };
+}
+
 function mergeStoredThemePayload(
   current: StoredThemePayload | null,
   settings: DocumentThemeSettings

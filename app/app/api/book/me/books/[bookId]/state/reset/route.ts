@@ -7,9 +7,15 @@ import {
   getBookTableName,
 } from "@/app/app/api/book/_lib/env";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
-import { getUserProgress, putUserBookState } from "@/app/app/api/book/_lib/repo";
+import {
+  getUserProgress,
+  putUserBookState,
+  resetUserBookLearningState,
+} from "@/app/app/api/book/_lib/repo";
+import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
+import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import type { BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
+import type { BookManifest, BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
 import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
@@ -48,7 +54,19 @@ export async function POST(
     ]);
 
     const now = nowIso();
-    const chapters = published.manifest.chapters;
+    // Resolve the chapter list from the version the reader is PINNED to (their
+    // progress.manifestKey), not the latest published manifest. The reset
+    // rebuilds the projection's first/unlocked chapterId from this list, so it
+    // must match the version the reader's content+progress are frozen on — a
+    // catalog advance that reordered/renamed chapters would otherwise project a
+    // wrong chapterId. Falls back to the live manifest for a never-started book.
+    const chapters = await resolvePinnedManifestChapters({
+      pinnedBookVersion: progress?.pinnedBookVersion ?? null,
+      liveVersion: published.version,
+      liveManifest: published.manifest,
+      readPinnedManifest: () =>
+        readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
+    });
     const firstChapterId = chapters[0]?.chapterId ?? "";
 
     // The denormalised BOOK_USER_BOOK_STATE projection at its initial value: only
@@ -116,6 +134,20 @@ export async function POST(
       // erased partition either.
       if (progressStillExists) {
         await putUserBookState(tableName, resetState);
+
+        // Wipe the per-chapter learning state for this book. The canonical
+        // BOOK_PROGRESS gating row above is back to chapter 1, but the submit
+        // route reconstructs quiz state as
+        // `persistedQuizState ?? buildQuizStateFromAttempts({ attempts })` and
+        // short-circuits on `quizState?.passed` BEFORE the only path that
+        // re-raises unlockedThroughChapterNumber (buildProgressAfterQuizPass).
+        // So clearing the QUIZSTATE# row alone is not enough — the fallback
+        // rebuilds passed:true from the surviving QUIZATTEMPT# rows and the
+        // reader stays permanently stuck at chapter 1. resetUserBookLearningState
+        // deletes all three (quiz-state + loop + the per-chapter quiz-ATTEMPT
+        // partitions) so the next submit is a genuine fresh attempt. Idempotent
+        // and scoped to this book only.
+        await resetUserBookLearningState(tableName, user.sub, bookId);
       }
     }
 

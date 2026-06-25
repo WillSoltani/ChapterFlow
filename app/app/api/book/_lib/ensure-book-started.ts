@@ -17,6 +17,7 @@ import {
 } from "@/app/app/api/book/_lib/abuse";
 import { readClientIp } from "@/app/app/api/book/_lib/client-ip";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { resolveSeededProgress } from "@/app/app/api/book/_lib/ensure-book-started-core";
 import {
   awardFlowPoints,
   getUserReferralClaim,
@@ -255,11 +256,14 @@ export async function ensureUserBookStarted(params: {
           };
 
     await createProgressIfMissing(tableName, seedProgress);
-    progress = await getUserProgress(tableName, user.sub, bookId);
-  }
-
-  if (!progress) {
-    throw new BookApiError(500, "progress_init_failed", "Could not initialize progress.");
+    // A10: the row now exists (createProgressIfMissing only no-ops on an existing row).
+    // Re-read strongly-consistent so a just-written item is guaranteed visible, then
+    // fall back to the in-memory seed if the read still surfaces nothing (concurrent
+    // create that swallowed ConditionalCheckFailed / read blip) — never a 500.
+    const readBack = await getUserProgress(tableName, user.sub, bookId, {
+      consistentRead: true,
+    });
+    progress = resolveSeededProgress(readBack, seedProgress);
   }
 
   const nextProgress = touchProgressForInteraction({

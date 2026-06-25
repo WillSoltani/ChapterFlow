@@ -669,6 +669,176 @@ export async function awardFlowPoints(
   };
 }
 
+/**
+ * Reason a reverseFlowPointsAward call did not (further) deduct points.
+ *  - "duplicate": this (sourceType, sourceId) reversal was already applied.
+ *  - "invalid_input": the amount or sourceId was empty/zero.
+ *  - null: not applicable (the reversal was applied — possibly clamped to 0
+ *          deducted because the user already spent the wrongly-awarded points).
+ */
+export type ReverseFlowPointsFailureReason = "duplicate" | "invalid_input" | null;
+
+/**
+ * Compensating clawback for a previously-granted award (H4: a scenario that was
+ * approved-then-rejected). Writes a one-time reversal grant keyed on
+ * (sourceType, sourceId) so re-rejecting the same submission is idempotent, and
+ * deducts up to the user's current balance — never below zero, since the user
+ * may have already spent some of the erroneous IP.
+ *
+ * The deduction is clamped at read time, then guarded atomically with
+ * `points >= :deduct`; if a concurrent spend trips that guard we re-read and
+ * retry with a fresh (smaller) clamp. The reversal-grant Put (index 0) is the
+ * idempotency anchor — a duplicate trips ITS guard, surfaced as `duplicate`.
+ */
+export async function reverseFlowPointsAward(
+  tableName: string,
+  params: {
+    userId: string;
+    amount: number;
+    sourceType: FlowPointsSourceType;
+    sourceId: string;
+    metadata?: Record<string, unknown>;
+    createdAt?: string;
+  }
+): Promise<{
+  reversed: boolean;
+  reason: ReverseFlowPointsFailureReason;
+  pointsDeducted: number;
+  state: BookUserEngagementItem;
+  transactionId?: string;
+}> {
+  const amount = Math.max(0, Math.floor(params.amount));
+  const sourceId = params.sourceId.trim();
+  if (!amount || !sourceId) {
+    return {
+      reversed: false,
+      reason: "invalid_input",
+      pointsDeducted: 0,
+      state: await getUserFlowPointsState(tableName, params.userId),
+    };
+  }
+
+  const createdAt = params.createdAt ?? nowIso();
+  const grantSk = flowPointsGrantSk(params.sourceType, sourceId);
+
+  // Up to two attempts: a conditional-check failure on the engagement Update
+  // means a concurrent spend shrank the balance between the read and the write,
+  // so re-read and re-clamp. The grant Put's attribute_not_exists guard stays
+  // the durable idempotency anchor across retries.
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    const state = await getUserFlowPointsState(tableName, params.userId);
+    const deduct = Math.min(amount, Math.max(0, Math.floor(state.points)));
+    const transactionId = crypto.randomUUID();
+    const now = attempt === 0 ? createdAt : nowIso();
+
+    const transactItems: NonNullable<
+      ConstructorParameters<typeof TransactWriteCommand>[0]["TransactItems"]
+    > = [
+      {
+        // Idempotency anchor: one reversal per (sourceType, sourceId).
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: bookUserPk(params.userId),
+            SK: grantSk,
+            entity: "BOOK_USER_FLOW_POINTS_GRANT",
+            userId: params.userId,
+            sourceType: params.sourceType,
+            sourceId,
+            amount: deduct,
+            requestedAmount: amount,
+            metadata: params.metadata ?? {},
+            createdAt: now,
+            updatedAt: now,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        },
+      },
+    ];
+
+    if (deduct > 0) {
+      transactItems.push({
+        Update: {
+          TableName: tableName,
+          Key: {
+            PK: bookUserPk(params.userId),
+            SK: engagementSk(),
+          },
+          UpdateExpression:
+            "SET entity = :entity, userId = :userId, createdAt = if_not_exists(createdAt, :createdAt), updatedAt = :updatedAt ADD points :negativeDeduct, lifetimeSpent :deduct, totalSpendEvents :one",
+          ConditionExpression: "attribute_exists(points) AND points >= :deduct",
+          ExpressionAttributeValues: {
+            ":entity": "BOOK_USER_ENGAGEMENT",
+            ":userId": params.userId,
+            ":createdAt": now,
+            ":updatedAt": now,
+            ":negativeDeduct": -deduct,
+            ":deduct": deduct,
+            ":one": 1,
+          },
+        },
+      });
+      transactItems.push({
+        Put: {
+          TableName: tableName,
+          Item: {
+            PK: bookUserPk(params.userId),
+            SK: flowPointsLedgerSk(now, transactionId),
+            entity: "BOOK_USER_FLOW_POINTS_LEDGER",
+            userId: params.userId,
+            transactionId,
+            direction: "spend",
+            amount: deduct,
+            sourceType: params.sourceType,
+            sourceId,
+            metadata: params.metadata ?? {},
+            createdAt: now,
+            updatedAt: now,
+          },
+          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+        },
+      });
+    }
+
+    try {
+      await ddbDoc.send(new TransactWriteCommand({ TransactItems: transactItems }));
+    } catch (error: unknown) {
+      // Grant already exists (index 0) → this reversal was already applied.
+      if (isTransactionConditionFailedAt(error, 0)) {
+        return {
+          reversed: false,
+          reason: "duplicate",
+          pointsDeducted: 0,
+          state: await getUserFlowPointsState(tableName, params.userId),
+        };
+      }
+      // Engagement balance guard (index 1) → a concurrent spend lowered the
+      // balance below our clamp. Retry once with a fresh, smaller clamp.
+      if (isTransactionConditionFailedAt(error, 1) && attempt === 0) {
+        continue;
+      }
+      throw error;
+    }
+
+    return {
+      reversed: true,
+      reason: null,
+      pointsDeducted: deduct,
+      state: await getUserFlowPointsState(tableName, params.userId),
+      transactionId: deduct > 0 ? transactionId : undefined,
+    };
+  }
+
+  // Both attempts lost the race to a concurrent spend; the grant was never
+  // written, so the reversal can still be retried later. Report no-op.
+  return {
+    reversed: false,
+    reason: null,
+    pointsDeducted: 0,
+    state: await getUserFlowPointsState(tableName, params.userId),
+  };
+}
+
 export async function redeemFlowPointsReward(
   tableName: string,
   params: {
@@ -891,6 +1061,135 @@ export async function redeemFlowPointsReward(
     state: await getUserFlowPointsState(tableName, params.userId),
     redemptionId,
   };
+}
+
+// ── Grant a free Pro pass (no IP spent) ─────────────────────────────────────
+//
+// Used for milestone/earned Pro passes that are GIFTED rather than purchased —
+// e.g. the 10-activation referral-escalation reward for a FREE inviter — so it
+// must NOT deduct Insight Points (unlike redeemFlowPointsReward). It mirrors that
+// path's entitlement write exactly: SET PRO via the flow_points source, guarded by
+// grantUpgradeConditionExpression so it never clobbers a stripe/admin grant, never
+// shortens a longer-lived non-stripe grant, and is refused while a chargeback hold
+// is open. Idempotent on (sourceType, sourceId) via a BOOK_USER_FLOW_POINTS_GRANT
+// marker, so a retried activation re-grants nothing.
+export type GrantProPassReason =
+  // The pass was applied to the entitlement.
+  | null
+  // Idempotent no-op: this (sourceType, sourceId) pass was already granted.
+  | "duplicate"
+  // The entitlement guard refused the pass: the user already has a stripe sub, an
+  // admin grant, a longer non-stripe grant, or an open dispute hold. The grant
+  // marker was still written (so we never retry), but nothing changed on the
+  // entitlement — already-PRO-or-better is the expected outcome for a PRO inviter
+  // path and is NOT a failure.
+  | "skipped_existing_grant";
+
+export type GrantProPassResult = {
+  /** True when the pass is durably settled (applied, duplicate, or correctly
+   *  skipped because a stronger grant exists). False only on a transient error. */
+  granted: boolean;
+  reason: GrantProPassReason;
+};
+
+export async function grantProPass(
+  tableName: string,
+  params: {
+    userId: string;
+    /** Days the pass lasts (e.g. 30). */
+    durationDays: number;
+    /** Idempotency namespace + key (e.g. "referral_activation_inviter" /
+     *  "escalation-10-pro-pass"). One marker per (sourceType, sourceId). */
+    sourceType: FlowPointsSourceType;
+    sourceId: string;
+    metadata?: Record<string, unknown>;
+  }
+): Promise<GrantProPassResult> {
+  const now = nowIso();
+  const sourceId = params.sourceId.trim();
+  const durationDays = Math.max(1, Math.floor(params.durationDays));
+  if (!sourceId) {
+    return { granted: false, reason: null };
+  }
+  const passExpiresAt = new Date(
+    Date.now() + durationDays * 24 * 60 * 60 * 1000
+  ).toISOString();
+
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            // Idempotency marker — same scheme as awardFlowPoints' grant record, so
+            // a re-run of the same activation can't grant a second pass.
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(params.userId),
+                SK: flowPointsGrantSk(params.sourceType, sourceId),
+                entity: "BOOK_USER_FLOW_POINTS_GRANT",
+                userId: params.userId,
+                sourceType: params.sourceType,
+                sourceId,
+                amount: 0, // a pass, not IP
+                proPassDurationDays: durationDays,
+                proPassExpiresAt: passExpiresAt,
+                metadata: params.metadata ?? {},
+                createdAt: now,
+                updatedAt: now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+          {
+            // Entitlement upgrade — identical guard/shape to redeemFlowPointsReward's
+            // pro-pass branch (kept in sync; spec in pro-grant-guard-core.ts).
+            Update: {
+              TableName: tableName,
+              Key: {
+                PK: bookUserPk(params.userId),
+                SK: entitlementSk(),
+              },
+              UpdateExpression:
+                "SET #plan = :proPlan, proStatus = :activeStatus, proSource = :flowSource, currentPeriodEnd = :periodEnd, licenseKey = :nullValue, licenseExpiresAt = :nullValue, updatedAt = :updatedAt, freeBookSlots = if_not_exists(freeBookSlots, :defaultSlots)",
+              ConditionExpression: grantUpgradeConditionExpression(":periodEnd"),
+              ExpressionAttributeNames: {
+                ...GRANT_UPGRADE_CONDITION_NAMES,
+              },
+              ExpressionAttributeValues: {
+                ...GRANT_UPGRADE_CONDITION_VALUES,
+                ":activeStatus": "active",
+                ":flowSource": "flow_points",
+                ":periodEnd": passExpiresAt,
+                ":nullValue": null,
+                ":updatedAt": now,
+                ":defaultSlots": 2,
+              },
+            },
+          },
+        ],
+      })
+    );
+  } catch (error: unknown) {
+    // Marker Put (index 0) failed its guard → this pass was already granted.
+    if (isTransactionConditionFailedAt(error, 0)) {
+      return { granted: true, reason: "duplicate" };
+    }
+    // Entitlement Update (index 1) failed its guard → a stripe/admin/longer grant
+    // or an open dispute already protects the user. The pass simply doesn't apply;
+    // that's a settled outcome (the marker rolled back atomically, but we never
+    // need to retry because the user is already PRO-or-better). NOTE: because the
+    // marker rolled back, a later FREE-plan retry could re-attempt and then apply
+    // the pass once the stronger grant lapses — which is the desired behavior.
+    if (isTransactionConditionFailedAt(error, 1)) {
+      return { granted: true, reason: "skipped_existing_grant" };
+    }
+    // Anything else is transient — let the caller leave the tier unsettled and
+    // retry on the next activation.
+    return { granted: false, reason: null };
+  }
+
+  return { granted: true, reason: null };
 }
 
 export async function markReferralActivationRewarded(

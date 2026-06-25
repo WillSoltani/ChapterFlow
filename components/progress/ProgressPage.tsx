@@ -476,11 +476,15 @@ export function ProgressPage() {
 
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  // Fetch real entitlement status
+  // Fetch real entitlement status. The route returns a NESTED shape
+  // ({ entitlement: { plan }, paywall: {...} }) — bookOk does not flatten an
+  // envelope — so the plan lives under `entitlement.plan`, not at the top level.
   const [isPro, setIsPro] = useState(false);
   useEffect(() => {
-    fetchBookJson<{ plan?: string }>("/app/api/book/me/entitlements")
-      .then((e) => setIsPro(e.plan === "PRO"))
+    fetchBookJson<{ entitlement?: { plan?: string } }>(
+      "/app/api/book/me/entitlements"
+    )
+      .then((e) => setIsPro(e.entitlement?.plan === "PRO"))
       .catch(() => {});
   }, []);
 

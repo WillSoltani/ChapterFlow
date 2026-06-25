@@ -4,8 +4,16 @@ import {
   ESCALATION_MILESTONES,
   REFERRAL_ANNUAL_CAP,
   highestPassedTier,
+  resolveMilestoneReward,
   selectNewMilestones,
+  type EscalationMilestone,
 } from "./referral-escalation-core";
+
+function milestoneAt(activations: number): EscalationMilestone {
+  const m = ESCALATION_MILESTONES.find((x) => x.activations === activations);
+  assert.ok(m, `milestone ${activations} exists`);
+  return m;
+}
 
 // H8 — checkReferralEscalation lives in a `server-only` module that cannot be
 // imported under `tsx --test`, so the award decision is exercised through the
@@ -72,6 +80,54 @@ test("highestPassedTier returns the largest tier already reached, else 0", () =>
   assert.equal(highestPassedTier(25), 25);
   assert.equal(highestPassedTier(100), 25);
   assert.equal(highestPassedTier(-1), 0);
+});
+
+// ── H3 regression: the 10-activation tier must grant a Pro pass to FREE inviters
+// (and IP to PRO inviters), not unconditionally award IP. ────────────────────
+
+test("H3: the 10-activation tier is defined with a 30-day Pro pass for free inviters", () => {
+  const ten = milestoneAt(10);
+  assert.equal(
+    ten.proPassDaysForFreeInviter,
+    30,
+    "the 10-tier must carry an explicit 30-day Pro pass duration, not just a code comment"
+  );
+  assert.equal(ten.proInviterIPAlternative, 1200);
+});
+
+test("H3: a FREE inviter at the 10-tier is paid a 30-day Pro pass and ZERO IP", () => {
+  const reward = resolveMilestoneReward(milestoneAt(10), "FREE");
+  assert.equal(
+    reward.proPassDays,
+    30,
+    "free inviter must receive the promised 30-day Pro pass (the bug: never granted)"
+  );
+  assert.equal(
+    reward.ipAmount,
+    0,
+    "free inviter must NOT also receive the 1,200 IP fallback — the pass replaces it"
+  );
+});
+
+test("H3: a PRO inviter at the 10-tier is paid the IP alternative, no Pro pass", () => {
+  const reward = resolveMilestoneReward(milestoneAt(10), "PRO");
+  assert.equal(reward.ipAmount, 1200, "pro inviter receives proInviterIPAlternative IP");
+  assert.equal(reward.proPassDays, null, "a PRO inviter cannot use a pass");
+});
+
+test("H3: ordinary tiers (3/5/25) pay flat ipBonus to both plans, never a Pro pass", () => {
+  for (const activations of [3, 5, 25]) {
+    const m = milestoneAt(activations);
+    for (const plan of ["FREE", "PRO"] as const) {
+      const reward = resolveMilestoneReward(m, plan);
+      assert.equal(
+        reward.ipAmount,
+        m.ipBonus,
+        `tier ${activations} (${plan}) pays ipBonus`
+      );
+      assert.equal(reward.proPassDays, null, `tier ${activations} grants no Pro pass`);
+    }
+  }
 });
 
 test("seeding from highestPassedTier(prev) blocks the lump grant yet pays a freshly-crossed tier (B1)", () => {

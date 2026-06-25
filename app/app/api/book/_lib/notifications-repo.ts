@@ -7,6 +7,7 @@ import { getUserSettingsItem, isEmailSuppressed } from "@/app/app/api/book/_lib/
 import { sendEmail } from "@/app/app/api/book/_lib/email-service";
 import {
   buildUnsubscribeUrl,
+  canSendCommercialEmail,
   emailFooter,
   getEmailComplianceConfig,
   isEmailCategoryEnabled,
@@ -96,13 +97,17 @@ export async function createNotification(
     params.userEmail
   ) {
     const config = await getEmailComplianceConfig();
-    // Commercial email requires a postal address (CASL/CAN-SPAM). Without one we
-    // skip sending — set EMAIL_POSTAL_ADDRESS to enable. (Transactional email,
-    // e.g. trial-ending, uses a separate path and is exempt.) Also skip addresses
+    // Commercial email requires a sender, a postal address (CASL/CAN-SPAM), AND a
+    // live app host for the one-click unsubscribe link. Without all three we skip
+    // sending — set SES_SENDER_EMAIL / EMAIL_POSTAL_ADDRESS / CHAPTERFLOW_APP_BASE_URL
+    // to enable. This is the SAME kill-switch the cron Lambda's sendCompliantEmail
+    // enforces; mirroring it here prevents the app from emitting a non-working
+    // unsubscribe link pointing at the dead legacy host. (Transactional email, e.g.
+    // trial-ending, uses a separate path and is exempt.) Also skip addresses
     // suppressed by a hard bounce or complaint.
-    const suppressed =
-      config.postalAddress && (await isEmailSuppressed(tableName, params.userEmail));
-    if (config.senderEmail && config.postalAddress && !suppressed) {
+    const canSend = canSendCommercialEmail(config);
+    const suppressed = canSend && (await isEmailSuppressed(tableName, params.userEmail));
+    if (canSend && !suppressed) {
       const token = signUnsubscribeToken(params.userId, category, config.secret);
       const unsubscribeUrl = buildUnsubscribeUrl(config.appBaseUrl, token);
       const mailto = `mailto:${config.supportAddress}?subject=unsubscribe`;

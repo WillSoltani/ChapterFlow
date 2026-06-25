@@ -26,7 +26,12 @@ export async function getEmailComplianceConfig(): Promise<EmailComplianceConfig>
     senderName: senderName || "ChapterFlow",
     supportAddress: supportAddress || "support@chapterflow.ca",
     postalAddress: postalAddress ?? "",
-    appBaseUrl: (appBaseUrl || "https://chapterflow.siliconx.ca").replace(/\/+$/, ""),
+    // No siliconx.ca fallback: the legacy host no longer serves the unsubscribe
+    // route. An empty value makes the commercial-email gate (canSendCommercialEmail)
+    // refuse to send rather than mint a non-working one-click-unsubscribe link
+    // (CASL violation) — byte-for-byte the same kill-switch the cron Lambda enforces
+    // (infra/lambda/lib/email-compliance.ts). Set CHAPTERFLOW_APP_BASE_URL to enable.
+    appBaseUrl: (appBaseUrl || "").replace(/\/+$/, ""),
     secret: secret ?? "",
     configurationSet: configurationSet ?? "",
   };

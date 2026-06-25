@@ -176,7 +176,20 @@ export function scheduleCard(
     const r = retrievability(elapsedDays, card.stability);
 
     if (rating === 1) {
-      newStability = nextForgetStability(card.difficulty, card.stability, r);
+      // FSRS-5 invariant: a lapse must NEVER increase stability. The raw
+      // forget-stability formula can exceed the pre-lapse stability for
+      // low-difficulty, low-stability cards reviewed well overdue (low r),
+      // which would schedule a just-failed card FURTHER out. Clamp to the
+      // prior stability (and floor at 0.1, consistent with initStability) to
+      // match the canonical open-spaced-repetition reference
+      // (`min(next_forget_stability, S_prev)`).
+      newStability = Math.max(
+        0.1,
+        Math.min(
+          nextForgetStability(card.difficulty, card.stability, r),
+          card.stability
+        )
+      );
       newState = "relearning";
       newLapses += 1;
     } else {

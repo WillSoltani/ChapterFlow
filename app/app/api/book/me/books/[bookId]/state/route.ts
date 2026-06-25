@@ -11,6 +11,8 @@ import {
   getBookTableName,
 } from "@/app/app/api/book/_lib/env";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
+import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
+import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import {
   getUserBookState,
   getUserProgress,
@@ -22,6 +24,7 @@ import {
 } from "@/app/app/api/book/_lib/commitment-application";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type {
+  BookManifest,
   BookUserBookStateItem,
   ChapterApplicationState,
 } from "@/app/app/api/book/_lib/types";
@@ -80,7 +83,21 @@ export async function GET(
     // and return it on BOTH branches, so it never silently drops for the
     // persisted-state majority. It is intentionally NOT part of the persisted
     // BookUserBookStateItem.
-    const chapters = published.manifest.chapters;
+    //
+    // Resolve the chapter list from the version the reader is PINNED to
+    // (progress.manifestKey), not the latest published manifest: this map turns
+    // progress NUMBERS (completedChapters / currentChapterNumber /
+    // unlockedThroughChapterNumber / bestScoreByChapter) into chapterIds, and
+    // those numbers are frozen on the pinned version. A catalog advance that
+    // reordered/renamed chapters would otherwise mis-map them. Reuses the
+    // already-fetched live manifest when the pin matches it (no extra S3 read).
+    const chapters = await resolvePinnedManifestChapters({
+      pinnedBookVersion: progress?.pinnedBookVersion ?? null,
+      liveVersion: published.version,
+      liveManifest: published.manifest,
+      readPinnedManifest: () =>
+        readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
+    });
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])
     );
@@ -173,7 +190,17 @@ export async function PATCH(
     // localStorage and bypass the quiz gate entirely. We re-derive the
     // per-chapter projection stored in BOOK_USER_BOOK_STATE from the canonical
     // BOOK_PROGRESS entitlement, exactly like the GET fallback above.
-    const chapters = published.manifest.chapters;
+    //
+    // Resolve the chapter list from the reader's PINNED manifest (see the GET
+    // handler) so the number→chapterId mapping matches the frozen version their
+    // progress is pinned to, not a later catalog republish.
+    const chapters = await resolvePinnedManifestChapters({
+      pinnedBookVersion: progress?.pinnedBookVersion ?? null,
+      liveVersion: published.version,
+      liveManifest: published.manifest,
+      readPinnedManifest: () =>
+        readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
+    });
     const firstChapterId = chapters[0]?.chapterId ?? "";
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])

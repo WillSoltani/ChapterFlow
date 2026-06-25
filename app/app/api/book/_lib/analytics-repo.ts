@@ -40,6 +40,7 @@
 import { PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { nowIso, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
+import { redactLicenseCode } from "./license-redaction-core";
 
 const SCHEMA_V = "1";
 
@@ -986,6 +987,11 @@ export async function analyticsTrackBeacon(
 /**
  * Track a license key redemption attempt (success or failure).
  * Fires for every attempt, regardless of outcome.
+ *
+ * SECURITY: a license code is a single-use credential. We persist only a
+ * non-reversible fingerprint (+ a short suffix for human triage) — NEVER the raw
+ * code — so this audit stream can't become a second store of live/probe codes.
+ * Redaction lives in license-redaction-core.ts (pure, unit-tested).
  */
 export async function analyticsTrackLicenseAttempt(
   table: string,
@@ -998,8 +1004,13 @@ export async function analyticsTrackLicenseAttempt(
   }
 ): Promise<void> {
   const now = nowIso();
+  const { codeFingerprint, codeSuffix } = redactLicenseCode(args.code);
   await putEvent(table, args.userId, "license_redemption_attempt", now, "FREE", {
-    code: args.code,
+    // Redacted: fingerprint correlates repeat attempts without storing the code;
+    // suffix is a tail too short to reconstruct the key. `code` is intentionally
+    // gone — do not reintroduce it.
+    codeFingerprint,
+    codeSuffix: codeSuffix ?? undefined,
     outcome: args.outcome,
     errorCode: args.errorCode,
     validMonths: args.validMonths,

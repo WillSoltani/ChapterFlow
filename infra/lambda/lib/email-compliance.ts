@@ -156,12 +156,20 @@ export async function resolveEmailConfig(): Promise<EmailConfig> {
   return cachedConfig;
 }
 
-function escapeHtml(value: string): string {
+/**
+ * Escape the HTML-significant characters so user-controlled values
+ * (displayName, commitment text) interpolated into an email `htmlBody` cannot
+ * inject markup. The text body never needs this. Exported so the email
+ * templates in ./email-templates can reuse the single source of truth used by
+ * the compliant footer below.
+ */
+export function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 function buildUnsubscribeUrl(appBaseUrl: string, token: string): string {

@@ -12,12 +12,13 @@ import {
   nowIso,
   referralProfileSk,
 } from "@/app/app/api/book/_lib/keys";
-import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
+import { awardFlowPoints, grantProPass } from "@/app/app/api/book/_lib/flow-points-repo";
 import { putBadgeAward } from "@/app/app/api/book/_lib/repo";
 import {
   ESCALATION_MILESTONES,
   REFERRAL_ANNUAL_CAP,
   highestPassedTier,
+  resolveMilestoneReward,
   selectNewMilestones,
   type EscalationMilestone,
 } from "@/app/app/api/book/_lib/referral-escalation-core";
@@ -112,8 +113,11 @@ async function grantEscalationCosmetic(
 export type EscalationResult = {
   milestonesAwarded: Array<{
     activations: number;
+    /** IP actually awarded (0 when the reward was a Pro pass). */
     ipBonus: number;
     exclusiveReward: string | null;
+    /** Pro-pass duration granted (FREE inviter at the 10-tier), else null. */
+    proPassDays: number | null;
   }>;
   capReached: boolean;
   rollingYearActivations: number;
@@ -221,19 +225,65 @@ export async function checkReferralEscalation(
   let highestSettled = highestMilestoneReached;
 
   for (const milestone of selectNewMilestones(activatedInvites, highestMilestoneReached)) {
-    // Award IP bonus (idempotent via the awardFlowPoints grant key
-    // referral_activation_inviter / escalation-<n>).
-    const award = await awardFlowPoints(tableName, {
-      userId: inviterUserId,
-      amount: milestone.ipBonus,
-      sourceType: "referral_activation_inviter",
-      sourceId: `escalation-${milestone.activations}`,
-      metadata: {
-        milestoneActivations: milestone.activations,
-        exclusiveReward: milestone.exclusiveReward,
-        inviterPlan,
-      },
-    });
+    // §6.3 — the 10-activation tier pays a FREE inviter a 30-day Pro pass (NOT IP)
+    // and a PRO inviter the IP alternative; every other tier pays flat IP. The
+    // branch is the pure, unit-tested resolveMilestoneReward — the part the prior
+    // bug got wrong (it unconditionally awarded ipBonus and never granted a pass).
+    const reward = resolveMilestoneReward(milestone, inviterPlan);
+
+    // ── Primary reward: IP and/or a Pro pass (exactly one is non-trivial). ──
+    let rewardSettled = true;
+    let ipActuallyAwarded = 0;
+    let proPassGranted: number | null = null;
+    let didAwardSomething = false;
+
+    if (reward.ipAmount > 0) {
+      // Idempotent via the awardFlowPoints grant key
+      // referral_activation_inviter / escalation-<n>.
+      const award = await awardFlowPoints(tableName, {
+        userId: inviterUserId,
+        amount: reward.ipAmount,
+        sourceType: "referral_activation_inviter",
+        sourceId: `escalation-${milestone.activations}`,
+        metadata: {
+          milestoneActivations: milestone.activations,
+          exclusiveReward: milestone.exclusiveReward,
+          inviterPlan,
+        },
+      });
+      // awarded OR duplicate both mean the IP is durably present; only a thrown
+      // transient error (awarded=false, reason!=="duplicate") leaves it unsettled.
+      rewardSettled = rewardSettled && (award.awarded || award.reason === "duplicate");
+      if (award.awarded) {
+        ipActuallyAwarded = reward.ipAmount;
+        didAwardSomething = true;
+      }
+    }
+
+    if (reward.proPassDays && reward.proPassDays > 0) {
+      // Grant a free Pro pass (no IP spent). Distinct idempotency key from the IP
+      // award so a FREE→PRO plan flip between retries can't double-grant.
+      const pass = await grantProPass(tableName, {
+        userId: inviterUserId,
+        durationDays: reward.proPassDays,
+        sourceType: "referral_activation_inviter",
+        sourceId: `escalation-${milestone.activations}-pro-pass`,
+        metadata: {
+          milestoneActivations: milestone.activations,
+          reward: "30_day_pro_pass",
+        },
+      });
+      // granted is true for applied, duplicate, AND skipped_existing_grant (a
+      // stronger grant already protects the user) — all settled. Only a transient
+      // error returns granted=false, keeping the tier selectable for retry.
+      rewardSettled = rewardSettled && pass.granted;
+      // Report the pass in the result ONLY when it was freshly applied (reason
+      // null) — a duplicate or a skip (already PRO-or-better) granted nothing new.
+      if (pass.granted && pass.reason === null) {
+        proPassGranted = reward.proPassDays;
+        didAwardSomething = true;
+      }
+    }
 
     // Persist the exclusive cosmetic (frame/theme → inventory, badge → badge
     // award). Idempotent; false only on a transient write failure.
@@ -244,16 +294,18 @@ export async function checkReferralEscalation(
       now
     );
 
-    const ipSettled = award.awarded || award.reason === "duplicate";
-    if (ipSettled && cosmeticPersisted) {
+    // Only advance past this tier once its chosen reward AND cosmetic are durably
+    // settled — a transient failure leaves the tier selectable for the next run.
+    if (rewardSettled && cosmeticPersisted) {
       highestSettled = Math.max(highestSettled, milestone.activations);
     }
 
-    if (award.awarded) {
+    if (didAwardSomething) {
       result.milestonesAwarded.push({
         activations: milestone.activations,
-        ipBonus: milestone.ipBonus,
+        ipBonus: ipActuallyAwarded,
         exclusiveReward: milestone.exclusiveReward,
+        proPassDays: proPassGranted,
       });
     }
   }
