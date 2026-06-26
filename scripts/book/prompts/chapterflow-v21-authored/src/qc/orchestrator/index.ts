@@ -41,7 +41,7 @@ import { appendStatusEvents, effectiveLedger, effectiveLedgerResilient, ledgerSt
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
 import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
 import { currentSessionId } from "../sessionProvenance.js";
-import { withQcTransaction } from "./transaction.js";
+import { withQcTransaction, QC_SUBMIT_CONTEND_WAIT_MS } from "./transaction.js";
 export { finalizeQcRound } from "./finalize.js";
 
 export type QcOrchestratorRoundRecord = {
@@ -595,7 +595,7 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
       messages.push(`confirm-read artifact stored: ${artifact}`);
     }
     return { ok: true, path: dest, errors: [], messages };
-  });
+  }, { contendWaitMs: QC_SUBMIT_CONTEND_WAIT_MS });
 }
 
 function submissionFiles(bookId: string, roundId: string): Array<{ role: SubmissionRole; path: string; variant?: BarReadVariant }> {

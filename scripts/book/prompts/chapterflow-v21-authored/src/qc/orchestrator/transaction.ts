@@ -53,10 +53,37 @@ export type QcTransactionLease = QcTransactionRecord & {
 export type QcTransactionOptions = {
   now?: Date;
   ttlMs?: number;
+  /**
+   * When a LIVE (unexpired) lease blocks acquisition, wait-and-retry up to this
+   * budget (ms) before failing, instead of throwing on the first collision. The
+   * transaction body is a sub-second disk op, so a brief wait lets concurrent
+   * acquirers serialize cleanly. Default 0 = fail-fast (the orchestrator's serial
+   * finalize/collect/status callers keep their current behavior); only the
+   * concurrent "submit" op opts in. A genuinely stuck holder still fails after the
+   * budget (and its lease later goes stale → recovered), so this never masks a
+   * real stall — it only rides out transient contention.
+   */
+  contendWaitMs?: number;
+  /** Injectable synchronous sleep (tests pass a no-real-delay stub). */
+  sleep?: (ms: number) => void;
 };
 
 const DEFAULT_TTL_MS = 15 * 60 * 1000;
+/** Backoff step between contention retries (ms). The lock body is sub-second, so a
+ *  freed lock is almost always caught within the first step or two. */
+const CONTEND_STEP_MS = 100;
+/** Contention-wait budget for the "submit" operation — the ONE concurrent op (many
+ *  bar reviewers run `qc-submit` in parallel for the same round). Comfortably covers
+ *  worst-case 12-way serialization at sub-second holds. submit runs in a one-shot
+ *  CLI process, so this synchronous wait never blocks the orchestrator event loop. */
+export const QC_SUBMIT_CONTEND_WAIT_MS = 8000;
 const activeTransactions: QcTransactionLease[] = [];
+
+/** Synchronous, non-busy wait (Atomics.wait on a throwaway shared buffer). Only
+ *  reached on the submit path, which is always a one-shot `qc-submit` CLI process. */
+function realSleep(ms: number): void {
+  if (ms > 0) Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
+}
 
 export function qcTransactionLockPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), ".qc-transaction.lock");
@@ -137,6 +164,45 @@ function recoverStaleLock(lockPath: string, now: Date): void {
   }
 }
 
+type AcquireAttempt =
+  | { lease: QcTransactionLease }
+  | { contended: QcTransactionRecord | null };
+
+/** One acquisition attempt: create the lock exclusively, or — when it already
+ *  exists — recover a stale lease and retry once. Returns the lease on success, or
+ *  `{ contended }` when a LIVE lease still blocks it (so the caller waits + retries
+ *  or fails). Holds no waiting itself; the backoff lives in acquireQcTransaction. */
+function tryAcquireOnce(
+  bookId: string,
+  roundId: string,
+  operation: QcTransactionOperation,
+  ownerId: string,
+  ownerToken: string,
+  lockPath: string,
+  options: QcTransactionOptions,
+): AcquireAttempt {
+  const now = nowDate(options);
+  const lease = ttlMs(options);
+  const record = lockRecord({ bookId, roundId, operation, ownerId, ownerToken, now, ttlMs: lease });
+  try {
+    writeFileSync(lockPath, serializeRecord(record), { encoding: "utf8", flag: "wx" });
+    return { lease: { ...record, lockPath, ttlMs: lease } };
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException)?.code !== "EEXIST") throw err;
+    const current = parseLock(lockPath);
+    // A live, unexpired lease is never recoverable.
+    if (current && !stale(current, now)) return { contended: current };
+    recoverStaleLock(lockPath, now);
+    try {
+      writeFileSync(lockPath, serializeRecord(record), { encoding: "utf8", flag: "wx" });
+      return { lease: { ...record, lockPath, ttlMs: lease } };
+    } catch {
+      // Another acquirer won the post-recovery create race → live contention again.
+      return { contended: parseLock(lockPath) };
+    }
+  }
+}
+
 export function acquireQcTransaction(
   bookId: string,
   roundId: string,
@@ -150,25 +216,21 @@ export function acquireQcTransaction(
   mkdirSync(dirname(lockPath), { recursive: true });
   const ownerId = `qctx-${process.pid}-${randomBytes(8).toString("hex")}`;
   const ownerToken = randomBytes(16).toString("hex");
-  const now = nowDate(options);
-  const lease = ttlMs(options);
-  const record = lockRecord({ bookId, roundId, operation, ownerId, ownerToken, now, ttlMs: lease });
 
-  try {
-    writeFileSync(lockPath, serializeRecord(record), { encoding: "utf8", flag: "wx" });
-  } catch (err) {
-    if ((err as NodeJS.ErrnoException)?.code !== "EEXIST") throw err;
-    const current = parseLock(lockPath);
-    // A live, unexpired lease is never recoverable.
-    if (current && !stale(current, now)) throw alreadyActiveError(bookId, roundId, lockPath, current);
-    recoverStaleLock(lockPath, now);
-    try {
-      writeFileSync(lockPath, serializeRecord(record), { encoding: "utf8", flag: "wx" });
-    } catch {
-      throw alreadyActiveError(bookId, roundId, lockPath, parseLock(lockPath));
-    }
+  // Bounded backoff: a LIVE lease blocks acquisition only briefly (sub-second body),
+  // so wait-and-retry up to `contendWaitMs` (default 0 = fail-fast, unchanged for the
+  // orchestrator's serial callers) before giving up. Stale recovery + the no-contention
+  // path are handled inside tryAcquireOnce and never sleep.
+  const sleep = options.sleep ?? realSleep;
+  let remaining = Math.max(0, options.contendWaitMs ?? 0);
+  for (;;) {
+    const attempt = tryAcquireOnce(bookId, roundId, operation, ownerId, ownerToken, lockPath, options);
+    if ("lease" in attempt) return attempt.lease;
+    if (remaining <= 0) throw alreadyActiveError(bookId, roundId, lockPath, attempt.contended);
+    const step = Math.min(CONTEND_STEP_MS, remaining);
+    sleep(step);
+    remaining -= step;
   }
-  return { ...record, lockPath, ttlMs: lease };
 }
 
 export function commitQcTransaction(lease: QcTransactionLease): void {
