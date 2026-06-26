@@ -917,11 +917,17 @@ function safePhase(bookId: string, deps: AutopilotDeps, regen = false): Autopilo
 
 // ── Phase: research ──────────────────────────────────────────────────────────
 
+// Research is one codex session doing live web research + building the full source
+// sidecar, so it is the slowest phase — the 30-min default session cap cut it close on
+// real books (the-willpower-instinct landed at ~26 min). Give research ALONE a 45-min
+// cap; write / gate-repair / QC keep the 30-min spawnCodexAgent default.
+const RESEARCH_TIMEOUT_MS = 45 * 60 * 1000;
+
 async function doResearch(bookId: string, deps: AutopilotDeps): Promise<boolean> {
   const promptPath = resolve(AGENT_PROMPTS_DIR, "RESEARCH-CODEX-SESSION.md");
   const task = `${deps.readTask(promptPath)}\n\n---\nRun the research phase for bookId: ${bookId}. Follow the playbook above until book-status reports the write phase.`;
   deps.log(`[autopilot] research: spawning 1 codex session for ${bookId}`);
-  const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId("research"), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+  const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId("research"), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS, timeoutMs: RESEARCH_TIMEOUT_MS }, deps);
   if (!r.ok) deps.log(`[autopilot] research session exited ${r.exitCode}: ${r.stderr.slice(0, 300)}`);
   return r.ok;
 }
