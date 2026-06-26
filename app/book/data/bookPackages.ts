@@ -123,6 +123,7 @@ import auto_decisive_Json from "@/book-packages/decisive.v21.json";
 import auto_the_now_habit_Json from "@/book-packages/the-now-habit.v21.json";
 import auto_willpower_Json from "@/book-packages/willpower.v21.json";
 import auto_the_willpower_instinct_Json from "@/book-packages/the-willpower-instinct.v21.json";
+import auto_the_compound_effect_Json from "@/book-packages/the-compound-effect.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -1993,4 +1994,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_willpower_instinct_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-willpower-instinct"] = (tone) => normalizeAnyPackage(auto_the_willpower_instinct_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-compound-effect" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_compound_effect_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-compound-effect"] = (tone) => normalizeAnyPackage(auto_the_compound_effect_Json, tone);
 }
