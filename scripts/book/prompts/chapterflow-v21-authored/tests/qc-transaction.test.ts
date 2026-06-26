@@ -13,6 +13,7 @@ import {
   commitQcTransaction,
   qcTransactionLockPath,
   withQcTransaction,
+  QC_SUBMIT_CONTEND_WAIT_MS,
   type QcTransactionLease,
   type QcTransactionRecord,
 } from "../src/qc/orchestrator/transaction.js";
@@ -250,4 +251,85 @@ test("concurrent status/finalize attempts serialize with no lost status event", 
   } finally {
     cleanup();
   }
+});
+
+// ── Contention backoff ────────────────────────────────────────────────────────
+// The qc-submit lock papercut: 2 consecutive live runs (willpower ch09,
+// the-compound-effect ch02) hit a transient collision when concurrent bar
+// reviewers submit for the same round. acquireQcTransaction now WAITS-and-retries
+// on a LIVE lease (sub-second body → freed within a step or two), opt-in via
+// contendWaitMs; default 0 = fail-fast (serial orchestrator callers unchanged).
+
+test("acquire backoff: an uncontended acquire takes the lock immediately and never waits", () => {
+  cleanup();
+  try {
+    let sleeps = 0;
+    const lease = acquireQcTransaction(BOOK, ROUND, "submit", { contendWaitMs: 8000, sleep: () => { sleeps++; } });
+    assert.ok(lease.ownerToken);
+    assert.equal(sleeps, 0, "no contention → no backoff");
+    commitQcTransaction(lease);
+  } finally { cleanup(); }
+});
+
+test("acquire backoff: default (no contendWaitMs) still fail-fasts on a LIVE lock — serial-caller behavior preserved", () => {
+  cleanup();
+  try {
+    const held = acquireQcTransaction(BOOK, ROUND, "submit");
+    let sleeps = 0;
+    assert.throws(
+      () => acquireQcTransaction(BOOK, ROUND, "collect", { sleep: () => { sleeps++; } }),
+      /transaction already active/,
+    );
+    assert.equal(sleeps, 0, "fail-fast: a serial caller never waits");
+    commitQcTransaction(held);
+  } finally { cleanup(); }
+});
+
+test("acquire backoff: a LIVE lock freed mid-wait → the retry takes it over", () => {
+  cleanup();
+  try {
+    const held = acquireQcTransaction(BOOK, ROUND, "submit");
+    let sleeps = 0;
+    const took = acquireQcTransaction(BOOK, ROUND, "submit", {
+      contendWaitMs: 8000,
+      // the holder releases on the first backoff step — exactly the live scenario
+      sleep: () => { sleeps++; if (sleeps === 1) commitQcTransaction(held); },
+    });
+    assert.notEqual(took.ownerToken, held.ownerToken, "a fresh lease, not the holder's");
+    assert.equal(sleeps, 1, "freed on the first 100ms step");
+    assert.equal(readLock().ownerToken, took.ownerToken, "the new owner holds the lock");
+    commitQcTransaction(took);
+  } finally { cleanup(); }
+});
+
+test("acquire backoff: a LIVE lock that never frees → throws after the budget, having waited it out", () => {
+  cleanup();
+  try {
+    const held = acquireQcTransaction(BOOK, ROUND, "submit");
+    let sleeps = 0;
+    assert.throws(
+      () => acquireQcTransaction(BOOK, ROUND, "submit", { contendWaitMs: 250, sleep: () => { sleeps++; } }),
+      /transaction already active/,
+    );
+    assert.equal(sleeps, 3, "100 + 100 + 50 = the 250ms budget exhausted");
+    commitQcTransaction(held);
+  } finally { cleanup(); }
+});
+
+test("acquire backoff: a STALE lock is recovered immediately (the wait is for LIVE contention only)", () => {
+  cleanup();
+  try {
+    // Plant an already-expired lease (acquired in the test-clock past with a 1ms TTL).
+    const expired = acquireQcTransaction(BOOK, ROUND, "finalize", { now: at(0), ttlMs: 1 });
+    let sleeps = 0;
+    // Acquire at the real wall clock (far after T0) → the planted lease is stale → recovered, no wait.
+    const fresh = acquireQcTransaction(BOOK, ROUND, "submit", { contendWaitMs: 8000, sleep: () => { sleeps++; } });
+    assert.notEqual(fresh.ownerToken, expired.ownerToken, "took over the stale lease");
+    assert.equal(sleeps, 0, "a stale lock is recovered, never waited on");
+    commitQcTransaction(fresh);
+  } finally { cleanup(); }
+});
+
+test("acquire backoff: the submit op opts into a positive contention budget", () => {
+  assert.ok(QC_SUBMIT_CONTEND_WAIT_MS > 0, "submit must use a positive contention-wait budget");
 });
