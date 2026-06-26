@@ -28,9 +28,9 @@
         "format": "mistake_recovery",
         "requiredBeat": "Model repair rather than perfect authority"
       },
-      "scenario": "Petra stands at 6:37 p.m. in a crowded diner after her son knocks soup into her lap and strangers turn to stare. Parenting as the boldest arena is suddenly literal. Before she speaks, Petra must decide whether the mess will become proof of bad parenting or a chance to model repair and steadiness.",
-      "whatToDo": "Petra takes one breath, sets a cleanup task, and tells her son they will handle it together. Later she repairs the sharp tone she did use.",
-      "whyItMatters": "Children learn worthiness in exposed moments. Petra can set a limit and clean the mess without making belonging depend on public composure."
+      "scenario": "Carol stands at 6:37 p.m. in a crowded diner after her son knocks soup into her lap and strangers turn to stare. Parenting as the boldest arena is suddenly literal. Before she speaks, Carol must decide whether the mess will become proof of bad parenting or a chance to model repair and steadiness.",
+      "whatToDo": "Carol takes one breath, sets a cleanup task, and tells her son they will handle it together. Later she repairs the sharp tone she did use.",
+      "whyItMatters": "Children learn worthiness in exposed moments. Carol can set a limit and clean the mess without making belonging depend on public composure."
     },
     {
       "exampleId": "ex02",
@@ -66,8 +66,8 @@
         "format": "dialogue",
         "requiredBeat": "Hold unconditional belonging with real consequences"
       },
-      "scenario": "Simran reads the Wholehearted Parenting Manifesto on the fridge at 9:48 p.m. after finding her teen lied about the car. The keys are on the counter, and the teen is braced for rejection. Before setting a consequence, Simran must decide whether belonging is still clear.",
-      "whatToDo": "Simran states that the lie broke trust and the car is off limits for a week. She also says love is not up for review.",
+      "scenario": "Tracy reads the Wholehearted Parenting Manifesto on the fridge at 9:48 p.m. after finding her teen lied about the car. The keys are on the counter, and the teen is braced for rejection. Before setting a consequence, Tracy must decide whether belonging is still clear.",
+      "whatToDo": "Tracy states that the lie broke trust and the car is off limits for a week. She also says love is not up for review.",
       "whyItMatters": "Belonging and limits are not opposites. A child can face consequences without fearing that one bad choice has canceled lovability."
     },
     {
@@ -123,8 +123,8 @@
         "format": "reflection",
         "requiredBeat": "Be the adult the child is invited to become"
       },
-      "scenario": "Huda pauses at 7:58 a.m. in an Abu Dhabi hallway after snapping at her daughter about missing shoes. The phrase be the adults we want our children to be is taped inside the closet. School starts in twelve minutes, and Huda has to decide whether authority means moving on or repairing fast.",
-      "whatToDo": "Huda gives a brief apology, names the rushed feeling, and keeps the shoe search moving. She models repair without making the child manage her guilt.",
+      "scenario": "Wendy pauses at 7:58 a.m. in an Abu Dhabi hallway after snapping at her daughter about missing shoes. The phrase be the adults we want our children to be is taped inside the closet. School starts in twelve minutes, and Wendy has to decide whether authority means moving on or repairing fast.",
+      "whatToDo": "Wendy gives a brief apology, names the rushed feeling, and keeps the shoe search moving. She models repair without making the child manage her guilt.",
       "whyItMatters": "Children need adults who can admit uncertainty and repair. Perfect authority teaches less courage than accountable presence."
     }
   ],
@@ -133,14 +133,14 @@
     "questions": [
       {
         "questionId": "q01",
-        "prompt": "Petra's child spills soup in a crowded diner and shame rises fast. What response best models wholehearted parenting?",
+        "prompt": "Carol's child spills soup in a crowded diner and shame rises fast. What response best models wholehearted parenting?",
         "choices": [
-          "Petra should ignore the spill until they get home so the child does not feel exposed.",
-          "Petra should set a cleanup task, stay connected, and repair any sharp tone she uses.",
-          "Petra should explain to nearby diners that her child usually behaves better than this."
+          "Carol should ignore the spill until they get home so the child does not feel exposed.",
+          "Carol should set a cleanup task, stay connected, and repair any sharp tone she uses.",
+          "Carol should explain to nearby diners that her child usually behaves better than this."
         ],
         "correctIndex": 1,
-        "explanation": "The child needs belonging and limits in the same moment. Petra can address behavior without turning public embarrassment into identity threat.",
+        "explanation": "The child needs belonging and limits in the same moment. Carol can address behavior without turning public embarrassment into identity threat.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
@@ -159,7 +159,7 @@
       },
       {
         "questionId": "q03",
-        "prompt": "Simran's teen lied about the car. Which consequence protects unconditional belonging?",
+        "prompt": "Tracy's teen lied about the car. Which consequence protects unconditional belonging?",
         "choices": [
           "Cancel the car for a week and avoid warmth so the seriousness lands.",
           "Keep the car available because belonging should remove consequences.",
@@ -198,14 +198,14 @@
       },
       {
         "questionId": "q06",
-        "prompt": "Huda snaps about missing shoes with school starting soon. Which repair models courage without making the child carry adult guilt?",
+        "prompt": "Wendy snaps about missing shoes with school starting soon. Which repair models courage without making the child carry adult guilt?",
         "choices": [
           "Offer a brief apology, name the rushed feeling, and keep solving the shoe problem.",
-          "Give a long apology so the child understands how badly Huda feels.",
+          "Give a long apology so the child understands how badly Wendy feels.",
           "Skip the apology until after school because timing matters more than repair."
         ],
         "correctIndex": 0,
-        "explanation": "The apology should model accountability while staying adult-sized. Huda repairs the rupture and keeps responsibility for the morning.",
+        "explanation": "The apology should model accountability while staying adult-sized. Wendy repairs the rupture and keeps responsibility for the morning.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },

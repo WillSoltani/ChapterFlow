@@ -28,8 +28,8 @@
         "format": "business_case",
         "requiredBeat": "Use Kevin Surace to connect creativity with ridicule risk"
       },
-      "scenario": "Tori starts a 9:00 a.m. innovation offsite in San Jose with Kevin Surace of Serious Materials on the agenda. Engineers have stopped submitting early concepts after two demos drew laughs. Before the next brainstorm, Tori must decide whether the barrier is technical skill or fear of being belittled.",
-      "whatToDo": "Tori names ridicule as an innovation risk and changes the demo rule: early concepts receive questions before criticism. She protects raw ideas long enough to learn.",
+      "scenario": "Paula starts a 9:00 a.m. innovation offsite in San Jose with Kevin Surace of Serious Materials on the agenda. Engineers have stopped submitting early concepts after two demos drew laughs. Before the next brainstorm, Paula must decide whether the barrier is technical skill or fear of being belittled.",
+      "whatToDo": "Paula names ridicule as an innovation risk and changes the demo rule: early concepts receive questions before criticism. She protects raw ideas long enough to learn.",
       "whyItMatters": "Innovation stalls when social exposure feels more dangerous than the technical problem. Respectful early feedback keeps ideas in motion."
     },
     {
@@ -47,8 +47,8 @@
         "format": "mistake_recovery",
         "requiredBeat": "Repair a creative scar before it hardens"
       },
-      "scenario": "Luis watches at 1:25 p.m. in a Phoenix art room as classmates laugh at a seventh grader's first charcoal sketch. Creative scars among students and workers is on his training card. Seconds before the student closes the pad, Luis has to decide whether to scold the room or repair the conditions for showing work.",
-      "whatToDo": "Luis stops the laughter, names the risk of showing early work, and asks for observations tied to the sketch. He repairs dignity before returning to craft.",
+      "scenario": "Martin watches at 1:25 p.m. in a Phoenix art room as classmates laugh at a seventh grader's first charcoal sketch. Creative scars among students and workers is on his training card. Seconds before the student closes the pad, Martin has to decide whether to scold the room or repair the conditions for showing work.",
+      "whatToDo": "Martin stops the laughter, names the risk of showing early work, and asks for observations tied to the sketch. He repairs dignity before returning to craft.",
       "whyItMatters": "A single ridiculed attempt can teach long avoidance. Shame resistance keeps correction usable by protecting the learner's willingness to try again."
     },
     {
@@ -66,8 +66,8 @@
         "format": "before_after",
         "requiredBeat": "Use physical setup to reduce threat"
       },
-      "scenario": "Jin sits at 3:10 p.m. behind a walnut desk in Singapore with a performance memo between himself and a nervous analyst. Feedback across a desk is underlined in his notes. Before the analyst arrives, Jin must choose whether to keep the authority wall or move the spreadsheet where both can examine it.",
-      "whatToDo": "Jin sits beside the analyst and places the spreadsheet on the table between them. He names the shared goal, one strength, and the specific pattern to change.",
+      "scenario": "Keith sits at 3:10 p.m. behind a walnut desk in Singapore with a performance memo between himself and a nervous analyst. Feedback across a desk is underlined in his notes. Before the analyst arrives, Keith must choose whether to keep the authority wall or move the spreadsheet where both can examine it.",
+      "whatToDo": "Keith sits beside the analyst and places the spreadsheet on the table between them. He names the shared goal, one strength, and the specific pattern to change.",
       "whyItMatters": "Feedback design tells people whether to defend or learn. Shared attention on the work lowers armor while keeping expectations clear."
     },
     {
@@ -85,8 +85,8 @@
         "format": "planning_choice",
         "requiredBeat": "Normalize discomfort without normalizing shame"
       },
-      "scenario": "Carla opens a 10:45 a.m. coding bootcamp in Recife and sees three students erase questions from the shared doc after one answer got mocked. Disruptive engagement is written on the whiteboard. Before the next lab, Carla must decide whether silence means confidence or fear.",
-      "whatToDo": "Carla creates a naive-question round and models one of her own. She makes not knowing visible without letting ridicule enter the lab.",
+      "scenario": "Donna opens a 10:45 a.m. coding bootcamp in Recife and sees three students erase questions from the shared doc after one answer got mocked. Disruptive engagement is written on the whiteboard. Before the next lab, Donna must decide whether silence means confidence or fear.",
+      "whatToDo": "Donna creates a naive-question round and models one of her own. She makes not knowing visible without letting ridicule enter the lab.",
       "whyItMatters": "Learning starts with exposure. Normal discomfort helps students grow; humiliation teaches them to hide the confusion the teacher needs to see."
     },
     {
@@ -104,8 +104,8 @@
         "format": "postmortem",
         "requiredBeat": "Make truth-telling safer than concealment"
       },
-      "scenario": "Rina reviews a 7:30 a.m. medication delay in a Chicago hospital conference room. The old postmortem starts with who failed. Shame culture signals, blame and public belittling, appear on her checklist. Before nurses arrive, Rina must choose whether the meeting will find a person to punish or a process to fix.",
-      "whatToDo": "Rina starts with the timeline and asks where the system made the delay likely. Individual responsibility stays, but public blame is removed from the search.",
+      "scenario": "Sandra reviews a 7:30 a.m. medication delay in a Chicago hospital conference room. The old postmortem starts with who failed. Shame culture signals, blame and public belittling, appear on her checklist. Before nurses arrive, Sandra must choose whether the meeting will find a person to punish or a process to fix.",
+      "whatToDo": "Sandra starts with the timeline and asks where the system made the delay likely. Individual responsibility stays, but public blame is removed from the search.",
       "whyItMatters": "People hide mistakes where humiliation is likely. A dignity-preserving postmortem protects the information patient safety depends on."
     },
     {
@@ -133,7 +133,7 @@
     "questions": [
       {
         "questionId": "q01",
-        "prompt": "Tori's engineers stopped sharing early concepts after demos drew laughs. What should she treat as the innovation barrier?",
+        "prompt": "Paula's engineers stopped sharing early concepts after demos drew laughs. What should she treat as the innovation barrier?",
         "choices": [
           "The social risk of ridicule, which makes raw ideas feel unsafe to bring forward.",
           "The team's lack of technical ambition during the earliest design sessions.",
@@ -146,7 +146,7 @@
       },
       {
         "questionId": "q02",
-        "prompt": "Luis sees a student close her sketchbook after classmates laugh. Which response best prevents a creative scar?",
+        "prompt": "Martin sees a student close her sketchbook after classmates laugh. Which response best prevents a creative scar?",
         "choices": [
           "Tell the student to ignore the laughter and keep practicing privately for a while.",
           "Move quickly to the next assignment so the class does not dwell on the moment.",
@@ -159,7 +159,7 @@
       },
       {
         "questionId": "q03",
-        "prompt": "Jin moves beside an analyst and places the spreadsheet where both can see it. What feedback principle is he using?",
+        "prompt": "Keith moves beside an analyst and places the spreadsheet where both can see it. What feedback principle is he using?",
         "choices": [
           "Feedback should feel informal enough that the analyst forgets the performance stakes.",
           "The setup should make the work the shared object rather than making the person feel on trial.",
@@ -172,7 +172,7 @@
       },
       {
         "questionId": "q04",
-        "prompt": "Carla's students erase questions after one answer gets mocked. Which rule supports disruptive engagement?",
+        "prompt": "Donna's students erase questions after one answer gets mocked. Which rule supports disruptive engagement?",
         "choices": [
           "A naive-question round where confusion is expected and ridicule is interrupted.",
           "A private question box so students can avoid speaking until confidence grows.",
@@ -185,7 +185,7 @@
       },
       {
         "questionId": "q05",
-        "prompt": "Rina's hospital postmortem usually begins by asking who failed. What is the likely performance cost?",
+        "prompt": "Sandra's hospital postmortem usually begins by asking who failed. What is the likely performance cost?",
         "choices": [
           "Nurses may need a longer agenda to describe the medication delay.",
           "The team may focus too much on process and miss individual judgment.",

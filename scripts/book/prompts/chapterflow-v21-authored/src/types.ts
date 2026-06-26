@@ -333,7 +333,10 @@ export type CriticCheckId =
   | "C24.cast_overflow"
   | "C25.cast_shuffle"
   // Scene abstraction — the system (form/email/app) is the protagonist (advisory).
-  | "C26.scene_abstraction";
+  | "C26.scene_abstraction"
+  // Exotic / off-standard name density — the example cast is mostly off the
+  // American/Canadian commonality oracle (advisory).
+  | "C27.exotic_name_density";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

@@ -47,8 +47,8 @@
         "format": "dilemma",
         "requiredBeat": "Use earned trust before disclosure"
       },
-      "scenario": "Kavya stands at 6:45 p.m. by the office coffee machine after a hard performance review. A new colleague asks why she looks upset. The phrase Marble-jar trust flashes from her notes. Before the elevator arrives, Kavya has to choose between a full family story and a bounded truth the relationship can hold.",
-      "whatToDo": "Kavya shares a small honest sentence and saves the deeper story for a friend with earned trust. She respects both her need and the listener's capacity.",
+      "scenario": "Laura stands at 6:45 p.m. by the office coffee machine after a hard performance review. A new colleague asks why she looks upset. The phrase Marble-jar trust flashes from her notes. Before the elevator arrives, Laura has to choose between a full family story and a bounded truth the relationship can hold.",
+      "whatToDo": "Laura shares a small honest sentence and saves the deeper story for a friend with earned trust. She respects both her need and the listener's capacity.",
       "whyItMatters": "Boundaries keep vulnerability from becoming a spill. Trust is built by repeated care, not by the speed or size of a disclosure."
     },
     {
@@ -104,9 +104,9 @@
         "format": "decision_memo",
         "requiredBeat": "Show that refusing vulnerability only moves it underground"
       },
-      "scenario": "Zahra drafts a 1:05 p.m. memo in a Nairobi nonprofit office after a donor asks for a weekend report. Saying no appeared in the Survey responses on vulnerability, and her jaw is tight. Before she replies, Zahra must decide whether toughness means silent resentment or a clear limit.",
-      "whatToDo": "Zahra sends a bounded no with one workable alternative. She exposes the limit early instead of letting resentment steer the weekend.",
-      "whyItMatters": "No one opts out of exposure. If Zahra hides the limit, the risk returns as tone, delay, and blame."
+      "scenario": "Nicole drafts a 1:05 p.m. memo in a Nairobi nonprofit office after a donor asks for a weekend report. Saying no appeared in the Survey responses on vulnerability, and her jaw is tight. Before she replies, Nicole must decide whether toughness means silent resentment or a clear limit.",
+      "whatToDo": "Nicole sends a bounded no with one workable alternative. She exposes the limit early instead of letting resentment steer the weekend.",
+      "whyItMatters": "No one opts out of exposure. If Nicole hides the limit, the risk returns as tone, delay, and blame."
     },
     {
       "exampleId": "ex06",
@@ -146,10 +146,10 @@
       },
       {
         "questionId": "q02",
-        "prompt": "At a coffee machine, Kavya wants to tell a new colleague a painful family story after a harsh review. What should guide her choice?",
+        "prompt": "At a coffee machine, Laura wants to tell a new colleague a painful family story after a harsh review. What should guide her choice?",
         "choices": [
           "Whether the colleague has made enough marble-jar trust deposits to hold a private story.",
-          "Whether the story would explain Kavya's mood faster than a smaller honest sentence.",
+          "Whether the story would explain Laura's mood faster than a smaller honest sentence.",
           "Whether the colleague seems curious enough to keep the conversation going after work."
         ],
         "correctIndex": 0,
@@ -185,14 +185,14 @@
       },
       {
         "questionId": "q05",
-        "prompt": "Zahra thinks a serious professional should accept the weekend report and hide her resentment. Which myth is guiding her?",
+        "prompt": "Nicole thinks a serious professional should accept the weekend report and hide her resentment. Which myth is guiding her?",
         "choices": [
-          "The oversharing myth, because Zahra plans to reveal too much about her schedule.",
-          "The go-it-alone myth, because Zahra has not asked a teammate to write the report.",
-          "The opt-out myth, because Zahra imagines toughness can remove exposure from the decision."
+          "The oversharing myth, because Nicole plans to reveal too much about her schedule.",
+          "The go-it-alone myth, because Nicole has not asked a teammate to write the report.",
+          "The opt-out myth, because Nicole imagines toughness can remove exposure from the decision."
         ],
         "correctIndex": 2,
-        "explanation": "The opt-out myth says rational or tough people can avoid vulnerability. Zahra's limit will show up either as a clear no or as hidden resentment.",
+        "explanation": "The opt-out myth says rational or tough people can avoid vulnerability. Nicole's limit will show up either as a clear no or as hidden resentment.",
         "bloomsLevel": "understand",
         "depthLevel": "simple"
       },

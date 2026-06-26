@@ -48,6 +48,37 @@ export function loadMetaPatterns() {
   return _metaPatterns;
 }
 
+let _standardGivenNames: Set<string> | null = null;
+
+/** The commonality oracle for C27 (checkNameCommonality): the lowercased union
+ *  of the allocator's American/Canadian name pool (name-bank.json — the same
+ *  pool the pre-authoring allocator deals) and the standard-name supplement
+ *  (common-given-names.json, which adds the diminutives the formal pool omits:
+ *  "Ben" for "Benjamin", "Tom" for "Thomas"). A protagonist name absent from
+ *  this set reads as off-standard. Read directly here (not via loadNameBank)
+ *  to keep shared.ts free of the namePlan→finalGate→narrative→shared import
+ *  cycle. Cached after first load. */
+export function loadStandardGivenNames(): Set<string> {
+  if (_standardGivenNames) return _standardGivenNames;
+  const out = new Set<string>();
+  for (const file of ["name-bank.json", "common-given-names.json"]) {
+    let raw: Record<string, unknown>;
+    try {
+      raw = JSON.parse(readFileSync(resolve(CONFIG_DIR, file), "utf8")) as Record<string, unknown>;
+    } catch {
+      continue; // a missing supplement is tolerable; name-bank alone still seeds the oracle
+    }
+    for (const [key, val] of Object.entries(raw)) {
+      if (key.startsWith("_") || !Array.isArray(val)) continue;
+      for (const n of val) {
+        if (typeof n === "string" && n.trim()) out.add(n.trim().toLowerCase());
+      }
+    }
+  }
+  _standardGivenNames = out;
+  return out;
+}
+
 /** Load all per-book author-voice profiles. Returns `null` if the config
  *  doesn't exist yet (older v21 deploys). Each profile is keyed by bookId. */
 export function loadAuthorVoiceProfiles(): { profiles: Record<string, any> } | null {

@@ -16,7 +16,7 @@ import { resolve } from "path";
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
-import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNameCommonality, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
 import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
@@ -191,6 +191,16 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // screen/email inside a grounded reference scene from tripping it. See
   // critics/sceneConcreteness.ts + tests/scene-concreteness.test.ts.
   "C26.scene_abstraction": "minor",
+  // C27 — exotic / off-standard name density (advisory). The chapter's recurring
+  // example cast (chapterCast) is a slate of off-standard names — > 60% absent from
+  // the American/Canadian commonality oracle (name-bank ∪ common-given-names) — the
+  // Thomasina/Rhiannon/Soledad/Osvald-style affected cast that reads as trying-too-
+  // hard. C7 bans a specific over-used HANDFUL; catalogAudit tracks cross-book reuse;
+  // nothing scored commonality until now. MINOR/SHADOW: commonality is corpus-relative,
+  // so it surfaces QC debt and never blocks. The gold corpus stays clean because its
+  // example casts were regenerated onto standard names. See critics/narrative.ts +
+  // tests/name-commonality.test.ts.
+  "C27.exotic_name_density": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -769,6 +779,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // 330-chapter sweep. See critics/narrative.ts.
   for (const f of checkCastSize(chapter)) push(f.checkId as string, "examples", f.message, f.evidence);
   for (const f of checkExampleQuizNameConsistency(chapter)) push(f.checkId as string, "quiz", f.message, f.evidence);
+  // C27 — exotic / off-standard name density (advisory minor). A recurring example
+  // cast that is >60% off the American/Canadian commonality oracle reads as affected.
+  for (const f of checkNameCommonality(chapter)) push(f.checkId as string, "examples", f.message, f.evidence);
 
   // ── SC9 source-grounding: each example scenario must reference at least
   // one proper-noun anchor from the chapter's source sidecar namedExamples.

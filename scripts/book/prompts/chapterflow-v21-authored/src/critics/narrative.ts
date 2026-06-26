@@ -12,7 +12,7 @@ import {
   ToneKeyed,
   resolveDirect,
 } from "../types.js";
-import { allTones, finding, pickEvidence, truncate } from "./shared.js";
+import { allTones, finding, loadStandardGivenNames, pickEvidence, truncate } from "./shared.js";
 
 const PROPER_NOUN_STOPWORDS = new Set([
   "The", "A", "An", "If", "When", "That", "But", "Chapter", "Monday", "Tuesday",
@@ -403,6 +403,60 @@ export function checkExampleQuizNameConsistency(chapter: ChapterV21): CriticFind
     );
   }
   return findings;
+}
+
+/**
+ * ── C27 — exotic / off-standard name density (advisory) ──────────────────────
+ *
+ * THE DEFECT (Finding #8). A chapter's example cast is a slate of affected,
+ * uncommon names — Thomasina, Rhiannon, Soledad, Osvald, Eero, Saoirse — that
+ * read as trying-too-hard and are hard for a reader to hold across six scenes.
+ * Nothing scored commonality: catalogAudit tracks cross-book name COLLISIONS
+ * (reuse), and C7 bans a specific over-used handful (the opposite signal).
+ *
+ * THE STANDARD (owner direction 2026-06-25). Example protagonists should read as
+ * standard contemporary American/Canadian names — the same pool the pre-authoring
+ * allocator deals (config/name-bank.json), plus the diminutives the formal pool
+ * omits (config/common-given-names.json). The commonality ORACLE is the union of
+ * those two (loadStandardGivenNames). A cast name absent from it is "off-standard".
+ *
+ * THE DISCRIMINATOR / FP GUARD. The cast is the chapter's RECURRING actors via the
+ * gold-calibrated chapterCast (so one-off cities/orgs and determiner-led common
+ * nouns never count — the same extractor C24 proved zero-FP on a 330-chapter
+ * sweep). C27 fires only when the cast is large enough to read as a slate
+ * (>= C27_MIN_CAST) AND a strict majority of it is off-standard (> 60%). MINOR /
+ * SHADOW: it surfaces QC debt, it never blocks; commonality is corpus-relative,
+ * so this is a STRENGTHEN signal, not a gating judgment. The gold corpus is held
+ * clean by regenerating its example casts onto standard names (the defect this
+ * critic targets is precisely that the old generation shipped an off-standard
+ * cast). See config/common-given-names.json + tests/name-commonality.test.ts.
+ */
+const C27_MIN_CAST = 4;
+const C27_UNCOMMON_SHARE = 0.6;
+const C27_FIX =
+  "Draw protagonists from standard contemporary American/Canadian names (the allocator's name pool); reserve an unusual name only for when it does real characterization work. A whole cast of uncommon names reads as affected and is hard to track.";
+
+/** Pure: the off-standard share of a recurring cast. Exhaustively unit-testable. */
+export function offStandardNames(cast: string[]): string[] {
+  const standard = loadStandardGivenNames();
+  return cast.filter((n) => !standard.has(n.toLowerCase()));
+}
+
+export function checkNameCommonality(chapter: ChapterV21): CriticFinding[] {
+  const scenarios = (chapter.examples ?? []).map(scenarioText);
+  const cast = chapterCast(scenarios);
+  if (cast.length < C27_MIN_CAST) return [];
+  const uncommon = offStandardNames(cast);
+  const share = uncommon.length / cast.length;
+  if (share <= C27_UNCOMMON_SHARE) return [];
+  return [
+    finding(
+      "C27.exotic_name_density" as any,
+      "minor",
+      `examples: ${uncommon.length} of ${cast.length} named protagonists are off-standard (${Math.round(share * 100)}% of the cast) — "${truncate(uncommon.join(", "), 60)}" (an all-uncommon cast reads as affected and is hard to track). ${C27_FIX}`,
+      uncommon.join(", "),
+    ),
+  ];
 }
 
 /**

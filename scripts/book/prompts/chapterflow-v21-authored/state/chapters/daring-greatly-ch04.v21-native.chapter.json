@@ -28,8 +28,8 @@
         "format": "scene",
         "requiredBeat": "Show armor forming around belonging threats"
       },
-      "scenario": "Dalia stands at 12:18 p.m. in a middle-school cafeteria memory exercise, watching eighth graders sort themselves by table. One student laughs at a cruel joke before anyone can target him. Dalia has to decide before group debrief whether to call him mean or name the mask he is using to survive lunch.",
-      "whatToDo": "Dalia names the status pressure and asks what the laugh protected. She separates the harm from the child's need for belonging.",
+      "scenario": "Karen stands at 12:18 p.m. in a middle-school cafeteria memory exercise, watching eighth graders sort themselves by table. One student laughs at a cruel joke before anyone can target him. Karen has to decide before group debrief whether to call him mean or name the mask he is using to survive lunch.",
+      "whatToDo": "Karen names the status pressure and asks what the laugh protected. She separates the harm from the child's need for belonging.",
       "whyItMatters": "Vulnerability armor often begins as social survival. Seeing the original job makes it easier to replace the mask without humiliating the wearer."
     },
     {
@@ -47,9 +47,9 @@
         "format": "reset_moment",
         "requiredBeat": "Use gratitude as the antidote to foreboding joy"
       },
-      "scenario": "Kenji watches his daughter sleep at 9:06 p.m. in Seattle after her first clear scan. Foreboding joy rushes in with a hospital image he did not invite. Before he opens another medical forum, Kenji must decide whether rehearsal will protect him or steal the good that is actually in the room.",
-      "whatToDo": "Kenji places a hand on the doorframe and says one concrete gratitude sentence. He lets joy register without trying to guarantee tomorrow.",
-      "whyItMatters": "Foreboding joy mistakes rehearsal for safety. Gratitude lets Kenji receive the present moment while knowing he cannot control every loss."
+      "scenario": "Travis watches his daughter sleep at 9:06 p.m. in Seattle after her first clear scan. Foreboding joy rushes in with a hospital image he did not invite. Before he opens another medical forum, Travis must decide whether rehearsal will protect him or steal the good that is actually in the room.",
+      "whatToDo": "Travis places a hand on the doorframe and says one concrete gratitude sentence. He lets joy register without trying to guarantee tomorrow.",
+      "whyItMatters": "Foreboding joy mistakes rehearsal for safety. Gratitude lets Travis receive the present moment while knowing he cannot control every loss."
     },
     {
       "exampleId": "ex03",
@@ -85,9 +85,9 @@
         "format": "audit",
         "requiredBeat": "Treat over-busyness as possible numbing"
       },
-      "scenario": "Rafael reviews his color-coded calendar at 6:35 a.m. in Mexico City and sees no blank space for the third week. Shadow comforts and over-busyness is circled in his notes. Before his assistant adds another breakfast, Rafael must decide whether the full schedule restores him or keeps grief unreachable.",
-      "whatToDo": "Rafael cancels one low-value commitment and leaves the space unfilled. He lets the blank hour reveal what the busyness has been muting.",
-      "whyItMatters": "Numbing does not require obvious excess. A praised calendar can dull pain and also cut Rafael off from rest, grief, and connection."
+      "scenario": "Russell reviews his color-coded calendar at 6:35 a.m. in Mexico City and sees no blank space for the third week. Shadow comforts and over-busyness is circled in his notes. Before his assistant adds another breakfast, Russell must decide whether the full schedule restores him or keeps grief unreachable.",
+      "whatToDo": "Russell cancels one low-value commitment and leaves the space unfilled. He lets the blank hour reveal what the busyness has been muting.",
+      "whyItMatters": "Numbing does not require obvious excess. A praised calendar can dull pain and also cut Russell off from rest, grief, and connection."
     },
     {
       "exampleId": "ex05",
@@ -123,8 +123,8 @@
         "format": "coach_talk",
         "requiredBeat": "Separate forced intimacy from trustworthy vulnerability"
       },
-      "scenario": "Samir facilitates a 7:45 p.m. support group in Minneapolis when a new member begins a graphic story before names are finished. Oversharing as armor is on Samir's cue card. Seconds before the room stiffens, he must protect the speaker and the group without shaming either.",
-      "whatToDo": "Samir thanks the member, slows the pace, and offers a bounded prompt. He protects trust by matching disclosure to the room's capacity.",
+      "scenario": "Philip facilitates a 7:45 p.m. support group in Minneapolis when a new member begins a graphic story before names are finished. Oversharing as armor is on Philip's cue card. Seconds before the room stiffens, he must protect the speaker and the group without shaming either.",
+      "whatToDo": "Philip thanks the member, slows the pace, and offers a bounded prompt. He protects trust by matching disclosure to the room's capacity.",
       "whyItMatters": "Intensity can mimic bravery while trying to force closeness. Boundaries let vulnerability grow at a pace the group can hold."
     }
   ],
@@ -133,24 +133,24 @@
     "questions": [
       {
         "questionId": "q01",
-        "prompt": "Dalia sees a student laugh at a cruel cafeteria joke to avoid becoming the target. What is the armor-aware reading?",
+        "prompt": "Karen sees a student laugh at a cruel cafeteria joke to avoid becoming the target. What is the armor-aware reading?",
         "choices": [
           "The laugh proves the student values status more than kindness in most lunch settings.",
           "The laugh may be a belonging mask that still needs accountability for its harm.",
           "The laugh should be ignored during debrief so the student does not feel exposed."
         ],
         "correctIndex": 1,
-        "explanation": "Armor can begin as protection while still causing harm. Dalia can name both the survival strategy and the need for repair.",
+        "explanation": "Armor can begin as protection while still causing harm. Karen can name both the survival strategy and the need for repair.",
         "bloomsLevel": "analyze",
         "depthLevel": "standard"
       },
       {
         "questionId": "q02",
-        "prompt": "Kenji starts imagining tragedy during a peaceful family moment after good medical news. Which practice targets foreboding joy?",
+        "prompt": "Travis starts imagining tragedy during a peaceful family moment after good medical news. Which practice targets foreboding joy?",
         "choices": [
-          "Kenji should research more outcomes so his mind feels prepared for possible loss.",
-          "Kenji should distract himself with work until the emotional spike loses force.",
-          "Kenji should speak one concrete gratitude sentence and let the good moment register."
+          "Travis should research more outcomes so his mind feels prepared for possible loss.",
+          "Travis should distract himself with work until the emotional spike loses force.",
+          "Travis should speak one concrete gratitude sentence and let the good moment register."
         ],
         "correctIndex": 2,
         "explanation": "Foreboding joy tries to make happiness safer by rehearsing pain. Gratitude receives the good without demanding certainty.",
@@ -172,11 +172,11 @@
       },
       {
         "questionId": "q04",
-        "prompt": "Rafael's praised calendar has no blank space, and grief never catches him. Which question best tests for shadow comfort?",
+        "prompt": "Russell's praised calendar has no blank space, and grief never catches him. Which question best tests for shadow comfort?",
         "choices": [
-          "Does the full calendar restore Rafael to presence, or keep him unavailable to feeling?",
-          "Could Rafael add higher-status meetings so the calendar feels worth the strain?",
-          "Would Rafael's assistant prefer clearer color coding for the busiest blocks?"
+          "Does the full calendar restore Russell to presence, or keep him unavailable to feeling?",
+          "Could Russell add higher-status meetings so the calendar feels worth the strain?",
+          "Would Russell's assistant prefer clearer color coding for the busiest blocks?"
         ],
         "correctIndex": 0,
         "explanation": "The activity alone does not decide the issue. The test is whether busyness restores life or functions as socially rewarded numbing.",
@@ -198,7 +198,7 @@
       },
       {
         "questionId": "q06",
-        "prompt": "Samir hears a new group member disclose too much before trust has formed. Which response honors vulnerability with boundaries?",
+        "prompt": "Philip hears a new group member disclose too much before trust has formed. Which response honors vulnerability with boundaries?",
         "choices": [
           "Let the story continue so the member does not mistake boundaries for rejection.",
           "Ask the group to match the member's intensity so trust builds more quickly.",

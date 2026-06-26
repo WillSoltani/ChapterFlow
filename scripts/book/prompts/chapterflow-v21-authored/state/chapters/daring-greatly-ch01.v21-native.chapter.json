@@ -28,8 +28,8 @@
         "format": "dialogue",
         "requiredBeat": "Turn a narcissism complaint into a vulnerability question"
       },
-      "scenario": "Aisha sits at 7:15 p.m. in a Houston school auditorium with a note card that says, \"Why are kids so self-absorbed?\" The PTA president wants a clean answer before the open mic starts. Aisha must tell the room whether the problem is entitled children, or a scarcity culture that makes young people fight to seem special.",
-      "whatToDo": "Aisha names the observed behavior, then asks what fear might sit under it. She moves the room from condemnation toward worthiness, limits, and connection.",
+      "scenario": "Hannah sits at 7:15 p.m. in a Houston school auditorium with a note card that says, \"Why are kids so self-absorbed?\" The PTA president wants a clean answer before the open mic starts. Hannah must tell the room whether the problem is entitled children, or a scarcity culture that makes young people fight to seem special.",
+      "whatToDo": "Hannah names the observed behavior, then asks what fear might sit under it. She moves the room from condemnation toward worthiness, limits, and connection.",
       "whyItMatters": "The Houston frame keeps the diagnosis relational. Grandiosity can still be challenged, but shame is no longer treated as the cure for shame."
     },
     {
@@ -66,8 +66,8 @@
         "format": "decision_point",
         "requiredBeat": "Link public economic fear to private armor"
       },
-      "scenario": "Mei stands at 9:30 a.m. in a Boston product review, one week after recession cuts removed twelve jobs. A dashboard ranks every engineer by closed tickets. The director asks for applause for the top names, and Mei has to answer before the meeting turns into a contest for safety.",
-      "whatToDo": "Mei pauses the ranking ritual and names the fear in the room. She shifts the review toward shared constraints, repair work, and the next honest commitment.",
+      "scenario": "Grace stands at 9:30 a.m. in a Boston product review, one week after recession cuts removed twelve jobs. A dashboard ranks every engineer by closed tickets. The director asks for applause for the top names, and Grace has to answer before the meeting turns into a contest for safety.",
+      "whatToDo": "Grace pauses the ranking ritual and names the fear in the room. She shifts the review toward shared constraints, repair work, and the next honest commitment.",
       "whyItMatters": "Scarcity culture feeds on comparison after public stress. The team needs standards, but status ranking cannot be allowed to pose as courage."
     },
     {
@@ -85,8 +85,8 @@
         "format": "dilemma",
         "requiredBeat": "Show how ambient fear makes vulnerability look reckless"
       },
-      "scenario": "Sofia reviews essays at 2:40 p.m. in Queens while a student writes that after 9/11 his family trusts no one outside their block. The bell rings in six minutes. Sofia must decide whether to correct the claim as overbroad, or first make room for fear before teaching a wider way to belong.",
-      "whatToDo": "Sofia names the fear as real, then separates safety from blanket blame. Her response invites the student to stay engaged while revising the claim.",
+      "scenario": "Megan reviews essays at 2:40 p.m. in Queens while a student writes that after 9/11 his family trusts no one outside their block. The bell rings in six minutes. Megan must decide whether to correct the claim as overbroad, or first make room for fear before teaching a wider way to belong.",
+      "whatToDo": "Megan names the fear as real, then separates safety from blanket blame. Her response invites the student to stay engaged while revising the claim.",
       "whyItMatters": "Public trauma can make certainty feel like protection. Vulnerability becomes possible when fear is acknowledged without letting blame run the lesson."
     },
     {
@@ -104,8 +104,8 @@
         "format": "reset_moment",
         "requiredBeat": "Treat comparison as a scarcity marker, not motivation"
       },
-      "scenario": "Nikhil checks in at 11:20 a.m. at a Dallas clinic and hears two patients comparing bodies under a wall poster about courage. One woman folds her intake form and whispers that she should not have come. Before the nurse calls her name, Nikhil has to interrupt shame without turning the lobby into a lecture.",
-      "whatToDo": "Nikhil lowers his voice and redirects the patient to the care she came for. He treats comparison as a scarcity cue, not proof that she lacks discipline.",
+      "scenario": "Daniel checks in at 11:20 a.m. at a Dallas clinic and hears two patients comparing bodies under a wall poster about courage. One woman folds her intake form and whispers that she should not have come. Before the nurse calls her name, Daniel has to interrupt shame without turning the lobby into a lecture.",
+      "whatToDo": "Daniel lowers his voice and redirects the patient to the care she came for. He treats comparison as a scarcity cue, not proof that she lacks discipline.",
       "whyItMatters": "Shame narrows the door to help. Enoughness does not deny health goals; it protects the person's right to seek care before feeling acceptable."
     },
     {
@@ -123,8 +123,8 @@
         "format": "planning_choice",
         "requiredBeat": "Spot withdrawal as scarcity's third marker"
       },
-      "scenario": "Imani sits at 8:05 p.m. in a Cleveland newsroom after another mass violence update crosses the wire. The editor wants a headline in ten minutes, and half the staff has gone flat. Imani must choose between another distant summary and a story meeting that asks what care still looks like.",
-      "whatToDo": "Imani proposes one local question the team can report with care. She does not force optimism; she interrupts numbness with a concrete act of engagement.",
+      "scenario": "Rachel sits at 8:05 p.m. in a Cleveland newsroom after another mass violence update crosses the wire. The editor wants a headline in ten minutes, and half the staff has gone flat. Rachel must choose between another distant summary and a story meeting that asks what care still looks like.",
+      "whatToDo": "Rachel proposes one local question the team can report with care. She does not force optimism; she interrupts numbness with a concrete act of engagement.",
       "whyItMatters": "Disengagement can feel like survival when fear stacks up. Scarcity loses force when people stay connected to one doable repair."
     }
   ],
@@ -162,7 +162,7 @@
         "prompt": "A product director uses recession anxiety to rank every engineer on a public board. What is the main scarcity risk?",
         "choices": [
           "The board might slow the next planning meeting because engineers ask for clearer ticket rules.",
-          "The ranking might help Mei spot uneven workloads before the next release review.",
+          "The ranking might help Grace spot uneven workloads before the next release review.",
           "The public score turns economic fear into comparison, making status look like safety."
         ],
         "correctIndex": 2,
@@ -172,27 +172,27 @@
       },
       {
         "questionId": "q04",
-        "prompt": "Sofia reads a student's post-9/11 essay that treats every outsider as danger. Which teacher move keeps fear from becoming blame?",
+        "prompt": "Megan reads a student's post-9/11 essay that treats every outsider as danger. Which teacher move keeps fear from becoming blame?",
         "choices": [
-          "Sofia should mark the essay wrong first so the student sees that broad claims lower the grade.",
-          "Sofia should acknowledge the fear, then ask the student to revise the claim without erasing belonging.",
-          "Sofia should skip the discussion because public trauma is too large for a classroom essay."
+          "Megan should mark the essay wrong first so the student sees that broad claims lower the grade.",
+          "Megan should acknowledge the fear, then ask the student to revise the claim without erasing belonging.",
+          "Megan should skip the discussion because public trauma is too large for a classroom essay."
         ],
         "correctIndex": 1,
-        "explanation": "Ambient fear makes certainty and blame feel soothing. Sofia protects learning by honoring the fear while keeping the student's world from shrinking around suspicion.",
+        "explanation": "Ambient fear makes certainty and blame feel soothing. Megan protects learning by honoring the fear while keeping the student's world from shrinking around suspicion.",
         "bloomsLevel": "apply",
         "depthLevel": "standard"
       },
       {
         "questionId": "q05",
-        "prompt": "Nikhil hears body comparison push a patient toward leaving the clinic. Which reading of the moment fits enoughness?",
+        "prompt": "Daniel hears body comparison push a patient toward leaving the clinic. Which reading of the moment fits enoughness?",
         "choices": [
           "The patient needs a tougher comparison group so her health goal feels more urgent.",
-          "The lobby conversation is harmless unless the patient asks Nikhil for advice.",
+          "The lobby conversation is harmless unless the patient asks Daniel for advice.",
           "The comparison is a shame cue, so care should begin before the patient feels acceptable."
         ],
         "correctIndex": 2,
-        "explanation": "Enoughness protects access to care from the demand to be acceptable first. Nikhil can support change without treating shame as motivation.",
+        "explanation": "Enoughness protects access to care from the demand to be acceptable first. Daniel can support change without treating shame as motivation.",
         "bloomsLevel": "evaluate",
         "depthLevel": "deep"
       },
@@ -201,7 +201,7 @@
         "prompt": "In a newsroom after mass violence, the staff goes numb before deadline. What action best resists disengagement?",
         "choices": [
           "Choose one reportable local question that lets the team practice care under pressure.",
-          "Ask Imani to write a broader summary that keeps emotional distance from the update.",
+          "Ask Rachel to write a broader summary that keeps emotional distance from the update.",
           "Postpone the story meeting so the newsroom can avoid the subject until energy returns."
         ],
         "correctIndex": 0,
