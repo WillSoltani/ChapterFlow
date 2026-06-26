@@ -1031,6 +1031,11 @@ test("WRITER_SELF_VERIFY wires the WT-F semantic levers into the autopilot write
   // hidden-key protocol — the lever that catches a wrong/contradicted quiz key at write time
   assert.ok(v.includes("quiz-blind"), "writer must run quiz-blind (derive the key blind)");
   assert.ok(v.includes("quiz-verify"), "writer must run quiz-verify (diff against the stored key)");
+  // evidence trace — the concrete factual_accuracy self-check (the dominant CORRUPTION after
+  // quiz keys on the willpower run: the "Piper move" / invented witness). Added as step 3.
+  assert.ok(v.includes("evidence-audit"), "writer must run evidence-audit (trace named actors to the brief)");
+  assert.ok(/Piper move/i.test(v), "self-verify should name the Piper move (invented witness in a real study)");
+  assert.ok(/all four/i.test(v), "self-verify must require ALL FOUR steps (the evidence trace is the 4th lever)");
   // bar self-score — catches rituals / abstract scenes / contested-as-fact before submit
   assert.ok(v.includes("publishable-rubric"), "writer must self-score the 9-axis publishable bar");
   // still keeps the deterministic check it always had

@@ -942,7 +942,7 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<boolean>
 // scenes) sailed through to QC and forced a repair round. This closes that gap:
 // every autopilot writer now runs the hidden-key + bar self-score before declaring
 // done, mirroring STEP-2. Exported so a test pins it (the gap had no test).
-export const WRITER_SELF_VERIFY = `SELF-VERIFY before declaring the chapter done — run ALL THREE. This is the write-time half of QC: a defect caught here costs zero QC rounds; one you skip costs a full round.
+export const WRITER_SELF_VERIFY = `SELF-VERIFY before declaring the chapter done — run ALL FOUR. This is the write-time half of QC: a defect caught here costs zero QC rounds; one you skip costs a full round.
 
 1. DETERMINISTIC — run \`author-check\` and \`gate-chapter\` on the chapter file you just authored, and fix until both report 0 blockers.
 
@@ -952,13 +952,17 @@ export const WRITER_SELF_VERIFY = `SELF-VERIFY before declaring the chapter done
    - \`npx tsx src/cli.ts quiz-verify state/chapters/<chapterId>.v21-native.chapter.json --answers "0:<i>,1:<i>,..."\`
    Any mismatch means the stored key is wrong, or the question has two defensible answers, or the explanation argues for a DIFFERENT choice than the key — re-key it or rewrite the question so exactly one choice is correct AND its explanation proves that choice.
 
-3. BAR SELF-SCORE — read the 9-axis publishable bar (\`npx tsx src/cli.ts publishable-rubric\`) and score your draft honestly. Fix any corruption-axis hit and any axis you'd score below ~0.85 before submitting. Watch the modes that most often slip past the deterministic gate:
+3. EVIDENCE TRACE (factual_accuracy — the dominant CORRUPTION after quiz keys). Every named person who carries a finding must trace to your research brief. Run:
+   - \`npx tsx src/cli.ts evidence-audit state/chapters/<chapterId>.v21-native.chapter.json\`
+   For each flagged item, confirm the named actor is a REAL source from your brief. The "Piper move" is the trap: an INVENTED character cast as a study participant/subject ("participant Lawrence") or staged inside a real researcher's lab / study / class to voice or act out the result. The documented study IS the evidence — an invented witness inside it is fabrication. FIX: report the real finding (cite the researcher by name), then move your invented actor into a plain EVERYDAY setting where they APPLY the lesson; never cast them as a research subject. Also resolve any EI1/EI2 testimonial (a first-name/initial-only account worn as proof).
+
+4. BAR SELF-SCORE — read the 9-axis publishable bar (\`npx tsx src/cli.ts publishable-rubric\`) and score your draft honestly. Fix any corruption-axis hit and any axis you'd score below ~0.85 before submitting. Watch the modes that most often slip past the deterministic gate:
    - behavioral_naturalness: NO contrived/performative micro-actions ("say aloud X", move a prop, tally on cue) — prescribe only the real functional action.
    - example_coherence: every scenario carries a concrete time / place / role; never an abstract "the system does X" scene.
-   - factual_accuracy: no invented precision; never state a contested finding (ego depletion, marshmallow-as-destiny) as settled fact.
+   - factual_accuracy: no invented precision; NO invented witness (a fictional "participant" acting out a real study — see step 3); never state a contested finding (ego depletion, marshmallow-as-destiny) as settled fact.
    - prose_coherence: tiers layer NEW ground, not reworded restatement; cadence varies.
 
-Do not declare the chapter done until all three pass.`;
+Do not declare the chapter done until all four pass.`;
 
 async function doWrite(bookId: string, status: BookStatus, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<void> {
   const writeDir = `state/authoring-cards/${bookId}`;

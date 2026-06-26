@@ -47,6 +47,7 @@ import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceInt
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
+import { checkInventedWitness } from "./evidenceWitness.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -416,6 +417,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // factual_accuracy axis for the loudest invented-precision case.
   // See critics/groundedNumbers.ts + tests/grounded-numbers.test.ts.
   "GN1.ungrounded_number": "major",
+  // EW1 — an invented character cast as a research SUBJECT ("participant Lawrence",
+  // the "Piper move"): a fictional witness staged inside a real study to act out
+  // the finding. The dominant residual factual_accuracy CORRUPTION on the live
+  // the-willpower-instinct run. SHADOW = major: fires only on the provably-clean
+  // `participant/subject <GivenName>` cast (ZERO-FP across the gold + production
+  // corpus), a deterministic complement to the semantic factual_accuracy axis;
+  // advisory until a gold proof clears it for blocker promotion (not in
+  // ENFORCED_MAJOR). See critics/evidenceWitness.ts + tests/evidence-witness.test.ts.
+  "EW1.invented_witness": "major",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -868,6 +878,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
   for (const f of checkGroundedNumbers(chapter)) {
     push(f.checkId as string, "grounded-numbers", f.message, f.evidence);
+  }
+  // EW1 — an invented character cast as a research subject ("participant Lawrence",
+  // the "Piper move"). Runs on v1 + v2 alike (the cast grammar is shape-based, not
+  // sidecar-bound); SHADOW=major. Complements the semantic factual_accuracy axis.
+  for (const f of checkInventedWitness(chapter)) {
+    push(f.checkId as string, "invented-witness", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
