@@ -45,6 +45,7 @@ import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
+import { checkOutcomeVariety } from "./outcomeVariety.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -201,6 +202,16 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // example casts were regenerated onto standard names. See critics/narrative.ts +
   // tests/name-commonality.test.ts.
   "C27.exotic_name_density": "minor",
+  // C28 — uniform success (advisory). A chapter whose every example scene resolves
+  // in clean instant success — no friction-bearing format (mistake_recovery/
+  // postmortem) and no failure/relapse/setback/cost/conflict/partial-outcome cue in
+  // ANY scenario. Reads as survivorship gloss: a reader whose first attempt fails is
+  // left feeling like the failure. C1–C3/C26 validate scene STRUCTURE, never OUTCOME.
+  // MINOR/SHADOW: outcome realism is a judgment call that gates on the semantic bar
+  // (WT-E); this surfaces the deterministic debt. The friction-prose absence guard
+  // keeps the gold corpus clean — its scenarios are saturated with friction
+  // vocabulary. See critics/outcomeVariety.ts + tests/outcome-variety.test.ts.
+  "C28.uniform_success": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -810,6 +821,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // system surface (form/email/button/screen) with no physical-human grounding.
   for (const f of checkSceneConcreteness(chapter)) {
     push(f.checkId as string, "scene-concreteness", f.message, f.evidence);
+  }
+  // C28 — uniform success (advisory). A chapter whose every example resolves in
+  // clean instant success, with no friction-bearing scene anywhere in its slate.
+  for (const f of checkOutcomeVariety(chapter)) {
+    push(f.checkId as string, "outcome-variety", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent

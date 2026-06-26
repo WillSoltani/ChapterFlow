@@ -336,7 +336,10 @@ export type CriticCheckId =
   | "C26.scene_abstraction"
   // Exotic / off-standard name density — the example cast is mostly off the
   // American/Canadian commonality oracle (advisory).
-  | "C27.exotic_name_density";
+  | "C27.exotic_name_density"
+  // Uniform success — every example resolves in clean instant success, no
+  // friction-bearing scene anywhere in the chapter's slate (advisory).
+  | "C28.uniform_success";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 
