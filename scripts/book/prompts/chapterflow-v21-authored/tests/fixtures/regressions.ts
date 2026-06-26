@@ -160,12 +160,20 @@ export const REGRESSIONS: RegressionCorpus = {
   // Hunter/Donovan — interchangeable coaches) — a cross-example signal, not a span.
   f5: [],
 
-  // #6 — PROSE RHYTHM: monotone short sentences (low sentence-length variance).
-  // Passage-level (CoefVar over a tier); seed a representative monotone run.
+  // #6 — PROSE RHYTHM: monotone short sentences (the choppy/listy defect). The original
+  // CoefVar-over-a-tier premise was refuted on the real gold corpus (gold tiers sit
+  // CoefVar 0.157-0.62, so a variance floor fires on the clean books); the SHIPPED
+  // detector (critics/prose.ts checkSentenceLengthVariance, E8.monotone_cadence) instead
+  // catches a SUSTAINED run (≥7 short ≤9-word same-length declaratives, run-mean ≥4.5 to
+  // skip telegraphic action staccato). The seed below is a verbatim run the detector
+  // fires on. NOTE: a 3-sentence cluster like willpower-ch4's "Defaults handle small
+  // repeat calls. Routines keep daily choices from reopening…" is the same pattern but
+  // SUB-THRESHOLD — indistinguishable from gold (which has short clusters up to 6), so
+  // it is deliberately NOT a TP for a zero-gold-FP gate.
   f6: [
     {
-      span: "Defaults handle small repeat calls. Routines keep daily choices from reopening. Option limits stop search from becoming a second job",
-      book: "willpower", source: "willpower-ch4:breakdown",
+      span: "Each one moves the fight upstream. The first names the cue. The second closes the window. The third makes reversal harder. The fourth lets other people see the promise. The fifth takes the trigger out of reach. You are not admitting defeat.",
+      book: "willpower", source: "willpower-ch07:breakdown.deepRead",
     },
   ],
 

@@ -51,6 +51,7 @@ import {
   checkCrossTierPhraseUniqueness,
   checkOpeningConcreteness,
   checkParagraphStartVariety,
+  checkSentenceLengthVariance,
   checkTiersProgressive,
 } from "./prose.js";
 import { checkReadingLevel } from "./readingLevel.js";
@@ -209,6 +210,13 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // pedagogical layering — a structural failure, not a stylistic one.
   E2: "blocker",
   E3: "minor",
+  // E8 — monotone SHORT-sentence rhythm (the short-side twin of checkCadenceVariance's
+  // long-drone arm). Fires on a run of ≥7 short, same-length sentences that reads as a
+  // list. SHADOW major: surfaces as QC debt but does not block (ENFORCED_MAJOR stays
+  // empty). Calibrated zero-FP on the gold corpus (daring-greatly + start-with-why) —
+  // see the CALIBRATION NOTE in critics/prose.ts (the CoefVar floor from the original
+  // spec was refuted by the real gold and dropped in favor of a short-AND-uniform run).
+  "E8.monotone_cadence": "major",
   // E7 — plain language: simple vocabulary + short sentences across ALL
   // reader-facing fields (not just the breakdown tiers E1 scores). See
   // critics/plainLanguage.ts. complex_word is advisory (word choice is
@@ -645,6 +653,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     }
     for (const f of checkCadenceVariance(tierText, `breakdown.${tierName}`)) {
       push("B7", `breakdown.${tierName}`, f.message);
+    }
+    for (const f of checkSentenceLengthVariance(tierText, `breakdown.${tierName}`)) {
+      push("E8.monotone_cadence", `breakdown.${tierName}`, f.message, f.evidence);
     }
     for (const f of checkClosingLineLandings(tierText, `breakdown.${tierName}`)) {
       push("B7", `breakdown.${tierName}`, f.message);

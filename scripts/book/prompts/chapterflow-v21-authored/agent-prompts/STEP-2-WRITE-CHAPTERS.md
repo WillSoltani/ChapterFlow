@@ -320,6 +320,16 @@ answer must derive from a verifiable source fact (`testableFact`) — never from
 said." If the only support for a keyed choice is a first-name account, the question is unsound: re-key
 it to a `testableFact` or rewrite the claim.
 
+**R8 — Vary the sentence rhythm; never write a list (`E8`, the short-side twin of the long-drone
+check).** A run of short, same-length declaratives reads as a list, not prose — the new-book defect is
+choppy/listy breakdowns ("Defaults handle small repeat calls. Routines keep daily choices from
+reopening. Option limits stop search loops. Time blocks protect deep work."). Every paragraph needs at
+least one short (<6-word) punch AND one long (>20-word) flowing sentence; the lengths must differ.
+Target the rhythm of the reference books — a short verdict landing *after* a long clause-bearing
+sentence — not uniform brevity. The deterministic critic fires on ≥7 short (≤9-word) same-length
+sentences in a row; the fix is never to lengthen every sentence, but to break the run with a long
+flowing one and let the cadence move. (This is the inverse of the ≥25-word drone — both kill rhythm.)
+
 ---
 
 ## False-positive allowances (write freely)

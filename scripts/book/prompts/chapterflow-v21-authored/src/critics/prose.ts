@@ -9,7 +9,7 @@
  */
 
 import { CriticFinding } from "../types.js";
-import { finding } from "./shared.js";
+import { finding, truncate } from "./shared.js";
 import { splitSentences } from "./textUtils.js";
 
 /**
@@ -169,6 +169,108 @@ export function checkCadenceVariance(text: string, unitLabel: string): CriticFin
     )];
   }
   return [];
+}
+
+// ── Monotone SHORT-sentence rhythm (E8) — the short-side twin of checkCadenceVariance ──
+//
+// checkCadenceVariance (above) catches the long-drone failure: a run of ≥25-word
+// sentences. The OPPOSITE failure — choppy/listy prose where every sentence is the
+// same short length — has no detector. New v21 books read listy precisely here
+// ("Defaults handle small repeat calls. Routines keep daily choices from reopening.
+// Option limits stop search loops…"): a stack of ~5-6-word declaratives with no long
+// flowing sentence to break them up.
+//
+// CALIBRATION NOTE (load-bearing — deviates from the original Finding #6 spec, and
+// calibrated against the labeled regression corpus in tests/fixtures/regressions.ts).
+//
+// (1) The finding proposed a coefficient-of-variation floor (CoefVar < 0.50), on the
+// premise that the gold books "sit ~0.58-0.61". Measured against the ACTUAL gold
+// corpus (real daring-greatly + start-with-why, 66 tiers) that premise is false:
+// gold tiers sit anywhere from CoefVar 0.157 (start-with-why fastReads are short and
+// uniform by design) to 0.62. A 0.50 floor fires on the MAJORITY of gold tiers — the
+// exact "fires harder on the clean book" trap the calibration law warns about. So the
+// CoefVar arm is dropped. What separates the defect cleanly is SHORTNESS *and* tight
+// UNIFORMITY together: the defect is a run of short sentences all the same short
+// length, whereas gold's low-variance passages are uniform at a HEALTHY length (mean
+// ~12-15) and gold's genuine staccato (e.g. daring-greatly ch04 fastRead) varies the
+// short-sentence lengths within the run. A run of ≥MIN_RUN consecutive sentences each
+// ≤SHORT_MAX words AND within a ≤BAND-word spread tops out at 6 across the whole gold
+// corpus, so MIN_RUN=7 is zero-FP on gold.
+//
+// (2) MEAN floor — excludes deliberate telegraphic action-sequences. Run against the
+// defect corpus (willpower / atomic-habits / the tiny-habits regen), the run rule above
+// also fires on atomic-habits-ch12's intentional cello-routine staccato ("Door opens,
+// 6:40. Coat off, shoes off. Case in the hall closet. Unzip, kneeling…") — a vivid,
+// reference-quality device, not the dull-exposition defect. That passage's run MEAN is
+// ~3.2 words/sentence; the genuine monotone-EXPOSITORY defects (willpower-ch07,
+// tiny-habits-regen ch01/ch06) all sit at ~6.0-6.5. A run-mean floor of 4.5 keeps every
+// real defect and drops the telegraphic device, scoping the critic to the documented
+// failure (uniform short *declaratives*, not punchy action fragments).
+const E8_SHORT_MAX = 9;   // a "short" sentence: ≤9 words
+const E8_BAND = 3;        // tightly uniform: max−min length across the run ≤3 words
+const E8_MIN_RUN = 7;     // ≥7 such sentences back-to-back reads as a list, not prose
+const E8_MEAN_MIN = 4.5;  // run mean ≥4.5 words — excludes telegraphic action-sequences
+const E8_FIX =
+  "Vary the rhythm: break the run with at least one long (>20-word) flowing sentence, " +
+  "and let the lengths differ. Uniform short declaratives read like a list, not prose.";
+
+export type MonotoneShortRun = {
+  /** Index of the first sentence in the longest qualifying run. */
+  start: number;
+  /** Number of consecutive sentences in the run (≥ E8_MIN_RUN when it fires). */
+  length: number;
+  /** The run's sentences, in order, for evidence. */
+  sentences: string[];
+};
+
+/**
+ * Pure detector: the longest run of consecutive sentences that are ALL short
+ * (≤E8_SHORT_MAX words) AND tightly uniform (length spread ≤E8_BAND), or null when
+ * no run reaches E8_MIN_RUN. Exhaustively unit-testable (text → run | null).
+ */
+export function findMonotoneShortRun(text: string): MonotoneShortRun | null {
+  const sentences = splitSentences(text);
+  if (sentences.length < E8_MIN_RUN) return null;
+  const lens = sentences.map((s) => s.split(/\s+/).filter(Boolean).length);
+
+  let best: MonotoneShortRun | null = null;
+  for (let i = 0; i < lens.length; i++) {
+    let mn = Infinity;
+    let mx = -Infinity;
+    let sum = 0;
+    for (let j = i; j < lens.length; j++) {
+      if (lens[j] > E8_SHORT_MAX) break;
+      mn = Math.min(mn, lens[j]);
+      mx = Math.max(mx, lens[j]);
+      if (mx - mn > E8_BAND) break;
+      sum += lens[j];
+      const length = j - i + 1;
+      // A run fires only when it is long enough, tightly uniform, AND its sentences
+      // average ≥E8_MEAN_MIN words — the last clause excludes telegraphic action
+      // staccato (mean ~3) while keeping monotone exposition (mean ~6).
+      if (length >= E8_MIN_RUN && sum / length >= E8_MEAN_MIN && (!best || length > best.length)) {
+        best = { start: i, length, sentences: sentences.slice(i, j + 1) };
+      }
+    }
+  }
+  return best;
+}
+
+/**
+ * Monotone short-sentence rhythm (E8). Fires when a tier contains a run of short,
+ * same-length sentences long enough to read as a list rather than prose. The
+ * short-side twin of checkCadenceVariance's long-drone arm. Shadow MAJOR — surfaces
+ * as QC debt; calibrated zero-FP on the gold corpus (see CALIBRATION NOTE above).
+ */
+export function checkSentenceLengthVariance(text: string, unitLabel: string): CriticFinding[] {
+  const run = findMonotoneShortRun(text);
+  if (!run) return [];
+  return [finding(
+    "E8.monotone_cadence" as any,
+    "major",
+    `${unitLabel}: ${run.length} short, same-length sentences in a row — "${truncate(run.sentences.join(" "), 60)}" reads as a list (monotone cadence). ${E8_FIX}`,
+    truncate(run.sentences.join(" "), 200),
+  )];
 }
 
 /**

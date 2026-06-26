@@ -237,5 +237,6 @@ These are enforced by the line-editor / voice-pass agents downstream. Hit them o
      fullRead: 14–18 words
   (Currently the prompt says ~12 / 12–16 / ~20. The new caps are slightly lower across the board because the existing target produces prose that is too dense.)
 - **No sentence longer than 30 words in any tier.** A 30+ word sentence almost always wants to be two sentences.
+- **Vary cadence — never write a list (`E8`).** Uniform short declaratives read like a list, not prose ("Defaults handle small repeat calls. Routines keep daily choices from reopening. Option limits stop search loops. Time blocks protect deep work."). Every paragraph needs at least one short (<6-word) punch AND one long (>20-word) flowing sentence, and the lengths must differ. The deterministic critic fires on **≥7 short (≤9-word) same-length sentences in a row**; the fix is to break the run with a long flowing sentence, not to lengthen everything. This is the short-side twin of the long-drone rule above — both flatten the rhythm. Target the reference books' rhythm: a short verdict landing *after* a long clause-bearing sentence.
 
 Write the BreakdownOutput JSON now. Three tiers. Progressive. Enjoyable. In the book's own voice.
