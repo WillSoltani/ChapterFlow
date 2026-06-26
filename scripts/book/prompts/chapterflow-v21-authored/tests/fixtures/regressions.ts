@@ -169,10 +169,25 @@ export const REGRESSIONS: RegressionCorpus = {
     },
   ],
 
-  // #7 — ABSTRACT scenes (system-as-protagonist). SEED (WT-C) from tiny-habits-regen
-  // ch4: the Facebook-reactivation-email scenario ("green sign-in button", "Log in
-  // comes before Find people you know") — a whole scenario, lift from examples[].
-  f7: [],
+  // #7 — ABSTRACT scenes (system-as-protagonist). From tiny-habits-regen ch4: every
+  // example scenario is staged ON a UI/process surface (email, sign-in button, review
+  // screen, worksheet) with no clock-time, place, physical object, body, or sensory
+  // beat — the form is the protagonist. Detection = `C26.scene_abstraction` (advisory):
+  // ≥2 distinct system tokens AND zero concrete grounding. See critics/sceneConcreteness.ts.
+  f7: [
+    {
+      span: "The send window is closing, and product designer Lorraine is still in the draft for the BJ-Demo account. Her email prompt says, Come back and get involved, with a green sign-in button below it.",
+      book: "tiny-habits-regen", source: "tiny-habits-ch04:examples[0].scenario",
+    },
+    {
+      span: "The prompt-type chart is tidy, but the reactivation email is not tidy at all. Olivia studies the 3 prompt types on the worksheet: Facilitator, Signal, Spark.",
+      book: "tiny-habits-regen", source: "tiny-habits-ch04:examples[1].scenario",
+    },
+    {
+      span: "The usual email reviewer is out, so Phoebe gets the review screen in her inbox for the BJ-Demo account.",
+      book: "tiny-habits-regen", source: "tiny-habits-ch04:examples[5].scenario",
+    },
+  ],
 
   // #8 — EXOTIC name overuse. SEED (WT-C) cross-book: a chapter whose protagonist
   // set is mostly uncommon names (Thomasina/Rhiannon/Soledad/Osvald/Eero/Saoirse) —

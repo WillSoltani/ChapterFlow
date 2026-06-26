@@ -70,6 +70,7 @@ A real writer would never produce `"goose q7 person goose studio critique"` or `
 18. **Vary prompt openers.** No more than 5 of 9 prompts may start with "A " or "An ". Use conditional setup ("When a manager…"), direct principle question ("Which test best reveals…"), second-person ("Your team…"), or claim to evaluate ("A colleague argues…").
 19. **Every question uses a different scenario domain.** If question 1 is a hospital scene, question 2 is not a hospital scene. Span the domains.
 20. **Easy to read.** Question prompts should be short and concrete. Choices should be parseable in one breath, not multi-clause sentences. Explanations should be plain.
+21. **Quiz cast must agree with the example cast (`C25`).** A quiz scenario either (a) introduces a clearly NEW protagonist name (the default — each question is a fresh scene the reader reasons about), or (b) reuses one of the chapter's example protagonists *consistently* — the same person, the same kind of role. Never take a name the examples assigned to one person and silently reassign it to a different person or role: if an example starred "Bailey the night nurse", a quiz question must not star "Bailey the hedge-fund trader". A graded question whose protagonist's identity has been reshuffled is ambiguous — the reader cannot tell which "Bailey" it means, and the gate fails closed on the reshuffle.
 
 ## What good looks like
 

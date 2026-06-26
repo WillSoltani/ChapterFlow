@@ -328,7 +328,12 @@ export type CriticCheckId =
   | "SC9.example_not_source_grounded"
   // Evidence integrity — testimonials must never masquerade as research.
   | "EI1.testimonial_as_evidence"
-  | "EI2.quiz_key_testimonial";
+  | "EI2.quiz_key_testimonial"
+  // Cast discipline — crowded cast (C24) + a reshuffled name leaking into the quiz (C25).
+  | "C24.cast_overflow"
+  | "C25.cast_shuffle"
+  // Scene abstraction — the system (form/email/app) is the protagonist (advisory).
+  | "C26.scene_abstraction";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

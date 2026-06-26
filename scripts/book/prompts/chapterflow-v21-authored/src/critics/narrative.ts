@@ -5,6 +5,7 @@
  */
 
 import {
+  ChapterV21,
   CriticFinding,
   Example,
   MaybeToned,
@@ -228,6 +229,178 @@ export function checkExampleProtagonistReuse(
         ),
       );
     }
+  }
+  return findings;
+}
+
+/**
+ * ── Cast discipline (C24 cast-overflow, C25 example↔quiz cast-shuffle) ────────
+ *
+ * THE DEFECT. Two cast failures the existing critics miss:
+ *  (1) Willpower's "Bailey" is three DIFFERENT people across the examples and the
+ *      quiz — one name silently reassigned to new roles. C23 catches the
+ *      example-vs-example half (a name leading ≥2 scenes), but nothing checked
+ *      whether that reshuffled name then LEAKS INTO A GRADED QUIZ QUESTION, where
+ *      the reader can no longer tell which "Bailey" the question means.
+ *  (2) A regen chapter ran NINE interchangeable coaches — a crowded, faceless cast
+ *      where no single person carries a lesson. Nothing counted the cast size.
+ *
+ * THE CALIBRATION (a full-corpus sweep of 330 shipped chapters / 23 books drove
+ * both thresholds). The DISCRIMINATOR for "a named person" is recurrence: a real
+ * protagonist is named and then acted ON again ("Aisha … she …"), so it appears
+ * ≥2× in its own scenario; a one-off capitalized token (a CITY — "Houston",
+ * "Kyoto" — or a real ORG — "Dell", "Disney") appears once. Counting every
+ * capitalized token over-fired to 15–23 on reference-quality daring-greatly;
+ * counting only NAMES THAT RECUR WITHIN A SINGLE SCENARIO tops out at exactly 6
+ * across the gold corpus (daring-greatly ch06/ch07), so the cap is > 6. The
+ * determiner guard ("the delivery", "a table") strips capitalized common nouns.
+ */
+
+// Capitalized tokens that are name-shaped but never a person (sentence-initial
+// adverbs / discourse markers most likely to recur). Kept LOCAL so the shared
+// PROPER_NOUN_STOPWORDS (used by C1/C22/C23) is not perturbed.
+const NON_PERSON_WORDS = new Set([
+  "Maybe", "Perhaps", "Meanwhile", "Instead", "Later", "Soon", "Suddenly",
+  "Finally", "Eventually", "Nobody", "Somebody", "Everybody", "Anybody",
+  "Nothing", "Something", "Everything", "Anything", "Someone", "Everyone",
+  "Anyone", "Today", "Tonight", "Together", "Often", "Always", "Never",
+]);
+
+// Determiners that mark the following capitalized token as a COMMON noun
+// ("the Delivery", "a Table", "their Report") rather than a person's name.
+const NAME_DETERMINERS = new Set([
+  "the", "a", "an", "her", "his", "their", "its", "this", "that", "these",
+  "those", "each", "every", "some", "one", "two", "another", "no", "any",
+  "my", "your", "our",
+]);
+
+/** Count capitalized PERSON names in a span. A token counts only if it is not a
+ *  stopword / discourse marker AND is not immediately preceded by a determiner
+ *  (which would make it a common noun). Pure + exhaustively unit-testable. */
+export function countPersonNames(text: string): Map<string, number> {
+  const counts = new Map<string, number>();
+  if (!text || typeof text !== "string") return counts;
+  const tokens = text.split(/\s+/);
+  for (let i = 0; i < tokens.length; i++) {
+    const m = tokens[i].match(/^["'“(]*([A-Z][a-z]{2,})/);
+    if (!m) continue;
+    const name = m[1];
+    if (PROPER_NOUN_STOPWORDS.has(name) || NON_PERSON_WORDS.has(name)) continue;
+    // Capitalized gerund/participle sentence-openers ("Watching", "Standing") are
+    // never first names; excluding "-ing" tokens kills that whole FP class (the
+    // rare "-ing" first name, e.g. "Channing", is a tolerable under-count for a
+    // shadow gate that must never over-count).
+    if (/ing$/.test(name)) continue;
+    const prev = (tokens[i - 1] ?? "").toLowerCase().replace(/[^a-z]/g, "");
+    if (NAME_DETERMINERS.has(prev)) continue;
+    counts.set(name, (counts.get(name) ?? 0) + 1);
+  }
+  return counts;
+}
+
+/** Names that RECUR (≥2×) within a single span — the chapter's actual actors. */
+function recurringActors(text: string): Set<string> {
+  const out = new Set<string>();
+  for (const [name, n] of countPersonNames(text)) if (n >= 2) out.add(name);
+  return out;
+}
+
+/** The lead protagonist of one scenario: the most-mentioned recurring person
+ *  (mirrors C23's protagonistOf, but through the determiner-guarded counter). */
+function leadProtagonist(text: string): string | null {
+  let best: string | null = null;
+  let bestCount = 1;
+  for (const [name, n] of countPersonNames(text)) {
+    if (n >= 2 && n > bestCount) { best = name; bestCount = n; }
+  }
+  return best;
+}
+
+function scenarioText(ex: { scenario?: MaybeToned<string> }): string {
+  return allTones(ex.scenario).join(" \n ");
+}
+
+/** The distinct named cast of a chapter: every person who recurs within at least
+ *  one example scenario, unioned across the slate. Pure (scenarios → names). */
+export function chapterCast(scenarios: string[]): string[] {
+  const cast = new Set<string>();
+  for (const sc of scenarios) for (const a of recurringActors(sc)) cast.add(a);
+  return [...cast].sort();
+}
+
+/** Names that lead ≥2 distinct example scenarios → distinct people sharing one
+ *  name (the example side of the reshuffle). Pure. Returns name → 1-based scenes. */
+export function multiOwnedLeads(scenarios: string[]): Map<string, number[]> {
+  const owners = new Map<string, number[]>();
+  scenarios.forEach((sc, i) => {
+    const lead = leadProtagonist(sc);
+    if (!lead) return;
+    if (!owners.has(lead)) owners.set(lead, []);
+    owners.get(lead)!.push(i + 1);
+  });
+  for (const [name, scenes] of [...owners]) if (scenes.length < 2) owners.delete(name);
+  return owners;
+}
+
+const CAST_CAP = 6;
+const C24_FIX =
+  "Cut the cast to ≤6 named people: give each example a single protagonist, demote minor named foils to unnamed roles (\"a colleague\"), and stop introducing a fresh named bystander in every scene.";
+
+/**
+ * C24 — cast overflow. More than CAST_CAP (6) distinct named protagonists recur
+ * across the example slate: a crowded, interchangeable cast where no one person
+ * carries a lesson. SHADOW major (zero on the gold corpus — daring-greatly tops
+ * out at exactly 6; promote only via the gold-corpus proof).
+ */
+export function checkCastSize(chapter: ChapterV21): CriticFinding[] {
+  const scenarios = (chapter.examples ?? []).map(scenarioText);
+  const cast = chapterCast(scenarios);
+  if (cast.length <= CAST_CAP) return [];
+  return [
+    finding(
+      "C24.cast_overflow" as any,
+      "major",
+      `examples: the chapter casts ${cast.length} distinct named protagonists, over the cap of ${CAST_CAP} — "${truncate(cast.join(", "), 60)}" (a crowded, interchangeable cast blurs which person carries each lesson). ${C24_FIX}`,
+      cast.join(", "),
+    ),
+  ];
+}
+
+const C25_FIX =
+  "A quiz scenario must reuse one example's protagonist consistently or introduce a clearly new name — never a name that already denotes several different people. Re-key this question to an unambiguous name.";
+
+/**
+ * C25 — example↔quiz cast shuffle. A name that is the lead protagonist of ≥2
+ * DIFFERENT example scenes (so it already denotes multiple people) ALSO surfaces
+ * in the quiz, contaminating a GRADED question with a reshuffled identity. This
+ * is the cross-surface half C23 (example-only) cannot see; it routes a quiz
+ * re-key, not an example rename. SHADOW major (zero on the gold corpus, which
+ * reuses each single-owner example name in its quiz consistently). The quiz scan
+ * is name-presence only, so a clean book that reuses a UNIQUE example protagonist
+ * in its matching quiz question (daring-greatly's Mei→q3) never fires.
+ */
+export function checkExampleQuizNameConsistency(chapter: ChapterV21): CriticFinding[] {
+  const scenarios = (chapter.examples ?? []).map(scenarioText);
+  const reshuffled = multiOwnedLeads(scenarios);
+  if (reshuffled.size === 0) return [];
+  const questions = chapter.quiz?.questions ?? [];
+  const findings: CriticFinding[] = [];
+  for (const [name, scenes] of reshuffled) {
+    // Find the first quiz question that names this reshuffled person (evidence).
+    let evidence: string | null = null;
+    for (const q of questions) {
+      const qText = [q.prompt, ...(q.choices ?? []), q.explanation ?? ""].join(" ");
+      if (countPersonNames(qText).has(name)) { evidence = q.prompt ?? qText; break; }
+    }
+    if (evidence === null) continue; // reshuffled name stays inside the examples → C23's job, not C25's
+    findings.push(
+      finding(
+        "C25.cast_shuffle" as any,
+        "major",
+        `quiz: "${truncate(name, 60)}" leads ${scenes.length} different example scenes (${scenes.join(", ")}) AND appears in the quiz — the graded question silently inherits a reshuffled identity, so the reader cannot tell which "${name}" it means. ${C25_FIX}`,
+        evidence,
+      ),
+    );
   }
   return findings;
 }

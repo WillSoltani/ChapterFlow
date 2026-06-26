@@ -16,7 +16,7 @@ import { resolve } from "path";
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
-import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
+import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
 import { finding } from "./shared.js";
 import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
@@ -44,6 +44,7 @@ import {
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
+import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -152,11 +153,44 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // catalog-collision class it was meant to fix. The check-registry test now
   // guards the namespace; next free id is C24+.)
   C22: "blocker",
-  // C23 — same protagonist leads multiple example scenes. SHADOW=major: precise
-  // and zero-FP in calibration, but no confirmed true-positive yet (the ch5/ch14
-  // reuse is breakdown-vs-example, which C23 doesn't see), so it surfaces rather
-  // than blocks until a real example-vs-example reuse confirms it.
+  // C23 — same protagonist leads multiple example scenes. SHADOW=major, and it
+  // STAYS shadow. A confirmed true-positive now exists (cast-discipline.test.ts's
+  // Bailey-leads-two-scenes fixture), so the "no TP yet" half of the old shadow
+  // rationale is closed — but the RE-ARM to gating was REJECTED by a full-corpus
+  // sweep (330 shipped chapters): C23 fires on 5 shipped chapters, including
+  // think-and-grow-rich-ch01 where "Edison" legitimately leads two example scenes
+  // (a REAL recurring historical figure, not a templated cast). Enforcing C23
+  // would retroactively fail that reference book — the SC9-reversal trap. It is
+  // gold-clean (0 on daring-greatly + start-with-why) but NOT clean on the wider
+  // shipped corpus, so it can never be a blocker / ENFORCED_MAJOR. The precise,
+  // gold-AND-defect-separable replacements are C24 (cast overflow) and C25
+  // (example↔quiz cast shuffle) below. See FAILURE-MODES.md C23/C24/C25.
   C23: "major",
+  // C24 — cast overflow: >6 distinct named protagonists recur across the example
+  // slate (the "9 interchangeable coaches" regen defect). SHADOW major: zero on
+  // the gold corpus (daring-greatly tops out at exactly 6 recurring actors), fires
+  // on a constructed >6 cast. Not in ENFORCED_MAJOR. See critics/narrative.ts.
+  "C24.cast_overflow": "major",
+  // C25 — example↔quiz cast shuffle: a name that leads ≥2 different example scenes
+  // (already multiple people) also surfaces in a GRADED quiz question (the
+  // Willpower "Bailey is three people across examples+quiz" defect). The
+  // cross-surface half C23 cannot see. SHADOW major: zero on the gold corpus
+  // (which reuses each unique example name in its quiz consistently). See
+  // critics/narrative.ts.
+  "C25.cast_shuffle": "major",
+  // C26 — scene abstraction (advisory). An example scenario whose STAGE is an
+  // abstract system (≥2 distinct UI/form/process tokens: button, sign-in, email,
+  // screen, inbox, form, dashboard, worksheet, …) AND that carries ZERO concrete
+  // grounding (no clock-time, day, year, named place, physical object, body, or
+  // sensory beat) — the regen "Facebook reactivation email / green sign-in button"
+  // defect, where the form is the protagonist. MINOR: this is a STRENGTHEN density
+  // signal that surfaces as QC debt; the gating judgment on example concreteness
+  // stays with the semantic `example_coherence` bar axis, and C2 remains the binary
+  // anchor-presence gate. Calibrated ZERO-FP on the gold corpus (daring-greatly +
+  // start-with-why, 126 scenes) — the grounding-absence guard is what keeps a
+  // screen/email inside a grounded reference scene from tripping it. See
+  // critics/sceneConcreteness.ts + tests/scene-concreteness.test.ts.
+  "C26.scene_abstraction": "minor",
   E4: "major",
   A11: "blocker",
   A12: "blocker",
@@ -728,6 +762,14 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     }
   }
 
+  // ── Cast discipline (C24 / C25): the example-cast failures C8/C22/C23 miss —
+  // a crowded interchangeable cast (>6 named protagonists per chapter), and a
+  // name that denotes several different example people leaking into a graded quiz
+  // question. Both SHADOW majors, calibrated zero-FP on the gold corpus over a
+  // 330-chapter sweep. See critics/narrative.ts.
+  for (const f of checkCastSize(chapter)) push(f.checkId as string, "examples", f.message, f.evidence);
+  for (const f of checkExampleQuizNameConsistency(chapter)) push(f.checkId as string, "quiz", f.message, f.evidence);
+
   // ── SC9 source-grounding: each example scenario must reference at least
   // one proper-noun anchor from the chapter's source sidecar namedExamples.
   // Closes the May 2026 SWW round-1 root cause where scenarios were
@@ -750,6 +792,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizKeyTestimonial(chapter)) {
     push(f.checkId as string, "quiz-key", f.message, f.evidence);
+  }
+  // C26 — scene abstraction (advisory). An example scene staged on an abstract
+  // system surface (form/email/button/screen) with no physical-human grounding.
+  for (const f of checkSceneConcreteness(chapter)) {
+    push(f.checkId as string, "scene-concreteness", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent

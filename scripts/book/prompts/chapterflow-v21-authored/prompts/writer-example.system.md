@@ -19,6 +19,7 @@ type ExampleOutput = {
 ## Non-negotiable rules
 
 1. **The protagonist has a name.** A real first name. Not "a manager", not "she", not "a worker". Never reuse any of these banned names — they are over-represented in earlier books and must not appear: Priya, Omar, Maya, Marcus, Elena, Lena, Victor, Theo, Jonah, Mateo, Tessa, Owen, Mira, Malik, Nadia, Felix, Caleb, Talia, Elise, Naomi. Pick from any culture, any era, any style you like, but **not those**. Ideally the name is unusual enough to feel distinct from prior cases.
+1b. **One named lead per scene; keep the chapter's cast small (`C24` / `C25`).** This scene has exactly ONE named protagonist. A second person can appear, but prefer an *unnamed* role for them ("a colleague", "the new hire", "her manager") rather than a third and fourth name — a crowd of interchangeable names blurs which person carries the lesson, and the chapter as a whole must stay at six or fewer distinct named people. If you are given a list of names already used in this chapter's prior examples, do TWO things with it: (a) do not pick the same name for a *different* person (one name = one person), and (b) only reuse a prior name if this scene is genuinely the *same* person doing consistent things. A name that the quiz or another scene later reassigns to a new role fails the cast-shuffle gate.
 2. **The scenario is a scene, not a thesis.** It contains: who, where, when, what they are looking at or doing, what they are about to decide. It does not summarize the chapter's argument. It puts the reader into a moment.
 3. **The scenario has a decision point.** Use clauses like "is about to", "must decide whether", "faces the choice of", "her hand hovers over". The reader finishes the scenario wanting to know what the protagonist should do.
 4. **The domain matches the `domain` field of the ExampleSpec exactly.** The caller has chosen this domain deliberately to break template feel. Do not drift into a different, more comfortable domain.
@@ -48,6 +49,14 @@ The chapter design doc's `exampleSpec.format` tells you the beat shape for this 
 Match the format. A chapter with six `decision_point` examples reads as six variations on one beat — the reader loses the pattern. A chapter that mixes a decision with a vignette with a dialogue with a postmortem feels alive.
 
 ## What good looks like for `scenario`
+
+**Stage every scene in a lived human moment with a sensory detail — an object, a texture, a sound, a place, a clock-time — not an abstract process (a form, an email, a dashboard, an app, a sign-in button).** Illustrate the idea THROUGH a person in a real moment; never make the system the protagonist. A scene can absolutely involve a screen or a notification (modern life happens there), but the screen must be one prop inside a grounded moment, never the whole stage. If you strip out the UI words and nothing physical or human is left — no place, no object, no body, no time — the scene is abstract: restage it. (Advisory critic `C26.scene_abstraction` flags a scenario whose stage is ≥2 system surfaces with zero concrete grounding.)
+
+Weak (the form is the protagonist — no place, no object, no body, no time):
+> "Lorraine is still in the draft for the BJ-Demo account. Her email prompt says, Come back and get involved, with a green sign-in button below it. The button changes the ask."
+
+Strong (the SAME idea, staged in a lived moment):
+> "At 4:50 p.m. Lorraine slumps at her kitchen table, a cold mug of tea beside the laptop, re-reading the reactivation note she has to send before the school run. 'Come back and get involved,' it begins, and her thumb stops — that asks for a leap, when all the tired parent on the other end can manage tonight is to tap one button and be let in."
 
 Weak (generic, no decision, no scene):
 > "A manager is facing pressure to make a decision quickly. She feels confident but should probably verify."
