@@ -20,7 +20,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
 import { findEnumerationMismatch, checkNamedEnumeration } from "../src/critics/namedEnumeration.js";
-import { runShipGate } from "../src/critics/finalGate.js";
+import { runShipGate, ENFORCED_MAJOR } from "../src/critics/finalGate.js";
 import type { ChapterV21 } from "../src/types.js";
 
 const TRUE_POSITIVES: Array<[string, string]> = [
@@ -64,7 +64,7 @@ test("NE1: checkNamedEnumeration flags a planted mismatch as a MAJOR; a clean ch
   assert.equal(checkNamedEnumeration(makeChapter("zz-ne-clean", 2)).length, 0, "an unplanted makeChapter must be NE1-clean");
 });
 
-test("NE1: the ship gate surfaces a planted mismatch as a MAJOR (shadow — not a blocker)", () => {
+test("NE1: the ship gate surfaces a planted mismatch as a MAJOR (SHADOW — not enforced, not a blocker)", () => {
   const ch = makeChapter("zz-ne-gate", 3, {
     overrides: { breakdown: { fastRead: "A short clean opening tier with ordinary prose.", deepRead: "Remember the four pillars: trust, candor, repair.", fullRead: "The longest tier expands the idea with neutral exposition throughout the section here." } as any },
   });
@@ -73,6 +73,9 @@ test("NE1: the ship gate surfaces a planted mismatch as a MAJOR (shadow — not 
     report.majors.some((m) => m.catalogId === "NE1.named_enumeration_mismatch"),
     `expected an NE1 ship-gate major; got: ${report.majors.map((m) => m.catalogId).join(", ")}`,
   );
+  // NE1 stays SHADOW until it earns a 2nd true positive (only 1 so far: the-slight-edge ch13) —
+  // the registry's >=2-TP rung-4 bar. So it must NOT be enforced and must never be a blocker.
+  assert.ok(!ENFORCED_MAJOR.has("NE1.named_enumeration_mismatch"), "NE1 is SHADOW (1 TP < the >=2-TP bar) — not yet enforced");
   assert.ok(!report.blockers.some((b) => b.catalogId === "NE1.named_enumeration_mismatch"), "NE1 is SHADOW — never a blocker");
 });
 

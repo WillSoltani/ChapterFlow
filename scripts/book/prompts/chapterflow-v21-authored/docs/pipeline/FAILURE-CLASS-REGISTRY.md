@@ -21,7 +21,7 @@ its rung's bar is met.
 | **1 — Prevent** | Confirmed **twice** (same class, different books/chapters) | Add a prevention plan or authoring guidance — an allocator (`src/librarian/*Plan.ts`) or a writer card line — so the defect can't be dealt in the first place. |
 | **2 — Shadow** | **Zero false positives on the clean corpus** | Add a SHADOW major — it *surfaces* as a major but does NOT fail the write gate. Production still requires the major to be fixed or closed by a content-bound waiver. See the `author-check` shadow rollout (`authoringContract.ts`) and the BP shadow majors (`bookGate.ts`). |
 | **3 — Write-barrier actionable** | Repeated **true** positive **and** low FP, still zero on clean | Make it block the **write self-gate** (re-dispatch the offender) before QC. Code: `WRITE_BARRIER_ACTIONABLE_PREFIXES` in `bookGate.ts` (currently `BP28`–`BP31`). |
-| **4 — Hard blocker** | See the gate below — all three must hold | Add the catalog id to `ENFORCED_MAJOR` (`finalGate.ts`). This FAILs the chapter's write gate. **`ENFORCED_MAJOR` is currently empty — nothing has met the bar.** |
+| **4 — Hard blocker** | See the gate below — all three must hold | Add the catalog id to `ENFORCED_MAJOR` (`finalGate.ts`). This FAILs the chapter's write gate. **`ENFORCED_MAJOR` holds `EW1`, `SEAM1`, `SEAM2` — the shape-tells that cleared all three bars. `NE1` (1 TP) and `GN1` (v2-FP) remain at rung ≤2.** |
 
 ### The hard-blocker gate (rung 4)
 
@@ -34,8 +34,10 @@ its rung's bar is met.
 3. **At least 2 true positives.** It has caught a *real* defect in ≥2 distinct runs — one anecdote
    is not a class.
 
-If any of the three fails, the class stays at rung ≤3. This is the anti-overfit valve: it is the
-reason `ENFORCED_MAJOR` is empty and the BP family stops at rung 3 (write-barrier actionable).
+If any of the three fails, the class stays at rung ≤3. This is the anti-overfit valve: it is why
+`NE1` (only 1 TP) and `GN1` (v2-FP risk, real path unproven on the synthetic clean corpus) stay
+shadow, and the BP family stops at rung 3 (write-barrier actionable), even though all three are
+zero-FP on the clean corpus.
 
 ## Registry
 
@@ -130,6 +132,69 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
   measured clean floors (MIN_NAMED=2, MIN_FACTS=3, figure-concentration ≥60% vs the clean ~15%).
 - Caught by: `source-fit.test.ts` (a monotonous/thin fixture reads RISKY; a varied one reads OK).
 
+**FC-2026-06-26-008 — invented witness (the "Piper move", `EW1`)**
+- Book: the-willpower-instinct · Stage: write
+- Failure: an INVENTED character cast as a research subject inside a real study ("participant
+  Lawrence rubs the cup…") — fabrication wearing a finding's costume; the dominant residual
+  `factual_accuracy` CORRUPTION on the willpower run (6 instances).
+- Fix type: deterministic gate (`checkInventedWitness`, `evidenceWitness.ts`) — the `participant/
+  subject <GivenName>` cast grammar, the provably-clean half; the subtler actor-in-a-named-study
+  shape is writer-disposition only (`evidence-audit` + STEP-2 R7).
+- Status: **hard blocker** (`ENFORCED_MAJOR`). FP-risk: **low** — a pure grammar tell; real research
+  names the researcher and anonymizes subjects ("Participant A").
+- Rung-4 evidence: clean corpus 0; gold 0; **6 TPs** (willpower ch02/04/06/07/10), 0-FP across 361 ch
+  + gold + 3 subsequent live runs.
+- Caught by: `evidence-witness.test.ts`, `enforced-major.test.ts`.
+
+**FC-2026-06-26-009 — mechanical corruption seams (`SEAM1`/`SEAM2`)**
+- Stage: write (generation artifact) · found via a 130-book corpus eval
+- Failure: a stuttered word ("Emma Tries **side side** room", `SEAM1`) or a verbatim ≥10-word run
+  stamped ≥3× (a templated loop, `SEAM2`) — mechanical word-salad in reader prose, not a quality miss.
+- Fix type: deterministic gate (`checkMechanicalSeams`, `mechanicalSeam.ts`): adjacent lowercase
+  content-word dup (hyphen-compound + legit-reduplication guards) + a ≥10-word n-gram repeated ≥3×
+  (the 10-word window excludes deliberate anaphora).
+- Status: **hard blocker** (`ENFORCED_MAJOR`). FP-risk: **low** — broken text is never good prose.
+- Rung-4 evidence: clean corpus 0; gold 0; **5 TPs each** across distinct shipped books (SEAM1:
+  ego-is-the-enemy, the-black-swan, the-gift-of-fear; SEAM2: the-art-of-war, ultralearning), 0-FP
+  across all 132 committed packages + gold.
+- Caught by: `mechanical-seam.test.ts`, `enforced-major.test.ts`.
+
+**FC-2026-06-26-010 — named-enumeration miscount (`NE1`)**
+- Book: the-slight-edge · Stage: write
+- Failure: a named fixed-size set enumerated with the wrong count ("the seven habits: show up, be
+  consistent, pay the price" — 3 framed as 7), a `factual_accuracy` CORRUPTION.
+- Fix type: deterministic gate (`checkNamedEnumeration`, `namedEnumeration.ts`) — tight colon-list
+  count-mismatch (short conjunction-free items; partial/illustrative/different-noun/explanation guards).
+- Status: **shadow** (rung 2). FP-risk: **low** — 0 across 361 ch + gold. Held at shadow because it
+  has only **1 TP** (ch13); the rung-4 ≥2-TP bar ("one anecdote is not a class") is not yet met.
+- Caught by: `named-enumeration.test.ts`.
+
+**FC-2026-06-26-011 — ungrounded number (`GN1`)**
+- Stage: write
+- Failure: an invented statistical figure (percentage / multiplier / magnitude) in reader prose whose
+  value appears nowhere in the chapter's source-v2 sidecar.
+- Fix type: deterministic gate (`checkGroundedNumbers`, `groundedNumbers.ts`), v2-gated (v1 chapters
+  skip → cannot brick).
+- Status: **shadow** (rung 2). FP-risk: **medium** — a legitimate figure a writer derives or rounds
+  may be absent from the sidecar. Held at shadow because the synthetic clean corpus has no v2 sidecar,
+  so its real FP path is unproven; needs a LIVE v2 run proving 0-FP + ≥2 distinct TPs.
+- Caught by: `grounded-numbers.test.ts`.
+
+**FC-2026-06-26-012 — try-this-now opener reuse (`BP33`)**
+- Book: the-slight-edge · Stage: write (book-level)
+- Failure: a shared try-this-now opening clause (normalized 5-word prefix) across ≥2 chapters
+  ("Before you send your next reply…") — the separable OPENER subset of the `repeated_unit` family.
+- Fix type: deterministic book-gate shadow major (`checkBookTryThisNowOpenerReuse`,
+  `bookRepetition.ts`), promoted to **write-barrier actionable** (`WRITE_BARRIER_ACTIONABLE_PREFIXES`
+  in `bookGate.ts`) — a BP33 finding re-dispatches the offending chapters before QC.
+- Status: **rung 3 — write-barrier actionable** (NOT a rung-4 hard blocker; the broader
+  scene/skeleton families it belongs to legitimately reuse shells, the SC9 caution). FP-risk: **low**.
+- Rung-3 evidence: clean corpus 0; gold 0 (daring-greatly 7 ch, start-with-why 14 ch); repeated TPs
+  (the-slight-edge 3 + reuse across multiple catalog books). The OPENER is deal-distinct: gold has
+  ZERO repeated openers, so it is separable where the broader families are not.
+- Caught by: `book-repetition.test.ts` (fires on a shared opener; silent on distinct; ZERO on
+  clean + gold).
+
 ---
 
 ## Gold-corpus regression — how to check the rung-2/3/4 bars
@@ -166,8 +231,8 @@ shared by the whole battery. (Books absent on a machine SKIP loudly, never silen
   `majorDisposition.ts` finds a reviewer-attributed, content-bound waiver for that exact
   finding/content. This registry must agree with the write-gate mechanisms. A contract test
   (`tests/docs-contract.test.ts`) asserts the registry documents the hard-blocker gate **and**
-  that `ENFORCED_MAJOR` is still empty — so a future promotion forces a co-update of both the
-  code and this ledger.
+  every class currently in `ENFORCED_MAJOR` (by catalog prefix) — so a future promotion (or
+  reversion) forces a co-update of both the code and this ledger.
 - When a class is promoted, move it **one rung** and record the evidence (which corpus, how many
   TPs). Skipping rungs is how a pipeline overfits.
 - **Every class carries a `Caught by:` test** — the fault-injection inventory. The calibration

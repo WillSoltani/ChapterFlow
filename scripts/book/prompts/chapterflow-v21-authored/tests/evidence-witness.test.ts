@@ -29,7 +29,7 @@ import {
   checkInventedWitness,
   auditChapterWitnesses,
 } from "../src/critics/evidenceWitness.js";
-import { runShipGate } from "../src/critics/finalGate.js";
+import { runShipGate, ENFORCED_MAJOR } from "../src/critics/finalGate.js";
 import type { ChapterV21 } from "../src/types.js";
 
 // ── The real defect (quoted / minimally reconstructed from the willpower QC round) ──
@@ -94,13 +94,13 @@ test("EW1: checkInventedWitness flags a planted participant cast as a MAJOR; a c
   });
   const findings = checkInventedWitness(ch);
   assert.ok(findings.some((f) => f.checkId === "EW1.invented_witness"), "expected an EW1 finding");
-  assert.ok(findings.every((f) => f.severity === "major"), "EW1 findings are shadow-major");
+  assert.ok(findings.every((f) => f.severity === "major"), "EW1 findings are major (enforced)");
 
   const clean = makeChapter("zz-ew-clean", 2);
   assert.equal(checkInventedWitness(clean).length, 0, "an unplanted makeChapter must be EW1-clean");
 });
 
-test("EW1: the ship gate surfaces a planted cast as a MAJOR (shadow wiring — not a blocker)", () => {
+test("EW1: the ship gate surfaces a planted cast as an ENFORCED MAJOR (fails the write self-gate, never a blocker)", () => {
   const ch = makeChapter("zz-ew-gate", 3, {
     overrides: { breakdown: { fastRead: "A short clean opening tier with ordinary prose and no named subject.", deepRead: "Across the room, participants Rachel and William mark the shortlist form under time pressure.", fullRead: "The longest tier expands the idea with neutral exposition and zero research-subject framing throughout." } as any },
   });
@@ -109,9 +109,11 @@ test("EW1: the ship gate surfaces a planted cast as a MAJOR (shadow wiring — n
     report.majors.some((m) => m.catalogId === "EW1.invented_witness"),
     `expected an EW1 ship-gate major; got majors: ${report.majors.map((m) => m.catalogId).join(", ")}`,
   );
+  // EW1 is ENFORCED (a major that fails runShipGate().passed) but is NEVER a hard blocker.
+  assert.ok(ENFORCED_MAJOR.has("EW1.invented_witness"), "EW1 is enforced (must fix before submit)");
   assert.ok(
     !report.blockers.some((b) => b.catalogId === "EW1.invented_witness"),
-    "EW1 is SHADOW — it must never be a blocker (cannot brick a ship)",
+    "EW1 is a MAJOR, not a hard blocker (enforcement fails .passed without being a blocker)",
   );
 });
 

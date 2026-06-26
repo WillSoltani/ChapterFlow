@@ -465,23 +465,37 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
  * `runShipGate().passed` (the per-chapter write self-gate), promoting them from
  * "surfaced QC debt" to "must fix before submit".
  *
- * It is **deliberately empty.** The audit proposed enforcing the high-frequency
- * REVISE drivers (C2/C3/E1/E4/E7/A13/C23) here, but a calibration over the 5 clean
- * reference books REFUTED that: every one of those critics fires on clean books
- * that shipped — often HARDER than on the book they were meant to catch. E4 fires
- * at 50% of paragraphs on a clean stillness chapter vs 43% on the-daily-stoic
- * defect; C23 fires on a clean stillness chapter doing the exact thing the stoic
- * defect does. There is no threshold that fires on the defect but not the clean
- * corpus, so enforcing any of them would retroactively fail reference-quality
- * books — the SC9-reversal trap. Those majors are handled by PREVENTION (the
- * writer cards / STEP-2 "write-time-preventable majors") + the model QC, which
- * judges them in context the way a deterministic gate cannot.
+ * The bar is high and the calibration is MECHANICAL: an id belongs here ONLY after
+ * it fires ZERO times across the clean + gold reference corpus (the enforced-major
+ * calibration test). The STYLE-frequency majors the original audit proposed
+ * (C2/C3/E1/E4/E7/A13/C23) STAY EXCLUDED — a calibration refuted them: each fires on
+ * clean reference books that shipped (E4 at 50% of paragraphs on a clean stillness
+ * chapter vs 43% on the-daily-stoic defect; C23 on a clean stillness chapter doing
+ * the exact stoic defect) — the SC9-reversal trap. They remain PREVENTION + model QC.
  *
- * An id belongs here ONLY after it is shown to fire ZERO times across the clean
- * corpus (guarded by the enforced-major calibration test). Adding one is then a
- * one-line change. Until a critic is made genuinely precise, this stays empty.
+ * What IS enforced: the SHAPE-BASED, genuine-defect-only critics that clear all
+ * three rung-4 bars (clean-zero, gold-zero, AND ≥2 true positives) — an
+ * invented-witness cast (EW1: 6 TPs on the willpower run, 0-FP across 361 ch + gold
+ * + 3 live runs) and the mechanical seams (SEAM1 stutter / SEAM2 verbatim
+ * triple-repeat: 5 TPs each across distinct shipped books, 0-FP across 132 packages
+ * + gold). Each is a pure GRAMMAR/SHAPE tell, so enforcing it shifts the defect block
+ * from a QC-repair round to the write self-gate (zero-token prevention) without
+ * risking a clean book. See docs/pipeline/FAILURE-CLASS-REGISTRY.md.
+ *
+ * NOT yet enforced (held at SHADOW until the rung-4 bar is met):
+ *   - NE1 (named-enumeration miscount): 0-FP everywhere but only ONE true positive
+ *     (the-slight-edge ch13) — one anecdote is not a class; needs a 2nd-run TP.
+ *   - GN1 (ungrounded number): v2-gated, so the synthetic clean corpus (no v2
+ *     sidecar) cannot exercise its real FP path, and its FP risk is higher (a
+ *     legitimate figure a writer derives/rounds may be absent from the sidecar).
+ *     Needs a LIVE v2 run proving 0-FP + ≥2 distinct TPs.
+ * Adding an id is a one-line change, guarded by the calibration test above.
  */
-export const ENFORCED_MAJOR = new Set<string>([]);
+export const ENFORCED_MAJOR = new Set<string>([
+  "EW1.invented_witness",
+  "SEAM1.adjacent_duplicate_word",
+  "SEAM2.verbatim_repetition",
+]);
 
 /**
  * QC_ENFORCED_MAJORS — retained as a calibration sentinel for the old QC-specific
