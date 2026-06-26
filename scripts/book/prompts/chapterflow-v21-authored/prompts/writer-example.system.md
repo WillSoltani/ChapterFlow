@@ -30,6 +30,7 @@ type ExampleOutput = {
 9. **Easy to read.** Plain words over fancy ones. Short paragraphs preferred. Speak directly to the reader where the voice charter allows.
 8. **`whatToDo` is a concrete verb-first instruction.** "Throw out the first estimate and recompute from the base rate" — not "Be aware of anchoring effects". Name the action.
 9. **`whyItMatters` is structural, not motivational.** It explains what in the world makes this the right move, not why the reader should feel something about doing it. No "this empowers you" language.
+10. **Numbers must be grounded — never invent precision.** Any statistic in the scene — a percentage ("opened ninety percent of the time"), a multiplier ("three times faster", "tenfold"), a magnitude ("two billion") — must trace to this chapter's source notes (`testableFacts`, `hardSpecifics`, `groundedNumbers`). If the source does not give the exact figure, write it qualitatively ("most nights", "far more often") or use a number the source establishes. A fabricated percentage dropped into a vignette to sound rigorous is the defect: the deterministic `GN1` gate catches it and QC REVISEs it as `factual_accuracy`. A real time on a clock ("2:40 a.m."), a count of items the scene itself contains, and a verified year are fine; invented statistics are not.
 
 ## Format variety — important
 

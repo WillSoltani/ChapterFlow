@@ -19,7 +19,7 @@ import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNo
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNameCommonality, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
 import { finding } from "./shared.js";
-import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
+import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable, checkQuizScenarioNovelty, checkQuizKeyEntity } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
@@ -41,11 +41,12 @@ import {
   checkChapterIdentifierTokens,
   checkChapterJammedNouns,
 } from "./antiSalting.js";
-import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
+import { checkBreakdownCrossTierVerbatim, checkCrossTierContentOverlap } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
+import { checkGroundedNumbers } from "./groundedNumbers.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -53,6 +54,7 @@ import {
   checkCrossTierPhraseUniqueness,
   checkOpeningConcreteness,
   checkParagraphStartVariety,
+  checkSentenceLengthVariance,
   checkTiersProgressive,
 } from "./prose.js";
 import { checkReadingLevel } from "./readingLevel.js";
@@ -255,6 +257,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // reads fully abstract. Never gates — word choice is contextual and a
   // conceptual book may state an abstract truth (see critics/pedagogy.ts).
   "D3.takeaway_distillable": "minor",
+  // D4 — quiz tests recall of a chapter character, not transfer ("what did
+  // Deborah conclude…"). Implements catalog D4 (was prompt-only). D6 — a keyed
+  // answer grounded in a same-chapter character the question never introduces
+  // (NEW id; D5 is taken by implementation-plan-generic). Both MAJOR in shadow:
+  // calibrated zero-FP on the gold corpus (daring-greatly + start-with-why), not
+  // yet in ENFORCED_MAJOR — promote to blocker only via the gold proof. See
+  // critics/pedagogy.ts (checkQuizScenarioNovelty / checkQuizKeyEntity).
+  "D4.recycled_scenario": "major",
+  "D6.key_references_chapter_entity": "major",
   // Reading level (E)
   E1: "major",
   // E2 — tier progression. Upgraded to blocker May 2026 after the Start With Why
@@ -264,6 +275,13 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // pedagogical layering — a structural failure, not a stylistic one.
   E2: "blocker",
   E3: "minor",
+  // E8 — monotone SHORT-sentence rhythm (the short-side twin of checkCadenceVariance's
+  // long-drone arm). Fires on a run of ≥7 short, same-length sentences that reads as a
+  // list. SHADOW major: surfaces as QC debt but does not block (ENFORCED_MAJOR stays
+  // empty). Calibrated zero-FP on the gold corpus (daring-greatly + start-with-why) —
+  // see the CALIBRATION NOTE in critics/prose.ts (the CoefVar floor from the original
+  // spec was refuted by the real gold and dropped in favor of a short-AND-uniform run).
+  "E8.monotone_cadence": "major",
   // E7 — plain language: simple vocabulary + short sentences across ALL
   // reader-facing fields (not just the breakdown tiers E1 scores). See
   // critics/plainLanguage.ts. complex_word is advisory (word choice is
@@ -319,6 +337,13 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // measure-what-matters, the-12-week-year) — true positives, not noise.
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
+  // B15 — cross-tier paraphrase-restate (deepRead/fullRead or fastRead/deepRead
+  // restate the same ideas with reworded connectives, below BP24's verbatim
+  // floor). ADVISORY (minor): a heuristic content-lemma-Jaccard proxy for the
+  // prose_coherence semantic axis, calibrated zero-FP on the gold corpus (real
+  // gold tops out at 0.31, a restate ~0.52; threshold 0.42). Surfaces as QC
+  // debt; never blocks. See intraBookFieldSimilarity.ts:checkCrossTierContentOverlap.
+  "B15.cross_tier_paraphrase": "minor",
   // BP25 — statistical correct-is-longest rate (the distractor tell).
   // ADVISORY: catalog baseline is 68% incl. gold; threshold 0.78 fires only
   // on the worst offenders (drive 94%). Refresh target ≤45% lives in
@@ -383,6 +408,14 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // critics/evidenceIntegrity.ts + tests/evidence-integrity.test.ts.
   "EI1.testimonial_as_evidence": "blocker",
   "EI2.quiz_key_testimonial": "blocker",
+  // GN1 — an ungrounded statistical figure (a percentage, multiplier, or
+  // million/billion magnitude) in reader prose whose value appears nowhere in the
+  // chapter's source-v2 sidecar. SHADOW = major: high-FP risk by nature, so it is
+  // v2-gated (v1 chapters skip → cannot brick) and stays advisory until a gold
+  // proof clears it for blocker promotion. The complement to the semantic
+  // factual_accuracy axis for the loudest invented-precision case.
+  // See critics/groundedNumbers.ts + tests/grounded-numbers.test.ts.
+  "GN1.ungrounded_number": "major",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -701,6 +734,9 @@ export function runShipGate(chapter: ChapterV21): GateReport {
     for (const f of checkCadenceVariance(tierText, `breakdown.${tierName}`)) {
       push("B7", `breakdown.${tierName}`, f.message);
     }
+    for (const f of checkSentenceLengthVariance(tierText, `breakdown.${tierName}`)) {
+      push("E8.monotone_cadence", `breakdown.${tierName}`, f.message, f.evidence);
+    }
     for (const f of checkClosingLineLandings(tierText, `breakdown.${tierName}`)) {
       push("B7", `breakdown.${tierName}`, f.message);
     }
@@ -826,6 +862,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // clean instant success, with no friction-bearing scene anywhere in its slate.
   for (const f of checkOutcomeVariety(chapter)) {
     push(f.checkId as string, "outcome-variety", f.message, f.evidence);
+  }
+  // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
+  // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);
+  // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
+  for (const f of checkGroundedNumbers(chapter)) {
+    push(f.checkId as string, "grounded-numbers", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
@@ -962,6 +1004,16 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   for (const f of checkWithinChapterQuizTemplates(chapter)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
+  // D4 / D6 — quiz transfer & key-novelty. D4: a prompt that tests recall of a
+  // chapter character ("what did Deborah conclude…") instead of a fresh transfer
+  // scenario. D6: a keyed answer grounded in a same-chapter character the question
+  // never introduces. Both MAJOR (shadow); see critics/pedagogy.ts.
+  for (const f of checkQuizScenarioNovelty(chapter)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
+  }
+  for (const f of checkQuizKeyEntity(chapter)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
+  }
 
   // ── Anti-salting critics (AS1-AS3, chapter-level) ───────────────────────
   // Catches the May 2026 Covey incident: writer agents inserting identifier
@@ -986,6 +1038,15 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // explicitly by computing the longest contiguous common substring between
   // each tier pair.
   for (const f of checkBreakdownCrossTierVerbatim(chapter)) {
+    push(f.checkId as string, "breakdown.cross-tier", f.message, f.evidence);
+  }
+
+  // ── B15 — cross-tier paraphrase-restate (the case BP24 is blind to) ─────
+  // BP24 fires on a ≥150-char verbatim block; once the writer reworded the
+  // connectives, no verbatim block survives but the reader still gets the
+  // same ideas twice. B15 flags high content-lemma overlap below BP24's
+  // floor as ADVISORY QC debt (minor — never blocks).
+  for (const f of checkCrossTierContentOverlap(chapter)) {
     push(f.checkId as string, "breakdown.cross-tier", f.message, f.evidence);
   }
 

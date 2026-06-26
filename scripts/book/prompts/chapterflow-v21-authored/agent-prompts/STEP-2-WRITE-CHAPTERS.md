@@ -325,6 +325,63 @@ answer must derive from a verifiable source fact (`testableFact`) — never from
 said." If the only support for a keyed choice is a first-name account, the question is unsound: re-key
 it to a `testableFact` or rewrite the claim.
 
+**R8 — Grounded numbers: never invent precision to sound rigorous (deterministic `GN1`, the
+strengthened Step 0 numbers rule).** Every number in reader prose must trace to a `testableFact`,
+`hardSpecific`, or `groundedNumber` in THIS chapter's sidecar — or be written qualitatively. A
+fabricated percentage or multiplier is the loudest version: *"The notebook gets opened ninety percent
+of the time, which is roughly ninety percent more often than the old planner"* invents two statistics
+that no source establishes. `GN1` fires on a **statistical figure** — a percentage (`90%`, "ninety
+percent"), a multiplier (`3x`, "tenfold"), or a million/billion magnitude — whose value is in no
+source note. It reads as `factual_accuracy` corruption at the blind QC read.
+- **Grounded → use the exact figure.** If the sidecar establishes it ("37 to 12 reopenings", "41
+  percent fewer handoff errors", a verified year), cite it precisely. Years and the chapter's own
+  counts are exempt.
+- **Not grounded → go qualitative.** "most nights", "far more often", "a sharp drop", "several times
+  over" — never a manufactured percentage. A precise-looking number you cannot point to a source for
+  is worse than an honest qualitative phrase.
+- This is the SAME rule as Step 0's numbers line, now load-bearing: `GN1` makes it deterministic, and
+  the blind confirm read REVISEs the survivors as `factual_accuracy`.
+
+**R9 — Contested science: never state a disputed finding as settled law (`factual_accuracy`).** A claim
+can be perfectly faithful to the source and still be shaky in its field. If the sidecar marks a
+`testableFact` with `replicationStatus: "mixed"`, `"contested"`, or `"failed"`, you may use it **only**
+with a calibrated hedge or reframed as a heuristic — never as flat fact. The defect is the costume of
+certainty over disputed science: *"Willpower runs on a fixed glucose budget; once it is spent, you will
+give in"* stated as mechanism, when ego-depletion/glucose is one of psychology's most contested findings.
+- **Hedge it.** "the evidence here is mixed", "some studies question this", "one influential account
+  holds that…", "this idea is debated, but a useful way to think about it is…". Name the standing, then
+  teach the takeaway.
+- **Or reframe as a heuristic.** Strip the mechanistic certainty and keep the practical move: not "your
+  glucose budget is depleted" but "when you have been resisting all day, the next refusal feels harder —
+  plan around that." A heuristic the reader can use does not need a contested mechanism to stand.
+- **`failed`** claims: drop them, or frame explicitly as a once-popular idea that did not hold up — never
+  as live science.
+- Absent/`robust` ⇒ state it plainly; do NOT bolt hedges onto solid science (that is its own defect, and
+  it reads as no-confidence prose). This is the writer half of [Finding #2]; the WT-E `factual_accuracy`
+  rubric scores the survivors at the blind read.
+
+**R10 — Vary the sentence rhythm; never write a list (`E8`, the short-side twin of the long-drone
+check).** A run of short, same-length declaratives reads as a list, not prose — the new-book defect is
+choppy/listy breakdowns ("Defaults handle small repeat calls. Routines keep daily choices from
+reopening. Option limits stop search loops. Time blocks protect deep work."). Every paragraph needs at
+least one short (<6-word) punch AND one long (>20-word) flowing sentence; the lengths must differ.
+Target the rhythm of the reference books — a short verdict landing *after* a long clause-bearing
+sentence — not uniform brevity. The deterministic critic fires on ≥7 short (≤9-word) same-length
+sentences in a row; the fix is never to lengthen every sentence, but to break the run with a long
+flowing one and let the cadence move. (This is the inverse of the ≥25-word drone — both kill rhythm.)
+
+**R11 — Match length to substance; never pad to the ceiling (`E9` / #12, low idea-density).**
+The char floors (`A15`) are a *minimum*, not a target. There is no upper limit and no deterministic
+gate that rewards length — so do not stretch one idea across many paragraphs to hit a number. If one
+idea fills the tier, three varied examples beat six redundant ones; cut to the char floor, do not pad
+up to a ceiling. The tell is a paragraph that adds words but no new information: the reader has already
+learned everything in it. Every paragraph must earn its length with a NEW move — a fresh scene, the
+mechanism, an edge case, a limit — not a reworded restatement of the one above it. Low
+new-idea-per-paragraph density reads as filler; there is no char count to hide behind, and the
+`prose_coherence` bar (catalogued `MB4`/#12) judges it directly. (Distinct from `R10`: that is sentence
+*rhythm* within a paragraph; this is *idea* density across the tier. Distinct from the cross-tier
+restate rule in Step 5: that is layering between tiers; this is padding inside one.)
+
 ---
 
 ## False-positive allowances (write freely)
@@ -596,15 +653,18 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 9. **Voice charter consistency.** Match the bibliography's `authorVoice.register`. If `plainspoken`, don't drift into `literary` mid-chapter.
 10. **Punch-first ordering.** Order the beats inside a tier: the claim that lands → the reader's recognition ("you've felt this") → why it works → the nuance/limit → the move. Lead with the truth the reader feels, THEN qualify. The nuance stays IN the tier — never drop it (honesty is non-negotiable, and the QC sweep reads a dropped limit as overclaim) — it just comes after the punch, not before it. The slow build that hedges for two sentences before saying anything is the failure.
 11. **Citations live in the DEEP tiers.** Keep `fastRead` (and the hook + counterintuition) citation-free and plain — no named researchers, study years, journals, or framework name-drops up front. Lead with the plain idea ("Your brain is bad at being a cabinet, so the room has to carry some memory for you"); name Clark, Norman, or Allen only in `deepRead` / `fullRead`, and even there cite the FINDING, not the artifact (per the no-author-surname-verb rule + SL5). The reader earns the scaffolding after the plain idea, never before it. Cap the named sources a single chapter introduces — a chapter that name-drops five thinkers reads like school (concept load).
+12. **Length follows substance — never pad to the ceiling (`R11` / `E9`).** The char floor is a minimum, not a target; there is no upper limit. If the idea is fully said, stop — do not stretch it across more paragraphs to look thorough. Every paragraph must add a NEW move (scene, mechanism, edge case, limit), never a reworded restatement of the one above. Padding to length reads as filler; the `prose_coherence` bar judges it.
 
 **No banned phrases anywhere in the breakdown:**
 `boundary condition`, `keeps the chapter honest`, `keeps the chapter from`, `strips away`, `is not decorative`, `is not magic`, `operating logic`, `tidy explanation`, `selective suspicion`, `diagnostic discipline`, `durable practice`, `usable lesson`, `reframes behavior`, `installs the operational`, `On a note beside the work, write the reminders plainly`, `That matters because` (over 10 occurrences per book caps as MAJOR), `turns out to be`.
 
-**What each tier does:**
+**What each tier does (the tier-job contract — BUILD, don't restate):**
 
 - **fastRead** — scene + rule. One vignette, then the move, end on the takeaway. The 2-minute tier stays NAME-FREE: no researcher, study year, or framework name here (not "David G. Myers called this the American Paradox") — citations belong in deepRead/fullRead (rule 11). Lead with the plain idea and the scene.
-- **deepRead** — mechanism + second scene. Why the move works + a second example that stress-tests it.
-- **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, and a closing line.
+- **deepRead** — mechanism + second scene. Why the move works + a second domain/example that stress-tests it. New ground, not a longer fastRead.
+- **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, the reversal, and a closing line. New ground again.
+
+**Each tier must add a NEW concept, scene, or nuance — never re-explain the prior tier in reworded sentences.** A restate keeps every domain noun and just changes the connectives; the verbatim gates (E2/B8/BP24) won't catch it because no words match word-for-word, but `B15` (cross-tier content-lemma overlap) and the `prose_coherence` axis will. The test: list the distinct ideas/scenes in each tier — if deepRead's list is fastRead's reworded, or fullRead's is deepRead's reworded, you have restated. Fix by adding what's missing (the mechanism, the second domain, the limit), not by repainting what's already there.
 
 ### Step 6 — `examples` (6-9 per chapter; A16 gate floor is 6 — fewer BLOCKS)
 
@@ -675,6 +735,8 @@ labels telegraph the key by valence and REVISE the quiz_distractor_quality axis)
 **Non-negotiable rules:**
 
 1. **Application, not recall.** Forbidden stems: `What does the chapter say`, `According to the author`, `What is the main point of`, `How does the book describe`, `In this chapter`, any `Chapter N`, any author-surname-verb. Every prompt is a scenario stem the reader must reason about.
+
+1.5. **D4/D6 — Transfer to a NEW scene; never recall the chapter's cast.** Each question is a fresh situation the reader has not met in this chapter. **Never ask the reader to recall what one of the chapter's own characters said, did, or concluded** — `What did Deborah conclude…`, `According to Marcus…`, `What does Ben's story show…` are recall, not transfer, and the deterministic critic `checkQuizScenarioNovelty` fires `D4.recycled_scenario` when a recall frame points at a name from this chapter's examples. (Reusing a character's NAME as the actor of a genuinely new situation is fine; turning the question into a memory check about the chapter's narrative is not.) **The correct answer must derive from a verifiable source fact stated in general terms, never from "what a character in the chapter did"** — a keyed choice that names a chapter character the question's own prompt never introduced fires `D6.key_references_chapter_entity`. Re-key it to the source fact (real cited entities the whole chapter is built on — `Apple`, `Ben Comen` — are fine; an invented per-scene character used as the answer's authority is not).
 
 2. **Scenario stems.** Good: "A hiring manager scoring resumes after a late dinner notices that one candidate…". Bad: "Which of these is a heuristic?".
 
@@ -807,6 +869,7 @@ the headline does not count, and it matches the exit code):
 | AS11 | A breakdown paragraph (≥60 chars) appears verbatim in any prior chapter's breakdown | Rewrite the paragraph from THIS chapter's source notes. Breakdown paragraphs cannot be reused — every chapter's reader sees them in sequence and the templating becomes obvious. |
 | AS12 | Quiz `correctIndex` sequence identical to any prior chapter's | Vary the answer positions per chapter. Pick each slot based on which distractor is strongest for THIS question, not by following a fixed rotation like [0,1,2,0,1,2,…]. |
 | BP24 | Breakdown tier ≥150 chars verbatim shared with another tier of the same chapter | Tiers must LAYER content. Rewrite the longer tier to extend the shorter one with new examples and mechanism, not duplicate prose. |
+| B15 (advisory) | Two tiers share a high fraction of content vocabulary with no verbatim block — a paraphrase-restate (same ideas, reworded connectives) | Don't reword the prior tier; BUILD on it. Give the later tier a new concept, scene, or nuance (deepRead = mechanism + second domain; fullRead = edge cases + failure mode + reversal). |
 | E1 | Reading level too academic | Use plainer words |
 | E2 (blocker) | Two of the three breakdown tiers open with an identical first sentence | Each tier must open with a different first sentence. fastRead opens with the scene + rule. deepRead opens with mechanism. fullRead opens with a third angle or scope-of-applicability frame. |
 | SC9 (major) | This chapter's example scenario contains no proper-noun anchor from the source sidecar (namedExamples, centralConcept, hardEdge, paraphraseNotes) | Rewrite the scenario to reference a real entity from THIS chapter's source notes — a company, person, product, place, or framework name. Invented characters at invented locations drift into templating because they aren't tethered to source material. |

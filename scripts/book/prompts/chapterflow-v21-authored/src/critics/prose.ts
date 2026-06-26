@@ -9,8 +9,9 @@
  */
 
 import { CriticFinding } from "../types.js";
-import { finding } from "./shared.js";
+import { finding, truncate } from "./shared.js";
 import { splitSentences } from "./textUtils.js";
+import { contentLemmaSet } from "./intraBookFieldSimilarity.js";
 
 /**
  * Concrete-opener ratio across paragraphs.
@@ -169,6 +170,192 @@ export function checkCadenceVariance(text: string, unitLabel: string): CriticFin
     )];
   }
   return [];
+}
+
+// ── Monotone SHORT-sentence rhythm (E8) — the short-side twin of checkCadenceVariance ──
+//
+// checkCadenceVariance (above) catches the long-drone failure: a run of ≥25-word
+// sentences. The OPPOSITE failure — choppy/listy prose where every sentence is the
+// same short length — has no detector. New v21 books read listy precisely here
+// ("Defaults handle small repeat calls. Routines keep daily choices from reopening.
+// Option limits stop search loops…"): a stack of ~5-6-word declaratives with no long
+// flowing sentence to break them up.
+//
+// CALIBRATION NOTE (load-bearing — deviates from the original Finding #6 spec, and
+// calibrated against the labeled regression corpus in tests/fixtures/regressions.ts).
+//
+// (1) The finding proposed a coefficient-of-variation floor (CoefVar < 0.50), on the
+// premise that the gold books "sit ~0.58-0.61". Measured against the ACTUAL gold
+// corpus (real daring-greatly + start-with-why, 66 tiers) that premise is false:
+// gold tiers sit anywhere from CoefVar 0.157 (start-with-why fastReads are short and
+// uniform by design) to 0.62. A 0.50 floor fires on the MAJORITY of gold tiers — the
+// exact "fires harder on the clean book" trap the calibration law warns about. So the
+// CoefVar arm is dropped. What separates the defect cleanly is SHORTNESS *and* tight
+// UNIFORMITY together: the defect is a run of short sentences all the same short
+// length, whereas gold's low-variance passages are uniform at a HEALTHY length (mean
+// ~12-15) and gold's genuine staccato (e.g. daring-greatly ch04 fastRead) varies the
+// short-sentence lengths within the run. A run of ≥MIN_RUN consecutive sentences each
+// ≤SHORT_MAX words AND within a ≤BAND-word spread tops out at 6 across the whole gold
+// corpus, so MIN_RUN=7 is zero-FP on gold.
+//
+// (2) MEAN floor — excludes deliberate telegraphic action-sequences. Run against the
+// defect corpus (willpower / atomic-habits / the tiny-habits regen), the run rule above
+// also fires on atomic-habits-ch12's intentional cello-routine staccato ("Door opens,
+// 6:40. Coat off, shoes off. Case in the hall closet. Unzip, kneeling…") — a vivid,
+// reference-quality device, not the dull-exposition defect. That passage's run MEAN is
+// ~3.2 words/sentence; the genuine monotone-EXPOSITORY defects (willpower-ch07,
+// tiny-habits-regen ch01/ch06) all sit at ~6.0-6.5. A run-mean floor of 4.5 keeps every
+// real defect and drops the telegraphic device, scoping the critic to the documented
+// failure (uniform short *declaratives*, not punchy action fragments).
+const E8_SHORT_MAX = 9;   // a "short" sentence: ≤9 words
+const E8_BAND = 3;        // tightly uniform: max−min length across the run ≤3 words
+const E8_MIN_RUN = 7;     // ≥7 such sentences back-to-back reads as a list, not prose
+const E8_MEAN_MIN = 4.5;  // run mean ≥4.5 words — excludes telegraphic action-sequences
+const E8_FIX =
+  "Vary the rhythm: break the run with at least one long (>20-word) flowing sentence, " +
+  "and let the lengths differ. Uniform short declaratives read like a list, not prose.";
+
+export type MonotoneShortRun = {
+  /** Index of the first sentence in the longest qualifying run. */
+  start: number;
+  /** Number of consecutive sentences in the run (≥ E8_MIN_RUN when it fires). */
+  length: number;
+  /** The run's sentences, in order, for evidence. */
+  sentences: string[];
+};
+
+/**
+ * Pure detector: the longest run of consecutive sentences that are ALL short
+ * (≤E8_SHORT_MAX words) AND tightly uniform (length spread ≤E8_BAND), or null when
+ * no run reaches E8_MIN_RUN. Exhaustively unit-testable (text → run | null).
+ */
+export function findMonotoneShortRun(text: string): MonotoneShortRun | null {
+  const sentences = splitSentences(text);
+  if (sentences.length < E8_MIN_RUN) return null;
+  const lens = sentences.map((s) => s.split(/\s+/).filter(Boolean).length);
+
+  let best: MonotoneShortRun | null = null;
+  for (let i = 0; i < lens.length; i++) {
+    let mn = Infinity;
+    let mx = -Infinity;
+    let sum = 0;
+    for (let j = i; j < lens.length; j++) {
+      if (lens[j] > E8_SHORT_MAX) break;
+      mn = Math.min(mn, lens[j]);
+      mx = Math.max(mx, lens[j]);
+      if (mx - mn > E8_BAND) break;
+      sum += lens[j];
+      const length = j - i + 1;
+      // A run fires only when it is long enough, tightly uniform, AND its sentences
+      // average ≥E8_MEAN_MIN words — the last clause excludes telegraphic action
+      // staccato (mean ~3) while keeping monotone exposition (mean ~6).
+      if (length >= E8_MIN_RUN && sum / length >= E8_MEAN_MIN && (!best || length > best.length)) {
+        best = { start: i, length, sentences: sentences.slice(i, j + 1) };
+      }
+    }
+  }
+  return best;
+}
+
+/**
+ * Monotone short-sentence rhythm (E8). Fires when a tier contains a run of short,
+ * same-length sentences long enough to read as a list rather than prose. The
+ * short-side twin of checkCadenceVariance's long-drone arm. Shadow MAJOR — surfaces
+ * as QC debt; calibrated zero-FP on the gold corpus (see CALIBRATION NOTE above).
+ */
+export function checkSentenceLengthVariance(text: string, unitLabel: string): CriticFinding[] {
+  const run = findMonotoneShortRun(text);
+  if (!run) return [];
+  return [finding(
+    "E8.monotone_cadence" as any,
+    "major",
+    `${unitLabel}: ${run.length} short, same-length sentences in a row — "${truncate(run.sentences.join(" "), 60)}" reads as a list (monotone cadence). ${E8_FIX}`,
+    truncate(run.sentences.join(" "), 200),
+  )];
+}
+
+// ── Idea density (E9 / #12) — the OVER-LENGTH / low-idea-density measure, and ──
+//    why NO deterministic gate ships ───────────────────────────────────────────
+//
+// THE DEFECT (#12, catalogued as `MB4.low_idea_density`). One idea stretched across
+// many paragraphs to hit the A15 char floor: words accrue, the reader learns nothing
+// new. A15 floors tier length from BELOW; nothing caps it from above, and "padding" has
+// no lexical signature a counter can see.
+//
+// REFUTED ON THE GOLD CORPUS (calibration law, non-negotiable). The finding proposed
+// firing "below a distinct-content-lemma-per-1000-chars floor". Measured against the REAL
+// gold (daring-greatly 21 tiers + start-with-why 42 tiers) the premise is FALSE on every
+// formulation tried — the reference books sit AT or BELOW the only available defect source
+// (the reverted tiny-habits regen, 24 tiers; willpower/atomic-habits packages are CI-absent):
+//
+//   formulation                          regen defect         real gold              separates?
+//   distinct lemmas / 1000 chars         min 57.7  p50 69.7   min 59.4 (sww-ch11)    NO  (gold lower)
+//   type-token ratio                     min 0.688            min 0.663 (dg-ch01)    NO  (gold lower)
+//   stale-sentence fraction              max 0.075            max 0.167 (sww-ch13)   NO  (gold higher)
+//   structural skeleton-repeat           max 0.095            max 0.083 (dg, a 3× frame)  NO (overlap)
+//   intra-tier repeated content-trigram  distinctRep 2        distinctRep 1          artifact*
+//
+//   * the lone "separation" is the Fogg formula "behavior = motivation + ability + prompt"
+//     stated twice (regen) vs "celery rice milk" / the celery test (gold) — both legitimate
+//     CONCEPT-NAME repetition, a one-count margin, not padding. True paraphrase-padding
+//     produces no verbatim n-gram repeat by construction (that is why B15 uses Jaccard, not
+//     n-grams). So it measures the wrong thing on a coin-flip margin.
+//
+// There is no floor that fires on the defect without firing HARDER on the reference books —
+// the exact "fires on the clean book" trap the law warns about (cf. the dropped E8 CoefVar
+// arm, the reverted SC9 blocker, the empty ENFORCED_MAJOR). So NO E9 gate is registered —
+// not even shadow-minor: a check that fires on gold is rejected (Law 2), and a check that
+// fires on nothing is also rejected; #12 has NEITHER a clean true-positive NOR a zero-FP
+// threshold at the lexical level. The defect is genuinely semantic (does this paragraph
+// ADVANCE the argument?), which a lemma counter cannot judge.
+//
+// WHAT SHIPS INSTEAD. (1) PREVENTION — the write-time rule that actually buys first-pass
+// quality (STEP-2 `R11` + Step 5 / writer-breakdown "length follows substance"). (2) The
+// JUDGMENT — owned by the semantic `prose_coherence` bar axis (FAILURE-MODES `MB4`, the
+// WT-E clause), which reads whether a paragraph earns its length where a counter cannot.
+// `measureIdeaDensity` is exposed ONLY so the calibration test (tests/idea-density.test.ts)
+// can PIN this refutation and stop a future engineer re-deriving the gate.
+export type IdeaDensity = {
+  /** Distinct content lemmas per 1000 chars — the spec's proposed "idea density". */
+  lemmaDensityPerKchar: number;
+  /** Distinct content lemmas / total content tokens (length-normalized richness). */
+  typeTokenRatio: number;
+  /** Fraction of sentences (after the first two) that add ZERO new content lemma — the
+   *  closest lexical proxy for "restating one idea to pad length". */
+  staleSentenceFraction: number;
+};
+
+/**
+ * Pure lexical idea-density measure (text → {density, ttr, stale}). NOT a gate — see the
+ * note above for why a floor over any of these fields fires harder on the gold corpus than
+ * on the defect. Exposed for the calibration/refutation test only.
+ */
+export function measureIdeaDensity(text: string): IdeaDensity {
+  // Ordered content-lemma stream (duplicates preserved) — contentLemmaSet dedups, so build
+  // the stream token-by-token to keep total-token counts honest for the type-token ratio.
+  const ordered: string[] = [];
+  for (const tok of text.split(/[^a-zA-Z]+/)) {
+    for (const l of contentLemmaSet(tok)) ordered.push(l);
+  }
+  const distinct = new Set(ordered).size;
+  const lemmaDensityPerKchar = text.length > 0 ? distinct / (text.length / 1000) : 0;
+  const typeTokenRatio = ordered.length > 0 ? distinct / ordered.length : 1;
+
+  const sentences = splitSentences(text).filter((s) => s.split(/\s+/).filter(Boolean).length >= 4);
+  const seen = new Set<string>();
+  let stale = 0;
+  let counted = 0;
+  sentences.forEach((s, i) => {
+    const lemmas = [...contentLemmaSet(s)];
+    const addsNew = lemmas.some((l) => !seen.has(l));
+    for (const l of lemmas) seen.add(l);
+    if (i >= 2) {
+      counted += 1;
+      if (!addsNew) stale += 1;
+    }
+  });
+  const staleSentenceFraction = counted > 0 ? stale / counted : 0;
+  return { lemmaDensityPerKchar, typeTokenRatio, staleSentenceFraction };
 }
 
 /**

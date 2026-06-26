@@ -54,6 +54,23 @@ const PLAN_SIMILARITY_BLOCKER = 0.7;
 // duplicate prose is a copy-paste, not a coincidence.
 const CROSS_TIER_VERBATIM_BLOCKER = 150;
 
+// B15 — cross-tier content-lemma Jaccard above which the two tiers are
+// restating the SAME ideas rather than layering new ones. ADVISORY (minor):
+// it is a heuristic proxy for "paraphrase-restate", a defect the verbatim
+// gates (E2 / B8 / BP24) are blind to because the writer reworded the
+// connectives while keeping every domain concept. Calibrated 2026-06-25 on
+// the gold corpus: genuine layering tops out at J(deepRead,fullRead)=0.312
+// and J(fastRead,deepRead)=0.255 across the 21 real gold chapters
+// (daring-greatly + start-with-why) and 0.179 across the synthetic gold; a
+// reworded restate measures ~0.52. 0.42 sits in the gap with ~0.11 headroom
+// over the dirtiest gold chapter and ~0.10 margin under the restate.
+const CROSS_TIER_PARAPHRASE_JACCARD = 0.42;
+
+// A tier with too few content lemmas is statistically noisy (Jaccard swings
+// hard on a handful of shared words). The thinnest gold fastRead carries ~40
+// content lemmas; require 20 on BOTH tiers before the ratio is trustworthy.
+const CROSS_TIER_MIN_LEMMAS = 20;
+
 // ── AS7 — review card similarity across chapters ────────────────────────────
 
 /**
@@ -597,6 +614,115 @@ export function checkBreakdownCrossTierVerbatim(chapter: ChapterV21): CriticFind
   }
 
   return findings;
+}
+
+// ── B15 — cross-tier content-lemma overlap (paraphrase-restate proxy) ────────
+
+/**
+ * The paraphrase-restate defect E2/B8/BP24 cannot see. After the verbatim
+ * gates forced the writer agent off literal copy-paste, the cheapest remaining
+ * way to "fill" a longer tier is to restate the prior tier's ideas in reworded
+ * sentences: keep every domain concept (checkpoint, handoff, owner, source
+ * note…), change only the connectives. No two sentences match word-for-word,
+ * so E2 (identical first sentence), B8 (one 4-word phrase) and BP24 (≥150-char
+ * verbatim block) all pass — yet a reader gets the same content twice.
+ *
+ * B15 catches it by content-lemma Jaccard between adjacent tier pairs
+ * (fastRead↔deepRead, deepRead↔fullRead). Genuine layering introduces NEW
+ * lemmas with each tier (new scenes, a second domain, edge-case vocabulary),
+ * which keeps the ratio down; a restate keeps the same lemma set, which pushes
+ * it up. ADVISORY only — the precise judgment is the `prose_coherence`
+ * semantic axis; B15 is the cheap deterministic flag that surfaces the
+ * candidate. Fires only BELOW the BP24 verbatim floor, so the verbatim and
+ * paraphrase signals never double-report the same tier pair.
+ */
+export type CrossTierOverlapHit = {
+  tierA: "fastRead" | "deepRead" | "fullRead";
+  tierB: "fastRead" | "deepRead" | "fullRead";
+  jaccard: number;
+};
+
+const CONTENT_STOPWORDS = new Set<string>([
+  "the", "and", "that", "this", "with", "from", "have", "were", "will", "what",
+  "when", "where", "which", "while", "their", "them", "they", "these", "those",
+  "then", "than", "into", "over", "under", "about", "after", "before", "because",
+  "could", "would", "should", "might", "still", "just", "also", "very", "more",
+  "most", "some", "many", "much", "other", "another", "here", "there", "both",
+  "your", "yours", "does", "done", "each", "every", "only", "even", "like",
+  "such", "being", "been", "its", "his", "her", "she", "him", "who", "whom",
+  "whose", "not", "but", "for", "are", "was", "has", "had", "can", "cannot",
+  "off", "out", "one", "two", "three", "first", "next", "last", "know", "make",
+  "made", "take", "goes", "got", "let", "now", "day", "way", "use", "used",
+  "using", "need", "needs", "keep", "keeps", "kept", "feel", "feels",
+]);
+
+/** Light deterministic lemma: lowercase, strip non-alpha, drop stopwords and
+ *  short tokens, fold the most common inflections. Identical normalization to
+ *  the calibration measurement so the thresholds above stay honest. */
+function contentLemma(tok: string): string {
+  let w = tok.toLowerCase().replace(/[^a-z]/g, "");
+  if (w.length < 4) return "";
+  if (CONTENT_STOPWORDS.has(w)) return "";
+  if (w.endsWith("ing") && w.length > 5) w = w.slice(0, -3);
+  else if (w.endsWith("ies") && w.length > 4) w = w.slice(0, -3) + "y";
+  else if (w.endsWith("ed") && w.length > 4) w = w.slice(0, -2);
+  else if (w.endsWith("es") && w.length > 5) w = w.slice(0, -2);
+  else if (w.endsWith("s") && w.length > 4 && !w.endsWith("ss")) w = w.slice(0, -1);
+  return w.length >= 3 ? w : "";
+}
+
+export function contentLemmaSet(text: string): Set<string> {
+  const out = new Set<string>();
+  for (const t of text.split(/[^a-zA-Z]+/)) {
+    const l = contentLemma(t);
+    if (l) out.add(l);
+  }
+  return out;
+}
+
+function jaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0;
+  let inter = 0;
+  for (const x of a) if (b.has(x)) inter++;
+  return inter / (a.size + b.size - inter);
+}
+
+/** Pure detector: every adjacent tier pair whose content-lemma Jaccard clears
+ *  the paraphrase threshold while staying UNDER the BP24 verbatim floor. */
+export function findCrossTierContentOverlap(chapter: ChapterV21): CrossTierOverlapHit[] {
+  const tiers = chapter.breakdown;
+  if (!tiers) return [];
+  const hits: CrossTierOverlapHit[] = [];
+  const pairs: Array<[CrossTierOverlapHit["tierA"], CrossTierOverlapHit["tierB"]]> = [
+    ["fastRead", "deepRead"],
+    ["deepRead", "fullRead"],
+  ];
+  for (const [aName, bName] of pairs) {
+    const a = tiers[aName];
+    const b = tiers[bName];
+    if (typeof a !== "string" || typeof b !== "string" || !a || !b) continue;
+    // BP24 owns the verbatim case; B15 is only the paraphrase proxy BELOW it.
+    if (longestCommonSubstring(a, b).length >= CROSS_TIER_VERBATIM_BLOCKER) continue;
+    const la = contentLemmaSet(a);
+    const lb = contentLemmaSet(b);
+    if (la.size < CROSS_TIER_MIN_LEMMAS || lb.size < CROSS_TIER_MIN_LEMMAS) continue;
+    const sim = jaccard(la, lb);
+    if (sim >= CROSS_TIER_PARAPHRASE_JACCARD) {
+      hits.push({ tierA: aName, tierB: bName, jaccard: sim });
+    }
+  }
+  return hits;
+}
+
+export function checkCrossTierContentOverlap(chapter: ChapterV21): CriticFinding[] {
+  return findCrossTierContentOverlap(chapter).map((h) =>
+    finding(
+      "B15.cross_tier_paraphrase" as any,
+      "minor",
+      `breakdown.${h.tierA} and breakdown.${h.tierB} share ${(h.jaccard * 100).toFixed(0)}% of their content vocabulary (paraphrase-restate threshold ${(CROSS_TIER_PARAPHRASE_JACCARD * 100).toFixed(0)}%) with no verbatim block to flag — the two tiers are rerunning the same ideas in reworded sentences, not layering new ones. Give ${h.tierB} a NEW concept, scene, or nuance the reader has not met yet (deepRead = the mechanism + a second domain; fullRead = edge cases, the failure mode, the reversal). prose_coherence is the precise judgment.`,
+      `${h.tierA}↔${h.tierB} content-lemma Jaccard ${h.jaccard.toFixed(3)}`,
+    ),
+  );
 }
 
 // ── helpers ─────────────────────────────────────────────────────────────────

@@ -73,6 +73,7 @@ After your line-edit pass, the chapter must pass:
     fullRead: 14-18 words
 - **No sentence over 30 words** in any tier.
 - **No paragraph with three sentences of the same length** in a row. Vary cadence.
+- **No run of short, same-length sentences (`E8`).** A stack of uniform short declaratives reads as a list, not prose ("Defaults handle small repeat calls. Routines keep daily choices from reopening. Option limits stop search loops."). The critic fires on ≥7 short (≤9-word) same-length sentences in a row — the short-side twin of the long-drone rule. If you see a listy run, break it with one long (>20-word) flowing sentence so a short verdict can land after it; do not just lengthen every line. Every paragraph wants at least one short punch AND one long sentence.
 - **No Latinate word** when a plain English equivalent exists. The substitution table is in writer-breakdown.system.md.
 - **No hedge adverb** inside a scene (perhaps, possibly, arguably, seemingly, ostensibly).
 

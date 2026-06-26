@@ -173,6 +173,7 @@ type SourceSidecarV2 = ChapterResearchResult & {
     commonError: string;       // a plausible WRONG belief a real reader holds — the distractor seed
     errorIsWhy: string;        // why the commonError is wrong
     derivedFrom?: string;      // optional anchor id this elaborates
+    replicationStatus?: "robust" | "mixed" | "contested" | "failed";  // OPTIONAL — flag a claim with known replication trouble (see below)
   }>;
   frameworks?: Array<{ name: string; members: string[]; acronym?: boolean }>;  // every named N-part model
 };
@@ -204,6 +205,21 @@ testimonial is a deterministic blocker (`EI2`). A reader anecdote may appear at 
 ILLUSTRATION (`namedExamples`, `realWorld: false`) the writer dramatizes WITHOUT evidentiary framing;
 it must never key an answer or stand in as the chapter's proof (`EI1`). Reserve `realWorld: true` for
 a genuinely verifiable named entity (a real person/company/study with `hardSpecifics`).
+
+**Replication standing — flag the contested science.** A claim can be perfectly faithful to the source
+and still be disputed in its field. Popular non-fiction routinely states findings as settled law that
+the literature treats as shaky (ego depletion / the glucose model of willpower, the marshmallow test's
+predictive power, power posing, "you use 10% of your brain," priming effects). Because these are
+faithful to the book, the downstream `factual_accuracy` read scores them clean — so the *source* is the
+only place to catch them. When you log a `testableFact` whose claim has **known replication trouble**,
+set `replicationStatus`:
+- **`robust`** (or omit) — replicates reliably; the writer states it plainly.
+- **`mixed`** — real support but notable failures to replicate; the writer must hedge ("the evidence here is mixed").
+- **`contested`** — actively disputed; the writer must hedge or reframe it as a heuristic, never as flat law.
+- **`failed`** — failed to replicate / largely retracted; flag it so the writer either drops it or frames it explicitly as a once-popular idea that did not hold up.
+
+Only flag claims with *genuine, known* replication trouble — do not hedge solid science. STEP-2 `R9`
+reads this field; a `contested`/`failed` claim written as settled fact is a `factual_accuracy` defect.
 
 **Hard rules for chapter sources:**
 
