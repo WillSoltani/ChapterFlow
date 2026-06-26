@@ -934,6 +934,32 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<boolean>
 
 // ── Phase: write (fan out one agent per MISSING chapter) ──────────────────────
 
+// The autopilot writer's pre-submit SELF-VERIFY — the write-time half of QC. WT-F
+// wired these levers into the MANUAL path (STEP-2-WRITE-CHAPTERS.md) but NOT the
+// autopilot writer task, so on a live autopilot run the writers only ran the
+// DETERMINISTIC gate (author-check/gate-chapter) and submitted — semantic defects
+// (a wrong quiz key whose explanation contradicted it, performative rituals, abstract
+// scenes) sailed through to QC and forced a repair round. This closes that gap:
+// every autopilot writer now runs the hidden-key + bar self-score before declaring
+// done, mirroring STEP-2. Exported so a test pins it (the gap had no test).
+export const WRITER_SELF_VERIFY = `SELF-VERIFY before declaring the chapter done — run ALL THREE. This is the write-time half of QC: a defect caught here costs zero QC rounds; one you skip costs a full round.
+
+1. DETERMINISTIC — run \`author-check\` and \`gate-chapter\` on the chapter file you just authored, and fix until both report 0 blockers.
+
+2. HIDDEN-KEY (quiz soundness — the leading cause of a CORRUPTION verdict). Derive every quiz answer BLIND, then diff it against the key you stored:
+   - \`npx tsx src/cli.ts quiz-blind state/chapters/<chapterId>.v21-native.chapter.json\` (prints the quiz with the stored key hidden)
+   - answer each question yourself from the prompt + choices ALONE, then
+   - \`npx tsx src/cli.ts quiz-verify state/chapters/<chapterId>.v21-native.chapter.json --answers "0:<i>,1:<i>,..."\`
+   Any mismatch means the stored key is wrong, or the question has two defensible answers, or the explanation argues for a DIFFERENT choice than the key — re-key it or rewrite the question so exactly one choice is correct AND its explanation proves that choice.
+
+3. BAR SELF-SCORE — read the 9-axis publishable bar (\`npx tsx src/cli.ts publishable-rubric\`) and score your draft honestly. Fix any corruption-axis hit and any axis you'd score below ~0.85 before submitting. Watch the modes that most often slip past the deterministic gate:
+   - behavioral_naturalness: NO contrived/performative micro-actions ("say aloud X", move a prop, tally on cue) — prescribe only the real functional action.
+   - example_coherence: every scenario carries a concrete time / place / role; never an abstract "the system does X" scene.
+   - factual_accuracy: no invented precision; never state a contested finding (ego depletion, marshmallow-as-destiny) as settled fact.
+   - prose_coherence: tiers layer NEW ground, not reworded restatement; cadence varies.
+
+Do not declare the chapter done until all three pass.`;
+
 async function doWrite(bookId: string, status: BookStatus, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<void> {
   const writeDir = `state/authoring-cards/${bookId}`;
   // Deal the dispatch cards (idempotent; also writes the pre-authoring plans).
@@ -954,7 +980,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
     const n = chapterNumberFromCard(card);
     const writerSessionId = deps.mkSessionId(`write-ch${n}`);
     deps.log(`[autopilot] write ch${n}: writer working`); // per-chapter START (one writer agent per chapter)
-    const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above, then run author-check + gate-chapter until clean.`;
+    const task = `${deps.readTask(card)}\n\n---\nYou are a fresh Writer subagent for bookId ${bookId}, chapter ${n}. Author the chapter per the dispatch card above.\n\n${WRITER_SELF_VERIFY}`;
     const r = await spawnAndLog(bookId, { task, sessionId: writerSessionId, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
     if (!r.ok) deps.log(`[autopilot] write ch${n} session exited ${r.exitCode}`);
     else deps.log(`[autopilot] write ch${n}: done`); // per-chapter SUCCESS

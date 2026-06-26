@@ -24,6 +24,7 @@ import {
   roleFromCard,
   resolveDeps,
   summarizeRoundDrivers,
+  WRITER_SELF_VERIFY,
   type AutopilotDeps,
   type BrokerResult,
 } from "../src/orchestrator/autopilot.js";
@@ -1018,4 +1019,24 @@ test("summarizeRoundDrivers: the QC halt names the ACTUAL failed checks per chap
 
 test("summarizeRoundDrivers: a missing/unreadable matrix yields an empty string (fail-safe, never throws)", () => {
   assert.equal(summarizeRoundDrivers("zz-no-such-book", "r20990101000000-000000"), "");
+});
+
+test("WRITER_SELF_VERIFY wires the WT-F semantic levers into the autopilot writer (hidden-key + bar self-score, not just the deterministic gate)", () => {
+  // Regression guard for the gap a live the-willpower-instinct run exposed: the autopilot
+  // writer task ran only author-check/gate-chapter (deterministic), so semantic defects —
+  // a wrong quiz key whose explanation contradicted it, performative rituals, abstract
+  // scenes — reached QC and forced a repair round. The WT-F levers existed only in the
+  // MANUAL STEP-2 path. These assertions pin them into the autopilot writer's self-verify.
+  const v = WRITER_SELF_VERIFY;
+  // hidden-key protocol — the lever that catches a wrong/contradicted quiz key at write time
+  assert.ok(v.includes("quiz-blind"), "writer must run quiz-blind (derive the key blind)");
+  assert.ok(v.includes("quiz-verify"), "writer must run quiz-verify (diff against the stored key)");
+  // bar self-score — catches rituals / abstract scenes / contested-as-fact before submit
+  assert.ok(v.includes("publishable-rubric"), "writer must self-score the 9-axis publishable bar");
+  // still keeps the deterministic check it always had
+  assert.ok(/gate-chapter/.test(v) && /author-check/.test(v), "writer must still run the deterministic gate");
+  // names the corruption-prone failure modes so the self-score is concrete, not vague
+  for (const axis of ["behavioral_naturalness", "example_coherence", "factual_accuracy", "prose_coherence"]) {
+    assert.ok(v.includes(axis), `self-verify should call out the ${axis} failure mode`);
+  }
 });
