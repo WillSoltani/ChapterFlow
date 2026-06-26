@@ -165,72 +165,72 @@
               "Replace the hidden entrance with a discount board for passing foot traffic."
             ],
             "correctIndex": 0,
-            "explanation": "The hidden ritual gives guests insider standing. Making the entrance too obvious can remove the status they gain from knowing how access works.",
+            "explanation": "The phone booth ritual is correct because it gives guests insider standing. A neon sign would make access too obvious, and a discount board would shift the talk from discovery to price.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "A blender team wants a demo people will repeat after lunch. Which pitch best uses remarkability?",
+            "prompt": "A designer is planning a blender demo people will repeat after lunch. Which action best uses remarkability?",
             "choices": [
-              "List motor specs beside a clean product shot for the team.",
+              "List motor specs beside a clean product shot and a reliability chart for the team.",
               "Show the blender destroying an object viewers did not expect it to handle.",
               "Ask customers to describe their favorite smoothie texture."
             ],
             "correctIndex": 1,
-            "explanation": "Blendtec spread because the demo made an ordinary machine surprising. The shareable unit is the unexpected proof, not the normal feature claim.",
+            "explanation": "The surprising destruction demo is correct because it makes ordinary power remarkable. Specs and charts may inform buyers but give little story to repeat, while smoothie preferences do not prove the machine can do something unexpected.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
           },
           {
             "questionId": "q03",
-            "prompt": "When a beverage cap gives a customer one odd fact, what status payoff does the customer receive?",
+            "prompt": "A beverage customer gets one odd fact under the cap. What should the brand expect the status payoff to be?",
             "choices": [
               "The customer gets a larger serving than other drinkers at the table.",
               "The customer avoids choosing between jokes and product claims.",
               "The customer has a small discovery to offer someone nearby."
             ],
             "correctIndex": 2,
-            "explanation": "Snapple Real Facts work because the cap gives the drinker social material. The person can share a tidbit and look curious or quick.",
+            "explanation": "The small discovery is correct because it gives the drinker social material to offer. A larger serving is a price or quantity benefit, and avoiding jokes versus claims misses the status payoff of having a tidbit to share.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           },
           {
             "questionId": "q04",
-            "prompt": "Amara's airline app hides elite-tier progress in a menu. What change best fits game mechanics?",
+            "prompt": "Amara's airline app hides elite-tier progress in a menu. What should she change to use game mechanics?",
             "choices": [
               "Show progress toward the next tier with earned miles and the next threshold.",
-              "Remove status labels so members focus on the flight itself.",
+              "Remove status labels so members focus on the flight itself instead of comparing progress.",
               "Replace the tier page with a cheaper fare search for Amara's users."
             ],
             "correctIndex": 0,
-            "explanation": "Game mechanics make rank and progress visible. A traveler talks more readily when the system turns activity into achievement.",
+            "explanation": "Visible miles and thresholds are correct because game mechanics turn activity into achievement. Removing labels hides the progress people compare, and a fare search changes the task from status design to price shopping.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q05",
-            "prompt": "A startup founder wants exclusivity for a beta launch. Which version avoids empty scarcity?",
+            "prompt": "A founder wants exclusivity for a beta launch. Which action best avoids empty scarcity?",
             "choices": [
-              "Close access without explaining the product, so the waitlist looks mysterious.",
+              "Close access without explaining the product, so the waitlist looks mysterious but unearned to outsiders.",
               "Limit invites for a craft reason and give members a story about why access is selective.",
-              "Let anyone join, then call the first week exclusive in the founder's recap."
+              "Let anyone join, then call the first week exclusive in the founder's recap for press coverage."
             ],
             "correctIndex": 1,
-            "explanation": "Exclusivity helps when it gives members credible insider standing. A cap with a clear reason gives users something safe to pass along.",
+            "explanation": "A craft-based invite limit is correct because scarcity needs a credible reason people can repeat. Mystery without substance feels empty, and open access relabeled as exclusive gives members no honest insider story.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
           {
             "questionId": "q06",
-            "prompt": "Your retailer says a shoe page should tell buyers they will be envied. Which rewrite better follows social currency?",
+            "prompt": "You are rewriting a shoe page that says buyers will be envied. Which action best follows social currency?",
             "choices": [
-              "Tell buyers the shoe is rare and leave the material story for the packaging.",
+              "Tell buyers the shoe is rare and save the recycled-material story for packaging inserts.",
               "Promise buyers they will outrank their friends at weekend events.",
               "Lead with the recycled race-tire sole, a detail buyers can retell with taste."
             ],
             "correctIndex": 2,
-            "explanation": "The recycled-material fact gives buyers a status-bearing story without crude boasting. Social currency should flatter the sharer, not pressure them to show off.",
+            "explanation": "The race-tire sole is correct because it lets buyers share a tasteful status-bearing detail. Vague rarity withholds the useful story, and promising envy turns social currency into crude boasting.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
@@ -238,38 +238,38 @@
             "questionId": "q07",
             "prompt": "A museum cafe hides a dessert on a verbal menu. Guests who know the phrase can order it. What should the manager check first?",
             "choices": [
-              "Whether every guest sees the dessert name printed in the lobby.",
-              "Whether the dessert has the lowest food cost on the menu.",
+              "Whether every guest sees the dessert name printed in the lobby before ordering.",
+              "Whether the dessert has the lowest food cost during a crowded evening service rush.",
               "Whether the phrase lets guests feel informed when they tell friends about it."
             ],
             "correctIndex": 2,
-            "explanation": "The verbal menu works only if the act of knowing creates social value. Cost and visibility do not explain why guests would spread the secret.",
+            "explanation": "The informed feeling is correct because the secret phrase must create social value. Printing it for everyone removes the insider payoff, and food cost does not explain why guests would retell the secret.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q08",
-            "prompt": "A loyalty team adds badges, but members do not mention them. Which diagnosis best fits social currency?",
+            "prompt": "A team is reviewing loyalty badges that members do not mention. Which diagnosis best fits social currency?",
             "choices": [
               "The badges may not signal achievement that members care to compare.",
               "The badges should be hidden until checkout so the interface is cleaner.",
-              "The badges need a larger font because status comes from size alone."
+              "The badges should be awarded for every tiny action so members have more icons to show."
             ],
             "correctIndex": 0,
-            "explanation": "Badges spread when they mark valued progress. If the achievement feels trivial, members gain little identity value from sharing it.",
+            "explanation": "Weak achievement value is correct because badges spread when they mark progress members care about. Hiding badges reduces observability, and flooding people with trivial badges can cheapen the signal.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q09",
-            "prompt": "A chef wants diners to talk about a plain soup. Which move most directly creates inner remarkability?",
+            "prompt": "A chef wants diners to talk about a plain soup. Which action best creates inner remarkability?",
             "choices": [
-              "Lower the price so diners can recommend it as a budget option.",
+              "Lower the price so diners can recommend it as a practical budget option at lunch.",
               "Serve it with a surprising tableside freeze that changes texture in seconds.",
-              "Ask servers to say the soup is popular with regulars."
+              "Ask servers to say regulars order it often when guests ask what is popular every night."
             ],
             "correctIndex": 1,
-            "explanation": "Inner remarkability comes from a detail that violates expectations. The texture change gives diners a compact surprise to describe.",
+            "explanation": "The tableside texture change is correct because inner remarkability comes from a compact surprise. A lower price creates practical value, and saying regulars like it leans on social proof rather than surprise.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           }
@@ -492,116 +492,116 @@
             "questionId": "q01",
             "prompt": "Lucien can display cereal beside a vacation contest or beside milk. Which choice best uses triggers?",
             "choices": [
-              "Place cereal with the contest because vacation is more exciting.",
+              "Place cereal with the contest because vacation feels more exciting in campaign meetings.",
               "Place cereal beside milk because breakfast repeats and buying can happen there.",
               "Hide cereal near checkout so shoppers feel surprised by the shelf."
             ],
             "correctIndex": 1,
-            "explanation": "Triggers favor frequent, well-placed cues. Milk sits in the breakfast habitat and appears near a purchase decision.",
+            "explanation": "Milk placement is correct because the cue is frequent and near breakfast buying. Vacation is exciting but too distant from the cereal habit, and a checkout surprise is less tied to the repeated breakfast context.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "Hanaa wants to revive a song named after a weekday. What timing best follows the Rebecca Black pattern?",
+            "prompt": "A writer is reviving a song named after a weekday. Which timing best follows the Rebecca Black pattern?",
             "choices": [
               "Post the clip when the editing calendar has an empty slot.",
               "Post the clip late Sunday because weekend traffic is broad.",
               "Post the clip on the named weekday as people meet the cue."
             ],
             "correctIndex": 2,
-            "explanation": "The weekday is the recurring reminder. Hanaa should time the post when the natural cue is already making the song easy to recall.",
+            "explanation": "Posting on the named weekday is correct because the calendar supplies the cue. An empty slot ignores the trigger, and late Sunday relies on broad traffic rather than the specific recurring reminder.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
           },
           {
             "questionId": "q03",
-            "prompt": "A candy brand can sit near gum or near coffee. What is the strongest reason to choose coffee?",
+            "prompt": "A manager is choosing whether a candy brand sits near gum or coffee. What should guide the choice?",
             "choices": [
               "Coffee breaks repeat and happen close to the snack moment.",
-              "Coffee buyers have less interest in candy than gum buyers.",
+              "Coffee buyers are already taking a break, so any candy nearby will seem premium.",
               "Coffee packaging gives the candy a more formal shelf look."
             ],
             "correctIndex": 0,
-            "explanation": "Kit Kat used coffee because the routine repeated often and fit the use moment. The cue made recall practical, not just clever.",
+            "explanation": "Repeated coffee breaks near snacking are correct because trigger power depends on frequency and action distance. Premium feelings are not the core mechanism, and packaging formality does not explain recall.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q04",
-            "prompt": "Beatrice sees candy sales rise during NASA Mars coverage. Which conclusion is most careful?",
+            "prompt": "Beatrice sees candy sales rise during NASA Mars coverage. What should she conclude first?",
             "choices": [
               "The news may be acting as a temporary cue for the candy name.",
               "The candy recipe must have improved during the Mars coverage.",
               "Customers are proving that space stories create lasting candy loyalty."
             ],
-            "correctIndex": 1,
-            "explanation": "The Mars bar case supports cue-driven recall from public language. It does not prove recipe change or durable loyalty.",
+            "correctIndex": 0,
+            "explanation": "The temporary cue conclusion is correct because public Mars language can make the candy name easier to retrieve. Recipe improvement is not shown by the case, and lasting loyalty from space stories goes beyond the evidence.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
           },
           {
             "questionId": "q05",
-            "prompt": "A gym wants more referrals. Which prompt location best honors cue distance?",
+            "prompt": "A manager is placing referral prompts for a gym. Which action best honors cue distance?",
             "choices": [
-              "A postcard mailed three weeks before the membership drive.",
+              "A postcard mailed three weeks before the membership drive so members have time to think.",
               "A slogan on the website footer for visitors browsing class times.",
               "A poster at the locker mirror after workouts, where members invite friends."
             ],
             "correctIndex": 2,
-            "explanation": "Cue distance matters. The locker mirror is close to the behavior and appears after the routine that makes referral talk plausible.",
+            "explanation": "The locker mirror is correct because it places the cue near the referral moment. A postcard is too far from action, and a website footer is easy to miss when members are not in the post-workout context.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
           {
             "questionId": "q06",
-            "prompt": "Your team picks the word 'summer' as a cue for sunscreen, but every brand uses it. What problem should you raise?",
+            "prompt": "You are reviewing the word 'summer' as a sunscreen cue while every brand uses it. What should you raise?",
             "choices": [
               "The cue may be too crowded to point clearly to your product.",
               "The cue should be saved for winter so it feels more unexpected.",
               "The cue needs a longer tagline before customers can understand it."
             ],
             "correctIndex": 0,
-            "explanation": "A trigger needs association strength. If the cue points to many products, recall may scatter instead of leading to the intended sunscreen.",
+            "explanation": "The crowded-cue warning is correct because summer points to many sunscreen brands and occasions. Saving it for winter may make it odd but not useful, and a longer tagline does not fix weak association strength by itself.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q07",
-            "prompt": "A clinic reminder is remembered at home, then forgotten at the bus transfer. Which fix best uses habitat design?",
+            "prompt": "A clinic reminder is remembered at home, then forgotten at the bus transfer. Which action best uses habitat design?",
             "choices": [
-              "Send a longer brochure so patients can study the clinic rules.",
+              "Send a longer brochure so patients can study the clinic rules before travel day.",
               "Rename the clinic after a popular holiday for easier recall.",
               "Put the reminder at the transfer stop where the route choice occurs."
             ],
             "correctIndex": 2,
-            "explanation": "The useful cue belongs near the action moment. A transfer-stop reminder meets patients when they can still choose the route.",
+            "explanation": "The transfer-stop reminder is correct because the cue belongs where the route choice happens. A longer brochure may be forgotten in transit, and a holiday name is memorable without solving action distance.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q08",
-            "prompt": "Soren's team says a trigger only needs to be catchy. Which reply is strongest?",
+            "prompt": "Soren's team says a trigger only needs to be catchy. What should he reply?",
             "choices": [
-              "Catchiness is enough when the product already has a colorful package.",
+              "Catchiness is enough when the product already has a colorful package and a short name.",
               "Catchiness helps only if the cue is frequent, distinctive, and close to action.",
               "Catchiness should be judged by how many puns the team can generate."
             ],
             "correctIndex": 1,
-            "explanation": "Trigger design is a memory placement problem. A cue must appear often, point clearly, and arrive when behavior is possible.",
+            "explanation": "The frequency, distinctiveness, and action-distance reply is correct because triggers are memory placement. Colorful packaging may help noticeability but not cue habitat, and puns can be clever without driving recall at the right moment.",
             "bloomsLevel": "evaluate",
             "depthLevel": "standard"
           },
           {
             "questionId": "q09",
-            "prompt": "When the first launch burst fades, what does a trigger provide?",
+            "prompt": "A manager sees the first launch burst fade. What should the trigger provide?",
             "choices": [
               "A repeated path back into memory through daily context.",
-              "A guarantee that people will like the product more.",
+              "A guarantee that people will like the product more once the reminder repeats.",
               "A reason to stop improving the offer after launch week."
             ],
             "correctIndex": 0,
-            "explanation": "A trigger keeps the idea accessible after novelty fades. It cannot guarantee affection, but it can create repeated recall.",
+            "explanation": "Repeated access through context is correct because triggers keep an idea retrievable after novelty fades. They do not guarantee liking, and they are no substitute for improving the offer.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           }
@@ -822,40 +822,40 @@
         "questions": [
           {
             "questionId": "q01",
-            "prompt": "Ingrid has a science article with a striking cough photograph. Which edit best uses emotion?",
+            "prompt": "A writer has a science article with a striking cough photograph. Which action best uses emotion?",
             "choices": [
               "Remove the image so the research sounds more serious.",
-              "Add a celebrity quote because science needs fame to spread.",
+              "Add a celebrity quote because famous names can make science feel safer to forward.",
               "Place the image high and connect its wonder to the health lesson."
             ],
             "correctIndex": 2,
-            "explanation": "Awe can make technical material shareable. Ingrid should use the image to activate curiosity while keeping the health idea attached.",
+            "explanation": "Using the image with the lesson is correct because awe can activate curiosity while keeping the idea attached. Removing the image drains the emotional hook, and a celebrity quote shifts attention away from the science.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "Tomas sees cheerful essays lag behind anxious warnings. What distinction should guide his next lineup?",
+            "prompt": "An analyst sees cheerful essays lag behind anxious warnings. What should guide the next lineup?",
             "choices": [
               "Whether each piece creates action energy such as awe, anger, or anxiety.",
-              "Whether each piece is positive enough for broad readers.",
+              "Whether each piece is positive enough for broad readers to feel comfortable forwarding.",
               "Whether each piece avoids emotion so usefulness can stand alone."
             ],
             "correctIndex": 0,
-            "explanation": "The key split is arousal, not positive mood. High-energy feelings can push readers to send, warn, comment, or invite.",
+            "explanation": "Action energy is correct because Berger distinguishes high arousal from simple positivity. Comfortable positivity can stay passive, and removing emotion may leave useful material without a motive to share.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q03",
-            "prompt": "A producer wants to cut Susan Boyle's doubtful setup and start with the singing. What risk should Farah name?",
+            "prompt": "A director wants to cut Susan Boyle's doubtful setup and start with the singing. What risk should Farah name?",
             "choices": [
               "The clip may become too negative for viewers to understand.",
               "The clip may lose the reversal that creates awe.",
               "The clip may need more product information before the song."
             ],
             "correctIndex": 1,
-            "explanation": "The emotional force comes from skepticism flipping into amazement. Removing the setup weakens the moment viewers want to share.",
+            "explanation": "Losing the reversal is correct because the doubtful setup makes the later singing astonishing. The risk is not that the clip becomes too negative, and more product information would not create the awe.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
@@ -868,20 +868,20 @@
               "Fix the specific claim and show the service change publicly."
             ],
             "correctIndex": 2,
-            "explanation": "Focused anger spreads when people can witness a concrete wrong. Leandro should answer the target of the complaint and show repair.",
+            "explanation": "Fixing the specific claim publicly is correct because focused anger spreads around a concrete wrong and a visible repair. Waiting ignores the grievance, and a vague apology avoids the broken luggage that gives the anger its target.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q05",
-            "prompt": "Chiara is selling search software. Which concept follows Google Parisian Love most closely?",
+            "prompt": "A designer is selling search software. Which plan best follows Google Parisian Love?",
             "choices": [
               "A story where searches help a family manage distance and reunion.",
-              "A table comparing every filter with rival tools.",
+              "A table comparing every filter with rival tools before showing any human stakes.",
               "A slapstick scene where the product name appears at the end."
             ],
             "correctIndex": 0,
-            "explanation": "Parisian Love keeps the tool central while revealing human stakes. The family story gives function an emotional core.",
+            "explanation": "The family search story is correct because the function stays central while human stakes create feeling. A feature table is useful but low in emotion, and a slapstick tag risks separating entertainment from the tool.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
@@ -894,7 +894,7 @@
               "Remove feeling and publish only the inspection code."
             ],
             "correctIndex": 1,
-            "explanation": "Arousal should move people toward action. Repulsion can push them away before they share or use the warning.",
+            "explanation": "Anxious concern with a prevention step is correct because arousal should move people toward action. Making the image more graphic can trigger avoidance, and publishing only code removes the emotional signal that prompts sharing.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
@@ -903,37 +903,37 @@
             "prompt": "A charity clip makes viewers quietly sad but donations and shares are low. What should the team examine?",
             "choices": [
               "Whether the sadness lowers activation instead of prompting outward action.",
-              "Whether the clip needs a longer list of sponsor names.",
+              "Whether the clip needs a longer list of sponsor names before the donation request.",
               "Whether viewers should be asked to ignore feeling during the appeal."
             ],
             "correctIndex": 0,
-            "explanation": "Sadness can reduce outward motion. The team should find a feeling that still honors the cause while creating energy to act.",
+            "explanation": "Low activation is correct because quiet sadness can reduce outward motion. Sponsor names do not solve the emotional energy problem, and asking viewers to ignore feeling undermines the appeal.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q08",
-            "prompt": "When an article is useful but not shared, which question best adds the emotion lens?",
+            "prompt": "A writer has a useful article that is not shared. Which question best adds the emotion lens?",
             "choices": [
-              "How can the headline promise more facts than the article can support?",
+              "How can the headline signal usefulness more clearly without adding a human stake?",
               "Which low-energy mood will make the article feel calmer?",
               "What high-arousal stake would make a reader want someone else to see this?"
             ],
             "correctIndex": 2,
-            "explanation": "Usefulness can travel farther when the reader feels activated care. The question looks for a shareable human stake.",
+            "explanation": "The high-arousal stake question is correct because useful material travels farther when readers feel activated care. A clearer utility headline can still stay inert, and a calmer low-energy mood works against sharing.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q09",
-            "prompt": "What does high-arousal emotion add to a message?",
+            "prompt": "A team is adding emotion to a message. What should high-arousal emotion add?",
             "choices": [
-              "A demand that every message be happy before it spreads.",
+              "A demand that every message be happy before it spreads to most audiences.",
               "A push from caring into visible action such as warning or sharing.",
               "A way to replace the idea with spectacle during launch."
             ],
             "correctIndex": 1,
-            "explanation": "High arousal supplies action energy. The feeling should move people while keeping the intended idea in view.",
+            "explanation": "The push into action is correct because high arousal turns caring into warning, commenting, or sharing. It does not require happiness, and spectacle that replaces the idea is emotional theft rather than useful emotion.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           }
@@ -1161,46 +1161,46 @@
               "Remove the mark so observers focus on the keyboard shape."
             ],
             "correctIndex": 0,
-            "explanation": "The Apple example favors public observability. A visible mark turns each user into evidence for people nearby.",
+            "explanation": "Orienting the logo for onlookers is correct because public design makes adoption observable during use. Owner-facing ease is private, and removing the mark erases the signal observers can copy.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "A music player sits in a pocket. What did white earbuds solve?",
+            "prompt": "A designer is making a pocketed music player visible. What should white earbuds solve?",
             "choices": [
               "They made battery life easier for owners to estimate.",
               "They reduced the need for users to choose songs.",
               "They made the hidden product observable in public."
             ],
             "correctIndex": 2,
-            "explanation": "The earbuds acted as a visible marker. Strangers could see use even when the device stayed hidden.",
+            "explanation": "Making the hidden product observable is correct because white earbuds turned pocketed use into a public signal. They did not estimate battery life, and they did not remove the user choice of music.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           },
           {
             "questionId": "q03",
-            "prompt": "Celine wants growth for a free email tool. Which move most resembles Hotmail?",
+            "prompt": "A founder wants growth for a free email tool. Which action best resembles Hotmail?",
             "choices": [
               "Ask users to memorize a referral code for future conversations.",
               "Add a short signup invitation to messages users already send.",
               "Place a long product history on the account settings page."
             ],
             "correctIndex": 1,
-            "explanation": "Hotmail put exposure and adoption path inside normal use. The message itself carried social proof to recipients.",
+            "explanation": "Adding a signup invitation to sent messages is correct because Hotmail embedded exposure in normal use. A memorized code adds friction, and an account-settings history page is too hidden to travel.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q04",
-            "prompt": "Kwame chooses between thank-you emails and bracelets for donors. Why might bracelets be stronger?",
+            "prompt": "A director chooses between thank-you emails and bracelets for donors. What should make bracelets stronger?",
             "choices": [
-              "They make every donor give more money at checkout.",
+              "They make every donor give more money at checkout by making generosity visible.",
               "They leave behavioral residue that remains visible after donation.",
               "They keep the cause private so donors avoid questions."
             ],
             "correctIndex": 1,
-            "explanation": "Livestrong wristbands kept support observable long after the original act. Residue invites attention and conversation.",
+            "explanation": "Visible residue is correct because bracelets keep the act observable after donation. They do not guarantee larger gifts from every donor, and privacy would reduce the public signal that invites conversation.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
@@ -1209,63 +1209,63 @@
             "prompt": "Anouk's sponsor wants private pledges instead of a Movember-style visible challenge. What should she protect?",
             "choices": [
               "The visible change that invites people to ask about men's health.",
-              "The private pledge because hidden support creates more imitation.",
+              "The private pledge because hidden support can feel more sincere than a costume.",
               "The sponsor logo as the only thing participants need to show."
             ],
             "correctIndex": 0,
-            "explanation": "Movember works because the mustache makes the cause noticeable. The cue opens the conversation.",
+            "explanation": "The visible change is correct because Movember makes the cause noticeable and question-worthy. Hidden sincerity may feel meaningful but is harder to imitate, and a sponsor logo alone does not show the desired behavior.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
           {
             "questionId": "q06",
-            "prompt": "Petra's poster says many students binge drink. What is the public-design risk?",
+            "prompt": "A student group posts that many students binge drink. What should Petra flag as the public-design risk?",
             "choices": [
               "Students may find the poster too hard to see from far away.",
-              "Students may assume the printer approved the message late.",
+              "Students may think the campaign is judging them instead of describing evidence.",
               "Students may infer the unwanted behavior is common."
             ],
             "correctIndex": 2,
-            "explanation": "Public signals imply norms. Showing the bad behavior as common can accidentally strengthen it.",
+            "explanation": "Inferring that binge drinking is common is correct because public signals can normalize what they show. Visibility distance is a design issue, and feeling judged is possible but not the norm-error Berger warns about.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
           },
           {
             "questionId": "q07",
-            "prompt": "A voting group gives stickers after ballots are cast. What does the sticker add?",
+            "prompt": "A director gives stickers after ballots are cast. What should the sticker add?",
             "choices": [
               "A private reminder that only the voter can interpret.",
               "A visible trace that voting happened and can be copied.",
               "A price discount that makes the ballot feel more valuable."
             ],
             "correctIndex": 1,
-            "explanation": "The sticker is behavioral residue. It lets a private civic act become public evidence.",
+            "explanation": "The visible trace is correct because the sticker turns a private ballot into public evidence. A private reminder cannot be copied by observers, and a discount would be an incentive rather than behavioral residue.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
           },
           {
             "questionId": "q08",
-            "prompt": "Your team wants to make a private wellness habit spread. Which first test is most useful?",
+            "prompt": "You are making a private wellness habit spread. Which first test is most useful?",
             "choices": [
-              "Ask how to hide participants so the habit feels more personal.",
+              "Ask how to hide participants so the habit feels more personal and less performative.",
               "Ask how many warnings about unhealthy behavior fit on a flyer.",
               "Ask what visible trace would let others notice the desired behavior."
             ],
             "correctIndex": 2,
-            "explanation": "Public design starts with observability. The signal should show the wanted act, not hide it or spotlight the opposite.",
+            "explanation": "The visible-trace test is correct because public design starts with observability of the wanted act. Hiding participants blocks imitation, and warning-heavy flyers can accidentally spotlight the unwanted behavior.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q09",
-            "prompt": "When can visibility become harmful?",
+            "prompt": "A manager is deciding whether to make behavior visible. When can visibility become harmful?",
             "choices": [
               "When it makes an unwanted act look widespread or normal.",
               "When it appears on a product people already use in public.",
               "When it leaves a trace that invites a helpful question."
             ],
             "correctIndex": 0,
-            "explanation": "Visibility amplifies whatever it shows. It helps only when the desired behavior is the thing being normalized.",
+            "explanation": "Visibility is harmful when it makes an unwanted act look normal. Showing a product already used in public can help adoption, and a trace that invites a helpful question is the beneficial version of public design.",
             "bloomsLevel": "evaluate",
             "depthLevel": "standard"
           }
@@ -1486,40 +1486,40 @@
         "questions": [
           {
             "questionId": "q01",
-            "prompt": "Rosa has a corn tutorial. Which opening best follows Ken Craig's practical-value lesson?",
+            "prompt": "A writer has a corn tutorial. Which opening best follows Ken Craig's practical-value lesson?",
             "choices": [
-              "Begin with the cook's full biography before any kitchen action.",
+              "Begin with the cook's full biography before any kitchen action so viewers know his credentials.",
               "Show the clean corn result first so viewers see the immediate payoff.",
               "Hide the finished corn until viewers have watched every step twice."
             ],
             "correctIndex": 1,
-            "explanation": "The corn video spread because usefulness was visible quickly. Rosa should put the payoff where viewers can grasp it and think of a recipient.",
+            "explanation": "Showing the payoff first is correct because practical value spreads when usefulness is immediately visible. A biography delays the benefit, and hiding the result makes the favor harder to recognize and forward.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "Nikhil's grill sign can show only a final price or the original price plus markdown. Why show the reference price?",
+            "prompt": "A manager is choosing whether a grill sign shows only a final price or the original price plus markdown. What should showing the reference price accomplish?",
             "choices": [
               "It helps shoppers perceive whether the deal is exceptional.",
-              "It makes the grill easier to assemble after purchase.",
+              "It makes the grill easier to assemble after purchase because the deal feels clearer.",
               "It proves customers will buy two grills instead of one."
             ],
             "correctIndex": 0,
-            "explanation": "Reference points shape perceived value. The markdown can make the savings feel worth forwarding.",
+            "explanation": "The reference price is correct because it frames whether the savings feel exceptional. It does not help assembly, and it cannot prove customers will buy multiples.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
           },
           {
             "questionId": "q03",
-            "prompt": "Greta labels a $40 pan and a $240 mixer. Which pair best uses the Rule of 100?",
+            "prompt": "A designer is labeling a $40 pan and a $240 mixer. Which pair best uses the Rule of 100?",
             "choices": [
               "Dollars for the pan and percent for the mixer.",
               "Percent for both because percentages are clearer at every price.",
               "Percent for the pan and dollars for the mixer."
             ],
             "correctIndex": 2,
-            "explanation": "Below $100, percentages often look larger. Above $100, absolute dollars often feel more impressive.",
+            "explanation": "Percent for the pan and dollars for the mixer is correct because the Rule of 100 changes the most impressive frame by price level. Dollars on the cheap pan can look small, and percent for every price ignores that large-ticket dollar savings often feel bigger.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
@@ -1527,12 +1527,12 @@
             "questionId": "q04",
             "prompt": "Samira sees a frightening vaccine-autism warning spreading in a parent chat. What should she do first?",
             "choices": [
-              "Forward it faster because parents are trying to protect children.",
-              "Change the topic so no one discusses health in the group.",
+              "Forward it faster because parents are trying to protect children from hidden risk.",
+              "Share it with a caution label but no source check because parents can evaluate the warning later.",
               "Pause sharing and add credible verification before the claim travels farther."
             ],
             "correctIndex": 2,
-            "explanation": "Helpful intent can carry false information. Samira should protect the group by checking evidence before amplifying the warning.",
+            "explanation": "Pausing for verification is correct because helpful intent can spread false practical advice. Forwarding faster amplifies risk, and a caution label without source checking still passes the claim along.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
@@ -1540,64 +1540,64 @@
             "questionId": "q05",
             "prompt": "Pavel's software tip saves payroll managers ten minutes on Friday exports. Which subject line best packages practical value?",
             "choices": [
-              "A few workflow thoughts for many teams.",
+              "A few workflow thoughts for many teams who might improve payroll someday.",
               "Payroll managers: cut Friday export cleanup by ten minutes.",
               "Product update notes from the customer team."
             ],
             "correctIndex": 1,
-            "explanation": "The strongest line names the recipient, payoff, and timing. It feels like a useful favor to a specific person.",
+            "explanation": "The payroll-specific line is correct because it names the recipient, timing, and payoff. Broad workflow thoughts feel vague, and product notes center the sender rather than the useful favor.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q06",
-            "prompt": "June has twelve neighborhood tips and one heating-bill tactic that works this week. Which edit helps sharing?",
+            "prompt": "A writer has twelve neighborhood tips and one heating-bill tactic that works this week. Which edit helps sharing?",
             "choices": [
               "Lead with the heating-bill tactic and give exact steps.",
               "Keep all twelve tips equal so no one feels guided.",
               "Replace the tactic with a general essay about community care."
             ],
             "correctIndex": 0,
-            "explanation": "Practical value travels when the benefit is concrete and easy to pass on. One clear favor beats a diluted list.",
+            "explanation": "Leading with the heating-bill tactic is correct because practical value needs a concrete, timely benefit. Treating all twelve tips equally dilutes the favor, and a general essay removes the exact action people can pass on.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q07",
-            "prompt": "A store advertises 5 dollars off a 500 dollar item. Why might that feel weak?",
+            "prompt": "An analyst sees a store advertise 5 dollars off a 500 dollar item. What should explain why that feels weak?",
             "choices": [
               "Diminishing sensitivity makes the savings feel small at that scale.",
-              "Customers dislike dollar amounts on costly items in most cases.",
+              "Customers dislike dollar amounts on costly items when percentages sound more dramatic.",
               "The final price matters only when no reference point exists."
             ],
             "correctIndex": 0,
-            "explanation": "A fixed dollar amount can feel tiny against a high price. The value frame has to match the scale.",
+            "explanation": "Diminishing sensitivity is correct because five dollars feels small against a five-hundred-dollar item. The issue is not a general dislike of dollar amounts, and reference points can matter even when the final price is visible.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q08",
-            "prompt": "Your team wants customers to forward a safety checklist. Which feature is most important?",
+            "prompt": "You are designing a safety checklist customers will forward. Which feature is most important?",
             "choices": [
-              "A long list of possible risks with no ranking.",
+              "A long list of possible risks with no ranking so readers can choose their own concern.",
               "A dramatic tone that makes checking sources feel less urgent.",
               "A clear risk, a specific recipient, and a verified action step."
             ],
             "correctIndex": 2,
-            "explanation": "A useful warning should be relevant and true. People need to know who benefits, what to do, and why the claim can be trusted.",
+            "explanation": "The clear, verified action step is correct because a useful warning needs relevance, truth, and a recipient. An unranked risk list is hard to use, and drama that weakens verification can spread harm.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q09",
-            "prompt": "What social motive powers practical value?",
+            "prompt": "A manager is packaging practical value. Which social motive powers it?",
             "choices": [
-              "Showing that the sender knows secret places before others.",
+              "Showing that the sender knows secret places before others and gains insider status.",
               "Helping someone else save time, money, effort, risk, or frustration.",
               "Making private behavior visible through residue."
             ],
             "correctIndex": 1,
-            "explanation": "Practical value spreads as a form of helping. The sender strengthens a tie by passing along a useful benefit.",
+            "explanation": "Helping someone save time, money, effort, risk, or frustration is correct because practical value is shared as a favor. Secret-place status belongs to social currency, and visible residue belongs to the Public principle.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           }
@@ -1820,64 +1820,64 @@
             "questionId": "q01",
             "prompt": "Dalia chooses between a Trojan Horse plot label and an abstract warning label. Which choice best uses stories?",
             "choices": [
-              "Use the abstract warning so visitors skip the details.",
+              "Use the abstract warning so visitors skip the distracting details and remember the moral.",
               "Use only dates and material facts because stories reduce memory.",
               "Use the plot so the hidden-danger lesson rides inside the event."
             ],
             "correctIndex": 2,
-            "explanation": "The Trojan Horse works because the lesson is inseparable from the event. The plot carries the payload.",
+            "explanation": "Using the plot is correct because the Trojan Horse lesson travels inside the event. An abstract warning loses the memorable carrier, and bare dates or facts do not make the lesson easier to retell.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
           {
             "questionId": "q02",
-            "prompt": "Henrik reviews a weight-loss testimonial where the restaurant appears only as a final logo. What is the problem?",
+            "prompt": "An analyst reviews a weight-loss testimonial where the restaurant appears only as a final logo. What should he flag?",
             "choices": [
               "The story has too much product causality for viewers to retell.",
               "The story may spread while the restaurant payload drops out.",
               "The story should avoid transformation because change is hard to believe."
             ],
             "correctIndex": 1,
-            "explanation": "Jared and Subway worked because the restaurant explained the transformation. A logo tag can vanish during retelling.",
+            "explanation": "Payload drop-out is correct because a logo tag can vanish when the story is retold. The issue is too little product causality, not too much, and transformation is exactly what makes the Subway example memorable when the restaurant remains causal.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
           },
           {
             "questionId": "q03",
-            "prompt": "Soraya wants support trainees to remember a warranty promise. Which opening follows the Land's End lesson?",
+            "prompt": "A manager is training support reps to remember a warranty promise. Which opening follows the Land's End lesson?",
             "choices": [
               "A broken-zipper replacement incident that shows the promise in action.",
-              "A list of every clause in the warranty policy.",
+              "A list of every clause in the warranty policy so trainees see the full rulebook.",
               "A slogan saying service matters before any example appears."
             ],
             "correctIndex": 0,
-            "explanation": "A service story makes the promise concrete. The incident gives trainees an event they can remember and repeat.",
+            "explanation": "The broken-zipper incident is correct because it shows the warranty promise in action. A clause list may be complete but less memorable, and a slogan without an event gives trainees little to repeat.",
             "bloomsLevel": "create",
             "depthLevel": "standard"
           },
           {
             "questionId": "q04",
-            "prompt": "Benji's stunt will get attention, but the sponsor is only printed on a banner nearby. Which test should he apply?",
+            "prompt": "A director is reviewing Benji's stunt, where the sponsor is only printed on a banner nearby. Which test should he apply?",
             "choices": [
               "Whether the stunt can be retold without the sponsor's message.",
-              "Whether the banner uses the largest font allowed by the venue.",
+              "Whether the banner uses the largest font allowed by the venue so viewers notice it.",
               "Whether attention alone will make the sponsor easier to trust."
             ],
             "correctIndex": 0,
-            "explanation": "Golden Palace shows that attention can detach from payload. Benji needs the brand to be necessary to the retold story.",
+            "explanation": "The retelling test is correct because valuable virality requires the payload to stay with the story. A larger banner can still be omitted, and attention alone does not make the sponsor necessary or trusted.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
           {
             "questionId": "q05",
-            "prompt": "Mei compares two comedy boards. One prank is random; one starts when a diner refuses the cheese. Which is stronger?",
+            "prompt": "A writer compares two comedy boards: one random prank and one cheese-refusal prank. Which board is stronger?",
             "choices": [
               "The random prank because broader humor fits more products.",
               "The board with fewer product mentions because viewers dislike food ads.",
               "The cheese refusal because the product causes the joke."
             ],
             "correctIndex": 2,
-            "explanation": "Panda Cheese works because refusal of the product triggers the funny escalation. The product is the hinge.",
+            "explanation": "The cheese refusal is correct because the product causes the joke. Random humor can travel without the brand, and fewer mentions do not matter if the product is no longer the plot hinge.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
           },
@@ -1885,51 +1885,51 @@
             "questionId": "q06",
             "prompt": "Alonzo's testers retell a travel mishap but omit the safety feature. What should he do?",
             "choices": [
-              "Launch anyway because laughter proves valuable virality.",
+              "Launch anyway because laughter proves valuable virality even if the feature disappears in retelling.",
               "Rebuild the plot so the safety feature is needed for the story to make sense.",
               "Add a larger logo after the story and keep the plot unchanged."
             ],
             "correctIndex": 1,
-            "explanation": "Valuable virality requires message retention. If the feature disappears, the payload is not load-bearing.",
+            "explanation": "Rebuilding the plot around the safety feature is correct because the payload must be load-bearing. Laughter without the feature is merely visible, and a larger logo can still be dropped from retellings.",
             "bloomsLevel": "create",
             "depthLevel": "deep"
           },
           {
             "questionId": "q07",
-            "prompt": "What does psychological cover let people do?",
+            "prompt": "A manager is using story cover for a product message. What should psychological cover let people do?",
             "choices": [
-              "Avoid retelling the plot so the claim stays concise.",
+              "Avoid retelling the plot so the claim stays concise and sounds less promotional during a handoff.",
               "Share product information while feeling like they are telling an interesting story.",
-              "Remove the message from the story before passing it on."
+              "Remove the message from the story before passing it on so it feels more natural."
             ],
             "correctIndex": 1,
-            "explanation": "Stories let people pass along information without sounding like unpaid advertisers. The social act is telling a tale.",
+            "explanation": "Sharing information under the cover of a story is correct because people can pass along the payload without sounding like advertisers. Avoiding the plot removes the cover, and stripping out the message defeats the purpose.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
           },
           {
             "questionId": "q08",
-            "prompt": "A story sheds side details as it travels. Where should the intended message sit?",
+            "prompt": "A writer sees a story shed side details as it travels. Where should the intended message sit?",
             "choices": [
               "At the plot hinge that listeners need to preserve.",
-              "In a sponsor tag after the entertaining part.",
+              "In a sponsor tag after the entertaining part, where it can be separated cleanly.",
               "In a footnote that only careful viewers notice."
             ],
             "correctIndex": 0,
-            "explanation": "Peripheral details are easy to drop. The payload survives when it is central to the plot.",
+            "explanation": "The plot hinge is correct because details needed for the story are least likely to fall away. A sponsor tag after the fun is easy to detach, and a footnote is too peripheral to survive retelling.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
           },
           {
             "questionId": "q09",
-            "prompt": "What makes virality valuable rather than merely visible?",
+            "prompt": "A manager is judging whether spread is useful. What makes virality valuable rather than merely visible?",
             "choices": [
               "Views that rise even when no one remembers the product.",
               "Surprise that can be retold without the cause or brand.",
               "Reach paired with retention of the intended message."
             ],
             "correctIndex": 2,
-            "explanation": "Useful spread needs both attention and payload retention. The idea must travel with the story.",
+            "explanation": "Reach with message retention is correct because useful spread carries the intended idea along. Views without product memory are empty attention, and surprise that can be retold without the cause loses the payload.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           }
