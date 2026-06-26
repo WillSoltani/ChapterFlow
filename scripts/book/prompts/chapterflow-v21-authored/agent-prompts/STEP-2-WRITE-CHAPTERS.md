@@ -320,6 +320,24 @@ answer must derive from a verifiable source fact (`testableFact`) — never from
 said." If the only support for a keyed choice is a first-name account, the question is unsound: re-key
 it to a `testableFact` or rewrite the claim.
 
+**R9 — Contested science: never state a disputed finding as settled law (`factual_accuracy`).** A claim
+can be perfectly faithful to the source and still be shaky in its field. If the sidecar marks a
+`testableFact` with `replicationStatus: "mixed"`, `"contested"`, or `"failed"`, you may use it **only**
+with a calibrated hedge or reframed as a heuristic — never as flat fact. The defect is the costume of
+certainty over disputed science: *"Willpower runs on a fixed glucose budget; once it is spent, you will
+give in"* stated as mechanism, when ego-depletion/glucose is one of psychology's most contested findings.
+- **Hedge it.** "the evidence here is mixed", "some studies question this", "one influential account
+  holds that…", "this idea is debated, but a useful way to think about it is…". Name the standing, then
+  teach the takeaway.
+- **Or reframe as a heuristic.** Strip the mechanistic certainty and keep the practical move: not "your
+  glucose budget is depleted" but "when you have been resisting all day, the next refusal feels harder —
+  plan around that." A heuristic the reader can use does not need a contested mechanism to stand.
+- **`failed`** claims: drop them, or frame explicitly as a once-popular idea that did not hold up — never
+  as live science.
+- Absent/`robust` ⇒ state it plainly; do NOT bolt hedges onto solid science (that is its own defect, and
+  it reads as no-confidence prose). This is the writer half of [Finding #2]; the WT-E `factual_accuracy`
+  rubric scores the survivors at the blind read.
+
 ---
 
 ## False-positive allowances (write freely)

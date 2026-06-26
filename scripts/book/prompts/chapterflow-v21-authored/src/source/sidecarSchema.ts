@@ -35,6 +35,27 @@ export function isV2(sc: any): boolean {
 
 export type AnchorId = string; // e.g. "ch01.ex.car-door", "ch01.fact.3"
 
+/**
+ * Replication standing of a claim, as judged by the researcher at source time.
+ * OPTIONAL and additive — absence means "not assessed" (treated as robust; the
+ * legacy default, so the 1581 existing sidecars are unaffected). When present,
+ * STEP-2 R9 requires the writer to HEDGE anything below `robust` instead of
+ * stating it as settled law; the WT-E `factual_accuracy` rubric scores the
+ * faithful-but-disputed case the realness gate cannot see.
+ *   - robust    — replicates reliably; state plainly.
+ *   - mixed     — some support, some failures to replicate; hedge ("evidence is mixed").
+ *   - contested — actively disputed in the field; hedge or reframe as a heuristic.
+ *   - failed    — failed to replicate / largely retracted; use only with an explicit caveat.
+ */
+export type ReplicationStatus = "robust" | "mixed" | "contested" | "failed";
+
+export const REPLICATION_STATUSES: readonly ReplicationStatus[] = [
+  "robust",
+  "mixed",
+  "contested",
+  "failed",
+];
+
 export type TestableFact = {
   id: AnchorId;
   claim: string; // a single verifiably-true proposition (the keyed-answer seed)
@@ -42,6 +63,7 @@ export type TestableFact = {
   commonError: string; // the plausible WRONG belief — a non-strawman distractor seed
   errorIsWhy: string; // why the commonError is wrong
   derivedFrom?: AnchorId;
+  replicationStatus?: ReplicationStatus; // OPTIONAL — flags a claim with known replication trouble (see ReplicationStatus)
 };
 
 export type NamedExampleV2 = {
