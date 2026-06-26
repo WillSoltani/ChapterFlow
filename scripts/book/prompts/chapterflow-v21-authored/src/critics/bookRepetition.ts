@@ -163,6 +163,55 @@ export function checkBookVenueStamping(chapters: ChapterV21[]): CriticFinding[] 
   return findings;
 }
 
+// ── BP33 — try-this-now opener reuse across chapters (the separable OPENER subset
+// of the `repeated_unit` sweep family) ──────────────────────────────────────────
+//
+// the-slight-edge reused try-this-now OPENING CLAUSES across chapters ("Before you
+// send your next reply", "During your next conversation"), flattening distinct
+// practices into one instruction shell. Unlike the broader repeated_unit /
+// scene_skeleton families — which the gold corpus legitimately reuses, so they stay
+// PREVENTION-only (the SC9 caution in the BP30 note below) — the OPENER is
+// deal-distinct by design: daring-greatly (7 ch) and start-with-why (14 ch) have
+// ZERO repeated openers. So the opener subset IS separable from the clean corpus,
+// and a deterministic gate shifts it left from the model sweep.
+//
+// SHADOW major: openerPlan prevents it at the deal; this catches the residual drift
+// and names the chapters for re-dispatch. Fires when >= 2 chapters share the same
+// normalized 5-word opening prefix (gold = 0 by construction; even a PAIR is a
+// defect since the deal makes every opener unique).
+const OPENER_PREFIX_WORDS = 5;
+const OPENER_MIN_WORDS = 4; // ignore a too-short opener (no meaningful shared shell)
+
+function tryThisNowOpener(chapter: ChapterV21): string {
+  const words = (chapter.tryThisNow ?? "").toLowerCase().match(/[a-z']+/g) ?? [];
+  return words.slice(0, OPENER_PREFIX_WORDS).join(" ");
+}
+
+export function checkBookTryThisNowOpenerReuse(chapters: ChapterV21[]): CriticFinding[] {
+  const byOpener = new Map<string, number[]>();
+  for (const chapter of chapters) {
+    const opener = tryThisNowOpener(chapter);
+    if (opener.split(" ").filter(Boolean).length < OPENER_MIN_WORDS) continue;
+    const chs = byOpener.get(opener) ?? [];
+    chs.push(chapter.number);
+    byOpener.set(opener, chs);
+  }
+  const findings: CriticFinding[] = [];
+  for (const [opener, chs] of byOpener) {
+    const uniq = [...new Set(chs)].sort((a, b) => a - b);
+    if (uniq.length < 2) continue; // distinct openers → good (the deal's job)
+    findings.push(
+      finding(
+        "BP33.try_this_now_opener_reuse",
+        "major",
+        `try-this-now opener "${opener}…" opens ${uniq.length} chapters (${uniq.map((n) => `ch${n}`).join(", ")}). Each chapter's practice should start from its own concrete trigger — vary the opening clause.`,
+        truncate(uniq.map((n) => `ch${n}`).join(", "), 180),
+      ),
+    );
+  }
+  return findings;
+}
+
 // ── BP28 — review-card callback-frame reuse (the `repeated_unit` sweep family) ─
 //
 // The spaced-recall cards across a book collapse onto ONE concept+question
