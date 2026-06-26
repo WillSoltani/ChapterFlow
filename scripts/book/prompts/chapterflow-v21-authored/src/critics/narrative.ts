@@ -264,6 +264,21 @@ const NON_PERSON_WORDS = new Set([
   "Finally", "Eventually", "Nobody", "Somebody", "Everybody", "Anybody",
   "Nothing", "Something", "Everything", "Anything", "Someone", "Everyone",
   "Anyone", "Today", "Tonight", "Together", "Often", "Always", "Never",
+  // Corpus-revealed non-name capitalized tokens — a 131-package C24 sweep found
+  // these recurring as scenario subjects / sentence-openers, inflating the cast
+  // count (e.g. "Bank", "Team", "You" counted as protagonists). Adding them only
+  // REDUCES fires (monotonic — cannot break the gold-zero calibration). Tokens
+  // that can be real given names (May, April, June, Pepper, Rusty) are deliberately
+  // omitted, per the "never over-count, tolerate a rare under-count" rule above.
+  "You", "Not", "Now", "For", "Which", "What", "Each", "Both", "However",
+  "Therefore", "Otherwise", "Yet", "Still", "Once", "Then", "Here", "There",
+  "When", "Where", "While", "Because", "Since", "Although", "Say", "Heard",
+  "Documented", "Delay", "Divert", "Draft", "Bid", "Appeal", "Additional",
+  "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine",
+  "Ten", "Eleven", "Twelve", "Thirty", "Forty", "Fifty", "First", "Second", "Third",
+  "Average", "Bank", "Team", "Column", "Option", "Level", "Producer", "Manager",
+  "Engineer", "Center", "Cost", "Functions", "Facilities", "Abstinence",
+  "Arbitration", "Document", "Member", "Table",
 ]);
 
 // Determiners that mark the following capitalized token as a COMMON noun

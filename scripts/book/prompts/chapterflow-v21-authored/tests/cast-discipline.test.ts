@@ -47,6 +47,21 @@ import type { ChapterV21 } from "../src/types.js";
 const PAD =
   " The team reviews the live record against the signed note before the next handoff begins, checking the timestamp and the prior entry against the source carefully and without rushing past the discrepancy.";
 
+test("C24: countPersonNames excludes corpus-revealed non-name capitalized tokens (2026-06-26 sweep)", () => {
+  // A 131-package C24 sweep found these recurring as scenario subjects / sentence
+  // openers (each appears >=2x WITHOUT a determiner), inflating the cast count. The
+  // extended NON_PERSON_WORDS set must keep them out; a real recurring name stays in.
+  const sentence =
+    "You open the desk. You check the report. Bank totals drift. Bank totals drift again. " +
+    "Team meets late. Team meets late once more. Column shifts. Column shifts. " +
+    "Maris reads it twice. Maris signs the manifest.";
+  const counted = [...countPersonNames(sentence).keys()];
+  for (const nonName of ["You", "Bank", "Team", "Column"]) {
+    assert.ok(!counted.includes(nonName), `"${nonName}" must not count as a person name; got [${counted.join(", ")}]`);
+  }
+  assert.ok(counted.includes("Maris"), `a real recurring name must still count; got [${counted.join(", ")}]`);
+});
+
 // ── A crowded cast: 7 distinct named protagonists each recurring in their scene ──
 const SEVEN_CAST = [
   "Alda opens the intake desk before dawn. Alda checks the ledger twice.",

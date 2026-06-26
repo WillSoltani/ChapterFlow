@@ -195,6 +195,39 @@ Status values: `observed once` · `confirmed twice` · `shadow` · `write-barrie
 - Caught by: `book-repetition.test.ts` (fires on a shared opener; silent on distinct; ZERO on
   clean + gold).
 
+**FC-2026-06-26-013 — outcome variety (`C28`) + cast-overflow counting (`C24`)**
+- Stage: write · found via a 131-package corpus sweep (the rubric's "uniform frictionless
+  outcomes" + "hollow over-named cast" findings).
+- **C28** — a chapter whose ENTIRE example slate resolves in clean instant success (no
+  friction-bearing format AND no failure/cost/relapse/partial cue anywhere). **PROMOTED
+  minor→major** (still SHADOW): 11 TPs across 9 distinct books (behave, decisive,
+  the-tipping-point, the-denial-of-death, …), ZERO on the gold corpus. Held OUT of
+  `ENFORCED_MAJOR` on purpose — outcome realism is a QUALITY signal, not a corruption tell, and
+  a hard block would force friction onto a legitimately-positive chapter. The Phase-1 STEP-2
+  rule ("not every example wins") is the write-time partner.
+- **C24** — the cast-overflow counter was over-counting: `NON_PERSON_WORDS` (in `narrative.ts`)
+  was extended with corpus-revealed non-name capitalized tokens (You/Bank/Team/Column/Option/…
+  recurring as scenario subjects) that inflated the count (101→77 fires; the change is MONOTONIC
+  — it can only remove fires, so the gold-zero calibration is preserved). Stays SHADOW major:
+  residual country/title FPs remain, and many real fires are legitimately-large casts → not a
+  hard blocker, but a cleaner signal for the writer.
+- **REJECTED this sweep (the anti-overfit valve at work — no gate added):**
+  - **PT1** (within-chapter if-then collapse) + **PT2** (verbal-only action): a 131-package
+    calibration proved them INSEPARABLE from good content. PT1's shared-action-run signal fires
+    on the intended "one named move applied to different triggers" design (`nudge`/`quiet`/
+    `the-power-of-full-engagement` FPs at *higher* dominance than the real the-slight-edge TP —
+    inverted, so no threshold separates them). PT2 fires on legitimate verbal techniques
+    (atomic-habits identity statements, interpersonal conversation scripts, emotion-naming). The
+    "thin tools" defect is SEMANTIC → left to the QC bar + the STEP-2 disposition (Phase 1).
+  - A **friction-FORMAT allocator guarantee** (force ≥1 `mistake_recovery`/`postmortem` per
+    chapter) was rejected: it would saturate the book with one shape, violating the
+    anti-templating invariant `sceneModePlan` exists to protect. Outcome variety is enforced at
+    DETECTION (C28 accepts friction *prose* in any shape), not allocation.
+- Status: **shadow** (C28 major, C24 major). FP-risk: C28 **low**; C24 **medium** (residual
+  capitalized non-name tokens — countries/titles).
+- Caught by: `outcome-variety.test.ts` (C28 fires on an all-success slate, ZERO on gold),
+  `cast-discipline.test.ts` (C24 cap + the non-name exclusion pin).
+
 ---
 
 ## Gold-corpus regression — how to check the rung-2/3/4 bars

@@ -28,9 +28,12 @@
  * becomes an "expensive rework cycle", a charge is "challenged") so they never trip
  * C28. A genuinely all-success regen chapter matches NONE of it, so it does.
  *
- * SEVERITY: MINOR (advisory, shadow). This is a STRENGTHEN signal that surfaces as
- * QC debt; the gating judgment on outcome realism stays with the semantic bar
- * (WT-E). A chapter-level property — one finding per chapter, never per example.
+ * SEVERITY: MAJOR (advisory, shadow). Promoted minor→major 2026-06-26 on a 131-package
+ * sweep: 11 true positives across 9 books (every-scene-clean-success chapters), ZERO on
+ * the gold corpus — so it surfaces as a major the writer fixes before submit, but stays
+ * OUT of ENFORCED_MAJOR (outcome realism is a quality signal, not a hard blocker; the
+ * gating judgment stays with the semantic bar, WT-E). A chapter-level property — one
+ * finding per chapter, never per example.
  * Calibrated ZERO-FP on the gold corpus — see tests/outcome-variety.test.ts.
  */
 
@@ -138,7 +141,7 @@ export function checkOutcomeVariety(chapter: ChapterV21): CriticFinding[] {
   return [
     finding(
       "C28.uniform_success",
-      "minor",
+      "major",
       `examples: all ${hit.exampleCount} example scenes resolve in clean instant success — none shows a failed first attempt, relapse, setback, cost, or partial outcome — e.g. "${truncate(hit.evidence, 60)}" (no friction-bearing format [mistake_recovery/postmortem] and no cost/failure cue in any scenario). ${C28_FIX}`,
       hit.evidence,
     ),
