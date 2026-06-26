@@ -389,6 +389,14 @@ Stress Test room", "Beau asks after Kelly McGonigal's class"*) — is the same d
 documented result as the evidence (cite the researcher), then move your invented actor into a plain
 everyday setting where they APPLY the lesson — never as a research subject. Run `evidence-audit
 <chapter.json>` and disposition every flagged name against your brief before you finish.
+A third trap is the **Hardy move** (MISATTRIBUTION) — crediting a *real, named* authority with a claim
+your brief does NOT credit them with. The-slight-edge ch8 framed a phrase as *Darren Hardy's* when the
+brief only *compared* the book to Hardy's *Compound Effect* and credited the words to a summary. Hardy
+is real and present in the brief — so this is not invention, it is a **role confusion**: a name the brief
+only MENTIONS or COMPARES is promoted to the CREDITED SOURCE of a specific claim. The `evidence-audit`
+lever lists each `ATTRIBUTION?` candidate; for every one, confirm the brief credits THAT person with THAT
+claim — if it only mentions or compares them, **credit the real owner the brief names** (do not borrow the
+comparison as an attribution).
 
 **Hard rule: a quiz answer may NEVER be keyed to a testimonial (`EI2`, blocker).** Every correct
 answer must derive from a verifiable source fact (`testableFact`) — never from "what Brad's report

@@ -49,6 +49,7 @@ import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
 import { checkNamedEnumeration } from "./namedEnumeration.js";
+import { checkMechanicalSeams } from "./mechanicalSeam.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -435,6 +436,17 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // deterministic complement to the factual_accuracy axis; advisory until a gold
   // proof promotes it. See critics/namedEnumeration.ts + tests/named-enumeration.test.ts.
   "NE1.named_enumeration_mismatch": "major",
+  // SEAM1/SEAM2 — mechanical corruption seams in reader prose: a stuttered word
+  // ("side side") or a verbatim >=10-word run stamped 3x (a templated-loop glitch).
+  // The deterministic half of the prose_coherence corruption class (a corpus eval
+  // found these in ~22 shipped books — mechanical, not quality). Calibrated ZERO-FP
+  // across the 132-package corpus + gold (all 10 corpus hits are genuine seams; the
+  // anaphora/compound-word FPs are excluded by the 10-word window + hyphen guard).
+  // SHADOW = major until the gold proof promotes them (mechanical corruption is
+  // blocker-class, but promotes via ENFORCED_MAJOR like the siblings). See
+  // critics/mechanicalSeam.ts + tests/mechanical-seam.test.ts.
+  "SEAM1.adjacent_duplicate_word": "major",
+  "SEAM2.verbatim_repetition": "major",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -898,6 +910,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // seven habits: a, b, c"). Shape-based, runs on v1 + v2 alike; SHADOW=major.
   for (const f of checkNamedEnumeration(chapter)) {
     push(f.checkId as string, "named-enumeration", f.message, f.evidence);
+  }
+  // SEAM1/SEAM2 — mechanical corruption seams (a stuttered word, a verbatim
+  // >=10-word triple-repeat). Shape-based, runs on v1 + v2 alike; SHADOW=major.
+  // The deterministic complement to the semantic prose_coherence axis.
+  for (const f of checkMechanicalSeams(chapter)) {
+    push(f.checkId as string, "mechanical-seam", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent
