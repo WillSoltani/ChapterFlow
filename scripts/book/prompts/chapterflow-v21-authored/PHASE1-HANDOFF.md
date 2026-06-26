@@ -13,11 +13,11 @@ Deep analysis of 6 books found the **new** v21 pipeline regressed vs the **old**
 - **CP-1 merge ritual per worktree** (I do this): commit deliverables → `git rebase origin/main` (append-only seams: `FAILURE-MODES.md`, `finalGate.ts` `SEVERITY_FROM_CATALOG`, `STEP-2`, `types.ts` union — `types.ts` union conflicts are trivial-additive, keep all members) → re-validate (`npx tsc -p . --noEmit` + `CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts`, watch the pass count + check-registry) → `git push origin WT-x:main` → `git pull --ff-only origin main` in `~/ChapterFlow`.
 
 ## GIT STATE (as of this handoff)
-- `origin/main` = `37c3f7e43` (= WT0 + WT-E + WT-D + WT-A + **WT-B** merge). Local `~/ChapterFlow` (web/main-base) synced to it.
-- Test suite on main: **945 pass / 0 fail / 0 skip**. typecheck clean.
+- `origin/main` = `830856b08` (= WT0 + WT-E + WT-D + WT-A + WT-B + **WT-C** merge). Local `~/ChapterFlow` (web/main-base) synced to it.
+- Test suite on main: **990 pass / 0 fail / 0 skip**. typecheck clean.
 - Worktrees: `~/WT0` `~/WT-A` `~/WT-B` `~/WT-C` `~/WT-D` `~/WT-E` (+ `~/ChapterFlow-books` = canonical main checkout).
 
-## PHASE 1 STATUS — 4 of 5 done
+## PHASE 1 STATUS — ✅ COMPLETE (5 of 5)
 
 | WT | Findings | Status | Merge SHA | Notes |
 |---|---|---|---|---|
@@ -26,7 +26,7 @@ Deep analysis of 6 books found the **new** v21 pipeline regressed vs the **old**
 | WT-D | #3 | ✅ merged | `e8e87670c` | `D4.recycled_scenario` (recall-frame) + `D6.key_references_chapter_entity` (keyed-choice; D5 was taken). MAJOR/shadow. Zero-FP on 21 real gold ch. Exemplary. |
 | WT-A | #4 #2-sidecar | ✅ merged | `872b32e10` | `GN1.ungrounded_number` — precision-unit-bound (only %/×/fold/magnitude), **v2-gated** (dormant on v1 corpus, activates for v2 gen), v2 positive-control + gold zero-FP. MAJOR/shadow. Sidecar field `replicationStatus: "robust"\|"mixed"\|"contested"\|"failed"` **matches WT-E's hedge clause exactly**. (I finished committing its #4 half + resolved a trivial `types.ts` union conflict.) |
 | WT-B | #6 #11 #12d | ✅ merged | `37c3f7e43` (merge) | `E8.monotone_cadence` (#6) MAJOR/shadow — short-side cadence twin (≥7 short ≤9-word same-length sentences, run-mean ≥4.5 to spare telegraphic staccato; spec's CoefVar floor refuted on gold + dropped). `B15.cross_tier_paraphrase` (#11) MINOR/advisory — content-lemma Jaccard ≥0.42 below BP24's verbatim floor. **#12d idea-density REFUTED** — Option A: prevention + `measureIdeaDensity()` + a pinning test (fails if a future change makes the measure separable), **no gate**; judgment owned by `prose_coherence`/`MB4`. Zero-FP on 21 real gold ch; suite 945/0. **MERGE WRINKLE:** WT-B's STEP-2 rules collided with main's R8 (grounded)/R9 (contested) → renumbered **R10 (cadence)/R11 (idea-density)**; **next free STEP-2 R-rule = R12.** |
-| **WT-C** | **#5 #7 #8 #14d** | ⬜ **TODO (LAST Phase-1)** | — | base `bfb2fe8c4` (has corpus, now several behind — clean rebase onto `37c3f7e43`). All edit `narrative.ts`/`catalogAudit.ts` → SEQUENTIAL. #5 cast (re-arm C23 + cast-count + example↔quiz shuffle); #7 scene-abstraction; #8 exotic-names; #14d outcome-uniformity. Per memory, WT-C already carries #5 (C24/C25) + #7 (C26) built from a prior session — coexisting green. |
+| WT-C | #5 #7 #8 #14d | ✅ merged | `830856b08` (merge) | `C24.cast_overflow`+`C25.cast_shuffle` (#5) MAJOR/shadow; `C26.scene_abstraction` (#7) MINOR; `C27.exotic_name_density` (#8) MINOR; `C28.uniform_success` (#14d) MINOR. All use the gold-calibrated `chapterCast` extractor. **GOLD RECAST (owner direction):** 7 daring-greatly gold chapters' example casts regenerated international→American/Canadian names (consistent across scenario/quiz/cards) so AM/CAN is the C27 standard. Zero-FP across ALL gates (E8/B15/GN1/D4/D6/EI/SC9 unaffected); suite 990/0. **OPEN HEADS-UP:** C27's oracle (`config/common-given-names.json` ∪ `name-bank.json`) is deliberately Anglo/French-Canadian → reduces cast diversity; owner to confirm "AM/CAN standard" = Anglo (built) vs common-in-North-America (re-includes Aisha/Mei). Tunable via the config + a re-recast. |
 | WT-F | first-pass QC levers 1–5 | ⬜ AFTER Phase 1 | — | Edits `STEP-2` (writer pre-submit runs `qc-converge`), `REPAIR-CODEX-SESSION.md`, `autopilot.ts`. Validated by **regenerating a benchmark book** (`book-autopilot <id> --regen --no-publish`) and confirming round-1 `DETERMINISTIC-CLEAN`. Lever 1 (writer runs qc-converge pre-submit) is the biggest token win. |
 
 ## CP-1 verification checklist (apply to WT-C — the LAST Phase-1 worktree)
@@ -53,7 +53,7 @@ Deep analysis of 6 books found the **new** v21 pipeline regressed vs the **old**
 3. The merged quality gates are all **MAJOR/shadow** — they surface as QC debt but do not block ship yet. Promote individually to `blocker` only after the gold-clean proof holds (and only if WT-F shows generation reliably passes them).
 
 ## NEXT ACTIONS (after compact)
-1. Hand me back this file. Confirm `origin/main` is `37c3f7e43` (or note new merges).
-2. When **WT-C** arrives (the only remaining Phase-1 worktree): run the CP-1 checklist, then the merge ritual. WT-C's base is `bfb2fe8c4` — rebase onto current `37c3f7e43` (clean; its seams are `narrative.ts`/`catalogAudit.ts` + `writer-example`/`writer-quiz`, disjoint from the prose/quiz/numbers seams already merged — no R-rule collision expected since WT-C adds C-family ids, not STEP-2 R-rules).
-3. After WT-C merges → **WT-F** (first-pass QC), validated by a benchmark regen. **WT-F edits STEP-2 — the next free R-rule is R12** (R8 grounded, R9 contested, R10 cadence, R11 idea-density already taken).
+1. Hand me back this file. Confirm `origin/main` is `830856b08` (or note new merges). **Phase 1 detection is COMPLETE** — all five worktrees (WT0/A/B/C/D/E) merged; 10 new deterministic ids (E8/B15/C24-C28/D4/D6/GN1) + 6 semantic-bar clauses, all MAJOR-shadow/advisory.
+2. **WT-F — Phase 2, the only remaining work** (first-pass-QC shift-left, 5 levers; backlog §"PHASE 2"). Edits `STEP-2` (writer runs `qc-converge` pre-submit), `REPAIR-CODEX-SESSION.md`, `autopilot.ts`. **WT-F edits STEP-2 — the next free R-rule is R12** (R8 grounded, R9 contested, R10 cadence, R11 idea-density taken). Validated by a benchmark regen (`book-autopilot <id> --regen --no-publish`) reaching round-1 `DETERMINISTIC-CLEAN`.
+3. **OPEN owner decision (WT-C gold recast):** confirm whether the C27 "American/Canadian standard" should stay Anglo/French-Canadian (as built — `config/common-given-names.json`) or broaden to common-in-North-America (re-including diverse names like Aisha/Mei/Sofia that are also common in the US/Canada). If broaden: extend the oracle + re-recast the 7 daring-greatly gold chapters.
 4. Out of scope for the pipeline (the last 0.5 to a true 10): the app track #16–#20 (personalization, doing-loop, spaced retrieval, dual-coding, generative assessment).
