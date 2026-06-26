@@ -336,6 +336,8 @@ export type CriticCheckId =
   | "D6.key_references_chapter_entity"
   // Grounded numbers — invented precision (a fabricated percentage/multiplier/magnitude).
   | "GN1.ungrounded_number"
+  // Invented witness — a fictional character cast as a research subject (the "Piper move").
+  | "EW1.invented_witness"
   // Cast discipline — crowded cast (C24) + a reshuffled name leaking into the quiz (C25).
   | "C24.cast_overflow"
   | "C25.cast_shuffle"

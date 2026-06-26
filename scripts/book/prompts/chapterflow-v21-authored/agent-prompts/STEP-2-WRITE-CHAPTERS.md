@@ -119,6 +119,19 @@ Any mismatch is either a wrong stored key or a question with two defensible answ
 or rewrite the question so exactly one choice is correct. Do this before `qc-converge` reports
 clean, not after the QC reader finds it.
 
+**Then run the EVIDENCE TRACE** — the same concrete-extraction self-check for `factual_accuracy` (the
+dominant CORRUPTION after quiz keys, per the live willpower run):
+
+```bash
+# List every named person who carries a finding (invented-witness "Piper move" + testimonial-as-proof)
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  evidence-audit state/chapters/<chapterId>.v21-native.chapter.json
+```
+
+For each flagged item, confirm the named actor is a REAL source from your brief. A `participant <Name>`
+cast or an invented actor staged inside a real study is the Piper move (R7) — report the documented
+result as the evidence and move your actor into a plain everyday setting where they APPLY the lesson.
+
 Before reporting Step 2 complete:
 - **`qc-converge <bookId>` must print `DETERMINISTIC-CLEAN`** — this is the authoritative pre-submit
   gate; it subsumes the `gate-chapter` / `book-gate` / `author-check` bullets below. Run those
@@ -364,9 +377,18 @@ success report names ketogenic diet adherence."* `EI1` blocks this in any reader
 use a person's experience, do ONE of: give them a real surname + specifics (→ a, but only if the
 source actually supports it — never invent attribution), or strip the evidentiary verb and let them
 act as a plain illustration (→ b). **Do not merely delete the name — a vague claim is not the fix.**
-A related trap is the Piper move: inserting an *invented* character into a *real* researcher's
+A related trap is the **Piper move** — inserting an *invented* character into a *real* researcher's
 documented setting to act out the finding (a fictional "Piper" voicing the discovery in Schultz's real
 lab). The real researcher's documented result is the evidence; an invented witness narrating it is not.
+The loud, deterministic tell `EW1` flags (shadow major) is **casting an invented person as a study
+subject**: *"participant Lawrence rubs the cup…", "participants Rachel and William mark the form…"*.
+Real research names the *researcher* and anonymizes subjects (*"Participant A"*); a given-name
+"participant" who acts or speaks is fiction wearing a study's costume. The subtler shape — your invented
+actor staged *inside* a named study (*"Brigitte… in Walter Mischel's… room", "Adam… In the Trier Social
+Stress Test room", "Beau asks after Kelly McGonigal's class"*) — is the same defect. **FIX:** report the
+documented result as the evidence (cite the researcher), then move your invented actor into a plain
+everyday setting where they APPLY the lesson — never as a research subject. Run `evidence-audit
+<chapter.json>` and disposition every flagged name against your brief before you finish.
 
 **Hard rule: a quiz answer may NEVER be keyed to a testimonial (`EI2`, blocker).** Every correct
 answer must derive from a verifiable source fact (`testableFact`) — never from "what Brad's report

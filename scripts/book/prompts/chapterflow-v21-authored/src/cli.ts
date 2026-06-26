@@ -307,6 +307,8 @@ Commands:
                                      promote (QC1.wrong_quiz_key). Exit 1 if any wrong key, 2 on infra.
   quiz-blind <chapter.json>          Print the quiz with the answer key stripped (hidden-key protocol)
   quiz-verify <chapter.json> --answers "0:1,..."  Diff blind-derived answers against the real key
+  evidence-audit <chapter.json>      List every named person carrying a finding (invented witness /
+                                     "Piper move" + testimonial-as-proof) as a disposition checklist
   qc-status <bookId>                 Per-chapter QC-attestation coverage: PASS / STALE / REVISE /
                                      CORRUPTION / MISSING. Exit 0 iff every chapter is ship-ready.
   fanout <bookId> [--from N --to M] [--all]
@@ -4308,6 +4310,69 @@ async function runQuizBlind(args: string[]): Promise<number> {
   return 0;
 }
 
+/** `evidence-audit <chapter.json>` — the write-time evidence-integrity self-check
+ *  lever (the shift-left of the QC factual_accuracy axis's dominant residual: the
+ *  "Piper move"). Surfaces every named person who CARRIES a finding — an invented
+ *  witness cast as a research subject / staged inside a real study (EW1 detector
+ *  A+B), or a first-name/initial-only testimonial worn as proof (EI1/EI2) — as a
+ *  numbered DISPOSITION checklist. The writer traces each against the research
+ *  brief: a real cited source is fine; an invented one must be re-grounded or
+ *  stripped of its evidentiary framing. Concrete extraction + bounded disposition,
+ *  the pattern that drove quiz-key failures to zero. Advisory: returns 0. */
+async function runEvidenceAudit(args: string[]): Promise<number> {
+  const file = args[0];
+  if (!file) {
+    console.error("Usage: evidence-audit <chapter.json>");
+    return 2;
+  }
+  let chapter: ChapterV21;
+  try {
+    chapter = JSON.parse(readFileSync(resolve(file), "utf8")) as ChapterV21;
+  } catch (err) {
+    console.error(`Could not read/parse ${file}: ${(err as Error).message}`);
+    return 2;
+  }
+  const { auditChapterWitnesses } = await import("./critics/evidenceWitness.js");
+  const { checkTestimonialEvidence, checkQuizKeyTestimonial } = await import("./critics/evidenceIntegrity.js");
+  const witnesses = auditChapterWitnesses(chapter);
+  const testimonials = [...checkTestimonialEvidence(chapter), ...checkQuizKeyTestimonial(chapter)];
+
+  console.log(`EVIDENCE AUDIT — ${chapter.chapterId ?? file}`);
+  console.log("Trace every named person who carries a finding to your research brief, then resolve each item below.");
+  console.log("  • INVENTED WITNESS (the \"Piper move\"): a person you invented, cast as a research participant/subject or");
+  console.log("    staged inside a real study, voicing or acting out the result. The documented study IS the evidence;");
+  console.log("    an invented witness inside it is not. FIX: report the real finding (cite the researcher), then move your");
+  console.log("    invented actor into a plain everyday setting where they APPLY the lesson — never as a study subject.");
+  console.log("  • TESTIMONIAL-AS-PROOF (EI1/EI2): a first-name/initial-only personal account given a finding's grammar.");
+  console.log("    FIX: resolve it to a real named source with specifics, or drop the evidentiary verb.");
+  console.log("DISPOSITION: for each item, confirm the named actor is a REAL source from your brief. If invented → fix per above.");
+  console.log("");
+
+  let n = 0;
+  for (const t of testimonials) {
+    n++;
+    console.log(`[${n}] TESTIMONIAL — ${t.message}`);
+    if (t.evidence) console.log(`      quote: "${String(t.evidence).slice(0, 160)}"`);
+  }
+  for (const w of witnesses) {
+    n++;
+    const label = w.pattern === "participant_cast" ? "INVENTED WITNESS (cast)" : "INVENTED WITNESS? (actor in named study — verify vs brief)";
+    console.log(`[${n}] ${label} — ${w.unit}: "${w.subject}"`);
+    console.log(`      quote: "${w.sentence.slice(0, 160)}"`);
+  }
+  if (n === 0) {
+    console.log("No evidence-integrity candidates — no invented witnesses or testimonials-as-proof detected. Good.");
+  } else {
+    const cast = witnesses.filter((w) => w.pattern === "participant_cast").length;
+    const castNote = cast === 0 ? "" : cast === 1
+      ? " (1 is a hard 'participant/subject <name>' cast — a gate-grade defect, fix it)"
+      : ` (${cast} are hard 'participant/subject <name>' casts — gate-grade defects, fix them)`;
+    console.log("");
+    console.log(`${n} item(s) to disposition${castNote}.`);
+  }
+  return 0;
+}
+
 /** `quiz-verify <chapter.json> --answers "0:1,1:2,..."` — diff blind-derived
  *  answers (qIndex:choiceIndex pairs) against the chapter's real key. Requires
  *  FULL coverage (every question answered) so a reviewer can't pass by only
@@ -5166,6 +5231,8 @@ async function main() {
       return runQuizJudge(args, flags);
     case "quiz-blind":
       return runQuizBlind(args);
+    case "evidence-audit":
+      return runEvidenceAudit(args);
     case "catalog-audit":
       return runCatalogAudit(args, flags);
     case "quiz-verify":
