@@ -26,6 +26,7 @@ import {
   checkBookExemplarChapterReuse,
   checkBookQuizChoiceLabelUniform,
   checkBookTimingAnchorStamping,
+  checkBookTryThisNowOpenerReuse,
   checkBookVenueStamping,
 } from "./bookRepetition.js";
 import { RuntimeSchemaFinding, validateBookGateInput } from "../runtimeSchemas.js";
@@ -492,6 +493,16 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
     });
   }
   for (const f of checkBookVenueStamping(chapters)) {
+    findings.push({
+      catalogId: f.checkId,
+      severity: f.severity as "blocker" | "major" | "minor",
+      message: f.message,
+      evidence: f.evidence,
+    });
+  }
+  // BP33 — try-this-now opener reuse across chapters (the separable opener subset of
+  // the repeated_unit sweep family; gold = 0, so even a pair is drift). SHADOW major.
+  for (const f of checkBookTryThisNowOpenerReuse(chapters)) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",

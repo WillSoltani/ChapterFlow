@@ -307,6 +307,8 @@ export type CriticCheckId =
   | "BP30.action_container_reuse"
   | "BP31.quiz_choice_label_uniform"
   | "BP32.quiz_pronoun_referent_mismatch"
+  // Try-this-now opener reuse across chapters (the separable opener subset of repeated_unit).
+  | "BP33.try_this_now_opener_reuse"
   | "schema.quiz_duplicate_choice"
   | "schema.quiz_lowercase_choice_start"
   | "schema.quiz_unexpected_field"
@@ -338,6 +340,8 @@ export type CriticCheckId =
   | "GN1.ungrounded_number"
   // Invented witness — a fictional character cast as a research subject (the "Piper move").
   | "EW1.invented_witness"
+  // Named-enumeration completeness — "the seven habits" but the list has ≠ 7 items.
+  | "NE1.named_enumeration_mismatch"
   // Cast discipline — crowded cast (C24) + a reshuffled name leaking into the quiz (C25).
   | "C24.cast_overflow"
   | "C25.cast_shuffle"

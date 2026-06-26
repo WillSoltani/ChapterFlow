@@ -48,6 +48,7 @@ import { checkSceneConcreteness } from "./sceneConcreteness.js";
 import { checkOutcomeVariety } from "./outcomeVariety.js";
 import { checkGroundedNumbers } from "./groundedNumbers.js";
 import { checkInventedWitness } from "./evidenceWitness.js";
+import { checkNamedEnumeration } from "./namedEnumeration.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -426,6 +427,14 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // advisory until a gold proof clears it for blocker promotion (not in
   // ENFORCED_MAJOR). See critics/evidenceWitness.ts + tests/evidence-witness.test.ts.
   "EW1.invented_witness": "major",
+  // NE1 — a named fixed-size set ("the seven habits") enumerated with the wrong
+  // count (the-slight-edge ch13 framed a 3-item excerpt as the seven). SHADOW =
+  // major: fires only on a tight colon-list count-mismatch (short, conjunction-free
+  // items; bridge-word guard) — ZERO findings across the 361-chapter corpus + gold,
+  // the one corpus FP ("two losses" colon-explanation) excluded by construction. A
+  // deterministic complement to the factual_accuracy axis; advisory until a gold
+  // proof promotes it. See critics/namedEnumeration.ts + tests/named-enumeration.test.ts.
+  "NE1.named_enumeration_mismatch": "major",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -884,6 +893,11 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // sidecar-bound); SHADOW=major. Complements the semantic factual_accuracy axis.
   for (const f of checkInventedWitness(chapter)) {
     push(f.checkId as string, "invented-witness", f.message, f.evidence);
+  }
+  // NE1 — a named fixed-size set enumerated with the wrong number of items ("the
+  // seven habits: a, b, c"). Shape-based, runs on v1 + v2 alike; SHADOW=major.
+  for (const f of checkNamedEnumeration(chapter)) {
+    push(f.checkId as string, "named-enumeration", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent

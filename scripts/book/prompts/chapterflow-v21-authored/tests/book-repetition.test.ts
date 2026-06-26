@@ -10,12 +10,15 @@ import {
   checkBookCallbackFrameReuse,
   checkBookExemplarChapterReuse,
   checkBookTimingAnchorStamping,
+  checkBookTryThisNowOpenerReuse,
   checkBookVenueStamping,
 } from "../src/critics/bookRepetition.js";
 import { runBookGate } from "../src/critics/bookGate.js";
 import type { ChapterV21 } from "../src/types.js";
 import { skip, test } from "./harness.js";
-import { cleanCorpusChapterFiles, goldChapterFiles, makeChapter } from "./helpers.js";
+import { cleanCorpusChapterFiles, goldChapterFiles, makeChapter, STATE_CHAPTERS } from "./helpers.js";
+import { existsSync, readdirSync } from "fs";
+import { resolve } from "path";
 
 function quietWarn<T>(fn: () => T): T {
   const oldWarn = console.warn;
@@ -48,6 +51,45 @@ test("BP27 fires when one venue appears as an example setting in more than two c
   });
   const findings = checkBookVenueStamping(chapters);
   assert.ok(findings.some((f) => f.checkId === "BP27.venue_stamping" && f.severity === "major"), JSON.stringify(findings));
+});
+
+test("BP33 fires when two chapters share the same try-this-now opener", () => {
+  const book = "zz-fixture-bp33";
+  const chapters = [1, 2, 3].map((n) => {
+    const ch = makeChapter(book, n);
+    // ch1 + ch2 share the opening clause (the the-slight-edge defect); ch3 is distinct.
+    ch.tryThisNow = n <= 2
+      ? "Before you send your next reply, name the one outcome you actually want."
+      : "During tonight's commute, pick one small input and repeat it tomorrow.";
+    return ch;
+  });
+  const findings = checkBookTryThisNowOpenerReuse(chapters);
+  assert.ok(
+    findings.some((f) => f.checkId === "BP33.try_this_now_opener_reuse" && f.severity === "major"),
+    JSON.stringify(findings),
+  );
+});
+
+test("BP33 is silent when every try-this-now opener is distinct", () => {
+  const book = "zz-fixture-bp33-clean";
+  const openers = [
+    "Before you send your next reply, name the one outcome you want.",
+    "During tonight's commute, pick one small input to repeat.",
+    "After the next meeting, write the single decision you delayed.",
+    "While the kettle boils tomorrow, list one habit to shrink.",
+  ];
+  const chapters = openers.map((o, i) => { const ch = makeChapter(book, i + 1); ch.tryThisNow = o; return ch; });
+  assert.equal(checkBookTryThisNowOpenerReuse(chapters).length, 0);
+});
+
+test("BP33: real gold books (daring-greatly + start-with-why) have ZERO opener reuse", () => {
+  if (!existsSync(STATE_CHAPTERS)) return;
+  for (const book of ["daring-greatly", "start-with-why"]) {
+    const files = readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${book}-ch`) && f.endsWith(".v21-native.chapter.json"));
+    if (!files.length) continue;
+    const chapters = files.map((f) => JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21);
+    assert.equal(checkBookTryThisNowOpenerReuse(chapters).length, 0, `BP33 false positive on gold ${book}`);
+  }
 });
 
 test("BP28 fires when review-card callback fronts reuse one concept+frame across ≥40% of chapters", () => {
