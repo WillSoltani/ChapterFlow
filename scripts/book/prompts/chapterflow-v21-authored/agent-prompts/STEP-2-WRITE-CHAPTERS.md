@@ -330,6 +330,18 @@ sentence — not uniform brevity. The deterministic critic fires on ≥7 short (
 sentences in a row; the fix is never to lengthen every sentence, but to break the run with a long
 flowing one and let the cadence move. (This is the inverse of the ≥25-word drone — both kill rhythm.)
 
+**R9 — Match length to substance; never pad to the ceiling (`E9` / #12, low idea-density).**
+The char floors (`A15`) are a *minimum*, not a target. There is no upper limit and no deterministic
+gate that rewards length — so do not stretch one idea across many paragraphs to hit a number. If one
+idea fills the tier, three varied examples beat six redundant ones; cut to the char floor, do not pad
+up to a ceiling. The tell is a paragraph that adds words but no new information: the reader has already
+learned everything in it. Every paragraph must earn its length with a NEW move — a fresh scene, the
+mechanism, an edge case, a limit — not a reworded restatement of the one above it. Low
+new-idea-per-paragraph density reads as filler; there is no char count to hide behind, and the
+`prose_coherence` bar (catalogued `MB4`/#12) judges it directly. (Distinct from `R8`: that is sentence
+*rhythm* within a paragraph; this is *idea* density across the tier. Distinct from the cross-tier
+restate rule in Step 5: that is layering between tiers; this is padding inside one.)
+
 ---
 
 ## False-positive allowances (write freely)
@@ -601,6 +613,7 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 9. **Voice charter consistency.** Match the bibliography's `authorVoice.register`. If `plainspoken`, don't drift into `literary` mid-chapter.
 10. **Punch-first ordering.** Order the beats inside a tier: the claim that lands → the reader's recognition ("you've felt this") → why it works → the nuance/limit → the move. Lead with the truth the reader feels, THEN qualify. The nuance stays IN the tier — never drop it (honesty is non-negotiable, and the QC sweep reads a dropped limit as overclaim) — it just comes after the punch, not before it. The slow build that hedges for two sentences before saying anything is the failure.
 11. **Citations live in the DEEP tiers.** Keep `fastRead` (and the hook + counterintuition) citation-free and plain — no named researchers, study years, journals, or framework name-drops up front. Lead with the plain idea ("Your brain is bad at being a cabinet, so the room has to carry some memory for you"); name Clark, Norman, or Allen only in `deepRead` / `fullRead`, and even there cite the FINDING, not the artifact (per the no-author-surname-verb rule + SL5). The reader earns the scaffolding after the plain idea, never before it. Cap the named sources a single chapter introduces — a chapter that name-drops five thinkers reads like school (concept load).
+12. **Length follows substance — never pad to the ceiling (`R9` / `E9`).** The char floor is a minimum, not a target; there is no upper limit. If the idea is fully said, stop — do not stretch it across more paragraphs to look thorough. Every paragraph must add a NEW move (scene, mechanism, edge case, limit), never a reworded restatement of the one above. Padding to length reads as filler; the `prose_coherence` bar judges it.
 
 **No banned phrases anywhere in the breakdown:**
 `boundary condition`, `keeps the chapter honest`, `keeps the chapter from`, `strips away`, `is not decorative`, `is not magic`, `operating logic`, `tidy explanation`, `selective suspicion`, `diagnostic discipline`, `durable practice`, `usable lesson`, `reframes behavior`, `installs the operational`, `On a note beside the work, write the reminders plainly`, `That matters because` (over 10 occurrences per book caps as MAJOR), `turns out to be`.
