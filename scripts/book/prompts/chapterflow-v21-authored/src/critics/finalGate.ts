@@ -19,7 +19,7 @@ import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNo
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
 import { finding } from "./shared.js";
-import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable } from "./pedagogy.js";
+import { checkCardTestsRetrieval, checkQuizTestsApplication, checkTakeawayDistillable, checkQuizScenarioNovelty, checkQuizKeyEntity } from "./pedagogy.js";
 import { checkAnswerPositionBalance, checkEnumValidity } from "./schema.js";
 import {
   checkQuizAnswerLabelLeak,
@@ -200,6 +200,15 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // reads fully abstract. Never gates — word choice is contextual and a
   // conceptual book may state an abstract truth (see critics/pedagogy.ts).
   "D3.takeaway_distillable": "minor",
+  // D4 — quiz tests recall of a chapter character, not transfer ("what did
+  // Deborah conclude…"). Implements catalog D4 (was prompt-only). D6 — a keyed
+  // answer grounded in a same-chapter character the question never introduces
+  // (NEW id; D5 is taken by implementation-plan-generic). Both MAJOR in shadow:
+  // calibrated zero-FP on the gold corpus (daring-greatly + start-with-why), not
+  // yet in ENFORCED_MAJOR — promote to blocker only via the gold proof. See
+  // critics/pedagogy.ts (checkQuizScenarioNovelty / checkQuizKeyEntity).
+  "D4.recycled_scenario": "major",
+  "D6.key_references_chapter_entity": "major",
   // Reading level (E)
   E1: "major",
   // E2 — tier progression. Upgraded to blocker May 2026 after the Start With Why
@@ -884,6 +893,16 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // prints PASS on a fully templated chapter and the defect only surfaces at
   // book-gate (the June 2026 unreasonable-hospitality incident).
   for (const f of checkWithinChapterQuizTemplates(chapter)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
+  }
+  // D4 / D6 — quiz transfer & key-novelty. D4: a prompt that tests recall of a
+  // chapter character ("what did Deborah conclude…") instead of a fresh transfer
+  // scenario. D6: a keyed answer grounded in a same-chapter character the question
+  // never introduces. Both MAJOR (shadow); see critics/pedagogy.ts.
+  for (const f of checkQuizScenarioNovelty(chapter)) {
+    push(f.checkId as string, "quiz", f.message, f.evidence);
+  }
+  for (const f of checkQuizKeyEntity(chapter)) {
     push(f.checkId as string, "quiz", f.message, f.evidence);
   }
 

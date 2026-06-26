@@ -328,7 +328,10 @@ export type CriticCheckId =
   | "SC9.example_not_source_grounded"
   // Evidence integrity — testimonials must never masquerade as research.
   | "EI1.testimonial_as_evidence"
-  | "EI2.quiz_key_testimonial";
+  | "EI2.quiz_key_testimonial"
+  // Quiz transfer & key-novelty — a quiz tests transfer, never recall of the chapter.
+  | "D4.recycled_scenario"
+  | "D6.key_references_chapter_entity";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

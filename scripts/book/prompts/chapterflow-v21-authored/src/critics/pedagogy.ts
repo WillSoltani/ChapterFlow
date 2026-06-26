@@ -4,8 +4,11 @@
  * Review card fronts must pose retrieval prompts, not comprehension checks.
  */
 
-import { CriticFinding, QuizQuestion, ReviewCard } from "../types.js";
-import { finding, pickEvidence } from "./shared.js";
+import { ChapterV21, CriticFinding, QuizQuestion, ReviewCard } from "../types.js";
+import { finding, pickEvidence, truncate } from "./shared.js";
+import { splitSentences } from "./textUtils.js";
+import { loadChapterSidecar } from "./sourceGrounding.js";
+import { realEntityTokensFromSidecar } from "./evidenceIntegrity.js";
 
 const QUIZ_FORBIDDEN_OPENERS = [
   /^\s*what does the (chapter|author|book)/i,
@@ -207,4 +210,196 @@ export function checkTakeawayDistillable(text: string | undefined, fieldLabel: s
       text,
     ),
   ];
+}
+
+/**
+ * D4 (recycled scenario) + D6 (key references a chapter entity) — quiz transfer &
+ * key-novelty. The reverted tiny-habits regen shipped quiz questions that asked the
+ * reader to RECALL the chapter ("what did Deborah conclude…", four times) and keyed
+ * answers whose correctness rested on "what a character in the chapter did". Catalog
+ * D4 ("no transfer / same scenarios as chapter") was prompt-only; D6 is new.
+ *
+ * THE DISCRIMINATOR (calibrated ZERO-FP on the gold corpus — daring-greatly +
+ * start-with-why). The naive rule "the prompt names a chapter entity" fires on EVERY
+ * clean application question: a reference book legitimately gives each quiz question a
+ * named protagonist who ALSO stars in an example, and its keys/explanations name those
+ * characters and the chapter's real cases constantly. Reusing a NAME in a FRESH scene
+ * is correct authoring, not the defect. So the detectors narrow to the prose tells that
+ * actually separate recall from transfer:
+ *  - D4 fires only on a RECALL FRAME ("what did X", "according to X", "X's story
+ *    shows") pointed at a chapter-cast name — the question asks the reader to remember
+ *    the chapter rather than reason from the idea.
+ *  - D6 fires only when the KEYED CHOICE names a chapter-cast member the question's own
+ *    prompt never introduced — the answer reaches back into the chapter's narrative for
+ *    its authority. (Explanations legitimately teach with the chapter's real examples —
+ *    gold proves it — so D6 reads the choice, not the explanation; an explanation keyed
+ *    to a testimonial is EI2's job.)
+ *
+ * The chapter "cast" = proper nouns appearing NON-sentence-initially in example
+ * scenarios (a sentence-initial capital is usually a concept word — "Shame", "Hope",
+ * "Trust" — not a character). Real cited entities (source-v2 sidecar), the central
+ * concept, and the chapter's own title words are exempted, mirroring EI / SC9, so a
+ * legitimately-recurring source entity ("Apple", "Kosfeld") never trips either check.
+ */
+const D_PROPER_NOUN_RE = /\b[A-Z][a-z]{2,}\b/g;
+
+// Capitalized tokens that are name-shaped but never a chapter "cast" member.
+const CAST_STOPWORDS = new Set([
+  "The", "A", "An", "If", "When", "That", "But", "Chapter", "Monday", "Tuesday",
+  "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", "She", "He", "They",
+  "It", "This", "And", "Or", "So", "Her", "His", "Then", "Because", "Before",
+  "After", "While", "Once", "During", "Without", "Within", "Yet", "Still", "Such",
+  "Here", "There", "Whenever", "Even", "Only", "Often", "Now", "Yesterday",
+  "Today", "Tomorrow", "Like", "Unlike", "Both", "Either", "Neither", "Every",
+  "No", "Any", "Some", "Your", "You", "We", "Our", "Their", "Which", "Who",
+  "What", "Where", "Why", "How", "One", "Two", "Three", "Each", "Most", "Many",
+]);
+
+const NAME_SHAPED = /^[A-Z][a-z]{2,}$/;
+
+/** Bare single-token character names that do NOT sit at the start of a sentence and
+ *  are NOT part of a multi-word FULL NAME. Two filters carry the zero-FP calibration:
+ *   - sentence-initial capitals are usually concept words ("Shame is…", "Hope means…"),
+ *     not characters; and
+ *   - a token adjacent to another capitalized token is part of a real cited entity
+ *     ("Ben Comen", "Walt Disney", "Volkswagen Phaeton", "London Underground") — a
+ *     reference book legitimately recalls those, so they are not the invented
+ *     first-name-only character ("Deborah", "Brad") the regen defect reuses.
+ *  Used both to build the cast and to read the keyed choice. */
+function nonInitialProperNouns(text: string): string[] {
+  const out: string[] = [];
+  for (const sentence of splitSentences(text ?? "")) {
+    const toks = [...sentence.matchAll(/\b[A-Za-z][A-Za-z'’-]*\b/g)].map((m) => m[0]);
+    for (let i = 0; i < toks.length; i++) {
+      const w = toks[i];
+      if (i === 0) continue;                      // sentence-initial → skip
+      if (!NAME_SHAPED.test(w) || CAST_STOPWORDS.has(w)) continue;
+      const prevCap = i > 0 && NAME_SHAPED.test(toks[i - 1]);
+      const nextCap = i + 1 < toks.length && NAME_SHAPED.test(toks[i + 1]);
+      if (prevCap || nextCap) continue;           // part of a FULL NAME → real entity
+      out.push(w);
+    }
+  }
+  return out;
+}
+
+/** Lowercased tokens that must NOT count as a chapter character: the central
+ *  concept, the chapter title, and any real source entity in the sidecar. */
+function exemptCastTokens(chapter: ChapterV21, sidecar: unknown): Set<string> {
+  const out = new Set<string>(realEntityTokensFromSidecar(sidecar)); // already lowercased
+  const cc = (sidecar as any)?.centralConcept;
+  const ccName = typeof cc === "string" ? cc : cc?.name;
+  if (typeof ccName === "string") for (const t of ccName.toLowerCase().match(/[a-z][a-z'’-]+/g) ?? []) out.add(t);
+  for (const w of (chapter.title ?? "").toLowerCase().split(/[^a-z0-9'-]+/)) if (w.length >= 4) out.add(w);
+  return out;
+}
+
+/** The chapter's named cast — proper nouns introduced in example scenarios,
+ *  minus exempted source/concept/title entities. */
+function chapterCast(chapter: ChapterV21, exempt: Set<string>): Set<string> {
+  const cast = new Set<string>();
+  for (const ex of chapter.examples ?? []) {
+    for (const n of nonInitialProperNouns(ex.scenario ?? "")) {
+      if (!exempt.has(n.toLowerCase())) cast.add(n);
+    }
+  }
+  return cast;
+}
+
+// Recall frames: a question stem that asks the reader to remember what a NAMED
+// person did/said in the chapter, rather than reason about a new situation. Each
+// captures the targeted name (group 1) so it can be checked against the cast.
+const RECALL_FRAMES: RegExp[] = [
+  /\b[Ww]hat (?:did|does|do)\s+([A-Z][a-z]{2,})\b/g,
+  /\b[Ww]hy (?:did|does|do|is|was|were)\s+([A-Z][a-z]{2,})\b/g,
+  /\b[Hh]ow (?:did|does|do)\s+([A-Z][a-z]{2,})\b/g,
+  /\b[Aa]ccording to\s+([A-Z][a-z]{2,})\b/g,
+  /\b[Ii]n ([A-Z][a-z]{2,})['’]s (?:story|case|example|scenario|chapter|study)\b/g,
+  /\b([A-Z][a-z]{2,})['’]s (?:story|account|report|testimony|example|case)\s+(?:show|shows|showed|prove|proves|proved|tell|tells|told|teach|teaches|taught|reveal|reveals|revealed|illustrate|illustrates|illustrated)\b/g,
+];
+
+/** Bare first names a quiz prompt asks the reader to RECALL (from a recall frame).
+ *  A full-name capture ("What does Ben Comen illustrate", "According to Bill Gates")
+ *  is a real cited entity a reference book legitimately recalls, not the invented
+ *  first-name-only character the regen defect reuses — so it is rejected. */
+export function recallFrameTargets(prompt: string): string[] {
+  const text = prompt ?? "";
+  const names: string[] = [];
+  for (const re of RECALL_FRAMES) {
+    re.lastIndex = 0;
+    for (let m = re.exec(text); m; m = re.exec(text)) {
+      const after = text.slice(m.index + m[0].length);
+      if (NAME_FOLLOWED_BY_CAP.test(after)) continue; // "<Name> <Capital>" → full name → skip
+      names.push(m[1]);
+    }
+  }
+  return names;
+}
+const NAME_FOLLOWED_BY_CAP = /^\s+[A-Z][a-z]{2,}/;
+
+const D4_FIX = "Replace it with a FRESH scenario the reader has not met in this chapter — never ask what a chapter character said, did, or concluded. The reader must reason from the idea, not recall the narrative.";
+
+/**
+ * D4 — a quiz prompt that tests recall of a chapter character instead of transfer.
+ * Implements catalog D4 (was prompt-only). MAJOR, shadow until the gold proof
+ * promotes it (`ENFORCED_MAJOR` stays empty). Pass `sidecarOverride` in tests.
+ */
+export function checkQuizScenarioNovelty(chapter: ChapterV21, sidecarOverride?: unknown): CriticFinding[] {
+  const sidecar = sidecarOverride ?? (chapter.chapterId ? loadChapterSidecar(chapter.chapterId) : null);
+  const cast = chapterCast(chapter, exemptCastTokens(chapter, sidecar));
+  if (cast.size === 0) return [];
+  const findings: CriticFinding[] = [];
+  (chapter.quiz?.questions ?? []).forEach((q, i) => {
+    for (const name of recallFrameTargets(q.prompt ?? "")) {
+      if (cast.has(name)) {
+        findings.push(
+          finding(
+            "D4.recycled_scenario" as any,
+            "major",
+            `quiz.questions[${i}]: tests recall of the chapter, not transfer — the prompt asks the reader to recall "${truncate(name, 60)}", a character from this chapter's own examples, instead of posing a new situation. ${D4_FIX}`,
+            q.prompt ?? "",
+          ),
+        );
+        break; // one D4 per question is enough to surface + route the repair
+      }
+    }
+  });
+  return findings;
+}
+
+const D6_FIX = "Re-key the answer to a verifiable source fact stated in general terms, not to what a named chapter character did. The keyed choice must stand on its own for a reader who has not memorized the chapter's cast.";
+
+/**
+ * D6 — a keyed answer grounded in a same-chapter character the question never
+ * introduced. NEW catalog id (D5 is taken by implementation-plan-generic). MAJOR,
+ * shadow until the gold proof promotes it. Reads the keyed CHOICE only (explanations
+ * teach with the chapter's real cases legitimately; a testimonial-keyed answer is EI2).
+ */
+export function checkQuizKeyEntity(chapter: ChapterV21, sidecarOverride?: unknown): CriticFinding[] {
+  const sidecar = sidecarOverride ?? (chapter.chapterId ? loadChapterSidecar(chapter.chapterId) : null);
+  const cast = chapterCast(chapter, exemptCastTokens(chapter, sidecar));
+  if (cast.size === 0) return [];
+  const findings: CriticFinding[] = [];
+  (chapter.quiz?.questions ?? []).forEach((q, i) => {
+    const ci = q.correctIndex;
+    const keyed = typeof ci === "number" ? q.choices?.[ci] ?? "" : "";
+    if (!keyed) return;
+    // Names the question's OWN scenario introduces are fair game in the answer —
+    // only a cast member the prompt never mentions is the reach-back defect.
+    const promptNames = new Set((q.prompt ?? "").match(D_PROPER_NOUN_RE) ?? []);
+    for (const name of nonInitialProperNouns(keyed)) {
+      if (cast.has(name) && !promptNames.has(name)) {
+        findings.push(
+          finding(
+            "D6.key_references_chapter_entity" as any,
+            "major",
+            `quiz.questions[${i}]: the correct answer is grounded in a chapter character — the keyed choice names "${truncate(name, 60)}" (from this chapter's examples) but the question's own scenario never introduces them, so the answer rewards remembering the chapter, not applying the idea. ${D6_FIX}`,
+            keyed,
+          ),
+        );
+        break; // one D6 per question
+      }
+    }
+  });
+  return findings;
 }
