@@ -499,7 +499,7 @@
               "Tell the team to ask more detailed questions when callers sound worried and review misses weekly",
               "Build a triage card from her decision points and test it with newer staff before she leaves"
             ],
-            "correctIndex": 1,
+            "correctIndex": 2,
             "explanation": "The triage card captures the judgment and tests whether it travels. Extra hours postpone the weakness, and vague advice gives staff no working clock.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
@@ -512,7 +512,7 @@
               "Create a placement rubric, run past files through it, and revise gaps against her judgment",
               "Ask teachers to send cleaner notes and hold a weekly meeting where the counselor resolves hard cases"
             ],
-            "correctIndex": 2,
+            "correctIndex": 1,
             "explanation": "Running past files through the rubric turns private judgment into a tested mechanism. Bonuses or cleaner notes still leave the decision centered on one person.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
@@ -551,7 +551,7 @@
               "Use colored ticket clips, labeled prep bins, and a handoff check before plates leave the station",
               "Have servers memorize the riskiest dishes and repeat allergy concerns at the start of each shift"
             ],
-            "correctIndex": 0,
+            "correctIndex": 1,
             "explanation": "The clips, bins, and handoff place judgment into the work flow. Speeches and memory drills still make safety depend on recall under pressure.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
@@ -590,7 +590,7 @@
               "Ask parents and section leaders to rate which audition process feels fairest and easiest to trust",
               "Let the conductor choose a successor and explain the informal standards that shaped past auditions"
             ],
-            "correctIndex": 2,
+            "correctIndex": 0,
             "explanation": "The blind rubric converts judgment into a repeatable process. Parent feelings and successor choice may matter politically, but they do not build the selection clock.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
@@ -812,7 +812,7 @@
               "Whether the contract improves next quarter's cash position enough to fund better instruction",
               "Whether the contract bends the promise that makes the certification worth trusting"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "The right question is whether revenue violates the promise. Cash and competitor behavior matter, but neither defines the organization's core.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
@@ -864,7 +864,7 @@
               "Adopt the fees with hardship waivers, since competitors use them and the budget gap is real",
               "Rename the fees and add clearer notices so members understand when charges will appear"
             ],
-            "correctIndex": 1,
+            "correctIndex": 0,
             "explanation": "The member sample reveals the bend in the core. Competitor norms and clearer labels do not change who carries the cost.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
@@ -877,7 +877,7 @@
               "Welcome the sponsor only if students can practice the skill the school promises",
               "Take the equipment for demonstrations first and negotiate maintenance access after the launch"
             ],
-            "correctIndex": 2,
+            "correctIndex": 1,
             "explanation": "The school is not rejecting business as such. It is using practical skill as the constraint and inviting a version of the deal that serves it.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
@@ -903,7 +903,7 @@
               "Run the pages with a prominent sponsor note because added reporter funding supports civic coverage",
               "Reject sponsored content for now and seek smaller ad products that cannot be mistaken for reporting"
             ],
-            "correctIndex": 1,
+            "correctIndex": 0,
             "explanation": "Clear labeling protects the trust that lets reporting work. Blanket rejection may be unnecessary, while unlabeled revenue spends the core asset.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
@@ -1503,7 +1503,7 @@
               "Lower the goal if the team sounds tired and rebuild confidence with smaller monthly targets",
               "Post daily names only after the team has a fair way to see which step caused each rewash"
             ],
-            "correctIndex": 2,
+            "correctIndex": 0,
             "explanation": "The goal should expose system changes. Public blame turns it into fear, while lowering it may avoid the learning pressure.",
             "bloomsLevel": "analyze",
             "depthLevel": "standard"
@@ -1799,8 +1799,8 @@
             "questionId": "q02",
             "prompt": "A support team interviews a brilliant engineer who openly refuses customer callbacks. The vacancy hurts. What should the hiring manager do?",
             "choices": [
-              "End the process because the callback norm is a membership standard",
               "Hire him with a written callback plan and review his first month of customer cases closely",
+              "End the process because the callback norm is a membership standard",
               "Move him to the hardest technical queue where fewer users require follow-up calls"
             ],
             "correctIndex": 1,
@@ -2116,7 +2116,7 @@
               "They will learn too slowly because five pilots split attention across too many formats",
               "They may keep the most exciting variation instead of the one that serves the core"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "Variation needs a judge. Without a core measure, excitement or politics can decide what survives.",
             "bloomsLevel": "understand",
             "depthLevel": "simple"
@@ -2129,7 +2129,7 @@
               "By total visitor count plus whether the larger crowd returns on the next market day",
               "By dwell time and sales for local producers within the market standard"
             ],
-            "correctIndex": 0,
+            "correctIndex": 2,
             "explanation": "The test must preserve the local-producer core. Visitor count alone could reward drift away from the market's purpose.",
             "bloomsLevel": "apply",
             "depthLevel": "standard"
@@ -2220,7 +2220,7 @@
               "Define the core measure first, then test many bounded methods against it",
               "Let departments choose experiments freely and compare results in a shared review later"
             ],
-            "correctIndex": 2,
+            "correctIndex": 1,
             "explanation": "Bounded variation with a core measure lets methods change while identity holds. Avoiding experiments or scattering them both miss that discipline.",
             "bloomsLevel": "analyze",
             "depthLevel": "deep"
