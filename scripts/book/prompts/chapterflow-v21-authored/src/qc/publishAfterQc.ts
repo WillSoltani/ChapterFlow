@@ -82,6 +82,28 @@ export type PublishAfterQcResult = {
   checks?: PreflightCheck[];
 };
 
+/**
+ * Whether a finished `publish-after-qc` should sweep the book's untracked working
+ * state package-only (parity with the autopilot's post-publish prune). True ONLY
+ * when the package was ACTUALLY committed + pushed (so the web app serves only the
+ * committed package and the leftover chapters/QC/plans are debris), it is not a dry
+ * run, and `--keep-state` was not requested. Gating on the real outcome
+ * (`commitHash` + `pushed`) — not the flags — means a `--commit --push` whose push
+ * FAILED never prunes. The prune itself is separately safe-by-construction
+ * (untracked-only, committed-package-gated, book-scoped) in pruneBookState.ts.
+ */
+export function shouldPrunePostPublish(
+  result: PublishAfterQcResult,
+  opts: { dryRun: boolean; keepState: boolean },
+): boolean {
+  return result.ok === true
+    && !!result.bookId
+    && !!result.commitHash
+    && result.pushed === true
+    && opts.dryRun !== true
+    && opts.keepState !== true;
+}
+
 type Metadata = { title?: string; author?: string; source?: string };
 
 type Runner = (cmd: string, args: string[], options?: { cwd?: string; env?: NodeJS.ProcessEnv; timeoutMs?: number }) => string;

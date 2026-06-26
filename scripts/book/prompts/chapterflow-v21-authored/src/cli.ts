@@ -3577,7 +3577,7 @@ async function runPublishAfterQc(args: string[], flags: Record<string, string | 
   const input = args.join(" ").trim();
   const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
   if (!input || !roundId) {
-    console.error('Usage: publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]');
+    console.error('Usage: publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--keep-state] [--include-state] [--dry-run]');
     return 2;
   }
   const cleanup = typeof flags["cleanup"] === "string" ? flags["cleanup"] : "transient";
@@ -3585,7 +3585,7 @@ async function runPublishAfterQc(args: string[], flags: Record<string, string | 
     console.error(`--cleanup must be transient, none, or audit-unsafe (got ${JSON.stringify(cleanup)})`);
     return 2;
   }
-  const { publishAfterQc, formatPublishAfterQcResult } = await import("./qc/publishAfterQc.js");
+  const { publishAfterQc, formatPublishAfterQcResult, shouldPrunePostPublish } = await import("./qc/publishAfterQc.js");
   const result = publishAfterQc({
     input,
     roundId,
@@ -3599,6 +3599,25 @@ async function runPublishAfterQc(args: string[], flags: Record<string, string | 
   });
   console.log(formatPublishAfterQcResult(result));
   for (const warning of result.warnings) console.warn(`warning: ${warning}`);
+  // End-to-end hygiene parity with the autopilot (autopilot.ts post-publish prune): once the package is
+  // COMMITTED + PUSHED, the web app serves ONLY the committed package, so sweep this book's untracked
+  // working state (package-only) instead of leaving ~MBs of debris. The autopilot already does this on a
+  // hands-off run; this gives the verify-first `publish-after-qc --commit --push` path the same cleanup.
+  // Best-effort — a prune failure must NEVER undo a successful publish (the book is already on main); the
+  // prune is safe-by-construction (untracked-only, only on a COMMITTED package, book-scoped). Opt out with
+  // --keep-state to preserve chapters / QC attestations / plans for a re-publish or inspection.
+  if (shouldPrunePostPublish(result, { dryRun: flags["dry-run"] === true, keepState: flags["keep-state"] === true })) {
+    try {
+      const { pruneBookStatePlan, applyPruneBookState } = await import("./qc/pruneBookState.js");
+      const plan = pruneBookStatePlan(result.bookId!, "all");
+      if (plan.status === "ok" && plan.remove.length) {
+        const r = applyPruneBookState(plan);
+        console.log(`post-publish prune (package-only): removed ${r.removed} untracked file(s), freed ~${(r.bytes / (1024 * 1024)).toFixed(1)} MB — only the committed package remains (re-publish needs a regen; pass --keep-state to preserve).`);
+      }
+    } catch (e) {
+      console.warn(`post-publish prune skipped (best-effort): ${(e as Error).message}`);
+    }
+  }
   if (!result.ok) {
     for (const error of result.errors.slice(1)) console.error(error);
     for (const next of result.next ?? []) if (!next.startsWith("repair prompt:")) console.error(next);
