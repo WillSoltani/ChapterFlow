@@ -45,11 +45,14 @@ import { loadBookChapters } from "./manualKeyJudge.js";
  *  productionManifest.ts gates on it. */
 export const CANONICAL_SOURCE_ANCHOR_SCHEMA = "chapter-source-anchor-map-v1";
 
-/** A schemaVersion in the SAME schema family, just mislabeled (e.g. a repair agent
- *  dropped the "chapter-" prefix when rewriting the block). Only these are
+/** A schemaVersion in the SAME schema family, just mislabeled by a repair agent
+ *  rewriting the block. Two observed transcription drifts: dropping the "chapter-"
+ *  prefix ("source-anchor-map-v1", willpower ch5) and pluralizing "anchor" while
+ *  dropping "-map" ("source-anchors-v1", the-willpower-instinct ch2 — a complete block,
+ *  13 observed anchors + 39 effectiveAnchors, only the label wrong). Only these are
  *  re-stamped in the RELABEL path; an unrecognized label falls through to the GUT
  *  path (reconstruct) only if effectiveAnchors survived, else the gate rejects it. */
-const RECOGNIZED_VARIANT = /^(chapter-)?source-anchor-map-v\d+$/;
+const RECOGNIZED_VARIANT = /^(chapter-)?source-anchors?(-map)?-v\d+$/;
 
 export type ProvenanceNormalization = {
   chapterNumber: number;

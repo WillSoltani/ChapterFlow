@@ -113,3 +113,25 @@ test("normalizeChapterProvenance RECONSTRUCTS a gutted block from retained effec
     cleanup();
   }
 });
+
+test("normalizeChapterProvenance RELABELS the 'source-anchors-v1' drift (the-willpower-instinct ch2 wedge) to canonical, preserving anchors", () => {
+  cleanup();
+  try {
+    // The the-willpower-instinct ch2 wedge a live run hit: a CORRUPTION repair stamped the
+    // pluralized/no-map variant "source-anchors-v1" on an otherwise-COMPLETE block (observed +
+    // sidecar + effectiveAnchors all present) → PPKG.authoring_provenance_missing despite QC PASS.
+    // RECOGNIZED_VARIANT must cover it so RELABEL fires (NOT a GUT reconstruct).
+    writeChapter(1, { schemaVersion: "chapter-authoring-v1", sourceAnchors: { schemaVersion: "source-anchors-v1", ...VALID_ANCHORS(1) } });
+    const fixed = normalizeChapterProvenance(BOOK);
+    assert.deepEqual(fixed, [{ chapterNumber: 1, chapterId: `${BOOK}-ch01`, from: "source-anchors-v1", kind: "relabel" }]);
+    assert.equal(readSchema(1), CANONICAL_SOURCE_ANCHOR_SCHEMA, "source-anchors-v1 relabeled to canonical");
+    // byte-preserving token swap: the real anchor data + top-level authoring schema are untouched
+    const ch1 = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, chapterFileName(`${BOOK}-ch01`)), "utf8"));
+    assert.deepEqual(ch1.authoring.sourceAnchors.observedAnchorIds, ["ch1.concept", "ch1.fact.1", "ch1.fact.2"]);
+    assert.equal(ch1.authoring.schemaVersion, "chapter-authoring-v1", "top-level authoring.schemaVersion untouched");
+    // Idempotent.
+    assert.deepEqual(normalizeChapterProvenance(BOOK), []);
+  } finally {
+    cleanup();
+  }
+});
