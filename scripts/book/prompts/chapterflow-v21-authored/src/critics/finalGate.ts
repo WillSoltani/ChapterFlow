@@ -44,6 +44,7 @@ import {
 import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
+import { checkGroundedNumbers } from "./groundedNumbers.js";
 import {
   checkCadenceVariance,
   checkClosingLineLandings,
@@ -337,6 +338,14 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // critics/evidenceIntegrity.ts + tests/evidence-integrity.test.ts.
   "EI1.testimonial_as_evidence": "blocker",
   "EI2.quiz_key_testimonial": "blocker",
+  // GN1 — an ungrounded statistical figure (a percentage, multiplier, or
+  // million/billion magnitude) in reader prose whose value appears nowhere in the
+  // chapter's source-v2 sidecar. SHADOW = major: high-FP risk by nature, so it is
+  // v2-gated (v1 chapters skip → cannot brick) and stays advisory until a gold
+  // proof clears it for blocker promotion. The complement to the semantic
+  // factual_accuracy axis for the loudest invented-precision case.
+  // See critics/groundedNumbers.ts + tests/grounded-numbers.test.ts.
+  "GN1.ungrounded_number": "major",
   // experiencePlan (EXP) — the optional behavior-change layer. Every EXP check
   // runs only when chapter.experiencePlan is present, so all three fire ZERO on
   // the current corpus (no chapter carries the field). See critics/experiencePlan.ts.
@@ -759,6 +768,12 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   }
   for (const f of checkQuizKeyTestimonial(chapter)) {
     push(f.checkId as string, "quiz-key", f.message, f.evidence);
+  }
+  // GN1 — ungrounded statistical figures (fabricated percentages/multipliers/
+  // magnitudes) in reader prose. v2-gated (returns [] on a v1 chapter → skip);
+  // SHADOW=major. Complements the semantic factual_accuracy axis deterministically.
+  for (const f of checkGroundedNumbers(chapter)) {
+    push(f.checkId as string, "grounded-numbers", f.message, f.evidence);
   }
 
   // ── Alphabet-cycling protagonist names (C9): a script tell where an agent

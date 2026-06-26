@@ -320,6 +320,23 @@ answer must derive from a verifiable source fact (`testableFact`) — never from
 said." If the only support for a keyed choice is a first-name account, the question is unsound: re-key
 it to a `testableFact` or rewrite the claim.
 
+**R8 — Grounded numbers: never invent precision to sound rigorous (deterministic `GN1`, the
+strengthened Step 0 numbers rule).** Every number in reader prose must trace to a `testableFact`,
+`hardSpecific`, or `groundedNumber` in THIS chapter's sidecar — or be written qualitatively. A
+fabricated percentage or multiplier is the loudest version: *"The notebook gets opened ninety percent
+of the time, which is roughly ninety percent more often than the old planner"* invents two statistics
+that no source establishes. `GN1` fires on a **statistical figure** — a percentage (`90%`, "ninety
+percent"), a multiplier (`3x`, "tenfold"), or a million/billion magnitude — whose value is in no
+source note. It reads as `factual_accuracy` corruption at the blind QC read.
+- **Grounded → use the exact figure.** If the sidecar establishes it ("37 to 12 reopenings", "41
+  percent fewer handoff errors", a verified year), cite it precisely. Years and the chapter's own
+  counts are exempt.
+- **Not grounded → go qualitative.** "most nights", "far more often", "a sharp drop", "several times
+  over" — never a manufactured percentage. A precise-looking number you cannot point to a source for
+  is worse than an honest qualitative phrase.
+- This is the SAME rule as Step 0's numbers line, now load-bearing: `GN1` makes it deterministic, and
+  the blind confirm read REVISEs the survivors as `factual_accuracy`.
+
 **R9 — Contested science: never state a disputed finding as settled law (`factual_accuracy`).** A claim
 can be perfectly faithful to the source and still be shaky in its field. If the sidecar marks a
 `testableFact` with `replicationStatus: "mixed"`, `"contested"`, or `"failed"`, you may use it **only**
