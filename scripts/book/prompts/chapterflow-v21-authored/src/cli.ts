@@ -4353,8 +4353,10 @@ async function runEvidenceAudit(args: string[]): Promise<number> {
   }
   const { auditChapterWitnesses } = await import("./critics/evidenceWitness.js");
   const { checkTestimonialEvidence, checkQuizKeyTestimonial } = await import("./critics/evidenceIntegrity.js");
+  const { auditChapterAttributions } = await import("./critics/misattribution.js");
   const witnesses = auditChapterWitnesses(chapter);
   const testimonials = [...checkTestimonialEvidence(chapter), ...checkQuizKeyTestimonial(chapter)];
+  const attributions = auditChapterAttributions(chapter);
 
   console.log(`EVIDENCE AUDIT — ${chapter.chapterId ?? file}`);
   console.log("Trace every named person who carries a finding to your research brief, then resolve each item below.");
@@ -4364,6 +4366,9 @@ async function runEvidenceAudit(args: string[]): Promise<number> {
   console.log("    invented actor into a plain everyday setting where they APPLY the lesson — never as a study subject.");
   console.log("  • TESTIMONIAL-AS-PROOF (EI1/EI2): a first-name/initial-only personal account given a finding's grammar.");
   console.log("    FIX: resolve it to a real named source with specifics, or drop the evidentiary verb.");
+  console.log("  • MISATTRIBUTION (the \"Hardy move\"): a named authority CREDITED with a claim. Confirm your brief credits");
+  console.log("    THEM with THAT claim — a name merely MENTIONED or COMPARED (\"like Hardy's Compound Effect\") is NOT a");
+  console.log("    license to attribute a finding to them (\"Hardy found…\"). FIX: credit the real owner the brief names.");
   console.log("DISPOSITION: for each item, confirm the named actor is a REAL source from your brief. If invented → fix per above.");
   console.log("");
 
@@ -4379,8 +4384,13 @@ async function runEvidenceAudit(args: string[]): Promise<number> {
     console.log(`[${n}] ${label} — ${w.unit}: "${w.subject}"`);
     console.log(`      quote: "${w.sentence.slice(0, 160)}"`);
   }
+  for (const a of attributions) {
+    n++;
+    console.log(`[${n}] ATTRIBUTION? (credited with a claim — confirm the brief credits THEM, not just mentions/compares) — ${a.unit}: "${a.subject}"`);
+    console.log(`      quote: "${a.sentence.slice(0, 160)}"`);
+  }
   if (n === 0) {
-    console.log("No evidence-integrity candidates — no invented witnesses or testimonials-as-proof detected. Good.");
+    console.log("No evidence-integrity candidates — no invented witnesses, testimonials, or attributions to disposition. Good.");
   } else {
     const cast = witnesses.filter((w) => w.pattern === "participant_cast").length;
     const castNote = cast === 0 ? "" : cast === 1

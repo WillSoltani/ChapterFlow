@@ -342,6 +342,9 @@ export type CriticCheckId =
   | "EW1.invented_witness"
   // Named-enumeration completeness — "the seven habits" but the list has ≠ 7 items.
   | "NE1.named_enumeration_mismatch"
+  // Mechanical seams — a stuttered word (SEAM1) or a verbatim triple-repeat (SEAM2).
+  | "SEAM1.adjacent_duplicate_word"
+  | "SEAM2.verbatim_repetition"
   // Cast discipline — crowded cast (C24) + a reshuffled name leaking into the quiz (C25).
   | "C24.cast_overflow"
   | "C25.cast_shuffle"
