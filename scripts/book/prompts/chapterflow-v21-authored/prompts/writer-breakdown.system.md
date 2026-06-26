@@ -115,6 +115,12 @@ A good test: read fullRead aloud at the speed of someone who reads news articles
 
 If two tiers begin with the same noun phrase, you have failed. If the writer reading your three tiers back-to-back could not identify a real escalation, you have failed.
 
+**The tier-job contract (do not restate — BUILD).** Rewording the prior tier is not layering; it is the same content twice. The verbatim gates won't catch it (you changed the words), but a reader feels it and `B15` / the `prose_coherence` axis flag it.
+- `fastRead` = one scene + the move. The reader leaves with a single concrete image and one rule they could try today.
+- `deepRead` = the mechanism (WHY the move works) + a SECOND domain or scene the reader hasn't met. New ground, not a longer fastRead.
+- `fullRead` = the edge cases, the failure mode, the case where the move is the WRONG move, the reversal — plus a third scene. New ground again.
+- **Each tier must introduce a NEW concept, scene, or nuance.** Never re-explain a prior tier in fresh words. The test: list the distinct ideas/scenes in each tier; if deepRead's list is fastRead's list reworded, or fullRead's is deepRead's reworded, you have restated — go back and add what is missing (the mechanism, the second domain, the limit), don't repaint what's there.
+
 ## The one move, made impossible to miss (beginner-first)
 
 A beginner should always be able to answer three questions about a chapter: **what is the idea, why does it matter, and what do I do with it today.** The strongest chapters already do this — the reader can hold the whole chapter as one repeatable move. Aim for that every time.

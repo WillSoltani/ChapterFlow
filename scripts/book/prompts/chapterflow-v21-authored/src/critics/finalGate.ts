@@ -41,7 +41,7 @@ import {
   checkChapterIdentifierTokens,
   checkChapterJammedNouns,
 } from "./antiSalting.js";
-import { checkBreakdownCrossTierVerbatim } from "./intraBookFieldSimilarity.js";
+import { checkBreakdownCrossTierVerbatim, checkCrossTierContentOverlap } from "./intraBookFieldSimilarity.js";
 import { checkExampleSourceGrounding, checkChapterProvenance, loadChapterSidecar } from "./sourceGrounding.js";
 import { checkTestimonialEvidence, checkQuizKeyTestimonial } from "./evidenceIntegrity.js";
 import {
@@ -272,6 +272,13 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // measure-what-matters, the-12-week-year) — true positives, not noise.
   "AS13.within_chapter_quiz_template": "blocker",
   "BP24.cross_tier_breakdown_verbatim": "blocker",
+  // B15 — cross-tier paraphrase-restate (deepRead/fullRead or fastRead/deepRead
+  // restate the same ideas with reworded connectives, below BP24's verbatim
+  // floor). ADVISORY (minor): a heuristic content-lemma-Jaccard proxy for the
+  // prose_coherence semantic axis, calibrated zero-FP on the gold corpus (real
+  // gold tops out at 0.31, a restate ~0.52; threshold 0.42). Surfaces as QC
+  // debt; never blocks. See intraBookFieldSimilarity.ts:checkCrossTierContentOverlap.
+  "B15.cross_tier_paraphrase": "minor",
   // BP25 — statistical correct-is-longest rate (the distractor tell).
   // ADVISORY: catalog baseline is 68% incl. gold; threshold 0.78 fires only
   // on the worst offenders (drive 94%). Refresh target ≤45% lives in
@@ -921,6 +928,15 @@ export function runShipGate(chapter: ChapterV21): GateReport {
   // explicitly by computing the longest contiguous common substring between
   // each tier pair.
   for (const f of checkBreakdownCrossTierVerbatim(chapter)) {
+    push(f.checkId as string, "breakdown.cross-tier", f.message, f.evidence);
+  }
+
+  // ── B15 — cross-tier paraphrase-restate (the case BP24 is blind to) ─────
+  // BP24 fires on a ≥150-char verbatim block; once the writer reworded the
+  // connectives, no verbatim block survives but the reader still gets the
+  // same ideas twice. B15 flags high content-lemma overlap below BP24's
+  // floor as ADVISORY QC debt (minor — never blocks).
+  for (const f of checkCrossTierContentOverlap(chapter)) {
     push(f.checkId as string, "breakdown.cross-tier", f.message, f.evidence);
   }
 

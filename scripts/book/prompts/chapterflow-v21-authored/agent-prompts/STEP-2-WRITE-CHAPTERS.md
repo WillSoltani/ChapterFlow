@@ -605,11 +605,13 @@ Length floors are blocker-level. The ship gate fails closed if any tier is under
 **No banned phrases anywhere in the breakdown:**
 `boundary condition`, `keeps the chapter honest`, `keeps the chapter from`, `strips away`, `is not decorative`, `is not magic`, `operating logic`, `tidy explanation`, `selective suspicion`, `diagnostic discipline`, `durable practice`, `usable lesson`, `reframes behavior`, `installs the operational`, `On a note beside the work, write the reminders plainly`, `That matters because` (over 10 occurrences per book caps as MAJOR), `turns out to be`.
 
-**What each tier does:**
+**What each tier does (the tier-job contract — BUILD, don't restate):**
 
 - **fastRead** — scene + rule. One vignette, then the move, end on the takeaway. The 2-minute tier stays NAME-FREE: no researcher, study year, or framework name here (not "David G. Myers called this the American Paradox") — citations belong in deepRead/fullRead (rule 11). Lead with the plain idea and the scene.
-- **deepRead** — mechanism + second scene. Why the move works + a second example that stress-tests it.
-- **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, and a closing line.
+- **deepRead** — mechanism + second scene. Why the move works + a second domain/example that stress-tests it. New ground, not a longer fastRead.
+- **fullRead** — depth + third angle + limits. Third example, the boundary case, the failure mode of the move, the reversal, and a closing line. New ground again.
+
+**Each tier must add a NEW concept, scene, or nuance — never re-explain the prior tier in reworded sentences.** A restate keeps every domain noun and just changes the connectives; the verbatim gates (E2/B8/BP24) won't catch it because no words match word-for-word, but `B15` (cross-tier content-lemma overlap) and the `prose_coherence` axis will. The test: list the distinct ideas/scenes in each tier — if deepRead's list is fastRead's reworded, or fullRead's is deepRead's reworded, you have restated. Fix by adding what's missing (the mechanism, the second domain, the limit), not by repainting what's already there.
 
 ### Step 6 — `examples` (6-9 per chapter; A16 gate floor is 6 — fewer BLOCKS)
 
@@ -812,6 +814,7 @@ the headline does not count, and it matches the exit code):
 | AS11 | A breakdown paragraph (≥60 chars) appears verbatim in any prior chapter's breakdown | Rewrite the paragraph from THIS chapter's source notes. Breakdown paragraphs cannot be reused — every chapter's reader sees them in sequence and the templating becomes obvious. |
 | AS12 | Quiz `correctIndex` sequence identical to any prior chapter's | Vary the answer positions per chapter. Pick each slot based on which distractor is strongest for THIS question, not by following a fixed rotation like [0,1,2,0,1,2,…]. |
 | BP24 | Breakdown tier ≥150 chars verbatim shared with another tier of the same chapter | Tiers must LAYER content. Rewrite the longer tier to extend the shorter one with new examples and mechanism, not duplicate prose. |
+| B15 (advisory) | Two tiers share a high fraction of content vocabulary with no verbatim block — a paraphrase-restate (same ideas, reworded connectives) | Don't reword the prior tier; BUILD on it. Give the later tier a new concept, scene, or nuance (deepRead = mechanism + second domain; fullRead = edge cases + failure mode + reversal). |
 | E1 | Reading level too academic | Use plainer words |
 | E2 (blocker) | Two of the three breakdown tiers open with an identical first sentence | Each tier must open with a different first sentence. fastRead opens with the scene + rule. deepRead opens with mechanism. fullRead opens with a third angle or scope-of-applicability frame. |
 | SC9 (major) | This chapter's example scenario contains no proper-noun anchor from the source sidecar (namedExamples, centralConcept, hardEdge, paraphraseNotes) | Rewrite the scenario to reference a real entity from THIS chapter's source notes — a company, person, product, place, or framework name. Invented characters at invented locations drift into templating because they aren't tethered to source material. |

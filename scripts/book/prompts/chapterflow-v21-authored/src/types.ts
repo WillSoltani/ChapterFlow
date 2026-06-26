@@ -324,6 +324,7 @@ export type CriticCheckId =
   | "AS11.chapter_breakdown_paragraph_verbatim_prior"
   | "AS12.chapter_quiz_position_matches_prior"
   | "BP24.cross_tier_breakdown_verbatim"
+  | "B15.cross_tier_paraphrase"
   | "BP25.quiz_correct_longest_rate"
   | "SC9.example_not_source_grounded"
   // Evidence integrity — testimonials must never masquerade as research.
