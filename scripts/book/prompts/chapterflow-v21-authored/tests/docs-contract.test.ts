@@ -148,11 +148,15 @@ test("the failure-class registry documents the anti-overfit promotion ladder and
   // The ladder must name the REAL mechanisms it maps to (not aspirational ones).
   assert.match(reg, /ENFORCED_MAJOR/, "registry must reference the hard-blocker set");
   assert.match(reg, /WRITE_BARRIER_ACTIONABLE_PREFIXES/, "registry must reference the rung-3 mechanism");
-  // Code-tie forcing function: ENFORCED_MAJOR is empty AND the registry says so. Promoting a class
-  // to a hard blocker must update BOTH the code and this ledger together, or this fails.
+  // Code-tie forcing function: every hard-blocker class in ENFORCED_MAJOR must be DOCUMENTED in
+  // this ledger (with its rung-4 evidence). Promoting a class — or reverting one — must co-update
+  // BOTH the code and this registry together, or this fails.
   const { ENFORCED_MAJOR } = await import("../src/critics/finalGate.js");
-  assert.equal(ENFORCED_MAJOR.size, 0, "if you promote a class to ENFORCED_MAJOR, update the failure-class registry too");
-  assert.match(reg, /ENFORCED_MAJOR[^\n]{0,60}empty/i, "registry must state ENFORCED_MAJOR is empty while it is");
+  assert.ok(ENFORCED_MAJOR.size > 0, "ENFORCED_MAJOR has promoted classes — keep the registry in sync (or this is stale)");
+  for (const id of ENFORCED_MAJOR) {
+    const cls = id.split(".")[0]; // e.g. "EW1", "SEAM1"
+    assert.match(reg, new RegExp(`\\b${cls}\\b`), `registry must document the enforced hard-blocker class ${cls}`);
+  }
   // The gold-corpus regression must stay discoverable + executable (registry AND runbook).
   const regressionCmd = /tests\/run\.ts corpus calibration enforced repetition label pronoun/;
   assert.match(reg, regressionCmd, "registry must document the runnable gold-corpus regression command");

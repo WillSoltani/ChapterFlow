@@ -22,7 +22,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { makeChapter, goldChapterFiles, STATE_CHAPTERS } from "./helpers.js";
 import { findAdjacentDuplicates, findVerbatimRepetition, checkMechanicalSeams } from "../src/critics/mechanicalSeam.js";
-import { runShipGate } from "../src/critics/finalGate.js";
+import { runShipGate, ENFORCED_MAJOR } from "../src/critics/finalGate.js";
 import type { ChapterV21 } from "../src/types.js";
 
 // ── SEAM1 — adjacent duplicate word ───────────────────────────────────────────
@@ -97,7 +97,7 @@ test("SEAM: checkMechanicalSeams flags planted seams as MAJOR; a clean chapter i
   const findings = checkMechanicalSeams(ch);
   assert.ok(findings.some((f) => f.checkId === "SEAM1.adjacent_duplicate_word"), "expected a SEAM1 finding");
   assert.ok(findings.some((f) => f.checkId === "SEAM2.verbatim_repetition"), "expected a SEAM2 finding");
-  assert.ok(findings.every((f) => f.severity === "major"), "SEAM findings are shadow-major");
+  assert.ok(findings.every((f) => f.severity === "major"), "SEAM findings are major (enforced)");
 
   // A chapter of genuinely clean (non-repetitive) prose is SEAM-silent. (The bare
   // makeChapter padder stamps an identical filler clause — a fixture quirk that
@@ -114,7 +114,7 @@ test("SEAM: checkMechanicalSeams flags planted seams as MAJOR; a clean chapter i
   assert.equal(checkMechanicalSeams(clean).length, 0, "clean prose must be SEAM-silent");
 });
 
-test("SEAM: the ship gate surfaces a planted stutter as a MAJOR (shadow — not a blocker)", () => {
+test("SEAM: the ship gate surfaces a planted stutter as an ENFORCED MAJOR (fails the write self-gate, never a blocker)", () => {
   const ch = makeChapter("zz-seam-gate", 3, {
     overrides: {
       breakdown: {
@@ -129,7 +129,9 @@ test("SEAM: the ship gate surfaces a planted stutter as a MAJOR (shadow — not 
     report.majors.some((m) => m.catalogId === "SEAM1.adjacent_duplicate_word"),
     `expected a SEAM1 ship-gate major; got: ${report.majors.map((m) => m.catalogId).join(", ")}`,
   );
-  assert.ok(!report.blockers.some((b) => b.catalogId.startsWith("SEAM")), "SEAM is SHADOW — never a blocker (yet)");
+  // SEAM is ENFORCED (fails runShipGate().passed) but is never a hard blocker.
+  assert.ok(ENFORCED_MAJOR.has("SEAM1.adjacent_duplicate_word"), "SEAM1 is enforced (must fix before submit)");
+  assert.ok(!report.blockers.some((b) => b.catalogId.startsWith("SEAM")), "SEAM is a MAJOR, not a hard blocker");
 });
 
 test("SEAM: synthetic gold corpus has ZERO seam findings", () => {

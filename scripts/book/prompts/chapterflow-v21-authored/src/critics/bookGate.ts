@@ -52,7 +52,7 @@ export type BookGateFinding = {
  *  rather than discover them at QC and bounce through a repair cycle. This is a
  *  separate axis from the ship-gate blocker / ENFORCED_MAJOR decision: a finding
  *  can be barrier-actionable without being a hard gate failure. */
-const WRITE_BARRIER_ACTIONABLE_PREFIXES = ["BP28", "BP29", "BP30", "BP31"];
+const WRITE_BARRIER_ACTIONABLE_PREFIXES = ["BP28", "BP29", "BP30", "BP31", "BP33"];
 
 /** True when a book-gate finding should trigger a targeted write-barrier
  *  re-dispatch of its chapters: any blocker, or a zero-on-clean structural-

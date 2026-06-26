@@ -1044,4 +1044,9 @@ test("WRITER_SELF_VERIFY wires the WT-F semantic levers into the autopilot write
   for (const axis of ["behavioral_naturalness", "example_coherence", "factual_accuracy", "prose_coherence"]) {
     assert.ok(v.includes(axis), `self-verify should call out the ${axis} failure mode`);
   }
+  // token lever (item 3b): step 4 now LEANS on the expanded deterministic gate — the writer
+  // should not re-derive the structural corruption tells the gate proves (EW1/SEAM/NE1/GN1),
+  // focusing its judgment budget on the gate-invisible semantic axes.
+  assert.ok(/SEAM/.test(v) && /EW1/.test(v) && /NE1/.test(v) && /GN1/.test(v), "self-verify should point the writer at the gate-proven structural tells (EW1/SEAM/NE1/GN1)");
+  assert.ok(/cannot see/i.test(v) && /not re-derive/i.test(v), "self-verify should focus judgment on what the deterministic gate cannot see");
 });

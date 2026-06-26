@@ -92,6 +92,15 @@ test("BP33: real gold books (daring-greatly + start-with-why) have ZERO opener r
   }
 });
 
+test("BP33: the clean corpus has ZERO opener reuse (rung-3 write-barrier bar: zero on clean)", () => {
+  // BP33 is rung-3 (WRITE_BARRIER_ACTIONABLE) — it re-dispatches a book's chapters, so it must
+  // fire ZERO on the clean reference corpus (a clean book must never be re-dispatched).
+  for (const { bookId, files } of cleanCorpusChapterFiles()) {
+    const chapters = files.map((f) => JSON.parse(readFileSync(f, "utf8")) as ChapterV21);
+    assert.equal(checkBookTryThisNowOpenerReuse(chapters).length, 0, `BP33 false positive on clean ${bookId}`);
+  }
+});
+
 test("BP28 fires when review-card callback fronts reuse one concept+frame across ≥40% of chapters", () => {
   const book = "zz-fixture-bp28";
   const objects = ["Mondays", "Tuesdays", "Deadlines", "Meetings", "Reviews"];
