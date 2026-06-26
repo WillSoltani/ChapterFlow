@@ -5,7 +5,7 @@ import { dirname, resolve } from "path";
 import { test } from "./harness.js";
 import { runCli } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { stagingPlan, formatPublishAfterQcResult, publishBranchError, dirtySourceOutsidePlan, pushWithRebase, dirtyVsHead, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
+import { stagingPlan, formatPublishAfterQcResult, shouldPrunePostPublish, publishBranchError, dirtySourceOutsidePlan, pushWithRebase, dirtyVsHead, type PublishAfterQcResult } from "../src/qc/publishAfterQc.js";
 
 const BOOK = "zz-fixture-publish-git";
 const ROUND = "r-git";
@@ -114,6 +114,19 @@ test("formatPublishAfterQcResult: a commit that SUCCEEDED but failed to PUSH is 
   assert.match(out, /push: FAILED/);
   assert.match(out, /EXISTS locally/);
   assert.doesNotMatch(out, /no publish\/commit\/push performed/, "must NOT claim nothing was committed when a commit exists");
+});
+
+test("shouldPrunePostPublish: package-only prune fires ONLY on a fully committed+pushed publish (autopilot parity)", () => {
+  // The verify-first `publish-after-qc --commit --push` path should self-clean like the
+  // autopilot — but only when the publish actually landed, and never on dry-run/--keep-state.
+  const base: PublishAfterQcResult = { ok: true, bookId: "zz-book", commitHash: "abc1234", pushed: true, errors: [], warnings: [] };
+  assert.equal(shouldPrunePostPublish(base, { dryRun: false, keepState: false }), true, "committed + pushed, no opt-out → prune");
+  assert.equal(shouldPrunePostPublish(base, { dryRun: true, keepState: false }), false, "a dry run never prunes");
+  assert.equal(shouldPrunePostPublish(base, { dryRun: false, keepState: true }), false, "--keep-state preserves the working state");
+  assert.equal(shouldPrunePostPublish({ ...base, pushed: false }, { dryRun: false, keepState: false }), false, "a failed/absent push never prunes (gated on the real outcome, not the flag)");
+  assert.equal(shouldPrunePostPublish({ ...base, commitHash: undefined }, { dryRun: false, keepState: false }), false, "no commit → nothing to serve, never prune");
+  assert.equal(shouldPrunePostPublish({ ...base, ok: false }, { dryRun: false, keepState: false }), false, "a failed publish never prunes");
+  assert.equal(shouldPrunePostPublish({ ...base, bookId: undefined }, { dryRun: false, keepState: false }), false, "no resolved bookId → never prune");
 });
 
 test("publishBranchError: refuses to publish off main, allows main, honors the override", () => {
