@@ -27,6 +27,11 @@ do not edit code.
   needless full re-review — the opposite of what incremental re-QC is for. They clear on their own
   once the round re-QCs and the book-level finding is resolved.
 
+## Before you edit — capture the major baseline
+Run `major-status <book>` FIRST and save the list of major keys it reports. Repairs must not
+introduce NEW major keys — a fix that trips A13 / C23 / BP28-31 elsewhere is a round-3 regression,
+exactly what incremental repair exists to prevent. You diff against this baseline at handoff.
+
 ## CLASS DEFECT — fix the class, not the quotes
 A finding marked **CLASS DEFECT** (e.g. `SC9.example_not_source_grounded`) means the whole class is
 wrong, not just the quoted instances. Fix the ROOT across the chapter and re-ground from the REAL
@@ -50,6 +55,12 @@ and burns a round.
 ## After all edits — non-certifying whole-book check, then hand off
 - Run `book-gate <book>` (read-only whole-book check; it re-derives the manual brief/plans as a
   side effect but does NOT touch the SP-enforced exemplar/shape plans).
+- Run `major-status <book>` again and diff against the pre-repair baseline. If ANY major key
+  appeared that was not on the baseline (commonly A13 / C23 / BP28-31), your edit regressed — fix
+  it before handoff; do not pass a new major to the next round.
+- Run `qc-converge <book>` and loop fix → converge until it prints `DETERMINISTIC-CLEAN`. Hand off
+  only from a deterministically clean tree — a fresh QC round must never rediscover a mechanical
+  nit your edit introduced.
 - Do **NOT** run `qc-submit`, `qc-attest`, `promote-book`, `publish-after-qc`, or any certifying
   command. You re-earn nothing — you only fix content.
 - Hand off to a fresh QC session: re-run phase 3 as a fresh **`--incremental`** round

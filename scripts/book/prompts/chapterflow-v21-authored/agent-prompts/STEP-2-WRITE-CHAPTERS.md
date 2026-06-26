@@ -70,6 +70,12 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
 
 If it reports >0 blockers, FIX THIS CHAPTER COMPLETELY before moving on. The chapter-time gate catches templating at scale-1, not scale-N — defer the gate until the end and you'll discover 14 chapters of templated content that requires another full rewrite.
 
+**Once ≥3 chapters exist, also run `qc-converge <bookId>` after each new chapter** (not just
+`gate-chapter` on the one file). `qc-converge` includes the book-level passes (`book-gate` /
+intra-book), so cross-chapter templating — BP13 / AS10 stem and skeleton repeats — surfaces at
+chapter 4 while it is one restage, instead of at chapter 14 when it is a book-wide rewrite.
+`gate-chapter` alone sees only the single file and cannot catch a pattern shared across chapters.
+
 ### After all chapters — use `book-gate <bookId>` to QC
 
 ```bash
@@ -78,7 +84,45 @@ npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts book-gate <book
 
 This auto-derives brief + plan artifacts (so BP7 doesn't false-fire) and runs the full book-level pattern audit. Must report 0 blockers before reporting Step 2 complete.
 
+### Before you submit — reach DETERMINISTIC-CLEAN (the converge gate)
+
+`gate-chapter` and `book-gate` are subsets of one battery. Run the whole thing in one command:
+
+```bash
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts qc-converge <bookId>
+```
+
+`qc-converge` runs the EXACT deterministic battery the finalizer uses (source-v2, ship-gate,
+author-check, intra-book, book-gate, plan-enforcement) and prints `DETERMINISTIC-CLEAN` or `DIRTY`
+WITHOUT opening a formal QC round. **You are not done with Step 2 until it prints
+`DETERMINISTIC-CLEAN`.** Every deterministic finding it lists — including every gate added in
+Phase 1 — costs a full formal QC round if you bank it instead of fixing it now. `CLEAN here ⟺ the
+finalizer raises zero deterministic findings`, so converging at write time provably removes the
+entire deterministic class from round 1. Loop fix → `qc-converge` until clean, then submit.
+
+### Before you submit — verify each quiz key blind (hidden-key protocol)
+
+A wrong `correctIndex` caught at write time costs zero rounds; caught at QC it costs a full round
+(`quiz_key_correctness` is the heaviest CORRUPTION axis, weight 17). For every chapter, derive the
+key WITHOUT looking at the stored one, then diff:
+
+```bash
+# 1. Print the quiz with the stored key stripped
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  quiz-blind state/chapters/<chapterId>.v21-native.chapter.json
+# 2. Answer each question yourself from the prompt + choices alone, then diff against the real key
+npx tsx scripts/book/prompts/chapterflow-v21-authored/src/cli.ts \
+  quiz-verify state/chapters/<chapterId>.v21-native.chapter.json --answers "0:1,1:0,2:3,..."
+```
+
+Any mismatch is either a wrong stored key or a question with two defensible answers — fix the key,
+or rewrite the question so exactly one choice is correct. Do this before `qc-converge` reports
+clean, not after the QC reader finds it.
+
 Before reporting Step 2 complete:
+- **`qc-converge <bookId>` must print `DETERMINISTIC-CLEAN`** — this is the authoritative pre-submit
+  gate; it subsumes the `gate-chapter` / `book-gate` / `author-check` bullets below. Run those
+  per-chapter as you go, but the book is not submittable until converge is clean;
 - **Self-score every chapter against the PUBLISHABLE BAR — the standard QC actually grades on.** Run `npx tsx src/cli.ts publishable-rubric` and score the draft on all 9 weighted axes (PASS = overall ≥85/100 AND no axis <0.6). A gate-clean chapter is routinely REVISE'd; the bar is the real target. Fix any axis you'd score below ~0.85, and ANY corruption-axis hit (quiz_key_correctness, example_coherence, prose_coherence, factual_accuracy), before you submit. The dominant axes are quiz_key_correctness (17) and example_coherence (15) — spend your effort there.
 - every assigned chapter must pass `author-check`;
 - every assigned chapter must pass `gate-chapter` with 0 blockers;
@@ -276,11 +320,15 @@ protagonist's role, use a **`[Role] [Name]`** prefix ("Analyst Renee", "Coach Om
 than the `[Name], a [role],` appositive — the prefix carries the role with zero extra commas,
 so it can't trip A13's run-on opener (3+ commas in the first 80 characters).
 
-**R6.3 — Self-check before you gate.** The deterministic gates can NOT see `scene_skeleton`
-or `location_stamping`. Before `gate-chapter`, list your six scenario openers and your
-timings/venues. If one sentence template describes all six openers, or any clock / place /
-container recurs across the chapter, you have a defect the gates will miss — restage from your
-dealt OPENER GRAMMAR / VENUE slots first.
+**R6.3 — Required pre-submit scene artifact (the gates can't see this).** The deterministic gates
+cannot see `scene_skeleton` or `location_stamping`, and the cross-chapter model sweep is the only
+backstop — so produce this as a written artifact BEFORE you submit, not a mental check. For the
+chapter, write out: (a) your six scenario OPENERS, (b) your six TIMINGS / VENUES, and (c) the
+chapter's dealt SCENE MECHANISM (the functional move, R6.4). Then test each: if one sentence
+template describes ≥half the openers, or any clock / place / container recurs across the chapter,
+or the dealt MECHANISM is rendered with the same device a prior chapter already used, you have a
+defect the gates will miss — restage from your dealt OPENER GRAMMAR / VENUE / MECHANISM slots
+before you gate.
 
 **R6.4 — Use your dealt SCENE MECHANISM (the functional move, not the grammar).** Your card
 deals each chapter one *functional move* — the dramatic transaction the chapter's marquee scene
