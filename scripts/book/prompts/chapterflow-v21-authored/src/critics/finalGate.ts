@@ -216,7 +216,7 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   // (WT-E); this surfaces the deterministic debt. The friction-prose absence guard
   // keeps the gold corpus clean — its scenarios are saturated with friction
   // vocabulary. See critics/outcomeVariety.ts + tests/outcome-variety.test.ts.
-  "C28.uniform_success": "minor",
+  "C28.uniform_success": "major",
   E4: "major",
   A11: "blocker",
   A12: "blocker",

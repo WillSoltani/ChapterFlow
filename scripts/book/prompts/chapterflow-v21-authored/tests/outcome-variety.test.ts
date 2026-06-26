@@ -146,11 +146,11 @@ test("C28: detectUniformSuccess does not fire on a too-small slate (<3 examples)
 
 // ── Critic + ship-gate wiring ─────────────────────────────────────────────────
 
-test("C28: checkOutcomeVariety flags an all-success chapter as a single minor", () => {
+test("C28: checkOutcomeVariety flags an all-success chapter as a single major (advisory shadow)", () => {
   const findings = checkOutcomeVariety(allSuccessChapter("zz-c28-critic", 5));
   assert.equal(findings.length, 1, "expected exactly one chapter-level finding");
   assert.equal(findings[0].checkId, "C28.uniform_success");
-  assert.equal(findings[0].severity, "minor", "C28 must be a minor (advisory)");
+  assert.equal(findings[0].severity, "major", "C28 is a shadow MAJOR (promoted 2026-06-26) — surfaces but never blocks");
 });
 
 test("C28: an unplanted makeChapter is outcome-variety clean", () => {
@@ -172,14 +172,14 @@ test("C28: a chapter with one failed-first-attempt scene does not fire (MUST NOT
   assert.equal(checkOutcomeVariety(ch).length, 0);
 });
 
-test("C28: the ship gate surfaces an all-success chapter as a minor (wiring + severity)", () => {
+test("C28: the ship gate surfaces an all-success chapter as a major (wiring + severity)", () => {
   const ch = allSuccessChapter("zz-c28-gate", 8);
   const report = runShipGate(ch);
   assert.ok(
-    report.minors.some((m) => m.catalogId === "C28.uniform_success"),
-    `expected a C28 ship-gate minor; got minors ${report.minors.map((m) => m.catalogId).join(", ")}`,
+    report.majors.some((m) => m.catalogId === "C28.uniform_success"),
+    `expected a C28 ship-gate major; got majors ${report.majors.map((m) => m.catalogId).join(", ")}`,
   );
-  // Advisory: a C28 minor must never flip the gate or land among the blockers.
+  // SHADOW: a C28 major surfaces but is NOT in ENFORCED_MAJOR, so it must never block.
   assert.ok(!report.blockers.some((b) => b.catalogId === "C28.uniform_success"), "C28 must not be a blocker");
 });
 
