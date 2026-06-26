@@ -325,11 +325,17 @@ export type CriticCheckId =
   | "AS12.chapter_quiz_position_matches_prior"
   | "BP24.cross_tier_breakdown_verbatim"
   | "B15.cross_tier_paraphrase"
+  | "E8.monotone_cadence"
   | "BP25.quiz_correct_longest_rate"
   | "SC9.example_not_source_grounded"
   // Evidence integrity — testimonials must never masquerade as research.
   | "EI1.testimonial_as_evidence"
-  | "EI2.quiz_key_testimonial";
+  | "EI2.quiz_key_testimonial"
+  // Quiz transfer & key-novelty — a quiz tests transfer, never recall of the chapter.
+  | "D4.recycled_scenario"
+  | "D6.key_references_chapter_entity"
+  // Grounded numbers — invented precision (a fabricated percentage/multiplier/magnitude).
+  | "GN1.ungrounded_number";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

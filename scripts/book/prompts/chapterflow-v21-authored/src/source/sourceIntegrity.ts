@@ -2,6 +2,7 @@ import { canonicalJsonSha256, textSha256 } from "../lib/canonicalJson.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import type { SourceAnchorForPrompt, SourceAnchorKind, SourceClaimType } from "../types.js";
 import type { NamedExampleV2, SourceSidecarV2 } from "./sidecarSchema.js";
+import { REPLICATION_STATUSES } from "./sidecarSchema.js";
 
 export type SourceIntegrityFinding = {
   checkId: string;
@@ -332,6 +333,19 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
       if (!nonempty((fact as any)?.[key])) {
         findings.push(finding({ checkId: "SV2.testable_fact_missing_field", chapterNumber, message: `${path}.${key} is required.` }));
       }
+    }
+    // OPTIONAL replicationStatus: if present it must be one of the known values, so a
+    // researcher typo cannot silently neutralise the STEP-2 R9 hedge requirement. Absent =
+    // not assessed (advisory only; never blocks — gold sidecars omit the field).
+    const replicationStatus = (fact as any)?.replicationStatus;
+    if (replicationStatus !== undefined && !REPLICATION_STATUSES.includes(replicationStatus)) {
+      findings.push(finding({
+        checkId: "SV2.replication_status_invalid",
+        severity: "advisory",
+        chapterNumber,
+        message: `${path}.replicationStatus is ${JSON.stringify(replicationStatus)}; expected one of ${REPLICATION_STATUSES.map((s) => JSON.stringify(s)).join(", ")} (or omit it).`,
+        evidence: String(replicationStatus),
+      }));
     }
   });
   facts.forEach((fact, i) => {

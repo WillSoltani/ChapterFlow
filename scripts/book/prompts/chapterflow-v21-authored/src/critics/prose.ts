@@ -310,7 +310,7 @@ export function checkSentenceLengthVariance(text: string, unitLabel: string): Cr
 // ADVANCE the argument?), which a lemma counter cannot judge.
 //
 // WHAT SHIPS INSTEAD. (1) PREVENTION — the write-time rule that actually buys first-pass
-// quality (STEP-2 `R9` + Step 5 / writer-breakdown "length follows substance"). (2) The
+// quality (STEP-2 `R11` + Step 5 / writer-breakdown "length follows substance"). (2) The
 // JUDGMENT — owned by the semantic `prose_coherence` bar axis (FAILURE-MODES `MB4`, the
 // WT-E clause), which reads whether a paragraph earns its length where a counter cannot.
 // `measureIdeaDensity` is exposed ONLY so the calibration test (tests/idea-density.test.ts)
