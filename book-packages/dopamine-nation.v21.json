@@ -1,6 +1,6 @@
 {
   "schemaVersion": "chapterflow-v21-authored",
-  "packageId": "sha256:325a837589fd2ac59f8b8457d6ef36ccf607838c572c06a4409509f72f21f667",
+  "packageId": "sha256:d303a75c06110d9eac4f5df659b37db4dd7f4cde096fd1315dfda8787d9fc166",
   "createdAt": "2026-06-24T22:14:51.936Z",
   "contentOwner": "chapterflow",
   "book": {
@@ -23,8 +23,8 @@
   },
   "productionManifest": {
     "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:325a837589fd2ac59f8b8457d6ef36ccf607838c572c06a4409509f72f21f667",
-    "payloadHash": "sha256:325a837589fd2ac59f8b8457d6ef36ccf607838c572c06a4409509f72f21f667",
+    "contentId": "sha256:d303a75c06110d9eac4f5df659b37db4dd7f4cde096fd1315dfda8787d9fc166",
+    "payloadHash": "sha256:d303a75c06110d9eac4f5df659b37db4dd7f4cde096fd1315dfda8787d9fc166",
     "payload": {
       "schemaVersion": "chapterflow-production-manifest-payload-v2",
       "bookId": "dopamine-nation",
@@ -103,7 +103,7 @@
           "chapterId": "dopamine-nation-ch01",
           "chapterNumber": 1,
           "title": "Our Masturbation Machines",
-          "readerContentHash": "sha256:bbbee1d66644b469c33e45226e725c7afabe7a62b3b3e42a7abb671a1c9f79f7",
+          "readerContentHash": "sha256:8eeda1d74f758fac9f1c0b8763eb798b036d4ebfa4381633197659d8ddba17bc",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch01.source.json",
             "semanticHash": "sha256:8313e5953ed2c422b9f46e00a4b3158fde7eb7672273ba669ed56185bb68cef3",
@@ -130,7 +130,7 @@
           "chapterId": "dopamine-nation-ch02",
           "chapterNumber": 2,
           "title": "Running from Pain",
-          "readerContentHash": "sha256:32175f35612407c5052e2eec844aab35c33c5ccd168c1a3fb0d7e48b5095c6fa",
+          "readerContentHash": "sha256:822d1e9e2f6378d4f68420f921638a1a20a5276cf137ae51c7e07a6199f75817",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch02.source.json",
             "semanticHash": "sha256:b26b7a7d2892619bcf8795dca959108ab4b4a2adaa26673bb9f8b747c852f90a",
@@ -157,7 +157,7 @@
           "chapterId": "dopamine-nation-ch03",
           "chapterNumber": 3,
           "title": "The Pleasure-Pain Balance",
-          "readerContentHash": "sha256:d47ecf6786ba69e908625b703ef6aaf69ef47c663addb61d760f8a9e7933ec53",
+          "readerContentHash": "sha256:b4745e2747bbea75bbfeaf67aa22bb56e9caed6d4a861c7c2d1334f026af6c50",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch03.source.json",
             "semanticHash": "sha256:86c250245beec6eb73ea08b5fb783bfbe55084f6c5242623a1c0b819715fa4d1",
@@ -184,7 +184,7 @@
           "chapterId": "dopamine-nation-ch04",
           "chapterNumber": 4,
           "title": "Dopamine Fasting",
-          "readerContentHash": "sha256:dac260483c4f5a3fd193ffbf21214fa4819dbd996d9164eddf8e9a359ce033d2",
+          "readerContentHash": "sha256:e8f8f79175dd8b9e1c2b98dd149666c6fc77057a48d957a5e931ad78362cfbf0",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch04.source.json",
             "semanticHash": "sha256:8f0a4edbce6a869ee614447f1dcbeb2bb2d8594be10bc4ac177bea1e8a039a35",
@@ -211,7 +211,7 @@
           "chapterId": "dopamine-nation-ch05",
           "chapterNumber": 5,
           "title": "Space, Time, and Meaning",
-          "readerContentHash": "sha256:0fa38032bfbe2c221001d86925392cfba904c479becb5a47283ab9527f34ff70",
+          "readerContentHash": "sha256:13a511139e80313e9203ffe43fb1dd77929cb365fc8a32f0adb0bb15d1b9ba34",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch05.source.json",
             "semanticHash": "sha256:38d73ad10dda198ac2487bec05291e5fe85f28d27439d463a528bb327a53f09b",
@@ -238,7 +238,7 @@
           "chapterId": "dopamine-nation-ch06",
           "chapterNumber": 6,
           "title": "A Broken Balance?",
-          "readerContentHash": "sha256:99ab03018383caebc940dd23f926fb738072ec40e8f834b1d25d317dfcbc1eac",
+          "readerContentHash": "sha256:19e29e469d5a95de8ec7fdbb92d7d159b1e408e43eb3e6274c841844ae24f33a",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch06.source.json",
             "semanticHash": "sha256:e5d0a094b75b22045d2177ca8515395465a2afd2cf183d2606f4d453df18d5cc",
@@ -265,7 +265,7 @@
           "chapterId": "dopamine-nation-ch07",
           "chapterNumber": 7,
           "title": "Pressing on the Pain Side",
-          "readerContentHash": "sha256:98bb930478d7f0950c5766c4dadda517c65e75472037b625bc3ffb2d7d760836",
+          "readerContentHash": "sha256:40b341ee1123a749b8b5a421436fa3ee01b7150716ac5b5db3aca492c339f995",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch07.source.json",
             "semanticHash": "sha256:05c90779d9a84cfea48863f4b16aa2c4f19c2bf3957f201e2a7973a3c5400cbe",
@@ -292,7 +292,7 @@
           "chapterId": "dopamine-nation-ch08",
           "chapterNumber": 8,
           "title": "Radical Honesty",
-          "readerContentHash": "sha256:0c5472871e94addaf1eb5833503e5c430aef2e7c5784f123b2deb7fd28e8ff3c",
+          "readerContentHash": "sha256:1ef7450454cc60e9303f5d59d5b6e508957bf40ee6dcf0600c3bf1fd5fb2ed61",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch08.source.json",
             "semanticHash": "sha256:8b7e443c2f650c72f4fc81571ec668b4f2fbfb9892ae2e9f17430d27704cda26",
@@ -319,7 +319,7 @@
           "chapterId": "dopamine-nation-ch09",
           "chapterNumber": 9,
           "title": "Prosocial Shame",
-          "readerContentHash": "sha256:ee94400891433d216b27432aa25f62bb1111943b235e58c1db9f12d3a8ef9e32",
+          "readerContentHash": "sha256:ac5e152f2536ce5ac49a5f5130071262f00a326401dabec5755d420c097cd9a2",
           "sourceEvidence": {
             "path": ".chapterflow/runs/dopamine-nation/20260624T190410297Z-dde2cdb1-dc94-4d66-b461-6cde211060ec/sidecars/source/ch09.source.json",
             "semanticHash": "sha256:2c7852f0a3c0a2629326a0b218c191ede237e061cc20803dca79b3a13345e114",
@@ -1246,21 +1246,28 @@
       "tryThisNow": "Within the next 24 hours, the first time you reach for an easy reward, say: \"I replace the reach with one access gap.\"",
       "keyTakeaway": "When a reward is cheap, private, strong, and nearby, do not make willpower your first test. Name the access gap before the first reach becomes a loop.",
       "breakdown": {
-        "fastRead": "A phone hits 1% while the charger is across the room, and the missed reply is already cooling a friendship. You meant to send it. Instead, one small reach became a scroll, then a search, then sleep lost to the glow. Easy access makes the first reach feel harmless. The fix starts before shame. Ask what made the reward cheap, private, strong, and nearby. If the path was smooth, name the access gap. One bit of friction can save the next hour.",
+        "fastRead": "A phone hits 1% while the charger is across the room, and the missed reply is already cooling a friendship. You meant to send it. Instead, one small reach became a scroll, then a search, then sleep lost to the glow. Easy access makes the first reach feel harmless. An access gap is one added bit of distance, delay, or exposure between you and the reward. The fix starts before shame. Ask what made the reward cheap, private, strong, and nearby. If the path was smooth, name the access gap. One bit of friction can save the next hour.",
         "deepRead": "The mechanism is small: low effort invites the first try, privacy hides the repeat, and variety keeps the chase fresh. Anna Lembke's own Twilight binge shows how mild reward can climb. A neighborhood library trip feels safe. Then the shelf moves from Twilight to vampire romance, then to stranger fantasy, and sleep loss follows. The lesson is not that novels are drugs. It is that novelty and supply can tug the same reward path that harder substances use. The first pleasure can be mild and still teach a route. Once the route is warm, the stronger version feels less like a choice and more like the next page.\n\nDavid Courtwright's phrase limbic capitalism gives the market side a name. It means businesses can make money by waking old reward circuits. The dopamine economy is not just a joke about weak habits. Junk food, gambling, shopping, pornography, news, and social feeds all sell fast relief with few pauses. A private loop gets loud when no one can interrupt it. You do not beat that market by calling yourself weak. You start by seeing the design: near, private, potent, and endless.",
         "fullRead": "Jacob walks into a Silicon Valley clinic looking ordinary enough: early sixties, from Eastern Europe, able to describe his life in a calm voice. Then the private loop appears. He has built a masturbation machine, and internet pornography later makes the reward easier to repeat. If you stop at shock, you miss the part that belongs to you.\n\nSilicon Valley makes the case sharper because the machine no longer has to look strange. A slot machine can become an app. A dealer can become overnight delivery. A magazine rack can become a private browser window. The old search for reward now fits inside a pocket. When your phone is almost dead before a trip because the charger fed a scroll instead of the map, the cost is no longer abstract. You arrive scattered, late, or unreachable, and the reward that felt tiny has spent the hour you needed.\n\nThe shared part is access. A brain built for scarce reward now lives beside endless supply. Sugar, shopping, gambling, pornography, news, and drugs do not carry the same harm, but they can press the same pursuit system. The first reach asks for little. The second reach asks for less. By the third, the path feels normal.\n\nPleasure does not become suspect just because it is pleasure. Dinner, sex, games, stories, and news can be part of a sane life. The warning lands when the reward is potent, private, and always waiting. A pleasure with edges can end. A pleasure with no edge starts training the day around itself.\n\nAccess does not make every stuck person the same. Family history and mental health can load the dice. Stronger drugs, including morphine-based medical products, can raise the risk when access grows. Some people step away after a binge. Others find the reward welded to pain, secrecy, or grief. Access is the door; it is not the whole house.\n\nShame is such a poor guide. Shame says, \"What is wrong with me?\" The access question asks, \"What made this so easy to repeat?\" One question hides the loop. The other gives you a handle. You can add a pause, move the reward farther away, ask for a witness, or tell the truth before the next reach. The small gap matters because the first reach is where the cascade starts.\n\nThe precondition is honesty about the reach itself. You have to be willing to see the cheap path before you defend it as stress relief, harmless fun, or a deserved treat. The gap only works when you want to see the reach. Without that wish, access stays invisible, and the machine keeps asking for one more turn."
       },
       "examples": [
         {
           "exampleId": "ex01",
-          "title": "File Label Turn",
+          "title": "Plain File Label",
           "tags": [
             "dialogue",
             "clinical"
           ],
-          "scenario": "Clinician Vivian is already writing \"odd case\" on the intake sheet when Warren says, \"Say the plain part.\" Jacob has just described the Silicon Valley clinic intake: early sixties, Eastern Europe, handmade masturbation machine. \"And later internet pornography,\" Warren adds. Vivian crosses out \"odd\" and writes \"private loop.\"",
-          "whatToDo": "Vivian changes the label while Warren is still talking. She keeps Jacob in the room as a person and tracks how privacy, machine access, and online supply made the reward repeatable.",
-          "whyItMatters": "The tiny label change stops the cascade toward spectacle. Jacob's story becomes a map of access, not a strange file the reader can dismiss from a safe distance."
+          "scenario": "The first note on Jacob could easily read like a spectacle: early sixties, Eastern Europe, handmade masturbation machine, then internet pornography. The repair is a plainer label. Instead of \"odd case,\" the file reads, \"private, repeatable, low-friction reward.\" The detail stays factual, but the reader is no longer invited to stare from a distance.",
+          "whatToDo": "Keep Jacob in the room as a person, then track access: privacy, a machine, online supply, and repetition.",
+          "whyItMatters": "The label change turns a shocking detail into a transferable pattern without pretending Jacob stands for everyone.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -1271,7 +1278,14 @@
           ],
           "scenario": "Amelia tugs the neighborhood library return slot near closing, and it sticks halfway. She expects a late fee. Instead she pulls Twilight back out, then finds the vampire romance she renewed after it and the fantasy hold slip tucked behind it. \"You said one book,\" Brooklyn says. Amelia points to the sleep-loss note on her phone: \"One book found a shelf.\"",
           "whatToDo": "Amelia names the reveal out loud: Twilight was the doorway, not the whole binge. She follows how the neighborhood library made novelty easy to keep sampling.",
-          "whyItMatters": "The scene keeps the lesson away from drug-only thinking. A respectable story can still become a stronger chase when supply and privacy keep widening."
+          "whyItMatters": "The scene keeps the lesson away from drug-only thinking. A respectable story can still become a stronger chase when supply and privacy keep widening.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "predict_reveal",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
@@ -1280,9 +1294,16 @@
             "text",
             "market"
           ],
-          "scenario": "Brooklyn feels the pickup bag sweating through paper on the counter in the delivery-app curb lane. Her phone buzzes before the fries cool. Brooklyn: \"Coupon, news alert, casino ad, all in one minute.\" Landon: \"David Courtwright had a name for that?\" Brooklyn: \"Limbic capitalism. The dopamine economy rents our reward circuits.\" Landon: \"Battery?\" Brooklyn: \"1%. My ride code is in there.\"",
-          "whatToDo": "Brooklyn reads the thread instead of chasing each ping. She names the pattern: delivery, news, and ads are separate doors into the same reward-circuit market.",
-          "whyItMatters": "The phone is not one temptation. It is a stack of businesses that profit when the next cue arrives before the last want settles."
+          "scenario": "At the pickup counter after lunch, Brooklyn feels the bag sweating through the paper while Brooklyn's phone delivers a coupon, a news alert, and a casino ad before the fries cool. David Courtwright's limbic capitalism names the market piece: businesses can rent attention by waking reward circuits. The ride code is also on that phone, now at 1 percent.",
+          "whatToDo": "Read the pileup before chasing any one ping. Separate the useful task from the extra doors into reward.",
+          "whyItMatters": "The phone is not one temptation. It is a stack of businesses that benefit when the next cue arrives before the last want settles.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "text_thread",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -1291,9 +1312,16 @@
             "reset",
             "phone"
           ],
-          "scenario": "Landon lifts the charging cable in the hallway, then stops it an inch from the socket while the bathroom mirror still shows toothpaste on his chin. The old routine is charge, swipe, news, shopping, then late train. \"David Courtwright would call that limbic capitalism,\" Jeanne says from the hall. Landon lowers the plug: \"Access gap first. The dopamine economy can wait.\"",
-          "whatToDo": "Landon restarts the routine by naming the access gap before the phone is live. The reward circuits still get cues, but the charger no longer feeds the bathroom swipe.",
-          "whyItMatters": "The pause is the practice. He does not scold the desire; he changes the first small act that used to cascade into a late train."
+          "scenario": "In the bathroom hallway before the late train, Landon stops the charging cable one inch from the socket. Landon's old routine is charge, swipe, news, shopping, then miss the train. The new routine is smaller and less heroic: leave the phone outside the bathroom and send the train text from the kitchen.",
+          "whatToDo": "Change the first small act before the phone is live. The reward circuits still get cues, but the charger no longer feeds the bathroom swipe.",
+          "whyItMatters": "This is a partial win, not a personality transplant. One access gap protects one vulnerable hour.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "reset_moment",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -1304,7 +1332,14 @@
           ],
           "scenario": "Jeanne slides the paperback under a tea towel before Landon sees the cover. The kitchen is quiet except for the page scrape and the fridge hum. Twilight was the clean excuse; vampire romance is the later stack; sleep loss is the gray skin under her eyes. Landon says, \"Still awake?\" Jeanne says, \"The next one was right there.\"",
           "whatToDo": "Jeanne lets Landon see the stack instead of hiding the paperback. She names the cheap step from one safe story to the next stronger fantasy.",
-          "whyItMatters": "The vignette shows escalation without a speech. When the next reward is within arm's reach, \"one more\" can quietly become the rule."
+          "whyItMatters": "The vignette shows escalation without a speech. When the next reward is within arm's reach, \"one more\" can quietly become the rule.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "vignette",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -1313,9 +1348,16 @@
             "recovery",
             "case"
           ],
-          "scenario": "Analyst Gemma is three lines into a secure chart note calling Jacob \"bizarre\" when Warren interrupts: \"You skipped Eastern Europe and early sixties.\" The handmade masturbation machine made the story feel singular. The later internet pornography made it portable. Gemma deletes \"bizarre\" and writes, \"private, repeatable, low-friction reward.\"",
-          "whatToDo": "Gemma catches her own error before the note hardens. She keeps the sexual detail factual, then rewrites the case around access, privacy, and repetition.",
-          "whyItMatters": "The repair protects the reader from distance. If Jacob stays merely bizarre, the access pattern never reaches ordinary phones, feeds, and shopping tabs."
+          "scenario": "At her desk after an intake review, Gemma starts a secure chart note with \"bizarre\" and then Gemma corrects it before it hardens. The replacement line is boring on purpose: \"private, repeatable, low-friction reward.\" The handmade machine made Jacob's story feel singular; later internet pornography made the pattern portable.",
+          "whatToDo": "Keep the sexual detail factual, then rewrite the case around access, privacy, and repetition.",
+          "whyItMatters": "If Jacob stays merely bizarre, the access pattern never reaches ordinary phones, feeds, and shopping tabs.",
+          "planSpec": {
+            "domain": "our masturbation machines example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_memo",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -1531,22 +1573,29 @@
       "tryThisNow": "Before you send your next response, move one small object beside your screen. Count five breaths, then write one sentence naming the pain you want to dodge.",
       "keyTakeaway": "Pain relief can be real care, but when every ache gets a pill, feed, or rescue, you train discomfort to feel dangerous and harder to bear.",
       "breakdown": {
-        "fastRead": "You reach for the phone before your chest has even finished tightening. The reply waits, the missed-call screen glows, and the bad feeling gets one more clean exit. David's story shows the same pattern with pills: after a 45-minute consultation, Adderall offers relief, then sleeplessness invites Ambien and Paxil enters the tangle.\n\nRelief can become rehearsal. The pain avoidance loop starts when escape works so fast that your coping gets less practice. Pause before escape and ask what discomfort the tool is training you to fear.",
+        "fastRead": "You reach for the phone before your chest has even finished tightening. The reply waits, the missed-call screen glows, and the bad feeling gets one more clean exit. David's story shows the same pattern with pills: after a brief visit, Adderall offers relief. Then sleeplessness invites Ambien, and Paxil enters the tangle.\n\nRelief can become rehearsal. The pain avoidance loop is the habit of using fast escape so often that ordinary discomfort gets less practice being tolerated. Pause before escape and ask what discomfort the tool is training you to fear.",
         "deepRead": "The loop starts in the body: tight chest, hot face, blank boredom, a little fear before a hard reply. You want the feeling gone, and a tool is close. It may be a pill, a feed, or a rule that keeps a child from every scrape. The tool works for the moment. Then the next discomfort arrives with less practice behind it. You can see it in a silent wait: the hand moves before the feeling has a name.\n\nThat is why David's cascade matters. Adderall may answer one problem, but stimulant wakefulness can create another. Ambien then looks like care for sleep. Paxil joins the list. The first aim was relief, not chaos. The cost is that each new fix can hide the old pain instead of helping David learn what he can bear.\n\nSophie shows the same loop without a swallowed drug. She is a college student with depression and anxiety, and social media sits in reach whenever the present moment gets sharp. Stopping social media sounds strange to her because the screen feels ordinary, almost like care. The fastest escape often trains the next alarm.\n\nThe move is not to worship pain. It is to slow the first reach. Ask whether this relief is treating a real need or teaching your nervous system that the feeling itself is an emergency.",
-        "fullRead": "The prescription pad is not the only place this story happens. A parent clears every sad hour from a child's day. A prayer leader treats doubt as a defect. A therapy habit turns every hard feeling into something to correct at once. The same fear sits under each version: if pain appears, something has gone wrong.\n\nThe United States numbers make the pattern hard to wave away. More than one in four American adults are described as taking a psychiatric drug daily. More than one in twenty American children are included too. Those figures do not prove each prescription is wrong. They show how normal it has become to meet distress with fast relief.\n\nThe danger is practical. Richer settings often give you more exits. You can mute boredom, soften fear, block conflict, order comfort, and keep a screen between you and the present moment. More tools can mean less practice. A life built to avoid every ordinary ache can make the next ache feel like a threat.\n\nHere is the hard edge. The lesson is not an anti-medicine rule. David needed help when attention, anxiety, and fear of failure were making life harder. Sophie needed help with depression and anxiety. Care is real. Medicine is real. A pill can help without becoming the whole plan.\n\nThe risk begins when relief outruns attention. David gets Adderall after a 45-minute consultation, then sleep breaks, then Ambien enters, then Paxil appears in the tangle. Sophie reaches for social media because the feed makes the present moment less exposed. In both cases, the tool may lower pain now while making direct contact with pain feel less possible later.\n\nPause Before the Escape gives you a small test. Before the next pill, feed, rescue, or rule becomes automatic, ask two plain questions. What pain is this trying to remove? Will this help me bear life better tomorrow, or only make this minute disappear?\n\nThat question is small on purpose. It fits the moment before a reply, before a scroll, or before a rescue rule for a child. You are not solving your whole history. You are refusing to let the first ache choose the tool by itself.\n\nThe answer will not always be abstinence. Sometimes relief is the sane choice. Sometimes a doctor, parent, or friend should reduce pain fast. The move breaks when the pain is a medical danger, when a clinician has given a clear treatment plan, or when stopping a drug like Ambien or Paxil would be unsafe without care. In those cases, do not prove toughness. Get help and keep asking whether the help is building a life you can live inside."
+        "fullRead": "The prescription pad is not the only place this story happens. A parent clears every sad hour from a child's day. A prayer leader treats doubt as a defect. A therapy habit turns every hard feeling into something to correct at once. The same fear sits under each version: if pain appears, something has gone wrong.\n\nThe United States numbers make the pattern hard to wave away. More than one in four American adults are described as taking a psychiatric drug daily. More than one in twenty American children are included too. Those figures do not prove each prescription is wrong. They show how normal it has become to meet distress with fast relief.\n\nThe danger is practical. Richer settings often give you more exits. You can mute boredom, soften fear, block conflict, order comfort, and keep a screen between you and the present moment. More tools can mean less practice. A life built to avoid every ordinary ache can make the next ache feel like a threat.\n\nHere is the hard edge. The lesson is not an anti-medicine rule. David needed help when attention, anxiety, and fear of failure were making life harder. Sophie needed help with mood and anxiety. Care is real. Medicine is real. A pill can help without becoming the whole plan.\n\nThe risk begins when relief outruns attention. David gets Adderall after a 45-minute consultation, then sleep breaks, then Ambien enters, then Paxil appears in the tangle. Sophie reaches for social media because the feed makes the present moment less exposed. In both cases, the tool may lower pain now while making direct contact with pain feel less possible later.\n\nPause Before the Escape gives you a small test. Before the next pill, feed, rescue, or rule becomes automatic, ask two plain questions. What pain is this trying to remove? Will this help me bear life better tomorrow, or only make this minute disappear?\n\nThat question is small on purpose. It fits the moment before a reply, before a scroll, or before a rescue rule for a child. You are not solving your whole history. You are refusing to let the first ache choose the tool by itself.\n\nThe answer will not always be abstinence. Sometimes relief is the sane choice. Sometimes a doctor, parent, or friend should reduce pain fast. The move breaks when the pain is a medical danger, when a clinician has given a clear treatment plan, or when stopping a drug like Ambien or Paxil would be unsafe without care. In those cases, do not prove toughness. Get help and keep asking whether the help is building a life you can live inside."
       },
       "examples": [
         {
           "exampleId": "dopamine-nation-ch02-ex01",
-          "title": "Intake Memo Margin",
+          "title": "Cascade Before Another Fix",
           "tags": [
             "David",
             "Adderall",
             "clinic memo"
           ],
-          "scenario": "The intake note has no empty margin left. Amelie's memo reads, \"David came through a 45-minute consultation with Adderall already named as relief. Now he cannot sleep, so Ambien is on the table; Paxil is in the medication history. I said I would ask what pain the first pill was erasing before adding another escape.\"",
-          "whatToDo": "Amelie circles the sleep complaint, writes the original anxiety beside it, and asks the supervisor to review the cascade before another quick fix is added.",
-          "whyItMatters": "The memo keeps the first commitment visible. A drug may help, but the next symptom should not hide the pain that started the chain."
+          "scenario": "David's line is easy to miss because each step sounds reasonable by itself: a 45-minute consultation, Adderall for attention and fear of failure, sleeplessness, Ambien, then Paxil in the history. Before treating the sleep problem as a brand-new target, the chart needs one question: did the first relief create the next distress?",
+          "whatToDo": "Trace the second symptom back through Adderall before adding another quick fix. The original anxiety belongs beside the sleep complaint.",
+          "whyItMatters": "A drug may help, but the next symptom should not hide the pain that started the chain.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "dopamine-nation-ch02-ex02",
@@ -1558,31 +1607,52 @@
           ],
           "scenario": "The rent transfer is still unsent when the group chat goes quiet. Adam answers Sophie's depression and anxiety by sending reels, saying a college student needs relief between classes. Sierra sits with the same shake in Sophie's hands, moves the phone across the park picnic table, and asks for one evening without social media. By dusk, the feed is quiet enough for Sophie to see the tab she had been avoiding.",
           "whatToDo": "Adam keeps offering escape. Sierra makes the room less easy to flee, then stays beside Sophie while the rough hour passes without the feed.",
-          "whyItMatters": "The contrast shows care and escape can look alike at first. The useful helper reduces panic without feeding the tool that keeps the loop alive."
+          "whyItMatters": "The contrast shows care and escape can look alike at first. The useful helper reduces panic without feeding the tool that keeps the loop alive.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "contrast",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "dopamine-nation-ch02-ex03",
-          "title": "Footprint Talk",
+          "title": "Footprint, Not Just Target",
           "tags": [
             "David",
             "Ambien",
             "coaching"
           ],
-          "scenario": "\"The second symptom may be a footprint, not a new target,\" Kelsey says to the resident. During Friday supervision in the campus clinic office, David's chart shows a 45-minute consultation, Adderall, then sleeplessness, Ambien, and Paxil. The resident wants the sleep problem handled before the next patient arrives. Kelsey taps the blank sleep line and asks which promise matters more than speed.",
-          "whatToDo": "Kelsey slows the chart review and traces the sleep problem back through Adderall before the resident treats Ambien as the obvious next step.",
-          "whyItMatters": "The sentence changes the frame in time. When a fix creates a symptom, speed can deepen the cascade instead of ending distress."
+          "scenario": "In the campus clinic hallway before the next appointment, Kelsey watches a resident reach for the sleep-medication line. Kelsey slows him with one sentence: the second symptom may be a footprint, not only a new target. David's insomnia matters, but speed can turn a cascade into a treatment plan.",
+          "whatToDo": "Slow the chart review and ask whether wakefulness follows stimulant relief before Ambien becomes automatic.",
+          "whyItMatters": "When a fix creates a symptom, speed can deepen the cascade instead of ending distress.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "dopamine-nation-ch02-ex04",
-          "title": "Whiteboard Figures",
+          "title": "Daily Does Not Mean Bad",
           "tags": [
             "United States",
             "psychiatric drug",
             "class"
           ],
-          "scenario": "The adult line fills the clean whiteboard; the child line sits in a cramped corner below it. In a counseling course, Piper writes more than one in four American adults beside the word daily. The next line names more than one in twenty American children and a psychiatric drug. She asks whether the lesson is simply that medicine is bad. The instructor hands back the marker and asks what kind of pain the culture is trying not to feel.",
-          "whatToDo": "Piper rewrites the board as a question about daily pain relief, then separates necessary treatment from the reflex to erase discomfort on sight.",
-          "whyItMatters": "The class keeps the numbers from becoming a slogan. The pattern includes children, adults, care, and avoidance at the same time."
+          "scenario": "On the classroom whiteboard before lunch, Piper writes two national figures: more than one in four adults taking a psychiatric drug daily, and more than one in twenty children included too. Piper faces a choice: turn the numbers into \"medicine is bad,\" or ask what pain is being erased. She chooses the question.",
+          "whatToDo": "Separate necessary treatment from the reflex to treat every bad feeling as a defect. Keep adults, children, care, and avoidance in view together.",
+          "whyItMatters": "The numbers widen David's case without turning prescription care into a villain.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "dopamine-nation-ch02-ex05",
@@ -1594,19 +1664,33 @@
           ],
           "scenario": "Marlene is asked to be the test case instead of the comfortable observer. The dorm peer session is discussing Sophie, a college student whose depression and anxiety sit beside constant social media. Last week Marlene kept her phone beside her notebook, and every buzz cut the silence short. This week she slides the phone under a sealed envelope before she speaks. The same rough quiet arrives, but no feed opens to carry it away.",
           "whatToDo": "Marlene uses herself as the experiment. She moves one phone out of reach before the discussion starts, then lets the group feel the rough silence long enough to name it.",
-          "whyItMatters": "The changed object shows the variable that matters. Removing the easy escape changes what people can notice about their own discomfort."
+          "whyItMatters": "The changed object shows the variable that matters. Removing the easy escape changes what people can notice about their own discomfort.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "dopamine-nation-ch02-ex06",
-          "title": "Daily Does Not Mean Automatic",
+          "title": "One More Question",
           "tags": [
             "United States",
             "psychiatric drug",
             "dialogue"
           ],
-          "scenario": "Quentin is already pushing the sign-up sheet across the clinic training desk during intake training. As a new counselor, he says, \"If more than one in four adults in the United States take a psychiatric drug daily, why ask anyone to sit with pain?\" Amelie keeps the pen still. \"Because daily does not mean automatic. And more than one in twenty American children reminds me to slow down before I call every bad feeling a defect.\"",
-          "whatToDo": "Quentin stops moving the sheet and leaves space for one more question about the pain underneath the request before he marks the intake path.",
-          "whyItMatters": "The exchange protects both truths. Medication can be care, and a culture can still teach people to flee discomfort too quickly."
+          "scenario": "At the clinic training desk, Quentin hears the adult and child figures and Quentin almost concludes that sitting with pain is pointless. The correction is modest: daily does not mean automatic. Before the intake path is marked, the pen stays still for one more question about what pain the request is trying to remove.",
+          "whatToDo": "Keep the pen still long enough to ask what is being treated and what is being avoided.",
+          "whyItMatters": "This protects both truths. Medication can be care, and a culture can still flee discomfort too quickly.",
+          "planSpec": {
+            "domain": "running from pain example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -1614,7 +1698,7 @@
         "questions": [
           {
             "questionId": "dopamine-nation-ch02-q01",
-            "prompt": "You hear someone say David's trouble started with chasing stimulants for fun. Which correction fits the source?",
+            "prompt": "A student resident says David's trouble started with chasing stimulants for fun. Which correction best fits the source?",
             "choices": [
               "His path starts with medical help for attention, anxiety, and fear of failure.",
               "His path starts with recreational stimulant use that later reaches the clinic.",
@@ -1640,7 +1724,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q03",
-            "prompt": "A policy class reads the adult prescribing figure. What does the number add to David's case?",
+            "prompt": "A student in a policy class reads the adult prescribing figure. Which inference best fits what the number adds to David's case?",
             "choices": [
               "It points to rare use limited to extreme cases.",
               "It shows medication is too unusual to shape culture.",
@@ -1666,7 +1750,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q05",
-            "prompt": "Sophie is asked to consider social media abstinence. What is the request meant to address?",
+            "prompt": "A student sees Sophie asked to consider social media abstinence. Which response best explains what the request is meant to address?",
             "choices": [
               "The request is mainly a productivity rule for a distracted student.",
               "The request is mainly a moral rule about screen discipline.",
@@ -1679,7 +1763,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q06",
-            "prompt": "You unlock your phone whenever boredom or sadness appears. How should you read that habit?",
+            "prompt": "You are bored or sad and unlock your phone whenever the feeling appears. How should you read that habit?",
             "choices": [
               "The screen gives quick novelty that lets the present feeling be skipped.",
               "The screen is outside the loop because no chemical enters the body.",
@@ -1692,7 +1776,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q07",
-            "prompt": "A counselor says the pain-avoidance loop is only about prescribing. Which scope is closer to the source?",
+            "prompt": "A student counselor says the pain-avoidance loop is only about prescribing. Which response best matches the source's scope?",
             "choices": [
               "It stays inside prescribing, so family rules and beliefs are separate.",
               "It spans clinics, beliefs, therapy, and parenting habits around discomfort.",
@@ -1705,7 +1789,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q08",
-            "prompt": "A civic group assumes richer places naturally grow tougher people. What does the source pattern suggest instead?",
+            "prompt": "A student in a civic group assumes richer places naturally grow tougher people. Which inference best fits the source pattern?",
             "choices": [
               "More resources naturally build more tolerance for everyday distress.",
               "More tools can reduce practice with manageable discomfort and lower tolerance.",
@@ -1718,7 +1802,7 @@
           },
           {
             "questionId": "dopamine-nation-ch02-q09",
-            "prompt": "A friend wants a life where every painful feeling disappears at once. Which answer keeps the hard edge?",
+            "prompt": "A parent wants a home where every painful feeling disappears as soon as it appears. Which response best fits the pain-avoidance warning?",
             "choices": [
               "Good care aims to remove every painful feeling as soon as it appears.",
               "Some discomfort can train tolerance, while endless escape can deepen fear.",
@@ -1810,7 +1894,7 @@
       "keyTakeaway": "Pleasure has a rebound: when a reward is intense, frequent, or long, your brain pushes pain back onto the balance, so more can start feeling like less.",
       "breakdown": {
         "fastRead": "I used to read the high as the whole story. Bennett reads it that way in a diner booth, thumb near a video he wants after a hard morning. The screen promises a clean lift. The teeter-totter says the lift has another side: pleasure presses down, and the brain pushes back toward pain.\n\nThat pushback is homeostasis, a plain word for the body's effort to get level again. A free high still sends a bill. If the reward is sharp, repeated, or long, the bill can arrive as flatness, ache, or craving. More of the same may start giving less.\n\nThe useful move is not grim denial. It is counting the after-pain before you call another hit the cure. When the pain side is already heavy, another shove on the pleasure side may deepen the sag.",
-        "deepRead": "Dopamine moves like a tossed ball in the synapse picture. It is a neurotransmitter, a chemical message the brain releases inside its own paths. In the simple image, a presynaptic neuron is the pitcher, a postsynaptic neuron is the catcher, and dopamine is like baseballs crossing the synaptic cleft.\n\nThat picture matters because it makes craving feel less like a fog. Something is released, something crosses, and something receives. Drugs and behaviors do not contain dopamine as if it were syrup in a bottle. They act on a brain system that already knows how to send reward signals.\n\nThe teeter-totter gives the next step. Press one end down hard with pleasure, and homeostasis pushes back from the pain side. Press down again and again, and the brain adapts. Tolerance means the same reward now gives less lift, so the person reaches for more to approach the old effect.\n\nStella sees the harder surprise after a weekend of high-dopamine use. She expects extra drive, as if pleasure had been stored up. Nora Volkow's dopamine-deficit state points the other way: heavy, prolonged reward can leave the reward pathway sitting low. The misery is not just regret. The baseline itself may have shifted.\n\nThe cue can arrive before the choice. A place, person, object, or promise of reward can start the pull before any use begins. That is why counting the after-pain helps. You are not only arguing with a thought. You may be meeting a body state already in motion.",
+        "deepRead": "Dopamine moves like a tossed ball in the synapse picture. It is a neurotransmitter, a chemical message the brain releases inside its own paths. In the simple image, a presynaptic neuron is the pitcher, a postsynaptic neuron is the catcher, and dopamine is like baseballs crossing the synaptic cleft.\n\nThat picture matters because it makes craving feel less like a fog. Something is released, something crosses, and something receives. Drugs and behaviors do not contain dopamine as if it were syrup in a bottle. They act on a brain system that already knows how to send reward signals.\n\nThe teeter-totter gives the next step. Press one end down hard with pleasure, and homeostasis pushes back from the pain side. Press down again and again, and the brain adapts. Tolerance means the same reward now gives less lift, so the person reaches for more to approach the old effect.\n\nStella sees the harder surprise after a weekend of high-dopamine use. She expects extra drive, as if pleasure had been stored up. Nora Volkow's dopamine-deficit state points the other way. A dopamine-deficit state means the reward system is running below its usual level after heavy stimulation, so ordinary life feels flat. Heavy, prolonged reward can leave the reward pathway sitting low. The misery is not just regret. The baseline itself may have shifted.\n\nThe cue can arrive before the choice. A place, person, object, or promise of reward can start the pull before any use begins. That is why counting the after-pain helps. You are not only arguing with a thought. You may be meeting a body state already in motion.",
         "fullRead": "Pain clinics made the balance harder to ignore. In the early 2000s, some patients on high-dose opioids and long-term opioid therapy arrived with worsened pain. The first guess was simple: if pain rises, more pain medicine should help. The pleasure-pain balance makes that guess less safe.\n\nThe short-term relief can be real. A person in pain may feel the lift and sleep for the first time in days. Then repeated exposure can train the system in the other direction. The nervous system adapts to the drug, and the pain side can grow heavier. A medicine taken to quiet pain can, for some patients, help make pain louder.\n\nCoralie sees the cost while reviewing a pain diary. The line that should comfort her keeps repeating: more relief, then more pain. She does not read that as bad character. She reads it as a balance problem. If removing the drug lets the pain-weighted balance recalibrate for some patients, the old rule of more relief for more pain is too small.\n\nThis is where the idea can be misused. The balance is not a sermon against pleasure. It is not a private order to stop a medicine or shame a habit. The strict reading is physical: intensity, frequency, and duration decide how much counterweight the brain must build. A small lift and a repeated flood do not ask the same thing from the nervous system.\n\nCraving also gets clearer. Connor may blame himself for wanting the betting app before he opens it, but the cue can lead the body. The corner, the icon, and the thought of a win are not neutral once the reward pathway has learned them. A setting, a familiar face, or the promise of a win can tug the reward pathway before the act begins. If he waits until after the bet to study craving, he has started too late.\n\nThe price is real because the move takes away a favorite story. Deborah wants the clean story in her bedroom closet: more medicine, less pain, no further question. Bennett wants the diner story: one more clip, one clean lift, no bill. Both stories are kind, and both can fail once that side is already loaded. Owning the choice means giving up the easy comfort of a fix that asks nothing back.\n\nSo the practice is plain. Count the after-pain. Notice the flatness after the feed, the ache after the binge, the craving after the promise. Then ask whether the next hit is treating pain or adding weight to it. The answer may cost a bright hour, a refill request, or a quick escape from boredom. Balance costs the right to chase every lift."
       },
       "examples": [
@@ -1823,7 +1907,14 @@
           ],
           "scenario": "The booth vinyl sticks to designer Bennett's wrist after lunch, and the phone glow makes the diner booth feel smaller. He has not pressed play. A teeter-totter sketch on the receipt names the pleasure side, the pain side, and homeostasis. Bennett budgets the next half hour before any clip starts, asking how much attention he can spend without making the low heavier.",
           "whatToDo": "Bennett gives attention a budget before the feed begins. He marks what the pleasure side would gain and what the pain side might charge back.",
-          "whyItMatters": "Planning before the reward protects the reader from calling every urge a need. The balance is easier to read before the cue gets loud."
+          "whyItMatters": "Planning before the reward protects the reader from calling every urge a need. The balance is easier to read before the cue gets loud.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "planning_choice",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -1834,7 +1925,14 @@
           ],
           "scenario": "Deborah stops the pill bottle halfway out of her bedroom closet and sets it on the shelf. Her chart from the pain clinic says early 2000s clinicians saw high-dose opioids and long-term opioid therapy linked with worsened pain. She is torn between asking for more, which may deepen the pain side, and saying nothing through another day afraid of her back. No doctor is in the closet with her. She owns the next call.",
           "whatToDo": "Deborah writes the pattern in plain words: more medicine, worse pain, more fear. She brings that pattern to the pain clinician instead of hiding it.",
-          "whyItMatters": "The opioid case stays medical, not moral. Relief can be real in the short run while repeated exposure can weight the balance toward pain."
+          "whyItMatters": "The opioid case stays medical, not moral. Relief can be real in the short run while repeated exposure can weight the balance toward pain.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
@@ -1845,7 +1943,14 @@
           ],
           "scenario": "Four baseballs sit between Mathieu and Colby on the teacher's desk. Mathieu says, \"Pitcher?\" Colby taps the first ball: \"Presynaptic neuron.\" \"Catcher?\" \"Postsynaptic neuron.\" Mathieu draws a gap in chalk and asks where the balls travel. Colby says, \"Across the synaptic cleft.\" The reward lesson stops sounding like mood magic; it has parts moving across a space.",
           "whatToDo": "Mathieu has Colby draw arrows from release to reception. The desk objects stay put until the path of the signal is clear.",
-          "whyItMatters": "A visible map reduces shame and fuzz. Dopamine is not a moral prize; it is a brain-made signal moving through a system."
+          "whyItMatters": "A visible map reduces shame and fuzz. Dopamine is not a moral prize; it is a brain-made signal moving through a system.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -1854,31 +1959,52 @@
             "baseline",
             "research"
           ],
-          "scenario": "Stella is halfway through a chart note when the second craving alert lands on her phone. She expects the weekend of high-dopamine substances to leave extra drive in the reward pathway. Nora Volkow's dopamine deficit state points the other way: the baseline can sit lower after heavy use. The surprise is not desire for more pleasure; it is the low she did not predict.",
-          "whatToDo": "Stella rewrites the note around baseline, not blame. She names the dopamine deficit state before judging the craving as a character flaw.",
-          "whyItMatters": "The reveal changes the target. A low baseline calls for patience and structure, not another chase for the high that helped lower it."
+          "scenario": "At her kitchen table on Sunday night, Stella expects a weekend of high-dopamine substances to leave extra drive. Instead Stella feels flat, and Stella weighs two readings: regret, or a baseline problem. Nora Volkow's dopamine-deficit state gives that low a name: the reward baseline may sit lower after heavy use.",
+          "whatToDo": "Name the baseline shift before judging the craving as weak character. Build patience and structure around the low instead of chasing an instant lift.",
+          "whyItMatters": "The reveal changes the target. The misery is not only regret; it can be a body state that needs time to recalibrate.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
-          "title": "Referral Window Thread",
+          "title": "Cue Before Bet",
           "tags": [
             "cue",
             "craving"
           ],
-          "scenario": "Analyst Connor has no room to miss the referral window, and he knows it on the train platform while his thumb works across the phone screen. After heavy late-night betting, his reward pathway sits low; then the app icon flashes before he opens it.\nBennett: \"Send the intro now?\"\nConnor: \"The cue already hit.\"\nBennett: \"No bet yet.\"\nConnor: \"No bet, but the dopamine deficit state is pulling.\"",
-          "whatToDo": "Connor names the cue before opening the app. He sends the referral message first, then records that craving started before the bet.",
-          "whyItMatters": "Cue-triggered craving can cost real chances. Seeing the pull before use gives the reader one place to act before the window closes."
+          "scenario": "At his desk before the referral window closes, Connor sees the betting app icon flash on his phone screen. Connor has not placed a bet yet. The cue has. A learned place, icon, or promise of a win can start craving before the act begins, and that early pull can cost the message that mattered.",
+          "whatToDo": "Name the cue before opening the app. Send the referral message first, then record that craving started before the bet.",
+          "whyItMatters": "Cue-triggered craving can cost real chances. Seeing the pull before use gives one place to act before the window closes.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
-          "title": "Refill Workflow Reset",
+          "title": "Refill Question",
           "tags": [
             "reset",
             "clinic"
           ],
-          "scenario": "Every pain diary line in the Monday refill queue ends with the same phrase: more pain after more medicine. Clinician Coralie's pain-clinic routine breaks when Deborah's long-term opioid therapy record shows high-dose opioids, early 2000s notes on worsened pain, and a request for yet another refill. Coralie stops the auto-renewal habit and restarts with one question: could removing the drug help the balance recalibrate for this patient?",
-          "whatToDo": "Coralie pauses the refill workflow and asks for a balance review. She treats worse pain on long-term opioids as a signal to examine, not a form to stamp.",
-          "whyItMatters": "The reset shows the technique in motion: stop the automatic rescue, reread the after-pain, and restart with the balance in view."
+          "scenario": "At the clinic desk on Monday morning, Coralie reads a pain diary with the same unsettling line: more relief, then more pain. Coralie pauses the old refill habit long enough to ask whether the drug is now weighting the pain side. The answer may still require medical care, but the form cannot settle it alone.",
+          "whatToDo": "Ask for a balance review instead of stamping the refill automatically. Treat worse pain on long-term opioids as a signal to examine.",
+          "whyItMatters": "The reset is not anti-medicine. It stops the automatic rescue long enough to reread the after-pain.",
+          "planSpec": {
+            "domain": "the pleasure-pain balance example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "reset_moment",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -2094,7 +2220,7 @@
       "keyTakeaway": "Dopamine fasting works when abstinence becomes a test: gather data, name the relief, face withdrawal, then decide what life can safely allow.",
       "breakdown": {
         "fastRead": "Delilah is not eager to be fixed. Her parents see cannabis as the problem, but she feels the drug as relief from anxiety and stress. The room has already acted: the products are gone, the talk has started, and nobody yet knows what will show up when relief is removed.\n\nA dopamine fast is not a spa day for the brain. It is a pause long enough to see the pattern. Abstinence turns noise into evidence. Craving tells you what had control. Mood tells you what the drug was masking. Consequences tell you what quick relief has cost.\n\nRelief can hide the bill. The work starts when you stop paying with the same escape.",
-        "deepRead": "The useful part of abstinence is the clean read it gives. While the same high-reward hit keeps arriving, the body has no quiet test. Cannabis calms Delilah quickly, so the calm feels like proof. Yet the same loop may also be feeding the stress that sends her back.\n\nDOPAMINE gives the messy talk an order: Data, Objectives, Problems, Abstinence, Mindfulness, Insight, Next steps, and Experiment. Data asks what, how much, how often, and in what setting. Objectives asks what the drug is meant to do. Problems names the cost that relief keeps pushing aside. Abstinence removes the usual exit.\n\nThat order matters in real time. Kevin, new to the intake desk, notices that the adults keep asking how to stop Delilah's cannabis use. He asks a smaller question: what does she think cannabis does when anxiety spikes? The room changes because the outsider sees the skipped step. Advice had rushed past Data and Objectives.\n\nMindfulness does not mean liking withdrawal. It means staying close enough to the body to notice craving without obeying it at once. Insight can then be earned. Next steps turn the insight into a rule. Experiment asks, in less severe cases, whether a safer limit can be tested. A reset is not a verdict. It is a way to make the next verdict less blind.",
+        "deepRead": "The useful part of abstinence is the clean read it gives. While the same high-reward hit keeps arriving, the body has no quiet test. Cannabis calms Delilah quickly, so the calm feels like proof. Yet the same loop may also be feeding the stress that sends her back.\n\nDOPAMINE is a checklist for a no-use test: Data, Objectives, Problems, Abstinence, Mindfulness, Insight, Next steps, and Experiment. Data asks what, how much, how often, and in what setting. Objectives asks what the drug is meant to do. Problems names the cost that relief keeps pushing aside. Abstinence removes the usual exit.\n\nThat order matters in real time. In Delilah's intake, the adults keep asking how to stop cannabis use before asking what she thinks cannabis does when anxiety spikes. The smaller question changes the room. Advice had rushed past Data and Objectives.\n\nMindfulness does not mean liking withdrawal. It means staying close enough to the body to notice craving without obeying it at once. Insight can then be earned. Next steps turn the insight into a rule. Experiment asks, in less severe cases, whether a safer limit can be tested. A reset is not a verdict. It is a way to make the next verdict less blind.",
         "fullRead": "Schuckit's alcohol-depression work gives the idea a harder edge. A mood report during heavy alcohol use may be true and still incomplete. Four weeks without alcohol can change what a clinician sees. The person may still be depressed. Or the mood may look different once alcohol is no longer stirring the water.\n\nThat is why dopamine fasting is not a moral stunt. It is closer to turning off a loud fan so you can hear the leak. During use, the first report may mix the person, the drug, withdrawal, shame, sleep, and fear. Abstinence does not solve that tangle by itself. It makes the tangle easier to see.\n\nModern cannabis makes this harder for Delilah. Cannabis no longer looks like one old form. Products and delivery mechanisms multiply, and high potency can make daily use feel both normal and strong. A teenager can say, with real force, that everyone has a version and that hers helps. The clinician has to respect the felt relief without letting relief end the inquiry.\n\nThe DOPAMINE order helps because each step asks a different kind of question. Data stays with facts: amount, timing, setting, and pattern. Objectives stays with purpose: sleep, calm, numbness, fun, status, or escape. Problems looks for harm: family trust, school work, money, memory, mood, and lost choices. Abstinence makes the test. Mindfulness helps the person stay through the bad body weather. Insight names what became clear. Next steps set the rule. Experiment keeps room for careful tests when the pattern is not severe.\n\nYou can use the same order without pretending every pleasure is an addiction. The plain question is this: what happens when the reward is not available on demand? Your phone dies before a trip, and the panic feels bigger than the lost device. A reply you meant to send sits unsent, and the friendship cools because the quick escape became the habit. These moments are small, but they show how relief can run the day.\n\nThe opposite move is needed when stopping would put someone at medical risk or when severe addiction needs care beyond a self-run test. Do not use dopamine fasting to white-knuckle dangerous withdrawal, skip treatment, or shame someone for needing help. Get clinical support, protect safety, and keep the test honest.\n\nA good reset has guardrails. It should make the next honest choice easier to see, not turn pain into proof of virtue. Abstinence clarifies; it does not replace care."
       },
       "examples": [
@@ -2106,9 +2232,16 @@
             "cannabis",
             "anxiety"
           ],
-          "scenario": "\"You keep calling cannabis the problem,\" Celine says, with the intake form still blank between her and Kevin. \"Delilah calls it the thing that quiets anxiety and stress.\" Kevin starts to answer with abstinence advice, then stops. \"So the first Data point is not how mad her parents are. It is what relief she thinks the cannabis gives her.\"",
-          "whatToDo": "Celine keeps the talk on Data and Objectives. She asks Kevin to record Delilah's stated relief before either of them argues for abstinence.",
-          "whyItMatters": "The exchange protects the first step. If you skip what the drug seems to solve, abstinence feels like punishment instead of a test."
+          "scenario": "The intake form is still blank when the first argument starts. Her parents call cannabis the problem; Delilah calls it the thing that quiets anxiety and stress. Delilah is choosing between two meanings for abstinence: punishment or test. Data and Objectives change that choice.",
+          "whatToDo": "Record Delilah's stated relief before arguing for abstinence. Ask what cannabis seems to solve, how often she uses it, and what it costs.",
+          "whyItMatters": "If you skip what the drug seems to solve, abstinence feels like punishment instead of a test.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -2118,21 +2251,35 @@
             "cannabis",
             "products"
           ],
-          "scenario": "The bright tray of gummies, oils, cartridges, and flower sits beside William's unopened notebook, and both make his first plan look thin. He has been about to tell a daily user to quit because high potency products are risky. He hears himself skipping the test. William crosses out \"lecture\" and writes, \"Ask how each delivery mechanism changes use before naming Abstinence.\"",
+          "scenario": "The bright tray of gummies, oils, cartridges, and flower sits beside William's unopened notebook, and both make his first plan look thin. William must choose: lecture a daily user about potency, or ask how each delivery mechanism changes use before naming Abstinence. He crosses out \"lecture\" and writes the question first.",
           "whatToDo": "William catches the rush to advice and changes the first move. He maps products and delivery mechanisms before asking what abstinence should test.",
-          "whyItMatters": "The correction keeps the reset grounded. Modern cannabis risk depends on forms, dose, and routine, not just the old word cannabis."
+          "whyItMatters": "The correction keeps the reset grounded. Modern cannabis risk depends on forms, dose, and routine, not just the old word cannabis.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
-          "title": "Kevin's Intake Memo",
+          "title": "Missing Steps Memo",
           "tags": [
             "memo",
             "framework",
             "fresh eyes"
           ],
-          "scenario": "The attending asks for the family-summary email, and Kevin, still new enough to notice the blank line, becomes the one writing it. Subject: Delilah intake. Memo: \"We have Problems and a demand for Abstinence. We do not yet have Data or Objectives. Delilah says cannabis helps anxiety and stress. If we skip that line, Mindfulness, Insight, Next steps, and Experiment will rest on a guess.\"",
-          "whatToDo": "Kevin sends the memo with the missing steps named. He asks the team to fill Data and Objectives before turning abstinence into the plan.",
-          "whyItMatters": "The outsider sees the gap insiders missed. A framework works only when its early questions are answered before its harder demands begin."
+          "scenario": "A family-summary note can be useful if it admits what is missing: \"We have Problems and a demand for Abstinence. We do not yet have Data or Objectives. Delilah says cannabis helps anxiety and stress. If we skip that line, Mindfulness, Insight, Next steps, and Experiment will rest on a guess.\"",
+          "whatToDo": "Fill Data and Objectives before turning abstinence into the plan.",
+          "whyItMatters": "A framework works only when its early questions are answered before its harder demands begin.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_memo",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -2144,7 +2291,14 @@
           ],
           "scenario": "The clinic printer pushes out two mood forms while Yann waits by the door. Rachel reads the first report and starts drafting a lasting depression story. Yann marks alcohol use, pauses at the four weeks box, and asks for a sober window before the label hardens. Rachel has a neat answer now. Yann has a test that may make the answer less wrong.",
           "whatToDo": "Yann uses the alcohol and depression link as a reason to wait for cleaner mood data. Rachel can still care for distress, but Yann refuses to treat the first report as final.",
-          "whyItMatters": "The contrast keeps abstinence diagnostic. Four weeks without alcohol can show what remains, so the plan is not built on active-use fog."
+          "whyItMatters": "The contrast keeps abstinence diagnostic. Four weeks without alcohol can show what remains, so the plan is not built on active-use fog.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "contrast",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -2154,21 +2308,35 @@
             "craving",
             "mindfulness"
           ],
-          "scenario": "The dresser drawer jams halfway during Nancy's first home reset, and her hand is stuck above the old cartridge she promised not to touch after Data and Problems made daily use plain. Peer coach Hailey waits on the hallway carpet between bedrooms. \"A craving is weather, not law,\" Hailey says. Nancy says her chest feels hot and stupid. \"Then Mindfulness is staying long enough to learn the forecast before you act.\"",
-          "whatToDo": "Nancy leaves the drawer half-open and names the body state out loud. Hailey keeps the reframe on observation, not bravery.",
-          "whyItMatters": "The talk makes the hard minute usable. Mindfulness means noticing craving and negative body states without turning them into orders."
+          "scenario": "In the hallway during a first home reset, Nancy feels the dresser drawer jam halfway, leaving the old cartridge visible. Before her hand moves again, Nancy faces a choice: obey the hot chest, or name it as craving. Mindfulness is not liking that minute. It is staying close enough to the body to notice craving without obeying it at once.",
+          "whatToDo": "Leave the drawer half-open, name the body state out loud, and wait through one breath before deciding the next move.",
+          "whyItMatters": "Mindfulness becomes beginner-friendly when it is a concrete delay inside a hard body state, not a virtue word.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
-          "title": "Training Room Letters",
+          "title": "After Abstinence",
           "tags": [
             "school",
             "framework",
             "planning"
           ],
-          "scenario": "The laptop fan whirs through the video-call waiting room, and Hailey keeps mixing up the last letters on the training worksheet. Data, Objectives, Problems, and Abstinence make sense to her. \"If Abstinence worked, why keep going?\" she asks. Celine points to the final row: Insight, Next steps, Experiment. Hailey frowns. \"So the fast is not the finish. It is the evidence for the rule after it.\"",
-          "whatToDo": "Hailey repeats the final letters in her own words. She links Insight to what abstinence showed, Next steps to a rule, and Experiment to a careful test.",
-          "whyItMatters": "The confusion is the lesson. Surviving withdrawal matters, but the framework ends by deciding what future contact with the reward should look like."
+          "scenario": "A worksheet feels finished at Abstinence because the no-use window was the hard part. That is the tempting mistake. If the fast worked, it produced evidence. Insight names what became clear, Next steps turns it into a rule, and Experiment tests a safer limit only when the pattern is less severe.",
+          "whatToDo": "Translate the final letters in plain words: what did we learn, what rule follows, and what careful test is allowed or ruled out?",
+          "whyItMatters": "Surviving withdrawal matters, but the framework ends by deciding what future contact with the reward should look like.",
+          "planSpec": {
+            "domain": "dopamine fasting example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -2191,12 +2359,12 @@
             "questionId": "q02",
             "prompt": "When a new counselor starts a clinic intake with a pep talk about willpower before any use pattern is written down, which correction fits the first DOPAMINE step?",
             "choices": [
-              "Start with Data about amount, timing, context, and consequences.",
+              "Start by recording amount, timing, context, and consequences.",
               "Start with detox language so the goal feels firm from the first minute.",
               "Start with discipline language so the patient knows effort is expected."
             ],
             "correctIndex": 0,
-            "explanation": "D stands for Data. The framework begins with concrete use patterns, not discipline or detox slogans.",
+            "explanation": "The framework begins with concrete use patterns, not discipline or detox slogans.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           },
@@ -2258,10 +2426,10 @@
             "choices": [
               "Stop there because the hard part was making it through withdrawal.",
               "Use the relief as proof that future rules are no longer needed.",
-              "Turn the reset into Insight, Next steps, and a careful Experiment."
+              "Turn the reset into what you learned, next rules, and a careful test."
             ],
             "correctIndex": 2,
-            "explanation": "I, N, and E mean Insight, Next steps, and Experiment. The framework keeps going after withdrawal so the person can choose future rules.",
+            "explanation": "The framework keeps going after withdrawal so the person can choose future rules.",
             "bloomsLevel": "evaluate",
             "depthLevel": "deep"
           },
@@ -2385,8 +2553,8 @@
       "keyTakeaway": "Self-binding works before craving starts: use physical, chronological, and categorical barriers so the clear self protects the tempted self before cues take over.",
       "breakdown": {
         "fastRead": "Jacob knows the promise and still has the machine. That is the problem. The cue stays close enough to restart the old loop before his calm mind can argue. The useful move is blunt: take apart the masturbation machine, throw it away, and get it to the dump.\n\nSelf-binding is a plain deal with your future self. You put space, time, or category between you and the thing that pulls you. Willpower is weakest at arm's length. A cue nearby is a plan already started. The clear self must build for the craving self.",
-        "deepRead": "A locked cabinet can still fail if a straw can reach the wine. Oscar's wife had locked alcohol away, yet the locked liquor cabinet stayed open enough for a bottle of wine to become reachable. In a craving state, a small gap can feel like an invitation. The barrier must be built for the person who wants the drink, not only for the person who hid it.\n\nThe same logic can work inside the body. Naltrexone is used for alcohol addiction and opioid addiction because it blocks opioid receptors. In plain words, it can keep the reward from landing as hard. It is still not a cure by itself. The dose may lower the pull, but the old route through friends, stress, habit, and shame can still stay open.\n\nThat is why the three forms matter. Physical self-binding moves or blocks the object. Chronological self-binding fills the risky time before boredom grows teeth. Categorical self-binding avoids a whole class of cues, even when the exact drug or bet is not in sight. The skill is not to hate desire. It is to stop leaving desire alone with an open door.",
-        "fullRead": "Odysseus is useful because he asks for rope before the Sirens sing. Homer's Odyssey does not give us a hero who hears the song and then proves his grit. It gives us Odysseus bound to the ship mast while the Sirens do their work. He expects future desire, so he limits future action. That is the cleanest picture of self-binding.\n\nYou can use the same picture without turning your life into a jail. Space is the first layer: remove the drug, device, cash, bottle, or tool. Time is the second: do not leave the hour empty if empty hours have been the start of use. Meaning is the third: avoid the people, places, shows, and rituals that tell the brain the old chase has begun.\n\nThe sports-gambling recovery case shows why the third layer can feel unfair. The person is not placing a bet when sports on TV starts. He may not even have a betting app open. Still, televised games carry the cues: odds talk, team loyalty, suspense, and the old rush of prediction. Categorical self-binding can mean no sports on TV for a while, not because sports are evil, but because this category keeps speaking the old language.\n\nChronological self-binding has a quieter cost. A United States leisure-time comparison reports 42 percent more leisure time for adults without a high school diploma than for adults with a bachelor's degree or higher. More free time can sound like relief. When the time is empty and the reward is cheap, it can also become a wide lane for boredom, craving, and high-dopamine consumption. The issue is not leisure itself. The issue is unheld time with a cue nearby.\n\nMedication adds another angle. Naltrexone can be a kind of self-binding at the receptor level. It can block opioid receptors and lower reward in opioid addiction and alcohol addiction. It cannot decide who you text, what route you drive home, or what you do with the hour after work. A pill can lock one door. A life still needs doors, walls, and people who know where the weak spots are.\n\nThe risk is pride in the barrier. A lock can become a performance if you use it to avoid telling the truth. A schedule can become another way to hide from pain. A category ban can become punishment instead of protection. Good self-binding is voluntary and exact. It names the cue, names the weak window, and makes the next wrong step harder.\n\nThis advice misleads the partner who wants to control another adult. Self-binding is the clear self making a promise to the tempted self. It is not one person building a cage around someone else."
+        "deepRead": "A locked cabinet can still fail if a straw can reach the wine. Oscar's wife had locked alcohol away, yet the locked liquor cabinet stayed open enough for a bottle of wine to become reachable. In a craving state, a small gap can feel like an invitation. The barrier must be built for the person who wants the drink, not only for the person who hid it.\n\nThe same logic can work inside the body. Naltrexone is used for alcohol addiction and opioid addiction because it blocks opioid receptors. In plain words, it can keep the reward from landing as hard. It is still not a cure by itself. The dose may lower the pull, but the old route through friends, stress, habit, and shame can still stay open.\n\nThat is why the three forms matter. Physical self-binding moves or blocks the object. Chronological self-binding fills the risky time before boredom grows teeth. Categorical self-binding means avoiding a whole class of cues, even when the exact drug or bet is not in sight. The skill is not to hate desire. It is to stop leaving desire alone with an open door.",
+        "fullRead": "Odysseus is useful because he asks for rope before the Sirens sing. Homer's Odyssey does not give us a hero who hears the song and then proves his grit. It gives us Odysseus bound to the ship mast while the Sirens do their work. He expects future desire, so he limits future action. That is the cleanest picture of self-binding.\n\nYou can use the same picture without turning your life into a jail. Space is the first layer: remove the drug, device, cash, bottle, or tool. Time is the second: do not leave the hour empty if empty hours have been the start of use. Meaning is the third: avoid the people, places, shows, and rituals that tell the brain the old chase has begun.\n\nThe sports-gambling recovery case shows why the third layer can feel unfair. The person is not placing a bet when sports on TV starts. He may not even have a betting app open. Still, televised games carry the cues: odds talk, team loyalty, suspense, and the old rush of prediction. Categorical self-binding can mean no sports on TV for a while, not because sports are evil, but because this category keeps speaking the old language.\n\nChronological self-binding has a quieter cost. A national leisure-time comparison reports 42 percent more leisure time for adults without a high school diploma than for adults with a bachelor's degree or higher. More free time can sound like relief. When the time is empty and the reward is cheap, it can also become a wide lane for boredom, craving, and high-dopamine consumption. The issue is not leisure itself. The issue is unheld time with a cue nearby.\n\nMedication adds another angle. Naltrexone can be a kind of self-binding at the receptor level. It can block opioid receptors and lower reward in opioid addiction and alcohol addiction. It cannot decide who you text, what route you drive home, or what you do with the hour after work. A pill can lock one door. A life still needs doors, walls, and people who know where the weak spots are.\n\nThe risk is pride in the barrier. A lock can become a performance if you use it to avoid telling the truth. A schedule can become another way to hide from pain. A category ban can become punishment instead of protection. Good self-binding is voluntary and exact. It names the cue, names the weak window, and makes the next wrong step harder.\n\nThis advice misleads the partner who wants to control another adult. Self-binding is the clear self making a promise to the tempted self. It is not one person building a cage around someone else."
       },
       "examples": [
         {
@@ -2397,9 +2565,16 @@
             "physical barrier",
             "mistake recovery"
           ],
-          "scenario": "Counselor Bryce unscrews the side panel of Jacob's masturbation machine in the clinic storage room after the relapse visit, while still talking about a promise plan. Then he hears his own mistake. He was offering words while the tool stayed whole. Jacob can refuse the next urge today and lose tomorrow. Bryce stops mid-turn, points to the trash bag, and changes the help: pieces first, dump next.",
+          "scenario": "Counselor Bryce unscrews the side panel of Jacob's masturbation machine in the clinic storage room after the relapse visit, while still talking about a promise plan. Then the counselor hears the mistake. Words were being offered while the tool stayed whole. Jacob can refuse the next urge today and lose tomorrow. The help changes: pieces first, dump next.",
           "whatToDo": "Bryce drops the promise speech and makes the barrier physical. He helps Jacob dismantle the masturbation machine before any new plan can pretend the cue is harmless.",
-          "whyItMatters": "The lesson sits in Bryce noticing the error. Insight helps only after the object that restarts the loop is no longer waiting in the room."
+          "whyItMatters": "The lesson sits in Bryce noticing the error. Insight helps only after the object that restarts the loop is no longer waiting in the room.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "mistake_recovery",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -2409,9 +2584,16 @@
             "Sirens",
             "precommitment"
           ],
-          "scenario": "Deckhand Brandon is tying the last rope around Odysseus beside the ship mast when the Sirens' first note cuts across the deck. Let him hear more? No, wrong turn. Homer gave the mast the job before desire arrived. Brandon thinks of the knots, then of the hands that will beg to steer. The rope is the sane part of the voyage speaking early.",
+          "scenario": "A deckhand is tying the last rope around Odysseus beside the ship mast when the Sirens' first note cuts across the deck. Let him hear more? No, wrong turn. Homer gave the mast the job before desire arrived. The rope is the sane part of the voyage speaking early.",
           "whatToDo": "Brandon trusts the knot already tied to the ship mast. He does not wait for Odysseus to prove strength after the Sirens begin singing.",
-          "whyItMatters": "The scene makes voluntary constraint memorable. Wise restraint often means limiting future action while you still expect future desire."
+          "whyItMatters": "The scene makes voluntary constraint memorable. Wise restraint often means limiting future action while you still expect future desire.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
@@ -2421,9 +2603,16 @@
             "leisure",
             "missed rent"
           ],
-          "scenario": "There is not enough structure before Saturday kickoff, and sponsor Janet knows sports gambling can make sports on TV feel like the betting loop is close again. In the parked car, a paper ride list sits on the dash; one check-in text could get buried under game chatter. Before any kickoff, she marks which ride, errand, and phone call will cover the open hours. The patient wants football to be harmless. Janet plans as if the whole category can become a cue before the betting app appears.",
-          "whatToDo": "Janet assigns the risky window before it starts. She gives the open hours a place to go so sports on TV is not left to wake the betting loop.",
-          "whyItMatters": "Planning can protect a person before the cue speaks. The category may need distance even when the exact bet is not yet in sight."
+          "scenario": "In the parked car before Saturday kickoff, Janet sees too much open time on the calendar. Janet knows sports on TV can make the betting loop feel close even with the app deleted. Before any game starts, the open hours need a ride, errand, call, or meeting that keeps boredom from becoming the dealer.",
+          "whatToDo": "Assign the risky window before it starts. Give the open hours a place to go so sports on TV is not left to wake the betting loop.",
+          "whyItMatters": "Planning can protect a person before the cue speaks. The category may need distance even when the exact bet is not yet in sight.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "planning_choice",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -2435,7 +2624,14 @@
           ],
           "scenario": "The locked liquor cabinet in the hallway is not really closed. After dinner, partner Presley can see Oscar's bottle of wine through the gap, and Oscar has already found a straw. Leaving it in place avoids a fight and keeps the house calm. Removing the bottle breaks the truce and feels like policing. Presley weighs two poor choices: protect the peace or protect the barrier that the craving state will test first.",
           "whatToDo": "Presley removes the bottle and fixes the lock before the next craving state gets a vote. She chooses the barrier that can hold under pressure.",
-          "whyItMatters": "Oscar's straw shows how partial access can undo a good plan. A barrier has to work for the hard moment, not the calm one."
+          "whyItMatters": "Oscar's straw shows how partial access can undo a good plan. A barrier has to work for the hard moment, not the calm one.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dilemma",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -2445,9 +2641,16 @@
             "dialogue",
             "reshaped help"
           ],
-          "scenario": "\"A pill cannot repair my whole life,\" Chantal says at the hospital nurses' station, and Hazel stops pushing the pamphlet. \"I hear that.\" \"Then why offer naltrexone?\" \"Because it can block opioid receptors and reduce reward from alcohol or opioids.\" Chantal shakes her head. Hazel reshapes the offer: \"Not a cure. A lock on one door while we work on the rooms around it.\"",
-          "whatToDo": "Hazel narrows the offer until Chantal can use it. Naltrexone becomes one barrier for opioid receptors, not a promise that the rest of recovery is solved.",
-          "whyItMatters": "Help lands when it fits the problem. A cellular barrier can reduce reward while still leaving habits, pain, and social cues to address."
+          "scenario": "At the hospital nurses' station after the pamphlet lands on the counter, Chantal hears naltrexone offered like recovery in a bottle. Chantal needs the narrower claim: it can block opioid receptors and reduce reward from alcohol or opioids. It is one lock on one door while the rooms around it still need work.",
+          "whatToDo": "Use naltrexone as one barrier, not as a promise that the rest of recovery is solved.",
+          "whyItMatters": "A cellular barrier can reduce reward while habits, pain, and social cues still need care.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -2457,9 +2660,16 @@
             "sports TV",
             "category cue"
           ],
-          "scenario": "\"Just watch the game with the betting app deleted,\" friend Tobias says Sunday night from the living room couch, remote in hand, expecting the boundary to hold. The reveal comes before any wager. The sports-gambling patient's face changes when sports on TV starts, and his thumbs begin hunting for odds in an empty browser. The category, not only the bet button, is alive. For sports gambling, the broadcast can be the cue.",
-          "whatToDo": "Tobias reshapes the help from app deletion to category distance. The sports-gambling patient avoids sports on TV while the betting loop is still raw.",
-          "whyItMatters": "Categorical self-binding catches cues outside the exact act. The safer boundary may be around the culture that keeps the old chase awake."
+          "scenario": "On the living-room couch Sunday night, Tobias says, \"Just watch the game with the betting app deleted.\" It sounds reasonable. Then the broadcast starts doing the old work: odds talk, suspense, loyalty, prediction. The wager has not happened. The category is already alive.",
+          "whatToDo": "Reshape help from app deletion to category distance. Avoid sports on TV while the betting loop is still raw.",
+          "whyItMatters": "Categorical self-binding catches cues outside the exact act. The safer boundary may be around the culture that keeps the old chase awake.",
+          "planSpec": {
+            "domain": "space, time, and meaning example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -2675,22 +2885,29 @@
       "tryThisNow": "During your next conversation about medication, touch your mug and count 3 relief claims. Write your future self one note naming what still needs care.",
       "keyTakeaway": "Before you accept a refill as the whole answer, write what relief is saving and what pain, craving, or flatness still needs care beyond the prescription.",
       "breakdown": {
-        "fastRead": "Why does the refill feel safer than the question when the bottle is already in your hand? Chris says buprenorphine saved him from heroin. He also cannot picture life without it. That is the hard place: a drug can save a life and still ask for care with dependence. Relief is not the same as repair. The move is not to stop treatment on your own. It is to pause before relief becomes the whole plan and ask what else must help carry pain, craving, mood, or fear.",
-        "deepRead": "Why can the same pill calm a night and make next week harder? The brain learns from relief. When a drug turns down panic, pain, or craving fast, the body may start seeing the drug as the only safe door. Xanax and Klonopin are benzodiazepines, drugs that can ease anxiety quickly. They also show the risk: fast relief can become hard to stop. A legal prescription can still train dependence.\n\nLawrence's symptom log shows how a useful tool can go wrong. He marks every tense hour as one more reason to keep the dose close. The log should help him notice patterns. Used well, it becomes a handoff note for him and his doctor. Used badly, it becomes a permission slip: I felt distress, so the pill must be the whole answer. The tool did not fail. The question got too small.\n\nProzac adds a quieter test. A smoother call with a mother can be real progress. Less conflict matters. Yet the same account can include a cost: feeling less fully alive. The 1990s training culture in psychiatry leaned toward naming a disorder and matching a drug to it. That lens can help when a person is drowning. It can also miss the rest of the room: sleep, grief, debt, family heat, lonely evenings, and the small habits that carry a life when the pill cannot.",
+        "fastRead": "Why does the refill feel safer than the question when the bottle is already in your hand? Chris says buprenorphine, a medication used to treat opioid addiction, saved him from heroin. He also cannot picture life without it. That is the hard place: a drug can save a life and still ask for care with dependence. Relief is not the same as repair. The move is not to stop treatment on your own. It is to pause before relief becomes the whole plan and ask what else must help carry pain, craving, mood, or fear.",
+        "deepRead": "Why can the same pill calm a night and make next week harder? The brain learns from relief. When a drug turns down panic, pain, or craving fast, the body may start seeing the drug as the only safe door. Xanax and Klonopin are benzodiazepines, drugs that can ease anxiety quickly. They also show the risk: fast relief can become hard to stop. A legal prescription can still train dependence.\n\nLawrence's symptom log shows how a useful tool can go wrong. He marks every tense hour as one more reason to keep the dose close. The log should help him notice patterns. Used well, it becomes a handoff note for him and his doctor. Used badly, it becomes a permission slip: I felt distress, so the pill must be the whole answer. The tool did not fail. The question got too small.\n\nProzac, an antidepressant, adds a quieter test. A smoother call with a mother can be real progress. Less conflict matters. Yet the same account can include a cost: feeling less fully alive. The 1990s training culture in psychiatry leaned toward naming a disorder and matching a drug to it. That lens can help when a person is drowning. It can also miss the rest of the room: sleep, grief, debt, family heat, lonely evenings, and the small habits that carry a life when the pill cannot.",
         "fullRead": "Why does one month matter when pain has not left? The bottle says relief, and the calendar says something else. Daily opioid use for more than one month is linked here to higher addiction risk and worse pain. That sounds strange until you picture the balance scale. The body adapts to steady help. Over time, the pain side can press back harder. Some pain feels louder, not because the person is weak, but because the system has learned the drug.\n\nMathias notices this in the parked car when the refill request almost writes itself. His pain log has become a straight line from pain to pills. The log was supposed to show the whole pattern. It only shows the bottle. That is how a good tool can hide a broken balance. It records the one thing that gives relief and leaves out sleep, movement, fear, work stress, and the question that belongs in the room: is the medicine still helping in the same way?\n\nThe pill-first reflex has a history. In the 1990s, many psychiatrists were trained to diagnose and prescribe before wider therapy had much time to speak. That habit can rescue a person in crisis. It can also make every hard feeling look like a chemical shortage. Then the next step is always another refill, a higher dose, or another drug to manage the last drug's cost. Good medicine still needs a second question.\n\nChris makes simple slogans fail. Buprenorphine is a semisynthetic opioid, which means it works in opioid chemistry. That is not a reason to dismiss it. That is why it can steady withdrawal and craving after heroin. The same reward system that can trap a person can also be used with care to keep them alive. So the honest move is not purity. It is supervised clarity. Ask what the drug is saving. Ask what the drug may be muting, training, or making harder to feel.\n\nThe Prozac story keeps the question human. Less conflict with a mother is not a small thing. If a pill turns screaming into a calmer call, the gain is real. Yet a quieter house is not the whole measure of a life. If the person also feels less alive, that cost deserves a place in the plan. You are not weighing a pure good against a pure bad. You are asking what kind of life the medicine is helping you live.\n\nHere is the counter-case. Chris is in opioid withdrawal, craving heroin, and buprenorphine gives him enough stability to stay alive and build recovery. In that moment, obeying a private rule to distrust medication would be a mistake. Do not ask whether to be pure. Ask whether the help is saving a life, hiding a wound, or doing both, and make that call with someone trained to help you tell the difference."
       },
       "examples": [
         {
           "exampleId": "ex01",
-          "title": "Restart the Board",
+          "title": "Buprenorphine Check-In",
           "tags": [
             "reset_moment",
             "buprenorphine",
             "recovery"
           ],
-          "scenario": "Cyrus arrives Saturday evening as the quiet timekeeper for the recovery group in the church basement, but the members ask him to open Chris's buprenorphine check-in first. The printed card says, \"next taper goal.\" Cyrus reads the line, sees Stanford, heroin, and buprenorphine in Chris's history, and stops. He turns the card over, lets the room breathe, and restarts: what is this medicine saving, and what still needs care?",
-          "whatToDo": "Cyrus pauses the taper card and turns it into a balance check. He starts with what buprenorphine protects, then asks what support must carry the rest.",
-          "whyItMatters": "Chris's case blocks the cruel shortcut. Medication can be a bridge out of heroin and still deserve careful long-term questions about dependence and balance."
+          "scenario": "At the meeting in the church basement, Cyrus reads a printed card that says \"next taper goal.\" Cyrus sees Chris's history asks for a better first line. Stanford, heroin, and buprenorphine all belong in the room because Chris says the medicine saved his life. The card turns over. The real opening is not purity or tapering. It is: what is this medicine saving, and what still needs care?",
+          "whatToDo": "Start with what buprenorphine protects, then ask what support must carry pain, craving, mood, and fear around it.",
+          "whyItMatters": "Chris's case blocks the cruel shortcut. Medication can be a bridge out of heroin and still deserve careful long-term questions.",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "reset_moment",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -2702,19 +2919,33 @@
           ],
           "scenario": "Lawrence drops a spare Klonopin into the Tuesday slot of the pill organizer while the pharmacy bag crinkles against the kitchen counter. A Xanax bottle sits open beside it. His relief log has one mark for every tight-chest hour, but no note for sleep, calls, or the rush refill fee he paid to get through the week. The row of lids clicks shut, and the small sound makes the system look cleaner than his day feels.",
           "whatToDo": "Lawrence changes the log's heading before the next entry. It will count what the benzodiazepine relieved and what fear, sleep, or money problem remains.",
-          "whyItMatters": "Xanax and Klonopin can calm fast, which is exactly why a legal prescription is not the whole safety check. Relief can become dependence."
+          "whyItMatters": "Xanax and Klonopin can calm fast, which is exactly why a legal prescription is not the whole safety check. Relief can become dependence.",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "vignette",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
-          "title": "Printer Jam Reply",
+          "title": "Refill Form Too Small",
           "tags": [
             "dialogue",
             "opioid treatment",
             "clinical humility"
           ],
-          "scenario": "Asher pulls the exam-room chair back, but one rubber foot sticks on the floor mat before Chris can sit for the buprenorphine refill. \"You think I should come off it,\" Chris says. \"No,\" Asher says. \"I think the form asks too little.\" Chris taps the dose line. \"It saved me from heroin.\" Asher nods. \"Then we start there. What is it still saving, and what else is strong enough to help?\"",
-          "whatToDo": "Asher keeps Chris's life-saving claim first. He does not turn the refill into a purity test; he widens it into a supported recovery question.",
-          "whyItMatters": "Buprenorphine works through opioid biology, and that is part of why it can reduce craving. Treatment and dependence questions can both be real."
+          "scenario": "At a buprenorphine refill visit, \"You think I should come off it\" is the fear in the room. The careful answer is, \"No. The form asks too little.\" If the medicine saved him from heroin, the review starts there, then asks what else is strong enough to help.",
+          "whatToDo": "Keep the life-saving claim first. Widen the refill into a supported recovery question instead of a purity test.",
+          "whyItMatters": "Buprenorphine works through opioid biology, and that is part of why it can reduce craving. Treatment and dependence questions can both be real.",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -2726,7 +2957,14 @@
           ],
           "scenario": "Mathias hears the pharmacy bag rasp against his jacket after lunch in the parked car outside the pharmacy. On his phone he is typing, \"refill needed, pain still high,\" after weeks of daily opioid use. Halfway through, he remembers how Chris's path moved from pain pills to heroin. Mathias sees his error: the log treats more pills as proof of better pain control. He deletes the line and asks whether the medicine could now be adding risk.",
           "whatToDo": "Mathias stops the refill message mid-sentence and rewrites it for a clinician. He asks about addiction risk, worse pain, and a plan beyond another bottle.",
-          "whyItMatters": "Daily opioid use past a month is linked here to addiction and worsened-pain risk. A longer prescription is not always stronger repair."
+          "whyItMatters": "Daily opioid use past a month is linked here to addiction and worsened-pain risk. A longer prescription is not always stronger repair.",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "mistake_recovery",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -2736,9 +2974,16 @@
             "handoff note",
             "benzodiazepines"
           ],
-          "scenario": "Sebastien turns the childproof cap one notch, stops, and sets the Klonopin bottle beside a blank note. It begins: \"Before I ask for more Xanax: fast relief helped last night. It also made the next hard hour feel impossible without a pill. Handoff for my appointment: ask what else can carry panic, and ask whether this is dependence starting.\" The action is in the note before the message is sent.",
-          "whatToDo": "Sebastien writes the handoff note before asking for more medication. He names the relief, then names the dependence question he might skip under stress.",
-          "whyItMatters": "The memo keeps the benefit visible without letting it swallow the risk. A benzodiazepine can help tonight and still need a careful plan."
+          "scenario": "The blank appointment note starts before the refill request: \"Fast relief helped last night. It also made the next hard hour feel impossible without a pill. Ask what else can carry panic, and ask whether dependence is starting.\" The action is in the note before the message is sent.",
+          "whatToDo": "Write the handoff note before asking for more medication. Name the relief, then name the dependence question that stress might skip.",
+          "whyItMatters": "The memo keeps benefit visible without letting it swallow risk. A benzodiazepine can help tonight and still need a careful plan.",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -2748,9 +2993,16 @@
             "Prozac",
             "family conflict"
           ],
-          "scenario": "Sarah's call with her mother ended without shouting, yet she spent the evening flat on the couch. Earlier on the call, she had counted Prozac only as a win: fewer fights, fewer sparks. Lana's mother call ended calmly too. Before she marked it solved, she wrote the gain and the dulling side by side, then asked what a fuller life would need besides quiet. Both wanted peace; Lana also checked what peace had cost.",
-          "whatToDo": "Lana records the benefit and the cost in the same note. She treats less family conflict as real, then asks what fuller experience still needs.",
-          "whyItMatters": "The Prozac account does not erase the benefit. It adds the missing question: did the medicine smooth conflict while also muting aliveness?"
+          "scenario": "At the kitchen table after a quiet call with her mother, Lana writes down the part that went well: no shouting. Lana also writes the part that cost her: the evening feels flat and dim. The better note holds both facts: Prozac may have lowered family conflict, and the price may be feeling less fully alive.",
+          "whatToDo": "Record the benefit and the cost in the same note. Treat less conflict as real, then ask what fuller experience still needs.",
+          "whyItMatters": "The Prozac account does not erase the benefit. It adds the missing question: did the medicine smooth conflict while also muting aliveness?",
+          "planSpec": {
+            "domain": "a broken balance? example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "contrast",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -2967,7 +3219,7 @@
       "keyTakeaway": "Use discomfort like medicine instead of proof: choose a mild voluntary dose with an exit line, then stop when the pain-side reward starts running you.",
       "breakdown": {
         "fastRead": "Michael has quit cocaine, and the empty hours still hurt. Cold water gives him a first hit of pain, then his body answers with a lift. That is the strange repair here: press gently on pain, and pleasure may come later. Small pain can help pleasure return.\n\nYou have felt the cost of getting this wrong. A hard workout, skipped meal, or cold shower can start as care and end as a new chase. Adaptive pain means a tolerable, chosen dose of discomfort with a planned way out. Dose makes pain useful.",
-        "deepRead": "Cold water works in this story because the first signal is aversive. The body meets the shock, then tries to restore balance with pleasure chemistry. Michael is not getting a cleaner form of cocaine. He is using a small pain-side press after cocaine has left him with anger, shame, sadness, and emptiness.\n\nHormesis gives the plain name for this pattern: a mild stress can make a system stronger when recovery follows. Intermittent fasting fits the same logic. Hunger is not the prize. The small stress is the cue, and the return to balance is part of the training.\n\nPeyton sees the danger during a clinic class on fasting and cold exposure. The students want the expert to give one safe recipe. Peyton stops at the board and says, \"I can explain the pattern. I cannot tell from here where your safe dose ends.\" That admission is the lesson. The most skilled person in the room refuses to turn hormesis into a dare.\n\nThe same idea can show up in medicine. Electroconvulsive therapy uses a controlled noxious stimulus for severe suffering under medical care. That does not make every painful act wise. It shows why context matters. Pain helps only when the dose, purpose, and recovery are held together.",
+        "deepRead": "Cold water works in this story because the first signal is aversive, meaning unpleasant enough that the body has to answer it. The body meets the shock, then tries to restore balance with pleasure chemistry. Michael is not getting a cleaner form of cocaine. He is using a small pain-side press after cocaine has left him with anger, shame, sadness, and emptiness.\n\nHormesis gives the plain name for this pattern: a mild stress can make a system stronger when recovery follows. Intermittent fasting fits the same logic. Hunger is not the prize. The small stress is the cue, and the return to balance is part of the training.\n\nPeyton sees the danger during a clinic class on fasting and cold exposure. The students want the expert to give one safe recipe. Peyton stops at the board and says, \"I can explain the pattern. I cannot tell from here where your safe dose ends.\" That admission is the lesson. The most skilled person in the room refuses to turn hormesis into a dare.\n\nThe same idea can show up in medicine. Electroconvulsive therapy (ECT) uses a controlled noxious stimulus for severe suffering under medical care. Noxious means harmful or intensely unpleasant unless dose and context are controlled. That does not make every painful act wise. It shows why context matters. Pain helps only when the dose, purpose, and recovery are held together.",
         "fullRead": "A dead phone before a long run can teach the balance faster than a slogan. The route is planned, the group is waiting, and the screen is at one percent. If the runner still adds extra miles to chase the post-effort high, the practice has stopped serving the life around it.\n\nEndurance athletes make the warning visible. Training discomfort can bring a real lift after the effort. That lift can also train the athlete to need more pain before the day feels right. The body learns the loop: hurt first, reward later, repeat. Pain pursued for its own high becomes another imbalance.\n\nMichael keeps the problem personal. After cocaine, cold-water immersion gives his mood a lever that is not another drug. The first minutes hurt, then the lift arrives. If he starts arranging the day around that lift, the tool has crossed from recovery support into pursuit.\n\nCold bathing has an old feel because warm indoor water is the newer comfort. For much of human life, cold water was ordinary. That history can tempt you to romanticize pain, as if older always means wiser. You are not being asked to worship hardship. You are being asked to notice how comfort on demand can make discomfort look more heroic than it is.\n\nElectroconvulsive therapy keeps the idea sober. A controlled stimulus can become medical treatment for severe suffering when trained clinicians set the dose and watch the response. That fact should humble both sides. It blocks the easy dismissal that pain-as-treatment is only wellness folklore. It also blocks the reckless claim that pain is good because pain is hard.\n\nYour job is smaller and more useful. Before cold, fasting, or training, write one line: what discomfort, why now, where out. If you cannot name the exit, you are not practicing adaptive pain. You are gambling with your own balance. That is how a recovery tool starts to copy the old reward loop.\n\nA skipped meal can make this plain before lunch. If hunger helps you pay attention, the stressor may be small enough. If it makes you snap at a child, lose the note you needed, or miss the form due today, the body is not stronger yet. It is overloaded. The repair starts by lowering the dose, not by praising the suffering.\n\nThe overcorrection is easy to spot. You begin choosing the harsher shower, the longer fast, the run that steals sleep, because the afterglow feels clean. Then the practice needs secrecy, excuses, and escalation. The pain side was meant to restore pleasure, not become a private altar. When discomfort starts running the day, step back. The old chase has learned a new costume."
       },
       "examples": [
@@ -2979,9 +3231,16 @@
             "hormesis",
             "fasting"
           ],
-          "scenario": "3 raised hands stay up after Peyton draws hormesis and intermittent fasting on the clinic classroom board. A trainee wants the exact fasting window; another asks how cold is cold enough. Peyton is the instructor, and the confusion is the lesson. He sets the marker down and says he can teach mild stress and adaptive response, but he cannot name each body's safe edge from the front of the room.",
-          "whatToDo": "Peyton changes the class task from copying a recipe to writing a dose line. Each learner names the mild stress, the purpose, and the stop sign before any practice begins.",
-          "whyItMatters": "Hormesis depends on stress that is mild enough to recover from. The expert's limit keeps the class from turning useful discomfort into more-is-better pain."
+          "scenario": "On the clinic classroom board before lunch, Peyton draws hormesis and intermittent fasting while three hands stay up. Peyton faces a choice: give a recipe, or teach the limit. One person wants the exact fasting window, and another asks how cold is cold enough. The honest answer is the lesson: the pattern can be taught from the front of the room, but each body's safe edge cannot.",
+          "whatToDo": "Change the class task from copying a recipe to writing a dose line: the mild stress, the purpose, and the stop sign.",
+          "whyItMatters": "Hormesis depends on stress mild enough to recover from. The expert limit keeps useful discomfort from becoming more-is-better pain.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -2993,7 +3252,14 @@
           ],
           "scenario": "The towel is on the floor, and the shower is already hissing. Earlier, Michael would have let his cold-water immersion plan begin with the shock and end whenever the mood lifted after cocaine. Today the towel hangs over the door with one sentence clipped to it: out when the first lift arrives. The water is the same. The changed variable is the boundary before the pain.",
           "whatToDo": "Michael puts the exit line where he will see it before the cold starts. He keeps the cold-water immersion practice tied to mood repair, not to chasing the next lift.",
-          "whyItMatters": "Michael's cold-water immersion works by pressing the pain side first. The towel line keeps the later reward from becoming the only thing the routine serves."
+          "whyItMatters": "Michael's cold-water immersion works by pressing the pain side first. The towel line keeps the later reward from becoming the only thing the routine serves.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
@@ -3003,9 +3269,16 @@
             "ECT",
             "medical care"
           ],
-          "scenario": "\"So shock is just pain with a certificate,\" patient advocate Hugo hears during morning consent review in the hospital hallway, and Jordan turns from the electroconvulsive therapy consent packet. Hugo says, \"If controlled pain can treat severe suffering, why not try my own version?\" Jordan answers, \"Because controlled means dose, consent, and medical watch. I know the principle. I do not know your risk from a hallway.\"",
-          "whatToDo": "Jordan refuses to turn ECT into a home rule. She names the controlled stimulus, then sends Hugo back to the clinician who can judge dose and risk.",
-          "whyItMatters": "ECT makes the pain-treats-pain idea harder to dismiss. It also proves the opposite of macho guessing: context and supervision matter."
+          "scenario": "In the hospital hallway during morning consent review, Jordan hears the shortcut: \"So shock is just pain with a certificate.\" Jordan points back to the ECT packet. ECT is a controlled noxious stimulus under consent, dose, and medical watch. Knowing the principle does not tell a person their risk from a hallway or a bathroom.",
+          "whatToDo": "Refuse to turn ECT into a home rule. Keep medical pain with the clinician who can judge dose and risk.",
+          "whyItMatters": "ECT makes pain-as-treatment harder to dismiss, and it also proves context and supervision matter.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -3017,7 +3290,14 @@
           ],
           "scenario": "\"No food until lunch,\" the note says, and Brigitte folds it beside the front stoop railing before work. Good, hunger means discipline. No, that is the trap. Hormesis is mild stress with recovery, not a contest. If the fast makes her sharp and mean, it is already too large. She writes a second line under the first: stop if hunger starts steering the whole morning.",
           "whatToDo": "Brigitte catches the self-punishing thought before the fast begins. She rewrites the note so the dose has a recovery check, not just a harder rule.",
-          "whyItMatters": "Intermittent fasting is useful here as voluntary discomfort. The benefit comes from bounded stress, not from making hunger the proof of virtue."
+          "whyItMatters": "Intermittent fasting is useful here as voluntary discomfort. The benefit comes from bounded stress, not from making hunger the proof of virtue.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_memo",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -3029,7 +3309,14 @@
           ],
           "scenario": "The cleared recovery row sits beside the punishing route, and Zoe has both open on the lake dock bench. Her phone is at 1 percent, the charger is gone, and the group route is still on the screen. The endurance athletes' plan promises training discomfort and the post-effort high she loves. The recovery row protects the ride home, sleep, and work due later. Before any step, Zoe has to budget attention for pain and safety.",
           "whatToDo": "Zoe writes the route only after the recovery row is filled. She treats training pain as one input, then protects charge, sleep, and the work that still matters.",
-          "whyItMatters": "Endurance pain can become rewarding in its own right. Planning keeps the after-effort high from outranking safety and the rest of life."
+          "whyItMatters": "Endurance pain can become rewarding in its own right. Planning keeps the after-effort high from outranking safety and the rest of life.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "planning_choice",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -3039,9 +3326,16 @@
             "cold water",
             "compulsion"
           ],
-          "scenario": "Benoit came to explain room rules during evening intake, not judge a cold-water plan. In the recovery-center circle, the laminated agenda sits untouched when Michael says the plunge is the only mood tool he trusts after cocaine. Benoit has to answer before the group copies the idea. Bless it, and he may feed the clean high Michael keeps extending. Ban it, and he may strip away a recovery aid. He writes no verdict yet, only a narrow test: dose, purpose, and compulsion signs named first.",
-          "whatToDo": "Benoit refuses a blanket yes or no. He tells Michael the cold-water immersion can stay only if the dose, aim, and warning signs are named before use.",
-          "whyItMatters": "Michael's after-cold reward can become another chase. The dilemma protects the useful pain-side press without pretending discomfort is safe because it hurts."
+          "scenario": "In the recovery-center circle this evening, Benoit hears Michael say the plunge is the only mood tool he trusts after cocaine. Before the group copies the idea, Benoit faces a choice. A blanket yes may feed the clean high Michael keeps extending, and a blanket no may strip away a recovery aid. The answer stays partial: dose, purpose, and compulsion signs named first.",
+          "whatToDo": "Let cold-water immersion stay only if the dose, aim, and warning signs are named before use.",
+          "whyItMatters": "Michael's after-cold reward can become another chase. The dilemma protects the useful pain-side press without pretending discomfort is safe because it hurts.",
+          "planSpec": {
+            "domain": "pressing on the pain side example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dilemma",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -3258,21 +3552,28 @@
       "keyTakeaway": "Tell the truth before the old story edits it. Radical honesty works when it names the harm, invites another person in, and stays tied to repair.",
       "breakdown": {
         "fastRead": "A group chat asks where you were, and the easy reply is almost true. You were busy, just not with the thing you owed. That small bend is why radical honesty matters. Here, honesty is not manners. It is a tool for getting well: name the use, the motive, the harm, and the person you shielded with a lie. Maria learns this in Alcoholics Anonymous. She does not only quit hiding alcohol. She tells the truth about the rest of life. Secrets keep the loop warm.",
-        "deepRead": "Gerard loses money and calls it a lesson in timing. The app shows red, but his mind edits red into almost. That is denial as work, not denial as blankness. The gambler case matters because the evidence is already in his hand: losses, odds, and control. He changes their meaning so play can keep going. Radical honesty breaks that edit before abstinence can mean anything. If you cannot say there is a problem, a pause feels like punishment. If you can say it, the pause has a target.\n\nDeception did not begin as a modern vice. Lomechusa pubicollis survives by fooling ants into accepting it. The beetle example keeps the rule honest: lying can protect life under threat. The exception appears in recovery. What once protected you now isolates you. A hidden bottle, a hidden bet, or a sweetened family story keeps everyone too far away to help.\n\nHonesty also has a reward side. Intimacy can release oxytocin, and oxytocin links with dopamine. In plain terms, a true conversation can feel good in the body. Still, a meeting share can tilt into a drunkalogue, a confession that chases attention instead of repair. Confession without repair can become applause. Truth needs a witness, not a spotlight.",
+        "deepRead": "Gerard loses money and calls it a lesson in timing. The app shows red, but his mind edits red into almost. That is denial as work, not denial as blankness. The gambler case matters because the evidence is already in his hand: losses, odds, and control. He changes their meaning so play can keep going. Radical honesty breaks that edit before abstinence can mean anything. If you cannot say there is a problem, a pause feels like punishment. If you can say it, the pause has a target.\n\nDeception did not begin as a modern vice. Lomechusa pubicollis survives by fooling ants into accepting it. The beetle example keeps the rule honest: lying can protect life under threat. The exception appears in recovery. What once protected you now isolates you. A hidden bottle, a hidden bet, or a sweetened family story keeps everyone too far away to help.\n\nHonesty also has a reward side. Intimacy can release oxytocin, a hormone involved in bonding, and oxytocin links with dopamine. In plain terms, a true conversation can feel good in the body. Still, a meeting share can tilt into a drunkalogue, a long dramatic recovery story that chases attention instead of repair. Confession without repair can become applause. Truth needs a witness, not a spotlight.",
         "fullRead": "Eileen says the sentence twice before she hears the gap. My mother always makes me the problem. It is true enough to feel clean. It is also missing her own sharp reply, the part where she used the old hurt as a shield. That victim narrative is real, but it is not the whole family conflict. Radical honesty is harder here because the lie is not a made-up fact. It is a story with one point of view edited out.\n\nThis is where the rule meets its exception. Tell the truth is a good rule. Say the hidden thing, name the bottle, count the loss, admit the wrong. Alcoholics Anonymous gives that rule a shape in its 12 steps: admit wrongs to God, to yourself, and to another human being. The words leave the private room. Someone else can hear them, ask for details, and connect the truth to repair.\n\nThe exception is not a reason to stay silent. It is a warning about the false self. You can tell a painful story in a way that keeps you grand, innocent, or thrilling. You can confess so well that the confession becomes the reward. That is the drunkalogue danger: the group gives attention, your body feels relief, and the old loop finds a cleaner costume.\n\nMaria shows the better path. In Alcoholics Anonymous, truth is not one speech that clears the air forever. It is a practiced identity. She learns to stop lying about alcohol, then sees the same habit in excuses, resentments, and small social performances. Each honest sentence makes the secret life less useful. Each heard sentence makes isolation less complete.\n\nThe science line is plain. Intimacy is not just a nice idea. Honest closeness can bring an oxytocin release, and oxytocin is connected to dopamine. That means connection can become a natural source of reward. It does not erase craving by magic. It gives the brain and the community another place to find relief.\n\nScarcity and plenty explain why this spreads. If everyone around you seems armed, lying looks like armor. You hide the receipt, smooth the text, and call the loss a plan. If truth is met with enough trust, honesty becomes easier for the next person too. A room can train deception, and a room can train repair.\n\nThe precondition is simple: someone must be willing to be corrected by the truth. Without that, radical honesty becomes a performance, a weapon, or a diary entry with better lighting. The rule assumes a listener, humility, and some path back to the harmed person. When those are absent, more disclosure is not more recovery. It is just a louder secret."
       },
       "examples": [
         {
           "exampleId": "ex01",
-          "title": "Door Against the Share",
+          "title": "Beyond the Bottle",
           "tags": [
             "Maria",
             "AA honesty",
             "predict reveal"
           ],
-          "scenario": "The meeting-room door sticks against Lane's shoulder as folding chairs scrape behind him. In the Alcoholics Anonymous circle, he expects Maria's alcoholism truth-telling to mean one hidden bottle and a quick seat. Maria looks at the coffee urn and says the lying reached her calendar, her apologies, and the story she told her sister.",
-          "whatToDo": "Lane keeps Maria talking past the bottle. He asks where else secrecy has been doing work, then ties the next sober step to one everyday truth she can tell.",
-          "whyItMatters": "Maria's recovery shows honesty as practice, not one speech. The loop weakens when truth reaches the daily places where secrecy used to help."
+          "scenario": "After the meeting, Lane stands by the Alcoholics Anonymous coffee urn and hears Maria's truth-telling move past one hidden bottle. Lane asks where else secrecy has been doing work. The lying reached her calendar, her apologies, and the story she told her sister. Recovery asks for ordinary truth, not only the dramatic confession.",
+          "whatToDo": "Keep Maria talking past the bottle. Tie the next sober step to one everyday truth she can tell.",
+          "whyItMatters": "Maria's recovery shows honesty as practice, not one speech. The loop weakens when truth reaches daily hiding places.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "predict_reveal",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -3284,7 +3585,14 @@
           ],
           "scenario": "The betting app badge climbs while Gerard's rent text slides lower in the thread. Gerard: I lost, but gamblers read the table. Lane: The losses still counted. Gerard: It was control practice. Lane: Or denial is keeping the bet alive. The buried rent message is still unanswered when Gerard scrolls back to the actual loss.",
           "whatToDo": "Gerard pins the rent message above the betting thread and writes the loss as a loss. He stops using control language until the missed bill is handled.",
-          "whyItMatters": "Denial is active editing. When Gerard names the loss plainly, the next bet cannot hide behind the story that he is getting closer."
+          "whyItMatters": "Denial is active editing. When Gerard names the loss plainly, the next bet cannot hide behind the story that he is getting closer.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "text_thread",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
@@ -3294,9 +3602,16 @@
             "reset",
             "repair"
           ],
-          "scenario": "Violet's paper cup stops halfway to the trash can after the meeting, in the Alcoholics Anonymous hallway. Her routine is to give the same dramatic share and leave. Lane asks one quiet question: In the 12 steps, which confession step will you admit to another human being today? Violet sets the cup down and starts again.",
-          "whatToDo": "Violet narrows the confession to the AA shape: admit the wrong to God, to herself, and to another human being. She names the repair call before leaving.",
-          "whyItMatters": "The pause changes the use of truth. Violet stops chasing relief from the room and starts putting one wrong into accountable relationship."
+          "scenario": "In the Alcoholics Anonymous hallway after the meeting, Violet holds a paper cup and recognizes the same dramatic share can become a routine: tell it, feel the room, leave unchanged. Violet needs the narrower AA shape: admit the wrong to God, to herself, and to another human being, then connect it to repair.",
+          "whatToDo": "Narrow the confession to one wrong and one person who needs repair after the meeting.",
+          "whyItMatters": "The pause changes the use of truth. It stops chasing relief from the room and puts one wrong into accountable relationship.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -3306,9 +3621,16 @@
             "deception",
             "vignette"
           ],
-          "scenario": "Field teacher Weston slides the glass lid aside in the lab ant chamber as Lomechusa pubicollis moves among the ants. The ants do not swarm the intruder. They tend it as if it belongs. Weston says almost nothing, just taps the label deception and lets the small body do the teaching: a lie can help a creature survive, and still damage a human room.",
-          "whatToDo": "Weston keeps the beetle example narrow. He names deception as a survival strategy, then separates that fact from the cost of secrecy in recovery.",
-          "whyItMatters": "The animal case keeps the idea exact without excusing secrecy. A behavior can have roots in survival and still need to change in recovery."
+          "scenario": "In the lab classroom by the ant chamber, Weston watches Lomechusa pubicollis move among ants that accept it as if it belongs. Weston uses the beetle to keep the honesty rule exact: deception can protect life in one setting and still damage a human recovery room in another.",
+          "whatToDo": "Use the beetle as a boundary case, not an excuse. Ask whether the current lie protects safety or protects the loop.",
+          "whyItMatters": "The example prevents a simple slogan. Some deception has survival value, but secrecy in recovery often isolates the person who needs help.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "vignette",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -3320,7 +3642,14 @@
           ],
           "scenario": "Eileen is three sentences into the family video call when Finley cuts in on the call from the tablet. Eileen: My mother always makes me the problem. Finley: What did you say before she snapped? Eileen: I said she never listens. Finley: That may be true, and it is one point of view. Eileen stops using the victim narrative as a shield.",
           "whatToDo": "Eileen keeps the harm in view and adds the missing line. She writes her mother's point of view beside her own before making the next call.",
-          "whyItMatters": "Honesty is not loyalty to the first painful version. The fuller story can lower resentment because it no longer hides Eileen from herself."
+          "whyItMatters": "Honesty is not loyalty to the first painful version. The fuller story can lower resentment because it no longer hides Eileen from herself.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -3330,9 +3659,16 @@
             "self-disclosure",
             "mistake recovery"
           ],
-          "scenario": "The sharing circle is about to close, and Veronique keeps adding one more detail. In Alcoholics Anonymous, the confession step is meant to move a wrong toward another human being. Halfway through the next detail, she hears the error: she is chasing the feeling of being watched. Veronique stops and asks who needs repair after the meeting.",
-          "whatToDo": "Veronique cuts off the performance and turns the share toward repair. She asks for one accountable next step instead of another round of attention.",
-          "whyItMatters": "The correction protects the hard edge. Disclosure can feed the same reward loop unless another person can connect it to repair."
+          "scenario": "In the meeting circle before the close, Veronique adds one more painful detail, then another. Veronique feels the room watching and recognizes the feeling itself is becoming the reward. The better ending is less theatrical: stop the share and name the person who needs repair after the meeting.",
+          "whatToDo": "Turn the confession away from attention and toward one accountable next step.",
+          "whyItMatters": "Truth helps when it reaches a witness and a repair path. Without that, confession can become a cleaner-looking loop.",
+          "planSpec": {
+            "domain": "radical honesty example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -3407,12 +3743,12 @@
             "questionId": "q06",
             "prompt": "After a meeting, a sponsor tells Violet that AA honesty is more than a vague mood of openness. Which practice best matches the source?",
             "choices": [
-              "Admit wrongs to God, to yourself, and to another human being.",
+              "Admit wrongs to a higher power, yourself, and another human being.",
               "Share painful stories with the room until the shame feels lighter.",
-              "Keep a private list of harms until guilt becomes easier to manage."
+              "Treat honesty as a general mood of openness after the meeting."
             ],
             "correctIndex": 0,
-            "explanation": "AA includes a structured confession practice in the 12 steps. It moves wrongs out of private guilt and into accountable repair.",
+            "explanation": "The AA confession shape moves the wrong out of the private room and toward another person who can connect truth to repair.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           },
@@ -3545,12 +3881,12 @@
       "readingTimeMinutes": 11,
       "hook": "Could I hear Lori's Ambien bottle rattle and still think shame only harms?",
       "counterintuition": "Shame can warn you about harm and still wreck repair if it meets contempt. The useful turn comes when truth is answered with acceptance and a real ask.",
-      "tryThisNow": "Before you send your next reply, count two recent shame flashes. Add a check beside any you hid, then write: 'Truth needs a safe landing.'",
+      "tryThisNow": "At the next small shame flash, count two ways you might hide it. Add a check beside any you can safely tell, then write: 'Truth needs a safe landing.'",
       "keyTakeaway": "A shame signal helps only when it keeps a person connected: name the harm, ask for radical honesty, and pair acceptance with repair.",
       "breakdown": {
-        "fastRead": "Lori's intake page says Ambien, food, alcohol, and more than six times the prescribed antidepressant dose. Glenn thinks the old myth first: make the shame sharper, and the person will stop. That is how contempt talks. It calls the whole self bad, so the next move is hiding. Contempt makes shame hide.\n\nUseful shame works the other way. It names the wrong act, then keeps the door open for truth. Prosocial shame means a painful signal that you crossed a shared line, with enough acceptance to repair. You still answer for the harm. You do not have to vanish to do it.",
+        "fastRead": "Lori's intake page says Ambien, food, alcohol, and more than six times the prescribed antidepressant dose. Glenn thinks the old myth first: make the shame sharper, and the person will stop. That is how contempt talks. It calls the whole self bad, so the next move is hiding. Contempt makes shame hide.\n\nUseful shame works the other way. It names the wrong act, then keeps the door open for truth. Prosocial shame means a painful signal that you crossed a shared line, with enough acceptance to repair. Guilt says \"I did wrong\"; shame can say \"I am wrong,\" which is why the next response matters. You still answer for the harm. You do not have to vanish to do it.",
         "deepRead": "The next breath after shame decides the path. If the room answers with disgust, the destructive shame cycle begins: overconsumption, shame, lying, isolation. Lori's story shows it in a body, not a chart. She overuses an antidepressant far beyond the prescribed dose. Food, alcohol, and Ambien join the same pattern. Her religious upbringing adds a God who feels ready to punish. Once shame says, 'I am bad,' lying can feel like shelter.\n\nThe prosocial shame cycle keeps the sting but changes the next step: overconsumption, shame, radical honesty, acceptance. Radical honesty means saying the true thing before it is polished. Acceptance means the person is still held in the circle while the wrong is spoken. Belonging makes honesty worth the sting. In a recovery group, the coffee, shared rides, and known faces are club goods. They are goods of group membership, and they help a hard report happen before isolation wins.\n\nYou can use the same split at home. A parent who eats a daughter's chocolate and lies has already taught one lesson. The repair begins when the parent says, 'I ate it and lied.' The child sees that shame does not have to become a cover story. It can become a repair bill.",
-        "fullRead": "Rowan sees his daughter's chocolate wrapper in his hand, and the old belief sounds almost practical: if the child never knows, no harm spreads. That belief is neat. It is also how lying learns to dress as parenting. The small act matters because shame learns by watching small acts. A parent who hides the chocolate teaches that shame means save face. A parent who admits the bite and the lie teaches radical honesty: pay the cost first, then repair what you can.\n\nShame and guilt are close cousins, but they point in different directions. Guilt can say, 'I did a wrong thing.' Shame can say, 'I am the wrong thing.' In real life they blur. Your face heats, your stomach drops, and you may not know which word fits. The practical split is what happens next. If the feeling sends you into lying and isolation, it is feeding the destructive cycle. If it sends you into truth and accepted repair, it is doing useful social work.\n\nClub goods help explain why this is not just a nicer tone. A club good is a benefit that comes from being part of a group. In recovery, that can be a chair saved for you, a ride home, a person who knows your tells, or a text answered before midnight. Those goods make honesty less lonely. They do not bribe a person into virtue. They make truth survivable enough to say. Belonging is not soft. It is the structure that lets the hard word stay in the room.\n\nThe cost arrives before the payoff. The person who tells the truth gives up the clean version while the room is still silent. Marcel does not know whether the patient with the Ambien history will trust him. Tatum does not know whether the child will forgive the chocolate lie. A group does not know whether a hard report will lead to steady change. In each case, the first payment is status, comfort, or control. Repair starts in the unpaid gap.\n\nAcceptance without repair becomes cover. That is where people misuse the idea. If acceptance means 'no one names the harm,' it has slid into excuse. If accountability means 'you are out the second you confess,' it has slid into exile. Prosocial shame needs both sides at once: the act is named, and the person is not thrown away.\n\nThis stops working in danger. If a partner is violent, do not reach for a warm repair talk. If a driver is drunk and reaching for keys, get the keys and call help. If a child is unsafe, protect the child before teaching a lesson. If a group uses belonging to demand silence, get distance. Prosocial shame can guide ordinary repair. It cannot replace safety, law, medical care, or protection when someone may be harmed tonight."
+        "fullRead": "Rowan sees his daughter's chocolate wrapper in his hand, and the old belief sounds almost practical: if the child never knows, no harm spreads. That belief is neat. It is also how lying learns to dress as parenting. The small act matters because shame learns by watching small acts. A parent who hides the chocolate teaches that shame means save face. A parent who admits the bite and the lie teaches radical honesty: pay the cost first, then repair what you can.\n\nShame and guilt are close cousins, but they point in different directions. Guilt can say, 'I did a wrong thing.' Shame can turn the whole self into the wrong thing. In real life they blur. Your face heats, your stomach drops, and you may not know which word fits. The practical split is what happens next. If the feeling sends you into lying and isolation, it is feeding the destructive cycle. If it sends you into truth and accepted repair, it is doing useful social work.\n\nClub goods help explain why this is not just a nicer tone. A club good is a benefit that comes from being part of a group. In recovery, that can be a chair saved for you, a ride home, a person who knows your tells, or a text answered before midnight. Those goods make honesty less lonely. They do not bribe a person into virtue. They make truth survivable enough to say. Belonging is not soft. It is the structure that lets the hard word stay in the room.\n\nThe cost arrives before the payoff. The person who tells the truth gives up the clean version while the room is still silent. Marcel does not know whether the patient with the Ambien history will trust him. Tatum does not know whether the child will forgive the chocolate lie. A group does not know whether a hard report will lead to steady change. In each case, the first payment is status, comfort, or control. Repair starts in the unpaid gap.\n\nAcceptance without repair becomes cover. That is where people misuse the idea. If acceptance means 'no one names the harm,' it has slid into excuse. If accountability means 'you are out the second you confess,' it has slid into exile. Prosocial shame needs both sides at once: the act is named, and the person is not thrown away.\n\nThis stops working in danger. If a partner is violent, do not reach for a warm repair talk. If a driver is drunk and reaching for keys, get the keys and call help. If a child is unsafe, protect the child before teaching a lesson. If a group uses belonging to demand silence, get distance. Prosocial shame can guide ordinary repair. It cannot replace safety, law, medical care, or protection when someone may be harmed tonight."
       },
       "examples": [
         {
@@ -3561,9 +3897,16 @@
             "Ambien",
             "clinical shame"
           ],
-          "scenario": "\"She's just chasing a high,\" someone says behind Glenn, and his pen freezes over Lori's intake sheet listing Ambien, alcohol, food, and more than six times the prescribed dose. Glenn writes \"manipulative\" and keeps his voice flat; the patient gives him clipped answers. Across the hall, Marcel names the same overuse without contempt and asks what shame made unsafe to say. The first room gets silence. The second gets a first mention of a vengeful God.",
-          "whatToDo": "Glenn should drop the character note. Marcel's move is the model: name the overuse, keep the person in the room, and ask what truth shame has been hiding.",
-          "whyItMatters": "The contrast shows why contempt worsens destructive shame. The same facts can drive lying and isolation, or open a path toward honesty and accepted repair."
+          "scenario": "Lori's intake sheet lists Ambien, alcohol, food, and more than six times the prescribed antidepressant dose. In one room, contempt turns the case into \"manipulative\" and gets clipped answers. In the better room, the same overuse is named without contempt, and the first mention of a vengeful God becomes speakable.",
+          "whatToDo": "Name the overuse plainly while keeping the person in the room. Ask what shame made unsafe to say.",
+          "whyItMatters": "The contrast is not softness versus accountability. It is silence versus a first truthful sentence.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "contrast",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex02",
@@ -3575,19 +3918,33 @@
           ],
           "scenario": "\"Tell the truth while the wrapper is still in your hand,\" the senior parent says as Tatum sinks into the living-room couch. He has eaten his daughter's chocolate, denied it, and now calls the lying small enough to skip. He wants a parenting lecture about honesty. The reframe lands hard: \"A child learns repair from the cost you pay out loud.\" Tatum gives up the clean parent story before he knows whether his daughter will be angry or relieved.",
           "whatToDo": "Tatum names the act and the lie before giving any lesson. He asks how to replace the chocolate and lets his daughter see shame move into repair.",
-          "whyItMatters": "Small wrongs train big habits. A child who sees adult honesty learns that shame does not have to become concealment."
+          "whyItMatters": "Small wrongs train big habits. A child who sees adult honesty learns that shame does not have to become concealment.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "decision_point",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex03",
-          "title": "Two Lists on the Board",
+          "title": "Two Shame Lists",
           "tags": [
             "school_case",
             "cycles",
             "training"
           ],
-          "scenario": "The whiteboard splits trainee Simon's Saturday peer-support classroom in two: one side reads overconsumption, shame, lying, isolation; the other reads overconsumption, shame, radical honesty, acceptance. He circles shame in both lists and frowns. If shame appears twice, he asks, why is one path destructive and the other useful? The instructor has him track the next word after shame, not the word shame itself.",
-          "whatToDo": "Simon marks the step that follows shame in each cycle. He learns to ask whether the feeling sends a person into hiding or into honest repair.",
-          "whyItMatters": "The framework is easy to misread if shame is labeled all good or all bad. The next step after shame tells you which cycle has begun."
+          "scenario": "On the peer-support classroom board, Simon sees the two lists and Simon gets stuck because shame appears in both: overconsumption, shame, lying, isolation; overconsumption, shame, radical honesty, acceptance. The deciding word is not shame. It is what comes after shame.",
+          "whatToDo": "Track the next step after the sting. Does the room push the person toward hiding or toward accepted repair?",
+          "whyItMatters": "Beginners need the fork in the road. Shame is not automatically useful or destructive; the response gives it direction.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "contrast",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex04",
@@ -3597,9 +3954,16 @@
             "club goods",
             "belonging"
           ],
-          "scenario": "Chase steps through the recovery club doorway expecting a quiet seat; the volunteer badge on the hook has his name for tonight's practice welcome. Last month the same doorway worked like a rule desk: names checked, slips filed, faces gone. Tonight he fills paper cups, points to a saved chair, and gives the ride number before asking for the hard report. No confession has arrived yet. More people stay long enough to tell the truth.",
-          "whatToDo": "Chase treats the badge as a cost he pays first. He offers coffee, a ride contact, and a saved chair before asking for the hard report.",
-          "whyItMatters": "Club goods are the rewards of belonging. In recovery, those rewards can make honesty feel worth the sting instead of like a ticket out."
+          "scenario": "At the recovery doorway before the hard report, Chase sets out coffee, a saved chair, a ride number, and known faces. Chase knows the doorway can work like a rule desk or like a place to return. No confession has arrived yet. More people stay long enough to tell the truth.",
+          "whatToDo": "Offer the club goods first: ordinary signs of belonging that make a hard report survivable.",
+          "whyItMatters": "Belonging is not decoration. It is the structure that lets accountability stay in the room.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "before_after",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex05",
@@ -3611,7 +3975,14 @@
           ],
           "scenario": "Parent Rowan is already folding his daughter's chocolate wrapper into a square by the apartment doorway, lying still warm in his throat, when Colleen walks in after school. \"You said there was one left.\" \"I ate it.\" \"You said you didn't.\" \"I lied about that too.\" The foil crackles in Rowan's palm. \"Are you in trouble?\" Colleen asks. \"Yes,\" Rowan says. \"I owe you chocolate, and I owe you the truth.\"",
           "whatToDo": "Rowan tells Colleen the act and the lie in the same breath. He names the repair as replacement plus truth, not a lecture about her future honesty.",
-          "whyItMatters": "The exchange keeps accountability small enough to copy. Repair is modeled in the room where the lie happened."
+          "whyItMatters": "The exchange keeps accountability small enough to copy. Repair is modeled in the room where the lie happened.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "dialogue",
+            "requiredBeat": "apply the chapter move"
+          }
         },
         {
           "exampleId": "ex06",
@@ -3621,9 +3992,16 @@
             "Ambien",
             "first cost"
           ],
-          "scenario": "The staple in Lori's pharmacy bag catches under her thumbnail at the counter, and the paper will not open cleanly. More than six times the prescribed dose was not an accident. Food counted. Alcohol counted. Ambien counted. The old religious fear starts its sentence: God saw, so no one else can. No, that is the tunnel. Overuse, shame, lying, isolation. The doctor's portal waits on her phone. The first line will cost the clean story before it earns help.",
-          "whatToDo": "Lori lets the shame name the overuse without letting it write her identity. She starts with one honest line to a helper before the hiding loop closes.",
-          "whyItMatters": "Destructive shame wins when the first cost feels unbearable. Paying the first cost of truth keeps acceptance possible."
+          "scenario": "The pharmacy bag catches under Lori's thumbnail, and the old religious fear starts its sentence: God saw, so no one else can. That is the tunnel. Food counted. Alcohol counted. Ambien counted. More than six times the prescribed dose counted. The doctor's portal waits, and the first line will cost the clean story before it earns help.",
+          "whatToDo": "Write the first portal line as overuse, shame, and need for help, not as a polished excuse.",
+          "whyItMatters": "The result is uncertain. Prosocial shame begins before reassurance, when truth gives up the hiding place.",
+          "planSpec": {
+            "domain": "prosocial shame example",
+            "audience": "general reader",
+            "stakes": "clear transfer without overclaim",
+            "format": "inner_monologue",
+            "requiredBeat": "apply the chapter move"
+          }
         }
       ],
       "quiz": {
@@ -3659,12 +4037,12 @@
             "questionId": "q03",
             "prompt": "During peer-support training, a learner says Lori's compulsive pattern centers on one drug. Which correction fits the case?",
             "choices": [
-              "Her history includes food, alcohol, and Ambien, along with medication overuse.",
+              "Her history includes several reward channels, along with medication overuse.",
               "Her history centers on antidepressant dosing and does not name other rewards.",
-              "Her history turns mainly on religious fear without food or alcohol."
+              "Her history includes food and alcohol but leaves medication outside the pattern."
             ],
             "correctIndex": 0,
-            "explanation": "The case names several reward channels: food, alcohol, Ambien, and medication overuse. Reducing it to one drug misses how destructive shame can spread.",
+            "explanation": "The case names several reward channels plus medication overuse. Reducing it to one drug misses how destructive shame can spread.",
             "bloomsLevel": "remember",
             "depthLevel": "simple"
           },
