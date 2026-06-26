@@ -237,12 +237,12 @@ Full rubric text is `AXIS_RUBRIC` in publishableBar.ts; the essentials:
 | Axis (weight) | What you check | A hit is |
 |---|---|---|
 | quiz_key_correctness (17) | the **hidden-key protocol** below | CORRUPTION |
-| example_coherence (15) | a real scene, named human acting — not a concept-as-actor / fixed-time header / planning note | CORRUPTION/DRAFT |
-| prose_coherence (13) | breakdown teaches; no clause-loop, no "X means The X is" seam, no mid-sentence end | CORRUPTION |
+| example_coherence (15) | a real scene, named human acting — not a concept-as-actor / fixed-time header / planning note; **outcome realism** — not every scene resolves in instant frictionless success (survivorship gloss) | CORRUPTION/DRAFT |
+| prose_coherence (13) | breakdown teaches; no clause-loop, no "X means The X is" seam, no mid-sentence end; **hook** opens a curiosity gap (not a flat topic sentence) & **counterintuition** reverses a stated default (not bald assertion); no low-density filler stretching one idea | CORRUPTION |
 | quiz_distractor_quality (13) | distractors are real wrong answers, not the key in disguise / format-findable | DRAFT |
-| card_learning_value (11) | front is a question; back answers it & tests understanding, not recall; not pasted from breakdown | DRAFT/CORRUPTION |
+| card_learning_value (11) | front is a question; back answers it & tests understanding, not recall; not pasted from breakdown; teaches the idea's **boundary/failure mode** (not only the move); hands a reusable **lens** > a one-off tactic (tiebreaker) | DRAFT/CORRUPTION |
 | plan_actionability (11) | context = a situation; plan = an imperative using the chapter's named tool | DRAFT |
-| factual_accuracy (7) | named-framework enumerations complete & correct vs source; **evidence integrity** (see callout) — testimonial dressed as research, or fiction smuggled into a real lab | CORRUPTION |
+| factual_accuracy (7) | named-framework enumerations complete & correct vs source; **evidence integrity** (see callout) — testimonial dressed as research, or fiction smuggled into a real lab; a sidecar-**contested/failed** claim stated as settled fact with no hedge | CORRUPTION |
 | behavioral_naturalness (7) | the prescribed micro-actions (tryThisNow / plans / 24h challenge) are functional things a real person would DO — not performative theater (write TARGET on a wall), contrived rituals (move a pen, turn around), 3+-prop staging, or shame/coercion. Specificity is NOT the defect; behavioral implausibility is. Clean structural action ≥0.85 — NEVER floor a plausible action <0.6. | DRAFT |
 | memorable_line_quality (6) | portable aphorisms, not 20-word explanations | DRAFT |
 
