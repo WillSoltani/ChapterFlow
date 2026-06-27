@@ -6,6 +6,7 @@ import { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
+import { isAdvisoryMajor } from "../critics/majorPolicy.js";
 import { isApprovedReviewer, chapterContentHash } from "../critics/qcAttestation.js";
 import { canonicalJsonSha256 } from "../lib/canonicalJson.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
@@ -62,6 +63,7 @@ export type WaiverFile = {
 
 export type MajorDispositionDecision =
   | "open"
+  | "advisory"
   | "waived"
   | "waiver_expired"
   | "waiver_stale"
@@ -211,6 +213,15 @@ function normalizeOptions(options: boolean | MajorCleanlinessOptions | undefined
 }
 
 function effectiveDisposition(bookId: string, finding: MajorFindingSnapshot, disposition: MajorDisposition | undefined, options: Required<MajorCleanlinessOptions>): MajorPolicyDecision {
+  // ADVISORY tier (critics/majorPolicy.ts): a major that fires on the reference
+  // corpus or is calibration-pending/high-FP surfaces for visibility but never
+  // hard-gates the autonomous pipeline — no waiver needed, so it can never force a
+  // human disposition (the governance-halt the owner asked to remove). The semantic
+  // bar/sweep reviewers gate these dimensions. Checked BEFORE the waiver logic so an
+  // advisory major is non-blocking regardless of waiver state.
+  if (isAdvisoryMajor(finding.checkId)) {
+    return { finding, disposition, decision: "advisory", blocking: false, reason: "Advisory major: surfaced for visibility; the semantic bar/sweep reviewers gate this dimension. Not a hard QC/publish blocker." };
+  }
   if (!disposition || !dispositionClosesCurrentMajor(disposition.status)) {
     return { finding, disposition, decision: "open", blocking: true, reason: "No closing waiver is recorded for this current major." };
   }
@@ -263,7 +274,7 @@ export function formatMajorStatus(bookId: string, chapters = loadBookChapters(bo
   const policy = evaluateMajorCleanliness(bookId, chapters);
   const lines = [`major-status: ${policy.ok ? "PASS" : "CHECK"} (${policy.current.length} current major(s), ${policy.unresolved.length} unresolved)`];
   for (const d of policy.decisions) {
-    const marker = d.blocking ? d.decision.toUpperCase() : "WAIVED";
+    const marker = d.decision === "advisory" ? "ADVISORY" : d.blocking ? d.decision.toUpperCase() : "WAIVED";
     lines.push(`  [${marker}] ${d.finding.id} ${d.finding.scope} ${d.finding.checkId}: ${d.finding.message.slice(0, 180)}${d.blocking ? ` (${d.reason})` : ""}`);
   }
   return lines.join("\n");

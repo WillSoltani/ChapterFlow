@@ -10,6 +10,7 @@ import { attestationPath, chapterContentHash, writeAttestation } from "../src/cr
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { currentMajorFindings, unresolvedMajors, waiverPath } from "../src/qc/majorDisposition.js";
+import { isAdvisoryMajor } from "../src/critics/majorPolicy.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-no-api-promote";
@@ -156,8 +157,11 @@ test("major dispositions read legacy closed statuses but CLI rejects writing leg
     const chapter = makeChapter(BOOK, 1);
     writeFixtureBookWithIndex([chapter]);
     openQcRound(BOOK, "r-legacy-major");
-    const finding = currentMajorFindings(BOOK, [chapter])[0];
-    assert.ok(finding, "fixture should expose at least one current major");
+    // Select a BLOCKING (non-advisory) major — a legacy waiver must not close THOSE.
+    // (Advisory majors never block, so a legacy waiver on one is moot; the fixture trips
+    // an enforced SEAM major, which is blocking.)
+    const finding = currentMajorFindings(BOOK, [chapter]).find((f) => !isAdvisoryMajor(f.checkId));
+    assert.ok(finding, "fixture should expose at least one BLOCKING current major");
     const waiverFile = waiverPath(BOOK);
     mkdirSync(dirname(waiverFile), { recursive: true });
     writeFileSync(waiverFile, JSON.stringify({

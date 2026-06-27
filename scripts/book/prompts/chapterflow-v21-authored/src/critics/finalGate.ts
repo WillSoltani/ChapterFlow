@@ -300,6 +300,10 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SL3.spectator_prop": "major",
   "SL4.citation_prop": "major",
   "SL5.publication_detail": "major",
+  // SL6 — internal source-anchor numbering cited as reader prose ("Fact 7 says…").
+  // Zero-FP scaffold tell (the reader never sees the numbered source catalog), so it
+  // BLOCKS like SL1. Shifts the "Fact N" leak left from a missed sweep to the write gate.
+  "SL6.source_numbering_leak": "blocker",
   // Quiz-quality critic (BP15–BP21, schema.quiz_*)
   "BP15.quiz_strawman_distractor": "major",
   "BP16.quiz_answer_length_blocker": "blocker",
