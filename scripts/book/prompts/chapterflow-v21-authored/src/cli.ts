@@ -2619,6 +2619,29 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const softBanLine = softBanTics.length
     ? `• SOFT-BANNED TICS (book-wide budget — treat as near-forbidden; QC's F4 REVISEs the whole book when the count is blown): avoid ${softBanTics.join(", ")}. Each reads fine once, but recurs across mutually-blind chapters and blows a tiny per-book budget; prefer a plain verb or a restructure (e.g. "treats it as" → "reads … as", "counts … as", "sees … as").\n`
     : "";
+  // BOOK-WIDE VARIETY MAP. The documented root cause of the scene_skeleton / repeated_unit
+  // sweep class: mutually-blind parallel writers converge on ONE scene frame because each
+  // sees only its OWN dealt move/stance, never the siblings'. The deal already makes each
+  // chapter's marquee MOVE (sceneMechanism) and STANCE (sceneMode) distinct — surfacing the
+  // whole map to every writer turns "other chapters got other moves" from an unverifiable
+  // claim into an accountable, reserved-slot constraint, so a writer can actively
+  // differentiate instead of drifting onto a default device. No deterministic post-write
+  // gate can catch this (it false-fires on the gold corpus — config/scene-shapes.json), so
+  // the lever is write-time awareness, not a gate.
+  const varietyMapRows = flat
+    .filter((c) => sceneMechanismPlan.allocation[c.number] || sceneModePlan.allocation[c.number])
+    .map((c) => ({
+      n: c.number,
+      move: sceneMechanismPlan.allocation[c.number]?.mechanismId ?? "—",
+      stance: sceneModePlan.allocation[c.number]?.stance ?? "—",
+    }));
+  const varietyMapFor = (n: number): string => {
+    if (varietyMapRows.length < 2) return ""; // a single-chapter redo has no map to show
+    const rows = varietyMapRows
+      .map((r) => `    ch${r.n}${r.n === n ? "  ← YOURS" : ""}: move=${r.move} · stance=${r.stance}`)
+      .join("\n");
+    return `• BOOK-WIDE VARIETY MAP — every chapter's marquee MOVE and narrative STANCE are dealt DISTINCT and RESERVED. Sibling chapters are authored in parallel; this is the only way you can see their dealt moves. Build YOUR marquee scene on YOUR move+stance and do NOT drift onto another row's move (mutually-blind writers collapsing onto one shared frame is the scene_skeleton defect QC REVISEs the whole book on). Before you submit, confirm your marquee scene enacts YOUR dealt move — not a generic "person faces a hard choice and decides" frame.\n${rows}\n`;
+  };
   let pending = 0;
   let done = 0;
   for (const ch of flat) {
@@ -2771,6 +2794,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
         (stakesLines ? stakesLines + "\n" : "") +
         sceneModeLine +
         sceneMechanismLine +
+        varietyMapFor(ch.number) +
         venueLine +
         rhetoricLine +
         (cadenceLine ? cadenceLine + "\n" : "") +
