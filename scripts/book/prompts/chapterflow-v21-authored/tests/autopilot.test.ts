@@ -279,6 +279,75 @@ test("doGate AUTO-CONVERGES a blocking major before QC (fix-before-write→QC ha
   assert.ok(spawns.some((s) => s.sessionId.startsWith("gate-major-repair")), "doGate spawns a gate-major-repair to converge the blocking major before QC");
 });
 
+// ── pre-QC cross-chapter VARIETY convergence (the first-pass-QC lever) ──────────
+/** A gate-phase status (blockers clean, no majors) + a scout-aware spawn stub. The default
+ *  happyDeps spawn returns empty stdout → the scout finds no brief → advances (covered by every
+ *  other test); these exercise the scout/flag/de-template path explicitly. */
+function varietyGateDeps(scoutStdout: (call: number) => { ok?: boolean; stdout: string }) {
+  const statuses = [
+    // deterministicClean:false routes to the GATE phase; qc-converge reports blockers clean below.
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  let scoutCalls = 0;
+  // Our spawn override REPLACES happyDeps's recording stub, so track spawns in OUR OWN array and
+  // return it (happyDeps's `spawns` would stay empty — its stub never runs once overridden).
+  const spawns: { sessionId: string }[] = [];
+  const { deps } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "DETERMINISTIC-CLEAN", stderr: "" }; // blockers already clean
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    blockingMajors: () => [], // no majors → reach the variety scout
+    spawn: (async (o: { sessionId: string }) => {
+      spawns.push(o);
+      if (o.sessionId.includes("pre-qc-variety-scout")) {
+        const res = scoutStdout(scoutCalls++);
+        return { ok: res.ok !== false, exitCode: res.ok === false ? 1 : 0, finalMessage: "done", stdout: res.stdout, stderr: "", durationMs: 1, sessionId: o.sessionId };
+      }
+      return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+  });
+  return { deps, spawns };
+}
+
+test("doGate converges cross-chapter VARIETY before QC (scout flags → SURGICAL per-chapter de-template, then advance)", async () => {
+  // Scout flags ch2 on its first full-book read, then reads CLEAN so the gate advances after one fix.
+  const { deps, spawns } = varietyGateDeps((call) => ({
+    stdout: call === 0
+      ? '```json\n{"templated":true,"rewrites":[{"chapter":2,"family":"scene_skeleton","shared":"ch1 & ch2 share a decision-under-deadline frame","instruction":"restage ch2 onto its dealt move + a distinct venue"}]}\n```'
+      : '```json\n{"templated":false,"rewrites":[]}\n```',
+  }));
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "ready");
+  assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "doGate runs a full-book variety scout before QC");
+  assert.ok(spawns.some((s) => /^pre-qc-variety-\d+-ch2/.test(s.sessionId)), "the brief drives a SURGICAL per-chapter de-template repair (ch2 only)");
+  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch1/.test(s.sessionId)), "a chapter the scout did NOT flag (ch1) is left untouched — never a multi-chapter rewrite");
+});
+
+test("doGate variety scout: a VARIED book advances to QC with zero de-template work (no FP-on-gold regression)", async () => {
+  const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":false,"rewrites":[]}\n```' }));
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "ready");
+  assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "the scout still runs (one cheap full-book read)");
+  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a varied book triggers ZERO de-template repairs");
+});
+
+test("doGate variety scout is BOUNDED — a persistently-templating scout runs at most PREQC_MAX_VARIETY_PASSES, then advances (never spins)", async () => {
+  const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":true,"rewrites":[{"chapter":1,"instruction":"differentiate ch1"}]}\n```' }));
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "ready", "even a scout that keeps flagging converges — the pass cap lets the gate advance to QC");
+  assert.equal(spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout")).length, 2, "the scout runs at most PREQC_MAX_VARIETY_PASSES (2) — it can never spin the gate");
+});
+
+test("doGate variety scout is BEST-EFFORT — a scout that fails to run never blocks the gate (advances to QC)", async () => {
+  const { deps, spawns } = varietyGateDeps(() => ({ ok: false, stdout: "" }));
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  assert.equal(outcome.status, "ready", "a failed scout advances to QC — QC stays the safety net");
+  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a failed scout triggers no de-template repairs");
+});
+
 test("R3: a repair that introduces a NEW major (invisible to qc-converge) triggers ONE targeted regression-fix", async () => {
   let finalizeCalls = 0;
   let majorCalls = 0;
@@ -1075,6 +1144,10 @@ test("WRITER_SELF_VERIFY wires the WT-F semantic levers into the autopilot write
   for (const axis of ["behavioral_naturalness", "example_coherence", "factual_accuracy", "prose_coherence"]) {
     assert.ok(v.includes(axis), `self-verify should call out the ${axis} failure mode`);
   }
+  // persona coherence — the James-role-drift class (one first name worn by unrelated roles): a
+  // confirmed first-pass-QC REVISE driver the writer CAN self-catch within a chapter (the
+  // cross-chapter case is converged by the pre-QC variety scout in doGate).
+  assert.ok(v.includes("persona_coherence"), "self-verify should call out persona coherence (one name = one consistent role)");
   // token lever (item 3b): step 4 now LEANS on the expanded deterministic gate — the writer
   // should not re-derive the structural corruption tells the gate proves (EW1/SEAM/NE1/GN1),
   // focusing its judgment budget on the gate-invisible semantic axes.

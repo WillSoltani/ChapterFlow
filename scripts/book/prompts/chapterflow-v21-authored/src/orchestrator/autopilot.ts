@@ -974,6 +974,7 @@ export const WRITER_SELF_VERIFY = `SELF-VERIFY before declaring the chapter done
 4. BAR SELF-SCORE — read the 9-axis publishable bar (\`npx tsx src/cli.ts publishable-rubric\`) and score your draft honestly. Fix any corruption-axis hit and any axis you'd score below ~0.85 before submitting. Step 1's gate now PROVES the STRUCTURAL corruption tells are clean — an invented-witness cast (EW1), a stuttered word or verbatim triple-repeat (SEAM), a named-set miscount (NE1), an ungrounded number (GN1) — so do NOT re-derive those. Spend your judgment ONLY on the modes the deterministic gate cannot see:
    - behavioral_naturalness: NO contrived/performative micro-actions ("say aloud X", move a prop, tally on cue) — prescribe only the real functional action. The implementation plan's if-thens apply ONE move to different triggers in freshly-written actions, never the same action sentence pasted under each; and every reader action (tryThisNow, the 24-hour challenge, each if-then) is a real doable thing the reader could prove they did, not a say-aloud mantra.
    - example_coherence: every scenario carries a concrete time / place / role; never an abstract "the system does X" scene.
+   - persona_coherence: every NAMED person is ONE consistent individual with ONE role for the whole chapter. Never reuse a first name for unrelated people/roles ("James helps at GE, then James makes hospital discharge calls, then James runs a training folder" reads as three different people sharing a name, and QC REVISEs it as persona_drift). Need a second person? Give them a distinct name. A named person who recurs keeps the same identity and role.
    - factual_accuracy: no invented precision; NO invented witness (a fictional "participant" acting out a real study — see step 3); never state a contested finding (ego depletion, marshmallow-as-destiny) as settled fact. A spine number (a doubling, a compounding rate, a multiplier) is walked through in the deep tiers and stated at its true magnitude, never dropped as a bare conclusion or rounded down to a lazy comparison (a ~37x result is not 'more than triple').
    - prose_coherence: tiers layer NEW ground, not reworded restatement; cadence varies.
 
@@ -1031,6 +1032,7 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, he
   // a derive failure just falls back to the prior agent-driven behavior, no worse than before.
   const derived = await deps.runVerb(["derive-artifacts", bookId]);
   if (derived.code !== 0) deps.log(`[autopilot] derive-artifacts exited ${derived.code} before gate convergence (BP7 may persist) — ${(derived.stderr || derived.stdout).slice(0, 200)}`);
+  let varietyPasses = 0; // pre-QC cross-chapter variety scout passes (bounded; independent of maxRepair)
   for (let attempt = 1; attempt <= maxRepair; attempt++) {
     // Keep the run lock fresh across this multi-hour repair phase (each attempt spawns a 30-min
     // codex session); halt if a successor took the lock — same as doQcWithRepair.
@@ -1056,7 +1058,25 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, he
     // before write→QC handoff" the owner wants. ADVISORY majors are excluded
     // (critics/majorPolicy.ts) so this never chases a reference-corpus false positive.
     const majors = deps.blockingMajors(bookId);
-    if (majors.length === 0) return null; // fully clean (blockers + blocking majors) → advance to qc
+    if (majors.length === 0) {
+      // Blockers + blocking-majors are CLEAN. The LAST thing QC checks that the blind parallel
+      // writers could NOT self-check is cross-chapter VARIETY (the templating sweep). Converge it
+      // HERE — bounded + best-effort — so the first QC round starts de-templated (the first-pass-QC
+      // lever). A pass that finds nothing is one cheap full-book read; a pass that finds templating
+      // surgically differentiates the flagged chapters then re-loops (the next iteration re-converges
+      // any blocker a detemplate edit introduced, then re-scouts or advances).
+      if (varietyPasses < PREQC_MAX_VARIETY_PASSES) {
+        varietyPasses++;
+        const rewrites = await scoutCrossChapterVariety(bookId, deps);
+        if (rewrites.length) {
+          deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
+          await surgicalDetemplate(bookId, rewrites, deps, varietyPasses);
+          continue;
+        }
+        deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}: book reads varied (no cross-chapter templating) → advancing to QC`);
+      }
+      return null; // blockers + blocking-majors + cross-chapter variety all clean → advance to qc
+    }
     deps.log(`[autopilot] gate repair attempt ${attempt}/${maxRepair} — converging ${majors.length} blocking major(s) before QC: ${majors.map((m) => m.checkId).join(", ")}`);
     const task = buildGateMajorRepairTask(bookId, majors, deps);
     const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-major-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
@@ -1100,6 +1120,121 @@ Fix EVERY blocking major below in one pass; loop until major-status shows 0 unre
 
 BLOCKING majors:
 ${findingList}${dealtCards}`;
+}
+
+// ── Pre-QC cross-chapter VARIETY convergence (the first-pass-QC lever) ─────────
+// The dominant first-pass-QC REVISE driver is NOT a per-chapter quality miss — the
+// writers self-score the 9-axis bar and it lands GREEN. It is cross-chapter TEMPLATING
+// the blind parallel writers structurally cannot self-detect: the QC sweep's four
+// families (scene_skeleton / repeated_unit / location_stamping / persona_drift) plus
+// the QC rule "any chapter touched by a sweep finding caps at REVISE regardless of its
+// per-chapter quality." A blind writer following a DISTINCT dealt move can still realize
+// a SHARED scene FRAME, and nothing between write and QC has full-book visibility to see
+// it — so it first surfaces at QC and burns repair rounds.
+//
+// Converge that variety HERE, at the gate, so the FIRST QC round starts de-templated.
+// A single full-book SCOUT (the same sweep rubric, read-only) emits a COORDINATED
+// differentiation brief — for each templated cluster it names ONE chapter to KEEP the
+// frame and the OTHERS to move — and SURGICAL per-chapter repairs (one session each,
+// editing ONLY its chapter) execute it. The coordinated brief is exactly the
+// cross-chapter signal the blind R4 QC-repair loop lacks (which is WHY templating takes
+// several blind rounds to clear). Bounded by PREQC_MAX_VARIETY_PASSES (independent of the
+// deterministic repair budget), best-effort (a scout/parse failure just advances — QC
+// stays the safety net), and a no-op on an already-varied book (gold reads CLEAN → one
+// cheap read, zero edits → no FP-on-gold regression risk: it reuses the sweep rubric +
+// FP-guards, and the formal sweep already passes gold).
+
+const PREQC_MAX_VARIETY_PASSES = 2;     // full-book scout passes per gate, independent of maxRepair
+const PREQC_MAX_REWRITES_PER_PASS = 4;  // cap surgical sessions per pass (bounds cost on a systemically-templated book)
+
+type VarietyRewrite = { chapter: number; family?: string; shared?: string; instruction: string };
+
+/** The read-only full-book scout prompt: the QC sweep's own rubric (families + FP-guards),
+ *  asking for a per-chapter differentiation brief as a single ```json fenced block. */
+function buildVarietyScoutTask(bookId: string): string {
+  return `You are a READ-ONLY cross-chapter VARIETY scout for bookId ${bookId}. Read EVERY chapter file \`state/chapters/${bookId}-ch*.v21-native.chapter.json\` in ONE pass and look ONLY for cross-chapter TEMPLATING — the defect class per-chapter reads structurally miss, and the exact thing the QC "templating sweep" REVISEs the book on. Do NOT edit any file; this is analysis only.
+
+Compare these fields ACROSS chapters: title, hook, counterintuition, keyTakeaway, tryThisNow, breakdown.{fastRead,deepRead,fullRead}, examples[].{title,scenario,whatToDo,whyItMatters}, quiz[].prompt, reviewCards[].{front,back}, implementationPlan.{twentyFourHourChallenge,weeklyPractice,ifThenPlans[]}, memorableLines.
+
+Flag a cluster ONLY for these families:
+1. scene_skeleton — example scenes sharing one FRAME across chapters: one functional MOVE / device reused with only the nouns swapped (the dramatic transaction is identical while names / props / setting change). E.g. a "decision made alone under deadline" beat reused chapter after chapter.
+2. persona_drift — one NAME worn by different people: ACROSS chapters (a source figure's first name reused on a fictional protagonist), OR WITHIN one chapter (the same first name attached to unrelated roles — "James helps at GE, then James makes hospital discharge calls, then James runs a training folder" reads as three different people sharing a name).
+3. repeated_unit — near-identical cards / plans / quiz stems / hooks / tactics / marquee exemplars across chapters, or one example UNIT reused as the same functional move.
+4. location_stamping — one venue / company / setting stamped across many chapters.
+
+FP-GUARDS — do NOT flag: shared CONCEPT terms (the book's own vocabulary), an ordinary recurring GESTURE ("nods", "takes a breath"), or a consistent pedagogical opener with DIFFERING content. Only flag a reused structural DEVICE. Be conservative: a borderline echo is NOT templating.
+
+For each cluster, choose ONE chapter to KEEP the frame and list the OTHERS as rewrites (NEVER list every chapter in a cluster — one always keeps). Give each rewrite a concrete, chapter-specific differentiation instruction (move onto a distinct scene frame / venue / exemplar / name). A within-chapter persona_drift is a single rewrite for that chapter.
+
+Output ONLY your brief as your FINAL message — a single \`\`\`json fenced block, nothing else:
+\`\`\`json
+{ "templated": false, "rewrites": [] }
+\`\`\`
+or, when templated:
+\`\`\`json
+{ "templated": true, "rewrites": [ { "chapter": 7, "family": "repeated_unit", "shared": "ch6 & ch7 both pivot on 'a decision without an owner'", "instruction": "Re-cast ch7's marquee diagnostic onto its dealt move + a distinct venue; leave ch6's version." } ] }
+\`\`\`
+If the book reads varied, return {"templated": false, "rewrites": []}.`;
+}
+
+/** Spawn the read-only full-book variety scout and parse its differentiation brief.
+ *  Best-effort: any failure (agent exit, no parseable brief, bad JSON) returns [] → the
+ *  gate advances to QC unchanged (QC stays the safety net). Validates + dedups to one
+ *  rewrite per chapter and caps the count so a single pass is bounded. */
+async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDeps): Promise<VarietyRewrite[]> {
+  let r: CodexAgentResult;
+  try {
+    r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
+  } catch (e) {
+    deps.log(`[autopilot] pre-QC variety scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
+    return [];
+  }
+  if (!r.ok) { deps.log(`[autopilot] pre-QC variety scout exited ${r.exitCode} — advancing to QC`); return []; }
+  const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
+  if (!json) { deps.log(`[autopilot] pre-QC variety scout: no parseable brief in output — advancing to QC`); return []; }
+  let brief: { templated?: boolean; rewrites?: unknown };
+  try { brief = JSON.parse(json); } catch { deps.log(`[autopilot] pre-QC variety scout: brief JSON did not parse — advancing to QC`); return []; }
+  if (!brief || brief.templated === false || !Array.isArray(brief.rewrites)) return [];
+  const seen = new Set<number>();
+  const out: VarietyRewrite[] = [];
+  for (const raw of brief.rewrites as Array<Record<string, unknown>>) {
+    const chapter = Number(raw?.chapter);
+    const instruction = typeof raw?.instruction === "string" ? raw.instruction.trim() : "";
+    if (!Number.isInteger(chapter) || chapter < 1 || !instruction || seen.has(chapter)) continue;
+    seen.add(chapter);
+    out.push({ chapter, family: typeof raw?.family === "string" ? raw.family : undefined, shared: typeof raw?.shared === "string" ? raw.shared : undefined, instruction });
+    if (out.length >= PREQC_MAX_REWRITES_PER_PASS) break;
+  }
+  return out;
+}
+
+/** Execute the scout's brief: ONE surgical session per flagged chapter, each scoped to
+ *  edit ONLY its chapter and re-stage onto that chapter's dealt card. Never a multi-chapter
+ *  rewrite — a single session re-authoring siblings collapses them onto a shared frame, the
+ *  very homogenization this is fixing (see the R4 note in doQcWithRepair). */
+async function surgicalDetemplate(bookId: string, rewrites: VarietyRewrite[], deps: AutopilotDeps, pass: number): Promise<void> {
+  const writeCards = deps.listWriteCards(bookId);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  for (const rw of rewrites) {
+    const n = rw.chapter;
+    const card = writeCards.find((c) => chapterNumberFromCard(c) === n);
+    const dealt = card ? `\n\n--- DEALT AUTHORING CARD ch${pad(n)} (restage onto THESE dealt shape/venue/opener slots — do NOT collapse onto a shared frame) ---\n${deps.readTask(card)}` : "";
+    const task = `PRE-QC VARIETY REPAIR — edit ONLY ch${pad(n)} of ${bookId}. The cross-chapter templating scout (the SAME family the QC sweep REVISEs on) found this chapter shares a structural frame with a sibling; differentiate it NOW so the first QC round is clean.
+
+Edit ONLY state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json. Do NOT edit any other chapter, and do NOT copy another chapter's scenes / names / phrasing into this one (that re-creates the templating). Preserve every number, proper noun, and source anchor, and keep the chapter's teaching + quiz keys intact.
+
+DIFFERENTIATE (${rw.family ?? "templating"}): ${rw.shared ?? "shares a structural frame with a sibling chapter"}
+HOW: ${rw.instruction}
+
+After editing, run \`npx tsx src/cli.ts qc-converge ${bookId}\` (must stay DETERMINISTIC-CLEAN) and \`npx tsx src/cli.ts gate-chapter state/chapters/${bookId}-ch${pad(n)}.v21-native.chapter.json\` (0 blockers).${dealt}`;
+    const sid = deps.mkSessionId(`pre-qc-variety-${pass}-ch${n}`);
+    const r = await spawnAndLog(bookId, { task, sessionId: sid, cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    if (!r.ok) deps.log(`[autopilot] pre-QC variety repair ch${n} exited ${r.exitCode}`);
+    // A real edit re-authors the chapter → author provenance moves to this session; a no-op
+    // repair leaves content identical so the create-once guard throws and the prior author stands.
+    try { recordAuthorProvenance(`${bookId}-ch${pad(n)}`, sid, chapterContentHashByNumber(bookId, n)); }
+    catch { /* provenance unchanged (no-op repair) — best-effort */ }
+  }
 }
 
 // ── Phase: qc (headless round + bounded repair loop) ──────────────────────────
