@@ -12,6 +12,16 @@ function chapterWith(scenario: string, domain = "office desk argument"): any {
   };
 }
 
+// SL6 lives in quiz explanations (the leak surface) — build a chapter whose only reader
+// text is a single quiz explanation so the assertion is scoped to that field.
+function chapterWithExplanation(explanation: string): any {
+  return {
+    chapterId: "zz-fixture-ch01",
+    number: 1,
+    quiz: { questions: [{ explanation }] },
+  };
+}
+
 test("SL1 blocks underscore format-tag tokens but not real English words", () => {
   const leak = checkScaffoldLeak(chapterWith("Mara opens with a coach_talk about the budget."));
   assert.ok(leak.some((f) => f.checkId === "SL1.format_tag_leak" && f.severity === "blocker"), JSON.stringify(leak));
@@ -151,6 +161,36 @@ test("SL5 does NOT fire on a bare 'edition'/year, a publisher-as-setting, or a b
       checkScaffoldLeak(chapterWith(s)).filter((f) => f.checkId === "SL5.publication_detail"),
       [],
       `SL5 false-fired on: ${s}`,
+    );
+  }
+});
+
+test("SL6 blocks internal source-anchor numbering cited as reader prose ('Fact 7 says…')", () => {
+  // The exact shipped leak (the-millionaire-next-door / eat-that-frog / 12 more books): the
+  // numbered source catalog (anchor id "chNN.fact.N") rendered as "Fact N says…" in a quiz
+  // explanation, with no "Fact N" anywhere on the reader page.
+  const leak = checkScaffoldLeak(chapterWithExplanation("Fact 7 says repeated rescue can let overspending continue. The waiting choice treats size as a reason to wait."));
+  assert.ok(leak.some((f) => f.checkId === "SL6.source_numbering_leak" && f.severity === "blocker"), JSON.stringify(leak));
+  // The other unambiguous internal-anchor labels + a reference verb also fire.
+  for (const s of ["Source 3 shows the rule still holds.", "Reference 2 notes the hidden cost.", "Evidence 9 warns against the shortcut.", "Fact 8 warns that startup friction is not failure."]) {
+    assert.ok(checkScaffoldLeak(chapterWithExplanation(s)).some((f) => f.checkId === "SL6.source_numbering_leak"), `SL6 missed: ${s}`);
+  }
+});
+
+test("SL6 does NOT fire on ordinary prose (no adjacent reference verb; excluded enumerators)", () => {
+  const clean = [
+    "In fact 7 out of 10 people relapse within a week of starting.",      // "fact 7" but the next word is "out", not a verb
+    "The fact that 3 colleagues left did not change her plan.",           // "fact that", no number directly after the label
+    "Point 3 shows the trade-off, and step 1 is simply to breathe.",      // Point / step are excluded common enumerators
+    "Finding 2 ways to rest, she tried both that weekend.",               // Finding is an excluded enumerator
+    "Source the parts locally and the cost drops by half.",              // "Source" with no number
+    "Fact-check the figure before you quote it to the team.",            // hyphenated, no number
+  ];
+  for (const s of clean) {
+    assert.deepEqual(
+      checkScaffoldLeak(chapterWithExplanation(s)).filter((f) => f.checkId === "SL6.source_numbering_leak"),
+      [],
+      `SL6 false-fired on: ${s}`,
     );
   }
 });

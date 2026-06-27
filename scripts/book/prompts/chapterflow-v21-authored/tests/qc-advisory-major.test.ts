@@ -1,10 +1,13 @@
 /**
  * Major-clean production policy guard.
  *
- * Deterministic majors are raw observations, not automatic passes. They remain
- * visible through currentMajorFindings, and unresolvedMajors now returns every
- * current major until a narrow, reviewer-attributed, content-bound waiver closes
- * that exact finding/content.
+ * Deterministic majors are raw observations, not automatic passes. They all remain
+ * VISIBLE through currentMajorFindings. The BLOCKING set (unresolvedMajors) is the
+ * non-ADVISORY subset: advisory majors (critics/majorPolicy.ts — the FP-prone /
+ * reference-corpus-firing tier) surface but never hard-gate (so they can never force
+ * a human-disposition governance halt); every other (blocking) major is unresolved
+ * until a narrow, reviewer-attributed, content-bound waiver closes that exact
+ * finding/content.
  */
 import assert from "node:assert/strict";
 import { readdirSync, readFileSync, rmSync } from "fs";
@@ -15,6 +18,7 @@ import { cleanCorpusChapterFiles, goldChapterFiles, makeChapter, STATE_CHAPTERS,
 import { currentMajorFindings, unresolvedMajors } from "../src/qc/majorDisposition.js";
 import { QC_ENFORCED_MAJORS, runShipGate } from "../src/critics/finalGate.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import { isAdvisoryMajor } from "../src/critics/majorPolicy.js";
 
 const BOOK = "zz-fixture-advisory-major";
 
@@ -24,7 +28,7 @@ function cleanup(): void {
   }
 }
 
-test("deterministic majors surface and are unresolved by default until a content-bound waiver closes them", () => {
+test("deterministic majors all SURFACE; advisory majors are non-blocking, blocking majors are unresolved by default", () => {
   const oldWarn = console.warn;
   console.warn = () => {};
   try {
@@ -33,8 +37,17 @@ test("deterministic majors surface and are unresolved by default until a content
     writeFixtureBook(STATE_CHAPTERS, [chapter]);
     const surfaced = currentMajorFindings(BOOK, [chapter]);
     assert.ok(surfaced.length > 0, "fixture should trip at least one deterministic major (the visibility path must keep working)");
+    // Advisory majors (reference-corpus-firing / FP-prone) surface but never block — so
+    // they can never force a human-disposition governance halt. A minimal fixture trips
+    // the always-firing advisory majors (E1, C2, …), so the exclusion must be exercised.
+    assert.ok(surfaced.some((f) => isAdvisoryMajor(f.checkId)), "fixture should surface at least one advisory major (so the non-blocking path is exercised)");
     const blocking = unresolvedMajors(BOOK, [chapter], true);
-    assert.deepEqual(blocking.map((f) => f.id).sort(), surfaced.map((f) => f.id).sort(), "every surfaced major is unresolved without an explicit content-bound waiver");
+    // No advisory major is ever blocking (the autonomy fix).
+    for (const f of blocking) assert.ok(!isAdvisoryMajor(f.checkId), `advisory major ${f.checkId} must never be in the blocking set`);
+    // The blocking set is EXACTLY the non-advisory subset of the surfaced majors —
+    // every blocking major is unresolved without an explicit content-bound waiver.
+    const blockingSurfaced = surfaced.filter((f) => !isAdvisoryMajor(f.checkId));
+    assert.deepEqual(blocking.map((f) => f.id).sort(), blockingSurfaced.map((f) => f.id).sort(), "unresolvedMajors == the non-advisory subset of currentMajorFindings");
   } finally {
     console.warn = oldWarn;
     cleanup();

@@ -34,12 +34,36 @@ import type { ChapterV21 } from "../types.js";
 import { splitSentences } from "./textUtils.js";
 
 export type ScaffoldLeakFinding = {
-  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop" | "SL5.publication_detail";
+  checkId: "SL1.format_tag_leak" | "SL2.domain_label_leak" | "SL3.spectator_prop" | "SL4.citation_prop" | "SL5.publication_detail" | "SL6.source_numbering_leak";
   severity: "blocker" | "major";
   unit: string;
   message: string;
   evidence?: string;
 };
+
+// SL6 — source-numbering scaffold leak. The source sidecar feeds the author a NUMBERED
+// catalog of anchors (testableFacts with ids "chNN.fact.N", etc.); the model sometimes
+// cites the internal label verbatim instead of resolving it to reader content — e.g.
+// "Fact 7 says repeated rescue can let overspending continue", "Fact 9 says fairness in
+// family giving can conflict with self-support" — with no "Fact 7/9" anywhere on the
+// reader-facing page. Shipped in 20+ chapters (eat-that-frog ch18/ch19, digital-minimalism
+// ch06, the-millionaire-next-door ch06) — caught by NEITHER the deterministic gate NOR the
+// semantic sweep. BLOCKER: the reader never sees internal anchor numbering, so it is a
+// zero-false-positive scaffold tell (the SL1 lesson).
+//
+// PRECISION (the SL1/SL4 lesson — a false positive is worse than a missed weak case):
+//   1. only the UNAMBIGUOUS internal-anchor labels (the source catalog's own terms —
+//      "Fact"/"Source"/"Reference"/"Anchor"/"Citation"/"Evidence"). The common English
+//      enumerators "Finding"/"Claim"/"Item"/"Point"/"Step" are EXCLUDED — a chapter can
+//      legitimately write "Point 3 shows…" about its own argument.
+//   2. a REFERENCE VERB ("says"/"shows"/"warns"/…) DIRECTLY adjacent to the number. That
+//      anchor keeps ordinary prose clean: "in fact 7 out of 10 people relapse" has no
+//      reference verb after the number ("out"), so it does not fire.
+// Case-insensitive. Calibrated to zero false-positives across the shipped corpus.
+const SL6_ANCHOR_LABEL = "(?:Fact|Source|Reference|Anchor|Citation|Evidence)";
+const SL6_REF_VERB =
+  "(?:says?|said|shows?|showed|states?|stated|notes?|noted|warns?|warned|finds?|found|explains?|explained|describes?|described|indicates?|indicated|suggests?|suggested|reports?|reported|confirms?|confirmed|establishes?|established|tells?|told|reveals?|revealed|demonstrates?|demonstrated|proves?|proved|teaches?|taught|argues?|argued|claims?|claimed|holds?|held|defines?|defined|lists?|listed|highlights?|highlighted|emphasi[sz]es?|emphasi[sz]ed|reminds?|reminded|covers?|covered)";
+const SL6_RE = new RegExp(`\\b${SL6_ANCHOR_LABEL}\\s+#?\\d+(?:'s)?\\s+${SL6_REF_VERB}\\b`, "i");
 
 /** Scene-shape FORMAT ids that contain an underscore — these are the ones that
  *  cannot occur in natural prose, so matching them is safe. Union of
@@ -155,6 +179,21 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
         message: `${f.unit}.${f.field} contains the internal scene-shape format tag "${m[1]}" as literal prose. Format ids are authoring scaffolding — never write them into reader-facing text.`,
         evidence: m[1],
       });
+    }
+  }
+
+  // SL6 — source-numbering scaffold leak ("Fact 7 says…") in any reader field.
+  for (const f of readerFields(chapter)) {
+    const m = f.text.match(SL6_RE);
+    if (m) {
+      findings.push({
+        checkId: "SL6.source_numbering_leak",
+        severity: "blocker",
+        unit: f.unit,
+        message: `${f.unit}.${f.field} cites an internal source-anchor label ("${m[0]}") as reader prose. The numbered source catalog ("Fact 1", "Source 3") is authoring scaffolding invisible to the reader — state the claim directly (drop the "Fact N says" prefix), never reference the source by its catalog number.`,
+        evidence: m[0],
+      });
+      break; // one finding per chapter is enough to drive the fix
     }
   }
 

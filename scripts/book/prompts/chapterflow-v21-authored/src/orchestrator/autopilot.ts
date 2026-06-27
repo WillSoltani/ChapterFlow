@@ -41,6 +41,7 @@ import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
 import { normalizeChapterProvenance } from "../qc/normalizeProvenance.js";
+import { unresolvedMajors, formatMajorStatus, type MajorFindingSnapshot } from "../qc/majorDisposition.js";
 import { pruneBookStatePlan, applyPruneBookState } from "../qc/pruneBookState.js";
 import { carryableChapter } from "../qc/orchestrator/index.js";
 import { driveQcRoundCore, type ReviewerWave, type ReviewerWaveResult } from "../qc/auto/driver.js";
@@ -150,6 +151,12 @@ export type AutopilotDeps = {
    *  sweep/bar would flag. The post-repair scan diffs this pre vs post to catch that regression.
    *  Fail-safe → empty set (no false regression signal on an unreadable book). */
   majorFindingKeys: (bookId: string) => Set<string>;
+  /** The unresolved BLOCKING majors for the whole book (ADVISORY majors excluded —
+   *  see critics/majorPolicy.ts). The gate phase converges these to empty BEFORE QC,
+   *  so no deterministic major reaches finalize as an unresolved finding (which would
+   *  force the `major-disposition` governance halt). Fail-safe → empty set so an
+   *  unreadable book never reports a false major-block. */
+  blockingMajors: (bookId: string) => MajorFindingSnapshot[];
   /** True iff the reviewer card already produced a submission on disk — used to
    *  re-spawn ONLY the missing reviewers on an INCOMPLETE round, not the whole wave. */
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
@@ -498,6 +505,13 @@ function defaultMajorFindingKeys(bookId: string): Set<string> {
   return keys;
 }
 
+/** The unresolved BLOCKING majors for the whole book (advisory majors excluded by
+ *  majorPolicy via evaluateMajorCleanliness). Fail-safe → empty so an unreadable book
+ *  never reports a false major-block (a full gate-converge round is always correct). */
+function defaultBlockingMajors(bookId: string): MajorFindingSnapshot[] {
+  try { return unresolvedMajors(bookId); } catch { return []; }
+}
+
 /** Map a task-card path → its QC role + chapter + (for tiebreak cards) the bar-read
  *  variant. MUST recognize bar-tiebreak/chNN-t2.md (path is "/bar-tiebreak/", NOT "/bar/")
  *  so its presence check is variant-aware — else the dynamic-wave loop never converges.
@@ -774,6 +788,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     anyCarryable: d?.anyCarryable ?? defaultAnyCarryable,
     sweepConfirmed: d?.sweepConfirmed ?? defaultSweepConfirmed,
     majorFindingKeys: d?.majorFindingKeys ?? defaultMajorFindingKeys,
+    blockingMajors: d?.blockingMajors ?? defaultBlockingMajors,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
     logBroker: d?.logBroker ?? logBrokerToDisk,
@@ -1023,19 +1038,68 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, he
       return mkHalt(bookId, "gate", "infra", `lost the run lock for ${bookId} mid-gate-repair — halting to avoid two conductors on the same book.`);
     }
     const converge = await deps.runVerb(["qc-converge", bookId]);
-    if (converge.code === 0) return null; // DETERMINISTIC-CLEAN → re-loop (advances to qc)
     // exit 1 = dirty content (repair); exit ≥2 = qc-converge itself errored (no chapters,
     // bad args, internal) — that's infra, NOT a reason to tell an agent to edit content.
     if (converge.code >= 2) return mkHalt(bookId, "gate", "infra", `qc-converge errored (exit ${converge.code}) — not a content problem; inspect: ${(converge.stderr || converge.stdout).slice(0, 300)}`);
-    deps.log(`[autopilot] gate repair attempt ${attempt}/${maxRepair} — converging deterministic gates`);
-    const task = `Fix the DETERMINISTIC gate findings below for bookId ${bookId} by editing chapter CONTENT only (state/chapters/), then run \`npx tsx src/cli.ts qc-converge ${bookId}\` until it reports DETERMINISTIC-CLEAN. Fix EVERY finding in one pass. Do NOT edit pipeline code/config.\n\n${converge.stdout}`;
-    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
-    if (!r.ok) deps.log(`[autopilot] gate repair session exited ${r.exitCode}`);
+    if (converge.code !== 0) {
+      // DETERMINISTIC-DIRTY (blockers) → converge the cheap deterministic battery first.
+      deps.log(`[autopilot] gate repair attempt ${attempt}/${maxRepair} — converging deterministic gates`);
+      const task = `Fix the DETERMINISTIC gate findings below for bookId ${bookId} by editing chapter CONTENT only (state/chapters/), then run \`npx tsx src/cli.ts qc-converge ${bookId}\` until it reports DETERMINISTIC-CLEAN. Fix EVERY finding in one pass. Do NOT edit pipeline code/config.\n\n${converge.stdout}`;
+      const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+      if (!r.ok) deps.log(`[autopilot] gate repair session exited ${r.exitCode}`);
+      continue;
+    }
+    // Blockers are CLEAN. Now converge the BLOCKING majors BEFORE handing off to QC.
+    // Majors are invisible to qc-converge (it gates on blockers only), but finalize
+    // REVISEs on any unresolved major and the QC phase would governance-halt on it —
+    // so fixing them HERE, in the cheap deterministic gate loop, is the "majors fixed
+    // before write→QC handoff" the owner wants. ADVISORY majors are excluded
+    // (critics/majorPolicy.ts) so this never chases a reference-corpus false positive.
+    const majors = deps.blockingMajors(bookId);
+    if (majors.length === 0) return null; // fully clean (blockers + blocking majors) → advance to qc
+    deps.log(`[autopilot] gate repair attempt ${attempt}/${maxRepair} — converging ${majors.length} blocking major(s) before QC: ${majors.map((m) => m.checkId).join(", ")}`);
+    const task = buildGateMajorRepairTask(bookId, majors, deps);
+    const r = await spawnAndLog(bookId, { task, sessionId: deps.mkSessionId(`gate-major-repair-${attempt}`), cwd: PIPELINE_DIR, sandbox: "workspace-write", writableRoots: WORK_WRITABLE_ROOTS }, deps);
+    if (!r.ok) deps.log(`[autopilot] gate major-repair session exited ${r.exitCode}`);
+    // A major fix is a content edit that can re-introduce a blocker — loop re-runs
+    // qc-converge first, so the next pass cleans any new blocker before re-checking majors.
   }
   const final = await deps.runVerb(["qc-converge", bookId]);
-  if (final.code === 0) return null;
   if (final.code >= 2) return mkHalt(bookId, "gate", "infra", `qc-converge errored (exit ${final.code}) after ${maxRepair} repair rounds — inspect: ${(final.stderr || final.stdout).slice(0, 300)}`);
-  return mkHalt(bookId, "gate", "content", `deterministic gates still DIRTY after ${maxRepair} repair rounds — escalate. Run: npx tsx src/cli.ts qc-converge ${bookId}`);
+  if (final.code !== 0) return mkHalt(bookId, "gate", "content", `deterministic gates still DIRTY after ${maxRepair} repair rounds — escalate. Run: npx tsx src/cli.ts qc-converge ${bookId}`);
+  const residualMajors = deps.blockingMajors(bookId);
+  if (residualMajors.length === 0) return null;
+  return mkHalt(bookId, "gate", "content", `${residualMajors.length} blocking major(s) still unresolved after ${maxRepair} gate rounds — escalate (these are real, fixable defects, not advisory). Run: npx tsx src/cli.ts major-status ${bookId}\n${residualMajors.map((m) => `  [${m.checkId}] ${m.scope}: ${m.message.slice(0, 140)}`).join("\n")}`);
+}
+
+/** Build the gate-phase MAJOR-repair task: the blocking majors to fix (advisory ones
+ *  already excluded), the dealt authoring cards for any named chapter so a
+ *  structural-sameness major (BP33 opener reuse, BP27 venue, F3 answer drift) is
+ *  RE-STAGED onto its distinct dealt slots rather than surgically patched onto a
+ *  shared frame, and the same isolation guardrails the QC repair uses. */
+function buildGateMajorRepairTask(bookId: string, majors: MajorFindingSnapshot[], deps: AutopilotDeps): string {
+  const chapters = new Set<number>();
+  for (const m of majors) {
+    const scoped = m.scope.match(/^chapter:(\d+):/);
+    if (scoped) chapters.add(Number(scoped[1]));
+    for (const mm of `${m.message} ${m.evidence ?? ""}`.matchAll(/\bch(?:apter)?s?\.?\s*(\d+)/gi)) chapters.add(Number(mm[1]));
+  }
+  const writeCards = deps.listWriteCards(bookId);
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const dealtCards = [...chapters].sort((a, b) => a - b).map((n) => {
+    const c = writeCards.find((c) => chapterNumberFromCard(c) === n);
+    return c ? `\n\n--- DEALT AUTHORING CARD ch${pad(n)} (re-stage onto THESE dealt shape/venue/opener slots — do NOT collapse onto a shared frame) ---\n${deps.readTask(c)}` : "";
+  }).join("");
+  const findingList = majors.map((m) => `- [${m.checkId}] ${m.scope}: ${m.message}${m.evidence ? ` — "${m.evidence.slice(0, 140)}"` : ""}`).join("\n");
+  return `Fix the BLOCKING MAJOR findings below for bookId ${bookId} by editing chapter CONTENT only (state/chapters/). These are real, fixable defects (advisory majors are already excluded). Edit each named chapter IN ISOLATION — do NOT copy one chapter's scenes, names, openers, or phrasing into another (that re-creates the cross-chapter templating the sweep flags). Preserve every number, proper noun, and source anchor. Do NOT edit pipeline code/config.
+
+After editing, VERIFY:
+  npx tsx src/cli.ts qc-converge ${bookId}        # must stay DETERMINISTIC-CLEAN (no new blocker)
+  npx tsx src/cli.ts major-status ${bookId}       # the listed majors must clear (ADVISORY lines are fine — leave them)
+Fix EVERY blocking major below in one pass; loop until major-status shows 0 unresolved (non-advisory).
+
+BLOCKING majors:
+${findingList}${dealtCards}`;
 }
 
 // ── Phase: qc (headless round + bounded repair loop) ──────────────────────────
@@ -1124,8 +1188,15 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     if (diagnose.code !== 0) {
       return mkHalt(bookId, "qc", "infra", `qc-diagnose errored (exit ${diagnose.code}) for round ${round.roundId} — cannot make a governance/progress decision on its output: ${(diagnose.stderr || diagnose.stdout).slice(0, 300)}`);
     }
+    // A blocking major surfaced at QC. The gate-phase major convergence normally
+    // prevents this (doGate fixes every blocking major before QC); a sweep-repair can
+    // still re-introduce one. The autopilot is FULLY AUTONOMOUS — it FIXES the major
+    // (re-author), it never halts for a human waive/fix decision. The blocking majors
+    // are appended to the repair prompt below so this round's fan-out fixes them, and
+    // the no-progress halt backstops a genuinely un-fixable (stuck) major. ADVISORY
+    // majors never reach here (critics/majorPolicy.ts excludes them from the set).
     if (/major-disposition/.test(diagnose.stdout)) {
-      return mkHalt(bookId, "qc", "governance", `a MAJOR finding needs human disposition (waive vs fix) — the autopilot never auto-waives. Review: npx tsx src/cli.ts qc-diagnose ${bookId} --round ${round.roundId}`);
+      deps.log(`[autopilot] QC surfaced a blocking major; auto-repairing in this round's fan-out (no governance halt).`);
     }
     const sigs = findingSignatures(diagnose.stdout);
     if (attempt > 0 && noProgress(prevSignatures, sigs)) {
@@ -1140,9 +1211,15 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     // deal computed; re-attaching it per chapter lets the writer restage onto the variety already
     // designed in, instead of collapsing onto a new shared frame.
     const flagged = flaggedChapterNumbers(bookId, round.roundId);
-    const wholePrompt = existsSync(repairPromptPath)
+    // Append any blocking majors so this round's repair fan-out fixes them alongside
+    // the sweep findings (the governance halt that used to stop here is gone — see above).
+    const blockingMajors = deps.blockingMajors(bookId);
+    const majorAddendum = blockingMajors.length
+      ? `\n\n--- BLOCKING MAJORS — fix these too (advisory majors excluded; verify with \`major-status ${bookId}\` → 0 unresolved non-advisory) ---\n${blockingMajors.map((m) => `- [${m.checkId}] ${m.scope}: ${m.message}${m.evidence ? ` — "${m.evidence.slice(0, 140)}"` : ""}`).join("\n")}`
+      : "";
+    const wholePrompt = (existsSync(repairPromptPath)
       ? deps.readTask(repairPromptPath)
-      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`;
+      : `Repair the QC findings for bookId ${bookId} round ${round.roundId} in chapter content, then run qc-converge ${bookId} until CLEAN.`) + majorAddendum;
     const writeCards = deps.listWriteCards(bookId);
     const pad = (n: number) => String(n).padStart(2, "0");
     const dealtCardFor = (n: number): string => {

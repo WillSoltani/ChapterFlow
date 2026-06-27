@@ -234,8 +234,8 @@ test("autopilot HALTs on no-progress (same QC findings survive a repair)", async
   if (outcome.status === "halt") assert.match(outcome.reason, /NO progress/i);
 });
 
-test("autopilot HALTs (never auto-waives) when a major needs disposition", async () => {
-  const { deps } = happyDeps([makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })], {
+test("autopilot AUTO-REPAIRS a major instead of governance-halting (full autonomy — never asks for human disposition)", async () => {
+  const { deps, spawns } = happyDeps([makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })], {
     runVerb: async (args) => {
       if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
       if (args.includes("--finalize")) return { code: 1, stdout: "REVISE", stderr: "" };
@@ -244,8 +244,39 @@ test("autopilot HALTs (never auto-waives) when a major needs disposition", async
     },
   });
   const outcome = await runAutopilot({ bookId: "zz", deps });
+  // The autopilot is fully autonomous: a major no longer forces a human-disposition
+  // GOVERNANCE halt (the gate phase converges blocking majors before QC, and any that
+  // surface at QC are auto-repaired in the round's fan-out). The stub never resolves, so
+  // it eventually halts on progress/content — but it must spawn a repair first and never
+  // categorize the halt as "governance".
   assert.equal(outcome.status, "halt");
-  if (outcome.status === "halt") assert.match(outcome.reason, /MAJOR/);
+  if (outcome.status === "halt") assert.notEqual(outcome.category, "governance", "a major must not force a governance (waive-vs-fix) halt — the autopilot repairs it");
+  assert.ok(spawns.some((s) => s.sessionId.startsWith("qc-repair")), "autopilot spawns a repair session for the major rather than halting on sight");
+});
+
+test("doGate AUTO-CONVERGES a blocking major before QC (fix-before-write→QC handoff, no governance halt)", async () => {
+  let majorCalls = 0;
+  const statuses = [
+    // deterministicClean:false routes to the GATE phase even though bookGatePass (blockers) is true.
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    // After the gate fixes the major, the book is fully gated + QC'd → ready.
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
+  ];
+  const { deps, spawns } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "DETERMINISTIC-CLEAN", stderr: "" }; // blockers already clean
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    // One blocking major on the first gate check; cleared after the gate-major-repair spawns.
+    blockingMajors: (() => (majorCalls++ === 0
+      ? [{ id: "m1", scope: "chapter:1:tryThisNow", checkId: "BP33.tryThisNow_opener_reuse", message: "ch1 & ch2 share the try-now opener", contentHash: "h1", contentHashVersion: "chapter-content-hash-v2", findingHash: "fh1" }]
+      : [])) as unknown as AutopilotDeps["blockingMajors"],
+  });
+  const outcome = await runAutopilot({ bookId: "zz", deps });
+  // The major was fixed at the GATE (before QC) — the run reaches ready, never a governance halt.
+  assert.equal(outcome.status, "ready");
+  assert.ok(spawns.some((s) => s.sessionId.startsWith("gate-major-repair")), "doGate spawns a gate-major-repair to converge the blocking major before QC");
 });
 
 test("R3: a repair that introduces a NEW major (invisible to qc-converge) triggers ONE targeted regression-fix", async () => {
