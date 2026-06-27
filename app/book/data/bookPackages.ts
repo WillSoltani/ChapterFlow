@@ -127,6 +127,7 @@ import auto_the_compound_effect_Json from "@/book-packages/the-compound-effect.v
 import auto_the_slight_edge_Json from "@/book-packages/the-slight-edge.v21.json";
 import auto_the_millionaire_next_door_Json from "@/book-packages/the-millionaire-next-door.v21.json";
 import auto_the_first_90_days_Json from "@/book-packages/the-first-90-days.v21.json";
+import auto_the_effective_executive_Json from "@/book-packages/the-effective-executive.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2025,4 +2026,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_first_90_days_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-first-90-days"] = (tone) => normalizeAnyPackage(auto_the_first_90_days_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-effective-executive" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_effective_executive_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-effective-executive"] = (tone) => normalizeAnyPackage(auto_the_effective_executive_Json, tone);
 }
