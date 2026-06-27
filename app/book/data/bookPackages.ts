@@ -128,6 +128,7 @@ import auto_the_slight_edge_Json from "@/book-packages/the-slight-edge.v21.json"
 import auto_the_millionaire_next_door_Json from "@/book-packages/the-millionaire-next-door.v21.json";
 import auto_the_first_90_days_Json from "@/book-packages/the-first-90-days.v21.json";
 import auto_the_effective_executive_Json from "@/book-packages/the-effective-executive.v21.json";
+import auto_the_power_of_moments_Json from "@/book-packages/the-power-of-moments.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2033,4 +2034,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_effective_executive_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-effective-executive"] = (tone) => normalizeAnyPackage(auto_the_effective_executive_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-power-of-moments" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_power_of_moments_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-power-of-moments"] = (tone) => normalizeAnyPackage(auto_the_power_of_moments_Json, tone);
 }
