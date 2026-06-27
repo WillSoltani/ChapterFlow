@@ -51,19 +51,23 @@ export type ScaffoldLeakFinding = {
 // semantic sweep. BLOCKER: the reader never sees internal anchor numbering, so it is a
 // zero-false-positive scaffold tell (the SL1 lesson).
 //
-// PRECISION (the SL1/SL4 lesson — a false positive is worse than a missed weak case):
-//   1. only the UNAMBIGUOUS internal-anchor labels (the source catalog's own terms —
-//      "Fact"/"Source"/"Reference"/"Anchor"/"Citation"/"Evidence"). The common English
-//      enumerators "Finding"/"Claim"/"Item"/"Point"/"Step" are EXCLUDED — a chapter can
-//      legitimately write "Point 3 shows…" about its own argument.
-//   2. a REFERENCE VERB ("says"/"shows"/"warns"/…) DIRECTLY adjacent to the number. That
-//      anchor keeps ordinary prose clean: "in fact 7 out of 10 people relapse" has no
-//      reference verb after the number ("out"), so it does not fire.
-// Case-insensitive. Calibrated to zero false-positives across the shipped corpus.
-const SL6_ANCHOR_LABEL = "(?:Fact|Source|Reference|Anchor|Citation|Evidence)";
+// PRECISION (the SL1/SL4 lesson — a false positive is worse than a missed weak case),
+// in two patterns:
+//   A — a CAPITALIZED internal-only anchor label ("Fact"/"Citation"/"Evidence"/"Anchor")
+//       + a number, in any clause position, followed by ANY word. These terms are never a
+//       natural capitalized sentence subject with a number in reader prose (measured: 0 on
+//       the clean+gold corpus; 516 hits across 14 shipped books, ALL "Fact N"), so the
+//       capital + number is the tell — it catches "Fact 7 supports/names/ties/separates/…"
+//       with ANY verb, not just a whitelist. Case-SENSITIVE so a lowercase "in fact 7 out
+//       of ten people relapse" can never match.
+//   B — any-case label (incl. "Source"/"Reference", which DO have legit capitalized uses —
+//       imperative "Source 3 widgets", cross-ref "Reference 3" — so they need the verb
+//       anchor) + number + a REFERENCE VERB directly adjacent. Catches a lowercase
+//       mid-sentence leak ("…as source 3 shows…") that Pattern A would miss.
+const SL6_CAP_LABEL_RE = /\b(?:Fact|Citation|Evidence|Anchor)\s+#?\d+\b/;
 const SL6_REF_VERB =
-  "(?:says?|said|shows?|showed|states?|stated|notes?|noted|warns?|warned|finds?|found|explains?|explained|describes?|described|indicates?|indicated|suggests?|suggested|reports?|reported|confirms?|confirmed|establishes?|established|tells?|told|reveals?|revealed|demonstrates?|demonstrated|proves?|proved|teaches?|taught|argues?|argued|claims?|claimed|holds?|held|defines?|defined|lists?|listed|highlights?|highlighted|emphasi[sz]es?|emphasi[sz]ed|reminds?|reminded|covers?|covered)";
-const SL6_RE = new RegExp(`\\b${SL6_ANCHOR_LABEL}\\s+#?\\d+(?:'s)?\\s+${SL6_REF_VERB}\\b`, "i");
+  "(?:says?|said|shows?|showed|states?|stated|notes?|noted|warns?|warned|finds?|found|explains?|explained|describes?|described|indicates?|indicated|suggests?|suggested|reports?|reported|confirms?|confirmed|establishes?|established|tells?|told|reveals?|revealed|demonstrates?|demonstrated|proves?|proved|teaches?|taught|argues?|argued|claims?|claimed|holds?|held|defines?|defined|lists?|listed|highlights?|highlighted|emphasi[sz]es?|emphasi[sz]ed|reminds?|reminded|covers?|covered|supports?|names?|ties?|links?|favors?|treats?|gives?|rejects?|draws?|allows?)";
+const SL6_VERB_RE = new RegExp(`\\b(?:Fact|Source|Reference|Anchor|Citation|Evidence)\\s+#?\\d+(?:'s)?\\s+${SL6_REF_VERB}\\b`, "i");
 
 /** Scene-shape FORMAT ids that contain an underscore — these are the ones that
  *  cannot occur in natural prose, so matching them is safe. Union of
@@ -184,7 +188,7 @@ export function checkScaffoldLeak(chapter: ChapterV21): ScaffoldLeakFinding[] {
 
   // SL6 — source-numbering scaffold leak ("Fact 7 says…") in any reader field.
   for (const f of readerFields(chapter)) {
-    const m = f.text.match(SL6_RE);
+    const m = f.text.match(SL6_CAP_LABEL_RE) ?? f.text.match(SL6_VERB_RE);
     if (m) {
       findings.push({
         checkId: "SL6.source_numbering_leak",
