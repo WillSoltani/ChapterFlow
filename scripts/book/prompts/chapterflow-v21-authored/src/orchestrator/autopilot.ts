@@ -904,7 +904,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "gate") {
-        const halt = await doGate(bookId, maxRepair, deps, heartbeat);
+        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat);
         if (halt) return halt;
         continue;
       }
@@ -1022,7 +1022,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
 
 // ── Phase: gate (repair ship/book-gate blockers, bounded) ─────────────────────
 
-async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
+async function doGate(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
   // BP7 (book-pattern audit) fails closed without durable brief + per-chapter plan artifacts under
   // state/briefs|plans/, which the codex authoring path does NOT persist. `derive-artifacts` is a
   // deterministic, side-effect-free pass over on-disk state, so derive them up front: this resolves
@@ -1070,7 +1070,7 @@ async function doGate(bookId: string, maxRepair: number, deps: AutopilotDeps, he
         const rewrites = await scoutCrossChapterVariety(bookId, deps);
         if (rewrites.length) {
           deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
-          await surgicalDetemplate(bookId, rewrites, deps, varietyPasses);
+          await surgicalDetemplate(bookId, rewrites, deps, varietyPasses, maxParallel);
           continue;
         }
         deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}: book reads varied (no cross-chapter templating) → advancing to QC`);
@@ -1211,11 +1211,16 @@ async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDeps): Pr
 /** Execute the scout's brief: ONE surgical session per flagged chapter, each scoped to
  *  edit ONLY its chapter and re-stage onto that chapter's dealt card. Never a multi-chapter
  *  rewrite — a single session re-authoring siblings collapses them onto a shared frame, the
- *  very homogenization this is fixing (see the R4 note in doQcWithRepair). */
-async function surgicalDetemplate(bookId: string, rewrites: VarietyRewrite[], deps: AutopilotDeps, pass: number): Promise<void> {
+ *  very homogenization this is fixing (see the R4 note in doQcWithRepair). Sessions run in
+ *  PARALLEL (≤ maxParallel): each edits a DISTINCT chapter file toward the DISTINCT target the
+ *  scout's COORDINATED brief already assigned (keep-one / move-the-others), so — unlike the
+ *  blind R4 QC-repair loop, which sequences to avoid racing a SHARED cross-chapter signal — these
+ *  cannot collide or re-collapse: the divergence is decided in the brief, not enforced by ordering.
+ *  (≤ PREQC_MAX_REWRITES_PER_PASS targets per pass, so the fan-out stays small.) */
+async function surgicalDetemplate(bookId: string, rewrites: VarietyRewrite[], deps: AutopilotDeps, pass: number, maxParallel: number): Promise<void> {
   const writeCards = deps.listWriteCards(bookId);
   const pad = (n: number) => String(n).padStart(2, "0");
-  for (const rw of rewrites) {
+  await mapWithConcurrency(rewrites, Math.max(1, maxParallel), async (rw) => {
     const n = rw.chapter;
     const card = writeCards.find((c) => chapterNumberFromCard(c) === n);
     const dealt = card ? `\n\n--- DEALT AUTHORING CARD ch${pad(n)} (restage onto THESE dealt shape/venue/opener slots — do NOT collapse onto a shared frame) ---\n${deps.readTask(card)}` : "";
@@ -1234,7 +1239,7 @@ After editing, run \`npx tsx src/cli.ts qc-converge ${bookId}\` (must stay DETER
     // repair leaves content identical so the create-once guard throws and the prior author stands.
     try { recordAuthorProvenance(`${bookId}-ch${pad(n)}`, sid, chapterContentHashByNumber(bookId, n)); }
     catch { /* provenance unchanged (no-op repair) — best-effort */ }
-  }
+  });
 }
 
 // ── Phase: qc (headless round + bounded repair loop) ──────────────────────────
