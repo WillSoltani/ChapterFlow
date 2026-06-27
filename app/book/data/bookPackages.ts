@@ -125,6 +125,7 @@ import auto_willpower_Json from "@/book-packages/willpower.v21.json";
 import auto_the_willpower_instinct_Json from "@/book-packages/the-willpower-instinct.v21.json";
 import auto_the_compound_effect_Json from "@/book-packages/the-compound-effect.v21.json";
 import auto_the_slight_edge_Json from "@/book-packages/the-slight-edge.v21.json";
+import auto_the_millionaire_next_door_Json from "@/book-packages/the-millionaire-next-door.v21.json";
 import { getBookCoverPath } from "@/lib/book-covers";
 import {
   normalizeAnyPackage,
@@ -2009,4 +2010,11 @@ export function getBookPackagePresentation(bookId: string): BookPackagePresentat
   const __autoPkg = normalizeAnyPackage(auto_the_slight_edge_Json, "direct");
   BOOK_PACKAGES.push(__autoPkg);
   BOOK_PACKAGE_TONE_GETTERS["the-slight-edge"] = (tone) => normalizeAnyPackage(auto_the_slight_edge_Json, tone);
+}
+
+// --- auto-registered by `register-web` for "the-millionaire-next-door" (do not edit by hand) ---
+{
+  const __autoPkg = normalizeAnyPackage(auto_the_millionaire_next_door_Json, "direct");
+  BOOK_PACKAGES.push(__autoPkg);
+  BOOK_PACKAGE_TONE_GETTERS["the-millionaire-next-door"] = (tone) => normalizeAnyPackage(auto_the_millionaire_next_door_Json, tone);
 }
