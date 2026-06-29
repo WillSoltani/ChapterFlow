@@ -16,8 +16,8 @@
     "doctor": "CHAPTERFLOW_NO_API_CODEX_QC=1 tsx src/cli.ts doctor"
   },
   "optionalDependencies": {
-    "@anthropic-ai/sdk": "0.104.1",
-    "openai": "6.42.0"
+    "@anthropic-ai/sdk": "0.106.0",
+    "openai": "6.45.0"
   },
   "devDependencies": {
     "@types/node": "20.19.43",
