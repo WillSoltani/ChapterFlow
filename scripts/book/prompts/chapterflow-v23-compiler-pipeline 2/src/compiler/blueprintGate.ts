@@ -1,4 +1,4 @@
-import { expectedSourceChapters } from "../qc/sourceV2Gate.js";
+import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { blueprintPath, readJsonFile, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { CHAPTER_BLUEPRINT_SCHEMA_VERSION, type ChapterBlueprintV1 } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
@@ -54,8 +54,12 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
 
 export function checkBlueprintGate(bookId: string, roots: CompilerStoreRoots = {}): BlueprintGateReport {
   const normalized = normSlug(bookId);
-  const chapters = expectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
-  const findings: BlueprintFinding[] = [];
+  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const chapters = resolved.chapters;
+  const findings: BlueprintFinding[] = [...resolved.findings];
+  if (!resolved.ok || resolved.chapters.length === 0) {
+    findings.push({ checkId: "BPV0.no_chapters", severity: "blocker", message: `No expected source chapters found for ${normalized}.` });
+  }
   for (const chapterNumber of chapters) {
     const p = blueprintPath(normalized, chapterNumber, roots);
     try {

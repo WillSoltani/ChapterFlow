@@ -1,6 +1,6 @@
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { SOURCE_PACKET_SCHEMA_VERSION } from "../artifacts/artifactTypes.js";
-import { expectedSourceChapters } from "../qc/sourceV2Gate.js";
+import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { readJsonFile, sourcePacketPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { normSlug } from "../lib/chapterPaths.js";
 
@@ -53,7 +53,12 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
 export function checkSourcePacketGate(bookId: string, roots: CompilerStoreRoots = {}): PacketGateReport {
   const normalized = normSlug(bookId);
   const findings: PacketGateFinding[] = [];
-  const chapters = expectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  findings.push(...resolved.findings);
+  if (!resolved.ok || resolved.chapters.length === 0) {
+    findings.push({ checkId: "SP0.no_chapters", severity: "blocker", message: `No expected source chapters found for ${normalized}.` });
+  }
+  const chapters = resolved.chapters;
   for (const chapterNumber of chapters) {
     const path = sourcePacketPath(normalized, chapterNumber, roots);
     try {

@@ -13,7 +13,7 @@ import {
   type SummaryPackV1,
 } from "../artifacts/artifactTypes.js";
 import { blueprintPath, readJsonFile, sectionPath, sourcePacketPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
-import { expectedSourceChapters } from "../qc/sourceV2Gate.js";
+import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
 import { checkReadingLevel } from "../critics/readingLevel.js";
@@ -2191,13 +2191,17 @@ export type SectionGateOptions = {
 
 export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {}, options: SectionGateOptions = {}): SectionGateReport {
   const normalized = normSlug(bookId);
-  const expected = expectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const expected = resolved.chapters;
   const requested = options.chapters?.length ? options.chapters : expected;
   const expectedSet = new Set(expected);
   const chapters = requested.filter((chapterNumber) => expectedSet.has(chapterNumber));
   const invalidChapters = requested.filter((chapterNumber) => !expectedSet.has(chapterNumber));
   const sections = options.sections?.length ? options.sections : [...SECTION_KINDS];
-  const findings: SectionFinding[] = [];
+  const findings: SectionFinding[] = [...resolved.findings];
+  if (!resolved.ok || resolved.chapters.length === 0) {
+    findings.push({ checkId: "SEC0.no_chapters", severity: "blocker", message: `No expected source chapters found for ${normalized}.` });
+  }
   const exampleShells: ExampleShellOccurrence[] = [];
   const exampleContainers: ExampleShellOccurrence[] = [];
   const exampleShortcutDefaultFrames: ExampleShellOccurrence[] = [];

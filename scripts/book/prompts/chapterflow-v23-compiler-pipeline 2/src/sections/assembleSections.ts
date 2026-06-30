@@ -3,7 +3,7 @@ import { resolve } from "path";
 
 import { assembleChapterV21OrThrow, type AssembleInput } from "../assembler.js";
 import { selectMemorableLinesDeterministic } from "../optimizers/memorableLines.js";
-import { expectedSourceChapters } from "../qc/sourceV2Gate.js";
+import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { CHAPTERS_DIR, chapterFileName, normSlug } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
@@ -45,7 +45,12 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {})
   const normalized = normSlug(bookId);
   const findings: string[] = [];
   const written: string[] = [];
-  for (const chapterNumber of expectedSourceChapters(normalized, { stateRoot: roots.stateRoot })) {
+  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  if (!resolved.ok || resolved.chapters.length === 0) {
+    const reason = resolved.findings.map((f) => f.message).join("; ") || `no chapters resolved for ${normalized}`;
+    findings.push(`no resolvable chapters: ${reason}`);
+  }
+  for (const chapterNumber of resolved.chapters) {
     try {
       const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
       const packet = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
