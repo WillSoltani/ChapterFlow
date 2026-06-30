@@ -16,7 +16,7 @@ import {
 } from "../artifacts/artifactTypes.js";
 import type { BloomsLevel, ChapterDesignDoc, ExampleFormat } from "../types.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
-import { loadNameBank, usedNamesByChapter } from "../librarian/namePlan.js";
+import { loadNameBank } from "../librarian/namePlan.js";
 import { planVenues } from "../librarian/venuePlan.js";
 import { protectedSourceNames } from "./sourceNames.js";
 
@@ -61,27 +61,12 @@ function chapterNameCandidates(bookId: string, chapterNumber: number): string[] 
   return rotated.filter((_, i) => i % NAME_BUCKET_COUNT === bucket);
 }
 
-function siblingUsedNames(bookId: string, chapterNumber: number): Set<string> {
-  const used = new Set<string>();
-  try {
-    for (const [chapter, names] of Object.entries(usedNamesByChapter(bookId))) {
-      if (Number(chapter) === chapterNumber) continue;
-      for (const name of names) used.add(name);
-    }
-  } catch {
-    // Name reuse is also caught by book-gate; blueprint compilation should not
-    // fail just because an old chapter on disk is unreadable.
-  }
-  return used;
-}
-
-function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
+function dealAllowedNamesGiven(bookId: string, chapterNumber: number, packet: SourcePacketV1, siblingNames: Set<string>): { allowedNames: string[]; sourceProtectedNames: Set<string> } {
   const bank = compilerNameBank();
   const sourceProtectedNames = protectedSourceNames(packet, bank);
-  const siblingNames = siblingUsedNames(bookId, chapterNumber);
   const candidates = chapterNameCandidates(bookId, chapterNumber).filter((name) => !sourceProtectedNames.has(name) && !siblingNames.has(name));
   const allowedNames = candidates.slice(0, EXAMPLE_SLOT_COUNT);
-  if (allowedNames.length >= EXAMPLE_SLOT_COUNT) return { allowedNames, sourceProtectedNames, siblingNames };
+  if (allowedNames.length >= EXAMPLE_SLOT_COUNT) return { allowedNames, sourceProtectedNames };
 
   // Extremely source-name-heavy chapters can exhaust a bucket. Fill deterministically
   // only after preserving the bucketed, cross-chapter-disjoint primary allocation.
@@ -90,6 +75,49 @@ function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourceP
     if (C7_BANNED.has(name) || sourceProtectedNames.has(name) || siblingNames.has(name) || allowedNames.includes(name)) continue;
     allowedNames.push(name);
   }
+  return { allowedNames, sourceProtectedNames };
+}
+
+/**
+ * Deterministically replays the name deal for every EARLIER chapter that shares
+ * this chapter's bucket — (n - 1) % NAME_BUCKET_COUNT — using only the canonical
+ * chapter index and each chapter's own source packet (both pure inputs of the
+ * compiler, fixed before any chapter is authored). Different-bucket chapters are
+ * already disjoint via chapterNameCandidates' bucket filter and need no replay.
+ *
+ * This intentionally never reads CHAPTERS_DIR / authored chapter content: doing
+ * so made reservedVariety.allowedNames depend on how much of the book had been
+ * assembled when the blueprint was compiled, so re-compiling after a partial
+ * assembly could deal different names than a fresh compile (non-reproducible
+ * blueprints, see blueprint-determinism.test.ts).
+ */
+function siblingUsedNames(bookId: string, chapterNumber: number, roots: CompilerStoreRoots): Set<string> {
+  const used = new Set<string>();
+  const bucket = (chapterNumber - 1) % NAME_BUCKET_COUNT;
+  const index = readCanonicalChapterIndex(bookId, roots.stateRoot);
+  if (!index.ok) return used;
+  const earlierSameBucket = index.chapters
+    .map((c) => c.chapterNumber)
+    .filter((n) => n < chapterNumber && (n - 1) % NAME_BUCKET_COUNT === bucket)
+    .sort((a, b) => a - b);
+  for (const n of earlierSameBucket) {
+    const packetP = sourcePacketPath(bookId, n, roots);
+    if (!existsSync(packetP)) continue;
+    try {
+      const packet = readJsonFile<SourcePacketV1>(packetP);
+      const { allowedNames } = dealAllowedNamesGiven(bookId, n, packet, used);
+      for (const name of allowedNames) used.add(name);
+    } catch {
+      // An earlier sibling's packet being unreadable should not fail this
+      // chapter's compile; book-gate independently catches name collisions.
+    }
+  }
+  return used;
+}
+
+function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1, roots: CompilerStoreRoots): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
+  const siblingNames = siblingUsedNames(bookId, chapterNumber, roots);
+  const { allowedNames, sourceProtectedNames } = dealAllowedNamesGiven(bookId, chapterNumber, packet, siblingNames);
   return { allowedNames, sourceProtectedNames, siblingNames };
 }
 
@@ -494,8 +522,9 @@ export function compileChapterBlueprint(args: {
   chapter: ChapterSpec;
   packet: SourcePacketV1;
   packetPath: string;
+  roots?: CompilerStoreRoots;
 }): ChapterBlueprintV1 {
-  const { bookId, chapter, packet, packetPath } = args;
+  const { bookId, chapter, packet, packetPath, roots = {} } = args;
   const ids = factIds(packet);
   const allFactIds = rawFactIds(packet);
   const cases = caseIds(packet);
@@ -503,7 +532,7 @@ export function compileChapterBlueprint(args: {
   const quizCount = 9;
   const cardCount = 7;
   const exampleCount = EXAMPLE_SLOT_COUNT;
-  const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet);
+  const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots);
   const venuePalette = plannedVenuePalette(bookId, n);
   const pattern = answerPattern(n, quizCount);
   const usedExampleCaseCounts = new Map<string, number>();
@@ -608,7 +637,7 @@ export function compileBlueprints(bookId: string, roots: CompilerStoreRoots = {}
       continue;
     }
     const packet = readJsonFile<SourcePacketV1>(packetP);
-    const blueprint = compileChapterBlueprint({ bookId: normalized, chapter, packet, packetPath: packetP });
+    const blueprint = compileChapterBlueprint({ bookId: normalized, chapter, packet, packetPath: packetP, roots });
     const out = blueprintPath(normalized, chapter.chapterNumber, roots);
     writeJsonFile(out, blueprint);
     written.push(out);
