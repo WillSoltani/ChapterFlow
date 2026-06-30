@@ -196,7 +196,12 @@ export type AutopilotOptions = {
   autoPublish?: boolean; // library default false (→ HALT at ready). The CLI (book-run / book-autopilot) defaults this ON; when true, handleReady runs publish-after-qc --commit --push.
   plan?: boolean; // dry-run: print the spawn plan, take no action
   regen?: boolean; // regenerate an already-PACKAGED book: ignore the "shipped" skip (decidePhase) so the conductor re-runs end-to-end WITHOUT moving the package aside — the package stays, so the web registry import never dangles (fixes the concurrent-regen deadlock).
-  architecture?: "compiler" | "legacy"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout.
+  // REQUIRED, not defaulted: book-autopilot (cli.ts) and book-run (liveRun.ts) both default
+  // their own CLI flag to "compiler", and a silent library-level `?? "legacy"` here previously
+  // let any other caller (tests, future scripts) fall back to the v21 whole-chapter writer
+  // without anyone choosing that. Forcing every caller to state it keeps the route a conscious
+  // choice instead of an implicit one.
+  architecture: "compiler" | "legacy"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout.
   deps?: Partial<AutopilotDeps>;
 };
 
@@ -832,7 +837,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
   const maxParallel = opts.maxParallel ?? 6;
   const autoPublish = opts.autoPublish ?? false;
   const regen = opts.regen ?? false;
-  const architecture = opts.architecture ?? "legacy";
+  const architecture = opts.architecture; // required — no silent default (see AutopilotOptions)
 
   // plan is a read-only dry-run (takes no action, acquires no lock). Guard the status read so a
   // corrupt chapter surfaces as a clean infra halt instead of an uncaught crash (this path runs
@@ -2173,9 +2178,9 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
 
 // ── --plan dry-run (cost preview; takes NO action) ────────────────────────────
 
-function planOnly(bookId: string, deps: AutopilotDeps, opts: Pick<AutopilotOptions, "regen" | "architecture" | "autoPublish"> = {}): AutopilotOutcome {
+function planOnly(bookId: string, deps: AutopilotDeps, opts: Pick<AutopilotOptions, "regen" | "architecture" | "autoPublish">): AutopilotOutcome {
   const regen = opts.regen ?? false;
-  const architecture = opts.architecture ?? "legacy";
+  const architecture = opts.architecture; // required — no silent default (see AutopilotOptions)
   const autoPublish = opts.autoPublish ?? false;
   const status = deps.statusOf(bookId);
   const phase = decidePhase(status, deps.sweepConfirmed(bookId), regen);

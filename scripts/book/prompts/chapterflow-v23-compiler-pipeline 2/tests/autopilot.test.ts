@@ -164,7 +164,7 @@ test("research phase retries once when codex exits 0 but creates no chapter inde
     }) as unknown as AutopilotDeps["spawn"],
     log: (m) => logs.push(m),
   });
-  const outcome = await runAutopilot({ bookId: "your-money-or-your-life", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "your-money-or-your-life", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") {
     assert.equal(outcome.phase, "research");
@@ -211,7 +211,7 @@ test("autopilot drives research→write→qc→ready, halts at ready WITHOUT pub
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
   ];
   const { deps, spawns, verbs } = happyDeps(statuses);
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
 
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("research")), "research session spawned");
@@ -233,7 +233,7 @@ test("item B: a QC PASS that is not yet sweep-confirmed runs ONE independent con
   const h = happyDeps(statuses);
   h.deps.sweepConfirmed = () => h.verbs.some((v) => v.includes("--no-sweep-carry"));
   const { verbs } = h;
-  const outcome = await runAutopilot({ bookId: "zz", deps: h.deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps: h.deps });
 
   assert.equal(outcome.status, "ready", "it converges to ready (never halts) once the second read corroborates");
   const creates = verbs.filter((v) => v.includes("--create"));
@@ -245,7 +245,7 @@ test("item B: a QC PASS that is not yet sweep-confirmed runs ONE independent con
 test("item B: if an independent sweep NEVER corroborates the PASS, the autopilot HALTS — it does not loop forever or ship", async () => {
   const statuses = [makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })];
   const { deps, verbs } = happyDeps(statuses, { sweepConfirmed: () => false }); // the stochastic sweep keeps disagreeing
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt", "an uncorroboratable stochastic sweep escalates instead of shipping");
   if (outcome.status === "halt") assert.match(outcome.reason, /corroborate|confirming/i);
   assert.ok(!verbs.some((v) => v[0] === "publish-after-qc"), "never publishes on an unconfirmed sweep");
@@ -260,23 +260,43 @@ test("C1: first QC round is INCREMENTAL when a carryable pass exists (passes acc
   // (no fresh stochastic re-roll) — the convergence fix. (attempt===0, so the flag comes
   // ONLY from anyCarryable, not from attempt>0.)
   const carry = happyDeps(statuses(), { anyCarryable: () => true });
-  await runAutopilot({ bookId: "zz", deps: carry.deps });
+  await runAutopilot({ architecture: "legacy", bookId: "zz", deps: carry.deps });
   const carryCreate = carry.verbs.find((v) => v.includes("--create"));
   assert.ok(carryCreate?.includes("--incremental"), "round 0 is incremental when a carryable pass exists");
 
   // No carryable pass → round 0 is a FULL round (every chapter re-reviewed) — unchanged behavior.
   const full = happyDeps(statuses(), { anyCarryable: () => false });
-  await runAutopilot({ bookId: "zz", deps: full.deps });
+  await runAutopilot({ architecture: "legacy", bookId: "zz", deps: full.deps });
   const fullCreate = full.verbs.find((v) => v.includes("--create"));
   assert.ok(fullCreate && !fullCreate.includes("--incremental"), "round 0 is a full round when nothing is carryable");
 });
 
 test("autopilot --plan takes NO action (zero spawns, zero verbs)", async () => {
   const { deps, spawns, verbs } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })]);
-  const outcome = await runAutopilot({ bookId: "zz", plan: true, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", plan: true, deps });
   assert.equal(spawns.length, 0);
   assert.equal(verbs.length, 0);
   assert.equal(outcome.status, "ready"); // plan returns a ready/no-op outcome
+});
+
+test("type contract: AutopilotOptions.architecture is REQUIRED — omitting it is now a compile error, not a silent fall-back to the legacy writer (regression for the default-flip trap)", async () => {
+  const logs: string[] = [];
+  const { deps } = happyDeps(
+    [makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })],
+    { log: (m) => logs.push(m) },
+  );
+  // @ts-expect-error — `architecture` must be required on AutopilotOptions. If this line ever
+  // compiles WITHOUT error again (e.g. someone reintroduces `architecture?:`), the @ts-expect-error
+  // directive goes unused and `npm run typecheck` fails — that IS the regression signal. tsx ignores
+  // types at runtime, so the call below still executes with `architecture` literally undefined,
+  // proving the only thing now preventing a silent legacy route is the compiler, not a runtime default.
+  const outcome = await runAutopilot({ bookId: "zz", plan: true, deps });
+  assert.equal(outcome.status, "ready");
+  assert.match(
+    logs.join("\n"),
+    /architecture: legacy whole-chapter writer/,
+    "with architecture undefined at runtime there is no hidden default routing it to compiler — only the now-required type forces every real caller to choose",
+  );
 });
 
 test("autopilot QC repair loop is bounded — HALTs after maxRepair REVISE rounds", async () => {
@@ -290,7 +310,7 @@ test("autopilot QC repair loop is bounded — HALTs after maxRepair REVISE round
       return { code: 0, stdout: "", stderr: "" };
     },
   });
-  const outcome = await runAutopilot({ bookId: "zz", maxRepairRounds: 2, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 2, deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") assert.match(outcome.reason, /repair rounds/);
 });
@@ -305,7 +325,7 @@ test("autopilot HALTs on no-progress (same QC findings survive a repair)", async
       return { code: 0, stdout: "", stderr: "" };
     },
   });
-  const outcome = await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 3, deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") assert.match(outcome.reason, /NO progress/i);
 });
@@ -319,7 +339,7 @@ test("autopilot AUTO-REPAIRS a major instead of governance-halting (full autonom
       return { code: 0, stdout: "", stderr: "" };
     },
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   // The autopilot is fully autonomous: a major no longer forces a human-disposition
   // GOVERNANCE halt (the gate phase converges blocking majors before QC, and any that
   // surface at QC are auto-repaired in the round's fan-out). The stub never resolves, so
@@ -349,7 +369,7 @@ test("doGate AUTO-CONVERGES a blocking major before QC (fix-before-write→QC ha
       ? [{ id: "m1", scope: "chapter:1:tryThisNow", checkId: "BP33.tryThisNow_opener_reuse", message: "ch1 & ch2 share the try-now opener", contentHash: "h1", contentHashVersion: "chapter-content-hash-v2", findingHash: "fh1" }]
       : [])) as unknown as AutopilotDeps["blockingMajors"],
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   // The major was fixed at the GATE (before QC) — the run reaches ready, never a governance halt.
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("gate-major-repair")), "doGate spawns a gate-major-repair to converge the blocking major before QC");
@@ -473,7 +493,7 @@ test("doGate converges cross-chapter VARIETY before QC (scout flags → SURGICAL
       ? '```json\n{"templated":true,"rewrites":[{"chapter":2,"family":"scene_skeleton","shared":"ch1 & ch2 share a decision-under-deadline frame","instruction":"restage ch2 onto its dealt move + a distinct venue"}]}\n```'
       : '```json\n{"templated":false,"rewrites":[]}\n```',
   }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "doGate runs a full-book variety scout before QC");
   assert.ok(spawns.some((s) => /^pre-qc-variety-\d+-ch2/.test(s.sessionId)), "the brief drives a SURGICAL per-chapter de-template repair (ch2 only)");
@@ -482,7 +502,7 @@ test("doGate converges cross-chapter VARIETY before QC (scout flags → SURGICAL
 
 test("doGate variety scout: a VARIED book advances to QC with zero de-template work (no FP-on-gold regression)", async () => {
   const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":false,"rewrites":[]}\n```' }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "the scout still runs (one cheap full-book read)");
   assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a varied book triggers ZERO de-template repairs");
@@ -490,14 +510,14 @@ test("doGate variety scout: a VARIED book advances to QC with zero de-template w
 
 test("doGate variety scout is BOUNDED — a persistently-templating scout runs at most PREQC_MAX_VARIETY_PASSES, then advances (never spins)", async () => {
   const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":true,"rewrites":[{"chapter":1,"instruction":"differentiate ch1"}]}\n```' }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready", "even a scout that keeps flagging converges — the pass cap lets the gate advance to QC");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout")).length, 2, "the scout runs at most PREQC_MAX_VARIETY_PASSES (2) — it can never spin the gate");
 });
 
 test("doGate variety scout is BEST-EFFORT — a scout that fails to run never blocks the gate (advances to QC)", async () => {
   const { deps, spawns } = varietyGateDeps(() => ({ ok: false, stdout: "" }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready", "a failed scout advances to QC — QC stays the safety net");
   assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a failed scout triggers no de-template repairs");
 });
@@ -540,7 +560,7 @@ test("doGate runs pre-QC readiness scout and surgically fixes semantic defects b
       ? '```json\n{"clean":false,"repairs":[{"chapter":2,"family":"source_local_coherence","unit":"examples[1].whyItMatters","quote":"where the ride leaves and rent money may hit overdraft fees","problem":"Clinic example imports ride/rent imagery from another unit.","instruction":"Replace with clinic-specific discharge consequences; preserve anchors and quiz keys."}]}\n```'
       : '```json\n{"clean":true,"repairs":[]}\n```',
   }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-readiness-scout")), "doGate runs a semantic/factual readiness scout before QC");
   assert.ok(spawns.some((s) => /^pre-qc-readiness-1-ch2/.test(s.sessionId)), "a readiness finding drives a surgical per-chapter repair before QC");
@@ -551,7 +571,7 @@ test("doGate runs pre-QC readiness scout and surgically fixes semantic defects b
 
 test("doGate readiness scout is BOUNDED — persistent semantic findings run at most two pre-QC repair passes", async () => {
   const { deps, spawns } = alignmentGateDeps(() => ({ stdout: '```json\n{"clean":false,"repairs":[{"chapter":1,"family":"behavioral_naturalness","unit":"tryThisNow","quote":"walk one loop","problem":"Symbolic action theater.","instruction":"Replace with a practical action."}]}\n```' }));
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready", "the gate advances to QC after the bounded pre-QC readiness attempts; QC remains the safety net");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("pre-qc-readiness-scout")).length, 2, "readiness scout runs at most PREQC_MAX_ALIGNMENT_PASSES (2)");
   assert.equal(spawns.filter((s) => /^pre-qc-readiness-\d+-ch1/.test(s.sessionId)).length, 2, "persistent findings get at most two surgical pre-QC repairs");
@@ -575,7 +595,7 @@ test("R3: a repair that introduces a NEW major (invisible to qc-converge) trigge
     // pre-repair {A}; first post-repair scan {A,B} → new major B → ONE re-dispatch; then back to {A} → stop.
     majorFindingKeys: () => new Set(majorCalls++ === 1 ? ["A", "B"] : ["A"]),
   });
-  const outcome = await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 3, deps });
   assert.equal(outcome.status, "ready");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("qc-regression-fix")).length, 1, "exactly one targeted fix for the introduced major");
 });
@@ -596,7 +616,7 @@ test("R3: a CLEAN repair (no NEW major) spawns NO regression-fix", async () => {
     },
     majorFindingKeys: () => new Set(["A"]), // constant pre/post → no new major
   });
-  await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+  await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 3, deps });
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("qc-regression-fix")).length, 0, "a clean repair never re-dispatches");
 });
 
@@ -627,7 +647,7 @@ test("R4: repair fans out ONE surgical session PER flagged chapter (no single ba
         return { code: 0, stdout: "", stderr: "" };
       },
     });
-    await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+    await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 3, deps });
     const perChapter = spawns.filter((s) => /^qc-repair-1-ch[12]#/.test(s.sessionId)).map((s) => s.sessionId.replace(/#.*/, ""));
     assert.deepEqual(new Set(perChapter), new Set(["qc-repair-1-ch1", "qc-repair-1-ch2"]), "one surgical session per flagged chapter");
     assert.equal(spawns.filter((s) => /^qc-repair-1#/.test(s.sessionId)).length, 0, "NO single batch repair session when chapters are flagged");
@@ -663,7 +683,7 @@ test("R4: a NEEDS_MORE_QC (re-QC-only) chapter gets NO surgical edit session (on
         return { code: 0, stdout: "", stderr: "" };
       },
     });
-    await runAutopilot({ bookId: "zz", maxRepairRounds: 3, deps });
+    await runAutopilot({ architecture: "legacy", bookId: "zz", maxRepairRounds: 3, deps });
     const edits = spawns.filter((s) => /^qc-repair-1-ch\d+#/.test(s.sessionId)).map((s) => s.sessionId.replace(/#.*/, ""));
     assert.deepEqual(new Set(edits), new Set(["qc-repair-1-ch1"]), "only the REVISE chapter gets an edit session; the NEEDS_MORE_QC chapter does not");
   } finally {
@@ -677,7 +697,7 @@ test("auto-publish ships on a clean QC pass — runs the promote gate, then comm
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
   ];
   const { deps, verbs } = happyDeps(statuses);
-  const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", autoPublish: true, deps });
   assert.equal(outcome.status, "published");
   const publish = verbs.find((v) => v[0] === "publish-after-qc");
   assert.ok(publish, "auto-publish runs publish-after-qc");
@@ -691,7 +711,7 @@ test("auto-publish passes a finalizer CHAPTERFLOW_SESSION_ID to publish-after-qc
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
   ];
   const { deps, verbs, verbEnvs } = happyDeps(statuses);
-  const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", autoPublish: true, deps });
   assert.equal(outcome.status, "published");
   const i = verbs.findIndex((v) => v[0] === "publish-after-qc");
   assert.ok(i >= 0, "auto-publish runs publish-after-qc");
@@ -717,7 +737,7 @@ test("auto-publish HALTS (never bypasses) when the promote gate fails", async ()
       return { code: 0, stdout: "", stderr: "" };
     },
   });
-  const outcome = await runAutopilot({ bookId: "zz", autoPublish: true, deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", autoPublish: true, deps });
   assert.equal(outcome.status, "halt", "a failing promote gate must HALT, not publish");
   assert.ok(verbs.some((v) => v[0] === "publish-after-qc" && v.includes("--commit")), "it ran the promote gate (publish-after-qc --commit) before halting");
 });
@@ -843,7 +863,7 @@ test("autopilot HALTs (infra) when another run holds the lock", async () => {
   const { deps } = happyDeps([makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] })], {
     acquireLock: () => ({ ok: false, release: () => {}, heldBy: "pid 999@host since 2026-06-19T00:00:00.000Z" }),
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /could not acquire the run lock/); }
 });
@@ -856,7 +876,7 @@ test("autopilot HALTs (infra) if it LOSES the run lock mid-run (heartbeat detect
   ], {
     acquireLock: () => ({ ok: true, release: () => {}, refresh: () => { refreshCalls++; return refreshCalls < 2; } }),
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /lost the run lock/); }
   assert.ok(refreshCalls >= 2, "heartbeat ran on each loop iteration until it reported the loss");
@@ -866,7 +886,7 @@ test("autopilot normalizes a codex spawn rejection into an infra halt (no unhand
   const { deps } = happyDeps([makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })], {
     spawn: (async () => { throw new Error("codex exec timed out after 1800000ms"); }) as unknown as AutopilotDeps["spawn"],
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /unexpected failure/i); }
 });
@@ -879,7 +899,7 @@ test("a codex spawn rejection is RECORDED in the durable log before it propagate
     spawn: (async () => { throw new Error("codex exec timed out after 1800000ms"); }) as unknown as AutopilotDeps["spawn"],
     logSession: (_b: string, _label: string, r: { ok: boolean; stderr: string; sessionId: string }) => logged.push(r),
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt"); // still halts (rethrow preserved)
   assert.ok(logged.some((r) => r.ok === false && /timed out/.test(r.stderr)), "the rejected spawn was logged with ok:false + the error");
 });
@@ -894,7 +914,7 @@ test("parallel writer fan-out WAITS for all siblings to settle before the infra 
       return { ok: true, exitCode: 0, finalMessage: "", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") assert.equal(outcome.category, "infra");
   // Promise.all would have abandoned the in-flight sibling the instant write-ch1 rejected
@@ -946,7 +966,7 @@ test("autopilot HALTs (infra) when --create exits nonzero (created-with-errors) 
     },
     spawn: (async (o: { sessionId: string }) => { if (o.sessionId.startsWith("qc-")) reviewerSpawns.push(o.sessionId); return { ok: true, exitCode: 0, finalMessage: "", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /created-with-errors|exited 1/); }
   assert.equal(reviewerSpawns.length, 0, "must NOT spend reviewer sessions on a created-with-errors round");
@@ -961,7 +981,7 @@ test("autopilot HALTs (infra) when qc-converge errors (exit ≥2) — never inst
     },
     spawn: (async (o: { sessionId: string }) => { if (o.sessionId.includes("gate-repair")) repairSpawns++; return { ok: true, exitCode: 0, finalMessage: "", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "infra"); assert.match(outcome.reason, /errored/); }
   assert.equal(repairSpawns, 0, "exit ≥2 is an infra error, not dirty content — no repair agent");
@@ -973,7 +993,7 @@ test("autopilot HALTs (integrity) when a reviewer mutates chapter content during
     // The fence snapshots hashes before/after the first reviewer wave; ch02 changes.
     chapterHashes: () => (h++ === 0 ? { "1": "hashA", "2": "hashB" } : { "1": "hashA", "2": "MUTATED" }),
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") { assert.equal(outcome.category, "integrity"); assert.match(outcome.reason, /MUTATED|read-only/); }
 });
@@ -994,7 +1014,7 @@ test("autopilot NARROW-retries only the missing reviewer card on INCOMPLETE, the
     spawn: (async (o: { sessionId: string }) => { if (o.sessionId.startsWith("qc-")) reviewerSpawns.push(o.sessionId); return { ok: true, exitCode: 0, finalMessage: "", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId }; }) as unknown as AutopilotDeps["spawn"],
     submissionPresent: (_b, _r, card) => !card.includes("ch02"), // only the bar/ch02 card is missing
   });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready", "narrow retry recovers the round → PASS → ready");
   assert.equal(finalizeCalls, 2, "finalize ran twice: initial INCOMPLETE, then after the narrow retry");
   assert.ok(reviewerSpawns.filter((s) => s.includes("bar-ch02")).length >= 2, "the ONE missing ch02 bar reviewer was re-spawned");
@@ -1034,7 +1054,7 @@ test("every agent spawn is recorded via logSession (durable per-agent log wiring
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }),
   ];
   const { deps, spawns } = happyDeps(statuses, { logSession: (_b, label) => { logged.push(label); } });
-  const outcome = await runAutopilot({ bookId: "zz", deps });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.length > 0, "the happy path spawns agents");
   assert.equal(logged.length, spawns.length, "logSession is invoked exactly once per spawn");
