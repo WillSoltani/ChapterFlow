@@ -1,0 +1,34 @@
+{
+  // Typecheck-only config. tsx executes TS directly and IGNORES types
+  // ("running a module IS the typecheck" — PIPELINE-HANDOFF §3), so until
+  // now type errors only ever surfaced in an IDE. Run:
+  //
+  //   npx tsc -p . --noEmit
+  //
+  // strict:true — the pipeline already compiles cleanly under full --strict
+  // (verified: 0 errors), so the discriminated-union-heavy conductor/QC-driver/
+  // broker code gets real null-safety + exhaustiveness checking. (We deliberately
+  // do NOT enable noUnusedLocals/Parameters — those are NOT part of `strict` and
+  // would surface ~34 pre-existing unused-binding warnings; tighten separately.)
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    // ESNext+Bundler: matches how tsx actually executes these files and
+    // permits import.meta without flipping the (absent) package.json to
+    // "type":"module" — we typecheck the code as it runs, we don't change
+    // how it runs.
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
+  // scratch/ = one-off debug scripts (one is a known drifted gate copy slated
+  // for deletion in Phase 1); excluded from the baseline.
+  "exclude": ["src/scratch/**"]
+}

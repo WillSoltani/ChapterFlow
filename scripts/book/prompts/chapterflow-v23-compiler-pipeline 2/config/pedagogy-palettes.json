@@ -1,0 +1,253 @@
+{
+  "comment": "Pedagogy-slot palettes for pre-authoring variety planning (catalog campaign Phase B2). Definitions are written to paste directly into STEP-2 authoring prompts. hookShapes.auditClass names the category that src/critics/catalogAudit.ts classifyHook should see when the author follows the definition.",
+  "hookShapes": [
+    {
+      "id": "pressure-test-question",
+      "definition": "Open with a single practical question that puts pressure on the chapter's main idea. The hook must end with a question mark and should make the reader test their own next move. Miniature example: \"What breaks first when your careful plan meets the first interruption?\"",
+      "auditClass": "question"
+    },
+    {
+      "id": "counterfactual-question",
+      "definition": "Ask a what-if question that reverses the obvious instinct. Keep it concrete, not philosophical, and end with the question itself. Miniature example: \"What if the delay is not the obstacle, but the warning light you paid for?\"",
+      "auditClass": "question"
+    },
+    {
+      "id": "you-threshold",
+      "definition": "Put the reader at the exact threshold where the chapter's habit would matter. Use second person immediately; make the situation feel like it could happen today. Miniature example: \"You open the inbox to solve one problem and your whole morning starts negotiating with you.\"",
+      "auditClass": "direct_address"
+    },
+    {
+      "id": "your-hidden-default",
+      "definition": "Name a default the reader may not realize they are carrying, in plain descriptive words; do not coin a branded compound label for it (say \"the habit of copying winners\", not \"your winner default\"). Use \"your\" early, then show the cost of letting that default run. Miniature example: \"Your calendar is not neutral; it quietly votes for the loudest person in the room.\"",
+      "auditClass": "direct_address"
+    },
+    {
+      "id": "one-number-contrast",
+      "definition": "Lead with ONE concrete, grounded number (time, count, money, or frequency — a real figure from the chapter's sources/groundedNumbers, never invented) and let it land before the lesson. Write numbers as digits. Do NOT manufacture a gimmicky \"N versus M\" contrast or a marketing-copy ratio (\"1 classroom did more damage than 10 parties\" reads like an ad) — one real number, stated plainly, that makes the reader stop. Miniature example: \"41 tabs open, and not one of them was the thing she sat down to do.\"",
+      "auditClass": "numeric"
+    },
+    {
+      "id": "ratio-reversal",
+      "definition": "Use a small, GROUNDED ratio or percentage (real figures from the chapter, never invented; WRITE THE NUMBERS AS DIGITS) to show the visible problem is not where most of the damage lives. Avoid second person and avoid a question ending. It must read like a person noticing something true, not a billboard slogan — no manufactured \"N vs M\" contrast for effect. Miniature example: \"2 of the 10 steps caused almost all the rework; the other 8 were never the problem.\"",
+      "auditClass": "numeric"
+    },
+    {
+      "id": "first-person-confession",
+      "definition": "Start with a brief first-person admission that exposes the misconception the chapter will correct. It should sound like a human learning, not an author lecturing. Miniature example: \"I used to treat preparation as the boring part until the boring part saved the work.\"",
+      "auditClass": "first_person"
+    },
+    {
+      "id": "concrete-ironic-image",
+      "definition": "Use the current house shape sparingly: a vivid concrete image with an ironic turn. The image must teach, not merely decorate. Miniature example: \"The whiteboard looked decisive, but the real decision was hiding in the erased corner.\"",
+      "auditClass": "declarative_image"
+    },
+    {
+      "id": "object-in-motion",
+      "definition": "Begin with an object or artifact moving through a process, and let its path reveal the chapter's tension. No questions, digits, first person, or second person. This shape is dealt to more than one chapter, so pick a DIFFERENT object and a DIFFERENT path each time; never reuse a small note/card/receipt travelling from one surface to another — that shared frame stamps the book and trips the scene_skeleton sweep.",
+      "auditClass": "declarative_image",
+      "sceneSkeletonProne": true
+    },
+    {
+      "id": "room-after-action",
+      "definition": "Open after the decisive action, with the room or workspace showing what the people have not yet understood. Keep it observational and image-led. This shape is dealt to more than one chapter, so choose a DIFFERENT room and a DIFFERENT telling detail each time; never reuse a quiet-room-with-one-object-left-behind frame.",
+      "auditClass": "declarative_image",
+      "sceneSkeletonProne": true
+    }
+  ],
+  "tryThisNowGrammars": [
+    {
+      "id": "ten-minute-timer",
+      "definition": "Time-box the practice to one short window (about ten minutes), then give one narrow action to perform inside it — the brief duration shapes the SENTENCE. This bounds the practice; it is NOT the action container — the chapter's dealt ACTION MECHANISM governs that, so do not add a timer/alarm device unless this is the dealt timer chapter.",
+      "example": "For the next 10 minutes, audit one recurring task and mark the first step where attention usually leaks."
+    },
+    {
+      "id": "ask-one-person",
+      "definition": "Turn the exercise into a conversation with one real person. The reader must ask, listen, and capture the answer rather than inventing it alone.",
+      "example": "Ask one person who sees your work often, \"Where do I make this harder than it needs to be?\" Record the exact phrase they use."
+    },
+    {
+      "id": "count-observations",
+      "definition": "Make the reader collect a small count from ordinary life before drawing a conclusion. The count should be visible and finite.",
+      "example": "Count the next five times a plan changes today, and note what triggered each change."
+    },
+    {
+      "id": "change-environment",
+      "definition": "Ask the reader to alter one physical or digital environment so the desired behavior becomes easier or the default mistake becomes harder.",
+      "example": "Move the tool you need for tomorrow's first task into plain sight before you end work today."
+    },
+    {
+      "id": "deliberate-abstention",
+      "definition": "Have the reader intentionally refrain from a familiar move long enough to notice what the urge was protecting.",
+      "example": "For one meeting, do not offer the first solution; write down what you wanted to say and what happened without it."
+    },
+    {
+      "id": "schedule-event",
+      "definition": "Convert the lesson into a specific future event on the calendar. The exercise succeeds only if time, place, and trigger are named.",
+      "example": "Schedule a 15-minute review for a named time tomorrow and attach the one document you will inspect."
+    },
+    {
+      "id": "notice-and-record",
+      "definition": "Use a noticing prompt plus a lightweight record. The reader is not changing behavior yet; they are learning to see the pattern reliably.",
+      "example": "Today, whenever you feel rushed, note the cue, the shortcut you wanted, and the cost you were trying to avoid."
+    },
+    {
+      "id": "write-one",
+      "definition": "Keep the old write-one grammar, but cap its use. It should ask for one concrete sentence, choice, or boundary, then one label or next step.",
+      "example": "Write one sentence that names the tradeoff you are avoiding, then label the next action it requires."
+    }
+  ],
+  "tacticFamilies": [
+    {
+      "id": "breath-counting",
+      "definition": "Use a counted physical pause to create a gap before the next choice. The family changes pacing first, then lets the reader choose from a steadier state.",
+      "example": "A reader counts several breaths before answering a message that usually gets an automatic reply."
+    },
+    {
+      "id": "write-one-line",
+      "definition": "Turn the lesson into one short written line that names a decision, boundary, observation, or next move. The action is small enough to complete immediately.",
+      "example": "A reader writes a single sentence that separates the real problem from the louder distraction."
+    },
+    {
+      "id": "subtract-one-thing",
+      "definition": "Ask the reader to remove one commitment, option, step, notification, or demand so the principle has room to operate. The family teaches by subtraction.",
+      "example": "A reader removes one nonessential step from a routine before trying to improve the whole routine."
+    },
+    {
+      "id": "environment-move",
+      "definition": "Change the physical or digital setting so the desired behavior becomes easier to start or the default mistake becomes harder to enter.",
+      "example": "A reader changes where a tool lives so the next right action is the most visible action."
+    },
+    {
+      "id": "single-question-conversation",
+      "definition": "Use one carefully chosen question with another person, then make the listening the exercise. The family depends on an answer the reader cannot invent alone.",
+      "example": "A reader asks a colleague one narrow question and records the first concrete answer without debating it."
+    },
+    {
+      "id": "timer-block",
+      "definition": "Protect a short block of time for one bounded practice. The timer limits scope and prevents the exercise from becoming a vague self-improvement project.",
+      "example": "A reader uses a short block to inspect one recurring task instead of reorganizing the entire day."
+    },
+    {
+      "id": "object-relocation",
+      "definition": "Move one object or artifact so it becomes a cue, barrier, reminder, or proof point. The action works through placement rather than willpower.",
+      "example": "A reader moves a relevant object to the place where tomorrow's decision usually begins."
+    },
+    {
+      "id": "read-aloud",
+      "definition": "Have the reader speak a sentence, plan, or explanation out loud to test whether it is clear, honest, and usable in ordinary language.",
+      "example": "A reader says a draft boundary aloud and revises the part that sounds evasive."
+    },
+    {
+      "id": "walk-and-decide",
+      "definition": "Pair movement with a narrow decision so the reader stops circling the issue in the same chair or screen. The walk is a thinking container, not scenery.",
+      "example": "A reader takes a short walk and returns with one selected option instead of three half-options."
+    },
+    {
+      "id": "comparison-of-two",
+      "definition": "Make the reader compare two concrete options, responses, examples, or tradeoffs, then name the difference that matters for the chapter's principle.",
+      "example": "A reader compares two possible replies and marks which one protects the actual priority."
+    },
+    {
+      "id": "calendar-edit",
+      "definition": "Convert the lesson into a calendar change: add, move, shorten, protect, or delete time. The family treats time placement as the behavior.",
+      "example": "A reader moves a review block next to the work it is supposed to improve."
+    },
+    {
+      "id": "checklist-mark",
+      "definition": "Use a checklist, tick mark, or visible completion mark to make one repeatable behavior observable. The mark is evidence, not decoration.",
+      "example": "A reader marks each completed pass through a process to see whether the habit actually happened."
+    },
+    {
+      "id": "observation-log",
+      "definition": "Ask for a small record of cues, triggers, outcomes, or misses before asking for change. The family teaches the reader to see the pattern first.",
+      "example": "A reader logs several instances of a recurring snag before choosing a fix."
+    },
+    {
+      "id": "teach-someone",
+      "definition": "Have the reader explain the idea to one person in plain language, using a real situation rather than a summary. Teaching reveals unclear thinking.",
+      "example": "A reader explains the principle to a teammate through one shared problem and notices where the explanation gets muddy."
+    },
+    {
+      "id": "rehearse-once",
+      "definition": "Practice one upcoming sentence, handoff, refusal, or sequence once before the real moment. The family lowers friction through a single rehearsal.",
+      "example": "A reader rehearses the first sentence of a hard conversation before entering the room."
+    },
+    {
+      "id": "boundary-script",
+      "definition": "Draft a short boundary, request, or refusal that preserves the lesson under social pressure. The family turns principle into phrasing.",
+      "example": "A reader prepares a brief refusal that keeps the important work from being traded away."
+    },
+    {
+      "id": "stop-doing-list",
+      "definition": "Identify one behavior to stop, pause, or refuse for a limited period. The family makes restraint visible and specific.",
+      "example": "A reader names one habitual response to skip during the next meeting."
+    },
+    {
+      "id": "threshold-cue",
+      "definition": "Attach the practice to a doorway, login, meeting start, commute, or other threshold where the reader naturally crosses into a new mode.",
+      "example": "A reader uses the start of a routine as the cue to perform one check before continuing."
+    },
+    {
+      "id": "ranking-pass",
+      "definition": "Have the reader rank a short list by importance, risk, effort, or reversibility, then act on the ranking rather than the loudest item.",
+      "example": "A reader orders three pending tasks by consequence and chooses from that order."
+    },
+    {
+      "id": "replacement-rule",
+      "definition": "Replace one default action with a named alternative under a specific condition. The family works as an if-this-then-that swap.",
+      "example": "A reader chooses a substitute response for the moment a familiar cue appears."
+    },
+    {
+      "id": "handoff-note",
+      "definition": "Create a small note, label, or message that improves a handoff between present and future self or between two people.",
+      "example": "A reader leaves a concise note that tells the next person what changed and what to check."
+    },
+    {
+      "id": "friction-add",
+      "definition": "Add a small barrier before an unhelpful default so the reader must notice the choice before continuing. The family interrupts autopilot.",
+      "example": "A reader adds one extra confirmation step before a habit that usually happens too fast."
+    },
+    {
+      "id": "friction-remove",
+      "definition": "Remove a small barrier before a desired behavior so the first move becomes obvious and low effort. The family designs for easier entry.",
+      "example": "A reader prepares the first material needed for a practice before the moment arrives."
+    },
+    {
+      "id": "error-review",
+      "definition": "Look at one recent miss without blame and extract the next concrete adjustment. The family treats an error as data for a better repetition.",
+      "example": "A reader reviews one missed commitment and changes the cue that made the miss likely."
+    }
+  ],
+  "quizOpeners": [
+    {
+      "id": "you-situation",
+      "definition": "Open by placing the reader directly inside a practical situation where the chapter's concept must be applied.",
+      "example": "You notice the weekly review keeps slipping because urgent messages arrive first. What should you change?"
+    },
+    {
+      "id": "quote-interpretation",
+      "definition": "Open with a short quoted claim from a fictional learner or colleague, then ask what the claim misunderstands or implies.",
+      "example": "\"I will fix the system once the busy season ends.\" What does this response miss?"
+    },
+    {
+      "id": "what-happens-next",
+      "definition": "Ask the reader to predict the likely next consequence after a setup. The right answer should follow from the chapter's causal logic.",
+      "example": "A team removes the review step because nothing failed last month. What is most likely to happen next?"
+    },
+    {
+      "id": "compare-two-responses",
+      "definition": "Present two plausible responses a real person might give and ask which one holds up — phrased as a choice someone actually faces, NOT exam-speak (\"which best preserves the nuance\"). Put a recognizable human in it.",
+      "example": "Your teammate wants to drop the review step since nothing failed last month; you think it still earns its place. Who has the better read, and why?"
+    },
+    {
+      "id": "data-reading",
+      "definition": "Open with a small number, tally, or trend and ask what interpretation the chapter supports. The data should matter to the answer.",
+      "example": "A log shows 4 missed handoffs in 6 days, all after schedule changes. What should the reader infer first?"
+    },
+    {
+      "id": "scenario-role",
+      "definition": "Keep the current role-scenario opener as a capped option: name a role facing a practical choice, then ask what they should do.",
+      "example": "A manager inherits a reliable process that people quietly skip. What should the manager do first?"
+    }
+  ]
+}

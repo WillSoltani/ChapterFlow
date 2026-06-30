@@ -1,0 +1,6 @@
+{
+  "_comment": "AC11 named-framework completeness (Phase 1). Maps bookId -> named multi-member frameworks whose enumeration must be complete and canonically-named when the chapter names the framework. Config-driven = zero false positives by construction (only seeded pairs are checked). Add a book's frameworks here when STEP-1 research identifies a named N-part model. In Phase 3 this moves into the source sidecar so coverage is automatic.",
+  "dare-to-lead": [
+    { "name": "BRAVING", "members": ["Boundaries", "Reliability", "Accountability", "Vault", "Integrity", "Nonjudgment", "Generosity"], "acronym": true }
+  ]
+}

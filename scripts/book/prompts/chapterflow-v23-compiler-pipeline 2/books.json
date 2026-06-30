@@ -1,0 +1,912 @@
+[
+  {
+    "bookId": "how-to-win-friends-and-influence-people",
+    "title": "How to Win Friends and Influence People",
+    "author": "Dale Carnegie"
+  },
+  {
+    "bookId": "tiny-habits",
+    "title": "Tiny Habits",
+    "author": "BJ Fogg"
+  },
+  {
+    "bookId": "the-power-of-habit",
+    "title": "The Power of Habit",
+    "author": "Charles Duhigg"
+  },
+  {
+    "bookId": "the-prince",
+    "title": "The Prince",
+    "author": "Niccolò Machiavelli"
+  },
+  {
+    "bookId": "what-every-body-is-saying",
+    "title": "What Every BODY is Saying",
+    "author": "Joe Navarro"
+  },
+  {
+    "bookId": "essentialism",
+    "title": "Essentialism",
+    "author": "Greg McKeown"
+  },
+  {
+    "bookId": "deep-work",
+    "title": "Deep Work",
+    "author": "Cal Newport"
+  },
+  {
+    "bookId": "crucial-conversations",
+    "title": "Crucial Conversations",
+    "author": "Kerry Patterson, Joseph Grenny, Ron McMillan, Al Switzler"
+  },
+  {
+    "bookId": "make-time",
+    "title": "Make Time",
+    "author": "Jake Knapp, John Zeratsky"
+  },
+  {
+    "bookId": "the-psychology-of-money",
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel"
+  },
+  {
+    "bookId": "thinking-fast-and-slow",
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman"
+  },
+  {
+    "bookId": "the-almanack-of-naval-ravikant",
+    "title": "The Almanack of Naval Ravikant",
+    "author": "Eric Jorgenson"
+  },
+  {
+    "bookId": "the-laws-of-human-nature",
+    "title": "The Laws of Human Nature",
+    "author": "Robert Greene"
+  },
+  {
+    "bookId": "the-hard-thing-about-hard-things",
+    "title": "The Hard Thing About Hard Things",
+    "author": "Ben Horowitz"
+  },
+  {
+    "bookId": "leaders-eat-last",
+    "title": "Leaders Eat Last",
+    "author": "Simon Sinek"
+  },
+  {
+    "bookId": "good-to-great",
+    "title": "Good to Great",
+    "author": "Jim Collins"
+  },
+  {
+    "bookId": "how-to-talk-to-anyone",
+    "title": "How to Talk to Anyone",
+    "author": "Leil Lowndes"
+  },
+  {
+    "bookId": "indistractable",
+    "title": "Indistractable",
+    "author": "Nir Eyal"
+  },
+  {
+    "bookId": "extreme-ownership",
+    "title": "Extreme Ownership",
+    "author": "Jocko Willink, Leif Babin"
+  },
+  {
+    "bookId": "never-split-the-difference",
+    "title": "Never Split the Difference",
+    "author": "Chris Voss"
+  },
+  {
+    "bookId": "predictably-irrational",
+    "title": "Predictably Irrational",
+    "author": "Dan Ariely"
+  },
+  {
+    "bookId": "you-cant-hurt-me",
+    "title": "Can't Hurt Me",
+    "author": "David Goggins"
+  },
+  {
+    "bookId": "pitch-anything",
+    "title": "Pitch Anything",
+    "author": "Oren Klaff"
+  },
+  {
+    "bookId": "influence",
+    "title": "Influence",
+    "author": "Robert Cialdini"
+  },
+  {
+    "bookId": "pre-suasion",
+    "title": "Pre-Suasion",
+    "author": "Robert Cialdini"
+  },
+  {
+    "bookId": "the-charisma-myth",
+    "title": "The Charisma Myth",
+    "author": "Olivia Fox Cabane"
+  },
+  {
+    "bookId": "atomic-habits",
+    "title": "Atomic Habits",
+    "author": "James Clear"
+  },
+  {
+    "bookId": "the-one-thing",
+    "title": "The One Thing",
+    "author": "Gary Keller, Jay Papasan"
+  },
+  {
+    "bookId": "talk-like-ted",
+    "title": "Talk Like TED",
+    "author": "Carmine Gallo"
+  },
+  {
+    "bookId": "the-like-switch",
+    "title": "The Like Switch",
+    "author": "Jack Schafer, Marvin Karlins"
+  },
+  {
+    "bookId": "super-thinking",
+    "title": "Super Thinking",
+    "author": "Gabriel Weinberg"
+  },
+  {
+    "bookId": "the-great-mental-models-vol-1",
+    "title": "The Great Mental Models Vol. 1",
+    "author": "Shane Parrish"
+  },
+  {
+    "bookId": "the-art-of-war",
+    "title": "The Art of War",
+    "author": "Sun Tzu"
+  },
+  {
+    "bookId": "blue-ocean-strategy",
+    "title": "Blue Ocean Strategy",
+    "author": "W. Chan Kim, Renée Mauborgne"
+  },
+  {
+    "bookId": "zero-to-one",
+    "title": "Zero to One",
+    "author": "Peter Thiel"
+  },
+  {
+    "bookId": "the-great-mental-models-vol-2",
+    "title": "The Great Mental Models Vol. 2",
+    "author": "Shane Parrish"
+  },
+  {
+    "bookId": "the-lean-startup",
+    "title": "The Lean Startup",
+    "author": "Eric Ries"
+  },
+  {
+    "bookId": "seeking-wisdom",
+    "title": "Seeking Wisdom",
+    "author": "Peter Bevelin"
+  },
+  {
+    "bookId": "games-people-play",
+    "title": "Games People Play",
+    "author": "Eric Berne"
+  },
+  {
+    "bookId": "the-48-laws-of-power",
+    "title": "The 48 Laws of Power",
+    "author": "Robert Greene"
+  },
+  {
+    "bookId": "the-righteous-mind",
+    "title": "The Righteous Mind",
+    "author": "Jonathan Haidt"
+  },
+  {
+    "bookId": "so-good-they-cant-ignore-you",
+    "title": "So Good They Can't Ignore You",
+    "author": "Cal Newport"
+  },
+  {
+    "bookId": "good-strategy-bad-strategy",
+    "title": "Good Strategy Bad Strategy",
+    "author": "Richard Rumelt"
+  },
+  {
+    "bookId": "antifragile",
+    "title": "Antifragile",
+    "author": "Nassim Nicholas Taleb"
+  },
+  {
+    "bookId": "the-33-strategies-of-war",
+    "title": "The 33 Strategies of War",
+    "author": "Robert Greene"
+  },
+  {
+    "bookId": "difficult-conversations",
+    "title": "Difficult Conversations",
+    "author": "Douglas Stone, Bruce Patton, Sheila Heen"
+  },
+  {
+    "bookId": "clear-thinking",
+    "title": "Clear Thinking",
+    "author": "Shane Parrish"
+  },
+  {
+    "bookId": "getting-things-done",
+    "title": "Getting Things Done",
+    "author": "David Allen"
+  },
+  {
+    "bookId": "the-12-week-year",
+    "title": "The 12 Week Year",
+    "author": "Brian Moran"
+  },
+  {
+    "bookId": "execution",
+    "title": "Execution",
+    "author": "Larry Bossidy, Ram Charan"
+  },
+  {
+    "bookId": "measure-what-matters",
+    "title": "Measure What Matters",
+    "author": "John Doerr"
+  },
+  {
+    "bookId": "smarter-faster-better",
+    "title": "Smarter Faster Better",
+    "author": "Charles Duhigg"
+  },
+  {
+    "bookId": "the-checklist-manifesto",
+    "title": "The Checklist Manifesto",
+    "author": "Atul Gawande"
+  },
+  {
+    "bookId": "the-elephant-in-the-brain",
+    "title": "The Elephant in the Brain",
+    "author": "Kevin Simler, Robin Hanson"
+  },
+  {
+    "bookId": "the-black-swan",
+    "title": "The Black Swan",
+    "author": "Nassim Nicholas Taleb"
+  },
+  {
+    "bookId": "skin-in-the-game",
+    "title": "Skin in the Game",
+    "author": "Nassim Nicholas Taleb"
+  },
+  {
+    "bookId": "made-to-stick",
+    "title": "Made to Stick",
+    "author": "Chip Heath, Dan Heath"
+  },
+  {
+    "bookId": "the-pyramid-principle",
+    "title": "The Pyramid Principle",
+    "author": "Barbara Minto"
+  },
+  {
+    "bookId": "never-eat-alone",
+    "title": "Never Eat Alone",
+    "author": "Keith Ferrazzi"
+  },
+  {
+    "bookId": "on-becoming-a-person",
+    "title": "On Becoming a Person",
+    "author": "Carl Rogers"
+  },
+  {
+    "bookId": "the-obstacle-is-the-way",
+    "title": "The Obstacle Is the Way",
+    "author": "Ryan Holiday"
+  },
+  {
+    "bookId": "ego-is-the-enemy",
+    "title": "Ego Is the Enemy",
+    "author": "Ryan Holiday"
+  },
+  {
+    "bookId": "grit",
+    "title": "Grit",
+    "author": "Angela Duckworth"
+  },
+  {
+    "bookId": "the-war-of-art",
+    "title": "The War of Art",
+    "author": "Steven Pressfield"
+  },
+  {
+    "bookId": "meditations",
+    "title": "Meditations",
+    "author": "Marcus Aurelius"
+  },
+  {
+    "bookId": "mans-search-for-meaning",
+    "title": "Man's Search for Meaning",
+    "author": "Viktor E. Frankl"
+  },
+  {
+    "bookId": "flow",
+    "title": "Flow",
+    "author": "Mihaly Csikszentmihalyi"
+  },
+  {
+    "bookId": "the-denial-of-death",
+    "title": "The Denial of Death",
+    "author": "Ernest Becker"
+  },
+  {
+    "bookId": "the-art-of-thinking-clearly",
+    "title": "The Art of Thinking Clearly",
+    "author": "Rolf Dobelli"
+  },
+  {
+    "bookId": "thinking-in-bets",
+    "title": "Thinking in Bets",
+    "author": "Annie Duke"
+  },
+  {
+    "bookId": "mistakes-were-made-but-not-by-me",
+    "title": "Mistakes Were Made (But Not by Me)",
+    "author": "Carol Tavris, Elliot Aronson"
+  },
+  {
+    "bookId": "the-gift-of-fear",
+    "title": "The Gift of Fear",
+    "author": "Gavin de Becker"
+  },
+  {
+    "bookId": "the-courage-to-be-disliked",
+    "title": "The Courage to Be Disliked",
+    "author": "Ichiro Kishimi, Fumitake Koga"
+  },
+  {
+    "bookId": "make-it-stick",
+    "title": "Make It Stick",
+    "author": "Peter C. Brown, Henry L. Roediger III, Mark A. McDaniel"
+  },
+  {
+    "bookId": "peak",
+    "title": "Peak",
+    "author": "Anders Ericsson, Robert Pool"
+  },
+  {
+    "bookId": "ultralearning",
+    "title": "Ultralearning",
+    "author": "Scott Young"
+  },
+  {
+    "bookId": "limitless",
+    "title": "Limitless",
+    "author": "Jim Kwik"
+  },
+  {
+    "bookId": "the-first-20-hours",
+    "title": "The First 20 Hours",
+    "author": "Josh Kaufman"
+  },
+  {
+    "bookId": "seven-powers",
+    "title": "Seven Powers",
+    "author": "Hamilton Helmer"
+  },
+  {
+    "bookId": "the-outsiders",
+    "title": "The Outsiders",
+    "author": "William Thorndike"
+  },
+  {
+    "bookId": "built-to-last",
+    "title": "Built to Last",
+    "author": "Jim Collins, Jerry I. Porras"
+  },
+  {
+    "bookId": "playing-to-win",
+    "title": "Playing to Win",
+    "author": "A.G. Lafley, Roger L. Martin"
+  },
+  {
+    "bookId": "the-innovators-dilemma",
+    "title": "The Innovator's Dilemma",
+    "author": "Clayton Christensen"
+  },
+  {
+    "bookId": "competing-against-luck",
+    "title": "Competing Against Luck",
+    "author": "Clayton Christensen"
+  },
+  {
+    "bookId": "superforecasting",
+    "title": "Superforecasting",
+    "author": "Philip Tetlock, Dan Gardner"
+  },
+  {
+    "bookId": "noise",
+    "title": "Noise",
+    "author": "Daniel Kahneman, Olivier Sibony, Cass Sunstein"
+  },
+  {
+    "bookId": "the-7-habits-of-highly-effective-people",
+    "title": "The 7 Habits of Highly Effective People",
+    "author": "Stephen R. Covey"
+  },
+  {
+    "bookId": "start-with-why",
+    "title": "Start With Why",
+    "author": "Simon Sinek"
+  },
+  {
+    "bookId": "mindset",
+    "title": "Mindset",
+    "author": "Carol S. Dweck"
+  },
+  {
+    "bookId": "blink",
+    "title": "Blink",
+    "author": "Malcolm Gladwell"
+  },
+  {
+    "bookId": "contagious",
+    "title": "Contagious",
+    "author": "Jonah Berger"
+  },
+  {
+    "bookId": "daring-greatly",
+    "title": "Daring Greatly",
+    "author": "Brené Brown"
+  },
+  {
+    "bookId": "the-tipping-point",
+    "title": "The Tipping Point",
+    "author": "Malcolm Gladwell"
+  },
+  {
+    "bookId": "the-subtle-art-of-not-giving-a-fck",
+    "title": "The Subtle Art of Not Giving a F*ck",
+    "author": "Mark Manson"
+  },
+  {
+    "bookId": "hooked",
+    "title": "Hooked",
+    "author": "Nir Eyal"
+  },
+  {
+    "bookId": "everything-is-fcked",
+    "title": "Everything Is F*cked",
+    "author": "Mark Manson"
+  },
+  {
+    "bookId": "outliers",
+    "title": "Outliers",
+    "author": "Malcolm Gladwell"
+  },
+  {
+    "bookId": "the-5-am-club",
+    "title": "The 5 AM Club",
+    "author": "Robin Sharma"
+  },
+  {
+    "bookId": "dare-to-lead",
+    "title": "Dare to Lead",
+    "author": "Brené Brown"
+  },
+  {
+    "bookId": "range",
+    "title": "Range",
+    "author": "David Epstein"
+  },
+  {
+    "bookId": "drive",
+    "title": "Drive",
+    "author": "Daniel H. Pink"
+  },
+  {
+    "bookId": "the-let-them-theory",
+    "title": "The Let Them Theory",
+    "author": "Mel Robbins"
+  },
+  {
+    "bookId": "unreasonable-hospitality",
+    "title": "Unreasonable Hospitality",
+    "author": "Will Guidara"
+  },
+  {
+    "bookId": "rework",
+    "title": "Rework",
+    "author": "Jason Fried, David Heinemeier Hansson"
+  },
+  {
+    "bookId": "pmbok-guide",
+    "title": "PMBOK Guide",
+    "author": "Project Management Institute"
+  },
+  {
+    "bookId": "stillness-is-the-key",
+    "title": "Stillness Is the Key",
+    "author": "Ryan Holiday"
+  },
+  {
+    "bookId": "the-year-of-less",
+    "title": "The Year of Less",
+    "author": "Cait Flanders"
+  },
+  {
+    "bookId": "the-gifts-of-imperfection",
+    "title": "The Gifts of Imperfection",
+    "author": "Brené Brown"
+  },
+  {
+    "bookId": "digital-minimalism",
+    "title": "Digital Minimalism",
+    "author": "Cal Newport"
+  },
+  {
+    "bookId": "eat-that-frog",
+    "title": "Eat That Frog!",
+    "author": "Brian Tracy"
+  },
+  {
+    "bookId": "hyperfocus",
+    "title": "Hyperfocus",
+    "author": "Chris Bailey"
+  },
+  {
+    "bookId": "factfulness",
+    "title": "Factfulness",
+    "author": "Hans Rosling"
+  },
+  {
+    "bookId": "stolen-focus",
+    "title": "Stolen Focus",
+    "author": "Johann Hari"
+  },
+  {
+    "bookId": "the-power-of-full-engagement",
+    "title": "The Power of Full Engagement",
+    "author": "Jim Loehr & Tony Schwartz"
+  },
+  {
+    "bookId": "the-undoing-project",
+    "title": "The Undoing Project",
+    "author": "Michael Lewis"
+  },
+  {
+    "bookId": "fooled-by-randomness",
+    "title": "Fooled by Randomness",
+    "author": "Nassim Nicholas Taleb"
+  },
+  {
+    "bookId": "quiet",
+    "title": "Quiet",
+    "author": "Susan Cain"
+  },
+  {
+    "bookId": "the-paradox-of-choice",
+    "title": "The Paradox of Choice",
+    "author": "Barry Schwartz"
+  },
+  {
+    "bookId": "nudge",
+    "title": "Nudge",
+    "author": "Richard H. Thaler, Cass R. Sunstein"
+  },
+  {
+    "bookId": "the-organized-mind",
+    "title": "The Organized Mind",
+    "author": "Daniel J. Levitin"
+  },
+  {
+    "bookId": "emotional-intelligence",
+    "title": "Emotional Intelligence",
+    "author": "Daniel Goleman"
+  },
+  {
+    "bookId": "the-happiness-hypothesis",
+    "title": "The Happiness Hypothesis",
+    "author": "Jonathan Haidt"
+  },
+  {
+    "bookId": "stumbling-on-happiness",
+    "title": "Stumbling on Happiness",
+    "author": "Daniel Gilbert"
+  },
+  {
+    "bookId": "behave",
+    "title": "Behave",
+    "author": "Robert M. Sapolsky"
+  },
+  {
+    "bookId": "dopamine-nation",
+    "title": "Dopamine Nation",
+    "author": "Anna Lembke"
+  },
+  {
+    "bookId": "the-molecule-of-more",
+    "title": "The Molecule of More",
+    "author": "Daniel Z. Lieberman & Michael E. Long"
+  },
+  {
+    "bookId": "willpower",
+    "title": "Willpower",
+    "author": "Roy F. Baumeister & John Tierney"
+  },
+  {
+    "bookId": "the-willpower-instinct",
+    "title": "The Willpower Instinct",
+    "author": "Kelly McGonigal"
+  },
+  {
+    "bookId": "the-compound-effect",
+    "title": "The Compound Effect",
+    "author": "Darren Hardy"
+  },
+  {
+    "bookId": "the-slight-edge",
+    "title": "The Slight Edge",
+    "author": "Jeff Olson"
+  },
+  {
+    "bookId": "the-power-of-moments",
+    "title": "The Power of Moments",
+    "author": "Chip Heath & Dan Heath"
+  },
+  {
+    "bookId": "the-millionaire-next-door",
+    "title": "The Millionaire Next Door",
+    "author": "Thomas J. Stanley & William D. Danko"
+  },
+  {
+    "bookId": "i-will-teach-you-to-be-rich",
+    "title": "I Will Teach You to Be Rich",
+    "author": "Ramit Sethi"
+  },
+  {
+    "bookId": "your-money-or-your-life",
+    "title": "Your Money or Your Life",
+    "author": "Vicki Robin & Joe Dominguez"
+  },
+  {
+    "bookId": "the-intelligent-investor",
+    "title": "The Intelligent Investor",
+    "author": "Benjamin Graham"
+  },
+  {
+    "bookId": "the-richest-man-in-babylon",
+    "title": "The Richest Man in Babylon",
+    "author": "George S. Clason"
+  },
+  {
+    "bookId": "freakonomics",
+    "title": "Freakonomics",
+    "author": "Steven D. Levitt & Stephen J. Dubner"
+  },
+  {
+    "bookId": "the-e-myth-revisited",
+    "title": "The E-Myth Revisited",
+    "author": "Michael E. Gerber"
+  },
+  {
+    "bookId": "high-output-management",
+    "title": "High Output Management",
+    "author": "Andrew S. Grove"
+  },
+  {
+    "bookId": "the-five-dysfunctions-of-a-team",
+    "title": "The Five Dysfunctions of a Team",
+    "author": "Patrick Lencioni"
+  },
+  {
+    "bookId": "radical-candor",
+    "title": "Radical Candor",
+    "author": "Kim Scott"
+  },
+  {
+    "bookId": "the-culture-code",
+    "title": "The Culture Code",
+    "author": "Daniel Coyle"
+  },
+  {
+    "bookId": "crossing-the-chasm",
+    "title": "Crossing the Chasm",
+    "author": "Geoffrey A. Moore"
+  },
+  {
+    "bookId": "the-mom-test",
+    "title": "The Mom Test",
+    "author": "Rob Fitzpatrick"
+  },
+  {
+    "bookId": "the-effective-executive",
+    "title": "The Effective Executive",
+    "author": "Peter F. Drucker"
+  },
+  {
+    "bookId": "this-is-marketing",
+    "title": "This Is Marketing",
+    "author": "Seth Godin"
+  },
+  {
+    "bookId": "building-a-storybrand",
+    "title": "Building a StoryBrand",
+    "author": "Donald Miller"
+  },
+  {
+    "bookId": "purple-cow",
+    "title": "Purple Cow",
+    "author": "Seth Godin"
+  },
+  {
+    "bookId": "nonviolent-communication",
+    "title": "Nonviolent Communication",
+    "author": "Marshall B. Rosenberg"
+  },
+  {
+    "bookId": "attached",
+    "title": "Attached",
+    "author": "Amir Levine & Rachel Heller"
+  },
+  {
+    "bookId": "supercommunicators",
+    "title": "Supercommunicators",
+    "author": "Charles Duhigg"
+  },
+  {
+    "bookId": "the-art-of-gathering",
+    "title": "The Art of Gathering",
+    "author": "Priya Parker"
+  },
+  {
+    "bookId": "a-mind-for-numbers",
+    "title": "A Mind for Numbers",
+    "author": "Barbara Oakley"
+  },
+  {
+    "bookId": "the-creative-act",
+    "title": "The Creative Act",
+    "author": "Rick Rubin"
+  },
+  {
+    "bookId": "steal-like-an-artist",
+    "title": "Steal Like an Artist",
+    "author": "Austin Kleon"
+  },
+  {
+    "bookId": "moonwalking-with-einstein",
+    "title": "Moonwalking with Einstein",
+    "author": "Joshua Foer"
+  },
+  {
+    "bookId": "the-4-hour-workweek",
+    "title": "The 4-Hour Workweek",
+    "author": "Timothy Ferriss"
+  },
+  {
+    "bookId": "rich-dad-poor-dad",
+    "title": "Rich Dad Poor Dad",
+    "author": "Robert T. Kiyosaki"
+  },
+  {
+    "bookId": "think-and-grow-rich",
+    "title": "Think and Grow Rich",
+    "author": "Napoleon Hill"
+  },
+  {
+    "bookId": "the-book-of-boundaries",
+    "title": "The Book of Boundaries",
+    "author": "Melissa Urban"
+  },
+  {
+    "bookId": "discipline-is-destiny",
+    "title": "Discipline Is Destiny",
+    "author": "Ryan Holiday"
+  },
+  {
+    "bookId": "the-power-of-now",
+    "title": "The Power of Now",
+    "author": "Eckhart Tolle"
+  },
+  {
+    "bookId": "a-new-earth",
+    "title": "A New Earth",
+    "author": "Eckhart Tolle"
+  },
+  {
+    "bookId": "the-untethered-soul",
+    "title": "The Untethered Soul",
+    "author": "Michael A. Singer"
+  },
+  {
+    "bookId": "the-four-agreements",
+    "title": "The Four Agreements",
+    "author": "Don Miguel Ruiz"
+  },
+  {
+    "bookId": "social-intelligence",
+    "title": "Social Intelligence",
+    "author": "Daniel Goleman"
+  },
+  {
+    "bookId": "focus",
+    "title": "Focus",
+    "author": "Daniel Goleman"
+  },
+  {
+    "bookId": "the-managers-path",
+    "title": "The Manager's Path",
+    "author": "Camille Fournier"
+  },
+  {
+    "bookId": "death-by-meeting",
+    "title": "Death by Meeting",
+    "author": "Patrick Lencioni"
+  },
+  {
+    "bookId": "multipliers",
+    "title": "Multipliers",
+    "author": "Liz Wiseman"
+  },
+  {
+    "bookId": "turn-the-ship-around",
+    "title": "Turn the Ship Around!",
+    "author": "L. David Marquet"
+  },
+  {
+    "bookId": "the-coaching-habit",
+    "title": "The Coaching Habit",
+    "author": "Michael Bungay Stanier"
+  },
+  {
+    "bookId": "obviously-awesome",
+    "title": "Obviously Awesome",
+    "author": "April Dunford"
+  },
+  {
+    "bookId": "positioning",
+    "title": "Positioning",
+    "author": "Al Ries, Jack Trout"
+  },
+  {
+    "bookId": "inspired",
+    "title": "Inspired",
+    "author": "Marty Cagan"
+  },
+  {
+    "bookId": "empowered",
+    "title": "Empowered",
+    "author": "Marty Cagan, Chris Jones"
+  },
+  {
+    "bookId": "sprint",
+    "title": "Sprint",
+    "author": "Jake Knapp, John Zeratsky, Braden Kowitz"
+  },
+  {
+    "bookId": "hacking-growth",
+    "title": "Hacking Growth",
+    "author": "Sean Ellis, Morgan Brown"
+  },
+  {
+    "bookId": "traction",
+    "title": "Traction",
+    "author": "Gabriel Weinberg, Justin Mares"
+  },
+  {
+    "bookId": "the-personal-mba",
+    "title": "The Personal MBA",
+    "author": "Josh Kaufman"
+  },
+  {
+    "bookId": "the-millionaire-fastlane",
+    "title": "The Millionaire Fastlane",
+    "author": "M. J. DeMarco"
+  },
+  {
+    "bookId": "one-up-on-wall-street",
+    "title": "One Up On Wall Street",
+    "author": "Peter Lynch"
+  }
+]

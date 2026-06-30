@@ -1,0 +1,18 @@
+{
+  "_comment": "Modern felt-consequence 'stakes' dealt per chapter by src/librarian/stakesPlan.ts. Reader feedback: chapters are 'more useful than exciting' — keys/bills/drawers are practical, not gripping. These are broad, modern, everyday costs a wide/younger reader feels in the body, dealt as a per-chapter MENU (the writer lands one that fits in an example or the framing; an ill-fitting stake is never forced). 13 entries (prime — required by the stakesPlan step math); each is a CONTENT cue ('name the cost'), never a scene position.",
+  "stakes": [
+    { "id": "missed-rent", "definition": "money that isn't there when it's due — rent you can't cover, a payment that bounces, an account overdrawn at the worst moment" },
+    { "id": "dead-phone", "definition": "the device that fails right when it matters — phone at 1% before a trip, charger gone before work, no signal during the call you needed" },
+    { "id": "dropped-opportunity", "definition": "the opening that slips away — a job lead, intro, or referral missed or buried until it's gone" },
+    { "id": "buried-message", "definition": "the one message that mattered, lost in a flooded group chat or a wall of notifications, answered too late or not at all" },
+    { "id": "blown-deadline", "definition": "the deadline missed because the work scattered — a form, a submission, an assignment due that quietly slid past" },
+    { "id": "forgotten-care", "definition": "a health-or-people cost you forgot — a missed dose, a skipped appointment, the person you meant to check on and didn't" },
+    { "id": "ghosted-reply", "definition": "the reply you meant to send and never did, and the relationship that cools because of it" },
+    { "id": "leaking-money", "definition": "money draining quietly — a subscription you forgot, a late fee, a renewal you'd have cancelled if you'd seen it" },
+    { "id": "double-booked", "definition": "two commitments at once — the thing you have to drop, the person you let down, the trust that takes the hit" },
+    { "id": "lost-essential", "definition": "the thing gone the moment you need it — keys, ID, AirPods, the one file, the note you swore you saved" },
+    { "id": "mental-clutter", "definition": "the slow cost of an overloaded mind — tired, scattered, ten things half-done and nothing finished, the day gone with nothing to show" },
+    { "id": "caught-unprepared", "definition": "looking scattered when it counts — walking into the meeting, class, or conversation without the one thing you needed" },
+    { "id": "closed-window", "definition": "the moment that doesn't come back — the event missed, the chance to say it gone, the deadline for the good version passed" }
+  ]
+}

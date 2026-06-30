@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "source-reality-legacy-exemptions-v1",
+  "description": "Registry of durable, content-bound exemptions from the source-reality verification invariant. Only existing legacy catalog packages may be exempted, and only with explicit human approval bound to the book's content identity.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "exemptions"],
+  "properties": {
+    "schemaVersion": { "const": "source-reality-legacy-exemptions-v1" },
+    "_doc": { "type": "string" },
+    "_entrySchema": { "type": "string" },
+    "exemptions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["schemaVersion", "bookId", "reason", "approvedBy", "approvedAt"],
+        "properties": {
+          "schemaVersion": { "const": "source-reality-legacy-exemption-v1" },
+          "bookId": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "approvedBy": { "type": "string", "minLength": 1 },
+          "approvedAt": { "type": "string", "format": "date-time" },
+          "canonicalIndexHash": { "type": "string", "minLength": 1 },
+          "packageId": { "type": "string", "minLength": 1 },
+          "contentId": { "type": "string", "minLength": 1 },
+          "expiresAt": { "type": "string", "format": "date-time" }
+        },
+        "anyOf": [
+          { "required": ["canonicalIndexHash"] },
+          { "required": ["packageId"] },
+          { "required": ["contentId"] }
+        ]
+      }
+    }
+  }
+}
