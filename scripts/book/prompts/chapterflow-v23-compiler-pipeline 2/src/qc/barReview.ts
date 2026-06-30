@@ -54,7 +54,15 @@ const NUMBER_WORDS: Record<string, number> = {
   twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90,
 };
 const NUMBER_SCALES: Record<string, number> = { hundred: 100, thousand: 1000, million: 1_000_000, billion: 1_000_000_000, trillion: 1_000_000_000_000 };
-const NUMBER_WORD_RUN_RE = /\b(?:(?:zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion|and)(?:[\s-]+|$)){1,8}/gi;
+const NUMBER_WORD_ALTERNATION =
+  "zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|billion|trillion|and";
+// Trailing \b (not a consumed separator/end-of-string) closes the run, so a number word
+// immediately followed by punctuation with no space — "twenty-seven." — still matches its
+// final word instead of being silently truncated mid-run (was matching only "twenty-").
+const NUMBER_WORD_RUN_RE = new RegExp(
+  `\\b(?:${NUMBER_WORD_ALTERNATION})(?:[\\s-]+(?:${NUMBER_WORD_ALTERNATION}))*\\b`,
+  "gi",
+);
 
 function parseNumberWords(raw: string): number | null {
   const tokens = raw.toLowerCase().split(/[\s-]+/).filter((t) => t && t !== "and");

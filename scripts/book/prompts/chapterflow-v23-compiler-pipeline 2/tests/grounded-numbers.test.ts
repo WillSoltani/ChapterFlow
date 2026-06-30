@@ -94,6 +94,51 @@ test("groundedNumbersForChapter extracts VERIFIED spelled quantities from source
   }
 });
 
+const SIDECAR_TRICKY_NUMBERS = {
+  chapterNumber: 1,
+  namedExamples: [{
+    id: "ch01.ex.tricky",
+    label: "Tricky number-word case",
+    summary: "Exercises multi-word, hyphenated, ordinal, and 'a hundred' phrasing.",
+    teachesWhat: "The tokenizer must not over- or under-match spelled-out quantities.",
+    hardSpecifics: [
+      "rose to four hundred and twenty-seven.",
+      "the fee was twenty-seven.",
+      "the fourth hospital joined the program",
+      "a fortieth anniversary event",
+      "raised a hundred dollars",
+      "by 1948 the count held",
+    ],
+    realWorld: true,
+  }],
+  testableFacts: [],
+};
+
+test("groundedNumbersForChapter: tricky spelled quantities tokenize to the intended value, never truncated or ordinal-matched", () => {
+  try {
+    writeRecord(record([{ id: "ch01.ex.tricky", verdict: "VERIFIED", sourceRef: "https://example.org/tricky" }]));
+    const tokens = groundedNumbersForChapter(BOOK, 1, SIDECAR_TRICKY_NUMBERS).map((g) => g.token);
+    // "four hundred and twenty-seven." (trailing period, no space) must ground the FULL value,
+    // not a truncated prefix — the regex used to stop consuming at the unspaced hyphen+word
+    // boundary and silently drop the rest of the run.
+    assert.ok(tokens.includes("427"), `expected the full value 427 (got ${tokens.join(",")})`);
+    assert.ok(!tokens.includes("420"), `must not ground the truncated prefix 420 (got ${tokens.join(",")})`);
+    // "twenty-seven." (hyphenated, trailing period) must ground 27, not a truncated "20".
+    assert.ok(tokens.includes("27"), `expected 27 (got ${tokens.join(",")})`);
+    assert.ok(!tokens.includes("20"), `must not ground the truncated prefix 20 (got ${tokens.join(",")})`);
+    // "the fourth hospital" / "a fortieth anniversary" are ordinals, not quantities — must never
+    // ground 4 or 40 from the word run (the digit 1948 below is the only legitimate digit token).
+    assert.ok(!tokens.includes("4"), `ordinal "fourth" must not ground 4 (got ${tokens.join(",")})`);
+    assert.ok(!tokens.includes("40"), `ordinal "fortieth" must not ground 40 (got ${tokens.join(",")})`);
+    // "a hundred" must ground 100.
+    assert.ok(tokens.includes("100"), `expected "a hundred" to ground 100 (got ${tokens.join(",")})`);
+    // The plain digit year is untouched by word-parsing and still grounds via the digit regex.
+    assert.ok(tokens.includes("1948"), `expected digit year 1948 (got ${tokens.join(",")})`);
+  } finally {
+    clearRecord();
+  }
+});
+
 test("groundedNumbersForChapter: a WRONG or UNVERIFIABLE item never enters the trusted list", () => {
   try {
     writeRecord(record([
