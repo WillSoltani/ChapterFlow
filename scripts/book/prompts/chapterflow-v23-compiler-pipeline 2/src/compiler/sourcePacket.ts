@@ -145,9 +145,15 @@ export function compileSourcePacketFromSidecar(args: {
     ...namedCases.map((c) => c.label),
   ]).slice(0, 100);
   const anchors = buildSourceAnchorCatalog(sidecar as any);
-  const status: SourcePacketV1["sourceQuality"]["status"] = facts.length >= 9 && namedCases.length >= 2 ? "strong" : facts.length >= 6 ? "adequate" : "thin";
+  // The v23 blueprint always reserves exactly 9 quiz slots (chapterBlueprint.ts quizCount).
+  // With fewer than 9 facts, requiredFactIds get reused across quiz questions, which trips
+  // downstream quiz-similarity gates. SP3 already hard-floors at 6 facts; 6-8 facts clears
+  // that floor but is still genuinely insufficient for the fixed 9-question quiz, so it is
+  // the one status that must reach SP13 as a blocker.
+  const status: SourcePacketV1["sourceQuality"]["status"] =
+    facts.length < 6 ? "thin" : facts.length < 9 ? "blocked" : namedCases.length >= 2 ? "strong" : "adequate";
   const risks: string[] = [];
-  if (facts.length < 9) risks.push(`only ${facts.length} testable fact(s); quiz writer may need tighter fact coverage`);
+  if (facts.length < 9) risks.push(`only ${facts.length} testable fact(s); the v23 blueprint always builds a 9-slot quiz, so fewer than 9 facts forces requiredFactIds reuse across quiz questions`);
   for (const c of namedCases) {
     if (c.realWorld && c.hardSpecifics.length < 2) risks.push(`namedCase ${c.id} "${c.label}" has fewer than two hardSpecifics`);
   }

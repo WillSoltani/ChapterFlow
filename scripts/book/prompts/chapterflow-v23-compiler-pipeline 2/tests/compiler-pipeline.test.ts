@@ -278,6 +278,27 @@ test("v23 source packet compiler turns source-v2 into authoring-ready typed fact
   assert.equal(validateSourcePacket(packet).filter((f) => f.severity === "blocker").length, 0);
 });
 
+test("v23 source packet gate hard-blocks a 6-8 fact packet that cannot back the fixed 9-question quiz (SP13)", () => {
+  const base = sidecar();
+  const thinSidecar: SourceSidecarV2 = { ...base, testableFacts: base.testableFacts.slice(0, 7), keyClaims: base.keyClaims.slice(0, 7) };
+  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter: chapter(), sidecar: thinSidecar, sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  assert.equal(packet.facts.length, 7, "packet clears the SP3 6-fact floor but stays below the 9-fact quiz need");
+  assert.equal(packet.sourceQuality.status, "blocked");
+  assert.ok(packet.sourceQuality.risks.some((r) => r.includes("only 7 testable fact")));
+  const findings = validateSourcePacket(packet);
+  const sp13 = findings.find((f) => f.checkId === "SP13.source_quality");
+  assert.ok(sp13, "SP13 must fire when sourceQuality.status is blocked");
+  assert.equal(sp13?.severity, "blocker");
+  assert.equal(findings.some((f) => f.checkId === "SP3.fact_floor"), false, "7 facts clears the unrelated SP3 floor");
+});
+
+test("v23 source packet gate passes a 9-fact packet with no SP13 block", () => {
+  const { packet } = compileFixture();
+  assert.equal(packet.facts.length, 9);
+  assert.notEqual(packet.sourceQuality.status, "blocked");
+  assert.equal(validateSourcePacket(packet).some((f) => f.checkId === "SP13.source_quality"), false);
+});
+
 test("v23 blueprint compiler creates deterministic variety budgets and balanced quiz key pattern", () => {
   const { blueprint } = compileFixture();
   assert.equal(blueprint.schemaVersion, "chapter-blueprint-v1");
