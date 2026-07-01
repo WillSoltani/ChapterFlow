@@ -1070,6 +1070,38 @@ function sourceNumberingLeakFindings(fields: SoftBannedTextOccurrence[]): Sectio
   return findings;
 }
 
+// SEC105 — source-anchor LABEL leak. Each allowed anchor carries an internal `label` in the
+// "Entity / descriptor" bookkeeping form (e.g. "John Deere / first-day peak", "Disney parks /
+// evening spectacular", "Southwest Airlines / playful safety routines"). The writer is told to
+// cite the anchor and reuse its hardSpecifics, and it sometimes pastes the whole label — the
+// " / " seam and all — verbatim into reader prose ("Southwest Airlines / playful safety routines
+// shows the first boundary"). A book-score reader panel flagged this book-wide as a tone/density
+// drag that every existing gate passed. This is a DATA-DRIVEN check, not a regex: it fires ONLY
+// when an actual internal label (one that contains the " / " seam) appears verbatim in a reader
+// field. An internal bookkeeping label reproduced verbatim in prose is definitionally a leak, so
+// this is zero-false-positive by construction — it can never fire on natural prose that merely
+// uses a slash ("he / she", "reading / writing"), because those are not anchor labels.
+function sourceLabelLeakFindings(fields: SoftBannedTextOccurrence[], packet: SourcePacketV1): SectionFinding[] {
+  const findings: SectionFinding[] = [];
+  const seamLabels = packet.allowedAnchors
+    .map((a) => (typeof a.label === "string" ? a.label.trim() : ""))
+    .filter((l) => l.includes(" / ") && l.length >= 6);
+  if (seamLabels.length === 0) return findings;
+  for (const field of fields) {
+    const leaked = seamLabels.find((l) => field.text.includes(l));
+    if (!leaked) continue;
+    findings.push({
+      checkId: "SEC105.source_label_leak",
+      severity: "blocker",
+      chapterNumber: field.chapterNumber,
+      section: field.section,
+      path: field.path,
+      message: `${field.path} pastes the internal source-anchor label "${leaked}" verbatim; name the case in natural prose (e.g. its entity plus a spoken description) and never carry the label's " / " bookkeeping seam into reader text`,
+    });
+  }
+  return findings;
+}
+
 function readerJammedProperNounFindings(fields: SoftBannedTextOccurrence[]): SectionFinding[] {
   const findings: SectionFinding[] = [];
   for (const field of fields) {
@@ -2197,6 +2229,7 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
     ...readerPunctuationFindings(readerFields),
     ...readerSentenceSeamFindings(readerFields),
     ...sourceNumberingLeakFindings(readerFields),
+    ...sourceLabelLeakFindings(readerFields, packet),
     ...readerJammedProperNounFindings(readerFields),
   ];
 }

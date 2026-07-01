@@ -522,6 +522,31 @@ test("v23 section gate blocks SPELLED-OUT source-note numbering ('Fact five favo
   );
 });
 
+test("v23 section gate blocks a pasted source-anchor label seam (SEC105) but not legit slashed prose", () => {
+  // The-power-of-moments regen pasted internal anchor labels — "Southwest Airlines / playful
+  // safety routines", "John Deere / first-day peak" — verbatim into reader prose, and a
+  // book-score panel flagged the " / " seams book-wide as a tone/density drag that every gate
+  // passed. SEC105 is data-driven: it fires ONLY when an actual anchor label (with the " / "
+  // seam) is reproduced verbatim, so it is zero-false-positive on ordinary slashed prose.
+  const fx = compileFixture();
+  fx.packet.allowedAnchors[0].label = "Acme Robotics / warehouse pilot"; // internal bookkeeping label form
+  const leaked = cloneLearning(fx.learning);
+  leaked.quiz.questions[0].explanation = "Acme Robotics / warehouse pilot shows the move, so the reader copies the staged rollout.";
+  const findings = validateSectionPack(leaked, fx.blueprint, fx.packet);
+  assert.ok(
+    findings.some((f) => f.checkId === "SEC105.source_label_leak" && f.severity === "blocker"),
+    findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  );
+
+  const clean = cloneLearning(fx.learning);
+  clean.quiz.questions[0].explanation = "The reader weighs cost / benefit before committing, then decides on the evidence.";
+  assert.equal(
+    validateSectionPack(clean, fx.blueprint, fx.packet).some((f) => f.checkId === "SEC105.source_label_leak"),
+    false,
+    "SEC105 must not fire on legit slashed prose that is not an anchor label",
+  );
+});
+
 test("v23 section gate blocks jammed proper nouns in reader-facing fields", () => {
   const fx = compileFixture();
   const bad = cloneLearning(fx.learning);

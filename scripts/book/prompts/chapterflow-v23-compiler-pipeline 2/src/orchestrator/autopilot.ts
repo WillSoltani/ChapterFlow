@@ -1303,6 +1303,7 @@ TARGETED REPAIR PLAYBOOK
 - A12 lowercase sentence boundary / AS2 jammed proper noun: make the smallest prose correction, then check the chapter did not pick up new AS5-AS10 blockers.
 - SEC103.source_numbering_leak: remove reader-facing labels like "Fact 2" or "Source 3" and state the evidence directly.
 - SEC104.reader_jammed_proper_noun: separate jammed source labels or replace them with a natural descriptive phrase unless the exact CamelCase brand is allowlisted.
+- SEC105.source_label_leak: the reported field pastes an internal source-anchor label in the "Entity / descriptor" bookkeeping form (e.g. "Disney parks / evening spectacular"); rewrite it as natural prose that names the case ("Disney's nightly fireworks finale") and never carries the label's " / " seam. Also replace periphrastic anonymizations like "a Moline-based equipment company" with the plain case name or a chapter-specific description.
 
 Run gate-chapter on every changed chapter and then qc-converge once at the end. If the same AS5/AS6/AS8/AS10 family remains after a real rewrite, stop surface edits and re-author that whole field from the source packet instead of nudging words.
 
