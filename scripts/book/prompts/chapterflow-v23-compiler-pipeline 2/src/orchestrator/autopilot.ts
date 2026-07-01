@@ -938,6 +938,10 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     // qc→gate→qc) re-entry that recreates the SAME finding signature a prior visit already acted
     // on, well before the generic MAX_LOOP_ITERS backstop would fire.
     const gateQcFlipTracker = newGateQcFlipTracker();
+    // True once doGate has converged the pre-QC readiness scouts (variety + alignment) this run.
+    // When gate is SKIPPED (allGated fresh book → "qc") or a resume enters QC directly, this stays
+    // false and doQcWithRepair runs the scouts itself before the first round.
+    let preQcScoutsConverged = false;
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
       // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
@@ -988,10 +992,11 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         // per-chapter edits — they never weaken QC, which still runs after.
         const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: true }, gateQcFlipTracker);
         if (halt) return halt;
+        preQcScoutsConverged = true; // doGate ran the variety+alignment scouts; QC needn't repeat them
         continue;
       }
       if (phase === "qc") {
-        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat, gateQcFlipTracker);
+        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat, gateQcFlipTracker, preQcScoutsConverged);
         if (result) return result; // halt or ready handled inside; null = re-loop
         continue;
       }
@@ -1764,7 +1769,83 @@ Both must stay clean before you report done.${dealt}`;
 
 /** Returns an outcome to STOP on (halt), or null to RE-LOOP (round passed → status
  *  advances to ready). The repair loop honors qc-diagnose governance + stuck-detect. */
-async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true, flipTracker: GateQcFlipTracker = newGateQcFlipTracker()): Promise<AutopilotOutcome | null> {
+// ── Pre-QC readiness convergence (cross-chapter VARIETY + semantic ALIGNMENT) ────────
+// These two scouts de-templatize a book BEFORE the first QC round (the "first-pass-QC" lever).
+// doGate runs them inline — but decidePhase SKIPS the gate phase for a book that gates
+// deterministically-clean straight out of the compiler write phase (allGated → "qc"), so on a
+// clean-gating book the VARIETY scout never ran and the book reached QC still carrying
+// cross-chapter house-voice sameness (the exact "every example is the same beat with a rotating
+// cast" churn a book-score panel gate-flagged on the-power-of-moments, which every per-chapter
+// gate passed because those checks are lexical, not semantic). This helper runs that same
+// bounded, read-only + surgical convergence from the QC phase so it fires for EVERY architecture
+// whether or not doGate was visited. It NEVER weakens QC (which still runs after and stays the
+// sole pass/block authority) and only emits surgical per-chapter edits, re-running qc-converge
+// after each so a detemplate/alignment edit that introduces a deterministic blocker halts here
+// instead of silently reaching QC. Mirrors doGate's variety↔alignment oscillation bounds
+// (PREQC_MAX_*/combinedScoutPasses). Returns { halt, edited }: halt !== null → stop the run;
+// edited=true → chapters were rewritten, so the caller forces a fresh QC sweep (no stale carry).
+async function convergePreQcReadiness(
+  bookId: string,
+  maxParallel: number,
+  deps: AutopilotDeps,
+  heartbeat: () => boolean,
+): Promise<{ halt: AutopilotOutcome | null; edited: boolean }> {
+  let varietyPasses = 0;
+  let alignmentPasses = 0;
+  let combinedScoutPasses = 0;
+  let edited = false;
+  const scoutEditSignatures: string[] = [];
+  const maxIterations = PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES + PREQC_MAX_COMBINED_SCOUT_PASSES + 4;
+  for (let i = 0; i < maxIterations; i++) {
+    if (!heartbeat()) {
+      return { halt: mkHalt(bookId, "qc", "infra", `lost the run lock for ${bookId} during pre-QC readiness convergence — halting to avoid two conductors on the same book.`), edited };
+    }
+    if (varietyPasses < PREQC_MAX_VARIETY_PASSES) {
+      varietyPasses++;
+      const rewrites = await scoutCrossChapterVariety(bookId, deps);
+      if (rewrites.length) {
+        combinedScoutPasses++;
+        scoutEditSignatures.push(`variety:${rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+        if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
+          return { halt: mkHalt(bookId, "qc", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. A variety edit is reliably re-triggering an alignment finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
+        }
+        deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
+        await surgicalDetemplate(bookId, rewrites, deps, varietyPasses, maxParallel);
+        edited = true;
+        const c = await deps.runVerb(["qc-converge", bookId]);
+        if (c.code >= 2) return { halt: mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${c.code}) after pre-QC variety detemplate — inspect: ${(c.stderr || c.stdout).slice(0, 300)}`), edited };
+        if (c.code !== 0) return { halt: mkHalt(bookId, "qc", "content", `pre-QC variety detemplate introduced deterministic findings — run: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
+        alignmentPasses = 0; // content changed; re-run semantic readiness after variety settles
+        continue;
+      }
+      deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}: book reads varied (no cross-chapter templating) → continuing to QC-readiness audit`);
+    }
+    if (alignmentPasses < PREQC_MAX_ALIGNMENT_PASSES) {
+      alignmentPasses++;
+      const repairs = await scoutPreQcAlignment(bookId, deps);
+      if (repairs.length) {
+        combinedScoutPasses++;
+        scoutEditSignatures.push(`alignment:${repairs.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+        if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
+          return { halt: mkHalt(bookId, "qc", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. An alignment edit is reliably re-triggering a variety finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
+        }
+        deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}/${PREQC_MAX_ALIGNMENT_PASSES}: repairing ${repairs.length} QC-alignment issue(s) before formal QC — ${repairs.map((rw) => `ch${rw.chapter}`).join(", ")}`);
+        await surgicalPreQcAlignmentRepair(bookId, repairs, deps, alignmentPasses, maxParallel);
+        edited = true;
+        const c = await deps.runVerb(["qc-converge", bookId]);
+        if (c.code >= 2) return { halt: mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${c.code}) after pre-QC readiness repair — inspect: ${(c.stderr || c.stdout).slice(0, 300)}`), edited };
+        if (c.code !== 0) return { halt: mkHalt(bookId, "qc", "content", `pre-QC readiness repair introduced deterministic findings — run: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
+        varietyPasses = 0; // semantic repair can introduce new cross-chapter echoes; re-scout once
+        continue;
+      }
+      deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}: semantic/factual alignment clean → advancing to QC`);
+    }
+    return { halt: null, edited };
+  }
+  return { halt: null, edited }; // budget exhausted → advance best-effort (QC remains the authority)
+}
+
+async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true, flipTracker: GateQcFlipTracker = newGateQcFlipTracker(), preQcScoutsConverged = false): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
   // Item B — two-round sweep confirmation. The cross-chapter sweep is stochastic, so a single
   // PASS can be a lucky read that auto-publishes a book a re-read would block. On a PASS we require
@@ -1778,12 +1859,14 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
   // opens the round (an all-carry incremental round otherwise re-QCs nothing) and produces that
   // second read. Harmless for a fresh run (round 0 has no prior sweep to carry anyway).
   let forceFreshSweep = deps.anyCarryable(bookId) && !deps.sweepConfirmed(bookId);
-  // Resume case: if a previous process already has fresh publishable chapter attestations but the
-  // independent sweep is not confirmed, the phase ladder enters QC directly and would otherwise skip
-  // doGate's pre-QC readiness scout. Run ONE resume-only readiness scout before the confirming
-  // sweep so stale semantic/coherence defects are repaired before another QC round spends reviewer
-  // work. Fresh books already run this scout in doGate, so this branch is limited to carry/resume.
-  let resumeReadinessChecked = false;
+  // Run the pre-QC readiness scouts (cross-chapter VARIETY + semantic ALIGNMENT) ONCE before the
+  // first QC round when doGate did NOT already converge them this session (preQcScoutsConverged).
+  // decidePhase skips the gate phase for a book that gates clean straight out of write (allGated →
+  // "qc"), and a resumed run can enter QC directly from a prior process — in both cases doGate's
+  // inline scouts never ran, so the book would otherwise hit QC still carrying cross-chapter
+  // house-voice sameness (the variety scout is the churn lever a book-score panel flags). This is
+  // the same bounded, read-only + surgical convergence; qc-converge is re-run inside after each edit.
+  let preQcReadinessChecked = false;
   const MAX_CONFIRM_ROUNDS = 2;
   for (let attempt = 0; attempt <= maxRepair; attempt++) {
     // Refresh the run lock at each round boundary: a full QC iteration (initial round + repair
@@ -1793,20 +1876,15 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
     if (!heartbeat()) {
       return mkHalt(bookId, "qc", "infra", `lost the run lock for ${bookId} mid-QC (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
     }
-    if (!resumeReadinessChecked && deps.anyCarryable(bookId) && !deps.sweepConfirmed(bookId)) {
-      resumeReadinessChecked = true;
-      const repairs = await scoutPreQcAlignment(bookId, deps);
-      if (repairs.length) {
-        deps.log(`[autopilot] resume pre-QC readiness: repairing ${repairs.length} QC-alignment issue(s) before confirming sweep — ${repairs.map((rw) => `ch${rw.chapter}`).join(", ")}`);
-        await surgicalPreQcAlignmentRepair(bookId, repairs, deps, 1, maxParallel);
-        const converge = await deps.runVerb(["qc-converge", bookId]);
-        if (converge.code >= 2) return mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${converge.code}) after resume pre-QC readiness repair — inspect: ${(converge.stderr || converge.stdout).slice(0, 300)}`);
-        if (converge.code !== 0) return mkHalt(bookId, "qc", "content", `resume pre-QC readiness repair introduced deterministic findings — run: npx tsx src/cli.ts qc-converge ${bookId}`);
-        forceFreshSweep = true;
+    if (!preQcReadinessChecked && !preQcScoutsConverged) {
+      preQcReadinessChecked = true;
+      const res = await convergePreQcReadiness(bookId, maxParallel, deps, heartbeat);
+      if (res.halt) return res.halt;
+      if (res.edited) {
+        forceFreshSweep = true; // re-read the rewritten chapters instead of carrying stale passes
         attempt--; // pre-QC readiness is not a QC repair round; do not consume repair budget
         continue;
       }
-      deps.log("[autopilot] resume pre-QC readiness: semantic/factual alignment clean before confirming sweep");
     }
 
     // Incremental carry drives convergence. A non-incremental round re-rolls EVERY
