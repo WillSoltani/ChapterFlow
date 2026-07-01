@@ -1,0 +1,12 @@
+{
+  "$schema": "./rubric-thresholds.schema.json",
+  "schemaVersion": "rubric-thresholds-v1",
+  "_comment": "Thresholds for the deterministic rubric pre-flight (P04). FAIL-capable metrics: fleschEase (breakdown), tellRateMax, transferMin, memorableCleanMin. fkGrade is ADVISORY (warn-only): review calibration on the real catalog showed the top books read easier than the band (atomic-habits breakdown FK ≈ 4.2 → an FK-min gate would fail 20/20 of its chapters), so the ease band is the enforceable readability ruler and FK is descriptive. House-tic and nominalization are DIAGNOSTIC (warn-only). Rates here are FRACTIONS in [0,1] (tellRate/transferRatio), not score.py's 0..100 percentages. Do NOT tighten a fail band or flip a warn-only metric to fail without a zero-false-positive calibration against book-packages/*.v21.json.",
+  "fleschEase": { "min": 72, "max": 84, "warnTolerance": 4 },
+  "fkGrade": { "min": 7, "max": 8, "warnTolerance": 1 },
+  "tellRateMax": 0.20,
+  "transferMin": 0.70,
+  "memorableCleanMin": 2,
+  "houseTicDensityWarnMax": 1,
+  "nominalizationRateWarnMax": 8
+}

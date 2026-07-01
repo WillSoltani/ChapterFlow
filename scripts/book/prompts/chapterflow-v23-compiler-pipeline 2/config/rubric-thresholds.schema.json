@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rubric-thresholds.schema.json",
+  "title": "ChapterFlow Rubric Pre-flight Thresholds",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "fleschEase",
+    "fkGrade",
+    "tellRateMax",
+    "transferMin",
+    "memorableCleanMin",
+    "houseTicDensityWarnMax",
+    "nominalizationRateWarnMax"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "rubric-thresholds-v1" },
+    "_comment": { "type": "string" },
+    "fleschEase": { "$ref": "#/$defs/band" },
+    "fkGrade": { "$ref": "#/$defs/band" },
+    "tellRateMax": { "type": "number", "minimum": 0, "maximum": 1 },
+    "transferMin": { "type": "number", "minimum": 0, "maximum": 1 },
+    "memorableCleanMin": { "type": "integer", "minimum": 0 },
+    "houseTicDensityWarnMax": { "type": "number", "minimum": 0 },
+    "nominalizationRateWarnMax": { "type": "number", "minimum": 0 }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "band": {
+      "type": "object",
+      "required": ["min", "max", "warnTolerance"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "warnTolerance": { "type": "number", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
+  }
+}
