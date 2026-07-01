@@ -1,0 +1,165 @@
+import assert from "node:assert/strict";
+
+import { test } from "./harness.js";
+import {
+  runAutopilot,
+  recordGateQcSignature,
+  newGateQcFlipTracker,
+  type AutopilotDeps,
+} from "../src/orchestrator/autopilot.js";
+import type { BookStatus, ChapterStatus } from "../src/lifecycle/bookStatus.js";
+
+// ── fixtures (mirrors tests/autopilot.test.ts's happyDeps pattern) ──────────────
+function makeStatus(o: Partial<BookStatus>): BookStatus {
+  return {
+    bookId: "zz", stage: "write-chapter", phase: "", expectedChapters: 2,
+    writtenChapters: 0, gatedChapters: 0, qcdChapters: 0, bookGatePass: null,
+    bookGateBlockers: 0, deterministicClean: true, packaged: false, publishable: false, guardrails: false,
+    variety: null, nextCommand: "", nextLabel: "", chapters: [],
+    ...o,
+  };
+}
+function chap(n: number, written = true, gate = true, qc: ChapterStatus["qcVerdict"] = "NONE", fresh = false): ChapterStatus {
+  return { number: n, chapterId: `zz-ch0${n}`, written, shipGatePass: gate, shipBlockers: gate ? 0 : 1, qcVerdict: qc, qcFresh: fresh };
+}
+
+function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { deps: Partial<AutopilotDeps>; spawns: { sessionId: string }[] } {
+  const spawns: { sessionId: string }[] = [];
+  let si = 0;
+  let n = 0;
+  const deps: Partial<AutopilotDeps> = {
+    statusOf: () => statuses[Math.min(si++, statuses.length - 1)],
+    runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
+    spawn: (async (o: { sessionId: string }) => {
+      spawns.push(o);
+      return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+    listTaskCards: (_b, _r, sub) =>
+      sub === "confirm" ? ["/t/confirm/ch01.md"] : ["/t/00-sweep.md", "/t/01-keyA.md", "/t/02-keyB.md", "/t/bar/ch01.md", "/t/bar/ch02.md"],
+    listWriteCards: () => ["/w/ch01.md", "/w/ch02.md"],
+    latestRoundId: () => "r20260101000000-abcdef",
+    expectedChapterNumbers: () => [1, 2],
+    readTask: () => "TASK",
+    mkSessionId: (label: string) => `${label}#${++n}`,
+    chapterHashes: () => ({}),
+    submissionPresent: () => true,
+    sweepConfirmed: () => true,
+    logSession: () => {},
+    logBroker: () => {},
+    reviewerSkeleton: () => null,
+    reviewerWorkspace: () => ({ cwd: "/tmp/cf-blind-test", inputs: [], cleanup: () => {} }),
+    readReviewPacket: () => ["sweep", "keyA", "keyB", "bar", "confirm", "major"]
+      .map((role) => `npx tsx src/cli.ts qc-submit zz --round r --role ${role} --token tok-${role} --file <x>`)
+      .join("\n"),
+    writeTempSubmission: () => "/tmp/cf-broker-test.json",
+    acquireLock: () => ({ ok: true, release: () => {} }),
+    log: () => {},
+    ...over,
+  };
+  return { deps, spawns };
+}
+
+// ── recordGateQcSignature (pure) ────────────────────────────────────────────────
+test("recordGateQcSignature: a blank signature is never tracked (never 'stuck')", () => {
+  const tracker = newGateQcFlipTracker();
+  assert.equal(recordGateQcSignature(tracker, "gate", ""), null);
+  assert.equal(tracker.history.length, 0);
+});
+
+test("recordGateQcSignature: same-phase repeats (no intervening OTHER phase) never flag a flip", () => {
+  const tracker = newGateQcFlipTracker();
+  assert.equal(recordGateQcSignature(tracker, "gate", "S"), null);
+  assert.equal(recordGateQcSignature(tracker, "gate", "S"), null, "two consecutive gate visits with the same sig is normal within-phase repetition, not a flip");
+});
+
+test("recordGateQcSignature: gate(S) -> qc(anything) -> gate(S) IS a flip", () => {
+  const tracker = newGateQcFlipTracker();
+  assert.equal(recordGateQcSignature(tracker, "gate", "S"), null);
+  assert.equal(recordGateQcSignature(tracker, "qc", "T"), null);
+  assert.equal(recordGateQcSignature(tracker, "gate", "S"), "S", "the SAME gate signature recurring with a qc visit in between is a flip");
+});
+
+test("recordGateQcSignature: gate(S) -> qc(anything) -> gate(DIFFERENT) is progress, not a flip", () => {
+  const tracker = newGateQcFlipTracker();
+  assert.equal(recordGateQcSignature(tracker, "gate", "S"), null);
+  assert.equal(recordGateQcSignature(tracker, "qc", "T"), null);
+  assert.equal(recordGateQcSignature(tracker, "gate", "S2"), null, "a different signature means the gate is making progress on a new finding");
+});
+
+// ── doGate: variety/alignment scout oscillation (A -> B -> A) ──────────────────
+test("doGate HALTS with a specific oscillation message when the variety and alignment scouts keep re-triggering each other", async () => {
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+  ];
+  const { deps, spawns } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "DETERMINISTIC-CLEAN", stderr: "" }; // blockers clean from the start
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    blockingMajors: () => [],
+    spawn: (async (o: { sessionId: string }) => {
+      spawns.push(o);
+      // The variety scout ALWAYS flags ch1, and the alignment scout ALWAYS flags ch1 — each
+      // scout's "fix" reliably re-triggers the sibling's finding (a real A -> B -> A oscillation).
+      if (o.sessionId.includes("pre-qc-variety-scout")) {
+        return { ok: true, exitCode: 0, finalMessage: "done", stdout: '```json\n{"templated":true,"rewrites":[{"chapter":1,"instruction":"differentiate ch1"}]}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId };
+      }
+      if (o.sessionId.includes("pre-qc-readiness-scout")) {
+        return { ok: true, exitCode: 0, finalMessage: "done", stdout: '```json\n{"clean":false,"repairs":[{"chapter":1,"problem":"reintroduced by variety edit","instruction":"fix it"}]}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId };
+      }
+      return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+  });
+  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") {
+    assert.equal(outcome.phase, "gate");
+    assert.equal(outcome.category, "progress");
+    assert.match(outcome.reason, /pre-QC variety\/alignment oscillation/, "the halt names the SPECIFIC oscillation, not the generic loop-iteration-cap message");
+  }
+  // Bounded: the dedicated combined-scout budget (PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES = 4)
+  // catches this well before the doGate loop's own maxGateIterations budget (maxRepair(4) + 2 + 2 + 4 = 12).
+  const scoutSpawns = spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout") || s.sessionId.startsWith("pre-qc-readiness-scout"));
+  assert.ok(scoutSpawns.length <= 6, `expected the oscillation halt well before the generic 12-iteration cap; saw ${scoutSpawns.length} scout passes`);
+});
+
+// ── gate <-> QC finding-signature flip (deterministic blocker reintroduced by a QC repair) ──
+test("autopilot HALTS with a specific gate/QC flip message when a QC repair reintroduces the SAME deterministic blocker a prior gate visit already fixed", async () => {
+  const BLOCKER_STDOUT = "ch01: AS5.chapter_quiz_prompt_matches_prior — dup finding";
+  const statuses = [
+    // 1) gate: deterministic blocker present.
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    // 2) qc: gate "fixed" the blocker and advanced (deterministicClean defaults true).
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+    // 3) gate again: the QC repair reintroduced the identical blocker.
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
+  ];
+  let convergeCalls = 0;
+  let finalizeCalls = 0;
+  const { deps } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args.includes("--finalize")) return finalizeCalls++ === 0 ? { code: 1, stdout: "REVISE", stderr: "" } : { code: 0, stdout: "PASS", stderr: "" };
+      if (args[0] === "qc-diagnose") return { code: 0, stdout: "ch02: some-other-qc-finding", stderr: "" };
+      if (args[0] === "qc-converge") {
+        convergeCalls++;
+        // Call 1 (gate visit 1, first attempt) and call 4 (gate visit 2, first attempt) surface
+        // the IDENTICAL deterministic blocker; the repair converge in between reports CLEAN.
+        if (convergeCalls === 1 || convergeCalls === 4) return { code: 1, stdout: BLOCKER_STDOUT, stderr: "" };
+        return { code: 0, stdout: "DETERMINISTIC-CLEAN", stderr: "" };
+      }
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    blockingMajors: () => [],
+    majorFindingKeys: () => new Set(),
+  });
+  const outcome = await runAutopilot({ architecture: "compiler", bookId: "zz", deps });
+  assert.equal(outcome.status, "halt");
+  if (outcome.status === "halt") {
+    assert.equal(outcome.phase, "gate");
+    assert.equal(outcome.category, "progress");
+    assert.match(outcome.reason, /gate\/QC flip on/, "the halt names the SPECIFIC gate/QC flip, not the generic 40-iteration backstop");
+    assert.match(outcome.reason, /AS5\.chapter_quiz_prompt_matches_prior/, "the halt names the recurring finding signature");
+  }
+});

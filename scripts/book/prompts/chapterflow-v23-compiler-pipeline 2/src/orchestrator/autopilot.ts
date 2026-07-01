@@ -374,6 +374,38 @@ export function noProgress(before: Set<string>, after: Set<string>): boolean {
   return true;
 }
 
+/** Cross-phase flip tracker: one instance per runAutopilot() call, threaded through every
+ *  doGate()/doQcWithRepair() invocation. Each phase records the finding signature it is about
+ *  to act on (a gate's deterministic-blocker signature, or a QC round's REVISE signature). The
+ *  outer MAX_LOOP_ITERS backstop only catches a flip generically (after the WHOLE loop budget is
+ *  spent, with a "likely a stuck phase" message); this lets us halt the instant the SAME
+ *  signature recurs in the same phase with the other phase visited in between — a gate→qc→gate
+ *  (or qc→gate→qc) re-entry that re-creates a finding the prior visit already "fixed". */
+export type GateQcFlipTracker = { history: Array<{ phase: "gate" | "qc"; sig: string }> };
+
+export function newGateQcFlipTracker(): GateQcFlipTracker {
+  return { history: [] };
+}
+
+/** Records `sig` for `phase` and returns the recurring signature when this entry completes a
+ *  phase(sig) → otherPhase(anything) → phase(SAME sig) pattern — i.e. a real gate↔QC flip, not
+ *  just a repeated attempt within the SAME phase (which already has its own no-progress checks).
+ *  A blank signature (nothing to act on) is never recorded — an empty `before` is never "stuck". */
+export function recordGateQcSignature(tracker: GateQcFlipTracker, phase: "gate" | "qc", sig: string): string | null {
+  if (!sig) return null;
+  const h = tracker.history;
+  if (h.length >= 2) {
+    const prev1 = h[h.length - 1];
+    const prev2 = h[h.length - 2];
+    if (prev1.phase !== phase && prev2.phase === phase && prev2.sig === sig) {
+      h.push({ phase, sig });
+      return sig;
+    }
+  }
+  h.push({ phase, sig });
+  return null;
+}
+
 // ── Default real collaborators ──────────────────────────────────────────────────
 
 /** The env every conductor CLI subprocess runs under. Fail-closed: the strict
@@ -877,6 +909,10 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
 
   try {
     let lastSignature = "";
+    // Shared across every gate/qc phase re-entry for THIS run — detects a gate→qc→gate (or
+    // qc→gate→qc) re-entry that recreates the SAME finding signature a prior visit already acted
+    // on, well before the generic MAX_LOOP_ITERS backstop would fire.
+    const gateQcFlipTracker = newGateQcFlipTracker();
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
       // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
@@ -915,12 +951,12 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "gate") {
-        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: architecture !== "compiler" });
+        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: architecture !== "compiler" }, gateQcFlipTracker);
         if (halt) return halt;
         continue;
       }
       if (phase === "qc") {
-        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat);
+        const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat, gateQcFlipTracker);
         if (result) return result; // halt or ready handled inside; null = re-loop
         continue;
       }
@@ -1170,7 +1206,7 @@ async function doWrite(bookId: string, status: BookStatus, maxParallel: number, 
 
 // ── Phase: gate (repair ship/book-gate blockers, bounded) ─────────────────────
 
-async function doGate(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true, options: { preQcScouts?: boolean } = {}): Promise<AutopilotOutcome | null> {
+async function doGate(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true, options: { preQcScouts?: boolean } = {}, flipTracker: GateQcFlipTracker = newGateQcFlipTracker()): Promise<AutopilotOutcome | null> {
   // BP7 (book-pattern audit) fails closed without durable brief + per-chapter plan artifacts under
   // state/briefs|plans/, which the codex authoring path does NOT persist. `derive-artifacts` is a
   // deterministic, side-effect-free pass over on-disk state, so derive them up front: this resolves
@@ -1183,6 +1219,14 @@ async function doGate(bookId: string, maxRepair: number, maxParallel: number, de
   let gateContentAttempts = 0; // deterministic blocker/major repairs consume maxRepair; pre-QC scouts do not
   let varietyPasses = 0; // pre-QC cross-chapter variety scout passes (bounded; independent of maxRepair)
   let alignmentPasses = 0; // pre-QC semantic/factual readiness passes (bounded; independent of maxRepair)
+  // Dedicated A→B→A oscillation budget: a variety edit can reliably re-trigger an alignment
+  // finding (and vice versa), and EACH scout resets its SIBLING's counter back to 0 on every edit
+  // (see below) — so varietyPasses/alignmentPasses alone never reach their own cap when the two
+  // scouts are flip-flopping. This counter is NOT reset by either scout, so the oscillation is
+  // bounded independently of the per-scout caps. scoutEditSignatures keeps the last few edit
+  // signatures so a halt can name exactly what is flipping.
+  let combinedScoutPasses = 0;
+  const scoutEditSignatures: string[] = [];
   const maxGateIterations = maxRepair + PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES + 4;
   for (let attempt = 1; attempt <= maxGateIterations; attempt++) {
     // Keep the run lock fresh across this multi-hour repair phase (each attempt spawns a 30-min
@@ -1196,6 +1240,16 @@ async function doGate(bookId: string, maxRepair: number, maxParallel: number, de
     if (converge.code >= 2) return mkHalt(bookId, "gate", "infra", `qc-converge errored (exit ${converge.code}) — not a content problem; inspect: ${(converge.stderr || converge.stdout).slice(0, 300)}`);
     if (converge.code !== 0) {
       // DETERMINISTIC-DIRTY (blockers) → converge the cheap deterministic battery first.
+      // Gate↔QC flip check: if THIS SAME blocker signature already surfaced in a previous gate
+      // visit with a QC visit in between (this run already repaired it once, advanced to QC, and
+      // QC's repair re-introduced the IDENTICAL blocker), halt with a specific diagnosis instead
+      // of burning the rest of maxGateIterations re-dispatching a repair that demonstrably doesn't
+      // stick.
+      const blockerSig = [...findingSignatures(converge.stdout)].sort().join("|");
+      const flip = recordGateQcSignature(flipTracker, "gate", blockerSig);
+      if (flip) {
+        return mkHalt(bookId, "gate", "progress", `gate/QC flip on ${flip.slice(0, 300)}: this deterministic blocker was already repaired once this run, then re-introduced by a QC repair — gate and QC are fighting over the same finding. Escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`);
+      }
       deps.log(`[autopilot] gate deterministic repair attempt ${attempt}/${maxRepair} — converging deterministic gates`);
       const task = `Fix the DETERMINISTIC gate findings below for bookId ${bookId} by editing chapter CONTENT only (state/chapters/), then run \`npx tsx src/cli.ts qc-converge ${bookId}\` until it reports DETERMINISTIC-CLEAN. Fix EVERY finding in one pass. Do NOT edit pipeline code/config.
 
@@ -1238,6 +1292,11 @@ ${converge.stdout}`;
         varietyPasses++;
         const rewrites = await scoutCrossChapterVariety(bookId, deps);
         if (rewrites.length) {
+          combinedScoutPasses++;
+          scoutEditSignatures.push(`variety:${rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+          if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
+            return mkHalt(bookId, "gate", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. A variety edit is reliably re-triggering an alignment finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`);
+          }
           deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
           await surgicalDetemplate(bookId, rewrites, deps, varietyPasses, maxParallel);
           alignmentPasses = 0; // content changed; re-run semantic readiness after variety settles
@@ -1249,6 +1308,11 @@ ${converge.stdout}`;
         alignmentPasses++;
         const repairs = await scoutPreQcAlignment(bookId, deps);
         if (repairs.length) {
+          combinedScoutPasses++;
+          scoutEditSignatures.push(`alignment:${repairs.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+          if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
+            return mkHalt(bookId, "gate", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. An alignment edit is reliably re-triggering a variety finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`);
+          }
           deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}/${PREQC_MAX_ALIGNMENT_PASSES}: repairing ${repairs.length} QC-alignment issue(s) before formal QC — ${repairs.map((rw) => `ch${rw.chapter}`).join(", ")}`);
           await surgicalPreQcAlignmentRepair(bookId, repairs, deps, alignmentPasses, maxParallel);
           varietyPasses = 0; // semantic repair can introduce new cross-chapter echoes; re-scout once
@@ -1371,6 +1435,13 @@ const PREQC_MAX_VARIETY_PASSES = 2;     // full-book scout passes per gate, inde
 const PREQC_MAX_REWRITES_PER_PASS = 4;  // cap surgical sessions per pass (bounds cost on a systemically-templated book)
 const PREQC_MAX_ALIGNMENT_PASSES = 2;   // semantic/factual readiness scouts before formal QC
 const PREQC_MAX_ALIGNMENT_REPAIRS_PER_PASS = 6; // bounded surgical fixes; cheaper than repeated QC rounds
+// Dedicated combined budget for variety+alignment scout EDITS, independent of either scout's own
+// per-type cap (PREQC_MAX_VARIETY_PASSES / PREQC_MAX_ALIGNMENT_PASSES). Each scout resets its
+// sibling's counter to 0 whenever it makes an edit (the content may have unsettled the OTHER
+// scout's prior clean read) — so in a genuinely convergent book this combined total never exceeds
+// the sum of the two per-type caps (each scout still stops once ITS OWN cap is hit). A count that
+// exceeds this budget can only mean the two scouts keep re-triggering each other indefinitely.
+const PREQC_MAX_COMBINED_SCOUT_PASSES = PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES;
 
 type VarietyRewrite = { chapter: number; family?: string; shared?: string; instruction: string };
 type PreQcAlignmentRepair = {
@@ -1611,7 +1682,7 @@ Both must stay clean before you report done.${dealt}`;
 
 /** Returns an outcome to STOP on (halt), or null to RE-LOOP (round passed → status
  *  advances to ready). The repair loop honors qc-diagnose governance + stuck-detect. */
-async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true): Promise<AutopilotOutcome | null> {
+async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: number, deps: AutopilotDeps, heartbeat: () => boolean = () => true, flipTracker: GateQcFlipTracker = newGateQcFlipTracker()): Promise<AutopilotOutcome | null> {
   let prevSignatures = new Set<string>();
   // Item B — two-round sweep confirmation. The cross-chapter sweep is stochastic, so a single
   // PASS can be a lucky read that auto-publishes a book a re-read would block. On a PASS we require
@@ -1734,6 +1805,16 @@ async function doQcWithRepair(bookId: string, maxRepair: number, maxParallel: nu
       return mkHalt(bookId, "qc", "progress", `repair made NO progress (same findings survived a content edit) — escalate. Round: ${round.roundId}`);
     }
     prevSignatures = sigs;
+    // Gate↔QC flip check: this round's REVISE signature already surfaced in a previous QC visit
+    // THIS run, with a gate visit in between (gate "fixed" a deterministic blocker, advanced here,
+    // and this QC round re-surfaced the identical finding) — gate and QC are fighting over the
+    // same finding rather than converging. Catch it the instant it recurs, not after the outer
+    // 40-iteration backstop.
+    const qcSig = [...sigs].sort().join("|");
+    const flip = recordGateQcSignature(flipTracker, "qc", qcSig);
+    if (flip) {
+      return mkHalt(bookId, "qc", "progress", `gate/QC flip on ${flip.slice(0, 300)}: this QC finding already surfaced in an earlier round this run, was sent back through the gate phase, and has now recurred identically — escalate. Round: ${round.roundId}`);
+    }
 
     // Spawn ONE repair writer with the generated repair prompt, then converge
     // deterministically before the next (fresh) round — the treadmill-killer.
