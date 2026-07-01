@@ -21,15 +21,41 @@ import { readdirSync } from "fs";
 import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url)); // .../chapterflow-v21-authored/src/lib
+const __dirname = dirname(fileURLToPath(import.meta.url)); // .../chapterflow-v23-compiler-pipeline/src/lib
 
 /** The git-tracked, canonical pipeline state dir (what gates/promote read). */
 export const CANONICAL_STATE = resolve(__dirname, "../../state");
 export const CHAPTERS_DIR = resolve(CANONICAL_STATE, "chapters");
-/** Repo root (six levels up from src/lib). */
+/** This package's OWN root (two levels up from src/lib) — it is designed to be an
+ *  extractable standalone package, so REPO_ROOT means its root, not whatever outer
+ *  repo it's currently checked out inside of. Everything else in this codebase
+ *  (tests, cli.ts, doctor.ts) already treats REPO_ROOT this way; do not repoint it
+ *  at the outer ancestor below or `.chapterflow/`, `book-packages/`, etc. resolve
+ *  to the wrong place. */
 export const REPO_ROOT = resolve(__dirname, "../..");
-/** The accidental repo-root shadow `state/` — chapters here are INVISIBLE to gates. */
-export const FORBIDDEN_STATE = resolve(REPO_ROOT, "state");
+/**
+ * The directory six levels above src/lib — same formula v21's chapterPaths.ts uses
+ * for its own REPO_ROOT — i.e. wherever this package is currently NESTED
+ * (scripts/book/prompts/<pipeline-dir>/src/lib). Verified on disk (2026-06-30) for
+ * every checkout of this pipeline — the main ChapterFlow-books worktree AND its
+ * Lane3/Lane4 git worktrees: this resolves to that outer checkout's root, which
+ * carries its OWN real, gitignored `state/` dir distinct from CANONICAL_STATE
+ * above (the main checkout's is populated: `state/chapters`, `state/qc-orchestrator`
+ * — the exact v21 dual-state-dir trap, just one level further out here). A few
+ * scripts in this package resolve `"state/chapters"` relative to `process.cwd()`
+ * rather than `__dirname` (src/scratch/calibrate-author-check.ts,
+ * src/scratch/write-hooked-step2.ts, cost-tracker.ts's default stateRoot) — if any
+ * of those ever runs with cwd = that outer root instead of this package's own root,
+ * chapter files land there, INVISIBLE to this pipeline's gates. So the shadow check
+ * below must watch THIS ancestor, not REPO_ROOT (which by construction can never
+ * differ from CANONICAL_STATE's parent and would make the check permanently dead
+ * code — the bug this constant replaces). If this package is ever truly extracted
+ * to be its own top-level repo, this resolves outside any real repo and the check
+ * simply finds nothing there: a safe no-op, not a silent skip.
+ */
+const MONOREPO_ANCESTOR = resolve(__dirname, "../../../../../..");
+/** The accidental outer-checkout shadow `state/` — chapters here are INVISIBLE to gates. */
+export const FORBIDDEN_STATE = resolve(MONOREPO_ANCESTOR, "state");
 
 /** Lowercase + collapse non-alphanumerics to '-'. Book slugs are already
  *  lowercase-hyphen, so this is near-identity for them and only normalizes the
@@ -71,9 +97,11 @@ export function isSiblingFile(fileName: string, bookId: string): boolean {
  */
 export function assertNoShadowStateDir(): void {
   const shadow = resolve(FORBIDDEN_STATE, "chapters");
-  // Standalone v22 packages keep the canonical state directory at repoRoot/state.
-  // In that layout the old "forbidden shadow" path is identical to canonical;
-  // do not flag the real working state as shadow state.
+  // Defensive short-circuit, not the primary guard: under every layout verified
+  // above (nested in the monorepo checkout or any of its worktrees) `shadow` is
+  // genuinely distinct from CHAPTERS_DIR, so this is false in practice. Kept so a
+  // future layout where the guessed ancestor happens to coincide with this
+  // package's own canonical state can't produce a false positive against itself.
   if (resolve(shadow) === resolve(CHAPTERS_DIR)) return;
   let files: string[] = [];
   try {
