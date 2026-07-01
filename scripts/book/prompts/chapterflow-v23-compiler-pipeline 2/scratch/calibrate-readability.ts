@@ -28,13 +28,16 @@ import { fleschKincaid, READING_LEVEL_TARGETS } from "../src/critics/readingLeve
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 function findBookPackages(): string {
+  // Walk up to the REPO-ROOT catalog (136 tracked packages). The pipeline dir
+  // has its own small book-packages/ (local v23 run outputs, untracked, empty
+  // in a fresh worktree) — a dir only counts if it actually holds packages.
   let d = __dirname;
   for (let i = 0; i < 8; i++) {
     const cand = resolve(d, "book-packages");
-    if (existsSync(cand)) return cand;
+    if (existsSync(cand) && readdirSync(cand).some((f) => f.endsWith(".v21.json"))) return cand;
     d = resolve(d, "..");
   }
-  throw new Error("book-packages/ not found");
+  throw new Error("book-packages/ with *.v21.json not found");
 }
 const PKG_DIR = findBookPackages();
 const CANON = "/Users/radinsoltani/ChapterFlow-books";
