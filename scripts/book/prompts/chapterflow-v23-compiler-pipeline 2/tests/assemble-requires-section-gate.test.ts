@@ -107,10 +107,14 @@ function compileFixture() {
     artifactType: "summary-pack",
     chapterId: blueprint.chapterId,
     hook: { hook: "Maya opens her card app before payday and sees the balance that a lender might see first.", sourceAnchorIds: [aid], counterintuition: "Paying on time is necessary, but the visible balance can still make a careful borrower look riskier than their actual behavior.", counterintuitionSourceAnchorIds: [aid] },
+    // Breakdown prose written to the P02 rubric-aligned readability spec: plain,
+    // short sentences so each tier clears its FK ceiling AND the assembled
+    // breakdown reads at Flesch ease ≥70 (the SEC12 whole-breakdown floor), with
+    // ≥3 distinct memorable-line candidates seeded across tiers.
     breakdown: {
-      fastRead: long("Pay before the snapshot. Lower the visible balance. Make the signal match the care you already show.", 35),
-      deepRead: long("A card system records account information. It does not read your intent. The useful move is to reduce what the system sees before the signal travels to lenders.", 65),
-      fullRead: long("The reader-facing move is practical. Make the balance visible to yourself. Reduce avoidable utilization. Set a trigger before the reportable moment. This keeps the source idea intact without promising an exact score jump.", 120),
+      fastRead: long("Pay before the snapshot. A lower balance can make a careful borrower look careful. Make the signal match the care you already show.", 25),
+      deepRead: long("A card keeps a record of what you owe. It does not read your plan. The system reads what you owe, not what you mean to do. So lower what the card shows before it goes to a lender.", 45),
+      fullRead: long("The move here is simple to start. Look at your own balance first. Bring down what you owe when you can. Small early payments change the story your card tells. Set a nudge before the day the balance is read. What a lender sees matters more than what you plan. This keeps the main idea true without a promise of an exact jump in your score.", 70),
       sourceAnchorIds: { fastRead: [aid], deepRead: [aid], fullRead: [aid] },
     },
     keyTakeaway: "Treat credit behavior as a visible signal: the useful move is to change what the system can see, not to hope your intention will be understood.",

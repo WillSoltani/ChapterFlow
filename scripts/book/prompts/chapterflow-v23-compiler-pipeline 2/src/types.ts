@@ -355,7 +355,15 @@ export type CriticCheckId =
   | "C27.exotic_name_density"
   // Uniform success — every example resolves in clean instant success, no
   // friction-bearing scene anywhere in the chapter's slate (advisory).
-  | "C28.uniform_success";
+  | "C28.uniform_success"
+  // Prose reading level — per-tier Flesch-Kincaid grade ceiling (was mislabeled
+  // as register.no_meta_reference) and the whole-breakdown Flesch reading-ease
+  // floor (rubric band 72–84). Measured with the score.py-parity functions in
+  // src/metrics/rubricMetrics.ts. Wrapped as SEC12.summary_readability at the
+  // section gate and E1 at the final gate.
+  | "prose.reading_level"
+  | "prose.reading_ease"
+  | "prose.abstract_density";
 
 export type CriticSeverity = "blocker" | "major" | "minor";
 

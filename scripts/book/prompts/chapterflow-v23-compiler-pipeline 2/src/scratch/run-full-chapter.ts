@@ -45,7 +45,7 @@ import {
   checkTiersProgressive,
 } from "../critics/prose.js";
 import { checkNoMetaReference, checkNoChapterNumberLiteral, checkBannedPhrases, checkNoEmDash } from "../critics/register.js";
-import { checkReadingLevel, fleschKincaid } from "../critics/readingLevel.js";
+import { checkReadingLevel, fleschKincaid, LEGACY_TIER_TARGETS } from "../critics/readingLevel.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE = resolve(__dirname, "../../state");
@@ -165,7 +165,7 @@ async function main() {
     const issues: string[] = [];
     for (const [tierName, tierText] of [["fastRead", b.fastRead], ["deepRead", b.deepRead], ["fullRead", b.fullRead]] as const) {
       for (const f of checkClosingLineLandings(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
-      for (const f of checkReadingLevel(tierText, tierName as any)) issues.push(f.message);
+      for (const f of checkReadingLevel(tierText, tierName as any, LEGACY_TIER_TARGETS)) issues.push(f.message);
       for (const f of checkOpeningConcreteness(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
       for (const f of checkParagraphStartVariety(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
       for (const f of checkCadenceVariance(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
@@ -265,7 +265,7 @@ async function main() {
     for (const f of checkOpeningConcreteness(tierText, `breakdown[${tierName}]`)) proseFindings.push(`${f.severity}: ${f.message}`);
     for (const f of checkParagraphStartVariety(tierText, `breakdown[${tierName}]`)) proseFindings.push(`${f.severity}: ${f.message}`);
     for (const f of checkCadenceVariance(tierText, `breakdown[${tierName}]`)) proseFindings.push(`${f.severity}: ${f.message}`);
-    for (const f of checkReadingLevel(tierText, tierName)) proseFindings.push(`${f.severity}: ${f.message}`);
+    for (const f of checkReadingLevel(tierText, tierName, LEGACY_TIER_TARGETS)) proseFindings.push(`${f.severity}: ${f.message}`);
     for (const f of checkClosingLineLandings(tierText, `breakdown[${tierName}]`)) proseFindings.push(`${f.severity}: ${f.message}`);
   }
   // Cross-tier phrase uniqueness (ignore the chapter concept name)

@@ -113,15 +113,19 @@ function compileFixture(ch: ChapterSpec) {
     artifactType: "summary-pack",
     chapterId: blueprint.chapterId,
     hook: { hook: "Maya opens her card app before payday and sees the balance that a lender might see first.", sourceAnchorIds: [aid], counterintuition: "Paying on time is necessary, but the visible balance can still make a careful borrower look riskier than their actual behavior.", counterintuitionSourceAnchorIds: [aid] },
+    // Breakdown prose written to the P02 rubric-aligned readability spec: plain,
+    // short sentences so each tier clears its FK ceiling AND the assembled
+    // breakdown reads at Flesch ease ≥70 (the SEC12 whole-breakdown floor), with
+    // ≥3 distinct memorable-line candidates seeded across tiers.
     breakdown: isCh1 ? {
-      fastRead: long("Pay before the snapshot. Lower the visible balance. Make the signal match the care you already show.", 35),
-      deepRead: long("A card system records account information. It does not read your intent. The useful move is to reduce what the system sees before the signal travels to lenders.", 65),
-      fullRead: long("The reader-facing move is practical. Make the balance visible to yourself. Reduce avoidable utilization. Set a trigger before the reportable moment. This keeps the source idea intact without promising an exact score jump.", 120),
+      fastRead: long("Pay before the snapshot. A lower balance can make a careful borrower look careful. Make the signal match the care you already show.", 25),
+      deepRead: long("A card keeps a record of what you owe. It does not read your plan. The system reads what you owe, not what you mean to do. So lower what the card shows before it goes to a lender.", 45),
+      fullRead: long("The move here is simple to start. Look at your own balance first. Bring down what you owe when you can. Small early payments change the story your card tells. Set a nudge before the day the balance is read. What a lender sees matters more than what you plan. This keeps the main idea true without a promise of an exact jump in your score.", 70),
       sourceAnchorIds: { fastRead: [aid], deepRead: [aid], fullRead: [aid] },
     } : {
-      fastRead: long("Spend cash slowly near the due date. Keep folding money back into the envelope. Let the habit protect tomorrow's plan.", 35),
-      deepRead: long("A wallet full of cash hides no ledger entry anywhere. Nobody scans it automatically. The disciplined step is deciding by hand which bill gets paid first.", 65),
-      fullRead: long("Handling paper money rewards a slower kind of attention. Count what remains before leaving the register. Separate rent money from grocery money right away. This habit protects the plan without needing a banking app at all.", 120),
+      fastRead: long("Spend cash slowly near the due date. A full wallet can still hide a plan. Let the habit guard tomorrow's money.", 25),
+      deepRead: long("A wallet of cash leaves no ledger to scan. No app reads it for you. The hard part is choosing by hand which bill to pay first. So sort the money before you leave the store.", 45),
+      fullRead: long("Paper money asks for a slower kind of care. Count what is left before you walk away. Keep rent cash apart from food cash right away. Cash makes each choice something you feel. A slow hand protects the plan you set. This habit guards the plan without any banking app at all.", 70),
       sourceAnchorIds: { fastRead: [aid], deepRead: [aid], fullRead: [aid] },
     },
     keyTakeaway: "Treat credit behavior as a visible signal: the useful move is to change what the system can see, not to hope your intention will be understood.",

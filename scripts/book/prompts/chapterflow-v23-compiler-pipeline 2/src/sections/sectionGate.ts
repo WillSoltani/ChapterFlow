@@ -16,7 +16,7 @@ import { blueprintPath, readJsonFile, sectionPath, sourcePacketPath, type Compil
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
-import { checkReadingLevel } from "../critics/readingLevel.js";
+import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
 import { loadBannedPhrases } from "../critics/shared.js";
 import { checkBannedPhrases } from "../critics/register.js";
 import { longestCommonRunWords, sidecarSourceText } from "../critics/authoringContract.js";
@@ -1921,6 +1921,11 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorHardSpecifics(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", value, `breakdown.${tier}`)) push("SEC14.summary_anchor_specifics", "blocker", p, `/breakdown/${tier}`);
     memorableCandidates.push(...scoredMemorableSentences(value).map((candidate) => ({ ...candidate, tier, ids: pack.breakdown?.sourceAnchorIds?.[tier] })));
   }
+  // Whole-breakdown Flesch reading-ease floor: the ASSEMBLED breakdown (all
+  // three tiers concatenated) must clear the rubric band, not just each tier
+  // alone. Blocker, same as the per-tier SEC12 reading-level check.
+  const assembledBreakdown = tiers.map((tier) => text(pack.breakdown?.[tier])).join("\n\n");
+  for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", "blocker", f.message, "/breakdown");
   const usedMemorableKeys = new Set<string>();
   const selectedMemorable = memorableCandidates
     .sort((a, b) => b.score - a.score)
