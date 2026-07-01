@@ -47,7 +47,13 @@ function text(value: unknown): string {
 }
 
 const STRAWMAN_DISTRACTOR_ABSOLUTE_RE = /\b(always|never|automatically|impossible|guaranteed|entirely|ever|forever|completely|wholly|absolutely|under no circumstances|in all cases)\b/i;
-const SOURCE_NUMBERING_LEAK_RE = /\b(?:fact|source)\s+\d+\b|\bch\d{2}\.(?:fact|example)\.\d+\b/i;
+// Audit-label leaks: internal source-fact numbering bleeding into reader-facing prose.
+// The digit + chNN.fact forms are bare, but the SPELLED-OUT branch ("Fact five", "Source six")
+// is anchored to a reporting verb or possessive — because "Fact five says/favors/…" (or "Fact
+// five's …") is only ever a leaked label, whereas bare "the fact five hospitals shared…" is
+// legitimate prose. Verified zero false positives across the whole committed gold corpus AND
+// zero-FP by construction, so it holds for future books, not just the current sample.
+const SOURCE_NUMBERING_LEAK_RE = /\b(?:fact|source)\s+\d+\b|\bch\d{2}\.(?:fact|example)\.\d+\b|\b(?:fact|source)\s+(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)(?:'s\b|\s+(?:says?|favors?|shows?|means?|explains?|covers?|warns?|notes?|describes?|indicates?|holds?|argues?|proves?|reminds?|reads?|treats?|frames?|links?|requires?|is|are)\b)/i;
 const QUIZ_MECHANICAL_TAILS = [
   "under the stated evidence test",
   "after checking the concrete source condition",

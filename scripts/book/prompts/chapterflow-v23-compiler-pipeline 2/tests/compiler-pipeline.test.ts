@@ -499,6 +499,29 @@ test("v23 section gate blocks source-note numbering in reader-facing fields", ()
   );
 });
 
+test("v23 section gate blocks SPELLED-OUT source-note numbering ('Fact five favors…') but not legit prose", () => {
+  // The-power-of-moments regen shipped "Fact five favors purpose framing…" in an example
+  // whyItMatters and passed both SEC103 and QC because the leak regex was digit-only. The
+  // spelled-out branch is verb/possessive-anchored so it never fires on ordinary prose.
+  const fx = compileFixture();
+  const leaked = cloneLearning(fx.learning);
+  leaked.quiz.questions[0].explanation = "Fact five favors the reporting move, so the reader lowers the visible balance before the snapshot.";
+  leaked.quiz.questions[1].explanation = "Fact six says the timing matters, which is why the account is paid before the statement date.";
+  const leakFindings = validateSectionPack(leaked, fx.blueprint, fx.packet);
+  assert.ok(
+    leakFindings.filter((f) => f.checkId === "SEC103.source_numbering_leak" && f.severity === "blocker").length >= 2,
+    leakFindings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  );
+
+  const clean = cloneLearning(fx.learning);
+  clean.quiz.questions[0].explanation = "The fact five accounts share one billing date is why the timing still holds for the reader.";
+  assert.equal(
+    validateSectionPack(clean, fx.blueprint, fx.packet).some((f) => f.checkId === "SEC103.source_numbering_leak"),
+    false,
+    "SEC103 must not fire on legit prose 'the fact five accounts…'",
+  );
+});
+
 test("v23 section gate blocks jammed proper nouns in reader-facing fields", () => {
   const fx = compileFixture();
   const bad = cloneLearning(fx.learning);

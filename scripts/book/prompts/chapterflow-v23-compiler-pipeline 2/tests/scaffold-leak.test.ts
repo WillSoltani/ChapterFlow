@@ -175,6 +175,10 @@ test("SL6 blocks internal source-anchor numbering cited as reader prose ('Fact 7
   for (const s of ["Source 3 shows the rule still holds.", "Reference 2 notes the hidden cost.", "Evidence 9 warns against the shortcut.", "Fact 8 warns that startup friction is not failure."]) {
     assert.ok(checkScaffoldLeak(chapterWithExplanation(s)).some((f) => f.checkId === "SL6.source_numbering_leak"), `SL6 missed: ${s}`);
   }
+  // Spelled-out numbers behind the same reference-verb anchor (the exact power-of-moments leak).
+  for (const s of ["Fact five favors purpose framing over more information.", "Fact six says progress needs a nameable marker.", "Fact seven says generic service language is weaker."]) {
+    assert.ok(checkScaffoldLeak(chapterWithExplanation(s)).some((f) => f.checkId === "SL6.source_numbering_leak"), `SL6 missed spelled-out: ${s}`);
+  }
 });
 
 test("SL6 does NOT fire on ordinary prose (no adjacent reference verb; excluded enumerators)", () => {
@@ -185,6 +189,8 @@ test("SL6 does NOT fire on ordinary prose (no adjacent reference verb; excluded 
     "Finding 2 ways to rest, she tried both that weekend.",               // Finding is an excluded enumerator
     "Source the parts locally and the cost drops by half.",              // "Source" with no number
     "Fact-check the figure before you quote it to the team.",            // hyphenated, no number
+    "The fact five hospitals shared one nurse did not surprise the board.", // spelled-out, next word is a noun, not a reference verb
+    "In fact five teams shipped early that quarter.",                     // "fact five" but "shipped" trails "teams", not the label
   ];
   for (const s of clean) {
     assert.deepEqual(

@@ -67,7 +67,12 @@ export type ScaffoldLeakFinding = {
 const SL6_CAP_LABEL_RE = /\b(?:Fact|Citation|Evidence|Anchor)\s+#?\d+\b/;
 const SL6_REF_VERB =
   "(?:says?|said|shows?|showed|states?|stated|notes?|noted|warns?|warned|finds?|found|explains?|explained|describes?|described|indicates?|indicated|suggests?|suggested|reports?|reported|confirms?|confirmed|establishes?|established|tells?|told|reveals?|revealed|demonstrates?|demonstrated|proves?|proved|teaches?|taught|argues?|argued|claims?|claimed|holds?|held|defines?|defined|lists?|listed|highlights?|highlighted|emphasi[sz]es?|emphasi[sz]ed|reminds?|reminded|covers?|covered|supports?|names?|ties?|links?|favors?|treats?|gives?|rejects?|draws?|allows?)";
-const SL6_VERB_RE = new RegExp(`\\b(?:Fact|Source|Reference|Anchor|Citation|Evidence)\\s+#?\\d+(?:'s)?\\s+${SL6_REF_VERB}\\b`, "i");
+// The number token matches digits OR spelled-out numbers ("Fact five says…"). Spelled-out is
+// safe ONLY because this branch is verb-anchored (SL6_REF_VERB) — a leaked label is the subject
+// of a reporting verb, which bare prose like "the fact five hospitals shared…" never is. The
+// bare SL6_CAP_LABEL_RE above stays digit-only for exactly that reason.
+const SL6_NUM = "(?:\\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)";
+const SL6_VERB_RE = new RegExp(`\\b(?:Fact|Source|Reference|Anchor|Citation|Evidence)\\s+#?${SL6_NUM}(?:'s)?\\s+${SL6_REF_VERB}\\b`, "i");
 
 /** Scene-shape FORMAT ids that contain an underscore — these are the ones that
  *  cannot occur in natural prose, so matching them is safe. Union of
