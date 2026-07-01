@@ -976,7 +976,17 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "gate") {
-        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: architecture !== "compiler" }, gateQcFlipTracker);
+        // Pre-QC readiness scouts (cross-chapter VARIETY + semantic ALIGNMENT + narrow QC-shadow)
+        // run for EVERY architecture, including the compiler. The compiler route originally skipped
+        // them on the bet that the section gate's cross-chapter checks (SEC80/SEC83/AS5/AS10) covered
+        // variety — but those are LEXICAL (n-gram / shape) and miss SEMANTIC house-voice sameness:
+        // a book-score panel gate-scored the-power-of-moments HIGH cross-chapter churn ("every example
+        // is the same swap/resize beat with a rotating cast") that every per-chapter gate passed. The
+        // variety scout's scene_skeleton family is exactly that defect, and it is the proven lever
+        // (it drove POM to 11/12 first-QC-round on the v21/v22 path). The scouts are read-only +
+        // bounded (PREQC_MAX_* / combinedScoutPasses oscillation cap) and only ever emit surgical
+        // per-chapter edits — they never weaken QC, which still runs after.
+        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: true }, gateQcFlipTracker);
         if (halt) return halt;
         continue;
       }
