@@ -95,7 +95,7 @@ import {
   checkOpeningConcreteness,
   checkParagraphStartVariety,
 } from "./critics/prose.js";
-import { checkReadingLevel, fleschKincaid } from "./critics/readingLevel.js";
+import { checkReadingLevel, fleschKincaid, LEGACY_TIER_TARGETS } from "./critics/readingLevel.js";
 import { runShipGate, formatGateReport } from "./critics/finalGate.js";
 import { validateChapterV21 } from "./runtimeSchemas.js";
 import { RunPolicy, runPolicy as defaultRunPolicy, formatRunPolicy } from "./policy/runPolicy.js";
@@ -678,7 +678,7 @@ export async function generateChapter(
     const issues: string[] = [];
     for (const [tierName, tierText] of [["fastRead", b.fastRead], ["deepRead", b.deepRead], ["fullRead", b.fullRead]] as const) {
       for (const f of checkClosingLineLandings(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
-      for (const f of checkReadingLevel(tierText, tierName as any)) issues.push(f.message);
+      for (const f of checkReadingLevel(tierText, tierName as any, LEGACY_TIER_TARGETS)) issues.push(f.message);
       for (const f of checkOpeningConcreteness(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
       for (const f of checkParagraphStartVariety(tierText, `breakdown[${tierName}]`)) issues.push(f.message);
       for (const f of checkCadenceVariance(tierText, `breakdown[${tierName}]`)) issues.push(f.message);

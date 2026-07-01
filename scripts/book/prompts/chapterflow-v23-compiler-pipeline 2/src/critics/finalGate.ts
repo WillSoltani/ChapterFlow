@@ -60,7 +60,7 @@ import {
   checkSentenceLengthVariance,
   checkTiersProgressive,
 } from "./prose.js";
-import { checkReadingLevel } from "./readingLevel.js";
+import { checkReadingLevel, LEGACY_TIER_TARGETS } from "./readingLevel.js";
 import { checkPlainLanguage } from "./plainLanguage.js";
 import { checkScaffoldLeak } from "./scaffoldLeak.js";
 import { runSupportSectionAudit } from "./supportSectionAudit.js";
@@ -768,7 +768,7 @@ export function runShipGate(chapter: ChapterV21): GateReport {
       push("A12-breakdown", `breakdown.${tierName}`, f.message, f.evidence);
     }
     runRegisterChecks(`breakdown.${tierName}`, tierText, push);
-    for (const f of checkReadingLevel(tierText, tierName)) {
+    for (const f of checkReadingLevel(tierText, tierName, LEGACY_TIER_TARGETS)) {
       push("E1", `breakdown.${tierName}`, f.message);
     }
     for (const f of checkConcreteParagraphOpeners(tierText, `breakdown.${tierName}`)) {
