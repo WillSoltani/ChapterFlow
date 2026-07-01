@@ -5,7 +5,9 @@ import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
+import { compiledFactsFromSidecar, REQUIRED_QUIZ_FACT_FLOOR } from "../src/compiler/sourcePacketFacts.js";
 import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
+import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
 import { checkSectionGate, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
@@ -297,6 +299,39 @@ test("v23 source packet gate passes a 9-fact packet with no SP13 block", () => {
   assert.equal(packet.facts.length, 9);
   assert.notEqual(packet.sourceQuality.status, "blocked");
   assert.equal(validateSourcePacket(packet).some((f) => f.checkId === "SP13.source_quality"), false);
+});
+
+test("v23 source packet fact extraction is behavior-preserving: the shared compiledFactsFromSidecar helper reproduces the pre-refactor packet byte-for-byte", () => {
+  // This hash was captured from compileSourcePacketFromSidecar BEFORE sourcePacketFacts.ts
+  // existed (facts/allowedNumbers/allowedEntities were computed inline in sourcePacket.ts).
+  // If this ever changes, either the extraction broke behavior or the fixture changed —
+  // either way this test should be re-derived deliberately, not silently updated.
+  const { packet } = compileFixture();
+  assert.equal(canonicalJsonSha256(packet.facts), "sha256:5e4d11318042250879089b452cb4732c465b0398c4971b1705dcaa381106bd7d", "compiled facts must be byte-identical to the pre-refactor output");
+  assert.equal(canonicalJsonSha256(packet), "sha256:9da60abb79ac0f7474a5ef523f786f92d170cdcf7737048e9ae0b40345f35e0f", "the whole compiled packet must be byte-identical to the pre-refactor output");
+
+  // The packet compiler must be USING the shared helper, not a parallel reimplementation:
+  // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts.
+  assert.deepEqual(compiledFactsFromSidecar(sidecar(), 1), packet.facts);
+});
+
+test("v23 fact-floor parity: a sidecar with 9 raw testableFacts where 1 is malformed compiles to 8 facts and SP13 agrees with the shared REQUIRED_QUIZ_FACT_FLOOR constant", () => {
+  const base = sidecar();
+  const malformed: SourceSidecarV2 = {
+    ...base,
+    testableFacts: base.testableFacts.map((f, i) => (i === 4 ? { ...f, claim: "" } : f)),
+  };
+  const compiled = compiledFactsFromSidecar(malformed, 1);
+  assert.equal(compiled.length, 8, "a blank-claim testableFacts entry must be dropped, not counted");
+  assert.equal(base.testableFacts.length, 9, "the raw sidecar still reports 9 testableFacts");
+
+  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter: chapter(), sidecar: malformed, sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  assert.equal(packet.facts.length, 8, "compileSourcePacketFromSidecar must count facts the same way as compiledFactsFromSidecar");
+  assert.ok(packet.facts.length < REQUIRED_QUIZ_FACT_FLOOR, "8 compiled facts must be below the shared quiz-fact floor");
+  assert.equal(packet.sourceQuality.status, "blocked");
+  const sp13 = validateSourcePacket(packet).find((f) => f.checkId === "SP13.source_quality");
+  assert.ok(sp13, "SP13 must block an 8-usable-fact packet at the packet gate");
+  assert.equal(sp13?.severity, "blocker");
 });
 
 test("v23 blueprint compiler creates deterministic variety budgets and balanced quiz key pattern", () => {

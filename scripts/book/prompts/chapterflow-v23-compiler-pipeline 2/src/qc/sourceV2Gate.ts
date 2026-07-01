@@ -8,6 +8,7 @@ import { formatChapterSetBlockers, readCanonicalChapterIndex } from "../lib/chap
 import { findRunArtifact } from "../lib/runDirs.js";
 import { formatTocIssues, parseTocFile } from "../lib/tocContract.js";
 import { evaluateSourceV2Integrity, rawSourceHash, semanticSourceHash } from "../source/sourceIntegrity.js";
+import { compiledFactsFromSidecar, REQUIRED_QUIZ_FACT_FLOOR } from "../compiler/sourcePacketFacts.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const RUNS_ROOT = resolve(REPO_ROOT, ".chapterflow/runs");
@@ -249,6 +250,21 @@ export function checkSourceV2Gate(bookId: string, chapterNumbers?: number[], roo
   return { bookId, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: expected.length, findings };
 }
 
+/**
+ * Chapters whose sidecar is missing/unreadable already carry an SV2.missing_sidecar or
+ * SV2.unreadable_sidecar blocker from the base gate — skip the fact-floor check for those
+ * so we never double-report the same defect under two check ids.
+ */
+function chaptersWithUnreadableSidecar(findings: SourceV2Finding[]): Set<number> {
+  const out = new Set<number>();
+  for (const f of findings) {
+    if (f.severity === "blocker" && (f.checkId === "SV2.missing_sidecar" || f.checkId === "SV2.unreadable_sidecar") && f.chapterNumber !== undefined) {
+      out.add(f.chapterNumber);
+    }
+  }
+  return out;
+}
+
 export function checkSourceV2PrewriteGate(bookId: string, chapterNumbers?: number[], roots: SourceV2Roots = {}): SourceV2GateReport {
   const base = checkSourceV2Gate(bookId, chapterNumbers, roots);
   const findings = base.findings.map((f) => {
@@ -257,6 +273,33 @@ export function checkSourceV2PrewriteGate(bookId: string, chapterNumbers?: numbe
     }
     return f;
   });
+
+  // The v23 blueprint always builds a fixed REQUIRED_QUIZ_FACT_FLOOR-question quiz. If a
+  // chapter's sidecar compiles to fewer usable facts than that, SP13 would hard-halt the
+  // write phase downstream at source-packet-gate with no way back to re-research. Catch it
+  // here instead, before writer fanout, so convergeSourceReadiness's bounded repair loop
+  // (compilerRun.ts) can spawn a re-research pass rather than dead-ending.
+  let expected = chapterNumbers;
+  if (!expected) {
+    const resolved = resolveExpectedSourceChapters(bookId, roots);
+    expected = resolved.ok ? resolved.chapters : [];
+  }
+  const unreadable = chaptersWithUnreadableSidecar(base.findings);
+  for (const chapterNumber of expected) {
+    if (unreadable.has(chapterNumber)) continue;
+    const sidecar = loadSourceV2Sidecar(bookId, chapterNumber, roots);
+    if (!sidecar) continue;
+    const compiledCount = compiledFactsFromSidecar(sidecar, chapterNumber).length;
+    if (compiledCount < REQUIRED_QUIZ_FACT_FLOOR) {
+      findings.push({
+        checkId: "SV2.quiz_fact_floor",
+        severity: "blocker",
+        chapterNumber,
+        message: `Pre-write source readiness: ch${String(chapterNumber).padStart(2, "0")} sidecar yields ${compiledCount} usable testable fact(s); the v23 quiz needs ${REQUIRED_QUIZ_FACT_FLOOR} — add more testable facts from the source.`,
+      });
+    }
+  }
+
   return { ...base, findings, passed: !findings.some((f) => f.severity === "blocker") };
 }
 

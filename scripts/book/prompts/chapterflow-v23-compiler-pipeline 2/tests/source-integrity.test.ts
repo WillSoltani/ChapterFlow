@@ -259,6 +259,44 @@ test("prewrite source gate escalates thin realness advisories before writer fano
   }
 });
 
+test("prewrite source gate BLOCKS (SV2.quiz_fact_floor) a chapter sidecar that compiles to 8 usable facts, and PASSES chapters that each compile to 9+, so convergeSourceReadiness enters its repair loop instead of reaching source-packet-gate", () => {
+  const root = fixtureRoot("prewrite-quiz-fact-floor");
+  rmSync(root, { recursive: true, force: true });
+  try {
+    const thin = specificSidecar(1);
+    thin.testableFacts = thin.testableFacts.slice(0, 8);
+    const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [thin]);
+
+    const prewrite = checkSourceV2PrewriteGate(BOOK, undefined, { stateRoot, runsRoot });
+    assert.equal(prewrite.passed, false, formatSourceV2GateReport(prewrite));
+    const floorFinding = prewrite.findings.find((f) => f.checkId === "SV2.quiz_fact_floor");
+    assert.ok(floorFinding, formatSourceV2GateReport(prewrite));
+    assert.equal(floorFinding?.severity, "blocker");
+    assert.equal(floorFinding?.chapterNumber, 1);
+    assert.match(floorFinding?.message ?? "", /8 usable testable fact/);
+    assert.match(floorFinding?.message ?? "", /needs 9/);
+
+    // checkSourceV2Gate (the promotion/QC gate) is UNCHANGED — no fact-floor block there.
+    const structural = checkSourceV2Gate(BOOK, undefined, { stateRoot, runsRoot });
+    assert.equal(structural.findings.some((f) => f.checkId === "SV2.quiz_fact_floor"), false, "checkSourceV2Gate must never carry the prewrite-only quiz fact floor block");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+
+  const passRoot = fixtureRoot("prewrite-quiz-fact-floor-pass");
+  rmSync(passRoot, { recursive: true, force: true });
+  try {
+    const ready = specificSidecar(1);
+    assert.equal(ready.testableFacts.length, 9, "fixture sidecar must clear the 9-fact quiz floor");
+    const { stateRoot, runsRoot } = writeSourceFixture(passRoot, BOOK, [ready]);
+    const prewrite = checkSourceV2PrewriteGate(BOOK, undefined, { stateRoot, runsRoot });
+    assert.equal(prewrite.passed, true, formatSourceV2GateReport(prewrite));
+    assert.equal(prewrite.findings.some((f) => f.checkId === "SV2.quiz_fact_floor"), false, formatSourceV2GateReport(prewrite));
+  } finally {
+    rmSync(passRoot, { recursive: true, force: true });
+  }
+});
+
 test("specific synthetic source-v2 sidecars pass source integrity", () => {
   const root = fixtureRoot("specific-pass");
   rmSync(root, { recursive: true, force: true });
