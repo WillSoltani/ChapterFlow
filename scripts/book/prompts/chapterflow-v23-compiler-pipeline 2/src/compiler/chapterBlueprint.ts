@@ -414,9 +414,38 @@ function isSourceGroundingMetaFact(fact: SourcePacketV1["facts"][number]): boole
     || /\bsource anchors?\b/.test(value);
 }
 
+// Teaching-content fact ids for quiz/card/hook/summary/action slots. Source-grounding meta facts (facts
+// *about* using named cases, keeping claims checkable, etc. -- see isSourceGroundingMetaFact) read like
+// real facts to the packet schema but are process instructions left over from source compilation, not
+// something a reader should be quizzed on, so they are filtered out here. If filtering would leave fewer
+// than 3 teaching facts, that's a source-packet coverage problem worse than the rare meta fact leaking into
+// a slot, so this falls back to the full raw set rather than starving downstream slots of anchors.
+//
+// Either way the result stays a subset of rawFactIds(packet): teaching is a filter over packet.facts, and
+// the fallback branch *is* rawFactIds(packet). constraints.allowedFactIds (see compileChapterBlueprint)
+// is deliberately built from rawFactIds, not this filtered set, because it is a citation permission list
+// consumed by blueprintGate's BPV9 check and the section gate's anchor validation -- those must accept
+// every real packet fact id, including meta facts, in case one is legitimately cited outside a learning
+// slot. assertFactIdsSubset() below enforces that dealt ids never escape that permission list.
 function factIds(packet: SourcePacketV1): string[] {
   const teaching = packet.facts.filter((f) => !isSourceGroundingMetaFact(f)).map((f) => f.id).filter(Boolean);
   return teaching.length >= 3 ? teaching : rawFactIds(packet);
+}
+
+// Defensive invariant check: every fact id dealt into a chapter's requiredFactIds slots must be a member of
+// constraints.allowedFactIds, or the section gate's anchor validation will reject legitimate writer output
+// for a fact the compiler itself dealt. See the comment on factIds() above for why this should always hold
+// by construction; this assertion turns a silent divergence into a loud, immediate compile-time failure
+// instead of a confusing downstream gate rejection.
+export function assertFactIdsSubset(dealt: string[], allowed: string[], context: string): void {
+  const allowedSet = new Set(allowed);
+  const escaped = dealt.filter((id) => !allowedSet.has(id));
+  if (escaped.length > 0) {
+    throw new Error(
+      `${context}: requiredFactIds [${escaped.join(", ")}] are not present in constraints.allowedFactIds; ` +
+        "the teaching-filtered fact set (factIds) must always be a subset of the raw source-packet fact set (rawFactIds)",
+    );
+  }
 }
 
 function exampleFactId(ids: string[], chapterNumber: number, slotIndex: number): string | undefined {
@@ -527,6 +556,7 @@ export function compileChapterBlueprint(args: {
   const { bookId, chapter, packet, packetPath, roots = {} } = args;
   const ids = factIds(packet);
   const allFactIds = rawFactIds(packet);
+  assertFactIdsSubset(ids, allFactIds, `chapter ${chapter.chapterNumber} blueprint`);
   const cases = caseIds(packet);
   const n = chapter.chapterNumber;
   const quizCount = 9;

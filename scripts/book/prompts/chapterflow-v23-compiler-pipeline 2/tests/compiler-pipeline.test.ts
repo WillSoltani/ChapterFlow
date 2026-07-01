@@ -6,7 +6,7 @@ import { resolve } from "node:path";
 import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
-import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
+import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
 import { checkSectionGate, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
@@ -319,6 +319,53 @@ test("v23 blueprint compiler keeps source-grounding meta facts out of learning s
   ];
   assert.equal(learningFactIds.includes("ch01.fact.1"), false, "source-grounding case-count fact should not be dealt to quiz/cards");
   assert.equal(learningFactIds.includes("ch01.fact.2"), false, "source-grounding specificity/QC fact should not be dealt to quiz/cards");
+});
+
+test("v23 assertFactIdsSubset throws when a dealt fact id escapes constraints.allowedFactIds", () => {
+  assert.doesNotThrow(() => assertFactIdsSubset(["ch01.fact.1", "ch01.fact.2"], ["ch01.fact.1", "ch01.fact.2", "ch01.fact.3"], "chapter 1 blueprint"));
+  assert.throws(
+    () => assertFactIdsSubset(["ch01.fact.1", "ch01.fact.9"], ["ch01.fact.1", "ch01.fact.2"], "chapter 1 blueprint"),
+    /ch01\.fact\.9.*not present in constraints\.allowedFactIds/s,
+  );
+});
+
+function dealtRequiredFactIds(blueprint: ReturnType<typeof compileChapterBlueprint>): string[] {
+  return [
+    ...blueprint.sections.hook.requiredFactIds,
+    ...blueprint.sections.summaries.requiredFactIds,
+    ...blueprint.sections.examples.flatMap((ex) => ex.requiredFactIds),
+    ...blueprint.sections.quiz.flatMap((q) => q.requiredFactIds),
+    ...blueprint.sections.cards.flatMap((c) => c.requiredFactIds),
+    ...blueprint.sections.action.requiredFactIds,
+    ...blueprint.coreMove.sourceFactIds,
+  ];
+}
+
+test("v23 blueprint compiler always deals requiredFactIds that are a subset of constraints.allowedFactIds", () => {
+  const { blueprint } = compileFixture();
+  const allowed = new Set(blueprint.constraints.allowedFactIds);
+  const dealt = dealtRequiredFactIds(blueprint);
+  assert.ok(dealt.length > 0, "fixture should deal at least one requiredFactId");
+  const escaped = dealt.filter((id) => !allowed.has(id));
+  assert.deepEqual(escaped, [], "dealt requiredFactIds must never escape constraints.allowedFactIds");
+
+  // <3-teaching-fact fallback: mark all but two of the packet's facts as source-grounding meta facts so
+  // factIds() must fall back to the raw fact list (rawFactIds), which is exactly constraints.allowedFactIds.
+  const fx = compileFixture();
+  const packet = JSON.parse(JSON.stringify(fx.packet)) as typeof fx.packet;
+  for (const fact of packet.facts.slice(0, 7)) {
+    fact.claim = "This chapter uses at least 3 named cases so the concept is grounded in concrete settings rather than abstraction.";
+    fact.mechanism = "Concrete settings give memory a handle and make the claim checkable against real-world evidence.";
+  }
+  const fallback = compileChapterBlueprint({ bookId: "money-book", chapter: chapter(), packet, packetPath: "/tmp/ch01.source-packet.json" });
+  const fallbackAllowed = new Set(fallback.constraints.allowedFactIds);
+  const fallbackDealt = dealtRequiredFactIds(fallback);
+  const fallbackEscaped = fallbackDealt.filter((id) => !fallbackAllowed.has(id));
+  assert.deepEqual(fallbackEscaped, [], "fallback-to-raw dealt requiredFactIds must still be a subset of constraints.allowedFactIds");
+  assert.ok(
+    fallbackDealt.includes("ch01.fact.1"),
+    "fallback should have engaged: a source-grounding meta fact should have been dealt once teaching facts drop below 3",
+  );
 });
 
 test("v23 section gate blocks source-grounding boilerplate in reader learning fields", () => {
