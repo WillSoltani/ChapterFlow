@@ -287,6 +287,29 @@ const EXAMPLE_SCENE_FRAMES = [
   "local refusal where the source detail becomes a boundary",
 ];
 
+// Non-deliberation / experiential scene engines. Every frame above is a decision-evaluation
+// transaction, which collapses every example into "a proxy weighs a choice" (a book-score panel
+// flagged this as the dominant sameness; QC's scene_skeleton sweep rejects on it). These are
+// genuinely different scene TYPES. The slot loop deals HALF of each chapter's six example slots
+// from this pool and half from the decision pool above, so every chapter MIXES decision scenes
+// with lived moments — the structural lever against scene_skeleton sameness and flat,
+// all-deliberation prose. Genre-flexible: the neutral ones (consequence, first-time, recognition)
+// fit any book; the warmer ones (kindness, ceremony) shine in an experiences book.
+const EXAMPLE_SCENE_FRAMES_EXPERIENTIAL = [
+  "an unexpected kindness that lands and gets retold afterward",
+  "a small ceremony that marks a transition so it feels earned",
+  "a first-time experience that sets a lasting benchmark",
+  "a peak moment recalled vividly long after the day it happened",
+  "a shared ritual observed in mid-action as it builds connection",
+  "a public recognition that shifts how someone sees themselves",
+  "one sensory detail that turns an ordinary moment into a kept memory",
+  "a stranger's small gesture that becomes a story worth repeating",
+  "a hard truth delivered with enough care that it finally registers",
+  "a milestone reached and the small marker that seals it",
+  "a break in the routine script that leaves a lasting after-image",
+  "a moment of genuine connection during an otherwise routine handoff",
+];
+
 const PRACTICE_FORMS = [
   "before-after audit",
   "stakeholder interview",
@@ -327,6 +350,19 @@ const EXAMPLE_BEATS = [
   "show a record-keeping step that clarifies the choice without becoming the whole scene",
   "show a small reversal where new evidence changes the amount, timing, or commitment",
   "show the after-effect of an earlier decision and the adjustment it forces now",
+];
+
+// Non-deliberation beats, paired with the experiential frames so the experiential slots carry a
+// non-deliberation beat (not a decision beat grafted onto a lived-moment frame).
+const EXAMPLE_BEATS_EXPERIENTIAL = [
+  "show a surprise breaking the expected script and the after-image it leaves",
+  "show a milestone marked so it feels earned rather than automatic",
+  "show a first encounter setting the tone for everything that follows",
+  "show a shared ritual turning a routine into real connection",
+  "show a recognition landing and changing how someone acts next",
+  "show a sensory peak that becomes the whole remembered experience",
+  "show a hard truth delivered with care so it finally registers",
+  "show a small kindness rippling well past the moment it happened",
 ];
 
 const EXAMPLE_FORMATS: ExampleFormat[] = [
@@ -618,13 +654,20 @@ export function compileChapterBlueprint(args: {
       slotId: `ex${String(i + 1).padStart(2, "0")}`,
       purpose: EXAMPLE_PURPOSES[(n + i - 1) % EXAMPLE_PURPOSES.length],
       sceneMode: SCENE_MODES[(n + i) % SCENE_MODES.length],
-      sceneFrame: EXAMPLE_SCENE_FRAMES[(n * 5 + i * 7) % EXAMPLE_SCENE_FRAMES.length],
+      // Guarantee a MIX: odd slots get a non-deliberation experiential engine, even slots a
+      // decision engine — so every chapter's six examples span both kinds (3+3) instead of six
+      // flavors of "decide." This is the deterministic lever against scene_skeleton sameness.
+      sceneFrame: i % 2 === 1
+        ? EXAMPLE_SCENE_FRAMES_EXPERIENTIAL[(n * 3 + i * 5) % EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length]
+        : EXAMPLE_SCENE_FRAMES[(n * 5 + i * 7) % EXAMPLE_SCENE_FRAMES.length],
       venue: venuePalette[i % venuePalette.length],
       allowedNames: pick(allowedNames, i, 3),
       requiredFactIds: factId ? [factId] : [],
       requiredCaseIds: exampleCaseIdForFact(packet, factId, i, usedExampleCaseCounts),
       forbiddenVenues: FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
-      requiredBeat: EXAMPLE_BEATS[(n + i - 1) % EXAMPLE_BEATS.length],
+      requiredBeat: i % 2 === 1
+        ? EXAMPLE_BEATS_EXPERIENTIAL[(n * 3 + i) % EXAMPLE_BEATS_EXPERIENTIAL.length]
+        : EXAMPLE_BEATS[(n + i - 1) % EXAMPLE_BEATS.length],
     };
   });
   const quiz: QuizSlotV1[] = Array.from({ length: quizCount }, (_, i) => ({
