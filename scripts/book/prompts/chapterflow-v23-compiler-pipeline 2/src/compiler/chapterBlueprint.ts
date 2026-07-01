@@ -371,20 +371,56 @@ function shuffledAnswerPattern(chapterNumber: number, count: number, salt: numbe
   return pool;
 }
 
-function answerPattern(chapterNumber: number, count: number): number[] {
+// Mirrors bookPatternAudit.ts's BP14 prefix rule exactly: a Q1-Q5 prefix is a
+// blocker once it is shared by >= 3 chapters AND by >= 60% of chapters. There
+// are 210 distinct Q1-Q5 prefixes reachable from a balanced 9-slot pool (3x
+// zeros/ones/twos shuffled) — comfortably more than any realistic chapter
+// count, so the cap below is always satisfiable within the salt<1000 budget.
+const BP14_PREFIX_LEN = 5;
+const BP14_MIN_BLOCKER_COUNT = 3;
+const BP14_MAJORITY_THRESHOLD = 0.6;
+
+// The largest number of chapters that may share one Q1-Q5 prefix without
+// tripping BP14's "count >= 3 AND count/total >= 0.6" rule, for a book of
+// `total` chapters (each carrying a 9-question quiz, so BP14's own
+// chaptersWithQuiz denominator equals `total`).
+export function maxSharedPrefixCount(total: number): number {
+  if (total < BP14_MIN_BLOCKER_COUNT) return Infinity;
+  for (let c = BP14_MIN_BLOCKER_COUNT; c <= total; c++) {
+    if (c / total >= BP14_MAJORITY_THRESHOLD) return c - 1;
+  }
+  return total;
+}
+
+function answerPattern(chapterNumber: number, count: number, totalChapters?: number): number[] {
   // Balanced, deterministic, and pseudo-shuffled. The dealer walks chapters in
   // order and gives each one the first balanced pattern that was not already
-  // used by an earlier chapter of the same quiz length, preventing BP14 rhythm
-  // collisions in parallel book runs.
+  // used (full sequence) by an earlier chapter of the same quiz length, AND
+  // whose Q1-Q5 prefix has not already reached BP14's majority-share cap.
+  // This guarantees the dealt patterns satisfy BOTH BP14 rules (identical
+  // full sequence, and a Q1-Q5 prefix shared by >=60% of chapters) rather
+  // than just the full-sequence rule — closing the gap where final QC could
+  // block on a prefix collision that the section gate then refuses to let a
+  // repair agent fix (correctIndex is pinned post-blueprint).
+  const total = totalChapters && totalChapters > 0 ? totalChapters : chapterNumber;
+  const maxPrefixUses = maxSharedPrefixCount(total);
   const accepted: string[] = [];
+  const prefixCounts = new Map<string, number>();
   let selected = shuffledAnswerPattern(chapterNumber, count, 0);
   for (let n = 1; n <= chapterNumber; n++) {
     let candidate = shuffledAnswerPattern(n, count, 0);
-    for (let salt = 1; accepted.includes(candidate.join(",")) && salt < 1000; salt++) {
+    let prefix = candidate.slice(0, BP14_PREFIX_LEN).join(",");
+    for (
+      let salt = 1;
+      (accepted.includes(candidate.join(",")) || (prefixCounts.get(prefix) ?? 0) >= maxPrefixUses) && salt < 1000;
+      salt++
+    ) {
       candidate = shuffledAnswerPattern(n, count, salt);
+      prefix = candidate.slice(0, BP14_PREFIX_LEN).join(",");
     }
     if (n === chapterNumber) selected = candidate;
     accepted.push(candidate.join(","));
+    prefixCounts.set(prefix, (prefixCounts.get(prefix) ?? 0) + 1);
   }
   return selected;
 }
@@ -552,8 +588,13 @@ export function compileChapterBlueprint(args: {
   packet: SourcePacketV1;
   packetPath: string;
   roots?: CompilerStoreRoots;
+  /** Total chapters in the book, for BP14 prefix-cap math. Defaults to the
+   *  current chapter's own number (a safe lower bound: it under-constrains
+   *  rather than over-constrains when the caller doesn't know the final
+   *  count yet). */
+  totalChapters?: number;
 }): ChapterBlueprintV1 {
-  const { bookId, chapter, packet, packetPath, roots = {} } = args;
+  const { bookId, chapter, packet, packetPath, roots = {}, totalChapters } = args;
   const ids = factIds(packet);
   const allFactIds = rawFactIds(packet);
   assertFactIdsSubset(ids, allFactIds, `chapter ${chapter.chapterNumber} blueprint`);
@@ -564,7 +605,7 @@ export function compileChapterBlueprint(args: {
   const exampleCount = EXAMPLE_SLOT_COUNT;
   const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots);
   const venuePalette = plannedVenuePalette(bookId, n);
-  const pattern = answerPattern(n, quizCount);
+  const pattern = answerPattern(n, quizCount, totalChapters);
   const usedExampleCaseCounts = new Map<string, number>();
   const examples: ExampleSlotV1[] = Array.from({ length: exampleCount }, (_, i) => {
     const factId = exampleFactId(ids, n, i);
@@ -667,7 +708,7 @@ export function compileBlueprints(bookId: string, roots: CompilerStoreRoots = {}
       continue;
     }
     const packet = readJsonFile<SourcePacketV1>(packetP);
-    const blueprint = compileChapterBlueprint({ bookId: normalized, chapter, packet, packetPath: packetP, roots });
+    const blueprint = compileChapterBlueprint({ bookId: normalized, chapter, packet, packetPath: packetP, roots, totalChapters: index.chapters.length });
     const out = blueprintPath(normalized, chapter.chapterNumber, roots);
     writeJsonFile(out, blueprint);
     written.push(out);
