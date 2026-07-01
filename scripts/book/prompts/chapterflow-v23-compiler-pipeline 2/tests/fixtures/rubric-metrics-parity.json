@@ -1,0 +1,735 @@
+{
+  "_generator": "scratch/gen-rubric-parity.py",
+  "_source": "/Users/radinsoltani/ChapterFlow-books/.claude/skills/book-score/score.py",
+  "readability": [
+    {
+      "name": "empty",
+      "text": "",
+      "readability": null,
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "one-word",
+      "text": "Hello.",
+      "readability": {
+        "flesch": 36.62000000000003,
+        "fk": 8.400000000000002,
+        "fog": 0.4,
+        "pct3syl": 0.0,
+        "sylword": 2.0,
+        "wps": 1.0
+      },
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "no-punctuation",
+      "text": "the quick brown fox jumps over the lazy dog",
+      "readability": {
+        "flesch": 94.30000000000001,
+        "fk": 2.342222222222226,
+        "fog": 3.6,
+        "pct3syl": 0.0,
+        "sylword": 1.2222222222222223,
+        "wps": 9.0
+      },
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "unicode-quotes",
+      "text": "She said “don’t” and it’s fine — really.",
+      "readability": {
+        "flesch": 103.70000000000002,
+        "fk": 1.0311111111111124,
+        "fog": 3.6,
+        "pct3syl": 0.0,
+        "sylword": 1.1111111111111112,
+        "wps": 9.0
+      },
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "ascii-apostrophe-hyphen",
+      "text": "It's a well-known, self-made success story that can't fail.",
+      "readability": {
+        "flesch": 75.50000000000003,
+        "fk": 4.964444444444446,
+        "fog": 3.6,
+        "pct3syl": 0.0,
+        "sylword": 1.4444444444444444,
+        "wps": 9.0
+      },
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "numbers",
+      "text": "In 2020, 15 teams shipped 3 products and 42 features.",
+      "readability": {
+        "flesch": 59.745000000000005,
+        "fk": 6.416666666666668,
+        "fog": 9.066666666666668,
+        "pct3syl": 16.666666666666668,
+        "sylword": 1.6666666666666667,
+        "wps": 6.0
+      },
+      "rhythm": null,
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "short-staccato",
+      "text": "Go. Run. Win. Do it now. Stop.",
+      "readability": {
+        "flesch": 120.81400000000002,
+        "fk": -3.2439999999999998,
+        "fog": 0.5599999999999999,
+        "pct3syl": 0.0,
+        "sylword": 1.0,
+        "wps": 1.4
+      },
+      "rhythm": {
+        "cv": 0.5714285714285715,
+        "shortPct": 100.0,
+        "maxLen": 3
+      },
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "one-long-sentence",
+      "text": "The committee unanimously determined that the organization's transformation initiative required substantial reconsideration before implementation could reasonably proceed.",
+      "readability": {
+        "flesch": -74.17294117647057,
+        "fk": 27.82823529411765,
+        "fog": 30.32941176470588,
+        "pct3syl": 58.8235294117647,
+        "sylword": 3.1176470588235294,
+        "wps": 17.0
+      },
+      "rhythm": null,
+      "nominal": 23.529411764705884,
+      "houseTic": 0
+    },
+    {
+      "name": "multi-sentence-prose",
+      "text": "Habits are the compound interest of self-improvement. Small changes seem to make no difference until you cross a critical threshold. The most powerful outcomes are delayed.",
+      "readability": {
+        "flesch": 48.361410256410295,
+        "fk": 8.666923076923077,
+        "fog": 12.697435897435899,
+        "pct3syl": 23.076923076923077,
+        "sylword": 1.7692307692307692,
+        "wps": 8.666666666666666
+      },
+      "rhythm": {
+        "cv": 0.35667763444214245,
+        "shortPct": 0.0,
+        "maxLen": 13
+      },
+      "nominal": 7.6923076923076925,
+      "houseTic": 0
+    },
+    {
+      "name": "silent-e-and-cafe",
+      "text": "The cafe made cake. He rode home. She wrote a note.",
+      "readability": {
+        "flesch": 118.51333333333335,
+        "fk": -2.3599999999999994,
+        "fog": 1.4666666666666668,
+        "pct3syl": 0.0,
+        "sylword": 1.0,
+        "wps": 3.6666666666666665
+      },
+      "rhythm": {
+        "cv": 0.128564869306645,
+        "shortPct": 100.0,
+        "maxLen": 4
+      },
+      "nominal": 0.0,
+      "houseTic": 0
+    },
+    {
+      "name": "atomic-habits-ch15",
+      "text": "A nurse moves a paperclip from one scrub pocket to the other each time she finishes a water bottle. Tiny clink. That clink, not the headache she might dodge at four, is what gets her to the next bottle.\n\nHere is the rule. What gets rewarded now gets done again. Healthy habits pay you later, sometimes years later. So bolt a small payoff onto today.\n\nFind the move that says yes on the spot. A red X. A check mark. A coin in a jar. Your tired self will keep voting for the clink.\n\nAt 2:14pm, an illustrator gets an $1,800 payment and has five minutes to choose. New tablet, or a same-day transfer to a savings account she has renamed Future Me, April. She picks the transfer. Her banking app shows the new balance the next time she opens it, and that climbing number is the thing she feels. Not April. Not the tax bill.\n\nThis is the cardinal rule. Behavior that pays off right now repeats. Behavior that only pays off later struggles, no matter how badly you want the later thing. Your nervous system is local in time. It learns from what just happened.\n\nThe trouble with most good habits is the gap. The payoff for flossing is twenty years of keeping your teeth. The payoff for saving is one bad month, a decade out, that does not break you. Your body cannot feel those. So it votes for the cookie, the swipe, the snooze, because those pay now.\n\nYou do not need a bigger reason. You need a smaller reward, sooner. A red X on a wall calendar. A balance you can see. A line in a pocket notebook. The reward does not need to be large. It needs to be on time and on your senses. Sound, sight, touch, taste. The smaller the better, as long as it lands the moment the behavior ends.\n\nPick one habit you keep abandoning. Ask what it gives you in the next sixty seconds. If the answer is nothing, you were never weak. The loop was broken.\n\nA 71-year-old widow sets one butterscotch candy on the kitchen counter every morning before she opens the front door. The deal she has made with herself is small and exact. Walk to the corner mailbox, come back, unwrap it. The cardiologist's warning about a second stent is not what gets her down the front steps. The foil is. The thin crinkle, the burnt-sugar smell, the wax paper sticking to her thumb. Her body learns to walk toward that, not toward a chart on a hospital wall.\n\nThe cardinal rule sits underneath every other move you can make. What is rewarded gets repeated. What is punished gets dropped. Not what you decide to repeat. What gets rewarded.\n\nYou inherited a body built for short loops. For most of human history, the things that mattered also paid right away. Eat the berry, feel full. Run from the noise, stay alive. Praise the child, watch them try harder. The penalty for missing a long-delayed signal was small, because long-delayed signals were rare. Now most of the behaviors that decide your life run on long delays. Saving, exercising, flossing, reading, repairing a relationship, writing the slow draft. The real reward arrives months or years after the action. The cookie, the scroll, the snap of irritation at your teenager, those pay in seconds.\n\nSo the question is not how to want the long thing more. You already want it. The question is how to give the present self a reason to cast the vote. Three moves help.\n\nOne. End the behavior with a small sensory hit you only get from finishing it. A red mark on a calendar. A coin into a jar. A bottle clinked into a recycling bin. The senses are not optional. A vague sense of pride evaporates by Tuesday. A red X you can see from the doorway does not.\n\nTwo. Make the signal visible across time. A streak only works if you can watch it stack up. A savings balance only motivates if you watch it climb. The widow does not just unwrap the candy. She sees the empty wrappers gather on a saucer through the week, and the saucer fills.\n\nThree. Tie the reward to the identity you are building, not the outcome you are chasing. A bus driver who writes one sentence each night about a moment he kept his voice steady with his daughter is not waiting for her to thaw. She is still cold. The sentence is the reward, because the sentence is evidence that a calmer father exists. The daughter may take six months to notice. The notebook notices tonight. Every entry is a vote for the man holding the pen.\n\nThe honest catch. The immediate reward has to be small enough that it does not undo the behavior. Celebrating a workout with a pint of ice cream is a vote against the workout. Celebrating it with a check mark in a notebook is a vote with it. Match the size of the signal to the scale of the action. A tiny act gets a tiny payoff. Quiet, on time, every time.\n\nTonight, pick the habit you keep starting and quitting. Find the smallest thing you can see, hear, or touch the moment you finish it. Pay the present self in seconds, and the future self will collect in years.",
+      "readability": {
+        "flesch": 82.59875215570341,
+        "fk": 4.001914264597193,
+        "fog": 6.349544222714954,
+        "pct3syl": 6.762749445676275,
+        "sylword": 1.3592017738359201,
+        "wps": 9.11111111111111
+      },
+      "rhythm": {
+        "cv": 0.5570090169295125,
+        "shortPct": 29.292929292929294,
+        "maxLen": 27
+      },
+      "nominal": 1.8847006651884701,
+      "houseTic": 0,
+      "houseTicText": "A nurse moves a paperclip from one scrub pocket to the other each time she finishes a water bottle. Tiny clink. That clink, not the headache she might dodge at four, is what gets her to the next bottle.\n\nHere is the rule. What gets rewarded now gets done again. Healthy habits pay you later, sometimes years later. So bolt a small payoff onto today.\n\nFind the move that says yes on the spot. A red X. A check mark. A coin in a jar. Your tired self will keep voting for the clink.\n\nAt 2:14pm, an illustrator gets an $1,800 payment and has five minutes to choose. New tablet, or a same-day transfer to a savings account she has renamed Future Me, April. She picks the transfer. Her banking app shows the new balance the next time she opens it, and that climbing number is the thing she feels. Not April. Not the tax bill.\n\nThis is the cardinal rule. Behavior that pays off right now repeats. Behavior that only pays off later struggles, no matter how badly you want the later thing. Your nervous system is local in time. It learns from what just happened.\n\nThe trouble with most good habits is the gap. The payoff for flossing is twenty years of keeping your teeth. The payoff for saving is one bad month, a decade out, that does not break you. Your body cannot feel those. So it votes for the cookie, the swipe, the snooze, because those pay now.\n\nYou do not need a bigger reason. You need a smaller reward, sooner. A red X on a wall calendar. A balance you can see. A line in a pocket notebook. The reward does not need to be large. It needs to be on time and on your senses. Sound, sight, touch, taste. The smaller the better, as long as it lands the moment the behavior ends.\n\nPick one habit you keep abandoning. Ask what it gives you in the next sixty seconds. If the answer is nothing, you were never weak. The loop was broken.\n\nA 71-year-old widow sets one butterscotch candy on the kitchen counter every morning before she opens the front door. The deal she has made with herself is small and exact. Walk to the corner mailbox, come back, unwrap it. The cardiologist's warning about a second stent is not what gets her down the front steps. The foil is. The thin crinkle, the burnt-sugar smell, the wax paper sticking to her thumb. Her body learns to walk toward that, not toward a chart on a hospital wall.\n\nThe cardinal rule sits underneath every other move you can make. What is rewarded gets repeated. What is punished gets dropped. Not what you decide to repeat. What gets rewarded.\n\nYou inherited a body built for short loops. For most of human history, the things that mattered also paid right away. Eat the berry, feel full. Run from the noise, stay alive. Praise the child, watch them try harder. The penalty for missing a long-delayed signal was small, because long-delayed signals were rare. Now most of the behaviors that decide your life run on long delays. Saving, exercising, flossing, reading, repairing a relationship, writing the slow draft. The real reward arrives months or years after the action. The cookie, the scroll, the snap of irritation at your teenager, those pay in seconds.\n\nSo the question is not how to want the long thing more. You already want it. The question is how to give the present self a reason to cast the vote. Three moves help.\n\nOne. End the behavior with a small sensory hit you only get from finishing it. A red mark on a calendar. A coin into a jar. A bottle clinked into a recycling bin. The senses are not optional. A vague sense of pride evaporates by Tuesday. A red X you can see from the doorway does not.\n\nTwo. Make the signal visible across time. A streak only works if you can watch it stack up. A savings balance only motivates if you watch it climb. The widow does not just unwrap the candy. She sees the empty wrappers gather on a saucer through the week, and the saucer fills.\n\nThree. Tie the reward to the identity you are building, not the outcome you are chasing. A bus driver who writes one sentence each night about a moment he kept his voice steady with his daughter is not waiting for her to thaw. She is still cold. The sentence is the reward, because the sentence is evidence that a calmer father exists. The daughter may take six months to notice. The notebook notices tonight. Every entry is a vote for the man holding the pen.\n\nThe honest catch. The immediate reward has to be small enough that it does not undo the behavior. Celebrating a workout with a pint of ice cream is a vote against the workout. Celebrating it with a check mark in a notebook is a vote with it. Match the size of the signal to the scale of the action. A tiny act gets a tiny payoff. Quiet, on time, every time.\n\nTonight, pick the habit you keep starting and quitting. Find the smallest thing you can see, hear, or touch the moment you finish it. Pay the present self in seconds, and the future self will collect in years.\n\nIt is 11:14 a.m. in the pediatric ICU. Bishara has just drained her second water bottle behind the supply cart, and her left hand goes into her right scrub pocket, fishes out a paperclip, and drops it into the left pocket. The small clink lands under the ventilator hum. She has been at this for nine days. The 4 p.m. migraine, the one that has cost her two sick days a month for three years, has not arrived once. She notices, refilling at the sink, that she is not walking toward feeling better later. She is walking toward the next clink. Bishara must decide whether the tiny clink is the reward that keeps the next bottle possible.\n\nCressida is a freelance illustrator at her kitchen table when the Stripe ping lands: $1,850 from a picture-book client, cleared. She opens her bank. The 'Future Me' account sits right under checking, balance $640, name and number staring at her. Her cart at the art supply site is already loaded with a $310 tablet stand she has wanted for weeks. Her thumb hovers between the checkout button and the transfer screen. The tax bill due in spring is $4,200. She has ninety seconds before the dopamine fades.\n\nRasvan sits at his desk on Friday afternoon, the orchestra room empty, and stares at the desk calendar where the gold-star stickers stopped on Tuesday. Three days, no stars. He had told himself the goal was to be a better teacher for his 140 students, especially the three seniors weighing whether to quit. He thumbs back through the weeks the streak held. The stars are loud yellow against the grid. He realizes the question is not why he stopped caring. It is why, on the good weeks, his hand reached for the sticker sheet at all.\n\nHelka, seventy-one, stands in her kitchen at 7:14 a.m. holding a single butterscotch candy she has not unwrapped in eight months. Her cardiologist's letter is on the counter, warning of a second stent. The corner mailbox is four hundred feet away. She sets the candy on the tile beside the kettle, untouched, the gold foil catching the sun. The rule she has just made for herself is simple: the candy stays wrapped until she comes back through the door. She slides on her late husband's house shoes and reaches for the knob. Helka has to decide whether the candy waits for her return or becomes another untouched promise.\n\nTuesday, 9:47 p.m. Darnell sits at his kitchen table in apron and clogs, the recert study guide open to a page he has read four times this week. His sister Latrice is on speakerphone from Houston. \"Half an hour,\" she says. \"Just half an hour, then you walk to that calendar and put a red X on today.\" Darnell laughs. \"A red X. What am I, in third grade?\" \"You opened the thing tonight, didn't you?\" Latrice asks. He looks at the calendar above the toaster. Three red X's in a row. He is about to tell her it's silly. He is also about to admit she is right.\n\nRadomir parks the 47 at the depot at 5:18 p.m., the same hour his patience used to crack open like a dropped mug. He pulls a chewed pocket notebook from the visor and writes one line under today's date: 'Didn't bite when she shrugged about dinner.' His daughter is still upstairs giving him three words a meal. The page, though, has fourteen straight days of small saves in his own slanted print. He flips back, runs a thumb down the column, and sits with the question of what is actually keeping him from snapping at her tonight."
+    },
+    {
+      "name": "atomic-habits-ch16",
+      "text": "A nurse keeps a wall calendar by her kitchen. After every twelve-hour shift, she writes one paragraph about one patient, then marks an X. The X is the part she loves. The page fills in rows, and the rows start to look like the person she is becoming.\n\nHere is the rule the page protects. Never miss twice. One bad day is life. A second one in a row is the start of a new self.\n\nMark the day. If you slip, show up the next one. The streak is not a performance for anyone else. Every dot is a vote for the person on the other side of the page, and the pen is already in your hand.\n\nInside his locker door, a freight dispatcher tapes a paper card the size of an index card. After every shift, before he changes back into street clothes, he does five back stretches and marks a small dot. He had a herniated disc two years ago. He is fifty-four, and the card is older than his last raise. It is also why he can still lift his daughter's suitcase into a trunk without wincing.\n\nThe card works because one object does three jobs. It sits where he will see it. It asks for a move he can finish in two minutes. It gives him the small jolt of inking a dot on paper. One loop, one piece of cardstock, no app required.\n\nNow the harder part. A violin teacher hits 142 straight days of morning practice, then loses a Tuesday to a dentist appointment. Wednesday is the load-bearing day, not Thursday. Practice Wednesday and the miss is a dent. Let Wednesday slide and the streak is no longer a streak. It is a story she used to tell about herself.\n\nShe says the rule out loud, alone in her studio. Never miss twice. Skip a day and the body forgives you. Skip two and the body learns a new default. The page is not what saves her. It is what reminds her, on the day she does not feel like a violinist, that 142 other versions of her already did the work.\n\nYou do not keep a tracker to admire it. You keep it to make tomorrow cheaper than today was.\n\nA regional sales manager opens his fitness app one Sunday night and sees something he does not like. The chain is unbroken. The chain is also a lie. For three weeks he has been logging short, junk workouts at 11:47 p.m., just enough motion to satisfy the app, nothing close to what the habit was meant to be. The number on the screen says runner. The body in the mirror says something else.\n\nThis is the quiet danger of any visible streak. The number is easy to defend. The thing the number was supposed to measure is not. You do not build the identity, you protect the score. He rewrites his rule that night. A session counts only if it crosses a floor. Thirty minutes, real effort, no scrolling. Anything less is a miss, and a miss is allowed. A back-to-back miss is not.\n\nWiden the angle. A recovering gambler sits in his car with his phone face down on the passenger seat. He has missed a check-in call with his sponsor for the first time in four months. He could call now and own it. He could also say nothing, mark the day, and keep the number clean. The number would survive. He would not. The man who hides this miss is the man who hides the next one, and the one after that, until the only thing left of the habit is the number.\n\nHe calls. The streak resets. The honesty does not.\n\nA tracker is a mirror, not a medal. It is useful to the exact extent it tells you the truth about who you are becoming, and the day it starts flattering you is the day it stops working. The dispatcher's card inside his locker works because it is dull. There is nothing to perform for. One dot, one shift, one back that still works at fifty-four.\n\nA single father reading to his seven-year-old at night learns the same lesson in a different key. Custody week means the habit lives inside someone else's calendar half the time. So he hands her the marker. She fills in the square herself after each ten-minute session. He is no longer the parent enforcing a habit on a child. They are two people keeping a chain together, and twenty years from now she will not remember the books. She will remember the squares.\n\nThree rules, then, for any streak you actually intend to keep.\n\nPut the tracker where the cue lives, so seeing it is most of the work. Define what counts before you start, so a tired future version of you cannot lawyer the standard down at midnight. And never miss twice, because the first miss is a Tuesday and the second one is a stranger.\n\nYou are not keeping a streak. You are voting, one dot at a time, for the person who will be holding the pen a year from now.\n\nUse the tracker as a return path, not a courtroom. A blank square should point to the next small mark, not to a verdict about your character. The question after a miss is plain: what would make the next mark easy enough to earn today. Answer that, then make the mark before the day hardens around the absence.",
+      "readability": {
+        "flesch": 83.78961144359813,
+        "fk": 4.290278641380386,
+        "fog": 6.770096896212239,
+        "pct3syl": 5.984766050054407,
+        "sylword": 1.323177366702938,
+        "wps": 10.94047619047619
+      },
+      "rhythm": {
+        "cv": 0.5750432617803396,
+        "shortPct": 16.666666666666668,
+        "maxLen": 30
+      },
+      "nominal": 0.7616974972796517,
+      "houseTic": 0,
+      "houseTicText": "A nurse keeps a wall calendar by her kitchen. After every twelve-hour shift, she writes one paragraph about one patient, then marks an X. The X is the part she loves. The page fills in rows, and the rows start to look like the person she is becoming.\n\nHere is the rule the page protects. Never miss twice. One bad day is life. A second one in a row is the start of a new self.\n\nMark the day. If you slip, show up the next one. The streak is not a performance for anyone else. Every dot is a vote for the person on the other side of the page, and the pen is already in your hand.\n\nInside his locker door, a freight dispatcher tapes a paper card the size of an index card. After every shift, before he changes back into street clothes, he does five back stretches and marks a small dot. He had a herniated disc two years ago. He is fifty-four, and the card is older than his last raise. It is also why he can still lift his daughter's suitcase into a trunk without wincing.\n\nThe card works because one object does three jobs. It sits where he will see it. It asks for a move he can finish in two minutes. It gives him the small jolt of inking a dot on paper. One loop, one piece of cardstock, no app required.\n\nNow the harder part. A violin teacher hits 142 straight days of morning practice, then loses a Tuesday to a dentist appointment. Wednesday is the load-bearing day, not Thursday. Practice Wednesday and the miss is a dent. Let Wednesday slide and the streak is no longer a streak. It is a story she used to tell about herself.\n\nShe says the rule out loud, alone in her studio. Never miss twice. Skip a day and the body forgives you. Skip two and the body learns a new default. The page is not what saves her. It is what reminds her, on the day she does not feel like a violinist, that 142 other versions of her already did the work.\n\nYou do not keep a tracker to admire it. You keep it to make tomorrow cheaper than today was.\n\nA regional sales manager opens his fitness app one Sunday night and sees something he does not like. The chain is unbroken. The chain is also a lie. For three weeks he has been logging short, junk workouts at 11:47 p.m., just enough motion to satisfy the app, nothing close to what the habit was meant to be. The number on the screen says runner. The body in the mirror says something else.\n\nThis is the quiet danger of any visible streak. The number is easy to defend. The thing the number was supposed to measure is not. You do not build the identity, you protect the score. He rewrites his rule that night. A session counts only if it crosses a floor. Thirty minutes, real effort, no scrolling. Anything less is a miss, and a miss is allowed. A back-to-back miss is not.\n\nWiden the angle. A recovering gambler sits in his car with his phone face down on the passenger seat. He has missed a check-in call with his sponsor for the first time in four months. He could call now and own it. He could also say nothing, mark the day, and keep the number clean. The number would survive. He would not. The man who hides this miss is the man who hides the next one, and the one after that, until the only thing left of the habit is the number.\n\nHe calls. The streak resets. The honesty does not.\n\nA tracker is a mirror, not a medal. It is useful to the exact extent it tells you the truth about who you are becoming, and the day it starts flattering you is the day it stops working. The dispatcher's card inside his locker works because it is dull. There is nothing to perform for. One dot, one shift, one back that still works at fifty-four.\n\nA single father reading to his seven-year-old at night learns the same lesson in a different key. Custody week means the habit lives inside someone else's calendar half the time. So he hands her the marker. She fills in the square herself after each ten-minute session. He is no longer the parent enforcing a habit on a child. They are two people keeping a chain together, and twenty years from now she will not remember the books. She will remember the squares.\n\nThree rules, then, for any streak you actually intend to keep.\n\nPut the tracker where the cue lives, so seeing it is most of the work. Define what counts before you start, so a tired future version of you cannot lawyer the standard down at midnight. And never miss twice, because the first miss is a Tuesday and the second one is a stranger.\n\nYou are not keeping a streak. You are voting, one dot at a time, for the person who will be holding the pen a year from now.\n\nUse the tracker as a return path, not a courtroom. A blank square should point to the next small mark, not to a verdict about your character. The question after a miss is plain: what would make the next mark easy enough to earn today. Answer that, then make the mark before the day hardens around the absence.\n\nItzel comes off a twelve-hour at the hospice in Tucson at 8:14 p.m., still smelling of the lavender lotion she rubs into Mr. Quintero's hands. She drops her bag, opens the spiral notebook on the kitchen table, and writes one paragraph about how he asked for the radio in Spanish today. Then she crosses to the wall calendar above the toaster, uncaps the red marker she keeps on a string, and draws a slow, deliberate X over November 14. She stands there a beat longer than the X requires. The grid of red is starting to look like a person. Itzel must decide whether the blank square means the streak is broken or the next mark is the repair.\n\nBefore the herniated disc, Tomislav stretched when he remembered, which was almost never. Now a five-by-seven index sheet is taped to the back wall of locker 42 at the freight yard, thirty boxes for thirty days, a fat marker hanging on a string. He opens the locker at 5:12 a.m., sees yesterday's check, drops into the six stretches his physio drew on the back, then fills today's box with a thick black slash. Six months in, the card has outlasted two pulled muscles on the dock and one snowstorm.\n\nRoswitha sits at her kitchen table on Wednesday morning, the violin case still latched, a cold mug of coffee next to her phone. Tuesday's square on the wall calendar is the first empty box in 142 days, because the dentist ran late and she came home wrecked. The voice in her head is offering a clean trade: skip today too, start fresh Thursday with a round number and a real warmup. Her bow hand is resting on the case latch. She has to decide, in the next ten minutes before her first student arrives, whether Wednesday is a fresh start or a second miss.\n\nDesmond has his daughter Amari Sunday through Wednesday, and her mother has her the rest of the week. He has tried three times to hold a nightly ten-minute reading habit and three times it has died on a Thursday handoff. Tonight, sitting at the kitchen table with a sheet of graph paper and a pack of star stickers, he is sketching a chart with 28 squares, one per night of the month. He is about to write his name at the top. He stops. He slides the paper across to Amari and asks her to write hers there instead, and to be the one who puts the sticker on after they read.\n\nBertil sits on his garage floor on a Sunday morning, scrolling back through six months of green check marks on his fitness app. Tuesday: eight minutes of bicep curls in his work slacks. Thursday: a flight of stairs at the airport, logged as cardio. Friday: thirty seconds of planks before bed. The chain is unbroken at 184 days, and he has gained four pounds. He looks at the green wall and feels nothing close to pride. He has been protecting the number, not the body it was supposed to represent. The question now is what the green check is even measuring.\n\nJovan sits in his pickup outside the union hall, the recovery app open on his phone. The streak reads 218 days. Last Tuesday he let the seven o'clock check-in call with his sponsor go to voicemail and never called back. Nobody knows. His thumb is over the green button that logs the day. If he taps it, the chain stays unbroken and the number keeps climbing. If he texts his sponsor first, the number resets and the conversation he has been dodging arrives by lunch. Jovan has to decide whether one missed call becomes two or whether he sends the check-in now."
+    },
+    {
+      "name": "the-power-of-moments-ch2",
+      "text": "You can fix a dozen small annoyances and still leave no memory behind. The patient gets polite answers, the new hire gets the badge, the guest gets the room, and a week later nothing stands out. Complaints are potholes; memories need peaks.\n\nThinking in moments means looking for the parts of an experience where people are wide awake. Beginnings, endings, milestones, and hard pits carry extra weight. A transition is a doorway, not a form. If you only smooth the average, you may remove friction without giving anyone a story to keep.\n\nAllison can hear the problem in the hallway at Sharp in San Diego. A family has finished the clinic visit, but nobody knows whether the last words should be a rushed parking reminder or a clear next step. In a health system founded in 1955, with about 19,000 employees and 2,700 affiliated physicians, the average touchpoint is too blunt a target. The patient does not meet an average. She meets a first voice, a handoff, a wait, a discharge, and a call she may be too tired to make.\n\nA tired patient does not remember the visit as a smooth line. She remembers a few sharp points: the first signal of belonging, the lowest stress, the marked achievement, and the ending that tells her what the whole thing meant. That is why a pit matters. If a painful point is noticed early, it can become proof that someone cared. If it is ignored, the rest of the service may be judged through that one sore place.\n\nAt One John Deere Place in Moline, Illinois, the first-day frame carries the same pattern through a different doorway. A new hire could meet forms, badges, and passwords. The day can also carry 1837 into the room and say, you have joined a long story. The work is not spectacle. It is choosing which moment deserves extra shape. Mark the moment you want remembered.\n\nMarc sees the danger when his onboarding memo starts sounding too grand. If every step becomes a ceremony, the real moments disappear under fuss. New employees at One John Deere Place in Moline, Illinois, do not need a trumpet blast for every password. They need the first day to say, clearly and concretely, that they have crossed into a place with an 1837 founding behind it and a real team beside them.\n\nThis is why the map matters more than the mood. First, look for transitions. A patient arrives, a worker joins, a student graduates, a customer leaves. Status is changing, so attention is high. Second, look for milestones. Progress often passes in silence unless someone gives it a visible mark. Third, look for pits. Stress makes people search for signs that they are alone or supported. These are not soft extras. They are the places where memory gets built.\n\nThe mistake is trying to improve everything by the same small amount. That plan sounds fair, but it spreads care so thin that no single point carries meaning. A San Diego clinic can have cleaner signs and quicker forms while still sending a tired patient home unsure about the next dose. A first day can run on time while the new hire never feels the weight of joining a company founded in 1837. Broad polish can hide a blank center.\n\nThinking in moments asks a sharper question: which few parts will people retell? The answer will not always be the most expensive part. It may be the first person who says, \"We have been expecting you.\" It may be the last sheet that says exactly what happens next. It may be the small public mark that turns a quiet achievement into identity. The designed moment is not decoration. It is where meaning gets a handle.\n\nThat does not excuse bad basics. Potholes still matter. In a health system with 19,000 employees, a chaotic intake line will drown out a peak. So will wrong discharge instructions or a new-hire laptop that will not start. You repair the obvious break before you stage the shine. Then you choose the point where added care changes the story.\n\nThe counter-case is concrete. A Sharp nurse in San Diego sees a patient struggling to breathe while discharge papers sit ready. Obeying moment thinking too literally would be a mistake there. Nobody needs a marked ending while a medical pit is still open. The right move is not to polish the goodbye. It is to call clinical help and make the low point safe. Moment thinking serves the human need in front of you, or it is only theater.",
+      "readability": {
+        "flesch": 75.13504195683208,
+        "fk": 5.866519745663741,
+        "fog": 8.136718716207449,
+        "pct3syl": 7.915567282321899,
+        "sylword": 1.4076517150395778,
+        "wps": 12.426229508196721
+      },
+      "rhythm": {
+        "cv": 0.5010761804784445,
+        "shortPct": 11.475409836065573,
+        "maxLen": 28
+      },
+      "nominal": 1.9788918205804749,
+      "houseTic": 0,
+      "houseTicText": "You can fix a dozen small annoyances and still leave no memory behind. The patient gets polite answers, the new hire gets the badge, the guest gets the room, and a week later nothing stands out. Complaints are potholes; memories need peaks.\n\nThinking in moments means looking for the parts of an experience where people are wide awake. Beginnings, endings, milestones, and hard pits carry extra weight. A transition is a doorway, not a form. If you only smooth the average, you may remove friction without giving anyone a story to keep.\n\nAllison can hear the problem in the hallway at Sharp in San Diego. A family has finished the clinic visit, but nobody knows whether the last words should be a rushed parking reminder or a clear next step. In a health system founded in 1955, with about 19,000 employees and 2,700 affiliated physicians, the average touchpoint is too blunt a target. The patient does not meet an average. She meets a first voice, a handoff, a wait, a discharge, and a call she may be too tired to make.\n\nA tired patient does not remember the visit as a smooth line. She remembers a few sharp points: the first signal of belonging, the lowest stress, the marked achievement, and the ending that tells her what the whole thing meant. That is why a pit matters. If a painful point is noticed early, it can become proof that someone cared. If it is ignored, the rest of the service may be judged through that one sore place.\n\nAt One John Deere Place in Moline, Illinois, the first-day frame carries the same pattern through a different doorway. A new hire could meet forms, badges, and passwords. The day can also carry 1837 into the room and say, you have joined a long story. The work is not spectacle. It is choosing which moment deserves extra shape. Mark the moment you want remembered.\n\nMarc sees the danger when his onboarding memo starts sounding too grand. If every step becomes a ceremony, the real moments disappear under fuss. New employees at One John Deere Place in Moline, Illinois, do not need a trumpet blast for every password. They need the first day to say, clearly and concretely, that they have crossed into a place with an 1837 founding behind it and a real team beside them.\n\nThis is why the map matters more than the mood. First, look for transitions. A patient arrives, a worker joins, a student graduates, a customer leaves. Status is changing, so attention is high. Second, look for milestones. Progress often passes in silence unless someone gives it a visible mark. Third, look for pits. Stress makes people search for signs that they are alone or supported. These are not soft extras. They are the places where memory gets built.\n\nThe mistake is trying to improve everything by the same small amount. That plan sounds fair, but it spreads care so thin that no single point carries meaning. A San Diego clinic can have cleaner signs and quicker forms while still sending a tired patient home unsure about the next dose. A first day can run on time while the new hire never feels the weight of joining a company founded in 1837. Broad polish can hide a blank center.\n\nThinking in moments asks a sharper question: which few parts will people retell? The answer will not always be the most expensive part. It may be the first person who says, \"We have been expecting you.\" It may be the last sheet that says exactly what happens next. It may be the small public mark that turns a quiet achievement into identity. The designed moment is not decoration. It is where meaning gets a handle.\n\nThat does not excuse bad basics. Potholes still matter. In a health system with 19,000 employees, a chaotic intake line will drown out a peak. So will wrong discharge instructions or a new-hire laptop that will not start. You repair the obvious break before you stage the shine. Then you choose the point where added care changes the story.\n\nThe counter-case is concrete. A Sharp nurse in San Diego sees a patient struggling to breathe while discharge papers sit ready. Obeying moment thinking too literally would be a mistake there. Nobody needs a marked ending while a medical pit is still open. The right move is not to polish the goodbye. It is to call clinical help and make the low point safe. Moment thinking serves the human need in front of you, or it is only theater.\n\nAfter the visitor badge sticks in the slot, Donovan writes the miss on the intake board: promise, pressure, failure point, repair. Sharp began in San Diego in 1955, and a system with 19,000 employees has to make that service promise work at a crowded clinic desk. The first signal a waiting patient sees is Donovan tugging twice while the line backs up. The postmortem is blunt: a large system's first-contact promise collapsed exactly where it was supposed to hold.\n\nThe rubber smell from a new floor mat reaches onboarding lead Thierry before the new hires do at One John Deere Place in Moline, Illinois. He has promised a first day about the 1837 founding, but his packet begins with tax forms and password rules. Halfway through the welcome, he hears himself say \"compliance\" for the third time and stops. The room has not joined John Deere yet. It has joined a filing system.\n\nMarc sets the pen beside the draft agenda and writes the memo instead of signing the old one. Subject: First Day at One John Deere Place in Moline. \"A company with about 73,100 employees in 2025 cannot custom-build belonging for every hire. We can repeat one doorway well: place, history, teammate, tool, next step. Keep the forms. Do not let the forms speak first.\"\n\nThe discharge envelope slides under Elaine's elbow at a San Diego clinic in a system with 19,000 employees. She gives the standard folder, points toward parking, and trusts the printed sheet. Across the hall, Jacqueline walks the last instruction with the patient and circles the call number. Elaine's line moves faster. Jacqueline's patient leaves knowing what to do before the next dose.\n\nThierry is halfway through trimming the welcome agenda at One John Deere Place in Moline when Marc's note interrupts. It asks, \"Are we honoring the first day or decorating it?\" He calls him from the workshop bench. \"I keep adding nicer pieces,\" Thierry says. Marc answers, \"A moment is not bigger because you add more; it is stronger because you choose where it lands.\"\n\nThere is not enough class time to map the whole patient visit at Sharp in San Diego, and Nicole feels the squeeze as the training group waits. A system with 2,700 affiliated physicians has too many contacts to star them all. She marks every step the same until Allison asks which point hurts. Nicole frowns at the page. The delay, the handoff, and the first greeting cannot all mean the same thing."
+    },
+    {
+      "name": "the-power-of-moments-ch3",
+      "text": "Adele starts with the mistake many of us make: if a moment matters, make everything around it nicer. She has a guest welcome plan full of small upgrades, and none of them is sharp enough to retell. Then she notices the missing thing. A peak needs one chosen high point, not a soft glow spread across the whole visit. Peaks need contrast, not confetti.\n\nBuilding peaks means making one point feel vivid through sensory pleasure, raised stakes, or surprise. You remember the place where the color, sound, crowd, or reveal made your attention snap into place. A peak is a story with handles.\n\nThe Connecticut College announcement makes the reach of a peak visible. Before Mayra Valle said the college name aloud, she had first seen the ceremony as a sixth grader. That earlier view mattered. A student in the seats could picture a future self because the achievement was not hidden in an email or a private office. It had a stage, a crowd, and a name spoken aloud.\n\nThe mechanism is simple: routine lets attention drift until contrast wakes it up. Sensory detail gives memory something to grab, and stakes make the moment feel consequential. Surprise interrupts the script. None of these requires danger or luxury. A college acceptance is already meaningful, but public visibility makes the meaning felt in the body: hands sweating, eyes up, the school name leaving the mouth.\n\nThat is the myth the idea breaks. Many people think a peak is a lucky high mood, like sunshine arriving at the right hour. But the useful version is more practical. You choose the point where extra attention will change memory, meaning, or behavior. You do not need every minute to sparkle. In fact, if every minute shouts, none of them can become the high point.\n\nThink about a Disney World day. The line in 96-degree central Florida heat may be real and miserable. The expensive food may annoy everyone. Yet Space Mountain and mouse-ear hats can still become the shape of the story later. The mind does not average the whole day like a spreadsheet. It keeps the peak and the ending near the front.\n\nThat does not mean you ignore pain. It means you stop confusing smoothness with memory. A smooth day can vanish. One vivid turn can stay.\n\nTravis expects the hot part of Disney World to ruin the story. The stroller wheel sticks, shirts cling, and the line crawls while everyone pretends to be less annoyed than they are. He thinks the whole day is already lost. Later, though, the story that comes back is Space Mountain and the mouse-ear hats at the end.\n\nThis is not a license to make people suffer in the middle. A bad line is still a bad line. The lesson is about memory's shape. You remember selected highs and endings with strange power, so a designer of moments asks where one honest high point belongs. The answer might be a ride, a stage, a phone call, or a small ritual at the exact place where people expect nothing.\n\nThe service version is easy to picture. A poolside break becomes retellable when a cherry-red phone summons free Popsicles on a silver tray. The treat matters, but the staging matters too. Color, surprise, and delivery turn a small item into a tiny ceremony. The same logic works without any hotel or tray. A family can turn a last meal before college into a toast. A manager can turn a quiet certification into a walk to the team board. A teacher can turn the return of a hard project into a short public naming of effort.\n\nThe word public needs care. Visibility raises stakes when the achievement is real and the person wants to be seen. It can also embarrass someone who needed privacy. That is why the moment must fit the meaning. Mayra Valle's Connecticut College announcement worked because the stage made a real milestone visible. It did not invent the achievement. It marked it.\n\nThis is where many well-meant plans go wrong. A leader reads about peaks and adds music, photos, applause, and branded signs to a moment that needed one clean sentence. The room feels managed instead of moved. Ceremony spoils when it outruns the truth.\n\nUse the same caution at home. If your child finishes a hard season, you do not need a banquet for every practice. You might need one walk after the last game, one printed photo, one person saying what changed. The peak should help the truth stand up. It should not compete with it.\n\nThe overcorrection is constant elevation. When every meeting has a reveal, every handoff has a ritual, and every task gets applause, people stop trusting the signal. The peak becomes noise. Worse, the ordinary middle starts to feel like failure, even though the middle is where most life happens.\n\nSo build peaks sparingly. Pick the transition, milestone, pit, or ending where attention can change what the moment means. Add one sensory hook or one visible stake. Let the rest stay ordinary enough for the high point to rise.",
+      "readability": {
+        "flesch": 72.51237254901963,
+        "fk": 5.9608235294117655,
+        "fog": 8.298039215686275,
+        "pct3syl": 9.411764705882353,
+        "sylword": 1.4517647058823528,
+        "wps": 11.333333333333334
+      },
+      "rhythm": {
+        "cv": 0.48848328216533393,
+        "shortPct": 13.333333333333334,
+        "maxLen": 26
+      },
+      "nominal": 2.823529411764706,
+      "houseTic": 0,
+      "houseTicText": "Adele starts with the mistake many of us make: if a moment matters, make everything around it nicer. She has a guest welcome plan full of small upgrades, and none of them is sharp enough to retell. Then she notices the missing thing. A peak needs one chosen high point, not a soft glow spread across the whole visit. Peaks need contrast, not confetti.\n\nBuilding peaks means making one point feel vivid through sensory pleasure, raised stakes, or surprise. You remember the place where the color, sound, crowd, or reveal made your attention snap into place. A peak is a story with handles.\n\nThe Connecticut College announcement makes the reach of a peak visible. Before Mayra Valle said the college name aloud, she had first seen the ceremony as a sixth grader. That earlier view mattered. A student in the seats could picture a future self because the achievement was not hidden in an email or a private office. It had a stage, a crowd, and a name spoken aloud.\n\nThe mechanism is simple: routine lets attention drift until contrast wakes it up. Sensory detail gives memory something to grab, and stakes make the moment feel consequential. Surprise interrupts the script. None of these requires danger or luxury. A college acceptance is already meaningful, but public visibility makes the meaning felt in the body: hands sweating, eyes up, the school name leaving the mouth.\n\nThat is the myth the idea breaks. Many people think a peak is a lucky high mood, like sunshine arriving at the right hour. But the useful version is more practical. You choose the point where extra attention will change memory, meaning, or behavior. You do not need every minute to sparkle. In fact, if every minute shouts, none of them can become the high point.\n\nThink about a Disney World day. The line in 96-degree central Florida heat may be real and miserable. The expensive food may annoy everyone. Yet Space Mountain and mouse-ear hats can still become the shape of the story later. The mind does not average the whole day like a spreadsheet. It keeps the peak and the ending near the front.\n\nThat does not mean you ignore pain. It means you stop confusing smoothness with memory. A smooth day can vanish. One vivid turn can stay.\n\nTravis expects the hot part of Disney World to ruin the story. The stroller wheel sticks, shirts cling, and the line crawls while everyone pretends to be less annoyed than they are. He thinks the whole day is already lost. Later, though, the story that comes back is Space Mountain and the mouse-ear hats at the end.\n\nThis is not a license to make people suffer in the middle. A bad line is still a bad line. The lesson is about memory's shape. You remember selected highs and endings with strange power, so a designer of moments asks where one honest high point belongs. The answer might be a ride, a stage, a phone call, or a small ritual at the exact place where people expect nothing.\n\nThe service version is easy to picture. A poolside break becomes retellable when a cherry-red phone summons free Popsicles on a silver tray. The treat matters, but the staging matters too. Color, surprise, and delivery turn a small item into a tiny ceremony. The same logic works without any hotel or tray. A family can turn a last meal before college into a toast. A manager can turn a quiet certification into a walk to the team board. A teacher can turn the return of a hard project into a short public naming of effort.\n\nThe word public needs care. Visibility raises stakes when the achievement is real and the person wants to be seen. It can also embarrass someone who needed privacy. That is why the moment must fit the meaning. Mayra Valle's Connecticut College announcement worked because the stage made a real milestone visible. It did not invent the achievement. It marked it.\n\nThis is where many well-meant plans go wrong. A leader reads about peaks and adds music, photos, applause, and branded signs to a moment that needed one clean sentence. The room feels managed instead of moved. Ceremony spoils when it outruns the truth.\n\nUse the same caution at home. If your child finishes a hard season, you do not need a banquet for every practice. You might need one walk after the last game, one printed photo, one person saying what changed. The peak should help the truth stand up. It should not compete with it.\n\nThe overcorrection is constant elevation. When every meeting has a reveal, every handoff has a ritual, and every task gets applause, people stop trusting the signal. The peak becomes noise. Worse, the ordinary middle starts to feel like failure, even though the middle is where most life happens.\n\nSo build peaks sparingly. Pick the transition, milestone, pit, or ending where attention can change what the moment means. Add one sensory hook or one visible stake. Let the rest stay ordinary enough for the high point to rise.\n\nAdele audits the welcome plan line by line at the hotel front desk: chilled towels, quick texts, polite smiles, no retellable object. The Disney World notes beside her point to Space Mountain and mouse-ear hats, and her checklist has no equivalent. The audit result is clear: the plan spreads niceness everywhere and builds no peak.\n\n\"Make the whole day magical,\" the travel app says, and parent Kira feels sweat bead under her hat in the Disney World standby line. Whole day? Impossible. The 96-degree central Florida heat is winning. Maybe buy more snacks. Maybe skip the ride. No, Space Mountain is the high point, and mouse-ear hats can close the day. The middle does not have to carry the memory alone.\n\nThe blank stage diagram sits beside the crowded rehearsal list, and Jacques has room for only one more block. The Connecticut College announcement before about 5,000 people needs names pronounced cleanly; the hallway display needs polish too. Before anyone moves a chair, he spends the scarce time on the student standing where others can witness the achievement.\n\nThe student who once watched from the seats is handed the microphone, and Mayra Valle has no coach at her elbow. If she rushes, Connecticut College becomes a swallowed phrase. If she waits, the pause may feel too big. Two paths sit in her hand, and the chance will not come back in the same form. She decides alone to let the silence hold, then says the name clearly.\n\nCameron is typing upgrades into every guest touchpoint while Adele points at a Disney World note. \"If every part is Space Mountain, what does anyone remember?\" \"That we cared.\" \"Or that nothing stood out.\" \"So we cut?\" \"We choose.\" Cameron deletes the extra snacks, extra messages, and extra script. One welcome stays bright, like mouse-ear hats at the end.\n\nThe stroller wheel sticks against the Disney World curb, and parent Travis predicts the story already: 96-degree central Florida heat, a slow line, everyone cranky. He is sure the day is ruined. In the car later, the first story is not the line. It is Space Mountain, then the mouse-ear hats worn crooked in the last photo."
+    }
+  ],
+  "distractorTell": [
+    {
+      "name": "longest-unique-key-is-tell",
+      "question": {
+        "choices": [
+          "yes",
+          "no",
+          "a much longer keyed answer here"
+        ],
+        "correctIndex": 2
+      },
+      "tell": true
+    },
+    {
+      "name": "key-not-longest",
+      "question": {
+        "choices": [
+          "a much longer wrong answer",
+          "no",
+          "yes"
+        ],
+        "correctIndex": 2
+      },
+      "tell": false
+    },
+    {
+      "name": "tie-for-longest-not-a-tell",
+      "question": {
+        "choices": [
+          "abcd",
+          "abcd",
+          "xy"
+        ],
+        "correctIndex": 0
+      },
+      "tell": false
+    },
+    {
+      "name": "string-correctindex",
+      "question": {
+        "choices": [
+          "short",
+          "the longest one wins"
+        ],
+        "correctIndex": "1"
+      },
+      "tell": true
+    },
+    {
+      "name": "out-of-range-excluded",
+      "question": {
+        "choices": [
+          "a",
+          "b"
+        ],
+        "correctIndex": 5
+      },
+      "tell": null
+    },
+    {
+      "name": "empty-choices-excluded",
+      "question": {
+        "choices": [],
+        "correctIndex": 0
+      },
+      "tell": null
+    }
+  ],
+  "distractorTellRate": [
+    {
+      "name": "mixed-with-excluded",
+      "questions": [
+        {
+          "choices": [
+            "a",
+            "bb",
+            "cccc"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "choices": [
+            "aaaa",
+            "bb",
+            "c"
+          ],
+          "correctIndex": 2
+        },
+        {
+          "choices": [],
+          "correctIndex": 0
+        },
+        {
+          "choices": [
+            "x",
+            "y"
+          ],
+          "correctIndex": 9
+        }
+      ],
+      "ratePct": 50.0
+    },
+    {
+      "name": "all-excluded",
+      "questions": [
+        {
+          "choices": [],
+          "correctIndex": 0
+        }
+      ],
+      "ratePct": null
+    },
+    {
+      "name": "empty-list",
+      "questions": [],
+      "ratePct": null
+    },
+    {
+      "name": "real-atomic-habits-ch",
+      "questions": [
+        {
+          "questionId": "q01",
+          "prompt": "A graphic designer commits to one hour of 3D modeling each evening because the skill could double her rate in two years. By Thursday she stops. Which best explains the collapse?",
+          "choices": [
+            "The brain weights immediate consequences far more heavily than distant ones, so a session whose payoff is years away gives the present self nothing to repeat.",
+            "She picked a skill that does not suit her, and the lack of natural talent caused the drop-off by Thursday.",
+            "One hour was too short to produce visible 3D progress, so her sessions could not build the momentum a habit needs."
+          ],
+          "correctIndex": 0,
+          "explanation": "Behavior is governed by what is felt now. A practice whose reward sits years away gives the present self no felt return, which is why pure long-term reasoning fails. Talent and session length are not the choke point here.",
+          "bloomsLevel": "understand",
+          "depthLevel": "simple"
+        },
+        {
+          "questionId": "q02",
+          "prompt": "A warehouse picker wants to do five minutes of back stretches before each shift to prevent the chronic strain that may sideline him next year. What addition would best help the habit stick?",
+          "choices": [
+            "Stretch only on days he wakes up sore, so the relief itself becomes the reward and the rest days feel earned.",
+            "After each session, drop a poker chip in a small jar by the time clock that he watches fill week to week.",
+            "Read one short article on spinal mechanics each morning so the long-term injury risk stays vivid in his mind."
+          ],
+          "correctIndex": 1,
+          "explanation": "Stretch-when-sore breaks the daily rhythm before it forms. An article keeps the payoff abstract. A chip going into a visible jar is a sensory, immediate close to the action, which is what makes the next morning's repeat likely.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q03",
+          "prompt": "A children's librarian is trying to swap her afternoon soda for water, but the swap feels like pure loss every day at 3pm. Which design most likely sustains the swap?",
+          "choices": [
+            "Tape a printout of the long-term health risks of soda on the staff fridge where she will see it each afternoon.",
+            "Promise herself a beach vacation in six months if she gets through the whole quarter without breaking the swap.",
+            "Add a slice of frozen lime and pour the water from a chilled glass bottle she keeps reserved for the 3pm ritual."
+          ],
+          "correctIndex": 2,
+          "explanation": "A printed warning is delayed payoff in poster form, and a vacation months out is the same problem at larger scale. The swap survives when the new behavior itself gives the body something pleasant in the same minute the old one used to.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q04",
+          "prompt": "A backend engineer wants to write one paragraph of internal docs after each pull request because his team will benefit in months. The habit dies within a week. What is the best repair?",
+          "choices": [
+            "Schedule a quarterly review of all docs written, so the long-term team value becomes obvious in his calendar.",
+            "After each paragraph, paste a green check into a team Slack channel where teammates auto-react with thumbs.",
+            "Raise the target to three paragraphs per PR so the effort feels substantial enough to be worth doing each time."
+          ],
+          "correctIndex": 1,
+          "explanation": "A quarterly review pushes the payoff further out, not closer. Tripling the target adds cost without adding any felt return. A check that triggers teammate reactions is sensed within seconds, which is what gives the present self a reason to write again tomorrow.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q05",
+          "prompt": "A new homeowner wants to dump kitchen scraps in a compost bin each night, but the usable soil is six months away. Which tweak is most aligned with making the habit last?",
+          "choices": [
+            "Hang a small chalkboard by the bin and add a tally chalk mark each time she empties the scrap bucket.",
+            "Read a short book on soil biology so the eventual payoff of richer compost feels more concrete and motivating.",
+            "Build a larger bin so each scrap dump fills a more impressive volume and feels meaningful in the moment."
+          ],
+          "correctIndex": 0,
+          "explanation": "Tally marks are small, immediate, and physical, and they live where the action happens. Books and bigger bins do not change what the present self gets at the second of dumping scraps, which is when the habit either repeats or dies.",
+          "bloomsLevel": "apply",
+          "depthLevel": "simple"
+        },
+        {
+          "questionId": "q06",
+          "prompt": "A claims adjuster sets a habit of walking ten minutes after lunch and rewards himself with a silent 'great job' thought at the end. He keeps it for nine days, then stops. Where is the design most likely failing?",
+          "choices": [
+            "Ten minutes is too short to register as real exercise, so his body never builds the craving that holds a habit in place.",
+            "He should have committed to twenty minutes, because a longer walk produces more pride and more durable internal reward.",
+            "A silent mental note has almost no sensory weight, so the present self gets nothing felt in return for the ten minutes of effort."
+          ],
+          "correctIndex": 2,
+          "explanation": "Walk length is not the issue, and pride does not arrive on cue. A thought you tell yourself gives the body no felt close to the action, so the streak runs on willpower alone and breaks the moment willpower thins out.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q07",
+          "prompt": "A roofer drinks a full glass of water before every cigarette as he tries to cut down. He drops from twelve to five a day in three weeks. When he switches to silently noting 'I drank water' instead of pouring the glass, his count rebounds. What does this most likely show?",
+          "choices": [
+            "The ritual of pouring, lifting, and drinking was the sensory reward carrying the change, and an abstract thought cannot replace it.",
+            "The water itself was hydrating him enough to suppress nicotine cravings, and removing the volume let the cravings return.",
+            "Mental noting fails on a roof because it interrupts his focus on the work, while pouring water gave him a useful pause."
+          ],
+          "correctIndex": 0,
+          "explanation": "Pouring and drinking is a felt beat that finishes before the cigarette begins. When the beat collapses into a private thought, the present self gets nothing for skipping the smoke. Hydration and focus are not what was holding the shift in place.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q08",
+          "prompt": "A bookkeeper draws a small star next to the date in a paper planner once her inbox hits zero each day, and has held inbox-zero for eight months. A coworker copies the system but uses a private app that logs completion silently, and quits in three weeks. Which difference best explains the gap?",
+          "choices": [
+            "The coworker handles a higher volume of email, so the same daily endpoint is much harder to reach for him in practice.",
+            "The visible, tactile star gives her present self something to feel the instant inbox hits zero; a silent app log gives him nothing in that moment.",
+            "Paper planners are more effective than apps in general, because the act of writing is processed more deeply by the brain."
+          ],
+          "correctIndex": 1,
+          "explanation": "Email volume and the paper-versus-app debate miss the lever. The star is something her hand does and her eye sees the second the work ends. A silent log gives the coworker no felt close to the action, and the streak starves.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "deep"
+        },
+        {
+          "questionId": "q09",
+          "prompt": "An accountant wants to move fifty dollars from each paycheck into an emergency fund. He considers three options for what happens at the moment of transfer. Which is the strongest design?",
+          "choices": [
+            "Promise himself a weekend trip once the fund crosses five thousand dollars, several months out from where he is now.",
+            "Read a finance newsletter every Sunday to remind himself why building an emergency fund is important over the long run.",
+            "Name the account 'Roof and Rent Cushion' and watch a labeled progress bar advance in his banking app within seconds of the transfer."
+          ],
+          "correctIndex": 2,
+          "explanation": "A trip months away is the delayed payoff he is already failing to feel. A weekly newsletter is reasoning, not reward. A named bar that moves the same minute the money leaves the paycheck gives the present self a felt yes at the exact decision point.",
+          "bloomsLevel": "evaluate",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q10",
+          "prompt": "A high school principal commits to writing one handwritten thank-you note to a staff member each Friday, and plans to 'reward' himself by feeling proud of being a thoughtful leader. Is this design likely to last a year?",
+          "choices": [
+            "Yes, because intrinsic pride in an identity is among the most durable rewards a person can build a weekly habit around.",
+            "No, because pride in an abstract identity gives the present self no immediate sensory signal, so a tired Friday principal will skip without cost.",
+            "Yes, because Friday afternoon is a strong, repeated cue, and a consistent cue alone is usually enough to sustain a weekly habit."
+          ],
+          "correctIndex": 1,
+          "explanation": "Pride in an identity is real but slow. Without a felt close at the moment of finishing the note, the tired Friday version of him skips and nothing in his body objects. A cue alone does not carry a year of effort across the dips.",
+          "bloomsLevel": "evaluate",
+          "depthLevel": "deep"
+        }
+      ],
+      "ratePct": 70.0
+    }
+  ],
+  "transfer": [
+    {
+      "name": "blooms-apply-and-cue",
+      "questions": [
+        {
+          "prompt": "Recall the definition.",
+          "bloomsLevel": "remember"
+        },
+        {
+          "prompt": "Apply this.",
+          "bloomsLevel": "apply"
+        },
+        {
+          "prompt": "Imagine your team is stuck.",
+          "bloomsLevel": "understand"
+        },
+        {
+          "prompt": "Suppose a colleague disagrees.",
+          "bloomsLevel": "remember"
+        }
+      ],
+      "ratePct": 75.0
+    },
+    {
+      "name": "none-transfer",
+      "questions": [
+        {
+          "prompt": "What is the term?",
+          "bloomsLevel": "remember"
+        },
+        {
+          "prompt": "Define it.",
+          "bloomsLevel": "understand"
+        }
+      ],
+      "ratePct": 0.0
+    },
+    {
+      "name": "empty-questions",
+      "questions": [],
+      "ratePct": null
+    },
+    {
+      "name": "real-atomic-habits-ch",
+      "questions": [
+        {
+          "questionId": "q01",
+          "prompt": "A graphic designer commits to one hour of 3D modeling each evening because the skill could double her rate in two years. By Thursday she stops. Which best explains the collapse?",
+          "choices": [
+            "The brain weights immediate consequences far more heavily than distant ones, so a session whose payoff is years away gives the present self nothing to repeat.",
+            "She picked a skill that does not suit her, and the lack of natural talent caused the drop-off by Thursday.",
+            "One hour was too short to produce visible 3D progress, so her sessions could not build the momentum a habit needs."
+          ],
+          "correctIndex": 0,
+          "explanation": "Behavior is governed by what is felt now. A practice whose reward sits years away gives the present self no felt return, which is why pure long-term reasoning fails. Talent and session length are not the choke point here.",
+          "bloomsLevel": "understand",
+          "depthLevel": "simple"
+        },
+        {
+          "questionId": "q02",
+          "prompt": "A warehouse picker wants to do five minutes of back stretches before each shift to prevent the chronic strain that may sideline him next year. What addition would best help the habit stick?",
+          "choices": [
+            "Stretch only on days he wakes up sore, so the relief itself becomes the reward and the rest days feel earned.",
+            "After each session, drop a poker chip in a small jar by the time clock that he watches fill week to week.",
+            "Read one short article on spinal mechanics each morning so the long-term injury risk stays vivid in his mind."
+          ],
+          "correctIndex": 1,
+          "explanation": "Stretch-when-sore breaks the daily rhythm before it forms. An article keeps the payoff abstract. A chip going into a visible jar is a sensory, immediate close to the action, which is what makes the next morning's repeat likely.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q03",
+          "prompt": "A children's librarian is trying to swap her afternoon soda for water, but the swap feels like pure loss every day at 3pm. Which design most likely sustains the swap?",
+          "choices": [
+            "Tape a printout of the long-term health risks of soda on the staff fridge where she will see it each afternoon.",
+            "Promise herself a beach vacation in six months if she gets through the whole quarter without breaking the swap.",
+            "Add a slice of frozen lime and pour the water from a chilled glass bottle she keeps reserved for the 3pm ritual."
+          ],
+          "correctIndex": 2,
+          "explanation": "A printed warning is delayed payoff in poster form, and a vacation months out is the same problem at larger scale. The swap survives when the new behavior itself gives the body something pleasant in the same minute the old one used to.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q04",
+          "prompt": "A backend engineer wants to write one paragraph of internal docs after each pull request because his team will benefit in months. The habit dies within a week. What is the best repair?",
+          "choices": [
+            "Schedule a quarterly review of all docs written, so the long-term team value becomes obvious in his calendar.",
+            "After each paragraph, paste a green check into a team Slack channel where teammates auto-react with thumbs.",
+            "Raise the target to three paragraphs per PR so the effort feels substantial enough to be worth doing each time."
+          ],
+          "correctIndex": 1,
+          "explanation": "A quarterly review pushes the payoff further out, not closer. Tripling the target adds cost without adding any felt return. A check that triggers teammate reactions is sensed within seconds, which is what gives the present self a reason to write again tomorrow.",
+          "bloomsLevel": "apply",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q05",
+          "prompt": "A new homeowner wants to dump kitchen scraps in a compost bin each night, but the usable soil is six months away. Which tweak is most aligned with making the habit last?",
+          "choices": [
+            "Hang a small chalkboard by the bin and add a tally chalk mark each time she empties the scrap bucket.",
+            "Read a short book on soil biology so the eventual payoff of richer compost feels more concrete and motivating.",
+            "Build a larger bin so each scrap dump fills a more impressive volume and feels meaningful in the moment."
+          ],
+          "correctIndex": 0,
+          "explanation": "Tally marks are small, immediate, and physical, and they live where the action happens. Books and bigger bins do not change what the present self gets at the second of dumping scraps, which is when the habit either repeats or dies.",
+          "bloomsLevel": "apply",
+          "depthLevel": "simple"
+        },
+        {
+          "questionId": "q06",
+          "prompt": "A claims adjuster sets a habit of walking ten minutes after lunch and rewards himself with a silent 'great job' thought at the end. He keeps it for nine days, then stops. Where is the design most likely failing?",
+          "choices": [
+            "Ten minutes is too short to register as real exercise, so his body never builds the craving that holds a habit in place.",
+            "He should have committed to twenty minutes, because a longer walk produces more pride and more durable internal reward.",
+            "A silent mental note has almost no sensory weight, so the present self gets nothing felt in return for the ten minutes of effort."
+          ],
+          "correctIndex": 2,
+          "explanation": "Walk length is not the issue, and pride does not arrive on cue. A thought you tell yourself gives the body no felt close to the action, so the streak runs on willpower alone and breaks the moment willpower thins out.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q07",
+          "prompt": "A roofer drinks a full glass of water before every cigarette as he tries to cut down. He drops from twelve to five a day in three weeks. When he switches to silently noting 'I drank water' instead of pouring the glass, his count rebounds. What does this most likely show?",
+          "choices": [
+            "The ritual of pouring, lifting, and drinking was the sensory reward carrying the change, and an abstract thought cannot replace it.",
+            "The water itself was hydrating him enough to suppress nicotine cravings, and removing the volume let the cravings return.",
+            "Mental noting fails on a roof because it interrupts his focus on the work, while pouring water gave him a useful pause."
+          ],
+          "correctIndex": 0,
+          "explanation": "Pouring and drinking is a felt beat that finishes before the cigarette begins. When the beat collapses into a private thought, the present self gets nothing for skipping the smoke. Hydration and focus are not what was holding the shift in place.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q08",
+          "prompt": "A bookkeeper draws a small star next to the date in a paper planner once her inbox hits zero each day, and has held inbox-zero for eight months. A coworker copies the system but uses a private app that logs completion silently, and quits in three weeks. Which difference best explains the gap?",
+          "choices": [
+            "The coworker handles a higher volume of email, so the same daily endpoint is much harder to reach for him in practice.",
+            "The visible, tactile star gives her present self something to feel the instant inbox hits zero; a silent app log gives him nothing in that moment.",
+            "Paper planners are more effective than apps in general, because the act of writing is processed more deeply by the brain."
+          ],
+          "correctIndex": 1,
+          "explanation": "Email volume and the paper-versus-app debate miss the lever. The star is something her hand does and her eye sees the second the work ends. A silent log gives the coworker no felt close to the action, and the streak starves.",
+          "bloomsLevel": "analyze",
+          "depthLevel": "deep"
+        },
+        {
+          "questionId": "q09",
+          "prompt": "An accountant wants to move fifty dollars from each paycheck into an emergency fund. He considers three options for what happens at the moment of transfer. Which is the strongest design?",
+          "choices": [
+            "Promise himself a weekend trip once the fund crosses five thousand dollars, several months out from where he is now.",
+            "Read a finance newsletter every Sunday to remind himself why building an emergency fund is important over the long run.",
+            "Name the account 'Roof and Rent Cushion' and watch a labeled progress bar advance in his banking app within seconds of the transfer."
+          ],
+          "correctIndex": 2,
+          "explanation": "A trip months away is the delayed payoff he is already failing to feel. A weekly newsletter is reasoning, not reward. A named bar that moves the same minute the money leaves the paycheck gives the present self a felt yes at the exact decision point.",
+          "bloomsLevel": "evaluate",
+          "depthLevel": "standard"
+        },
+        {
+          "questionId": "q10",
+          "prompt": "A high school principal commits to writing one handwritten thank-you note to a staff member each Friday, and plans to 'reward' himself by feeling proud of being a thoughtful leader. Is this design likely to last a year?",
+          "choices": [
+            "Yes, because intrinsic pride in an identity is among the most durable rewards a person can build a weekly habit around.",
+            "No, because pride in an abstract identity gives the present self no immediate sensory signal, so a tired Friday principal will skip without cost.",
+            "Yes, because Friday afternoon is a strong, repeated cue, and a consistent cue alone is usually enough to sustain a weekly habit."
+          ],
+          "correctIndex": 1,
+          "explanation": "Pride in an identity is real but slow. Without a felt close at the moment of finishing the note, the tired Friday version of him skips and nothing in his body objects. A cue alone does not carry a year of effort across the dips.",
+          "bloomsLevel": "evaluate",
+          "depthLevel": "deep"
+        }
+      ],
+      "ratePct": 90.0
+    }
+  ],
+  "isTransferQuestion": [
+    {
+      "prompt": "Imagine you run a small team.",
+      "expected": true
+    },
+    {
+      "prompt": "You are a new manager on day one.",
+      "expected": true
+    },
+    {
+      "prompt": "Consider a factory floor.",
+      "expected": true
+    },
+    {
+      "prompt": "What did the author define as a habit?",
+      "expected": false
+    },
+    {
+      "prompt": "",
+      "expected": false
+    }
+  ],
+  "memorable": [
+    {
+      "name": "mixed-lengths",
+      "lines": [
+        "Small habits compound.",
+        "This is a deliberately long memorable line that runs well past the fourteen word ceiling for sure",
+        "",
+        "Systems beat goals every single time."
+      ],
+      "cleanCount": 3,
+      "total": 4
+    },
+    {
+      "name": "exactly-14-words",
+      "lines": [
+        "one two three four five six seven eight nine ten eleven twelve thirteen fourteen"
+      ],
+      "cleanCount": 1,
+      "total": 1
+    },
+    {
+      "name": "exactly-15-words",
+      "lines": [
+        "one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen"
+      ],
+      "cleanCount": 0,
+      "total": 1
+    },
+    {
+      "name": "real-atomic-habits-ch",
+      "lines": [
+        "What gets rewarded now gets done again.",
+        "The cardiologist's warning about a second stent is not what gets her down the front steps. The foil is. The thin crinkle, the burnt-sugar smell, the wax paper sticking to her thumb.",
+        "So it votes for the cookie, the swipe, the snooze, because those pay now."
+      ],
+      "cleanCount": 2,
+      "total": 3
+    }
+  ]
+}
