@@ -4,6 +4,7 @@ import { resolve } from "path";
 import { assembleChapterV21OrThrow, type AssembleInput } from "../assembler.js";
 import { selectMemorableLinesDeterministic } from "../optimizers/memorableLines.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
+import { checkSectionGate, type SectionFinding } from "./sectionGate.js";
 import { CHAPTERS_DIR, chapterFileName, normSlug } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
@@ -50,7 +51,30 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {})
     const reason = resolved.findings.map((f) => f.message).join("; ") || `no chapters resolved for ${normalized}`;
     findings.push(`no resolvable chapters: ${reason}`);
   }
+  // Standalone `assemble-sections` use can run out of order (validate-sections skipped or
+  // stale). Re-run the whole-book section gate here so an unvalidated pack can never reach
+  // ChapterV21 assembly. In the orchestrated path validate-sections has already passed, so
+  // this repeats the same deterministic, side-effect-free checks and blocks nothing new.
+  const blockedChapters = new Map<number, SectionFinding[]>();
+  if (resolved.chapters.length > 0) {
+    const gate = checkSectionGate(normalized, roots);
+    for (const f of gate.findings) {
+      if (f.severity !== "blocker") continue;
+      const targets = typeof f.chapterNumber === "number" ? [f.chapterNumber] : resolved.chapters;
+      for (const n of targets) {
+        const list = blockedChapters.get(n) ?? [];
+        list.push(f);
+        blockedChapters.set(n, list);
+      }
+    }
+  }
   for (const chapterNumber of resolved.chapters) {
+    const chapterBlockers = blockedChapters.get(chapterNumber);
+    if (chapterBlockers && chapterBlockers.length > 0) {
+      const detail = chapterBlockers.map((f) => `[${f.checkId}] ${f.message}`).join("; ");
+      findings.push(`ch${String(chapterNumber).padStart(2, "0")}: section-gate blocked assembly: ${detail}`);
+      continue;
+    }
     try {
       const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
       const packet = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
@@ -58,19 +82,15 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {})
       const examples = readJsonFile<ExamplePackV1>(sectionPath(normalized, chapterNumber, "example-pack", roots));
       const learning = readJsonFile<LearningPackV1>(sectionPath(normalized, chapterNumber, "learning-pack", roots));
       const action = readJsonFile<ActionPackV1>(sectionPath(normalized, chapterNumber, "action-pack", roots));
-      const normalizedQuiz: LearningPackV1["quiz"] = {
-        ...learning.quiz,
-        questions: (learning.quiz?.questions ?? []).map((q, i) => ({
-          ...q,
-          bloomsLevel: q.bloomsLevel ?? "apply",
-          depthLevel: q.depthLevel ?? bp.sections.quiz[i]?.depthLevel ?? "standard",
-        })),
-      };
+      // bloomsLevel/depthLevel are trusted as-is: the section gate (SEC93) already required
+      // every question to carry a valid bloomsLevel and a depthLevel matching the blueprint
+      // before this chapter was allowed past the block above, so backfilling defaults here
+      // would risk assembling metadata the gate never actually checked.
       const assembleInput: AssembleInput = {
         plan: bp.plan,
         breakdown: summary.breakdown,
         examples: examples.examples,
-        quiz: normalizedQuiz,
+        quiz: learning.quiz,
         cards: learning.cards,
         implementationPlan: action.implementationPlan,
         keyTakeaway: summary.keyTakeaway,
