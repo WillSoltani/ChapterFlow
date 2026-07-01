@@ -11,10 +11,11 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
+import { PIPELINE_DIR } from "./helpers.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { blueprintPath, sectionPath, sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
@@ -324,5 +325,51 @@ test("convergeAssembly halts with a message naming only the persistently-bad cha
     assert.ok(ch1Only.written.some((p) => p.includes(`${BOOK}-ch01`)));
   } finally {
     cleanFixtureState();
+  }
+});
+
+/** Extract the source of a top-level function declaration by brace-matching from its
+ *  opening `{` to the matching `}`, so we can inspect its trailing statement directly
+ *  rather than exercising it at runtime (the tail in question is unreachable by
+ *  construction — see the guard below). */
+function extractFunctionBody(src: string, functionName: string): string {
+  const sigIdx = src.indexOf(`function ${functionName}(`);
+  assert.ok(sigIdx >= 0, `function ${functionName} not found in compilerRun.ts`);
+  // The signature's own default-parameter object literals (e.g. `= {}`) contain braces too,
+  // so anchor on the return-type arrow immediately before the body's opening brace.
+  const returnArrow = src.indexOf("): Promise<AutopilotOutcome | null> {", sigIdx);
+  assert.ok(returnArrow >= 0, `${functionName}: could not find its "): Promise<AutopilotOutcome | null> {" signature tail`);
+  const open = returnArrow + "): Promise<AutopilotOutcome | null> {".length - 1;
+  let depth = 0;
+  let end = open;
+  for (let i = open; i < src.length; i++) {
+    if (src[i] === "{") depth++;
+    else if (src[i] === "}") {
+      depth--;
+      if (depth === 0) { end = i; break; }
+    }
+  }
+  return src.slice(open + 1, end);
+}
+
+test("convergeSections and convergeAssembly do not fall through to a bare 'return null' after their bounded repair loop", () => {
+  // Both loops always return-or-halt on their final bounded attempt, so the statement
+  // after the `for` loop is unreachable today. That's exactly the footgun: if a later
+  // change ever turns the loop's halt-on-exhaustion branch into a `continue`, a trailing
+  // `return null` would silently reinterpret "gave up" as "succeeded" and let invalid
+  // sections/assembly advance. Pin it as a loud `throw` instead, so this file can never
+  // regress back to a bare success fallthrough.
+  const src = readFileSync(resolve(PIPELINE_DIR, "src/orchestrator/compilerRun.ts"), "utf8");
+  for (const fn of ["convergeSections", "convergeAssembly"]) {
+    const body = extractFunctionBody(src, fn);
+    const afterLoop = body.slice(body.lastIndexOf("\n  }\n") + "\n  }\n".length).trim();
+    const afterLoopCode = afterLoop
+      .split("\n")
+      .filter((line) => !line.trim().startsWith("//"))
+      .join("\n")
+      .trim();
+    assert.ok(afterLoopCode.length > 0, `${fn}: could not locate the statement after the repair loop`);
+    assert.doesNotMatch(afterLoopCode, /^return null;/, `${fn}: must not fall through to a bare "return null" after the bounded repair loop`);
+    assert.match(afterLoopCode, /^throw new Error\(/, `${fn}: the unreachable tail after the bounded repair loop must be a loud throw, not a silent success return`);
   }
 });

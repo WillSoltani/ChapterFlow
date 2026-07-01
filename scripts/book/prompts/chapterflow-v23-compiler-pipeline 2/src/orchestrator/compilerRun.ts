@@ -297,7 +297,9 @@ export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxP
       if (!r2.ok) deps.log(`[autopilot] compiler assembly repair ch${String(chapterNumber).padStart(2, "0")} exited ${r2.exitCode}`);
     });
   }
-  return null;
+  // Every loop iteration either returns success (code 0), halts on error/exhaustion, or repairs
+  // and continues — assembly invalidity must always halt, never fall through to success.
+  throw new Error("unreachable: assembly repair loop must halt or return within the bounded attempts");
 }
 
 async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel: number, heartbeat: () => boolean, ownerEnv: Record<string, string> = {}): Promise<AutopilotOutcome | null> {
@@ -319,7 +321,9 @@ async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel
     } as SpawnOptions);
     if (!r.ok) deps.log(`[autopilot] compiler section repair exited ${r.exitCode}`);
   }
-  return null;
+  // Every loop iteration either returns success (code 0), halts on error/exhaustion, or repairs
+  // and continues — section invalidity must always halt, never fall through to success.
+  throw new Error("unreachable: section repair loop must halt or return within the bounded attempts");
 }
 
 /** The single compiler write entry point. Acquires the same-book write lock EXACTLY ONCE,
