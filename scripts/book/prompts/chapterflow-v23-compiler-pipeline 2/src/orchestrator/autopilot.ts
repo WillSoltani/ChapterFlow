@@ -64,6 +64,7 @@ import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./cod
 import { doCompilerWrite } from "./compilerRun.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
+import { NOT_METERED_MESSAGE } from "../cost-tracker.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -2371,7 +2372,7 @@ function planOnly(bookId: string, deps: AutopilotDeps, opts: Pick<AutopilotOptio
     `              = ≤${perRoundMax} sessions/round worst case (typical: far lower)`,
     `              ×(1 initial + up to 3 repair rounds)`,
     `  publish: ${publishLabel}`,
-    `  no API metering — every session runs via codex exec on the subscription.`,
+    `  ${NOT_METERED_MESSAGE} — every session runs via codex exec on the subscription, not billed API tokens.`,
   ];
   deps.log(lines.join("\n"));
   return { status: "ready", bookId, message: "(plan only — no action taken)" };

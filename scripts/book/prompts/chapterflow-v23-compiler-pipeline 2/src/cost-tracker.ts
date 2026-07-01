@@ -60,6 +60,15 @@ export type CostStats = CostBucket & {
 
 let _stats: CostStats | null = null;
 
+/**
+ * The v23 compiler conductor (book-run / book-autopilot) drives Codex via `codex exec`
+ * subprocesses — it never calls `callModel()`/`beginRun()`, so `_stats` stays null for that
+ * whole route and no dollar figure is ever recorded for it. That route must say so explicitly
+ * wherever it reports cost: a literal "$0.00" would read as "this run was free" when the truth
+ * is "this run isn't metered in dollars at all" (it's billed against the Codex subscription).
+ */
+export const NOT_METERED_MESSAGE = "cost: not metered (Codex subscription route)";
+
 export function beginRun(runId = process.env.CHAPTERFLOW_RUN_ID ?? `run-${Date.now()}`): CostStats {
   _stats = {
     runId,

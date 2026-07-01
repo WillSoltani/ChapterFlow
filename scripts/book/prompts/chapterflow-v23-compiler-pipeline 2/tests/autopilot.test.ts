@@ -279,6 +279,19 @@ test("autopilot --plan takes NO action (zero spawns, zero verbs)", async () => {
   assert.equal(outcome.status, "ready"); // plan returns a ready/no-op outcome
 });
 
+test("autopilot --plan cost preview discloses NOT METERED, never a literal $0 — the compiler route drives Codex via codex exec subprocesses that never touch cost-tracker's beginRun(), so a dollar figure here would misreport 'not measured' as 'free'", async () => {
+  const logs: string[] = [];
+  const { deps } = happyDeps(
+    [makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" })],
+    { log: (m) => logs.push(m) },
+  );
+  const outcome = await runAutopilot({ architecture: "compiler", bookId: "zz", plan: true, deps });
+  assert.equal(outcome.status, "ready");
+  const out = logs.join("\n");
+  assert.match(out, /cost: not metered \(Codex subscription route\)/, "the plan preview must use the canonical not-metered disclosure");
+  assert.doesNotMatch(out, /\$0(\.00)?\b/, "the plan preview must never print a literal $0 figure for the unmetered compiler route");
+});
+
 test("type contract: AutopilotOptions.architecture is REQUIRED — omitting it is now a compile error, not a silent fall-back to the legacy writer (regression for the default-flip trap)", async () => {
   const logs: string[] = [];
   const { deps } = happyDeps(
