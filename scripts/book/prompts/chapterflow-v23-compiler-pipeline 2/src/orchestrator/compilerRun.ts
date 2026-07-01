@@ -336,11 +336,14 @@ export function rubricGateMode(env: NodeJS.ProcessEnv = process.env): "shadow" |
   return env[RUBRIC_GATE_MODE_ENV] === "enforce" ? "enforce" : "shadow";
 }
 
-/** Run the deterministic rubric pre-flight (P04) after the risk-score verb. In shadow mode the
- *  verb runs in report mode: we log the summary line, the artifact is written, and we ALWAYS
- *  continue (a rubric-metrics infra error is logged, not fatal — the pre-flight is advisory until
- *  enforce is turned on). In enforce mode we pass `--gate`: exit 1 halts "content" with the failing
- *  table; exit ≥2 halts "infra". Exported for unit tests that inject a stub runVerb. */
+/** Run the deterministic rubric pre-flight (P04) BETWEEN evidence-gate and risk-score, so the
+ *  artifact it writes is already on disk when risk-score reads it — a `fail` chapter picks up
+ *  its +3 qc-shadow routing bump in the SAME compiler pass, not only on a later re-run. In
+ *  shadow mode the verb runs in report mode: we log the summary line, the artifact is written,
+ *  and we ALWAYS continue (a rubric-metrics infra error is logged, not fatal — the pre-flight is
+ *  advisory until enforce is turned on). In enforce mode we pass `--gate`: exit 1 halts "content"
+ *  with the failing table; exit ≥2 halts "infra". Exported for unit tests that inject a stub
+ *  runVerb. */
 export async function runRubricPreflight(
   bookId: string,
   deps: AutopilotDeps,
@@ -406,14 +409,18 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
   for (const [args, label] of [
     [["build-evidence-maps", bookId], "evidence-map"],
     [["evidence-gate", bookId], "evidence-gate"],
-    [["risk-score", bookId], "risk-score"],
   ] as Array<[string[], string]>) {
     const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
     if (h) return h;
   }
 
+  // Pre-flight BEFORE risk-score: risk-score reads the rubric-metrics artifact (if present)
+  // and bumps `fail` chapters +3 toward the qc-shadow lane — same pass, not next run.
   const rubricHalt = await runRubricPreflight(bookId, deps, ownerEnv);
   if (rubricHalt) return rubricHalt;
+
+  const riskHalt = await runCompilerVerb(bookId, deps, ["risk-score", bookId], "risk-score", ownerEnv);
+  if (riskHalt) return riskHalt;
 
   deps.log(`[autopilot] compiler write: section artifacts assembled into ChapterV21; advancing to deterministic gates`);
   return null;

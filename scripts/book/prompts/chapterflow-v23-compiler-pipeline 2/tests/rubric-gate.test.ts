@@ -204,6 +204,27 @@ test("computeChapterRubricMetrics: house-tic + nominalization are warn-only (nev
   assert.equal(r.failing.length, 0);
 });
 
+test("computeChapterRubricMetrics: fkGrade is warn-only — easier-than-band prose never fails (atomic-habits scenario)", () => {
+  // Review calibration on the real catalog: the BEST books read easier than the
+  // FK band (atomic-habits breakdown FK ≈ 4.2), so an FK-min GATE would fail
+  // 20/20 of its chapters. fkGrade must therefore be advisory: outside-band FK
+  // warns, and only the EASE band can fail readability.
+  const ch = denseChapter("zz-easyfk");
+  const easy = "The check is small. You do it first. It costs a minute. It saves a day. Start with the last entry. Read it twice. Then add the new one.";
+  ch.breakdown = { fastRead: easy, deepRead: `${easy} ${easy}`, fullRead: `${easy} ${easy} ${easy}` };
+  // Everything loose except the shipped fkGrade band — the only pressure is FK.
+  const t: RubricThresholds = { ...LOOSE, fkGrade: { min: 7, max: 8, warnTolerance: 1 } };
+  const r = computeChapterRubricMetrics(ch, t);
+  assert.ok(r.metrics.fkGrade.value < 6, `fixture must read easier than the warn zone (fk=${r.metrics.fkGrade.value})`);
+  assert.equal(r.metrics.fkGrade.verdict, "warn", "easier-than-band FK is advisory, not a failure");
+  assert.ok(!r.failing.includes("fkGrade"), "fkGrade must never appear in the failing set");
+  assert.equal(r.verdict, "warn", "FK alone can raise to warn but never fail");
+  // The dense chapter's far-above-band FK is ALSO only a warn (never fail).
+  const dense = computeChapterRubricMetrics(denseChapter("zz-hardfk"), t);
+  assert.equal(dense.metrics.fkGrade.verdict, "warn");
+  assert.ok(!dense.failing.includes("fkGrade"));
+});
+
 test("computeBookRubricMetrics: aggregates chapter verdicts + records findings on empty", () => {
   const report = computeBookRubricMetrics("zz-agg", { chapters: [denseChapter("zz-agg", 1), denseChapter("zz-agg", 2)], thresholds: STRICT });
   assert.equal(report.chapters.length, 2);

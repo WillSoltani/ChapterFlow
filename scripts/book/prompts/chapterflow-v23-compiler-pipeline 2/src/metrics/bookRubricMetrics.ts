@@ -7,7 +7,14 @@
  * the post-publish rubric (via P01's src/metrics/rubricMetrics.ts) and issues a
  * per-metric verdict against config/rubric-thresholds.json:
  *
- *   fleschEase / fkGrade ....... breakdown-only, score.py-parity input → GATE
+ *   fleschEase ................. breakdown-only, score.py-parity input → GATE
+ *   fkGrade .................... breakdown-only → ADVISORY (warn-only). The
+ *       rubric's enforceable readability commitment is the EASE band; its FK
+ *       "~7–8" is descriptive. Review calibration on the real catalog showed
+ *       the BEST books read easier than the band (atomic-habits breakdown FK
+ *       ≈ 4.2 → 20/20 chapters would have failed a two-sided FK gate), so an
+ *       FK-min gate contradicts the rubric's own exemplars. Easier-than-band
+ *       is not a defect in a beginner product.
  *   fleschEaseWhole / fkGradeWhole  whole assembled chapter → ADVISORY diagnostic
  *   tellRate ................... distractor-tell as a fraction 0..1 → GATE
  *   transferRatio ............. transfer as a fraction 0..1 → GATE
@@ -129,6 +136,14 @@ function warnOnlyMaxVerdict(value: number, max: number, label: string): MetricRe
   return value <= max ? { value, verdict: "pass" } : { value, verdict: "warn", note: `${label} ${round(value)} above diagnostic ceiling ${max}` };
 }
 
+/** A warn-only band: inside passes, outside WARNS (never fails). Used for FK grade,
+ *  where the rubric's number is descriptive, not an enforceable floor/ceiling. */
+function warnOnlyBandVerdict(value: number, band: MetricBand, label: string): MetricResult {
+  const r = bandVerdict(value, band);
+  if (r.verdict !== "fail") return r;
+  return { value: r.value, verdict: "warn", note: `${label} outside [${band.min},${band.max}] (advisory — ease band is the gate)` };
+}
+
 function round(n: number): number {
   return Number.isFinite(n) ? Math.round(n * 1000) / 1000 : n;
 }
@@ -141,9 +156,9 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
   const memorableTexts = (chapter.memorableLines ?? []).map((m) => m.text ?? "");
 
   const fleschEase = bandVerdict(bdReadability?.flesch ?? NaN, thresholds.fleschEase);
-  const fkGrade = bandVerdict(bdReadability?.fk ?? NaN, thresholds.fkGrade);
-  const fleschEaseWhole = bandVerdict(wholeReadability?.flesch ?? NaN, thresholds.fleschEase);
-  const fkGradeWhole = bandVerdict(wholeReadability?.fk ?? NaN, thresholds.fkGrade);
+  const fkGrade = warnOnlyBandVerdict(bdReadability?.fk ?? NaN, thresholds.fkGrade, "FK grade");
+  const fleschEaseWhole = warnOnlyBandVerdict(wholeReadability?.flesch ?? NaN, thresholds.fleschEase, "whole-chapter ease");
+  const fkGradeWhole = warnOnlyBandVerdict(wholeReadability?.fk ?? NaN, thresholds.fkGrade, "whole-chapter FK");
 
   // P01 rates are score.py 0..100 percentages; the thresholds are fractions.
   const tellPct = distractorTellRate(questions);
@@ -156,8 +171,10 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
   const nominal = warnOnlyMaxVerdict(nominalizationRate(breakdownProse(chapter)), thresholds.nominalizationRateWarnMax, "nominalization rate");
 
   // Whole-chapter readability is ADVISORY (score.py measures breakdown-only, so the
-  // rubric band is calibrated there); house-tic + nominalization are warn-only. Only
-  // the GATE metrics below can drive a chapter to `fail`.
+  // rubric band is calibrated there); FK grade, house-tic + nominalization are
+  // warn-only. Only the GATE metrics below can drive a chapter to `fail` — and of
+  // these, fkGrade/houseTic/nominal are warn-only by construction, so the effective
+  // fail set is fleschEase, tellRate, transferRatio, memorableClean.
   const gate: Record<string, MetricResult> = {
     fleschEase,
     fkGrade,
