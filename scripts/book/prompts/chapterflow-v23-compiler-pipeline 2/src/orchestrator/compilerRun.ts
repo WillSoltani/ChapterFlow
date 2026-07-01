@@ -1,9 +1,8 @@
-import { existsSync, readFileSync } from "fs";
-
 import type { AutopilotDeps, AutopilotOutcome, VerbResult } from "./autopilot.js";
-import { missingSectionTasks, readSectionTask, sectionTasks, type SectionTask } from "../sections/sectionTasks.js";
+import { missingSectionTasks, readSectionTask, sectionTasks } from "../sections/sectionTasks.js";
 import { sourcePrewriteRepairPrompt } from "./compilerTasks.js";
-import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { contributorSessionIdsForChapter, writeSectionSessionRecord } from "./sectionSessionRecord.js";
+import { convergePolish, compilerPolishMode } from "./polishPass.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordCompilerAssemblyProvenance } from "../qc/sessionProvenance.js";
@@ -15,51 +14,6 @@ const SOURCE_REPAIR_MAX_PASSES = 3;
 export const SECTION_REPAIR_MAX_PASSES = 2;
 
 type SpawnOptions = Parameters<AutopilotDeps["spawn"]>[0];
-
-type CompilerSectionSessionRecord = {
-  schemaVersion: "compiler-section-session-v1";
-  bookId: string;
-  chapterId: string;
-  chapterNumber: number;
-  sectionKind: SectionTask["kind"];
-  sectionSessionId: string;
-  outputPath: string;
-  recordedAt: string;
-};
-
-function sectionSessionSidecarPath(task: SectionTask): string {
-  return `${task.outputPath}.session.json`;
-}
-
-function writeSectionSessionRecord(task: SectionTask, sessionId: string): void {
-  if (!existsSync(task.outputPath)) return;
-  const rec: CompilerSectionSessionRecord = {
-    schemaVersion: "compiler-section-session-v1",
-    bookId: task.bookId,
-    chapterId: task.chapterId,
-    chapterNumber: task.chapterNumber,
-    sectionKind: task.kind,
-    sectionSessionId: sessionId,
-    outputPath: task.outputPath,
-    recordedAt: new Date().toISOString(),
-  };
-  writeFileAtomic(sectionSessionSidecarPath(task), JSON.stringify(rec, null, 2) + "\n");
-}
-
-function contributorSessionIdsForChapter(bookId: string, chapterNumber: number): string[] {
-  const ids: string[] = [];
-  for (const task of sectionTasks(bookId).filter((t) => t.chapterNumber === chapterNumber)) {
-    const p = sectionSessionSidecarPath(task);
-    if (!existsSync(p)) continue;
-    try {
-      const rec = JSON.parse(readFileSync(p, "utf8")) as Partial<CompilerSectionSessionRecord>;
-      if (rec.sectionSessionId) ids.push(rec.sectionSessionId);
-    } catch {
-      // Session sidecars are audit metadata; a torn sidecar should never sink assembly.
-    }
-  }
-  return [...new Set(ids)].sort();
-}
 
 export function stampCompilerAssemblyProvenance(bookId: string, deps: Pick<AutopilotDeps, "mkSessionId" | "log">): number {
   let stamped = 0;
@@ -326,6 +280,35 @@ async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel
   throw new Error("unreachable: section repair loop must halt or return within the bounded attempts");
 }
 
+/**
+ * The optional craft/polish stage (P06), between `convergeSections` and
+ * `convergeAssembly`. Env `CHAPTERFLOW_COMPILER_POLISH` selects the mode:
+ *   - `never`  → BYTE-FOR-BYTE no-op: returns null immediately, spawning nothing
+ *                and running no extra validation, so the write behaves exactly as
+ *                it did before this stage existed.
+ *   - `risk` (default) / `always` → run `convergePolish` (best-effort sentence-
+ *                level polish of failing / all summary+example artifacts), THEN
+ *                re-run `convergeSections` once so any edit that broke a section
+ *                gate is caught + repaired BEFORE assembly (reusing the existing
+ *                validate-and-repair loop rather than duplicating it).
+ * Polish itself never halts on quality; only a lost run lock (infra) halts.
+ */
+export async function runPolishStage(
+  bookId: string,
+  deps: AutopilotDeps,
+  maxParallel: number,
+  heartbeat: () => boolean,
+  ownerEnv: Record<string, string> = {},
+  mode: "risk" | "never" | "always" = compilerPolishMode(),
+): Promise<AutopilotOutcome | null> {
+  if (mode === "never") return null;
+  const polishHalt = await convergePolish(bookId, deps, { maxParallel, heartbeat, mode, ownerEnv });
+  if (polishHalt) return polishHalt;
+  // Re-validate: a polish edit could, in principle, trip a section gate. Reuse the
+  // existing validate-and-repair loop so a broken artifact is fixed before assembly.
+  return convergeSections(bookId, deps, maxParallel, heartbeat, ownerEnv);
+}
+
 /** The rubric pre-flight mode env. `shadow` (default) writes the artifact + logs a summary line
  *  and NEVER halts; `enforce` runs `--gate` and halts on any `fail` chapter. New blocking checks
  *  ship shadow-first (house rule), so enforce must be opted into explicitly and is never set in
@@ -400,6 +383,10 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
 
   const sectionHalt = await convergeSections(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
   if (sectionHalt) return sectionHalt;
+
+  // Optional craft pass on section artifacts (pre-assembly). `never` = no-op.
+  const polishHalt = await runPolishStage(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
+  if (polishHalt) return polishHalt;
 
   const assemblyHalt = await convergeAssembly(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
   if (assemblyHalt) return assemblyHalt;
