@@ -1,4 +1,6 @@
-import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, unlinkSync, writeFileSync } from "fs";
+import { randomBytes } from "crypto";
+import { hostname } from "os";
 import { dirname, resolve } from "path";
 
 import { CANONICAL_STATE, normSlug } from "../lib/chapterPaths.js";
@@ -11,6 +13,131 @@ export type CompilerStoreRoots = {
 };
 
 const DEFAULT_RUN_ID = "v23-current";
+
+// ── Same-book concurrency guard ─────────────────────────────────────────────
+//
+// The compiler pipeline assumes one run per book at a time: every artifact path funnels
+// through ensureCompilerRun()'s DEFAULT_RUN_ID, so two concurrent, INDEPENDENT runs of the
+// SAME book would silently write the same paths (last-writer-wins). Rather than build out
+// real multi-run namespacing, fail loud: the compiler write entry point (doCompilerWrite in
+// orchestrator/compilerRun.ts) takes an advisory lock in state/autopilot-locks/ (the same
+// directory the autopilot conductor's per-book run lock lives in) EXACTLY ONCE, before it
+// spawns any section work, and a second independent process for that book gets a clear error
+// instead of silently clobbering the first run's output.
+//
+// Acquisition is deliberately NOT inside ensureCompilerRun()/artifactDir(): those two are
+// called by every read AND by the read-only `validate-sections`/`assemble-sections` verbs the
+// write entry point spawns as its own child processes (directly, and indirectly — a section
+// writer's own agent session shells out to `validate-sections` itself per its task card). If
+// ensureCompilerRun() tried to acquire on every call, the 2nd+ of those legitimate, INTRA-run
+// concurrent children would throw against their own parent's lock. So ensureCompilerRun() only
+// CHECKS: it no-ops for (a) this same process (the lock owner, tracked in heldCompilerRunLocks)
+// and (b) any child process the owning run marked via COMPILER_RUN_OWNER_ENV (the write entry
+// point sets it on every subprocess/agent env it spawns, so it inherits down through however
+// many process generations separate it from the eventual `validate-sections` call). Anyone else
+// hitting a live lock — i.e. a genuinely independent second run — still fails loud.
+
+type CompilerRunLockRecord = { pid: number; host: string; at: string; owner: string };
+
+/** Set by the compiler write entry point on every subprocess/agent env it spawns so those
+ *  children (and anything THEY spawn) are recognized as part of the run that already holds
+ *  the lock, instead of being treated as a competing independent run. */
+export const COMPILER_RUN_OWNER_ENV = "CHAPTERFLOW_COMPILER_RUN_OWNER";
+
+export function compilerRunLockPath(bookId: string, roots: CompilerStoreRoots = {}): string {
+  return resolve(roots.stateRoot ?? CANONICAL_STATE, "autopilot-locks", `${normSlug(bookId)}.compiler-run.lock`);
+}
+
+function readCompilerRunLockRecord(path: string): CompilerRunLockRecord | null {
+  try {
+    return JSON.parse(readFileSync(path, "utf8")) as CompilerRunLockRecord;
+  } catch {
+    return null;
+  }
+}
+
+/** Same-host liveness probe (kill(pid, 0): ESRCH = dead, EPERM = alive under another user).
+ *  A cross-host or malformed record can't be probed, so it's treated as live — fail loud
+ *  rather than risk a silent clobber of a run we can't actually verify is dead. */
+function compilerRunLockOwnerIsLive(rec: CompilerRunLockRecord): boolean {
+  if (rec.host !== hostname() || typeof rec.pid !== "number") return true;
+  try {
+    process.kill(rec.pid, 0);
+    return true;
+  } catch (err) {
+    return (err as NodeJS.ErrnoException)?.code !== "ESRCH";
+  }
+}
+
+function foreignCompilerRunLockError(bookId: string, held: CompilerRunLockRecord | null, path: string): Error {
+  return new Error(
+    `compiler artifact writes for book "${bookId}" are already in progress` +
+      (held ? ` (lock held by pid ${held.pid}@${held.host} since ${held.at}).` : " (an unreadable lock is present).") +
+      ` Concurrent compiler runs for the same book are not supported — refusing to write artifacts that could clobber the other run's output.` +
+      ` If that run is dead, remove ${path} and retry.`,
+  );
+}
+
+// Held for the lifetime of THIS process, keyed by the resolved lock file path (not bookId
+// alone) so distinct roots for the same book id — as tests use — never collide. This makes
+// re-acquiring our own lock a no-op instead of a filesystem hit for any in-process re-entry
+// (e.g. the conductor reading bookRiskPath() after doCompilerWrite already holds the lock).
+const heldCompilerRunLocks = new Map<string, string>();
+
+// A SINGLE process-wide exit hook releases every held lock, rather than one `process.once`
+// registration per acquire — a long-lived process (or a test run touching many books/roots)
+// would otherwise pile up exit listeners past Node's default max and trip
+// MaxListenersExceededWarning.
+let exitHookRegistered = false;
+function ensureExitHookRegistered(): void {
+  if (exitHookRegistered) return;
+  exitHookRegistered = true;
+  process.once("exit", () => {
+    for (const [path, owner] of heldCompilerRunLocks) {
+      try {
+        if (readCompilerRunLockRecord(path)?.owner === owner) unlinkSync(path);
+      } catch {
+        /* best-effort: a failed cleanup must never crash process exit */
+      }
+    }
+  });
+}
+
+/** Acquire the exclusive compiler-write lock for `bookId`. Call this EXACTLY ONCE, at the
+ *  single compiler write entry point (doCompilerWrite), before spawning any section work —
+ *  never from ensureCompilerRun()/artifactDir(), which read-only CLI verbs and every artifact
+ *  path resolution also funnel through. */
+export function acquireCompilerWriteLock(bookId: string, roots: CompilerStoreRoots = {}): void {
+  const normalized = normSlug(bookId);
+  const path = compilerRunLockPath(normalized, roots);
+  if (heldCompilerRunLocks.has(path)) return;
+  mkdirSync(dirname(path), { recursive: true });
+  const owner = `${process.pid}-${hostname()}-${randomBytes(6).toString("hex")}`;
+  const record: CompilerRunLockRecord = { pid: process.pid, host: hostname(), at: new Date().toISOString(), owner };
+  try {
+    writeFileSync(path, JSON.stringify(record), { flag: "wx" });
+  } catch (err) {
+    if ((err as NodeJS.ErrnoException)?.code !== "EEXIST") throw err;
+    const held = readCompilerRunLockRecord(path);
+    if (!held || compilerRunLockOwnerIsLive(held)) throw foreignCompilerRunLockError(normalized, held, path);
+    // Owner is provably dead (same host, ESRCH) — reclaim the stale lock.
+    writeFileSync(path, JSON.stringify(record), "utf8");
+  }
+  heldCompilerRunLocks.set(path, owner);
+  ensureExitHookRegistered();
+}
+
+/** Read-only guard used by ensureCompilerRun()/artifactDir(). No-ops for the process that
+ *  holds the lock and for any process marked as part of that run via COMPILER_RUN_OWNER_ENV;
+ *  throws only when a LIVE lock is held by someone else. Never acquires or writes anything. */
+function assertCompilerRunAccessible(bookId: string, roots: CompilerStoreRoots): void {
+  const path = compilerRunLockPath(bookId, roots);
+  if (heldCompilerRunLocks.has(path)) return;
+  if (process.env[COMPILER_RUN_OWNER_ENV] === bookId) return;
+  const held = readCompilerRunLockRecord(path);
+  if (!held || !compilerRunLockOwnerIsLive(held)) return;
+  throw foreignCompilerRunLockError(bookId, held, path);
+}
 
 export function compilerBookRoot(bookId: string, roots: CompilerStoreRoots = {}): string {
   return resolve(roots.stateRoot ?? CANONICAL_STATE, "books", normSlug(bookId));
@@ -32,8 +159,13 @@ export function currentRunId(bookId: string, roots: CompilerStoreRoots = {}): st
     try {
       const rec = JSON.parse(readFileSync(p, "utf8")) as Partial<CompilerRunRecord>;
       if (rec?.runId) return rec.runId;
-    } catch {
-      /* recreate below */
+      console.warn(
+        `artifactStore: current-run.json at ${p} has no runId; falling back to the default run id "${DEFAULT_RUN_ID}" — artifacts under a different historical run (if any) will appear orphaned.`,
+      );
+    } catch (err) {
+      console.warn(
+        `artifactStore: current-run.json at ${p} is corrupt/unreadable (${(err as Error)?.message ?? String(err)}); falling back to the default run id "${DEFAULT_RUN_ID}" — artifacts under a different historical run (if any) will appear orphaned.`,
+      );
     }
   }
   return DEFAULT_RUN_ID;
@@ -41,6 +173,7 @@ export function currentRunId(bookId: string, roots: CompilerStoreRoots = {}): st
 
 export function ensureCompilerRun(bookId: string, roots: CompilerStoreRoots = {}): CompilerRunRecord {
   const normalized = normSlug(bookId);
+  assertCompilerRunAccessible(normalized, roots);
   const currentPath = compilerCurrentRunPath(normalized, roots);
   mkdirSync(dirname(currentPath), { recursive: true });
   let rec: CompilerRunRecord | null = null;

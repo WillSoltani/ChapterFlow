@@ -7,8 +7,9 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordCompilerAssemblyProvenance } from "../qc/sessionProvenance.js";
-import { assemblyInputPath, sectionPath } from "../artifacts/artifactStore.js";
+import { acquireCompilerWriteLock, assemblyInputPath, COMPILER_RUN_OWNER_ENV, sectionPath } from "../artifacts/artifactStore.js";
 import { SECTION_KINDS } from "../artifacts/artifactTypes.js";
+import { normSlug } from "../lib/chapterPaths.js";
 
 const SOURCE_REPAIR_MAX_PASSES = 3;
 export const SECTION_REPAIR_MAX_PASSES = 2;
@@ -107,11 +108,11 @@ function reportOf(r: VerbResult): string {
   return (r.stdout || r.stderr || "").trim();
 }
 
-async function convergeSourceReadiness(bookId: string, deps: AutopilotDeps, heartbeat: () => boolean): Promise<AutopilotOutcome | null> {
+async function convergeSourceReadiness(bookId: string, deps: AutopilotDeps, heartbeat: () => boolean, ownerEnv: Record<string, string> = {}): Promise<AutopilotOutcome | null> {
   let lastReport = "";
   for (let attempt = 0; attempt <= SOURCE_REPAIR_MAX_PASSES; attempt++) {
     if (!heartbeat()) return halt(bookId, `lost the run lock for ${bookId} while checking source readiness — halting to avoid two conductors on the same book.`, "infra");
-    const gate = await deps.runVerb(["source-v2-gate", bookId, "--prewrite"]);
+    const gate = await deps.runVerb(["source-v2-gate", bookId, "--prewrite"], ownerEnv);
     lastReport = reportOf(gate);
     if (gate.code === 0) {
       if (attempt > 0) deps.log(`[autopilot] compiler source readiness PASS after ${attempt} repair attempt(s)`);
@@ -127,14 +128,15 @@ async function convergeSourceReadiness(bookId: string, deps: AutopilotDeps, hear
       cwd: process.cwd(),
       sandbox: "workspace-write",
       reasoningEffort: "medium",
+      env: ownerEnv,
     } as SpawnOptions);
     if (!r.ok) deps.log(`[autopilot] compiler source repair exited ${r.exitCode}`);
   }
   return halt(bookId, `source-v2-gate --prewrite still BLOCKS before section generation. Fix source sidecars manually.\n${lastReport.slice(0, 2000)}`);
 }
 
-async function runCompilerVerb(bookId: string, deps: AutopilotDeps, args: string[], label: string): Promise<AutopilotOutcome | null> {
-  const r = await deps.runVerb(args);
+async function runCompilerVerb(bookId: string, deps: AutopilotDeps, args: string[], label: string, ownerEnv: Record<string, string> = {}): Promise<AutopilotOutcome | null> {
+  const r = await deps.runVerb(args, ownerEnv);
   if (r.code === 0) {
     const line = reportOf(r).split(/\r?\n/).slice(-1)[0] ?? "PASS";
     deps.log(`[autopilot] compiler ${label}: ${line}`);
@@ -144,7 +146,7 @@ async function runCompilerVerb(bookId: string, deps: AutopilotDeps, args: string
   return halt(bookId, `compiler ${label} failed (exit ${r.code}).\n${reportOf(r).slice(0, 2000)}`, category);
 }
 
-async function spawnMissingSectionTasks(bookId: string, deps: AutopilotDeps, maxParallel: number): Promise<void> {
+async function spawnMissingSectionTasks(bookId: string, deps: AutopilotDeps, maxParallel: number, ownerEnv: Record<string, string> = {}): Promise<void> {
   const missing = missingSectionTasks(bookId);
   if (missing.length === 0) {
     deps.log(`[autopilot] compiler sections: all section artifacts already present`);
@@ -161,6 +163,7 @@ async function spawnMissingSectionTasks(bookId: string, deps: AutopilotDeps, max
       cwd: process.cwd(),
       sandbox: "workspace-write",
       reasoningEffort: "medium",
+      env: ownerEnv,
     } as SpawnOptions);
     if (r.ok) writeSectionSessionRecord(task, sid);
     deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: exited ${r.exitCode}`);
@@ -252,10 +255,10 @@ function assemblyReportOf(r: VerbResult): string {
   return [r.stdout, r.stderr].filter((s) => s && s.trim().length > 0).join("\n").trim();
 }
 
-export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxParallel: number, heartbeat: () => boolean): Promise<AutopilotOutcome | null> {
+export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxParallel: number, heartbeat: () => boolean, ownerEnv: Record<string, string> = {}): Promise<AutopilotOutcome | null> {
   for (let attempt = 0; attempt <= SECTION_REPAIR_MAX_PASSES; attempt++) {
     if (!heartbeat()) return halt(bookId, `lost the run lock for ${bookId} during compiler assembly`, "infra");
-    const r = await deps.runVerb(["assemble-sections", bookId]);
+    const r = await deps.runVerb(["assemble-sections", bookId], ownerEnv);
     const report = assemblyReportOf(r);
     if (r.code === 0) {
       if (attempt > 0) deps.log(`[autopilot] compiler assembly PASS after ${attempt} chapter-scoped repair attempt(s)`);
@@ -289,6 +292,7 @@ export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxP
         cwd: process.cwd(),
         sandbox: "workspace-write",
         reasoningEffort: "medium",
+        env: ownerEnv,
       } as SpawnOptions);
       if (!r2.ok) deps.log(`[autopilot] compiler assembly repair ch${String(chapterNumber).padStart(2, "0")} exited ${r2.exitCode}`);
     });
@@ -296,11 +300,11 @@ export async function convergeAssembly(bookId: string, deps: AutopilotDeps, maxP
   return null;
 }
 
-async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel: number, heartbeat: () => boolean): Promise<AutopilotOutcome | null> {
-  await spawnMissingSectionTasks(bookId, deps, maxParallel);
+async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel: number, heartbeat: () => boolean, ownerEnv: Record<string, string> = {}): Promise<AutopilotOutcome | null> {
+  await spawnMissingSectionTasks(bookId, deps, maxParallel, ownerEnv);
   for (let attempt = 0; attempt <= SECTION_REPAIR_MAX_PASSES; attempt++) {
     if (!heartbeat()) return halt(bookId, `lost the run lock for ${bookId} during compiler section validation`, "infra");
-    const gate = await deps.runVerb(["validate-sections", bookId]);
+    const gate = await deps.runVerb(["validate-sections", bookId], ownerEnv);
     if (gate.code === 0) return null;
     if (gate.code >= 2) return halt(bookId, `validate-sections errored (exit ${gate.code}) — inspect section artifacts:\n${reportOf(gate).slice(0, 1200)}`, "infra");
     if (attempt >= SECTION_REPAIR_MAX_PASSES) return halt(bookId, `section artifacts still invalid after ${SECTION_REPAIR_MAX_PASSES} repair attempt(s).\n${reportOf(gate).slice(0, 2000)}`);
@@ -311,15 +315,31 @@ async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel
       cwd: process.cwd(),
       sandbox: "workspace-write",
       reasoningEffort: "medium",
+      env: ownerEnv,
     } as SpawnOptions);
     if (!r.ok) deps.log(`[autopilot] compiler section repair exited ${r.exitCode}`);
   }
   return null;
 }
 
+/** The single compiler write entry point. Acquires the same-book write lock EXACTLY ONCE,
+ *  here, before spawning any section work — never inside ensureCompilerRun()/artifactDir(),
+ *  which every artifact path resolution (including the read-only validate-sections/
+ *  assemble-sections children this function spawns, directly and via section-writer agent
+ *  sessions) funnels through. Every subprocess/agent this function spawns gets
+ *  COMPILER_RUN_OWNER_ENV set so it (and anything IT spawns) is recognized as part of this
+ *  run rather than a competing independent one. */
 export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts: CompilerWriteOptions): Promise<AutopilotOutcome | null> {
+  const normalized = normSlug(bookId);
+  try {
+    acquireCompilerWriteLock(normalized);
+  } catch (err) {
+    return halt(bookId, (err as Error).message, "infra");
+  }
+  const ownerEnv: Record<string, string> = { [COMPILER_RUN_OWNER_ENV]: normalized };
+
   const heartbeat = opts.heartbeat ?? (() => true);
-  const sourceHalt = await convergeSourceReadiness(bookId, deps, heartbeat);
+  const sourceHalt = await convergeSourceReadiness(bookId, deps, heartbeat, ownerEnv);
   if (sourceHalt) return sourceHalt;
 
   for (const [args, label] of [
@@ -329,14 +349,14 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
     [["blueprint-gate", bookId], "blueprint-gate"],
     [["deal-section-tasks", bookId], "section-task-deal"],
   ] as Array<[string[], string]>) {
-    const h = await runCompilerVerb(bookId, deps, args, label);
+    const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
     if (h) return h;
   }
 
-  const sectionHalt = await convergeSections(bookId, deps, opts.maxParallel, heartbeat);
+  const sectionHalt = await convergeSections(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
   if (sectionHalt) return sectionHalt;
 
-  const assemblyHalt = await convergeAssembly(bookId, deps, opts.maxParallel, heartbeat);
+  const assemblyHalt = await convergeAssembly(bookId, deps, opts.maxParallel, heartbeat, ownerEnv);
   if (assemblyHalt) return assemblyHalt;
   try { stampCompilerAssemblyProvenance(bookId, deps); }
   catch (err) { deps.log(`[autopilot] compiler assembly provenance warning: ${(err as Error).message}`); }
@@ -346,7 +366,7 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
     [["evidence-gate", bookId], "evidence-gate"],
     [["risk-score", bookId], "risk-score"],
   ] as Array<[string[], string]>) {
-    const h = await runCompilerVerb(bookId, deps, args, label);
+    const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
     if (h) return h;
   }
   deps.log(`[autopilot] compiler write: section artifacts assembled into ChapterV21; advancing to deterministic gates`);
