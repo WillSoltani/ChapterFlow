@@ -16,8 +16,21 @@ import {
   type SourcePacketV1,
 } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import { loadBookRubricMetricsArtifact } from "../metrics/bookRubricMetrics.js";
 
 export type RiskScoreResult = { bookId: string; written: string[]; report: BookRiskScoreV1; findings: string[] };
+
+/** Chapter numbers the rubric pre-flight artifact (if any) marks `fail`. Empty when no artifact
+ *  exists — risk scoring is decoupled from whether the pre-flight has run yet. */
+function loadRubricFailSet(bookId: string, roots: CompilerStoreRoots): Set<number> {
+  const report = loadBookRubricMetricsArtifact(bookId, roots);
+  const set = new Set<number>();
+  if (!report) return set;
+  for (const ch of report.chapters) {
+    if (ch.verdict === "fail") set.add(ch.chapterNumber);
+  }
+  return set;
+}
 
 function laneFromScore(score: number): ChapterRiskScoreV1["lane"] {
   if (score >= 7) return "high";
@@ -29,7 +42,14 @@ function actionFromLane(lane: ChapterRiskScoreV1["lane"]): ChapterRiskScoreV1["r
   return lane === "high" ? "qc-shadow" : "formal-qc";
 }
 
-export function scoreChapterRisk(packet: SourcePacketV1, evidence?: ChapterEvidenceMapV1): ChapterRiskScoreV1 {
+export type ChapterRiskInputs = {
+  /** Set when the rubric pre-flight artifact marks THIS chapter `fail` (P04). Adds +3 so the
+   *  chapter clears the high-risk lane and gets narrow QC-shadow visibility even in shadow mode.
+   *  A missing rubric artifact leaves this undefined and contributes nothing. */
+  rubricFail?: boolean;
+};
+
+export function scoreChapterRisk(packet: SourcePacketV1, evidence?: ChapterEvidenceMapV1, inputs: ChapterRiskInputs = {}): ChapterRiskScoreV1 {
   const reasons: string[] = [];
   let score = 0;
   if (packet.sourceQuality.status === "thin") { score += 4; reasons.push("source packet is thin"); }
@@ -45,6 +65,7 @@ export function scoreChapterRisk(packet: SourcePacketV1, evidence?: ChapterEvide
   } else {
     score += 3; reasons.push("evidence map missing");
   }
+  if (inputs.rubricFail) { score += 3; reasons.push("rubric pre-flight FAIL (readability/tell/transfer/memorable) — route to qc-shadow"); }
   const lane = laneFromScore(score);
   return {
     schemaVersion: RISK_SCORE_SCHEMA_VERSION,
@@ -63,12 +84,15 @@ export function computeBookRisk(bookId: string, roots: CompilerStoreRoots = {}):
   const written: string[] = [];
   const findings: string[] = [];
   const chapters: ChapterRiskScoreV1[] = [];
+  // Rubric pre-flight (P04) routing: if a rubric-metrics artifact exists, chapters it marks
+  // `fail` get a +3 risk bump (→ qc-shadow visibility). Missing artifact contributes nothing.
+  const rubricFailByNumber = loadRubricFailSet(normalized, roots);
   for (const chapterNumber of expectedSourceChapters(normalized, { stateRoot: roots.stateRoot })) {
     try {
       const packet = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
       let evidence: ChapterEvidenceMapV1 | undefined;
       try { evidence = readJsonFile<ChapterEvidenceMapV1>(evidenceMapPath(normalized, chapterNumber, roots)); } catch { evidence = undefined; }
-      const risk = scoreChapterRisk(packet, evidence);
+      const risk = scoreChapterRisk(packet, evidence, { rubricFail: rubricFailByNumber.has(chapterNumber) });
       writeJsonFile(riskScorePath(normalized, chapterNumber, roots), risk);
       written.push(riskScorePath(normalized, chapterNumber, roots));
       chapters.push(risk);

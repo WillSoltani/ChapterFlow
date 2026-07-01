@@ -249,6 +249,13 @@ export function bookRiskPath(bookId: string, roots: CompilerStoreRoots = {}): st
   return resolve(artifactDir(bookId, "risk", roots), `book-risk.json`);
 }
 
+/** Book-level rubric pre-flight artifact (P04). A sibling FILE of the per-book
+ *  compiler dir, not inside a run — the deterministic rubric report is keyed by
+ *  book, not by compiler run, and downstream (risk, operators) reads it by book. */
+export function rubricMetricsPath(bookId: string, roots: CompilerStoreRoots = {}): string {
+  return resolve(roots.stateRoot ?? CANONICAL_STATE, "books", `${normSlug(bookId)}.rubric-metrics.json`);
+}
+
 export function assemblyInputPath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
   return resolve(artifactDir(bookId, "assembly", roots), `ch${String(chapterNumber).padStart(2, "0")}.assemble-input.json`);
 }

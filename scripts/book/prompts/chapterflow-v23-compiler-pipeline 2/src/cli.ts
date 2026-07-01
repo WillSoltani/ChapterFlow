@@ -286,6 +286,10 @@ Commands:
   build-evidence-maps <bookId>       v23 compiler: create ChapterEvidenceMap artifacts for assembled chapters.
   evidence-gate <bookId>             v23 compiler: validate evidence maps before formal QC.
   risk-score <bookId>                v23 compiler: compute risk lanes; high-risk only gets narrow QC shadow.
+  rubric-metrics <bookId> [--json] [--gate]
+                                     v23 compiler: deterministic rubric pre-flight over assembled chapters
+                                     (readability, distractor-tell, transfer, memorable lines). Writes
+                                     state/books/<bookId>.rubric-metrics.json. --gate exits 1 on any fail chapter.
   codex-agent-run <task-file> [--session <id>] [--sandbox ...] [--timeout-ms N]
                                      Debug: spawn ONE headless codex exec agent with a task file as its
                                      instruction; prints the result. Proves codex exec works before autopilot.
@@ -3997,6 +4001,30 @@ async function runRiskScore(args: string[]): Promise<number> {
   return 0;
 }
 
+/** `rubric-metrics <bookId> [--json] [--gate]` — deterministic rubric pre-flight
+ *  over the ASSEMBLED chapters (P04). Prints a per-chapter table + book summary
+ *  (or JSON with --json), and always writes state/books/<bookId>.rubric-metrics.json.
+ *  --gate exits 1 when any chapter is `fail` (used by the enforce-mode wiring);
+ *  without --gate it is a report (exit 0) — the DEFAULT everywhere. */
+async function runRubricMetrics(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("Usage: rubric-metrics <bookId> [--json] [--gate]"); return 2; }
+  const { computeBookRubricMetrics, formatRubricMetrics } = await import("./metrics/bookRubricMetrics.js");
+  const { rubricMetricsPath, writeJsonFile } = await import("./artifacts/artifactStore.js");
+  let report;
+  try {
+    report = computeBookRubricMetrics(bookId);
+  } catch (err) {
+    console.error(`rubric-metrics: ${(err as Error).message}`);
+    return 2;
+  }
+  writeJsonFile(rubricMetricsPath(bookId), report);
+  if (flags.json) console.log(JSON.stringify(report, null, 2));
+  else console.log(formatRubricMetrics(report));
+  if (flags.gate && report.chapters.some((c) => c.verdict === "fail")) return 1;
+  return 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -5439,6 +5467,8 @@ async function main() {
       return runEvidenceGate(args);
     case "risk-score":
       return runRiskScore(args);
+    case "rubric-metrics":
+      return runRubricMetrics(args, flags);
     case "codex-agent-run":
       return runCodexAgentRun(args, flags);
     case "key-pack":

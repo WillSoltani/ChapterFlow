@@ -326,6 +326,44 @@ async function convergeSections(bookId: string, deps: AutopilotDeps, maxParallel
   throw new Error("unreachable: section repair loop must halt or return within the bounded attempts");
 }
 
+/** The rubric pre-flight mode env. `shadow` (default) writes the artifact + logs a summary line
+ *  and NEVER halts; `enforce` runs `--gate` and halts on any `fail` chapter. New blocking checks
+ *  ship shadow-first (house rule), so enforce must be opted into explicitly and is never set in
+ *  committed code/config. */
+export const RUBRIC_GATE_MODE_ENV = "CHAPTERFLOW_RUBRIC_GATE";
+
+export function rubricGateMode(env: NodeJS.ProcessEnv = process.env): "shadow" | "enforce" {
+  return env[RUBRIC_GATE_MODE_ENV] === "enforce" ? "enforce" : "shadow";
+}
+
+/** Run the deterministic rubric pre-flight (P04) after the risk-score verb. In shadow mode the
+ *  verb runs in report mode: we log the summary line, the artifact is written, and we ALWAYS
+ *  continue (a rubric-metrics infra error is logged, not fatal — the pre-flight is advisory until
+ *  enforce is turned on). In enforce mode we pass `--gate`: exit 1 halts "content" with the failing
+ *  table; exit ≥2 halts "infra". Exported for unit tests that inject a stub runVerb. */
+export async function runRubricPreflight(
+  bookId: string,
+  deps: AutopilotDeps,
+  ownerEnv: Record<string, string> = {},
+  mode: "shadow" | "enforce" = rubricGateMode(),
+): Promise<AutopilotOutcome | null> {
+  const args = mode === "enforce" ? ["rubric-metrics", bookId, "--gate"] : ["rubric-metrics", bookId];
+  const r = await deps.runVerb(args, ownerEnv);
+  const report = reportOf(r);
+  const summary = report.split(/\r?\n/).find((l) => l.trim().startsWith("rubric-metrics:")) ?? report.split(/\r?\n/)[0] ?? "";
+  if (mode === "shadow") {
+    if (r.code >= 2) deps.log(`[autopilot] compiler rubric-metrics (shadow): report errored (exit ${r.code}) — continuing, pre-flight is advisory`);
+    else deps.log(`[autopilot] compiler rubric-metrics (shadow): ${summary}`);
+    return null;
+  }
+  if (r.code === 0) {
+    deps.log(`[autopilot] compiler rubric-metrics (enforce): ${summary}`);
+    return null;
+  }
+  const category = r.code >= 2 ? "infra" : "content";
+  return halt(bookId, `compiler rubric-metrics (enforce) failed (exit ${r.code}).\n${report.slice(0, 2000)}`, category);
+}
+
 /** The single compiler write entry point. Acquires the same-book write lock EXACTLY ONCE,
  *  here, before spawning any section work — never inside ensureCompilerRun()/artifactDir(),
  *  which every artifact path resolution (including the read-only validate-sections/
@@ -373,6 +411,10 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
     const h = await runCompilerVerb(bookId, deps, args, label, ownerEnv);
     if (h) return h;
   }
+
+  const rubricHalt = await runRubricPreflight(bookId, deps, ownerEnv);
+  if (rubricHalt) return rubricHalt;
+
   deps.log(`[autopilot] compiler write: section artifacts assembled into ChapterV21; advancing to deterministic gates`);
   return null;
 }
