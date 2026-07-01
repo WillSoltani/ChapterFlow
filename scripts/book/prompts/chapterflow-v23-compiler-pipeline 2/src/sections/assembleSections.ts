@@ -59,7 +59,12 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {})
   if (resolved.chapters.length > 0) {
     const gate = checkSectionGate(normalized, roots);
     for (const f of gate.findings) {
-      if (f.severity !== "blocker") continue;
+      // SEC91.sidecar_unavailable means the source-paste check could not RUN (the source
+      // sidecar isn't co-located) — it is an input/environment condition, not invalid pack
+      // CONTENT, so it must not gate assembly. The orchestrated conductor's pre-assembly
+      // validate-sections still fails closed on it, so a genuinely-missing sidecar is caught
+      // there rather than by silently assembling unverified content here.
+      if (f.severity !== "blocker" || f.checkId === "SEC91.sidecar_unavailable") continue;
       const targets = typeof f.chapterNumber === "number" ? [f.chapterNumber] : resolved.chapters;
       for (const n of targets) {
         const list = blockedChapters.get(n) ?? [];
