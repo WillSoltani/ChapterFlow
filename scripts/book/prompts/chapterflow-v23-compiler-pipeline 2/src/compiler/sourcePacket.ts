@@ -121,6 +121,46 @@ export function sourcePacketHash(packet: SourcePacketV1): string {
   return canonicalJsonSha256(packet);
 }
 
+/** Chapter-title-stripped, punctuation-normalized signature of a fact's claim, used to
+ *  detect the same boilerplate fact restamped across chapters. Removing the chapter title
+ *  collapses "Defining Moments depends on ..." and "Thinking in Moments depends on ..." to
+ *  the identical shared tail, so a book-thesis fact the researcher pasted into every chapter
+ *  groups together while genuinely chapter-specific facts do not. */
+function factClaimSignature(claim: string, chapterTitle: string): string {
+  let s = (claim || "").toLowerCase();
+  const title = (chapterTitle || "").toLowerCase().trim();
+  if (title.length >= 3) s = s.split(title).join(" ");
+  s = s.replace(/[^a-z0-9 ]+/g, " ").replace(/\s+/g, " ").trim();
+  return s;
+}
+
+/** Book-wide dedup pass: a fact whose title-stripped claim recurs across a majority of
+ *  chapters (and at least 3) is boilerplate the researcher stamped onto every chapter —
+ *  typically the book thesis. Tagging it bookWideDuplicate keeps it in packet.facts (so the
+ *  fact floor and citation-permission list are unchanged) while letting the blueprint dealer
+ *  drop it from the TEACHING pool, so no chapter is forced to teach the identical thesis and
+ *  the section-gate SEC90 phrase budget is not saturated book-wide. Mutates the packets. */
+export function tagBookWideDuplicateFacts(packets: SourcePacketV1[]): void {
+  if (packets.length < 3) return;
+  const threshold = Math.max(3, Math.ceil(packets.length / 2));
+  const chaptersBySignature = new Map<string, Set<number>>();
+  for (const p of packets) {
+    for (const f of p.facts) {
+      const sig = factClaimSignature(f.claim, p.chapterTitle);
+      if (!sig) continue;
+      let set = chaptersBySignature.get(sig);
+      if (!set) { set = new Set(); chaptersBySignature.set(sig, set); }
+      set.add(p.chapterNumber);
+    }
+  }
+  for (const p of packets) {
+    for (const f of p.facts) {
+      const sig = factClaimSignature(f.claim, p.chapterTitle);
+      if (sig && (chaptersBySignature.get(sig)?.size ?? 0) >= threshold) f.bookWideDuplicate = true;
+    }
+  }
+}
+
 export function compileSourcePackets(bookId: string, roots: CompilerStoreRoots = {}): CompileSourcePacketsResult {
   const normalized = normSlug(bookId);
   const canonical = readCanonicalChapterIndex(normalized, roots.stateRoot);
@@ -129,6 +169,9 @@ export function compileSourcePackets(bookId: string, roots: CompilerStoreRoots =
   }
   const findings: string[] = [];
   const written: string[] = [];
+  // Compile every chapter first, then run the book-wide dedup pass, then write — the pass
+  // needs all chapters' facts in hand to spot a claim restamped across the book.
+  const compiled: Array<{ packet: SourcePacketV1; path: string }> = [];
   for (const chapter of canonical.chapters) {
     const sidecar = loadSourceV2Sidecar(normalized, chapter.chapterNumber) as SourceSidecarV2 | null;
     const sidecarPath = sourceSidecarPathFor(normalized, chapter.chapterNumber);
@@ -143,7 +186,10 @@ export function compileSourcePackets(bookId: string, roots: CompilerStoreRoots =
       sidecarPath,
       sourceHash: sourceHashFor(normalized, chapter.chapterNumber),
     });
-    const path = sourcePacketPath(normalized, chapter.chapterNumber, roots);
+    compiled.push({ packet, path: sourcePacketPath(normalized, chapter.chapterNumber, roots) });
+  }
+  tagBookWideDuplicateFacts(compiled.map((c) => c.packet));
+  for (const { packet, path } of compiled) {
     writeJsonFile(path, packet);
     written.push(path);
   }

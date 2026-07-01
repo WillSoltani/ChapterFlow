@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
-import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
+import { compileSourcePacketFromSidecar, tagBookWideDuplicateFacts } from "../src/compiler/sourcePacket.js";
 import { compiledFactsFromSidecar, REQUIRED_QUIZ_FACT_FLOOR } from "../src/compiler/sourcePacketFacts.js";
 import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
 import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
@@ -292,6 +292,54 @@ test("v23 source packet gate hard-blocks a 6-8 fact packet that cannot back the 
   assert.ok(sp13, "SP13 must fire when sourceQuality.status is blocked");
   assert.equal(sp13?.severity, "blocker");
   assert.equal(findings.some((f) => f.checkId === "SP3.fact_floor"), false, "7 facts clears the unrelated SP3 floor");
+});
+
+test("v23 book-wide dedup tags a thesis fact restamped across chapters and SP14 blocks the templated source", () => {
+  // Build 7 chapters that each carry the SAME 8 boilerplate facts (only the chapter title differs
+  // at the front of the claim) plus 1 genuinely chapter-specific fact — the real templated-source
+  // failure mode the researcher can produce.
+  const boilerplateTails = Array.from({ length: 8 }, (_, i) =>
+    `depends on shared book-wide mechanism number ${i + 1} that repeats verbatim across every chapter of the book.`);
+  const packets = Array.from({ length: 7 }, (_, ci) => {
+    const n = ci + 1;
+    const title = `Chapter ${n} Distinct Heading`;
+    const boilerplate = boilerplateTails.map((tail, i) => ({
+      id: `ch${String(n).padStart(2, "0")}.fact.${i + 1}`,
+      claim: `${title} ${tail}`,
+      becauseMechanism: `Because the same idea recurs, mechanism ${i + 1} is not specific to this chapter.`,
+      commonError: `Assuming boilerplate ${i + 1} is chapter-specific.`,
+      errorIsWhy: `It is the book thesis restated, not this chapter's content ${i + 1}.`,
+    }));
+    const specific = {
+      id: `ch${String(n).padStart(2, "0")}.fact.9`,
+      claim: `Chapter ${n} teaches a unique case token-${n}-alpha that appears in no other chapter of this book.`,
+      becauseMechanism: `Because token-${n}-alpha is local, the writer can ground scene ${n} without repeating siblings.`,
+      commonError: `Ignoring token-${n}-alpha in favor of the shared thesis.`,
+      errorIsWhy: `Only token-${n}-alpha differentiates chapter ${n}.`,
+    };
+    const sc: SourceSidecarV2 = {
+      ...sidecar(),
+      chapterNumber: n,
+      chapterTitle: title,
+      testableFacts: [...boilerplate, specific],
+      keyClaims: [...boilerplate, specific].map((f) => f.claim),
+    };
+    return compileSourcePacketFromSidecar({ bookId: "book", chapter: { chapterId: `book-ch${n}`, chapterNumber: n, chapterTitle: title }, sidecar: sc, sidecarPath: `/tmp/ch${n}.json`, sourceHash: "h" });
+  });
+  tagBookWideDuplicateFacts(packets);
+  const first = packets[0];
+  const tagged = first.facts.filter((f) => f.bookWideDuplicate).length;
+  assert.equal(tagged, 8, "the 8 book-wide boilerplate facts are tagged");
+  assert.equal(first.facts.find((f) => f.id.endsWith(".fact.9"))?.bookWideDuplicate, undefined, "the chapter-specific fact is NOT tagged");
+  const sp14 = validateSourcePacket(first).find((f) => f.checkId === "SP14.templated_source");
+  assert.ok(sp14 && sp14.severity === "blocker", "SP14 must block a chapter with fewer than 3 chapter-specific facts");
+});
+
+test("v23 SP14 does not fire when facts are chapter-specific (no false positive on healthy source)", () => {
+  // The default fixture facts are distinct per chapter; without tagging, every fact counts as
+  // chapter-specific, so SP14 must stay silent.
+  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter: chapter(), sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  assert.equal(validateSourcePacket(packet).some((f) => f.checkId === "SP14.templated_source"), false);
 });
 
 test("v23 source packet gate passes a 9-fact packet with no SP13 block", () => {

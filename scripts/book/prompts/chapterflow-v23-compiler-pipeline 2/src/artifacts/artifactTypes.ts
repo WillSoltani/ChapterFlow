@@ -43,6 +43,15 @@ export type SourcePacketFact = {
   groundedPlaces: string[];
   verificationRefs: string[];
   replicationStatus?: "robust" | "mixed" | "contested" | "failed";
+  /** Set by the source-packet compiler's book-wide dedup pass when this fact's
+   *  claim (chapter-title stripped) recurs across a majority of chapters — i.e. a
+   *  boilerplate book-thesis fact the researcher stamped onto every chapter. Such
+   *  facts stay in packet.facts (fact floor + citable for grounding via
+   *  constraints.allowedFactIds) but the blueprint dealer excludes them from the
+   *  TEACHING pool so no chapter is forced to build summary/example/action prose
+   *  around the identical thesis (which saturates the section-gate SEC90 phrase
+   *  budget book-wide). See chapterBlueprint.factIds(). */
+  bookWideDuplicate?: boolean;
 };
 
 export type SourcePacketCase = {

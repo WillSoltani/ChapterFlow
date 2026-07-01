@@ -464,7 +464,12 @@ function isSourceGroundingMetaFact(fact: SourcePacketV1["facts"][number]): boole
 // every real packet fact id, including meta facts, in case one is legitimately cited outside a learning
 // slot. assertFactIdsSubset() below enforces that dealt ids never escape that permission list.
 function factIds(packet: SourcePacketV1): string[] {
-  const teaching = packet.facts.filter((f) => !isSourceGroundingMetaFact(f)).map((f) => f.id).filter(Boolean);
+  // Also drop facts the source-packet compiler tagged bookWideDuplicate: the same boilerplate
+  // thesis restamped onto every chapter. Dealing it into teaching slots (summary/example/action/
+  // card/quiz) forces every chapter to teach the identical claim, saturating the section-gate
+  // SEC90 phrase budget book-wide. It stays in packet.facts and constraints.allowedFactIds, so
+  // a writer MAY still cite it for grounding — it just is not a required teaching fact anywhere.
+  const teaching = packet.facts.filter((f) => !isSourceGroundingMetaFact(f) && !f.bookWideDuplicate).map((f) => f.id).filter(Boolean);
   return teaching.length >= 3 ? teaching : rawFactIds(packet);
 }
 

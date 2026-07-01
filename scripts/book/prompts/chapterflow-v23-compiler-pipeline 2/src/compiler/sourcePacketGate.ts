@@ -27,6 +27,24 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
   if (!packet.chapterId || !Number.isInteger(packet.chapterNumber)) push("SP2.identity", "blocker", "source packet missing chapterId/chapterNumber");
   if (!Array.isArray(packet.facts) || packet.facts.length < 6) push("SP3.fact_floor", "blocker", `source packet has ${packet.facts?.length ?? 0} fact(s); need at least 6 before authoring`, "/facts");
   if (packet.facts.length < 9) push("SP4.quiz_floor", "advisory", `source packet has ${packet.facts.length} fact(s); 9+ is preferred for a 9-question quiz`, "/facts");
+  // SP14: templated source. The book-wide dedup pass (compileSourcePackets) tags facts whose
+  // claim recurs across a majority of chapters — boilerplate the researcher restamped everywhere
+  // instead of chapter-specific facts. A chapter with almost no chapter-specific facts forces every
+  // section writer to teach the same book-wide claims, which the section gate then blocks book-wide
+  // (SEC90 phrase budget, SEC83 summary n-gram, AS5/AS6 quiz reuse). Failing closed here — before
+  // blueprints and the whole write phase — turns a doomed multi-round QC churn into an immediate
+  // "re-research this chapter" signal. Only meaningful once there are enough facts to judge (SP3).
+  if (Array.isArray(packet.facts) && packet.facts.length >= 6) {
+    const chapterSpecific = packet.facts.filter((f) => !f.bookWideDuplicate).length;
+    if (chapterSpecific < 3) {
+      push(
+        "SP14.templated_source",
+        "blocker",
+        `only ${chapterSpecific} of ${packet.facts.length} facts are chapter-specific; the rest restate book-wide claims shared across most chapters. Writing from near-identical facts produces cross-chapter templating the section gate blocks. Re-research this chapter for facts drawn from its own content, not the book's overall framework.`,
+        "/facts",
+      );
+    }
+  }
   const factIds = new Set<string>();
   for (const [i, f] of (packet.facts ?? []).entries()) {
     if (!f.id || !f.claim) push("SP5.fact_shape", "blocker", `facts[${i}] missing id or claim`, `/facts/${i}`);
