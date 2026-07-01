@@ -8,6 +8,7 @@ import { BookClientError } from "@/app/book/_lib/book-api";
  */
 export const ERROR_MESSAGES: Record<string, string> = {
   unauthenticated: "Your session has expired. Please sign in again.",
+  invalid_token: "Your session has expired. Please sign in again.",
   book_not_started: "Open this book from your library to get started.",
   chapter_locked: "Complete the previous chapter to unlock this one.",
   attempt_cooldown: "Quiz retake is temporarily locked. Try again in a moment.",
