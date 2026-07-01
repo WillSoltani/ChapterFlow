@@ -934,7 +934,18 @@ function loadPacketSidecar(packet: SourcePacketV1): any | null {
 
 function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
   const sidecar = loadPacketSidecar(packet);
-  const src = sidecar ? sidecarSourceText(sidecar) : "";
+  if (!sidecar) {
+    const p = packet.sourceSidecarPath;
+    const pathDesc = typeof p === "string" && p ? p : "(not set)";
+    return [{
+      checkId: "SEC91.sidecar_unavailable",
+      severity: "blocker",
+      chapterNumber: bp.chapterNumber,
+      section: pack.artifactType,
+      message: `source sidecar unavailable at ${pathDesc}; SEC91 source-paste detection cannot run for this section`,
+    }];
+  }
+  const src = sidecarSourceText(sidecar);
   if (!src) return [];
   const findings: SectionFinding[] = [];
   for (const field of collectSoftBannedTextFields(pack, bp.chapterNumber, true)) {

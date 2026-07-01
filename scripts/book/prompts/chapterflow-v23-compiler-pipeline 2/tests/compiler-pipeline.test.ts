@@ -738,6 +738,31 @@ test("v23 section gate rejects long source-note paste before ChapterV21 assembly
     assert.equal(report.passed, false, "source-note paste should block before assembly/QC");
     assert.ok(report.findings.some((f) => f.checkId === "SEC91.source_paste" && f.section === "summary-pack" && f.path === "/breakdown/fullRead"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
     assert.ok(report.findings.some((f) => f.checkId === "SEC91.source_paste" && f.section === "action-pack" && f.path === "/implementationPlan/weeklyPractice"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.equal(report.findings.some((f) => f.checkId === "SEC91.sidecar_unavailable"), false, "a present/readable sidecar must not raise SEC91.sidecar_unavailable");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+test("v23 section gate fails closed with SEC91.sidecar_unavailable when a reported chapter's source sidecar is missing/stale", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-sidecar-unavailable-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  // Points at a run dir sidecar that was never written here (simulates a moved/renamed run dir).
+  const staleSidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: staleSidecarPath });
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    assert.equal(report.passed, false, "an unreadable SEC91 sidecar on a reported chapter must fail-closed, not silently pass");
+    assert.ok(
+      report.findings.some((f) => f.checkId === "SEC91.sidecar_unavailable" && f.chapterNumber === 1 && f.section === "summary-pack"),
+      report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+    );
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
@@ -2141,10 +2166,12 @@ test("v23 section gate can validate one chapter/section in isolation for bounded
   const fx = compileFixture();
   const stateRoot = resolve(tmpdir(), `cf-v23-section-filter-${process.pid}-${Date.now()}`);
   const roots = { stateRoot };
+  const sidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
   try {
     mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
     writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
-    writeJsonFile(sourcePacketPath("money-book", 1, roots), fx.packet);
+    writeJsonFile(sidecarPath, sidecar());
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: sidecarPath });
     writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
     writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
 
