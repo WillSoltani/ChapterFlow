@@ -960,6 +960,128 @@ goldTest("P2 GUARD (Fix 2, generalized): an UNGROUNDED over-naming sweep FAIL do
   }
 });
 
+// PARAPHRASE regression: the groundedness guard (quoteGroundedInChapter) cannot distinguish a
+// HALLUCINATED sweep quote from a quote that describes a REAL defect in the reviewer's own words
+// instead of verbatim — both fail the literal substring match identically, so both get the SAME
+// forgiveness. This is a known, accepted limit (see the comments above `sweepBlocksConfirm` in
+// orchestrator/index.ts and the parallel block in finalize.ts ~494-499): the deterministic
+// substring check exists to stop a stochastic, book-wide sweep finding from fabricating a
+// blocker (the-undoing-project / the-power-of-full-engagement incidents), not to replace the
+// per-chapter human/model review. Two things must both hold for that trade-off to be safe:
+//   1. generateConfirmCandidates and finalize must NEVER drift on this decision (else a chapter
+//      could be confirm-eligible under a rule finalize would reject, or vice versa).
+//   2. The escape must be bounded: it only neutralizes the SWEEP signal. A real defect that the
+//      sweep merely paraphrased still has to survive the chapter's OWN independent bar + confirm
+//      reads, which see the actual text and can quote it verbatim — so it is NOT a free pass to
+//      publication, only a free pass past the sweep gate specifically.
+// Both are asserted below; this codifies the invariant so a future change to either function
+// can't silently break (1) parity or (2) the bound, without removing the fabrication protection
+// that (1)'s existing PASS/PUBLISHABLE gold tests above already lock in.
+goldTest("PARAPHRASE: a paraphrased (non-verbatim) real-defect sweep quote clears identically in confirm-candidates and finalize (parity, not a new escape)", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter], { writeSweepRecord: false });
+    writeSweepRecordFromSubmission({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep-fixture",
+      reviewerSessionId: SWEEP_SESSION,
+      verdict: "REVISE",
+      checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER,
+        unitId: "examples.ex01",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        // A genuine description of ch05's own ex01 scene (same staffer, same lab, same beat),
+        // worded from scratch rather than quoted — so it shares no >= 20-char normalized
+        // substring with the chapter text and is "ungrounded" exactly like a fabricated quote.
+        quote: "Rina is the staffer who notices, on a Monday at Northstar Lab, that the ticket totals no longer line up with the spring source note, and pauses work until the records are reconciled.",
+        problem: "REAL defect (this scene is templated against another chapter), described in the reviewer's own words rather than quoted verbatim.",
+        expectedFix: "Re-stage the scene so the frame is distinct.",
+      }],
+    });
+
+    const candidates = generateConfirmCandidates(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.deepEqual(candidates.candidates, [SOURCE_CHAPTER_NUMBER], `a paraphrased sweep quote must not strand the chapter pre-confirm: skipped=${JSON.stringify(candidates.skipped)}`);
+
+    const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    // Parity: finalize's independent re-check must reach the SAME sweep verdict
+    // generateConfirmCandidates already implied — never stricter, never looser.
+    assert.equal(result.chapters[0].checks.sweep, "PASS", "finalize must re-validate the ungrounded FAIL back to PASS exactly like sweepBlocksConfirm did");
+    assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", "with every OTHER independent signal green, a paraphrase-only sweep mention does not block publication (the bound below is what keeps this safe)");
+  } finally {
+    cleanup();
+  }
+});
+
+// The other half of the invariant above: the paraphrase escape is bounded by the chapter's OWN
+// independent confirm read. A confirm reviewer reads the actual chapter (not the sweep's
+// paraphrase) and can cite the real scene verbatim — once they do, finalize blocks on
+// checks.confirmRead === "REVISE" regardless of the sweep's PASS. So "the confirm-candidate
+// escape cannot lead to publication" holds in the only case that matters: the chapter still gets
+// a real, independent look before it can ship.
+goldTest("PARAPHRASE: an independent confirm REVISE quoting the SAME real defect still blocks publication despite the sweep's ungrounded PASS", () => {
+  try {
+    cleanup();
+    const chapter = clonedCleanChapter(GREEN_BOOK);
+    setupGreenEvidence(GREEN_BOOK, [chapter], { writeSweepRecord: false });
+    writeSweepRecordFromSubmission({
+      schemaVersion: "qc-sweep-submission-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "sweep",
+      reviewer: "codex-qc:sweep-fixture",
+      reviewerSessionId: SWEEP_SESSION,
+      verdict: "REVISE",
+      checkedFamilies: [...REQUIRED_SWEEP_FAMILIES],
+      findings: [{
+        chapterNumber: SOURCE_CHAPTER_NUMBER,
+        unitId: "examples.ex01",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote: "Rina is the staffer who notices, on a Monday at Northstar Lab, that the ticket totals no longer line up with the spring source note, and pauses work until the records are reconciled.",
+        problem: "REAL defect, paraphrased rather than quoted verbatim.",
+        expectedFix: "Re-stage the scene so the frame is distinct.",
+      }],
+    });
+    const realQuote = String(chapter.examples?.[0]?.scenario ?? "").slice(0, 80);
+    assert.ok(realQuote.replace(/[^a-z0-9]+/gi, " ").trim().length >= 20, "fixture must yield a discriminating verbatim quote");
+    const contentHash = chapterContentHash(chapter);
+    writeConfirmReadArtifact({
+      schemaVersion: "qc-confirm-read-v1",
+      bookId: GREEN_BOOK,
+      roundId: ROUND,
+      role: "confirm",
+      reviewer: "codex-qc:confirm-fixture",
+      reviewerSessionId: CONFIRM_SESSION,
+      chapterNumber: SOURCE_CHAPTER_NUMBER,
+      chapterId: chapter.chapterId,
+      contentHash,
+      decision: "REVISE",
+      reason: "The confirm reviewer independently finds the same reused scene frame, citing it verbatim from the chapter text.",
+      findings: [{
+        unitId: "examples.ex01",
+        repairClass: "scene_skeleton",
+        severity: "major",
+        quote: realQuote,
+        problem: "A genuinely reused scene frame, quoted verbatim from the chapter the confirm reviewer actually read.",
+        expectedFix: "Re-stage the scene so the frame is distinct.",
+      }],
+    });
+
+    const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
+    assert.equal(result.chapters[0].checks.sweep, "PASS", "the sweep signal alone is still cleared (paraphrase, ungrounded)");
+    assert.equal(result.chapters[0].checks.confirmRead, "REVISE", "the independent confirm read is its own, separate signal");
+    assert.equal(result.chapters[0].finalVerdict, "REVISE", "an independent, quote-grounded confirm finding blocks publication even though the sweep's paraphrase alone could not");
+  } finally {
+    cleanup();
+  }
+});
+
 goldTest("P2: a carried chapter whose content CHANGED since its attestation is NOT carried (re-reviewed)", () => {
   try {
     cleanup();

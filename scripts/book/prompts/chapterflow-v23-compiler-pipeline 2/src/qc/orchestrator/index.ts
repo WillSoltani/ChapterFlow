@@ -484,6 +484,24 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   return { ok: errors.length === 0, path, taskCards, candidates, skipped, errors };
 }
 
+// INVARIANT: this groundedness re-check (naming/grounded below) must stay byte-for-byte identical
+// to finalize.ts's per-chapter override (~494-499 there) and to the ledger's mirror in
+// appendFindings (ledger.ts) — all three read the SAME quoteGroundedInChapter/searchableChapterText
+// and must reach the SAME PASS/FAIL decision for a given sweep record + chapter, or confirm-eligibility
+// drifts from the publish decision it feeds. See tests/qc-finalize-evidence.test.ts "PARAPHRASE: ..."
+// for the regression that pins this parity.
+//
+// KNOWN, ACCEPTED LIMIT: quoteGroundedInChapter is a literal substring check, so it cannot tell a
+// FABRICATED sweep quote (the-undoing-project / the-power-of-full-engagement incidents — a stochastic
+// cross-chapter sweep invents or over-names a quote that exists in no chapter) apart from a quote that
+// describes a REAL defect in the reviewer's own words instead of verbatim. Both are "ungrounded" and
+// both clear here. This is intentional: a fabricated finding must not gate the whole book, and the
+// sweep is not the only line of defense — a real defect the sweep merely paraphrased still has to
+// survive this chapter's OWN independent bar + confirm reads, which see the actual text and can quote
+// it verbatim. Tightening this function alone (without an actual ability to distinguish the two cases)
+// would only reintroduce the fabrication-blocks-the-book regressions already covered by the "P2 GUARD"
+// and "confirm-candidates mirrors finalize" gold tests above — it would not catch a determined
+// paraphrase, since the same literal check still can't tell them apart.
 function sweepBlocksConfirm(sweep: ReturnType<typeof loadSweepRecord>, ch: ChapterV21, contentHash: string, roundId: string): boolean {
   const status = sweepChapterStatus(sweep, ch.number, contentHash, roundId);
   if (status === "PASS") return false;
