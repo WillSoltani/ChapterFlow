@@ -19,10 +19,37 @@ Module._load = function patchedLoad(request: string, parent: unknown, isMain: bo
 
 type WithBookApiErrors = typeof import("./http").withBookApiErrors;
 let withBookApiErrors: WithBookApiErrors;
+let AuthError: typeof import("@/app/app/api/_lib/auth").AuthError;
 
 before(async () => {
   ({ withBookApiErrors } = await import("./http"));
+  // Dynamic import AFTER the server-only patch above (static imports hoist and
+  // would evaluate auth.ts's `import "server-only"` before the patch installs).
+  ({ AuthError } = await import("@/app/app/api/_lib/auth"));
 });
+
+// A JWT-shaped placeholder — the guard only checks for the PRESENCE of a Bearer
+// token / id_token cookie, never verifies it (verification happens later, in
+// requireUser). See auth.test.ts for the real-verification coverage.
+const FAKE_JWT = "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxIn0.sig";
+
+function bearerMutation(method: string): Request {
+  // A native client: Bearer id_token, NO Origin, NO Sec-Fetch-Site, NO cookie —
+  // exactly the shape that WOULD trip the strict-default guard on an unsafe
+  // method, but is immune to CSRF (no ambient cookie credential).
+  return new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method,
+    headers: { authorization: `Bearer ${FAKE_JWT}` },
+  });
+}
+
+function cookieCrossSitePost(): Request {
+  // Cookie-authed (id_token cookie) cross-site POST — the canonical CSRF attempt.
+  return new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "POST",
+    headers: { "sec-fetch-site": "cross-site", cookie: `id_token=${FAKE_JWT}` },
+  });
+}
 
 function crossSitePost(): Request {
   // POST with Sec-Fetch-Site: cross-site and no Origin → guard rejects without
@@ -111,4 +138,85 @@ test("observe-only mode (CSRF_ORIGIN_ENFORCE=0) logs but lets a cross-site reque
     if (saved === undefined) delete process.env.CSRF_ORIGIN_ENFORCE;
     else process.env.CSRF_ORIGIN_ENFORCE = saved;
   }
+});
+
+// ─── Bearer (native-app) auth: CSRF guard skipped for header-authed requests ──
+
+test("a Bearer-authed PATCH with NO Origin reaches the body (native app immune to CSRF)", async () => {
+  // DoD (a): a header-authenticated mutation must NOT be 403'd for lacking an
+  // Origin — it cannot be CSRF because there is no ambient cookie credential.
+  let bodyRan = false;
+  const res = await withBookApiErrors(bearerMutation("PATCH"), async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(bodyRan, true, "Bearer PATCH must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("a Bearer-authed GET with NO Origin reaches the body", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(bearerMutation("GET"), async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(bodyRan, true, "Bearer GET must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("a COOKIE-authed cross-site POST is STILL rejected with 403 (CSRF preserved)", async () => {
+  // DoD (b): the presence of an id_token cookie keeps the same-origin guard.
+  let bodyRan = false;
+  const res = await withBookApiErrors(cookieCrossSitePost(), async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(res.status, 403, "cookie cross-site POST must be blocked");
+  assert.equal(bodyRan, false, "route body must NOT run on a blocked cookie request");
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "forbidden_origin");
+});
+
+test("a cross-site POST carrying BOTH a cookie AND a Bearer header is still rejected (cookie wins)", async () => {
+  // Defense-in-depth: an attacker who also attaches a Bearer header must not be
+  // able to downgrade a cookie-riding request out of CSRF protection.
+  const req = new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "POST",
+    headers: {
+      "sec-fetch-site": "cross-site",
+      cookie: `id_token=${FAKE_JWT}`,
+      authorization: `Bearer ${FAKE_JWT}`,
+    },
+  });
+  const res = await withBookApiErrors(req, async () => {
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(res.status, 403, "a cookie credential keeps the guard even with a Bearer header");
+});
+
+// ─── AuthError → HTTP mapping (invalid_token vs unauthenticated) ───────────────
+
+test("an INVALID_TOKEN from the route body maps to 401 invalid_token", async () => {
+  // DoD (c): a bad/expired credential (Bearer or cookie) → 401 `invalid_token`,
+  // distinct from `unauthenticated`. requireUser raising INVALID_TOKEN is covered
+  // in auth.test.ts; here we assert the wrapper's mapping.
+  const res = await withBookApiErrors(bearerMutation("PATCH"), async () => {
+    throw new AuthError("INVALID_TOKEN");
+  });
+  assert.equal(res.status, 401);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "invalid_token");
+});
+
+test("an UNAUTHENTICATED (no credential) still maps to 401 unauthenticated", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new AuthError("UNAUTHENTICATED");
+  });
+  assert.equal(res.status, 401);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "unauthenticated");
 });
