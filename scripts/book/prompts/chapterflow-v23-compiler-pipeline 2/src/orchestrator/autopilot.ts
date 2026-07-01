@@ -62,6 +62,8 @@ import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDi
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 import { doCompilerWrite } from "./compilerRun.js";
+import { bookRiskPath } from "../artifacts/artifactStore.js";
+import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -158,6 +160,14 @@ export type AutopilotDeps = {
    *  force the `major-disposition` governance halt). Fail-safe → empty set so an
    *  unreadable book never reports a false major-block. */
   blockingMajors: (bookId: string) => MajorFindingSnapshot[];
+  /** The book's risk-score report (state/books/<id>/artifacts/risk/book-risk.json), written
+   *  by the compiler write phase's `risk-score` step (doCompilerWrite). READ-ONLY — this never
+   *  computes or writes the report itself, only reads what the write phase already persisted.
+   *  Fail-safe → an empty "low" report when the file is missing/unreadable (legacy architecture
+   *  never writes one, and a stale/absent report must never block or spin the gate). Drives the
+   *  bounded narrow QC-shadow review in doGate: high-lane chapters get one extra read-only pass
+   *  before formal QC, which still runs unconditionally afterward. */
+  bookRisk: (bookId: string) => BookRiskScoreV1;
   /** True iff the reviewer card already produced a submission on disk — used to
    *  re-spawn ONLY the missing reviewers on an INCOMPLETE round, not the whole wave. */
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
@@ -551,6 +561,19 @@ function defaultBlockingMajors(bookId: string): MajorFindingSnapshot[] {
   try { return unresolvedMajors(bookId); } catch { return []; }
 }
 
+/** Read-only: the risk-score report the compiler write phase already persisted. Never
+ *  computes it (that would re-introduce a write side-effect into the read-only gate loop) —
+ *  a missing/unreadable report (legacy architecture, or a book that hasn't reached risk-score
+ *  yet) fails safe to an empty "low" report so it never blocks or spins the gate. */
+function defaultBookRisk(bookId: string): BookRiskScoreV1 {
+  const normalized = normSlug(bookId);
+  try {
+    return JSON.parse(readFileSync(bookRiskPath(normalized), "utf8")) as BookRiskScoreV1;
+  } catch {
+    return { schemaVersion: RISK_SCORE_SCHEMA_VERSION, bookId: normalized, generatedAt: "", lane: "low", chapters: [], bookWideRisks: [] };
+  }
+}
+
 /** Map a task-card path → its QC role + chapter + (for tiebreak cards) the bar-read
  *  variant. MUST recognize bar-tiebreak/chNN-t2.md (path is "/bar-tiebreak/", NOT "/bar/")
  *  so its presence check is variant-aware — else the dynamic-wave loop never converges.
@@ -828,6 +851,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     sweepConfirmed: d?.sweepConfirmed ?? defaultSweepConfirmed,
     majorFindingKeys: d?.majorFindingKeys ?? defaultMajorFindingKeys,
     blockingMajors: d?.blockingMajors ?? defaultBlockingMajors,
+    bookRisk: d?.bookRisk ?? defaultBookRisk,
     submissionPresent: d?.submissionPresent ?? submissionPresentOnDisk,
     logSession: d?.logSession ?? logSessionToDisk,
     logBroker: d?.logBroker ?? logBrokerToDisk,
@@ -1227,6 +1251,7 @@ async function doGate(bookId: string, maxRepair: number, maxParallel: number, de
   // signatures so a halt can name exactly what is flipping.
   let combinedScoutPasses = 0;
   const scoutEditSignatures: string[] = [];
+  let shadowQcDone = false; // narrow risk-lane QC-shadow review: at most once per gate-phase entry
   const maxGateIterations = maxRepair + PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES + 4;
   for (let attempt = 1; attempt <= maxGateIterations; attempt++) {
     // Keep the run lock fresh across this multi-hour repair phase (each attempt spawns a 30-min
@@ -1278,7 +1303,22 @@ ${converge.stdout}`;
     // (critics/majorPolicy.ts) so this never chases a reference-corpus false positive.
     const majors = deps.blockingMajors(bookId);
     if (majors.length === 0) {
-      // Blockers + blocking-majors are CLEAN. The LAST thing QC checks that the blind parallel
+      // Blockers + blocking-majors are CLEAN. Before anything else, give the risk-score
+      // report (written by the compiler write phase's `risk-score` step) one chance to route
+      // a narrow QC-shadow review: high-lane chapters get ONE bounded, read-only scrutiny pass
+      // here, before formal QC opens (the V23 report's "narrow QC shadow review before formal
+      // QC" promise). This NEVER edits a chapter and NEVER gates progression — a failed/skipped/
+      // clean shadow read still advances to formal QC unconditionally right after, which stays
+      // the sole authority that can pass or block the book.
+      if (!shadowQcDone) {
+        shadowQcDone = true;
+        const highRisk = deps.bookRisk(bookId).chapters.filter((c) => c.lane === "high");
+        if (highRisk.length > 0) {
+          deps.log(`[autopilot] risk-score flagged ${highRisk.length} high-risk chapter(s) — running narrow QC shadow review before formal QC`);
+          await runQcShadowReview(bookId, highRisk, deps);
+        }
+      }
+      // The LAST thing QC checks that the blind parallel
       // writers could NOT self-check is cross-chapter VARIETY (the templating sweep). Converge it
       // HERE — bounded + best-effort — so the first QC round starts de-templated (the first-pass-QC
       // lever). A pass that finds nothing is one cheap full-book read; a pass that finds templating
@@ -1343,6 +1383,37 @@ ${converge.stdout}`;
   const residualMajors = deps.blockingMajors(bookId);
   if (residualMajors.length === 0) return null;
   return mkHalt(bookId, "gate", "content", `${residualMajors.length} blocking major(s) still unresolved after gate/pre-QC convergence — escalate (these are real, fixable defects, not advisory). Run: npx tsx src/cli.ts major-status ${bookId}\n${residualMajors.map((m) => `  [${m.checkId}] ${m.scope}: ${m.message.slice(0, 140)}`).join("\n")}`);
+}
+
+// ── Narrow QC-shadow review (risk-lane routing) ─────────────────────────────────
+// computeBookRisk (run as the compiler write phase's `risk-score` step) scores each
+// chapter's source-grounding thinness and flags "high" when a chapter's source packet is
+// thin, its named cases lack hard specifics, or its evidence map surfaces unsupported
+// anchors/numbers. The V23 report promises those chapters "receive narrow QC shadow review
+// before formal QC" (V23-COMPILER-PIPELINE-REPORT.md) — this is that wire, kept
+// deliberately narrow: ONE bounded, READ-ONLY session scoped to just the flagged chapters
+// and the SPECIFIC reasons risk-score gave for each. It never edits a chapter (read-only
+// sandbox) and never gates progression — doGate advances to formal QC unconditionally right
+// after this returns, whether the session succeeds, fails, or finds nothing. Formal QC
+// remains the sole authority that can pass or block the book; this only gives the operator
+// earlier visibility into the chapters most likely to need a repair round.
+async function runQcShadowReview(bookId: string, highRisk: ChapterRiskScoreV1[], deps: AutopilotDeps): Promise<void> {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const chapterList = highRisk
+    .map((c) => `- ch${pad(c.chapterNumber)} (risk score ${c.score}): ${c.reasons.join("; ") || "no specific reasons recorded"}`)
+    .join("\n");
+  const task = `You are a READ-ONLY narrow QC-shadow reviewer for bookId ${bookId}. Do NOT edit any file — this is a bounded pre-QC scrutiny pass, not a repair. Formal QC still runs on this book right after you regardless of what you find, so focus on giving the operator early visibility into the chapters below, which the deterministic risk scorer flagged HIGH risk for thin/weak source grounding:
+
+${chapterList}
+
+For each chapter listed, read state/chapters/${bookId}-ch<NN>.v21-native.chapter.json and its source-v2 sidecar under .chapterflow/runs/${bookId}/**/sidecars/source/ch<NN>.source.json. Report ONLY concrete claims, numbers, or named cases in the chapter that are NOT visible in that chapter's source sidecar. Output a concise plain-text summary; no file edits, no required JSON shape.`;
+  const sessionId = deps.mkSessionId("qc-shadow-review");
+  try {
+    const r = await spawnAndLog(bookId, { task, sessionId, cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "medium" }, deps);
+    deps.log(`[autopilot] qc-shadow review (${highRisk.length} high-risk chapter(s)) ${r.ok ? "completed" : `exited ${r.exitCode}`} — advancing to formal QC regardless (shadow review never gates)`);
+  } catch (e) {
+    deps.log(`[autopilot] qc-shadow review spawn error: ${(e as Error)?.message ?? String(e)} — advancing to formal QC (shadow review is best-effort and never blocks)`);
+  }
 }
 
 type GateMajorRepairShard = { label: string; majors: MajorFindingSnapshot[] };

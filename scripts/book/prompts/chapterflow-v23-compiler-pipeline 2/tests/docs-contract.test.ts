@@ -278,3 +278,15 @@ test("AGENTS names the Publish-after-QC role", () => {
   assert.match(s, /must not edit chapter files/);
   assert.match(s, /clean token-bearing task cards before commit/);
 });
+
+test("V23 report's risk-routed 'narrow QC shadow review before formal QC' claim is backed by an actual doGate wire, not a dead recommendation field", () => {
+  const report = doc("V23-COMPILER-PIPELINE-REPORT.md");
+  assert.match(report, /risk scoring[\s\S]{0,80}narrow shadow review/i, "the report must keep the risk-routing claim");
+  const autopilot = readFileSync(resolve(PIPELINE_DIR, "src/orchestrator/autopilot.ts"), "utf8");
+  assert.match(autopilot, /async function runQcShadowReview\(/, "doGate must call an actual QC-shadow review function, not just carry chapterRisk's recommendedAction as an unused field");
+  assert.match(autopilot, /deps\.bookRisk\(bookId\)\.chapters\.filter\(\(c\) => c\.lane === "high"\)/, "the shadow review must be routed by the risk-score HIGH lane, matching chapterRisk.ts's laneFromScore threshold");
+  assert.match(autopilot, /runQcShadowReview\(bookId, highRisk, deps\)/, "doGate must actually invoke the shadow review for high-risk chapters");
+  // Never a substitute for formal QC — the shadow review must run BEFORE the gate returns
+  // control to the qc phase, and its own comment must say it never gates progression.
+  assert.match(autopilot, /never gates progression/, "the shadow review must be documented as advisory-only — it must never block or replace formal QC");
+});

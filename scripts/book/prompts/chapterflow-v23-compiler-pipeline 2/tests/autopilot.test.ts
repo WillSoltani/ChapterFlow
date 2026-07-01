@@ -577,6 +577,87 @@ test("doGate readiness scout is BOUNDED — persistent semantic findings run at 
   assert.equal(spawns.filter((s) => /^pre-qc-readiness-\d+-ch1/.test(s.sessionId)).length, 2, "persistent findings get at most two surgical pre-QC repairs");
 });
 
+// ── Narrow QC-shadow review (risk-lane routing) ─────────────────────────────────
+/** A compiler-architecture gate-phase status (blockers + majors clean) + a bookRisk stub,
+ *  so these exercise the risk-routed shadow-review branch (options.preQcScouts === false)
+ *  directly, without the legacy variety/readiness scouts in the way. The status sequence
+ *  goes gate → qc → ready (three distinct statuses, matching the top-level
+ *  "research→write→qc→ready" test) so a real formal-QC round actually opens (--create) after
+ *  doGate returns, instead of the two-status gate→ready shortcut other doGate tests use (which
+ *  skips the qc phase entirely and so can't show shadow-review-before-formal-QC ordering).
+ *  `events` records spawn + runVerb calls in order for that ordering assertion. */
+function riskGateDeps(
+  risk: () => { lane: "low" | "medium" | "high"; chapters: Array<{ chapterNumber: number; score: number; lane: "low" | "medium" | "high"; reasons: string[] }> },
+  spawnOverride?: (o: { sessionId: string }) => Promise<Record<string, unknown>>,
+) {
+  const statuses = [
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }), // phase = gate
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 0, chapters: [chap(1), chap(2)] }), // phase = qc
+    makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, qcdChapters: 2, publishable: true, chapters: [chap(1, true, true, "PUBLISHABLE", true), chap(2, true, true, "PUBLISHABLE", true)] }), // phase = ready
+  ];
+  const events: string[] = [];
+  const { deps } = happyDeps(statuses, {
+    runVerb: async (args) => {
+      events.push(`verb:${args[0]}${args.includes("--create") ? ":create" : ""}`);
+      if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
+      if (args[0] === "qc-converge") return { code: 0, stdout: "DETERMINISTIC-CLEAN", stderr: "" };
+      return { code: 0, stdout: "", stderr: "" };
+    },
+    blockingMajors: () => [],
+    bookRisk: ((_bookId: string) => ({
+      schemaVersion: "chapter-risk-score-v1",
+      bookId: "zz",
+      generatedAt: "2026-01-01T00:00:00.000Z",
+      bookWideRisks: [],
+      ...risk(),
+    })) as unknown as AutopilotDeps["bookRisk"],
+    spawn: (async (o: { sessionId: string }) => {
+      events.push(`spawn:${o.sessionId}`);
+      if (spawnOverride) return spawnOverride(o);
+      return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    }) as unknown as AutopilotDeps["spawn"],
+  });
+  return { deps, events };
+}
+
+test("doGate runs a narrow QC shadow review before formal QC opens when risk-score flags a HIGH-risk chapter, and a failed shadow review never blocks formal QC", async () => {
+  const { deps, events } = riskGateDeps(
+    () => ({
+      lane: "high",
+      chapters: [
+        { chapterNumber: 1, score: 8, lane: "high", reasons: ["source packet is thin", "2 real-world named case(s) lack 2+ hardSpecifics"] },
+        { chapterNumber: 2, score: 1, lane: "low", reasons: [] },
+      ],
+    }),
+    async (o) => {
+      // The shadow session itself FAILS — this must never block or replace formal QC.
+      if (o.sessionId.startsWith("qc-shadow-review")) {
+        return { ok: false, exitCode: 1, finalMessage: "", stdout: "", stderr: "boom", durationMs: 1, sessionId: o.sessionId };
+      }
+      return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
+    },
+  );
+  const outcome = await runAutopilot({ bookId: "zz", deps, architecture: "compiler" });
+  assert.equal(outcome.status, "ready", "a failed shadow review must never block formal QC — QC remains the sole gate");
+  const shadowIdx = events.findIndex((e) => e.startsWith("spawn:qc-shadow-review"));
+  const qcOpenIdx = events.findIndex((e) => e.includes(":create"));
+  assert.ok(shadowIdx >= 0, `expected a qc-shadow-review session to spawn: ${events.join(" -> ")}`);
+  assert.ok(qcOpenIdx >= 0 && shadowIdx < qcOpenIdx, `the shadow review must run BEFORE formal QC opens its round: ${events.join(" -> ")}`);
+});
+
+test("doGate skips the QC shadow review when risk-score reports no HIGH-risk chapters (low/medium lane)", async () => {
+  const { deps, events } = riskGateDeps(() => ({
+    lane: "medium",
+    chapters: [
+      { chapterNumber: 1, score: 4, lane: "medium", reasons: ["only 5 fact(s) for quiz/learning pack"] },
+      { chapterNumber: 2, score: 1, lane: "low", reasons: [] },
+    ],
+  }));
+  const outcome = await runAutopilot({ bookId: "zz", deps, architecture: "compiler" });
+  assert.equal(outcome.status, "ready");
+  assert.ok(!events.some((e) => e.startsWith("spawn:qc-shadow-review")), "no HIGH-risk chapters → the narrow shadow review must not spawn");
+});
+
 test("R3: a repair that introduces a NEW major (invisible to qc-converge) triggers ONE targeted regression-fix", async () => {
   let finalizeCalls = 0;
   let majorCalls = 0;
