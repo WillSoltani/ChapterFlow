@@ -1,0 +1,299 @@
+/**
+ * readerReview — the v24 blinded reader-proxy instrument (component A1).
+ *
+ * One independent, blinded reader reviews ONE rendered chapter document
+ * (renderReaderDoc.ts): scores the 10 rubric factors, derives the quiz keys
+ * from the prose BEFORE looking at the answer key, makes a ship/no-ship gate
+ * call, and cites verbatim evidence quotes. This module owns:
+ *
+ *   - REVIEW_WEIGHTS          — the factor weighting (sums to exactly 100);
+ *   - buildReaderReviewTask   — the blinded single-doc reader prompt
+ *                               (validated on live panels 2026-07-01:
+ *                               byte-verified quotes, 9/9 key derivations);
+ *   - parseReaderReview       — extract + validate the reader's final fenced
+ *                               JSON block from a codex session's output;
+ *   - adjudicateReview        — deterministic adjudication: byte-verify every
+ *                               quote against the doc, check the reader's key
+ *                               derivations against the chapter's real keys,
+ *                               compute the weighted composite, decide pass;
+ *   - writeChapterReview      — persist the ChapterReviewV1 artifact.
+ *
+ * Everything here is ADDITIVE tooling: no autopilot/conductor/gate behavior
+ * changes. The trust model is the same as the QC key-judges: the reader's
+ * SEMANTIC claims are cross-checked by DETERMINISTIC code (quote substring
+ * verification + positional key comparison), so a lazy or hallucinating
+ * reader cannot self-attest a pass.
+ */
+
+import { resolve } from "path";
+
+import type { ChapterV21 } from "../types.js";
+import {
+  CHAPTER_REVIEW_SCHEMA_VERSION,
+  REVIEW_FACTORS,
+  type ChapterReviewComplaint,
+  type ChapterReviewV1,
+  type ReviewFactor,
+} from "../artifacts/artifactTypes.js";
+import { chapterContentHash } from "../critics/qcAttestation.js";
+import { CANONICAL_STATE } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
+
+export type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
+
+// ── Weights ─────────────────────────────────────────────────────────────────
+
+/** Rubric factor weights. MUST sum to exactly 100 (composite = weighted mean). */
+export const REVIEW_WEIGHTS: Record<ReviewFactor, number> = {
+  retention: 13,
+  quizzes: 12,
+  transfer: 11,
+  practical: 11,
+  summaries: 11,
+  tone: 10,
+  limits: 9,
+  insight: 8,
+  density: 8,
+  beginner: 7,
+};
+
+// Module-load assertions: the weights must cover exactly the 10 declared
+// factors and sum to 100 — a drift here silently rescales every composite.
+{
+  const sum = Object.values(REVIEW_WEIGHTS).reduce((a, b) => a + b, 0);
+  if (sum !== 100) throw new Error(`REVIEW_WEIGHTS must sum to 100, got ${sum}`);
+  const keys = Object.keys(REVIEW_WEIGHTS).sort().join(",");
+  const factors = [...REVIEW_FACTORS].sort().join(",");
+  if (keys !== factors) throw new Error(`REVIEW_WEIGHTS keys (${keys}) must equal REVIEW_FACTORS (${factors})`);
+}
+
+// ── The blinded reader task ─────────────────────────────────────────────────
+
+/** Build the blinded single-doc reader prompt for the chapter document at
+ *  `docRelPath` (relative to the reader session's cwd, i.e. the pipeline dir).
+ *  `bar` is substituted into the GATE line; the JSON field stays `ship84`
+ *  (fixed contract name) regardless of the bar value. */
+export function buildReaderReviewTask(docRelPath: string, bar = 84): string {
+  return `BLINDED CHAPTER REVIEW — you are an independent reader. You do not know how this chapter was produced; judge only what is on the page.
+
+One chapter of a book-learning product is at: ${docRelPath}
+Read ONLY this file. Do not write any files.
+
+PROCESS (strict order):
+1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing).
+2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
+   - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
+   - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
+   - transfer: applies beyond the book's own examples (if-then quality, challenge quality)
+   - practical: a real person would actually DO these actions (low-friction, concrete, not theater)
+   - summaries: fast/deep/full reads layered, accurate, each standalone
+   - tone: plain confident register; no corporate filler; no template/scaffold smell
+   - limits: honest about boundaries and failure modes; no overselling
+   - insight: explains WHY (mechanism), not just what
+   - density: ideas per paragraph; no padding or repetition
+   - beginner: approachable cold; jargon-free
+3. GATE: would you ship this against a professional >=${bar}/100 bar? true/false.
+4. EVIDENCE: 2-4 VERBATIM quotes (exact copy-paste substrings of the file, each <=200 chars): strongest moment(s) and worst defect(s), each with a one-line why. Quotes are mechanically byte-verified — one altered character invalidates your review. Do not paraphrase inside quote fields. Additionally list every concrete defect in "complaints": unit = where it lives (e.g. "quiz Q2", "deep read"), problem = what is wrong, mustFix = whether you would block shipping on it. Use an empty array if there are none.
+
+FINAL MESSAGE: exactly one fenced json block, no prose outside it:
+{
+  "quizDerivation": {"answers": ["a|b|c", ...], "keyDisagreements": ["..."], "tells": ["..."]},
+  "scores": {"retention": 0, "quizzes": 0, "transfer": 0, "practical": 0, "summaries": 0, "tone": 0, "limits": 0, "insight": 0, "density": 0, "beginner": 0},
+  "ship84": false,
+  "quotes": [{"quote": "...", "why": "..."}],
+  "complaints": [{"unit": "...", "problem": "...", "mustFix": false}],
+  "oneParagraphVerdict": "..."
+}`;
+}
+
+// ── Parsing ─────────────────────────────────────────────────────────────────
+
+export type ParsedReaderReview = {
+  quizDerivation: { answers: string[]; keyDisagreements: string[]; tells: string[] };
+  scores: Record<ReviewFactor, number>;
+  ship84: boolean;
+  quotes: Array<{ quote: string; why: string }>;
+  complaints: ChapterReviewComplaint[];
+  oneParagraphVerdict: string;
+};
+
+function asStringArray(v: unknown): string[] {
+  if (!Array.isArray(v)) return [];
+  return v.filter((x): x is string => typeof x === "string");
+}
+
+/** Parse a reader session's stdout/final message into a validated review, or
+ *  null. Takes the LAST fenced json block (readers sometimes echo the file or
+ *  think out loud before the final message); requires all 10 factors present
+ *  and numeric 0-100, a boolean ship84, and a quotes array. */
+export function parseReaderReview(stdout: string): ParsedReaderReview | null {
+  if (typeof stdout !== "string" || stdout.length === 0) return null;
+  const fenceRe = /```(json)?[^\n]*\n([\s\S]*?)```/g;
+  let lastJsonLabeled: string | null = null;
+  let lastAny: string | null = null;
+  let m: RegExpExecArray | null;
+  while ((m = fenceRe.exec(stdout)) !== null) {
+    lastAny = m[2];
+    if (m[1] === "json") lastJsonLabeled = m[2];
+  }
+  const body = lastJsonLabeled ?? lastAny;
+  if (!body) return null;
+
+  let raw: unknown;
+  try {
+    raw = JSON.parse(body);
+  } catch {
+    return null;
+  }
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
+  const obj = raw as Record<string, unknown>;
+
+  // scores: all 10 factors, numeric, 0-100.
+  const scoresRaw = obj.scores;
+  if (typeof scoresRaw !== "object" || scoresRaw === null || Array.isArray(scoresRaw)) return null;
+  const scores = {} as Record<ReviewFactor, number>;
+  for (const f of REVIEW_FACTORS) {
+    const v = (scoresRaw as Record<string, unknown>)[f];
+    if (typeof v !== "number" || !Number.isFinite(v) || v < 0 || v > 100) return null;
+    scores[f] = v;
+  }
+
+  if (typeof obj.ship84 !== "boolean") return null;
+
+  if (!Array.isArray(obj.quotes)) return null;
+  const quotes: Array<{ quote: string; why: string }> = [];
+  for (const q of obj.quotes) {
+    if (typeof q !== "object" || q === null) return null;
+    const qq = q as Record<string, unknown>;
+    if (typeof qq.quote !== "string" || qq.quote.length === 0) return null;
+    quotes.push({ quote: qq.quote, why: typeof qq.why === "string" ? qq.why : "" });
+  }
+
+  const qd = (typeof obj.quizDerivation === "object" && obj.quizDerivation !== null && !Array.isArray(obj.quizDerivation))
+    ? (obj.quizDerivation as Record<string, unknown>)
+    : {};
+
+  const complaints: ChapterReviewComplaint[] = [];
+  if (Array.isArray(obj.complaints)) {
+    for (const c of obj.complaints) {
+      if (typeof c !== "object" || c === null) continue;
+      const cc = c as Record<string, unknown>;
+      if (typeof cc.unit !== "string" || typeof cc.problem !== "string") continue;
+      complaints.push({ unit: cc.unit, problem: cc.problem, mustFix: cc.mustFix === true });
+    }
+  }
+
+  return {
+    quizDerivation: {
+      answers: asStringArray(qd.answers),
+      keyDisagreements: asStringArray(qd.keyDisagreements),
+      tells: asStringArray(qd.tells),
+    },
+    scores,
+    ship84: obj.ship84,
+    quotes,
+    complaints,
+    oneParagraphVerdict: typeof obj.oneParagraphVerdict === "string" ? obj.oneParagraphVerdict : "",
+  };
+}
+
+// ── Adjudication ────────────────────────────────────────────────────────────
+
+/** Normalize a reader answer token to "a"|"b"|"c" when possible ("A", " b)",
+ *  "c." all normalize); otherwise return the trimmed lowercase raw token so
+ *  the disagreement is legible in the artifact. */
+function normalizeAnswer(raw: string): string {
+  const t = raw.trim().toLowerCase();
+  if (t === "a" || t === "b" || t === "c") return t;
+  const first = t.charAt(0);
+  if ((first === "a" || first === "b" || first === "c") && /^[abc][).\s:]*$/.test(t)) return first;
+  return t;
+}
+
+export type AdjudicateOpts = { bar?: number; reviewerSessionId?: string };
+
+/** Deterministically adjudicate a parsed reader review against the rendered
+ *  document + the real chapter:
+ *   (a) byte-verify each quote as an exact substring of docText — ANY
+ *       unverified quote (or an empty quote list) invalidates the review;
+ *   (b) key check: chapter correctIndex → "abc" letters vs the reader's
+ *       positional derivations;
+ *   (c) composite = sum(weight * score) / 100, rounded to 1 decimal;
+ *   (d) pass = valid AND composite >= bar AND ship84 AND matches === of. */
+export function adjudicateReview(
+  parsed: ParsedReaderReview,
+  docText: string,
+  chapter: ChapterV21,
+  opts: AdjudicateOpts = {},
+): ChapterReviewV1 {
+  const bar = opts.bar ?? 84;
+
+  // (a) quote byte-verification.
+  const quotes = parsed.quotes.map((q) => ({
+    quote: q.quote,
+    why: q.why,
+    verified: docText.includes(q.quote),
+  }));
+  const valid = quotes.length > 0 && quotes.every((q) => q.verified);
+
+  // (b) key check.
+  const questions = chapter.quiz?.questions ?? [];
+  const expected = questions.map((q) => "abc"[q.correctIndex] ?? "?");
+  const derived = parsed.quizDerivation.answers.map(normalizeAnswer);
+  const of = expected.length;
+  let matches = 0;
+  const disagreements: string[] = [];
+  for (let i = 0; i < of; i++) {
+    const want = expected[i];
+    const got = derived[i];
+    if (got !== undefined && got === want && want !== "?") {
+      matches++;
+    } else {
+      disagreements.push(`Q${i + 1}: reader=${got ?? "(none)"} key=${want}`);
+    }
+  }
+
+  // (c) weighted composite, 1 decimal.
+  let weighted = 0;
+  for (const f of REVIEW_FACTORS) weighted += REVIEW_WEIGHTS[f] * parsed.scores[f];
+  const composite = Math.round((weighted / 100) * 10) / 10;
+
+  // (d) the pass verdict.
+  const pass = valid && composite >= bar && parsed.ship84 === true && matches === of;
+
+  return {
+    schemaVersion: CHAPTER_REVIEW_SCHEMA_VERSION,
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    contentHash: chapterContentHash(chapter),
+    reviewerSessionId: opts.reviewerSessionId ?? "",
+    scores: { ...parsed.scores },
+    composite,
+    ship84: parsed.ship84,
+    pass,
+    valid,
+    keyCheck: { derived, matches, of, disagreements },
+    quotes,
+    tells: [...parsed.quizDerivation.tells],
+    complaints: parsed.complaints.map((c) => ({ ...c })),
+    oneParagraphVerdict: parsed.oneParagraphVerdict,
+  };
+}
+
+// ── Persistence ─────────────────────────────────────────────────────────────
+
+/** Path of a chapter's review artifact under `stateRoot` (default: the
+ *  canonical pipeline state dir). Injectable root so tests write to a tmp dir,
+ *  never the repo's real state/. */
+export function chapterReviewPath(bookId: string, chapterNumber: number, stateRoot: string = CANONICAL_STATE): string {
+  const nn = String(chapterNumber).padStart(2, "0");
+  return resolve(stateRoot, "reviews", bookId, `ch${nn}.review.json`);
+}
+
+/** Write the review artifact to state/reviews/<bookId>/ch<NN>.review.json
+ *  (parents created, atomic write). Returns the absolute path written. */
+export function writeChapterReview(bookId: string, review: ChapterReviewV1, stateRoot: string = CANONICAL_STATE): string {
+  const path = chapterReviewPath(bookId, review.chapterNumber, stateRoot);
+  writeFileAtomic(path, JSON.stringify(review, null, 2) + "\n");
+  return path;
+}
