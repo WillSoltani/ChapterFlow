@@ -356,3 +356,79 @@ export type MemorableLinesDeterministic = {
   memorableLines: MemorableLine[];
   generatedBy: "deterministic" | "model";
 };
+
+// ── v24 reader-review instrument (ADDITIVE — component A1) ──────────────────
+//
+// A blinded, independent reader scores ONE rendered chapter document
+// (src/review/renderReaderDoc.ts) on the 10 rubric factors, derives the quiz
+// keys from the prose, and cites verbatim quotes that are byte-verified
+// against the document. adjudicateReview (src/review/readerReview.ts) turns
+// the reader's parsed output into this durable artifact, written to
+// state/reviews/<bookId>/ch<NN>.review.json.
+
+export const CHAPTER_REVIEW_SCHEMA_VERSION = "chapterflow-review-v1" as const;
+
+/** The 10 review factors, in REVIEW_WEIGHTS order (weights live in
+ *  src/review/readerReview.ts and must cover exactly this set). */
+export const REVIEW_FACTORS = [
+  "retention",
+  "quizzes",
+  "transfer",
+  "practical",
+  "summaries",
+  "tone",
+  "limits",
+  "insight",
+  "density",
+  "beginner",
+] as const;
+
+export type ReviewFactor = (typeof REVIEW_FACTORS)[number];
+
+export type ChapterReviewQuote = {
+  quote: string;
+  why: string;
+  /** True iff `quote` is an exact byte substring of the rendered reader doc. */
+  verified: boolean;
+};
+
+export type ChapterReviewComplaint = {
+  /** Where the defect lives (e.g. "quiz Q2", "deep read", "example 3"). */
+  unit: string;
+  problem: string;
+  mustFix: boolean;
+};
+
+export type ChapterReviewKeyCheck = {
+  /** The reader's own prose-derived answers, normalized to "a"|"b"|"c" (or the
+   *  raw token when it does not normalize). Positional with quiz.questions. */
+  derived: string[];
+  matches: number;
+  of: number;
+  disagreements: string[];
+};
+
+export type ChapterReviewV1 = {
+  schemaVersion: typeof CHAPTER_REVIEW_SCHEMA_VERSION;
+  chapterId: string;
+  chapterNumber: number;
+  /** chapterContentHash (v2) of the reviewed chapter — same helper autopilot uses. */
+  contentHash: string;
+  reviewerSessionId: string;
+  scores: Record<ReviewFactor, number>;
+  /** Weighted composite = sum(weight * score) / 100, rounded to 1 decimal. */
+  composite: number;
+  /** The reader's own ship/no-ship gate call against the bar. */
+  ship84: boolean;
+  /** composite >= bar AND ship84 AND keyCheck.matches === keyCheck.of AND valid. */
+  pass: boolean;
+  /** False when any cited quote fails byte-verification (or no quote was cited). */
+  valid: boolean;
+  keyCheck: ChapterReviewKeyCheck;
+  quotes: ChapterReviewQuote[];
+  /** Quiz-guessability tells the reader spotted (from quizDerivation.tells). */
+  tells: string[];
+  /** The reader's explicit defect list, passed through verbatim (default []). */
+  complaints: ChapterReviewComplaint[];
+  oneParagraphVerdict: string;
+};

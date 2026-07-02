@@ -364,6 +364,14 @@ Commands:
   quarantine-book <bookId>           Pull a shipped-but-corrupt package; promote/register refuse until released
   unquarantine-book <bookId>         Release a quarantine tombstone (book must then re-pass the full gate)
 
+  eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 84] [--json]
+                                     v24 reader-proxy instrument: deterministically sample N chapters (default 3)
+                                     of each shipped package, render each as a blinded reader doc under
+                                     scratch/eval-proxy/, spawn one independent read-only codex reader per
+                                     chapter (parallel), byte-verify its evidence quotes + quiz-key derivations,
+                                     and write state/reviews/<bookId>/ch<NN>.review.json. Prints a per-book
+                                     table + median composite; --json emits the machine payload last.
+
   help                               This message
 
 Examples:
@@ -5566,6 +5574,8 @@ async function main() {
       return runQuarantineBook(args, flags);
     case "unquarantine-book":
       return runUnquarantineBook(args);
+    case "eval-reader-proxy":
+      return (await import("./review/evalReaderProxy.js")).runEvalReaderProxy(args, flags);
     case "help":
     case undefined:
     case "--help":
