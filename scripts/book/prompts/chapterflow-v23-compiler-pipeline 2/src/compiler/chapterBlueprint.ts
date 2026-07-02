@@ -385,6 +385,33 @@ const PRACTICE_FORMS = [
   "post-moment evidence review",
 ];
 
+// Hook openers. Widened 3 -> 9 (P11) so a fixed chapter position no longer draws
+// from only three shapes book-wide: the first three are the original set (unchanged
+// text so existing prose intuition holds); the six after are new writer-facing shape
+// names in the same texture. dealPositional round-robins them across chapters.
+const HOOK_SHAPES = [
+  "question-into-specific-scene",
+  "object-in-motion",
+  "reader-default-reversal",
+  "cold-specific-number",
+  "mid-scene-dialogue",
+  "after-the-fact-consequence",
+  "second-person-test",
+  "contrast-of-two-moments",
+  "object-left-behind",
+];
+
+// Counter-move framings. Widened 2 -> 6 (P11) for the same reason as HOOK_SHAPES:
+// n%2 gave the whole book exactly two counter shapes. First two are the originals.
+const COUNTER_SHAPES = [
+  "misleading-default",
+  "obvious-advice-backfires",
+  "popular-move-quietly-fails",
+  "intuition-points-wrong-way",
+  "safe-choice-hidden-cost",
+  "expert-consensus-overturned",
+];
+
 const EXAMPLE_SLOT_COUNT = 6;
 const FORBIDDEN_NAME_GUIDANCE_LIMIT = 24;
 
@@ -437,6 +464,174 @@ const EXAMPLE_FORMATS: ExampleFormat[] = [
 function uniq<T>(xs: T[]): T[] {
   return [...new Set(xs)];
 }
+
+// ── Positional dealer (P11) ────────────────────────────────────────────────
+//
+// Generalizes the one correctly-aligned dealer in the codebase (answerPattern's
+// BP14-aware quiz-key deal) to EVERY other positional shape, so cross-chapter
+// same-position collisions are impossible BY CONSTRUCTION instead of detected
+// after writing by AS5/AS6/AS8/AS9 and the scene_skeleton sweep.
+//
+// The prior deals were bare modular arithmetic: promptShape `(n+i-1)%9`,
+// distractorTrap `(n*3+i)%9` (gcd(3,9)=3 -> only THREE distinct traps ever land
+// at a fixed quiz position, book-wide), experiential sceneFrame `(n*3+i*5)%12`
+// (period 4), hookShape `n%3` (THREE shapes total), counterShape `n%2` (TWO).
+// A blind writer handed the identical same-position shape as three chapters back,
+// under the same section contract, produces same-position text that QC then
+// REVISEs. dealPositional makes that structurally impossible.
+//
+// GUARANTEES (proved by tests/positional-dealers.test.ts):
+//  (a) for a fixed slotIndex at salt 0, the value does not repeat across chapters
+//      until the pool is exhausted, then round-robins with MAXIMAL spacing
+//      (exactly `pool.length` chapters between repeats);
+//  (b) within one chapter, the values dealt to distinct slotIndexes of the same
+//      poolKey are distinct whenever slotCount <= pool.length;
+//  (c) STABLE under totalChapters growth at salt 0: the closed form depends only
+//      on (bookId, poolKey, chapterNumber, slotIndex) — NOT on totalChapters —
+//      so a chapter already dealt keeps its value when the book grows.
+//
+// SALTS (P10 integration — the reviewer-reconciled semantics). P10's repair-owned
+// sidecar salts are PER-CHAPTER: a redeal bumps ONE chapter's salt and must change
+// ONLY that chapter (P10's pinned contract). A naive per-chapter rank shift lands
+// the salted chapter on a value some sibling already holds (pigeonhole) and trips
+// BPV11's round-robin cap. So a salted chapter REPLAYS its siblings — every other
+// chapter at ITS OWN salted rank, resolved in ascending chapter order exactly like
+// answerPattern's sibling replay — and scans forward from (base + salt) to the
+// first value whose sibling count at this slot is BELOW the BPV11 cap
+// ceil(C / P). Such a value always exists (sibling count sums to C-1 < cap·P), so
+// a P10 redeal can never create an avoidable same-position collision. Unsalted
+// chapters keep the pure closed form (identical bytes to the pre-salt world), and
+// a plain `salt` WITHOUT `saltOf` is a raw rank shift for pools that are not
+// cross-chapter comparable (the per-chapter venue palette ordering).
+function poolPermutation(size: number, bookId: string, poolKey: string): number[] {
+  const order = Array.from({ length: size }, (_, i) => i);
+  let seed = fnv1a(`positional:${normSlug(bookId)}:${poolKey}`);
+  const next = () => {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  };
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = next() % (i + 1);
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
+
+export function dealPositional<T>(args: {
+  pool: readonly T[];
+  bookId: string;
+  poolKey: string;
+  chapterNumber: number;
+  slotIndex: number;
+  totalChapters: number;
+  /** Raw rank shift, applied WITHOUT sibling replay. Only for pools that are not
+   *  cross-chapter comparable (per-chapter venue palettes). Cross-chapter pools
+   *  must use `saltOf` so the collision-avoiding scan engages. */
+  salt?: number;
+  /** Per-chapter salt lookup (P10 sidecar). When provided and ANY chapter is
+   *  salted, salted chapters resolve via the sibling-replay scan. */
+  saltOf?: (chapterNumber: number) => number;
+}): T {
+  const { pool, bookId, poolKey, chapterNumber, slotIndex, salt = 0, saltOf } = args;
+  if (pool.length === 0) throw new Error(`dealPositional: empty pool for poolKey ${poolKey}`);
+  const P = pool.length;
+  const perm = poolPermutation(P, bookId, poolKey);
+  const baseRank = (n: number) => (((n - 1) + slotIndex) % P + P) % P;
+  if (!saltOf) {
+    // Closed form (+ optional raw shift for non-comparable pools).
+    return pool[perm[(baseRank(chapterNumber) + Math.max(0, salt)) % P]];
+  }
+  const C = Math.max(args.totalChapters, chapterNumber, 1);
+  const cap = Math.max(1, Math.ceil(C / P));
+  // Resolve every chapter's rank in ascending order (answerPattern's replay
+  // convention): unsalted chapters take the closed form; a salted chapter scans
+  // forward from (base + salt) to the first value BELOW the cap among the ranks
+  // resolved so far plus all unsalted siblings (their ranks are order-independent).
+  const resolveRank = (resolved: Map<number, number>, n: number): number => {
+    const s = Math.max(0, saltOf(n) ?? 0);
+    if (s === 0) return baseRank(n);
+    const counts = new Map<number, number>();
+    for (let m = 1; m <= C; m++) {
+      if (m === n) continue;
+      const mRank = resolved.has(m) ? resolved.get(m)! : (Math.max(0, saltOf(m) ?? 0) === 0 ? baseRank(m) : -1);
+      if (mRank >= 0) counts.set(perm[mRank], (counts.get(perm[mRank]) ?? 0) + 1);
+    }
+    // A redeal must move OFF the chapter's own flagged value: excluding self makes the own
+    // residue the least-crowded, so a plain sub-cap scan would walk straight back onto it and
+    // the redeal would be a byte-level no-op. Prefer the first sub-cap value at a DIFFERENT
+    // rank; fall back to the own rank only when every other value is at the cap (saturated
+    // column — staying put is then the only BPV11-clean option).
+    let ownRankFallback = -1;
+    for (let step = 0; step < P; step++) {
+      const r = (baseRank(n) + s + step) % P;
+      if ((counts.get(perm[r]) ?? 0) >= cap) continue;
+      if (r === baseRank(n)) { ownRankFallback = r; continue; }
+      return r;
+    }
+    return ownRankFallback >= 0 ? ownRankFallback : (baseRank(n) + s) % P;
+  };
+  const resolved = new Map<number, number>();
+  for (let m = 1; m <= chapterNumber; m++) resolved.set(m, resolveRank(resolved, m));
+  return pool[perm[resolved.get(chapterNumber)!]];
+}
+
+// Registry of every positional deal, so blueprintGate can recompute the book's
+// deals (BPV11) and floor-check thin pools (BPV12) generically instead of
+// re-implementing each extraction. `slots` is the number of same-poolKey slots
+// a single chapter fills (1 = a chapter-level deal). `extract` returns the dealt
+// values in slot order for one chapter's blueprint.
+export type PositionalDealDescriptor = {
+  poolKey: string;
+  poolSize: number;
+  slots: number;
+  perChapter: boolean;
+  /** True pool size at a given slotIndex. Defaults to poolSize; overridden for
+   *  the example fields whose slots draw from two pools by parity (odd = the
+   *  smaller experiential pool). BPV11 needs the TRUE pool size — inferring it
+   *  from observed distinct values would mask a broken deal (a period-3 deal
+   *  over a 9-pool looks perfectly balanced against its own 3 observed values). */
+  poolSizeAt?: (slotIndex: number) => number;
+  extract: (bp: ChapterBlueprintV1) => string[];
+};
+
+const exampleParityPoolSize = (dec: number, exp: number) => (slotIndex: number) => (slotIndex % 2 === 1 ? exp : dec);
+
+export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
+  { poolKey: "quizPromptShape", poolSize: QUIZ_PROMPT_SHAPES.length, slots: 9, perChapter: false, extract: (bp) => bp.sections.quiz.map((q) => q.promptShape) },
+  { poolKey: "quizAnswerStyle", poolSize: QUIZ_ANSWER_STYLES.length, slots: 9, perChapter: false, extract: (bp) => bp.sections.quiz.map((q) => q.answerStyle) },
+  { poolKey: "quizDistractorTrap", poolSize: QUIZ_DISTRACTOR_TRAPS.length, slots: 9, perChapter: false, extract: (bp) => bp.sections.quiz.map((q) => q.distractorTrap) },
+  { poolKey: "cardFrontShape", poolSize: CARD_FRONT_SHAPES.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.frontShape) },
+  { poolKey: "cardRetrievalTarget", poolSize: CARD_RETRIEVAL_TARGETS.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.retrievalTarget) },
+  { poolKey: "cardBackShape", poolSize: CARD_BACK_SHAPES.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.backShape) },
+  // sceneFrame / requiredBeat: even slots deal from the decision pool, odd from
+  // the smaller experiential pool. poolSizeAt returns the correct per-slot pool.
+  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
+  { poolKey: "exampleRequiredBeat", poolSize: EXAMPLE_BEATS.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_BEATS.length, EXAMPLE_BEATS_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.requiredBeat) },
+  { poolKey: "ifThenPlanShape", poolSize: IF_THEN_PLAN_SHAPES.length, slots: 3, perChapter: false, extract: (bp) => bp.sections.action.ifThenPlanShapes },
+  { poolKey: "hookShape", poolSize: HOOK_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.hookShape] },
+  { poolKey: "counterShape", poolSize: COUNTER_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.counterShape] },
+  { poolKey: "actionMechanism", poolSize: ACTION_MECHANISMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.actionMechanism] },
+  { poolKey: "weeklyPracticeForm", poolSize: WEEKLY_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.weeklyPracticeForm] },
+  { poolKey: "practiceForm", poolSize: PRACTICE_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceForm] },
+  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceConstraint] },
+];
+
+// P10 sidecar-field → poolKey mapping: which coarse repair salt drives which deals.
+// hook/counter/action deals have no repair lever yet — they stay unsalted.
+const SALT_FIELD_BY_POOLKEY: Record<string, keyof ChapterSlotSalts> = {
+  exampleSceneFrame: "exampleFrames",
+  exampleSceneFrameExperiential: "exampleFrames",
+  exampleRequiredBeat: "exampleFrames",
+  exampleRequiredBeatExperiential: "exampleFrames",
+  quizPromptShape: "quizShapes",
+  quizAnswerStyle: "quizShapes",
+  quizDistractorTrap: "quizShapes",
+  cardFrontShape: "quizShapes",
+  cardRetrievalTarget: "quizShapes",
+  cardBackShape: "quizShapes",
+};
 
 function pick<T>(xs: T[], offset: number, count: number): T[] {
   const out: T[] = [];
@@ -705,16 +900,24 @@ export function compileChapterBlueprint(args: {
   assertFactIdsSubset(ids, allFactIds, `chapter ${chapter.chapterNumber} blueprint`);
   const cases = caseIds(packet);
   const n = chapter.chapterNumber;
-  // The four dealt-slot salts for THIS chapter (0 ⇒ baseline). Each is mixed into ONLY its own
-  // deal's index math below, so bumping one re-deals one slot family and leaves the rest identical.
-  const { exampleFrames: exampleSalt, venues: venueSalt, quizShapes: quizSalt } = chapterSalts(salts, n);
+  // P10 × P11: the per-chapter repair salts drive the positional deals. Each poolKey maps to its
+  // coarse sidecar field (SALT_FIELD_BY_POOLKEY); a salted chapter resolves via dealPositional's
+  // sibling-replay scan so a redeal changes ONLY that chapter and never creates an avoidable
+  // same-position collision (BPV11-safe). The venue deal orders THIS chapter's own palette (not
+  // cross-chapter comparable), so its salt is a raw rank shift without replay.
+  const totalForDeal = totalChapters && totalChapters > 0 ? Math.max(totalChapters, n) : n;
+  const saltOfFor = (poolKey: string) => {
+    const field = SALT_FIELD_BY_POOLKEY[poolKey];
+    return field ? (m: number) => chapterSalts(salts, m)[field] : undefined;
+  };
+  const deal = <T,>(pool: readonly T[], poolKey: string, slotIndex: number): T =>
+    dealPositional({ pool, bookId, poolKey, chapterNumber: n, slotIndex, totalChapters: totalForDeal, saltOf: saltOfFor(poolKey) });
+  const { venues: venueSalt } = chapterSalts(salts, n);
   const quizCount = 9;
   const cardCount = 7;
   const exampleCount = EXAMPLE_SLOT_COUNT;
   const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots, salts);
-  // venueSalt rotates the planned palette so a `redeal:venue` bump re-stamps the chapter's example
-  // venues; rotate(…, 0) is the identity, so salt 0 keeps the original palette order.
-  const venuePalette = rotate(plannedVenuePalette(bookId, n), venueSalt);
+  const venuePalette = plannedVenuePalette(bookId, n);
   const pattern = answerPattern(n, quizCount, totalChapters);
   const usedExampleCaseCounts = new Map<string, number>();
   const examples: ExampleSlotV1[] = Array.from({ length: exampleCount }, (_, i) => {
@@ -726,20 +929,24 @@ export function compileChapterBlueprint(args: {
       // Guarantee a MIX: odd slots get a non-deliberation experiential engine, even slots a
       // decision engine — so every chapter's six examples span both kinds (3+3) instead of six
       // flavors of "decide." This is the deterministic lever against scene_skeleton sameness.
-      // exampleSalt shifts the scene-frame + beat pick (only) so a `redeal:example-slot` bump
-      // gives the chapter fresh scene engines to break a scene_skeleton/repeated_unit shell; salt 0
-      // ⇒ the original index, byte-identical to today.
+      // Each half is dealt via dealPositional over ITS OWN pool at the real slot index, so
+      // even slots never collide with a prior chapter's same even slot (and likewise odd),
+      // while the 3+3 decision/experiential parity is preserved by the parity switch itself.
+      // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
       sceneFrame: i % 2 === 1
-        ? EXAMPLE_SCENE_FRAMES_EXPERIENTIAL[(n * 3 + i * 5 + exampleSalt) % EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length]
-        : EXAMPLE_SCENE_FRAMES[(n * 5 + i * 7 + exampleSalt) % EXAMPLE_SCENE_FRAMES.length],
-      venue: venuePalette[i % venuePalette.length],
+        ? deal(EXAMPLE_SCENE_FRAMES_EXPERIENTIAL, "exampleSceneFrameExperiential", i)
+        : deal(EXAMPLE_SCENE_FRAMES, "exampleSceneFrame", i),
+      // Deal which palette entry lands in each slot so slot 0's venue is not always
+      // venuePalette[0]; a `redeal:venue` bump shifts the ordering (raw rank shift — the
+      // palette is chapter-local, so there is no cross-chapter column to scan against).
+      venue: dealPositional({ pool: venuePalette, bookId, poolKey: "venue", chapterNumber: n, slotIndex: i, totalChapters: totalForDeal, salt: venueSalt }),
       allowedNames: pick(allowedNames, i, 3),
       requiredFactIds: factId ? [factId] : [],
       requiredCaseIds: exampleCaseIdForFact(packet, factId, i, usedExampleCaseCounts),
       forbiddenVenues: FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
       requiredBeat: i % 2 === 1
-        ? EXAMPLE_BEATS_EXPERIENTIAL[(n * 3 + i + exampleSalt) % EXAMPLE_BEATS_EXPERIENTIAL.length]
-        : EXAMPLE_BEATS[(n + i - 1 + exampleSalt) % EXAMPLE_BEATS.length],
+        ? deal(EXAMPLE_BEATS_EXPERIENTIAL, "exampleRequiredBeatExperiential", i)
+        : deal(EXAMPLE_BEATS, "exampleRequiredBeat", i),
     };
   });
   const quiz: QuizSlotV1[] = Array.from({ length: quizCount }, (_, i) => ({
@@ -751,22 +958,22 @@ export function compileChapterBlueprint(args: {
     // answer/distractor here; card shapes below), the redeal:quiz-slot / redeal:card-slot lever.
     correctIndex: pattern[i],
     depthLevel: i < 2 ? "simple" : i < 6 ? "standard" : "deep",
-    promptShape: QUIZ_PROMPT_SHAPES[(n + i - 1 + quizSalt) % QUIZ_PROMPT_SHAPES.length],
-    answerStyle: QUIZ_ANSWER_STYLES[(n * 2 + i + quizSalt) % QUIZ_ANSWER_STYLES.length],
-    distractorTrap: QUIZ_DISTRACTOR_TRAPS[(n * 3 + i + quizSalt) % QUIZ_DISTRACTOR_TRAPS.length],
+    promptShape: deal(QUIZ_PROMPT_SHAPES, "quizPromptShape", i),
+    answerStyle: deal(QUIZ_ANSWER_STYLES, "quizAnswerStyle", i),
+    distractorTrap: deal(QUIZ_DISTRACTOR_TRAPS, "quizDistractorTrap", i),
   }));
   const cards: CardSlotV1[] = Array.from({ length: cardCount }, (_, i) => ({
     cardId: `rc${String(i + 1).padStart(2, "0")}`,
     requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
     caseCueIds: cases.length ? [cases[(n * 2 + i) % cases.length]] : [],
     difficulty: i < 2 ? "easy" : i < 5 ? "medium" : "hard",
-    frontShape: CARD_FRONT_SHAPES[(n + i - 1 + quizSalt) % CARD_FRONT_SHAPES.length],
-    retrievalTarget: CARD_RETRIEVAL_TARGETS[(n * 2 + i + quizSalt) % CARD_RETRIEVAL_TARGETS.length],
-    backShape: CARD_BACK_SHAPES[(n * 3 + i + quizSalt) % CARD_BACK_SHAPES.length],
+    frontShape: deal(CARD_FRONT_SHAPES, "cardFrontShape", i),
+    retrievalTarget: deal(CARD_RETRIEVAL_TARGETS, "cardRetrievalTarget", i),
+    backShape: deal(CARD_BACK_SHAPES, "cardBackShape", i),
   }));
-  const actionMechanism = ACTION_MECHANISMS[(n - 1) % ACTION_MECHANISMS.length];
-  const weeklyPracticeForm = WEEKLY_FORMS[(n - 1) % WEEKLY_FORMS.length];
-  const practiceForm = PRACTICE_FORMS[(n - 1) % PRACTICE_FORMS.length];
+  const actionMechanism = deal(ACTION_MECHANISMS, "actionMechanism", 0);
+  const weeklyPracticeForm = deal(WEEKLY_FORMS, "weeklyPracticeForm", 0);
+  const practiceForm = deal(PRACTICE_FORMS, "practiceForm", 0);
   const plan = buildPlan(chapter, packet, examples, quizCount, cardCount);
   return {
     schemaVersion: CHAPTER_BLUEPRINT_SCHEMA_VERSION,
@@ -784,8 +991,8 @@ export function compileChapterBlueprint(args: {
     reservedVariety: {
       allowedNames,
       forbiddenNames: forbiddenNameGuidance(allowedNames, sourceProtectedNames, siblingNames),
-      hookShape: n % 3 === 0 ? "question-into-specific-scene" : n % 3 === 1 ? "object-in-motion" : "reader-default-reversal",
-      counterShape: n % 2 === 0 ? "misleading-default" : "obvious-advice-backfires",
+      hookShape: deal(HOOK_SHAPES, "hookShape", 0),
+      counterShape: deal(COUNTER_SHAPES, "counterShape", 0),
       sceneMechanism: SCENE_MODES[n % SCENE_MODES.length],
       sceneMode: SCENE_MODES[(n + 1) % SCENE_MODES.length],
       venuePalette,
@@ -803,9 +1010,9 @@ export function compileChapterBlueprint(args: {
         actionMechanism,
         requiredFactIds: ids.slice(0, 3),
         weeklyPracticeForm,
-        ifThenPlanShapes: pick(IF_THEN_PLAN_SHAPES, n - 1, 3),
+        ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,
-        practiceConstraint: PRACTICE_CONSTRAINTS[(n - 1) % PRACTICE_CONSTRAINTS.length],
+        practiceConstraint: deal(PRACTICE_CONSTRAINTS, "practiceConstraint", 0),
       },
     },
     constraints: {
