@@ -1055,7 +1055,34 @@ export type NotebookTagsItem = {
   updatedAt: string;
 };
 
-export type NotebookEntryType = "note" | "reflection" | "bookmark" | "commitment";
+export type NotebookEntryType =
+  | "note"
+  | "reflection"
+  | "bookmark"
+  | "commitment"
+  | "highlight";
+
+/**
+ * Highlight colours the iOS reader may tag a selection with. A small closed
+ * enum so a client can't write an unbounded/garbage colour; the server
+ * validates against this set (see notebook-highlights-core.ts).
+ */
+export type HighlightColor = "yellow" | "green" | "blue" | "pink" | "orange";
+
+/**
+ * Opaque position anchor for a reader highlight. The server validates it for
+ * SHAPE only (field presence + types) and never interprets it — the iOS reader
+ * owns the meaning and uses it to re-locate the selection inside a rendered
+ * chapter block. Persisted verbatim and echoed back untouched.
+ */
+export type HighlightAnchor = {
+  variant: string;
+  tone: string;
+  blockIndex: number;
+  blockType: string;
+  startChar: number;
+  endChar: number;
+};
 
 export type NotebookEntry = {
   id: string;
@@ -1067,6 +1094,33 @@ export type NotebookEntry = {
   content: string;
   tags: string[];
   createdAt: string;
+  // Highlight-only fields (Feature B6). Present ONLY on `type: "highlight"`
+  // entries; omitted for every existing entry type, which keeps the existing
+  // note/bookmark/commitment shape unchanged.
+  color?: HighlightColor;
+  snippet?: string;
+  anchor?: HighlightAnchor;
+};
+
+/**
+ * Persisted reader-highlight record. Lives under the user partition
+ * (`BOOKUSER#<sub>`) keyed `HIGHLIGHT#<highlightId>` (see `highlightSk`), so the
+ * account-erasure partition sweep reaches it and a per-user Query enumerates all
+ * of a user's highlights. Unlike notes/bookmarks (projected from chapter state)
+ * and commitments, highlights are first-class user-created rows.
+ */
+export type BookUserHighlightItem = {
+  userId: string;
+  highlightId: string;
+  bookId: string;
+  bookTitle: string;
+  chapterNumber: number;
+  chapterTitle: string;
+  color: HighlightColor;
+  snippet: string;
+  anchor: HighlightAnchor;
+  createdAt: string;
+  updatedAt: string;
 };
 
 // ── FSRS Card State (Feature #12) ────────────────────────────────────────────

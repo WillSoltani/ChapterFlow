@@ -1,15 +1,51 @@
 import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
-import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import {
+  bookOk,
+  requireBodyObject,
+  requireString,
+  withBookApiErrors,
+} from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
+import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { bookUserPk } from "@/app/app/api/book/_lib/keys";
 import { buildChapterStateNotebookEntries } from "@/app/app/api/book/_lib/notebook-entries";
-import type { NotebookEntry } from "@/app/app/api/book/_lib/types";
+import {
+  buildHighlightNotebookEntries,
+  highlightItemToNotebookEntry,
+  parseHighlightCreateInput,
+  parseHighlightUpdateInput,
+} from "@/app/app/api/book/_lib/notebook-highlights-core";
+import {
+  createHighlight,
+  deleteHighlight,
+  listHighlights,
+  updateHighlight,
+} from "@/app/app/api/book/_lib/notebook-highlight-repo";
+import type { BookUserHighlightItem, NotebookEntry } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
+
+/** Parse an optional integer `chapter` query param; null when absent/invalid. */
+function parseChapterFilter(url: URL): number | null {
+  const raw = url.searchParams.get("chapter");
+  if (raw === null || raw.trim() === "") return null;
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 0 ? n : null;
+}
+
+async function safeJson(req: Request): Promise<Record<string, unknown>> {
+  let raw: unknown;
+  try {
+    raw = await req.json();
+  } catch {
+    raw = {};
+  }
+  return requireBodyObject(raw);
+}
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -19,6 +55,7 @@ export async function GET(req: Request) {
 
     const url = new URL(req.url);
     const bookIdFilter = url.searchParams.get("bookId");
+    const chapterFilter = parseChapterFilter(url);
     const searchFilter = url.searchParams.get("search")?.toLowerCase();
 
     // Query chapter states for notes + bookmarks
@@ -94,10 +131,27 @@ export async function GET(req: Request) {
       });
     }
 
-    // Apply search filter
+    // Reader highlights (Feature B6) — first-class user-created entries, filtered
+    // by book/chapter exactly like the derived types above.
+    const highlights = await listHighlights(tableName, user.sub);
+    entries.push(
+      ...buildHighlightNotebookEntries(highlights, {
+        bookId: bookIdFilter,
+        chapter: chapterFilter,
+      }),
+    );
+
+    // Apply the chapter filter uniformly to the derived (note/bookmark/
+    // commitment) entries too. No-op when the param is absent, so existing
+    // callers see unchanged results.
     let filtered = entries;
+    if (chapterFilter != null) {
+      filtered = filtered.filter((e) => e.chapterNumber === chapterFilter);
+    }
+
+    // Apply search filter
     if (searchFilter) {
-      filtered = entries.filter(
+      filtered = filtered.filter(
         (e) =>
           e.content.toLowerCase().includes(searchFilter) ||
           e.bookTitle.toLowerCase().includes(searchFilter) ||
@@ -109,5 +163,76 @@ export async function GET(req: Request) {
     filtered.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
 
     return bookOk({ entries: filtered, totalCount: filtered.length });
+  });
+}
+
+// ── Reader highlight mutations (Feature B6) ───────────────────────────────────
+//
+// POST creates a highlight; PATCH updates one (colour/snippet/anchor); DELETE
+// removes one. All three flow through `withBookApiErrors`, which auto-runs the
+// same-origin/CSRF guard for cookie-authed browser calls and skips it for the
+// native iOS client's Bearer-authenticated requests.
+
+export async function POST(req: Request) {
+  return withBookApiErrors(req, async () => {
+    const user = await requireActiveBookUser();
+    const tableName = await getBookTableName();
+
+    const body = await safeJson(req);
+    const input = parseHighlightCreateInput(body);
+
+    const item: BookUserHighlightItem = {
+      userId: user.sub,
+      highlightId: crypto.randomUUID(),
+      bookId: input.bookId,
+      bookTitle: input.bookTitle || input.bookId,
+      chapterNumber: input.chapterNumber,
+      chapterTitle: input.chapterTitle || `Chapter ${input.chapterNumber}`,
+      color: input.color,
+      snippet: input.snippet,
+      anchor: input.anchor,
+      // Overwritten with server time by createHighlight.
+      createdAt: "",
+      updatedAt: "",
+    };
+
+    const created = await createHighlight(tableName, item);
+    return bookOk({ entry: highlightItemToNotebookEntry(created) }, 201);
+  });
+}
+
+export async function PATCH(req: Request) {
+  return withBookApiErrors(req, async () => {
+    const user = await requireActiveBookUser();
+    const tableName = await getBookTableName();
+
+    const body = await safeJson(req);
+    const highlightId = requireString(body.highlightId, "highlightId", { maxLength: 200 });
+    const patch = parseHighlightUpdateInput(body);
+
+    const updated = await updateHighlight(tableName, user.sub, highlightId, patch);
+    if (!updated) {
+      // updateHighlight throws 404 on a missing row; a null return would only
+      // mean the driver echoed no attributes for an existing row — surface as 404.
+      throw new BookApiError(404, "not_found", "Highlight not found.");
+    }
+    return bookOk({ entry: highlightItemToNotebookEntry(updated) });
+  });
+}
+
+export async function DELETE(req: Request) {
+  return withBookApiErrors(req, async () => {
+    const user = await requireActiveBookUser();
+    const tableName = await getBookTableName();
+
+    const url = new URL(req.url);
+    const highlightId = requireString(
+      url.searchParams.get("id") ?? url.searchParams.get("highlightId"),
+      "id",
+      { maxLength: 200 },
+    );
+
+    await deleteHighlight(tableName, user.sub, highlightId);
+    return bookOk({ ok: true });
   });
 }
