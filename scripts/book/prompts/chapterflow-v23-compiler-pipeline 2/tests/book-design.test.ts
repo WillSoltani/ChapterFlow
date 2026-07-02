@@ -8,11 +8,15 @@
  * venuePlan cap-2 / no-adjacent invariants for the design-derived venue palette.
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
+import { fileURLToPath } from "node:url";
+
 import { test } from "./harness.js";
+
+const HERE = resolve(fileURLToPath(import.meta.url), "..");
 import {
   deriveBookDesign,
   validateBookDesign,
@@ -190,4 +194,25 @@ test("P14: design-derived venue palette preserves venuePlan cap-2 / no-adjacent 
     // cap-2, within-chapter-distinct, and no-adjacent-overlap all hold for the design palette.
     assert.doesNotThrow(() => assertVenueInvariants(allocation, 1, chapters.length), "design-derived venue allocation must satisfy venuePlan invariants");
   });
+});
+
+// ── R1 (reviewer): CROSS-VERSION legacy golden — chains byte-compat across P13 → P14 ─────────────
+// The P14 round-trip test above proves add/remove-artifact consistency WITHIN this code version;
+// this test proves the no-artifact path still produces the SAME BYTES as the pre-P13 world: the
+// golden was captured on pre-P13 main and independently re-verified there at both the P13 and P14
+// reviews. Any future change that silently moves the legacy path breaks THIS test, not just
+// self-consistency.
+test("P14 (cross-version): the no-design legacy path reproduces the pre-P13 golden byte-for-byte", () => {
+  const packet = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-packet.json"), "utf8")) as SourcePacketV1;
+  const golden = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-blueprint.golden.json"), "utf8"));
+  const stateRoot = resolve(tmpdir(), `cf-p14-crossgolden-${process.pid}-${Date.now()}`);
+  const chapter = { chapterId: packet.chapterId, chapterNumber: packet.chapterNumber, chapterTitle: packet.chapterTitle };
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${packet.bookId}.json`), [chapter]);
+    const bp = compileChapterBlueprint({ bookId: packet.bookId, chapter, packet, packetPath: golden.sourcePacketPath, roots: { stateRoot }, totalChapters: 1 });
+    assert.deepEqual(JSON.parse(JSON.stringify(bp)), golden, "no-design/no-genre legacy compile must equal the pre-P13 golden (byte-compat chain)");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
 });
