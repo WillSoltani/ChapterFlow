@@ -174,6 +174,27 @@ test("--commit commits EXACTLY the one package file (message + trailer), leaving
   }
 });
 
+test("report-only mode ALSO refuses a dirty dest (the copy itself would clobber in-flight work)", async () => {
+  const fx = makeFixture("dirty-report-only", { git: true });
+  try {
+    writeFileSync(fx.destPkg, '{"version":"A"}\n');
+    git(fx.outerRoot, ["add", "--", `book-packages/${BOOK}.v21.json`]);
+    git(fx.outerRoot, ["commit", "-q", "-m", "someone else's version A"]);
+    writeFileSync(fx.destPkg, '{"version":"B-dirty-from-elsewhere"}\n');
+
+    const result = await publishToLive(BOOK, {
+      localPackagePath: fx.localPkg,
+      outerRoot: fx.outerRoot,
+      verify: () => true,
+    });
+    assert.equal(result.ok, false);
+    assert.match(result.error ?? "", /already staged\/dirty/);
+    assert.equal(readFileSync(fx.destPkg, "utf8"), '{"version":"B-dirty-from-elsewhere"}\n', "report-only must NOT clobber the dirty file either");
+  } finally {
+    fx.cleanup();
+  }
+});
+
 test("--commit refuses a dest already dirty from elsewhere and does NOT clobber it", async () => {
   const fx = makeFixture("dirty", { git: true });
   try {

@@ -105,12 +105,16 @@ export async function publishToLive(bookId: string, opts?: PublishToLiveOptions)
   const outerRoot = opts?.outerRoot ?? MONOREPO_ANCESTOR;
   const destPath = resolve(outerRoot, "book-packages", `${id}.v21.json`);
 
-  // (e-pre) when a commit is requested, refuse BEFORE copying if the outer repo
-  // already has that file staged/dirty from other work — copying first would
-  // clobber it and make "dirty from elsewhere" indistinguishable from our copy.
+  // (e-pre) refuse BEFORE copying if the outer repo already has that file
+  // staged/dirty from other work — copying first would clobber it and make
+  // "dirty from elsewhere" indistinguishable from our copy. This refusal is
+  // ALWAYS-ON (report-only mode overwrites the dest file too, so it needs the
+  // same protection); the git-tree/toplevel requirements stay --commit-only so
+  // report-only runs against non-git outer roots (tests, dry-runs) still work.
+  const inside = git(outerRoot, ["rev-parse", "--is-inside-work-tree"]);
+  const outerIsGit = inside.status === 0 && inside.stdout === "true";
   if (opts?.commit) {
-    const inside = git(outerRoot, ["rev-parse", "--is-inside-work-tree"]);
-    if (inside.status !== 0 || inside.stdout !== "true") {
+    if (!outerIsGit) {
       return fail(`--commit requested but outer root is not a git work tree: ${outerRoot}`);
     }
     const toplevel = git(outerRoot, ["rev-parse", "--show-toplevel"]);
@@ -119,13 +123,15 @@ export async function publishToLive(bookId: string, opts?: PublishToLiveOptions)
         `--commit requested but outer root is not the git toplevel (toplevel=${toplevel.stdout || "?"}, outerRoot=${outerRoot}) — refusing to commit into an enclosing repo`,
       );
     }
+  }
+  if (outerIsGit) {
     const dirty = git(outerRoot, ["status", "--porcelain", "--", relPath]);
     if (dirty.status !== 0) {
       return fail(`git status failed in ${outerRoot}: ${dirty.stderr || dirty.stdout}`);
     }
     if (dirty.stdout !== "") {
       return fail(
-        `refusing to commit: ${relPath} is already staged/dirty in the outer tree (${dirty.stdout.split("\n")[0]}) — reconcile that change first`,
+        `refusing to overwrite: ${relPath} is already staged/dirty in the outer tree (${dirty.stdout.split("\n")[0]}) — reconcile that change first`,
       );
     }
   }
