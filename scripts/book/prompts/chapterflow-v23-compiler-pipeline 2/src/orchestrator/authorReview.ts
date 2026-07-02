@@ -17,22 +17,29 @@
  *      AND medianComposite >= bar. The two book readers are the author arch's
  *      CONFIRMING function (the sweep-confirmation analog — runAutopilot's
  *      author branch substitutes this acceptance for deps.sweepConfirmed).
- *   4. On acceptance: write the QC attestation + bar/confirm records in the
- *      shapes the promote gate reads (verdict PUBLISHABLE, bound to
- *      chapterContentHash, reviewer sessions from the review artifacts).
+ *   4. On acceptance: FIRST produce the independent publish evidence the
+ *      no-API promote gate additionally enforces (component B5,
+ *      authorEvidence.ts) — the per-chapter manual key-judge records (blind
+ *      key packs + TWO independent key-reader sessions fed through the real
+ *      key-derive/key-resolve writers, round roles keyA/keyB) and the
+ *      book-level sweep attestation (one independent sweep read submitted
+ *      through the real qc-submit path, backed by roles.sweep) — then write
+ *      the QC attestation + bar/confirm records in the shapes the promote
+ *      gate reads (verdict PUBLISHABLE, bound to chapterContentHash, reviewer
+ *      sessions from the review artifacts). A failure in either evidence step
+ *      is a fail-closed halt (infra/content), never a skip.
  *
- *      ⚠️ KNOWN LIMITATION (verifier finding 2026-07-02): promote-book force-sets
- *      CHAPTERFLOW_NO_API_CODEX_QC=1 and in that mode ALSO enforces
- *      checkManualKeyJudge (keyA/keyB key-pack/derive/resolve records per
- *      chapter) and checkSweep (a sweep attestation backed by roles.sweep) —
- *      record families only the legacy/compiler QC round machinery produces.
- *      An author-arch book therefore reaches READY but cannot pass promote-book
- *      yet. Follow-up component B5 must synthesize those records from evidence
- *      the author arch already collects (every chapter reviewer blind-derives
- *      all quiz keys = the key-judge function; the two book-acceptance readers
- *      judge cross-chapter churn = the sweep function) — in their REAL shapes,
- *      with a second independent derivation per chapter, NOT by touching
- *      promote.
+ *      HISTORY — the closed B4 KNOWN LIMITATION (verifier finding 2026-07-02):
+ *      promote-book force-sets CHAPTERFLOW_NO_API_CODEX_QC=1 and in that mode
+ *      ALSO enforces checkManualKeyJudge (keyA/keyB key-pack/derive/resolve
+ *      records per chapter) and checkSweep (a sweep attestation backed by
+ *      roles.sweep) — record families only the legacy/compiler QC round
+ *      machinery produced, so an author-arch book reached READY but could not
+ *      pass promote-book. B5 (2026-07-02) closed it by producing those exact
+ *      record families as REAL independent evidence through the existing
+ *      writers (never by touching promote/manualKeyJudge/sweep check code):
+ *      see authorEvidence.ts runKeyJudgeEvidence + runSweepEvidence, wired in
+ *      below at the acceptance step.
  *   5. On rejection: ONE targeted regen round (book complaints mapped to their
  *      chapters, cap 3), re-review, then re-run acceptance ONCE; still
  *      failing → halt content.
@@ -75,8 +82,14 @@ import { chapterContentHash, writeAttestation, type QcAttestation } from "../cri
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../critics/semantic/publishableBar.js";
 import { writeBarReadArtifact, writeConfirmReadArtifact } from "../qc/orchestrator/artifacts.js";
 import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "../qc/orchestrator/schemas.js";
-import { openQcRound } from "../qc/qcRound.js";
+import { openQcRound, type QcRoundRole } from "../qc/qcRound.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
+import {
+  runKeyJudgeEvidence,
+  runSweepEvidence,
+  type AuthorEvidenceResult,
+  type AuthorEvidenceRound,
+} from "./authorEvidence.js";
 import {
   authorWriteOneChapter,
   resolveAuthorIo,
@@ -97,13 +110,21 @@ export const AUTHOR_BOOK_READERS = 2;
 // ── Injectable IO (extends the write phase's AuthorIo) ────────────────────────
 
 export type AcceptanceWriters = {
-  /** Open a REAL QC round (state/qc-rounds/<book>.<roundId>.json) and return its id —
-   *  checkQcAttestation's no-API path requires the attestation's roundId/roundRole to
-   *  resolve against an existing round record. */
-  openRound: (bookId: string) => string;
+  /** Open a REAL QC round (state/qc-rounds/<book>.<roundId>.json) and return its id
+   *  PLUS the role tokens — checkQcAttestation's no-API path requires the attestation's
+   *  roundId/roundRole to resolve against an existing round record, and the B5 evidence
+   *  writers (key-derive / qc-submit) verify their role tokens against the same round. */
+  openRound: (bookId: string) => { roundId: string; tokens: Partial<Record<QcRoundRole, string>> };
   writeBar: (submission: ValidatedBarReadSubmission) => string;
   writeConfirm: (submission: ValidatedConfirmReadSubmission) => string;
   writeAttestation: (att: QcAttestation) => string;
+};
+
+/** B5 — the independent publish-evidence steps (injectable so unit tests stub
+ *  them; the real implementations live in authorEvidence.ts). */
+export type EvidenceRunners = {
+  runKeyJudge: (bookId: string, chapters: ChapterV21[], deps: AutopilotDeps, io: AuthorReviewIo, round: AuthorEvidenceRound) => Promise<AuthorEvidenceResult>;
+  runSweep: (bookId: string, chapters: ChapterV21[], deps: AutopilotDeps, io: AuthorReviewIo, round: AuthorEvidenceRound) => Promise<AuthorEvidenceResult>;
 };
 
 export type AuthorReviewIo = AuthorIo & {
@@ -112,6 +133,7 @@ export type AuthorReviewIo = AuthorIo & {
   /** Persist a chapter's ChapterReviewV1 artifact. */
   persistReview: (bookId: string, review: ChapterReviewV1) => string;
   acceptance: AcceptanceWriters;
+  evidence: EvidenceRunners;
 };
 
 export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorReviewIo {
@@ -127,10 +149,17 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
     }),
     persistReview: over?.persistReview ?? ((bookId, review) => writeChapterReview(bookId, review)),
     acceptance: over?.acceptance ?? {
-      openRound: (bookId) => openQcRound(bookId).record.roundId,
+      openRound: (bookId) => {
+        const opened = openQcRound(bookId);
+        return { roundId: opened.record.roundId, tokens: opened.tokens };
+      },
       writeBar: (submission) => writeBarReadArtifact(submission),
       writeConfirm: (submission) => writeConfirmReadArtifact(submission),
       writeAttestation: (att) => writeAttestation(att),
+    },
+    evidence: over?.evidence ?? {
+      runKeyJudge: runKeyJudgeEvidence,
+      runSweep: runSweepEvidence,
     },
   };
 }
@@ -370,15 +399,17 @@ async function runBookAcceptance(
  *  session id, backed by a REAL opened QC round) plus the round's bar-read and
  *  confirm-read artifacts (matching contentHash; confirm decision PUBLISHABLE)
  *  that checkBarConfirmArtifactsForPublishable requires in no-API mode.
- *  Returns the opened roundId. Exported for tests. */
+ *  The caller opens the round (writers.openRound) so the B5 evidence steps can
+ *  share it; returns the roundId used. Exported for tests. */
 export function writeAuthorAcceptance(
   bookId: string,
   chapters: ChapterV21[],
   reviews: Map<number, ChapterReviewV1>,
   acceptance: BookAcceptanceResult,
   writers: AcceptanceWriters,
+  openedRoundId?: string,
 ): string {
-  const roundId = writers.openRound(bookId);
+  const roundId = openedRoundId ?? writers.openRound(bookId).roundId;
   const reviewedAt = new Date().toISOString();
   const barReaderSession = acceptance.readerSessionIds[0] ?? `author-book-reader:${roundId}`;
   for (const chapter of chapters) {
@@ -568,10 +599,28 @@ export async function doAuthorReview(
     }
   }
 
-  // ── 4. Accepted: write the records the promote gate reads. ─────────────────
+  // ── 4. Accepted: produce the independent publish evidence (B5), then write
+  //       the records the promote gate reads. The evidence steps drive the
+  //       REAL key-pack/key-derive/key-resolve and qc-submit/sweep-record
+  //       writers against the SAME opened round the attestations cite; a
+  //       failure in either is a fail-closed halt, never a skip. ─────────────
+  let opened: AuthorEvidenceRound;
   try {
-    const roundId = writeAuthorAcceptance(bookId, chapters, reviews, acceptance, io.acceptance);
-    deps.log(`[autopilot] author acceptance PASSED — wrote ${chapters.length} PUBLISHABLE attestation(s) + bar/confirm artifacts (round ${roundId})`);
+    opened = io.acceptance.openRound(bookId);
+  } catch (err) {
+    return halt(bookId, "infra", `author acceptance passed but opening the QC round failed: ${(err as Error).message}`);
+  }
+  const keyEvidence = await io.evidence.runKeyJudge(bookId, chapters, deps, io, opened);
+  if (!keyEvidence.ok) {
+    return halt(bookId, keyEvidence.category, `author publish evidence (manual key-judge) failed for round ${opened.roundId}: ${keyEvidence.reason}`);
+  }
+  const sweepEvidence = await io.evidence.runSweep(bookId, chapters, deps, io, opened);
+  if (!sweepEvidence.ok) {
+    return halt(bookId, sweepEvidence.category, `author publish evidence (sweep) failed for round ${opened.roundId}: ${sweepEvidence.reason}`);
+  }
+  try {
+    const roundId = writeAuthorAcceptance(bookId, chapters, reviews, acceptance, io.acceptance, opened.roundId);
+    deps.log(`[autopilot] author acceptance PASSED — key-judge + sweep evidence complete; wrote ${chapters.length} PUBLISHABLE attestation(s) + bar/confirm artifacts (round ${roundId})`);
   } catch (err) {
     return halt(bookId, "infra", `author acceptance passed but the attestation write failed: ${(err as Error).message}`);
   }
