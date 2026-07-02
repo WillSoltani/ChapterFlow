@@ -379,6 +379,13 @@ Commands:
                                      chapter (parallel), byte-verify its evidence quotes + quiz-key derivations,
                                      and write state/reviews/<bookId>/ch<NN>.review.json. Prints a per-book
                                      table + median composite; --json emits the machine payload last.
+  eval-book-proxy <bookId> [<bookId2> ...] [--readers 3] [--json]
+                                     v24 book-level reader panel — a faithful replica of the owner's
+                                     book-score instrument: score.py's md5-SEEDED 4-chapter sample rendered
+                                     as ONE blinded doc, N independent readers each read ALL of it and emit
+                                     the 10 rubric factors at book level + PASS/FAIL correctness gate +
+                                     book3_churn; compose.py math (median factors, majority gate, churn
+                                     mode). Quotes byte-verified; per-chapter key derivations checked.
 
   help                               This message
 
@@ -5611,6 +5618,8 @@ async function main() {
       return runUnquarantineBook(args);
     case "eval-reader-proxy":
       return (await import("./review/evalReaderProxy.js")).runEvalReaderProxy(args, flags);
+    case "eval-book-proxy":
+      return (await import("./review/evalBookProxy.js")).runEvalBookProxy(args, flags);
     case "help":
     case undefined:
     case "--help":
