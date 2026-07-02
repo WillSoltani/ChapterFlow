@@ -278,6 +278,8 @@ Commands:
                                      an event log. Changes no pipeline behavior; same gates, env, exit code.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
+  compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
+  book-design-gate <bookId>          v23 compiler: validate the per-book design artifact (BD1-BD5).
   compile-blueprints <bookId>        v23 compiler: compile deterministic per-chapter blueprints.
   blueprint-gate <bookId>            v23 compiler: validate deterministic blueprints.
   deal-section-tasks <bookId>        v23 compiler: write narrow Codex task cards for section artifacts.
@@ -3907,6 +3909,29 @@ async function runBlueprintGate(args: string[]): Promise<number> {
   return report.passed ? 0 : 1;
 }
 
+async function runCompileBookDesign(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("Usage: compile-book-design <bookId>"); return 2; }
+  const { compileBookDesign } = await import("./compiler/bookDesign.js");
+  const result = compileBookDesign(bookId);
+  if (result.written) console.log(`wrote ${result.written}`);
+  if (result.findings.length) {
+    console.error(result.findings.join("\n"));
+    return 1;
+  }
+  console.log(`compile-book-design: PASS`);
+  return 0;
+}
+
+async function runBookDesignGate(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("Usage: book-design-gate <bookId>"); return 2; }
+  const { checkBookDesignGate, formatBookDesignGateReport } = await import("./compiler/bookDesign.js");
+  const report = checkBookDesignGate(bookId);
+  console.log(formatBookDesignGateReport(report));
+  return report.passed ? 0 : 1;
+}
+
 async function runDealSectionTasks(args: string[]): Promise<number> {
   const bookId = args[0];
   if (!bookId) { console.error("Usage: deal-section-tasks <bookId>"); return 2; }
@@ -5451,6 +5476,10 @@ async function main() {
       return runCompileSourcePackets(args);
     case "source-packet-gate":
       return runSourcePacketGate(args);
+    case "compile-book-design":
+      return runCompileBookDesign(args);
+    case "book-design-gate":
+      return runBookDesignGate(args);
     case "compile-blueprints":
       return runCompileBlueprints(args);
     case "blueprint-gate":

@@ -3,7 +3,27 @@ import { blueprintPath, readJsonFile, type CompilerStoreRoots } from "../artifac
 import { CHAPTER_BLUEPRINT_SCHEMA_VERSION, type ChapterBlueprintV1 } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
-import { POSITIONAL_DEALS } from "./chapterBlueprint.js";
+import { POSITIONAL_DEALS, resolvedPoolsForBook } from "./chapterBlueprint.js";
+import type { ResolvedPools } from "./bookDesign.js";
+
+/** Per-book pool-size overrides for the positional-collision math (P14). A book compiled from
+ *  per-book design/genre pools deals from pools whose sizes differ from the global constants
+ *  POSITIONAL_DEALS was built with, so BPV11's round-robin cap must be computed against the ACTUAL
+ *  resolved sizes or it would false-positive/negative. The genre-neutral shape pools (quiz/card/
+ *  hook/counter/if-then) are not designable and keep the descriptor's own poolSize. */
+type PoolSizeOverride = { poolSize: number; poolSizeAt?: (slotIndex: number) => number };
+
+function poolSizeOverrides(pools: ResolvedPools): Record<string, PoolSizeOverride> {
+  const parity = (dec: number, exp: number) => (slotIndex: number) => (slotIndex % 2 === 1 ? exp : dec);
+  return {
+    exampleSceneFrame: { poolSize: pools.sceneFramesDecision.length, poolSizeAt: parity(pools.sceneFramesDecision.length, pools.sceneFramesExperiential.length) },
+    exampleRequiredBeat: { poolSize: pools.beatsDecision.length, poolSizeAt: parity(pools.beatsDecision.length, pools.beatsExperiential.length) },
+    practiceForm: { poolSize: pools.practiceForms.length },
+    practiceConstraint: { poolSize: pools.practiceConstraints.length },
+    actionMechanism: { poolSize: pools.actionMechanisms.length },
+    weeklyPracticeForm: { poolSize: pools.weeklyForms.length },
+  };
+}
 
 export type BlueprintFinding = {
   checkId: string;
@@ -72,17 +92,20 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
  *     is widened before it becomes a book-wide monoculture (the hookShape=3 /
  *     counterShape=2 problem this change fixed).
  */
-export function checkPositionalDeals(blueprints: ChapterBlueprintV1[]): BlueprintFinding[] {
+export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides: Record<string, PoolSizeOverride> = {}): BlueprintFinding[] {
   const findings: BlueprintFinding[] = [];
   const C = blueprints.length;
   if (C === 0) return findings;
 
   for (const d of POSITIONAL_DEALS) {
+    const override = overrides[d.poolKey];
+    const poolSize = override?.poolSize ?? d.poolSize;
+    const poolSizeAt = override?.poolSizeAt ?? d.poolSizeAt;
     const columns = blueprints.map((bp) => d.extract(bp));
     for (let slot = 0; slot < d.slots; slot++) {
       const values = columns.map((col) => col[slot]).filter((v): v is string => typeof v === "string" && v.length > 0);
       if (values.length === 0) continue;
-      const P = d.poolSizeAt ? d.poolSizeAt(slot) : d.poolSize;
+      const P = poolSizeAt ? poolSizeAt(slot) : poolSize;
       const cap = Math.max(1, Math.ceil(values.length / Math.max(1, P)));
       const counts = new Map<string, number>();
       for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
@@ -99,11 +122,11 @@ export function checkPositionalDeals(blueprints: ChapterBlueprintV1[]): Blueprin
     }
     if (d.perChapter) {
       const floor = Math.ceil(C / 2);
-      if (d.poolSize < floor) {
+      if (poolSize < floor) {
         findings.push({
           checkId: "BPV12.pool_floor",
           severity: "advisory",
-          message: `per-chapter deal "${d.poolKey}" draws from a pool of ${d.poolSize}, below the ceil(${C}/2)=${floor} floor for a ${C}-chapter book — widen it to avoid a book-wide monoculture`,
+          message: `per-chapter deal "${d.poolKey}" draws from a pool of ${poolSize}, below the ceil(${C}/2)=${floor} floor for a ${C}-chapter book — widen it to avoid a book-wide monoculture`,
           path: `/positional/${d.poolKey}`,
         });
       }
@@ -135,7 +158,16 @@ export function checkBlueprintGate(bookId: string, roots: CompilerStoreRoots = {
   // so a partially-compiled book (some blueprints missing) doesn't produce spurious
   // "avoidable collision" findings off an incomplete column.
   if (loaded.length === chapters.length && loaded.length > 0) {
-    findings.push(...checkPositionalDeals(loaded));
+    // Size the positional-collision math to the SAME per-book pools the compile dealt from (P14),
+    // so a design/genre book isn't flagged against the global constant sizes. Best-effort: a
+    // resolution failure falls back to the descriptor's own (constant) sizes.
+    let overrides: Record<string, PoolSizeOverride> = {};
+    try {
+      overrides = poolSizeOverrides(resolvedPoolsForBook(normalized, roots));
+    } catch {
+      /* fall back to constant sizes */
+    }
+    findings.push(...checkPositionalDeals(loaded, overrides));
   }
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: chapters.length, findings };
 }

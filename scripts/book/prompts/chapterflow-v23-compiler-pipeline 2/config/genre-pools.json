@@ -1,0 +1,559 @@
+{
+  "description": "P14 genre-tagged static variety pools. The pre-P14 global blueprint pool constants (chapterBlueprint.ts) reorganized under genre keys, with each entry assigned to the genre it actually fits. `generic` is the neutral superset (the pre-P14 constants) used as the byte-compat legacy pool and the top-up source every other genre draws from to reach its floors. The investing document venues live under `investing` ONLY; the moments-flavored scene frames live under `experience-design`. Books map to a genre via config/genre-map (books.json category); a book without a design artifact and mapped to `generic` compiles byte-identically to the pre-P14 world. Blueprints remain deterministic: these are static config, not model output.",
+  "version": "1.0.0",
+  "genres": {
+    "generic": {
+      "sceneFramesDecision": [
+        "post-decision consequence that forces a correction",
+        "failed small experiment with a revised second attempt",
+        "two stakeholders disagree before the protagonist chooses",
+        "measurement surprise after the obvious fix looked good",
+        "boundary case where the tactic would be manipulative",
+        "owner handoff that changes who must act next",
+        "before-after comparison with one visible behavior shift",
+        "rejection of an attractive but mismatched tactic",
+        "successful execution with one unresolved constraint",
+        "participant interview that changes the design target",
+        "deletion exercise that removes a decorative gesture",
+        "field test where the evidence changes the size of the move",
+        "quiet pilot where one participant's after-effect changes the brief",
+        "rehearsal where a borrowed line gets cut before launch",
+        "two-option field check that rejects the more photogenic move",
+        "late complaint that makes the team resize a gesture",
+        "source-specific fit test before a tempting copy spreads",
+        "small ownership note that changes the next person's behavior",
+        "practice run where social pressure exposes the real stake",
+        "post-event audit that separates applause from changed action",
+        "stakeholder veto that turns a ritual into a plainer repair",
+        "timing change after the first attempt lands in the wrong place",
+        "participant quote that replaces a broad rollout with one trial",
+        "recovery decision where charm loses to a verifiable outcome",
+        "frontline check that keeps the evidence but changes the target",
+        "failed celebration draft revised around a real threshold",
+        "bounded approval where the stop rule matters as much as the move",
+        "small contrast test between remembered effect and surface appeal",
+        "handoff repair that names the owner before the repeat",
+        "field observation that removes the decorative part first",
+        "pressure rehearsal that makes the risk visible before action",
+        "measurement swap from easy approval to observable behavior",
+        "relationship check where the response changes the design size",
+        "service recovery choice that keeps the story but changes the proof",
+        "course correction after a polished version teaches the wrong lesson",
+        "local refusal where the source detail becomes a boundary"
+      ],
+      "sceneFramesExperiential": [
+        "an unexpected kindness that lands and gets retold afterward",
+        "a small ceremony that marks a transition so it feels earned",
+        "a first-time experience that sets a lasting benchmark",
+        "a peak moment recalled vividly long after the day it happened",
+        "a shared ritual observed in mid-action as it builds connection",
+        "a public recognition that shifts how someone sees themselves",
+        "one sensory detail that turns an ordinary moment into a kept memory",
+        "a stranger's small gesture that becomes a story worth repeating",
+        "a hard truth delivered with enough care that it finally registers",
+        "a milestone reached and the small marker that seals it",
+        "a break in the routine script that leaves a lasting after-image",
+        "a moment of genuine connection during an otherwise routine handoff"
+      ],
+      "beatsDecision": [
+        "show a sound process being pressure-tested before commitment",
+        "show the reader-facing move changing a real decision",
+        "show friction or recovery after a first attempt goes sideways",
+        "compare two plausible choices with a grounded reason for the better move",
+        "show a tradeoff decision under mild time or social pressure",
+        "show a bounded decision with one inconvenient constraint still visible",
+        "show successful execution with one inconvenient constraint still present",
+        "show a boundary case where waiting, acting, or sizing the decision carries a cost",
+        "show a second opinion changing the action without turning into a lecture",
+        "show a record-keeping step that clarifies the choice without becoming the whole scene",
+        "show a small reversal where new evidence changes the amount, timing, or commitment",
+        "show the after-effect of an earlier decision and the adjustment it forces now"
+      ],
+      "beatsExperiential": [
+        "show a surprise breaking the expected script and the after-image it leaves",
+        "show a milestone marked so it feels earned rather than automatic",
+        "show a first encounter setting the tone for everything that follows",
+        "show a shared ritual turning a routine into real connection",
+        "show a recognition landing and changing how someone acts next",
+        "show a sensory peak that becomes the whole remembered experience",
+        "show a hard truth delivered with care so it finally registers",
+        "show a small kindness rippling well past the moment it happened"
+      ],
+      "venues": [
+        "a kitchen table",
+        "a dinner table",
+        "a shared calendar invite",
+        "a sticky note on the fridge",
+        "a saved draft message",
+        "a handwritten note on the counter",
+        "a phone call home",
+        "a to-do list on the whiteboard",
+        "a reminder on a phone",
+        "a shared grocery list",
+        "a car ride conversation",
+        "a walk around the block",
+        "a coffee-shop table",
+        "a morning routine",
+        "a weekend plan",
+        "a household chore chart",
+        "a wallet receipt",
+        "a text thread with a friend",
+        "a bedside notebook",
+        "a doorway conversation",
+        "a lunch break",
+        "a shared photo album",
+        "a spare-room desk",
+        "a bulletin board note"
+      ],
+      "practiceConstraints": [
+        "approve the move only after naming the person whose response should change",
+        "make the first test small enough to observe before the next handoff",
+        "choose between two concrete options rather than adding a general checklist",
+        "tie the timing to the chapter's real stake instead of a generic weekly cadence",
+        "force one explicit reject, resize, or proceed decision",
+        "define a visible proof point before adding ceremony",
+        "keep the practice inside one live moment, not a broad program redesign",
+        "name who owns the next action before the moment repeats",
+        "replace the copied surface detail with the local behavior it should change",
+        "use one participant reaction as evidence before scaling the idea",
+        "make the stop rule as specific as the action rule",
+        "choose a repair that can be tested in ordinary language",
+        "separate the attractive gesture from the human need it is meant to serve",
+        "write the failure path before choosing the visible move",
+        "make the practice prove fit, not fluency with the source case",
+        "turn the source mechanism into a local decision rule",
+        "name the tradeoff the reader must accept before acting",
+        "keep the exercise grounded in one observable response",
+        "assign one owner and one consequence for the next attempt",
+        "prefer a reversible field test over a polished rollout",
+        "change the measure before changing the whole experience",
+        "make the repeat condition visible to someone who was not in the planning meeting",
+        "cut one decorative element before adding a new one",
+        "let a real participant's stake set the size of the move"
+      ],
+      "practiceForms": [
+        "before-after audit",
+        "stakeholder interview",
+        "one-page decision log",
+        "rehearsal script",
+        "deletion exercise",
+        "field test",
+        "two-option comparison",
+        "owner handoff note",
+        "failure-premortem note",
+        "measurement swap",
+        "boundary refusal",
+        "post-moment evidence review"
+      ],
+      "actionMechanisms": [
+        "two-minute audit",
+        "calendar trigger",
+        "one-message request",
+        "default swap",
+        "if-then rehearsal",
+        "friction removal",
+        "receipt check",
+        "decision log",
+        "environment edit"
+      ],
+      "weeklyForms": [
+        "one repeated audit",
+        "two-trigger checklist",
+        "weekly calendar review",
+        "one saved template",
+        "Sunday reset",
+        "Friday evidence log",
+        "one recurring conversation",
+        "three-minute scoreboard"
+      ]
+    },
+    "business-decision": {
+      "sceneFramesDecision": [
+        "post-decision consequence that forces a correction",
+        "two stakeholders disagree before the protagonist chooses",
+        "measurement surprise after the obvious fix looked good",
+        "owner handoff that changes who must act next",
+        "successful execution with one unresolved constraint",
+        "bounded approval where the stop rule matters as much as the move",
+        "second opinion that changes the action without turning into a lecture",
+        "timing change after the first attempt lands in the wrong place",
+        "recovery decision where charm loses to a verifiable outcome",
+        "budget tradeoff where the cheaper option hides a later cost",
+        "escalation that turns a vague complaint into a named decision",
+        "pilot result that overturns the confident plan",
+        "handoff repair that names the owner before the repeat",
+        "local refusal where the source detail becomes a boundary"
+      ],
+      "sceneFramesExperiential": [
+        "a first-time experience that sets a lasting benchmark",
+        "a public recognition that shifts how someone sees themselves",
+        "a milestone reached and the small marker that seals it",
+        "a break in the routine script that leaves a lasting after-image",
+        "a moment of genuine connection during an otherwise routine handoff",
+        "a peak moment recalled vividly long after the day it happened"
+      ],
+      "beatsDecision": [
+        "show a tradeoff decision under mild time or social pressure",
+        "show a second opinion changing the action without turning into a lecture",
+        "show a bounded decision with one inconvenient constraint still visible",
+        "show a record-keeping step that clarifies the choice without becoming the whole scene"
+      ],
+      "beatsExperiential": [
+        "show a milestone marked so it feels earned rather than automatic",
+        "show a recognition landing and changing how someone acts next"
+      ],
+      "venues": [
+        "a project status doc",
+        "a quarterly review deck",
+        "a hiring debrief",
+        "a vendor contract redline",
+        "a one-on-one agenda",
+        "a sprint retro board",
+        "a budget spreadsheet",
+        "a decision memo draft",
+        "a standup update",
+        "a customer escalation ticket",
+        "a roadmap planning session",
+        "a postmortem doc",
+        "a team channel thread",
+        "a performance review note",
+        "a stakeholder alignment meeting",
+        "a launch checklist"
+      ],
+      "practiceConstraints": [
+        "force one explicit reject, resize, or proceed decision",
+        "assign one owner and one consequence for the next attempt",
+        "name the tradeoff the reader must accept before acting",
+        "make the stop rule as specific as the action rule",
+        "prefer a reversible field test over a polished rollout",
+        "tie the timing to the chapter's real stake instead of a generic weekly cadence"
+      ],
+      "practiceForms": [
+        "one-page decision log",
+        "owner handoff note",
+        "failure-premortem note",
+        "two-option comparison",
+        "before-after audit"
+      ],
+      "actionMechanisms": [
+        "decision log",
+        "one-message request",
+        "calendar trigger",
+        "default swap",
+        "two-minute audit"
+      ],
+      "weeklyForms": [
+        "weekly calendar review",
+        "one recurring conversation",
+        "three-minute scoreboard",
+        "Friday evidence log"
+      ]
+    },
+    "experience-design": {
+      "sceneFramesDecision": [
+        "participant interview that changes the design target",
+        "deletion exercise that removes a decorative gesture",
+        "quiet pilot where one participant's after-effect changes the brief",
+        "rehearsal where a borrowed line gets cut before launch",
+        "two-option field check that rejects the more photogenic move",
+        "late complaint that makes the team resize a gesture",
+        "post-event audit that separates applause from changed action",
+        "participant quote that replaces a broad rollout with one trial",
+        "failed celebration draft revised around a real threshold",
+        "small contrast test between remembered effect and surface appeal",
+        "field observation that removes the decorative part first",
+        "relationship check where the response changes the design size",
+        "service recovery choice that keeps the story but changes the proof",
+        "course correction after a polished version teaches the wrong lesson"
+      ],
+      "sceneFramesExperiential": [
+        "an unexpected kindness that lands and gets retold afterward",
+        "a small ceremony that marks a transition so it feels earned",
+        "a first-time experience that sets a lasting benchmark",
+        "a peak moment recalled vividly long after the day it happened",
+        "a shared ritual observed in mid-action as it builds connection",
+        "a public recognition that shifts how someone sees themselves",
+        "one sensory detail that turns an ordinary moment into a kept memory",
+        "a stranger's small gesture that becomes a story worth repeating",
+        "a hard truth delivered with enough care that it finally registers",
+        "a milestone reached and the small marker that seals it",
+        "a break in the routine script that leaves a lasting after-image",
+        "a moment of genuine connection during an otherwise routine handoff"
+      ],
+      "beatsDecision": [
+        "show the reader-facing move changing a real decision",
+        "show friction or recovery after a first attempt goes sideways",
+        "show a small reversal where new evidence changes the amount, timing, or commitment"
+      ],
+      "beatsExperiential": [
+        "show a surprise breaking the expected script and the after-image it leaves",
+        "show a first encounter setting the tone for everything that follows",
+        "show a shared ritual turning a routine into real connection",
+        "show a sensory peak that becomes the whole remembered experience",
+        "show a small kindness rippling well past the moment it happened",
+        "show a hard truth delivered with care so it finally registers"
+      ],
+      "venues": [
+        "a hotel checkout desk",
+        "a hospital waiting room",
+        "a graduation stage",
+        "a customer onboarding call",
+        "a museum entrance",
+        "a first-day orientation",
+        "a farewell gathering",
+        "a product unboxing",
+        "a welcome-back note",
+        "a birthday celebration",
+        "a retirement send-off",
+        "a store return counter",
+        "a restaurant host stand",
+        "a milestone announcement",
+        "a guided tour opening",
+        "a homecoming doorway"
+      ],
+      "practiceConstraints": [
+        "separate the attractive gesture from the human need it is meant to serve",
+        "change the measure before changing the whole experience",
+        "cut one decorative element before adding a new one",
+        "let a real participant's stake set the size of the move",
+        "use one participant reaction as evidence before scaling the idea",
+        "keep the practice inside one live moment, not a broad program redesign"
+      ],
+      "practiceForms": [
+        "stakeholder interview",
+        "deletion exercise",
+        "post-moment evidence review",
+        "rehearsal script",
+        "measurement swap"
+      ],
+      "actionMechanisms": [
+        "environment edit",
+        "friction removal",
+        "one-message request",
+        "calendar trigger"
+      ],
+      "weeklyForms": [
+        "one recurring conversation",
+        "one saved template",
+        "Sunday reset",
+        "three-minute scoreboard"
+      ]
+    },
+    "investing": {
+      "sceneFramesDecision": [
+        "measurement surprise after the obvious fix looked good",
+        "rejection of an attractive but mismatched tactic",
+        "boundary case where the tactic would be manipulative",
+        "post-decision consequence that forces a correction",
+        "recovery decision where charm loses to a verifiable outcome",
+        "timing change after the first attempt lands in the wrong place",
+        "small contrast test between remembered effect and surface appeal",
+        "bounded approval where the stop rule matters as much as the move",
+        "a confident forecast overturned by a plainer base rate",
+        "a fee that quietly outweighs the exciting headline return",
+        "a rebalancing choice that trades comfort for discipline",
+        "a tempting concentration undone by one boundary rule"
+      ],
+      "sceneFramesExperiential": [
+        "a first-time experience that sets a lasting benchmark",
+        "a peak moment recalled vividly long after the day it happened",
+        "a milestone reached and the small marker that seals it",
+        "a break in the routine script that leaves a lasting after-image"
+      ],
+      "beatsDecision": [
+        "show a boundary case where waiting, acting, or sizing the decision carries a cost",
+        "show a bounded decision with one inconvenient constraint still visible",
+        "show a small reversal where new evidence changes the amount, timing, or commitment"
+      ],
+      "beatsExperiential": [
+        "show a milestone marked so it feels earned rather than automatic",
+        "show a first encounter setting the tone for everything that follows"
+      ],
+      "venues": [
+        "broker statement",
+        "portfolio policy file",
+        "bond quote sheet",
+        "tax worksheet",
+        "fund fact sheet",
+        "annual-report notes",
+        "order ticket",
+        "client email draft",
+        "valuation memo",
+        "allocation worksheet",
+        "research queue",
+        "prospectus packet"
+      ],
+      "practiceConstraints": [
+        "make the stop rule as specific as the action rule",
+        "prefer a reversible field test over a polished rollout",
+        "name the tradeoff the reader must accept before acting",
+        "force one explicit reject, resize, or proceed decision",
+        "tie the timing to the chapter's real stake instead of a generic weekly cadence"
+      ],
+      "practiceForms": [
+        "one-page decision log",
+        "before-after audit",
+        "boundary refusal",
+        "measurement swap"
+      ],
+      "actionMechanisms": [
+        "decision log",
+        "default swap",
+        "receipt check",
+        "two-minute audit"
+      ],
+      "weeklyForms": [
+        "Friday evidence log",
+        "weekly calendar review",
+        "three-minute scoreboard"
+      ]
+    },
+    "process-standard": {
+      "sceneFramesDecision": [
+        "two stakeholders disagree before the protagonist chooses",
+        "owner handoff that changes who must act next",
+        "measurement surprise after the obvious fix looked good",
+        "post-event audit that separates applause from changed action",
+        "handoff repair that names the owner before the repeat",
+        "bounded approval where the stop rule matters as much as the move",
+        "a change request that reopens a settled baseline",
+        "a missed dependency that surfaces late in the schedule",
+        "a scope creep caught by one boundary rule",
+        "a status report that hides a slipping milestone",
+        "a risk that was logged but never assigned an owner",
+        "a sign-off that changes who is accountable next"
+      ],
+      "sceneFramesExperiential": [
+        "a milestone reached and the small marker that seals it",
+        "a break in the routine script that leaves a lasting after-image",
+        "a moment of genuine connection during an otherwise routine handoff",
+        "a first-time experience that sets a lasting benchmark"
+      ],
+      "beatsDecision": [
+        "show an owner handoff that changes who must act next",
+        "show a bounded decision with one inconvenient constraint still visible",
+        "show a record-keeping step that clarifies the choice without becoming the whole scene"
+      ],
+      "beatsExperiential": [
+        "show a milestone marked so it feels earned rather than automatic",
+        "show a shared ritual turning a routine into real connection"
+      ],
+      "venues": [
+        "a change-control log",
+        "a risk register",
+        "a project charter",
+        "a requirements traceability matrix",
+        "a status report",
+        "a lessons-learned log",
+        "a work-breakdown structure",
+        "a stakeholder register",
+        "a milestone review gate",
+        "an issue tracker entry",
+        "a baseline schedule",
+        "a sign-off checklist",
+        "a scope statement",
+        "a dependency map",
+        "a governance board packet",
+        "an acceptance criteria sheet"
+      ],
+      "practiceConstraints": [
+        "name who owns the next action before the moment repeats",
+        "assign one owner and one consequence for the next attempt",
+        "make the stop rule as specific as the action rule",
+        "define a visible proof point before adding ceremony",
+        "force one explicit reject, resize, or proceed decision"
+      ],
+      "practiceForms": [
+        "owner handoff note",
+        "one-page decision log",
+        "failure-premortem note",
+        "before-after audit"
+      ],
+      "actionMechanisms": [
+        "decision log",
+        "calendar trigger",
+        "one-message request",
+        "environment edit"
+      ],
+      "weeklyForms": [
+        "weekly calendar review",
+        "two-trigger checklist",
+        "one saved template"
+      ]
+    },
+    "habits-psychology": {
+      "sceneFramesDecision": [
+        "before-after comparison with one visible behavior shift",
+        "small ownership note that changes the next person's behavior",
+        "practice run where social pressure exposes the real stake",
+        "measurement swap from easy approval to observable behavior",
+        "pressure rehearsal that makes the risk visible before action",
+        "post-decision consequence that forces a correction",
+        "a relapse caught early by one visible trigger",
+        "a tempting shortcut undone by a small friction",
+        "a streak protected by a plainer default",
+        "a craving reframed by naming the real cue",
+        "a habit stack that changes the order of a routine",
+        "an environment edit that removes the decision entirely"
+      ],
+      "sceneFramesExperiential": [
+        "a first-time experience that sets a lasting benchmark",
+        "a peak moment recalled vividly long after the day it happened",
+        "a break in the routine script that leaves a lasting after-image",
+        "one sensory detail that turns an ordinary moment into a kept memory",
+        "a milestone reached and the small marker that seals it"
+      ],
+      "beatsDecision": [
+        "show the reader-facing move changing a real decision",
+        "show friction or recovery after a first attempt goes sideways",
+        "show a small reversal where new evidence changes the amount, timing, or commitment"
+      ],
+      "beatsExperiential": [
+        "show a sensory peak that becomes the whole remembered experience",
+        "show a first encounter setting the tone for everything that follows"
+      ],
+      "venues": [
+        "a morning routine",
+        "a gym check-in",
+        "a phone home screen",
+        "a bedtime wind-down",
+        "a habit-tracker app",
+        "a water bottle on the desk",
+        "a running-shoe rack by the door",
+        "a snack drawer",
+        "a meditation cushion",
+        "a journal on the nightstand",
+        "a commute playlist",
+        "a kitchen table",
+        "a weekend meal prep",
+        "a screen-time report",
+        "a step-counter dashboard",
+        "a reminder on a phone"
+      ],
+      "practiceConstraints": [
+        "replace the copied surface detail with the local behavior it should change",
+        "make the first test small enough to observe before the next handoff",
+        "keep the exercise grounded in one observable response",
+        "prefer a reversible field test over a polished rollout",
+        "turn the source mechanism into a local decision rule"
+      ],
+      "practiceForms": [
+        "before-after audit",
+        "field test",
+        "measurement swap",
+        "two-option comparison"
+      ],
+      "actionMechanisms": [
+        "if-then rehearsal",
+        "friction removal",
+        "environment edit",
+        "default swap"
+      ],
+      "weeklyForms": [
+        "Sunday reset",
+        "three-minute scoreboard",
+        "one repeated audit"
+      ]
+    }
+  }
+}

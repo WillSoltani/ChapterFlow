@@ -53,7 +53,7 @@ export function loadVenuePalette(): string[] {
   return venues;
 }
 
-function assertVenueInvariants(allocation: Record<number, string[]>, from: number, to: number): void {
+export function assertVenueInvariants(allocation: Record<number, string[]>, from: number, to: number): void {
   const seenByVenue = new Map<string, Set<number>>();
   for (let chapter = from; chapter <= to; chapter++) {
     const venues = allocation[chapter] ?? [];
@@ -98,6 +98,78 @@ export function planVenues(bookId: string, from: number, to: number): VenuePlan 
     const chapterOffset = chapter - from;
     for (let slot = 0; slot < PER_CHAPTER; slot++) {
       dealt.push(venues[(rotation + chapterOffset * CHAPTER_STEP + slot * SLOT_STEP) % L]);
+    }
+    allocation[chapter] = dealt;
+  }
+  assertVenueInvariants(allocation, from, to);
+  return {
+    schemaVersion: "venue-plan-v1",
+    bookId,
+    createdAt: new Date().toISOString(),
+    fromChapter: from,
+    toChapter: to,
+    perChapter: PER_CHAPTER,
+    allocation,
+  };
+}
+
+/** Smallest slot step >= 2 that is coprime with the palette size L. Stepping the whole
+ *  book-order placement sequence by a step coprime with L makes that sequence a period-L
+ *  permutation of positions, which is exactly what the cap-2 / no-adjacent / within-chapter-distinct
+ *  invariants below require (see planVenuesFromPalette). Always exists for L >= 2. */
+function firstCoprimeStep(L: number): number {
+  for (let s = 2; s < L; s++) {
+    if (gcd(s, L) === 1) return s;
+  }
+  // L === 2 (or any L with no coprime in [2, L-1]) — step 1 is trivially coprime and the
+  // tiny-palette guards below reject L this small anyway.
+  return 1;
+}
+
+/**
+ * Generalized venue allocator (P14) for a PER-BOOK design venue palette of arbitrary size L,
+ * as opposed to `planVenues`' fixed 103-venue global palette. Same guarantees, proven the same way:
+ *
+ *   Global placement index i = (chapter-from)*PER_CHAPTER + slot; venue = palette[(rotation +
+ *   i*SLOT_STEP) mod L]. With gcd(SLOT_STEP, L) = 1 the map i ↦ position is a period-L permutation,
+ *   so two placements collide iff i ≡ j (mod L). Hence:
+ *     - within one chapter |i-j| <= PER_CHAPTER-1 < L        → distinct venues per chapter;
+ *     - adjacent chapters span |i-j| in [1, 2*PER_CHAPTER-1] < L (guarded L > 2*PER_CHAPTER-1)
+ *                                                             → no shared venue across neighbors;
+ *     - over M = PER_CHAPTER*chapters placements, an arithmetic progression of step L hits any
+ *       position at most ceil(M/L) <= 2 times when M <= 2L (guarded)  → cap-2 book-wide.
+ *   Unlike `planVenues`, SLOT_STEP is chosen per-palette (firstCoprimeStep) rather than the tuned
+ *   17/102 pair that only works for L=103, and gcd(6, L) need NOT be 1 (the proof needs only
+ *   gcd(SLOT_STEP, L) = 1). assertVenueInvariants re-checks all three invariants on the result.
+ */
+export function planVenuesFromPalette(bookId: string, from: number, to: number, palette: string[]): VenuePlan {
+  if (to < from) throw new Error(`to (${to}) < from (${from})`);
+  if (from < 1) throw new Error(`from (${from}) must be >= 1`);
+  const seen = new Set<string>();
+  const venues: string[] = [];
+  for (const value of palette) {
+    const venue = (value ?? "").trim();
+    if (!venue || seen.has(venue)) continue;
+    seen.add(venue);
+    venues.push(venue);
+  }
+  const L = venues.length;
+  const chapters = to - from + 1;
+  if (L <= 2 * PER_CHAPTER - 1) {
+    throw new Error(`design venue palette has ${L} venues; need at least ${2 * PER_CHAPTER} to keep adjacent chapters disjoint.`);
+  }
+  if (PER_CHAPTER * chapters > 2 * L) {
+    throw new Error(`design venue palette has ${L} venues; a ${chapters}-chapter, ${PER_CHAPTER}/chapter plan needs at least ${Math.ceil((PER_CHAPTER * chapters) / 2)} to keep every venue at cap 2.`);
+  }
+  const slotStep = firstCoprimeStep(L);
+  const rotation = fnv1a(bookId) % L;
+  const allocation: Record<number, string[]> = {};
+  for (let chapter = from; chapter <= to; chapter++) {
+    const dealt: string[] = [];
+    const chapterOffset = chapter - from;
+    for (let slot = 0; slot < PER_CHAPTER; slot++) {
+      const i = chapterOffset * PER_CHAPTER + slot;
+      dealt.push(venues[(rotation + i * slotStep) % L]);
     }
     allocation[chapter] = dealt;
   }

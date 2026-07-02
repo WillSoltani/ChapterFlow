@@ -12,7 +12,9 @@
  *
  * P10 extends the contract: the blueprint is a pure function of a FOURTH input, the
  * repair-owned salts sidecar (state/book-design/<bookId>.slot-salts.json). Determinism is now
- * "given (index, packets, salts) the blueprint is reproducible", and — critically — an ABSENT
+ * "given (index, packets, salts, design artifact) the blueprint is reproducible" (P14 added
+ * the per-book design artifact as the fourth input — designHash pins it; see book-design.test.ts
+ * for the design-input determinism + the cross-version legacy golden), and — critically — an ABSENT
  * salts file (or all-zero salts) yields the SAME bytes as before this change, so no committed
  * book's blueprints move. The tests below pin both halves.
  */

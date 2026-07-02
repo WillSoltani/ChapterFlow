@@ -420,6 +420,8 @@ export async function doCompilerWrite(bookId: string, deps: AutopilotDeps, opts:
   for (const [args, label] of [
     [["compile-source-packets", bookId], "source-packets"],
     [["source-packet-gate", bookId], "source-packet-gate"],
+    [["compile-book-design", bookId], "book-design"],
+    [["book-design-gate", bookId], "book-design-gate"],
     [["compile-blueprints", bookId], "blueprints"],
     [["blueprint-gate", bookId], "blueprint-gate"],
     [["deal-section-tasks", bookId], "section-task-deal"],

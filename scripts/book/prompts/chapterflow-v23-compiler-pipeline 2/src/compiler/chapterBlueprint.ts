@@ -20,6 +20,7 @@ import { loadNameBank } from "../librarian/namePlan.js";
 import { planVenues } from "../librarian/venuePlan.js";
 import { protectedSourceNames } from "./sourceNames.js";
 import { rotate, rankedCaseIdsForFact, isSourceGroundingMetaFact, hasRealMechanism } from "./sourcePacketFacts.js";
+import { resolvePools, type ResolvedPools } from "./bookDesign.js";
 
 // isSourceGroundingMetaFact moved to sourcePacketFacts.ts (P13) to break the fact-helper
 // layering smell and let rankTeachingFacts reuse it; re-exported here for back-compat.
@@ -908,6 +909,38 @@ function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: Examp
   };
 }
 
+// ── P14: resolved pools (per-book design → genre → legacy) ──────────────────────
+//
+// The legacy in-code constants above are packaged as a ResolvedPools object so resolvePools can
+// return them UNCHANGED as the byte-compat fallback. A book without a design artifact mapped to the
+// `generic` genre resolves to exactly this — every deal draws from the identical constant array, the
+// venue palette comes from plannedVenuePalette (global palette + FALLBACK_VENUES forbidden) exactly
+// as before — so its blueprint is byte-identical to the pre-P14 world.
+function legacyResolvedPools(bookId: string): ResolvedPools {
+  return {
+    source: "legacy",
+    genre: "generic",
+    sceneFramesDecision: [...EXAMPLE_SCENE_FRAMES],
+    sceneFramesExperiential: [...EXAMPLE_SCENE_FRAMES_EXPERIENTIAL],
+    beatsDecision: [...EXAMPLE_BEATS],
+    beatsExperiential: [...EXAMPLE_BEATS_EXPERIENTIAL],
+    venues: [...FALLBACK_VENUES],
+    practiceConstraints: [...PRACTICE_CONSTRAINTS],
+    practiceForms: [...PRACTICE_FORMS],
+    actionMechanisms: [...ACTION_MECHANISMS],
+    weeklyForms: [...WEEKLY_FORMS],
+    venuePaletteFor: (chapterNumber: number) => plannedVenuePalette(bookId, chapterNumber),
+    forbiddenVenuesFor: (venuePalette: string[]) => FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
+  };
+}
+
+/** The pools a book's blueprints actually deal from, resolved through the design → genre → legacy
+ *  tiers. Exported so blueprintGate can size its positional-collision math (BPV11/BPV12) to the
+ *  SAME per-book pools the compile used, instead of the global constant sizes. */
+export function resolvedPoolsForBook(bookId: string, roots: CompilerStoreRoots = {}): ResolvedPools {
+  return resolvePools(bookId, roots, legacyResolvedPools(normSlug(bookId)));
+}
+
 export function compileChapterBlueprint(args: {
   bookId: string;
   chapter: ChapterSpec;
@@ -925,6 +958,13 @@ export function compileChapterBlueprint(args: {
   salts?: SlotSalts;
 }): ChapterBlueprintV1 {
   const { bookId, chapter, packet, packetPath, roots = {}, totalChapters, salts = readSlotSalts(bookId, roots) } = args;
+  // P14: resolve the per-book variety pools (design artifact → genre → legacy constants). For a book
+  // without a design artifact mapped to the `generic` genre this returns the legacy constants
+  // unchanged, so the blueprint stays byte-identical. Cards/quiz/hook/counter/if-then/scene-mode
+  // SHAPE vocabularies are genre-neutral and NOT designable — they keep drawing from the module
+  // constants; only the flavored pools (frames, beats, venues, practice constraints/forms, action
+  // mechanisms, weekly forms) come from `pools`.
+  const pools = resolvePools(bookId, roots, legacyResolvedPools(normSlug(bookId)));
   // P13: `ids` is the teaching pool ordered by pedagogical rank when the packet carries the
   // ranking (facts[].teachingPriority), else packet order (legacy → byte-identical). Cards,
   // examples, summaries, hook, and the plan's source anchors all index into `ids`, so they
@@ -953,7 +993,7 @@ export function compileChapterBlueprint(args: {
   const cardCount = 7;
   const exampleCount = EXAMPLE_SLOT_COUNT;
   const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots, salts);
-  const venuePalette = plannedVenuePalette(bookId, n);
+  const venuePalette = pools.venuePaletteFor(n);
   const pattern = answerPattern(n, quizCount, totalChapters);
   const usedExampleCaseCounts = new Map<string, number>();
   const examples: ExampleSlotV1[] = Array.from({ length: exampleCount }, (_, i) => {
@@ -970,8 +1010,8 @@ export function compileChapterBlueprint(args: {
       // while the 3+3 decision/experiential parity is preserved by the parity switch itself.
       // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
       sceneFrame: i % 2 === 1
-        ? deal(EXAMPLE_SCENE_FRAMES_EXPERIENTIAL, "exampleSceneFrameExperiential", i)
-        : deal(EXAMPLE_SCENE_FRAMES, "exampleSceneFrame", i),
+        ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
+        : deal(pools.sceneFramesDecision, "exampleSceneFrame", i),
       // Deal which palette entry lands in each slot so slot 0's venue is not always
       // venuePalette[0]; a `redeal:venue` bump shifts the ordering (raw rank shift — the
       // palette is chapter-local, so there is no cross-chapter column to scan against).
@@ -979,10 +1019,10 @@ export function compileChapterBlueprint(args: {
       allowedNames: pick(allowedNames, i, 3),
       requiredFactIds: factId ? [factId] : [],
       requiredCaseIds: exampleCaseIdForFact(packet, factId, i, usedExampleCaseCounts),
-      forbiddenVenues: FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
+      forbiddenVenues: pools.forbiddenVenuesFor(venuePalette),
       requiredBeat: i % 2 === 1
-        ? deal(EXAMPLE_BEATS_EXPERIENTIAL, "exampleRequiredBeatExperiential", i)
-        : deal(EXAMPLE_BEATS, "exampleRequiredBeat", i),
+        ? deal(pools.beatsExperiential, "exampleRequiredBeatExperiential", i)
+        : deal(pools.beatsDecision, "exampleRequiredBeat", i),
     };
   });
   // Depth per quiz slot (unchanged mapping): slots 0-1 simple, 2-5 standard, 6-8 deep.
@@ -1023,9 +1063,9 @@ export function compileChapterBlueprint(args: {
     retrievalTarget: deal(CARD_RETRIEVAL_TARGETS, "cardRetrievalTarget", i),
     backShape: deal(CARD_BACK_SHAPES, "cardBackShape", i),
   }));
-  const actionMechanism = deal(ACTION_MECHANISMS, "actionMechanism", 0);
-  const weeklyPracticeForm = deal(WEEKLY_FORMS, "weeklyPracticeForm", 0);
-  const practiceForm = deal(PRACTICE_FORMS, "practiceForm", 0);
+  const actionMechanism = deal(pools.actionMechanisms, "actionMechanism", 0);
+  const weeklyPracticeForm = deal(pools.weeklyForms, "weeklyPracticeForm", 0);
+  const practiceForm = deal(pools.practiceForms, "practiceForm", 0);
   const plan = buildPlan(chapter, packet, examples, quizCount, cardCount);
   return {
     schemaVersion: CHAPTER_BLUEPRINT_SCHEMA_VERSION,
@@ -1035,6 +1075,10 @@ export function compileChapterBlueprint(args: {
     title: chapter.chapterTitle,
     sourcePacketPath: packetPath,
     sourcePacketHash: canonicalJsonSha256(packet),
+    // P14: pin the blueprint to the design artifact bytes it was compiled from. Present ONLY on the
+    // design path (source === "derived"); omitted on genre-fallback and legacy so those blueprints
+    // stay byte-identical to the pre-P14 world (JSON.stringify drops the absent key).
+    ...(pools.source === "derived" && pools.designHash ? { designHash: pools.designHash } : {}),
     plan,
     coreMove: {
       statement: plan.coreMove,
@@ -1068,7 +1112,7 @@ export function compileChapterBlueprint(args: {
         weeklyPracticeForm,
         ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,
-        practiceConstraint: deal(PRACTICE_CONSTRAINTS, "practiceConstraint", 0),
+        practiceConstraint: deal(pools.practiceConstraints, "practiceConstraint", 0),
       },
     },
     constraints: {

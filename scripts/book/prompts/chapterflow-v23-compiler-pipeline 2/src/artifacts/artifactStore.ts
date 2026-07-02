@@ -277,6 +277,15 @@ export function slotSaltsPath(bookId: string, roots: CompilerStoreRoots = {}): s
   return resolve(roots.stateRoot ?? CANONICAL_STATE, "book-design", `${normSlug(bookId)}.slot-salts.json`);
 }
 
+/** The per-book design artifact (P14). A book-level FILE alongside the slot-salts sidecar in
+ *  state/book-design/ (not inside a compiler run — the design is keyed by book, not run, like
+ *  rubricMetricsPath/slotSaltsPath). Holds the compiled, hash-pinned variety pools the blueprint
+ *  draws from. An ABSENT file ⇒ the blueprint falls back to genre pools, then the legacy in-code
+ *  constants (byte-identical to the pre-P14 world). Written only by `compile-book-design`. */
+export function bookDesignPath(bookId: string, roots: CompilerStoreRoots = {}): string {
+  return resolve(roots.stateRoot ?? CANONICAL_STATE, "book-design", `${normSlug(bookId)}.design.json`);
+}
+
 export function readJsonFile<T = unknown>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }

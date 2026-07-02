@@ -10,6 +10,7 @@ import type { ChapterDesignDoc, SourceAnchorForPrompt, SourceClaimType } from ".
 export const V23_COMPILER_SCHEMA_VERSION = "chapterflow-v23-compiler" as const;
 export const SOURCE_PACKET_SCHEMA_VERSION = "source-packet-v1" as const;
 export const CHAPTER_BLUEPRINT_SCHEMA_VERSION = "chapter-blueprint-v1" as const;
+export const BOOK_DESIGN_SCHEMA_VERSION = "book-design-v1" as const;
 export const SECTION_ARTIFACT_SCHEMA_VERSION = "section-artifact-v1" as const;
 export const EVIDENCE_MAP_SCHEMA_VERSION = "chapter-evidence-map-v1" as const;
 export const RISK_SCORE_SCHEMA_VERSION = "chapter-risk-score-v1" as const;
@@ -107,6 +108,39 @@ export type SourcePacketV1 = {
   coreMoveFactId?: string;
 };
 
+/** The nine designable variety pools a book's blueprints draw from. These are the pools that
+ *  carry GENRE flavor (scene frames, beats, venues, practice constraints/forms, action mechanisms,
+ *  weekly forms). The genre-neutral SHAPE vocabularies (quiz/card/hook/counter/if-then shapes,
+ *  scene modes) are NOT designable — they stay module constants in chapterBlueprint.ts. */
+export type BookDesignPools = {
+  sceneFramesDecision: string[];
+  sceneFramesExperiential: string[];
+  beatsDecision: string[];
+  beatsExperiential: string[];
+  venues: string[];
+  practiceConstraints: string[];
+  practiceForms: string[];
+  actionMechanisms: string[];
+  weeklyForms: string[];
+};
+
+/** Per-book design artifact (P14). A compiled, hash-pinned artifact (like source packets) so
+ *  blueprints stay deterministic while their variety pools become per-book instead of a single
+ *  global monoculture. Stored at state/book-design/<bookId>.design.json. Additive/optional at the
+ *  consumption layer: a book WITHOUT this artifact compiles byte-identically to the pre-P14 world
+ *  (chapterBlueprint.resolvePools falls back to genre pools, then the legacy in-code constants). */
+export type BookDesignV1 = {
+  schemaVersion: typeof BOOK_DESIGN_SCHEMA_VERSION;
+  bookId: string;
+  genre: string;
+  pools: BookDesignPools;
+  provenance: {
+    source: "derived" | "genre-fallback";
+    /** Source-case ids / sidecar material the derived pools were mined from. */
+    derivedFrom?: string[];
+  };
+};
+
 export type HookSlot = {
   shape: string;
   requiredFactIds: string[];
@@ -170,6 +204,12 @@ export type ChapterBlueprintV1 = {
   title: string;
   sourcePacketPath: string;
   sourcePacketHash: string;
+  /** canonicalJsonSha256 of the per-book design artifact whose pools this blueprint was compiled
+   *  from (P14). Additive/optional: present only when a design artifact drove the pools; ABSENT on
+   *  the genre-fallback and legacy paths, so a book without a design artifact stays byte-identical
+   *  to the pre-P14 blueprint. Pins the blueprint to the exact design bytes — editing the artifact
+   *  changes this hash (and the dealt pools). */
+  designHash?: string;
   plan: ChapterDesignDoc;
   coreMove: {
     statement: string;
