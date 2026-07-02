@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "book-scars.schema.json",
+  "title": "ChapterFlow Per-Book Over-Used Material (\"scars\")",
+  "description": "One file per book, named <bookId>.json, listing the case phrases, prop/scene frames, and free-text notes that THIS book over-uses across chapters. The section-task builder renders these only into that book's writer prompts, so one book's scar tissue never leaks into another book's universal contract. Enforcement of over-use lives in the section/book gates (SEC/AS families); these lists are writer guidance, not a gate input.",
+  "type": "object",
+  "required": ["bookId", "phrases", "frames", "notes"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "_comment": { "type": "string" },
+    "bookId": { "type": "string", "minLength": 1 },
+    "phrases": {
+      "description": "Verbatim case-identifying phrases this book reuses (e.g. a named-case tag). Each may appear in at most one teaching unit book-wide.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "frames": {
+      "description": "Scene engines, prop containers, or connective frames this book defaults to across chapters and must vary instead.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "notes": {
+      "description": "Free-text reminders specific to this book's over-use patterns.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "additionalProperties": false
+}

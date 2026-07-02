@@ -1,0 +1,24 @@
+{
+  "$schema": "book-scars.schema.json",
+  "_comment": "Over-used material for the-intelligent-investor, MOVED out of the universal section contracts by P07. Writer guidance only; over-use is enforced by SEC/AS gates.",
+  "bookId": "the-intelligent-investor",
+  "phrases": [
+    "Open the next stock idea",
+    "Before the next stock decision",
+    "BrokerCheck"
+  ],
+  "frames": [
+    "tradeoff memo",
+    "prospectus packet",
+    "broker statement",
+    "portfolio policy file",
+    "bond quote sheet",
+    "allocation worksheet",
+    "research queue",
+    "cycling a generic action container (memo/packet/statement/worksheet/queue) as the scene engine across chapters instead of one chapter-specific detail"
+  ],
+  "notes": [
+    "Do not ask readers to compare a live decision to a full source-case phrase; lead with the local rule, then use one concrete source detail only when it clarifies the rule.",
+    "If a source name is CamelCase (e.g. BrokerCheck), use a spaced natural form or descriptive phrase in reader prose."
+  ]
+}
