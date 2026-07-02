@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "chapterflow-writer-packet-v1",
+  "bookId": "zz-fixture-fact-ranking",
+  "chapterId": "zz-fixture-fact-ranking-ch03",
+  "chapterNumber": 3,
+  "facts": [
+    {
+      "id": "ch3.fact.1",
+      "claim": "Practice claim 1 about focused repetition improves skill after 2 weeks.",
+      "mechanism": "Repetition 1 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 1 with deliberate effortful practice.",
+      "whyWrong": "Passive review 1 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.2",
+      "claim": "Practice claim 2 about focused repetition improves skill after 3 weeks.",
+      "mechanism": "Repetition 2 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 2 with deliberate effortful practice.",
+      "whyWrong": "Passive review 2 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.3",
+      "claim": "Practice claim 3 about focused repetition improves skill after 4 weeks.",
+      "mechanism": "Repetition 3 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 3 with deliberate effortful practice.",
+      "whyWrong": "Passive review 3 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.4",
+      "claim": "Practice claim 4 about focused repetition improves skill after 5 weeks.",
+      "mechanism": "Repetition 4 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 4 with deliberate effortful practice.",
+      "whyWrong": "Passive review 4 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.5",
+      "claim": "Practice claim 5 about focused repetition improves skill after 6 weeks.",
+      "mechanism": "Repetition 5 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 5 with deliberate effortful practice.",
+      "whyWrong": "Passive review 5 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.6",
+      "claim": "Practice claim 6 about focused repetition improves skill after 7 weeks.",
+      "mechanism": "Repetition 6 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 6 with deliberate effortful practice.",
+      "whyWrong": "Passive review 6 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.7",
+      "claim": "Practice claim 7 about focused repetition improves skill after 8 weeks.",
+      "mechanism": "Repetition 7 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 7 with deliberate effortful practice.",
+      "whyWrong": "Passive review 7 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.8",
+      "claim": "Practice claim 8 about focused repetition improves skill after 9 weeks.",
+      "mechanism": "Repetition 8 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 8 with deliberate effortful practice.",
+      "whyWrong": "Passive review 8 skips the error-correction loop that actually rewires the skill."
+    },
+    {
+      "id": "ch3.fact.9",
+      "claim": "Practice claim 9 about focused repetition improves skill after 10 weeks.",
+      "mechanism": "Repetition 9 builds myelin so retrieval becomes faster and more automatic over time.",
+      "commonError": "Learners confuse mere exposure 9 with deliberate effortful practice.",
+      "whyWrong": "Passive review 9 skips the error-correction loop that actually rewires the skill."
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch3.case.a",
+      "label": "Benjamin Franklin",
+      "realWorld": true,
+      "summary": "Franklin rewrote essays from memory to sharpen his prose over four years of deliberate repetition.",
+      "hardSpecifics": [
+        "four years",
+        "rewrote essays from memory"
+      ]
+    },
+    {
+      "id": "ch3.case.b",
+      "label": "Ericsson violin study",
+      "realWorld": true,
+      "summary": "Ericsson found elite violinists logged far more solitary practice hours than average performers.",
+      "hardSpecifics": [
+        "10000 hours",
+        "solitary practice"
+      ]
+    }
+  ],
+  "allowedAnchors": [
+    "ch3.concept",
+    "ch3.case.a",
+    "ch3.case.b",
+    "ch3.fact.1",
+    "ch3.fact.2",
+    "ch3.fact.3",
+    "ch3.fact.4",
+    "ch3.fact.5",
+    "ch3.fact.6",
+    "ch3.fact.7",
+    "ch3.fact.8",
+    "ch3.fact.9",
+    "ch03.framework.practice.loop"
+  ],
+  "sourceQualityStatus": "strong"
+}
