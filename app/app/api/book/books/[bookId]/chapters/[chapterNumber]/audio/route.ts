@@ -15,12 +15,15 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { getOrCreateStreak } from "@/app/app/api/book/_lib/streak-repo";
 import { getOrCreateTier } from "@/app/app/api/book/_lib/tier-repo";
-import { S3Client, GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
 import type { ToneKey, VariantKey } from "@/app/book/data/book-package-core";
 import {
   buildSegmentPlan,
   getSegmentKeys,
+  getSegmentDescriptors,
+  buildAudioPlan,
   getTimeOfDay,
   chapterBodySegmentS3Key,
   userGreetingS3Key,
@@ -35,6 +38,11 @@ import {
 export const runtime = "nodejs";
 
 const s3 = new S3Client({});
+
+// Presigned segment URLs in the ?mode=plan manifest live for 6 hours — the
+// contract minimum (docs/ios/AUDIO-CONTRACT.md §8). The client refreshes by
+// re-GETting ?mode=plan; there is no re-sign step.
+const PLAN_URL_TTL_SECONDS = 6 * 60 * 60;
 
 // Per-request diagnostic logging is gated behind a debug flag so the audio hot
 // path stays quiet in production (CloudWatch cost/noise) and never writes
@@ -81,6 +89,58 @@ async function loadSegmentFromS3(bucket: string, key: string): Promise<Buffer | 
     if (!result.Body) return null;
     const bytes = await result.Body.transformToByteArray();
     return Buffer.from(bytes);
+  } catch {
+    return null;
+  }
+}
+
+// HEAD a segment object → its byte length, or null if it is absent/unreadable.
+// Used by the ?mode=plan path to size each segment without downloading it (the
+// stream path, by contrast, needs the bytes and uses loadSegmentFromS3).
+async function headContentLength(bucket: string, key: string): Promise<number | null> {
+  try {
+    const head = await s3.send(new HeadObjectCommand({ Bucket: bucket, Key: key }));
+    return typeof head.ContentLength === "number" ? head.ContentLength : null;
+  } catch {
+    return null;
+  }
+}
+
+// Generate ONE user-greeting clip and DURABLY cache it before returning (the
+// plan path presigns a URL to this object, so unlike the fire-and-forget stream
+// greeting write we must await the PutObject). Returns null on TTS or cache
+// failure so the caller drops the segment rather than handing out a dead URL.
+async function generateAndCacheGreetingClip(
+  bucket: string,
+  key: string,
+  script: string,
+  elevenLabsKey: string,
+): Promise<Buffer | null> {
+  try {
+    const res = await fetch(
+      `https://api.elevenlabs.io/v1/text-to-speech/UgBBYS2sOqTuMpoF3BR0?output_format=mp3_44100_128`,
+      {
+        method: "POST",
+        headers: { "xi-api-key": elevenLabsKey, "Content-Type": "application/json", Accept: "audio/mpeg" },
+        body: JSON.stringify({
+          text: script,
+          model_id: "eleven_turbo_v2_5",
+          voice_settings: { stability: 0.5, similarity_boost: 0.75 },
+        }),
+      },
+    );
+    if (!res.ok) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
+    await s3.send(
+      new PutObjectCommand({
+        Bucket: bucket,
+        Key: key,
+        Body: buf,
+        ContentType: "audio/mpeg",
+        CacheControl: "public, max-age=31536000",
+      }),
+    );
+    return buf;
   } catch {
     return null;
   }
@@ -212,6 +272,7 @@ async function generateAndCacheBodySegment(
   variant: string,
   segment: BodySegmentType,
   elevenLabsKey: string,
+  opts?: { awaitCache?: boolean },
 ): Promise<Buffer | null> {
   const v = await resolveVariantContent(bookId, chapterNumber, tone, variant);
   if (!v) return null;
@@ -265,8 +326,7 @@ async function generateAndCacheBodySegment(
 
   const buffer = Buffer.concat(audioChunks);
 
-  // Cache to S3 in background
-  s3.send(
+  const put = s3.send(
     new PutObjectCommand({
       Bucket: bucket,
       Key: cacheKey,
@@ -274,11 +334,29 @@ async function generateAndCacheBodySegment(
       ContentType: "audio/mpeg",
       CacheControl: "public, max-age=31536000",
     }),
-  ).then(() => {
-    audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
-  }).catch((err) => {
-    console.error(`[audio] S3 cache write failed for ${segment}:`, err);
-  });
+  );
+
+  // The stream path fires-and-forgets the cache write (it already holds the
+  // buffer it needs). The plan path passes awaitCache:true so the object is
+  // DURABLY in S3 before we presign a URL to it — a write failure then drops the
+  // segment (return null) rather than yielding a URL that would 404.
+  if (opts?.awaitCache) {
+    try {
+      await put;
+      audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
+    } catch (err) {
+      console.error(`[audio] S3 cache write failed for ${segment}:`, err);
+      return null;
+    }
+  } else {
+    put
+      .then(() => {
+        audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
+      })
+      .catch((err) => {
+        console.error(`[audio] S3 cache write failed for ${segment}:`, err);
+      });
+  }
 
   return buffer;
 }
@@ -398,6 +476,78 @@ export async function GET(req: Request, ctx: Params) {
     }
 
     const elevenLabsKey = await getServerEnv("ELEVENLABS_API_KEY");
+
+    // ── mode=plan: personalized segment MANIFEST as JSON ─────────────────
+    //
+    // Additive native-client contract (docs/ios/AUDIO-CONTRACT.md §8). It shares
+    // this route's ENTIRE preamble above — same auth, entitlement, param
+    // validation, user context, and `buildSegmentPlan` — and only the response
+    // shape differs: per-segment presigned Range-capable URLs instead of one
+    // stitched MP3. The default (no `mode`) stream path below is left untouched.
+    if (url.searchParams.get("mode") === "plan") {
+      const descriptors = getSegmentDescriptors(plan, narrationCtx, tone, variant);
+      const result = await buildAudioPlan(
+        descriptors,
+        { bookId, chapterNumber, tone, variant },
+        {
+          headContentLength: (key) => headContentLength(bucket, key),
+          presign: (key) =>
+            getSignedUrl(s3, new GetObjectCommand({ Bucket: bucket, Key: key }), {
+              expiresIn: PLAN_URL_TTL_SECONDS,
+            }),
+          // Generate the only on-the-fly-generatable segments (the three TTS
+          // bodies + the user greeting) when missing, awaiting the durable S3
+          // write so the presigned URL is immediately valid.
+          generate: async (d) => {
+            if (d.type === "userGreeting") {
+              if (!elevenLabsKey || !userName) return null;
+              const buf = await generateAndCacheGreetingClip(
+                bucket,
+                d.key,
+                getUserGreetingScript(userName, narrationCtx.timeOfDay),
+                elevenLabsKey,
+              );
+              return buf ? buf.length : null;
+            }
+            if (d.type === "summary" || d.type === "takeaways" || d.type === "recap") {
+              if (!elevenLabsKey) return null;
+              const buf = await generateAndCacheBodySegment(
+                bucket,
+                d.key,
+                bookId,
+                chapterNumber,
+                tone,
+                variant,
+                d.type,
+                elevenLabsKey,
+                { awaitCache: true },
+              );
+              return buf ? buf.length : null;
+            }
+            return null;
+          },
+          canGenerate: Boolean(elevenLabsKey),
+        },
+        { ttlSeconds: PLAN_URL_TTL_SECONDS, nowMs: Date.now() },
+      );
+
+      if (!result.ok) {
+        return bookErr(req, result.status, result.code, result.message);
+      }
+
+      audioDebug(
+        `[audio] Plan: ${result.plan.segments.length}/${descriptors.length} segments, expires ${result.plan.expiresAt}`,
+      );
+      return new Response(JSON.stringify(result.plan), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+          // Per-user manifest carrying embedded presigned URLs → never
+          // shared-cache; the client re-GETs to refresh (see §8).
+          "Cache-Control": "private, no-cache",
+        },
+      });
+    }
 
     // First pass: load all segments from S3 in parallel, identify missing body
     // segments. (Serial awaits here previously added ~11 round-trips of latency

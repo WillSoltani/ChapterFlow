@@ -51,6 +51,46 @@ export type SegmentPlan = {
   closingId: string;
 };
 
+// ── Plan-manifest segment descriptors (mode=plan) ────────────────────
+//
+// The stitched stream only needs the ordered S3 keys, but the `?mode=plan`
+// native-client manifest (docs/ios/AUDIO-CONTRACT.md §8) also needs each
+// segment's role, a stable id, and any caption text. `getSegmentDescriptors`
+// is the single source of truth for the ordered segment list; `getSegmentKeys`
+// derives from it, so the two can never drift.
+
+export type PlanSegmentType =
+  | "userGreeting"
+  | "greeting"
+  | "bookIntro"
+  | "score"
+  | "chapterNumber"
+  | "summary"
+  | "transition"
+  | "takeaways"
+  | "recap"
+  | "closing";
+
+export type SegmentDescriptor = {
+  /** S3 key of the segment object — the exact key the stitched stream loads. */
+  key: string;
+  /** Segment role in the narration. */
+  type: PlanSegmentType;
+  /**
+   * Stable, deterministic id for this segment object. Unique WITHIN a plan
+   * response (which is already scoped by bookId/chapterNumber/tone/variant), so
+   * it is safe as a client-side cache key. Note: the greeting/transition/closing
+   * slots fall back to a `Math.random` generic pick (see `getSegmentKeys`), so a
+   * later plan fetch may resolve a different generic clip — and thus a different
+   * segmentId — for those slots; body segments, book intro, chapter number, and
+   * any context-triggered clips are stable across refreshes for the same user
+   * state + chapter + tone + variant + time of day.
+   */
+  segmentId: string;
+  /** Short narration script shown as a caption; omitted for long-form body segments. */
+  text?: string;
+};
+
 // ── S3 key helpers ───────────────────────────────────────────────────
 
 const AUDIO_SEGMENTS_PREFIX = "book-content/audio-segments";
@@ -184,49 +224,110 @@ export function buildSegmentPlan(ctx: NarrationContext): SegmentPlan {
 //  10. RECAP body          [oneMinuteRecap audio]
 //  11. CLOSING CTA         "Another chapter down, another day on your streak..."
 
+export function getSegmentDescriptors(
+  plan: SegmentPlan,
+  ctx: NarrationContext,
+  tone: string,
+  variant: string,
+): SegmentDescriptor[] {
+  const descriptors: SegmentDescriptor[] = [];
+
+  // 1. Per-user greeting ("Good evening, Will.") — only when a name is known.
+  if (ctx.userName) {
+    descriptors.push({
+      key: userGreetingS3Key(ctx.userId, plan.timeOfDay),
+      type: "userGreeting",
+      segmentId: `greeting-user-${plan.timeOfDay}`,
+      text: getUserGreetingScript(ctx.userName, plan.timeOfDay),
+    });
+  }
+
+  // 2. Contextual greeting.
+  descriptors.push({
+    key: segmentS3Key("greetings", plan.greetingId),
+    type: "greeting",
+    segmentId: `greeting-${plan.greetingId}`,
+    text: GREETING_SCRIPTS[plan.greetingId],
+  });
+
+  // 3. Book name + author.
+  descriptors.push({
+    key: bookIntroS3Key(ctx.bookId),
+    type: "bookIntro",
+    segmentId: "book-intro",
+    text: getBookIntroScript(ctx.bookTitle, ctx.authorName),
+  });
+
+  // 4. Score callout — only when the plan selected one. scoreId already carries
+  // a "score-" prefix for the bucketed callouts (e.g. "score-90"); strip it so
+  // the id is `score-90`, not `score-score-90` (and `score-first-chapter`).
+  if (plan.scoreId) {
+    descriptors.push({
+      key: segmentS3Key("scores", plan.scoreId),
+      type: "score",
+      segmentId: `score-${plan.scoreId.replace(/^score-/, "")}`,
+      text: SCORE_SCRIPTS[plan.scoreId],
+    });
+  }
+
+  // 5. Chapter-number lead-in.
+  descriptors.push({
+    key: chapterNumberS3Key(ctx.chapterNumber),
+    type: "chapterNumber",
+    segmentId: `chapter-number-${ctx.chapterNumber}`,
+    text: getChapterNumberScript(ctx.chapterNumber),
+  });
+
+  // 6. Summary body (TTS, tone+variant-scoped). Long-form → no caption.
+  descriptors.push({
+    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "summary"),
+    type: "summary",
+    segmentId: "summary",
+  });
+
+  // 7. Transition (between summary and takeaways).
+  descriptors.push({
+    key: segmentS3Key("transitions", plan.transitionId),
+    type: "transition",
+    segmentId: `transition-${plan.transitionId}`,
+    text: TRANSITION_SCRIPTS[plan.transitionId],
+  });
+
+  // 8. Takeaways body (with connectors baked in).
+  descriptors.push({
+    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "takeaways"),
+    type: "takeaways",
+    segmentId: "takeaways",
+  });
+
+  // 9. Recap body.
+  descriptors.push({
+    key: chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "recap"),
+    type: "recap",
+    segmentId: "recap",
+  });
+
+  // 10. Closing CTA.
+  descriptors.push({
+    key: segmentS3Key("closings", plan.closingId),
+    type: "closing",
+    segmentId: `closing-${plan.closingId}`,
+    text: CLOSING_SCRIPTS[plan.closingId],
+  });
+
+  return descriptors;
+}
+
+// The stitched-stream path only needs the ordered keys. Deriving them from the
+// descriptors keeps a single source of truth for segment order/count, so the
+// stream and the mode=plan manifest can never diverge.
 export function getSegmentKeys(
   plan: SegmentPlan,
   ctx: NarrationContext,
   tone: string,
   variant: string,
 ): string[] {
-  const keys: string[] = [];
-
-  // 1. User greeting ("Good evening, Will.")
-  if (ctx.userName) {
-    keys.push(userGreetingS3Key(ctx.userId, plan.timeOfDay));
-  }
-
-  // 3. Greeting
-  keys.push(segmentS3Key("greetings", plan.greetingId));
-
-  // 4. Book name + author
-  keys.push(bookIntroS3Key(ctx.bookId));
-
-  // 5. Score callout
-  if (plan.scoreId) {
-    keys.push(segmentS3Key("scores", plan.scoreId));
-  }
-
-  // 6. Chapter number lead-in
-  keys.push(chapterNumberS3Key(ctx.chapterNumber));
-
-  // 7. Summary body
-  keys.push(chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "summary"));
-
-  // 8. Transition (between summary and takeaways)
-  keys.push(segmentS3Key("transitions", plan.transitionId));
-
-  // 9. Takeaways body (with connectors baked in)
-  keys.push(chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "takeaways"));
-
-  // 10. Recap body
-  keys.push(chapterBodySegmentS3Key(ctx.bookId, ctx.chapterNumber, tone, variant, "recap"));
-
-  // 11. Closing CTA
-  keys.push(segmentS3Key("closings", plan.closingId));
-
-  return keys;
+  return getSegmentDescriptors(plan, ctx, tone, variant).map((d) => d.key);
 }
 
 // ── Takeaway connectors ──────────────────────────────────────────────
@@ -399,4 +500,167 @@ export function getBookIntroScript(bookTitle: string, authorName: string): strin
 export function getUserGreetingScript(name: string, timeOfDay: TimeOfDay): string {
   const tod = timeOfDay === "morning" ? "morning" : timeOfDay === "afternoon" ? "afternoon" : "evening";
   return `Good ${tod}, ${name}.`;
+}
+
+// ── mode=plan manifest builder ───────────────────────────────────────
+//
+// The additive `?mode=plan` JSON contract for native clients
+// (docs/ios/AUDIO-CONTRACT.md §8). Pure + dependency-injected (no `server-only`,
+// no AWS import) so it stays unit-testable: the route passes real S3
+// HEAD / presign / TTS-generate closures; tests pass fakes.
+
+// Segments we generate ourselves via ElevenLabs at mp3_44100_128 (128 kbps CBR).
+// These are the ONLY segments that are both (a) generatable on cache-miss and
+// (b) cheaply+reliably byte→duration convertible (duration ≈ bytes / 16000). The
+// remaining segments are pre-generated clips of unguaranteed bitrate, so we emit
+// neither on-the-fly generation nor a duration estimate for them.
+const ELEVENLABS_CBR_TYPES: ReadonlySet<PlanSegmentType> = new Set<PlanSegmentType>([
+  "userGreeting",
+  "summary",
+  "takeaways",
+  "recap",
+]);
+
+// The three tone/variant-scoped chapter bodies. A missing body with no way to
+// generate it means the chapter audio is not ready → 503 (stream parity).
+const PLAN_BODY_TYPES: ReadonlySet<PlanSegmentType> = new Set<PlanSegmentType>([
+  "summary",
+  "takeaways",
+  "recap",
+]);
+
+// 128 kbps CBR = 16000 bytes/sec. Used only for ELEVENLABS_CBR_TYPES segments.
+const CBR_BYTES_PER_SECOND = 128000 / 8;
+
+export type AudioPlanSegment = {
+  segmentId: string;
+  type: PlanSegmentType;
+  /** Presigned, Range-capable S3 GET URL. Stops working at the plan's expiresAt. */
+  url: string;
+  /** Exact byte length of the S3 object. */
+  contentLength: number;
+  /** Byte-derived estimate (±~1 frame); present only for 128 kbps-CBR segments. */
+  durationSeconds?: number;
+  /** Short caption text, when the segment has a known narration script. */
+  text?: string;
+  /** S3 serves Range natively for every segment object — always true. */
+  rangeSupported: true;
+};
+
+export type AudioPlan = {
+  version: 1;
+  bookId: string;
+  chapterNumber: number;
+  tone: string;
+  variant: string;
+  /** ISO-8601 UTC instant the presigned segment URLs expire (nowMs + ttlSeconds). */
+  expiresAt: string;
+  segments: AudioPlanSegment[];
+};
+
+export type BuildAudioPlanDeps = {
+  /** S3 HEAD → object byte length, or null when the object is absent. */
+  headContentLength: (key: string) => Promise<number | null>;
+  /** Presign a Range-capable GET URL for the key (TTL owned by the caller). */
+  presign: (key: string) => Promise<string>;
+  /**
+   * Generate + DURABLY cache a generatable segment (body or user greeting);
+   * resolves to its byte length, or null when it can't be produced (no content
+   * / TTS failure / cache-write failure). Must await the S3 write so the
+   * presigned URL is immediately fetchable. Only ever called for
+   * {@link ELEVENLABS_CBR_TYPES} segments that are currently missing.
+   */
+  generate: (descriptor: SegmentDescriptor) => Promise<number | null>;
+  /** Whether on-the-fly TTS generation is possible (ELEVENLABS_API_KEY set). */
+  canGenerate: boolean;
+};
+
+export type BuildAudioPlanResult =
+  | { ok: true; plan: AudioPlan }
+  | { ok: false; status: number; code: string; message: string };
+
+/**
+ * Build the `?mode=plan` manifest from the ordered segment descriptors. Mirrors
+ * the stitched-stream path's fail-closed + skip-missing semantics exactly, but
+ * emits per-segment presigned URLs + metadata instead of concatenating bytes:
+ *
+ *  - a missing BODY segment with no TTS key → `503 tts_unavailable`;
+ *  - missing generatable segments (body + user greeting) are generated and
+ *    durably cached, then presigned;
+ *  - any segment still missing is silently dropped (as the stream skips it);
+ *  - zero surviving segments → `404 no_audio`.
+ */
+export async function buildAudioPlan(
+  descriptors: SegmentDescriptor[],
+  meta: { bookId: string; chapterNumber: number; tone: string; variant: string },
+  deps: BuildAudioPlanDeps,
+  opts: { ttlSeconds: number; nowMs: number },
+): Promise<BuildAudioPlanResult> {
+  // 1. HEAD every segment key in parallel → current byte length (null = absent).
+  const lengths = await Promise.all(descriptors.map((d) => deps.headContentLength(d.key)));
+
+  // 2. Fail closed exactly like the stream: a missing body segment we cannot
+  //    generate means the chapter audio has not been produced yet.
+  const bodyMissing = descriptors.some(
+    (d, i) => lengths[i] === null && PLAN_BODY_TYPES.has(d.type),
+  );
+  if (bodyMissing && !deps.canGenerate) {
+    return {
+      ok: false,
+      status: 503,
+      code: "tts_unavailable",
+      message: "Audio generation is not available — chapter audio has not been cached yet",
+    };
+  }
+
+  // 3. Generate the missing generatable segments (body + user greeting) in
+  //    parallel, awaiting durable S3 writes so their presigned URLs are valid.
+  await Promise.all(
+    descriptors.map(async (d, i) => {
+      if (lengths[i] !== null) return;
+      if (!deps.canGenerate || !ELEVENLABS_CBR_TYPES.has(d.type)) return;
+      lengths[i] = await deps.generate(d);
+    }),
+  );
+
+  // 4. Presign every segment that now exists, preserving descriptor order;
+  //    silently drop the rest (parity with the stream skipping a missing clip).
+  const built = await Promise.all(
+    descriptors.map(async (d, i): Promise<AudioPlanSegment | null> => {
+      const contentLength = lengths[i];
+      if (contentLength === null) return null;
+      const url = await deps.presign(d.key);
+      const durationSeconds = ELEVENLABS_CBR_TYPES.has(d.type)
+        ? Math.round((contentLength / CBR_BYTES_PER_SECOND) * 10) / 10
+        : undefined;
+      return {
+        segmentId: d.segmentId,
+        type: d.type,
+        url,
+        contentLength,
+        ...(durationSeconds !== undefined ? { durationSeconds } : {}),
+        ...(d.text ? { text: d.text } : {}),
+        rangeSupported: true,
+      };
+    }),
+  );
+  const segments = built.filter((s): s is AudioPlanSegment => s !== null);
+
+  // 5. Nothing survived → no audio (parity with the stream's 404).
+  if (segments.length === 0) {
+    return { ok: false, status: 404, code: "no_audio", message: "No audio segments available" };
+  }
+
+  return {
+    ok: true,
+    plan: {
+      version: 1,
+      bookId: meta.bookId,
+      chapterNumber: meta.chapterNumber,
+      tone: meta.tone,
+      variant: meta.variant,
+      expiresAt: new Date(opts.nowMs + opts.ttlSeconds * 1000).toISOString(),
+      segments,
+    },
+  };
 }
