@@ -66,6 +66,8 @@ import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
 import { researchFreshnessViolation } from "./researchFreshness.js";
 import { doCompilerWrite } from "./compilerRun.js";
+import { doAuthorWrite } from "./authorRun.js";
+import { doAuthorReview, type AuthorReviewIo } from "./authorReview.js";
 import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
@@ -225,9 +227,22 @@ export type AutopilotOptions = {
   // let any other caller (tests, future scripts) fall back to the v21 whole-chapter writer
   // without anyone choosing that. Forcing every caller to state it keeps the route a conscious
   // choice instead of an implicit one.
-  architecture: "compiler" | "legacy"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout.
+  architecture: "compiler" | "legacy" | "author"; // v23 compiler path writes typed section artifacts then assembles ChapterV21; legacy keeps whole-chapter writer fanout; author (v24) = one whole-chapter author per chapter + blinded reader review/regeneration (authorRun.ts / authorReview.ts).
+  /** v24 author arch only: injectable IO for doAuthorWrite/doAuthorReview so tests
+   *  drive the author phases against fixtures/tmp roots. Ignored by compiler/legacy. */
+  authorIo?: Partial<AuthorReviewIo>;
   deps?: Partial<AutopilotDeps>;
 };
+
+/** Map CLI flags → the conductor architecture. Shared by book-autopilot (cli.ts) and
+ *  book-run (liveRun.ts) so the two entrypoints can never drift: --legacy (or the long
+ *  form) keeps meaning legacy, --author selects the v24 author arch, default stays
+ *  compiler. Exported for tests (pins compiler/legacy defaults unchanged). */
+export function architectureFromFlags(flags: Record<string, string | boolean>): "compiler" | "legacy" | "author" {
+  if ("legacy-whole-chapter-writer" in flags || "legacy" in flags) return "legacy";
+  if ("author" in flags) return "author";
+  return "compiler";
+}
 
 /** Why the conductor stopped, so a "walk away" operator (or a harness) can route the
  *  halt instead of eyeballing prose:
@@ -956,6 +971,11 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     // When gate is SKIPPED (allGated fresh book → "qc") or a resume enters QC directly, this stays
     // false and doQcWithRepair runs the scouts itself before the first round.
     let preQcScoutsConverged = false;
+    // v24 author arch: the confirming function is doAuthorReview's TWO independent book-level
+    // readers, not the sweep — so the author branch substitutes this flag for deps.sweepConfirmed
+    // at the decidePhase CALL SITE below (compiler/legacy call sites untouched). It flips true
+    // ONLY after the two-reader book acceptance has passed.
+    let authorBookAccepted = false;
     for (let iter = 0; iter < MAX_LOOP_ITERS; iter++) {
       // Heartbeat: keep our lock fresh AND detect a steal. If refresh() reports we no
       // longer own it (a successor took over after our heartbeat went stale), HALT rather
@@ -964,7 +984,7 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         return mkHalt(bookId, safePhase(bookId, deps, regen), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
       }
       const status = deps.statusOf(bookId);
-      const sweepConfirmed = deps.sweepConfirmed(bookId);
+      const sweepConfirmed = architecture === "author" ? authorBookAccepted : deps.sweepConfirmed(bookId);
       const phase = decidePhase(status, sweepConfirmed, regen);
       // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
       // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.
@@ -987,9 +1007,11 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         continue;
       }
       if (phase === "write") {
-        const halt = architecture === "compiler"
-          ? await doCompilerWrite(bookId, deps, { maxParallel, heartbeat })
-          : await doWrite(bookId, status, maxParallel, deps, heartbeat);
+        const halt = architecture === "author"
+          ? await doAuthorWrite(bookId, deps, { maxParallel, heartbeat, io: opts.authorIo })
+          : architecture === "compiler"
+            ? await doCompilerWrite(bookId, deps, { maxParallel, heartbeat })
+            : await doWrite(bookId, status, maxParallel, deps, heartbeat);
         if (halt) return halt;
         continue;
       }
@@ -1004,12 +1026,27 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         // (it drove POM to 11/12 first-QC-round on the v21/v22 path). The scouts are read-only +
         // bounded (PREQC_MAX_* / combinedScoutPasses oscillation cap) and only ever emit surgical
         // per-chapter edits — they never weaken QC, which still runs after.
-        const halt = await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: true }, gateQcFlipTracker);
+        // v24 author arch: the EXISTING doGate with preQcScouts:false (that option already
+        // skips the variety/alignment scouts — the author review phase's blinded readers +
+        // book acceptance are the semantic check there). Compiler/legacy call shape unchanged.
+        const halt = architecture === "author"
+          ? await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: false }, gateQcFlipTracker)
+          : await doGate(bookId, maxRepair, maxParallel, deps, heartbeat, { preQcScouts: true }, gateQcFlipTracker);
         if (halt) return halt;
-        preQcScoutsConverged = true; // doGate ran the variety+alignment scouts; QC needn't repeat them
+        if (architecture !== "author") preQcScoutsConverged = true; // doGate ran the variety+alignment scouts; QC needn't repeat them
         continue;
       }
       if (phase === "qc") {
+        if (architecture === "author") {
+          // v24 author arch: blinded per-chapter reader review + regeneration + the
+          // two-reader book acceptance, INSTEAD of doQcWithRepair. Same outcome shapes:
+          // an AutopilotOutcome halts; null = phase complete → re-loop (the acceptance
+          // flag below is what lets decidePhase reach "ready").
+          const result = await doAuthorReview(bookId, deps, { maxParallel, heartbeat, io: opts.authorIo });
+          if (result) return result;
+          authorBookAccepted = true; // two independent book readers accepted — the author arch's confirming function
+          continue;
+        }
         const result = await doQcWithRepair(bookId, maxRepair, maxParallel, deps, heartbeat, gateQcFlipTracker, preQcScoutsConverged);
         if (result) return result; // halt or ready handled inside; null = re-loop
         continue;
@@ -2648,7 +2685,7 @@ function planOnly(bookId: string, deps: AutopilotDeps, opts: Pick<AutopilotOptio
   const lines = [
     `AUTOPILOT PLAN — ${bookId}`,
     `  current phase: ${phase}`,
-    `  architecture: ${architecture === "compiler" ? "v23 compiler" : "legacy whole-chapter writer"}`,
+    `  architecture: ${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author (whole-chapter author + reader review)" : "legacy whole-chapter writer"}`,
     `  codex sessions that WOULD spawn from here (estimate):`,
     `    research: ${phase === "research" ? 1 : 0}`,
     `    write:    ${writeLabel}`,
