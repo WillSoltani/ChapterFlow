@@ -25,8 +25,8 @@
  * re-deal, and compileChapterBlueprint mixes it into exactly one deal.
  */
 
-import { appendFileSync, existsSync, mkdirSync, rmSync } from "fs";
-import { dirname } from "path";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { effectiveLedgerResilient } from "../qc/orchestrator/ledger.js";
@@ -45,7 +45,8 @@ import {
 import type { ActionPackV1, ExamplePackV1, LearningPackV1, SectionKind, SummaryPackV1 } from "../artifacts/artifactTypes.js";
 import { readSlotSalts, type ChapterSlotSalts } from "../compiler/chapterBlueprint.js";
 import { regenerateSectionArtifact, stampCompilerAssemblyProvenance } from "./compilerRun.js";
-import { normSlug } from "../lib/chapterPaths.js";
+import { CANONICAL_STATE, normSlug } from "../lib/chapterPaths.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 import type { ChapterV21 } from "../types.js";
 import type { AutopilotDeps, AutopilotOutcome } from "./autopilot.js";
 
@@ -166,7 +167,36 @@ export async function redealAndRegenerate(
   const regenHalt = await regenerateSectionArtifact(normalized, chapterNumber, kind, deps, { heartbeat: opts.heartbeat, ownerEnv, roots });
   if (regenHalt) return { halt: regenHalt, saltField, saltValue, kind };
 
+  // Sibling chapters must be BYTE-STABLE across the redeal's book-wide re-assembly. If a sibling's
+  // artifacts predate its own QC repairs (pre-P10 drift: surgical chapter edits that never synced
+  // back), assembling book-wide would silently REGRESS that chapter to stale artifact content.
+  // Snapshot every other chapter file, restore any the assembly rewrote, and log loudly — the drift
+  // is pre-existing and resolves when that chapter's own surgical sync runs; a redeal of THIS
+  // chapter must never be the thing that rewrites siblings.
+  const chaptersDir = resolve(roots.stateRoot ?? CANONICAL_STATE, "chapters");
+  const targetFile = `${normalized}-ch${pad}.v21-native.chapter.json`;
+  const siblingSnapshots = new Map<string, string>();
+  try {
+    for (const f of readdirSync(chaptersDir)) {
+      if (f.startsWith(`${normalized}-ch`) && f.endsWith(".v21-native.chapter.json") && f !== targetFile) {
+        siblingSnapshots.set(f, readFileSync(resolve(chaptersDir, f), "utf8"));
+      }
+    }
+  } catch { /* no chapters dir (fresh book / unit fixture) — nothing to protect */ }
+
   const asm = await deps.runVerb(["assemble-sections", normalized], ownerEnv);
+
+  // Restore BEFORE the failure check so even a failed assembly cannot leave clobbered siblings.
+  let restoredSiblings = 0;
+  for (const [f, bytes] of siblingSnapshots) {
+    const sp = resolve(chaptersDir, f);
+    try {
+      if (!existsSync(sp) || readFileSync(sp, "utf8") !== bytes) { writeFileAtomic(sp, bytes); restoredSiblings++; }
+    } catch { /* best-effort restore; the loud log below still fires for the ones we could */ }
+  }
+  if (restoredSiblings > 0) {
+    deps.log(`[autopilot] redeal ${lever} ch${pad}: PRE-EXISTING ARTIFACT DRIFT — book-wide re-assembly rewrote ${restoredSiblings} sibling chapter file(s); restored their QC-repaired bytes (their artifacts stay stale until their own surgical sync). Only ch${pad} keeps the re-assembled build.`);
+  }
   if (asm.code !== 0) return { halt: halt(bookId, `redeal ${lever} ch${pad}: assemble-sections failed (exit ${asm.code}).\n${verbOut(asm).slice(0, 1200)}`, asm.code >= 2 ? "infra" : "content"), saltField, saltValue, kind };
 
   try { stampCompilerAssemblyProvenance(normalized, deps); }

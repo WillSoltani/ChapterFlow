@@ -263,3 +263,49 @@ test("P10 artifact sync: an edit the artifacts do NOT own is caught by the round
     assert.match(res.ok ? "" : (res.halt.status === "halt" ? res.halt.reason : ""), /round-trip MISMATCH/);
   });
 });
+
+// ── R2 (reviewer): sibling chapters are byte-stable across a redeal's book-wide re-assembly ──────
+test("P10 redeal: a book-wide re-assembly that rewrites a DRIFTED sibling chapter is restored (only the re-dealt chapter keeps the new build)", async () => {
+  const BOOK = "zz-fixture-repair-routing-sibling";
+  const stateRoot = resolve(tmpdir(), `cf-v23-rr-sib-${process.pid}-${Date.now()}`);
+  const roots: CompilerStoreRoots = { stateRoot };
+  try {
+    writeCreditFixture(BOOK, roots, compileCreditFixture(BOOK, roots));
+    dealSectionTasks(BOOK, roots);
+    // Two "QC-repaired" chapter files on disk. ch2's artifacts are (by construction of the stub
+    // below) STALE relative to these bytes — the pre-P10 drift scenario.
+    const chaptersDir = resolve(stateRoot, "chapters");
+    mkdirSync(chaptersDir, { recursive: true });
+    const ch1Path = resolve(chaptersDir, `${BOOK}-ch01.v21-native.chapter.json`);
+    const ch2Path = resolve(chaptersDir, `${BOOK}-ch02.v21-native.chapter.json`);
+    const repairedCh1 = JSON.stringify({ marker: "ch1 QC-REPAIRED bytes" });
+    const repairedCh2 = JSON.stringify({ marker: "ch2 QC-REPAIRED bytes (must survive the redeal)" });
+    writeFileSync(ch1Path, repairedCh1, "utf8");
+    writeFileSync(ch2Path, repairedCh2, "utf8");
+
+    // Stubbed verbs: assemble-sections rewrites BOTH chapters from (stale) artifacts.
+    const clobber = (p: string, n: number) => writeFileSync(p, JSON.stringify({ marker: `ch${n} REASSEMBLED-FROM-STALE-ARTIFACTS` }), "utf8");
+    const deps = {
+      runVerb: async (args: string[]) => {
+        if (args[0] === "assemble-sections") { clobber(ch1Path, 1); clobber(ch2Path, 2); }
+        return { code: 0, stdout: "", stderr: "" };
+      },
+      spawn: (async () => ({ ok: true, exitCode: 0 })) as unknown as AutopilotDeps["spawn"],
+      mkSessionId: (label: string) => `${label}#sib`,
+      log: (m: string) => logs.push(m),
+      logSession: () => {},
+    } as unknown as AutopilotDeps;
+    const logs: string[] = [];
+
+    const findings: RoutableRepairFinding[] = [{ findingId: "F-sib", family: "scene_skeleton", unitId: "ex01", chapterNumber: 1 }];
+    const result = await routeAndExecuteRepairs(BOOK, "r-sib", findings, deps, { mode: "enforce", roots, now: () => "2026-07-02T00:00:00.000Z" });
+
+    assert.equal(result.halt, null, "the redeal itself succeeds");
+    assert.deepEqual(result.redealedChapters, [1]);
+    assert.equal(readFileSync(ch2Path, "utf8"), repairedCh2, "the DRIFTED sibling's QC-repaired bytes are RESTORED — a redeal never rewrites siblings");
+    assert.match(readFileSync(ch1Path, "utf8"), /REASSEMBLED/, "the re-dealt chapter keeps the new assembled build");
+    assert.ok(logs.some((m) => /PRE-EXISTING ARTIFACT DRIFT/.test(m)), "the restoration is logged loudly for the operator");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
