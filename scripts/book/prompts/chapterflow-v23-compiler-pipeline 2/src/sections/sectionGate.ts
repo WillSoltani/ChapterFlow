@@ -217,12 +217,23 @@ function validateAnchorClaimType(
   return problems;
 }
 
-function validateAnchorHardSpecifics(
+// P15 (F14): `min` is the number of a cited anchor's hardSpecifics that must appear
+// verbatim in the unit. NARRATION units (examples SEC33, summary SEC13/SEC14) keep
+// min=2 — a real case narrated as a lived moment carries two concrete details
+// naturally. NON-NARRATIVE units (quiz SEC56, action SEC74) drop to min=1: the
+// checkpoint 3-reader panel byte-verified that the ≥2 quota is the MECHANICAL cause
+// of identifier-sentence stuffing — writers satisfy it by stapling standalone
+// "The Magic Castle Hotel is a Los Angeles hotel with free popsicles…" clauses into
+// stems and by ritualizing source labels in rituals. Source-grounding is preserved by
+// the anchor citation + claim-type match + ≥1 verbatim specific + the evidence gate;
+// dropping the second forced specific removes the stuffing pressure, not the grounding.
+export function validateAnchorHardSpecifics(
   ids: unknown,
   anchors: Map<string, SourcePacketV1["allowedAnchors"][number]>,
   claimType: SourceClaimType,
   value: unknown,
   label: string,
+  min = 2,
 ): string[] {
   const haystack = text(value).toLowerCase();
   const problems: string[] = [];
@@ -230,10 +241,10 @@ function validateAnchorHardSpecifics(
     const anchor = anchors.get(id);
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
     const specifics = anchor.hardSpecifics ?? [];
-    if (specifics.length < 2) continue;
+    if (specifics.length < min) continue;
     const present = specifics.filter((specific) => specific && haystack.includes(specific.toLowerCase())).length;
-    if (present < 2) {
-      problems.push(`${label} cites ${id} but uses ${present}/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
+    if (present < min) {
+      problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
     }
   }
   return problems;
@@ -933,6 +944,98 @@ function collectSoftBannedTextFields(pack: SectionPackV1, chapterNumber: number,
       break;
   }
   return out;
+}
+
+// ---- SEC119 cast containment (P15, F13) ------------------------------------
+// The example pack deals fictional protagonist names (reservedVariety.allowedNames
+// + per-slot allowedNames) so its six scenes stay distinct. Those names are
+// EXAMPLE-ONLY casting scaffolding. The regenerated POM ch01 leaked them into the
+// reader's OWN plan: coreSkill said "what will Margaret, Lorne, or another real person
+// remember" and an ifThen plan said "hand it to Sophie by name". CAUSE: the action task
+// slice shipped reservedVariety.allowedNames wholesale (fixed in
+// sectionTasks.buildSectionTaskMarkdown), and no gate forbade a dealt fictional name
+// outside the example pack.
+//
+// SCOPE = the ACTION PACK ONLY. The action plan is the one surface where naming a
+// fictional example character is nonsensical to the reader (you cannot "hand it to
+// Sophie by name"). SEC119 deliberately does NOT scan the quiz/cards or the summary:
+//   - the summary NARRATES the chapter's named cases as lived moments (the KEEP-VERBATIM
+//     SUMMARY_VOICE contract) — a named protagonist there is house style, not a leak;
+//   - reusing an example protagonist in a quiz is the C25-BLESSED callback pattern
+//     (checkExampleQuizNameConsistency explicitly passes single-owner reuse) — a SEC119
+//     quiz blocker would directly contradict an existing rule.
+// A calibration sweep confirms this: on the published catalog, the summary surface fires
+// on 71 books and the quiz surface on 42 (all house style), but the ACTION surface fires
+// on ZERO high-quality (>=85) books — the only residual is one below-bar v1 book that
+// hand-references its own example cast in the plan. See scratch/calibrate-cast-containment.ts.
+//
+// Zero-FP within the action surface: the cast is the USED intersection — a dealt name
+// counts only once it actually appears as a word in THIS chapter's example pack. The name
+// bank is full of common English words (Grant, Chase, Dean, Drew, Reid, Blake, Cole);
+// gating on the raw dealt list would false-positive the instant a plan said "chase the
+// metric". Requiring the name to be USED by the examples first means only genuinely-cast
+// names can leak.
+
+/** The dealt fictional-cast candidates for a chapter: book-level + per-slot allowedNames. */
+export function exampleCastCandidates(bp: ChapterBlueprintV1): Set<string> {
+  return new Set([
+    ...(bp.reservedVariety?.allowedNames ?? []),
+    ...(bp.sections?.examples ?? []).flatMap((slot) => slot.allowedNames ?? []),
+  ]);
+}
+
+/** The USED cast: dealt candidates that actually appear as a capitalized whole word in
+ *  the example pack's own text. This is the only set SEC119 forbids elsewhere. */
+export function usedExampleCast(bp: ChapterBlueprintV1, examplePack: ExamplePackV1): Set<string> {
+  const candidates = exampleCastCandidates(bp);
+  if (candidates.size === 0) return new Set();
+  const exampleText = (examplePack.examples ?? [])
+    .flatMap((ex) => [text(ex.title), text(ex.scenario), text(ex.whatToDo), text(ex.whyItMatters)])
+    .join(" \n ");
+  const present = new Set(extractNamesFromText(exampleText));
+  return new Set([...candidates].filter((name) => present.has(name)));
+}
+
+/** The action-pack reader fields SEC119 scans (the reader's own plan). Quiz/cards and
+ *  the summary are deliberately out of scope — see the SEC119 scope note above. */
+function castReaderFields(pack: SectionPackV1): Array<{ path: string; text: string }> {
+  if (pack.artifactType !== "action-pack") return [];
+  const out: Array<{ path: string; text: string }> = [];
+  const add = (path: string, value: unknown) => {
+    const t = text(value);
+    if (t) out.push({ path, text: t });
+  };
+  add("/tryThisNow", pack.tryThisNow);
+  add("/implementationPlan/title", pack.implementationPlan?.title);
+  add("/implementationPlan/coreSkill", pack.implementationPlan?.coreSkill);
+  add("/implementationPlan/twentyFourHourChallenge", pack.implementationPlan?.twentyFourHourChallenge);
+  add("/implementationPlan/weeklyPractice", pack.implementationPlan?.weeklyPractice);
+  for (const [i, it] of (pack.implementationPlan?.ifThenPlans ?? []).entries()) {
+    add(`/implementationPlan/ifThenPlans/${i}/context`, it.context);
+    add(`/implementationPlan/ifThenPlans/${i}/plan`, it.plan);
+  }
+  return out;
+}
+
+/** SEC119: any USED fictional-cast name appearing as a capitalized whole word in the
+ *  action pack's reader-facing plan is a blocker naming the field and the name. */
+export function castContainmentFindings(pack: SectionPackV1, usedCast: Set<string>, chapterNumber: number): SectionFinding[] {
+  if (pack.artifactType !== "action-pack" || usedCast.size === 0) return [];
+  const findings: SectionFinding[] = [];
+  for (const field of castReaderFields(pack)) {
+    const leaked = [...new Set(extractNamesFromText(field.text))].filter((name) => usedCast.has(name));
+    for (const name of leaked) {
+      findings.push({
+        checkId: "SEC119.cast_containment",
+        severity: "blocker",
+        chapterNumber,
+        section: "action-pack",
+        path: field.path,
+        message: `${field.path} names "${name}", one of this chapter's fictional example-pack characters, in the reader's own plan; the example cast is fictional and exists only in the example pack — translate the mechanism into a behavior without naming them`,
+      });
+    }
+  }
+  return findings;
 }
 
 function loadPacketSidecar(packet: SourcePacketV1): any | null {
@@ -2142,9 +2245,10 @@ export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV
     for (const p of validateAnchorClaimType(qSourceIds, anchors, "quiz_prompt", `quiz.questions[${i}].sourceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(qSourceIds, anchors, "quiz_explanation", `quiz.questions[${i}].sourceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(keyEvidenceIds, anchors, "quiz_key_evidence", `quiz.questions[${i}].keyEvidenceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
-    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_prompt", q.prompt, `quiz.questions[${i}].prompt`)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/prompt`);
-    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_explanation", q.explanation, `quiz.questions[${i}].explanation`)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/explanation`);
-    for (const p of validateAnchorHardSpecifics(keyEvidenceIds, anchors, "quiz_key_evidence", `${text(q.prompt)} ${correctChoice} ${text(q.explanation)}`, `quiz.questions[${i}].keyEvidence`)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
+    // P15 (F14): quiz units require ≥1 verbatim specific (non-narrative — see validateAnchorHardSpecifics).
+    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_prompt", q.prompt, `quiz.questions[${i}].prompt`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/prompt`);
+    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_explanation", q.explanation, `quiz.questions[${i}].explanation`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/explanation`);
+    for (const p of validateAnchorHardSpecifics(keyEvidenceIds, anchors, "quiz_key_evidence", `${text(q.prompt)} ${correctChoice} ${text(q.explanation)}`, `quiz.questions[${i}].keyEvidence`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
     const citedNamedCases = new Set([...qSourceIds, ...anchorArray(keyEvidenceIds)].filter((id) => namedCases.has(id)));
     if (citedNamedCases.size > 0) {
       const haystack = normalizedWords(`${text(q.prompt)} ${correctChoice} ${text(q.explanation)}`).map(rootWord).join(" ");
@@ -2256,7 +2360,8 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   if (/^\s*(reflect|consider|think about|say aloud|notice your)\b/i.test(text(pack.tryThisNow))) push("SEC63.try_symbolic", "blocker", "tryThisNow must be a concrete action, not reflection/symbolic theater", "/tryThisNow");
   for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC64.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow")) push("SEC74.action_anchor_specifics", "blocker", p, "/tryThisNow");
+  // P15 (F14): action units require ≥1 verbatim specific (non-narrative — see validateAnchorHardSpecifics).
+  for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/tryThisNow");
   const plan = pack.implementationPlan;
   if (text(plan?.title).split(/\s+/).filter(Boolean).length < 4) push("SEC65.plan_title", "blocker", "implementation plan title too short", "/implementationPlan/title");
   if (!Array.isArray(plan?.ifThenPlans) || plan.ifThenPlans.length < 3) push("SEC66.ifthen_count", "blocker", "implementation plan needs 3+ if-then plans", "/implementationPlan/ifThenPlans");
@@ -2266,20 +2371,20 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
     const ids = it.sourceAnchorIds ?? (it.sourceAnchorId ? [it.sourceAnchorId] : []);
     for (const p of validateAnchorIds(ids, allowed, `ifThenPlans[${i}].sourceAnchorIds`)) push("SEC68.ifthen_anchor", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(ids, anchors, "implementation_guidance", `ifThenPlans[${i}].sourceAnchorIds`)) push("SEC73.action_anchor_claim_type", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
-    for (const p of validateAnchorHardSpecifics(ids, anchors, "implementation_guidance", `${text(it.context)} ${text(it.plan)}`, `ifThenPlans[${i}]`)) push("SEC74.action_anchor_specifics", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
+    for (const p of validateAnchorHardSpecifics(ids, anchors, "implementation_guidance", `${text(it.context)} ${text(it.plan)}`, `ifThenPlans[${i}]`, 1)) push("SEC74.action_anchor_specifics", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
   }
   for (const p of validateAnchorIds(plan?.titleSourceAnchorIds, allowed, "implementationPlan.titleSourceAnchorIds")) push("SEC69.plan_anchor", "blocker", p, "/implementationPlan/titleSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.titleSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.titleSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/titleSourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(plan?.titleSourceAnchorIds, anchors, "implementation_guidance", plan?.title, "implementationPlan.title")) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/title");
+  for (const p of validateAnchorHardSpecifics(plan?.titleSourceAnchorIds, anchors, "implementation_guidance", plan?.title, "implementationPlan.title", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/title");
   for (const p of validateAnchorIds(plan?.coreSkillSourceAnchorIds, allowed, "implementationPlan.coreSkillSourceAnchorIds")) push("SEC70.plan_anchor", "blocker", p, "/implementationPlan/coreSkillSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.coreSkillSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.coreSkillSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/coreSkillSourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(plan?.coreSkillSourceAnchorIds, anchors, "implementation_guidance", plan?.coreSkill, "implementationPlan.coreSkill")) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/coreSkill");
+  for (const p of validateAnchorHardSpecifics(plan?.coreSkillSourceAnchorIds, anchors, "implementation_guidance", plan?.coreSkill, "implementationPlan.coreSkill", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/coreSkill");
   for (const p of validateAnchorIds(plan?.twentyFourHourChallengeSourceAnchorIds, allowed, "implementationPlan.twentyFourHourChallengeSourceAnchorIds")) push("SEC71.plan_anchor", "blocker", p, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.twentyFourHourChallengeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementation_guidance", plan?.twentyFourHourChallenge, "implementationPlan.twentyFourHourChallenge")) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/twentyFourHourChallenge");
+  for (const p of validateAnchorHardSpecifics(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementation_guidance", plan?.twentyFourHourChallenge, "implementationPlan.twentyFourHourChallenge", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/twentyFourHourChallenge");
   for (const p of validateAnchorIds(plan?.weeklyPracticeSourceAnchorIds, allowed, "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC72.plan_anchor", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", plan?.weeklyPractice, "implementationPlan.weeklyPractice")) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/weeklyPractice");
+  for (const p of validateAnchorHardSpecifics(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", plan?.weeklyPractice, "implementationPlan.weeklyPractice", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/weeklyPractice");
   return findings;
 }
 
@@ -2367,6 +2472,17 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
       findings.push({ checkId: "SEC0.prereq", severity: "blocker", chapterNumber, message: `missing blueprint/source packet: ${(err as Error).message}` });
       continue;
     }
+    // SEC119: derive this chapter's USED fictional cast from its example pack once,
+    // independent of which sections were requested, so a `--section action-pack` run
+    // still contains leaks. No example pack yet → empty cast → no findings.
+    let usedCast = new Set<string>();
+    try {
+      const exPath = sectionPath(normalized, chapterNumber, "example-pack", roots);
+      if (existsSync(exPath)) {
+        const exPack = readJsonFile<SectionPackV1>(exPath);
+        if (exPack.artifactType === "example-pack") usedCast = usedExampleCast(bp, exPack);
+      }
+    } catch { /* unreadable example pack → its own gate run reports it */ }
     for (const kind of validSections) {
       const p = sectionPath(normalized, chapterNumber, kind, roots);
       if (!existsSync(p)) {
@@ -2376,6 +2492,7 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
       try {
         const pack = readJsonFile<SectionPackV1>(p);
         findings.push(...validateSectionPack(pack, bp, packet));
+        findings.push(...castContainmentFindings(pack, usedCast, bp.chapterNumber));
         softBannedFields.push(...collectSoftBannedTextFields(pack, bp.chapterNumber, true));
         if (kind === "example-pack" && pack.artifactType === "example-pack") {
           exampleShells.push(...collectExampleShells(pack, bp));

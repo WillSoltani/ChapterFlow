@@ -94,7 +94,7 @@ function universalCore(kind: SectionKind): string[] {
       return [
         "UNIVERSAL — Write ONLY the quiz and review cards.",
         "Each question: questionId, prompt, exactly 3 choices, correctIndex (MUST match the blueprint slot), explanation, bloomsLevel (remember|understand|apply|analyze|evaluate|create), depthLevel (from the slot).",
-        "Provenance uses claim-type-matching anchors (quiz_prompt/quiz_explanation/quiz_key_evidence, review_card), including >=2 of a cited anchor's hardSpecifics verbatim when it has them (SEC55–SEC58); namedExample anchors qualify when listed.",
+        "Provenance uses claim-type-matching anchors (quiz_prompt/quiz_explanation/quiz_key_evidence, review_card), including >=1 of a cited anchor's hardSpecifics verbatim when it has them (SEC55–SEC58); namedExample anchors qualify when listed.",
         "Hedge words (usually, often, sometimes, generally, typically, tends to, may, might) appear in distractors no less than in the key — never signal the answer by hedging it.",
         "A review card must not retrieve a source-grounding requirement (\"at least 3 named cases\", \"claims checkable\") — those are provenance supports, not learning goals.",
         "Output LearningPackV1 JSON only.",
@@ -104,6 +104,7 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY tryThisNow and implementationPlan. Actions must be concrete, low-friction, and provable.",
         "All provenance uses anchors whose supportsClaimTypes include implementation_guidance; concrete namedExample anchors qualify when the packet lists that type.",
         "implementationPlan.coreSkill is built around action.practiceForm and action.practiceConstraint; twentyFourHourChallenge uses the dealt action.practiceForm as its exercise form.",
+        "The example pack's characters are fictional and exist only there — never name them in tryThisNow or the implementation plan (\"hand it to Sophie by name\"); the reader has no Sophie. Translate the mechanism into a behavior (SEC119); the validator enforces this.",
         "Output ActionPackV1 JSON only.",
       ];
   }
@@ -181,6 +182,7 @@ function craftBrief(kind: SectionKind): string[] {
       return [
         "WHAT EXCELLENT LOOKS LIKE: transfer-first questions the reader reasons through (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\"), set to apply/analyze/evaluate.",
         "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length or hedging. Keep prompts lean; name at most one case. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
+        "If a stem names a case, the question must hinge on it, not staple in a standalone case-identifier sentence to hit a quota.",
         "RUBRIC TARGETS: low distractor-tell rate (key never longest or most-hedged); high transfer ratio (>=7 of 9 new-scenario).",
         voiceCraftLine(kind),
       ];
@@ -188,6 +190,7 @@ function craftBrief(kind: SectionKind): string[] {
       return [
         "WHAT EXCELLENT LOOKS LIKE: actions a reader can actually notice and run today — a concrete trigger, a low-friction move, a provable result.",
         "tryThisNow opens with a chapter-specific trigger. coreSkill ends on a chapter-specific practice. ifThenPlans[].context is a situational trigger, not a bare venue. Vary the behavior across chapters: a two-option comparison, a price cap, a rejection rule, a delegation boundary, a one-minute audit, a cadence change, an owner question.",
+        "Never instruct the reader to write or recite a source label (\"write '60-second painful trial beside 90-second trial with milder ending'\"); translate the mechanism into a behavior.",
         "RUBRIC TARGETS: every action concrete, low-friction, and provable; no reused opener/closer/challenge shell across chapters.",
         voiceCraftLine(kind),
       ];
@@ -257,6 +260,14 @@ function voiceCardSection(kind: SectionKind, card: string | null): string {
   return `\n\nVOICE CARD — register note\n- ${voiceRegisterLine(card)}\n- Keep explanations and actions in this register — plain verbs, short sentences; do not slip into a neutral textbook voice.`;
 }
 
+/** The action slice's projection of reservedVariety: everything EXCEPT the example-only
+ *  casting lists (allowedNames/forbiddenNames). Keeps actionMechanism, weeklyPracticeForm,
+ *  and the rest the action writer actually designs around. See F13 / SEC119. */
+function actionReservedVariety(rv: ChapterBlueprintV1["reservedVariety"]): Omit<ChapterBlueprintV1["reservedVariety"], "allowedNames" | "forbiddenNames"> {
+  const { allowedNames: _allowedNames, forbiddenNames: _forbiddenNames, ...rest } = rv;
+  return rest;
+}
+
 export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string }): string {
   const { bookId, kind, blueprint, sourcePacket, outputPath } = args;
   // Each writer consumes only its own section's slots plus a little shared chapter
@@ -272,7 +283,11 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
       ? { examples: blueprint.sections.examples, coreMove: blueprint.coreMove, reservedVariety: blueprint.reservedVariety, forbiddenLeakage: blueprint.constraints.forbiddenLeakage }
       : kind === "learning-pack"
         ? { quiz: blueprint.sections.quiz, cards: blueprint.sections.cards, coreMove: blueprint.coreMove, answerIndexPattern: blueprint.reservedVariety.answerIndexPattern }
-        : { action: blueprint.sections.action, coreMove: blueprint.coreMove, reservedVariety: blueprint.reservedVariety };
+        // P15 (F13): the action writer gets actionMechanism/weeklyPracticeForm etc. but
+        // NOT allowedNames/forbiddenNames — those exist only for example casting, and shipping
+        // them let the action writer treat the fictional cast (Sophie/Margaret/Lorne) as real
+        // people in the reader's plan. SEC119 backstops this; the trim removes the temptation.
+        : { action: blueprint.sections.action, coreMove: blueprint.coreMove, reservedVariety: actionReservedVariety(blueprint.reservedVariety) };
   return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(bookId)}${voiceCardSection(kind, voiceCard(bookId))}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(sourcePacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
 }
 
