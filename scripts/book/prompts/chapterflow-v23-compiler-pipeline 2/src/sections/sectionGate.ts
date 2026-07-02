@@ -2341,7 +2341,10 @@ export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV
     const cardIds = card.sourceAnchorIds ?? (card.sourceAnchorId ? [card.sourceAnchorId] : []);
     for (const p of validateAnchorIds(cardIds, allowed, `cards[${i}].sourceAnchorIds`)) push("SEC51.card_anchor", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(cardIds, anchors, "review_card", `cards[${i}].sourceAnchorIds`)) push("SEC57.card_anchor_claim_type", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
-    for (const p of validateAnchorHardSpecifics(cardIds, anchors, "review_card", `${text(card.front)} ${text(card.back)}`, `cards[${i}]`)) push("SEC58.card_anchor_specifics", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
+    // P15 (F14): cards are non-narrative units like quiz stems — min=1, matching the
+    // SEC55–SEC58 contract line in sectionTasks (a ≥2 card quota invites the same
+    // identifier-sentence stuffing on the back of every anchored card).
+    for (const p of validateAnchorHardSpecifics(cardIds, anchors, "review_card", `${text(card.front)} ${text(card.back)}`, `cards[${i}]`, 1)) push("SEC58.card_anchor_specifics", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
   }
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
   findings.push(...quizPromptNgramReuseFindings(pack, ch));

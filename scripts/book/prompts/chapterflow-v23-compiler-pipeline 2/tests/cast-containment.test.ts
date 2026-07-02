@@ -273,3 +273,29 @@ test("F14 (integration): SEC33 still requires TWO specifics for an example unit"
   assert.equal(sec33.length, 1, "an example with only one verbatim specific still fails SEC33 (narration keeps ≥2)");
   assert.match(sec33[0].message, /1\/2/, "SEC33 message reports the 2-specific quota");
 });
+
+test("F14 (integration): SEC58 passes a review card citing an anchor with ONE verbatim specific (cards are non-narrative)", () => {
+  const anchor: SourceAnchorForPrompt = {
+    id: "a1", kind: "named_example", label: "Magic Castle", text: "…",
+    hardSpecifics: ["Magic Castle Hotel", "free popsicles"],
+    supportsClaimTypes: ["review_card"],
+  };
+  const mkLearning = (front: string, back: string) => ({
+    schemaVersion: "section-artifact-v1", artifactType: "learning-pack", chapterId: CHID,
+    quiz: { passingScorePercent: 70, questions: [] },
+    cards: { cards: [{ cardId: "c01", sourceAnchorIds: ["a1"], front, back }] },
+  } as unknown as LearningPackV1);
+  const sec58 = (lp: LearningPackV1) =>
+    validateLearningPack(lp, quizBlueprint(), packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC58.card_anchor_specifics");
+  const one = sec58(mkLearning(
+    "What does the Magic Castle Hotel case say about where to spend an experience budget?",
+    "Spend on one engineered peak; the hotel wins on a single staged moment, not the room average.",
+  ));
+  assert.deepEqual(one, [], `one verbatim specific should clear SEC58; got ${JSON.stringify(one.map((f) => f.message))}`);
+  const zero = sec58(mkLearning(
+    "Where should an experience budget go, according to this chapter?",
+    "Spend on one engineered peak, not the average.",
+  ));
+  assert.equal(zero.length, 1, "zero specifics still fails SEC58");
+  assert.match(zero[0].message, /0\/1/, "SEC58 message reports the rebalanced 1-specific quota");
+});
