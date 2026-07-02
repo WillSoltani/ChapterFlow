@@ -1,4 +1,3 @@
-import { createHash } from "crypto";
 import { existsSync, readFileSync, readdirSync } from "fs";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { resolve } from "path";
@@ -12,11 +11,29 @@ import { evidenceSourceRef } from "./orchestrator/evidenceSource.js";
 import { QC_ORCHESTRATOR_DIR, roundRecordPath as orchestratorRoundRecordPath, submissionsDir, sweepRoundRecordPath } from "./orchestrator/artifacts.js";
 import type { ValidatedSweepSubmission } from "./orchestrator/schemas.js";
 import { nondistinctiveRepetitionQuote } from "./orchestrator/findingValidity.js";
+import {
+  SWEEP_FAMILIES,
+  isSweepFamily,
+  sweepDefectKey,
+  sweepDefectFingerprintV2,
+  deriveDefectFingerprints,
+  SWEEP_DEFECT_FINGERPRINT_VERSION,
+  type SweepFamily as SweepSpecFamily,
+  type SweepDefectFingerprintVersion,
+  type SweepDefectFingerprintInput,
+} from "./sweepSpec.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 export const SWEEP_PACKS_DIR = resolve(CANONICAL_STATE, "qc-packs");
-export const REQUIRED_SWEEP_FAMILIES = ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"] as const;
-export type SweepFamily = typeof REQUIRED_SWEEP_FAMILIES[number];
+// The canonical family list lives in sweepSpec (the ONE spec shared by the formal sweep and
+// the pre-QC scout). Re-exported here under its historical name so existing importers are
+// unchanged.
+export const REQUIRED_SWEEP_FAMILIES = SWEEP_FAMILIES;
+export type SweepFamily = SweepSpecFamily;
+// Re-export the sweep-defect identity primitives (extracted to sweepSpec so scout and sweep
+// share ONE definition of what "the same defect" is). Public API — imported by tests + QC code.
+export { sweepDefectKey, sweepDefectFingerprintV2, SWEEP_DEFECT_FINGERPRINT_VERSION };
+export type { SweepDefectFingerprintVersion, SweepDefectFingerprintInput };
 
 export type SweepPack = {
   schemaVersion: "sweep-pack-v1";
@@ -61,9 +78,6 @@ export type SweepPack = {
     memorableLines: string[];
   }>;
 };
-
-export const SWEEP_DEFECT_FINGERPRINT_VERSION = "sweep-defect-v2" as const;
-export type SweepDefectFingerprintVersion = typeof SWEEP_DEFECT_FINGERPRINT_VERSION;
 
 export type SweepRecord = {
   schemaVersion: "sweep-attest-v1";
@@ -134,137 +148,6 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return !!value && typeof value === "object" && !Array.isArray(value);
 }
 
-function normalizeDefectComponent(value: unknown): string {
-  return String(value ?? "")
-    .normalize("NFKC")
-    .trim()
-    .toLowerCase()
-    .replace(/[“”]/g, "\"")
-    .replace(/[‘’]/g, "'")
-    .replace(/\s+/g, " ");
-}
-
-function hashKey(payload: unknown): string {
-  return `sweep-defect-v1:${createHash("sha256").update(JSON.stringify(payload)).digest("hex").slice(0, 24)}`;
-}
-
-export function sweepDefectKey(rec: Pick<SweepRecord, "bookId" | "contentHashes">, finding: SweepRecord["findings"][number]): string {
-  const chapters = [...new Set((finding.chapters ?? []).map(Number).filter((n) => Number.isInteger(n) && n > 0))].sort((a, b) => a - b);
-  return hashKey({
-    bookId: normalizeDefectComponent(rec.bookId),
-    family: finding.family,
-    unitId: normalizeDefectComponent(finding.unitId),
-    quote: normalizeDefectComponent(finding.quote),
-    problem: normalizeDefectComponent(finding.problem),
-    chapters,
-    content: chapters.map((n) => [n, rec.contentHashes?.[String(n)] ?? ""]),
-  });
-}
-
-// Edge punctuation a reviewer may wrap a quote in WITHOUT changing the words it contains
-// (leading/trailing quotation marks, sentence punctuation, brackets, ellipsis, dashes). Stripped
-// from both ends of the quote signature; internal characters are preserved verbatim so materially
-// different quotes never collapse. Kept in a character class (escaped) and applied as anchored runs.
-const QUOTE_EDGE_PUNCT = "\\s\"'.,;:!?()\\[\\]{}\\u2026\\u00b7*\\-\\u2013\\u2014";
-
-/**
- * Distinctive-quote signature for sweep-defect-v2. STRONGER than `normalizeDefectComponent`
- * (which v1 uses and must stay frozen, or stored v1 keys stop validating):
- *   - NFKC (Unicode form) + lowercase (case) + collapse whitespace runs (whitespace),
- *   - fold curly/smart quotation marks to straight (quote style),
- *   - fold Unicode dash/hyphen/minus variants to ASCII "-" and the ellipsis char to "...",
- *   - strip ONLY the punctuation that BRACKETS a quote (leading/trailing) — punctuation that
- *     does not change the quoted words.
- * Internal word content is preserved exactly, so two MATERIALLY different quotes keep distinct
- * signatures (the requirement: normalize style, not meaning). Non-distinctive generic phrases are
- * filtered upstream by `sweepFindingBlocks`/`nondistinctiveRepetitionQuote` and never reach here.
- */
-function normalizeQuoteSignature(value: unknown): string {
-  return String(value ?? "")
-    .normalize("NFKC")
-    .toLowerCase()
-    .replace(/[“”„‟＂]/g, "\"")
-    .replace(/[‘’‚‛＇`´]/g, "'")
-    .replace(/[‐-―−]/g, "-")
-    .replace(/…/g, "...")
-    .replace(/\s+/g, " ")
-    .trim()
-    .replace(new RegExp(`^[${QUOTE_EDGE_PUNCT}]+`), "")
-    .replace(new RegExp(`[${QUOTE_EDGE_PUNCT}]+$`), "")
-    .trim();
-}
-
-export type SweepDefectFingerprintInput = Pick<SweepRecord["findings"][number], "family" | "unitId" | "quote">;
-
-/**
- * sweep-defect-v2 — the per-affected-chapter sweep defect FINGERPRINT.
- *
- * The v1 key (`sweepDefectKey`) bound the WHOLE finding: family + unitId + quote + the free-form
- * `problem` prose + the ENTIRE chapter array + a per-chapter content map over that whole array.
- * That over-bound identity stopped UNRELATED findings from corroborating (good) but it ALSO stopped
- * two independent reviewers from corroborating the SAME real defect whenever they worded the problem
- * differently or named overlapping-but-not-identical chapter sets (bad — a real gate then read as an
- * uncorroborated stochastic flip and was demoted, shipping the defect).
- *
- * v2 computes identity ONE CHAPTER AT A TIME and binds only the fields that make two reads "the same
- * defect on the same bytes". Why each BOUND field is here:
- *   - bookId       scopes identity to one book (no cross-book fingerprint collisions).
- *   - family       the defect CLASS (scene_skeleton / persona_drift / repeated_unit /
- *                  location_stamping). A different class on the same chapter is a DIFFERENT defect →
- *                  must not corroborate. This is the safety floor: unrelated same-chapter findings
- *                  cannot merge.
- *   - unitId       the field/unit the defect lives in (e.g. `tryThisNow.timer-anchor`). Two distinct
- *                  units on one chapter are two distinct defects → must not corroborate.
- *   - quote        the distinctive grounded cite, run through `normalizeQuoteSignature` so the SAME
- *                  cite matches across reads but materially different cites stay distinct.
- *   - chapter      the single affected chapter — the unit of corroboration (we corroborate per
- *                  shared chapter, NOT over identical full membership).
- *   - contentHash  the bytes of THAT chapter as THIS sweep read them. A defect on changed bytes is a
- *                  fresh first-read gate: a different hash yields a different fingerprint, so a prior
- *                  read over the old bytes cannot corroborate it (and the gate stands on one read).
- *
- * EXCLUDED on purpose: `problem` and `expectedFix` (free-form reviewer prose) and the OTHER chapters
- * in the finding's array (membership is per-chapter here). Excluding them is exactly what lets honest
- * reviewers corroborate a real defect they described differently.
- *
- * Returns null when this chapter has no content hash on the record (cannot bind the bytes-read
- * component → no v2 identity) or the family/chapter is not well-formed.
- */
-export function sweepDefectFingerprintV2(
-  rec: Pick<SweepRecord, "bookId" | "contentHashes">,
-  finding: SweepDefectFingerprintInput,
-  chapterNumber: number,
-): string | null {
-  const n = Number(chapterNumber);
-  if (!Number.isInteger(n) || n <= 0) return null;
-  if (!isSweepFamily(finding.family)) return null;
-  const contentHash = rec.contentHashes?.[String(n)];
-  if (!contentHash) return null;
-  const payload = {
-    v: 2,
-    bookId: normalizeDefectComponent(rec.bookId),
-    family: finding.family,
-    unitId: normalizeDefectComponent(finding.unitId),
-    quote: normalizeQuoteSignature(finding.quote),
-    chapter: n,
-    contentHash,
-  };
-  return `${SWEEP_DEFECT_FINGERPRINT_VERSION}:${createHash("sha256").update(JSON.stringify(payload)).digest("hex").slice(0, 24)}`;
-}
-
-/** Per-named-chapter v2 fingerprints for a finding (one per chapter that has a content hash).
- *  Chapters without a hash are skipped — they cannot form a v2 identity. Sorted by chapter. */
-function deriveDefectFingerprints(
-  rec: Pick<SweepRecord, "bookId" | "contentHashes">,
-  finding: SweepDefectFingerprintInput & { chapters: number[] },
-): Array<{ chapter: number; fingerprint: string }> {
-  const out: Array<{ chapter: number; fingerprint: string }> = [];
-  for (const n of [...new Set((finding.chapters ?? []).map(Number))].sort((a, b) => a - b)) {
-    const fingerprint = sweepDefectFingerprintV2(rec, finding, n);
-    if (fingerprint) out.push({ chapter: n, fingerprint });
-  }
-  return out;
-}
 
 function canonicalFingerprints(arr?: Array<{ chapter: number; fingerprint: string }>): string {
   return JSON.stringify(
@@ -591,10 +474,6 @@ export function writeSweepRecordFromSubmission(submission: ValidatedSweepSubmiss
   const stored = appendSweepHistory(rec);
   writeFileAtomic(p, JSON.stringify(stored, null, 2));
   return p;
-}
-
-function isSweepFamily(value: unknown): value is SweepFamily {
-  return (REQUIRED_SWEEP_FAMILIES as readonly string[]).includes(String(value));
 }
 
 /** Map a sweep submission's `repairClass` to one of the 4 families, or null to DROP it.

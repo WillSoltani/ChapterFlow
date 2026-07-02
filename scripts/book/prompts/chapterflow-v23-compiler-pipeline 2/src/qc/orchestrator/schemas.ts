@@ -11,8 +11,12 @@ export const ORCHESTRATOR_SUBMISSION_SCHEMAS = [
 
 export type OrchestratorSubmissionSchema = typeof ORCHESTRATOR_SUBMISSION_SCHEMAS[number];
 
-export const SWEEP_FAMILIES = ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"] as const;
-export type SweepFamily = typeof SWEEP_FAMILIES[number];
+// The four cross-chapter templating families are defined once in sweepSpec (the ONE spec the
+// formal sweep and the pre-QC scout both speak). Imported for local validation use and
+// re-exported so existing importers of SWEEP_FAMILIES from schemas.ts are unchanged.
+import { SWEEP_FAMILIES, type SweepFamily } from "../sweepSpec.js";
+export { SWEEP_FAMILIES };
+export type { SweepFamily };
 
 export const SUBMISSION_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "major"] as const;
 export type SubmissionRole = typeof SUBMISSION_ROLES[number];

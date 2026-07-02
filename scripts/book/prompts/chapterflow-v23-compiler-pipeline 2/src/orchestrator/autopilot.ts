@@ -36,7 +36,7 @@ import { fileURLToPath } from "url";
 
 import { computeBookStatus, type BookStatus } from "../lifecycle/bookStatus.js";
 import { STRICT_PIPELINE_ENV } from "../lib/strictEnv.js";
-import { REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
+import { REPO_ROOT, normSlug, CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordAuthorProvenance } from "../qc/sessionProvenance.js";
 import { loadBookChapters, keyPackDir, quarantineCorruptChapterFiles } from "../qc/manualKeyJudge.js";
@@ -56,7 +56,10 @@ import {
 import { submissionJsonSchemaForRole } from "../qc/orchestrator/submissionSchemas.js";
 import { runShipGate } from "../critics/finalGate.js";
 import { runBookGate } from "../critics/bookGate.js";
-import { sweepPackPath, sweepTwoRoundConfirmed } from "../qc/sweep.js";
+import { sweepPackPath, sweepTwoRoundConfirmed, sweepFindingBlocks, type SweepRecord } from "../qc/sweep.js";
+import { renderSweepFamilyRubric, SWEEP_SUBMISSION_SCHEMA_ID, SWEEP_FAMILIES, sweepDefectFingerprintV2, type SweepFamily } from "../qc/sweepSpec.js";
+import { validateSubmission, type ValidatedSweepSubmission } from "../qc/orchestrator/schemas.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { barPackPath } from "../qc/barReview.js";
 import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
@@ -1257,7 +1260,8 @@ async function doGate(bookId: string, maxRepair: number, maxParallel: number, de
   const derived = await deps.runVerb(["derive-artifacts", bookId]);
   if (derived.code !== 0) deps.log(`[autopilot] derive-artifacts exited ${derived.code} before gate convergence (BP7 may persist) — ${(derived.stderr || derived.stdout).slice(0, 200)}`);
   let gateContentAttempts = 0; // deterministic blocker/major repairs consume maxRepair; pre-QC scouts do not
-  let varietyPasses = 0; // pre-QC cross-chapter variety scout passes (bounded; independent of maxRepair)
+  let varietyPasses = 0; // pre-QC cross-chapter variety DETEMPLATE passes (bounded; independent of maxRepair)
+  let varietyConverged = false; // set once the sweep-unified scout reads clean (or advisory-proceeds)
   let alignmentPasses = 0; // pre-QC semantic/factual readiness passes (bounded; independent of maxRepair)
   // Dedicated A→B→A oscillation budget: a variety edit can reliably re-trigger an alignment
   // finding (and vice versa), and EACH scout resets its SIBLING's counter back to 0 on every edit
@@ -1345,21 +1349,32 @@ ${converge.stdout}`;
         deps.log(`[autopilot] compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC`);
         return null;
       }
-      if (varietyPasses < PREQC_MAX_VARIETY_PASSES) {
-        varietyPasses++;
-        const rewrites = await scoutCrossChapterVariety(bookId, deps);
-        if (rewrites.length) {
+      if (!varietyConverged) {
+        // The scout speaks the sweep's language (same families/defs/validator/gate predicate). A
+        // clean read converges; blocking findings drive a surgical detemplate up to the pass budget;
+        // if blocking templating SURVIVES the budget we FAIL CLOSED (halt content) rather than burn a
+        // QC round the sweep would fail — unless CHAPTERFLOW_PREQC_SCOUT=advisory restores proceed-to-QC.
+        const scout = await scoutCrossChapterVariety(bookId, deps);
+        persistPreflightScoutRead(bookId, scout, deps);
+        if (!scout.blockingFindings.length) {
+          varietyConverged = true;
+          deps.log(`[autopilot] pre-QC variety: book reads varied (no cross-chapter templating) → continuing to QC-readiness audit`);
+        } else if (varietyPasses >= PREQC_MAX_VARIETY_PASSES) {
+          if (preQcScoutEnforced()) return mkHalt(bookId, "gate", "content", scoutHaltReason(bookId, scout));
+          deps.log(`[autopilot] pre-QC variety: ${scout.blockingFindings.length} blocking finding(s) remain after ${varietyPasses} detemplate pass(es); CHAPTERFLOW_PREQC_SCOUT=advisory → proceeding to QC (safety net)`);
+          varietyConverged = true;
+        } else {
           combinedScoutPasses++;
-          scoutEditSignatures.push(`variety:${rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+          scoutEditSignatures.push(`variety:${scout.rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
           if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
             return mkHalt(bookId, "gate", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. A variety edit is reliably re-triggering an alignment finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`);
           }
-          deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
-          await surgicalDetemplate(bookId, rewrites, deps, varietyPasses, maxParallel);
+          varietyPasses++;
+          deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${scout.rewrites.length} chapter(s) before QC — ${scout.rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
+          await surgicalDetemplate(bookId, scout.rewrites, deps, varietyPasses, maxParallel);
           alignmentPasses = 0; // content changed; re-run semantic readiness after variety settles
           continue;
         }
-        deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}: book reads varied (no cross-chapter templating) → continuing to QC-readiness audit`);
       }
       if (alignmentPasses < PREQC_MAX_ALIGNMENT_PASSES) {
         alignmentPasses++;
@@ -1372,7 +1387,7 @@ ${converge.stdout}`;
           }
           deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}/${PREQC_MAX_ALIGNMENT_PASSES}: repairing ${repairs.length} QC-alignment issue(s) before formal QC — ${repairs.map((rw) => `ch${rw.chapter}`).join(", ")}`);
           await surgicalPreQcAlignmentRepair(bookId, repairs, deps, alignmentPasses, maxParallel);
-          varietyPasses = 0; // semantic repair can introduce new cross-chapter echoes; re-scout once
+          varietyPasses = 0; varietyConverged = false; // semantic repair can introduce new cross-chapter echoes; re-scout once
           continue;
         }
         deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}: semantic/factual alignment clean → advancing to QC`);
@@ -1532,6 +1547,86 @@ const PREQC_MAX_ALIGNMENT_REPAIRS_PER_PASS = 6; // bounded surgical fixes; cheap
 const PREQC_MAX_COMBINED_SCOUT_PASSES = PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES;
 
 type VarietyRewrite = { chapter: number; family?: string; shared?: string; instruction: string };
+
+// ── Pre-QC variety scout = formal QC sweep, unified (P08 / F1) ─────────────────
+// The scout speaks the SAME language as the QC sweep: it renders its read instructions from
+// sweepSpec (same four families, same definitions, same FP-guards) and emits a
+// `qc-sweep-submission-v1` submission parsed by the SAME validator the sweep uses. Its extra
+// per-finding `moveChapter`/`instruction`/`shared` fields ride ON TOP of the sweep schema
+// (unknown fields the validator ignores) and drive the surgical detemplate step. A blocking
+// finding is decided by the SAME predicate the sweep gates on (`sweepFindingBlocks`), so a
+// scout-clean book is predictively sweep-clean.
+export type ScoutSweepFinding = {
+  family: SweepFamily;
+  chapters: number[];
+  severity: "blocker" | "advisory";
+  unitId: string;
+  quote: string;
+  problem: string;
+  expectedFix: string;
+  moveChapter?: number;
+  instruction?: string;
+  shared?: string;
+};
+export type VarietyScoutResult = {
+  /** Blocking findings that carry an actionable per-chapter differentiation instruction. */
+  rewrites: VarietyRewrite[];
+  /** Every finding the sweep predicate would GATE on (blocker severity + distinctive quote). */
+  blockingFindings: ScoutSweepFinding[];
+  /** The validated sweep submission (envelope normalized to a preflight round), for persistence. */
+  submission: ValidatedSweepSubmission | null;
+  /** Per-chapter sweep-defect-v2 fingerprints for the blocking findings (for the halt reason). */
+  fingerprints: Array<{ chapter: number; fingerprint: string }>;
+};
+
+/** `enforce` (default): a blocking-severity scout finding that survives the detemplate budget HALTS
+ *  the book (content) — it does NOT waste a formal QC round the sweep would fail anyway.
+ *  `CHAPTERFLOW_PREQC_SCOUT=advisory` restores the old proceed-to-QC behavior. */
+function preQcScoutEnforced(): boolean {
+  return process.env.CHAPTERFLOW_PREQC_SCOUT !== "advisory";
+}
+
+/** A compact, operator-readable table of the blocking sweep findings + per-chapter fingerprints,
+ *  embedded in the halt reason so the operator (and P10) can compare scout vs sweep findings. */
+function scoutHaltReason(bookId: string, res: VarietyScoutResult): string {
+  const rows = res.blockingFindings.map((f) =>
+    `  [${f.family}] ch${f.chapters.join(",")} ${f.unitId}: "${f.quote.slice(0, 80)}" — ${f.problem.slice(0, 120)}`).join("\n");
+  const fps = res.fingerprints.length
+    ? `\nper-chapter fingerprints:\n${res.fingerprints.map((e) => `  ch${e.chapter}: ${e.fingerprint}`).join("\n")}`
+    : "";
+  return `pre-QC variety scout (the QC sweep's own families) still finds ${res.blockingFindings.length} BLOCKING cross-chapter templating finding(s) after exhausting the detemplate budget for ${bookId}. Formal QC would sweep-FAIL this book — halting instead of burning a QC round. Re-differentiate the flagged chapters (or re-research if the source is templated), then re-run. To proceed to QC anyway set CHAPTERFLOW_PREQC_SCOUT=advisory.\n${rows}${fps}`;
+}
+
+/** Persist a scout read as `state/qc-preflight/<bookId>/<ts>.scout-read.json` in the sweep
+ *  submission FORMAT but with role "preqc-scout" so it can NEVER be ingested as QC evidence
+ *  (the sweep validator requires role "sweep"; this file fails that check by construction) and
+ *  lives OUTSIDE every QC evidence dir (qc/, qc-orchestrator/, qc-packs/). Best-effort — a write
+ *  failure never blocks convergence. Exists only so the operator and P10 can diff scout vs sweep. */
+export function persistPreflightScoutRead(bookId: string, res: VarietyScoutResult, deps: AutopilotDeps): void {
+  if (!res.submission) return;
+  try {
+    const ts = new Date().toISOString().replace(/[:.]/g, "-");
+    const path = resolve(CANONICAL_STATE, "qc-preflight", normSlug(bookId), `${ts}.scout-read.json`);
+    const payload = {
+      // role "preqc-scout" (NOT "sweep") — a deliberate marker that makes this file invalid as a
+      // qc-sweep-submission-v1 so no QC0/QC3/finalize/attestation path can ever count it as evidence.
+      role: "preqc-scout" as const,
+      note: "PRE-QC variety scout read — NOT QC evidence. Advisory/operator comparison only.",
+      schemaVersion: SWEEP_SUBMISSION_SCHEMA_ID,
+      bookId,
+      generatedAt: new Date().toISOString(),
+      verdict: res.submission.verdict,
+      checkedFamilies: res.submission.checkedFamilies,
+      findings: res.submission.findings,
+      blockingFindings: res.blockingFindings,
+      fingerprints: res.fingerprints,
+    };
+    writeFileAtomic(path, JSON.stringify(payload, null, 2));
+  } catch (e) {
+    deps.log(`[autopilot] pre-QC scout read persist skipped: ${(e as Error)?.message ?? String(e)}`);
+  }
+}
+
 type PreQcAlignmentRepair = {
   chapter: number;
   family?: string;
@@ -1541,63 +1636,101 @@ type PreQcAlignmentRepair = {
   instruction: string;
 };
 
-/** The read-only full-book scout prompt: the QC sweep's own rubric (families + FP-guards),
- *  asking for a per-chapter differentiation brief as a single ```json fenced block. */
-function buildVarietyScoutTask(bookId: string): string {
-  return `You are a READ-ONLY cross-chapter VARIETY scout for bookId ${bookId}. Read EVERY chapter file \`state/chapters/${bookId}-ch*.v21-native.chapter.json\` in ONE pass and look ONLY for cross-chapter TEMPLATING — the defect class per-chapter reads structurally miss, and the exact thing the QC "templating sweep" REVISEs the book on. Do NOT edit any file; this is analysis only.
+/** The read-only full-book scout prompt. Its family definitions + FP-guards + scope/severity
+ *  rubric are rendered FROM sweepSpec (`renderSweepFamilyRubric`), so the scout quotes the SAME
+ *  family definitions the formal QC sweep card quotes. It emits a `qc-sweep-submission-v1`
+ *  submission (parsed by the SAME validator the sweep uses) with two scout-only extras per
+ *  finding — `moveChapter` + `instruction` (+ optional `shared`) — that drive the surgical
+ *  differentiation and are ignored by the sweep validator. */
+export function buildVarietyScoutTask(bookId: string): string {
+  return `You are a READ-ONLY cross-chapter TEMPLATING scout for bookId ${bookId}. You run the EXACT judgment of the formal QC "templating sweep" — the first blocking cross-chapter check — but BEFORE the QC round, so a book you clear is predictively sweep-clean and a book you flag never wastes a QC round. Read EVERY chapter file \`state/chapters/${bookId}-ch*.v21-native.chapter.json\` in ONE pass. Do NOT edit any file; this is analysis only.
 
 Compare these fields ACROSS chapters: title, hook, counterintuition, keyTakeaway, tryThisNow, breakdown.{fastRead,deepRead,fullRead}, examples[].{title,scenario,whatToDo,whyItMatters}, quiz[].prompt, reviewCards[].{front,back}, implementationPlan.{twentyFourHourChallenge,weeklyPractice,ifThenPlans[]}, memorableLines.
 
-Flag a cluster ONLY for these families:
-1. scene_skeleton — example scenes sharing one FRAME across chapters: one functional MOVE / device reused with only the nouns swapped (the dramatic transaction is identical while names / props / setting change). E.g. a "decision made alone under deadline" beat reused chapter after chapter.
-2. persona_drift — one NAME worn by different people: ACROSS chapters (a source figure's first name reused on a fictional protagonist), OR WITHIN one chapter (the same first name attached to unrelated roles — "James helps at GE, then James makes hospital discharge calls, then James runs a training folder" reads as three different people sharing a name).
-3. repeated_unit — near-identical cards / plans / quiz stems / hooks / tactics / marquee exemplars across chapters, or one example UNIT reused as the same functional move.
-4. location_stamping — one venue / company / setting stamped across many chapters.
+Check exactly these four families (this is the sweep's own rubric — quote it verbatim in your reasoning):
+${renderSweepFamilyRubric()}
 
-FP-GUARDS — do NOT flag: shared CONCEPT terms (the book's own vocabulary), an ordinary recurring GESTURE ("nods", "takes a breath"), or a consistent pedagogical opener with DIFFERING content. Only flag a reused structural DEVICE. Be conservative: a borderline echo is NOT templating.
-
-For each cluster, choose ONE chapter to KEEP the frame and list the OTHERS as rewrites (NEVER list every chapter in a cluster — one always keeps). Give each rewrite a concrete, chapter-specific differentiation instruction (move onto a distinct scene frame / venue / exemplar / name). A within-chapter persona_drift is a single rewrite for that chapter.
-
-Output ONLY your brief as your FINAL message — a single \`\`\`json fenced block, nothing else:
+Output ONLY your submission as your FINAL message — a single \`\`\`json fenced block, nothing else. It is a ${SWEEP_SUBMISSION_SCHEMA_ID} (the SAME schema the QC sweep submits), PLUS two extra fields on each finding: "moveChapter" (the ONE chapter to differentiate — never list every chapter in a cluster; one always KEEPS the frame) and "instruction" (a concrete, chapter-specific differentiation: move onto a distinct scene frame / venue / exemplar / name). Set verdict PASS with findings:[] when the book reads varied; REVISE (or CORRUPTION) with one quote-backed finding per templated cluster otherwise. Each finding needs family, chapters (every chapter the shell spans), unitId, quote (a DISTINCTIVE multi-word span of the reused device), problem, expectedFix, severity ("blocker" for real templating; "advisory" for a borderline echo you are surfacing but not gating on), plus moveChapter + instruction.
 \`\`\`json
-{ "templated": false, "rewrites": [] }
+{ "schemaVersion": "${SWEEP_SUBMISSION_SCHEMA_ID}", "verdict": "PASS", "checkedFamilies": [${SWEEP_FAMILIES.map((f) => `"${f}"`).join(", ")}], "findings": [] }
 \`\`\`
 or, when templated:
 \`\`\`json
-{ "templated": true, "rewrites": [ { "chapter": 7, "family": "repeated_unit", "shared": "ch6 & ch7 both pivot on 'a decision without an owner'", "instruction": "Re-cast ch7's marquee diagnostic onto its dealt move + a distinct venue; leave ch6's version." } ] }
-\`\`\`
-If the book reads varied, return {"templated": false, "rewrites": []}.`;
+{ "schemaVersion": "${SWEEP_SUBMISSION_SCHEMA_ID}", "verdict": "REVISE", "checkedFamilies": [${SWEEP_FAMILIES.map((f) => `"${f}"`).join(", ")}], "findings": [ { "family": "repeated_unit", "chapters": [6, 7], "unitId": "implementationPlan.challenge", "quote": "a decision without an owner", "problem": "ch6 & ch7 both pivot on the same functional move.", "expectedFix": "Re-cast ch7's marquee diagnostic onto its dealt move + a distinct venue; leave ch6's version.", "severity": "blocker", "moveChapter": 7, "instruction": "Re-cast ch7's marquee diagnostic onto its dealt move + a distinct venue; leave ch6's version.", "shared": "ch6 & ch7 both pivot on 'a decision without an owner'" } ] }
+\`\`\``;
 }
 
-/** Spawn the read-only full-book variety scout and parse its differentiation brief.
- *  Best-effort: any failure (agent exit, no parseable brief, bad JSON) returns [] → the
- *  gate advances to QC unchanged (QC stays the safety net). Validates + dedups to one
- *  rewrite per chapter and caps the count so a single pass is bounded. */
-async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDeps): Promise<VarietyRewrite[]> {
+/** Spawn the read-only full-book variety scout and parse its sweep submission with the SAME
+ *  validator the formal sweep uses. Best-effort: any failure (agent exit, no parseable JSON,
+ *  validation failure) returns an EMPTY result → the gate advances to QC unchanged (QC stays the
+ *  safety net; a parse failure is never a halt). A validated submission's BLOCKING findings are
+ *  decided by the SAME predicate the sweep gates on (`sweepFindingBlocks`). */
+export async function scoutCrossChapterVariety(bookId: string, deps: AutopilotDeps): Promise<VarietyScoutResult> {
+  const empty: VarietyScoutResult = { rewrites: [], blockingFindings: [], submission: null, fingerprints: [] };
   let r: CodexAgentResult;
   try {
     r = await spawnAndLog(bookId, { task: buildVarietyScoutTask(bookId), sessionId: deps.mkSessionId("pre-qc-variety-scout"), cwd: PIPELINE_DIR, sandbox: "read-only" as CodexSandbox, skipGitRepoCheck: true, reasoningEffort: "high" }, deps);
   } catch (e) {
     deps.log(`[autopilot] pre-QC variety scout spawn error: ${(e as Error)?.message ?? String(e)} — advancing to QC`);
-    return [];
+    return empty;
   }
-  if (!r.ok) { deps.log(`[autopilot] pre-QC variety scout exited ${r.exitCode} — advancing to QC`); return []; }
+  if (!r.ok) { deps.log(`[autopilot] pre-QC variety scout exited ${r.exitCode} — advancing to QC`); return empty; }
   const json = extractSubmissionJson(r.stdout) ?? extractSubmissionJson(r.finalMessage);
-  if (!json) { deps.log(`[autopilot] pre-QC variety scout: no parseable brief in output — advancing to QC`); return []; }
-  let brief: { templated?: boolean; rewrites?: unknown };
-  try { brief = JSON.parse(json); } catch { deps.log(`[autopilot] pre-QC variety scout: brief JSON did not parse — advancing to QC`); return []; }
-  if (!brief || brief.templated === false || !Array.isArray(brief.rewrites)) return [];
-  const seen = new Set<number>();
-  const out: VarietyRewrite[] = [];
-  for (const raw of brief.rewrites as Array<Record<string, unknown>>) {
-    const chapter = Number(raw?.chapter);
-    const instruction = typeof raw?.instruction === "string" ? raw.instruction.trim() : "";
-    if (!Number.isInteger(chapter) || chapter < 1 || !instruction || seen.has(chapter)) continue;
-    seen.add(chapter);
-    out.push({ chapter, family: typeof raw?.family === "string" ? raw.family : undefined, shared: typeof raw?.shared === "string" ? raw.shared : undefined, instruction });
-    if (out.length >= PREQC_MAX_REWRITES_PER_PASS) break;
-  }
-  return out;
+  if (!json) { deps.log(`[autopilot] pre-QC variety scout: no parseable submission in output — advancing to QC`); return empty; }
+  let raw: Record<string, unknown>;
+  try { raw = JSON.parse(json); } catch { deps.log(`[autopilot] pre-QC variety scout: submission JSON did not parse — advancing to QC`); return empty; }
+  const rawFindings = Array.isArray((raw as any)?.findings) ? (raw as any).findings as Array<Record<string, unknown>> : [];
+  // The scout owns the JUDGMENT (families/findings/verdict); we own the envelope. Normalize the
+  // envelope to a synthetic preflight round so the SAME validator the sweep uses can vet the
+  // finding-level rules (family required, chapters required, quote/problem/expectedFix required,
+  // PASS-vs-severity rules). A validation failure is best-effort → advance to QC.
+  const roundId = `preqc-${Date.now().toString(36)}`;
+  const envelope = { ...raw, schemaVersion: SWEEP_SUBMISSION_SCHEMA_ID, bookId, roundId, role: "sweep", reviewer: "preqc-scout" };
+  const parsed = validateSubmission(bookId, roundId, "sweep", envelope, {});
+  if (!parsed.ok) { deps.log(`[autopilot] pre-QC variety scout: submission failed sweep validation (${parsed.errors.slice(0, 3).join("; ")}) — advancing to QC`); return empty; }
+  const submission = parsed.submission as ValidatedSweepSubmission;
+
+  // Current per-chapter content hashes (for the sweep-defect-v2 fingerprints in a halt reason).
+  // Best-effort: on a book with no chapters on disk (unit tests) this is simply empty.
+  const contentHashes: Record<string, string> = {};
+  try { for (const ch of loadBookChapters(bookId)) contentHashes[String(ch.number)] = chapterContentHash(ch); }
+  catch { /* no chapters readable — fingerprints stay empty, findings table still renders */ }
+
+  const blockingFindings: ScoutSweepFinding[] = [];
+  const rewrites: VarietyRewrite[] = [];
+  const fingerprints: Array<{ chapter: number; fingerprint: string }> = [];
+  const seenRewrite = new Set<number>();
+  submission.findings.forEach((f, i) => {
+    // repairClass carries the scout's family label (normalizeFinding maps `family`→`repairClass`);
+    // the validator already asserted raw.findings[i].family is one of the four sweep families.
+    const family = (rawFindings[i]?.family ?? f.repairClass) as SweepFamily;
+    const chapters = (f.chapters ?? (f.chapterNumber !== undefined ? [f.chapterNumber] : [])).filter((n) => Number.isInteger(n) && n > 0);
+    // The SAME gating predicate the sweep uses: blocker/major severity AND (for the repetition
+    // families) a distinctive quote. An advisory/minor or non-distinctive echo never gates.
+    const blocks = sweepFindingBlocks({ family, severity: f.severity === "blocker" || f.severity === "major" ? "blocker" : "advisory", chapters, unitId: f.unitId, quote: f.quote, problem: f.problem, expectedFix: f.expectedFix } as SweepRecord["findings"][number]);
+    if (!blocks) return;
+    const sf: ScoutSweepFinding = {
+      family, chapters,
+      severity: "blocker",
+      unitId: f.unitId, quote: f.quote, problem: f.problem, expectedFix: f.expectedFix,
+      moveChapter: Number.isInteger(Number(rawFindings[i]?.moveChapter)) ? Number(rawFindings[i]?.moveChapter) : undefined,
+      instruction: typeof rawFindings[i]?.instruction === "string" ? String(rawFindings[i]?.instruction).trim() : undefined,
+      shared: typeof rawFindings[i]?.shared === "string" ? String(rawFindings[i]?.shared).trim() : undefined,
+    };
+    blockingFindings.push(sf);
+    for (const n of chapters) {
+      const fp = sweepDefectFingerprintV2({ bookId, contentHashes }, { family, unitId: f.unitId, quote: f.quote }, n);
+      if (fp) fingerprints.push({ chapter: n, fingerprint: fp });
+    }
+    // Derive a surgical rewrite: differentiate the moveChapter (or the last chapter in the cluster,
+    // never the first — the first keeps the frame). One rewrite per chapter, bounded.
+    const target = sf.moveChapter && chapters.includes(sf.moveChapter) ? sf.moveChapter : chapters[chapters.length - 1];
+    if (sf.instruction && Number.isInteger(target) && target! >= 1 && !seenRewrite.has(target!) && rewrites.length < PREQC_MAX_REWRITES_PER_PASS) {
+      seenRewrite.add(target!);
+      rewrites.push({ chapter: target!, family, shared: sf.shared, instruction: sf.instruction });
+    }
+  });
+  return { rewrites, blockingFindings, submission, fingerprints };
 }
 
 /** Execute the scout's brief: ONE surgical session per flagged chapter, each scoped to
@@ -1792,6 +1925,7 @@ async function convergePreQcReadiness(
   heartbeat: () => boolean,
 ): Promise<{ halt: AutopilotOutcome | null; edited: boolean }> {
   let varietyPasses = 0;
+  let varietyConverged = false;
   let alignmentPasses = 0;
   let combinedScoutPasses = 0;
   let edited = false;
@@ -1801,17 +1935,28 @@ async function convergePreQcReadiness(
     if (!heartbeat()) {
       return { halt: mkHalt(bookId, "qc", "infra", `lost the run lock for ${bookId} during pre-QC readiness convergence — halting to avoid two conductors on the same book.`), edited };
     }
-    if (varietyPasses < PREQC_MAX_VARIETY_PASSES) {
-      varietyPasses++;
-      const rewrites = await scoutCrossChapterVariety(bookId, deps);
-      if (rewrites.length) {
+    if (!varietyConverged) {
+      // Sweep-unified scout: clean → converge; blocking → detemplate up to the budget; blocking that
+      // SURVIVES the budget → FAIL CLOSED (halt content), never proceed to a QC round the sweep would
+      // fail — unless CHAPTERFLOW_PREQC_SCOUT=advisory restores the old proceed-to-QC behavior.
+      const scout = await scoutCrossChapterVariety(bookId, deps);
+      persistPreflightScoutRead(bookId, scout, deps);
+      if (!scout.blockingFindings.length) {
+        varietyConverged = true;
+        deps.log(`[autopilot] pre-QC variety: book reads varied (no cross-chapter templating) → continuing to QC-readiness audit`);
+      } else if (varietyPasses >= PREQC_MAX_VARIETY_PASSES) {
+        if (preQcScoutEnforced()) return { halt: mkHalt(bookId, "qc", "content", scoutHaltReason(bookId, scout)), edited };
+        deps.log(`[autopilot] pre-QC variety: ${scout.blockingFindings.length} blocking finding(s) remain after ${varietyPasses} detemplate pass(es); CHAPTERFLOW_PREQC_SCOUT=advisory → proceeding to QC (safety net)`);
+        varietyConverged = true;
+      } else {
         combinedScoutPasses++;
-        scoutEditSignatures.push(`variety:${rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
+        scoutEditSignatures.push(`variety:${scout.rewrites.map((rw) => `ch${rw.chapter}`).sort().join(",")}`);
         if (combinedScoutPasses > PREQC_MAX_COMBINED_SCOUT_PASSES) {
           return { halt: mkHalt(bookId, "qc", "progress", `pre-QC variety/alignment oscillation: chapter(s) flip between variety and alignment findings after ${combinedScoutPasses} combined scout passes (budget ${PREQC_MAX_COMBINED_SCOUT_PASSES}) — ${scoutEditSignatures.slice(-4).join(" → ")}. A variety edit is reliably re-triggering an alignment finding (or vice-versa); escalate / inspect: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
         }
-        deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${rewrites.length} chapter(s) before QC — ${rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
-        await surgicalDetemplate(bookId, rewrites, deps, varietyPasses, maxParallel);
+        varietyPasses++;
+        deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}/${PREQC_MAX_VARIETY_PASSES}: differentiating ${scout.rewrites.length} chapter(s) before QC — ${scout.rewrites.map((rw) => `ch${rw.chapter}`).join(", ")}`);
+        await surgicalDetemplate(bookId, scout.rewrites, deps, varietyPasses, maxParallel);
         edited = true;
         const c = await deps.runVerb(["qc-converge", bookId]);
         if (c.code >= 2) return { halt: mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${c.code}) after pre-QC variety detemplate — inspect: ${(c.stderr || c.stdout).slice(0, 300)}`), edited };
@@ -1819,7 +1964,6 @@ async function convergePreQcReadiness(
         alignmentPasses = 0; // content changed; re-run semantic readiness after variety settles
         continue;
       }
-      deps.log(`[autopilot] pre-QC variety pass ${varietyPasses}: book reads varied (no cross-chapter templating) → continuing to QC-readiness audit`);
     }
     if (alignmentPasses < PREQC_MAX_ALIGNMENT_PASSES) {
       alignmentPasses++;
@@ -1836,7 +1980,7 @@ async function convergePreQcReadiness(
         const c = await deps.runVerb(["qc-converge", bookId]);
         if (c.code >= 2) return { halt: mkHalt(bookId, "qc", "infra", `qc-converge errored (exit ${c.code}) after pre-QC readiness repair — inspect: ${(c.stderr || c.stdout).slice(0, 300)}`), edited };
         if (c.code !== 0) return { halt: mkHalt(bookId, "qc", "content", `pre-QC readiness repair introduced deterministic findings — run: npx tsx src/cli.ts qc-converge ${bookId}`), edited };
-        varietyPasses = 0; // semantic repair can introduce new cross-chapter echoes; re-scout once
+        varietyPasses = 0; varietyConverged = false; // semantic repair can introduce new cross-chapter echoes; re-scout once
         continue;
       }
       deps.log(`[autopilot] pre-QC readiness pass ${alignmentPasses}: semantic/factual alignment clean → advancing to QC`);
