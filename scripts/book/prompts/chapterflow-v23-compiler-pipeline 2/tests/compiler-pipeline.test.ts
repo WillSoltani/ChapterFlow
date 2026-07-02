@@ -429,7 +429,7 @@ test("v23 assertFactIdsSubset throws when a dealt fact id escapes constraints.al
   assert.doesNotThrow(() => assertFactIdsSubset(["ch01.fact.1", "ch01.fact.2"], ["ch01.fact.1", "ch01.fact.2", "ch01.fact.3"], "chapter 1 blueprint"));
   assert.throws(
     () => assertFactIdsSubset(["ch01.fact.1", "ch01.fact.9"], ["ch01.fact.1", "ch01.fact.2"], "chapter 1 blueprint"),
-    /ch01\.fact\.9.*not present in constraints\.allowedFactIds/s,
+    /ch01\.fact\.9[\s\S]*not present in constraints\.allowedFactIds/,
   );
 });
 
