@@ -2296,3 +2296,52 @@ test("v23 section gate can validate one chapter/section in isolation for bounded
     rmSync(stateRoot, { recursive: true, force: true });
   }
 });
+
+// ── A2: SP16.atomic_specifics (ADVISORY) ─────────────────────────────────────
+
+test("v23 SP16 flags a >6-word hardSpecific as ONE advisory per case and never blocks the packet gate", () => {
+  const base = sidecar();
+  const longOne = "the four acute care hospitals across the region over four years";
+  const longTwo = "a nine step onboarding checklist used by every branch office manager";
+  const withLongSpecifics: SourceSidecarV2 = {
+    ...base,
+    namedExamples: [
+      // TWO long entries in one case → exactly ONE SP16 advisory for that case.
+      { ...base.namedExamples[0], hardSpecifics: [longOne, longTwo] },
+      base.namedExamples[1],
+    ],
+  };
+  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter: chapter(), sidecar: withLongSpecifics, sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const findings = validateSourcePacket(packet);
+  const sp16 = findings.filter((f) => f.checkId === "SP16.atomic_specifics");
+  assert.equal(sp16.length, 1, "one advisory per case, even with multiple long hardSpecifics");
+  assert.equal(sp16[0].severity, "advisory", "SP16 is ADVISORY — a style risk, never a blocker");
+  assert.match(sp16[0].message, /hardSpecific "the four acute care hospitals across the region…" is a long label-phrase/);
+  assert.match(sp16[0].message, /prefer short atomic specifics \("red phone", "90-second trial"\)/);
+  assert.match(sp16[0].message, /long phrases force recitation into prose/);
+  assert.equal(findings.filter((f) => f.severity === "blocker").length, 0, "SP16 must not add or cause any blocker — the packet gate still passes");
+});
+
+test("v23 SP16 fires once PER case when multiple cases carry long hardSpecifics", () => {
+  const base = sidecar();
+  const withLongSpecifics: SourceSidecarV2 = {
+    ...base,
+    namedExamples: base.namedExamples.map((ex, i) => ({
+      ...ex,
+      hardSpecifics: [`a long label phrase with clearly more than six words number ${i + 1}`, ...ex.hardSpecifics],
+    })),
+  };
+  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter: chapter(), sidecar: withLongSpecifics, sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const sp16 = validateSourcePacket(packet).filter((f) => f.checkId === "SP16.atomic_specifics");
+  assert.equal(sp16.length, 2, "each named case with a long hardSpecific gets its own single advisory");
+  assert.ok(sp16.every((f) => f.severity === "advisory"));
+});
+
+test("v23 SP16 is absent when every hardSpecific is short and atomic (<= 6 words)", () => {
+  // The default fixture's hardSpecifics ("300 to 850 scale", "credit utilization", …) are
+  // all atomic — SP16 must stay silent, and the healthy packet keeps passing untouched.
+  const { packet } = compileFixture();
+  const findings = validateSourcePacket(packet);
+  assert.equal(findings.some((f) => f.checkId === "SP16.atomic_specifics"), false);
+  assert.equal(findings.filter((f) => f.severity === "blocker").length, 0);
+});
