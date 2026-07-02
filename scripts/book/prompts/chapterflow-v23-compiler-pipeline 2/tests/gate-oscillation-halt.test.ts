@@ -91,6 +91,17 @@ test("doGate HALTS with a specific oscillation message when the variety and alig
   const statuses = [
     makeStatus({ writtenChapters: 2, expectedChapters: 2, gatedChapters: 2, bookGatePass: true, deterministicClean: false, qcdChapters: 0, chapters: [chap(1), chap(2)] }),
   ];
+  // P08: the variety scout speaks the sweep's language (a qc-sweep-submission-v1). A scout that
+  // BLOCKS on every pass now FAILS CLOSED on its own budget (content halt) before alignment runs.
+  // The variety/alignment OSCILLATION (A→B→A) is the DIFFERENT failure this test pins: variety's
+  // edit CLEARS the templating (a clean sweep read → variety converges → alignment runs), but the
+  // alignment edit reliably REINTRODUCES a templating finding on the next variety scout, and so on.
+  // Variety therefore alternates REVISE→PASS so it never exhausts its own budget, and the shared
+  // combined-scout budget catches the flip.
+  const CF = '"scene_skeleton","persona_drift","repeated_unit","location_stamping"';
+  const varietyBlock = `\`\`\`json\n{"schemaVersion":"qc-sweep-submission-v1","verdict":"REVISE","checkedFamilies":[${CF}],"findings":[{"family":"scene_skeleton","chapters":[1,2],"unitId":"examples[0].scenario","quote":"loses her voice and a substitute takes the marker under deadline","problem":"reintroduced by the alignment edit","expectedFix":"restage ch1","severity":"blocker","moveChapter":1,"instruction":"differentiate ch1"}]}\n\`\`\``;
+  const varietyClean = `\`\`\`json\n{"schemaVersion":"qc-sweep-submission-v1","verdict":"PASS","checkedFamilies":[${CF}],"findings":[]}\n\`\`\``;
+  let varietyCall = 0;
   const { deps, spawns } = happyDeps(statuses, {
     runVerb: async (args) => {
       if (args.includes("--create")) return { code: 0, stdout: "round: r20260101000000-abcdef", stderr: "" };
@@ -100,10 +111,11 @@ test("doGate HALTS with a specific oscillation message when the variety and alig
     blockingMajors: () => [],
     spawn: (async (o: { sessionId: string }) => {
       spawns.push(o);
-      // The variety scout ALWAYS flags ch1, and the alignment scout ALWAYS flags ch1 — each
-      // scout's "fix" reliably re-triggers the sibling's finding (a real A -> B -> A oscillation).
+      // Variety BLOCKS then CLEARS then BLOCKS… (its edit fixes templating; alignment's edit
+      // reintroduces it). Alignment ALWAYS flags ch1. Together they oscillate A→B→A.
       if (o.sessionId.includes("pre-qc-variety-scout")) {
-        return { ok: true, exitCode: 0, finalMessage: "done", stdout: '```json\n{"templated":true,"rewrites":[{"chapter":1,"instruction":"differentiate ch1"}]}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId };
+        const stdout = (varietyCall++ % 2 === 0) ? varietyBlock : varietyClean;
+        return { ok: true, exitCode: 0, finalMessage: "done", stdout, stderr: "", durationMs: 1, sessionId: o.sessionId };
       }
       if (o.sessionId.includes("pre-qc-readiness-scout")) {
         return { ok: true, exitCode: 0, finalMessage: "done", stdout: '```json\n{"clean":false,"repairs":[{"chapter":1,"problem":"reintroduced by variety edit","instruction":"fix it"}]}\n```', stderr: "", durationMs: 1, sessionId: o.sessionId };
@@ -120,8 +132,9 @@ test("doGate HALTS with a specific oscillation message when the variety and alig
   }
   // Bounded: the dedicated combined-scout budget (PREQC_MAX_VARIETY_PASSES + PREQC_MAX_ALIGNMENT_PASSES = 4)
   // catches this well before the doGate loop's own maxGateIterations budget (maxRepair(4) + 2 + 2 + 4 = 12).
+  // A convergence iteration now runs BOTH scouts (variety clean → alignment), so allow up to 8.
   const scoutSpawns = spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout") || s.sessionId.startsWith("pre-qc-readiness-scout"));
-  assert.ok(scoutSpawns.length <= 6, `expected the oscillation halt well before the generic 12-iteration cap; saw ${scoutSpawns.length} scout passes`);
+  assert.ok(scoutSpawns.length <= 8, `expected the oscillation halt well before the generic 12-iteration cap; saw ${scoutSpawns.length} scout passes`);
 });
 
 // ── gate <-> QC finding-signature flip (deterministic blocker reintroduced by a QC repair) ──

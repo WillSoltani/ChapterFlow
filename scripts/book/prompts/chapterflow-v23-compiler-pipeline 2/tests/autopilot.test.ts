@@ -499,40 +499,76 @@ function varietyGateDeps(scoutStdout: (call: number) => { ok?: boolean; stdout: 
   return { deps, spawns };
 }
 
-test("doGate converges cross-chapter VARIETY before QC (scout flags → SURGICAL per-chapter de-template, then advance)", async () => {
+// P08: the scout now emits a `qc-sweep-submission-v1` (the SAME schema/validator the formal
+// sweep uses), with per-finding `moveChapter` + `instruction` extras driving the detemplate.
+const CF = '"scene_skeleton","persona_drift","repeated_unit","location_stamping"';
+const SWEEP_CLEAN = `\`\`\`json\n{"schemaVersion":"qc-sweep-submission-v1","verdict":"PASS","checkedFamilies":[${CF}],"findings":[]}\n\`\`\``;
+function sweepFlag(moveChapter: number): string {
+  // scene_skeleton over 2 chapters with a DISTINCTIVE (≥20-char) quote → blocks (sweepFindingBlocks).
+  return `\`\`\`json\n{"schemaVersion":"qc-sweep-submission-v1","verdict":"REVISE","checkedFamilies":[${CF}],"findings":[{"family":"scene_skeleton","chapters":[1,2],"unitId":"examples[0].scenario","quote":"loses her voice and a substitute takes the marker under deadline","problem":"ch1 & ch2 share a decision-under-deadline frame","expectedFix":"restage the flagged chapter","severity":"blocker","moveChapter":${moveChapter},"instruction":"restage ch${moveChapter} onto its dealt move + a distinct venue"}]}\n\`\`\``;
+}
+
+test("doGate converges cross-chapter VARIETY before QC (sweep-unified scout flags → SURGICAL per-chapter de-template, then advance)", async () => {
   // Scout flags ch2 on its first full-book read, then reads CLEAN so the gate advances after one fix.
-  const { deps, spawns } = varietyGateDeps((call) => ({
-    stdout: call === 0
-      ? '```json\n{"templated":true,"rewrites":[{"chapter":2,"family":"scene_skeleton","shared":"ch1 & ch2 share a decision-under-deadline frame","instruction":"restage ch2 onto its dealt move + a distinct venue"}]}\n```'
-      : '```json\n{"templated":false,"rewrites":[]}\n```',
-  }));
+  const { deps, spawns } = varietyGateDeps((call) => ({ stdout: call === 0 ? sweepFlag(2) : SWEEP_CLEAN }));
   const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "doGate runs a full-book variety scout before QC");
-  assert.ok(spawns.some((s) => /^pre-qc-variety-\d+-ch2/.test(s.sessionId)), "the brief drives a SURGICAL per-chapter de-template repair (ch2 only)");
-  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch1/.test(s.sessionId)), "a chapter the scout did NOT flag (ch1) is left untouched — never a multi-chapter rewrite");
+  assert.ok(spawns.some((s) => /^pre-qc-variety-\d+-ch2/.test(s.sessionId)), "the brief drives a SURGICAL per-chapter de-template repair (ch2 = moveChapter)");
+  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch1/.test(s.sessionId)), "the KEPT chapter (ch1) is left untouched — never a multi-chapter rewrite");
 });
 
-test("doGate variety scout: a VARIED book advances to QC with zero de-template work (no FP-on-gold regression)", async () => {
-  const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":false,"rewrites":[]}\n```' }));
+test("doGate variety scout: a VARIED book (sweep PASS) advances to QC with zero de-template work (no FP-on-gold regression)", async () => {
+  const { deps, spawns } = varietyGateDeps(() => ({ stdout: SWEEP_CLEAN }));
   const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
   assert.equal(outcome.status, "ready");
   assert.ok(spawns.some((s) => s.sessionId.startsWith("pre-qc-variety-scout")), "the scout still runs (one cheap full-book read)");
   assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a varied book triggers ZERO de-template repairs");
 });
 
-test("doGate variety scout is BOUNDED — a persistently-templating scout runs at most PREQC_MAX_VARIETY_PASSES, then advances (never spins)", async () => {
-  const { deps, spawns } = varietyGateDeps(() => ({ stdout: '```json\n{"templated":true,"rewrites":[{"chapter":1,"instruction":"differentiate ch1"}]}\n```' }));
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
-  assert.equal(outcome.status, "ready", "even a scout that keeps flagging converges — the pass cap lets the gate advance to QC");
-  assert.equal(spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout")).length, 2, "the scout runs at most PREQC_MAX_VARIETY_PASSES (2) — it can never spin the gate");
+test("doGate variety scout FAILS CLOSED (default enforce) — persistent BLOCKING templating HALTs content after the detemplate budget instead of burning a QC round", async () => {
+  const prev = process.env.CHAPTERFLOW_PREQC_SCOUT;
+  delete process.env.CHAPTERFLOW_PREQC_SCOUT; // default = enforce
+  try {
+    const { deps, spawns } = varietyGateDeps(() => ({ stdout: sweepFlag(2) }));
+    const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+    assert.equal(outcome.status, "halt", "blocking templating that survives the budget must NOT proceed to formal QC");
+    if (outcome.status === "halt") {
+      assert.equal(outcome.category, "content");
+      assert.match(outcome.reason, /BLOCKING cross-chapter templating|sweep would sweep-FAIL|scout/i);
+    }
+    // PREQC_MAX_VARIETY_PASSES (2) detemplate passes + 1 verifying read that confirms residual → halt.
+    assert.equal(spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout")).length, 3, "2 detemplate passes then 1 verifying read → halt");
+    assert.equal(spawns.filter((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)).length, 2, "exactly PREQC_MAX_VARIETY_PASSES detemplate attempts before the fail-closed halt");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_PREQC_SCOUT; else process.env.CHAPTERFLOW_PREQC_SCOUT = prev;
+  }
 });
 
-test("doGate variety scout is BEST-EFFORT — a scout that fails to run never blocks the gate (advances to QC)", async () => {
-  const { deps, spawns } = varietyGateDeps(() => ({ ok: false, stdout: "" }));
-  const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
-  assert.equal(outcome.status, "ready", "a failed scout advances to QC — QC stays the safety net");
-  assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a failed scout triggers no de-template repairs");
+test("doGate variety scout ADVISORY escape hatch (CHAPTERFLOW_PREQC_SCOUT=advisory) restores proceed-to-QC on persistent blocking templating", async () => {
+  const prev = process.env.CHAPTERFLOW_PREQC_SCOUT;
+  process.env.CHAPTERFLOW_PREQC_SCOUT = "advisory";
+  try {
+    const { deps, spawns } = varietyGateDeps(() => ({ stdout: sweepFlag(2) }));
+    const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+    assert.equal(outcome.status, "ready", "advisory mode advances to QC (the pre-P08 behavior) — QC stays the safety net");
+    assert.ok(spawns.filter((s) => s.sessionId.startsWith("pre-qc-variety-scout")).length >= 2, "the scout still runs its bounded passes");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_PREQC_SCOUT; else process.env.CHAPTERFLOW_PREQC_SCOUT = prev;
+  }
+});
+
+test("doGate variety scout is BEST-EFFORT — a scout that fails to run never blocks the gate (advances to QC), even under enforce", async () => {
+  const prev = process.env.CHAPTERFLOW_PREQC_SCOUT;
+  delete process.env.CHAPTERFLOW_PREQC_SCOUT;
+  try {
+    const { deps, spawns } = varietyGateDeps(() => ({ ok: false, stdout: "" }));
+    const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz", deps });
+    assert.equal(outcome.status, "ready", "a failed scout advances to QC — a parse/run failure is never a halt (QC stays the safety net)");
+    assert.ok(!spawns.some((s) => /^pre-qc-variety-\d+-ch/.test(s.sessionId)), "a failed scout triggers no de-template repairs");
+  } finally {
+    if (prev === undefined) delete process.env.CHAPTERFLOW_PREQC_SCOUT; else process.env.CHAPTERFLOW_PREQC_SCOUT = prev;
+  }
 });
 
 
