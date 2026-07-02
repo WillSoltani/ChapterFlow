@@ -336,6 +336,19 @@ export async function authorWriteOneChapter(
           return { ok: false, reason };
         }
       }
+      // Rubric preflight for THIS chapter (Phase-3 live finding, 2026-07-02:
+      // writers shipped gate-clean chapters with tell 0.778 / ease 66). The
+      // deterministic reader-facing metrics (Flesch band, distractor tell,
+      // transfer ratio, memorable lines) are as binding as the ship gate in
+      // the author arch — a FAIL feeds the retry card like a gate blocker.
+      const rubric = await deps.runVerb(["rubric-metrics", bookId]);
+      const rubricLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
+      if (rubricLine.includes("FAIL")) {
+        lastReason = `ch${nn}: rubric preflight FAIL — ${rubricLine.trim()}`;
+        deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricLine.trim()}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines).`;
+        continue;
+      }
       // Success: bind author provenance to the authored content (create-once per
       // content; a conflict means a prior author of identical bytes stands).
       try {

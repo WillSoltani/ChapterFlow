@@ -698,3 +698,29 @@ test("doAuthorReview: AUTHOR_REGEN_CAP is GLOBAL — a chapter regened in the re
   const regens = spawns.filter((sp) => sp.sessionId.startsWith("author-ch01"));
   assert.equal(regens.length, 1, "exactly ONE regen ever for ch01 — the book round must not grant a third attempt");
 });
+
+test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a gate blocker (Phase-3 live finding)", async () => {
+  let rubricCalls = 0;
+  const { deps, spawns } = mkDeps(
+    () => ({}),
+    (args) => {
+      if (args[0] === "rubric-metrics") {
+        rubricCalls++;
+        return {
+          code: 1,
+          stdout: rubricCalls === 1
+            ? "  ch01: FAIL ease=66.4✗ fk=6.9~ tell=0.778✗ transfer=0.556✗ memClean=3 — FAIL: fleschEase, tellRate, transferRatio"
+            : "  ch01: WARN ease=75.1 fk=5.7~ tell=0.111 transfer=0.778 memClean=3",
+          stderr: "",
+        };
+      }
+      return { code: 0, stdout: "PASS", stderr: "" };
+    },
+  );
+  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  assert.ok(r.ok, "retry converged after the rubric complaint");
+  assert.equal(spawns.length, 2, "rubric FAIL consumed the single retry");
+  assert.ok(spawns[1].task.includes("RUBRIC PREFLIGHT FAILURES"), "retry card carries the rubric framing");
+  assert.ok(spawns[1].task.includes("tell=0.778"), "the verbatim metrics line reaches the writer");
+  assert.ok(spawns[1].task.includes("balance distractor lengths"), "the how-to-read guidance is attached");
+});
