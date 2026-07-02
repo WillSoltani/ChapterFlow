@@ -3,6 +3,7 @@ import { blueprintPath, readJsonFile, type CompilerStoreRoots } from "../artifac
 import { CHAPTER_BLUEPRINT_SCHEMA_VERSION, type ChapterBlueprintV1 } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
+import { POSITIONAL_DEALS } from "./chapterBlueprint.js";
 
 export type BlueprintFinding = {
   checkId: string;
@@ -52,6 +53,65 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
   return findings;
 }
 
+/**
+ * Book-level positional-deal checks (P11), run across every chapter's blueprint:
+ *
+ *   BPV11.positional_collision (BLOCKER) — recomputes the book's per-position
+ *     value distribution for every positional deal (POSITIONAL_DEALS) and fails
+ *     if a same-position value repeats more often than the pool size makes
+ *     unavoidable. For a fixed slotIndex over C chapters drawing from a pool of
+ *     P values, perfect round-robin caps any single value at ceil(C / P) uses;
+ *     any value exceeding that cap is an AVOIDABLE collision (the deal could
+ *     have spread it further), exactly the same-position sameness AS5/AS6/AS8/AS9
+ *     and the scene_skeleton sweep punish. dealPositional makes this pass by
+ *     construction; the gate catches any future regression or hand-edit.
+ *
+ *   BPV12.pool_floor (ADVISORY) — a per-chapter deal (one value per chapter)
+ *     whose pool is smaller than ceil(totalChapters / 2) cannot give even two
+ *     chapters a distinct value on average; flag it early so a future thin pool
+ *     is widened before it becomes a book-wide monoculture (the hookShape=3 /
+ *     counterShape=2 problem this change fixed).
+ */
+export function checkPositionalDeals(blueprints: ChapterBlueprintV1[]): BlueprintFinding[] {
+  const findings: BlueprintFinding[] = [];
+  const C = blueprints.length;
+  if (C === 0) return findings;
+
+  for (const d of POSITIONAL_DEALS) {
+    const columns = blueprints.map((bp) => d.extract(bp));
+    for (let slot = 0; slot < d.slots; slot++) {
+      const values = columns.map((col) => col[slot]).filter((v): v is string => typeof v === "string" && v.length > 0);
+      if (values.length === 0) continue;
+      const P = d.poolSizeAt ? d.poolSizeAt(slot) : d.poolSize;
+      const cap = Math.max(1, Math.ceil(values.length / Math.max(1, P)));
+      const counts = new Map<string, number>();
+      for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+      for (const [value, count] of counts) {
+        if (count > cap) {
+          findings.push({
+            checkId: "BPV11.positional_collision",
+            severity: "blocker",
+            message: `positional deal "${d.poolKey}" slot ${slot}: value "${value}" is dealt to ${count} of ${values.length} chapters, exceeding the pool-${P} round-robin cap of ${cap} — an avoidable same-position collision the writers cannot self-diverge past`,
+            path: `/positional/${d.poolKey}/${slot}`,
+          });
+        }
+      }
+    }
+    if (d.perChapter) {
+      const floor = Math.ceil(C / 2);
+      if (d.poolSize < floor) {
+        findings.push({
+          checkId: "BPV12.pool_floor",
+          severity: "advisory",
+          message: `per-chapter deal "${d.poolKey}" draws from a pool of ${d.poolSize}, below the ceil(${C}/2)=${floor} floor for a ${C}-chapter book — widen it to avoid a book-wide monoculture`,
+          path: `/positional/${d.poolKey}`,
+        });
+      }
+    }
+  }
+  return findings;
+}
+
 export function checkBlueprintGate(bookId: string, roots: CompilerStoreRoots = {}): BlueprintGateReport {
   const normalized = normSlug(bookId);
   const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
@@ -60,13 +120,22 @@ export function checkBlueprintGate(bookId: string, roots: CompilerStoreRoots = {
   if (!resolved.ok || resolved.chapters.length === 0) {
     findings.push({ checkId: "BPV0.no_chapters", severity: "blocker", message: `No expected source chapters found for ${normalized}.` });
   }
+  const loaded: ChapterBlueprintV1[] = [];
   for (const chapterNumber of chapters) {
     const p = blueprintPath(normalized, chapterNumber, roots);
     try {
-      findings.push(...validateBlueprint(readJsonFile<ChapterBlueprintV1>(p)));
+      const bp = readJsonFile<ChapterBlueprintV1>(p);
+      loaded.push(bp);
+      findings.push(...validateBlueprint(bp));
     } catch (err) {
       findings.push({ checkId: "BPV0.missing_or_malformed", severity: "blocker", chapterNumber, path: p, message: `missing/unreadable blueprint: ${(err as Error).message}` });
     }
+  }
+  // Book-level positional-deal audit only runs when every expected chapter loaded,
+  // so a partially-compiled book (some blueprints missing) doesn't produce spurious
+  // "avoidable collision" findings off an incomplete column.
+  if (loaded.length === chapters.length && loaded.length > 0) {
+    findings.push(...checkPositionalDeals(loaded));
   }
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: chapters.length, findings };
 }
