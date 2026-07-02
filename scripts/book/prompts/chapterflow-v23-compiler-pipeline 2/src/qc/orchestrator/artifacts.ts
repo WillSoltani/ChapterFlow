@@ -6,7 +6,7 @@ import type { ChapterV21 } from "../../types.js";
 import { CANONICAL_STATE } from "../../lib/chapterPaths.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { evidenceSourceRef } from "./evidenceSource.js";
-import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
+import type { ValidatedBarReadSubmission, ValidatedConfirmReadSubmission, ValidatedCraftReadSubmission } from "./schemas.js";
 
 export const QC_ORCHESTRATOR_DIR = resolve(CANONICAL_STATE, "qc-orchestrator");
 
@@ -82,6 +82,12 @@ export function confirmArtifactPath(bookId: string, roundId: string, chapterNumb
   return resolve(submissionsDir(bookId, roundId, "confirm"), `ch${String(chapterNumber).padStart(2, "0")}.confirm-read.json`);
 }
 
+/** The derived craft-read artifact for a chapter (F6b). Lives under submissions/craft/ like the
+ *  bar/confirm derived artifacts, so finalize's per-role loader finds it without archaeology. */
+export function craftArtifactPath(bookId: string, roundId: string, chapterNumber: number): string {
+  return resolve(submissionsDir(bookId, roundId, "craft"), `ch${String(chapterNumber).padStart(2, "0")}.craft-read.json`);
+}
+
 function readJson(path: string): any | null {
   if (!existsSync(path)) return null;
   try {
@@ -141,6 +147,24 @@ export function loadAllBarReads(bookId: string, roundId: string, chapterNumber: 
 export function loadConfirmReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedConfirmReadSubmission | null {
   const raw = readJson(confirmArtifactPath(bookId, roundId, chapterNumber));
   return raw?.schemaVersion === "qc-confirm-read-v1" ? raw as ValidatedConfirmReadSubmission : null;
+}
+
+export function writeCraftReadArtifact(submission: ValidatedCraftReadSubmission, rawSubmissionFile?: string): string {
+  const path = craftArtifactPath(submission.bookId, submission.roundId, submission.chapterNumber);
+  const source = evidenceSourceRef({
+    bookId: submission.bookId,
+    roundId: submission.roundId,
+    sourceRole: "craft",
+    submissionFile: rawSubmissionFile ?? path,
+    sourceKind: rawSubmissionFile ? "raw_submission" : "derived_artifact",
+  });
+  writeFileAtomic(path, JSON.stringify({ ...submission, rawSubmissionFile, rawEvidenceSourceId: source.sourceId, rawEvidenceSourceKind: source.sourceKind, storedAt: new Date().toISOString() }, null, 2));
+  return path;
+}
+
+export function loadCraftReadArtifact(bookId: string, roundId: string, chapterNumber: number): ValidatedCraftReadSubmission | null {
+  const raw = readJson(craftArtifactPath(bookId, roundId, chapterNumber));
+  return raw?.schemaVersion === "qc-craft-read-v1" ? raw as ValidatedCraftReadSubmission : null;
 }
 
 export function hasFreshBarReadArtifact(bookId: string, roundId: string, chapter: ChapterV21): boolean {

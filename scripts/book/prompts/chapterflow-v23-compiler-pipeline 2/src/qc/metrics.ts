@@ -14,6 +14,7 @@ import { existsSync, mkdirSync, readFileSync, appendFileSync } from "fs";
 import { resolve } from "path";
 
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
+import type { CraftReadMode } from "../critics/semantic/craftBar.js";
 import type { EvidenceChapterDecision } from "./orchestrator/finalize.js";
 
 export const METRICS_DIR = resolve(CANONICAL_STATE, "metrics");
@@ -36,9 +37,20 @@ export interface QcFinalizationMetric {
   topFailedChecks: Record<string, number>;
   /** Per bar axis, how many chapters scored it below the publishable tier this round. */
   topBarAxes: Record<string, number>;
+  /** F6b — craft-read telemetry for this finalized round. Present iff the craft read ran
+   *  (mode != off), so the enforce floors can be calibrated on real SHADOW data before flipping.
+   *  Omitted in off mode (byte-identical to pre-craft telemetry). */
+  craft?: {
+    mode: CraftReadMode;
+    scored: number;                    // chapters with a fresh (GREEN|YELLOW) craft read
+    green: number;
+    yellow: number;
+    meanOverall: number | null;        // mean craft overall across scored chapters
+    axisMean: Record<string, number>;  // per-axis mean score across scored chapters
+  };
 }
 
-type DecisionLite = Pick<EvidenceChapterDecision, "finalVerdict" | "checks">;
+type DecisionLite = Pick<EvidenceChapterDecision, "finalVerdict" | "checks" | "craft">;
 
 /** A check "passes" iff its value is in this set; anything else (incl. MISSING/STALE on a
  *  non-publishable chapter) is counted as a block. NOT_APPLICABLE is never a block. */
@@ -52,6 +64,9 @@ const CHECK_PASS_VALUES: Record<string, ReadonlySet<string>> = {
   manualKeyJudge: new Set(["PASS", "NOT_APPLICABLE"]),
   majors: new Set(["PASS", "NOT_APPLICABLE"]),
   planEnforcement: new Set(["PASS", "NOT_APPLICABLE"]),
+  // F6b craft read: GREEN or NOT_APPLICABLE passes. In shadow craftRead is always NOT_APPLICABLE
+  // (never a block); in enforce a YELLOW counts as a block, matching the enforce REVISE demotion.
+  craftRead: new Set(["GREEN", "NOT_APPLICABLE"]),
   barRead: new Set(["GREEN"]),
   confirmRead: new Set(["PUBLISHABLE"]),
   repairLedger: new Set(["NO_OPEN_BLOCKERS"]),
@@ -101,6 +116,36 @@ export function buildQcFinalizationMetric(args: {
     needsMoreQc: count("NEEDS_MORE_QC"),
     topFailedChecks,
     topBarAxes,
+    ...craftSummary(decisions),
+  };
+}
+
+/** F6b — aggregate the round's per-chapter craft scores so the enforce floors can be
+ *  calibrated on real shadow data. Returns {} in off mode (no decision carries `craft`),
+ *  keeping the finalization row byte-identical to pre-craft telemetry. */
+function craftSummary(decisions: DecisionLite[]): Pick<QcFinalizationMetric, "craft"> {
+  const scored = decisions.filter((d) => d.craft && (d.craft.status === "GREEN" || d.craft.status === "YELLOW"));
+  const withCraft = decisions.find((d) => d.craft);
+  if (!withCraft?.craft) return {};
+  const axisSum: Record<string, number> = {};
+  const axisN: Record<string, number> = {};
+  let overallSum = 0;
+  let overallN = 0;
+  for (const d of scored) {
+    if (typeof d.craft!.overall === "number") { overallSum += d.craft!.overall; overallN++; }
+    for (const a of d.craft!.axes) { axisSum[a.axis] = (axisSum[a.axis] ?? 0) + a.score; axisN[a.axis] = (axisN[a.axis] ?? 0) + 1; }
+  }
+  const axisMean: Record<string, number> = {};
+  for (const axis of Object.keys(axisSum)) axisMean[axis] = Math.round((axisSum[axis] / axisN[axis]) * 1000) / 1000;
+  return {
+    craft: {
+      mode: withCraft.craft.mode,
+      scored: scored.length,
+      green: scored.filter((d) => d.craft!.status === "GREEN").length,
+      yellow: scored.filter((d) => d.craft!.status === "YELLOW").length,
+      meanOverall: overallN > 0 ? Math.round((overallSum / overallN) * 10) / 10 : null,
+      axisMean,
+    },
   };
 }
 

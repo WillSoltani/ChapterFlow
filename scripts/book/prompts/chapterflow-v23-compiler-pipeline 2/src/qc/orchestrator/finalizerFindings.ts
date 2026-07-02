@@ -2,13 +2,14 @@ import type { BookGateReport } from "../../critics/bookGate.js";
 import type { ACFinding } from "../../critics/authoringContract.js";
 import type { GateFinding, GateReport } from "../../critics/finalGate.js";
 import type { AxisScore } from "../../critics/semantic/publishableBar.js";
+import { computeCraftVerdict, type CraftReadMode } from "../../critics/semantic/craftBar.js";
 import type { ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import type { MajorFindingSnapshot } from "../majorDisposition.js";
 import type { SourceV2GateReport } from "../sourceV2Gate.js";
 import type { PlanFinding } from "../planEnforcement.js";
 import type { SweepRecord } from "../sweep.js";
 import type { EvidenceChapterDecision } from "./finalize.js";
-import type { FindingProvenanceSource, SubmissionFinding, ValidatedBarReadSubmission, ValidatedConfirmReadSubmission } from "./schemas.js";
+import type { FindingProvenanceSource, SubmissionFinding, ValidatedBarReadSubmission, ValidatedConfirmReadSubmission, ValidatedCraftReadSubmission } from "./schemas.js";
 
 export type FinalizerRawEvidence = {
   source: SourceV2GateReport;
@@ -22,9 +23,12 @@ export type FinalizerRawEvidence = {
   confirm: ValidatedConfirmReadSubmission | null;
   confirmAccepted: boolean;
   planFindings: PlanFinding[];
+  craft?: ValidatedCraftReadSubmission | null;
+  craftMode?: CraftReadMode;
   sweepSources?: FindingProvenanceSource[];
   barSources?: FindingProvenanceSource[];
   confirmSources?: FindingProvenanceSource[];
+  craftSources?: FindingProvenanceSource[];
   effectiveFailureChapters?: {
     sweep: Set<number>;
     bookGate: Set<number>;
@@ -305,6 +309,34 @@ export function findingsFromEvidenceDecision(decision: EvidenceChapterDecision, 
 
   if (raw.confirmAccepted && (decision.checks.confirmRead === "REVISE" || decision.checks.confirmRead === "CORRUPTION") && raw.confirm) {
     out.push(...raw.confirm.findings.map((f) => ({ ...f, provenanceSources: raw.confirmSources })));
+  }
+
+  // F6b — craft-read findings enter the BLOCKING ledger ONLY in enforce mode. A below-the-bar
+  // (YELLOW) craft read with cited hits becomes a major repair target: repairClass = the craft
+  // axis id, which is NOT a sweep family and NOT an escalate match, so P10 routeFinding returns
+  // the default `surgical` lever — a prose-local edit targeting the named unit. In SHADOW the
+  // craft read must not touch the ledger (that would pull an otherwise-PUBLISHABLE chapter into
+  // the repair-prompt edit bucket); shadow craft hits are surfaced separately, advisory, in the
+  // repair BRIEF (see repairBrief.ts renderCraftShadowSection). Off never reaches here.
+  if (raw.craft && raw.craftMode === "enforce") {
+    const verdict = computeCraftVerdict(raw.craft.chapterId, raw.craft.axes, true);
+    if (verdict.gate === "YELLOW") {
+      for (const axis of raw.craft.axes) {
+        for (const hit of axis.hits) {
+          out.push({
+            chapterNumber,
+            unitId: hit.unitId,
+            repairClass: axis.axis,
+            severity: "major",
+            quote: nonemptyText(hit.quote),
+            problem: `Craft read (${axis.axis}) below the bar: ${hit.defect}`,
+            expectedFix: hit.fix?.trim() || `Repair the ${axis.axis} craft defect at the named unit, then run a fresh QC round so the craft bar re-scores.`,
+            globalTheme: axis.axis,
+            provenanceSources: raw.craftSources,
+          });
+        }
+      }
+    }
   }
 
   return out;

@@ -1,41 +1,56 @@
 {
-  "_comment": "Single source of truth for the v21 pipeline's operator-driven roles. Codex/GPT-primary: the orchestrator/operator runs each role as a fresh session; the pipeline EMITS the persona (the fanout card / review packet) and the reasoning/verbosity recommendation below as a [ROLE: …] header. The operator applies the actual GPT reasoning-effort + verbosity per session. `promptPath` POINTS to the canonical prompt — no content is duplicated here. See roles/README.md.",
+  "_comment": "Single source of truth for the v21 pipeline's operator-driven roles. Codex/GPT-primary: the orchestrator/operator runs each role as a fresh session; the pipeline EMITS the persona (the fanout card / review packet) and the reasoning/verbosity recommendation below as a [ROLE: \u2026] header. The operator applies the actual GPT reasoning-effort + verbosity per session. `promptPath` POINTS to the canonical prompt \u2014 no content is duplicated here. See roles/README.md.",
   "schemaVersion": "role-definitions-v1",
   "roles": [
     {
       "roleId": "research",
-      "title": "Research editor — frozen source-of-truth",
+      "title": "Research editor \u2014 frozen source-of-truth",
       "reasoningEffort": "high",
       "verbosity": "high",
-      "modelHint": "Most capable reasoning model; depth matters — the sidecars set the ceiling on the book.",
-      "boundaries": ["Research only — never author chapters, QC, or publish.", "Make each sidecar specific and real; flag a thin/ill-fitting source rather than papering over it."],
+      "modelHint": "Most capable reasoning model; depth matters \u2014 the sidecars set the ceiling on the book.",
+      "boundaries": [
+        "Research only \u2014 never author chapters, QC, or publish.",
+        "Make each sidecar specific and real; flag a thin/ill-fitting source rather than papering over it."
+      ],
       "promptPath": "agent-prompts/RESEARCH-CODEX-SESSION.md"
     },
     {
       "roleId": "write",
-      "title": "Chapter writer — one chapter from its source",
+      "title": "Chapter writer \u2014 one chapter from its source",
       "reasoningEffort": "high",
       "verbosity": "high",
       "modelHint": "Most capable reasoning model; this is creative composition under the dealt-variety constraints.",
-      "boundaries": ["Author EXACTLY one chapter from its own source sidecar.", "Use only the dealt name/shape/pedagogy/venue plan; never QC, publish, or touch another chapter.", "Self-score the 8-axis publishable bar and triage majors before handoff."],
+      "boundaries": [
+        "Author EXACTLY one chapter from its own source sidecar.",
+        "Use only the dealt name/shape/pedagogy/venue plan; never QC, publish, or touch another chapter.",
+        "Self-score the 8-axis publishable bar and triage majors before handoff."
+      ],
       "promptPath": "agent-prompts/STEP-2-WRITE-CHAPTERS.md"
     },
     {
       "roleId": "write-orchestrate",
-      "title": "Write orchestrator — deal, dispatch, barrier",
+      "title": "Write orchestrator \u2014 deal, dispatch, barrier",
       "reasoningEffort": "minimal",
       "verbosity": "low",
       "modelHint": "Runs the CLI and reads gate/barrier output; minimal reasoning, no prose composition.",
-      "boundaries": ["Deal plans, dispatch ≤6 writer subagents, run the book-gate barrier, re-dispatch offenders.", "Stay thin — reference file paths + gate output, never inline chapter prose.", "Never author, QC, or publish."],
+      "boundaries": [
+        "Deal plans, dispatch \u22646 writer subagents, run the book-gate barrier, re-dispatch offenders.",
+        "Stay thin \u2014 reference file paths + gate output, never inline chapter prose.",
+        "Never author, QC, or publish."
+      ],
       "promptPath": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md"
     },
     {
       "roleId": "sweep",
-      "title": "QC sweep — book-wide cross-chapter templating",
+      "title": "QC sweep \u2014 book-wide cross-chapter templating",
       "reasoningEffort": "medium",
       "verbosity": "low",
       "modelHint": "Pattern-scan across all chapters for the 4 families; cite quote-backed findings.",
-      "boundaries": ["Review ONLY the sweep unit; PASS only if no family fires.", "REVISE/CORRUPTION needs ≥1 quote-backed finding citing specific chapters and the shared shell.", "Never edit, collect, finalize, attest, or publish."],
+      "boundaries": [
+        "Review ONLY the sweep unit; PASS only if no family fires.",
+        "REVISE/CORRUPTION needs \u22651 quote-backed finding citing specific chapters and the shared shell.",
+        "Never edit, collect, finalize, attest, or publish."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
@@ -44,7 +59,11 @@
       "reasoningEffort": "high",
       "verbosity": "low",
       "modelHint": "Derive each answer from prompt + choices + source facts; careful reasoning, terse output.",
-      "boundaries": ["Read ONLY the blind key packs + sourceFacts; never open stored keys or chapter files.", "Derive every answer before any reveal; reason ≥40 chars + ≥1 sourceFactId each.", "Independent of keyB."],
+      "boundaries": [
+        "Read ONLY the blind key packs + sourceFacts; never open stored keys or chapter files.",
+        "Derive every answer before any reveal; reason \u226540 chars + \u22651 sourceFactId each.",
+        "Independent of keyB."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
@@ -53,25 +72,51 @@
       "reasoningEffort": "high",
       "verbosity": "low",
       "modelHint": "Derive each answer independently of keyA; careful reasoning, terse output.",
-      "boundaries": ["Read ONLY the blind key packs + sourceFacts; never open stored keys or chapter files.", "Derive every answer before any reveal; independent of keyA."],
+      "boundaries": [
+        "Read ONLY the blind key packs + sourceFacts; never open stored keys or chapter files.",
+        "Derive every answer before any reveal; independent of keyA."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
       "roleId": "bar",
-      "title": "QC bar read — 8-axis publishable score",
+      "title": "QC bar read \u2014 8-axis publishable score",
       "reasoningEffort": "high",
       "verbosity": "low",
       "modelHint": "The 8 axes need careful judgment; any axis <0.6 needs a cited verbatim hit. Terse, evidence-first.",
-      "boundaries": ["Score ONE chapter on every publishableBar axis 0..1 from a real read.", "Any axis <0.6 or a CORRUPTION tier REQUIRES a cited hit.", "Never edit, finalize, attest, or publish."],
+      "boundaries": [
+        "Score ONE chapter on every publishableBar axis 0..1 from a real read.",
+        "Any axis <0.6 or a CORRUPTION tier REQUIRES a cited hit.",
+        "Never edit, finalize, attest, or publish."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
+      "roleId": "craft",
+      "title": "QC craft read \u2014 5-axis rubric-craft score",
+      "reasoningEffort": "high",
+      "verbosity": "low",
+      "modelHint": "The 5 craft axes (summaries/tone/transfer/density/limits) need careful reader judgment against the book voice card and RUBRIC.md; any axis <0.6 needs a cited verbatim hit. The craft bar NEVER claims corruption. Terse, evidence-first.",
+      "boundaries": [
+        "Score ONE chapter on all five craft axes 0..1 from a real read: summaries_depth, tone_register, transfer_design, idea_density, limits_honesty.",
+        "Any axis <0.6 REQUIRES a cited verbatim hit; the craft bar has no CORRUPTION tier.",
+        "Score tone_register against the book voice card, not a generic house voice.",
+        "Never edit, finalize, attest, or publish."
+      ],
+      "promptPath": "agent-prompts/CRAFT-READ-RUBRIC.md"
+    },
+    {
       "roleId": "confirm",
-      "title": "QC confirm — adversarial second read",
+      "title": "QC confirm \u2014 adversarial second read",
       "reasoningEffort": "high",
       "verbosity": "low",
       "modelHint": "An ADVERSARIAL second read: assume a defect exists and try to REFUTE the bar's PASS. One model family shares blind spots, so don't pass it because it reads fluent. Refute or confirm; terse output.",
-      "boundaries": ["Adversarial second read of ONE candidate chapter; try to refute PUBLISHABLE, then decide PUBLISHABLE/REVISE/CORRUPTION.", "Hunt the single weakest axis; do not rubber-stamp output that merely scans well (self-preference bias).", "Non-PUBLISHABLE needs ≥1 quote-backed finding; PUBLISHABLE needs zero findings.", "A different reviewer id than the bar read."],
+      "boundaries": [
+        "Adversarial second read of ONE candidate chapter; try to refute PUBLISHABLE, then decide PUBLISHABLE/REVISE/CORRUPTION.",
+        "Hunt the single weakest axis; do not rubber-stamp output that merely scans well (self-preference bias).",
+        "Non-PUBLISHABLE needs \u22651 quote-backed finding; PUBLISHABLE needs zero findings.",
+        "A different reviewer id than the bar read."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
@@ -80,34 +125,49 @@
       "reasoningEffort": "medium",
       "verbosity": "low",
       "modelHint": "Triage current majors; a waiver needs a concrete reason tied to the finding id.",
-      "boundaries": ["Triage current major findings only; every major gets open / waived_false_positive / waived_accepted_debt.", "Never waive a current major without a concrete reason tied to its finding id."],
+      "boundaries": [
+        "Triage current major findings only; every major gets open / waived_false_positive / waived_accepted_debt.",
+        "Never waive a current major without a concrete reason tied to its finding id."
+      ],
       "promptPath": "agent-prompts/QC-SESSION-PROMPT.md"
     },
     {
       "roleId": "qc-orchestrate",
-      "title": "QC orchestrator — dispatch, collect, finalize",
+      "title": "QC orchestrator \u2014 dispatch, collect, finalize",
       "reasoningEffort": "minimal",
       "verbosity": "low",
       "modelHint": "Runs the CLI and reads verdicts; minimal reasoning, no content judgment of its own.",
-      "boundaries": ["Open a round, dispatch ≤6 reviewer subagents per unit, let the CLI collect + decide.", "Never fabricate a submission, force-pass, edit a chapter, or publish.", "Dispatch each chapter's confirm as a SEPARATE subagent from its bar read."],
+      "boundaries": [
+        "Open a round, dispatch \u22646 reviewer subagents per unit, let the CLI collect + decide.",
+        "Never fabricate a submission, force-pass, edit a chapter, or publish.",
+        "Dispatch each chapter's confirm as a SEPARATE subagent from its bar read."
+      ],
       "promptPath": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md"
     },
     {
       "roleId": "repair",
-      "title": "Writer repair — fix the listed chapters",
+      "title": "Writer repair \u2014 fix the listed chapters",
       "reasoningEffort": "high",
       "verbosity": "medium",
       "modelHint": "Fix root causes (CLASS DEFECTs at their source), not just quoted text; most capable model.",
-      "boundaries": ["Repair ONLY the listed chapters; fix root causes, not surface text.", "Run author-check + gate-chapter per chapter, then book-gate.", "Never run any certifying/QC command or publish."],
+      "boundaries": [
+        "Repair ONLY the listed chapters; fix root causes, not surface text.",
+        "Run author-check + gate-chapter per chapter, then book-gate.",
+        "Never run any certifying/QC command or publish."
+      ],
       "promptPath": "agent-prompts/STEP-2-WRITE-CHAPTERS.md"
     },
     {
       "roleId": "publish",
-      "title": "Publish-after-QC — promote, commit, push",
+      "title": "Publish-after-QC \u2014 promote, commit, push",
       "reasoningEffort": "minimal",
       "verbosity": "low",
       "modelHint": "Acts on a finished round; runs the CLI. Minimal reasoning, no content judgment.",
-      "boundaries": ["Finalize/promote/register only after qc-status proves the book passed.", "Never edit chapters, run qc-attest manually, or bypass no-API QC blockers.", "This is the only step that writes to git/remote."],
+      "boundaries": [
+        "Finalize/promote/register only after qc-status proves the book passed.",
+        "Never edit chapters, run qc-attest manually, or bypass no-API QC blockers.",
+        "This is the only step that writes to git/remote."
+      ],
       "promptPath": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md"
     }
   ]

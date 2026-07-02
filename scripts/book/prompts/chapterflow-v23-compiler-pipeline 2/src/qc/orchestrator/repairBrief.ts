@@ -1,7 +1,8 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname } from "path";
 
-import { evidenceMatrixPath, repairBriefPath, repairPromptPath } from "./artifacts.js";
+import { evidenceMatrixPath, loadCraftReadArtifact, repairBriefPath, repairPromptPath } from "./artifacts.js";
+import { computeCraftVerdict, craftReadMode, CRAFT_AXIS_FLOOR } from "../../critics/semantic/craftBar.js";
 import { effectiveLedger, type EffectiveLedgerFinding } from "./ledger.js";
 import { classDefectBanner, unitContainer } from "./findingGrouping.js";
 import { C7_BANNED_NAMES } from "../../critics/finalGate.js";
@@ -130,6 +131,47 @@ function renderFinalizerCauseSection(bookId: string, roundId: string): string[] 
   return lines;
 }
 
+/**
+ * F6b — the SHADOW craft-read section. In shadow mode the craft read never enters the blocking
+ * ledger (that would pull an otherwise-publishable chapter into the repair edit bucket), so its
+ * below-the-bar hits are surfaced HERE, advisory and clearly non-gating: information for the
+ * operator while the enforce floors are calibrated. Reads the evidence matrix (for which chapters
+ * scored craft YELLOW) + the craft artifacts (for the cited hits). Returns [] when off/enforce, or
+ * when nothing scored below the bar.
+ */
+function renderCraftShadowSection(bookId: string, roundId: string): string[] {
+  if (craftReadMode() !== "shadow") return [];
+  const matrix = readEvidenceMatrix(bookId, roundId);
+  const chapters = Array.isArray(matrix?.chapters) ? matrix.chapters : [];
+  const lines: string[] = [];
+  for (const d of chapters) {
+    if (d?.craft?.status !== "YELLOW") continue;
+    const n = d.chapterNumber;
+    const art = loadCraftReadArtifact(bookId, roundId, n);
+    if (!art) continue;
+    const verdict = computeCraftVerdict(art.chapterId, art.axes, true);
+    const axisLines: string[] = [];
+    for (const axis of art.axes) {
+      const belowFloor = axis.score < CRAFT_AXIS_FLOOR;
+      if (!belowFloor && axis.hits.length === 0) continue;
+      axisLines.push(`  - ${axis.axis} = ${axis.score.toFixed(2)}${belowFloor ? " (below floor)" : ""}`);
+      for (const h of axis.hits) axisLines.push(`    - \`${h.unitId}\`: ${h.defect}${h.fix ? ` → fix: ${h.fix}` : ""}`);
+    }
+    if (axisLines.length === 0) continue;
+    lines.push(`- **ch${String(n).padStart(2, "0")}** craft ${verdict.overall}/100 (YELLOW):`);
+    lines.push(...axisLines);
+  }
+  if (lines.length === 0) return [];
+  return [
+    "",
+    "## Craft read (shadow — advisory, NON-gating)",
+    "The craft bar (summaries/tone/transfer/idea-density/limits) scored these chapters below the",
+    "bar. This is ADVISORY: in shadow mode the craft read never changes a QC verdict and never",
+    "requires an edit. Do NOT edit a chapter solely to clear a craft-shadow note.",
+    ...lines,
+  ];
+}
+
 export function renderRepairBriefMarkdown(bookId: string, roundId: string, findings = effectiveLedger(bookId, roundId)): string {
   const active = findings.filter((f) => f.status === "open" || f.status === "still_open" || f.status === "needs_qc_rerun");
   const lines: string[] = [];
@@ -149,8 +191,10 @@ export function renderRepairBriefMarkdown(bookId: string, roundId: string, findi
   for (const cmd of validationCommands(bookId, active, nonPublishableMatrixChapters(bookId, roundId))) lines.push(cmd);
   lines.push("```");
   lines.push("");
+  const craftShadow = renderCraftShadowSection(bookId, roundId);
   if (active.length === 0) {
     lines.push("No open repair findings in the ledger.");
+    lines.push(...craftShadow);
     return lines.join("\n") + "\n";
   }
 
@@ -187,6 +231,7 @@ export function renderRepairBriefMarkdown(bookId: string, roundId: string, findi
       }
     }
   }
+  lines.push(...craftShadow);
   return lines.join("\n") + "\n";
 }
 
