@@ -479,7 +479,10 @@ test("doAuthorReview: regeneration carries the review complaints; cap = original
   if (result && result.status === "halt") {
     assert.match(result.reason, /still fail independent review after the regen cap/);
     assert.match(result.reason, /ch01/);
-    assert.match(result.reason, /the key contradicts the prose/, "the halt table carries the complaint summaries");
+    // The stub writer leaves the chapter byte-identical, so the no-op regen
+    // guard (verifier finding) reports it — the complaint text still reaches
+    // the WRITER via the card, asserted below.
+    assert.match(result.reason, /byte-identical/, "the halt table carries the no-op regen reason");
   }
   const regens = spawns.filter((s) => s.sessionId.startsWith("author-ch"));
   assert.equal(regens.length, 2, "exactly ONE regen per failing chapter (cap 2 total write attempts)");
@@ -492,17 +495,20 @@ test("doAuthorReview: regeneration carries the review complaints; cap = original
 
 test("doAuthorReview: acceptance rejection drives ONE targeted regen round (<= 3 chapters), re-runs acceptance ONCE, then halts content", async () => {
   let bookRounds = 0;
+  let regenBumps = 0; // regen writers CHANGE bytes (else the no-op guard correctly fails them)
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
   const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
     if (o.sessionId.includes("author-book-reader")) {
       if (o.sessionId.includes("-r2")) return { finalMessage: "no json here" }; // never parses twice — keep 2 readers/round
       bookRounds++;
-      return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+      return { finalMessage: bookReply(chaptersNow(), { gate: "FAIL", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
     }
     const m = o.sessionId.match(/author-review-ch0*(\d+)/);
-    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? chaptersNow()[0] : CH2) };
     return {};
   });
-  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io: mkIo() });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io: mkIo({ loadChapters: () => chaptersNow() }) });
   assert.ok(result && result.status === "halt" && result.category === "content", "a twice-rejected acceptance halts content");
   if (result && result.status === "halt") assert.match(result.reason, /still REJECTED after the one targeted regen round/);
   const regens = spawns.filter((s) => s.sessionId.startsWith("author-ch"));
@@ -634,4 +640,61 @@ test("legacy arch still consults deps.sweepConfirmed (the substitution is author
   });
   assert.equal(outcome.status, "ready");
   assert.ok(sweepConfirmedCalls > 0, "legacy/compiler call sites still read deps.sweepConfirmed — byte-unchanged behavior");
+});
+
+
+// ── Reviewer fixes (verifier findings 2026-07-02): no-op regen, global cap, regex ──
+
+test("authorWriteOneChapter: a regen that leaves the chapter byte-identical fails IMMEDIATELY (no retry burned)", async () => {
+  const { deps, spawns } = mkDeps(() => ({}));
+  const r = await authorWriteOneChapter("zz", 1, deps, { complaints: ["quiz Q2: key contradicted"], io: mkIo() });
+  assert.ok(!r.ok, "byte-identical regen must fail");
+  if (!r.ok) assert.match(r.reason, /byte-identical/);
+  assert.equal(spawns.length, 1, "no retry for a lazy session — the gate-retry budget is for gate blockers");
+});
+
+test("authorWriteOneChapter: a regen that CHANGES the chapter succeeds normally", async () => {
+  let bumped = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (bumped > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (v2)` } : c));
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) bumped++;
+    return {};
+  });
+  const r = await authorWriteOneChapter("zz", 1, deps, { complaints: ["quiz Q2: key contradicted"], io: mkIo({ loadChapters: () => chaptersNow() }) });
+  assert.ok(r.ok, "changed bytes = a real regeneration");
+  assert.equal(spawns.length, 1);
+});
+
+test("mapBookComplaintsToChapters: 'launch 3' does not route to chapter 3 (word-boundary regex)", () => {
+  const mk = (verdict: string) => ({ keyCheck: { matches: 0, of: 0, disagreements: [] }, oneParagraphVerdict: verdict, gateVerdict: "FAIL" as const, churn: "HIGH" as const });
+  const routed = mapBookComplaintsToChapters([mk("the launch 3 metaphor is fine but chapter 5 repeats itself")], [3, 5]);
+  assert.ok(!routed.has(3), "'launch 3' must not be read as ch3");
+  assert.ok(routed.has(5), "'chapter 5' routes normally");
+});
+
+test("doAuthorReview: AUTHOR_REGEN_CAP is GLOBAL — a chapter regened in the review round is skipped by the book round, halting when nothing is actionable", async () => {
+  let regenBumps = 0;
+  const chaptersNow = () => FIXTURE_CHAPTERS.map((c) => (regenBumps > 0 && c.number === 1 ? { ...c, hook: `${c.hook} (regen ${regenBumps})` } : c));
+  let ch1Reviews = 0;
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.startsWith("author-ch01")) regenBumps++;
+    if (o.sessionId.includes("author-book-reader")) {
+      return { finalMessage: bookReply(chaptersNow(), { gate: "FAIL", verdictText: "chapter 1 quiz key is contradicted by its own prose" }) };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) {
+      if (Number(m[1]) === 1) {
+        ch1Reviews++;
+        // first review FAILS (drives the review-round regen), the re-review PASSES
+        return { finalMessage: reviewReply(chaptersNow()[0], ch1Reviews === 1 ? { ship84: false, score: 60 } : {}) };
+      }
+      return { finalMessage: reviewReply(CH2) };
+    }
+    return {};
+  });
+  const result = await doAuthorReview("zz", deps, { maxParallel: 2, io: mkIo({ loadChapters: () => chaptersNow() }) });
+  assert.ok(result && result.status === "halt" && result.category === "content", "nothing actionable => content halt");
+  if (result && result.status === "halt") assert.match(result.reason, /already consumed its regen budget/);
+  const regens = spawns.filter((sp) => sp.sessionId.startsWith("author-ch01"));
+  assert.equal(regens.length, 1, "exactly ONE regen ever for ch01 — the book round must not grant a third attempt");
 });

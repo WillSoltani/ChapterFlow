@@ -17,13 +17,22 @@
  *      AND medianComposite >= bar. The two book readers are the author arch's
  *      CONFIRMING function (the sweep-confirmation analog — runAutopilot's
  *      author branch substitutes this acceptance for deps.sweepConfirmed).
- *   4. On acceptance: write the QC attestation records promote-book requires —
- *      the same qc-attest-v1 record finalize writes (verdict PUBLISHABLE,
- *      hashVersion v2 bound to chapterContentHash, an approved codex-qc
- *      reviewer role, reviewer session ids from the review artifacts, a real
- *      opened QC round) PLUS the round's bar/confirm artifacts
- *      checkBarConfirmArtifactsForPublishable verifies — so the promote gate
- *      is satisfied without ANY change to promote.
+ *   4. On acceptance: write the QC attestation + bar/confirm records in the
+ *      shapes the promote gate reads (verdict PUBLISHABLE, bound to
+ *      chapterContentHash, reviewer sessions from the review artifacts).
+ *
+ *      ⚠️ KNOWN LIMITATION (verifier finding 2026-07-02): promote-book force-sets
+ *      CHAPTERFLOW_NO_API_CODEX_QC=1 and in that mode ALSO enforces
+ *      checkManualKeyJudge (keyA/keyB key-pack/derive/resolve records per
+ *      chapter) and checkSweep (a sweep attestation backed by roles.sweep) —
+ *      record families only the legacy/compiler QC round machinery produces.
+ *      An author-arch book therefore reaches READY but cannot pass promote-book
+ *      yet. Follow-up component B5 must synthesize those records from evidence
+ *      the author arch already collects (every chapter reviewer blind-derives
+ *      all quiz keys = the key-judge function; the two book-acceptance readers
+ *      judge cross-chapter churn = the sweep function) — in their REAL shapes,
+ *      with a second independent derivation per chapter, NOT by touching
+ *      promote.
  *   5. On rejection: ONE targeted regen round (book complaints mapped to their
  *      chapters, cap 3), re-review, then re-run acceptance ONCE; still
  *      failing → halt content.
@@ -202,11 +211,11 @@ export function mapBookComplaintsToChapters(
   };
   for (const reader of readers) {
     for (const line of reader.keyCheck?.disagreements ?? []) {
-      const m = line.match(/ch(?:apter)?\s*0*(\d+)/i);
+      const m = line.match(/\bch(?:apter)?\s*0*(\d+)\b/i);
       if (m) add(Number(m[1]), `book reader key check: ${line}`);
     }
     const verdict = reader.oneParagraphVerdict ?? "";
-    for (const m of verdict.matchAll(/ch(?:apter)?\s*0*(\d+)/gi)) {
+    for (const m of verdict.matchAll(/\bch(?:apter)?\s*0*(\d+)\b/gi)) {
       add(Number(m[1]), `book reader verdict: ${verdict.slice(0, 500)}`);
     }
   }
@@ -477,6 +486,7 @@ export async function doAuthorReview(
   // ── 2. Regenerate failing chapters WITH the review complaints (cap: the
   //       original + ONE regen = AUTHOR_REGEN_CAP total write attempts). ──────
   const failing = chapters.filter((chapter) => !reviews.get(chapter.number)!.pass);
+  const regenerated = new Set<number>(); // chapters that consumed their single regen (AUTHOR_REGEN_CAP is GLOBAL across the review round and the book-rejection round)
   if (failing.length > 0) {
     deps.log(`[autopilot] author review: ${failing.length} chapter(s) failed independent review — regenerating with complaints (1 regen each; ${AUTHOR_REGEN_CAP} total attempts/chapter)`);
     const stillFailing: Array<{ chapterNumber: number; summary: string }> = [];
@@ -484,6 +494,7 @@ export async function doAuthorReview(
       heartbeat();
       const nn = String(chapter.number).padStart(2, "0");
       const complaints = complaintsOf(reviews.get(chapter.number)!);
+      regenerated.add(chapter.number);
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
       if (!regen.ok) {
         stillFailing.push({ chapterNumber: chapter.number, summary: regen.reason });
@@ -513,7 +524,18 @@ export async function doAuthorReview(
   if (!acceptance.accepted) {
     // ONE targeted regen round: the book readers' complaints mapped to their
     // chapters (cap 3), re-review, then re-run acceptance ONCE.
-    const targets = mapBookComplaintsToChapters(acceptance.readers, acceptance.sampledNumbers);
+    const allTargets = mapBookComplaintsToChapters(acceptance.readers, acceptance.sampledNumbers);
+    const targets = new Map([...allTargets.entries()].filter(([n]) => !regenerated.has(n)));
+    const skipped = [...allTargets.keys()].filter((n) => regenerated.has(n));
+    if (skipped.length > 0) {
+      deps.log(`[autopilot] author acceptance: ${skipped.length} target chapter(s) already consumed their regen (${AUTHOR_REGEN_CAP} total write attempts is a GLOBAL cap): ${skipped.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
+    }
+    if (targets.size === 0) {
+      const readerLines = acceptance.readers
+        .map((r) => `  reader ${r.reviewerSessionId}: comp=${r.composite} gate=${r.gateVerdict} churn=${r.churn} — ${r.oneParagraphVerdict.slice(0, 300)}`)
+        .join("\n");
+      return halt(bookId, "content", `author acceptance REJECTED and every targeted chapter has already consumed its regen budget (cap ${AUTHOR_REGEN_CAP} write attempts/chapter, global across review + acceptance rounds):\n${readerLines}`);
+    }
     deps.log(`[autopilot] author acceptance REJECTED — one targeted regen round over ${targets.size} chapter(s): ${[...targets.keys()].map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const regenFailures: string[] = [];
     await mapPool([...targets.entries()], opts.maxParallel, async ([chapterNumber, complaints]) => {

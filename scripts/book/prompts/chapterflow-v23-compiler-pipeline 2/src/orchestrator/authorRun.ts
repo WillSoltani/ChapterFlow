@@ -285,6 +285,19 @@ export async function authorWriteOneChapter(
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
   }
 
+  // Regen no-op guard: a regeneration is only requested for a FAILING chapter,
+  // so a writer session that leaves the bytes unchanged has produced nothing —
+  // detect it by content hash instead of letting the stale file "pass" and
+  // silently burn the regen attempt (verifier finding, 2026-07-02).
+  const isRegen = (opts.complaints?.length ?? 0) > 0;
+  let priorHash: string | undefined;
+  if (isRegen && io.chapterExists(bookId, chapterNumber)) {
+    try {
+      const prior = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      priorHash = prior ? chapterContentHash(prior) : undefined;
+    } catch { /* unreadable prior chapter — treat as no prior hash */ }
+  }
+
   let card = baseCard;
   let lastReason = "";
   for (let attempt = 1; attempt <= 1 + AUTHOR_WRITE_GATE_RETRIES; attempt++) {
@@ -308,6 +321,21 @@ export async function authorWriteOneChapter(
 
     const gate = await deps.runVerb(["gate-chapter", relPath]);
     if (gate.code === 0) {
+      if (priorHash) {
+        let freshHash: string | undefined;
+        try {
+          const fresh = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+          freshHash = fresh ? chapterContentHash(fresh) : undefined;
+        } catch { /* fall through — unreadable counts as changed */ }
+        if (freshHash && freshHash === priorHash) {
+          // Fail immediately, no retry: the gate-retry budget exists for gate
+          // blockers, not for a session that ignored explicit complaints. The
+          // chapter stays failing and the caller's cap/halt logic reports it.
+          const reason = `ch${nn}: regen session ${sessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
+          deps.log(`[autopilot] author ch${nn}: ${reason}`);
+          return { ok: false, reason };
+        }
+      }
       // Success: bind author provenance to the authored content (create-once per
       // content; a conflict means a prior author of identical bytes stands).
       try {
