@@ -19,6 +19,11 @@ import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { planVenues } from "../librarian/venuePlan.js";
 import { protectedSourceNames } from "./sourceNames.js";
+import { rotate, rankedCaseIdsForFact, isSourceGroundingMetaFact, hasRealMechanism } from "./sourcePacketFacts.js";
+
+// isSourceGroundingMetaFact moved to sourcePacketFacts.ts (P13) to break the fact-helper
+// layering smell and let rankTeachingFacts reuse it; re-exported here for back-compat.
+export { isSourceGroundingMetaFact } from "./sourcePacketFacts.js";
 
 export type CompileBlueprintsResult = {
   bookId: string;
@@ -99,12 +104,6 @@ function compilerNameBank(): string[] {
     cachedCompilerNameBank = FALLBACK_NAME_BANK;
   }
   return cachedCompilerNameBank;
-}
-
-function rotate<T>(xs: T[], offset: number): T[] {
-  if (xs.length === 0) return [];
-  const n = ((offset % xs.length) + xs.length) % xs.length;
-  return xs.slice(n).concat(xs.slice(0, n));
 }
 
 function chapterNameCandidates(bookId: string, chapterNumber: number, nameSalt = 0): string[] {
@@ -727,20 +726,6 @@ function rawFactIds(packet: SourcePacketV1): string[] {
   return packet.facts.map((f) => f.id).filter(Boolean);
 }
 
-function isSourceGroundingMetaFact(fact: SourcePacketV1["facts"][number]): boolean {
-  const value = `${fact.claim ?? ""} ${fact.mechanism ?? ""}`.toLowerCase();
-  return /\bat least\s+\d+\s+named cases\b/.test(value)
-    || /\bconcrete settings give memory a handle\b/.test(value)
-    || /\bmake the claim checkable\b/.test(value)
-    || /\bnamed people, places, dates,? or numbers\b/.test(value)
-    || /\bprevent the writer from inventing\b/.test(value)
-    || /\bquiz-worthy material\b/.test(value)
-    || /\bcase can test a different misreading\b/.test(value)
-    || /\bseeds? distractors?\b/.test(value)
-    || /\blater qc\b/.test(value)
-    || /\bsource anchors?\b/.test(value);
-}
-
 // Teaching-content fact ids for quiz/card/hook/summary/action slots. Source-grounding meta facts (facts
 // *about* using named cases, keeping claims checkable, etc. -- see isSourceGroundingMetaFact) read like
 // real facts to the packet schema but are process instructions left over from source compilation, not
@@ -762,6 +747,87 @@ function factIds(packet: SourcePacketV1): string[] {
   // a writer MAY still cite it for grounding — it just is not a required teaching fact anywhere.
   const teaching = packet.facts.filter((f) => !isSourceGroundingMetaFact(f) && !f.bookWideDuplicate).map((f) => f.id).filter(Boolean);
   return teaching.length >= 3 ? teaching : rawFactIds(packet);
+}
+
+// ── P13: pedagogical fact ordering / role assignment ──────────────────────────────
+//
+// When a packet carries the P13 ranking (facts[].teachingPriority set by
+// sourcePacketFacts.applyTeachingRanking), the blueprint deals facts by RANK rather than
+// packet order: the teaching pool (factIds) is sorted by teachingPriority, so cards/examples/
+// summary anchors — which all index into `ids` — automatically teach the best facts first, and
+// quiz slots are routed by role (assignFactsByRole). LEGACY packets (no teachingPriority) return
+// the pool in packet order, so every downstream slot is byte-identical to the pre-P13 world; the
+// feature keys purely on field presence.
+
+/** Fact-id → 1-based teachingPriority, or null when no fact carries a ranking (legacy packet). */
+function teachingPriorityOf(packet: SourcePacketV1): Map<string, number> | null {
+  const entries = packet.facts
+    .filter((f) => typeof f.teachingPriority === "number")
+    .map((f) => [f.id, f.teachingPriority as number] as const);
+  return entries.length ? new Map(entries) : null;
+}
+
+/** The teaching pool, ordered by teachingPriority when present (best fact first, id-stable
+ *  tie-break), else in packet order. Always a subset of factIds ⊆ rawFactIds, so
+ *  assertFactIdsSubset holds by construction. */
+function orderedTeachingIds(packet: SourcePacketV1): string[] {
+  const teaching = factIds(packet);
+  const priority = teachingPriorityOf(packet);
+  if (!priority) return teaching;
+  return [...teaching].sort((a, b) => {
+    const pa = priority.get(a) ?? Number.POSITIVE_INFINITY;
+    const pb = priority.get(b) ?? Number.POSITIVE_INFINITY;
+    return pa - pb || (a < b ? -1 : a > b ? 1 : 0);
+  });
+}
+
+/** Teaching-pool ids (in the given order) whose fact carries a REAL mechanism. */
+function mechanismTeachingIds(packet: SourcePacketV1, orderedIds: string[]): string[] {
+  const byId = new Map(packet.facts.map((f) => [f.id, f]));
+  return orderedIds.filter((id) => { const f = byId.get(id); return !!f && hasRealMechanism(f); });
+}
+
+export type FactRolePreference = "mechanism" | "definitional" | "any";
+
+function rolePreferenceKey(id: string, prefer: FactRolePreference, mechanismSet: Set<string>): number {
+  if (prefer === "any") return 0;
+  const isMechanism = mechanismSet.has(id);
+  // "mechanism" slots want mechanism facts first; "definitional" slots want non-mechanism first.
+  if (prefer === "mechanism") return isMechanism ? 0 : 1;
+  return isMechanism ? 1 : 0;
+}
+
+/**
+ * Pure, deterministic assignment of ranked fact ids to a list of role-typed slots.
+ * For each slot in order, picks the fact that best matches the slot's role preference
+ * (mechanism-bearing vs definitional), breaking ties toward the LEAST-used fact and then
+ * by rank — so facts spread across slots (round-robin) rather than clumping on rank 1.
+ * No fact is used more than `maxPerFact` times whenever the pool is large enough
+ * (rankedIds.length * maxPerFact >= slots.length), which the quiz caller guarantees via
+ * maxPerFact = ceil(quizCount / distinctFacts). Returns [] for an empty pool.
+ */
+export function assignFactsByRole(
+  rankedIds: string[],
+  slots: FactRolePreference[],
+  opts: { maxPerFact: number; mechanismIds?: string[] },
+): string[] {
+  if (rankedIds.length === 0) return [];
+  const cap = opts.maxPerFact > 0 ? opts.maxPerFact : Number.POSITIVE_INFINITY;
+  const mechanismSet = new Set(opts.mechanismIds ?? []);
+  const rankIndex = new Map(rankedIds.map((id, i) => [id, i]));
+  const usage = new Map<string, number>();
+  const out: string[] = [];
+  for (const prefer of slots) {
+    const ordered = [...rankedIds].sort((a, b) =>
+      rolePreferenceKey(a, prefer, mechanismSet) - rolePreferenceKey(b, prefer, mechanismSet)
+      || (usage.get(a) ?? 0) - (usage.get(b) ?? 0)
+      || (rankIndex.get(a)! - rankIndex.get(b)!),
+    );
+    const chosen = ordered.find((id) => (usage.get(id) ?? 0) < cap) ?? ordered[0];
+    usage.set(chosen, (usage.get(chosen) ?? 0) + 1);
+    out.push(chosen);
+  }
+  return out;
 }
 
 // Defensive invariant check: every fact id dealt into a chapter's requiredFactIds slots must be a member of
@@ -789,48 +855,6 @@ function caseIds(packet: SourcePacketV1): string[] {
   return packet.namedCases.map((c) => c.id).filter(Boolean);
 }
 
-function keywordRoots(value: string): Set<string> {
-  const stop = new Set([
-    "about", "after", "again", "against", "because", "before", "being", "between", "chapter", "claim", "could", "every",
-    "evidence", "example", "from", "into", "more", "should", "source", "than", "that", "their", "there", "these", "this",
-    "through", "when", "where", "which", "while", "with", "without", "would",
-  ]);
-  const words = value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((word) => word
-      .replace(/ies$/, "y")
-      .replace(/(?:ing|ed|es|s)$/, ""));
-  return new Set(words.filter((word) => word.length >= 4 && !stop.has(word)));
-}
-
-function rankedCaseIdsForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
-  const cases = packet.namedCases;
-  if (!cases.length) return [];
-  const fallback = cases[fallbackIndex % cases.length]?.id;
-  const fact = packet.facts.find((f) => f.id === factId);
-  if (!fact) return rotate(cases.map((c) => c.id).filter(Boolean), fallbackIndex);
-  const factTerms = keywordRoots([
-    fact.claim,
-    fact.mechanism,
-    fact.commonError,
-    fact.whyWrong,
-    ...fact.groundedEntities,
-    ...fact.groundedNumbers,
-  ].join(" "));
-  const scored = cases.map((c) => {
-    const caseTerms = keywordRoots([c.label, c.summary, ...c.hardSpecifics].join(" "));
-    let score = 0;
-    for (const term of caseTerms) if (factTerms.has(term)) score++;
-    return { id: c.id, score };
-  }).sort((a, b) => b.score - a.score);
-  const ids = scored[0]?.score >= 2 ? scored.map((item) => item.id) : rotate(cases.map((c) => c.id).filter(Boolean), fallbackIndex);
-  return uniq(ids.filter(Boolean));
-}
-
 function bestCaseIdForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
   const [best] = rankedCaseIdsForFact(packet, factId, fallbackIndex);
   return best ? [best] : [];
@@ -846,7 +870,13 @@ function exampleCaseIdForFact(packet: SourcePacketV1, factId: string | undefined
 }
 
 function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: ExampleSlotV1[], quizCount: number, cardCount: number): ChapterDesignDoc {
-  const ids = factIds(packet);
+  const ids = orderedTeachingIds(packet);
+  // P13: the core move is the chapter's BEST idea (top-ranked mechanism fact), not facts[0].
+  // Legacy packets carry no coreMoveFactId, so this falls back to the pre-P13 facts[0] behavior.
+  const coreFact = packet.coreMoveFactId ? packet.facts.find((f) => f.id === packet.coreMoveFactId) : undefined;
+  const coreMove = (coreFact?.mechanism || coreFact?.claim)
+    || packet.facts[0]?.mechanism || packet.facts[0]?.claim
+    || `Use ${chapter.chapterTitle} as a concrete decision tool.`;
   const exampleSpecs = examples.map((slot, i) => ({
     domain: `${slot.venue}: ${slot.sceneMode}; ${slot.sceneFrame}`,
     audience: "a reader applying this chapter in a realistic everyday decision",
@@ -859,7 +889,7 @@ function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: Examp
     chapterId: chapter.chapterId,
     number: chapter.chapterNumber,
     title: chapter.chapterTitle,
-    coreMove: packet.facts[0]?.mechanism || packet.facts[0]?.claim || `Use ${chapter.chapterTitle} as a concrete decision tool.`,
+    coreMove,
     coreMoveSourceAnchorIds: ids.slice(0, 2),
     exampleCount: examples.length,
     exampleSpecs,
@@ -895,7 +925,13 @@ export function compileChapterBlueprint(args: {
   salts?: SlotSalts;
 }): ChapterBlueprintV1 {
   const { bookId, chapter, packet, packetPath, roots = {}, totalChapters, salts = readSlotSalts(bookId, roots) } = args;
-  const ids = factIds(packet);
+  // P13: `ids` is the teaching pool ordered by pedagogical rank when the packet carries the
+  // ranking (facts[].teachingPriority), else packet order (legacy → byte-identical). Cards,
+  // examples, summaries, hook, and the plan's source anchors all index into `ids`, so they
+  // pick up rank ordering for free; quiz slots are role-routed separately (assignFactsByRole).
+  const ids = orderedTeachingIds(packet);
+  const rankingActive = teachingPriorityOf(packet) !== null;
+  const mechanismIds = mechanismTeachingIds(packet, ids);
   const allFactIds = rawFactIds(packet);
   assertFactIdsSubset(ids, allFactIds, `chapter ${chapter.chapterNumber} blueprint`);
   const cases = caseIds(packet);
@@ -949,19 +985,35 @@ export function compileChapterBlueprint(args: {
         : deal(EXAMPLE_BEATS, "exampleRequiredBeat", i),
     };
   });
+  // Depth per quiz slot (unchanged mapping): slots 0-1 simple, 2-5 standard, 6-8 deep.
+  const quizDepth = (i: number): QuizSlotV1["depthLevel"] => (i < 2 ? "simple" : i < 6 ? "standard" : "deep");
+  // P13 quiz fact routing: deep (apply/analyze) slots prefer mechanism-bearing facts, simple
+  // (remember/understand) slots prefer definitional/boundary facts, and no fact is used on more
+  // than ceil(quizCount / distinctFacts) questions. Legacy packets keep positional round-robin.
+  const quizFactBySlot: (string | undefined)[] = rankingActive && ids.length
+    ? assignFactsByRole(
+        ids,
+        Array.from({ length: quizCount }, (_, i) => {
+          const d = quizDepth(i);
+          return d === "deep" ? "mechanism" : d === "simple" ? "definitional" : "any";
+        }),
+        { maxPerFact: Math.ceil(quizCount / Math.max(1, ids.length)), mechanismIds },
+      )
+    : Array.from({ length: quizCount }, (_, i) => (ids.length ? ids[i % ids.length] : undefined));
   const quiz: QuizSlotV1[] = Array.from({ length: quizCount }, (_, i) => ({
     questionId: `q${String(i + 1).padStart(2, "0")}`,
-    requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
+    requiredFactIds: quizFactBySlot[i] ? [quizFactBySlot[i] as string] : [],
     caseCueIds: cases.length ? [cases[(n + i - 1) % cases.length]] : [],
     // correctIndex stays UNSALTED — it is pinned by answerPattern's BP14-safe deal and a
     // repair must never silently move a quiz key. quizSalt shifts only the SHAPE picks (prompt/
     // answer/distractor here; card shapes below), the redeal:quiz-slot / redeal:card-slot lever.
     correctIndex: pattern[i],
-    depthLevel: i < 2 ? "simple" : i < 6 ? "standard" : "deep",
+    depthLevel: quizDepth(i),
     promptShape: deal(QUIZ_PROMPT_SHAPES, "quizPromptShape", i),
     answerStyle: deal(QUIZ_ANSWER_STYLES, "quizAnswerStyle", i),
     distractorTrap: deal(QUIZ_DISTRACTOR_TRAPS, "quizDistractorTrap", i),
   }));
+  assertFactIdsSubset(quiz.flatMap((q) => q.requiredFactIds), allFactIds, `chapter ${chapter.chapterNumber} quiz`);
   const cards: CardSlotV1[] = Array.from({ length: cardCount }, (_, i) => ({
     cardId: `rc${String(i + 1).padStart(2, "0")}`,
     requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
@@ -1002,13 +1054,17 @@ export function compileChapterBlueprint(args: {
     },
     sections: {
       hook: { shape: n % 2 === 0 ? "reader-stakes" : "concrete-moment", requiredFactIds: ids.slice(0, 1) },
-      summaries: { fastReadTargetChars: [350, 900], deepReadTargetChars: [1000, 2200], fullReadTargetChars: [2400, 4200], requiredFactIds: ids.slice(0, 5) },
+      // P13: summaries teach the top-3 SPINE facts (best ideas) when ranked; legacy packets keep
+      // the historical top-5 packet-order slice so their blueprints are byte-identical.
+      summaries: { fastReadTargetChars: [350, 900], deepReadTargetChars: [1000, 2200], fullReadTargetChars: [2400, 4200], requiredFactIds: rankingActive ? ids.slice(0, 3) : ids.slice(0, 5) },
       examples,
       quiz,
       cards,
       action: {
         actionMechanism,
-        requiredFactIds: ids.slice(0, 3),
+        // P13: the action step is built on the top-3 MECHANISM facts (padded from rank order if
+        // fewer than 3 mechanism facts). Legacy packets keep the historical top-3 packet-order slice.
+        requiredFactIds: rankingActive ? uniq([...mechanismIds, ...ids]).slice(0, 3) : ids.slice(0, 3),
         weeklyPracticeForm,
         ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,

@@ -1,0 +1,634 @@
+{
+  "schemaVersion": "chapter-blueprint-v1",
+  "bookId": "zz-fixture-fact-ranking",
+  "chapterId": "zz-fixture-fact-ranking-ch03",
+  "chapterNumber": 3,
+  "title": "Deliberate Practice",
+  "sourcePacketPath": "/var/folders/yp/qmmcl5j92n96swp2dgcmtnvm0000gn/T/cf-golden-95337-1782976777714/books/zz-fixture-fact-ranking/runs/v23-current/source-packets/ch03.source-packet.json",
+  "sourcePacketHash": "sha256:e6f0b4ed4534b0d8bc768932d197e0fe5c55246f8615ebf4f17e06f3064a0362",
+  "plan": {
+    "chapterId": "zz-fixture-fact-ranking-ch03",
+    "number": 3,
+    "title": "Deliberate Practice",
+    "coreMove": "Repetition 1 builds myelin so retrieval becomes faster and more automatic over time.",
+    "coreMoveSourceAnchorIds": [
+      "ch3.fact.1",
+      "ch3.fact.2"
+    ],
+    "exampleCount": 6,
+    "exampleSpecs": [
+      {
+        "domain": "a back porch step: conversation repair; failed celebration draft revised around a real threshold",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "decision_point",
+        "requiredBeat": "show a bounded decision with one inconvenient constraint still visible",
+        "sourceAnchorIds": [
+          "ch3.case.a"
+        ]
+      },
+      {
+        "domain": "a pharmacy counter: stakes audit; a public recognition that shifts how someone sees themselves",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after",
+        "requiredBeat": "show a surprise breaking the expected script and the after-image it leaves",
+        "sourceAnchorIds": [
+          "ch3.case.b"
+        ]
+      },
+      {
+        "domain": "a gym locker room: deadline triage; before-after comparison with one visible behavior shift",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "mistake_recovery",
+        "requiredBeat": "show successful execution with one inconvenient constraint still present",
+        "sourceAnchorIds": [
+          "ch3.case.a"
+        ]
+      },
+      {
+        "domain": "a voice memo: small experiment; an unexpected kindness that lands and gets retold afterward",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "contrast",
+        "requiredBeat": "show a first encounter setting the tone for everything that follows",
+        "sourceAnchorIds": [
+          "ch3.case.b"
+        ]
+      },
+      {
+        "domain": "a clinic waiting room: feedback loop; deletion exercise that removes a decorative gesture",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "planning_choice",
+        "requiredBeat": "show friction or recovery after a first attempt goes sideways",
+        "sourceAnchorIds": [
+          "ch3.case.a"
+        ]
+      },
+      {
+        "domain": "a reception desk: checklist walkthrough; a peak moment recalled vividly long after the day it happened",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "decision_memo",
+        "requiredBeat": "show a milestone marked so it feels earned rather than automatic",
+        "sourceAnchorIds": [
+          "ch3.case.b"
+        ]
+      }
+    ],
+    "quizFocus": {
+      "count": 9,
+      "bloomsMix": {
+        "apply": 5,
+        "analyze": 2,
+        "understand": 2
+      },
+      "transferEmphasis": 0.75,
+      "sourceAnchorIds": [
+        "ch3.fact.1",
+        "ch3.fact.2",
+        "ch3.fact.3",
+        "ch3.fact.4",
+        "ch3.fact.5",
+        "ch3.fact.6",
+        "ch3.fact.7",
+        "ch3.fact.8",
+        "ch3.fact.9"
+      ]
+    },
+    "cardFocus": {
+      "count": 7,
+      "retrievalPractice": true,
+      "sourceAnchorIds": [
+        "ch3.fact.1",
+        "ch3.fact.2",
+        "ch3.fact.3",
+        "ch3.fact.4",
+        "ch3.fact.5",
+        "ch3.fact.6",
+        "ch3.fact.7"
+      ]
+    },
+    "readingTimeMinutes": 8
+  },
+  "coreMove": {
+    "statement": "Repetition 1 builds myelin so retrieval becomes faster and more automatic over time.",
+    "sourceFactIds": [
+      "ch3.fact.1",
+      "ch3.fact.2"
+    ]
+  },
+  "reservedVariety": {
+    "allowedNames": [
+      "Keaton",
+      "Vaughn",
+      "Whitney",
+      "Mackenzie",
+      "Wallace",
+      "Jeanne"
+    ],
+    "forbiddenNames": [
+      "Benjamin",
+      "Buffett",
+      "Dodd",
+      "Graham",
+      "Warren",
+      "Brielle",
+      "Russell",
+      "Wade",
+      "Hadley",
+      "Florent",
+      "Zachary",
+      "Marshall",
+      "Willow",
+      "Carmen",
+      "Douglas",
+      "Nova",
+      "Madelyn",
+      "Lorraine",
+      "Olivia",
+      "Jude",
+      "Raymond",
+      "Noah",
+      "Brock",
+      "Malcolm"
+    ],
+    "hookShape": "object-in-motion",
+    "counterShape": "intuition-points-wrong-way",
+    "sceneMechanism": "conversation repair",
+    "sceneMode": "stakes audit",
+    "venuePalette": [
+      "a back porch step",
+      "a clinic waiting room",
+      "a reception desk",
+      "a pharmacy counter",
+      "a gym locker room",
+      "a voice memo"
+    ],
+    "answerIndexPattern": [
+      1,
+      1,
+      2,
+      0,
+      1,
+      0,
+      0,
+      2,
+      2
+    ],
+    "actionMechanism": "if-then rehearsal",
+    "weeklyPracticeForm": "one recurring conversation"
+  },
+  "sections": {
+    "hook": {
+      "shape": "concrete-moment",
+      "requiredFactIds": [
+        "ch3.fact.1"
+      ]
+    },
+    "summaries": {
+      "fastReadTargetChars": [
+        350,
+        900
+      ],
+      "deepReadTargetChars": [
+        1000,
+        2200
+      ],
+      "fullReadTargetChars": [
+        2400,
+        4200
+      ],
+      "requiredFactIds": [
+        "ch3.fact.1",
+        "ch3.fact.2",
+        "ch3.fact.3",
+        "ch3.fact.4",
+        "ch3.fact.5"
+      ]
+    },
+    "examples": [
+      {
+        "slotId": "ex01",
+        "purpose": "recovery",
+        "sceneMode": "conversation repair",
+        "sceneFrame": "failed celebration draft revised around a real threshold",
+        "venue": "a back porch step",
+        "allowedNames": [
+          "Keaton",
+          "Vaughn",
+          "Whitney"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.3"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.a"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show a bounded decision with one inconvenient constraint still visible"
+      },
+      {
+        "slotId": "ex02",
+        "purpose": "contrast",
+        "sceneMode": "stakes audit",
+        "sceneFrame": "a public recognition that shifts how someone sees themselves",
+        "venue": "a pharmacy counter",
+        "allowedNames": [
+          "Vaughn",
+          "Whitney",
+          "Mackenzie"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.4"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.b"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show a surprise breaking the expected script and the after-image it leaves"
+      },
+      {
+        "slotId": "ex03",
+        "purpose": "decision",
+        "sceneMode": "deadline triage",
+        "sceneFrame": "before-after comparison with one visible behavior shift",
+        "venue": "a gym locker room",
+        "allowedNames": [
+          "Whitney",
+          "Mackenzie",
+          "Wallace"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.5"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.a"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show successful execution with one inconvenient constraint still present"
+      },
+      {
+        "slotId": "ex04",
+        "purpose": "application",
+        "sceneMode": "small experiment",
+        "sceneFrame": "an unexpected kindness that lands and gets retold afterward",
+        "venue": "a voice memo",
+        "allowedNames": [
+          "Mackenzie",
+          "Wallace",
+          "Jeanne"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.6"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.b"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show a first encounter setting the tone for everything that follows"
+      },
+      {
+        "slotId": "ex05",
+        "purpose": "failure-mode",
+        "sceneMode": "feedback loop",
+        "sceneFrame": "deletion exercise that removes a decorative gesture",
+        "venue": "a clinic waiting room",
+        "allowedNames": [
+          "Wallace",
+          "Jeanne",
+          "Keaton"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.7"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.a"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show friction or recovery after a first attempt goes sideways"
+      },
+      {
+        "slotId": "ex06",
+        "purpose": "application",
+        "sceneMode": "checklist walkthrough",
+        "sceneFrame": "a peak moment recalled vividly long after the day it happened",
+        "venue": "a reception desk",
+        "allowedNames": [
+          "Jeanne",
+          "Keaton",
+          "Vaughn"
+        ],
+        "requiredFactIds": [
+          "ch3.fact.8"
+        ],
+        "requiredCaseIds": [
+          "ch3.case.b"
+        ],
+        "forbiddenVenues": [
+          "broker statement",
+          "portfolio policy file",
+          "bond quote sheet",
+          "tax worksheet"
+        ],
+        "requiredBeat": "show a milestone marked so it feels earned rather than automatic"
+      }
+    ],
+    "quiz": [
+      {
+        "questionId": "q01",
+        "requiredFactIds": [
+          "ch3.fact.1"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "correctIndex": 1,
+        "depthLevel": "simple",
+        "promptShape": "evidence-priority question",
+        "answerStyle": "small reversible experiment",
+        "distractorTrap": "comforting but unsupported reaction"
+      },
+      {
+        "questionId": "q02",
+        "requiredFactIds": [
+          "ch3.fact.2"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "correctIndex": 1,
+        "depthLevel": "simple",
+        "promptShape": "transfer scenario in a fresh domain",
+        "answerStyle": "sequence step with timing",
+        "distractorTrap": "measurement without action"
+      },
+      {
+        "questionId": "q03",
+        "requiredFactIds": [
+          "ch3.fact.3"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "correctIndex": 2,
+        "depthLevel": "standard",
+        "promptShape": "two-option tradeoff",
+        "answerStyle": "contrast between tempting shortcut and source logic",
+        "distractorTrap": "label-only answer"
+      },
+      {
+        "questionId": "q04",
+        "requiredFactIds": [
+          "ch3.fact.4"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "correctIndex": 0,
+        "depthLevel": "standard",
+        "promptShape": "failure diagnosis from the chapter's commonError",
+        "answerStyle": "verb-led action tied to the required fact",
+        "distractorTrap": "delay disguised as caution"
+      },
+      {
+        "questionId": "q05",
+        "requiredFactIds": [
+          "ch3.fact.5"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "correctIndex": 1,
+        "depthLevel": "standard",
+        "promptShape": "case decision with a named source mechanism",
+        "answerStyle": "specific evidence choice",
+        "distractorTrap": "premature social move"
+      },
+      {
+        "questionId": "q06",
+        "requiredFactIds": [
+          "ch3.fact.6"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "correctIndex": 0,
+        "depthLevel": "standard",
+        "promptShape": "mechanism trace from cause to action",
+        "answerStyle": "named mechanism check",
+        "distractorTrap": "ritual without mechanism"
+      },
+      {
+        "questionId": "q07",
+        "requiredFactIds": [
+          "ch3.fact.7"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "correctIndex": 0,
+        "depthLevel": "deep",
+        "promptShape": "misread-correction scenario",
+        "answerStyle": "diagnostic sign plus response",
+        "distractorTrap": "plausible timing shortcut"
+      },
+      {
+        "questionId": "q08",
+        "requiredFactIds": [
+          "ch3.fact.8"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "correctIndex": 2,
+        "depthLevel": "deep",
+        "promptShape": "implementation trigger",
+        "answerStyle": "boundary rule in plain language",
+        "distractorTrap": "overgeneralized rule"
+      },
+      {
+        "questionId": "q09",
+        "requiredFactIds": [
+          "ch3.fact.9"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "correctIndex": 2,
+        "depthLevel": "deep",
+        "promptShape": "boundary-condition test",
+        "answerStyle": "reader-facing decision criterion",
+        "distractorTrap": "wrong evidence source"
+      }
+    ],
+    "cards": [
+      {
+        "cardId": "rc01",
+        "requiredFactIds": [
+          "ch3.fact.1"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "difficulty": "easy",
+        "frontShape": "spot the diagnostic sign",
+        "retrievalTarget": "named case",
+        "backShape": "start with the contrast"
+      },
+      {
+        "cardId": "rc02",
+        "requiredFactIds": [
+          "ch3.fact.2"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "difficulty": "easy",
+        "frontShape": "identify the trigger",
+        "retrievalTarget": "mechanism",
+        "backShape": "start with the source case"
+      },
+      {
+        "cardId": "rc03",
+        "requiredFactIds": [
+          "ch3.fact.3"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "difficulty": "medium",
+        "frontShape": "recall the named-case lesson",
+        "retrievalTarget": "implementation trigger",
+        "backShape": "start with the boundary"
+      },
+      {
+        "cardId": "rc04",
+        "requiredFactIds": [
+          "ch3.fact.4"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "difficulty": "medium",
+        "frontShape": "state the boundary condition",
+        "retrievalTarget": "contrast",
+        "backShape": "start with the trigger"
+      },
+      {
+        "cardId": "rc05",
+        "requiredFactIds": [
+          "ch3.fact.5"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "difficulty": "medium",
+        "frontShape": "name the failure mode",
+        "retrievalTarget": "common error",
+        "backShape": "start with the concrete noun"
+      },
+      {
+        "cardId": "rc06",
+        "requiredFactIds": [
+          "ch3.fact.6"
+        ],
+        "caseCueIds": [
+          "ch3.case.b"
+        ],
+        "difficulty": "hard",
+        "frontShape": "compare two chapter-specific options",
+        "retrievalTarget": "hard edge",
+        "backShape": "start with the action verb"
+      },
+      {
+        "cardId": "rc07",
+        "requiredFactIds": [
+          "ch3.fact.7"
+        ],
+        "caseCueIds": [
+          "ch3.case.a"
+        ],
+        "difficulty": "hard",
+        "frontShape": "trace the mechanism",
+        "retrievalTarget": "boundary",
+        "backShape": "start with the failure mode"
+      }
+    ],
+    "action": {
+      "actionMechanism": "if-then rehearsal",
+      "requiredFactIds": [
+        "ch3.fact.1",
+        "ch3.fact.2",
+        "ch3.fact.3"
+      ],
+      "weeklyPracticeForm": "one recurring conversation",
+      "ifThenPlanShapes": [
+        "unclear owner -> named handoff or refusal",
+        "missed signal -> recovery action",
+        "tempting shortcut -> source-specific countercheck"
+      ],
+      "practiceForm": "post-moment evidence review",
+      "practiceConstraint": "use one participant reaction as evidence before scaling the idea"
+    }
+  },
+  "constraints": {
+    "allowedFactIds": [
+      "ch3.fact.1",
+      "ch3.fact.2",
+      "ch3.fact.3",
+      "ch3.fact.4",
+      "ch3.fact.5",
+      "ch3.fact.6",
+      "ch3.fact.7",
+      "ch3.fact.8",
+      "ch3.fact.9"
+    ],
+    "allowedCaseIds": [
+      "ch3.case.a",
+      "ch3.case.b"
+    ],
+    "forbiddenClaims": [
+      "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+      "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+    ],
+    "forbiddenLeakage": [
+      "Keep examples about Benjamin Franklin source-local; do not import sibling chapter imagery or stakes.",
+      "Keep examples about Ericsson violin study source-local; do not import sibling chapter imagery or stakes."
+    ],
+    "bannedHouseTics": [
+      "in this chapter",
+      "the book says",
+      "the author argues",
+      "say aloud",
+      "reflect on"
+    ]
+  }
+}

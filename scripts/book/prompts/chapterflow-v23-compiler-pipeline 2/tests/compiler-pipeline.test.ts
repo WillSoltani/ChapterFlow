@@ -361,17 +361,20 @@ test("v23 source packet gate passes a 9-fact packet with no SP13 block", () => {
 });
 
 test("v23 source packet fact extraction is behavior-preserving: the shared compiledFactsFromSidecar helper reproduces the pre-refactor packet byte-for-byte", () => {
-  // This hash was captured from compileSourcePacketFromSidecar BEFORE sourcePacketFacts.ts
-  // existed (facts/allowedNumbers/allowedEntities were computed inline in sourcePacket.ts).
-  // If this ever changes, either the extraction broke behavior or the fixture changed —
-  // either way this test should be re-derived deliberately, not silently updated.
+  // These hashes were re-derived DELIBERATELY for P13, which additively stamps a per-fact
+  // teachingPriority and packet.coreMoveFactId (the pedagogical ranking). The pre-P13 values
+  // were facts=sha256:5e4d1131… / packet=sha256:9da60abb… (captured before sourcePacketFacts.ts
+  // existed). If either changes AGAIN without an intended packet-shape change, the extraction
+  // broke behavior or the fixture drifted — re-derive deliberately, do not silently update.
   const { packet } = compileFixture();
-  assert.equal(canonicalJsonSha256(packet.facts), "sha256:5e4d11318042250879089b452cb4732c465b0398c4971b1705dcaa381106bd7d", "compiled facts must be byte-identical to the pre-refactor output");
-  assert.equal(canonicalJsonSha256(packet), "sha256:9da60abb79ac0f7474a5ef523f786f92d170cdcf7737048e9ae0b40345f35e0f", "the whole compiled packet must be byte-identical to the pre-refactor output");
+  assert.equal(canonicalJsonSha256(packet.facts), "sha256:2ee22e0c1244fada6d279d775fb4fcf965b6fdf317b7e8a9e60e5b90fb7717b7", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority)");
+  assert.equal(canonicalJsonSha256(packet), "sha256:6fdb1b6ed6e3333977f3b10df78c45317cf20d18b78894d9098fad587e5f7715", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking)");
 
   // The packet compiler must be USING the shared helper, not a parallel reimplementation:
-  // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts.
-  assert.deepEqual(compiledFactsFromSidecar(sidecar(), 1), packet.facts);
+  // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts
+  // MINUS the P13 ranking (compiledFactsFromSidecar only extracts facts; applyTeachingRanking
+  // layers teachingPriority on top afterward).
+  assert.deepEqual(compiledFactsFromSidecar(sidecar(), 1), packet.facts.map(({ teachingPriority: _tp, ...f }) => f));
 });
 
 test("v23 fact-floor parity: a sidecar with 9 raw testableFacts where 1 is malformed compiles to 8 facts and SP13 agrees with the shared REQUIRED_QUIZ_FACT_FLOOR constant", () => {
