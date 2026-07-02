@@ -245,7 +245,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
   const acceptance: AcceptanceWriters = {
-    openRound: () => "r20260101000000-abcdef",
+    openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
     writeBar: (s) => { bars.push(s); return "/tmp/bar.json"; },
     writeConfirm: (s) => { confirms.push(s); return "/tmp/confirm.json"; },
     writeAttestation: (a) => { attestations.push(a); return "/tmp/att.json"; },
@@ -267,6 +267,13 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     },
     persistReview: () => "/tmp/review.json",
     acceptance,
+    // B5 publish evidence is stubbed OK in these unit tests (its real
+    // implementations are pinned by tests/author-evidence.test.ts against
+    // fixture state + the real promote predicates).
+    evidence: {
+      runKeyJudge: async () => ({ ok: true as const }),
+      runSweep: async () => ({ ok: true as const }),
+    },
     ...over,
   };
   return Object.assign(io, { attestations, bars, confirms });
