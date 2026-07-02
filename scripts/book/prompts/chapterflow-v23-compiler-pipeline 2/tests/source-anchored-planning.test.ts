@@ -311,6 +311,39 @@ test("source-v2 provenance rejects nonexistent, wrong-chapter, placeholder, and 
   }
 });
 
+test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbatim specific, narration keeps 2", () => {
+  // Quiz units citing a hardSpecifics-bearing named-example anchor: ONE verbatim
+  // specific now clears the ship gate (matches SEC56/SEC58/SEC74 write-time quota).
+  const one = fullyAnchoredChapter();
+  one.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
+  one.quiz.questions[0].prompt = "The lantern shift changes hands mid-morning - what do you check first?";
+  one.quiz.questions[0].explanation = "Check the lantern record first, before the shift note is overwritten.";
+  const oneHits = checkChapterProvenance(one, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("quiz.questions[0]"));
+  assert.deepEqual(oneHits.map((f) => f.message), [], "one verbatim specific clears SC11.2 on quiz units");
+  // ZERO specifics still blocks, and the message carries the rebalanced quota.
+  const zero = fullyAnchoredChapter();
+  zero.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
+  zero.quiz.questions[0].prompt = "The shift changes hands mid-morning - what do you check first?";
+  zero.quiz.questions[0].explanation = "Check the record first, before the shift note is overwritten.";
+  const zeroHits = checkChapterProvenance(zero, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("quiz.questions[0]"));
+  assert.ok(zeroHits.length >= 1, "zero specifics still blocks quiz units");
+  assert.match(zeroHits[0].message, /<1 of its hardSpecifics/, "message reports the min-1 quota");
+  // NARRATION keeps min 2: an example using only 1 of the anchor's specifics blocks.
+  // (Fully overwrite the unit text — the makeChapter harbor fixture naturally contains
+  // several specifics words, so a surgical suffix replace leaves >=2 present.)
+  const ex = fullyAnchoredChapter();
+  ex.examples[0].title = "A rushed handover";
+  ex.examples[0].scenario = "A rushed handover; the lantern record gets checked before the shift ends.";
+  ex.examples[0].whatToDo = "Check the record before the handover.";
+  ex.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
+  const exHits = checkChapterProvenance(ex, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example["));
+  assert.ok(exHits.length >= 1, "an example with 1 of 2+ specifics still blocks (narration keeps 2)");
+  assert.match(exHits[0].message, /<2 of its hardSpecifics/, "narration message keeps the min-2 quota");
+});
+
 test("generation loads and passes validated source evidence before editor and planner calls", async () => {
   const root = fixtureRoot("order");
   rmSync(root, { recursive: true, force: true });

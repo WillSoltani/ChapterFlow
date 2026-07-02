@@ -257,6 +257,23 @@ function placeholderAnchorId(id: string): boolean {
     /\b(todo|tbd|fixme|placeholder)\b/i.test(id);
 }
 
+// P15 (F14) ship-layer mirror of the section-gate quota rebalance: NON-NARRATIVE units
+// (quiz, review cards, implementation guidance) need >=1 of a cited anchor's hardSpecifics
+// verbatim — the >=2 quota on those units was the byte-verified mechanical cause of
+// identifier-sentence stuffing (Wave-2 checkpoint panel, unanimous), and the write-time
+// section gate (SEC56/SEC58/SEC74) now enforces exactly >=1 there. A ship gate still
+// demanding 2 re-blocks what write-time correctly passes (live: regenerated POM ch01
+// passed validate-sections 0-blockers, then gate-chapter threw 42 SC11.2 blockers — all
+// on quiz/cards/plan units). NARRATION units (hook/breakdown/takeaway/example/memorable)
+// keep >=2 — a real case narrated as a lived moment carries two details naturally.
+const SINGLE_SPECIFIC_CLAIM_TYPES: ReadonlySet<SourceClaimType> = new Set([
+  "quiz_prompt",
+  "quiz_explanation",
+  "quiz_key_evidence",
+  "review_card",
+  "implementation_guidance",
+]);
+
 function checkUnit(
   unit: { unit: string; claimType: SourceClaimType; ids: string[]; text: string },
   anchors: Map<string, SourceAnchorForPrompt>,
@@ -290,12 +307,16 @@ function checkUnit(
       continue;
     }
     const specifics = anchor.hardSpecifics ?? [];
+    // The outer `>= 2` stays even for min-1 units: anchors carrying a single hardSpecific
+    // remain ship-unchecked (the write-time section gate enforces them for NEW books), so
+    // previously-shipped v2 chapters cannot retro-block at re-promote.
     if (specifics.length >= 2) {
+      const minRequired = SINGLE_SPECIFIC_CLAIM_TYPES.has(unit.claimType) ? 1 : 2;
       const lc = unit.text.toLowerCase();
       const present = specifics.filter((s) => s && lc.includes(s.toLowerCase())).length;
-      if (present < 2) {
+      if (present < minRequired) {
         findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
-          `${unit.unit} names anchor "${anchorId}" but uses <2 of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
+          `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
       }
     }
   }
