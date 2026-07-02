@@ -22,7 +22,9 @@
  *
  * Flags: --max-parallel N, --max-repair N, --plan (dry-run spawn plan),
  *        --legacy-whole-chapter-writer (use the v22 whole-chapter writer path instead of
- *          the v23 compiler path), --no-publish (halt at ready-to-publish for review; auto-publish is ON by
+ *          the v23 compiler path), --author (use the v24 whole-chapter AUTHOR path: one
+ *          author per chapter + blinded reader review/regeneration),
+ *        --no-publish (halt at ready-to-publish for review; auto-publish is ON by
  *          default — on convergence it runs the full promote gate, then commits + pushes
  *          the package to main; NOT a live deploy, which stays manual),
  *        --no-notify (terminal only), --sound (notification sound), --log <file>.
@@ -33,6 +35,7 @@ import { resolve } from "path";
 import { fileURLToPath } from "url";
 
 import {
+  architectureFromFlags,
   formatOutcome,
   parseRoundId,
   runAutopilot,
@@ -529,14 +532,15 @@ export async function runLive(args: string[], flags: Flags): Promise<number> {
   // package and skips as "shipped". With it, it re-runs end-to-end over the existing package (promote
   // overwrites it) — no move-the-package-aside hack, so the web registry's static import never dangles.
   const regen = "regen" in flags;
-  const architecture = "legacy-whole-chapter-writer" in flags || "legacy" in flags ? "legacy" : "compiler";
+  // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
+  const architecture = architectureFromFlags(flags);
 
   console.log(bold(`\n📖 Book run — ${bookId}`));
   console.log(
     dim(
       `   codex=${process.env.CHAPTERFLOW_CODEX_BIN ?? "(PATH)"} · notify=${notifyEnabled ? "on" : "off"}` +
         `${notifySound ? "+sound" : ""}${logFile ? ` · log=${logFile}` : ""}${plan ? " · PLAN (dry-run)" : ""}${regen ? " · REGEN (re-run a published book)" : ""}` +
-        ` · architecture=${architecture === "compiler" ? "v23 compiler" : "v22 legacy whole-chapter"}` +
+        ` · architecture=${architecture === "compiler" ? "v23 compiler" : architecture === "author" ? "v24 author" : "v22 legacy whole-chapter"}` +
         `${autoPublish ? " · auto-publish ON (commit+push to main on convergence)" : " · --no-publish (halt for review)"}`,
     ),
   );
