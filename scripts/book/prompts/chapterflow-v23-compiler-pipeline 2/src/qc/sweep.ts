@@ -324,6 +324,11 @@ export function rebuildSweepHistory(bookId: string): SweepRecord[] {
 export function appendSweepHistory(rec: SweepRecord): SweepRecord {
   const stored = writeImmutableSweepRoundRecord(rec);
   rebuildSweepHistory(rec.bookId);
+  // P09 — materialize the per-chapter clear ledger from the (now-updated) history. Its EXISTENCE
+  // opts the book into per-chapter carry-forward; its contents are a rebuildable cache (the eval
+  // derives from history, never from these bytes). Best-effort: a materialization failure must not
+  // break attestation — the ledger is a derived view and will be rebuilt on the next append.
+  try { writeChapterClearLedger(rec.bookId); } catch { /* derived cache; rebuilt next append */ }
   return stored;
 }
 
@@ -785,7 +790,13 @@ export function checkSweep(chapters: ChapterV21[], enforce: boolean): SweepFindi
   // the publish gate STRICTER than the per-chapter gate (the drift sweep.ts is built to prevent).
   const missingFamilies = rec.verdict === "PASS" ? REQUIRED_SWEEP_FAMILIES.filter((family) => !(rec.checkedFamilies ?? []).includes(family)) : [];
   if (missingFamilies.length > 0) return [{ checkId: "QC3.sweep_incomplete", severity: sev, message: `Sweep PASS is incomplete; missing checkedFamilies: ${missingFamilies.join(", ")}.` }];
-  const stale = chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
+  // P09: staleness is per-chapter. With a clear ledger, a chapter is stale only if NO genuine
+  // independent read cleared it at its CURRENT hash (fail-closed for a chapter lacking evidence) —
+  // so a sibling's repair no longer marks untouched, already-read chapters stale. Legacy books (no
+  // ledger) keep the whole-book check: the latest record must cover this chapter at the current hash.
+  const stale = hasChapterClearLedger(rec.bookId)
+    ? chapters.filter((ch) => !chapterCoveredAtCurrentHash(rec.bookId, ch.number, chapterContentHash(ch)))
+    : chapters.filter((ch) => rec.contentHashes[String(ch.number)] !== chapterContentHash(ch));
   if (stale.length > 0) return [{ checkId: "QC3.sweep_stale", severity: sev, message: `Sweep attestation is stale/missing for chapter(s): ${stale.map((ch) => ch.number).join(", ")}.` }];
   return [];
 }
@@ -811,6 +822,142 @@ function sweepRecordClearOver(rec: SweepRecord, currentHashes: Record<string, st
   return !(rec.findings ?? []).some(sweepFindingBlocks);
 }
 
+// ── P09: per-chapter clear ledger ─────────────────────────────────────────────────────────────
+// The sweep's convergence unit is the CHAPTER at its content hash, not the whole book. A repair to
+// one chapter invalidates ONLY that chapter's clears; untouched chapters keep the independent reads
+// they already earned. Reads stay whole-book (a read still SEES the whole book — templating is
+// cross-chapter); only the ACCOUNTING is per-chapter. See docs/v23/SWEEP-CARRYFORWARD-DESIGN.md.
+
+export type SweepChapterClear = {
+  chapterNumber: number;
+  chapterId: string;
+  contentHash: string;
+  roundId: string;
+  reviewerSessionId: string;
+  families: SweepFamily[];
+  clearedAt: string;
+};
+
+export type SweepChapterClearLedger = {
+  schemaVersion: "sweep-chapter-clears-v1";
+  bookId: string;
+  updatedAt: string;
+  clears: SweepChapterClear[];
+};
+
+/** Materialized cache path. The authoritative evidence is the immutable per-round sweep records;
+ *  this file is rebuilt from them (like the sweep-history JSONL) and may be deleted without loss. */
+export function chapterClearsPath(bookId: string): string {
+  return resolve(QC_DIR, `${bookId}.sweep-chapter-clears.json`);
+}
+
+/** Feature switch: a book evaluates per-chapter iff its clear ledger exists. Legacy books (sweep
+ *  history predating P09, no ledger yet) fall through to the unchanged whole-book logic — the first
+ *  new-style attestation writes the ledger (backfilled from full history) and flips this on. */
+export function hasChapterClearLedger(bookId: string): boolean {
+  return existsSync(chapterClearsPath(bookId));
+}
+
+/** A history record grants per-chapter CLEARS iff it is a genuine INDEPENDENT read: not a
+ *  carry-forward byte copy (has a reviewer-session identity), not CORRUPTION, and it checked all
+ *  required families (only such a read attests it examined the whole book across every family). */
+function readGrantsChapterClears(rec: SweepRecord): boolean {
+  if (rec.verdict === "CORRUPTION") return false;
+  if (!sweepReadIdentity(rec) || !rec.reviewerSessionId) return false; // carry / no session → not independent evidence
+  return REQUIRED_SWEEP_FAMILIES.every((fam) => (rec.checkedFamilies ?? []).includes(fam));
+}
+
+/** The chapter numbers a read RAW-gates — non-advisory, distinctiveness-valid findings that name
+ *  them (pre-corroboration; the disagreement check applies corroboration separately). A chapter a
+ *  read raw-gates gets no clear from that read; every other examined chapter does. */
+function rawGatedChapters(rec: SweepRecord): Set<number> {
+  const gated = new Set<number>();
+  for (const f of (rec.findings ?? []).filter(sweepFindingBlocks)) for (const n of f.chapters ?? []) gated.add(n);
+  return gated;
+}
+
+/** Derive the per-chapter clear ledger from the full sweep history (newest-first). Pure over the
+ *  immutable round records — chapterId is a best-effort audit label (blank when chapters aren't on
+ *  disk, e.g. a pruned/published book). Never throws on missing chapters. */
+export function buildChapterClearLedger(bookId: string): SweepChapterClearLedger {
+  const history = loadSweepHistory(bookId).map(normalizeSweepRecord);
+  const chapterIdByNumber = new Map<number, string>();
+  try { for (const ch of loadBookChapters(bookId)) chapterIdByNumber.set(ch.number, ch.chapterId); } catch { /* chapters not on disk → id best-effort */ }
+  const clears: SweepChapterClear[] = [];
+  for (const rec of history) {
+    if (!readGrantsChapterClears(rec)) continue;
+    const gated = rawGatedChapters(rec);
+    for (const [chStr, hash] of Object.entries(rec.contentHashes ?? {})) {
+      const n = Number(chStr);
+      if (!Number.isInteger(n) || n <= 0) continue;
+      if (gated.has(n)) continue; // this read named this chapter → not a clear for it (rule b)
+      clears.push({
+        chapterNumber: n,
+        chapterId: chapterIdByNumber.get(n) ?? "",
+        contentHash: String(hash),
+        roundId: rec.roundId,
+        reviewerSessionId: rec.reviewerSessionId!,
+        families: [...(rec.checkedFamilies ?? [])],
+        clearedAt: rec.attestedAt,
+      });
+    }
+  }
+  return { schemaVersion: "sweep-chapter-clears-v1", bookId, updatedAt: new Date().toISOString(), clears };
+}
+
+/** Materialize the derived ledger to disk (called after every attestation). */
+export function writeChapterClearLedger(bookId: string): string {
+  const p = chapterClearsPath(bookId);
+  writeFileAtomic(p, JSON.stringify(buildChapterClearLedger(bookId), null, 2));
+  return p;
+}
+
+/** Does a full sweep read COVER this chapter at its CURRENT hash? — the per-chapter analog of the
+ *  legacy whole-book "the record's hash for this chapter matches the current bytes" freshness check,
+ *  and the input to the per-chapter QC3.sweep_stale gate. Coverage is a FRESHNESS notion (was the
+ *  chapter examined at these bytes by a full, non-CORRUPTION, all-families read), NOT the two-read
+ *  publish bar (that lives in sweepPerChapterConfirmed) and NOT a gate decision (blocking is the
+ *  QC3.sweep_not_pass path). Carry-forward copies count — they carry the underlying read's hashes,
+ *  exactly as the legacy check treated a carried record as covering. A chapter with NO covering read
+ *  is stale (fail-closed). */
+function chapterCoveredAtCurrentHash(bookId: string, chapterNumber: number, currentHash: string): boolean {
+  return loadSweepHistory(bookId).map(normalizeSweepRecord).some((r) =>
+    r.verdict !== "CORRUPTION" &&
+    (r.contentHashes ?? {})[String(chapterNumber)] === currentHash &&
+    REQUIRED_SWEEP_FAMILIES.every((fam) => (r.checkedFamilies ?? []).includes(fam)));
+}
+
+/** Per-chapter auto-publish confirmation (P09). For each chapter, over its CURRENT bytes: (1) no
+ *  sweep read carries a CORROBORATED gate naming it (or a CORRUPTION over those bytes), AND (2) ≥2
+ *  INDEPENDENT clear reads at that hash. A read that gated OTHER chapters still counts as a clear
+ *  here for the chapters it did not name — so untouched chapters keep progress across a sibling's
+ *  repair, while the two-independent-reads bar is preserved PER CHAPTER. */
+function sweepPerChapterConfirmed(bookId: string, chapters: ChapterV21[]): { ok: boolean; reason?: string } {
+  const currentHashes: Record<string, string> = {};
+  for (const ch of chapters) currentHashes[String(ch.number)] = chapterContentHash(ch);
+  const history = loadSweepHistory(bookId).map(normalizeSweepRecord);
+  const problems: string[] = [];
+  for (const ch of chapters) {
+    const n = ch.number;
+    const curHash = currentHashes[String(n)];
+    // Reads that examined THIS chapter at its current bytes (regardless of other chapters' state).
+    const touching = history.filter((r) => (r.contentHashes ?? {})[String(n)] === curHash);
+    // (1) A CORROBORATED gate (or any CORRUPTION) on this chapter over current bytes disqualifies it.
+    //     Corroboration is the same mechanism the round verdict uses — a lone uncorroborated flip is
+    //     demoted as noise; two agreeing independent reads block. CORRUPTION is never demoted.
+    const disagreeing = touching.some((r) => r.verdict === "CORRUPTION" || effectiveSweepFindings(r, currentHashes).blockingChapters.has(n));
+    if (disagreeing) { problems.push(`ch${n}: a sweep read over its current content has a corroborated gate`); continue; }
+    // (2) ≥2 INDEPENDENT clear reads at the current hash (carry-forward copies excluded upstream).
+    const clearIds = new Set<string>();
+    for (const r of touching) {
+      if (readGrantsChapterClears(r) && !rawGatedChapters(r).has(n)) clearIds.add(r.reviewerSessionId!);
+    }
+    if (clearIds.size < 2) problems.push(`ch${n}: needs TWO independent clear sweep reads at its current bytes (have ${clearIds.size})`);
+  }
+  if (problems.length > 0) return { ok: false, reason: `per-chapter sweep confirmation incomplete — ${problems.slice(0, 3).join("; ")}${problems.length > 3 ? `; +${problems.length - 3} more` : ""}` };
+  return { ok: true };
+}
+
 /** Item B — two-round confirmation before AUTO-PUBLISH. The cross-chapter sweep is the noisiest,
  *  most stochastic reviewer: a single fresh read flips verdict round-to-round on byte-identical
  *  content, and a read that misses a real pattern would silently flip a chapter to PASS and ship a
@@ -820,6 +967,17 @@ function sweepRecordClearOver(rec: SweepRecord, currentHashes: Record<string, st
  *  INDEPENDENT (non-carry) clear reads (a carry-forward is a byte copy, never independent evidence, so
  *  copies can't self-confirm). The autopilot forces the confirming round to do a FRESH sweep. */
 export function sweepTwoRoundConfirmed(bookId: string, chapters: ChapterV21[]): { ok: boolean; reason?: string } {
+  // P09: books with a per-chapter clear ledger converge at the CHAPTER grain — a repair to one
+  // chapter no longer discards the whole book's clear progress. Legacy books (no ledger) fall
+  // through to the unchanged whole-book logic below, so they evaluate exactly as before.
+  if (hasChapterClearLedger(bookId)) return sweepPerChapterConfirmed(bookId, chapters);
+  return sweepWholeBookConfirmed(bookId, chapters);
+}
+
+/** Legacy whole-book confirmation (pre-P09). Preserved verbatim as the back-compat path for books
+ *  without a clear ledger. ≥2 independent clear reads over the ENTIRE current book + no disagreeing
+ *  read over identical bytes. */
+function sweepWholeBookConfirmed(bookId: string, chapters: ChapterV21[]): { ok: boolean; reason?: string } {
   const currentHashes: Record<string, string> = {};
   for (const ch of chapters) currentHashes[String(ch.number)] = chapterContentHash(ch);
   const overCurrent = loadSweepHistory(bookId).filter((r) => sweepReadOverCurrent(r, currentHashes));
