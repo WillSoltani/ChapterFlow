@@ -21,7 +21,8 @@ import { execSync, execFileSync } from "child_process";
 import { resolve, dirname, basename } from "path";
 import { fileURLToPath } from "url";
 
-import { BookCriticReport, BookPackage, ChapterV21 } from "./types.js";
+import { BookCriticReport, BookPackage, BookPackageV21, ChapterV21 } from "./types.js";
+import type { SourcePacketV1 } from "./artifacts/artifactTypes.js";
 import type { RunbookStatus } from "./runbook.js";
 import type { BibliographyResult } from "./agents/researcher-bibliography.js";
 import { roleHintHeader } from "./roles.js";
@@ -302,6 +303,12 @@ Commands:
                                      v23 compiler: deterministic rubric pre-flight over assembled chapters
                                      (readability, distractor-tell, transfer, memorable lines). Writes
                                      state/books/<bookId>.rubric-metrics.json. --gate exits 1 on any fail chapter.
+  reader-budget-check <bookId> [--rep-cap N] [--length N] [--tolerance F] [--package <path>] [--json]
+                                     v24 B3: five deterministic reader-correlated checks (CHB1-CHB5: anchor
+                                     repetition, length budget, cast disjointness, opener signature, practice
+                                     format). Loads state/chapters (fallback book-packages/<id>.v21.json or
+                                     --package) plus compiled source packets when present. Read-only report;
+                                     exits 1 on any blocker. NOT wired into any gate (conductor wires it).
   codex-agent-run <task-file> [--session <id>] [--sandbox ...] [--timeout-ms N]
                                      Debug: spawn ONE headless codex exec agent with a task file as its
                                      instruction; prints the result. Proves codex exec works before autopilot.
@@ -4123,6 +4130,108 @@ async function runRubricMetrics(args: string[], flags: Record<string, string | b
   return 0;
 }
 
+/** `reader-budget-check <bookId> [--rep-cap N] [--length N] [--tolerance F] [--package <path>] [--json]`
+ *  — v24 B3: run the five deterministic reader-correlated checks (CHB1–CHB5,
+ *  src/critics/readerBudgets.ts) over a book's chapters. Chapters come from
+ *  state/chapters/ when present, else book-packages/<id>.v21.json, else an
+ *  explicit --package path. Compiled source packets are loaded READ-ONLY when
+ *  the book has a compiler run (no ensureCompilerRun — a reporting verb must
+ *  not create state). Exits 1 on any blocker finding; standalone by design —
+ *  nothing in the existing gate chain calls this. */
+async function runReaderBudgetCheck(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0] ?? "";
+  const packagePath = typeof flags["package"] === "string" ? String(flags["package"]) : "";
+  if (!bookId && !packagePath) {
+    console.error("Usage: reader-budget-check <bookId> [--rep-cap N] [--length N] [--tolerance F] [--package <path>] [--json]");
+    return 2;
+  }
+  const { checkReaderBudgets, formatBudgetFindings, DEFAULT_LENGTH_BUDGET } = await import("./critics/readerBudgets.js");
+  const { compilerRunRoot } = await import("./artifacts/artifactStore.js");
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+  type PacketMap = NonNullable<Parameters<typeof checkReaderBudgets>[1]>["packets"];
+
+  // ── chapters: state/chapters first, then package fallback ──
+  let chapters: ChapterV21[] = [];
+  let chapterSource = "";
+  if (packagePath) {
+    try {
+      chapters = (JSON.parse(readFileSync(packagePath, "utf8")) as BookPackageV21).chapters ?? [];
+      chapterSource = packagePath;
+    } catch (err) {
+      console.error(`reader-budget-check: unreadable package at ${packagePath}: ${(err as Error).message}`);
+      return 2;
+    }
+  } else {
+    try {
+      chapters = loadBookChapters(bookId);
+      chapterSource = "state/chapters";
+    } catch {
+      chapters = [];
+    }
+    if (chapters.length === 0) {
+      const fallback = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
+      if (existsSyncFs(fallback)) {
+        try {
+          chapters = (JSON.parse(readFileSync(fallback, "utf8")) as BookPackageV21).chapters ?? [];
+          chapterSource = fallback;
+        } catch (err) {
+          console.error(`reader-budget-check: unreadable package at ${fallback}: ${(err as Error).message}`);
+          return 2;
+        }
+      }
+    }
+  }
+  if (chapters.length === 0) {
+    console.error(`reader-budget-check: no chapters found for "${bookId}" (state/chapters empty, no book-packages/${bookId}.v21.json; pass --package <path>)`);
+    return 2;
+  }
+
+  // ── packets, when the book has a compiler run (read-only probe) ──
+  let packets: PacketMap;
+  if (bookId) {
+    try {
+      const packetsDir = resolve(compilerRunRoot(bookId), "source-packets");
+      if (existsSyncFs(packetsDir)) {
+        const map = new Map<number, SourcePacketV1>();
+        for (const file of readdirSync(packetsDir).filter((f) => f.endsWith(".source-packet.json"))) {
+          try {
+            const packet = JSON.parse(readFileSync(resolve(packetsDir, file), "utf8")) as SourcePacketV1;
+            if (typeof packet?.chapterNumber === "number") map.set(packet.chapterNumber, packet);
+          } catch {
+            console.warn(`reader-budget-check: skipping unreadable packet ${file}`);
+          }
+        }
+        if (map.size > 0) packets = map;
+      }
+    } catch {
+      packets = undefined; // no compiler run — title-fallback path (CHB1 advisory)
+    }
+  }
+
+  const repCap = typeof flags["rep-cap"] === "string" ? parseInt(String(flags["rep-cap"]), 10) : undefined;
+  const renderedChars = typeof flags["length"] === "string" ? parseInt(String(flags["length"]), 10) : undefined;
+  const tolerance = typeof flags["tolerance"] === "string" ? parseFloat(String(flags["tolerance"])) : undefined;
+  if (repCap !== undefined && !(Number.isFinite(repCap) && repCap > 0)) { console.error("reader-budget-check: --rep-cap must be a positive integer"); return 2; }
+  if (renderedChars !== undefined && !(Number.isFinite(renderedChars) && renderedChars > 0)) { console.error("reader-budget-check: --length must be a positive integer"); return 2; }
+  if (tolerance !== undefined && !(Number.isFinite(tolerance) && tolerance > 0 && tolerance < 1)) { console.error("reader-budget-check: --tolerance must be in (0,1)"); return 2; }
+
+  const findings = checkReaderBudgets(chapters, {
+    ...(packets ? { packets } : {}),
+    ...(repCap !== undefined ? { repCap } : {}),
+    ...(renderedChars !== undefined || tolerance !== undefined
+      ? { lengthBudget: { renderedChars: renderedChars ?? DEFAULT_LENGTH_BUDGET.renderedChars, tolerance: tolerance ?? DEFAULT_LENGTH_BUDGET.tolerance } }
+      : {}),
+  });
+  const blockers = findings.filter((f) => f.severity === "blocker").length;
+  if (flags.json) {
+    console.log(JSON.stringify({ bookId: bookId || null, chapterSource, chapters: chapters.length, packets: packets ? packets.size : 0, blockers, findings }, null, 2));
+  } else {
+    console.log(`reader-budget-check: ${chapters.length} chapter(s) from ${chapterSource}${packets ? `, ${packets.size} source packet(s)` : ", no source packets (CHB1 advisory-only)"}`);
+    console.log(formatBudgetFindings(findings));
+  }
+  return blockers > 0 ? 1 : 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -5577,6 +5686,8 @@ async function main() {
       return runRiskScore(args);
     case "rubric-metrics":
       return runRubricMetrics(args, flags);
+    case "reader-budget-check":
+      return runReaderBudgetCheck(args, flags);
     case "codex-agent-run":
       return runCodexAgentRun(args, flags);
     case "key-pack":
