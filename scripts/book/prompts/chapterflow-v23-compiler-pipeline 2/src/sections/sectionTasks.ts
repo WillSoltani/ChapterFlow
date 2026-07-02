@@ -52,6 +52,23 @@ function sectionSchemaHint(kind: SectionKind): string {
   }
 }
 
+/** The DO NOT block shared by every section-writer task card. Extracted so the
+ *  v23 polish pass (src/orchestrator/polishPass.ts) can reuse the EXACT same
+ *  preservation contract verbatim — a polisher must honor the same bans as the
+ *  original writer. `outputPath` scopes the first line to the one artifact the
+ *  agent may touch. */
+export function sectionDoNotLines(outputPath: string): string[] {
+  return [
+    `- Do not edit any file except ${outputPath}.`,
+    "- Do not weaken schemas, gates, source sidecars, QC artifacts, or other chapters.",
+    "- Do not introduce new real-world entities, numbers, dates, places, participants, studies, institutions, or outcomes unless they appear in the source packet below.",
+    `- Do not mention "this chapter", "the book", or "the author" in reader-facing content.`,
+    `- Never use hard-banned register phrases or opener shells such as "The trap is to", "The trap is not", "The mistake is to", "The paradox is that", "Most readers assume", or "Most people think".`,
+    `- Avoid soft-banned house tics: "rather than", "That matters because", "turns out to be", and "treats it as". Use plain alternatives unless the phrase is truly necessary.`,
+    "- Do not change the final ChapterV21 schema; this is an intermediate artifact only.",
+  ];
+}
+
 export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string }): string {
   const { bookId, kind, blueprint, sourcePacket, outputPath } = args;
   const sectionInput = kind === "summary-pack"
@@ -61,7 +78,7 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
       : kind === "learning-pack"
         ? { quiz: blueprint.sections.quiz, cards: blueprint.sections.cards, answerIndexPattern: blueprint.reservedVariety.answerIndexPattern }
         : { action: blueprint.sections.action, reservedVariety: blueprint.reservedVariety };
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}\n\nDO NOT\n- Do not edit any file except ${outputPath}.\n- Do not weaken schemas, gates, source sidecars, QC artifacts, or other chapters.\n- Do not introduce new real-world entities, numbers, dates, places, participants, studies, institutions, or outcomes unless they appear in the source packet below.\n- Do not mention "this chapter", "the book", or "the author" in reader-facing content.\n- Never use hard-banned register phrases or opener shells such as "The trap is to", "The trap is not", "The mistake is to", "The paradox is that", "Most readers assume", or "Most people think".\n- Avoid soft-banned house tics: "rather than", "That matters because", "turns out to be", and "treats it as". Use plain alternatives unless the phrase is truly necessary.\n- Do not change the final ChapterV21 schema; this is an intermediate artifact only.\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION-SPECIFIC BLUEPRINT\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nFULL CHAPTER BLUEPRINT\n\`\`\`json\n${JSON.stringify(blueprint, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(sourcePacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION-SPECIFIC BLUEPRINT\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nFULL CHAPTER BLUEPRINT\n\`\`\`json\n${JSON.stringify(blueprint, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(sourcePacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
 }
 
 export function dealSectionTasks(bookId: string, roots: CompilerStoreRoots = {}): SectionTask[] {
