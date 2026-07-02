@@ -223,17 +223,22 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     sourcePacket: fx.packet,
     outputPath: "/tmp/learning-pack.json",
   });
-  assert.match(learningTask, /Review card fronts\/backs are checked across the whole book/);
+  // P07: the contract is now a layered brief — the cross-chapter gate awareness is
+  // preserved as DESIGN-AROUND rules (each names its check id), so these assert the new
+  // phrasing rather than the pre-P07 blocklist wording.
+  assert.match(learningTask, /SEC81 compares review cards across the book/);
   assert.match(learningTask, /requiredFactIds/);
-  assert.match(learningTask, /Do not use generic cross-book stems/);
-  assert.match(learningTask, /AS5 compares q01-to-q01/);
+  assert.match(learningTask, /What should you inspect \/ What check does/);
+  assert.match(learningTask, /AS5\/AS12 compare q01-to-q01/);
   assert.match(learningTask, /AS6 compares correct answers and distractors/);
   assert.match(learningTask, /promptShape, answerStyle, distractorTrap, and caseCueIds/);
   assert.match(learningTask, /caseCueIds/);
   assert.match(learningTask, /bloomsLevel/);
   assert.match(learningTask, /depthLevel/);
   assert.match(learningTask, /frontShape, retrievalTarget, and backShape/);
-  assert.match(learningTask, /Never make a review card retrieve source-grounding requirements/);
+  assert.match(learningTask, /must not retrieve a source-grounding requirement/);
+  // Every design-around line names its enforcing validator.
+  assert.match(learningTask, /the validator enforces this/);
 
   const summaryTask = buildSectionTaskMarkdown({
     bookId: "money-book",
@@ -242,9 +247,9 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     sourcePacket: fx.packet,
     outputPath: "/tmp/summary-pack.json",
   });
-  assert.match(summaryTask, /Write each tier with a chapter-specific skeleton/);
-  assert.match(summaryTask, /avoid reusable five-word connective runs/);
-  assert.match(summaryTask, /AS10 compares fastRead, deepRead, and fullRead/);
+  assert.match(summaryTask, /chapter-specific skeleton/);
+  assert.match(summaryTask, /reusable five-word connective run/);
+  assert.match(summaryTask, /AS10\/AS11 compare fastRead, deepRead, and fullRead/);
 
   const exampleTask = buildSectionTaskMarkdown({
     bookId: "money-book",
@@ -253,8 +258,8 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     sourcePacket: fx.packet,
     outputPath: "/tmp/example-pack.json",
   });
-  assert.match(exampleTask, /sceneFrame and requiredBeat/);
-  assert.match(exampleTask, /whole process versus one loaded\/focused point/);
+  assert.match(exampleTask, /sceneFrame\/requiredBeat/);
+  assert.match(exampleTask, /six DIFFERENT scene engines/);
 
   const actionTask = buildSectionTaskMarkdown({
     bookId: "money-book",
@@ -267,7 +272,9 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
   assert.match(actionTask, /action\.ifThenPlanShapes\[\]/);
   assert.match(actionTask, /action\.practiceForm/);
   assert.match(actionTask, /action\.practiceConstraint/);
-  assert.match(actionTask, /classify a transition\/milestone\/pit/);
+  assert.match(actionTask, /classify\/choose\/predict worksheet/);
+  // A non-scar book (money-book) must NOT inherit another book's scar tissue.
+  assert.doesNotMatch(actionTask, /transition, milestone, or pit/);
 });
 
 test("v23 source packet compiler turns source-v2 into authoring-ready typed facts/cases", () => {

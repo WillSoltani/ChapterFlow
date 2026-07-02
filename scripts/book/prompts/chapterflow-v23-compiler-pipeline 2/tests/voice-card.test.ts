@@ -117,8 +117,12 @@ test("a book with no brief and no profile yields null → no VOICE CARD section"
   for (const kind of SECTION_KINDS) {
     const md = task(NOVOICE_BOOK, kind);
     assert.doesNotMatch(md, /VOICE CARD —/, `${kind}: card section must be omitted when there is no voice signal`);
-    // The static contract line is still present regardless of voice data.
-    assert.match(md, /Write in the VOICE CARD register;/, `${kind}: contract line is always present`);
+    // P07: the contract's voice line is conditional/coherent even for voiceless books
+    // ("when a VOICE CARD is shown below … with no card, use a plain register") — not the
+    // pre-P07 dangling "Write in the VOICE CARD register;" prefix.
+    assert.doesNotMatch(md, /Write in the VOICE CARD register;/, `${kind}: the pre-P07 dangling register prefix must be gone`);
+    assert.match(md, /when a VOICE CARD(?: register note)? is shown below/, `${kind}: contract carries a coherent conditional voice line`);
+    assert.match(md, /with no card, use a plain, concrete register/, `${kind}: voiceless books get the plain-register fallback`);
   }
 });
 
