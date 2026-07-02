@@ -5,7 +5,7 @@ import { resolve } from "path";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 
-export const QC_ROUND_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "major", "attest"] as const;
+export const QC_ROUND_ROLES = ["sweep", "keyA", "keyB", "bar", "craft", "confirm", "major", "attest"] as const;
 export type QcRoundRole = typeof QC_ROUND_ROLES[number];
 
 export type QcRoundRecord = {

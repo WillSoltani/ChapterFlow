@@ -1,4 +1,5 @@
 import { AXIS_WEIGHTS, computeVerdict, type AxisHit, type AxisId, type AxisScore, type FailureTier, type PublishableVerdict } from "../../critics/semantic/publishableBar.js";
+import { CRAFT_AXIS_WEIGHTS, computeCraftVerdict, type CraftAxisId, type CraftAxisScore, type CraftHit, type CraftVerdict } from "../../critics/semantic/craftBar.js";
 
 export const ORCHESTRATOR_SUBMISSION_SCHEMAS = [
   "qc-sweep-submission-v1",
@@ -6,6 +7,7 @@ export const ORCHESTRATOR_SUBMISSION_SCHEMAS = [
   "qc-bar-read-v1",
   "qc-bar-read-v2",
   "qc-confirm-read-v1",
+  "qc-craft-read-v1",
   "qc-major-triage-v1",
 ] as const;
 
@@ -18,7 +20,7 @@ import { SWEEP_FAMILIES, type SweepFamily } from "../sweepSpec.js";
 export { SWEEP_FAMILIES };
 export type { SweepFamily };
 
-export const SUBMISSION_ROLES = ["sweep", "keyA", "keyB", "bar", "confirm", "major"] as const;
+export const SUBMISSION_ROLES = ["sweep", "keyA", "keyB", "bar", "craft", "confirm", "major"] as const;
 export type SubmissionRole = typeof SUBMISSION_ROLES[number];
 
 export type FindingSeverity = "blocker" | "major" | "minor" | "advisory";
@@ -97,6 +99,22 @@ export type ValidatedBarReadSubmission = {
   verdict: PublishableVerdict;
 };
 
+export type ValidatedCraftReadSubmission = {
+  schemaVersion: "qc-craft-read-v1";
+  bookId: string;
+  roundId: string;
+  role: "craft";
+  reviewer: string;
+  reviewerSessionId?: string;
+  chapterNumber: number;
+  chapterId: string;
+  contentHash: string;
+  sourceHash?: string | null;
+  axes: CraftAxisScore[];
+  notes?: string;
+  verdict: CraftVerdict;
+};
+
 export type ValidatedConfirmReadSubmission = {
   schemaVersion: "qc-confirm-read-v1";
   bookId: string;
@@ -131,6 +149,7 @@ export type ValidatedSubmission =
   | ValidatedSweepSubmission
   | ValidatedKeyDeriveSubmission
   | ValidatedBarReadSubmission
+  | ValidatedCraftReadSubmission
   | ValidatedConfirmReadSubmission
   | ValidatedMajorTriageSubmission;
 
@@ -147,6 +166,7 @@ export type SubmissionValidationOptions = {
 
 const AXES = Object.keys(AXIS_WEIGHTS) as AxisId[];
 const NON_KEY_AXES = AXES.filter((axis) => axis !== "quiz_key_correctness");
+const CRAFT_AXES = Object.keys(CRAFT_AXIS_WEIGHTS) as CraftAxisId[];
 const TIERS: FailureTier[] = ["CORRUPTION", "GENERATED_DRAFT", "PUBLISHABLE"];
 const VERDICTS = ["PASS", "REVISE", "CORRUPTION"] as const;
 const QC_DECISIONS = ["PUBLISHABLE", "REVISE", "CORRUPTION"] as const;
@@ -393,6 +413,63 @@ function validateBar(bookId: string, roundId: string, role: SubmissionRole, raw:
   };
 }
 
+function validateCraft(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
+  const errors: string[] = [];
+  validateEnvelope(bookId, roundId, role, raw, "qc-craft-read-v1", errors);
+  validateReviewerSession(raw, errors, options);
+  if (role !== "craft") errors.push("qc-craft-read-v1 must be submitted with role craft");
+  if (!nonempty(raw?.reviewer)) errors.push("reviewer is required");
+  const chapterNumber = Number(raw?.chapterNumber);
+  if (!Number.isInteger(chapterNumber) || chapterNumber < 1) errors.push("chapterNumber must be a positive integer");
+  if (!nonempty(raw?.chapterId)) errors.push("chapterId is required");
+  if (!nonempty(raw?.contentHash)) errors.push("contentHash is required");
+  if (!Array.isArray(raw?.axes)) errors.push("axes[] is required");
+  const seen = new Set<string>();
+  const axes: CraftAxisScore[] = [];
+  if (Array.isArray(raw?.axes)) {
+    for (let i = 0; i < raw.axes.length; i++) {
+      const a = raw.axes[i];
+      const axis = a?.axis;
+      if (!CRAFT_AXES.includes(axis)) {
+        errors.push(`axes[${i}].axis is unknown: ${String(axis)}`);
+        continue;
+      }
+      if (seen.has(axis)) errors.push(`duplicate axis ${axis}`);
+      seen.add(axis);
+      if (!finiteNumber(a?.score) || a.score < 0 || a.score > 1) errors.push(`axes[${i}].score must be 0..1`);
+      const hits = Array.isArray(a?.hits) ? a.hits.map((h: any, hi: number) => normalizeHit(h, errors, `axes[${i}].hits[${hi}]`)) : [];
+      // A below-floor craft axis must cite a hit — same cite-or-it-didn't-happen rule as the bar
+      // (the craft bar has no CORRUPTION tier, so this is its only cited-evidence requirement).
+      if (finiteNumber(a?.score) && a.score < 0.6 && hits.length === 0) errors.push(`axes[${i}] score < 0.6 requires at least one cited hit`);
+      axes.push({ axis, score: Number(a?.score), hits } as CraftAxisScore);
+    }
+  }
+  for (const axis of CRAFT_AXES) if (!seen.has(axis)) errors.push(`missing axis ${axis}`);
+  const verdict = computeCraftVerdict(String(raw?.chapterId ?? ""), axes, true);
+  if (verdict.gate !== "GREEN" && !String(raw?.notes ?? "").trim() && axes.every((a) => a.hits.length === 0)) {
+    errors.push("non-GREEN craft read requires notes or cited hits");
+  }
+  if (errors.length) return { ok: false, errors };
+  return {
+    ok: true,
+    submission: {
+      schemaVersion: "qc-craft-read-v1",
+      bookId,
+      roundId,
+      role: "craft",
+      reviewer: String(raw.reviewer),
+      reviewerSessionId: nonempty(raw?.reviewerSessionId) ? String(raw.reviewerSessionId) : undefined,
+      chapterNumber,
+      chapterId: String(raw.chapterId),
+      contentHash: String(raw.contentHash),
+      sourceHash: raw.sourceHash === null ? null : nonempty(raw.sourceHash) ? String(raw.sourceHash) : undefined,
+      axes,
+      notes: nonempty(raw?.notes) ? String(raw.notes) : undefined,
+      verdict,
+    },
+  };
+}
+
 function validateConfirm(bookId: string, roundId: string, role: SubmissionRole, raw: any, options: SubmissionValidationOptions): SubmissionValidationResult {
   const errors: string[] = [];
   validateEnvelope(bookId, roundId, role, raw, "qc-confirm-read-v1", errors);
@@ -443,6 +520,8 @@ export function validateSubmission(bookId: string, roundId: string, role: Submis
       return validateBar(bookId, roundId, role, raw, "qc-bar-read-v1", options);
     case "qc-bar-read-v2":
       return validateBar(bookId, roundId, role, raw, "qc-bar-read-v2", options);
+    case "qc-craft-read-v1":
+      return validateCraft(bookId, roundId, role, raw, options);
     case "qc-confirm-read-v1":
       return validateConfirm(bookId, roundId, role, raw, options);
     case "qc-major-triage-v1":

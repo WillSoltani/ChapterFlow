@@ -20,6 +20,7 @@ import { dirname, resolve } from "path";
 
 import { chapterContentHash } from "../../critics/qcAttestation.js";
 import { AXIS_WEIGHTS, type AxisId } from "../../critics/semantic/publishableBar.js";
+import { CRAFT_AXIS_WEIGHTS, CRAFT_AXIS_RUBRIC, CRAFT_OVERALL_FLOOR, CRAFT_AXIS_FLOOR, craftReadMode, type CraftAxisId } from "../../critics/semantic/craftBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { loadKeyPack } from "../manualKeyJudge.js";
 import type { QcRoundRole } from "../qcRound.js";
@@ -29,9 +30,12 @@ import { REQUIRED_SWEEP_FAMILIES } from "../sweep.js";
 import { renderSweepFamilyRubric } from "../sweepSpec.js";
 import { roleHintHeader } from "../../roles.js";
 import { barPackPath } from "../barReview.js";
+import { voiceCard } from "../../lib/voiceCard.js";
+import { rubricMetricsPath } from "../../artifacts/artifactStore.js";
 import { orchestratorRoundDir } from "./artifacts.js";
 
 const NON_KEY_AXES = (Object.keys(AXIS_WEIGHTS) as AxisId[]).filter((a) => a !== "quiz_key_correctness");
+const CRAFT_AXES = Object.keys(CRAFT_AXIS_WEIGHTS) as CraftAxisId[];
 
 export function reviewPacketPath(bookId: string, roundId: string): string {
   return resolve(orchestratorRoundDir(bookId, roundId), "REVIEW-PACKET.md");
@@ -104,6 +108,22 @@ export function buildBarSkeleton(bookId: string, roundId: string, ch: ChapterV21
     sourceHash: sourceHashFor(bookId, ch.number) ?? null,
     notes: "",
     axes: NON_KEY_AXES.map((axis) => ({ axis, score: null, tier: "PUBLISHABLE", hits: [] })),
+  };
+}
+
+export function buildCraftSkeleton(bookId: string, roundId: string, ch: ChapterV21) {
+  return {
+    schemaVersion: "qc-craft-read-v1",
+    bookId,
+    roundId,
+    role: "craft",
+    reviewer: qcReviewerId(roundId, "craft", ch.number),
+    chapterNumber: ch.number,
+    chapterId: ch.chapterId,
+    contentHash: chapterContentHash(ch),
+    sourceHash: sourceHashFor(bookId, ch.number) ?? null,
+    notes: "",
+    axes: CRAFT_AXES.map((axis) => ({ axis, score: null, hits: [] })),
   };
 }
 
@@ -231,6 +251,33 @@ export function writeReviewPacket(
     L.push(submitCmd(bookId, roundId, "bar", tokens.bar, `<bar-${ch2(ch.number)}.json>`));
     L.push(json(buildBarSkeleton(bookId, roundId, ch)));
     L.push("");
+  }
+
+  // ── Craft read (per chapter; the fifth semantic read — F6b) ────────────────
+  // Mode-gated: only rendered when CHAPTERFLOW_CRAFT_READ != off (default shadow). The
+  // craft read covers the ~64 rubric points (summaries/tone/transfer/density/limits) the
+  // publishable bar has no axis for. In shadow it is recorded + surfaced but NEVER gates a
+  // verdict; in enforce a below-floor chapter becomes REVISE (never CORRUPTION).
+  const craftMode = craftReadMode();
+  if (craftMode !== "off") {
+    L.push("## 3b. Craft read — one per chapter (the craft-bar score)");
+    L.push(`Mode: ${craftMode}. Score the five CRAFT axes 0..1 (GREEN needs weighted overall ≥ ${CRAFT_OVERALL_FLOOR} AND every axis ≥ ${CRAFT_AXIS_FLOOR.toFixed(2)}; the craft bar has NO corruption tier). Any axis you score < 0.6 REQUIRES a cited hit \`{unitId, quote, defect, fix}\`.`);
+    if (craftMode === "shadow") L.push("SHADOW: the craft read is recorded and surfaced but never changes a QC verdict — score honestly so the enforce floors can be calibrated on real data.");
+    for (const axis of CRAFT_AXES) {
+      L.push(`  - ${axis} (weight ${CRAFT_AXIS_WEIGHTS[axis]}): ${CRAFT_AXIS_RUBRIC[axis]}`);
+    }
+    const card = voiceCard(bookId);
+    L.push("");
+    L.push("SCORE tone_register AGAINST THIS BOOK'S VOICE CARD (not a generic house voice):");
+    L.push(card ? "```text\n" + card + "\n```" : "(no voice card for this book — score tone_register against the rubric definition alone.)");
+    L.push(`Deterministic rubric signals for cross-checking your read (readability, distractor-tell, transfer), when present: ${rubricMetricsPath(bookId)}`);
+    L.push("");
+    for (const ch of chapters) {
+      L.push(`### craft ${ch2(ch.number)} — ${ch.chapterId}`);
+      L.push(submitCmd(bookId, roundId, "craft", tokens.craft, `<craft-${ch2(ch.number)}.json>`));
+      L.push(json(buildCraftSkeleton(bookId, roundId, ch)));
+      L.push("");
+    }
   }
 
   // ── Confirm read (per chapter; second independent reviewer) ────────────────

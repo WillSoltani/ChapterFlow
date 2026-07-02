@@ -58,21 +58,23 @@ function validFixtures(): Record<SubmissionRole, any> {
   const env = { bookId: BOOK, roundId: ROUND };
   const finding = { unitId: "quiz.questions[1]", repairClass: "quiz_distractor_quality", severity: "major", quote: "q", problem: "p", expectedFix: "f" };
   const nonKeyAxes = ["example_coherence", "prose_coherence", "quiz_distractor_quality", "card_learning_value", "plan_actionability", "factual_accuracy", "behavioral_naturalness", "memorable_line_quality"];
+  const craftAxes = ["summaries_depth", "tone_register", "transfer_design", "idea_density", "limits_honesty"];
   return {
     sweep: { schemaVersion: "qc-sweep-submission-v1", ...env, role: "sweep", reviewer: "codex-qc:r:sweep", verdict: "PASS", checkedFamilies: ["scene_skeleton", "persona_drift", "repeated_unit", "location_stamping"], findings: [] },
     keyA: { schemaVersion: "qc-key-derive-v2", ...env, role: "keyA", reviewer: "codex-qc:r:keyA", chapters: [{ chapterNumber: 1, packHash: "h", answers: [{ questionIndex: 0, choiceIndex: 1, confidence: "high", reason: "Derived from the source fact that the chapter corrects.", sourceFactIds: ["ch01.fact.1"] }] }] },
     keyB: { schemaVersion: "qc-key-derive-v2", ...env, role: "keyB", reviewer: "codex-qc:r:keyB", chapters: [{ chapterNumber: 1, packHash: "h", answers: [{ questionIndex: 0, choiceIndex: 1, confidence: 0.9, reason: "Derived from the source fact that the chapter corrects.", sourceFactIds: ["ch01.fact.1"] }] }] },
     bar: { schemaVersion: "qc-bar-read-v2", ...env, role: "bar", reviewer: "codex-qc:r:bar:ch01", chapterNumber: 1, chapterId: `${BOOK}-ch01`, contentHash: "abc", axes: nonKeyAxes.map((axis) => ({ axis, score: 0.9, tier: "PUBLISHABLE", hits: [] })) },
+    craft: { schemaVersion: "qc-craft-read-v1", ...env, role: "craft", reviewer: "codex-qc:r:craft:ch01", chapterNumber: 1, chapterId: `${BOOK}-ch01`, contentHash: "abc", axes: craftAxes.map((axis) => ({ axis, score: 0.9, hits: [] })) },
     confirm: { schemaVersion: "qc-confirm-read-v1", ...env, role: "confirm", reviewer: "codex-qc:r:confirm:ch01", chapterNumber: 1, chapterId: `${BOOK}-ch01`, contentHash: "abc", decision: "PUBLISHABLE", reason: "A second independent read confirms the chapter is publishable.", findings: [] },
     major: { schemaVersion: "qc-major-triage-v1", ...env, role: "major", reviewer: "codex-qc:r:major", findings: [finding], dispositions: [{ findingId: "qcf-1", status: "waived_false_positive", reason: "Gold reference books trip this." }] },
   };
 }
 
-const ROLES: SubmissionRole[] = ["sweep", "keyA", "keyB", "bar", "confirm", "major"];
+const ROLES: SubmissionRole[] = ["sweep", "keyA", "keyB", "bar", "craft", "confirm", "major"];
 
 test("every reviewer role has a JSON schema", () => {
   for (const role of ROLES) assert.ok(submissionJsonSchemaForRole(role), `missing schema for ${role}`);
-  assert.equal(Object.keys(allSubmissionJsonSchemas()).length, 6);
+  assert.equal(Object.keys(allSubmissionJsonSchemas()).length, 7);
 });
 
 for (const role of ROLES) {

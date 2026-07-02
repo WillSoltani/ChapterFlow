@@ -115,6 +115,18 @@ before the next.
 - **Wave 3 — bar reads (≤6 agents, batched over the chapters):** one per chapter. Score
   each axis 0..1 from the read; any axis < 0.6 REQUIRES a cited verbatim hit. Reviewer id
   `codex-qc:<round>:bar:ch<NN>` (already in the skeleton).
+- **Wave 3b — craft reads (≤6 agents, batched; the CRAFT READ, F6b):** one per chapter, only
+  when `CHAPTERFLOW_CRAFT_READ != off` (default **shadow**). Score the five craft axes 0..1
+  (`summaries_depth`, `tone_register`, `transfer_design`, `idea_density`, `limits_honesty`) —
+  the ~64 rubric points the bar has no axis for. GREEN = weighted overall ≥ 75 AND every axis
+  ≥ 0.6; NO corruption tier; any axis < 0.6 REQUIRES a cited hit `{unitId, quote, defect, fix}`.
+  Score `tone_register` against the book's VOICE CARD (in the packet's craft section). Reviewer
+  id `codex-qc:<round>:craft:ch<NN>` (already in the skeleton); submit `qc-craft-read-v1` with
+  the round's **craft** token. Full anchors: `agent-prompts/CRAFT-READ-RUBRIC.md`. In **shadow**
+  the craft read is recorded + surfaced as a NON-gating evidence column and NEVER changes a
+  verdict; in **enforce** a below-floor chapter becomes REVISE (never CORRUPTION) with the hits
+  as surgical repair directives; in **off** it does not run. A craft subagent must be a FRESH,
+  separate session (its own `CHAPTERFLOW_SESSION_ID`), like every other reviewer.
 
 ## 3. Collect + select confirm candidates (parent — deterministic)
 ```bash

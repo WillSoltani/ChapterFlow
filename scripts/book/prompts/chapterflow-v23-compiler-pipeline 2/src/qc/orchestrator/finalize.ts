@@ -4,6 +4,7 @@ import { dirname, resolve } from "path";
 import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
+import { computeCraftVerdict, craftReadMode, type CraftReadMode } from "../../critics/semantic/craftBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { loadBookChapters, loadManualKeyJudge, manualKeyJudgePath, resolveManualKeyJudges, type ManualKeyJudgeRecord } from "../manualKeyJudge.js";
 import { unresolvedMajors, type MajorFindingSnapshot } from "../majorDisposition.js";
@@ -14,9 +15,11 @@ import {
   barArtifactPath,
   BAR_READ_VARIANTS,
   confirmArtifactPath,
+  craftArtifactPath,
   evidenceMatrixPath,
   loadBarReadArtifact,
   loadConfirmReadArtifact,
+  loadCraftReadArtifact,
   orchestratorRoundDir,
   qcSummaryPath,
   repairBriefPath,
@@ -65,6 +68,20 @@ export type EvidenceChapterDecision = {
     // ownership). Shifted left from the publish preflight so a QC verdict predicts
     // publish — a deterministic check, recomputed fresh for every chapter.
     planEnforcement: EvidenceStatus;
+    // F6b craft read — the fifth semantic read (summaries/tone/transfer/density/limits).
+    // ABSENT in off mode (byte-identical to pre-craft). In shadow it is always NOT_APPLICABLE
+    // (recorded + surfaced via `craft` below, but NON-gating). In enforce it carries the real
+    // gate (GREEN | YELLOW), with MISSING/STALE folding to NOT_APPLICABLE so a missing craft
+    // read never blocks. Its pass set is { GREEN, NOT_APPLICABLE } (metrics.ts CHECK_PASS_VALUES).
+    craftRead?: "GREEN" | "YELLOW" | "MISSING" | "STALE" | "NOT_APPLICABLE";
+  };
+  /** F6b — the surfaced (NON-gating) craft scores for this chapter. Present iff craft mode != off.
+   *  The gating decision lives in checks.craftRead; this is the visible status column + telemetry. */
+  craft?: {
+    mode: CraftReadMode;
+    status: "GREEN" | "YELLOW" | "MISSING" | "STALE";
+    overall: number | null;
+    axes: Array<{ axis: string; score: number }>;
   };
   majorStatus: {
     status: EvidenceStatus;
@@ -315,6 +332,8 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
   // sweep record). A preflight must never mutate QC state — re-finalizing with
   // attest:true used to overwrite a fresh PUBLISHABLE attestation with REVISE.
   const errors: string[] = [];
+  // F6b craft read mode (off | shadow | enforce; default shadow). Resolved ONCE per finalize.
+  const craftMode = craftReadMode();
   if (!options.dryRun) mkdirSync(orchestratorRoundDir(bookId, roundId), { recursive: true });
 
   const sweepSubmission = latestValidSubmissionWithPath<ValidatedSweepSubmission>(bookId, roundId, "sweep");
@@ -456,6 +475,32 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
     if (confirm) {
       if (confirm.chapterId !== ch.chapterId || confirm.contentHash !== contentHash) checks.confirmRead = "STALE";
       else checks.confirmRead = confirm.decision;
+    }
+
+    // F6b — the craft read. OFF: no column, no artifact load (byte-identical to pre-craft).
+    // SHADOW: record + surface the score (decision.craft) but set the gating column to
+    // NOT_APPLICABLE — it NEVER changes a verdict. ENFORCE: the column carries the real gate
+    // (GREEN | YELLOW); MISSING/STALE fold to NOT_APPLICABLE so an absent craft read never blocks.
+    let craft = craftMode !== "off" ? loadCraftReadArtifact(bookId, roundId, ch.number) : null;
+    let craftStatus: "GREEN" | "YELLOW" | "MISSING" | "STALE" = "MISSING";
+    let craftVerdict: ReturnType<typeof computeCraftVerdict> | null = null;
+    let craftDetail: EvidenceChapterDecision["craft"];
+    if (craftMode !== "off") {
+      if (craft) {
+        if (craft.chapterId !== ch.chapterId || craft.contentHash !== contentHash) { craftStatus = "STALE"; craft = null; }
+        else { craftVerdict = computeCraftVerdict(ch.chapterId, craft.axes, true); craftStatus = craftVerdict.gate; }
+      }
+      craftDetail = {
+        mode: craftMode,
+        status: craftStatus,
+        overall: craftVerdict ? craftVerdict.overall : null,
+        axes: craft ? craft.axes.map((a) => ({ axis: a.axis, score: a.score })) : [],
+      };
+      // Gating column: shadow is ALWAYS NOT_APPLICABLE; enforce carries the real GREEN/YELLOW,
+      // MISSING/STALE → NOT_APPLICABLE (never block on an absent/stale craft read).
+      checks.craftRead = craftMode === "shadow"
+        ? "NOT_APPLICABLE"
+        : craftStatus === "GREEN" || craftStatus === "YELLOW" ? craftStatus : "NOT_APPLICABLE";
     }
 
     // P2 — incremental carry-forward. A chapter the round carried got no fresh
@@ -645,6 +690,14 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
       }
     }
 
+    // F6b enforce: a below-floor craft read demotes an OTHERWISE-publishable chapter to REVISE
+    // (never CORRUPTION; craft can only ADD a reason to revise — never upgrade, excuse, or veto
+    // another check). Only fires in enforce mode and only when the chapter would otherwise PUBLISH.
+    if (craftMode === "enforce" && checks.craftRead === "YELLOW" && finalVerdict === "PUBLISHABLE") {
+      finalVerdict = "REVISE";
+      reason = "craft bar below floor (summaries/tone/transfer/idea-density/limits) — enforced craft revision";
+    }
+
     const decision: EvidenceChapterDecision = {
       bookId,
       roundId,
@@ -653,6 +706,7 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
       contentHash,
       sourceHash,
       checks,
+      ...(craftDetail ? { craft: craftDetail } : {}),
       majorStatus,
       finalVerdict,
       reason,
@@ -678,9 +732,12 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
       confirm,
       confirmAccepted: publishableCandidate,
       planFindings: chapterPlanFindings,
+      craft,
+      craftMode,
       sweepSources: sweepRecord ? [rawProvenance("sweep", sweepRecordPath(bookId), sweepRecord)] : [],
       barSources: barEntries.map((entry) => rawProvenance("bar", entry.path, entry.read)),
       confirmSources: confirm ? [rawProvenance("confirm", confirmArtifactPath(bookId, roundId, ch.number), confirm)] : [],
+      craftSources: craft ? [rawProvenance("craft", craftArtifactPath(bookId, roundId, ch.number), craft)] : [],
     });
   }
 

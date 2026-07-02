@@ -49,6 +49,16 @@ For each role, READ the content and fill the skeleton **honestly**:
   facts, BEFORE looking at any stored key. keyA and keyB are TWO independent derivations.
 - **bar** (per chapter) — score each axis 0..1 from your read; any axis < 0.6 REQUIRES a
   cited hit (a verbatim quote + the defect). GREEN = weighted overall ≥ 85 AND no axis < 0.6.
+- **craft** (per chapter — the CRAFT READ, F6b) — score the five craft axes 0..1:
+  `summaries_depth`, `tone_register`, `transfer_design`, `idea_density`, `limits_honesty`
+  (the ~64 rubric points the bar has no axis for). GREEN = weighted overall ≥ 75 AND every
+  axis ≥ 0.6; the craft bar has NO corruption tier. Any axis < 0.6 REQUIRES a cited hit
+  `{unitId, quote, defect, fix}`. Score `tone_register` against the book's VOICE CARD (in the
+  packet). Full anchors: `agent-prompts/CRAFT-READ-RUBRIC.md`. Submit `qc-craft-read-v1` with
+  the round's **craft** token. MODE `CHAPTERFLOW_CRAFT_READ`: default **shadow** (recorded +
+  surfaced, NEVER changes a verdict — score honestly to calibrate the enforce floors); in
+  **enforce** a below-floor chapter becomes REVISE with your hits as surgical repair directives;
+  in **off** the craft read does not run. Never edit, finalize, attest, or publish.
 - **confirm** (per chapter, only those listed in `confirm-candidates.json` after finalize) —
   a SECOND read; use a DIFFERENT `reviewer` id than the bar read.
 

@@ -23,10 +23,12 @@
 
 import { ORCHESTRATOR_SUBMISSION_SCHEMAS, SWEEP_FAMILIES, type OrchestratorSubmissionSchema } from "./schemas.js";
 import { AXIS_WEIGHTS } from "../../critics/semantic/publishableBar.js";
+import { CRAFT_AXIS_WEIGHTS } from "../../critics/semantic/craftBar.js";
 
 const FINDING_SEVERITIES = ["blocker", "major", "minor", "advisory"] as const;
 const ALL_AXES = Object.keys(AXIS_WEIGHTS);
 const NON_KEY_AXES = ALL_AXES.filter((a) => a !== "quiz_key_correctness");
+const CRAFT_AXES = Object.keys(CRAFT_AXIS_WEIGHTS);
 
 const str = (extra: Record<string, unknown> = {}) => ({ type: "string", ...extra });
 const obj = (properties: Record<string, unknown>, required: string[]) => ({
@@ -84,6 +86,17 @@ const axisScore = (axisEnum: string[]) => obj(
     hits: { type: "array", items: AXIS_HIT },
   },
   ["axis", "score", "tier", "hits"],
+);
+
+// A CRAFT axis score has NO tier field (the craft bar has no CORRUPTION tier); its below-floor
+// cited-hit rule is a cross-field check the validator enforces, not JSON Schema.
+const craftAxisScore = obj(
+  {
+    axis: { type: "string", enum: CRAFT_AXES },
+    score: { type: "number", minimum: 0, maximum: 1 },
+    hits: { type: "array", items: AXIS_HIT },
+  },
+  ["axis", "score", "hits"],
 );
 
 const envelope = (schemaVersion: string, role: object) => ({
@@ -160,6 +173,20 @@ const SCHEMAS: Record<OrchestratorSubmissionSchema, object> = {
   ),
   "qc-bar-read-v1": barSchema("qc-bar-read-v1"),
   "qc-bar-read-v2": barSchema("qc-bar-read-v2"),
+  "qc-craft-read-v1": obj(
+    {
+      ...envelope("qc-craft-read-v1", { const: "craft" }),
+      reviewer: str({ minLength: 1 }),
+      chapterNumber: { type: "integer", minimum: 1 },
+      chapterId: str({ minLength: 1 }),
+      contentHash: str({ minLength: 1 }),
+      sourceHash: { type: ["string", "null"] },
+      axes: { type: "array", items: craftAxisScore, minItems: CRAFT_AXES.length },
+      notes: str(),
+      // No `verdict` field: the CLI RE-COMPUTES the craft verdict from the axes.
+    },
+    ["schemaVersion", "bookId", "roundId", "role", "reviewer", "chapterNumber", "chapterId", "contentHash", "axes"],
+  ),
   "qc-confirm-read-v1": obj(
     {
       ...envelope("qc-confirm-read-v1", { const: "confirm" }),
@@ -202,6 +229,7 @@ export const SUBMISSION_SCHEMA_BY_ROLE: Record<string, OrchestratorSubmissionSch
   keyA: "qc-key-derive-v2",
   keyB: "qc-key-derive-v2",
   bar: "qc-bar-read-v2", // the round uses v2 (key is injected from the manual keyjudge)
+  craft: "qc-craft-read-v1",
   confirm: "qc-confirm-read-v1",
   major: "qc-major-triage-v1",
 };

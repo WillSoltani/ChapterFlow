@@ -37,7 +37,9 @@ import {
   type BarReadVariant,
   writeBarReadArtifact,
   writeConfirmReadArtifact,
+  writeCraftReadArtifact,
 } from "./artifacts.js";
+import { craftReadMode, CRAFT_AXIS_WEIGHTS } from "../../critics/semantic/craftBar.js";
 import { appendStatusEvents, effectiveLedger, effectiveLedgerResilient, ledgerStatusSummary } from "./ledger.js";
 import { writeRepairBrief, writeRepairPrompt } from "./repairBrief.js";
 import { SUBMISSION_ROLES, validateSubmission, type SubmissionRole, type ValidatedKeyDeriveSubmission, type ValidatedSubmission, type ValidatedSweepSubmission } from "./schemas.js";
@@ -542,7 +544,7 @@ function submissionIdentity(submission: ValidatedSubmission, variant?: BarReadVa
   const rec = submission as any;
   const reviewer = typeof rec.reviewer === "string" && rec.reviewer.trim() ? rec.reviewer.trim() : "anonymous";
   const session = typeof rec.reviewerSessionId === "string" && rec.reviewerSessionId.trim() ? rec.reviewerSessionId.trim() : "legacy-unknown";
-  const target = rec.role === "bar" || rec.role === "confirm"
+  const target = rec.role === "bar" || rec.role === "confirm" || rec.role === "craft"
     ? `ch${String(rec.chapterNumber).padStart(2, "0")}${variant ? `-${variant}` : ""}`
     : rec.role;
   return safePathComponent(`${rec.role}.${target}.${reviewer}.${session}`);
@@ -630,6 +632,10 @@ export function submitQcArtifact(bookId: string, roundId: string, role: Submissi
       const artifact = writeConfirmReadArtifact(validation.submission, dest);
       messages.push(`confirm-read artifact stored: ${artifact}`);
     }
+    if (validation.submission.schemaVersion === "qc-craft-read-v1") {
+      const artifact = writeCraftReadArtifact(validation.submission, dest);
+      messages.push(`craft-read artifact stored: ${artifact}`);
+    }
     return { ok: true, path: dest, errors: [], messages };
   }, { contendWaitMs: QC_SUBMIT_CONTEND_WAIT_MS });
 }
@@ -648,8 +654,8 @@ function submissionFiles(bookId: string, roundId: string): Array<{ role: Submiss
       });
     for (const f of files) {
       const p = resolve(dir, f);
-      // Skip the derived bar/confirm artifact files (incl. tiebreak variants ch03.bar-read-t2.json) — they are NOT submissions.
-      if (/^ch\d+\.bar-read(-t\d+)?\.json$/.test(f) || /^ch\d+\.confirm-read\.json$/.test(f)) continue;
+      // Skip the derived bar/confirm/craft artifact files (incl. tiebreak variants ch03.bar-read-t2.json) — they are NOT submissions.
+      if (/^ch\d+\.bar-read(-t\d+)?\.json$/.test(f) || /^ch\d+\.confirm-read\.json$/.test(f) || /^ch\d+\.craft-read\.json$/.test(f)) continue;
       let variant: BarReadVariant | undefined;
       try {
         const meta = existsSync(`${p}.meta.json`) ? loadJsonFile(`${p}.meta.json`) : null;
@@ -711,6 +717,7 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
     submissions++;
     if (validation.submission.schemaVersion === "qc-bar-read-v1" || validation.submission.schemaVersion === "qc-bar-read-v2") writeBarReadArtifact(validation.submission, item.variant, item.path);
     if (validation.submission.schemaVersion === "qc-confirm-read-v1") writeConfirmReadArtifact(validation.submission, item.path);
+    if (validation.submission.schemaVersion === "qc-craft-read-v1") writeCraftReadArtifact(validation.submission, item.path);
     if (validation.submission.schemaVersion === "qc-key-derive-v2") writeKeyDerivationFromSubmission(validation.submission);
     if (validation.submission.schemaVersion === "qc-sweep-submission-v1") latestSweep = { submission: validation.submission as ValidatedSweepSubmission, path: item.path };
   }
@@ -758,6 +765,7 @@ export function collectQcRound(bookId: string, roundId: string): { ok: boolean; 
 // clean re-gate).
 const SEMANTIC_THEMES: ReadonlySet<string> = new Set<string>([
   ...Object.keys(AXIS_WEIGHTS),
+  ...Object.keys(CRAFT_AXIS_WEIGHTS),
   ...REQUIRED_SWEEP_FAMILIES,
   "manual_keyjudge",
   "confirm",
