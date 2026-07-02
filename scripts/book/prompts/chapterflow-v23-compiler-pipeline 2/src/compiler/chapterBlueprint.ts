@@ -96,7 +96,9 @@ const C7_BANNED = new Set(C7_BANNED_NAMES);
 const NAME_BUCKET_COUNT = 40;
 let cachedCompilerNameBank: string[] | null = null;
 
-function compilerNameBank(): string[] {
+// Exported ADDITIVELY for the v24 chapter-brief compiler (chapterBrief.ts), which reuses the
+// same bank + deal so brief cast reservations stay consistent with blueprint name deals.
+export function compilerNameBank(): string[] {
   if (cachedCompilerNameBank) return cachedCompilerNameBank;
   try {
     const loaded = loadNameBank();
@@ -175,7 +177,10 @@ function siblingUsedNames(bookId: string, chapterNumber: number, roots: Compiler
   return used;
 }
 
-function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1, roots: CompilerStoreRoots, salts: SlotSalts): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
+// Exported ADDITIVELY for the v24 chapter-brief compiler: brief cast names are drawn from the
+// SAME deterministic deal the blueprint uses, so briefs and blueprints can never disagree about
+// which invented names a chapter owns.
+export function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1, roots: CompilerStoreRoots, salts: SlotSalts): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
   const siblingNames = siblingUsedNames(bookId, chapterNumber, roots, salts);
   const { allowedNames, sourceProtectedNames } = dealAllowedNamesGiven(bookId, chapterNumber, packet, siblingNames, chapterSalts(salts, chapterNumber).names);
   return { allowedNames, sourceProtectedNames, siblingNames };
@@ -683,7 +688,10 @@ export function maxSharedPrefixCount(total: number): number {
   return total;
 }
 
-function answerPattern(chapterNumber: number, count: number, totalChapters?: number): number[] {
+// Exported ADDITIVELY for the v24 chapter-brief compiler: the brief's answerIndexPattern is the
+// SAME BP14-safe anti-gaming deal the compiler path pins into blueprints — solved technology,
+// reused rather than reinvented.
+export function answerPattern(chapterNumber: number, count: number, totalChapters?: number): number[] {
   // Balanced, deterministic, and pseudo-shuffled. The dealer walks chapters in
   // order and gives each one the first balanced pattern that was not already
   // used (full sequence) by an earlier chapter of the same quiz length, AND
