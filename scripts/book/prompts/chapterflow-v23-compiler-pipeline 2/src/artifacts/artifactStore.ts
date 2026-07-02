@@ -260,6 +260,23 @@ export function assemblyInputPath(bookId: string, chapterNumber: number, roots: 
   return resolve(artifactDir(bookId, "assembly", roots), `ch${String(chapterNumber).padStart(2, "0")}.assemble-input.json`);
 }
 
+/** The repair-routing decision ledger (P10). A book-level JSONL — one appended line per routing
+ *  decision (finding → lever → salt bumped → outcome) so a walk-away operator can audit exactly
+ *  which findings were re-dealt vs edited vs escalated in each QC round. */
+export function repairRoutingLedgerPath(bookId: string, roots: CompilerStoreRoots = {}): string {
+  return resolve(roots.stateRoot ?? CANONICAL_STATE, "books", `${normSlug(bookId)}.repair-routing.jsonl`);
+}
+
+/** The repair-owned slot-salts sidecar (P10). A book-level FILE (not inside a compiler run,
+ *  like rubricMetricsPath), holding the per-chapter salt bumps QC repair uses to RE-DEAL a
+ *  blueprint's example/venue/quiz/name slots. `compileChapterBlueprint` reads it and mixes each
+ *  salt into ONLY the matching deal's index math, so an ABSENT file (or an all-zero salt) yields
+ *  byte-identical blueprints to today. NOTHING but the repair router (redealAndRegenerate) may
+ *  write it — the compiler treats it as read-only input. */
+export function slotSaltsPath(bookId: string, roots: CompilerStoreRoots = {}): string {
+  return resolve(roots.stateRoot ?? CANONICAL_STATE, "book-design", `${normSlug(bookId)}.slot-salts.json`);
+}
+
 export function readJsonFile<T = unknown>(path: string): T {
   return JSON.parse(readFileSync(path, "utf8")) as T;
 }

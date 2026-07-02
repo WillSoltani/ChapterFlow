@@ -6,8 +6,8 @@ import { convergePolish, compilerPolishMode } from "./polishPass.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { recordCompilerAssemblyProvenance } from "../qc/sessionProvenance.js";
-import { acquireCompilerWriteLock, assemblyInputPath, COMPILER_RUN_OWNER_ENV, sectionPath } from "../artifacts/artifactStore.js";
-import { SECTION_KINDS } from "../artifacts/artifactTypes.js";
+import { acquireCompilerWriteLock, assemblyInputPath, COMPILER_RUN_OWNER_ENV, sectionPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import { SECTION_KINDS, type SectionKind } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
 
 const SOURCE_REPAIR_MAX_PASSES = 3;
@@ -100,6 +100,26 @@ async function runCompilerVerb(bookId: string, deps: AutopilotDeps, args: string
   return halt(bookId, `compiler ${label} failed (exit ${r.code}).\n${reportOf(r).slice(0, 2000)}`, category);
 }
 
+/** Spawn ONE section writer for a single (chapter, kind) task card, logging + recording the
+ *  session on success. Factored out of spawnMissingSectionTasks so the P10 redeal path
+ *  (regenerateSectionArtifact) reuses the EXACT same writer spawn — one authoring surface, not a
+ *  duplicate. `promptSuffix` lets a repair pass append a validator report to the writer's card. */
+async function spawnOneSectionWriter(bookId: string, deps: AutopilotDeps, task: ReturnType<typeof missingSectionTasks>[number], ownerEnv: Record<string, string>, promptSuffix = ""): Promise<void> {
+  const prompt = readSectionTask(task) + promptSuffix;
+  const sid = deps.mkSessionId(`section-${task.kind}-ch${task.chapterNumber}`);
+  deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: writer working`);
+  const r = await spawnAndLog(bookId, deps, `section-${task.kind}-ch${task.chapterNumber}`, {
+    task: prompt,
+    sessionId: sid,
+    cwd: process.cwd(),
+    sandbox: "workspace-write",
+    reasoningEffort: "medium",
+    env: ownerEnv,
+  } as SpawnOptions);
+  if (r.ok) writeSectionSessionRecord(task, sid);
+  deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: exited ${r.exitCode}`);
+}
+
 async function spawnMissingSectionTasks(bookId: string, deps: AutopilotDeps, maxParallel: number, ownerEnv: Record<string, string> = {}): Promise<void> {
   const missing = missingSectionTasks(bookId);
   if (missing.length === 0) {
@@ -107,21 +127,42 @@ async function spawnMissingSectionTasks(bookId: string, deps: AutopilotDeps, max
     return;
   }
   deps.log(`[autopilot] compiler sections: authoring ${missing.length} section artifact(s) (parallel ≤${maxParallel})`);
-  await mapWithConcurrency(missing, maxParallel, async (task) => {
-    const prompt = readSectionTask(task);
-    const sid = deps.mkSessionId(`section-${task.kind}-ch${task.chapterNumber}`);
-    deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: writer working`);
-    const r = await spawnAndLog(bookId, deps, `section-${task.kind}-ch${task.chapterNumber}`, {
-      task: prompt,
-      sessionId: sid,
-      cwd: process.cwd(),
-      sandbox: "workspace-write",
-      reasoningEffort: "medium",
-      env: ownerEnv,
-    } as SpawnOptions);
-    if (r.ok) writeSectionSessionRecord(task, sid);
-    deps.log(`[autopilot] section ch${String(task.chapterNumber).padStart(2, "0")} ${task.kind}: exited ${r.exitCode}`);
-  });
+  await mapWithConcurrency(missing, maxParallel, (task) => spawnOneSectionWriter(bookId, deps, task, ownerEnv));
+}
+
+/**
+ * P10 — regenerate ONE section artifact after a redeal, scoped to (chapter, kind). The caller
+ * (redealAndRegenerate) has already bumped the slot salt, recompiled the blueprint, re-dealt the
+ * section task cards, and DELETED the stale artifact — so here the one task card is `missing`,
+ * we spawn its writer, then validate + bounded-repair scoped to `--chapters n --section kind`
+ * (reusing the same SECTION_REPAIR_MAX_PASSES budget and validate loop as convergeSections, but
+ * narrowed to the single regenerated section rather than re-running the whole book). Returns null
+ * on success or a halt outcome if the regenerated section won't validate within the budget.
+ */
+export async function regenerateSectionArtifact(
+  bookId: string,
+  chapterNumber: number,
+  kind: SectionKind,
+  deps: AutopilotDeps,
+  opts: { heartbeat?: () => boolean; ownerEnv?: Record<string, string>; roots?: CompilerStoreRoots } = {},
+): Promise<AutopilotOutcome | null> {
+  const normalized = normSlug(bookId);
+  const heartbeat = opts.heartbeat ?? (() => true);
+  const ownerEnv = opts.ownerEnv ?? {};
+  const { sectionTasks } = await import("../sections/sectionTasks.js");
+  const task = sectionTasks(normalized, opts.roots ?? {}).find((t) => t.chapterNumber === chapterNumber && t.kind === kind);
+  if (!task) return halt(bookId, `redeal regen: no ${kind} task card for ch${chapterNumber} — deal-section-tasks must run before regenerate`, "infra");
+  await spawnOneSectionWriter(normalized, deps, task, ownerEnv);
+  for (let attempt = 0; attempt <= SECTION_REPAIR_MAX_PASSES; attempt++) {
+    if (!heartbeat()) return halt(bookId, `lost the run lock for ${bookId} during redeal section regen`, "infra");
+    const gate = await deps.runVerb(["validate-sections", normalized, "--chapters", String(chapterNumber), "--section", kind], ownerEnv);
+    if (gate.code === 0) return null;
+    if (gate.code >= 2) return halt(bookId, `redeal regen: validate-sections errored (exit ${gate.code}) for ch${chapterNumber} ${kind}:\n${reportOf(gate).slice(0, 1200)}`, "infra");
+    if (attempt >= SECTION_REPAIR_MAX_PASSES) return halt(bookId, `redeal regen: ch${chapterNumber} ${kind} still invalid after ${SECTION_REPAIR_MAX_PASSES} repair pass(es).\n${reportOf(gate).slice(0, 2000)}`);
+    deps.log(`[autopilot] redeal regen ch${String(chapterNumber).padStart(2, "0")} ${kind}: repair pass ${attempt + 1}/${SECTION_REPAIR_MAX_PASSES}`);
+    await spawnOneSectionWriter(normalized, deps, task, ownerEnv, `\n\nVALIDATOR REPORT — the regenerated ${kind} for ch${chapterNumber} did not validate. Fix ONLY ${task.outputPath} to clear these, preserving the dealt blueprint slots:\n${reportOf(gate).slice(0, 2000)}`);
+  }
+  throw new Error("unreachable: redeal regen loop must halt or return within the bounded passes");
 }
 
 // P07: repair rules mirror the section task card's layered brief — universal

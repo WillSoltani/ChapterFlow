@@ -1,0 +1,28 @@
+{
+  "$schema": "./finding-routing.schema.json",
+  "_comment": "P10 (F3) — maps a QC repair finding's CLASS to the repair LEVER that addresses its CAUSE. A templating finding whose cause is a dealt slot (a shared scene frame, a stamped venue, a reused name) routes to a `redeal:*` lever that bumps the blueprint's slot salt and regenerates the owning section artifact; a prose-local finding (a bar-axis miss, a semantic-alignment nit) routes to `surgical` (edit the chapter, then sync back into its artifacts); a templated-SOURCE finding routes to `escalate:research` (halt for re-research — you cannot un-template a book by editing chapters). The `redeal:*` levers correspond 1:1 to the four blueprint slot salts (exampleFrames / venues / quizShapes / names). Order below is the family → lever contract from the sweep families (see src/qc/sweepSpec.ts).",
+  "schemaVersion": "finding-routing-v1",
+  "default": "surgical",
+  "families": {
+    "scene_skeleton": { "lever": "redeal:example-slot" },
+    "location_stamping": { "lever": "redeal:venue" },
+    "persona_drift": { "lever": "redeal:names" },
+    "repeated_unit": {
+      "lever": "surgical",
+      "byUnit": {
+        "example": "redeal:example-slot",
+        "quiz": "redeal:quiz-slot",
+        "card": "redeal:card-slot"
+      }
+    }
+  },
+  "escalate": {
+    "lever": "escalate:research",
+    "match": ["templated_source", "source_integrity", "source_template", "sp14", "book_wide_duplicate", "boilerplate_source"]
+  },
+  "unitPatterns": {
+    "example": ["^ex\\d", "^chapter\\d+-ex", "example", "scenario"],
+    "quiz": ["^q\\d", "quiz", "question", "distractor"],
+    "card": ["^rc\\d", "review_card", "reviewcard", "card"]
+  }
+}
