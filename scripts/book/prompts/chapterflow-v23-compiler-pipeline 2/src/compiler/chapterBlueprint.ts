@@ -5,7 +5,7 @@ import { loadCanonicalChapterIndex, readCanonicalChapterIndex } from "../lib/cha
 import { normSlug } from "../lib/chapterPaths.js";
 import { canonicalJsonSha256 } from "../lib/canonicalJson.js";
 import { fnv1a } from "../lib/fnv1a.js";
-import { blueprintPath, readJsonFile, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
+import { blueprintPath, readJsonFile, slotSaltsPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import {
   CHAPTER_BLUEPRINT_SCHEMA_VERSION,
   type ChapterBlueprintV1,
@@ -25,6 +25,59 @@ export type CompileBlueprintsResult = {
   written: string[];
   findings: string[];
 };
+
+// ── Repair-owned slot salts (P10) ────────────────────────────────────────────────
+// A blueprint is a PURE function of (bookId, chapterNumber, sourcePacket) — and now a fourth
+// input: the repair-owned salts sidecar (state/book-design/<bookId>.slot-salts.json). QC repair
+// bumps a named salt to RE-DEAL a specific slot family for a specific chapter (e.g. a
+// scene_skeleton finding on ch2 → bump ch2.exampleFrames → its example scenes get fresh frames).
+// The salt is mixed into ONLY the matching deal's index math, and DEFAULT salt 0 leaves every
+// deal byte-identical to today (an absent file ⇒ every salt 0), so the determinism contract is
+// preserved: "given (index, packets, salts) the blueprint is reproducible". The salts file is
+// repair-owned — nothing but redealAndRegenerate writes it (see src/orchestrator/repairRouting.ts).
+
+export type ChapterSlotSalts = { exampleFrames?: number; venues?: number; quizShapes?: number; names?: number };
+export type SlotSalts = { chapters: Record<string, ChapterSlotSalts> };
+
+function normalizeSalt(value: unknown): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 0 ? n : 0;
+}
+
+/** Read (and normalize) the salts sidecar for a book. Missing/unreadable/negative ⇒ all-zero
+ *  salts, i.e. today's blueprint. Fail-safe by design: a corrupt salts file must never crash a
+ *  compile — it just deals the un-salted (baseline) slots. */
+export function readSlotSalts(bookId: string, roots: CompilerStoreRoots = {}): SlotSalts {
+  const p = slotSaltsPath(bookId, roots);
+  if (!existsSync(p)) return { chapters: {} };
+  try {
+    const raw = readJsonFile<SlotSalts>(p);
+    const chapters: Record<string, ChapterSlotSalts> = {};
+    for (const [k, v] of Object.entries(raw?.chapters ?? {})) {
+      if (!/^\d+$/.test(String(k))) continue;
+      chapters[String(k)] = {
+        exampleFrames: normalizeSalt((v as ChapterSlotSalts)?.exampleFrames),
+        venues: normalizeSalt((v as ChapterSlotSalts)?.venues),
+        quizShapes: normalizeSalt((v as ChapterSlotSalts)?.quizShapes),
+        names: normalizeSalt((v as ChapterSlotSalts)?.names),
+      };
+    }
+    return { chapters };
+  } catch {
+    return { chapters: {} };
+  }
+}
+
+/** The four salts for one chapter (0 for any not set). */
+export function chapterSalts(salts: SlotSalts, chapterNumber: number): Required<ChapterSlotSalts> {
+  const c = salts.chapters[String(chapterNumber)] ?? {};
+  return {
+    exampleFrames: normalizeSalt(c.exampleFrames),
+    venues: normalizeSalt(c.venues),
+    quizShapes: normalizeSalt(c.quizShapes),
+    names: normalizeSalt(c.names),
+  };
+}
 
 const FALLBACK_NAME_BANK = [
   "Liam", "Noah", "Ethan", "Lucas", "Benjamin", "Jack", "Jacob", "William", "James", "Henry", "Alexander", "Logan",
@@ -54,17 +107,20 @@ function rotate<T>(xs: T[], offset: number): T[] {
   return xs.slice(n).concat(xs.slice(0, n));
 }
 
-function chapterNameCandidates(bookId: string, chapterNumber: number): string[] {
+function chapterNameCandidates(bookId: string, chapterNumber: number, nameSalt = 0): string[] {
   const bank = compilerNameBank().filter((name) => !C7_BANNED.has(name));
-  const rotated = rotate(bank, fnv1a(normSlug(bookId)) % Math.max(1, bank.length));
+  // nameSalt rotates the bank a further `nameSalt` positions before bucketing, so a `redeal:names`
+  // bump draws this chapter from a shifted slice of the bank (fresh protagonists to resolve a
+  // persona_drift finding). Salt 0 ⇒ the original offset, i.e. byte-identical to today.
+  const rotated = rotate(bank, (fnv1a(normSlug(bookId)) + nameSalt) % Math.max(1, bank.length));
   const bucket = (chapterNumber - 1) % NAME_BUCKET_COUNT;
   return rotated.filter((_, i) => i % NAME_BUCKET_COUNT === bucket);
 }
 
-function dealAllowedNamesGiven(bookId: string, chapterNumber: number, packet: SourcePacketV1, siblingNames: Set<string>): { allowedNames: string[]; sourceProtectedNames: Set<string> } {
+function dealAllowedNamesGiven(bookId: string, chapterNumber: number, packet: SourcePacketV1, siblingNames: Set<string>, nameSalt = 0): { allowedNames: string[]; sourceProtectedNames: Set<string> } {
   const bank = compilerNameBank();
   const sourceProtectedNames = protectedSourceNames(packet, bank);
-  const candidates = chapterNameCandidates(bookId, chapterNumber).filter((name) => !sourceProtectedNames.has(name) && !siblingNames.has(name));
+  const candidates = chapterNameCandidates(bookId, chapterNumber, nameSalt).filter((name) => !sourceProtectedNames.has(name) && !siblingNames.has(name));
   const allowedNames = candidates.slice(0, EXAMPLE_SLOT_COUNT);
   if (allowedNames.length >= EXAMPLE_SLOT_COUNT) return { allowedNames, sourceProtectedNames };
 
@@ -91,7 +147,7 @@ function dealAllowedNamesGiven(bookId: string, chapterNumber: number, packet: So
  * assembly could deal different names than a fresh compile (non-reproducible
  * blueprints, see blueprint-determinism.test.ts).
  */
-function siblingUsedNames(bookId: string, chapterNumber: number, roots: CompilerStoreRoots): Set<string> {
+function siblingUsedNames(bookId: string, chapterNumber: number, roots: CompilerStoreRoots, salts: SlotSalts): Set<string> {
   const used = new Set<string>();
   const bucket = (chapterNumber - 1) % NAME_BUCKET_COUNT;
   const index = readCanonicalChapterIndex(bookId, roots.stateRoot);
@@ -105,7 +161,11 @@ function siblingUsedNames(bookId: string, chapterNumber: number, roots: Compiler
     if (!existsSync(packetP)) continue;
     try {
       const packet = readJsonFile<SourcePacketV1>(packetP);
-      const { allowedNames } = dealAllowedNamesGiven(bookId, n, packet, used);
+      // Replay the sibling's deal with ITS OWN name salt — a sibling that was re-dealt draws a
+      // different slice, so using salt 0 here would compute the wrong "used" set and could deal a
+      // colliding name into this chapter. Determinism given (index, packets, salts) requires the
+      // replay honor each sibling's persisted salt.
+      const { allowedNames } = dealAllowedNamesGiven(bookId, n, packet, used, chapterSalts(salts, n).names);
       for (const name of allowedNames) used.add(name);
     } catch {
       // An earlier sibling's packet being unreadable should not fail this
@@ -115,9 +175,9 @@ function siblingUsedNames(bookId: string, chapterNumber: number, roots: Compiler
   return used;
 }
 
-function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1, roots: CompilerStoreRoots): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
-  const siblingNames = siblingUsedNames(bookId, chapterNumber, roots);
-  const { allowedNames, sourceProtectedNames } = dealAllowedNamesGiven(bookId, chapterNumber, packet, siblingNames);
+function dealAllowedNames(bookId: string, chapterNumber: number, packet: SourcePacketV1, roots: CompilerStoreRoots, salts: SlotSalts): { allowedNames: string[]; sourceProtectedNames: Set<string>; siblingNames: Set<string> } {
+  const siblingNames = siblingUsedNames(bookId, chapterNumber, roots, salts);
+  const { allowedNames, sourceProtectedNames } = dealAllowedNamesGiven(bookId, chapterNumber, packet, siblingNames, chapterSalts(salts, chapterNumber).names);
   return { allowedNames, sourceProtectedNames, siblingNames };
 }
 
@@ -634,18 +694,27 @@ export function compileChapterBlueprint(args: {
    *  rather than over-constrains when the caller doesn't know the final
    *  count yet). */
   totalChapters?: number;
+  /** Repair-owned per-book slot salts (P10). Defaults to reading the sidecar via `roots`; an
+   *  absent file / all-zero salts ⇒ byte-identical to today. Injectable so a test can drive the
+   *  re-deal without touching disk. */
+  salts?: SlotSalts;
 }): ChapterBlueprintV1 {
-  const { bookId, chapter, packet, packetPath, roots = {}, totalChapters } = args;
+  const { bookId, chapter, packet, packetPath, roots = {}, totalChapters, salts = readSlotSalts(bookId, roots) } = args;
   const ids = factIds(packet);
   const allFactIds = rawFactIds(packet);
   assertFactIdsSubset(ids, allFactIds, `chapter ${chapter.chapterNumber} blueprint`);
   const cases = caseIds(packet);
   const n = chapter.chapterNumber;
+  // The four dealt-slot salts for THIS chapter (0 ⇒ baseline). Each is mixed into ONLY its own
+  // deal's index math below, so bumping one re-deals one slot family and leaves the rest identical.
+  const { exampleFrames: exampleSalt, venues: venueSalt, quizShapes: quizSalt } = chapterSalts(salts, n);
   const quizCount = 9;
   const cardCount = 7;
   const exampleCount = EXAMPLE_SLOT_COUNT;
-  const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots);
-  const venuePalette = plannedVenuePalette(bookId, n);
+  const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots, salts);
+  // venueSalt rotates the planned palette so a `redeal:venue` bump re-stamps the chapter's example
+  // venues; rotate(…, 0) is the identity, so salt 0 keeps the original palette order.
+  const venuePalette = rotate(plannedVenuePalette(bookId, n), venueSalt);
   const pattern = answerPattern(n, quizCount, totalChapters);
   const usedExampleCaseCounts = new Map<string, number>();
   const examples: ExampleSlotV1[] = Array.from({ length: exampleCount }, (_, i) => {
@@ -657,37 +726,43 @@ export function compileChapterBlueprint(args: {
       // Guarantee a MIX: odd slots get a non-deliberation experiential engine, even slots a
       // decision engine — so every chapter's six examples span both kinds (3+3) instead of six
       // flavors of "decide." This is the deterministic lever against scene_skeleton sameness.
+      // exampleSalt shifts the scene-frame + beat pick (only) so a `redeal:example-slot` bump
+      // gives the chapter fresh scene engines to break a scene_skeleton/repeated_unit shell; salt 0
+      // ⇒ the original index, byte-identical to today.
       sceneFrame: i % 2 === 1
-        ? EXAMPLE_SCENE_FRAMES_EXPERIENTIAL[(n * 3 + i * 5) % EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length]
-        : EXAMPLE_SCENE_FRAMES[(n * 5 + i * 7) % EXAMPLE_SCENE_FRAMES.length],
+        ? EXAMPLE_SCENE_FRAMES_EXPERIENTIAL[(n * 3 + i * 5 + exampleSalt) % EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length]
+        : EXAMPLE_SCENE_FRAMES[(n * 5 + i * 7 + exampleSalt) % EXAMPLE_SCENE_FRAMES.length],
       venue: venuePalette[i % venuePalette.length],
       allowedNames: pick(allowedNames, i, 3),
       requiredFactIds: factId ? [factId] : [],
       requiredCaseIds: exampleCaseIdForFact(packet, factId, i, usedExampleCaseCounts),
       forbiddenVenues: FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
       requiredBeat: i % 2 === 1
-        ? EXAMPLE_BEATS_EXPERIENTIAL[(n * 3 + i) % EXAMPLE_BEATS_EXPERIENTIAL.length]
-        : EXAMPLE_BEATS[(n + i - 1) % EXAMPLE_BEATS.length],
+        ? EXAMPLE_BEATS_EXPERIENTIAL[(n * 3 + i + exampleSalt) % EXAMPLE_BEATS_EXPERIENTIAL.length]
+        : EXAMPLE_BEATS[(n + i - 1 + exampleSalt) % EXAMPLE_BEATS.length],
     };
   });
   const quiz: QuizSlotV1[] = Array.from({ length: quizCount }, (_, i) => ({
     questionId: `q${String(i + 1).padStart(2, "0")}`,
     requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
     caseCueIds: cases.length ? [cases[(n + i - 1) % cases.length]] : [],
+    // correctIndex stays UNSALTED — it is pinned by answerPattern's BP14-safe deal and a
+    // repair must never silently move a quiz key. quizSalt shifts only the SHAPE picks (prompt/
+    // answer/distractor here; card shapes below), the redeal:quiz-slot / redeal:card-slot lever.
     correctIndex: pattern[i],
     depthLevel: i < 2 ? "simple" : i < 6 ? "standard" : "deep",
-    promptShape: QUIZ_PROMPT_SHAPES[(n + i - 1) % QUIZ_PROMPT_SHAPES.length],
-    answerStyle: QUIZ_ANSWER_STYLES[(n * 2 + i) % QUIZ_ANSWER_STYLES.length],
-    distractorTrap: QUIZ_DISTRACTOR_TRAPS[(n * 3 + i) % QUIZ_DISTRACTOR_TRAPS.length],
+    promptShape: QUIZ_PROMPT_SHAPES[(n + i - 1 + quizSalt) % QUIZ_PROMPT_SHAPES.length],
+    answerStyle: QUIZ_ANSWER_STYLES[(n * 2 + i + quizSalt) % QUIZ_ANSWER_STYLES.length],
+    distractorTrap: QUIZ_DISTRACTOR_TRAPS[(n * 3 + i + quizSalt) % QUIZ_DISTRACTOR_TRAPS.length],
   }));
   const cards: CardSlotV1[] = Array.from({ length: cardCount }, (_, i) => ({
     cardId: `rc${String(i + 1).padStart(2, "0")}`,
     requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
     caseCueIds: cases.length ? [cases[(n * 2 + i) % cases.length]] : [],
     difficulty: i < 2 ? "easy" : i < 5 ? "medium" : "hard",
-    frontShape: CARD_FRONT_SHAPES[(n + i - 1) % CARD_FRONT_SHAPES.length],
-    retrievalTarget: CARD_RETRIEVAL_TARGETS[(n * 2 + i) % CARD_RETRIEVAL_TARGETS.length],
-    backShape: CARD_BACK_SHAPES[(n * 3 + i) % CARD_BACK_SHAPES.length],
+    frontShape: CARD_FRONT_SHAPES[(n + i - 1 + quizSalt) % CARD_FRONT_SHAPES.length],
+    retrievalTarget: CARD_RETRIEVAL_TARGETS[(n * 2 + i + quizSalt) % CARD_RETRIEVAL_TARGETS.length],
+    backShape: CARD_BACK_SHAPES[(n * 3 + i + quizSalt) % CARD_BACK_SHAPES.length],
   }));
   const actionMechanism = ACTION_MECHANISMS[(n - 1) % ACTION_MECHANISMS.length];
   const weeklyPracticeForm = WEEKLY_FORMS[(n - 1) % WEEKLY_FORMS.length];

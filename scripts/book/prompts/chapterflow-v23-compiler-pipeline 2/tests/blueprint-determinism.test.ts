@@ -9,6 +9,12 @@
  * a same-bucket sibling chapter is assembled on disk. ch01 and ch41 share a name
  * bucket: (n - 1) % NAME_BUCKET_COUNT is the same for both, so they are the pair
  * the disk-based de-collision logic actually touched.
+ *
+ * P10 extends the contract: the blueprint is a pure function of a FOURTH input, the
+ * repair-owned salts sidecar (state/book-design/<bookId>.slot-salts.json). Determinism is now
+ * "given (index, packets, salts) the blueprint is reproducible", and — critically — an ABSENT
+ * salts file (or all-zero salts) yields the SAME bytes as before this change, so no committed
+ * book's blueprints move. The tests below pin both halves.
  */
 import assert from "node:assert/strict";
 import { existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
@@ -17,9 +23,9 @@ import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
-import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
+import { compileChapterBlueprint, type SlotSalts } from "../src/compiler/chapterBlueprint.js";
 import { CHAPTERS_DIR, chapterFileName } from "../src/lib/chapterPaths.js";
-import { sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
+import { slotSaltsPath, sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 
@@ -100,6 +106,76 @@ test("blueprint compiler reservedVariety is invariant to sibling chapter files o
   } finally {
     cleanupChapterFile(ch01.chapterId);
     cleanupChapterFile(ch41.chapterId);
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+test("P10: blueprint is byte-identical with an absent, empty, or all-zero salts sidecar (baseline preserved)", () => {
+  const stateRoot = resolve(tmpdir(), `cf-v23-salts-zero-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const ch = chapterSpec(2, "Chapter Two");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${BOOK}.json`), [ch]);
+    const packet = compileSourcePacketFromSidecar({ bookId: BOOK, chapter: ch, sidecar: sidecar(2, "Chapter Two"), sidecarPath: "/tmp/zz-ch02.source.json", sourceHash: "hash2" });
+    writeJsonFile(sourcePacketPath(BOOK, 2, roots), packet);
+    const args = { bookId: BOOK, chapter: ch, packet, packetPath: sourcePacketPath(BOOK, 2, roots), roots } as const;
+
+    // (1) no salts file at all
+    const bpNoFile = compileChapterBlueprint(args);
+    // (2) an empty salts file
+    writeJsonFile(slotSaltsPath(BOOK, roots), { chapters: {} } satisfies SlotSalts);
+    const bpEmptyFile = compileChapterBlueprint(args);
+    // (3) an explicit all-zero salts entry for this chapter
+    writeJsonFile(slotSaltsPath(BOOK, roots), { chapters: { "2": { exampleFrames: 0, venues: 0, quizShapes: 0, names: 0 } } } satisfies SlotSalts);
+    const bpZeros = compileChapterBlueprint(args);
+    // (4) an injected all-zero salts object (bypassing disk)
+    const bpInjected = compileChapterBlueprint({ ...args, salts: { chapters: {} } });
+
+    const baseline = JSON.stringify(bpNoFile);
+    assert.equal(JSON.stringify(bpEmptyFile), baseline, "empty salts file must not move the blueprint");
+    assert.equal(JSON.stringify(bpZeros), baseline, "all-zero salts must not move the blueprint");
+    assert.equal(JSON.stringify(bpInjected), baseline, "injected empty salts must not move the blueprint");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+test("P10: a salt bump changes ONLY the salted slot family, and re-compiling with the same salts is reproducible", () => {
+  const stateRoot = resolve(tmpdir(), `cf-v23-salts-isolate-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const ch = chapterSpec(3, "Chapter Three");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${BOOK}.json`), [ch]);
+    const packet = compileSourcePacketFromSidecar({ bookId: BOOK, chapter: ch, sidecar: sidecar(3, "Chapter Three"), sidecarPath: "/tmp/zz-ch03.source.json", sourceHash: "hash3" });
+    writeJsonFile(sourcePacketPath(BOOK, 3, roots), packet);
+    const args = { bookId: BOOK, chapter: ch, packet, packetPath: sourcePacketPath(BOOK, 3, roots), roots } as const;
+    const base = compileChapterBlueprint(args);
+
+    // Bump ONLY exampleFrames: the example scene frames/beats change; venues, quiz/card shapes,
+    // and allowedNames stay put.
+    const exBumped = compileChapterBlueprint({ ...args, salts: { chapters: { "3": { exampleFrames: 3 } } } });
+    assert.notDeepEqual(exBumped.sections.examples.map((e) => [e.sceneFrame, e.requiredBeat]), base.sections.examples.map((e) => [e.sceneFrame, e.requiredBeat]), "exampleFrames bump must change scene frames/beats");
+    assert.deepEqual(exBumped.sections.examples.map((e) => e.venue), base.sections.examples.map((e) => e.venue), "exampleFrames bump must NOT move venues");
+    assert.deepEqual(exBumped.reservedVariety.allowedNames, base.reservedVariety.allowedNames, "exampleFrames bump must NOT move names");
+    assert.deepEqual(exBumped.sections.quiz.map((q) => q.promptShape), base.sections.quiz.map((q) => q.promptShape), "exampleFrames bump must NOT move quiz shapes");
+
+    // Bump ONLY venues.
+    const venueBumped = compileChapterBlueprint({ ...args, salts: { chapters: { "3": { venues: 2 } } } });
+    assert.notDeepEqual(venueBumped.sections.examples.map((e) => e.venue), base.sections.examples.map((e) => e.venue), "venues bump must rotate venues");
+    assert.deepEqual(venueBumped.sections.examples.map((e) => e.sceneFrame), base.sections.examples.map((e) => e.sceneFrame), "venues bump must NOT move scene frames");
+
+    // Bump ONLY quizShapes: quiz + card shapes move; correctIndex pattern does NOT.
+    const quizBumped = compileChapterBlueprint({ ...args, salts: { chapters: { "3": { quizShapes: 4 } } } });
+    assert.notDeepEqual(quizBumped.sections.quiz.map((q) => q.promptShape), base.sections.quiz.map((q) => q.promptShape), "quizShapes bump must move quiz shapes");
+    assert.deepEqual(quizBumped.sections.quiz.map((q) => q.correctIndex), base.sections.quiz.map((q) => q.correctIndex), "quizShapes bump must NOT move quiz keys");
+    assert.notDeepEqual(quizBumped.sections.cards.map((c) => c.frontShape), base.sections.cards.map((c) => c.frontShape), "quizShapes bump must move card shapes");
+
+    // Reproducible: same salts → byte-identical.
+    const quizBumpedAgain = compileChapterBlueprint({ ...args, salts: { chapters: { "3": { quizShapes: 4 } } } });
+    assert.equal(JSON.stringify(quizBumpedAgain), JSON.stringify(quizBumped), "same (index, packet, salts) must reproduce the same blueprint");
+  } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
 });

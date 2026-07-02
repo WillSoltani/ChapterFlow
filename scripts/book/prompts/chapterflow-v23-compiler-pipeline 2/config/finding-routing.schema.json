@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "finding-routing.schema.json",
+  "title": "Finding-routing config (P10)",
+  "description": "Maps a QC repair finding's class to a repair lever (redeal:* / surgical / escalate:research). The authoritative validator is validateFindingRoutingConfig() in src/qc/findingRouting.ts; this schema documents the shape.",
+  "type": "object",
+  "required": ["schemaVersion", "default", "families", "escalate", "unitPatterns"],
+  "additionalProperties": true,
+  "definitions": {
+    "lever": {
+      "type": "string",
+      "enum": ["redeal:example-slot", "redeal:venue", "redeal:quiz-slot", "redeal:card-slot", "redeal:names", "surgical", "escalate:research"]
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "_comment": { "type": "string" },
+    "schemaVersion": { "const": "finding-routing-v1" },
+    "default": { "$ref": "#/definitions/lever" },
+    "families": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["lever"],
+        "properties": {
+          "lever": { "$ref": "#/definitions/lever" },
+          "byUnit": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/definitions/lever" },
+            "propertyNames": { "enum": ["example", "quiz", "card"] }
+          }
+        }
+      }
+    },
+    "escalate": {
+      "type": "object",
+      "required": ["lever", "match"],
+      "properties": {
+        "lever": { "$ref": "#/definitions/lever" },
+        "match": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "unitPatterns": {
+      "type": "object",
+      "propertyNames": { "enum": ["example", "quiz", "card"] },
+      "additionalProperties": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
