@@ -53,7 +53,7 @@ export const REPO_ROOT = resolve(__dirname, "../..");
  * to be its own top-level repo, this resolves outside any real repo and the check
  * simply finds nothing there: a safe no-op, not a silent skip.
  */
-const MONOREPO_ANCESTOR = resolve(__dirname, "../../../../../..");
+export const MONOREPO_ANCESTOR = resolve(__dirname, "../../../../../..");
 /** The accidental outer-checkout shadow `state/` — chapters here are INVISIBLE to gates. */
 export const FORBIDDEN_STATE = resolve(MONOREPO_ANCESTOR, "state");
 
