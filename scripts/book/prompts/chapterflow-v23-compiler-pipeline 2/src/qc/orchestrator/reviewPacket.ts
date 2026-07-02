@@ -195,6 +195,12 @@ export function writeReviewPacket(
   // Family definitions + FP-guards + scope/severity rubric come from sweepSpec — the SINGLE
   // source of truth the pre-QC scout also renders from, so a scout-clean book is predictively
   // sweep-clean and both callers quote identical family definitions.
+  // NOTE (P08, deliberate): unification made this card a UNION of the old inline card and the
+  // scout's richer #375-validated clauses — each definition gained its "This INCLUDES …"
+  // extension, plus the recurring-GESTURE FP-guard and the severity-rules line. The card TEXT
+  // is therefore not byte-identical to pre-P08; the sweep DATA pack and every mechanical
+  // semantic (fingerprints, corroboration, sweepFindingBlocks) are (golden 315b212d…). The
+  // gesture guard restates what nondistinctiveRepetitionQuote already enforces mechanically.
   L.push(renderSweepFamilyRubric());
   L.push(`Set verdict to PASS / REVISE / CORRUPTION (replace FILL_ME). REVISE/CORRUPTION need ≥1 quote-backed finding citing the SPECIFIC chapters and the shared shell.`);
   L.push(submitCmd(bookId, roundId, "sweep", tokens.sweep, "<sweep.json>"));
