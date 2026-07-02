@@ -474,6 +474,16 @@ export function notebookTagSk(bookId: string, chapterNumber: number): string {
   return `NOTEBOOK_TAGS#${bookId}#${padChapterNumber(chapterNumber)}`;
 }
 
+// ── Reader Highlight keys (Feature B6 — iOS reader) ───────────────────────────
+
+/** SK for one first-class reader highlight under the user partition. */
+export function highlightSk(highlightId: string): string {
+  return `HIGHLIGHT#${highlightId}`;
+}
+
+/** SK prefix matching EVERY highlight row under a user partition (`begins_with`). */
+export const HIGHLIGHT_SK_PREFIX = "HIGHLIGHT#";
+
 // ── AI Chat keys (Feature #16) ───────────────────────────────────────────────
 
 export function aiQuestionCountSk(date: string): string {
