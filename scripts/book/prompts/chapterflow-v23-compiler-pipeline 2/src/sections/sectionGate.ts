@@ -24,6 +24,13 @@ import { GLOBAL_RESERVED_SOURCE_FIGURE_NAMES, protectedSourceNames, sourceNameAc
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { memorableLineScore } from "../optimizers/memorableLines.js";
+import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
+import {
+  QUIZ_TELL_MAX_PER_CHAPTER,
+  quizTransferFloor,
+  quizTransferTarget,
+  SUMMARY_MIN_CLEAN_MEMORABLE_LINES,
+} from "./pedagogyThresholds.js";
 import type { SourceClaimType } from "../types.js";
 
 export type SectionFinding = {
@@ -1939,6 +1946,26 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   if (selectedMemorable.length < 3) {
     push("SEC17.summary_memorable_candidate_count", "blocker", `breakdown yields only ${selectedMemorable.length}/3 acceptable deterministic memorable-line candidates; seed standalone aphoristic sentences`, "/breakdown");
   }
+  // ---- rubric-parity clean-memorable floor (P03, F12) ----------------------
+  // score.py's ONLY deterministic cleanliness rule is <=14 words. The harvested
+  // candidates (memorableLineScore, 6 to 16 words) may include 15/16-word lines the
+  // rubric will not count; require at least SUMMARY_MIN_CLEAN_MEMORABLE_LINES that
+  // clear the <=14-word bar. Blocker; calibrated zero-FP (every >=85 breakdown
+  // yields 19+ clean candidates).
+  const cleanMemorableCount = (() => {
+    const seen = new Set<string>();
+    let clean = 0;
+    for (const candidate of memorableCandidates) {
+      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (memorableLineClean(candidate.text)) clean += 1;
+    }
+    return clean;
+  })();
+  if (cleanMemorableCount < SUMMARY_MIN_CLEAN_MEMORABLE_LINES) {
+    push("SEC118.summary_memorable_lines", "blocker", `breakdown yields only ${cleanMemorableCount} clean (<=14-word) memorable-line candidate(s); at least ${SUMMARY_MIN_CLEAN_MEMORABLE_LINES} are required (rubric memorable-line cleanliness); seed shorter standalone aphorisms of 8-14 words`, "/breakdown");
+  }
   for (const candidate of selectedMemorable) {
     for (const p of validateAnchorClaimType(candidate.ids, anchors, "memorable_line", `selected memorable line in breakdown.${candidate.tier}`)) push("SEC15.summary_memorable_anchor_claim_type", "blocker", p, `/breakdown/${candidate.tier}`);
     for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`)) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
@@ -2160,6 +2187,46 @@ export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV
       if (avgDistractorChars > 0 && correctChars > avgDistractorChars * 1.5) {
         push("SEC53.quiz_answer_length_balance", "blocker", `q${i + 1} correct answer has ${correctChars} chars vs ${avgDistractorChars.toFixed(1)} average distractor chars; keep it at or below 1.5x`, `/quiz/questions/${i}/choices/${q.correctIndex}`);
       }
+    }
+  }
+  // ---- rubric-parity pedagogy budgets (P03, F12) ---------------------------
+  // score.py-parity metrics (rubricMetrics); per-chapter budgets in
+  // pedagogyThresholds. TRANSFER ships as a blocker (calibrated zero-FP on every
+  // >=85 book; it is the check that actually trips POM). DISTRACTOR-TELL ships
+  // ADVISORY (shadow): the published catalog — including all four >=85 books —
+  // already ships at 53-84% char-longest-key tell (atomic-habits: >2 tells in
+  // 20/20 chapters), so NO per-chapter tell budget both clears the catalog and
+  // trips a weaker book. Promotion to blocker waits until the contract steering
+  // brings catalog tell down. See scratch/calibrate-pedagogy.ts.
+  const qid = (q: unknown, i: number) => text((q as { questionId?: unknown })?.questionId) || `q${i + 1}`;
+  const tellOffenders = qs.map((q, i) => ({ q, i })).filter(({ q }) => distractorTell(q as any).tell).map(({ q, i }) => qid(q, i));
+  if (tellOffenders.length > QUIZ_TELL_MAX_PER_CHAPTER) {
+    push(
+      "SEC116.quiz_distractor_tell",
+      "advisory",
+      `${tellOffenders.length} questions key the uniquely-longest choice by character count (rubric distractor-tell, longest): ${tellOffenders.join(", ")}; give distractors equal scenario-specific substance so the keyed answer is not the longest`,
+      "/quiz/questions",
+    );
+  }
+  if (qs.length > 0) {
+    const transferCount = qs.filter((q) => transferRatio([q as any]) === 100).length;
+    const bareRecall = qs.map((q, i) => ({ q, i })).filter(({ q }) => transferRatio([q as any]) !== 100).map(({ q, i }) => qid(q, i));
+    const floor = quizTransferFloor(qs.length);
+    const target = quizTransferTarget(qs.length);
+    if (transferCount < floor) {
+      push(
+        "SEC117.quiz_transfer_floor",
+        "blocker",
+        `only ${transferCount}/${qs.length} quiz questions pose a NEW scenario (transfer floor ${floor}); these read as bare recall: ${bareRecall.join(", ")}; rewrite them as apply/analyze scenarios ("you are…", "imagine…", "suppose…", "your team…") or give them an apply-level bloomsLevel`,
+        "/quiz/questions",
+      );
+    } else if (transferCount < target) {
+      push(
+        "SEC117.quiz_transfer_floor",
+        "advisory",
+        `${transferCount}/${qs.length} quiz questions are transfer; target ${target} of ${qs.length}; still bare recall: ${bareRecall.join(", ")}`,
+        "/quiz/questions",
+      );
     }
   }
   const cards = pack.cards?.cards ?? [];
