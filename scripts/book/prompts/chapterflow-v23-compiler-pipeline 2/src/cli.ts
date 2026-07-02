@@ -159,6 +159,14 @@ Commands:
                                      One-verb ship. Resolves the book, auto-fills title/author from its
                                      brief, then runs promote-book (so it CANNOT ship a book that has not
                                      passed QC). Run after qc-auto ... --pass reports PASS.
+  publish-to-live <bookId> [--commit] [--outer-root <path>]
+                                     Sandbox→live bridge. Verifies the LOCAL book-packages/<id>.v21.json
+                                     (production verifier), copies it to the OUTER checkout root's
+                                     git-tracked book-packages/ (what the live app bundles), byte-hash
+                                     verifies the copy, and probes lib/bookPackages.ts registration.
+                                     Report-only by default; --commit stages+commits ONLY that file in
+                                     the outer repo (never pushes; refuses if it is already staged/dirty
+                                     there from other work).
   qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]
                                      Record the authoring session (state/provenance/) so a later FRESH QC
                                      session can't grade its own work when
@@ -1686,6 +1694,31 @@ async function runPublish(args: string[], flags: Record<string, string | boolean
   // Delegate to promote-book with the resolved title/author so all gating (incl.
   // the no-API QC-attestation gate) runs exactly once, in one place.
   return runPromoteBook([bookId], { ...flags, title, author });
+}
+
+/** `publish-to-live <bookId> [--commit]` — the sandbox→live bridge (v24 A3).
+ *  Verify the local sandbox package, copy it to the OUTER checkout root's
+ *  git-tracked book-packages/ (what the live app bundles), byte-hash verify,
+ *  probe lib/bookPackages.ts registration, and optionally commit ONLY that
+ *  file in the outer repo. Fail-closed; never pushes. See src/publish/publishToLive.ts. */
+async function runPublishToLive(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) {
+    console.error("Usage: publish-to-live <bookId> [--commit] [--outer-root <path>]");
+    return 2;
+  }
+  const { publishToLive } = await import("./publish/publishToLive.js");
+  const result = await publishToLive(bookId, {
+    commit: flags["commit"] === true,
+    outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
+  });
+  for (const step of result.steps) console.log(`  ${step}`);
+  if (!result.ok) {
+    console.error(`publish-to-live: BLOCK — ${result.error}`);
+    return 1;
+  }
+  console.log(`publish-to-live: OK (${bookId})`);
+  return 0;
 }
 
 /** `qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]` — record the
@@ -5406,6 +5439,8 @@ async function main() {
       return runGenerate(args, flags);
     case "publish":
       return runPublish(args, flags);
+    case "publish-to-live":
+      return runPublishToLive(args, flags);
     case "qc-stamp-author":
       return runStampAuthor(args, flags);
     case "book-status":
