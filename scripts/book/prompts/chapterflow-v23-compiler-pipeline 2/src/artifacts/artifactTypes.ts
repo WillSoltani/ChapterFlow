@@ -52,6 +52,12 @@ export type SourcePacketFact = {
    *  around the identical thesis (which saturates the section-gate SEC90 phrase
    *  budget book-wide). See chapterBlueprint.factIds(). */
   bookWideDuplicate?: boolean;
+  /** 1-based pedagogical teaching rank (1 = best teaching fact) assigned by the
+   *  packet compiler's deterministic rankTeachingFacts() pass (P13). Additive and
+   *  optional: legacy packets written before P13 have no teachingPriority, in which
+   *  case the blueprint dealer falls back to positional (packet-order) fact dealing
+   *  so those packets compile byte-identically. Feature keys on field presence. */
+  teachingPriority?: number;
 };
 
 export type SourcePacketCase = {
@@ -94,6 +100,11 @@ export type SourcePacketV1 = {
     status: "strong" | "adequate" | "thin" | "blocked";
     risks: string[];
   };
+  /** Id of the top-ranked mechanism-bearing fact (the chapter's best idea) chosen by
+   *  rankTeachingFacts() (P13). The blueprint's coreMove is built from this fact's
+   *  mechanism/claim instead of packet.facts[0]. Additive/optional: absent on legacy
+   *  packets, in which case coreMove falls back to facts[0] (byte-identical). */
+  coreMoveFactId?: string;
 };
 
 export type HookSlot = {

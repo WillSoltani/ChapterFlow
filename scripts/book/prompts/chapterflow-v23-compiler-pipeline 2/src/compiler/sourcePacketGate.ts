@@ -3,6 +3,7 @@ import { SOURCE_PACKET_SCHEMA_VERSION } from "../artifacts/artifactTypes.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { readJsonFile, sourcePacketPath, type CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import { normSlug } from "../lib/chapterPaths.js";
+import { rankTeachingFacts, WEAK_RANKING_MIN_SCORE } from "./sourcePacketFacts.js";
 
 export type PacketGateFinding = {
   checkId: string;
@@ -65,6 +66,22 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
   }
   if (!Array.isArray(packet.allowedAnchors) || packet.allowedAnchors.length === 0) push("SP12.anchors", "blocker", "source packet has no allowed source anchors", "/allowedAnchors");
   if (packet.sourceQuality.status === "blocked") push("SP13.source_quality", "blocker", `sourceQuality is blocked: ${packet.sourceQuality.risks.join("; ")}`);
+  // SP15 (P13): weak pedagogical ranking. An ADVISORY early signal that research is thin — the
+  // packet clears the fact floor but few facts score as solid teaching material (distinct AND
+  // carrying a mechanism/case/misconception/number). Advisory, never blocking: it flags likely
+  // restatement/low-insight before it shows up as a rubric Density/Insight miss, without gating a
+  // book. Only meaningful once there are enough facts to judge (SP3 floor).
+  if (Array.isArray(packet.facts) && packet.facts.length >= 6) {
+    const strong = rankTeachingFacts(packet).filter((r) => r.score >= WEAK_RANKING_MIN_SCORE).length;
+    if (strong < 4) {
+      push(
+        "SP15.weak_ranking",
+        "advisory",
+        `only ${strong} fact(s) score as solid teaching material (>= ${WEAK_RANKING_MIN_SCORE}: chapter-distinct plus a mechanism, named case, misconception, or grounded number). Thin research risks restatement/low-insight prose; prefer re-researching for chapter-distinct, mechanism-bearing facts.`,
+        "/facts",
+      );
+    }
+  }
   return findings;
 }
 

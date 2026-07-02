@@ -15,7 +15,7 @@ import {
 } from "../artifacts/artifactStore.js";
 import type { SourcePacketV1, SourcePacketCase, SourcePacketFramework } from "../artifacts/artifactTypes.js";
 import { SOURCE_PACKET_SCHEMA_VERSION } from "../artifacts/artifactTypes.js";
-import { REQUIRED_QUIZ_FACT_FLOOR, asText, compiledFactsFromSidecar, extractGroundedNumbers, properNounTokens, uniq } from "./sourcePacketFacts.js";
+import { REQUIRED_QUIZ_FACT_FLOOR, applyTeachingRanking, asText, compiledFactsFromSidecar, extractGroundedNumbers, properNounTokens, uniq } from "./sourcePacketFacts.js";
 
 export { extractGroundedNumbers, REQUIRED_QUIZ_FACT_FLOOR };
 
@@ -114,6 +114,10 @@ export function compileSourcePacketFromSidecar(args: {
     forbiddenLeakage: namedCases.map((c) => ({ into: c.id, warning: `Keep examples about ${c.label} source-local; do not import sibling chapter imagery or stakes.` })),
     sourceQuality: { status, risks },
   };
+  // P13: stamp the pedagogical fact ranking (teachingPriority + coreMoveFactId). At single-packet
+  // compile time bookWideDuplicate is not yet known, so this is an initial ranking; compileSourcePackets
+  // re-runs it after the book-wide dedup pass so the distinctness signal reflects cross-chapter duplicates.
+  applyTeachingRanking(packet);
   return packet;
 }
 
@@ -190,6 +194,9 @@ export function compileSourcePackets(bookId: string, roots: CompilerStoreRoots =
   }
   tagBookWideDuplicateFacts(compiled.map((c) => c.packet));
   for (const { packet, path } of compiled) {
+    // P13: re-rank now that bookWideDuplicate tags are set, so the +3 chapter-distinct weight
+    // (and thus teachingPriority / coreMoveFactId) reflects the book-wide dedup pass.
+    applyTeachingRanking(packet);
     writeJsonFile(path, packet);
     written.push(path);
   }
