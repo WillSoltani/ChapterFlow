@@ -64,6 +64,7 @@ import { barPackPath } from "../qc/barReview.js";
 import { barArtifactPath, confirmArtifactPath, evidenceMatrixPath, submissionsDir, type BarReadVariant } from "../qc/orchestrator/artifacts.js";
 import type { FinalizeQcRoundResult } from "../qc/orchestrator/finalize.js";
 import { spawnCodexAgent, type CodexAgentResult, type CodexSandbox } from "./codexAgent.js";
+import { researchFreshnessViolation } from "./researchFreshness.js";
 import { doCompilerWrite } from "./compilerRun.js";
 import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
@@ -201,6 +202,14 @@ export type AutopilotDeps = {
    *  release() is idempotent; refresh() is the optional heartbeat; heldBy is set
    *  when acquisition FAILS. */
   acquireLock: (bookId: string) => BookLock;
+  /** A2 — research FRESHNESS check, run only after a research pass satisfies
+   *  researchProgressMade(). The handoff contract (index exists + book-status=write)
+   *  was gamed by a session that RESTORED an archived run byte-identical from
+   *  state/_regen-backups/ instead of researching. This returns a one-line violation
+   *  reason when the newest run's sidecars were not freshly produced during the task
+   *  (no run / nothing written since taskStartedAtMs / byte-identical to a backup),
+   *  or null when fresh. Default: researchFreshnessViolation (pure fs logic). */
+  researchFreshness: (bookId: string, taskStartedAtMs: number) => string | null;
   log: (m: string) => void;
 };
 
@@ -865,6 +874,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     readReviewPacket: d?.readReviewPacket ?? defaultReadReviewPacket,
     writeTempSubmission: d?.writeTempSubmission ?? defaultWriteTempSubmission,
     acquireLock: d?.acquireLock ?? ((bookId) => acquireBookLock(resolve(PIPELINE_DIR, "state", "autopilot-locks"), bookId)),
+    researchFreshness: d?.researchFreshness ?? researchFreshnessViolation,
     log: d?.log ?? ((m) => console.log(m)),
   };
 }
@@ -1058,21 +1068,30 @@ async function researchProbe(bookId: string, deps: AutopilotDeps): Promise<strin
   return chunks.join("\n\n");
 }
 
-async function buildResearchTask(bookId: string, deps: AutopilotDeps, pass: number, previous?: CodexAgentResult, probe?: string): Promise<string> {
+async function buildResearchTask(bookId: string, deps: AutopilotDeps, pass: number, previous?: CodexAgentResult, probe?: string, freshnessViolation?: string): Promise<string> {
   const promptPath = resolve(AGENT_PROMPTS_DIR, "RESEARCH-CODEX-SESSION.md");
   const previousNote = previous
     ? `\nPREVIOUS RESEARCH SESSION EXITED WITHOUT SATISFYING THE HANDOFF CONTRACT.\nexitCode=${previous.exitCode}\nlastStdout=${previous.stdout.slice(-1200)}\nlastStderr=${previous.stderr.slice(-1200)}\n`
     : "";
+  // A2: a prior pass that satisfied the handoff contract by RESTORING an archived run
+  // (instead of researching) is a FAILED pass — tell the retry session exactly why.
+  const freshnessNote = freshnessViolation
+    ? `\nPREVIOUS RESEARCH SESSION FAILED THE FRESHNESS CHECK: ${freshnessViolation}\nRestoring or copying ANY archived/backup research run (state/_regen-backups or elsewhere) is a task FAILURE, even if the handoff contract appears satisfied. Produce the chapter index and source-v2 sidecars FRESH from live source research in THIS session.\n`
+    : "";
   const probeText = probe ?? await researchProbe(bookId, deps);
-  return `${deps.readTask(promptPath)}\n\n---\nAUTOPILOT RESEARCH TASK\nbookId: ${bookId}\npass: ${pass}/${RESEARCH_MAX_PASSES}\n\nYou are already running from the ChapterFlow pipeline root. Do NOT cd into an old v21/v22 folder. Do NOT write chapters, QC, or publish.\n\nCurrent deterministic task probe:\n${probeText}\n\n${previousNote}\nMANDATORY HANDOFF CONTRACT\nContinue running the research/next-task loop until BOTH are true:\n1. state/indexes/${bookId}.json exists and contains the full chapter list.\n2. book-status reports phase write-chapter OR generating.\n\nIf the book id is a slug, infer the public title from it for research purposes (for example, your-money-or-your-life → Your Money or Your Life), verify title/author/edition from sources, then write the canonical index and source-v2 sidecars. Stop immediately after the handoff contract is satisfied.`;
+  return `${deps.readTask(promptPath)}\n\n---\nAUTOPILOT RESEARCH TASK\nbookId: ${bookId}\npass: ${pass}/${RESEARCH_MAX_PASSES}\n\nYou are already running from the ChapterFlow pipeline root. Do NOT cd into an old v21/v22 folder. Do NOT write chapters, QC, or publish.\n\nCurrent deterministic task probe:\n${probeText}\n\n${previousNote}${freshnessNote}\nMANDATORY HANDOFF CONTRACT\nContinue running the research/next-task loop until BOTH are true:\n1. state/indexes/${bookId}.json exists and contains the full chapter list.\n2. book-status reports phase write-chapter OR generating.\n\nIf the book id is a slug, infer the public title from it for research purposes (for example, your-money-or-your-life → Your Money or Your Life), verify title/author/edition from sources, then write the canonical index and source-v2 sidecars. Stop immediately after the handoff contract is satisfied.`;
 }
 
 async function doResearch(bookId: string, deps: AutopilotDeps): Promise<AutopilotOutcome | null> {
   let previous: CodexAgentResult | undefined;
   let lastProbe = await researchProbe(bookId, deps);
+  // A2: the last freshness violation, when a pass satisfied the handoff contract by
+  // restoring/reusing archived research instead of doing live research this session.
+  let lastFreshnessViolation: string | null = null;
   for (let pass = 1; pass <= RESEARCH_MAX_PASSES; pass++) {
-    const task = await buildResearchTask(bookId, deps, pass, previous, lastProbe);
+    const task = await buildResearchTask(bookId, deps, pass, previous, lastProbe, lastFreshnessViolation ?? undefined);
     deps.log(`[autopilot] research: spawning research session ${pass}/${RESEARCH_MAX_PASSES} for ${bookId}`);
+    const passStartMs = Date.now();
     const r = await spawnAndLog(bookId, {
       task,
       sessionId: deps.mkSessionId(pass === 1 ? "research" : `research-retry-${pass}`),
@@ -1086,10 +1105,24 @@ async function doResearch(bookId: string, deps: AutopilotDeps): Promise<Autopilo
       deps.log(`[autopilot] research session exited ${r.exitCode}: ${(r.stderr || r.stdout).slice(0, 500)}`);
       return mkHalt(bookId, "research", "infra", `research Codex session exited ${r.exitCode} before creating the chapter index. Last output:\n${(r.stderr || r.stdout).slice(0, 1800)}`);
     }
-    if (researchProgressMade(bookId, deps)) return null;
+    if (researchProgressMade(bookId, deps)) {
+      // A2: the handoff contract alone is gameable (a session can RESTORE an archived
+      // run from state/_regen-backups/ byte-identical and the postcondition holds).
+      // Verify the newest run's sidecars were freshly produced during THIS pass.
+      const violation = deps.researchFreshness(bookId, passStartMs);
+      if (!violation) return null;
+      lastFreshnessViolation = violation;
+      previous = r;
+      lastProbe = await researchProbe(bookId, deps);
+      deps.log(`[autopilot] research session ${pass}/${RESEARCH_MAX_PASSES} satisfied the handoff contract but FAILED the freshness check: ${violation}`);
+      continue;
+    }
     previous = r;
     lastProbe = await researchProbe(bookId, deps);
     deps.log(`[autopilot] research session ${pass}/${RESEARCH_MAX_PASSES} exited 0 but did not create state/indexes/${bookId}.json; retrying with a stricter handoff contract`);
+  }
+  if (lastFreshnessViolation) {
+    return mkHalt(bookId, "research", "content", `research restored an archived run instead of researching — remove backups from reach or re-dispatch research. Every research pass (${RESEARCH_MAX_PASSES}) satisfied the handoff contract without producing fresh source research. Last freshness violation: ${lastFreshnessViolation}\n\nLatest task probe:\n${lastProbe.slice(0, 2200)}`);
   }
   return mkHalt(bookId, "research", "progress", `research did not create the canonical chapter index after ${RESEARCH_MAX_PASSES} session(s). This is a research bootstrap failure, not a write/QC issue.\n\nLatest task probe:\n${lastProbe.slice(0, 2200)}\n\nRecommended fix: run the repair prompt or a research agent focused only on completing the next-task research-bibliography/chapter-index loop until state/indexes/${bookId}.json exists, then rerun book-run.`);
 }

@@ -91,6 +91,10 @@ function happyDeps(statuses: BookStatus[], over?: Partial<AutopilotDeps>): { dep
       .join("\n"),
     writeTempSubmission: () => "/tmp/cf-broker-test.json",
     acquireLock: () => ({ ok: true, release: () => {} }),
+    // A2: the happy path's research is FRESH (no restored-backup violation) — the real
+    // fs check would flag the fake bookId as "no run dir". The dedicated freshness
+    // tests (research-freshness.test.ts) exercise the violation paths explicitly.
+    researchFreshness: () => null,
     log: () => {},
     ...over,
   };

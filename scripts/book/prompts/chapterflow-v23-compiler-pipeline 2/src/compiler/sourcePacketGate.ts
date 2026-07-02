@@ -63,6 +63,22 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
     if (c.realWorld && c.hardSpecifics.some((s) => !supportText.includes(s.toLowerCase().split(/\s+/)[0] ?? ""))) {
       push("SP11.case_specifics_visible", "advisory", `namedCase ${c.id} hardSpecifics should be visible in summary/source notes`, `/namedCases/${i}`);
     }
+    // SP16 (A2): atomic specifics. A hardSpecifics entry is meant to be a short, atomic,
+    // checkable detail ("red phone", "90-second trial") the writer can weave into prose.
+    // A long label-PHRASE ("the four acute care hospitals across the region over four
+    // years") forces the writer to recite it verbatim, which reads as pasted source notes
+    // and trips the recitation/seam gates downstream. ADVISORY only — one per case, never
+    // a blocker: long specifics are a style risk, not a correctness defect.
+    const longSpecific = (c.hardSpecifics ?? []).find((s) => String(s ?? "").trim().split(/\s+/).filter(Boolean).length > 6);
+    if (longSpecific !== undefined) {
+      const first8 = String(longSpecific).trim().split(/\s+/).filter(Boolean).slice(0, 8).join(" ");
+      push(
+        "SP16.atomic_specifics",
+        "advisory",
+        `hardSpecific "${first8}…" is a long label-phrase; prefer short atomic specifics ("red phone", "90-second trial") — long phrases force recitation into prose`,
+        `/namedCases/${i}/hardSpecifics`,
+      );
+    }
   }
   if (!Array.isArray(packet.allowedAnchors) || packet.allowedAnchors.length === 0) push("SP12.anchors", "blocker", "source packet has no allowed source anchors", "/allowedAnchors");
   if (packet.sourceQuality.status === "blocked") push("SP13.source_quality", "blocker", `sourceQuality is blocked: ${packet.sourceQuality.risks.join("; ")}`);

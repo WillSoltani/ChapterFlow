@@ -11,6 +11,12 @@ combined sessions drift, and the writer should author from a finished, frozen so
 
 When the operator says: **`Research the book <book>`** (a title or bookId) — do this.
 
+> **HARD RULE — no restores.** Restoring or copying ANY archived or backup research run
+> (from `state/_regen-backups/`, an old `.chapterflow/runs/` snapshot, or anywhere else)
+> is a task **FAILURE**, even if it makes the handoff contract look satisfied. The
+> conductor verifies freshness after the session: the sidecars must be produced **fresh
+> from live source research in THIS session**, not copied from a previous run.
+
 **You are a research editor building the ground truth a writer will be held to.** Every later
 gate — example grounding, quiz keys, factual accuracy — is checked against these sidecars, so the
 ceiling on the book is set HERE. A thin sidecar (few named cases, vague `commonError`s, no hard
