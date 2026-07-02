@@ -1,0 +1,461 @@
+/**
+ * B1 — v24 chapter briefs (one page of reservations + intent per chapter).
+ *
+ * Pins: byte-determinism; coreMove PARITY with the blueprint's P13 rule (against the pre-P13
+ * legacy golden AND a ranked packet); the ownedCases/notYours partition; cast reuse of the
+ * blueprint name deal (disjoint across chapters, real source-person names excluded book-wide);
+ * answerIndexPattern reuse of the BP14-safe quiz-key deal; the avoid list (sibling openers on
+ * regen, bounded at 6); design-pool flavor; the BR1–BR5 gate blockers firing on crafted bad
+ * briefs and staying silent on good ones; and the rendered md staying compact (≤ 2600 chars)
+ * with every section present.
+ */
+import assert from "node:assert/strict";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const HERE = dirname(fileURLToPath(import.meta.url));
+
+import { test } from "./harness.js";
+import {
+  BRIEF_QUIZ_SLOT_COUNT,
+  DEFAULT_LENGTH_BUDGET_CHARS,
+  LENGTH_BUDGET_TOLERANCE,
+  compileChapterBriefs,
+  renderBriefMd,
+  validateChapterBriefs,
+  writeChapterBriefs,
+} from "../src/compiler/chapterBrief.js";
+import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
+import { applyTeachingRanking } from "../src/compiler/sourcePacketFacts.js";
+import { deriveBookDesign } from "../src/compiler/bookDesign.js";
+import {
+  bookDesignPath,
+  chapterBriefMdPath,
+  chapterBriefPath,
+  readJsonFile,
+  sourcePacketPath,
+  writeJsonFile,
+} from "../src/artifacts/artifactStore.js";
+import { chapterFileName } from "../src/lib/chapterPaths.js";
+import {
+  SOURCE_PACKET_SCHEMA_VERSION,
+  type ChapterBriefV1,
+  type SourcePacketV1,
+  type SourcePacketFact,
+} from "../src/artifacts/artifactTypes.js";
+import type { ChapterSpec } from "../src/generateChapter.js";
+
+const BOOK = "zz-fixture-chapter-brief";
+
+// Distinct case labels per chapter — the partition the briefs must reserve.
+const CASE_LABELS: Record<number, string[]> = {
+  1: ["Marshmallow Study", "Andon Cord Line Stop"],
+  2: ["Ericsson Violin Study", "Semmelweis Ward Audit"],
+  3: ["Framingham Heart Cohort"],
+};
+
+const HARD_SPECIFICS = ["credit utilization", "payment timing window", "reported balance snapshot", "statement closing date"];
+
+function fact(n: number, i: number, over: Partial<SourcePacketFact> = {}): SourcePacketFact {
+  return {
+    id: `ch${n}.fact.${i}`,
+    claim: `Claim ${i} for chapter ${n} about a concrete decision moment.`,
+    mechanism: `Mechanism ${i} of chapter ${n} explains the effect concretely.`,
+    commonError: `Common error ${i} for chapter ${n}.`,
+    whyWrong: `Why error ${i} is wrong in chapter ${n}.`,
+    allowedClaimTypes: [],
+    groundedNumbers: [],
+    groundedEntities: [],
+    groundedPlaces: [],
+    verificationRefs: [`ref.${n}.${i}`],
+    ...over,
+  };
+}
+
+function packetFor(n: number, over: Partial<SourcePacketV1> = {}): SourcePacketV1 {
+  const labels = CASE_LABELS[n] ?? [];
+  return {
+    schemaVersion: SOURCE_PACKET_SCHEMA_VERSION,
+    bookId: BOOK,
+    chapterId: `${BOOK}-ch${String(n).padStart(2, "0")}`,
+    chapterNumber: n,
+    chapterTitle: `Chapter ${n} Title`,
+    sourceSidecarPath: null,
+    sourceHash: null,
+    facts: Array.from({ length: 6 }, (_, i) => fact(n, i + 1)),
+    namedCases: labels.map((label, i) => ({
+      id: `ch${n}.case.${i + 1}`,
+      label,
+      summary: `${label} summary for chapter ${n}.`,
+      realWorld: true,
+      hardSpecifics: HARD_SPECIFICS,
+      allowedUses: [],
+      forbiddenUses: [],
+      doNotRestamp: [],
+    })),
+    frameworks: [],
+    allowedAnchors: [],
+    allowedNumbers: [],
+    allowedEntities: [],
+    allowedPlaces: [],
+    forbiddenClaims: [],
+    forbiddenLeakage: [],
+    sourceQuality: { status: "strong", risks: [] },
+    ...over,
+  };
+}
+
+function chapterSpec(n: number): ChapterSpec {
+  return { chapterId: `${BOOK}-ch${String(n).padStart(2, "0")}`, chapterNumber: n, chapterTitle: `Chapter ${n} Title` };
+}
+
+type Roots = { stateRoot: string };
+
+function withBook(
+  label: string,
+  run: (roots: Roots, packets: SourcePacketV1[], chapters: ChapterSpec[]) => void,
+  opts: { mutatePackets?: (packets: SourcePacketV1[]) => void } = {},
+): void {
+  const stateRoot = resolve(tmpdir(), `cf-b1-${label}-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapters = [1, 2, 3].map(chapterSpec);
+  const packets = chapters.map((c) => packetFor(c.chapterNumber));
+  opts.mutatePackets?.(packets);
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${BOOK}.json`), chapters);
+    for (const p of packets) writeJsonFile(sourcePacketPath(BOOK, p.chapterNumber, roots), p);
+    run(roots, packets, chapters);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+}
+
+// ── determinism ─────────────────────────────────────────────────────────────────────
+test("B1: two compiles are byte-identical (json AND rendered md)", () => {
+  withBook("determinism", (roots) => {
+    const a = compileChapterBriefs(BOOK, { roots });
+    const b = compileChapterBriefs(BOOK, { roots });
+    assert.equal(JSON.stringify(a.briefs), JSON.stringify(b.briefs), "brief JSON must be deterministic");
+    assert.deepEqual(a.briefs.map(renderBriefMd), b.briefs.map(renderBriefMd), "rendered md must be deterministic");
+    assert.equal(a.briefs.length, 3);
+    assert.deepEqual(a.findings, []);
+  });
+});
+
+// ── coreMove parity with the blueprint's P13 rule ───────────────────────────────────
+test("B1: legacy packet coreMove/quiz-key/cast match the pre-P13 blueprint golden", () => {
+  const legacyPacket = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-packet.json"), "utf8")) as SourcePacketV1;
+  const golden = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-blueprint.golden.json"), "utf8"));
+  const stateRoot = resolve(tmpdir(), `cf-b1-legacy-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapter: ChapterSpec = { chapterId: legacyPacket.chapterId, chapterNumber: legacyPacket.chapterNumber, chapterTitle: legacyPacket.chapterTitle };
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${legacyPacket.bookId}.json`), [chapter]);
+    writeJsonFile(sourcePacketPath(legacyPacket.bookId, legacyPacket.chapterNumber, roots), legacyPacket);
+    const { briefs } = compileChapterBriefs(legacyPacket.bookId, { roots });
+    assert.equal(briefs.length, 1);
+    const brief = briefs[0];
+    assert.equal(brief.coreMove, golden.coreMove.statement, "brief coreMove must equal the blueprint's legacy coreMove (P13 parity)");
+    assert.equal(brief.thesis, legacyPacket.facts[0].claim, "legacy thesis falls back to the first fact's claim");
+    assert.deepEqual(brief.answerIndexPattern, golden.reservedVariety.answerIndexPattern, "brief quiz key must be the SAME dealt pattern the blueprint pinned");
+    assert.deepEqual(brief.cast, golden.reservedVariety.allowedNames.slice(0, 4), "brief cast must be drawn from the blueprint's own name deal");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+test("B1: ranked packet coreMove matches compileChapterBlueprint's statement", () => {
+  withBook("ranked-parity", (roots, packets, chapters) => {
+    // Rank ch1's packet (sets teachingPriority + coreMoveFactId), re-write it, recompile briefs.
+    applyTeachingRanking(packets[0]);
+    assert.ok(packets[0].coreMoveFactId, "fixture must gain a coreMoveFactId");
+    writeJsonFile(sourcePacketPath(BOOK, 1, roots), packets[0]);
+    const bp = compileChapterBlueprint({
+      bookId: BOOK,
+      chapter: chapters[0],
+      packet: packets[0],
+      packetPath: sourcePacketPath(BOOK, 1, roots),
+      roots,
+      totalChapters: chapters.length,
+    });
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    assert.equal(briefs[0].coreMove, bp.coreMove.statement, "ranked coreMove must mirror the blueprint's P13 rule");
+    // thesis = highest-teachingPriority fact's claim.
+    const top = [...packets[0].facts].sort((a, b) => a.teachingPriority! - b.teachingPriority!)[0];
+    assert.equal(briefs[0].thesis, top.claim.replace(/\s+/g, " ").trim());
+  });
+});
+
+test("B1: readerPromise is the deterministic template over coreMove", () => {
+  withBook("promise", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    for (const brief of briefs) {
+      const move = brief.coreMove.replace(/\s+/g, " ").trim();
+      assert.equal(
+        brief.readerPromise,
+        `After this chapter, a reader can ${move.charAt(0).toLowerCase()}${move.slice(1)}`,
+      );
+    }
+  });
+});
+
+// ── ownedCases / notYours partition ─────────────────────────────────────────────────
+test("B1: ownedCases/notYours partition the book's case labels", () => {
+  withBook("partition", (roots, packets) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    for (const brief of briefs) {
+      const n = brief.chapterNumber;
+      const ownLabels = CASE_LABELS[n];
+      assert.deepEqual(
+        brief.ownedCases,
+        packets[n - 1].namedCases.map((c) => ({ id: c.id, label: c.label })),
+        `ch${n} ownedCases must be its packet's namedCases`,
+      );
+      const otherLabels = Object.entries(CASE_LABELS).filter(([k]) => Number(k) !== n).flatMap(([, ls]) => ls);
+      for (const label of otherLabels) assert.ok(brief.notYours.includes(label), `ch${n} notYours must include "${label}"`);
+      for (const label of ownLabels) assert.ok(!brief.notYours.includes(label), `ch${n} notYours must NOT include its own "${label}"`);
+      assert.deepEqual(brief.notYours, [...brief.notYours].sort(), `ch${n} notYours must be alphabetical`);
+      assert.ok(brief.notYours.length <= 20, "notYours capped at 20");
+    }
+  });
+});
+
+// ── cast reservations ───────────────────────────────────────────────────────────────
+test("B1: cast is 2-4 names per chapter, disjoint across the book, never a reserved source figure", () => {
+  withBook("cast", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    const seen = new Set<string>();
+    for (const brief of briefs) {
+      assert.ok(brief.cast.length >= 2 && brief.cast.length <= 4, `ch${brief.chapterNumber} cast size ${brief.cast.length} outside 2-4`);
+      for (const name of brief.cast) {
+        assert.ok(!seen.has(name), `cast name "${name}" reused across chapters`);
+        seen.add(name);
+        assert.ok(!["Benjamin", "Graham", "Dodd", "Buffett", "Warren"].includes(name), `cast contains reserved source figure "${name}"`);
+      }
+    }
+  });
+});
+
+test("B1: a real source-person name in ANY packet is evicted from every chapter's cast", () => {
+  // First compile without protection to find a name that IS dealt into a cast…
+  let dealtName = "";
+  withBook("cast-probe", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    dealtName = briefs[0].cast[0];
+    assert.ok(dealtName, "probe compile must deal at least one cast name");
+  });
+  // …then inject that name as a real person in a DIFFERENT chapter's packet and recompile.
+  withBook(
+    "cast-protected",
+    (roots) => {
+      const { briefs } = compileChapterBriefs(BOOK, { roots });
+      for (const brief of briefs) {
+        assert.ok(!brief.cast.includes(dealtName), `ch${brief.chapterNumber} cast still contains protected source person "${dealtName}"`);
+        assert.ok(brief.cast.length >= 2, "eviction must not drop a chapter below the 2-name floor");
+      }
+    },
+    {
+      mutatePackets: (packets) => {
+        packets[2].facts[0] = { ...packets[2].facts[0], groundedEntities: [`${dealtName} Kross`] };
+      },
+    },
+  );
+});
+
+// ── answerIndexPattern reuse ─────────────────────────────────────────────────────────
+test("B1: answerIndexPattern equals the blueprint's dealt pattern for every chapter", () => {
+  withBook("quiz-key", (roots, packets, chapters) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    for (const brief of briefs) {
+      const bp = compileChapterBlueprint({
+        bookId: BOOK,
+        chapter: chapters[brief.chapterNumber - 1],
+        packet: packets[brief.chapterNumber - 1],
+        packetPath: sourcePacketPath(BOOK, brief.chapterNumber, roots),
+        roots,
+        totalChapters: chapters.length,
+      });
+      assert.deepEqual(brief.answerIndexPattern, bp.reservedVariety.answerIndexPattern, `ch${brief.chapterNumber} quiz key must be the compiler's own deal`);
+      assert.equal(brief.answerIndexPattern.length, BRIEF_QUIZ_SLOT_COUNT);
+    }
+  });
+});
+
+// ── length budget ───────────────────────────────────────────────────────────────────
+test("B1: lengthBudget defaults to 16000/0.2 and honors opts.lengthBudget", () => {
+  withBook("budget", (roots) => {
+    const dflt = compileChapterBriefs(BOOK, { roots });
+    for (const brief of dflt.briefs) {
+      assert.deepEqual(brief.lengthBudget, { renderedChars: DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE });
+    }
+    const custom = compileChapterBriefs(BOOK, { roots, lengthBudget: 12000 });
+    for (const brief of custom.briefs) assert.equal(brief.lengthBudget.renderedChars, 12000);
+  });
+});
+
+// ── flavor + avoid ──────────────────────────────────────────────────────────────────
+test("B1: flavor is empty without a design artifact, and 1-5 pool suggestions with one", () => {
+  withBook("flavor", (roots, packets, chapters) => {
+    const bare = compileChapterBriefs(BOOK, { roots });
+    for (const brief of bare.briefs) assert.deepEqual(brief.flavor, [], "no design artifact → no flavor");
+    for (const brief of bare.briefs) assert.deepEqual(brief.avoid, [], "fresh book, no artifact → empty avoid");
+
+    const design = deriveBookDesign(BOOK, { roots, genre: "business-decision", packets, chapters: chapters.length });
+    assert.equal(design.provenance.source, "derived", "fixture must derive real pools");
+    writeJsonFile(bookDesignPath(BOOK, roots), design);
+    const flavored = compileChapterBriefs(BOOK, { roots });
+    for (const brief of flavored.briefs) {
+      assert.ok(brief.flavor.length >= 1 && brief.flavor.length <= 5, `flavor size ${brief.flavor.length} outside 1-5`);
+      for (const f of brief.flavor) assert.match(f, /^(venue|frame): /, `flavor entry "${f}" must be a venue/frame suggestion`);
+    }
+  });
+});
+
+test("B1: avoid picks up sibling openers on regen and is bounded at 6", () => {
+  withBook("avoid", (roots, packets, chapters) => {
+    // Regen case: sibling chapter files already on disk for ch1 + ch2.
+    const chaptersDir = resolve(roots.stateRoot, "chapters");
+    mkdirSync(chaptersDir, { recursive: true });
+    const opener = (n: number) =>
+      `The ch${n} morning audit began with one missing signature and nobody wanted to say so out loud.`;
+    for (const n of [1, 2]) {
+      writeFileSync(
+        resolve(chaptersDir, chapterFileName(chapters[n - 1].chapterId)),
+        JSON.stringify({ chapterId: chapters[n - 1].chapterId, examples: [{ scenario: opener(n) }] }),
+      );
+    }
+    // Design artifact too, so sibling flavor picks overflow the cap.
+    writeJsonFile(bookDesignPath(BOOK, roots), deriveBookDesign(BOOK, { roots, genre: "business-decision", packets, chapters: chapters.length }));
+
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    for (const brief of briefs) assert.ok(brief.avoid.length <= 6, `ch${brief.chapterNumber} avoid has ${brief.avoid.length} lines (cap 6)`);
+    const ch3 = briefs.find((b) => b.chapterNumber === 3)!;
+    const sig1 = opener(1).split(/\s+/).slice(0, 8).join(" ");
+    assert.ok(ch3.avoid.includes(`opener (ch01): "${sig1}"`), `ch3 avoid must carry ch1's first-example opening signature; got ${JSON.stringify(ch3.avoid)}`);
+    assert.ok(ch3.avoid.some((a) => a.startsWith("opener (ch02):")), "ch3 avoid must carry ch2's opener too");
+    assert.equal(ch3.avoid.length, 6, "openers + sibling flavor picks must saturate the cap at exactly 6");
+  });
+});
+
+// ── write + gate (good path) ─────────────────────────────────────────────────────────
+test("B1: writeChapterBriefs persists json+md and the gate passes on a good set", () => {
+  withBook("good-gate", (roots) => {
+    const { written, findings } = writeChapterBriefs(BOOK, { roots });
+    assert.deepEqual(findings, []);
+    assert.equal(written.length, 6, "3 chapters × (json + md)");
+    for (const n of [1, 2, 3]) {
+      const onDisk = readJsonFile<ChapterBriefV1>(chapterBriefPath(BOOK, n, roots));
+      assert.equal(onDisk.schemaVersion, "chapterflow-brief-v1");
+      assert.equal(onDisk.chapterNumber, n);
+      const md = readFileSync(chapterBriefMdPath(BOOK, n, roots), "utf8");
+      assert.ok(md.includes("## THE MOVE"), "md written next to json");
+    }
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, true, `good briefs must pass, got: ${JSON.stringify(report.findings)}`);
+    assert.deepEqual(report.findings, []);
+  });
+});
+
+// ── gate blockers on crafted bad briefs ──────────────────────────────────────────────
+function corruptBrief(roots: Roots, n: number, mutate: (brief: ChapterBriefV1) => void): void {
+  const p = chapterBriefPath(BOOK, n, roots);
+  const brief = readJsonFile<ChapterBriefV1>(p);
+  mutate(brief);
+  writeJsonFile(p, brief);
+}
+
+test("B1 gate: BR1 fires when two chapters own the same case label", () => {
+  withBook("br1", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    corruptBrief(roots, 2, (b) => { b.ownedCases = [...b.ownedCases, { id: "ch2.case.dup", label: "Marshmallow Study" }]; });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    assert.ok(report.findings.some((f) => f.checkId === "BR1.case_collision" && f.severity === "blocker"), JSON.stringify(report.findings));
+  });
+});
+
+test("B1 gate: BR2 fires on a cast collision AND on a real source-person cast name", () => {
+  withBook(
+    "br2",
+    (roots) => {
+      writeChapterBriefs(BOOK, { roots });
+      const first = readJsonFile<ChapterBriefV1>(chapterBriefPath(BOOK, 1, roots));
+      corruptBrief(roots, 2, (b) => { b.cast = [first.cast[0], "Ethan"]; }); // collision + protected (ch3 packet carries "Ethan Kross")
+      const report = validateChapterBriefs(BOOK, roots);
+      assert.equal(report.passed, false);
+      assert.ok(report.findings.some((f) => f.checkId === "BR2.cast_collision"), JSON.stringify(report.findings));
+      assert.ok(report.findings.some((f) => f.checkId === "BR2.cast_source_person" && f.message.includes("Ethan")), JSON.stringify(report.findings));
+    },
+    {
+      mutatePackets: (packets) => {
+        packets[2].facts[0] = { ...packets[2].facts[0], groundedEntities: ["Ethan Kross"] };
+      },
+    },
+  );
+});
+
+test("B1 gate: BR3 fires on missing, short, out-of-range, and all-identical answer patterns", () => {
+  withBook("br3", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    corruptBrief(roots, 1, (b) => { (b as Partial<ChapterBriefV1>).answerIndexPattern = undefined as unknown as number[]; });
+    corruptBrief(roots, 2, (b) => { b.answerIndexPattern = [0, 1, 2, 0, 3]; }); // short AND out-of-range
+    corruptBrief(roots, 3, (b) => { b.answerIndexPattern = [1, 1, 1, 1, 1, 1, 1, 1, 1]; });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    const br3 = report.findings.filter((f) => f.checkId === "BR3.answer_pattern");
+    assert.ok(br3.some((f) => f.message.includes("no answerIndexPattern")), "missing pattern must fire");
+    assert.ok(br3.some((f) => f.message.includes("5 slots")), "wrong slot count must fire");
+    assert.ok(br3.some((f) => f.message.includes("outside 0..2")), "out-of-range values must fire");
+    assert.ok(br3.some((f) => f.message.includes("all-identical")), "all-identical key must fire");
+  });
+});
+
+test("B1 gate: BR4 fires when lengthBudget.renderedChars leaves [8000, 30000]", () => {
+  withBook("br4", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    corruptBrief(roots, 1, (b) => { b.lengthBudget = { renderedChars: 5000, tolerance: 0.2 }; });
+    corruptBrief(roots, 2, (b) => { b.lengthBudget = { renderedChars: 45000, tolerance: 0.2 }; });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    assert.equal(report.findings.filter((f) => f.checkId === "BR4.length_budget").length, 2, JSON.stringify(report.findings));
+  });
+});
+
+test("B1 gate: BR5 fires on empty coreMove/thesis; BR0 on a missing brief", () => {
+  withBook("br5", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    corruptBrief(roots, 1, (b) => { b.coreMove = "   "; b.thesis = ""; });
+    rmSync(chapterBriefPath(BOOK, 3, roots), { force: true });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    assert.equal(report.findings.filter((f) => f.checkId === "BR5.core_move").length, 2, JSON.stringify(report.findings));
+    assert.ok(report.findings.some((f) => f.checkId === "BR0.missing" && f.message.includes("chapter 3")), JSON.stringify(report.findings));
+  });
+});
+
+// ── rendered md ─────────────────────────────────────────────────────────────────────
+test("B1: rendered md contains every section and stays ≤ 2600 chars on the fixture (design pools + regen avoid active)", () => {
+  withBook("md", (roots, packets, chapters) => {
+    // Worst realistic case: design flavor present + sibling openers on disk.
+    writeJsonFile(bookDesignPath(BOOK, roots), deriveBookDesign(BOOK, { roots, genre: "business-decision", packets, chapters: chapters.length }));
+    const chaptersDir = resolve(roots.stateRoot, "chapters");
+    mkdirSync(chaptersDir, { recursive: true });
+    for (const n of [1, 2]) {
+      writeFileSync(
+        resolve(chaptersDir, chapterFileName(chapters[n - 1].chapterId)),
+        JSON.stringify({ chapterId: chapters[n - 1].chapterId, examples: [{ scenario: `Chapter ${n} opens on a quiet loading dock where the count is already wrong.` }] }),
+      );
+    }
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    const SECTIONS = ["## THE MOVE", "## PROMISE", "## YOUR CASES", "## NOT YOURS", "## CAST", "## QUIZ KEY PATTERN", "## AVOID", "## LENGTH", "## FLAVOR"];
+    for (const brief of briefs) {
+      const md = renderBriefMd(brief);
+      for (const section of SECTIONS) assert.ok(md.includes(section), `ch${brief.chapterNumber} md missing "${section}"`);
+      assert.ok(md.length <= 2600, `ch${brief.chapterNumber} md is ${md.length} chars (cap 2600)`);
+    }
+  });
+});

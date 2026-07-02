@@ -280,6 +280,8 @@ Commands:
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
   book-design-gate <bookId>          v23 compiler: validate the per-book design artifact (BD1-BD5).
+  compile-chapter-briefs <bookId>    v24 author path: compile one-page chapter briefs (reservations + intent).
+  chapter-brief-gate <bookId>        v24 author path: validate chapter briefs (BR1-BR5).
   compile-blueprints <bookId>        v23 compiler: compile deterministic per-chapter blueprints.
   blueprint-gate <bookId>            v23 compiler: validate deterministic blueprints.
   deal-section-tasks <bookId>        v23 compiler: write narrow Codex task cards for section artifacts.
@@ -3932,6 +3934,29 @@ async function runBookDesignGate(args: string[]): Promise<number> {
   return report.passed ? 0 : 1;
 }
 
+async function runCompileChapterBriefs(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("Usage: compile-chapter-briefs <bookId>"); return 2; }
+  const { writeChapterBriefs } = await import("./compiler/chapterBrief.js");
+  const result = writeChapterBriefs(bookId);
+  for (const p of result.written) console.log(`wrote ${p}`);
+  if (result.findings.length) {
+    console.error(result.findings.join("\n"));
+    return 1;
+  }
+  console.log(`compile-chapter-briefs: PASS (${result.written.length} file(s))`);
+  return 0;
+}
+
+async function runChapterBriefGate(args: string[]): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("Usage: chapter-brief-gate <bookId>"); return 2; }
+  const { validateChapterBriefs, formatChapterBriefGateReport } = await import("./compiler/chapterBrief.js");
+  const report = validateChapterBriefs(bookId);
+  console.log(formatChapterBriefGateReport(report));
+  return report.passed ? 0 : 1;
+}
+
 async function runDealSectionTasks(args: string[]): Promise<number> {
   const bookId = args[0];
   if (!bookId) { console.error("Usage: deal-section-tasks <bookId>"); return 2; }
@@ -5480,6 +5505,10 @@ async function main() {
       return runCompileBookDesign(args);
     case "book-design-gate":
       return runBookDesignGate(args);
+    case "compile-chapter-briefs":
+      return runCompileChapterBriefs(args);
+    case "chapter-brief-gate":
+      return runChapterBriefGate(args);
     case "compile-blueprints":
       return runCompileBlueprints(args);
     case "blueprint-gate":

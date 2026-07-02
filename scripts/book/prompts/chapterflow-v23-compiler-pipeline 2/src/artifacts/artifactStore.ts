@@ -217,6 +217,17 @@ export function blueprintPath(bookId: string, chapterNumber: number, roots: Comp
   return resolve(artifactDir(bookId, "blueprints", roots), `ch${String(chapterNumber).padStart(2, "0")}.blueprint.json`);
 }
 
+/** v24 chapter brief (B1) — the machine-readable one-page reservation sheet. Lives inside the
+ *  compiler run (runs/<runId>/briefs/) like blueprints: briefs are per-run compiled artifacts. */
+export function chapterBriefPath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
+  return resolve(artifactDir(bookId, "briefs", roots), `ch${String(chapterNumber).padStart(2, "0")}.brief.json`);
+}
+
+/** The rendered human/writer-facing page for a chapter brief (embedded in the writer card). */
+export function chapterBriefMdPath(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
+  return resolve(artifactDir(bookId, "briefs", roots), `ch${String(chapterNumber).padStart(2, "0")}.brief.md`);
+}
+
 export function sectionDir(bookId: string, chapterNumber: number, roots: CompilerStoreRoots = {}): string {
   const dir = resolve(artifactDir(bookId, "sections", roots), `ch${String(chapterNumber).padStart(2, "0")}`);
   mkdirSync(dir, { recursive: true });

@@ -10,6 +10,7 @@ import type { ChapterDesignDoc, SourceAnchorForPrompt, SourceClaimType } from ".
 export const V23_COMPILER_SCHEMA_VERSION = "chapterflow-v23-compiler" as const;
 export const SOURCE_PACKET_SCHEMA_VERSION = "source-packet-v1" as const;
 export const CHAPTER_BLUEPRINT_SCHEMA_VERSION = "chapter-blueprint-v1" as const;
+export const CHAPTER_BRIEF_SCHEMA_VERSION = "chapterflow-brief-v1" as const;
 export const BOOK_DESIGN_SCHEMA_VERSION = "book-design-v1" as const;
 export const SECTION_ARTIFACT_SCHEMA_VERSION = "section-artifact-v1" as const;
 export const EVIDENCE_MAP_SCHEMA_VERSION = "chapter-evidence-map-v1" as const;
@@ -139,6 +140,44 @@ export type BookDesignV1 = {
     /** Source-case ids / sidecar material the derived pools were mined from. */
     derivedFrom?: string[];
   };
+};
+
+/**
+ * v24 "author-first" chapter brief (B1). ONE PAGE of hard reservations + non-binding intent,
+ * replacing the dealt structure grammars of the v23 blueprint for the v24 author architecture:
+ * the writer owns structure; the brief reserves only what actually collides across chapters
+ * (cases, cast, quiz keys) and SUGGESTS everything else. Purely ADDITIVE — the compiler/legacy
+ * blueprint path never reads or writes briefs.
+ */
+export type ChapterBriefV1 = {
+  schemaVersion: typeof CHAPTER_BRIEF_SCHEMA_VERSION;
+  chapterId: string;
+  chapterNumber: number;
+  title: string;
+  /** The chapter's one named move — the P13 core-move rule (coreMoveFactId's mechanism/claim,
+   *  legacy fallback facts[0]), identical to what the blueprint compiler would state. */
+  coreMove: string;
+  /** One line: the highest-teachingPriority fact's claim (legacy fallback: first fact). */
+  thesis: string;
+  /** Deterministic guidance, not a contract: "After this chapter, a reader can <coreMove>". */
+  readerPromise: string;
+  /** HARD reservation: THIS chapter's named source cases. Scene these fully; they are its alone. */
+  ownedCases: Array<{ id: string; label: string }>;
+  /** HARD reservation: every OTHER chapter's case labels (deduped, alphabetical, capped) — never
+   *  scene these; at most one passing mention. */
+  notYours: string[];
+  /** HARD reservation: chapter-disjoint invented first names (2-4), dealt by the blueprint's
+   *  name dealer, avoiding real source-person names from ANY chapter's packet. */
+  cast: string[];
+  /** HARD reservation: the anti-gaming dealt quiz answer key (same values the compiler path
+   *  would deal for this book/chapter). */
+  answerIndexPattern: number[];
+  /** Non-binding: sibling openers on disk (regen case) + sibling flavor picks, capped small. */
+  avoid: string[];
+  lengthBudget: { renderedChars: number; tolerance: number };
+  /** Non-binding venue/frame suggestions from the book design pools (empty without a design
+   *  artifact). Use, adapt, or ignore. */
+  flavor: string[];
 };
 
 export type HookSlot = {
