@@ -27,6 +27,12 @@ import {
   validateChapterBriefs,
   writeChapterBriefs,
 } from "../src/compiler/chapterBrief.js";
+import {
+  CHALLENGE_FRAMES,
+  OPENER_TYPES,
+  PRACTICE_SHAPES,
+  dealBriefRotations,
+} from "../src/compiler/briefRotation.js";
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { applyTeachingRanking } from "../src/compiler/sourcePacketFacts.js";
 import { deriveBookDesign } from "../src/compiler/bookDesign.js";
@@ -451,11 +457,124 @@ test("B1: rendered md contains every section and stays ≤ 2600 chars on the fix
       );
     }
     const { briefs } = compileChapterBriefs(BOOK, { roots });
-    const SECTIONS = ["## THE MOVE", "## PROMISE", "## YOUR CASES", "## NOT YOURS", "## CAST", "## QUIZ KEY PATTERN", "## AVOID", "## LENGTH", "## FLAVOR"];
+    const SECTIONS = ["## THE MOVE", "## PROMISE", "## VARIETY", "## YOUR CASES", "## NOT YOURS", "## CAST", "## QUIZ KEY PATTERN", "## AVOID", "## LENGTH", "## FLAVOR"];
     for (const brief of briefs) {
       const md = renderBriefMd(brief);
       for (const section of SECTIONS) assert.ok(md.includes(section), `ch${brief.chapterNumber} md missing "${section}"`);
-      assert.ok(md.length <= 2600, `ch${brief.chapterNumber} md is ${md.length} chars (cap 2600)`);
+      assert.ok(md.length <= 2700, `ch${brief.chapterNumber} md is ${md.length} chars (cap 2700)`);
     }
+  });
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+// W4 — brief-level variety rotation (openerType / challengeFrame / practiceShape)
+// ════════════════════════════════════════════════════════════════════════════
+
+test("W4: every brief carries a dealt openerType/challengeFrame/practiceShape from the pools", () => {
+  withBook("w4-fields", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    assert.ok(briefs.length >= 1);
+    for (const brief of briefs) {
+      assert.ok((OPENER_TYPES as readonly string[]).includes(brief.openerType), `ch${brief.chapterNumber} openerType ${brief.openerType}`);
+      assert.ok((CHALLENGE_FRAMES as readonly string[]).includes(brief.challengeFrame), `ch${brief.chapterNumber} challengeFrame ${brief.challengeFrame}`);
+      assert.ok((PRACTICE_SHAPES as readonly string[]).includes(brief.practiceShape), `ch${brief.chapterNumber} practiceShape ${brief.practiceShape}`);
+    }
+  });
+});
+
+test("W4 rotation is DETERMINISTIC (fnv1a-seeded, no Math.random) and per-book distinct", () => {
+  const a = dealBriefRotations("some-book", 12);
+  const b = dealBriefRotations("some-book", 12);
+  for (let n = 1; n <= 12; n++) assert.deepEqual(a.get(n), b.get(n), `ch${n} must be byte-stable across calls`);
+  const other = dealBriefRotations("other-book", 12);
+  const differs = Array.from({ length: 12 }, (_, i) => i + 1).some((n) => a.get(n)!.openerType !== other.get(n)!.openerType || a.get(n)!.challengeFrame !== other.get(n)!.challengeFrame);
+  assert.ok(differs, "different books get different deals");
+});
+
+test("W4 challengeFrame is DISJOINT (no repeat) while N <= pool size", () => {
+  const n = CHALLENGE_FRAMES.length; // exactly the pool size
+  const deal = dealBriefRotations("frames-book", n);
+  const frames = Array.from({ length: n }, (_, i) => deal.get(i + 1)!.challengeFrame);
+  assert.equal(new Set(frames).size, n, "every challengeFrame is unique up to pool exhaustion");
+});
+
+test("W4 challengeFrame pool EXHAUSTION (N > pool): wraps but honors the ceil(1/3·N) spread cap", () => {
+  const n = CHALLENGE_FRAMES.length * 2 + 3; // well past the pool
+  const deal = dealBriefRotations("exhaust-book", n);
+  const counts = new Map<string, number>();
+  for (let i = 1; i <= n; i++) {
+    const f = deal.get(i)!.challengeFrame;
+    counts.set(f, (counts.get(f) ?? 0) + 1);
+  }
+  const cap = Math.max(1, Math.ceil(n / 3));
+  for (const [f, c] of counts) assert.ok(c <= cap, `frame "${f}" used ${c}× exceeds ceil(1/3·N)=${cap}`);
+});
+
+test("W4 openerType/practiceShape honor the ceil(2/3·N) cap across the book", () => {
+  const n = 12;
+  const deal = dealBriefRotations("cap-book", n);
+  const cap = Math.ceil((2 * n) / 3);
+  const opener = new Map<string, number>();
+  const practice = new Map<string, number>();
+  for (let i = 1; i <= n; i++) {
+    opener.set(deal.get(i)!.openerType, (opener.get(deal.get(i)!.openerType) ?? 0) + 1);
+    practice.set(deal.get(i)!.practiceShape, (practice.get(deal.get(i)!.practiceShape) ?? 0) + 1);
+  }
+  for (const [, c] of opener) assert.ok(c <= cap, `openerType over cap ${cap}`);
+  for (const [, c] of practice) assert.ok(c <= cap, `practiceShape over cap ${cap}`);
+});
+
+test("W4: renderBriefMd VARIETY section carries the three explicit instructions incl. the 24h stem ban", () => {
+  withBook("w4-md", (roots) => {
+    const { briefs } = compileChapterBriefs(BOOK, { roots });
+    for (const brief of briefs) {
+      const md = renderBriefMd(brief);
+      assert.match(md, /## VARIETY/);
+      assert.match(md, /OPENER:/);
+      assert.match(md, /24-HOUR CHALLENGE:/);
+      assert.match(md, /Do NOT use the "In the next 24 hours," stem\./);
+      assert.match(md, /PRACTICE:/);
+    }
+  });
+});
+
+// ── BR6 / BR7 gate ────────────────────────────────────────────────────────────
+
+test("W4 gate: a good brief set with dealt rotations passes (BR6/BR7 silent)", () => {
+  withBook("w4-good", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, true, JSON.stringify(report.findings));
+    assert.equal(report.findings.filter((f) => f.checkId.startsWith("BR6") || f.checkId.startsWith("BR7")).length, 0);
+  });
+});
+
+test("W4 gate: BR6 fires (fail-closed) when a brief is missing/invalid a rotation field", () => {
+  withBook("w4-br6", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    corruptBrief(roots, 1, (b) => { (b as Partial<ChapterBriefV1>).openerType = undefined as never; });
+    corruptBrief(roots, 2, (b) => { b.challengeFrame = "not-a-frame" as never; });
+    corruptBrief(roots, 3, (b) => { b.practiceShape = "" as never; });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    const br6 = report.findings.filter((f) => f.checkId === "BR6.rotation_field");
+    assert.equal(br6.length, 3, JSON.stringify(report.findings));
+    assert.ok(br6.every((f) => f.severity === "blocker"));
+    assert.ok(br6.some((f) => /openerType/.test(f.message)));
+    assert.ok(br6.some((f) => /challengeFrame/.test(f.message)));
+    assert.ok(br6.some((f) => /practiceShape/.test(f.message)));
+  });
+});
+
+test("W4 gate: BR7 fires when a hand-edited brief set over-concentrates a rotation", () => {
+  withBook("w4-br7", (roots) => {
+    writeChapterBriefs(BOOK, { roots });
+    // Force every chapter's challengeFrame identical → 3/3 > no-repeat cap of 1.
+    for (const n of [1, 2, 3]) corruptBrief(roots, n, (b) => { b.challengeFrame = "before-your-next-X"; });
+    const report = validateChapterBriefs(BOOK, roots);
+    assert.equal(report.passed, false);
+    const br7 = report.findings.filter((f) => f.checkId === "BR7.rotation_cap");
+    assert.ok(br7.some((f) => /challengeFrame/.test(f.message)), JSON.stringify(report.findings));
+    assert.ok(br7.every((f) => f.severity === "blocker"));
   });
 });

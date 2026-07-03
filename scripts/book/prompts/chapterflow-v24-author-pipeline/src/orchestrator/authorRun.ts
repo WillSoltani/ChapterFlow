@@ -28,7 +28,7 @@ import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { chapterBriefMdPath, chapterBriefPath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
-import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE } from "../compiler/chapterBrief.js";
+import { DEFAULT_LENGTH_BUDGET_CHARS, LENGTH_BUDGET_TOLERANCE, briefVarietyInstructionLines } from "../compiler/chapterBrief.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
@@ -198,6 +198,10 @@ export type AuthorCardArgs = {
   voice: string | null;
   /** Review complaints from a failed prior attempt (regeneration only). */
   complaints?: string[];
+  /** The machine brief (v24 W4) — its dealt openerType/challengeFrame/practiceShape render as
+   *  EXPLICIT writer instructions. null when the brief md is present but the json is not
+   *  readable (the md already carries the VARIETY section, so the card degrades gracefully). */
+  brief?: ChapterBriefV1 | null;
 };
 
 /** Build the whole-chapter author card (target <= 25k chars; sections in the
@@ -216,6 +220,17 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   );
 
   sections.push("", "THE BRIEF", briefMd.trim());
+
+  // v24 W4: the dealt variety reservations, rendered as EXPLICIT, non-negotiable writer
+  // instructions (brief-derived — the md already carries them, this reinforces from the machine
+  // brief so the card states them even if the md's VARIETY section is edited out downstream).
+  if (args.brief) {
+    sections.push(
+      "",
+      "VARIETY (dealt for this chapter — non-negotiable; do NOT fall back to the house pattern)",
+      ...briefVarietyInstructionLines(args.brief),
+    );
+  }
 
   const styleLines = ["", "HOUSE STYLE"];
   if (voice) {
@@ -301,6 +316,7 @@ export async function authorWriteOneChapter(
     packet,
     voice: io.voiceCard(bookId),
     complaints: opts.complaints,
+    brief: io.readBrief(bookId, chapterNumber),
   });
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);

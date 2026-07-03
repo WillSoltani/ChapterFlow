@@ -34,6 +34,18 @@ import {
   type ChapterBriefV1,
   type SourcePacketV1,
 } from "../artifacts/artifactTypes.js";
+import {
+  CHALLENGE_FRAMES,
+  CHALLENGE_INSTRUCTION,
+  OPENER_INSTRUCTION,
+  OPENER_TYPES,
+  PRACTICE_INSTRUCTION,
+  PRACTICE_SHAPES,
+  dealBriefRotations,
+  oneThirdCap,
+  twoThirdsCap,
+  type BriefRotation,
+} from "./briefRotation.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import {
@@ -146,6 +158,16 @@ function siblingOpenerSignature(chapterId: string, chaptersDir: string): string 
   }
 }
 
+/** Defensive rotation for a chapter number the whole-book deal did not cover (e.g. an index whose
+ *  numbers are non-contiguous). Deterministic single-chapter deal — never throws, never Math.random. */
+function fallbackRotation(n: number): BriefRotation {
+  return {
+    openerType: OPENER_TYPES[(Math.max(1, n) - 1) % OPENER_TYPES.length],
+    challengeFrame: CHALLENGE_FRAMES[(Math.max(1, n) - 1) % CHALLENGE_FRAMES.length],
+    practiceShape: PRACTICE_SHAPES[(Math.max(1, n) - 1) % PRACTICE_SHAPES.length],
+  };
+}
+
 export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsOpts = {}): CompileChapterBriefsResult {
   const normalized = normSlug(bookId);
   const roots = opts.roots ?? {};
@@ -219,6 +241,11 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
     chapters.map(({ spec, packet }) => [spec.chapterNumber, packet.namedCases.map((c) => c.label).filter(Boolean)]),
   );
 
+  // v24 W4: deal the opener/challenge-frame/practice-shape rotations for the WHOLE book (over the
+  // canonical chapter count, not just the readable-packet subset, so the deal is stable even if a
+  // packet is transiently missing). Every brief gets its dealt reservation.
+  const rotations = dealBriefRotations(normalized, totalChapters);
+
   const briefs: ChapterBriefV1[] = [];
   for (const { spec, packet } of chapters) {
     const n = spec.chapterNumber;
@@ -261,10 +288,28 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       avoid: [...new Set(avoid)].slice(0, AVOID_CAP),
       lengthBudget: { renderedChars: opts.lengthBudget ?? DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE },
       flavor: flavorByChapter.get(n) ?? [],
+      openerType: (rotations.get(n) ?? fallbackRotation(n)).openerType,
+      challengeFrame: (rotations.get(n) ?? fallbackRotation(n)).challengeFrame,
+      practiceShape: (rotations.get(n) ?? fallbackRotation(n)).practiceShape,
     });
   }
 
   return { bookId: normalized, briefs, findings };
+}
+
+/** The three EXPLICIT writer instructions the v24 W4 rotation deals: the hook opener MODE, the
+ *  24-hour-challenge framing (always banning the "In the next 24 hours," stem), and the tryThisNow
+ *  structure. Rendered verbatim into the brief md (and reused by the author card) so the writer gets
+ *  a mode, not a bare label. */
+export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
+  const opener = OPENER_INSTRUCTION[brief.openerType] ?? `Open the hook in "${brief.openerType}" mode.`;
+  const frame = CHALLENGE_INSTRUCTION[brief.challengeFrame] ?? `frame it as "${brief.challengeFrame}"`;
+  const practice = PRACTICE_INSTRUCTION[brief.practiceShape] ?? `Shape tryThisNow as "${brief.practiceShape}".`;
+  return [
+    `- OPENER: ${opener} Carry the SAME mode into the fastRead opening sentence.`,
+    `- 24-HOUR CHALLENGE: Frame it as ${brief.challengeFrame} — ${frame} Do NOT use the "In the next 24 hours," stem.`,
+    `- PRACTICE: ${practice}`,
+  ];
 }
 
 /** The compact human page the writer card embeds. Aim well under ~2,200 chars for a typical
@@ -280,6 +325,9 @@ export function renderBriefMd(brief: ChapterBriefV1): string {
   lines.push("");
   lines.push("## PROMISE");
   lines.push(brief.readerPromise || "(none)");
+  lines.push("");
+  lines.push("## VARIETY (dealt — do NOT default to the house pattern)");
+  for (const line of briefVarietyInstructionLines(brief)) lines.push(line);
   lines.push("");
   lines.push("## YOUR CASES");
   if (brief.ownedCases.length) {
@@ -440,6 +488,47 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
     }
     if (!oneLine(brief.coreMove ?? "")) push("BR5.core_move", `chapter ${n} brief has an empty coreMove`);
     if (!oneLine(brief.thesis ?? "")) push("BR5.core_move", `chapter ${n} brief has an empty thesis`);
+
+    // BR6 — the W4 rotation fields are present and drawn from their pools (fail-closed: a brief
+    // missing any of these would silently ship the templated house pattern).
+    if (!(OPENER_TYPES as readonly string[]).includes(brief.openerType)) {
+      push("BR6.rotation_field", `chapter ${n} brief openerType ${JSON.stringify(brief.openerType)} is missing or not one of ${OPENER_TYPES.join("/")}`);
+    }
+    if (!(CHALLENGE_FRAMES as readonly string[]).includes(brief.challengeFrame)) {
+      push("BR6.rotation_field", `chapter ${n} brief challengeFrame ${JSON.stringify(brief.challengeFrame)} is missing or not one of the ${CHALLENGE_FRAMES.length} challenge frames`);
+    }
+    if (!(PRACTICE_SHAPES as readonly string[]).includes(brief.practiceShape)) {
+      push("BR6.rotation_field", `chapter ${n} brief practiceShape ${JSON.stringify(brief.practiceShape)} is missing or not one of ${PRACTICE_SHAPES.join("/")}`);
+    }
+  }
+
+  // BR7 — cross-chapter rotation caps hold (the deal honors these; the gate fails closed if a brief
+  // set is hand-edited or a future deal regresses). openerType/practiceShape: no value on more than
+  // ceil(2/3·N); challengeFrame: no repeat until the pool is exhausted, then no value on more than
+  // ceil(1/3·N). N is the number of briefs actually present (not the canonical index) so a partial
+  // set is still checked against its own size, never over-strict.
+  const briefCount = briefs.length;
+  if (briefCount > 0) {
+    const openerCap = twoThirdsCap(briefCount);
+    const practiceCap = twoThirdsCap(briefCount);
+    const frameCap = briefCount <= CHALLENGE_FRAMES.length ? 1 : Math.max(1, oneThirdCap(briefCount));
+    const tally = (pick: (b: ChapterBriefV1) => string): Map<string, number> => {
+      const m = new Map<string, number>();
+      for (const { brief } of briefs) {
+        const v = pick(brief);
+        if (v) m.set(v, (m.get(v) ?? 0) + 1);
+      }
+      return m;
+    };
+    for (const [v, c] of tally((b) => b.openerType)) {
+      if (c > openerCap) push("BR7.rotation_cap", `openerType "${v}" lands on ${c} of ${briefCount} chapters — over the ceil(2/3·N)=${openerCap} cap; the opener rotation is over-concentrated`);
+    }
+    for (const [v, c] of tally((b) => b.practiceShape)) {
+      if (c > practiceCap) push("BR7.rotation_cap", `practiceShape "${v}" lands on ${c} of ${briefCount} chapters — over the ceil(2/3·N)=${practiceCap} cap; the practice rotation is over-concentrated`);
+    }
+    for (const [v, c] of tally((b) => b.challengeFrame)) {
+      if (c > frameCap) push("BR7.rotation_cap", `challengeFrame "${v}" lands on ${c} of ${briefCount} chapters — over the ${frameCap === 1 ? "no-repeat" : `ceil(1/3·N)=${frameCap}`} cap; the 24-hour-challenge framing is over-concentrated`);
+    }
   }
 
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), findings };

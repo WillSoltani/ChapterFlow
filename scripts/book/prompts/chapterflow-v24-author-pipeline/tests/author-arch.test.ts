@@ -82,7 +82,9 @@ function mkChapter(n: number, bookId = "zz"): ChapterV21 {
     readingTimeMinutes: 6,
     hook: `Hook line ${n}: a small change compounds into the whole result.`,
     counterintuition: `Counterintuition ${n}: the obvious fix points the wrong way here.`,
-    tryThisNow: `Try this now ${n}: write one sentence naming the next physical step you will take.`,
+    tryThisNow: one
+      ? "Write one sentence naming the next physical step you will take, then do only that."
+      : "Close the single oldest open loop on your desk before you read anything else.",
     keyTakeaway: `Key takeaway ${n}: the mechanism you practice daily beats the plan you admire weekly, so keep the move concrete and small enough to repeat without willpower.`,
     breakdown: {
       fastRead: one
@@ -180,6 +182,9 @@ function mkBrief(n: number, over: Partial<ChapterBriefV1> = {}): ChapterBriefV1 
     avoid: [],
     lengthBudget: { renderedChars: budget, tolerance: 0.2 },
     flavor: [],
+    openerType: n === 1 ? "question" : "scene",
+    challengeFrame: n === 1 ? "before-your-next-X" : "replace-one-Y",
+    practiceShape: n === 1 ? "single-imperative" : "if-then-trigger",
     ...over,
   };
 }
@@ -383,6 +388,21 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // parts (brief md + packet projection) are represented by the golden fixture.
   assert.ok(card.length <= 15000, `W1 card length budget: card must be <= 15,000 chars, got ${card.length}`);
   console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 15,000)`);
+});
+
+test("author card: renders the W4 brief-derived VARIETY instructions (opener / 24h-frame / practice) when the machine brief is passed", () => {
+  const brief = mkBrief(1, { openerType: "question", challengeFrame: "timebox-N-minutes", practiceShape: "say-aloud-script" });
+  const briefMd = renderBriefMd(brief);
+  const card = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null, brief });
+  // the explicit VARIETY block sourced from the machine brief.
+  assert.ok(card.includes("VARIETY (dealt for this chapter"), "explicit VARIETY reinforcement block present");
+  assert.ok(/Open the hook with a QUESTION/.test(card), "opener instruction rendered for the dealt openerType");
+  assert.ok(/Frame it as timebox-N-minutes/.test(card), "24-hour challenge framing rendered");
+  assert.ok(card.includes('Do NOT use the "In the next 24 hours," stem.'), "the stem ban is stated");
+  assert.ok(/say-aloud script/.test(card), "practice-shape instruction rendered");
+  // graceful degradation: no machine brief → no explicit block (the md still carries VARIETY).
+  const noBrief = buildAuthorCard({ bookId: "zz", chapterNumber: 1, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(!noBrief.includes("VARIETY (dealt for this chapter"), "no explicit reinforcement block without the machine brief");
 });
 
 test("author card: complaints section appears ONLY on regeneration, with the review's bullets", () => {
