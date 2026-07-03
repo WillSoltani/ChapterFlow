@@ -92,6 +92,13 @@ export function belongsToBook(absPath: string, bookId: string): boolean {
   if (rel === "" || rel.startsWith("..")) return false; // not under state/
   const segs = rel.split(/[/\\]+/);
   if (segs.length === 1) return false; // a file directly in state/ — a shared ledger, never per-book
+  // STRUCTURAL EXCLUSION (prune bugfix): never treat anything under
+  // state/autopilot-locks/ as prune-eligible. The book-named stem rule below
+  // would otherwise match state/autopilot-locks/<book>.lock, so a scope-"all"
+  // prune could delete a HELD lock mid-run and let two conductors race the same
+  // book. Locks are lifecycle infra, not per-book debris — excluded at the tool
+  // level, not by convention.
+  if (segs[0] === "autopilot-locks") return false;
   const slug = normSlug(bookId);
   // a directory named after the book anywhere in the path
   for (let i = 0; i < segs.length - 1; i++) if (normSlug(segs[i]) === slug) return true;

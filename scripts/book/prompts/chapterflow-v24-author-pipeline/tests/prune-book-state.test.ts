@@ -69,3 +69,17 @@ test("belongsToBook is boundary-safe: matches a book's per-book state, never a s
   assert.equal(belongsToBook(S("library-state.json"), "willpower"), false);
   assert.equal(belongsToBook(S("gate-attempts.json"), "willpower"), false);
 });
+
+test("prune bugfix: a book's HELD autopilot lock is structurally excluded (never prune-eligible)", () => {
+  const S = (rel: string) => resolve(CANONICAL_STATE, rel);
+  // Before the fix, the book-named-stem rule matched autopilot-locks/<book>.lock,
+  // so a scope-"all" prune would delete a live lock mid-run and let two
+  // conductors race the same book. The exclusion is structural (segment-level),
+  // not a naming convention.
+  assert.equal(belongsToBook(S("autopilot-locks/willpower.lock"), "willpower"), false, "the book's OWN lock is never prune-eligible");
+  assert.equal(belongsToBook(S("autopilot-locks/the-willpower-instinct.lock"), "the-willpower-instinct"), false);
+  // A sibling book's lock is likewise excluded (nothing under autopilot-locks/ prunes).
+  assert.equal(belongsToBook(S("autopilot-locks/willpower.lock"), "some-other-book"), false);
+  // Sanity: autopilot-LOGS (a different dir) still belong to the book — logs are debris, locks are not.
+  assert.equal(belongsToBook(S("autopilot-logs/willpower/sessions.jsonl"), "willpower"), true);
+});

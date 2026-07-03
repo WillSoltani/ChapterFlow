@@ -15,6 +15,19 @@ import { mkdirSync, writeFileSync, renameSync, rmSync } from "fs";
 import { dirname } from "path";
 import { randomBytes } from "crypto";
 
+/** Return `text` guaranteed to end with exactly one trailing "\n" (idempotent:
+ *  a string that already ends with a newline is returned unchanged; an empty
+ *  string becomes "\n"). Reader-facing docs MUST end with a newline — see the
+ *  Q1 root-cause note in evalBookProxy.renderBookSampleDoc: a missing terminal
+ *  newline makes `wc -l` under-count, so a chunked `sed` read silently drops the
+ *  file's LAST line. Centralizing this through the doc-write choke point covers
+ *  the book-sample doc, the per-chapter reader docs, the key-judge doc, and the
+ *  sweep-submission/answers JSON alike (a trailing newline never breaks
+ *  JSON.parse or the substring-based quote byte-verification). */
+export function ensureTrailingNewline(text: string): string {
+  return text.endsWith("\n") ? text : text + "\n";
+}
+
 /** Atomically write `data` to `filePath` (creating parent dirs). The temp file carries a
  *  pid+random suffix so concurrent writers (parallel chapter authoring) never collide on it. */
 export function writeFileAtomic(filePath: string, data: string, encoding: BufferEncoding = "utf8"): void {

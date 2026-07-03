@@ -470,4 +470,23 @@ export type ChapterReviewV1 = {
   /** The reader's explicit defect list, passed through verbatim (default []). */
   complaints: ChapterReviewComplaint[];
   oneParagraphVerdict: string;
+  /** Q3 structural key-coverage screen record: on a no-ship reader, each named
+   *  "key omits Q<k>" claim recounted against the doc bytes (disproven ⇒ vote
+   *  invalidated + respawned). Optional so legacy artifacts remain valid. */
+  structuralScreen?: ChapterReviewStructuralScreen;
+};
+
+/** One screened structural key-coverage claim on a chapter review. */
+export type ChapterReviewStructuralClaimDecision = {
+  claim: string;
+  q: number;
+  verdict: "disproven" | "confirmed";
+  keyRowLine?: number;
+};
+
+export type ChapterReviewStructuralScreen = {
+  claimsScanned: number;
+  decisions: ChapterReviewStructuralClaimDecision[];
+  /** The disproof line that flipped this review valid→false, when it did. */
+  invalidatedBy?: string;
 };

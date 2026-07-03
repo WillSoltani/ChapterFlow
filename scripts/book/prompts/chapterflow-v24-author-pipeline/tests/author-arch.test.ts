@@ -36,10 +36,13 @@ import {
   doAuthorWrite,
 } from "../src/orchestrator/authorRun.js";
 import {
+  acceptanceRecordPath,
+  acceptanceRoundSegment,
   complaintsOf,
   doAuthorReview,
   mapBookComplaintsToChapters,
   type AcceptanceWriters,
+  type AuthorAcceptanceRecord,
   type AuthorReviewIo,
 } from "../src/orchestrator/authorReview.js";
 import { renderBriefMd } from "../src/compiler/chapterBrief.js";
@@ -240,10 +243,11 @@ function mkDeps(
 
 const TMP = mkdtempSync(join(tmpdir(), "author-arch-"));
 
-function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[] } {
+function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[] } {
   const attestations: QcAttestation[] = [];
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
+  const acceptanceRecords: AuthorAcceptanceRecord[] = [];
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
     writeBar: (s) => { bars.push(s); return "/tmp/bar.json"; },
@@ -266,6 +270,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
       return { absPath: abs, relPath: abs };
     },
     persistReview: () => "/tmp/review.json",
+    persistAcceptance: (bookId, record) => { acceptanceRecords.push(record); return `/tmp/acceptance.${record.roundLabel || "round1"}.json`; },
     acceptance,
     // B5 publish evidence is stubbed OK in these unit tests (its real
     // implementations are pinned by tests/author-evidence.test.ts against
@@ -276,7 +281,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
     },
     ...over,
   };
-  return Object.assign(io, { attestations, bars, confirms });
+  return Object.assign(io, { attestations, bars, confirms, acceptanceRecords });
 }
 
 /** The default spawn script: writers succeed, chapter readers pass, book readers accept. */
@@ -450,7 +455,7 @@ test("doAuthorReview: acceptance writes the exact records the promote gate reads
   assert.equal(readerSpawns.length, 2, "one blinded reader per chapter");
   assert.ok(readerSpawns.every((s) => s.sandbox === "read-only"), "readers are read-only");
   const bookSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader"));
-  assert.equal(bookSpawns.length, 2, "TWO independent book readers");
+  assert.equal(bookSpawns.length, 3, "THREE independent book readers (Q5)");
 
   assert.equal(io.attestations.length, 2, "one attestation per chapter");
   for (const ch of FIXTURE_CHAPTERS) {
@@ -523,7 +528,7 @@ test("doAuthorReview: acceptance rejection drives ONE targeted regen round (<= 3
   assert.ok(regens.every((s) => s.sessionId.startsWith("author-ch01")), "the book complaint was mapped to ITS chapter (ch01)");
   assert.ok(regens[0].task.includes("book reader verdict"), "regen complaints come from the book readers");
   const acceptanceSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader") && !s.sessionId.includes("-r2"));
-  assert.equal(acceptanceSpawns.length, 4, "exactly two acceptance rounds (2 readers each) — re-run ONCE");
+  assert.equal(acceptanceSpawns.length, 6, "exactly two acceptance rounds (3 readers each, Q5) — re-run ONCE");
 });
 
 test("mapBookComplaintsToChapters: chapter-specific lines route to their chapters; cap 3; generic rejections fall back to the sample", () => {
@@ -614,7 +619,7 @@ test("author arch ladder: write→gate→review→ready; sweepConfirmed is SUBST
   assert.ok(!verbs.some((v) => v[0] === "deal-section-tasks"), "compiler section dealing never runs in the author arch");
   assert.ok(logs.some((l) => l.includes("skipping legacy broad pre-QC scouts")), "gate ran with preQcScouts:false (the existing skip path)");
   assert.equal(spawns.filter((s) => s.sessionId.startsWith("author-ch")).length, 2, "one whole-chapter writer per chapter");
-  assert.equal(spawns.filter((s) => s.sessionId.includes("author-book-reader")).length, 2, "two book readers confirmed");
+  assert.equal(spawns.filter((s) => s.sessionId.includes("author-book-reader")).length, 3, "three book readers confirmed (Q5)");
   assert.equal(io.attestations.length, 2, "acceptance wrote the promote-gate attestations");
   const ids = spawns.map((s) => s.sessionId);
   assert.equal(new Set(ids).size, ids.length, "every spawn gets a DISTINCT session id");
@@ -756,4 +761,124 @@ test("book acceptance: composite 80.3 with gate PASS passes the calibrated bar 8
   const belowShipped = await run(81, "82.5");
   assert.ok(belowShipped && belowShipped.status === "halt", "81 < shipped-control 82.5 → rejected despite clearing the bar");
   assert.equal(await run(83, "82.5"), null, "83 beats both the bar and the shipped control");
+});
+
+// ── Q7: complaint-targeting guard (invalid reader's complaints ignored) ───────
+
+test("Q7 mapBookComplaintsToChapters harvests ONLY still-VALID readers' complaints", () => {
+  const mk = (o: { verdict?: string; valid?: boolean }) => ({
+    keyCheck: { matches: 0, of: 0, disagreements: [] as string[] },
+    oneParagraphVerdict: o.verdict ?? "",
+    gateVerdict: "FAIL" as const,
+    churn: "HIGH" as const,
+    valid: o.valid ?? true,
+  });
+  // An INVALID reader (disproven structural claim) names ch05; a VALID reader names ch07.
+  const routed = mapBookComplaintsToChapters(
+    [mk({ verdict: "the answer key omits chapter 5 Q9", valid: false }), mk({ verdict: "chapter 7 reads as generic template", valid: true })],
+    [3, 5, 7, 9],
+  );
+  assert.deepEqual([...routed.keys()], [7], "the disproven reader's ch05 target is dropped; only the valid reader's ch07 survives");
+
+  // ALL readers invalid → no targets at all (caller halts on nothing-actionable).
+  const none = mapBookComplaintsToChapters([mk({ verdict: "the key omits chapter 5 Q9", valid: false })], [3, 5, 7, 9]);
+  assert.equal(none.size, 0, "an all-invalid panel steers no regen");
+
+  // Backward-compatible: readers WITHOUT a `valid` field are treated as valid.
+  const legacy = mapBookComplaintsToChapters([{ keyCheck: { matches: 0, of: 0, disagreements: [] }, oneParagraphVerdict: "chapter 3 is stamped", gateVerdict: "FAIL" as const, churn: "HIGH" as const }], [3, 5]);
+  assert.deepEqual([...legacy.keys()], [3]);
+});
+
+// ── Q4: valid-count quorum blocks a sub-quorum accept ─────────────────────────
+
+test("Q4 a book is NEVER accepted below the valid-reader quorum (2 of 3 readers unparseable)", async () => {
+  // Two of the three book readers never parse (even on the -r2 respawn) → only
+  // ONE valid reader. Even with a clean PASS from that reader, quorum blocks it.
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader")) {
+      // reader 1 parses a PASS; readers 2 & 3 never parse (both attempts).
+      if (o.sessionId.includes("author-book-reader-1")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+      return { finalMessage: "no json here" };
+    }
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+  assert.ok(result && result.status === "halt", "below quorum → not accepted (halts, never READY)");
+  // The durable record proves validCount was below quorum for round1.
+  const round1 = io.acceptanceRecords.find((r) => r.roundLabel === "");
+  assert.ok(round1, "a round-1 acceptance record was written");
+  assert.equal(round1!.verdict.validCount, 1, "only one reader was valid");
+  assert.equal(round1!.accepted, false, "sub-quorum round is not accepted even though the lone reader PASSed");
+  assert.ok(spawns.some((s) => s.sessionId.includes("author-book-reader-2")), "the panel still spawned all three readers");
+});
+
+// ── Q6: durable acceptance record with all required fields ────────────────────
+
+test("Q6 acceptance writes a durable record: verdict, readers, bar, sampled, docSha256, timestamp", async () => {
+  const { deps } = mkDeps(happyScript);
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+  assert.equal(result, null, "accepted (happy path)");
+  assert.equal(io.acceptanceRecords.length, 1, "exactly one acceptance round recorded on the happy path");
+  const rec = io.acceptanceRecords[0];
+  assert.equal(rec.schemaVersion, "author-acceptance-v1");
+  assert.equal(rec.bookId, "zz");
+  assert.equal(rec.roundLabel, "", "round 1 has the empty label");
+  assert.equal(rec.accepted, true);
+  assert.equal(rec.bar, 80, "the calibrated acceptance bar is recorded");
+  assert.equal(rec.beatShipped, null, "no beat-shipped floor set in this run");
+  assert.deepEqual(rec.sampledChapters, FIXTURE_CHAPTERS.map((c) => c.number));
+  assert.match(rec.docSha256, /^[0-9a-f]{64}$/, "sha256 of the exact docText readers scored");
+  assert.match(rec.at, /^\d{4}-\d\d-\d\dT/, "ISO timestamp");
+  assert.equal(rec.readers.length, 3, "all three adjudicated reader results captured");
+  for (const r of rec.readers) {
+    assert.ok("gateVerdict" in r && "churn" in r && "scores" in r && "keyCheck" in r && "quotesVerified" in r, "reader fields present");
+    assert.ok(r.structuralScreen, "each reader carries its Q3 structural-screen record");
+  }
+  assert.ok(rec.verdict.medianComposite !== null, "composed verdict captured");
+});
+
+test("Q6 acceptanceRoundSegment + path: '' → round1, '-round2' → round2, fs-safe", () => {
+  assert.equal(acceptanceRoundSegment(""), "round1");
+  assert.equal(acceptanceRoundSegment("-round2"), "round2");
+  assert.equal(acceptanceRoundSegment("-weird/label"), "weird_label");
+  const p = acceptanceRecordPath("zz", "-round2", "/tmp/state-root");
+  assert.match(p, /reviews\/zz\/acceptance\.round2\.json$/);
+});
+
+// ── Q3 respawn in the live acceptance path ────────────────────────────────────
+
+test("Q3 a disproven structural FAIL reader is respawned in the acceptance loop", async () => {
+  // reader 3 gate-FAILs on attempt 1 with a byte-false 'key omits ch1 Q9' claim
+  // over the sampled doc; the Q3 screen invalidates it → the loop respawns it
+  // (attempt 2), which PASSes. All three end valid → quorum met, accepted.
+  // NOTE: FIXTURE_CHAPTERS have fewer than 9 quiz Qs, so the claim's Q number
+  // must exist in the sampled doc for a positive disproof — use the ch1 Q1 row.
+  let r3attempts = 0;
+  const { deps, spawns } = mkDeps((o) => {
+    if (o.sessionId.includes("author-book-reader-3")) {
+      r3attempts++;
+      if (!o.sessionId.includes("-r2")) {
+        // attempt 1: a FAIL whose ONLY defect is a disproven structural claim.
+        return { finalMessage: bookReply(FIXTURE_CHAPTERS, { gate: "FAIL", verdictText: "The combined answer key omits chapter 1 Q1." }) };
+      }
+      return { finalMessage: bookReply(FIXTURE_CHAPTERS) }; // respawn passes
+    }
+    if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS) };
+    const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+    if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+    return {};
+  });
+  const io = mkIo();
+  const result = await doAuthorReview("zz", deps, { maxParallel: 3, io });
+  assert.equal(result, null, "after the respawn the panel is 3-valid and accepts");
+  assert.ok(r3attempts >= 2, "reader 3 was respawned exactly once after the Q3 invalidation");
+  const round1 = io.acceptanceRecords.find((r) => r.roundLabel === "");
+  assert.ok(round1 && round1.verdict.validCount === 3, "all three readers valid after the respawn");
+  // The invalidated attempt-1 read left a structural-screen decision on record.
+  const respawnSpawns = spawns.filter((s) => s.sessionId.includes("author-book-reader-3"));
+  assert.ok(respawnSpawns.length >= 2, "a second reader-3 session was spawned");
 });
