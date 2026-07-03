@@ -1,5 +1,50 @@
 /**
- * readerBudgets — five deterministic reader-correlated checks (v24 B3).
+ * readerBudgets — nine deterministic reader-correlated checks (v24 B3 + W3).
+ *
+ * CHB1–CHB5 (B3) price the defects panel readers rejected on regenerated
+ * chapters. CHB6–CHB9 (W3) are the write-time BACKSTOP for the content
+ * residuals the published the-power-of-moments v24 still shipped (see
+ * docs evidence: 10/12 same 24h-challenge skeleton, claim-opener 10/12,
+ * fastRead-opener 11/12, "Pick…" tryThisNow 6/12, menu-ified practice 27%,
+ * key-uniquely-shortest 51% / most-echoed 63% / case-anchored stems 43%). W4's
+ * brief rotation is the PREVENTION; these budgets catch a book that shipped the
+ * monoculture anyway. All nine are book-level, cross-chapter, DETERMINISTIC
+ * (no LLM). Same enforcement discipline: blockers only where a zero-FALSE-
+ * positive calibration against the top-owner-scored shipped books holds.
+ *
+ * ENFORCEMENT SPLIT (calibration table: docs/v24/CHB6-9-calibration.md — ran
+ * against the top-5 owner-scored packages + the published POM v24). Only CHB7
+ * is zero-FP across the top-5, so only CHB7 is a BLOCKER; CHB6/CHB8/CHB9 fire
+ * on ≥1 top-5 owner-scored book (the monocultures are corpus-wide, exactly as
+ * the forensics measured) and therefore ship as ADVISORY (shadow) — visible,
+ * committed calibration, but never fail-closed until the corpus itself clears.
+ *
+ * W3 checks:
+ *   CHB6.opener_class    — hook AND fastRead opening class (question/scene/
+ *                          statistic/claim regex classifier): no class on more
+ *                          than ceil(2/3·N) chapters. ADVISORY (shadow).
+ *   CHB7.scaffold_family — normalized first-4-WORDS family of tryThisNow/
+ *                          twentyFourHourChallenge/weeklyPractice: no family on
+ *                          more than ceil(1/3·N) chapters. BLOCKER (zero-FP;
+ *                          POM v24 fires 7/12 on the "in the next #" stem).
+ *   CHB7.phrase_spread   — content 4-gram (stopword-filtered) in ≥4 chapters,
+ *                          with a whitelist for the book's own terms of art.
+ *                          BLOCKER (zero-FP across the top-5).
+ *   CHB8.*_band          — book-level quiz tell distribution bands: key-
+ *                          uniquely-shortest 20–45%, key-uniquely-longest ≤40%,
+ *                          key strictly-most-prose-echoed ≤55%, case-name-
+ *                          anchored stems ≤30%. ADVISORY (shadow; symmetric —
+ *                          no one-sided cap that mints the next tell).
+ *   CHB9.option_menu     — "a, b, or c" option-menu practice items ≤15% of
+ *                          practice items. ADVISORY (shadow).
+ *   CHB9.quoted_script   — ≥3 chapters carry an exact quoted say-aloud script
+ *                          in a practice field. ADVISORY (shadow).
+ *
+ * Dual-shape: every W3 read goes through asText()/resolveDirect so a slim
+ * v21-authored package (plain strings) and a legacy MaybeToned package
+ * ({direct,…}) measure the SAME field. Case names + terms-of-art come from
+ * source packets when present, else authoring fields, else text-derived proper
+ * nouns / example titles (documented per check).
  *
  * Panel readers rejected regenerated chapters for defects none of the existing
  * gates measure: hammering one source anchor's name a dozen times in a chapter,
@@ -145,6 +190,7 @@
  */
 
 import type { ChapterV21 } from "../types.js";
+import { resolveDirect } from "../types.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadNameBank } from "../librarian/namePlan.js";
@@ -629,6 +675,454 @@ function checkPracticeFormat(chapters: ChapterV21[]): BudgetFinding[] {
   return findings;
 }
 
+// ── shared dual-shape + n-gram utilities (CHB6–CHB9) ─────────────────────────
+
+/** Coerce a MaybeToned<string> (slim v21-authored = plain string; legacy = {direct,…}) to a plain
+ *  string — the dual-shape handling CHB6–CHB9 need to read the SAME field on both package shapes. */
+export function asText(value: unknown): string {
+  const direct = resolveDirect(value as never);
+  return typeof direct === "string" ? direct : "";
+}
+
+const CEIL_TWO_THIRDS = (n: number): number => Math.ceil((2 * Math.max(1, n)) / 3);
+const CEIL_ONE_THIRD = (n: number): number => Math.ceil(Math.max(1, n) / 3);
+
+/** Content-word tokens: lowercase letter runs, function words dropped. Reused by CHB7's 4-gram
+ *  spread and CHB8's prose-echo/stem-overlap measures. */
+function contentTokens(text: string): string[] {
+  return wordTokens(text).filter((t) => !FUNCTION_WORDS.has(t) && t.length >= 3);
+}
+
+// ── CHB6: opener-class budget ────────────────────────────────────────────────
+
+export const OPENER_CLASSES = ["question", "scene", "statistic", "claim"] as const;
+export type OpenerClass = (typeof OPENER_CLASSES)[number];
+
+/** Classify an opening sentence into {question, scene, statistic, claim} — the same four classes
+ *  the W4 brief rotation deals. Book-level heuristic (the calibration note is explicit that these
+ *  regexes are safe as aggregate budgets, noisy as per-item gates). Order matters: question →
+ *  statistic → scene → claim (default). */
+export function classifyOpener(text: string): OpenerClass {
+  const first = (text.match(/[^.!?]*[.!?]?/)?.[0] ?? text).trim();
+  if (!first) return "claim";
+  if (first.includes("?")) return "question";
+  // statistic: a digit, a written cardinal, a percent, or a measured quantity up front.
+  if (/\d/.test(first) || /\b(percent|%)\b/i.test(first)
+    || /^\s*(one|two|three|four|five|six|seven|eight|nine|ten|dozens?|hundreds?|thousands?|millions?)\b/i.test(first)) {
+    return "statistic";
+  }
+  // scene: opens on a place/time/person mid-moment — a leading prepositional/temporal frame, or a
+  // capitalized proper-noun subject followed by a concrete action verb.
+  if (/^\s*(at|in|on|inside|outside|during|before|after|when|as|by|near|beneath|above|across|along|behind)\b/i.test(first)) {
+    return "scene";
+  }
+  if (/^\s*[A-Z][a-z]+\s+(sees|saw|walks|walked|stands|stood|sits|sat|steps|stepped|laces|opens|opened|watches|watched|notices|noticed|holds|held|leans|leaned|arrives|arrived|hears|heard|checks|checked|reaches|reached|picks|picked|turns|turned|freezes|froze|pauses|paused|stares|stared|waits|waited|grabs|grabbed|looks|looked|enters|entered|drops|dropped|closes|closed|scans|scanned)\b/.test(first)) {
+    return "scene";
+  }
+  return "claim";
+}
+
+/** CHB6: over the whole book, the hook opening class AND the fastRead opening class each get a
+ *  budget of ceil(2/3·N) chapters — no single class may open more than two-thirds of chapters
+ *  (readers named the claim-opener monoculture directly). Dual-shape via asText. */
+function checkOpenerClassBudget(chapters: ChapterV21[]): BudgetFinding[] {
+  const n = chapters.length;
+  if (n === 0) return [];
+  const cap = CEIL_TWO_THIRDS(n);
+  const findings: BudgetFinding[] = [];
+  const surfaces: Array<{ label: "hook" | "fastRead"; get: (c: ChapterV21) => string }> = [
+    { label: "hook", get: (c) => asText(c.hook) },
+    { label: "fastRead", get: (c) => asText(c.breakdown?.fastRead) },
+  ];
+  for (const surface of surfaces) {
+    const byClass = new Map<OpenerClass, number[]>();
+    for (const chapter of chapters) {
+      const text = surface.get(chapter);
+      if (!text.trim()) continue;
+      const cls = classifyOpener(text);
+      const list = byClass.get(cls) ?? [];
+      list.push(chapter.number);
+      byClass.set(cls, list);
+    }
+    for (const cls of OPENER_CLASSES) {
+      const nums = byClass.get(cls) ?? [];
+      if (nums.length <= cap) continue;
+      for (const chapterNumber of nums) {
+        findings.push({
+          checkId: "CHB6.opener_class",
+          // SHADOW (advisory): fires on top-5 owner-scored books (claim-opener monoculture is
+          // corpus-wide) → not zero-FP → cannot be a blocker per the standing calibration rule.
+          severity: "advisory",
+          chapterNumber,
+          message:
+            `${surface.label} opener class "${cls}" appears in ${nums.length} of ${n} chapters ` +
+            `(${nums.map((x) => `ch${String(x).padStart(2, "0")}`).join(", ")}) — over the ceil(2/3·N)=${cap} ` +
+            `opener-class budget; rotate ${surface.label} openers across question/scene/statistic/claim.`,
+        });
+      }
+    }
+  }
+  return findings;
+}
+
+// ── CHB7: scaffold-family + content-4-gram spread ────────────────────────────
+
+/** Normalized first-4-WORDS family of a scaffold field. Uses the RAW opening words (function words
+ *  KEPT — the scaffold stem is exactly the function/time-word run readers feel: "In the next 24
+ *  hours,"), lowercased, punctuation stripped, and every digit run folded to "#" so "24"/"48"/"72
+ *  hours" collapse to one family. Two lines opening "In the next 24 hours…" and "In the next 48
+ *  hours…" share the family "in the next #". Returns null on an empty field. */
+export function scaffoldFamily(text: string): string | null {
+  const norm = text
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\b\d+\b/g, "#")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!norm) return null;
+  return norm.split(" ").filter(Boolean).slice(0, 4).join(" ");
+}
+
+/** Build a whitelist of the book's own terms of art: title tokens + (packet path) marquee case
+ *  label tokens / quoted hardSpecifics. These are the concept vocabulary that legitimately recurs
+ *  book-wide and must NOT count toward the 4-gram spread cap. Content tokens only, ≥3 chars. */
+function bookTermWhitelist(chapters: ChapterV21[], packets: Map<number, SourcePacketV1> | undefined): Set<string> {
+  const white = new Set<string>();
+  const add = (text: string) => { for (const t of contentTokens(text)) white.add(t); };
+  for (const chapter of chapters) add(chapter.title ?? "");
+  if (packets) {
+    for (const packet of packets.values()) {
+      for (const namedCase of packet.namedCases ?? []) {
+        add(namedCase.label ?? "");
+        for (const spec of namedCase.hardSpecifics ?? []) add(spec);
+      }
+    }
+  } else {
+    // Loose-chapter fallback: the example titles are the book's own case names on this shape.
+    for (const chapter of chapters) {
+      for (const ex of chapter.examples ?? []) add(asText(ex.title));
+    }
+  }
+  return white;
+}
+
+/** CHB7: two book-level spreads.
+ *  (a) scaffold FAMILY spread — for each of tryThisNow / twentyFourHourChallenge / weeklyPractice,
+ *      no first-4-words family may appear in more than ceil(1/3·N) chapters.
+ *  (b) content 4-gram spread — no stopword-filtered content 4-gram may appear in ≥4 chapters,
+ *      EXCEPT 4-grams built entirely from the book's own terms of art (whitelist). */
+function checkScaffoldAndPhraseSpread(
+  chapters: ChapterV21[],
+  packets: Map<number, SourcePacketV1> | undefined,
+): BudgetFinding[] {
+  const n = chapters.length;
+  if (n === 0) return [];
+  const findings: BudgetFinding[] = [];
+
+  // (a) scaffold family spread — cap ceil(1/3·N).
+  const familyCap = CEIL_ONE_THIRD(n);
+  const scaffoldFields: Array<{ label: string; get: (c: ChapterV21) => string }> = [
+    { label: "tryThisNow", get: (c) => asText(c.tryThisNow) },
+    { label: "twentyFourHourChallenge", get: (c) => asText(c.implementationPlan?.twentyFourHourChallenge) },
+    { label: "weeklyPractice", get: (c) => asText(c.implementationPlan?.weeklyPractice) },
+  ];
+  for (const field of scaffoldFields) {
+    const byFamily = new Map<string, number[]>();
+    for (const chapter of chapters) {
+      const fam = scaffoldFamily(field.get(chapter));
+      if (!fam) continue;
+      const list = byFamily.get(fam) ?? [];
+      list.push(chapter.number);
+      byFamily.set(fam, list);
+    }
+    for (const [fam, nums] of [...byFamily.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+      if (nums.length <= familyCap) continue;
+      for (const chapterNumber of nums) {
+        findings.push({
+          checkId: "CHB7.scaffold_family",
+          severity: "blocker",
+          chapterNumber,
+          message:
+            `${field.label} opening family "${fam}" repeats across ${nums.length} of ${n} chapters ` +
+            `(${nums.map((x) => `ch${String(x).padStart(2, "0")}`).join(", ")}) — over the ceil(1/3·N)=${familyCap} ` +
+            `scaffold-family budget; reframe the opener in all but ${familyCap}.`,
+        });
+      }
+    }
+  }
+
+  // (b) content 4-gram spread — no non-whitelist content 4-gram in ≥4 chapters.
+  const PHRASE_SPREAD_CAP = 4; // "≥4 chapters" fires (strictly, count >= 4).
+  const whitelist = bookTermWhitelist(chapters, packets);
+  const gramChapters = new Map<string, Set<number>>();
+  const scaffoldSurface = (c: ChapterV21): string =>
+    scaffoldFields.map((f) => f.get(c)).join(" \n ");
+  for (const chapter of chapters) {
+    const tokens = contentTokens(scaffoldSurface(chapter));
+    const seen = new Set<string>();
+    for (let i = 0; i + 4 <= tokens.length; i++) {
+      const gram4 = tokens.slice(i, i + 4);
+      // whitelist: skip 4-grams whose tokens are ALL the book's own terms of art.
+      if (gram4.every((t) => whitelist.has(t))) continue;
+      const key = gram4.join(" ");
+      if (seen.has(key)) continue; // count each gram once per chapter (document frequency)
+      seen.add(key);
+      const set = gramChapters.get(key) ?? new Set<number>();
+      set.add(chapter.number);
+      gramChapters.set(key, set);
+    }
+  }
+  for (const [gram, set] of [...gramChapters.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+    if (set.size < PHRASE_SPREAD_CAP) continue;
+    const nums = [...set].sort((a, b) => a - b);
+    for (const chapterNumber of nums) {
+      findings.push({
+        checkId: "CHB7.phrase_spread",
+        severity: "blocker",
+        chapterNumber,
+        message:
+          `scaffold 4-gram "${gram}" appears in ${set.size} of ${n} chapters ` +
+          `(${nums.map((x) => `ch${String(x).padStart(2, "0")}`).join(", ")}) — a book-wide scaffold phrase ` +
+          `(cap: fewer than ${PHRASE_SPREAD_CAP} chapters); vary the wording. Whitelist the book's terms of art if this is concept vocabulary.`,
+      });
+    }
+  }
+  return findings;
+}
+
+// ── CHB8: quiz tell-distribution bands (book-level) ──────────────────────────
+
+export type QuizChoiceView = { prompt: string; choices: string[]; correctIndex: number };
+
+/** Read a chapter's quiz questions on BOTH package shapes (slim = plain strings; legacy = MaybeToned
+ *  choices). Skips malformed questions (missing choices / out-of-range key) — a reporting verb must
+ *  never throw on a bad package. */
+export function quizViews(chapter: ChapterV21): QuizChoiceView[] {
+  const questions = (chapter.quiz?.questions ?? []) as Array<{ prompt?: unknown; choices?: unknown; correctIndex?: unknown }>;
+  const out: QuizChoiceView[] = [];
+  for (const q of questions) {
+    const choicesRaw = Array.isArray(q.choices) ? q.choices : [];
+    const choices = choicesRaw.map((c) => asText(c)).filter((c) => c.length > 0);
+    const key = typeof q.correctIndex === "number" ? q.correctIndex : -1;
+    if (choices.length < 2 || key < 0 || key >= choicesRaw.length) continue;
+    out.push({ prompt: asText(q.prompt), choices, correctIndex: key });
+  }
+  return out;
+}
+
+/** Longest contiguous content-token n-gram of `needle` also present in `haystackTokens` (as a
+ *  contiguous run). Used to measure a choice's prose echo. */
+function longestSharedContentRun(needle: string, haystackJoined: string): number {
+  const nt = contentTokens(needle);
+  if (nt.length === 0) return 0;
+  let best = 0;
+  for (let i = 0; i < nt.length; i++) {
+    for (let len = nt.length - i; len > best; len--) {
+      const phrase = nt.slice(i, i + len).join(" ");
+      if (haystackJoined.includes(phrase)) { best = Math.max(best, len); break; }
+    }
+  }
+  return best;
+}
+
+/** The reader-visible prose surface a distractor-tell measures against (calibration note (b): the
+ *  surface MUST include reviewCards + implementationPlan, not just breakdown + scenarios). Excludes
+ *  the quiz itself. Returned as a joined content-token string for run matching. */
+function chapterEchoSurface(chapter: ChapterV21): string {
+  const parts: string[] = [
+    asText(chapter.hook), asText(chapter.counterintuition), asText(chapter.tryThisNow), asText(chapter.keyTakeaway),
+    asText(chapter.breakdown?.fastRead), asText(chapter.breakdown?.deepRead), asText(chapter.breakdown?.fullRead),
+  ];
+  for (const ex of chapter.examples ?? []) {
+    parts.push(asText(ex.title), asText(ex.scenario), asText(ex.whatToDo), asText(ex.whyItMatters));
+  }
+  for (const card of chapter.reviewCards ?? []) {
+    parts.push(asText((card as { front?: unknown }).front), asText((card as { back?: unknown }).back));
+  }
+  const ip = chapter.implementationPlan;
+  if (ip) {
+    parts.push(asText(ip.coreSkill), asText(ip.twentyFourHourChallenge), asText(ip.weeklyPractice));
+    for (const plan of ip.ifThenPlans ?? []) parts.push(asText((plan as { context?: unknown }).context), asText((plan as { plan?: unknown }).plan));
+  }
+  for (const ml of chapter.memorableLines ?? []) parts.push(asText((ml as { text?: unknown }).text));
+  return contentTokens(parts.join(" \n ")).join(" ");
+}
+
+/** Case names for CHB8's stem-anchoring measure: packet namedCases label proper-noun tokens when
+ *  packets are present; else authoring fields on the chapter if present; else text-derived
+ *  capitalized multi-word proper nouns from the chapter's example titles + scenarios. */
+function chapterCaseNames(chapter: ChapterV21, packet: SourcePacketV1 | undefined): Set<string> {
+  const names = new Set<string>();
+  const addTokens = (label: string) => {
+    for (const m of label.match(/\b[A-Z][a-zA-Z]{2,}\b/g) ?? []) {
+      if (!COMMON_LABEL_TOKENS.has(m.toLowerCase())) names.add(m.toLowerCase());
+    }
+  };
+  if (packet) {
+    for (const namedCase of packet.namedCases ?? []) addTokens(namedCase.label ?? "");
+    return names;
+  }
+  // Loose shape: authoring.namedCases if the pipeline stamped them, else example titles + scenarios.
+  const authoring = (chapter as { authoring?: { namedCases?: Array<{ label?: unknown }> } }).authoring;
+  if (authoring?.namedCases?.length) {
+    for (const c of authoring.namedCases) addTokens(asText(c.label));
+    return names;
+  }
+  for (const ex of chapter.examples ?? []) {
+    addTokens(asText(ex.title));
+    addTokens(asText(ex.scenario));
+  }
+  return names;
+}
+
+/** CHB8: four book-level distribution bands over ALL questions (readers detect one-sided tells;
+ *  symmetric bands stop the whack-a-mole where fixing one tell mints the next). A band violation
+ *  is reported once, on the book's first chapter, because it is a whole-book property. */
+function checkTellDistribution(
+  chapters: ChapterV21[],
+  packets: Map<number, SourcePacketV1> | undefined,
+): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  let total = 0;
+  let keyUniquelyShortest = 0;
+  let keyUniquelyLongest = 0;
+  let keyMostEchoed = 0;
+  let caseAnchoredStems = 0;
+
+  for (const chapter of chapters) {
+    const surface = chapterEchoSurface(chapter);
+    const caseNames = chapterCaseNames(chapter, packets?.get(chapter.number));
+    for (const q of quizViews(chapter)) {
+      total++;
+      const lens = q.choices.map((c) => c.length);
+      const keyLen = lens[q.correctIndex];
+      const minLen = Math.min(...lens);
+      const maxLen = Math.max(...lens);
+      if (keyLen === minLen && lens.filter((l) => l === minLen).length === 1) keyUniquelyShortest++;
+      if (keyLen === maxLen && lens.filter((l) => l === maxLen).length === 1) keyUniquelyLongest++;
+
+      const echoes = q.choices.map((c) => longestSharedContentRun(c, surface));
+      const keyEcho = echoes[q.correctIndex];
+      if (keyEcho > 0 && echoes.filter((e) => e === keyEcho).length === 1 && keyEcho === Math.max(...echoes)) keyMostEchoed++;
+
+      const stemTokens = new Set(contentTokens(q.prompt));
+      if ([...caseNames].some((name) => stemTokens.has(name))) caseAnchoredStems++;
+    }
+  }
+  if (total === 0) return findings;
+
+  const pct = (x: number) => x / total;
+  const anchor = chapters[0]?.number ?? 1;
+  // SHADOW (advisory): every CHB8 band fires on ≥1 top-5 owner-scored book (the length/echo/case-
+  // anchor tells are corpus-wide, exactly as the forensics doc measured) → not zero-FP → advisory.
+  const push = (checkId: string, message: string) =>
+    findings.push({ checkId, severity: "advisory", chapterNumber: anchor, message });
+
+  const shortestPct = pct(keyUniquelyShortest);
+  if (shortestPct < 0.20 || shortestPct > 0.45) {
+    push("CHB8.shortest_band",
+      `key is the UNIQUELY shortest choice in ${Math.round(shortestPct * 100)}% of ${total} questions — outside the 20–45% band; ` +
+      `${shortestPct > 0.45 ? "readers can win by picking the tersest choice" : "the length signal is inverted"}. Balance choice lengths.`);
+  }
+  const longestPct = pct(keyUniquelyLongest);
+  if (longestPct > 0.40) {
+    push("CHB8.longest_band",
+      `key is the UNIQUELY longest choice in ${Math.round(longestPct * 100)}% of ${total} questions — over the 40% cap; ` +
+      `readers can win by picking the wordiest choice. Shorten some keys / lengthen some distractors.`);
+  }
+  const echoPct = pct(keyMostEchoed);
+  if (echoPct > 0.55) {
+    push("CHB8.echo_band",
+      `key is strictly the MOST prose-echoed choice in ${Math.round(echoPct * 100)}% of ${total} questions — over the 55% cap; ` +
+      `readers can win by matching chapter wording. Paraphrase keys / plant echoes in distractors.`);
+  }
+  const stemPct = pct(caseAnchoredStems);
+  if (stemPct > 0.30) {
+    push("CHB8.case_stem_band",
+      `${Math.round(stemPct * 100)}% of ${total} stems name a chapter case/entity verbatim — over the 30% cap; ` +
+      `case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.`);
+  }
+  return findings;
+}
+
+// ── CHB9: practice budgets ───────────────────────────────────────────────────
+
+/** An "a, b, or c" option menu — three+ comma-separated alternatives closed by "or"/"or a". The
+ *  calibration note flags menu-ification (27% in POM v24) as the reader-felt practice regression.
+ *  Book-level only (moderate per-item FP on legitimate enumerations). */
+export function hasOptionMenu(text: string): boolean {
+  // …A, B, or C  — at least two commas before an "or", i.e. a 3+ item alternation.
+  return /\w[^.?!]*,[^.?!]*,\s*(?:or|and)\b[^.?!]*/i.test(text) && /,\s*(?:or)\b/i.test(text);
+}
+
+/** An exact quoted say-aloud script: a quoted imperative sentence inside a practice field. Matches
+ *  straight or curly double quotes wrapping a clause of at least a few words. */
+export function hasQuotedScript(text: string): boolean {
+  const m = text.match(/[“"]([^“”"]{6,})[”"]/);
+  if (!m) return false;
+  // require it to read as words to say (contains a space and a letter), not a bare label.
+  return /[A-Za-z]/.test(m[1]) && /\s/.test(m[1].trim());
+}
+
+/** CHB9: two book-level practice budgets.
+ *  (a) option-menu items ≤ 15% of practice items (tryThisNow + 24hChallenge + weeklyPractice +
+ *      each ifThen plan).
+ *  (b) ≥ 3 chapters contain an exact quoted say-aloud script in a practice field. */
+function checkPracticeBudgets(chapters: ChapterV21[]): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  const anchor = chapters[0]?.number ?? 1;
+  let items = 0;
+  let menuItems = 0;
+  let chaptersWithScript = 0;
+
+  for (const chapter of chapters) {
+    const practiceTexts: string[] = [
+      asText(chapter.tryThisNow),
+      asText(chapter.implementationPlan?.twentyFourHourChallenge),
+      asText(chapter.implementationPlan?.weeklyPractice),
+    ];
+    for (const plan of chapter.implementationPlan?.ifThenPlans ?? []) {
+      practiceTexts.push(asText((plan as { plan?: unknown }).plan));
+    }
+    let chapterHasScript = false;
+    for (const text of practiceTexts) {
+      if (!text.trim()) continue;
+      items++;
+      if (hasOptionMenu(text)) menuItems++;
+      if (hasQuotedScript(text)) chapterHasScript = true;
+    }
+    if (chapterHasScript) chaptersWithScript++;
+  }
+  if (items === 0) return findings;
+
+  // SHADOW (advisory): CHB9's menu-rate and quoted-script floor both fire on top-5 owner-scored
+  // books (menu-ification and zero-script practice are corpus-wide) → not zero-FP → advisory.
+  const menuPct = menuItems / items;
+  if (menuPct > 0.15) {
+    findings.push({
+      checkId: "CHB9.option_menu",
+      severity: "advisory",
+      chapterNumber: anchor,
+      message:
+        `${Math.round(menuPct * 100)}% of ${items} practice items are "a, b, or c" option menus — over the 15% cap; ` +
+        `menu-ification reads as template. Give ONE concrete action per practice item.`,
+    });
+  }
+  const SCRIPT_FLOOR = 3;
+  if (chapters.length >= SCRIPT_FLOOR && chaptersWithScript < SCRIPT_FLOOR) {
+    findings.push({
+      checkId: "CHB9.quoted_script",
+      severity: "advisory",
+      chapterNumber: anchor,
+      message:
+        `only ${chaptersWithScript} chapter(s) contain an exact quoted say-aloud script in a practice field — ` +
+        `below the floor of ${SCRIPT_FLOOR}; at least ${SCRIPT_FLOOR} chapters must give the reader the exact words to say.`,
+    });
+  }
+  return findings;
+}
+
 // ── entry point ──────────────────────────────────────────────────────────────
 
 export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOptions): BudgetFinding[] {
@@ -642,6 +1136,10 @@ export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOp
     ...checkCastDisjoint(ordered, opts?.packets),
     ...checkOpenerSignature(ordered),
     ...checkPracticeFormat(ordered),
+    ...checkOpenerClassBudget(ordered),
+    ...checkScaffoldAndPhraseSpread(ordered, opts?.packets),
+    ...checkTellDistribution(ordered, opts?.packets),
+    ...checkPracticeBudgets(ordered),
   ];
 }
 

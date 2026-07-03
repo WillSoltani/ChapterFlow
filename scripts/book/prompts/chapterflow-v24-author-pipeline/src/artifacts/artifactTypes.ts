@@ -178,7 +178,37 @@ export type ChapterBriefV1 = {
   /** Non-binding venue/frame suggestions from the book design pools (empty without a design
    *  artifact). Use, adapt, or ignore. */
   flavor: string[];
+  /** HARD reservation (v24 W4): the hook/fastRead opening MODE dealt to this chapter, rotated
+   *  across {question, scene, claim, statistic} so no one mode dominates the book (CHB6 backstop).
+   *  Rendered as an explicit writer instruction. */
+  openerType: BriefOpenerType;
+  /** HARD reservation (v24 W4): a distinct 24-hour-challenge framing dealt no-repeat from a pool
+   *  of ≥8 frames, so the "In the next 24 hours," stem cannot recur book-wide (CHB7 backstop). */
+  challengeFrame: BriefChallengeFrame;
+  /** HARD reservation (v24 W4): the tryThisNow STRUCTURE dealt to this chapter, so the "Pick one …"
+   *  menu opener cannot dominate (CHB9 backstop). */
+  practiceShape: BriefPracticeShape;
 };
+
+/** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string
+ *  literal unions so artifactTypes has no runtime dependency on the compiler module). */
+export type BriefOpenerType = "question" | "scene" | "claim" | "statistic";
+export type BriefChallengeFrame =
+  | "before-your-next-X"
+  | "replace-one-Y"
+  | "script-one-sentence"
+  | "timebox-N-minutes"
+  | "audit-one-artifact"
+  | "teach-it-to-someone"
+  | "pre-write-the-exact-line"
+  | "attach-to-existing-routine";
+export type BriefPracticeShape =
+  | "single-imperative"
+  | "if-then-trigger"
+  | "two-step-sequence"
+  | "observe-then-note"
+  | "say-aloud-script"
+  | "measure-one-number";
 
 export type HookSlot = {
   shape: string;
