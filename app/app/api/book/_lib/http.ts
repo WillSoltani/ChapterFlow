@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { AuthError } from "@/app/app/api/_lib/auth";
+import { isHeaderAuthenticatedRequest } from "@/app/app/api/_lib/auth-credential-core";
 import { BookApiError, isBookApiError } from "./errors";
 import { getAppBaseUrl } from "./env";
 import {
@@ -46,6 +47,15 @@ function requestIdFromHeaders(req: Request): string {
 // opt out per route with `opts.skipOriginCheck`). GET/HEAD/OPTIONS are never
 // checked.
 //
+// CSRF is a COOKIE-auth concern ONLY. A request authenticated by an
+// `Authorization: Bearer` token with NO id_token cookie is immune to CSRF by
+// construction (a cross-site attacker can auto-send the victim's ambient cookie
+// but cannot set an Authorization header cross-origin), and — being a native,
+// non-browser client — sends no Origin/Sec-Fetch-Site, which would otherwise
+// trip this guard. Such header-authenticated requests are therefore skipped
+// (see `isHeaderAuthenticatedRequest`); cookie-authed mutations keep the guard
+// exactly as before.
+//
 // ENFORCEMENT FLAG: set env `CSRF_ORIGIN_ENFORCE=0` (or "false"/"off"/"no") to
 // run in OBSERVE-ONLY mode — a would-be rejection is logged via console.warn
 // (with the offending origin + path) but the request proceeds. Any other value
@@ -64,6 +74,20 @@ function requestIdFromHeaders(req: Request): string {
 export async function requireSameOrigin(req: Request): Promise<void> {
   const method = req.method.toUpperCase();
   if (!UNSAFE_METHODS.has(method)) return; // safe methods are never checked
+
+  // Skip the guard for header (Bearer)-authenticated requests that carry no
+  // id_token cookie — they cannot be CSRF (no ambient cookie credential to
+  // forge) and, as native clients, legitimately send no Origin. A request that
+  // DOES carry an id_token cookie is treated as cookie-authed and keeps the
+  // guard, even if a Bearer header is also present. See the header comment above.
+  if (
+    isHeaderAuthenticatedRequest({
+      authorizationHeader: req.headers.get("authorization"),
+      cookieHeader: req.headers.get("cookie"),
+    })
+  ) {
+    return;
+  }
 
   const originHeader = req.headers.get("origin");
   const secFetchSite = req.headers.get("sec-fetch-site");
@@ -196,6 +220,23 @@ export async function withBookApiErrors<T>(
           "reauth_required",
           "Please re-authenticate to continue. This action requires a recent sign-in.",
           { reauth: true },
+          requestId
+        );
+      }
+      // INVALID_TOKEN: a credential WAS presented but is genuinely bad (bad
+      // signature, expired, wrong `token_use`, or no matching JWKS key). Per RFC
+      // 6750 §3.1 this is a distinct 401 `invalid_token` — separate from
+      // `unauthenticated` (no credential at all) — so a Bearer client can tell
+      // "your token is bad, obtain a fresh one" from "you sent nothing". Still a
+      // 401 either way; only the machine code differs (the web client keys its
+      // redirect off status + `reauth_required`, not this code).
+      if (error.message === "INVALID_TOKEN") {
+        return bookErr(
+          req,
+          401,
+          "invalid_token",
+          "Your session is no longer valid. Please sign in again.",
+          undefined,
           requestId
         );
       }

@@ -1,9 +1,14 @@
 import "server-only";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { jwtVerify, createRemoteJWKSet, errors as joseErrors } from "jose";
 import { mustServerEnv } from "./server-env";
 import { DEV_BYPASS_USER, isDevAuthBypassEnabled } from "@/app/app/_lib/dev-auth-bypass";
 import { evaluateAuthRecency, mapIdTokenClaims } from "./auth-recency-core";
+import {
+  AUTH_COOKIE_NAME,
+  parseBearerToken,
+  resolveCredentialToken,
+} from "./auth-credential-core";
 
 // UNAUTHENTICATED   — no credential presented (missing cookie).
 // INVALID_TOKEN     — a credential was presented but it is genuinely bad
@@ -65,11 +70,16 @@ function classifyVerifyError(err: unknown): "INVALID_TOKEN" | "VERIFIER_UNAVAILA
   return "VERIFIER_UNAVAILABLE";
 }
 
-// Identity is verified and read exclusively from the id_token cookie. The
-// access_token cookie set by the auth routes is NOT a credential here — nothing
-// reads it (it is reserved for a future resource-server / API Gateway
-// authorizer call). Do not switch this to access_token.
-const COOKIE_NAME = "id_token";
+// Identity is carried by the Cognito **id_token**, presented via EITHER the
+// `id_token` cookie (the default for the web app) OR an `Authorization: Bearer
+// <id_token>` header (for native clients that cannot send cookies). Both are
+// verified IDENTICALLY below. The access_token (cookie or header) is NEVER a
+// credential here — nothing reads it (it is reserved for a future
+// resource-server / API Gateway authorizer call), and an access_token that
+// reached this reader would be rejected by the `token_use === "id"` check in
+// `mapIdTokenClaims`. Do not switch identity to the access_token.
+// The cookie name lives in `auth-credential-core` (AUTH_COOKIE_NAME) so the
+// same-origin/CSRF guard can probe for it without importing this server module.
 
 type AuthConfig = {
   issuer: string;
@@ -130,7 +140,14 @@ export async function requireUser(): Promise<AuthedUser> {
     };
   }
 
-  const token = (await cookies()).get(COOKIE_NAME)?.value;
+  // Resolve the credential from the cookie (web default) OR the Authorization
+  // header (native fallback). The cookie wins when both are present so a live
+  // browser session is authoritative. Both `cookies()` and `headers()` read the
+  // SAME incoming request, so there is no cross-request bleed.
+  const [cookieStore, headerStore] = await Promise.all([cookies(), headers()]);
+  const cookieToken = cookieStore.get(AUTH_COOKIE_NAME)?.value;
+  const bearerToken = parseBearerToken(headerStore.get("authorization"));
+  const token = resolveCredentialToken({ cookieToken, bearerToken });
   if (!token) throw new AuthError("UNAUTHENTICATED");
 
   const { issuer, jwks, clientId } = await getAuthConfig();
