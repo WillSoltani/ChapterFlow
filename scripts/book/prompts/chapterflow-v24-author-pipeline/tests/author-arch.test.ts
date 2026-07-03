@@ -378,8 +378,12 @@ test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT c
   // Rule 2 — key paraphrase incl. review cards + implementation plan.
   assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
   assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
-  // Rule 3 — practice concreteness, no option menus.
-  assert.match(card, /number or a timebox AND the exact sentence to say or the exact object to touch/i, "rule 3 concreteness");
+  // Rule 3 — practice concreteness, no option menus. STIER-2 rebase (documented,
+  // plan §B P13): the old "exact object to touch" wording itself minted "touch X
+  // and say Y" theater across 6+ chapters — the concrete FORM now comes from the
+  // dealt practice shapes.
+  assert.match(card, /number or a timebox, concrete enough to start within a minute/i, "rule 3 concreteness");
+  assert.match(card, /never default to a touch-this-object or say-this-aloud ritual/i, "rule 3 de-theaters the staging");
   assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
   // Rule 4 — plain language / ease band from sentence one.
   assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");

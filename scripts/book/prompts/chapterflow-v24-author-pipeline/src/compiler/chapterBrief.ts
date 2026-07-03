@@ -37,13 +37,30 @@ import {
 import {
   CHALLENGE_FRAMES,
   CHALLENGE_INSTRUCTION,
+  ENTRY_INSTRUCTION,
+  EXAMPLE_ENTRY_POINTS,
   EXAMPLE_LENSES,
+  EXAMPLE_OUTCOMES,
+  FAILURE_MODE_INSTRUCTION,
+  FIELD_STYLES,
+  FIELD_STYLE_INSTRUCTION,
+  GROUNDING_FORMS,
+  GROUNDING_INSTRUCTION,
   LENS_INSTRUCTION,
+  LIMITS_INSTRUCTION,
+  LIMITS_PLACEMENTS,
+  MEMORABLE_SHAPES,
+  MEMORABLE_SHAPE_INSTRUCTION,
   OPENER_INSTRUCTION,
   OPENER_TYPES,
+  OUTCOME_INSTRUCTION,
   PRACTICE_INSTRUCTION,
   PRACTICE_SHAPES,
   PRACTICE_VERBS,
+  QUIZ_FAILURE_MODES,
+  QUIZ_STEM_SHAPES,
+  ROTATION_SCHEMA_VERSION,
+  STEM_SHAPE_INSTRUCTION,
   dealBriefRotations,
   oneThirdCap,
   twoThirdsCap,
@@ -166,6 +183,22 @@ function siblingOpenerSignature(chapterId: string, chaptersDir: string): string 
  *  numbers are non-contiguous). Deterministic single-chapter deal — never throws, never Math.random. */
 function fallbackRotation(n: number): BriefRotation {
   const i = Math.max(1, n) - 1;
+  const count = 4 + (i % 3);
+  const arcs = Array.from({ length: count }, (_, k) => ({
+    entry: EXAMPLE_ENTRY_POINTS[(i * 3 + k) % EXAMPLE_ENTRY_POINTS.length],
+    outcome: EXAMPLE_OUTCOMES[(i + k) % EXAMPLE_OUTCOMES.length],
+    fieldStyle: FIELD_STYLES[(i * 2 + k) % FIELD_STYLES.length],
+    prop: k % 3 === 0,
+  }));
+  const distinct = <T,>(pool: readonly T[], k: number, stride: number): T[] => {
+    const set: T[] = [];
+    for (let j = 0; j < pool.length && set.length < k; j++) {
+      const cand = pool[(i * stride + j) % pool.length];
+      if (!set.includes(cand)) set.push(cand);
+    }
+    return set;
+  };
+  const perm = Array.from({ length: 9 }, (_, k) => ((i + k) % 9) + 1);
   return {
     openerType: OPENER_TYPES[i % OPENER_TYPES.length],
     challengeFrame: CHALLENGE_FRAMES[i % CHALLENGE_FRAMES.length],
@@ -173,7 +206,36 @@ function fallbackRotation(n: number): BriefRotation {
     exampleLenses: [0, 1, 2].map((k) => EXAMPLE_LENSES[(i * 3 + k) % EXAMPLE_LENSES.length]),
     practiceVerb: PRACTICE_VERBS[i % PRACTICE_VERBS.length],
     requireFrictionExample: true, // degraded path: prefer the requirement over the ritual concern
+    exampleCount: count,
+    exampleArcs: arcs,
+    practiceSlotShapes: distinct(PRACTICE_SHAPES, 4, 1),
+    quizStemShapes: distinct(QUIZ_STEM_SHAPES, 4, 3),
+    quizFailureModes: distinct(QUIZ_FAILURE_MODES, 4, 3),
+    questionFactOrder: perm,
+    memorableShapes: distinct(MEMORABLE_SHAPES, 3, 2),
+    limitsPlacement: LIMITS_PLACEMENTS[i % LIMITS_PLACEMENTS.length],
+    groundingForm: GROUNDING_FORMS[i % GROUNDING_FORMS.length],
+    leadPreferReal: i % 2 === 0,
   };
+}
+
+/** STIER-2 P11: resolve the dealt lead-thread PREFERENCE into an actual lead. Case-led
+ *  only when the chapter owns a case whose label carries a distinctive capitalized
+ *  anchor token (≥4 chars — what the write-time thread check keys on); invented
+ *  cast[0] otherwise. Pure. */
+export function resolveLeadThread(
+  preferCase: boolean,
+  ownedCases: Array<{ id: string; label: string }>,
+  cast: string[],
+): { kind: "invented" | "owned-case"; name: string } | undefined {
+  if (preferCase) {
+    for (const c of ownedCases) {
+      const token = (c.label ?? "").split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w));
+      if (token) return { kind: "owned-case", name: c.label };
+    }
+  }
+  if (cast.length > 0) return { kind: "invented", name: cast[0] };
+  return undefined;
 }
 
 /**
@@ -343,6 +405,10 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       }
     }
 
+    // castFor advances shared dealer state (usedCast) — call ONCE per chapter and
+    // reuse for both the cast field and the lead-thread resolution.
+    const dealtCast = castFor(spec, packet);
+
     briefs.push({
       schemaVersion: CHAPTER_BRIEF_SCHEMA_VERSION,
       chapterId: spec.chapterId,
@@ -353,7 +419,7 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       readerPromise: briefReaderPromise(coreMove),
       ownedCases: packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
       notYours,
-      cast: castFor(spec, packet),
+      cast: dealtCast,
       answerIndexPattern: answerPattern(n, BRIEF_QUIZ_SLOT_COUNT, totalChapters),
       avoid: [...new Set(avoid)].slice(0, AVOID_CAP),
       lengthBudget: { renderedChars: opts.lengthBudget ?? DEFAULT_LENGTH_BUDGET_CHARS, tolerance: LENGTH_BUDGET_TOLERANCE },
@@ -365,6 +431,22 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       practiceVerb: (rotations.get(n) ?? fallbackRotation(n)).practiceVerb,
       requireFrictionExample: (rotations.get(n) ?? fallbackRotation(n)).requireFrictionExample,
       frameworkNouns,
+      // STIER-2 (v3) dealt fields + the rotation-version stamp the regen lineage keys on.
+      rotationSchemaVersion: ROTATION_SCHEMA_VERSION,
+      exampleCount: (rotations.get(n) ?? fallbackRotation(n)).exampleCount,
+      exampleArcs: (rotations.get(n) ?? fallbackRotation(n)).exampleArcs,
+      practiceSlotShapes: (rotations.get(n) ?? fallbackRotation(n)).practiceSlotShapes,
+      quizStemShapes: (rotations.get(n) ?? fallbackRotation(n)).quizStemShapes,
+      quizFailureModes: (rotations.get(n) ?? fallbackRotation(n)).quizFailureModes,
+      questionFactOrder: (rotations.get(n) ?? fallbackRotation(n)).questionFactOrder,
+      memorableShapes: (rotations.get(n) ?? fallbackRotation(n)).memorableShapes,
+      limitsPlacement: (rotations.get(n) ?? fallbackRotation(n)).limitsPlacement,
+      groundingForm: (rotations.get(n) ?? fallbackRotation(n)).groundingForm,
+      leadThread: resolveLeadThread(
+        (rotations.get(n) ?? fallbackRotation(n)).leadPreferReal,
+        packet.namedCases.map((c) => ({ id: c.id, label: c.label })),
+        dealtCast,
+      ),
     });
   }
 
@@ -386,17 +468,83 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   ];
   // v24 S-tier P2/P4/P1 — optional fields; briefs compiled before 2026-07-03 render the
   // original three lines unchanged.
+  const exCount = brief.exampleCount ?? 6;
   if (brief.exampleLenses && brief.exampleLenses.length > 0) {
     // #14 (adversarial round 2): the friction-example requirement is DEALT to ceil(2N/3)
     // chapters, not stamped on all — a dutiful failure-example ×9 is the next ritual.
-    const friction = brief.requireFrictionExample
+    // When v3 exampleArcs are present THEY carry the failure slot explicitly, so the
+    // prose sentence renders only for v2 briefs (single source of truth).
+    const friction = brief.requireFrictionExample && !brief.exampleArcs?.length
       ? " At least ONE of your examples must show the move failing or only partially working — real friction, not another frictionless win."
       : "";
-    lines.push(`- EXAMPLE SCENES: your 6 examples must cover all three dealt lenses below; at most 2 examples may be a person-handling-a-document scene.${friction}`);
+    lines.push(`- EXAMPLE SCENES: your ${exCount} examples must cover all three dealt lenses below; at most 2 examples may be a person-handling-a-document scene.${friction}`);
     for (const lens of brief.exampleLenses) {
       const instruction = LENS_INSTRUCTION[lens as ExampleLens] ?? `use the "${lens}" scene class.`;
       lines.push(`    * ${lens}: ${instruction}`);
     }
+  }
+  // STIER-2 P10 — the per-slot ARC table: entry point (internal-beat rotation),
+  // resolution, whatToDo/whyItMatters register, and the dealt physical-anchor slots.
+  // 54/54 halted examples entered at the demand and walked the whole loop.
+  if (brief.exampleArcs && brief.exampleArcs.length > 0) {
+    lines.push(
+      `- EXAMPLE PLAN: write EXACTLY ${brief.exampleArcs.length} examples. Each slot's dealt arc below (entry → resolution → field register). Dramatize ONE beat of the framework per example — the other beats get at most one clause; at most 2 examples may walk the full loop explicitly. An example that scenes one of YOUR owned cases must enter it at a DIFFERENT point than the breakdown's telling. Slots marked +anchor get exactly ONE concrete physical/sensory detail; the others get none (props on every scene read as scaffold).`,
+    );
+    brief.exampleArcs.forEach((arc, i) => {
+      const entry = ENTRY_INSTRUCTION[arc.entry as keyof typeof ENTRY_INSTRUCTION] ?? arc.entry;
+      const outcome = OUTCOME_INSTRUCTION[arc.outcome as keyof typeof OUTCOME_INSTRUCTION] ?? arc.outcome;
+      const style = FIELD_STYLE_INSTRUCTION[arc.fieldStyle as keyof typeof FIELD_STYLE_INSTRUCTION] ?? arc.fieldStyle;
+      lines.push(`    * ex${String(i + 1).padStart(2, "0")}: ${entry} → ${outcome} → ${style}${arc.prop ? " → +anchor" : ""}`);
+    });
+  }
+  // STIER-2 P11 — the section-thread lead (the universal invented-proxy device was
+  // the stamp the acceptance readers listed first).
+  if (brief.leadThread) {
+    lines.push(
+      brief.leadThread.kind === "owned-case"
+        ? `- LEAD THREAD: this chapter runs on YOUR case "${brief.leadThread.name}" — the fastRead and at least 2 examples live inside that case's real story (its real actors, numbers, dates; packet-attested actions only, never invented quotes). Invented cast appears only in supporting scenes.`
+        : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
+    );
+  }
+  // STIER-2 P12 — the dealt quiz craft (the universal TRANSFORM recipe lives in the card).
+  if (brief.quizStemShapes && brief.quizStemShapes.length > 0) {
+    const stems = brief.quizStemShapes
+      .map((s) => `${s} (${STEM_SHAPE_INSTRUCTION[s as keyof typeof STEM_SHAPE_INSTRUCTION] ?? s})`)
+      .join("; ");
+    lines.push(`- QUIZ STEMS: draw your 9 stems from these dealt shapes — ${stems}. Shapes may repeat; WORDING may not: no stem's first four words may repeat another stem's.`);
+  }
+  if (brief.quizFailureModes && brief.quizFailureModes.length > 0) {
+    const modes = brief.quizFailureModes
+      .map((m) => `${m} (${FAILURE_MODE_INSTRUCTION[m as keyof typeof FAILURE_MODE_INSTRUCTION] ?? m})`)
+      .join("; ");
+    lines.push(`- DISTRACTOR MODES: derive every wrong answer FROM your key via one of — ${modes}. Different modes within one question; never a generic bad answer.`);
+  }
+  if (brief.questionFactOrder && brief.questionFactOrder.length > 0) {
+    lines.push(`- QUESTION ORDER: do not quiz facts in packet order — cover them in this dealt order: ${brief.questionFactOrder.join(", ")}.`);
+  }
+  // STIER-2 P13 — distinct shapes across the four practice surfaces (the halted run's
+  // one-shape-everywhere minted the "read aloud" ×4 chant).
+  if (brief.practiceSlotShapes && brief.practiceSlotShapes.length >= 4) {
+    lines.push(
+      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (5/10/15/20/25/30/45/60) and consistent wherever the same action is restated.`,
+    );
+  }
+  // STIER-2 P14 — dealt memorable-line shapes (27/27 halted lines shared one mold).
+  if (brief.memorableShapes && brief.memorableShapes.length > 0) {
+    const shapes = brief.memorableShapes
+      .map((s) => `${s} (${MEMORABLE_SHAPE_INSTRUCTION[s as keyof typeof MEMORABLE_SHAPE_INSTRUCTION] ?? s})`)
+      .join("; ");
+    lines.push(`- MEMORABLE LINES: your 3 lines use these dealt shapes, one each — ${shapes}.`);
+  }
+  // STIER-2 P15 — dealt limits placement (9/9 halted fullReads closed on the same paragraph).
+  if (brief.limitsPlacement) {
+    lines.push(`- LIMITS PLACEMENT: ${LIMITS_INSTRUCTION[brief.limitsPlacement as keyof typeof LIMITS_INSTRUCTION] ?? brief.limitsPlacement}`);
+  }
+  // STIER-2 P16 — dealt first-mention grounding form (one appositive rhythm ×9 is the next stamp).
+  if (brief.groundingForm) {
+    lines.push(
+      `- FIRST-MENTION GROUNDING: ${GROUNDING_INSTRUCTION[brief.groundingForm as keyof typeof GROUNDING_INSTRUCTION] ?? brief.groundingForm}. Every real company/event/date gets one plain-words grounding at first mention, drawn from the packet — if the packet gives no context, soften or drop the anchor, never invent. Rephrase any term of art in plain words in the same paragraph. The hook may not hang on a date or name that is not anchored within the next two sentences.`,
+    );
   }
   if (brief.practiceVerb) {
     lines.push(`- PRACTICE VERB: build the physical actions in tryThisNow and the 24-hour challenge around "${brief.practiceVerb}" — not "touch" or "open" (other chapters own other verbs; a shared verb becomes a book-wide tic).`);
@@ -603,6 +751,71 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
     if (!(PRACTICE_SHAPES as readonly string[]).includes(brief.practiceShape)) {
       push("BR6.rotation_field", `chapter ${n} brief practiceShape ${JSON.stringify(brief.practiceShape)} is missing or not one of ${PRACTICE_SHAPES.join("/")}`);
     }
+
+    // BR6-v3 — STIER-2 dealt fields are ALL-OR-NONE (fail-closed: a brief carrying the v3
+    // stamp but missing a deal would silently ship that lever's house pattern; a brief with
+    // NO v3 marker is a legacy v2 brief and passes untouched — grill round-2b #10).
+    const v3Markers = [
+      brief.rotationSchemaVersion,
+      brief.exampleArcs,
+      brief.quizStemShapes,
+      brief.quizFailureModes,
+      brief.questionFactOrder,
+      brief.memorableShapes,
+      brief.limitsPlacement,
+      brief.groundingForm,
+      brief.practiceSlotShapes,
+      brief.leadThread,
+      brief.exampleCount,
+    ];
+    if (v3Markers.some((m) => m !== undefined && m !== null)) {
+      const missing: string[] = [];
+      if (!brief.rotationSchemaVersion) missing.push("rotationSchemaVersion");
+      const count = brief.exampleCount ?? 0;
+      if (!(count >= 4 && count <= 6)) missing.push("exampleCount(4..6)");
+      if (!Array.isArray(brief.exampleArcs) || brief.exampleArcs.length !== count) missing.push(`exampleArcs(len==${count})`);
+      else {
+        for (const arc of brief.exampleArcs) {
+          if (!(EXAMPLE_ENTRY_POINTS as readonly string[]).includes(arc.entry)) missing.push(`exampleArcs.entry(${arc.entry})`);
+          if (!(EXAMPLE_OUTCOMES as readonly string[]).includes(arc.outcome)) missing.push(`exampleArcs.outcome(${arc.outcome})`);
+          if (!(FIELD_STYLES as readonly string[]).includes(arc.fieldStyle)) missing.push(`exampleArcs.fieldStyle(${arc.fieldStyle})`);
+        }
+        const props = brief.exampleArcs.filter((a) => a.prop).length;
+        if (props < 1 || props >= brief.exampleArcs.length) missing.push(`exampleArcs.prop(1..${brief.exampleArcs.length - 1}, got ${props})`);
+      }
+      if (!Array.isArray(brief.practiceSlotShapes) || brief.practiceSlotShapes.length < 4 ||
+          new Set(brief.practiceSlotShapes).size !== brief.practiceSlotShapes.length ||
+          brief.practiceSlotShapes.some((s) => !(PRACTICE_SHAPES as readonly string[]).includes(s))) {
+        missing.push("practiceSlotShapes(4 distinct)");
+      } else if (brief.practiceSlotShapes[0] !== brief.practiceShape) {
+        missing.push("practiceSlotShapes[0]==practiceShape");
+      }
+      if (!Array.isArray(brief.quizStemShapes) || brief.quizStemShapes.length !== 4 ||
+          brief.quizStemShapes.some((s) => !(QUIZ_STEM_SHAPES as readonly string[]).includes(s))) {
+        missing.push("quizStemShapes(4)");
+      }
+      if (!Array.isArray(brief.quizFailureModes) || brief.quizFailureModes.length !== 4 ||
+          brief.quizFailureModes.some((m) => !(QUIZ_FAILURE_MODES as readonly string[]).includes(m))) {
+        missing.push("quizFailureModes(4)");
+      }
+      const order = brief.questionFactOrder ?? [];
+      const isPerm = order.length === 9 && new Set(order).size === 9 && order.every((v) => v >= 1 && v <= 9);
+      if (!isPerm) missing.push("questionFactOrder(perm 1..9)");
+      if (!Array.isArray(brief.memorableShapes) || brief.memorableShapes.length !== 3 ||
+          brief.memorableShapes.some((s) => !(MEMORABLE_SHAPES as readonly string[]).includes(s))) {
+        missing.push("memorableShapes(3)");
+      }
+      if (!brief.limitsPlacement || !(LIMITS_PLACEMENTS as readonly string[]).includes(brief.limitsPlacement)) missing.push("limitsPlacement");
+      if (!brief.groundingForm || !(GROUNDING_FORMS as readonly string[]).includes(brief.groundingForm)) missing.push("groundingForm");
+      if (!brief.leadThread || !brief.leadThread.name || (brief.leadThread.kind !== "invented" && brief.leadThread.kind !== "owned-case")) {
+        missing.push("leadThread");
+      } else if (brief.leadThread.kind === "invented" && !(brief.cast ?? []).includes(brief.leadThread.name)) {
+        missing.push(`leadThread.name(${brief.leadThread.name}) not in cast`);
+      }
+      if (missing.length > 0) {
+        push("BR6.v3_partial", `chapter ${n} brief carries STIER-2 (v3) markers but is incomplete/invalid: ${missing.join(", ")} — the v3 deal is all-or-none`);
+      }
+    }
   }
 
   // BR7 — cross-chapter rotation caps hold (the deal honors these; the gate fails closed if a brief
@@ -631,6 +844,40 @@ export function validateChapterBriefs(bookId: string, roots: CompilerStoreRoots 
     }
     for (const [v, c] of tally((b) => b.challengeFrame)) {
       if (c > frameCap) push("BR7.rotation_cap", `challengeFrame "${v}" lands on ${c} of ${briefCount} chapters — over the ${frameCap === 1 ? "no-repeat" : `ceil(1/3·N)=${frameCap}`} cap; the 24-hour-challenge framing is over-concentrated`);
+    }
+    // BR8 — STIER-2 (v3) rotation caps: limitsPlacement/groundingForm respect the same
+    // two-thirds spread ceiling; a lead-thread KIND may not own the whole book (the
+    // universal invented-proxy device was the churn stamp readers listed first). Only
+    // checked when the set actually carries v3 briefs.
+    const v3Briefs = briefs.filter(({ brief }) => brief.rotationSchemaVersion);
+    if (v3Briefs.length >= 3) {
+      const v3Cap = twoThirdsCap(v3Briefs.length);
+      const tallyV3 = (pick: (b: ChapterBriefV1) => string | undefined): Map<string, number> => {
+        const m = new Map<string, number>();
+        for (const { brief } of v3Briefs) {
+          const v = pick(brief);
+          if (v) m.set(v, (m.get(v) ?? 0) + 1);
+        }
+        return m;
+      };
+      for (const [v, c] of tallyV3((b) => b.limitsPlacement)) {
+        if (c > v3Cap) push("BR8.rotation_cap", `limitsPlacement "${v}" lands on ${c} of ${v3Briefs.length} v3 chapters — over the ceil(2/3·N)=${v3Cap} cap`);
+      }
+      for (const [v, c] of tallyV3((b) => b.groundingForm)) {
+        if (c > v3Cap) push("BR8.rotation_cap", `groundingForm "${v}" lands on ${c} of ${v3Briefs.length} v3 chapters — over the ceil(2/3·N)=${v3Cap} cap`);
+      }
+      for (const [v, c] of tallyV3((b) => b.leadThread?.kind)) {
+        // ADVISORY, not blocker: resolveLeadThread legitimately degrades to invented when
+        // no owned-case label carries an anchor token — the gate must never block a state
+        // the dealer itself can mint (deal-detector invariant, plan §B principle 2).
+        if (c === v3Briefs.length) {
+          findings.push({
+            checkId: "BR8.lead_monoculture",
+            severity: "advisory",
+            message: `leadThread kind "${v}" owns ALL ${v3Briefs.length} v3 chapters — the thread device should vary (invented-proxy ×N was the churn stamp); check the packets' case labels if this persists`,
+          });
+        }
+      }
     }
   }
 

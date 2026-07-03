@@ -203,11 +203,81 @@ export type ChapterBriefV1 = {
    *  packets — the writer gets a per-chapter usage budget and overflow goes to case-concrete
    *  referents (CHB10 backstop). */
   frameworkNouns?: string[];
+  /** STIER-2 (v3): the rotation-schema version this brief was DEALT under, stamped at compile.
+   *  The regen-cap lineage prefers this stamp over the code constant, so a newer binary can
+   *  never silently re-key (and reset) budgets for briefs still carrying an older deal. */
+  rotationSchemaVersion?: string;
+  /** STIER-2 P10 (v3): dealt example count ∈ {4,5,6}. */
+  exampleCount?: number;
+  /** STIER-2 P10 (v3): one dealt row per example slot — where the example ENTERS the framework
+   *  loop, how it RESOLVES (failure|partial only on friction-dealt chapters), the rhetoric of its
+   *  whatToDo/whyItMatters fields, and whether the slot carries ONE physical anchor. */
+  exampleArcs?: Array<{
+    entry: BriefExampleEntryPoint;
+    outcome: BriefExampleOutcome;
+    fieldStyle: BriefFieldStyle;
+    prop: boolean;
+  }>;
+  /** STIER-2 P13 (v3): DISTINCT shapes for [tryThisNow, 24h-challenge, weekly-practice,
+   *  if-then-contexts] — the four surfaces sharing ONE shape was the "read aloud ×4" chant. */
+  practiceSlotShapes?: BriefPracticeShape[];
+  /** STIER-2 P12 (v3): the four stem shapes this chapter's 9 questions draw from. */
+  quizStemShapes?: BriefQuizStemShape[];
+  /** STIER-2 P12 (v3): the four distractor failure modes dealt to this chapter. */
+  quizFailureModes?: BriefQuizFailureMode[];
+  /** STIER-2 P12 (v3): dealt fact→question order (permutation of 1..9) — questions must not
+   *  march the packet's fact order. */
+  questionFactOrder?: number[];
+  /** STIER-2 P14 (v3): the three memorable-line shapes dealt to this chapter. */
+  memorableShapes?: BriefMemorableShape[];
+  /** STIER-2 P15 (v3): where the honest-limits paragraph lives in THIS chapter. */
+  limitsPlacement?: BriefLimitsPlacement;
+  /** STIER-2 P16 (v3): the chapter's primary first-mention grounding form. */
+  groundingForm?: BriefGroundingForm;
+  /** STIER-2 P11 (v3): the section-thread lead — either the chapter's invented cast[0] or its
+   *  own ownedCases[0] real case (threading fastRead + ≥2 examples through the case's real
+   *  actors; de-stamps the universal invented-proxy device). */
+  leadThread?: { kind: "invented" | "owned-case"; name: string };
 };
 
 /** v24 W4 rotation vocabularies — mirrored from src/compiler/briefRotation.ts (kept here as string
  *  literal unions so artifactTypes has no runtime dependency on the compiler module). */
 export type BriefOpenerType = "question" | "scene" | "claim" | "statistic";
+export type BriefExampleEntryPoint =
+  | "at-the-demand"
+  | "mid-behavior"
+  | "at-the-return-moment"
+  | "aftermath-looking-back"
+  | "outsider-arrives"
+  | "before-anyone-notices";
+export type BriefExampleOutcome = "clean-win" | "failure" | "partial" | "averted-late" | "still-open";
+export type BriefFieldStyle =
+  | "direct-imperative"
+  | "cost-first"
+  | "mechanism-first"
+  | "question-then-answer"
+  | "shortest-possible";
+export type BriefQuizStemShape =
+  | "cold-diagnosis"
+  | "choose-next-move"
+  | "predict-consequence"
+  | "spot-the-violation"
+  | "best-explanation-why"
+  | "ordering-priority"
+  | "transfer-new-domain"
+  | "failure-postmortem";
+export type BriefQuizFailureMode =
+  | "wrong-target"
+  | "wrong-timing"
+  | "wrong-proof"
+  | "wrong-scope"
+  | "half-measure"
+  | "right-move-wrong-trigger"
+  | "over-correction"
+  | "borrowed-authority";
+export type BriefMemorableShape = "reversal" | "redefinition" | "cost-statement" | "pointed-question" | "imperative";
+export type BriefLimitsPlacement = "early-aside" | "inside-a-failing-example" | "closing-paragraph";
+export type BriefGroundingForm = "appositive" | "prior-sentence-setup" | "parenthetical-era-role";
 export type BriefExampleLens =
   | "prop-tableau"
   | "dialogue-beat"

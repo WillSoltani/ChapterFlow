@@ -50,7 +50,6 @@ import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { mkdirSync } from "fs";
 import { chapterBriefPath, sourcePacketPath } from "../artifacts/artifactStore.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { ROTATION_SCHEMA_VERSION } from "../compiler/briefRotation.js";
 
 /** Typed infra failure: the cap cannot be honored honestly (unreadable ledger
  *  file, or a lineage that cannot be computed while legacy counts exist). */
@@ -103,7 +102,12 @@ export function computeRegenLineage(
     const packetIdentity = typeof packet.sourceHash === "string" && packet.sourceHash.length > 0
       ? packet.sourceHash
       : (packet.facts ?? []).map((f) => `${f.id}:${f.claim ?? ""}`).join("|");
-    const dealt = {
+    // Grill round-2b #9: the lineage keys on the BRIEF'S OWN stamped rotation version,
+    // never the binary's constant. Every lineage ever computed before the stamp existed
+    // used schema "brief-rotation-v2" and the SIX v2 dealt keys — so an UNSTAMPED brief
+    // must reproduce that hash byte-for-byte under any newer binary (same schema string,
+    // same key set; adding v3 keys as nulls would silently re-key and RESET caps).
+    const v2Dealt = {
       openerType: brief.openerType ?? null,
       challengeFrame: brief.challengeFrame ?? null,
       practiceShape: brief.practiceShape ?? null,
@@ -111,8 +115,25 @@ export function computeRegenLineage(
       practiceVerb: brief.practiceVerb ?? null,
       requireFrictionExample: brief.requireFrictionExample ?? null,
     };
+    const stamped = typeof brief.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0;
+    const schema = stamped ? brief.rotationSchemaVersion! : "brief-rotation-v2";
+    const dealt = stamped
+      ? {
+          ...v2Dealt,
+          exampleCount: brief.exampleCount ?? null,
+          exampleArcs: brief.exampleArcs ?? null,
+          practiceSlotShapes: brief.practiceSlotShapes ?? null,
+          quizStemShapes: brief.quizStemShapes ?? null,
+          quizFailureModes: brief.quizFailureModes ?? null,
+          questionFactOrder: brief.questionFactOrder ?? null,
+          memorableShapes: brief.memorableShapes ?? null,
+          limitsPlacement: brief.limitsPlacement ?? null,
+          groundingForm: brief.groundingForm ?? null,
+          leadThread: brief.leadThread ?? null,
+        }
+      : v2Dealt;
     return createHash("sha256")
-      .update(JSON.stringify({ schema: ROTATION_SCHEMA_VERSION, packetIdentity, dealt }))
+      .update(JSON.stringify({ schema, packetIdentity, dealt }))
       .digest("hex")
       .slice(0, 12);
   } catch {

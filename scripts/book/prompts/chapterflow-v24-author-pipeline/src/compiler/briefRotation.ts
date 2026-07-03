@@ -63,8 +63,11 @@ import { normSlug } from "../lib/chapterPaths.js";
 
 /** Bumped whenever the SET of dealt rotation fields changes — part of the regen-cap
  *  lineage hash, so a rotation redesign re-keys chapters' write budgets honestly.
- *  v2 = the S-tier deal (exampleLenses + practiceVerb + requireFrictionExample). */
-export const ROTATION_SCHEMA_VERSION = "brief-rotation-v2";
+ *  v2 = the S-tier deal (exampleLenses + practiceVerb + requireFrictionExample).
+ *  v3 = the STIER-2 deal (example arcs + lead thread + quiz stem/failure-mode/order
+ *  deals + per-slot practice shapes + memorable shapes + limits placement +
+ *  grounding form — plan docs/v24/STIER2-PLAN-2026-07-03.md §B). */
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v3";
 
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
@@ -282,6 +285,346 @@ export function dealFrictionFlags(bookId: string, totalChapters: number): boolea
   return flags;
 }
 
+// ── STIER-2 (v3) pools — plan §B P10-P16. Every pool exists because the halted
+// `execution` run stamped the corresponding single shape book-wide (54/54 example
+// skeletons, one stem opener mold on 32% of stems, one wrongness class per book,
+// "read aloud" ×4 practice slots, one aphorism mold 27/27, the same limits closer
+// 9/9, one appositive grounding rhythm). Deal the shape; never name just one. ──
+
+/** Where a worked example ENTERS the framework loop — the internal-beat rotation.
+ *  The halted run entered all 54 examples at the demand and walked the full loop. */
+export const EXAMPLE_ENTRY_POINTS = [
+  "at-the-demand",
+  "mid-behavior",
+  "at-the-return-moment",
+  "aftermath-looking-back",
+  "outsider-arrives",
+  "before-anyone-notices",
+] as const;
+export type ExampleEntryPoint = (typeof EXAMPLE_ENTRY_POINTS)[number];
+
+export const ENTRY_INSTRUCTION: Record<ExampleEntryPoint, string> = {
+  "at-the-demand": "open at the moment the demand/standard is stated",
+  "mid-behavior": "open mid-action, demand already in the past — no setup",
+  "at-the-return-moment": "open AT the check-in/return moment itself",
+  "aftermath-looking-back": "open after it's over, tracing back what happened",
+  "outsider-arrives": "open when someone outside the room first feels the effect",
+  "before-anyone-notices": "open on the early signal nobody has flagged yet",
+};
+
+/** How the example RESOLVES. failure|partial are dealt ONLY to friction-flagged
+ *  chapters (requireFrictionExample stays the master — the ×N dutiful-failure
+ *  ritual stays un-stamped; grill round-2b #2 + the original round-2 #14). */
+export const EXAMPLE_OUTCOMES = [
+  "clean-win",
+  "failure",
+  "partial",
+  "averted-late",
+  "still-open",
+] as const;
+export type ExampleOutcome = (typeof EXAMPLE_OUTCOMES)[number];
+
+export const OUTCOME_INSTRUCTION: Record<ExampleOutcome, string> = {
+  "clean-win": "the move works — but earn it, show the cost paid",
+  "failure": "the move is skipped or botched and the miss lands",
+  "partial": "the move half-works; name what stayed broken",
+  "averted-late": "headed for a miss, caught late — barely",
+  "still-open": "ends unresolved; the return point is set but not yet met",
+};
+
+/** The rhetoric INSIDE the app's fixed whatToDo/whyItMatters labels (the labels are
+ *  product UI, verified live — vary the register, never the schema). */
+export const FIELD_STYLES = [
+  "direct-imperative",
+  "cost-first",
+  "mechanism-first",
+  "question-then-answer",
+  "shortest-possible",
+] as const;
+export type FieldStyle = (typeof FIELD_STYLES)[number];
+
+export const FIELD_STYLE_INSTRUCTION: Record<FieldStyle, string> = {
+  "direct-imperative": "whatToDo/whyItMatters as direct commands to the reader",
+  "cost-first": "lead whatToDo/whyItMatters with what skipping this costs",
+  "mechanism-first": "lead with WHY it works, then the move",
+  "question-then-answer": "open with the question the reader would ask, answer it",
+  "shortest-possible": "make both fields the tersest in the chapter — no preamble",
+};
+
+/** One dealt row per example slot. `prop`: this slot carries ONE physical/sensory
+ *  anchor (dealt to 2-3 slots per chapter — never all; the halted run's ch05
+ *  "small physical props recur → scaffold smell" is the counter-lesson). */
+export type ExampleArc = {
+  entry: ExampleEntryPoint;
+  outcome: ExampleOutcome;
+  fieldStyle: FieldStyle;
+  prop: boolean;
+};
+
+/** Quiz stem SHAPES (dealt 4 per chapter; shapes may repeat across the 9 stems —
+ *  WORDING may not: no stem's first four words repeat another's. Pigeonhole-safe
+ *  by design; grill round-2b #4). */
+export const QUIZ_STEM_SHAPES = [
+  "cold-diagnosis",
+  "choose-next-move",
+  "predict-consequence",
+  "spot-the-violation",
+  "best-explanation-why",
+  "ordering-priority",
+  "transfer-new-domain",
+  "failure-postmortem",
+] as const;
+export type QuizStemShape = (typeof QUIZ_STEM_SHAPES)[number];
+
+export const STEM_SHAPE_INSTRUCTION: Record<QuizStemShape, string> = {
+  "cold-diagnosis": "present symptoms; ask what is actually wrong",
+  "choose-next-move": "a live scenario; ask for the single best next action",
+  "predict-consequence": "a choice was just made; ask what happens downstream",
+  "spot-the-violation": "a plausible-looking plan; ask which principle it breaks",
+  "best-explanation-why": "an outcome happened; ask WHY (mechanism, not recall)",
+  "ordering-priority": "several valid actions; ask which comes FIRST and why",
+  "transfer-new-domain": "the chapter's move in a non-business setting; ask what maps",
+  "failure-postmortem": "it already failed; ask which earlier step was the cause",
+};
+
+/** How each DISTRACTOR is derived FROM the key (transform, never 'a bad answer').
+ *  4 dealt per chapter; within one question the distractors use different modes. */
+export const QUIZ_FAILURE_MODES = [
+  "wrong-target",
+  "wrong-timing",
+  "wrong-proof",
+  "wrong-scope",
+  "half-measure",
+  "right-move-wrong-trigger",
+  "over-correction",
+  "borrowed-authority",
+] as const;
+export type QuizFailureMode = (typeof QUIZ_FAILURE_MODES)[number];
+
+export const FAILURE_MODE_INSTRUCTION: Record<QuizFailureMode, string> = {
+  "wrong-target": "the right move aimed at the wrong person/thing",
+  "wrong-timing": "the right move too early or too late",
+  "wrong-proof": "accepts the wrong evidence as settling it",
+  "wrong-scope": "applies the move too broadly or too narrowly",
+  "half-measure": "starts the move but stops before the part that matters",
+  "right-move-wrong-trigger": "correct action fired by the wrong signal",
+  "over-correction": "overshoots into the opposite failure",
+  "borrowed-authority": "outsources the judgment to a rank, brand, or precedent",
+};
+
+/** Memorable-line SHAPES (3 dealt per chapter — kills the one-mold aphorism:
+ *  27/27 halted lines were expectation-reversing noun phrases). */
+export const MEMORABLE_SHAPES = [
+  "reversal",
+  "redefinition",
+  "cost-statement",
+  "pointed-question",
+  "imperative",
+] as const;
+export type MemorableShape = (typeof MEMORABLE_SHAPES)[number];
+
+export const MEMORABLE_SHAPE_INSTRUCTION: Record<MemorableShape, string> = {
+  reversal: "a line that flips the expected direction",
+  redefinition: "redefine a familiar word on the chapter's terms",
+  "cost-statement": "name the concrete price of the default behavior",
+  "pointed-question": "a question sharp enough to reread",
+  imperative: "a command short enough to say from memory",
+};
+
+/** Where the honest-limits paragraph LIVES (the requirement itself never moves —
+ *  only its slot; the halted run closed 9/9 fullReads with the same paragraph). */
+export const LIMITS_PLACEMENTS = [
+  "early-aside",
+  "inside-a-failing-example",
+  "closing-paragraph",
+] as const;
+export type LimitsPlacement = (typeof LIMITS_PLACEMENTS)[number];
+
+export const LIMITS_INSTRUCTION: Record<LimitsPlacement, string> = {
+  "early-aside": "put the limits/when-NOT-to paragraph EARLY in the deep read, as an aside — do not save it for the ending",
+  "inside-a-failing-example": "let a failing/partial example CARRY the limits — show where the move breaks instead of appending a warning paragraph",
+  "closing-paragraph": "close the full read with the limits paragraph (the classic slot — fine here, other chapters own other slots)",
+};
+
+/** First-mention grounding FORM for real companies/events (one dealt primary form
+ *  per chapter — a single appositive rhythm ×9 is the next stamp; grill 2b #14). */
+export const GROUNDING_FORMS = [
+  "appositive",
+  "prior-sentence-setup",
+  "parenthetical-era-role",
+] as const;
+export type GroundingForm = (typeof GROUNDING_FORMS)[number];
+
+export const GROUNDING_INSTRUCTION: Record<GroundingForm, string> = {
+  appositive: "ground anchors with a short appositive — 'Session C, GE's talent review, …'",
+  "prior-sentence-setup": "spend the SENTENCE BEFORE the anchor setting it up in plain words",
+  "parenthetical-era-role": "ground anchors with a parenthetical era/role — '(GE's 1990s operating review)'",
+};
+
+/** Jittered distinct-entry floor per chapter ∈ {2,3,4} — the coverage PROFILE is
+ *  itself dealt so nine chapters don't share one variety fingerprint
+ *  ("homogeneous heterogeneity", grill round-2a #3). Pure. */
+export function dealEntryFloor(bookId: string, chapterIdx: number): number {
+  return 2 + ((fnv1a(`${normSlug(bookId)}:brief-entry-floor`) + chapterIdx) % 3);
+}
+
+/** Dealt example COUNT per chapter ∈ {4,5,6} (schema-legal; gates tolerate ≥4).
+ *  The fixed six was itself reader-named ("Six examples teach the same move…"). */
+export function dealExampleCounts(bookId: string, totalChapters: number): number[] {
+  const n = Math.max(0, totalChapters);
+  const start = fnv1a(`${normSlug(bookId)}:brief-example-count`);
+  const out: number[] = [];
+  for (let i = 0; i < n; i++) out.push(4 + ((start + i * 2) % 3));
+  return out;
+}
+
+/** Deal each chapter's example ARC rows. Deterministic, pure, packet-blind.
+ *  Guarantees BY CONSTRUCTION (the writer never counts):
+ *   - row count == dealExampleCounts[i];
+ *   - ≥ dealEntryFloor distinct entry points (pool walk with advancing offset);
+ *   - friction chapters get ≥1 failure|partial outcome; non-friction chapters get
+ *     NONE dealt (organic friction stays legal — dealt-absence is not a ban);
+ *   - ≥ min(3, count) distinct outcomes within the chapter's legal outcome pool;
+ *   - ≥ min(4, count) distinct fieldStyles;
+ *   - exactly 2-3 prop slots (never 0, never all). */
+export function dealExampleArcs(
+  bookId: string,
+  totalChapters: number,
+  frictionFlags: boolean[],
+  counts?: number[],
+): ExampleArc[][] {
+  const n = Math.max(0, totalChapters);
+  if (n === 0) return [];
+  const slug = normSlug(bookId);
+  const exampleCounts = counts ?? dealExampleCounts(bookId, n);
+
+  const rotate = <T,>(pool: readonly T[], namespace: string): T[] => {
+    const start = fnv1a(`${slug}:${namespace}`) % pool.length;
+    const out: T[] = [];
+    for (let i = 0; i < pool.length; i++) out.push(pool[(start + i) % pool.length]);
+    return out;
+  };
+  const entries = rotate(EXAMPLE_ENTRY_POINTS, "brief-example-entry");
+  const styles = rotate(FIELD_STYLES, "brief-field-style");
+  const frictionOutcomes: ExampleOutcome[] = ["failure", "partial"];
+  const calmOutcomes: ExampleOutcome[] = ["clean-win", "averted-late", "still-open"];
+
+  const result: ExampleArc[][] = [];
+  for (let c = 0; c < n; c++) {
+    const count = Math.min(6, Math.max(4, exampleCounts[c] ?? 6));
+    const friction = frictionFlags[c] ?? true;
+    const floor = Math.min(dealEntryFloor(bookId, c), count);
+
+    // Entries: advancing-offset walk (distinct until the pool cycles), then
+    // enforce the jittered floor by swapping tail repeats for unused entries.
+    const entryOffset = (c * 3) % entries.length;
+    const rowEntries: ExampleEntryPoint[] = [];
+    for (let k = 0; k < count; k++) rowEntries.push(entries[(entryOffset + k) % entries.length]);
+    const distinct = new Set(rowEntries);
+    if (distinct.size < floor) {
+      const unused = entries.filter((e) => !distinct.has(e));
+      for (let k = count - 1; k >= 0 && new Set(rowEntries).size < floor && unused.length > 0; k--) {
+        const seenBefore = rowEntries.slice(0, k).includes(rowEntries[k]);
+        if (seenBefore) rowEntries[k] = unused.shift()!;
+      }
+    }
+
+    // Outcomes: friction chapters seed one failure|partial (position rotates);
+    // remaining slots walk the calm pool; distinct floor min(3, count) inside the
+    // chapter's LEGAL pool (calm pool alone has exactly 3 classes).
+    const rowOutcomes: ExampleOutcome[] = new Array(count);
+    const calmOffset = (fnv1a(`${slug}:brief-example-outcome`) + c) % calmOutcomes.length;
+    for (let k = 0; k < count; k++) rowOutcomes[k] = calmOutcomes[(calmOffset + k) % calmOutcomes.length];
+    if (friction) {
+      const fSlot = (fnv1a(`${slug}:brief-friction-slot`) + c) % count;
+      rowOutcomes[fSlot] = frictionOutcomes[(fnv1a(`${slug}:brief-friction-kind`) + c) % frictionOutcomes.length];
+    }
+
+    // Field styles: advancing-offset walk over the 5-pool — ≥min(4,count) distinct.
+    const styleOffset = (c * 2) % styles.length;
+    const rowStyles: FieldStyle[] = [];
+    for (let k = 0; k < count; k++) rowStyles.push(styles[(styleOffset + k) % styles.length]);
+
+    // Prop slots: 2 + jitter (never 0, never all 4-6), spread from a rotating start.
+    const propCount = 2 + ((fnv1a(`${slug}:brief-prop-count`) + c) % 2);
+    const propStart = (fnv1a(`${slug}:brief-prop-slot`) + c) % count;
+    const props = new Array<boolean>(count).fill(false);
+    for (let k = 0; k < propCount; k++) props[(propStart + k * 2) % count] = true;
+
+    const rows: ExampleArc[] = [];
+    for (let k = 0; k < count; k++) {
+      rows.push({ entry: rowEntries[k], outcome: rowOutcomes[k], fieldStyle: rowStyles[k], prop: props[k] });
+    }
+    result.push(rows);
+  }
+  return result;
+}
+
+/** Deal K DISTINCT members per chapter from a pool with an advancing offset —
+ *  the dealLensTriples pattern, generalized (pure). */
+export function dealDistinctSet<T>(
+  bookId: string,
+  namespace: string,
+  pool: readonly T[],
+  totalChapters: number,
+  k: number,
+  stride = 3,
+): T[][] {
+  const n = Math.max(0, totalChapters);
+  if (n === 0) return [];
+  const slug = normSlug(bookId);
+  const start = fnv1a(`${slug}:${namespace}`) % pool.length;
+  const rotated: T[] = [];
+  for (let i = 0; i < pool.length; i++) rotated.push(pool[(start + i) % pool.length]);
+  const result: T[][] = [];
+  for (let c = 0; c < n; c++) {
+    const offset = (c * stride) % rotated.length;
+    const set: T[] = [];
+    for (let i = 0; i < rotated.length && set.length < Math.min(k, rotated.length); i++) {
+      const cand = rotated[(offset + i) % rotated.length];
+      if (!set.includes(cand)) set.push(cand);
+    }
+    result.push(set);
+  }
+  return result;
+}
+
+/** Dealt fact→question order: a permutation of 1..9 per chapter (the halted run's
+ *  questions marched 1:1 in packet-fact order — a predictable spine; grill 2a #6).
+ *  Deterministic Fisher-Yates over an fnv1a-seeded LCG. Pure. */
+export function dealQuestionFactOrder(bookId: string, totalChapters: number): number[][] {
+  const n = Math.max(0, totalChapters);
+  const result: number[][] = [];
+  for (let c = 0; c < n; c++) {
+    let seed = fnv1a(`${normSlug(bookId)}:brief-question-order:ch${c + 1}`) || 1;
+    const next = () => {
+      // LCG (Numerical Recipes constants), deterministic across platforms.
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed;
+    };
+    const perm = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    for (let i = perm.length - 1; i > 0; i--) {
+      const j = next() % (i + 1);
+      [perm[i], perm[j]] = [perm[j], perm[i]];
+    }
+    result.push(perm);
+  }
+  return result;
+}
+
+/** Dealt lead-thread PREFERENCE: ~half the chapters prefer a REAL packet-attested
+ *  person as the section-thread lead (the invented-proxy-cast device was universal
+ *  9/9 — the stamp the acceptance readers list FIRST). The compile step resolves
+ *  preference → actual lead (real only when the packet carries a scene-able
+ *  person; invented cast[0] otherwise). Pure, packet-blind here. */
+export function dealLeadPreference(bookId: string, totalChapters: number): boolean[] {
+  const n = Math.max(0, totalChapters);
+  const start = fnv1a(`${normSlug(bookId)}:brief-lead-kind`) % 2;
+  const flags: boolean[] = [];
+  for (let i = 0; i < n; i++) flags.push((i + start) % 2 === 0);
+  return flags;
+}
+
 export type BriefRotation = {
   openerType: OpenerType;
   challengeFrame: ChallengeFrame;
@@ -293,6 +636,29 @@ export type BriefRotation = {
   /** v24 S-tier P2 (#14): whether THIS chapter must include a failed/partial-outcome
    *  example (dealt to ~2/3 of chapters so any 4-chapter sample sees one). */
   requireFrictionExample: boolean;
+  /** STIER-2 P10: dealt example count ∈ {4,5,6}. */
+  exampleCount: number;
+  /** STIER-2 P10: one dealt (entry, outcome, fieldStyle, prop) row per example slot. */
+  exampleArcs: ExampleArc[];
+  /** STIER-2 P13: DISTINCT shapes for the four practice surfaces, in order
+   *  [tryThisNow, 24h-challenge, weekly-practice, if-then-contexts]. Slot 0 always
+   *  equals the legacy practiceShape field. */
+  practiceSlotShapes: PracticeShape[];
+  /** STIER-2 P12: the four stem shapes this chapter's 9 questions draw from. */
+  quizStemShapes: QuizStemShape[];
+  /** STIER-2 P12: the four distractor failure modes dealt to this chapter. */
+  quizFailureModes: QuizFailureMode[];
+  /** STIER-2 P12: dealt fact→question order (permutation of 1..9). */
+  questionFactOrder: number[];
+  /** STIER-2 P14: the three memorable-line shapes dealt to this chapter. */
+  memorableShapes: MemorableShape[];
+  /** STIER-2 P15: where the honest-limits paragraph lives in THIS chapter. */
+  limitsPlacement: LimitsPlacement;
+  /** STIER-2 P16: the chapter's primary first-mention grounding form. */
+  groundingForm: GroundingForm;
+  /** STIER-2 P11: prefer a REAL packet-attested person as the section-thread lead
+   *  (compile resolves availability; invented cast[0] otherwise). */
+  leadPreferReal: boolean;
 };
 
 /** Deal all three rotations for a book and return them keyed by 1-based chapter
@@ -318,8 +684,27 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
   const verbs = dealRotation(bookId, "brief-practice-verb", PRACTICE_VERBS, n, verbCap);
   const frictions = dealFrictionFlags(bookId, n);
 
+  // STIER-2 (v3) deals — plan §B. All pure/deterministic like the rest.
+  const counts = dealExampleCounts(bookId, n);
+  const arcs = dealExampleArcs(bookId, n, frictions, counts);
+  const slotSets = dealDistinctSet(bookId, "brief-practice-slot", PRACTICE_SHAPES, n, 4, 2);
+  const stems = dealDistinctSet(bookId, "brief-quiz-stem", QUIZ_STEM_SHAPES, n, 4, 3);
+  const modes = dealDistinctSet(bookId, "brief-quiz-failure-mode", QUIZ_FAILURE_MODES, n, 4, 3);
+  const orders = dealQuestionFactOrder(bookId, n);
+  const memShapes = dealDistinctSet(bookId, "brief-memorable-shape", MEMORABLE_SHAPES, n, 3, 2);
+  const limits = dealRotation(bookId, "brief-limits-placement", LIMITS_PLACEMENTS, n, twoThirdsCap(n));
+  const groundings = dealRotation(bookId, "brief-grounding-form", GROUNDING_FORMS, n, twoThirdsCap(n));
+  const leadPrefs = dealLeadPreference(bookId, n);
+
   const out = new Map<number, BriefRotation>();
   for (let i = 0; i < n; i++) {
+    // The four practice surfaces get DISTINCT shapes; slot 0 stays the legacy
+    // dealt practiceShape so tryThisNow's shape is stable for v2 consumers.
+    const slots = [shapes[i], ...slotSets[i].filter((s) => s !== shapes[i])].slice(0, 4);
+    for (const s of PRACTICE_SHAPES) {
+      if (slots.length >= 4) break;
+      if (!slots.includes(s)) slots.push(s);
+    }
     out.set(i + 1, {
       openerType: openers[i],
       challengeFrame: frames[i],
@@ -327,6 +712,16 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
       exampleLenses: lenses[i],
       practiceVerb: verbs[i],
       requireFrictionExample: frictions[i],
+      exampleCount: counts[i],
+      exampleArcs: arcs[i],
+      practiceSlotShapes: slots,
+      quizStemShapes: stems[i],
+      quizFailureModes: modes[i],
+      questionFactOrder: orders[i],
+      memorableShapes: memShapes[i],
+      limitsPlacement: limits[i],
+      groundingForm: groundings[i],
+      leadPreferReal: leadPrefs[i],
     });
   }
   return out;

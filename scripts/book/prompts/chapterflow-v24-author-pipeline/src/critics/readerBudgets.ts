@@ -1415,6 +1415,140 @@ function checkPracticeVerbFamily(chapters: ChapterV21[]): BudgetFinding[] {
   return findings;
 }
 
+// ── CHB14–CHB17: STIER-2 quiz-tell + voice checks (plan docs/v24/STIER2-PLAN-2026-07-03.md §B D-lane) ──
+//
+// RC2 evidence: ALL FIVE flip-tiebreak events on the halted execution run led with a
+// quiz-tell must-fix; ~50% of its 81 questions were keyword-guessable; the stem
+// opener mold "A/An <role> <verb>…" covered 26/81 stems; preflight tellRate was 78%
+// of all first-pass failures. CHB14/15 are the deterministic backstops behind the
+// card's TRANSFORM recipe. Enforcement tiers follow the standing calibration rule
+// (zero-FP on the top-5 owner books AND above the deal's own worst-case mint, else
+// ADVISORY) — measured in docs/v24 STIER-2 calibration; see the constants below.
+
+/** CHB14: per-chapter signature vocabulary = the top-K saturation tokens of the
+ *  chapter's own reader surface (computable, tokenizer-pinned like CHB10). */
+export const CHB14_SIGNATURE_TOP_K = 12;
+/** A tell = the KEY uniquely carries ≥ this many more signature tokens than the
+ *  strongest distractor (unique tokens, key-shares-neutralized). */
+export const CHB14_TELL_MARGIN = 2;
+/** TELEMETRY-ONLY parameters. Calibration 2026-07-03 found this metric INVERTED
+ *  (top-5 books 14.3–23.5% vs halted execution 11.1%) — no gate uses these caps;
+ *  they exist so future recalibrations measure against a fixed definition. */
+export const CHB14_CHAPTER_RATE_CAP = 0.34;
+export const CHB14_BOOK_RATE_CAP = 0.2;
+
+/** Raw CHB14 measurement — exported for the calibration harness (tiers are set from
+ *  measured top-5 vs halted rates, never promised; plan §B principle 2). */
+export function measureQuizKeyEcho(chapters: ChapterV21[]): {
+  bookTells: number;
+  bookQuestions: number;
+  bookRate: number;
+  perChapter: Array<{ n: number; tells: number; qs: number; rate: number }>;
+  samples: string[];
+} {
+  let bookTells = 0;
+  let bookQuestions = 0;
+  const perChapter: Array<{ n: number; tells: number; qs: number; rate: number }> = [];
+  const samples: string[] = [];
+  for (const chapter of chapters) {
+    const counts = new Map<string, number>();
+    for (const w of saturationTokens(fullReaderSurface(chapter))) counts.set(w, (counts.get(w) ?? 0) + 1);
+    const signature = new Set(
+      [...counts.entries()]
+        .sort((a, b) => (b[1] - a[1]) || (a[0] < b[0] ? -1 : 1))
+        .slice(0, CHB14_SIGNATURE_TOP_K)
+        .map(([w]) => w),
+    );
+    let tells = 0;
+    let qs = 0;
+    for (const q of chapter.quiz?.questions ?? []) {
+      const choices = (q.choices ?? []).map((c) => asText(c));
+      const k = q.correctIndex;
+      if (typeof k !== "number" || !choices[k] || choices.length < 3) continue;
+      qs++;
+      const hitSets = choices.map((c) => {
+        const set = new Set<string>();
+        for (const w of saturationTokens(c)) if (signature.has(w)) set.add(w);
+        return set;
+      });
+      // Shares exception: a signature token present in ≥ half the choices is the
+      // question's TOPIC, not a tell — neutralize it for every choice.
+      const shared = new Set<string>();
+      for (const w of signature) {
+        const holders = hitSets.filter((s) => s.has(w)).length;
+        if (holders * 2 >= choices.length) shared.add(w);
+      }
+      const scores = hitSets.map((s) => [...s].filter((w) => !shared.has(w)).length);
+      const keyScore = scores[k];
+      const maxDistractor = Math.max(...scores.filter((_, i) => i !== k));
+      if (keyScore >= maxDistractor + CHB14_TELL_MARGIN) {
+        tells++;
+        if (samples.length < 3) samples.push(`ch${String(chapter.number).padStart(2, "0")} ${q.questionId ?? `q${qs}`}: key carries ${keyScore} signature word(s), best distractor ${maxDistractor}`);
+      }
+    }
+    bookTells += tells;
+    bookQuestions += qs;
+    perChapter.push({ n: chapter.number, tells, qs, rate: qs > 0 ? tells / qs : 0 });
+  }
+  return { bookTells, bookQuestions, bookRate: bookQuestions > 0 ? bookTells / bookQuestions : 0, perChapter, samples };
+}
+
+// NOTE: there is deliberately NO checkQuizKeyEcho gate. Calibration (2026-07-03)
+// measured this metric INVERTED — top-5 owner books 14.3–23.5% vs halted 11.1% —
+// so a gate here would block exactly the books the owner scored highest. The
+// measurement stays (above) for telemetry and future recalibration only.
+
+/** CHB15: stem-opener WORDING mold — first-3-token signature with function words kept
+ *  literal and content words classed as W ("A manager is looking…" → "a W is"). The
+ *  halted run put one mold on 32% of stems; the dealt stem SHAPES cannot mint a
+ *  wording mold (wording repetition is banned separately), so the deal-detector
+ *  invariant holds by construction. */
+/** TELEMETRY-ONLY (same calibration verdict as CHB14 — the "a W W" mold is the
+ *  genre-standard stem: 32–81% of TOP-5 stems). No gate uses this cap. */
+export const CHB15_MOLD_SHARE_CAP = 0.3;
+const CHB15_FUNCTION_WORDS = new Set([
+  "a", "an", "the", "your", "you", "when", "while", "during", "after", "before", "in",
+  "at", "on", "for", "to", "of", "is", "are", "was", "has", "have", "suppose", "imagine",
+  "consider", "which", "what", "who", "how", "why", "if", "two", "one",
+]);
+
+function stemOpenerSignature(prompt: string): string | null {
+  const words = prompt.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+  if (words.length < 3) return null;
+  return words.slice(0, 3).map((w) => (CHB15_FUNCTION_WORDS.has(w) ? w : "W")).join(" ");
+}
+
+/** Raw CHB15 measurement — exported for the calibration harness. */
+export function measureStemOpenerMolds(chapters: ChapterV21[]): {
+  total: number;
+  molds: Array<{ sig: string; count: number; share: number; chapterCount: number; sample: string }>;
+} {
+  const bySig = new Map<string, { count: number; chapters: Set<number>; sample: string }>();
+  let total = 0;
+  for (const chapter of chapters) {
+    for (const q of chapter.quiz?.questions ?? []) {
+      const prompt = asText(q.prompt);
+      const sig = stemOpenerSignature(prompt);
+      if (!sig) continue;
+      total++;
+      const rec = bySig.get(sig) ?? { count: 0, chapters: new Set<number>(), sample: prompt.slice(0, 60) };
+      rec.count++;
+      rec.chapters.add(chapter.number);
+      bySig.set(sig, rec);
+    }
+  }
+  const molds = [...bySig.entries()]
+    .map(([sig, rec]) => ({ sig, count: rec.count, share: total > 0 ? rec.count / total : 0, chapterCount: rec.chapters.size, sample: rec.sample }))
+    .sort((a, b) => b.share - a.share);
+  return { total, molds };
+}
+
+// NOTE: there is deliberately NO checkStemOpenerMold gate and NO CHB17 abstract-opener
+// gate. Calibration (2026-07-03): the "a W W" stem mold covers 32–81% of TOP-5 stems vs
+// 47% of halted stems (inverted — the mold is the genre-standard stem), and abstract-
+// opener runs fire on 3/5 top-5 books. Stem/voice variety is carried by the DEALT stem
+// shapes + the wording self-check + the VOICE card block, judged by the blinded readers.
+
 /** C2: the deterministic churn-evidence report the acceptance-reject repair
  *  round hands to targeted writers — the CHB10–13 measurements over the CURRENT
  *  bytes, formatted as complaint lines. Cross-chapter context is deliberately
@@ -1427,6 +1561,9 @@ export function buildChurnEvidenceReport(chapters: ChapterV21[]): string[] {
     ...checkSceneClassSpread(ordered),
     ...checkStrawmanRate(ordered),
     ...checkPracticeVerbFamily(ordered),
+    // CHB14/15/17 deliberately absent: calibration showed the top-5 books measure
+    // WORSE on them than the halted bytes — evidence built on those meters would
+    // push writers AWAY from what owner-scored books look like.
   ];
   if (findings.length === 0) return ["measured churn evidence: none of the deterministic cross-chapter meters fire — the sameness the readers named is in surfaces the meters cannot see; diverge on rhetoric, scene texture, and sentence rhythm."];
   return findings.map((f) => `measured (${f.checkId}): ${f.message}`);
@@ -1533,6 +1670,8 @@ export function buildBudgetRepairComplaints(chapters: ChapterV21[], blockers: Bu
     }
   }
 
+  // CHB14/15 repair blocks deliberately absent — those meters never gate (see the
+  // calibration verdict at the CHB14/15 measure functions above).
   return out;
 }
 
@@ -1557,6 +1696,17 @@ export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOp
     ...checkSceneClassSpread(ordered),
     ...checkStrawmanRate(ordered),
     ...checkPracticeVerbFamily(ordered),
+    // STIER-2 D-lane calibration VERDICT (2026-07-03): CHB14 (quiz key echo) and
+    // CHB15 (stem opener mold) measured INVERTED on the corpus — the top-5
+    // owner-scored books run HIGHER on both metrics than the halted execution
+    // bytes (CHB14 book rate: top-5 14.3–23.5% vs halted 11.1%; CHB15 "a W W"
+    // mold: top-5 32–81% vs halted 47%). No separating threshold exists, so per
+    // the standing rule NO gate ships — the reviewer-flagged quiz tells are
+    // SEMANTIC (most-specific / only-operational choice), not lexical. The
+    // measure functions stay exported for telemetry; the quiz lever lives in the
+    // card's TRANSFORM recipe + dealt stem shapes + the blinded reviewers (who
+    // catch these — all 5 halted-run tiebreaks led with quiz-tell must-fixes).
+    // CHB17 (abstract-opener runs) also fired on 3/5 top-5 books → same verdict.
   ];
 }
 

@@ -176,8 +176,13 @@ test("P1/P2/P4: briefVarietyInstructionLines renders the new dealt lines; legacy
 // ── P3/P5/P7: the card ─────────────────────────────────────────────────────────
 
 test("P3/P5/P7: QUALITY BAR rule 5 + band protocol + stem ban; PREMIUM block and sharedSpine line ride the card", () => {
-  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR CRAFT"), "rule 5 exists");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("commonError"), "grounded-misconception source named");
+  // STIER-2 rebase (documented, plan §B P12): rule 5 became the TRANSFORM recipe —
+  // key-first, dealt failure modes, echo symmetry. The scan-only version just moved
+  // the wrongness monoculture to the next lexicon (all 5 halted-run tiebreaks led
+  // with quiz-tell must-fixes).
+  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "rule 5 exists (transform recipe)");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("TRANSFORM it"), "key-first transform derivation named");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
   assert.ok(AUTHOR_QUALITY_BAR.includes("NEVER a fixed stem"), "#16 explanation-stem ban");
   assert.ok(AUTHOR_QUALITY_BAR.includes("uniquely shortest in about 2-4"), "#18 band protocol, not an absolute");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("REVERSE a default"), "insight demand");
@@ -612,6 +617,8 @@ test("P1b/P3b: scene-furniture budget rides the brief; rule 5 carries the mechan
   } as ChapterBriefV1).join("\n");
   assert.ok(lines.includes("SCENE-FURNITURE BUDGET"), "furniture budget present");
   assert.ok(lines.includes("review, meeting, room, plan, work"), "static furniture list present");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("scan ALL 18 distractors"), "rule 5 mechanical scan protocol");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("blocks the whole book above 7%"), "rule 5 names the deterministic stake");
+  // STIER-2 rebase: the "scan ALL 18" protocol is subsumed by the TRANSFORM recipe;
+  // the banned mechanical families + the deterministic 7% stake stay named (grill 2b #17).
+  assert.ok(AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "rule 5 still names the banned mechanical families");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("blocks above 7%"), "rule 5 names the deterministic stake");
 });

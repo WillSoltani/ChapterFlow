@@ -168,15 +168,23 @@ export const AUTHOR_HOUSE_RULES =
  * the mechanical length-audit protocol (the halted `execution` run still paid 5/9
  * first-draft tellRate rewrites — B7) and rule 5 (DISTRACTOR CRAFT) is new — 12.3%
  * of that run's distractors were tone-rejectable strawmen vs 0.5-4.8% in the top-5
- * corpus (B3). Verbatim; do not reword outside a documented plan change.
+ * corpus (B3).
+ *
+ * STIER-2 CHANGE (2026-07-03, plan docs/v24/STIER2-PLAN-2026-07-03.md): rule 1
+ * loses its meta-parentheticals (prune ledger); rule 3 drops the "exact object to
+ * touch" shape — that wording itself minted "touch X and say Y" theater across 6+
+ * chapters (RC1); rule 5 becomes the TRANSFORM recipe (key-first, dealt failure
+ * modes, echo symmetry) — the scan-only version just moved the wrongness
+ * monoculture to the next lexicon (RC2; all 5 flip-tiebreaks led with quiz tells).
+ * Verbatim; do not reword outside a documented plan change.
  */
 export const AUTHOR_QUALITY_BAR =
   "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces them; missing any forces a full rewrite):\n" +
-  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. (A right answer that is always the tersest choice is as much a tell as one that is always the wordiest; balance both directions across the 9 questions.) Before you declare done: list the 9 keys' character lengths beside their distractors; across the 9 questions the key should be uniquely shortest in about 2-4 and uniquely longest in at most 3 — outside those bands, rewrite the worst offenders (driving either count to zero just mints the opposite tell).\n" +
+  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. Before you declare done: list the 9 keys' character lengths beside their distractors; across the 9 questions the key should be uniquely shortest in about 2-4 and uniquely longest in at most 3 — outside those bands, rewrite the worst offenders.\n" +
   "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
-  "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox AND the exact sentence to say or the exact object to touch. No \"a, b, or c\" option menus — give the single concrete move, not a menu of categories.\n" +
+  "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR CRAFT. Build wrong answers from the source packet's commonError material first — real misconceptions a competent practitioner would defend out loud. Every distractor must be wrong for a specific reason YOUR prose settles, and each explanation must name why the most tempting wrong answer fails — in your own varied words each time; NEVER a fixed stem like \"If you chose (b):\" repeated across questions (162 identical stems is its own template). Never a tone giveaway: no distractor a reader could reject WITHOUT reading the chapter — unless the chapter explicitly teaches against that named move. Before you declare done: scan ALL 18 distractors for polish/polished/announce/announcement/slides/deck/briefing/morale/optics/louder/inspire/motivate words — every hit gets REBUILT from a commonError (a deterministic gate counts these book-wide and blocks the whole book above 7%).";
+  "5. DISTRACTOR TRANSFORM. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/briefing/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear.";
 
 /**
  * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
@@ -188,10 +196,10 @@ export const AUTHOR_QUALITY_BAR =
  */
 export const AUTHOR_PREMIUM_BLOCK =
   "WHAT PREMIUM MEANS — the independent reviewers score exactly these; hit them in the draft, not the retry:\n" +
-  "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. At least one example ends in failure or partial success — a chapter of frictionless wins reads as fiction and scores as one.\n" +
-  "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest paragraph in the deep or full read. Overselling is a scored defect.\n" +
+  "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. Your dealt example arcs already assign the outcomes — write the failure/partial slots as REAL friction, not staged stumbles.\n" +
+  "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest passage, living where your dealt LIMITS PLACEMENT puts it (not the same slot every chapter). Overselling is a scored defect.\n" +
   "- DENSITY: every paragraph adds NEW information. Never restate the previous paragraph in fresh words; never reuse a sentence across fastRead/deepRead/fullRead — each tier must ADD, not re-say.\n" +
-  "- TONE: this book's voice, not a house voice. If a sentence could sit unchanged in any business book, sharpen it until it could only belong to this one.\n" +
+  "- VOICE: this book's voice, not a house voice — four concrete moves: (1) in deepRead/fullRead, never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object. (2) At least twice per tier, land a ≤6-word sentence beside a ≥25-word one — varied placement, not a ritual pair. (3) Ask 1-3 real rhetorical questions somewhere in the chapter. (4) Only the dealt +anchor example slots carry a physical/sensory detail — everywhere else, none.\n" +
   "- QUIZZES: a reader who skipped the chapter should score ~33%, not 60% — wrong answers must tempt someone who half-read. Explanations teach why the wrong answer fails, not only why the right one is right.";
 
 /** Compact ChapterV21 schema hint — field names + types only, one line, the same
@@ -210,6 +218,109 @@ export function authorSelfVerify(bookId: string, chapterNumber: number): string 
 3. LENGTH — confirm the rendered chapter is inside the brief's length budget. Over budget: cut, never compress by jargon. Under: deepen a real case, never pad.
 4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). None may appear.
 Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fix and re-run until clean.`;
+}
+
+/** STIER-2 D7/D9 — deterministic write-time contract checks that need the BRIEF in
+ *  scope (relocated here from the readerBudgets plan slot precisely because budgets
+ *  never see briefs — grill round-2b #6). Pure; returns retry complaints, [] = clean.
+ *
+ *  D7 lead thread: the dealt lead (invented cast member or owned-case anchor token)
+ *  must appear in fastRead and in ≥2 examples — ch05's Yvonne→Reagan→Eliana rotation
+ *  was a 2nd-order variety-pressure effect with no coherence counterweight.
+ *  D9 timers: writer-invented practice timers must be round (5/10/15/20/25/30/45/60
+ *  minutes; packet-attested numbers exempt), and two practice surfaces that restate
+ *  the same action verbatim (shared 6-gram) must agree on the minutes — the halted
+ *  run shipped a "19-minute challenge" and a 12-vs-10-minute discrepancy. */
+export const ROUND_TIMER_MINUTES = new Set([5, 10, 15, 20, 25, 30, 45, 60]);
+
+/** STIER-2 M-lane (owner-directed): the author WRITE/REGEN sessions are pinned to an
+ *  explicit model + reasoning effort instead of inheriting whatever the operator's
+ *  ~/.codex/config.toml says that day. xhigh = the top codex tier — one level above
+ *  the reviewers' pinned "high", thinking at maximum. HONESTY (plan §A RC5): the
+ *  halted run's ambient default was very likely already xhigh, so NO content gain is
+ *  booked to this pin — it buys provenance, reproducibility, and timeout headroom.
+ *  Reviewers/readers/QC/research stay untouched (instrument stability). */
+export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? "gpt-5.5";
+export const AUTHOR_WRITER_EFFORT = (process.env.CHAPTERFLOW_AUTHOR_EFFORT ?? "xhigh") as
+  "minimal" | "low" | "medium" | "high" | "xhigh";
+/** xhigh whole-chapter writes need headroom over the 30-min codex default; the same-host
+ *  run lock is PID-liveness-based, so a long session cannot cause a lock steal. */
+export const AUTHOR_WRITE_TIMEOUT_MS = 3_600_000;
+
+export function authorWriteContractFindings(
+  chapter: ChapterV21,
+  brief: ChapterBriefV1 | null | undefined,
+  packet: SourcePacketV1,
+): string[] {
+  const complaints: string[] = [];
+
+  // D7 — lead-thread presence (v3 briefs only; legacy briefs skip by construction).
+  const lead = brief?.leadThread;
+  if (lead?.name) {
+    const token = lead.kind === "invented"
+      ? lead.name
+      : (lead.name.split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w)) ?? "");
+    if (token) {
+      const hasToken = (text: string | undefined) => new RegExp(`\\b${token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(text ?? "");
+      if (!hasToken(chapter.breakdown?.fastRead)) {
+        complaints.push(`lead thread: the dealt lead ${lead.kind === "invented" ? lead.name : `case "${lead.name}"`} never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line).`);
+      }
+      const exampleHits = (chapter.examples ?? []).filter((ex) =>
+        hasToken(typeof ex.scenario === "string" ? ex.scenario : undefined) || hasToken(ex.title) || hasToken(ex.whatToDo) || hasToken(ex.whyItMatters),
+      ).length;
+      if (exampleHits < 2) {
+        complaints.push(`lead thread: the dealt lead (${token}) appears in ${exampleHits} example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.`);
+      }
+    }
+  }
+
+  // D9 — practice-timer sanity, scoped to writer-invented minute timers.
+  const packetNumbers = new Set((packet.allowedNumbers ?? []).map((v) => String(v)));
+  const surfaces: Array<[string, string]> = [
+    ["tryThisNow", chapter.tryThisNow ?? ""],
+    ["twentyFourHourChallenge", chapter.implementationPlan?.twentyFourHourChallenge ?? ""],
+    ["weeklyPractice", chapter.implementationPlan?.weeklyPractice ?? ""],
+    ["ifThenPlans", (chapter.implementationPlan?.ifThenPlans ?? []).map((p) => `${p.context} ${p.plan}`).join(" ")],
+  ];
+  const minutesOf = (text: string): number[] => {
+    const out: number[] = [];
+    for (const m of text.matchAll(/\b(\d{1,3})[- ]?minutes?\b/gi)) out.push(Number(m[1]));
+    return out;
+  };
+  const surfaceMinutes = new Map<string, number[]>();
+  for (const [name, text] of surfaces) {
+    const mins = minutesOf(text);
+    surfaceMinutes.set(name, mins);
+    for (const v of mins) {
+      if (!ROUND_TIMER_MINUTES.has(v) && !packetNumbers.has(String(v))) {
+        complaints.push(`practice timers: "${v} minutes" in ${name} is not a round timer (5/10/15/20/25/30/45/60) and is not a packet-attested number — invented odd timers read as fake precision (the "19-minute challenge" complaint).`);
+      }
+    }
+  }
+  // Cross-surface consistency: shared verbatim 6-gram + different minute sets = the
+  // same action restated with different numbers (the 12-vs-10 discrepancy).
+  const grams = (text: string): Set<string> => {
+    const words = text.toLowerCase().replace(/[^a-z0-9\s]/g, " ").split(/\s+/).filter(Boolean);
+    const set = new Set<string>();
+    for (let i = 0; i + 6 <= words.length; i++) set.add(words.slice(i, i + 6).join(" "));
+    return set;
+  };
+  for (let a = 0; a < surfaces.length; a++) {
+    for (let b = a + 1; b < surfaces.length; b++) {
+      const [nameA, textA] = surfaces[a];
+      const [nameB, textB] = surfaces[b];
+      const minsA = surfaceMinutes.get(nameA) ?? [];
+      const minsB = surfaceMinutes.get(nameB) ?? [];
+      if (minsA.length === 0 || minsB.length === 0) continue;
+      if (JSON.stringify([...new Set(minsA)].sort()) === JSON.stringify([...new Set(minsB)].sort())) continue;
+      const gA = grams(textA);
+      const shared = [...grams(textB)].some((g) => gA.has(g));
+      if (shared) {
+        complaints.push(`practice timers: ${nameA} (${minsA.join("/")} min) and ${nameB} (${minsB.join("/")} min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats.`);
+      }
+    }
+  }
+  return complaints;
 }
 
 export type AuthorCardArgs = {
@@ -243,11 +354,28 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     "(2-3 if-then plans + 24-hour challenge + weekly practice), memorable lines.",
   );
 
-  sections.push("", "THE BRIEF", briefMd.trim());
+  // B0 (STIER-2, grill 2b #1): the card used to carry every dealt VARIETY line TWICE —
+  // once inside the embedded brief md and once in the explicit block below — doubling
+  // the card cost of every lever. When the machine brief is present, strip the md's
+  // VARIETY section; the explicit block is the single render. (Without the machine
+  // brief the md keeps its section — the card degrades gracefully as before.)
+  let briefForCard = briefMd.trim();
+  if (args.brief) {
+    const mdLines = briefForCard.split("\n");
+    const start = mdLines.findIndex((l) => l.startsWith("## VARIETY"));
+    if (start >= 0) {
+      let end = mdLines.length;
+      for (let i = start + 1; i < mdLines.length; i++) {
+        if (mdLines[i].startsWith("## ")) { end = i; break; }
+      }
+      mdLines.splice(start, end - start);
+      briefForCard = mdLines.join("\n");
+    }
+  }
+  sections.push("", "THE BRIEF", briefForCard);
 
   // v24 W4: the dealt variety reservations, rendered as EXPLICIT, non-negotiable writer
-  // instructions (brief-derived — the md already carries them, this reinforces from the machine
-  // brief so the card states them even if the md's VARIETY section is edited out downstream).
+  // instructions from the machine brief (the single render — see B0 above).
   if (args.brief) {
     sections.push(
       "",
@@ -336,6 +464,7 @@ export async function authorWriteOneChapter(
   const packet = io.readPacket(bookId, chapterNumber);
   if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
 
+  const machineBrief = io.readBrief(bookId, chapterNumber);
   const baseCard = buildAuthorCard({
     bookId,
     chapterNumber,
@@ -343,7 +472,7 @@ export async function authorWriteOneChapter(
     packet,
     voice: io.voiceCard(bookId),
     complaints: opts.complaints,
-    brief: io.readBrief(bookId, chapterNumber),
+    brief: machineBrief,
   });
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
@@ -367,13 +496,27 @@ export async function authorWriteOneChapter(
   for (let attempt = 1; attempt <= 1 + AUTHOR_WRITE_GATE_RETRIES; attempt++) {
     const label = attempt === 1 ? `author-ch${nn}` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
-    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars)`);
-    const r = await deps.spawn({
-      task: card,
-      sessionId,
-      cwd: PIPELINE_DIR,
-      sandbox: "workspace-write",
-    });
+    deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${AUTHOR_WRITER_MODEL} @ ${AUTHOR_WRITER_EFFORT}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
+    // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
+    // catch it into the structured retry path; an unhandled throw here would escape
+    // doAuthorWrite's halt taxonomy entirely (grill round-2b #12).
+    let r: Awaited<ReturnType<typeof deps.spawn>>;
+    try {
+      r = await deps.spawn({
+        task: card,
+        sessionId,
+        cwd: PIPELINE_DIR,
+        sandbox: "workspace-write",
+        model: AUTHOR_WRITER_MODEL,
+        reasoningEffort: AUTHOR_WRITER_EFFORT,
+        timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
+      });
+    } catch (err) {
+      lastReason = `ch${nn}: writer session ${sessionId} died before completing (${(err as Error).message})`;
+      deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+      card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
+      continue;
+    }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
     if (!r.ok) deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
 
@@ -422,10 +565,26 @@ export async function authorWriteOneChapter(
         card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
         continue;
       }
+      // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with
+      // the BRIEF in scope, same retry semantics as the rubric preflight. Deterministic,
+      // evidence-first complaints (the proven repair pattern).
+      let writtenChapter: ChapterV21 | undefined;
+      try {
+        writtenChapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      } catch { /* unreadable → skip the contract check; the gate already passed */ }
+      if (writtenChapter) {
+        const contract = authorWriteContractFindings(writtenChapter, machineBrief, packet);
+        if (contract.length > 0) {
+          lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
+          deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+          card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
+          continue;
+        }
+      }
       // Success: bind author provenance to the authored content (create-once per
       // content; a conflict means a prior author of identical bytes stands).
       try {
-        const chapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+        const chapter = writtenChapter ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
         io.recordProvenance(chapterId, sessionId, chapter ? chapterContentHash(chapter) : undefined);
       } catch (err) {
         deps.log(`[autopilot] author ch${nn}: provenance unchanged (${(err as Error).message.split(".")[0]})`);
@@ -603,10 +762,24 @@ export async function ensureReaderBudgetsClean(
     // byte-identical guard; then the budgets re-run ONCE. Still blocking → the
     // same fail-closed halt as before. The block is never weakened — this only
     // spends bounded writers where the halt previously spent the operator.
-    const targets = buildBudgetRepairComplaints(chapters, blockers);
+    const allTargets = buildBudgetRepairComplaints(chapters, blockers);
     const lines = blockers.map((f) => `  [${f.checkId}] ch${String(f.chapterNumber).padStart(2, "0")}: ${f.message}`);
-    if (targets.size === 0) {
+    if (allTargets.size === 0) {
       return haltHere("content", `${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) with no repair-routable chapter evidence:\n${lines.join("\n").slice(0, 3000)}`);
+    }
+    // STIER-2 blast-radius cap (grill round-2b #8): book-rate blockers (CHB14/15)
+    // can put evidence on nearly EVERY chapter — rewriting the whole book in one
+    // "bounded" round is a halt-priced repair. Cap the round to the 4 chapters
+    // carrying the most complaint evidence (ties → lower chapter number); if the
+    // remaining tail still blocks the re-check, the fail-closed halt stands.
+    const REPAIR_TARGET_CAP = 4;
+    let targets = allTargets;
+    if (allTargets.size > REPAIR_TARGET_CAP) {
+      const ranked = [...allTargets.entries()]
+        .sort((a, b) => (b[1].join("").length - a[1].join("").length) || (a[0] - b[0]))
+        .slice(0, REPAIR_TARGET_CAP);
+      targets = new Map(ranked);
+      deps.log(`[autopilot] ${opts.label}: repair evidence spans ${allTargets.size} chapters — capping the round to the top ${REPAIR_TARGET_CAP} contributors (${ranked.map(([n]) => `ch${String(n).padStart(2, "0")}`).join(", ")}); the re-check still runs book-wide`);
     }
     deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];
