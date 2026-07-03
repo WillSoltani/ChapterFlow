@@ -212,6 +212,17 @@ if (!skipFrontend && openNextExists) {
       ...(process.env.ELEVENLABS_API_KEY && {
         ELEVENLABS_API_KEY: process.env.ELEVENLABS_API_KEY,
       }),
+      // iOS Universal Links / shared web credentials — the AASA route
+      // (app/.well-known/apple-app-site-association) reads these at request time
+      // to build the appID "<TeamID>.<bundleId>". Optional: if unset the route
+      // still serves a valid document with a placeholder Team ID + default
+      // bundle id (see docs/ENVIRONMENT.md §3.F).
+      ...(process.env.IOS_APP_TEAM_ID && {
+        IOS_APP_TEAM_ID: process.env.IOS_APP_TEAM_ID,
+      }),
+      ...(process.env.IOS_APP_BUNDLE_ID && {
+        IOS_APP_BUNDLE_ID: process.env.IOS_APP_BUNDLE_ID,
+      }),
     },
   });
 }
