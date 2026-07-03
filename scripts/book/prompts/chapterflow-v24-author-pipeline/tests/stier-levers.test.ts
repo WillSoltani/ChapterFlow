@@ -184,7 +184,11 @@ test("P3/P5/P7: QUALITY BAR rule 5 + band protocol + stem ban; PREMIUM block and
   assert.ok(AUTHOR_QUALITY_BAR.includes("TRANSFORM it"), "key-first transform derivation named");
   assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
   assert.ok(AUTHOR_QUALITY_BAR.includes("NEVER a fixed stem"), "#16 explanation-stem ban");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("uniquely shortest in about 2-4"), "#18 band protocol, not an absolute");
+  // B12 rebase (STIER-2 rerun round 1, documented): "longest in at most 3"
+  // CONTRADICTED the binding tellRate gate (≤0.2 → at most ONE uniquely-longest
+  // key per 9). The card now states the gate's real constraint.
+  assert.ok(AUTHOR_QUALITY_BAR.includes("AT MOST ONE of the 9 questions"), "#18/B12 the longest-key band matches the tellRate gate");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("Uniquely shortest is fine in up to 4"), "#18 shortest band matches W2 shortestMax");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("REVERSE a default"), "insight demand");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("does NOT apply"), "limits demand");
   const card = buildAuthorCard({

@@ -176,11 +176,20 @@ export const AUTHOR_HOUSE_RULES =
  * chapters (RC1); rule 5 becomes the TRANSFORM recipe (key-first, dealt failure
  * modes, echo symmetry) — the scan-only version just moved the wrongness
  * monoculture to the next lexicon (RC2; all 5 flip-tiebreaks led with quiz tells).
+ *
+ * STIER-2 LIVE FIX (2026-07-03, rerun round 1 — bottleneck B12): rule 1's original
+ * "uniquely longest in at most 3" CONTRADICTED the binding gate. The score.py-ported
+ * tellRate FAILS above 0.20 → at most ONE uniquely-longest key per 9 questions
+ * (config/rubric-thresholds.json, calibration-frozen); W2's longestMax=9 is the
+ * loose historical bound, and "at most 3" was an invented middle band that
+ * satisfied neither — writers obeyed the card (2-3 longest keys) and the preflight
+ * rejected them (ch01 twice, ch02, ch09 → write-phase halt). The card now states
+ * the REAL constraint. Gates unchanged.
  * Verbatim; do not reword outside a documented plan change.
  */
 export const AUTHOR_QUALITY_BAR =
   "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces them; missing any forces a full rewrite):\n" +
-  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. Before you declare done: list the 9 keys' character lengths beside their distractors; across the 9 questions the key should be uniquely shortest in about 2-4 and uniquely longest in at most 3 — outside those bands, rewrite the worst offenders.\n" +
+  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. Before you declare done: list the 9 keys' character lengths beside their distractors. HARD CONSTRAINT (a deterministic gate fails the chapter above it): the key may be the uniquely LONGEST choice in AT MOST ONE of the 9 questions — when in doubt, trim the key or grow one distractor past it. Uniquely shortest is fine in up to 4.\n" +
   "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
   "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
   "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
@@ -562,7 +571,35 @@ export async function authorWriteOneChapter(
       if (rubricVerdictLine.includes("FAIL")) {
         lastReason = `ch${nn}: rubric preflight FAIL — ${rubricBlock}`;
         deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
-        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
+        // B12 live fix: when tellRate is among the causes, hand the writer the
+        // MEASURED per-question evidence (which key, exact char counts, the exact
+        // repair) — the evidence-pack pattern that converges where prose metric
+        // explanations do not (ch02 retried to IDENTICAL tell metrics without it).
+        let tellEvidence = "";
+        if (/tellRate/.test(rubricBlock)) {
+          try {
+            const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+            const evid: string[] = [];
+            for (const q of draft?.quiz?.questions ?? []) {
+              const choices = (q.choices ?? []).map((c) => {
+                const raw = c as unknown;
+                return typeof raw === "string" ? raw : String((raw as { direct?: unknown })?.direct ?? raw);
+              });
+              const k = q.correctIndex;
+              if (typeof k !== "number" || !Number.isInteger(k) || k < 0 || k >= choices.length || choices.length === 0) continue;
+              const lens = choices.map((c) => c.length);
+              const max = Math.max(...lens);
+              if (lens[k] === max && lens.filter((l) => l === max).length === 1) {
+                const maxDistractor = Math.max(...lens.filter((_, i) => i !== k));
+                evid.push(`- ${q.questionId ?? "q?"}: the KEY is the uniquely longest choice (${lens[k]} chars; longest distractor ${maxDistractor}) — trim the key to <= ${maxDistractor} chars OR grow one distractor past it.`);
+              }
+            }
+            if (evid.length > 0) {
+              tellEvidence = `\nTELL EVIDENCE — measured on YOUR draft (the gate allows AT MOST ONE uniquely-longest key across the 9 questions; you have ${evid.length}):\n${evid.join("\n")}`;
+            }
+          } catch { /* best-effort evidence — the metric block still stands */ }
+        }
+        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
         continue;
       }
       // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with

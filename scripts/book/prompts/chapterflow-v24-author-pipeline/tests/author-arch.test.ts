@@ -802,7 +802,10 @@ test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a
   assert.equal(spawns.length, 2, "rubric FAIL consumed the single retry");
   assert.ok(spawns[1].task.includes("RUBRIC PREFLIGHT FAILURES"), "retry card carries the rubric framing");
   assert.ok(spawns[1].task.includes("tell=0.778"), "the verbatim metrics line reaches the writer");
-  assert.ok(spawns[1].task.includes("balance distractor lengths"), "the how-to-read guidance is attached");
+  // B12 rebase (STIER-2, documented): the guidance now states the gate's REAL
+  // constraint — at most one uniquely-longest key — instead of the vague
+  // "balance distractor lengths" that let card-compliant drafts fail the gate.
+  assert.ok(spawns[1].task.includes("at most ONE of the 9 keys may be the uniquely longest"), "the how-to-read guidance is attached");
 });
 
 test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repair line VERBATIM into the retry card", async () => {
