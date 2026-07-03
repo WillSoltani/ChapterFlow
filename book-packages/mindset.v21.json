@@ -48,13 +48,6 @@
             "testing",
             "instruction"
           ],
-          "planSpec": {
-            "domain": "middle school placement review",
-            "audience": "teachers deciding how to use test data",
-            "stakes": "a student may be tracked away from harder work",
-            "format": "decision_point",
-            "requiredBeat": "use Alfred Binet as the anchor for treating a score as a guide to instruction rather than a permanent rank"
-          },
           "scenario": "Sahana opens the placement spreadsheet at 3:20 p.m. in the middle school conference room. A seventh grader named Luis sits one point below the advanced math cutoff, and the folder includes a note about Alfred Binet and tests built for better instruction. The assistant principal wants a quick no. Sahana has to decide before the meeting starts whether the number ends the case or starts a support plan.",
           "whatToDo": "Recommend a trial seat in the harder group with weekly checks and tutoring targets. Let the score name what support Luis needs next, not what he is allowed to become.",
           "whyItMatters": "Binet anchors the distinction between measurement and destiny. The growth move keeps evidence useful by pairing it with teaching rather than converting it into rank."
@@ -67,13 +60,6 @@
             "status",
             "reset"
           ],
-          "planSpec": {
-            "domain": "sixth-grade classroom routines",
-            "audience": "new teachers shaping classroom norms",
-            "stakes": "students may learn to defend rank instead of learn",
-            "format": "mistake_recovery",
-            "requiredBeat": "contrast Mrs. Wilson's IQ seating with a classroom routine that removes status from measurement"
-          },
           "scenario": "Bram is a first-year teacher at 7:45 a.m., holding colored table cards in Room 214. His mentor has just told the story of Mrs. Wilson's IQ seating, and Bram sees his own reading groups labeled in a way students can decode. Parents arrive for open house in twelve minutes. He is about to pin the chart anyway. He must choose whether convenience is worth making rank visible all week.",
           "whatToDo": "Replace visible group names with rotating project tables and keep the assessment notes in his planning folder. The data can guide instruction without becoming social status.",
           "whyItMatters": "Mrs. Wilson's example shows how fixed messages can be built into furniture and privileges. Growth practice protects useful assessment from becoming identity theater."
@@ -86,13 +72,6 @@
             "early_signal",
             "review"
           ],
-          "planSpec": {
-            "domain": "museum fellowship selection",
-            "audience": "selection committees reading uneven portfolios",
-            "stakes": "a developing candidate may be screened out too soon",
-            "format": "decision_memo",
-            "requiredBeat": "use Charles Darwin as a reminder that early ordinariness can mislead evaluators"
-          },
           "scenario": "Keiko reviews fellowship applications at 9:10 p.m. in the natural history museum office. One candidate's field notes are messy, but the recommendation letter says he revises hard after coaching. A postcard of Charles Darwin is tucked above the copier from an exhibit on early underestimation. Keiko has to pick three finalists before the portal closes at midnight, and the polished dossiers are easier to defend.",
           "whatToDo": "Flag the messy candidate for interview and ask for a revised sample. Judge how he uses feedback before treating the first packet as the final signal.",
           "whyItMatters": "Darwin's early ordinariness makes the committee slow down. A growth lens does not ignore weak work; it checks whether the person can improve from it."
@@ -105,13 +84,6 @@
             "practice",
             "choice"
           ],
-          "planSpec": {
-            "domain": "adult golf lesson after a public mistake",
-            "audience": "learners ashamed by visible errors",
-            "stakes": "quitting would preserve pride and stop improvement",
-            "format": "dialogue",
-            "requiredBeat": "use Ben Hogan to show that early clumsiness does not settle future skill"
-          },
           "scenario": "Lionel stands at Bay 18 of the municipal driving range at 6:05 p.m. His first lesson ends with three topped balls and a joke from a coworker two mats away. The instructor mentions Ben Hogan, once far from the polished legend. Lionel laughs too loudly and reaches for his car keys. Before the next bucket is loaded, he has to say whether he wants feedback or a clean exit.",
           "whatToDo": "Ask the instructor for one grip cue and hit ten more balls slowly. The goal is not to look skilled tonight; it is to collect the first correction.",
           "whyItMatters": "Hogan's story keeps the bad first session from becoming a verdict. The useful question is what the swing can learn next, not how the scene looked."
@@ -124,13 +96,6 @@
             "portfolio",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "community art school portfolio critique",
-            "audience": "adults returning to creative work",
-            "stakes": "one harsh critique could end a developing practice",
-            "format": "reflection",
-            "requiredBeat": "anchor the response in Cindy Sherman and the fragility of first labels"
-          },
           "scenario": "Farah sits in Studio B on Saturday morning with six photographs clipped to a cork wall. The instructor says the composition is interesting but the series feels timid. Farah has a printout about Cindy Sherman in her tote, marked at a line about early labels missing later work. For ten silent seconds she imagines never bringing photos again. Then she notices the word timid is not the same as untalented.",
           "whatToDo": "Pick one photograph and reshoot it with a bolder constraint before the next class. Turn the critique into an assignment instead of a character ruling.",
           "whyItMatters": "Sherman anchors a creative version of the same lesson. Early work can be incomplete without proving the maker lacks the capacity to grow."
@@ -143,13 +108,6 @@
             "audition",
             "reset"
           ],
-          "planSpec": {
-            "domain": "community theater audition callback",
-            "audience": "performers facing visible judgment",
-            "stakes": "a poor first read may push the actor into self-protection",
-            "format": "reset_moment",
-            "requiredBeat": "use Geraldine Page to prevent one awkward audition from becoming an identity label"
-          },
           "scenario": "Enzo waits in the lobby at 8:30 p.m., script folded in his jacket pocket. His first read was flat, and the director has asked him to try the scene once more. A framed note mentions Geraldine Page and the long road from uneven starts to admired work. Enzo is about to play safe and copy his first read. Seconds before his name is called, he must decide whether to protect the first version or risk a better one.",
           "whatToDo": "Choose one clear change in the scene and make it visible in the callback. Treat the second read as information the first read could not provide.",
           "whyItMatters": "Page's early reception weakens the pull of a single performance label. Growth starts when the next attempt is used to learn, not to hide."
@@ -168,8 +126,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key evidence is the meaning each child gives to struggle. Challenge can feel like exposure or like a chance to learn. Preparation and talent may matter, but the response to difficulty is the signal.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -181,8 +138,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Binet's example shifts the score from destiny to instruction. The committee can keep standards while adding teaching and review. A retest may help later, but it should not be the only route to learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -194,8 +150,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The growth response does not pretend the critique felt good. It keeps the evidence attached to the work and the next strategy, so the self is not frozen by one public moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -207,8 +162,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The panel needs evidence about development, not only a first impression. Improvement after feedback is exactly the kind of information a fixed label would miss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -220,8 +174,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bounded view avoids both a fixed label and a fantasy promise. It points to method, broken steps, and practice. Comforting the child by dismissing math or promising excellence misses the stricter claim.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -233,8 +186,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rep treats social skill as a fixed trait under inspection. Praise and privacy might reduce pain, but the central shift is to treat the awkward moment as practice data.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -246,8 +198,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stories warn against overtrusting first labels, not against judging work. Growth thinking still asks for evidence of learning, strategy, and support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -259,8 +210,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Revision logs reward learning behavior instead of image protection. Public rankings and skipped practice keep attention on status, which is the pressure that made harder problems risky.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -272,8 +222,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful response turns failure into a next experiment. Avoiding the problem protects image, and softening the language without changing the learning step leaves the evidence unused.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -316,7 +265,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Turn Labels Into Tests",
         "coreSkill": "When a label appears, slow it down. Name the evidence behind it, then name one untested route for growth. The skill is not cheerleading; it is refusing to close the case before development has had a fair chance.",
         "ifThenPlans": [
           {
@@ -341,19 +289,13 @@
       },
       "memorableLines": [
         {
-          "text": "Labels freeze the search.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the cost of fixed thinking into one plain sentence."
+          "text": "Labels freeze the search."
         },
         {
-          "text": "One belief made difficulty a threat.",
-          "location": "breakdown.fullRead",
-          "why": "It names the behavioral split without overexplaining it."
+          "text": "One belief made difficulty a threat."
         },
         {
-          "text": "Potential is not a slogan.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps growth belief grounded instead of sentimental."
+          "text": "Potential is not a slogan."
         }
       ]
     },
@@ -380,13 +322,6 @@
             "avoidance",
             "language"
           ],
-          "planSpec": {
-            "domain": "first-year university advising",
-            "audience": "students avoiding needed remediation",
-            "stakes": "weak English could damage every class",
-            "format": "decision_point",
-            "requiredBeat": "anchor the choice in the University of Hong Kong English course and the shame of accepting help"
-          },
           "scenario": "Mireille stops outside the language center at 10:05 a.m. on the University of Hong Kong campus. Her economics lecture notes are full of blanks, and the English course registration desk is ten steps away. A classmate from calculus is in line. Mireille has to decide before the desk closes whether the course is help for the semester or proof that she should not be there.",
           "whatToDo": "Register for the course and frame it as infrastructure for every lecture, not a confession. The next practical step is the form, not another private promise.",
           "whyItMatters": "Hong Kong anchors the cost of fixed meaning. The right help can look dangerous when the weakness feels like identity rather than a solvable gap."
@@ -399,13 +334,6 @@
             "feedback",
             "attention"
           ],
-          "planSpec": {
-            "domain": "research assistant reviewing feedback data",
-            "audience": "learners who chase scores over correction",
-            "stakes": "future study habits depend on what feedback is used for",
-            "format": "predict_reveal",
-            "requiredBeat": "use the brain-wave feedback study to contrast judgment attention with learning attention"
-          },
           "scenario": "Yusuf sits in the psychology lab at 2:40 p.m., coding notes from a brain-wave feedback study. One participant asks only, \"Was I right?\" Another asks which pattern would improve the next answer. The monitor still shows the response trace. Before he files the session, Yusuf must choose what to tell his own study group about the feedback they keep ignoring.",
           "whatToDo": "Tell the group to write one correction after each missed question before checking the score total. Make learning information the first stop.",
           "whyItMatters": "The brain-wave study shows that mindset directs attention. Feedback helps only when the learner searches it for next-use information."
@@ -418,13 +346,6 @@
             "challenge",
             "stretch"
           ],
-          "planSpec": {
-            "domain": "high school soccer tryout preparation",
-            "audience": "athletes choosing training partners",
-            "stakes": "comfort could keep the player below varsity pace",
-            "format": "planning_choice",
-            "requiredBeat": "use Mia Hamm to show seeking stronger players as growth behavior"
-          },
           "scenario": "Helena reaches the turf at 6:15 p.m. with two options on her phone: scrimmage with the JV friends who let her score, or join the varsity group that keeps stealing the ball. Her coach has written Mia Hamm's name on the whiteboard beside the phrase, play with people who stretch you. Helena is about to text the easier group. She has to choose before warmups begin.",
           "whatToDo": "Join the stronger scrimmage and track one lost ball pattern. The point is not to feel ready; it is to make practice expose the next skill.",
           "whyItMatters": "Hamm's example gives discomfort a job. A growth meaning system treats stronger company as training data instead of a threat to status."
@@ -437,13 +358,6 @@
             "setback",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "physical therapy after injury",
-            "audience": "patients discouraged by slow progress",
-            "stakes": "discouragement could stop daily recovery work",
-            "format": "reflection",
-            "requiredBeat": "anchor the scene in Christopher Reeve and effort organized around recovery"
-          },
           "scenario": "Jun sits at the rehab clinic counter on Thursday afternoon, reading a laminated note about Christopher Reeve above the sign-in sheet. His shoulder rotation has improved by only two degrees in three weeks. The number feels insulting. His therapist asks him to log the next exercise set anyway, and Jun notices the choice: treat the tiny gain as proof that work is pointless, or as a clue that the plan needs adjustment.",
           "whatToDo": "Ask the therapist which exercise should change and record that change in the recovery log. Let the small result revise the method.",
           "whyItMatters": "Reeve keeps effort tied to recovery rather than reputation. The growth response is not blind persistence; it is guided adjustment after a hard signal."
@@ -456,13 +370,6 @@
             "prodigy",
             "practice"
           ],
-          "planSpec": {
-            "domain": "conservatory violin practice",
-            "audience": "talented students ashamed of needing drills",
-            "stakes": "protecting the prodigy image could stall development",
-            "format": "inner_monologue",
-            "requiredBeat": "use Nadja Salerno-Sonnenberg at Juilliard to show talent identity making practice embarrassing"
-          },
           "scenario": "Soraya stands outside Practice Room 6 at 8:00 p.m., violin case against her knee. A poster for a Juilliard alumni event includes Nadja Salerno-Sonnenberg, and Soraya remembers the story of prodigy status turning practice into exposure. Her studio recital is in nine days. She can skip the scales and preserve the image, or open the door and let the weak passage be heard.",
           "whatToDo": "Open the door and drill the weak passage at half speed for twelve minutes. Treat the scale work as protection for the music, not evidence against talent.",
           "whyItMatters": "The Salerno-Sonnenberg anchor shows why praise for ease can backfire. Practice becomes available again when needing it no longer humiliates the player."
@@ -475,13 +382,6 @@
             "critique",
             "ego"
           ],
-          "planSpec": {
-            "domain": "product leadership after a failed launch",
-            "audience": "managers tempted to defend reputation",
-            "stakes": "ignoring critique could repeat the launch failure",
-            "format": "dialogue",
-            "requiredBeat": "use Lee Iacocca and CEO disease to show success turning feedback into a threat"
-          },
           "scenario": "Andre sits at the end of the conference table at 4:30 p.m. after a botched launch review. A senior engineer says the roadmap was shaped around Andre looking decisive. Someone mutters Lee Iacocca under their breath, and the room goes still. Andre is about to argue that the team missed execution. Before the review ends, he must decide whether critique is an attack or useful evidence.",
           "whatToDo": "Ask for the two earliest warnings he ignored and write them on the board. The repair begins by making feedback safer than image defense.",
           "whyItMatters": "Iacocca's pattern shows that success can make learning feel like demotion. A growth meaning system lets criticism reach strategy before ego blocks it."
@@ -500,8 +400,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Hong Kong pattern is avoidance of the exact remedy because accepting help feels like exposure. The issue is the meaning attached to weakness, not mere scheduling or course format.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -513,8 +412,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The brain-wave evidence points to attention: judgment or learning. Written corrections force contact with usable information before the score becomes the whole event.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -526,8 +424,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prodigy pattern makes effort feel embarrassing. The problem is not drill level or praise volume; it is the belief that talent should not need visible work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -539,8 +436,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The growth move uses criticism to change strategy. Reducing threat may help tone, but selecting only supportive feedback or postponing the hard signal protects image more than learning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -552,8 +448,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The growth version seeks conditions that stretch ability. Stronger players reveal the next skill to build. Confidence and visibility are secondary to useful challenge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -565,8 +460,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Effort matters when it feeds learning and strategy. The slow gain should update the plan, not become proof of futility or a reason to praise effort without direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -578,8 +472,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Iacocca warning is attachment to admiration and the pushing away of critics. The other habits make feedback travel, which supports a growth culture.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -591,8 +484,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is that failure is not useful by itself. Repeating the same script and calling it learning leaves the meaning system unchanged.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -604,8 +496,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The help request should lose its meaning as a verdict. Coaching should attach help to strategy and progress, not to image protection or safer performance.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -648,7 +539,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Translate Judgment Into Information",
         "coreSkill": "Catch the meaning you give to success, failure, and effort. When a task feels threatening, write the interpretation in plain words and change it into a learning question. Then make the next action test that question.",
         "ifThenPlans": [
           {
@@ -673,19 +563,13 @@
       },
       "memorableLines": [
         {
-          "text": "The remedy looked like a confession.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why help can become frightening under a fixed rule."
+          "text": "The remedy looked like a confession."
         },
         {
-          "text": "Feedback does not land in a neutral mind.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter mechanism a compact form."
+          "text": "Feedback does not land in a neutral mind."
         },
         {
-          "text": "The work is no longer just work.",
-          "location": "breakdown.fullRead",
-          "why": "It shows how meaning changes the emotional weight of effort."
+          "text": "The work is no longer just work."
         }
       ]
     },
@@ -712,13 +596,6 @@
             "myth",
             "process"
           ],
-          "planSpec": {
-            "domain": "science museum exhibit planning",
-            "audience": "educators explaining invention",
-            "stakes": "visitors may leave with a lone-genius myth",
-            "format": "decision_memo",
-            "requiredBeat": "use Thomas Edison to restore helpers and trials to the achievement story"
-          },
           "scenario": "Kavita stands in the exhibit shop at 5:25 p.m., holding the draft panel for a Thomas Edison display. The headline says, 'One mind changed the night.' The artifact case has lab notebooks and assistant names, but the designer wants the cleaner line. Kavita has to approve copy before the printer closes. She must decide whether to sell genius as a flash or show the workshop that made the flash possible.",
           "whatToDo": "Rewrite the panel to name the trial records and assistants beside Edison. Let visitors see process as part of accomplishment, not scenery around it.",
           "whyItMatters": "Edison anchors the myth problem. Restoring the workshop teaches that achievement often depends on organized learning behavior that public stories erase."
@@ -731,13 +608,6 @@
             "transition",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "middle school math advising",
-            "audience": "students losing easy success after a transition",
-            "stakes": "a fixed response could harden into low effort",
-            "format": "postmortem",
-            "requiredBeat": "use the seventh-grade transition study to identify strategy withdrawal after work becomes harder"
-          },
           "scenario": "Dario reviews grade reports at 3:05 p.m. in the counseling office. Amira had A marks in sixth grade and now has three missing assignments in seventh-grade algebra. Her note says the class is stupid, and her teacher says she stopped correcting homework. Dario pulls the transition study summary from his binder. The pattern is not laziness first. It is the moment when harder work started to threaten the old image.",
           "whatToDo": "Meet Amira with the homework and ask which method stopped working. Build one new study routine before discussing whether she is a math person.",
           "whyItMatters": "The seventh-grade evidence shows how fixed beliefs change behavior. Withdrawal protects the old label but blocks the new strategy that harder work needs."
@@ -750,13 +620,6 @@
             "chemistry",
             "method"
           ],
-          "planSpec": {
-            "domain": "pre-med chemistry study group",
-            "audience": "students confusing hours with strategy",
-            "stakes": "memorization may fail on integrative exams",
-            "format": "planning_choice",
-            "requiredBeat": "use college chemistry students to show connecting ideas and learning from errors"
-          },
           "scenario": "Linh arrives at the library at 8:10 p.m. with a stack of flashcards for organic chemistry. The college chemistry study guide from her advisor says growth-oriented students connect ideas and review errors. Her group wants two hours of term drilling because the exam is Friday. Linh has to choose before the room timer starts whether to follow the familiar drill or rebuild the session around missed mechanisms.",
           "whatToDo": "Spend the first thirty minutes sorting missed problems by mechanism, then make each person explain one link between concepts. Use hours for better method.",
           "whyItMatters": "College chemistry sharpens the difference between time spent and strategy quality. Achievement improves when study behavior changes after errors."
@@ -769,13 +632,6 @@
             "standards",
             "support"
           ],
-          "planSpec": {
-            "domain": "urban elementary reading intervention",
-            "audience": "teachers balancing belief and rigor",
-            "stakes": "students may receive easier work because of old labels",
-            "format": "school_case",
-            "requiredBeat": "anchor in Marva Collins and high standards joined to serious instruction"
-          },
           "scenario": "Rochelle sits at a kidney table in Room 9 at 11:35 a.m., sorting reading passages for four students labeled far below grade level. A photocopy about Marva Collins in Chicago is tucked under the lesson plan. The easier packet would avoid frustration. The harder myth passage needs vocabulary work. Rochelle has to decide before the group returns from lunch whether belief in growth means comfort or demanding help.",
           "whatToDo": "Teach the harder passage with pre-taught words and short checks for understanding. Keep the standard high and add the scaffolding needed to reach it.",
           "whyItMatters": "Collins keeps growth from becoming empty niceness. Students need serious work and serious teaching, not labels softened by lower expectations."
@@ -788,13 +644,6 @@
             "praise",
             "choice"
           ],
-          "planSpec": {
-            "domain": "parent response after a puzzle win",
-            "audience": "adults tempted to praise intelligence",
-            "stakes": "praise may teach the child to protect a label",
-            "format": "dialogue",
-            "requiredBeat": "use intelligence praise experiments to show positive labels increasing fragility"
-          },
           "scenario": "Samir's daughter finishes a logic puzzle at the kitchen table at 7:00 p.m. He starts to say, 'You are so smart,' then remembers the intelligence praise experiments from a parent workshop. The next puzzle in the box is harder, and she is already reaching for it. Samir has to answer before the praise lands. He can crown the trait or point to the strategy she just used.",
           "whatToDo": "Name the strategy: you tried the corner pieces first and checked your mistake. Make the praise about a repeatable process before the harder puzzle starts.",
           "whyItMatters": "The praise experiments show how a kind label can make children guard smartness. Process feedback points attention back to controllable learning behavior."
@@ -807,13 +656,6 @@
             "stereotype",
             "attention"
           ],
-          "planSpec": {
-            "domain": "engineering exam administration",
-            "audience": "faculty trying to reduce threat cues",
-            "stakes": "students may carry label pressure into the test",
-            "format": "audit",
-            "requiredBeat": "use negative labels and stereotype reminders to show attention being diverted from performance"
-          },
           "scenario": "Beatriz reviews the exam intake form at 6:50 a.m. in the engineering building. A demographic question appears on the first page, before the calculus section. Her note from the stereotype cue research says labels can consume attention when they feel diagnostic. Students arrive in forty minutes. Beatriz must decide whether the form belongs before the test or after the work is done.",
           "whatToDo": "Move demographic questions to the end and tell proctors not to prime group comparisons. Let students spend attention on the problem set itself.",
           "whyItMatters": "Stereotype cues show that labels can lower performance by stealing mental space. Removing the cue protects the behavior loop during the task."
@@ -832,8 +674,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The loop needs process in view. Helpers, records, trials, and revisions show the behaviors that turn ability into results. Dates and talent rankings keep the myth intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -845,8 +686,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The transition evidence points to meaning before effort. If difficulty threatens identity, the student may withhold effort to protect the image. Easier work or distant college talk misses that mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -858,8 +698,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is strategy quality, not hours alone. Growth-oriented study connects ideas and learns from errors. More volume or quiet can help only if the method itself improves.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -871,8 +710,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Collins represents demanding material joined to belief and instruction. The answer is neither comfort through low standards nor challenge without support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -884,8 +722,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The praise experiments show that positive labels can create fragility. The child starts managing the label instead of the task. Rewards or easier wins do not repair that meaning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -897,8 +734,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A trainable view treats the first drawing as a baseline for practice. It still uses critique, but ties it to one visual skill and later comparison.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -910,8 +746,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stereotype cues can consume attention, especially when a label feels diagnostic. The cost is mental space diverted from the actual task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -923,8 +758,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Low effort can protect an image: failure can be blamed on not trying. The cost is that ability receives no real development or test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -936,8 +770,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fixed conclusion overuses the uneven grades as identity evidence. A later pattern of strategy change and improvement speaks to the behavior loop.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -980,7 +813,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Repair the Learning Loop",
         "coreSkill": "Trace achievement back to behavior. When results disappoint, inspect the goal, the method, the feedback used, and the next revision. The skill is to keep the loop moving instead of letting a label stop it.",
         "ifThenPlans": [
           {
@@ -1005,19 +837,13 @@
       },
       "memorableLines": [
         {
-          "text": "Labels interrupt the loop.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter mechanism into a concise warning."
+          "text": "Labels interrupt the loop."
         },
         {
-          "text": "Achievement is not ability poured straight into a trophy.",
-          "location": "breakdown.deepRead",
-          "why": "It rejects the simple talent story in vivid language."
+          "text": "Achievement is not ability poured straight into a trophy."
         },
         {
-          "text": "The low-effort pose protected the image: if I do not try, no one can know whether I could have succeeded.",
-          "location": "breakdown.fullRead",
-          "why": "It explains the hidden payoff of withdrawal in concrete terms."
+          "text": "The low-effort pose protected the image: if I do not try, no one can know whether I could have succeeded."
         }
       ]
     },
@@ -1044,13 +870,6 @@
             "scouting",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "minor league scouting meeting",
-            "audience": "talent evaluators",
-            "stakes": "the club may overpay for visible tools and ignore learning habits",
-            "format": "decision_point",
-            "requiredBeat": "use Billy Beane and Moneyball to question raw-tool worship"
-          },
           "scenario": "Imani stands beside the draft board at 9:30 p.m. in the baseball operations room. A teenage outfielder has the best swing on video, but three reports mention panic after strikeouts. The analytics director has left a Moneyball note about Billy Beane on the table. Imani has to decide before the pick window closes whether the swing is enough or whether response to failure belongs on the board.",
           "whatToDo": "Add a development column to the pick discussion: how the player handles correction, slumps, and coaching. Do not let the prettiest tool end the review.",
           "whyItMatters": "Beane anchors the risk of scouting only what looks natural. Talent evaluation improves when learning habits are treated as evidence, not decoration."
@@ -1063,13 +882,6 @@
             "practice",
             "loss"
           ],
-          "planSpec": {
-            "domain": "college basketball film session after a close loss",
-            "audience": "players tempted to sulk or blame",
-            "stakes": "a loss could become either practice material or identity damage",
-            "format": "coach_talk",
-            "requiredBeat": "use Michael Jordan to convert exclusion or defeat into practice design"
-          },
           "scenario": "Pavel sits in the film room at 7:10 a.m., still wearing the hoodie from last night’s one-point loss. The assistant coach slides a Michael Jordan quote sheet across the table and pauses the clip where Pavel drifts on defense. The team lifts in twenty minutes. Pavel is about to say the referee changed the game. He must choose whether the clip becomes an excuse or a drill.",
           "whatToDo": "Circle the defensive drift and build one practice rep around it before lifting starts. Let the loss write a training target instead of a blame story.",
           "whyItMatters": "Jordan's example links greatness to preparation after disappointment. The useful champion response is not mood; it is a changed practice plan."
@@ -1082,13 +894,6 @@
             "blame",
             "reset"
           ],
-          "planSpec": {
-            "domain": "junior tennis tournament coaching",
-            "audience": "athletes blaming conditions",
-            "stakes": "blame may block tactical learning",
-            "format": "dialogue",
-            "requiredBeat": "use John McEnroe to separate winning talent from responsibility after losing"
-          },
           "scenario": "Saskia meets her player beside Court 4 at 2:15 p.m. after a straight-set loss. The player lists wind, strings, line calls, and a noisy parent. Saskia has a biography of John McEnroe in her backpack from the ride over. The next match is tomorrow morning. She must choose before the ice bag melts: soothe the complaint or ask what the opponent found in the backhand corner.",
           "whatToDo": "Ask for one pattern the opponent used and design a backhand-corner drill for warmup. Leave the wind out of the first repair conversation.",
           "whyItMatters": "McEnroe shows that brilliance can coexist with blame. Responsibility returns useful detail to the athlete after a loss."
@@ -1101,13 +906,6 @@
             "underdog",
             "preparation"
           ],
-          "planSpec": {
-            "domain": "regional track trials preparation",
-            "audience": "athletes who feel discounted by visible traits",
-            "stakes": "the runner may accept a narrow story about who belongs",
-            "format": "reflection",
-            "requiredBeat": "use Muhammad Ali, Larry Bird, and Wilma Rudolph to broaden athletic greatness beyond obvious early gifts"
-          },
           "scenario": "Noor sits on the bus at 6:40 a.m. with spikes in her lap and a handout naming Muhammad Ali, Larry Bird, and Wilma Rudolph. The taller sprinters are laughing two rows ahead. Her qualifying heat starts in ninety minutes. Noor feels the old story rising: the race has already chosen its type. Then Rudolph’s childhood obstacles pull her back to the training log in her hand.",
           "whatToDo": "Review the start routine and the last two split times before warmup. Use the log to anchor attention in preparation, not body comparison.",
           "whyItMatters": "Ali, Bird, and Rudolph keep visible traits from owning the whole story. Athletic greatness includes craft, history, training, and response to pressure."
@@ -1120,13 +918,6 @@
             "coaching",
             "belief"
           ],
-          "planSpec": {
-            "domain": "youth soccer parent meeting",
-            "audience": "coaches and parents",
-            "stakes": "children may interpret bench time as fixed athletic rank",
-            "format": "school_case",
-            "requiredBeat": "use Stuart Biddle youth sport research to show early beliefs shaping persistence"
-          },
           "scenario": "Tomas faces twelve parents in the recreation center at 6:00 p.m. after posting weekend soccer rotations. One parent says bench time will teach children who has talent. Tomas has Stuart Biddle's youth sport notes open on his tablet. The practice plan is due tonight. He has to answer before the room hardens around ranking as the lesson.",
           "whatToDo": "Explain that rotations will be paired with skill goals and coach feedback. Bench time should point to development tasks, not permanent athletic rank.",
           "whyItMatters": "Biddle's research brings mindset into ordinary youth sport. Children persist better when coaching frames ability as something training can change."
@@ -1139,13 +930,6 @@
             "culture",
             "responsibility"
           ],
-          "planSpec": {
-            "domain": "volleyball team review after an easy win",
-            "audience": "coaches maintaining development after success",
-            "stakes": "winning could hide weak team habits",
-            "format": "audit",
-            "requiredBeat": "show championship character as team contribution and preparation, not only toughness"
-          },
           "scenario": "Giselle walks into the volleyball locker room at 8:25 p.m. after a three-set win. The scoreboard looked easy, but the stat sheet shows weak serve receive against the only tough rotation. A poster beside the door lists Michael Jordan and Wilma Rudolph under preparation, not talent. Giselle has to choose before the team leaves whether winning ends the night or exposes the next practice focus.",
           "whatToDo": "Name the serve-receive problem while the win is fresh and assign one focused drill for tomorrow. Make success feed preparation rather than hide weakness.",
           "whyItMatters": "Championship character is visible after wins too. A team grows when status does not stop it from studying what better opponents will attack."
@@ -1164,8 +948,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Beane warning is that visible tools can hide weak learning habits. The question should examine response to error, not only the obvious gift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1177,8 +960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Jordan pattern converts disappointment into preparation. The clip gives the loss a training target. Venting or confidence talk may feel helpful but does not change the practice plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1190,8 +972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The McEnroe risk is not that every complaint is false. It is that blame shields pride and blocks responsibility for tactical learning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1203,8 +984,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Championship character studies success too. The weak rotation is evidence for preparation. Waiting for a loss lets the hidden issue grow.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1216,8 +996,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Those athletes broaden the story beyond obvious traits. The practical move is to re-anchor attention in preparation and strategy, not comparison.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1229,8 +1008,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The youth sport lesson is that beliefs shape motivation and persistence. Bench time can be framed as a development cue with specific coaching, not as rank.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1242,8 +1020,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction is responsibility for development under pressure. Toughness and confidence may help, but they are too narrow without feedback, strategy, and team contribution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1255,8 +1032,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The swimmer is guarding the natural image. Practice feels like exposure. The coach needs to make skill development more important than looking gifted during drills.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1268,8 +1044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The strongest challenge shows that winning is hiding development costs for the team. Ticket sales and rare talent keep the owner inside the fixed reading.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1312,7 +1087,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Convert Performance Into Practice",
         "coreSkill": "After a win or loss, identify the behavior that most affected performance. Refuse both talent worship and blame. Turn the event into one change in preparation, technique, strategy, or team role.",
         "ifThenPlans": [
           {
@@ -1337,19 +1111,13 @@
       },
       "memorableLines": [
         {
-          "text": "The learning habits were not.",
-          "location": "breakdown.fastRead",
-          "why": "It catches the hidden defect behind visible talent."
+          "text": "The learning habits were not."
         },
         {
-          "text": "A gifted athlete can reach high levels without learning how to learn.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter risk in one sharp claim."
+          "text": "A gifted athlete can reach high levels without learning how to learn."
         },
         {
-          "text": "A player who must stay natural has to hide the very work that could make the gift last.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the natural label a practical cost."
+          "text": "A player who must stay natural has to hide the very work that could make the gift last."
         }
       ]
     },
@@ -1376,13 +1144,6 @@
             "candor",
             "status"
           ],
-          "planSpec": {
-            "domain": "energy trading risk review",
-            "audience": "analysts deciding whether to surface bad news",
-            "stakes": "a concealed exposure could become a company crisis",
-            "format": "decision_point",
-            "requiredBeat": "use Enron to show talent worship turning image protection into risk"
-          },
           "scenario": "Rina sits in the risk room at 7:55 a.m., staring at a trading exposure report that will embarrass the desk lead. A case packet on Enron is open beside her coffee, underlined at the line about looking brilliant over telling the truth. The call starts in five minutes. Rina has to decide whether the report goes first or gets softened until the senior traders can explain it away.",
           "whatToDo": "Put the exposure on the first slide and name the assumption that failed. Bad news should reach the room before status has time to edit it.",
           "whyItMatters": "Enron anchors the danger of talent theater. When image is protected first, risk information arrives too late or in a form no one can use."
@@ -1395,13 +1156,6 @@
             "feedback",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "MBA operations simulation debrief",
-            "audience": "new managers receiving blunt performance feedback",
-            "stakes": "the group may defend poor decisions instead of improving",
-            "format": "postmortem",
-            "requiredBeat": "use Wood and Bandura to show fixed managers treating feedback as judgment"
-          },
           "scenario": "Coleman reviews the operations simulation printout at 1:15 p.m. in the MBA lab. His team missed profit targets for three rounds, and the facilitator has written Wood and Bandura on the board. One teammate says the simulation was unrealistic. Another points to the inventory rule they ignored. Coleman sees the choice after the fact: defend competence or change the rule that produced the loss.",
           "whatToDo": "Name one decision rule the feedback disproves and rerun the next round with a changed rule. Treat the score as steering data.",
           "whyItMatters": "Wood and Bandura show that feedback only helps when it can alter strategy. Ego defense turns the same signal into noise."
@@ -1414,13 +1168,6 @@
             "ego",
             "repair"
           ],
-          "planSpec": {
-            "domain": "nonprofit board review after a failed campaign",
-            "audience": "leaders tempted to protect reputation",
-            "stakes": "donors and staff may lose trust if critique is buried",
-            "format": "decision_memo",
-            "requiredBeat": "use Lee Iacocca and peer executive examples to show leader image distorting company judgment"
-          },
           "scenario": "Aisha enters the boardroom at 4:05 p.m. with a packet on the failed campaign. The chair has praised the founder's instincts for years, and Aisha has notes comparing Lee Iacocca, Albert Dunlap, Steve Case, and Jerry Levin. The safer memo blames market timing. The honest memo names choices the founder championed. Aisha must decide before packets are distributed which version the board will see.",
           "whatToDo": "Send the honest memo and separate respect for the founder from review of the choices. The organization needs decision evidence more than a protected legend.",
           "whyItMatters": "The executive examples show how leader image bends reality. Growth leadership lets critique reach the decisions that need repair."
@@ -1433,13 +1180,6 @@
             "listening",
             "people"
           ],
-          "planSpec": {
-            "domain": "manufacturing turnaround planning",
-            "audience": "leaders making hard repairs",
-            "stakes": "cuts could become domination rather than disciplined change",
-            "format": "planning_choice",
-            "requiredBeat": "use Welch, Gerstner, and Mulcahy to show growth leadership as tough listening and development"
-          },
           "scenario": "Harlan stands on the factory mezzanine at 6:30 a.m., looking down at Line 3 before a restructuring meeting. His folder names Jack Welch, Lou Gerstner, and Anne Mulcahy as leaders who listened while making hard changes. Finance wants a fast layoff list. Supervisors have process ideas nobody has asked for. Harlan has to decide before nine whether repair begins with a spreadsheet or with people who know the work.",
           "whatToDo": "Meet the line supervisors before final cuts and ask which process failures are fixable. Let hard choices be informed by people development and shop-floor truth.",
           "whyItMatters": "Welch, Gerstner, and Mulcahy keep growth leadership from sounding gentle. The work can be tough and still require listening, coaching, and shared credit."
@@ -1452,13 +1192,6 @@
             "dissent",
             "decision"
           ],
-          "planSpec": {
-            "domain": "product launch go/no-go meeting",
-            "audience": "teams with strong executive pressure",
-            "stakes": "silent disagreement could push a bad launch forward",
-            "format": "dilemma",
-            "requiredBeat": "use Bay of Pigs groupthink to make dissent surface before consensus hardens"
-          },
           "scenario": "Niko sits two seats from the CEO at 2:00 p.m., watching the launch vote move around the table. The security lead has not spoken. A note in Niko’s notebook says Bay of Pigs: smart groups fail when dissent feels unsafe. The CEO asks for yes or no. Niko has to choose before the vote reaches him whether to preserve the smooth consensus or make the quiet risk visible.",
           "whatToDo": "Pause the vote and ask the security lead to give the strongest no case first. Make disagreement part of the decision process before approval becomes momentum.",
           "whyItMatters": "Bay of Pigs anchors the group hazard. Intelligence falls when rank or awe prevents disagreement from reaching the table early."
@@ -1471,13 +1204,6 @@
             "facts",
             "belief"
           ],
-          "planSpec": {
-            "domain": "regional hospital strategy retreat",
-            "audience": "executives balancing morale and reality",
-            "stakes": "patient wait times may worsen if leaders soften the data",
-            "format": "audit",
-            "requiredBeat": "use Jim Collins good-to-great findings to pair brutal facts with belief in improvement"
-          },
           "scenario": "Selene reviews the hospital retreat slides at 8:45 p.m. in a hotel conference room. The emergency department wait-time chart is brutal, and the draft deck moves it to the appendix. Her margin note says Jim Collins: face facts without surrendering belief. The CEO wants morale tomorrow. Selene must decide before the deck is locked whether morale is served by hiding the chart or using it.",
           "whatToDo": "Move the wait-time chart to the front and attach one improvement experiment to it. Pair the ugly fact with a path for action.",
           "whyItMatters": "Collins keeps candor from becoming despair. A growth organization faces reality clearly, then organizes people around improvement."
@@ -1496,8 +1222,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Enron warning is not lack of talent. It is a culture where looking brilliant outranks telling the truth. The hidden loss is a learning failure created by status pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1509,8 +1234,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The growth-oriented managers used feedback to adjust strategy. Changing the rule under test uses the signal. Dismissing the scenario or checking rank first returns to ego defense.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1522,8 +1246,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The founder is making the company safer for admiration than truth. That matches the ego-led pattern, not disciplined repair or fact-facing leadership.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1535,8 +1258,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Groupthink is prevented before consensus hardens. Asking for the strongest no case makes dissent legitimate while it can still shape the decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1548,8 +1270,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Growth leadership is not avoidance of hard calls. It combines candor, listening, development, and disciplined change. Speed or softened facts can protect image more than repair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1561,8 +1282,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reward system teaches the real mindset. If spotless presentations are safer than early risk reports, people learn to protect image instead of surfacing truth.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1574,8 +1294,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The organizational growth view treats leadership capacity as something that can be built. Sorting may still happen, but training and feedback remain central.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1587,8 +1306,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Collins balance faces harsh facts while preserving belief in progress. The chart should be visible, and it should be tied to action rather than hidden or softened.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1600,8 +1318,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question separates learning from image defense. Asking for solutions may help later, but it can also deflect the discomfort of hearing bad news from below.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1644,7 +1361,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Truth Travel Early",
         "coreSkill": "Design meetings so weak signals reach decision-makers before status filters them. Ask for risks, dissent, and feedback in named moments. Then tie each signal to a repair action or learning owner.",
         "ifThenPlans": [
           {
@@ -1669,19 +1385,13 @@
       },
       "memorableLines": [
         {
-          "text": "Talent was not missing.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the Enron warning stark and brief."
+          "text": "Talent was not missing."
         },
         {
-          "text": "Organizational mindset is private belief made public.",
-          "location": "breakdown.deepRead",
-          "why": "It translates individual psychology into culture in one sentence."
+          "text": "Organizational mindset is private belief made public."
         },
         {
-          "text": "Workplaces teach people what truth costs.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the business lesson a memorable diagnostic test."
+          "text": "Workplaces teach people what truth costs."
         }
       ]
     },
@@ -1708,13 +1418,6 @@
             "meaning",
             "choice"
           ],
-          "planSpec": {
-            "domain": "therapy journaling after a breakup",
-            "audience": "adults interpreting rejection",
-            "stakes": "pain could harden into shame or revenge",
-            "format": "reflection",
-            "requiredBeat": "anchor in breakup and rejection interviews to separate pain from permanent identity"
-          },
           "scenario": "Marisol sits on the clinic sofa at 5:40 p.m., rereading notes from breakup and rejection interviews. Her ex sent a final message that morning. The fixed sentence in her journal says, nobody will stay. The growth sentence is blank. Her therapist waits with a pen. Marisol has to decide whether the rejection names her future or points to patterns she can understand before dating again.",
           "whatToDo": "Write one sentence that names the pain without naming the self. Then list one lesson about choice, communication, or timing to carry forward.",
           "whyItMatters": "The rejection interviews show that the same loss can become identity damage or future learning. The meaning attached to pain shapes the next life move."
@@ -1727,13 +1430,6 @@
             "perfectionism",
             "repair"
           ],
-          "planSpec": {
-            "domain": "early dating after small disappointments",
-            "audience": "people who quickly disqualify partners",
-            "stakes": "ordinary imperfection may be mistaken for fatal mismatch",
-            "format": "dialogue",
-            "requiredBeat": "use Penelope to show small traits becoming total dismissal"
-          },
           "scenario": "Dima waits at a tapas bar at 8:15 p.m., watching his date tap a fork against the plate. By dessert he has built a whole case: fork tapping, scuffed shoes, three late texts. His sister's voice message mentions Penelope and her instant disqualifications. Dima is about to end the connection by text. Before the check comes, he has to choose whether annoyance equals a doomed person.",
           "whatToDo": "Name the one behavior that actually matters and ask about it if needed. Do not turn a cluster of quirks into a full verdict on the person.",
           "whyItMatters": "Penelope's pattern warns against fixed perfectionism. Growth in dating begins when ordinary mismatch is explored before it becomes total dismissal."
@@ -1746,13 +1442,6 @@
             "social_skill",
             "practice"
           ],
-          "planSpec": {
-            "domain": "professional networking reception",
-            "audience": "shy adults facing social evaluation",
-            "stakes": "one awkward exchange may stop future practice",
-            "format": "reset_moment",
-            "requiredBeat": "anchor in Jennifer Beer shyness study to treat social skill as developable"
-          },
           "scenario": "Aveline stands beside the name-tag table at 6:05 p.m., holding a seltzer she does not want. Her first conversation at the nonprofit reception ended after a long silence. In her bag is a note from Jennifer Beer's shyness study: nervousness is not the same as fixed social worth. The program director is walking toward her. Aveline must decide in the next seconds whether to leave or try one cleaner question.",
           "whatToDo": "Ask the director one prepared question about the program and stay through the answer. Treat the exchange as practice in asking, not proof of charm.",
           "whyItMatters": "Beer keeps shyness from becoming destiny. Social discomfort is easier to face when the next conversation can build skill."
@@ -1765,13 +1454,6 @@
             "status",
             "peer_group"
           ],
-          "planSpec": {
-            "domain": "high school robotics team",
-            "audience": "adolescents using status jokes",
-            "stakes": "ranking may turn insecurity into contempt",
-            "format": "decision_point",
-            "requiredBeat": "use adolescent boys and gender stereotypes to show fixed ranking moving outward"
-          },
           "scenario": "Haruto is in the robotics lab at 4:50 p.m. when two boys joke that the girls on the team are only good at decorations. He remembers a teacher describing the adolescent boys and gender stereotypes research, where fixed ranking gave an ego boost. The regional deadline is in two days. Haruto has to decide before the joke settles whether to laugh, stay quiet, or challenge the ranking.",
           "whatToDo": "Name the work the girls led on the code review and redirect the group to task assignments. Make status talk answerable to actual contribution.",
           "whyItMatters": "The stereotype research shows fixed worth turning outward. Interrupting the joke protects both the targeted students and the team’s ability to learn from everyone."
@@ -1784,13 +1466,6 @@
             "humiliation",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "school counseling after online harassment",
-            "audience": "students carrying humiliation",
-            "stakes": "hurt may turn into identity and retaliation",
-            "format": "dilemma",
-            "requiredBeat": "use Columbine and Brooks Brown to separate hurt from revenge identity"
-          },
           "scenario": "Yasmin sits in the assistant principal’s office at 11:20 a.m., phone face down after a cruel group chat. The counselor mentions Columbine carefully, then Brooks Brown, who was also mistreated but did not turn humiliation into murder. Yasmin is furious and has a retaliatory post drafted. The bell rings in three minutes. She has to choose whether to publish pain or ask for protection and accountability.",
           "whatToDo": "Do not post the retaliation. Hand the screenshots to an adult, name the harm, and ask for a safety plan with consequences for the bullies.",
           "whyItMatters": "Brooks Brown anchors the fork in the road after humiliation. Growth preserves agency by choosing protection and accountability over revenge identity."
@@ -1803,13 +1478,6 @@
             "envy",
             "success"
           ],
-          "planSpec": {
-            "domain": "friendship after a peer promotion",
-            "audience": "friends feeling diminished by another person’s success",
-            "stakes": "envy could poison a valued friendship",
-            "format": "inner_monologue",
-            "requiredBeat": "connect friendship success envy to the relational mindset and fixed ranking"
-          },
           "scenario": "Chiara is at her kitchen counter at 7:35 a.m., staring at a message that her closest friend got the fellowship she wanted. A saved article about Jennifer Beer and relational mindset is open beside the coffee grinder from last night’s reading group. Chiara feels the win as subtraction. She has to answer before the friend sees the read receipt: warm congratulations, cool distance, or a joke that hides envy.",
           "whatToDo": "Send a specific congratulation naming the work her friend did, then write privately what the envy points to in Chiara’s own goals.",
           "whyItMatters": "Relational mindset reaches friendship too. Another person’s success becomes less threatening when worth is not treated as fixed rank."
@@ -1828,8 +1496,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key split is meaning. Rejection can hurt without becoming permanent identity. Flaw lists and withdrawal may protect pride, but they do not create learning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1841,8 +1508,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Penelope is the pattern of instant disqualification. The issue is not shyness or revenge; it is treating ordinary imperfections as final proof.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1854,8 +1520,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A growth interpretation looks for the pattern and a repair move before declaring the relationship defective. It may still set boundaries, but it starts with workable information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1867,8 +1532,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Beer’s work separates nervousness from fixed social worth. A prepared question gives the analyst a skill action, not just reassurance or avoidance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1880,8 +1544,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fixed ranking turns a friend’s win into your demotion. Growth friendship makes room for celebration while using envy as private information.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1893,8 +1556,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The warning is about humiliation fused with permanent identity and revenge. The growth response still seeks protection and consequences, but it does not let retaliation define the next step.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1906,8 +1568,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Growth does not mean endless tolerance. It keeps learning and repair open while preserving the right to leave, set boundaries, and hold people accountable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1919,8 +1580,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stereotype example shows fixed ranking moving outward. Demeaning others gives status relief while damaging the group’s learning climate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1932,8 +1592,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge requires accountability. Growth is not just insight or apology; repeated harmful behavior needs a boundary and changed action.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1976,7 +1635,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keep Pain From Naming You",
         "coreSkill": "When a relational wound lands, separate the event, the meaning, and the next choice. Name the behavior without turning it into a total identity. Then choose repair, boundary, exit, or practice based on what is actually safe and workable.",
         "ifThenPlans": [
           {
@@ -2001,19 +1659,13 @@
       },
       "memorableLines": [
         {
-          "text": "A breakup can hurt once, then hurt again through its meaning.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter’s emotional mechanism."
+          "text": "A breakup can hurt once, then hurt again through its meaning."
         },
         {
-          "text": "The first injury is the loss itself.",
-          "location": "breakdown.fullRead",
-          "why": "It cleanly separates pain from interpretation."
+          "text": "The first injury is the loss itself."
         },
         {
-          "text": "Growth is not permission for someone else to keep harming you.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the important boundary in the relationship chapter."
+          "text": "Growth is not permission for someone else to keep harming you."
         }
       ]
     },
@@ -2040,13 +1692,6 @@
             "child",
             "process"
           ],
-          "planSpec": {
-            "domain": "parent response after a homework win",
-            "audience": "parents tempted to praise traits",
-            "stakes": "a child may protect the smart label instead of choosing challenge",
-            "format": "dialogue",
-            "requiredBeat": "use the seven praise experiments with children to shift from intelligence praise to process praise"
-          },
           "scenario": "Leona is at the kitchen table at 7:25 p.m. when her son finishes the hard fraction sheet. She starts to say, \"You are so smart,\" then sees the handout from the seven praise experiments with children on the fridge. The next sheet is harder, and he is already glancing at it. Leona has to choose before the words leave her mouth whether to praise the crown or the process.",
           "whatToDo": "Say, \"You checked the denominators after the first mistake, and that strategy worked.\" Point the praise at a behavior he can use on the next sheet.",
           "whyItMatters": "The praise experiments show that trait praise can make children guard labels. Process praise sends attention toward repeatable learning moves."
@@ -2059,13 +1704,6 @@
             "standards",
             "support"
           ],
-          "planSpec": {
-            "domain": "elementary reading group lesson design",
-            "audience": "teachers choosing between comfort and demand",
-            "stakes": "students labeled low may receive thin work",
-            "format": "school_case",
-            "requiredBeat": "use Marva Collins to pair demanding material with belief and instruction"
-          },
           "scenario": "Basil sorts reading passages at 6:45 a.m. in Room 18. The easy packet will go smoothly. The harder speech excerpt needs vocabulary work, and two students have been labeled below level. A note about Marva Collins is taped inside his planner. The bell rings in twenty minutes. Basil has to decide whether belief in students means sparing them the harder text or teaching them into it.",
           "whatToDo": "Teach the demanding excerpt with vocabulary previews, partner reading, and quick checks. Keep the level high while adding the route students need.",
           "whyItMatters": "Collins prevents growth from becoming comfort. Belief is strongest when it is joined to serious academic demand and instruction."
@@ -2078,13 +1716,6 @@
             "teaching",
             "craft"
           ],
-          "planSpec": {
-            "domain": "youth orchestra rehearsal after repeated mistakes",
-            "audience": "teachers and coaches giving corrective feedback",
-            "stakes": "students could feel either guided or shamed",
-            "format": "coach_talk",
-            "requiredBeat": "use Rafe Esquith and Dorothy DeLay as models of rigorous patient development"
-          },
           "scenario": "Amira stands in the school auditorium at 4:10 p.m., baton in hand, while the second violins miss the entrance for the fourth time. Her notebook names Rafe Esquith and Dorothy DeLay beside the words rigorous patience. The concert is Friday. Amira can scold the section for not being prepared, or slow the passage and teach the entry cue. She has to speak before the room sags.",
           "whatToDo": "Name the missed cue, slow the measure, and rehearse the entry three times with a clear listening target. Make correction feel like craft, not shame.",
           "whyItMatters": "Esquith and DeLay show that respect and rigor can coexist. Students grow when feedback gives a precise way to improve."
@@ -2097,13 +1728,6 @@
             "pressure",
             "climate"
           ],
-          "planSpec": {
-            "domain": "club basketball practice after sloppy defense",
-            "audience": "coaches tempted to use intimidation",
-            "stakes": "players may learn fear rather than responsibility",
-            "format": "decision_point",
-            "requiredBeat": "use Bobby Knight and John Wooden to separate winning pressure from growth climate"
-          },
           "scenario": "Soren watches a defensive drill fall apart at 8:05 p.m. in the club gym. The tournament is Saturday, and the easy speech would sound like Bobby Knight: volume, threat, humiliation. A John Wooden quote is taped to the scorer’s table by the assistant coach. Soren must decide before the next rep whether fear will run practice or preparation will.",
           "whatToDo": "Stop the drill, name the missed rotation, and rerun it with each player calling the coverage aloud. Use pressure to clarify preparation.",
           "whyItMatters": "Knight and Wooden mark different climates. Growth coaching may be intense, but it teaches responsibility rather than making fear the teacher."
@@ -2116,13 +1740,6 @@
             "feedback",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "teacher professional development session",
-            "audience": "educators using growth language loosely",
-            "stakes": "students may hear effort praise without better instruction",
-            "format": "audit",
-            "requiredBeat": "use false growth mindset correction to reject empty effort praise"
-          },
           "scenario": "Inez sits in the district conference room at 1:30 p.m. while a presenter says the school already has growth mindset because teachers praise effort. In her folder is the false growth mindset correction: effort praise without strategy can harm. A principal asks for one takeaway. Inez must answer before the slide advances: nod along, or say students also need better methods and resources.",
           "whatToDo": "Say that effort praise must be paired with strategy feedback and support. Ask each department to name one method students can try after failure.",
           "whyItMatters": "The false-growth correction keeps language honest. Growth talk becomes useful only when it helps learners make real progress."
@@ -2135,13 +1752,6 @@
             "science",
             "next_step"
           ],
-          "planSpec": {
-            "domain": "middle school science feedback conference",
-            "audience": "teachers afraid of discouraging students",
-            "stakes": "soft feedback could leave the student without a repair path",
-            "format": "reset_moment",
-            "requiredBeat": "use process praise and honest criticism to name what failed and what to try next"
-          },
           "scenario": "Rafael meets a student at 2:50 p.m. beside the science lab sink. The report has a weak conclusion, and the student asks whether it is good. A poster from the seven praise experiments hangs by the door, reminding teachers that children need truthful process feedback. Rafael has to answer before dismissal: protect the student with vague praise, or name the missing evidence and the next revision step.",
           "whatToDo": "Say the observation notes are careful, then show where the conclusion lacks evidence. Give one revision target and a chance to resubmit.",
           "whyItMatters": "Process feedback includes truth. Learners need to know what worked, what broke, and how to improve without turning the flaw into a trait label."
@@ -2160,8 +1770,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The safest praise names a process the child can repeat. Trait praise makes the label precious, and confidence praise does not teach what to do next.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2173,8 +1782,7 @@
             ],
             "correctIndex": 1,
             "explanation": "False growth often praises effort without instruction. True support names the problem and gives a route forward, while preserving the standard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2186,8 +1794,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Collins represents high standards plus real teaching. Lowering demand can feel kind, but it may confirm the old label by withholding serious work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2199,8 +1806,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rigorous patience gives specific correction and practice. Shame and vague praise both miss the craft path that helps students improve.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2212,8 +1818,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The contrast separates winning from the lessons players absorb. A fear climate may produce effort, but it can teach the wrong meaning of mistakes and authority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2225,8 +1830,7 @@
             ],
             "correctIndex": 0,
             "explanation": "True growth support is visible in what happens after failure. Posters and positivity are weak evidence unless students get better methods and help.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2238,8 +1842,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The expectation becomes self-fulfilling when students receive less attention, challenge, and patience. The adult is shaping the evidence, not just reading it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2251,8 +1854,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Helpful criticism can be supportive and clear. It gives real information and a path forward instead of hiding the flaw or lowering the standard.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -2264,8 +1866,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trait praise can make the label fragile. The player avoids the setting where the label might be questioned. More goals or private critique does not fix that meaning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2308,7 +1909,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Give Process-Precise Feedback",
         "coreSkill": "Before praise or criticism, identify the process you want the learner to repeat or change. Keep the standard visible, make the feedback honest, and provide one next strategy. The goal is motivation that can survive the next mistake.",
         "ifThenPlans": [
           {
@@ -2333,19 +1933,13 @@
       },
       "memorableLines": [
         {
-          "text": "Comfort without instruction is not growth.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the false-growth warning in simple words."
+          "text": "Comfort without instruction is not growth."
         },
         {
-          "text": "The adult is pointing to the levers of growth.",
-          "location": "breakdown.fullRead",
-          "why": "It makes process praise feel concrete and usable."
+          "text": "The adult is pointing to the levers of growth."
         },
         {
-          "text": "The adult job is precise.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter’s practical standard a clean landing."
+          "text": "The adult job is precise."
         }
       ]
     },
@@ -2372,13 +1966,6 @@
             "inner_voice",
             "reset"
           ],
-          "planSpec": {
-            "domain": "work review after harsh feedback",
-            "audience": "professionals caught in automatic judgment",
-            "stakes": "a harsh thought could stop revision",
-            "format": "reset_moment",
-            "requiredBeat": "use Aaron Beck and cognitive therapy to notice and answer extreme judgments"
-          },
           "scenario": "Opal sits at her desk at 3:35 p.m., reading a marked-up report. Her first thought is, I am terrible at this job. A card from an Aaron Beck cognitive therapy workshop is tucked under her monitor: catch the extreme judgment, answer it. Her manager expects a revision by Friday. Opal has to decide before closing the file whether the sentence is a command or a thought she can work with.",
           "whatToDo": "Write the harsh sentence, then write a balanced learning version: the methods section needs evidence. Start the revision from that version.",
           "whyItMatters": "Beck anchors the first step of change. A judgment loses power when it is heard as language that can be answered and redirected."
@@ -2391,13 +1978,6 @@
             "setback",
             "language"
           ],
-          "planSpec": {
-            "domain": "college academic probation meeting",
-            "audience": "students interpreting poor grades",
-            "stakes": "a conceptual shift must become action",
-            "format": "decision_point",
-            "requiredBeat": "use mindset lectures with college students to connect new interpretation to a concrete study plan"
-          },
           "scenario": "Kiran exits a mindset lecture at 5:10 p.m. with the probation letter folded in his jacket. The speaker described students changing how they interpreted grades and effort. Kiran feels hopeful for ten minutes, then sees the statistics textbook in his backpack. He has to decide before dinner whether the lecture stays inspiring language or becomes a calendar plan for problem sets and office hours.",
           "whatToDo": "Schedule two problem-set blocks and one office-hour visit before leaving campus. Turn the new interpretation into visible study behavior.",
           "whyItMatters": "The lectures show that a frame can change pressure, but change needs action quickly. Language matters most when it alters the next week."
@@ -2410,13 +1990,6 @@
             "motivation",
             "brain_growth"
           ],
-          "planSpec": {
-            "domain": "district intervention planning for ninth graders",
-            "audience": "school leaders choosing study support",
-            "stakes": "study skills may sound empty without a belief in change",
-            "format": "planning_choice",
-            "requiredBeat": "use adolescent mindset workshop to compare study skills alone with skills plus brain-growth explanation"
-          },
           "scenario": "Vivienne reviews two intervention proposals at 8:20 a.m. in the district office. One teaches study skills only. The other includes the adolescent mindset workshop material on brain growth before practice planning. Ninth-grade failure rates are due Friday. Vivienne has to choose before the budget call whether skills should be delivered as tips or as tools tied to a changing brain.",
           "whatToDo": "Fund the skills-plus-growth version and require each session to connect a strategy to brain change and a specific assignment.",
           "whyItMatters": "The adolescent workshop shows that skills work better when students believe the skills can build ability. The frame gives tactics a reason."
@@ -2429,13 +2002,6 @@
             "tutoring",
             "mechanism"
           ],
-          "planSpec": {
-            "domain": "after-school tutoring for algebra avoidance",
-            "audience": "tutors helping adolescents picture learning",
-            "stakes": "students may treat repetition as punishment",
-            "format": "vignette",
-            "requiredBeat": "use Brainology to make neurons, connections, and practice concrete"
-          },
           "scenario": "Hamid opens Brainology on the library computer at 4:00 p.m. before his algebra tutoring group arrives. The lesson shows neurons forming stronger connections with practice. One student has called repeat problems pointless all week. Hamid has ten minutes before the group sits down. His choice is immediate: lecture about effort again, or show the mechanism first.",
           "whatToDo": "Show the Brainology connection model, then link the day’s repeat problems to strengthening one algebra move. Make the practice visible as brain work.",
           "whyItMatters": "Brainology turns abstract advice into a picture students can use. Repetition is easier to accept when learners can imagine what practice changes."
@@ -2448,13 +2014,6 @@
             "resistance",
             "compassion"
           ],
-          "planSpec": {
-            "domain": "leadership coaching after defensiveness",
-            "audience": "adults whose fixed response protects identity",
-            "stakes": "attacking the fixed voice may deepen resistance",
-            "format": "inner_monologue",
-            "requiredBeat": "use Karen Horney and Carl Rogers to treat the fixed persona with compassion and direction"
-          },
           "scenario": "Celia sits in her car at 6:55 p.m. after a leadership coaching session, angry that her team called her hard to approach. Her coach had mentioned Karen Horney, Carl Rogers, and the fixed persona that protects acceptance and control. Celia wants to dismiss the feedback as whining. Before she starts the engine, she faces a choice: fight the persona, or ask what it is guarding.",
           "whatToDo": "Name the persona as the courtroom voice and write what it protects: authority, control, being respected. Then choose one listening behavior for tomorrow.",
           "whyItMatters": "Horney and Rogers make change more humane. A protective fixed voice can be educated toward growth when it is understood instead of attacked."
@@ -2467,13 +2026,6 @@
             "trigger",
             "support"
           ],
-          "planSpec": {
-            "domain": "software team retrospectives after initial improvement",
-            "audience": "teams whose first mindset shift fades",
-            "stakes": "old defensive habits may return after early relief",
-            "format": "audit",
-            "requiredBeat": "anchor in true growth mindset and maintenance after initial change"
-          },
           "scenario": "Stefan reviews the team retro board at 9:15 a.m. Three weeks ago, a mindset lecture helped developers speak more openly. Now bug reviews are getting defensive again. A Brainology sticker is still on one laptop, but the habit is fading. Stefan has to decide before standup whether the team needs another pep talk or a maintenance plan for triggers, support, and follow-through.",
           "whatToDo": "Create a trigger calendar for bug reviews: name the fixed line, assign a learning response, and ask one teammate to watch for drift each Friday.",
           "whyItMatters": "True growth mindset requires maintenance. Early relief fades unless the team plans for the moments when old protection returns."
@@ -2492,8 +2044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Beck bridge begins by noticing and answering the extreme judgment. The thought becomes workable language rather than an order to hide.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2505,8 +2056,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Conceptual relief matters, but it must become action. A calendar block, office-hour visit, or new study method turns language into practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2518,8 +2068,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The adolescent workshop showed stronger motivation when study skills were tied to brain growth. The frame makes the strategy feel worth using.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2531,8 +2080,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Brainology makes the mechanism concrete. The tutor should connect neurons, practice, and the exact skill being strengthened, not use the program as slogan or reward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2544,8 +2092,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The persona often protects something. Change becomes more humane when the person understands the protection and educates the voice toward a concrete learning action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2557,8 +2104,7 @@
             ],
             "correctIndex": 2,
             "explanation": "True growth accepts that fixed reactions return under stress. The answer is maintenance: trigger awareness, planned responses, and support, not judging the first effort as fake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2570,8 +2116,7 @@
             ],
             "correctIndex": 0,
             "explanation": "True growth is repeated interpretation and action. It does not require the fixed voice to vanish; it requires a practiced response when the voice appears.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2583,8 +2128,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming creates distance. The fixed response becomes a pattern to work with, not the whole self. Public correction may shame people if trust is not ready.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2596,8 +2140,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The full process notices the voice, understands what it protects, and chooses a learning plan. Replacing the thought with praise or waiting for polish keeps exposure in charge.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2640,7 +2183,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Educate the Fixed Voice",
         "coreSkill": "Treat a fixed reaction as a signal, not a failure. Name the voice, identify what it is protecting, and prepare a learning response before the trigger hits again. Then maintain the practice with support.",
         "ifThenPlans": [
           {
@@ -2665,19 +2207,13 @@
       },
       "memorableLines": [
         {
-          "text": "The old voice is a cue, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the change process a memorable handle."
+          "text": "The old voice is a cue, not a verdict."
         },
         {
-          "text": "The sentence can be heard as a sentence, not as command.",
-          "location": "breakdown.fullRead",
-          "why": "It makes inner distance concrete."
+          "text": "The sentence can be heard as a sentence, not as command."
         },
         {
-          "text": "Growth begins when the voice is heard, respected for what it tried to protect, and no longer handed the steering wheel.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book’s practical arc with compassion and agency."
+          "text": "Growth begins when the voice is heard, respected for what it tried to protect, and no longer handed the steering wheel."
         }
       ]
     }

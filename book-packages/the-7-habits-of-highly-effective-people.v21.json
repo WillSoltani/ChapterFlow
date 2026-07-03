@@ -48,13 +48,6 @@
             "commute",
             "empathy"
           ],
-          "planSpec": {
-            "domain": "New York subway car",
-            "audience": "commuter",
-            "stakes": "a loud ride may become a public confrontation",
-            "format": "decision_point",
-            "requiredBeat": "pause for a missing fact before correcting strangers"
-          },
           "scenario": "Janelle grips the pole on a Queens-bound train at 6:18 p.m. Three children tumble across the aisle while their father stares at the floor. Two stops before her transfer, Janelle must decide: snap at him or ask one quiet question. The answer, a hospital visit and a death that morning, changes the whole car.",
           "whatToDo": "Janelle lowers her voice and asks whether he needs help with the children. The question tests the lens first, so any next step starts from reality instead of irritation.",
           "whyItMatters": "Inside-out change often begins with one missing fact. When perception changes, the same noise calls for care instead of control, and technique stops leading the response."
@@ -67,13 +60,6 @@
             "assumptions",
             "review"
           ],
-          "planSpec": {
-            "domain": "Portland product studio",
-            "audience": "design lead",
-            "stakes": "a rushed critique may kill the strongest option",
-            "format": "decision_point",
-            "requiredBeat": "name the hidden assumption behind the first reaction"
-          },
           "scenario": "Rafael studies three mockups at 4:20 p.m. in a Portland product studio. The safest screen has six sticky dots, and the bold version has none. Ten minutes before the client call, Rafael must decide: follow the vote or ask what fear shaped it. The printed brief shows the client asked for a younger market.",
           "whatToDo": "Rafael points to the audience line in the brief before ranking the mockups. He treats the first vote as data about the room, not as proof about the design.",
           "whyItMatters": "A paradigm can hide inside a fast preference. Bringing the premise into view lets the group judge the work by purpose, not by the comfort of familiar taste."
@@ -86,13 +72,6 @@
             "parenting",
             "lens"
           ],
-          "planSpec": {
-            "domain": "Atlanta kitchen table",
-            "audience": "parent",
-            "stakes": "homework may become a fight about character",
-            "format": "decision_point",
-            "requiredBeat": "separate performance from worth before speaking"
-          },
           "scenario": "Sloane sits beside a math worksheet at 7:35 p.m. in Atlanta. Her son erases the same fraction problem until the paper tears. Before bedtime slips away, she must choose between calling the effort careless and asking what the torn page is telling them. The teacher note mentions a new method from class.",
           "whatToDo": "Sloane starts with the torn paper, not the child. She asks him to show the class method once, then names effort as separate from the wrong answer.",
           "whyItMatters": "Character damage starts when a parent mistakes a hard task for a flawed child. A better lens protects trust while still facing the actual problem."
@@ -105,13 +84,6 @@
             "framing",
             "complaint"
           ],
-          "planSpec": {
-            "domain": "Boston transit office",
-            "audience": "service supervisor",
-            "stakes": "angry commuters expect an immediate explanation",
-            "format": "dilemma",
-            "requiredBeat": "find the service reality beneath the complaint"
-          },
           "scenario": "Imani faces a platform-delay log at 11:45 a.m. in the Boston transit office. Reporters call the desk while operators trade blame over the radio. Before the noon briefing, Imani must decide: defend the crew or redraw the issue around the rider experience. The map shows the delay began with a broken elevator.",
           "whatToDo": "Imani frames the briefing around the passenger path from elevator to platform. That frame lets her own the service gap without pretending one operator caused it.",
           "whyItMatters": "A public problem can be seen as blame or as a system seen by riders. The chosen lens decides whether the response produces repair or more posture."
@@ -124,13 +96,6 @@
             "judgment",
             "context"
           ],
-          "planSpec": {
-            "domain": "Chicago interview room",
-            "audience": "hiring manager",
-            "stakes": "one quiet answer may sink a strong candidate",
-            "format": "decision_point",
-            "requiredBeat": "check the interpretation before scoring the person"
-          },
           "scenario": "Keiko circles a low score at 3:05 p.m. in a Chicago interview room. The candidate paused for twenty seconds before answering a conflict question. Before the panel closes the file, Keiko has to decide if silence means weakness or thought. The resume shows three years of mediation work in a shelter.",
           "whatToDo": "Keiko asks the panel to read the pause against the mediation history. She changes the score only after the evidence matches the interpretation.",
           "whyItMatters": "A scorecard can freeze a shaky first read. Inside-out discipline slows the label long enough for facts to reshape what the panel believes it saw."
@@ -143,13 +108,6 @@
             "correction",
             "paradigm"
           ],
-          "planSpec": {
-            "domain": "Dallas newsroom",
-            "audience": "city editor",
-            "stakes": "a correction may be treated as embarrassment or service",
-            "format": "decision_point",
-            "requiredBeat": "choose the frame that serves principle over image"
-          },
           "scenario": "Tomas checks a correction draft at 9:12 a.m. in the Dallas newsroom. A council figure was misidentified online, and the reporter wants the smallest possible fix. With the morning newsletter queued, Tomas must decide: protect image or restore the reader's trust. The analytics screen shows the error spread overnight.",
           "whatToDo": "Tomas publishes a clear correction note near the original story. He treats accuracy as the governing lens, so the fix becomes service instead of damage control.",
           "whyItMatters": "A surface tactic can hide a deeper aim to look clean. Principle-centered perception asks what trust requires, even when the cleaner-looking route is smaller."
@@ -168,8 +126,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right move starts at the lens beneath the parent's conduct. The other options polish behavior or add control while leaving the same paradigm in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -181,8 +138,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The design choice needs a corrected frame before a tactic. The safer draft may reflect the room's comfort, not the market the brief actually names.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -194,8 +150,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The subway example turns on perception, not etiquette. Once the frame changes, the same behavior calls for a different kind of response.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -207,8 +162,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The better response challenges the paradigm that produced the label. Encouragement without a changed view still leaves the student trapped in the old reading.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -220,8 +174,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The tempting mistake is technique without character. A calm script can become manipulation when the underlying view remains contemptuous.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -233,8 +186,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Inside-out work asks for the map before the route. A plan built on untested assumptions may calm the room briefly and preserve the conflict.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -246,8 +198,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not vocabulary alone. Secondary greatness fails when people sense that the words do not match the speaker's deeper intent.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -259,8 +210,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The review needs a visible standard, not just a smoother process. Naming the paradigm helps the team work on the cause of the disagreement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -272,8 +222,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shallow version is positivity. The stronger move asks whether the view of the person has changed enough for better conduct to be real.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -316,7 +265,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run a Paradigm Check",
         "coreSkill": "Slow the jump from irritation to action by naming the map underneath the reaction. The skill is to separate the visible behavior from the lens used to explain it, then test whether the lens fits the facts.",
         "ifThenPlans": [
           {
@@ -341,19 +289,13 @@
       },
       "memorableLines": [
         {
-          "text": "A map can be wrong even when the walker is sincere.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "A map can be wrong even when the walker is sincere."
         },
         {
-          "text": "The first repair is not a better phrase; it is a truer view.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "The first repair is not a better phrase; it is a truer view."
         },
         {
-          "text": "The route improves only after the map stops lying.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The route improves only after the map stops lying."
         }
       ]
     },
@@ -380,13 +322,6 @@
             "operations",
             "asset"
           ],
-          "planSpec": {
-            "domain": "Milwaukee packaging line",
-            "audience": "maintenance supervisor",
-            "stakes": "today's output competes with machine health",
-            "format": "decision_point",
-            "requiredBeat": "protect production capacity while meeting demand"
-          },
           "scenario": "Marisol opens the press ledger at 5:50 a.m. in a Milwaukee packaging plant. The night shift skipped lubrication to hit a rush order, and the machine now squeals before the first pallet. Ninety minutes before trucks arrive, she must choose between forcing output and pausing for the service task that prevents a longer failure.",
           "whatToDo": "Marisol delays the first run long enough to lubricate and document the press. The choice treats the machine as an asset, not a disposable path to today's number.",
           "whyItMatters": "Production without capacity is the farmer killing the goose in factory clothes. The balance matters most when a short delay looks wasteful to the scoreboard."
@@ -399,13 +334,6 @@
             "relationship",
             "capacity"
           ],
-          "planSpec": {
-            "domain": "Seattle arts nonprofit",
-            "audience": "development director",
-            "stakes": "a major supporter may be overused",
-            "format": "dilemma",
-            "requiredBeat": "respect the relationship that funds future work"
-          },
           "scenario": "Amina reviews a gala seating chart at 2:15 p.m. in Seattle. One donor has already funded the youth program, the piano repair, and a travel grant. Before the chair signs another emergency ask, Amina must decide: request more cash or protect the donor's willingness to stay engaged next year.",
           "whatToDo": "Amina sends a stewardship call instead of a fresh appeal. She names what the prior gifts made possible and saves the next request for a planned campaign.",
           "whyItMatters": "Human assets can be exhausted as surely as equipment. P/PC balance asks whether the relationship that produces support is being cared for while results are pursued."
@@ -418,13 +346,6 @@
             "household",
             "future"
           ],
-          "planSpec": {
-            "domain": "Tucson apartment kitchen",
-            "audience": "newly married couple",
-            "stakes": "a savings account may disappear into one purchase",
-            "format": "planning_choice",
-            "requiredBeat": "separate the golden egg from the goose"
-          },
           "scenario": "Colin lays two bank statements beside a laptop at 8:30 p.m. in Tucson. A discounted motorcycle disappears from the listing in three hours, and the emergency fund holds exactly the amount needed. Colin has to decide if the low price is merely an egg, while the emergency fund is the goose they rely on.",
           "whatToDo": "Colin leaves the emergency account untouched and writes a separate purchase target. The decision protects the source of future security while still naming the want.",
           "whyItMatters": "The golden goose story is blunt because the temptation is ordinary. Spending the asset can feel rational when the egg is shiny and the future is quiet."
@@ -437,13 +358,6 @@
             "capacity",
             "coaching"
           ],
-          "planSpec": {
-            "domain": "Little League diamond",
-            "audience": "baseball coach",
-            "stakes": "winning one inning may injure a young arm",
-            "format": "decision_point",
-            "requiredBeat": "trade one visible result for lasting ability"
-          },
           "scenario": "Darius counts pitches on a muddy Little League field at 7:05 p.m. His twelve-year-old ace wants the final inning, and parents chant from the bleachers. With the tying run on second, Darius has to decide if another batter is worth ignoring the limit taped inside the scorebook.",
           "whatToDo": "Darius pulls the pitcher at the written limit and explains the rule before handing over the ball. The win matters, but the child's arm is the capacity being guarded.",
           "whyItMatters": "Effectiveness is not raw output. A coach who burns capacity for applause teaches everyone that today's result outranks the source of future play."
@@ -456,13 +370,6 @@
             "volunteers",
             "service"
           ],
-          "planSpec": {
-            "domain": "Raleigh public library",
-            "audience": "branch coordinator",
-            "stakes": "a volunteer pool may collapse after one event",
-            "format": "decision_point",
-            "requiredBeat": "preserve the people who produce the service"
-          },
           "scenario": "Laila checks the signup sheet at 10:10 a.m. in Raleigh. The summer reading kickoff needs twelve helpers, and four retirees have covered every extra shift for a month. Before the flyer goes out, Laila must decide: call the same four again or reduce the event to match healthy volunteer capacity.",
           "whatToDo": "Laila cuts two activity tables and asks the core volunteers to choose shorter shifts. She designs the program around a volunteer base that can return willingly.",
           "whyItMatters": "Capacity is often social before it is financial. A program that looks successful can quietly consume the goodwill that makes the next program possible."
@@ -475,13 +382,6 @@
             "habits",
             "maturity"
           ],
-          "planSpec": {
-            "domain": "Queens tutoring center",
-            "audience": "program director",
-            "stakes": "test gains may hide teacher burnout",
-            "format": "postmortem",
-            "requiredBeat": "look for delayed costs in the producing system"
-          },
           "scenario": "Samir reads Saturday attendance sheets at 1:25 p.m. in Queens. Scores rose after tutors added late-night review calls, but two tutors resigned and one stopped returning messages. Before renewing the policy, Samir has to decide if the score jump reflects a sound habit or an extraction from exhausted staff.",
           "whatToDo": "Samir caps calls and builds a weekly prep block into paid time. He keeps the score goal but changes the habit that was draining the people behind it.",
           "whyItMatters": "The maturity continuum depends on habits that can be practiced again. A result bought by depletion is not effectiveness, even when the chart improves."
@@ -500,8 +400,7 @@
             ],
             "correctIndex": 1,
             "explanation": "P/PC balance protects both the result and the asset that makes results possible. The quota matters, but starving the press risks the source of future output.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -513,8 +412,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The donor is not just an egg source. Stewardship cares for the human asset, while another disguised ask keeps extracting from the same capacity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -526,8 +424,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible egg is the inning. The goose is the player's arm and desire to keep playing, so the limit protects future production.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -539,8 +436,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mistake is not measurement itself. The error is demanding output while neglecting the people and systems that make the output repeatable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -552,8 +448,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rising scores can hide a failing PC system. The right question checks whether the producing capacity is being preserved or consumed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -565,8 +460,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The emergency fund is capacity, not spare output. Taking it for a shiny egg weakens the source of future security.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -578,8 +472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The maturity continuum is developmental. Sampling public-facing tools before private victory can create weak cooperation without a stable base.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -591,8 +484,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The event needs production and capacity. Scaling the program to a healthy volunteer base protects future service instead of draining goodwill.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -604,8 +496,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The habits are not a loose checklist. The sequence matters because durable public effectiveness depends on private victory and preserved capacity.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -648,7 +539,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Balance Output and Capacity",
         "coreSkill": "Look at every result together with the asset that produces it. The skill is to ask whether today’s gain strengthens or weakens tomorrow’s ability to produce again.",
         "ifThenPlans": [
           {
@@ -673,19 +563,13 @@
       },
       "memorableLines": [
         {
-          "text": "The score matters, but the source of the score matters first.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "The score matters, but the source of the score matters first."
         },
         {
-          "text": "Results become repeatable when the asset is treated as part of the result.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "Results become repeatable when the asset is treated as part of the result."
         },
         {
-          "text": "The egg proves yesterday worked; the goose decides whether tomorrow can.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The egg proves yesterday worked; the goose decides whether tomorrow can."
         }
       ]
     },
@@ -712,13 +596,6 @@
             "language",
             "service"
           ],
-          "planSpec": {
-            "domain": "Phoenix dispatch room",
-            "audience": "shift captain",
-            "stakes": "a crew may blame a caller instead of owning the response",
-            "format": "decision_point",
-            "requiredBeat": "replace blame language with an owned next step"
-          },
           "scenario": "Farah stands beside the radio console at 8:45 a.m. in Phoenix. A cleanup crew says the late caller ruined the route, and the supervisor wants an excuse for the missed stop. Before the city desk asks for a status, Farah has to choose between repeating the blame and stating the response her team controls.",
           "whatToDo": "Farah says the call was late and the reroute is theirs to manage. She assigns one crew to the missed block instead of spending the briefing on fault.",
           "whyItMatters": "Proactivity shows up first in language. The words move attention from conditions that cannot be changed toward the promise that can still be kept."
@@ -731,13 +608,6 @@
             "influence",
             "response"
           ],
-          "planSpec": {
-            "domain": "Toronto registrar counter",
-            "audience": "graduate student",
-            "stakes": "a denial can become either resentment or a concrete appeal",
-            "format": "decision_point",
-            "requiredBeat": "work inside the circle of influence"
-          },
           "scenario": "Lionel reads a scholarship denial at 3:40 p.m. outside the Toronto registrar counter. The deadline passed because his transcript arrived late from another school. Thirty minutes before the office closes, Lionel must decide: complain about the old campus or assemble the documents the appeal form still allows.",
           "whatToDo": "Lionel writes the appeal around dated receipts and asks for the one review still available. He leaves out the grievance that cannot change the file today.",
           "whyItMatters": "The circle of concern can feel morally right and practically useless. Influence grows when energy moves to the specific lever still within reach."
@@ -750,13 +620,6 @@
             "pause",
             "responsibility"
           ],
-          "planSpec": {
-            "domain": "Minneapolis group text",
-            "audience": "older sister",
-            "stakes": "one reply may restart an old family script",
-            "format": "decision_point",
-            "requiredBeat": "use the pause between stimulus and response"
-          },
           "scenario": "Noor sees a family text at 9:06 p.m. in Minneapolis. Her brother jokes about her leaving early from their mother's appointment, and three cousins are watching the thread. Before typing back, Noor must decide: answer the jab or state the schedule change she can actually make next week.",
           "whatToDo": "Noor waits one minute, then sends the appointment time she can cover. The pause keeps her response tied to responsibility instead of to the sting of the joke.",
           "whyItMatters": "Response-ability is not passivity. It is the power to keep a small insult from choosing the next behavior on behalf of the whole family."
@@ -769,13 +632,6 @@
             "influence",
             "attitude"
           ],
-          "planSpec": {
-            "domain": "Savannah wedding tent",
-            "audience": "event planner",
-            "stakes": "rain threatens a ceremony schedule",
-            "format": "dilemma",
-            "requiredBeat": "act on controllable conditions instead of mood"
-          },
           "scenario": "Beatrice hears rain strike the tent at 4:12 p.m. in Savannah. The bride is crying, the florist wants to leave, and the aisle runner is already wet. Twenty minutes before guests arrive, Beatrice must decide: narrate disaster or move chairs to the dry side and reset the entry path.",
           "whatToDo": "Beatrice gives two crew members the chair move and asks the officiant to start under the side arch. She spends energy on layout, not on the weather.",
           "whyItMatters": "Conditions can be real without becoming the script. Proactive action accepts the rain and still claims the choices that remain inside the tent."
@@ -788,13 +644,6 @@
             "reactive words",
             "service"
           ],
-          "planSpec": {
-            "domain": "Miami hotel lobby",
-            "audience": "front desk lead",
-            "stakes": "angry guests may hear either helplessness or ownership",
-            "format": "decision_point",
-            "requiredBeat": "replace cannot language with owned alternatives"
-          },
           "scenario": "Dario faces twenty guests at 11:30 p.m. in a Miami hotel lobby after a reservation system outage. A clerk keeps saying the computer will not let them help. Before the line reaches the door, Dario must decide: hide behind the software or name the manual steps staff can take.",
           "whatToDo": "Dario tells the team to stop saying the system blocks them and start assigning rooms from the paper backup. The wording matches the action they control.",
           "whyItMatters": "Reactive language trains people to see themselves as handled by tools, moods, or rules. Proactive language restores agency without denying the constraint."
@@ -807,13 +656,6 @@
             "commitment",
             "choice"
           ],
-          "planSpec": {
-            "domain": "Ann Arbor chemistry lab",
-            "audience": "doctoral researcher",
-            "stakes": "a missed booking may cost a week of work",
-            "format": "decision_point",
-            "requiredBeat": "honor the commitment that remains possible"
-          },
           "scenario": "Meilin reaches the spectrometer door at 6:55 a.m. in Ann Arbor and finds another team using her reserved slot. Her advisor expects data by noon. Before she sends an angry email, Meilin must decide: fight the mistake or call two neighboring labs for a replacement window.",
           "whatToDo": "Meilin documents the booking error, then phones the other labs before writing the complaint. She puts the data commitment ahead of emotional proof that she was wronged.",
           "whyItMatters": "A proactive person can protest and still act. The order matters: first pursue the result within influence, then repair the system that failed."
@@ -832,8 +674,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Proactivity does not deny conditions. It asks where choice remains after the stimulus, especially in language and next commitment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -845,8 +686,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful statement includes the condition and the owned response. It moves energy from complaint toward the work still inside influence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -858,8 +698,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pause is active, not evasive. It lets conscience and purpose choose the response instead of letting the jab write it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -871,8 +710,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reactive language keeps attention on the stimulus. Proactive language names the remaining responsibility and makes action possible.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -884,8 +722,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The misuse is spending scarce energy in the circle of concern while an influence window remains open. Complaint may be valid and still poorly timed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -897,8 +734,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The third sentence owns a response without pretending the outage is gone. It gives staff and guests a concrete next move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -910,8 +746,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The concept is narrower than blame. It locates freedom in response, focus, language, and commitment, not in pretending all conditions were chosen.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -923,8 +758,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The replacement slot sits inside influence. The complaint may still be needed, but it should not consume the first useful action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -936,8 +770,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A proactivity test turns attention toward commitments and language. It trains response instead of collecting evidence about everyone else's faults.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -980,7 +813,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move Concern Into Influence",
         "coreSkill": "Convert a complaint into one chosen act. The framework is Complaint to Concern to Influence to Language to Promise, so worry becomes a response within reach.",
         "ifThenPlans": [
           {
@@ -1005,19 +837,13 @@
       },
       "memorableLines": [
         {
-          "text": "The circle grows when energy goes where action can reach.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "The circle grows when energy goes where action can reach."
         },
         {
-          "text": "Agency is built by kept promises small enough to keep today.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "Agency is built by kept promises small enough to keep today."
         },
         {
-          "text": "Freedom starts as a pause, then grows by every promise kept inside it.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "Freedom starts as a pause, then grows by every promise kept inside it."
         }
       ]
     },
@@ -1044,13 +870,6 @@
             "roles",
             "vision"
           ],
-          "planSpec": {
-            "domain": "Baltimore funeral home parking lot",
-            "audience": "regional sales manager",
-            "stakes": "a promotion path may not match desired legacy",
-            "format": "reflection",
-            "requiredBeat": "test ambition against remembered character"
-          },
           "scenario": "Camille sits in her parked car at 7:20 a.m. outside a Baltimore funeral home after a colleague's service. A promotion packet waits on the passenger seat. Before calling the recruiter, Camille has to decide if the title fits the words she would want her children, team, and friends to say about her ten years from now.",
           "whatToDo": "Camille drafts three legacy sentences before answering the recruiter. She judges the offer by the kind of presence it would train, not just by status.",
           "whyItMatters": "Beginning with the end makes ambition answer to character. A desired eulogy exposes whether a busy path is moving toward the right life."
@@ -1063,13 +882,6 @@
             "family",
             "work"
           ],
-          "planSpec": {
-            "domain": "Cleveland nurse station",
-            "audience": "charge nurse",
-            "stakes": "one week contains conflicting duties",
-            "format": "planning_choice",
-            "requiredBeat": "sort roles before goals"
-          },
           "scenario": "Hasan reviews next week's roster at 2:50 p.m. in a Cleveland nurse station. He can pick up overtime, coach his daughter's debate practice, or finish a certification module. Before the schedule locks, he has to choose from roles that all sound responsible. His notebook lists nurse, father, learner, and neighbor.",
           "whatToDo": "Hasan writes one desired contribution for each role, then chooses the shift pattern that protects the two neglected roles. The list prevents work from swallowing the whole map.",
           "whyItMatters": "Roles turn mission from fog into stewardship. Without them, the loudest obligation can pretend to be the only one that counts."
@@ -1082,13 +894,6 @@
             "wrong wall",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "Denver brand agency",
-            "audience": "creative director",
-            "stakes": "a glamorous account may pull the firm from its purpose",
-            "format": "decision_point",
-            "requiredBeat": "check whether the ladder is on the chosen wall"
-          },
           "scenario": "Petra studies a luxury pitch deck at 6:05 p.m. in Denver. The account would impress competitors, but it asks the agency to sell scarcity to teenagers. Before the partners vote, Petra has to decide if the revenue goal belongs on the wall they said they were climbing. The studio mission promises honest youth brands.",
           "whatToDo": "Petra reads the mission line before the revenue slide and asks for a fit vote before a money vote. She makes direction the first criterion.",
           "whyItMatters": "Efficiency can move a firm quickly toward work it should not want. The wrong-wall test asks whether success would still look like success at the end."
@@ -1101,13 +906,6 @@
             "first creation",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "Austin software standup",
-            "audience": "product founder",
-            "stakes": "fast shipping may build the wrong product",
-            "format": "decision_point",
-            "requiredBeat": "create the end before managing the tasks"
-          },
           "scenario": "Linh joins a 9:00 a.m. Austin standup while engineers argue over five feature tickets. A pilot customer wants speed, and investors want a demo by Friday. Before assigning the sprint, Linh must decide: clear the board or restate the product outcome that would make the sprint worth doing.",
           "whatToDo": "Linh writes the user result on the whiteboard before choosing tickets. She lets the desired end govern which work deserves speed.",
           "whyItMatters": "A first creation is mental before it is physical. Teams that skip it can become efficient at producing artifacts that do not serve the real end."
@@ -1120,13 +918,6 @@
             "mission",
             "language"
           ],
-          "planSpec": {
-            "domain": "Santa Fe retreat room",
-            "audience": "museum director",
-            "stakes": "a staff retreat may produce slogans instead of guidance",
-            "format": "decision_point",
-            "requiredBeat": "turn mission language into a daily standard"
-          },
           "scenario": "Bruno watches museum staff debate wall text at 1:10 p.m. in Santa Fe. The retreat agenda says mission statement, but each department defends its own wording. Before lunch ends, Bruno must decide: settle for a polished sentence or ask which visitor experience the statement will govern next month.",
           "whatToDo": "Bruno asks every department to name one decision the mission would change in April. The sentence earns its place only if it guides a real choice.",
           "whyItMatters": "Mission language can become decoration if it never meets a calendar. Beginning with the end gives words authority by tying them to future conduct."
@@ -1139,13 +930,6 @@
             "visualization",
             "future"
           ],
-          "planSpec": {
-            "domain": "Providence art school studio",
-            "audience": "senior design student",
-            "stakes": "a portfolio can chase applause or a chosen contribution",
-            "format": "planning_choice",
-            "requiredBeat": "visualize the end user before selecting work"
-          },
           "scenario": "Sofia spreads prints across the Providence studio floor at 11:25 p.m. Her classmates favor the flashiest posters, and portfolio reviews begin in the morning. Before mounting the final board, Sofia must decide: impress the room or show the kind of problems she wants clients to trust her with.",
           "whatToDo": "Sofia chooses pieces around the clients she wants to serve and writes that audience on the back of the board. The end user becomes her filter.",
           "whyItMatters": "Visualization is not daydreaming when it disciplines selection. A clear end lets a student decline applause that points away from the desired craft."
@@ -1164,8 +948,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Beginning with the end in mind makes the future standard govern the present choice. The offer is tested by character and contribution, not only by status.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1177,8 +960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mental creation precedes execution. Without the desired user result, the team can become efficient at the wrong work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1190,8 +972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A mission earns authority when it governs choices. The hard edge is not having noble words, but letting those words direct conduct.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1203,8 +984,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ladder can be climbed well and still lean against the wrong wall. Direction must be checked before efficiency celebrates movement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1216,8 +996,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Visualization becomes useful when it filters action. The chosen end user should govern the board more than the room's applause.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1229,8 +1008,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A principle-centered mission is a standard for decisions. If no decision changes, the language is decoration instead of leadership.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1242,8 +1020,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Habit 2 is constitutional, not cosmetic. A life script must be chosen by principle before goals start pulling daily choices.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1255,8 +1032,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first creation names the desired result before the physical redesign begins. Speed alone can improve the wrong measure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1268,8 +1044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Without a chosen first creation, pressure creates one. A role-based mission gives daily requests a standard to answer to.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1312,7 +1087,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Design Before You Climb",
         "coreSkill": "Create direction before increasing speed. The framework is Legacy to Roles to Center to Mission to Next Choice, so activity answers to a chosen standard.",
         "ifThenPlans": [
           {
@@ -1337,19 +1111,13 @@
       },
       "memorableLines": [
         {
-          "text": "A mission is a constitution for days when mood wants a vote.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "A mission is a constitution for days when mood wants a vote."
         },
         {
-          "text": "The end has to be named before the week can be trusted.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "The end has to be named before the week can be trusted."
         },
         {
-          "text": "The right wall must be chosen before the ladder deserves speed.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The right wall must be chosen before the ladder deserves speed."
         }
       ]
     },
@@ -1376,13 +1144,6 @@
             "hospital",
             "weekly"
           ],
-          "planSpec": {
-            "domain": "Birmingham oncology unit",
-            "audience": "nurse manager",
-            "stakes": "training may lose to constant urgent coverage",
-            "format": "decision_point",
-            "requiredBeat": "schedule important nonurgent work before urgent gaps take over"
-          },
           "scenario": "Nikhil reviews the oncology unit calendar at 6:40 a.m. in Birmingham. Every open square has been used for short-staffed coverage, and the safety training is three weeks late. Before the shift huddle, Nikhil must decide: wait for a calm week or place training on the calendar before the next crisis fills it.",
           "whatToDo": "Nikhil blocks two thirty-minute training windows and staffs around them. He treats safety preparation as a fixed commitment, not as leftover space.",
           "whyItMatters": "Quadrant II work rarely shouts. Putting first things first gives important work a protected time before urgency spends the week for everyone."
@@ -1395,13 +1156,6 @@
             "planning",
             "priority"
           ],
-          "planSpec": {
-            "domain": "Boise middle school classroom",
-            "audience": "science teacher",
-            "stakes": "lab prep may be buried by email requests",
-            "format": "planning_choice",
-            "requiredBeat": "convert values into a weekly appointment"
-          },
           "scenario": "Yara unlocks her Boise classroom at 7:05 a.m. with parent emails already filling the screen. Friday's lab requires labeled samples, but every message feels easier to clear. Before students arrive, Yara must decide: answer visible requests first or prepare the experiment that makes the week meaningful.",
           "whatToDo": "Yara sets a timer for sample labeling before opening email. She gives the lab first claim on her morning because it serves the teaching purpose she chose.",
           "whyItMatters": "Priority is proved by sequence, not sentiment. A weekly plan turns a valued outcome into an appointment that can resist the inbox."
@@ -1414,13 +1168,6 @@
             "focus",
             "execution"
           ],
-          "planSpec": {
-            "domain": "Lisbon engineering pod",
-            "audience": "backend lead",
-            "stakes": "a key reliability fix may vanish under minor tickets",
-            "format": "decision_point",
-            "requiredBeat": "protect the high-value block from easy activity"
-          },
           "scenario": "Everett looks at a reliability incident board at 10:30 a.m. in Lisbon. Six small tickets could close by lunch, while the database retry fix needs two quiet hours. Before sprint review, Everett must decide: collect visible wins or reserve the block that prevents the same outage next week.",
           "whatToDo": "Everett marks the retry fix as the morning's first commitment and postpones minor tickets until after lunch. The block protects leverage over motion.",
           "whyItMatters": "Urgent-looking small work can counterfeit progress. Independent will chooses the task that prevents repeated pain, even when it gives fewer quick checkmarks."
@@ -1433,13 +1180,6 @@
             "review",
             "systems"
           ],
-          "planSpec": {
-            "domain": "Charlotte accounting floor",
-            "audience": "controller",
-            "stakes": "month-end pressure may erase process improvement",
-            "format": "decision_point",
-            "requiredBeat": "invest in prevention while numbers demand attention"
-          },
           "scenario": "Rina scans the close checklist at 8:55 p.m. in Charlotte. A recurring invoice error has cost four late nights, but the team wants to push through and fix it next month. Before approving overtime, Rina must decide: keep chasing the same defect or spend one hour rebuilding the vendor rule.",
           "whatToDo": "Rina pauses the close long enough to correct the vendor rule and assign ownership. She sacrifices a little speed to stop the cycle that keeps creating urgency.",
           "whyItMatters": "First things are often preventive. Quadrant II asks leaders to spend will on the quiet repair that future pressure will never volunteer time for."
@@ -1452,13 +1192,6 @@
             "discipline",
             "calendar"
           ],
-          "planSpec": {
-            "domain": "Nashville rehearsal room",
-            "audience": "session guitarist",
-            "stakes": "career growth may lose to paid fragments",
-            "format": "planning_choice",
-            "requiredBeat": "honor the role goal before the day fragments"
-          },
           "scenario": "Graham tunes a guitar at 1:15 p.m. in Nashville while three quick paid edits arrive by text. His long-term goal is reading complex charts, and the audition is six weeks away. Before accepting all three edits, Graham must decide: sell the only practice hour that builds the skill he claims matters.",
           "whatToDo": "Graham keeps the chart-reading hour and accepts only the edit that fits afterward. He lets the role goal decide what gets sold and what gets guarded.",
           "whyItMatters": "A priority without protected practice is only a preference. The calendar shows whether independent will is serving the mission or feeding the nearest request."
@@ -1471,13 +1204,6 @@
             "boundary",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "St. Louis apartment",
-            "audience": "single parent",
-            "stakes": "work messages may consume the only family meal",
-            "format": "decision_point",
-            "requiredBeat": "make a principle-based boundary visible"
-          },
           "scenario": "Leila sets soup on the St. Louis table at 6:22 p.m. when her phone lights with a client thread. Her daughter has a spelling list and twenty minutes before soccer pickup. Leila must decide: answer the thread now or hold the dinner boundary she wrote under her parent role on Sunday.",
           "whatToDo": "Leila puts the phone in the hallway and helps with five spelling words before pickup. The client gets a reply after the family commitment is honored.",
           "whyItMatters": "Putting first things first is not grand drama. It is often a small refusal to let someone else's timing erase a chosen role."
@@ -1496,8 +1222,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Priority is shown by sequence. The important nonurgent work needs protected time before easier visible requests spend the morning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1509,8 +1234,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Quadrant II work must be scheduled before urgency consumes the week. Treating training as leftover time keeps producing preventable crises.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1522,8 +1246,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prevention is Quadrant II even when numbers are loud. The rule repair reduces the urgency that keeps returning each month.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1535,8 +1258,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The role commitment was chosen before the pressure arrived. Independent will keeps the promise when another person's timing becomes loud.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1548,8 +1270,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stewardship delegation develops capability by clarifying outcomes and trust. Method control may be quicker today and weaker tomorrow.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1561,8 +1282,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Quadrant II is important before it becomes urgent. The relationship call builds capacity and reduces future crisis pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1574,8 +1294,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Putting first things first requires honoring values before fragments consume the day. The calendar reveals the real priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1587,8 +1306,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The planner is not the point. The test is whether independent will follows principle after urgency offers a more tempting route.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1600,8 +1318,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reliability fix is important before it becomes urgent again. Quadrant II work often has fewer quick checkmarks and more leverage.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1644,7 +1361,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Protect the Important Week",
         "coreSkill": "Turn mission into protected placement on the calendar. The framework is Roles to Quadrant II Goals to Weekly Slots to Principled No to Stewardship.",
         "ifThenPlans": [
           {
@@ -1669,19 +1385,13 @@
       },
       "memorableLines": [
         {
-          "text": "The calendar tells the truth about what values survived contact with Tuesday.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "The calendar tells the truth about what values survived contact with Tuesday."
         },
         {
-          "text": "Priority is not proved by intensity; it is proved by protected placement.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "Priority is not proved by intensity; it is proved by protected placement."
         },
         {
-          "text": "A priority without a slot is only a wish with better vocabulary.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "A priority without a slot is only a wish with better vocabulary."
         }
       ]
     },
@@ -1708,13 +1418,6 @@
             "expectations",
             "school"
           ],
-          "planSpec": {
-            "domain": "Oakland elementary office",
-            "audience": "assistant principal",
-            "stakes": "a delayed reply may drain parent trust",
-            "format": "decision_point",
-            "requiredBeat": "make a trust deposit through clarity"
-          },
           "scenario": "Maureen reads a parent email at 7:50 a.m. in Oakland. A bullying report from Monday still has no answer, and the parent is now copying the district. Before the bell rings, Maureen must decide: wait for every fact or acknowledge the delay, name the next check, and give a time for the follow-up.",
           "whatToDo": "Maureen sends a brief status with the investigation step and a promised call time. She deposits clarity before asking the parent to stay patient.",
           "whyItMatters": "Trust balances move before conflict peaks. A small kept commitment can keep a tense relationship solvent enough for harder facts later."
@@ -1727,13 +1430,6 @@
             "apology",
             "deposit"
           ],
-          "planSpec": {
-            "domain": "Vancouver apartment stairwell",
-            "audience": "upstairs tenant",
-            "stakes": "one apology can prevent a feud",
-            "format": "decision_point",
-            "requiredBeat": "repair a withdrawal before defending intent"
-          },
           "scenario": "Kenji meets his downstairs neighbor on the Vancouver stairwell at 8:05 p.m. The neighbor holds a phone recording of last night's chair scraping. Kenji wants to explain the moving boxes, but before the elevator arrives he has to choose between defending intent and repairing the disturbance the neighbor lived with.",
           "whatToDo": "Kenji apologizes for the noise and offers felt pads that night. He can explain the move after he has first made a deposit against the withdrawal.",
           "whyItMatters": "Intent does not erase impact in an Emotional Bank Account. Repair starts when the other person's experience is treated as real."
@@ -1746,13 +1442,6 @@
             "commitment",
             "credibility"
           ],
-          "planSpec": {
-            "domain": "Bristol equipment showroom",
-            "audience": "sales representative",
-            "stakes": "a missed call may cost a long relationship",
-            "format": "mistake_recovery",
-            "requiredBeat": "pay back a broken promise with specific action"
-          },
           "scenario": "Tara finds a reminder card under her keyboard at 9:18 a.m. in Bristol. She promised a factory buyer torque specs by Friday, and it is now Tuesday. Before sending a new quote, Tara must decide: pretend the delay is normal or name the missed promise and attach the exact specs.",
           "whatToDo": "Tara opens with the missed commitment and sends the specs before discussing price. The repair is specific enough to start rebuilding credibility.",
           "whyItMatters": "Broken promises accrue interest. A sincere apology without the promised substance leaves the account low; a named repair begins to restore trust."
@@ -1765,13 +1454,6 @@
             "expectations",
             "birthday"
           ],
-          "planSpec": {
-            "domain": "Jersey City bakery counter",
-            "audience": "uncle planning a party",
-            "stakes": "unclear assumptions may disappoint a child",
-            "format": "planning_choice",
-            "requiredBeat": "clarify expectations before goodwill fails"
-          },
           "scenario": "Oscar picks up a birthday cake at 3:35 p.m. in Jersey City and sees vanilla frosting instead of the chocolate design his niece imagined. His sister says she thought he handled the order. Before the party starts, Oscar must decide: blame the bakery or clarify what each adult promised and fix what can be fixed.",
           "whatToDo": "Oscar calls his sister, confirms the missing detail, and buys chocolate decorations nearby. He turns a vague expectation into a clear next step.",
           "whyItMatters": "Many withdrawals come from assumptions no one checked. Clarifying expectations protects affection from preventable disappointment."
@@ -1784,13 +1466,6 @@
             "integrity",
             "friendship"
           ],
-          "planSpec": {
-            "domain": "Fresno garage workshop",
-            "audience": "small business owner",
-            "stakes": "a friend loan may strain the relationship",
-            "format": "decision_point",
-            "requiredBeat": "choose integrity over a convenient delay"
-          },
           "scenario": "Celia sorts invoices in a Fresno garage workshop at 5:10 p.m. A friend loaned her money for a compressor, and the repayment date is tomorrow. Cash is tight, but she can pay half. Before dinner, Celia must decide: avoid the call or explain the shortfall with a date for the remaining amount.",
           "whatToDo": "Celia calls before the deadline and sends the partial payment immediately. She treats transparency as part of repayment, not as an optional courtesy.",
           "whyItMatters": "Integrity is a deposit because it reduces guessing. Even a hard update can strengthen trust when it arrives before the other person has to chase it."
@@ -1803,13 +1478,6 @@
             "courtesy",
             "trust"
           ],
-          "planSpec": {
-            "domain": "Halifax ferry terminal",
-            "audience": "ticket supervisor",
-            "stakes": "small discourtesy may spoil public trust",
-            "format": "decision_point",
-            "requiredBeat": "make a simple courtesy deposit under pressure"
-          },
           "scenario": "Andre hears a traveler ask the same fare question for the third time at 5:42 p.m. in the Halifax ferry terminal. The line is long and the printer jams. Before waving her aside, Andre has to decide if speed justifies a curt answer or whether a clear sentence will keep the line calmer.",
           "whatToDo": "Andre answers the fare question once, slowly, while restarting the printer. He spends ten seconds on courtesy to avoid a larger trust withdrawal in the line.",
           "whyItMatters": "Small courtesies are not soft extras in interdependence. They are deposits that make later impatience, limits, or bad news easier to bear."
@@ -1828,8 +1496,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A trust deposit can be small and specific. Clarity before completion keeps the relationship solvent enough for the harder conversation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1841,8 +1508,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The account metaphor exposes accumulated trust damage. Public conflict often becomes explosive because earlier promises and courtesies were spent down.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1854,8 +1520,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The six-year-old scene tests whether efficiency outranks the relationship. A deposit may take little time and protect long-term trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1867,8 +1532,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Interdependence needs trust capacity before difficult production. Correction lands differently when the account is already low.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1880,8 +1544,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repair needs substance, not only regret. A kept replacement promise begins rebuilding credibility after the withdrawal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1893,8 +1556,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Intent does not cancel impact. A deposit starts by treating the other person's experience as real enough to repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1906,8 +1568,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is capacity before production. Deposits are not decoration around teamwork; they make hard cooperation possible.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1919,8 +1580,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Integrity lowers guessing. Early transparency and concrete payment protect the relationship better than silence or vague reassurance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1932,8 +1592,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One-person service tests motive. The deposit is real even when no public credit follows it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1976,7 +1635,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Fund the Trust Account",
         "coreSkill": "Treat each key relationship as a trust balance shaped by specific conduct. The framework is Understand, Courtesy, Commitment, Expectation, Repair.",
         "ifThenPlans": [
           {
@@ -2001,19 +1659,13 @@
       },
       "memorableLines": [
         {
-          "text": "Trust is not a mood; it is a balance changed by behavior.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "Trust is not a mood; it is a balance changed by behavior."
         },
         {
-          "text": "The hard talk goes better when the account was funded before the room got tense.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "The hard talk goes better when the account was funded before the room got tense."
         },
         {
-          "text": "Every small promise is either interest earned or debt added.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "Every small promise is either interest earned or debt added."
         }
       ]
     },
@@ -2040,13 +1692,6 @@
             "systems",
             "Win/Win"
           ],
-          "planSpec": {
-            "domain": "Kansas City appliance store",
-            "audience": "store manager",
-            "stakes": "a reward board may pit employees against service",
-            "format": "decision_point",
-            "requiredBeat": "align incentives with mutual benefit"
-          },
           "scenario": "Sterling checks the commission board at 8:25 a.m. in Kansas City. The top seller wins a weekend trip, and two clerks now steer customers away from low-margin repairs. Before the Saturday rush, Sterling must decide: praise the numbers or change the scoreboard so service quality counts with revenue.",
           "whatToDo": "Sterling adds repair satisfaction and shared store targets to the reward plan before announcing the contest. The system must pay for the behavior it claims to value.",
           "whyItMatters": "Win/Win dies when systems reward Win/Lose. Character helps, but incentives can quietly teach people to protect themselves at others' expense."
@@ -2059,13 +1704,6 @@
             "agreement",
             "No Deal"
           ],
-          "planSpec": {
-            "domain": "Delft robotics lab",
-            "audience": "project engineer",
-            "stakes": "one shared rig may create resentment",
-            "format": "dilemma",
-            "requiredBeat": "use No Deal instead of forced compromise"
-          },
           "scenario": "Valeria stands beside the only test rig at 10:15 p.m. in Delft. Her drone team and the sensor team both need a four-hour run before a sponsor visit. Before either group starts, Valeria must decide: split the night badly or pause the test until both teams can accept the terms.",
           "whatToDo": "Valeria proposes a written slot swap tied to sponsor priorities and names No Deal if either team cannot trust the plan. Agreement matters more than coerced sharing.",
           "whyItMatters": "No Deal protects relationships from resentful deals. A forced compromise can look cooperative while both sides leave planning to get even next time."
@@ -2078,13 +1716,6 @@
             "abundance",
             "terms"
           ],
-          "planSpec": {
-            "domain": "Glasgow rowing club",
-            "audience": "club treasurer",
-            "stakes": "fee relief may divide members",
-            "format": "decision_point",
-            "requiredBeat": "seek a solution that preserves dignity and fairness"
-          },
           "scenario": "Hassan reviews dues envelopes at 6:00 p.m. in a Glasgow rowing club. Two students ask for relief, and older members worry they will carry the cost. Before the committee vote, Hassan must decide: deny help or design terms that keep the students rowing and the club budget clear.",
           "whatToDo": "Hassan proposes a work-credit dues plan with published limits. It lets students contribute value while giving other members a fair agreement to review.",
           "whyItMatters": "Win/Win is not niceness. It requires courage to protect standards and consideration to make room for legitimate needs, especially when budgets and dignity both count."
@@ -2097,13 +1728,6 @@
             "contract",
             "mutual benefit"
           ],
-          "planSpec": {
-            "domain": "New Orleans event kitchen",
-            "audience": "catering owner",
-            "stakes": "a client demand may damage staff and reputation",
-            "format": "decision_point",
-            "requiredBeat": "renegotiate around shared success"
-          },
           "scenario": "Nora reads a 200-guest menu change at 9:40 a.m. in a New Orleans event kitchen. The client wants a seafood station added by tonight without extra staff. Before accepting the request, Nora must decide: absorb the strain or state terms that protect food quality and crew safety.",
           "whatToDo": "Nora offers the seafood station only with a simplified dessert table and added labor cost. She ties the terms to the event outcome both parties want.",
           "whyItMatters": "A Win/Win agreement makes the real constraints visible. Saying yes to please can become Lose/Win when hidden costs land on staff."
@@ -2116,13 +1740,6 @@
             "abundance",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "Copenhagen language school",
-            "audience": "program coordinator",
-            "stakes": "popular classes may create internal rivalry",
-            "format": "planning_choice",
-            "requiredBeat": "build a shared win into the schedule"
-          },
           "scenario": "Bianca sorts teacher requests at 1:55 p.m. in Copenhagen. Two instructors want the same evening slot because it fills fastest, and new morning classes keep failing. Before publishing the term schedule, Bianca has to decide if one teacher wins the slot or both help design a package that grows enrollment.",
           "whatToDo": "Bianca pairs one evening class with a shared online practice group that feeds both teachers' courses. The schedule makes the market larger instead of dividing the prize.",
           "whyItMatters": "An abundance frame changes the negotiation question. Instead of asking who gets the scarce slot, the parties ask what arrangement can create more value."
@@ -2135,13 +1752,6 @@
             "standards",
             "agreement"
           ],
-          "planSpec": {
-            "domain": "Prague camera shop",
-            "audience": "shop owner",
-            "stakes": "a refund request may break policy or trust",
-            "format": "decision_point",
-            "requiredBeat": "hold a clear No Deal without contempt"
-          },
           "scenario": "Pavel examines a scratched lens at 4:05 p.m. in Prague. The customer wants a full refund after dropping it during a trip, and a line forms behind him. Before choosing, Pavel must decide: cave for peace, refuse coldly, or offer a repair credit that respects policy and the customer's need.",
           "whatToDo": "Pavel offers the published repair credit and explains why a full refund would be unfair to the shop and other customers. He keeps respect while holding the line.",
           "whyItMatters": "Win/Win includes the right to decline a false agreement. No Deal can preserve trust when the requested terms would quietly injure one side."
@@ -2160,8 +1770,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Win/Win requires systems that reward the stated paradigm. A slogan about teamwork cannot survive a scoreboard that pays Win/Lose behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2173,8 +1782,7 @@
             ],
             "correctIndex": 1,
             "explanation": "No Deal prevents hidden resentment from being packaged as agreement. The relationship is safer when false consent is not forced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2186,8 +1794,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Win/Win does not mean caving. It makes constraints visible and seeks terms that protect both the event and the people producing it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2199,8 +1806,7 @@
             ],
             "correctIndex": 1,
             "explanation": "No Deal is an honorable alternative to coerced compromise. It keeps pressure from producing a deal that invites payback later.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2212,8 +1818,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calling a Lose/Win or Win/Lose offer cooperative does not make it Win/Win. Mutual benefit must be built into the actual terms.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2225,8 +1830,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Courage protects standards while consideration keeps searching for mutual benefit. No Deal is better than a hidden injury to either side.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -2238,8 +1842,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Win/Win is not automatic compromise. Equal concessions can still leave the real concerns untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2251,8 +1854,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Abundance asks whether more value can be created. The shared pathway changes the frame from dividing a prize to enlarging it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2264,8 +1866,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Agreeableness alone can become Lose/Win. Win/Win needs character and aligned systems, not only pleasant tone.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -2308,7 +1909,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build Mutual-Benefit Agreements",
         "coreSkill": "Move a negotiation from positions into a clear agreement. The framework is Position, Interest, Win/Win Check, Agreement, Systems Alignment.",
         "ifThenPlans": [
           {
@@ -2333,19 +1933,13 @@
       },
       "memorableLines": [
         {
-          "text": "A deal that injures the next deal was never a clean win.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "A deal that injures the next deal was never a clean win."
         },
         {
-          "text": "The agreement works only when the system pays the behavior it praises.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "The agreement works only when the system pays the behavior it praises."
         },
         {
-          "text": "The other person's win is not a threat when the bond must keep working.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The other person's win is not a threat when the bond must keep working."
         }
       ]
     },
@@ -2372,13 +1966,6 @@
             "support",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "Omaha benefits call center",
-            "audience": "team lead",
-            "stakes": "a complaint may be solved for the wrong problem",
-            "format": "decision_point",
-            "requiredBeat": "diagnose before giving advice"
-          },
           "scenario": "Anika reviews a call transcript at 8:38 a.m. in Omaha. A widower keeps asking why his claim was denied, and the agent keeps repeating policy language. Before coaching the agent, Anika has to decide if the issue is knowledge or whether the caller has not yet heard anyone name his fear about losing coverage.",
           "whatToDo": "Anika has the agent summarize the caller's fear before explaining the policy path. The policy answer comes after the person feels understood.",
           "whyItMatters": "Advice given before diagnosis can feel like borrowed glasses. Empathic listening earns the right to be heard by first proving accurate understanding."
@@ -2391,13 +1978,6 @@
             "student",
             "understanding"
           ],
-          "planSpec": {
-            "domain": "San Diego community college",
-            "audience": "academic adviser",
-            "stakes": "a student may quit over a misunderstood plan",
-            "format": "decision_point",
-            "requiredBeat": "listen for the student's map before fixing it"
-          },
           "scenario": "Luis meets a student at 2:05 p.m. in San Diego. She says the nursing degree is impossible, and the adviser software shows only two missing prerequisites. Before printing a course plan, Luis must decide: correct her math or ask what the word impossible means in her work and childcare week.",
           "whatToDo": "Luis asks her to draw a week with shifts and childcare before changing the course plan. He listens to the lived constraint before giving the academic answer.",
           "whyItMatters": "Understanding is practical, not sentimental. The right plan appears only after the adviser hears the map the student is actually navigating."
@@ -2410,13 +1990,6 @@
             "listening",
             "trust"
           ],
-          "planSpec": {
-            "domain": "Memphis billing office",
-            "audience": "patient account specialist",
-            "stakes": "a balance dispute may become a trust break",
-            "format": "decision_point",
-            "requiredBeat": "reflect the concern before explaining the code"
-          },
           "scenario": "Marnie opens a billing screen at 11:20 a.m. in Memphis while a patient says the charge proves the clinic lied. The code is correct, but the patient sounds close to hanging up. Before reading the policy, Marnie must decide: defend the invoice or reflect the betrayal the patient believes happened.",
           "whatToDo": "Marnie first says the bill looks like a broken promise, then walks through the code line by line. The explanation follows the reflected concern.",
           "whyItMatters": "Logic lands poorly when the listener feels misread. Empathic diagnosis lowers defense enough for facts to become useful."
@@ -2429,13 +2002,6 @@
             "coaching",
             "empathy"
           ],
-          "planSpec": {
-            "domain": "Brooklyn rehearsal studio",
-            "audience": "vocal coach",
-            "stakes": "technical advice may miss the singer's fear",
-            "format": "decision_point",
-            "requiredBeat": "hear the emotion before correcting technique"
-          },
           "scenario": "Cass sits at the piano in Brooklyn at 6:45 p.m. A singer cracks on the same high note and asks for a new warmup. The audition panel arrives tomorrow, and ten minutes remain in practice. Cass must decide: prescribe a breathing drill or ask what the note represents in the singer's mind.",
           "whatToDo": "Cass asks what happens inside the singer before the note, then chooses one breath cue. Technique comes after the fear has been named accurately.",
           "whyItMatters": "A correct prescription can still fail when the diagnosis is shallow. Listening first reveals whether the obstacle is physical, mental, or relational."
@@ -2448,13 +2014,6 @@
             "evidence",
             "understanding"
           ],
-          "planSpec": {
-            "domain": "Des Moines claims desk",
-            "audience": "insurance adjuster",
-            "stakes": "a rushed answer may escalate a dispute",
-            "format": "decision_point",
-            "requiredBeat": "separate facts from the claimant's felt loss"
-          },
           "scenario": "Reuben scrolls through storm photos at 9:55 a.m. in Des Moines. The policy excludes fence damage, but the homeowner keeps returning to a ruined garden. Before issuing the denial, Reuben must decide: quote exclusion language or first show he understands what was lost besides the fence.",
           "whatToDo": "Reuben summarizes the garden loss before explaining the policy limit and next appeal step. He does not confuse empathy with changing coverage.",
           "whyItMatters": "Seeking to understand does not mean surrendering judgment. It means the hard answer is given after the person knows the loss was heard."
@@ -2467,13 +2026,6 @@
             "conflict",
             "listening"
           ],
-          "planSpec": {
-            "domain": "Belfast outdoor shop",
-            "audience": "floor supervisor",
-            "stakes": "a return dispute may turn public",
-            "format": "decision_point",
-            "requiredBeat": "slow the exchange until the real concern is named"
-          },
           "scenario": "Zoya reaches the return counter in Belfast at 12:12 p.m. A customer slams wet boots on the mat and says the shop ruined his hiking weekend. Other shoppers stop browsing nearby. Before refusing the worn return, Zoya must decide: cite policy immediately or ask him to describe what failed on the trail.",
           "whatToDo": "Zoya asks for the trail failure first, then checks the boot seam with him before explaining the return limit. The policy arrives with diagnosis.",
           "whyItMatters": "Listening can convert a fight about rules into a shared look at reality. The customer may still dislike the answer, but he is less likely to feel brushed off."
@@ -2492,8 +2044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Diagnosis precedes advice. The policy may be accurate, but influence starts when the person knows the fear has been heard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2505,8 +2056,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The school dialogue depends on understanding the student's frame. Advice offered too early can sound like borrowed glasses.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2518,8 +2068,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Logos lands after credibility and felt understanding. The order matters because people resist evidence from a speaker they do not trust.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2531,8 +2080,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Borrowed glasses are advice without diagnosis. The cue may be useful later, but first the coach needs to understand the singer's reality.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2544,8 +2092,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Empathic listening is not waiting to rebut. It enters the other person's frame deeply enough that counsel can later be received.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2557,8 +2104,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Understanding does not require changing coverage. It means the hard answer comes after the person knows the loss was actually heard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2570,8 +2116,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is character. Reflective words are not empathic listening when the motive is control.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2583,8 +2128,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The supervisor can still hold the policy. Listening first changes the exchange from rule combat to a shared look at reality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2596,8 +2140,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mimicry copies surface language. Empathic listening checks whether the other person's meaning has been understood accurately.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2640,7 +2183,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Diagnose Before Giving Advice",
         "coreSkill": "Earn the right to respond by representing the other person’s meaning accurately first. The framework is Stop, Mirror Meaning, Name Feeling, Confirm, Then Present.",
         "ifThenPlans": [
           {
@@ -2665,19 +2207,13 @@
       },
       "memorableLines": [
         {
-          "text": "Listening is the price of advice that fits.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "Listening is the price of advice that fits."
         },
         {
-          "text": "People become open to influence after their world has been represented fairly.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "People become open to influence after their world has been represented fairly."
         },
         {
-          "text": "The right to be heard is often earned by naming what the other person meant.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The right to be heard is often earned by naming what the other person meant."
         }
       ]
     },
@@ -2704,13 +2240,6 @@
             "classroom",
             "difference"
           ],
-          "planSpec": {
-            "domain": "Madison graduate seminar",
-            "audience": "seminar facilitator",
-            "stakes": "two positions may harden into camps",
-            "format": "decision_point",
-            "requiredBeat": "use disagreement as raw material for a third option"
-          },
           "scenario": "Selene watches two graduate students argue at 3:30 p.m. in Madison. One wants community interviews, the other wants statistical modeling, and the class is choosing a project design before the grant deadline. Selene must decide: vote one side down or ask what each method can see that the other misses.",
           "whatToDo": "Selene maps the unique strength of each method on the board, then asks for a design that needs both. The disagreement becomes material for invention.",
           "whyItMatters": "Synergy values difference enough to use it. The aim is not polite compromise, but a result neither side could produce alone."
@@ -2723,13 +2252,6 @@
             "third alternative",
             "safety"
           ],
-          "planSpec": {
-            "domain": "Calgary construction trailer",
-            "audience": "site superintendent",
-            "stakes": "schedule and safety appear to conflict",
-            "format": "dilemma",
-            "requiredBeat": "refuse the two-option trap"
-          },
           "scenario": "Arturo studies a crane schedule at 5:25 a.m. in a Calgary construction trailer. The concrete crew wants speed, while the safety officer says wind gusts make the lift risky. Before subcontractors arrive, Arturo must decide: delay everything or invent a sequence that protects the pour and the crew.",
           "whatToDo": "Arturo moves ground prep forward and delays only the elevated lift until the wind window drops. He asks both sides for a sequence neither proposed alone.",
           "whyItMatters": "A third alternative often starts by refusing a false pair of choices. High trust lets people search for a smarter sequence instead of defending turf."
@@ -2742,13 +2264,6 @@
             "metrics",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "Baltimore youth center",
-            "audience": "grant director",
-            "stakes": "funders and staff measure success differently",
-            "format": "decision_point",
-            "requiredBeat": "build measures that honor both realities"
-          },
           "scenario": "Winona sits with a funder spreadsheet at 10:50 a.m. in Baltimore. The grant wants attendance counts, while mentors say trust shows in fewer crisis calls. Before submitting the renewal, Winona must decide: obey one metric set or combine evidence so both money and mission can see the work.",
           "whatToDo": "Winona proposes a dashboard with attendance, mentor contact, and crisis-call reduction. The combined measure lets funders and staff protect different truths.",
           "whyItMatters": "Synergy does not erase standards. It creates a wider frame where separate measures can reveal a result that either measure alone would miss."
@@ -2761,13 +2276,6 @@
             "creative work",
             "third alternative"
           ],
-          "planSpec": {
-            "domain": "Montreal game studio",
-            "audience": "creative producer",
-            "stakes": "art and engineering may ship a weaker feature",
-            "format": "planning_choice",
-            "requiredBeat": "blend constraints into a stronger design"
-          },
           "scenario": "Vikram reviews a boss-fight prototype at 8:15 p.m. in Montreal. Artists want a shadow monster, engineers warn the particle effects break frame rate, and the launch build freezes Friday. Before cutting the idea or overruling engineering, Vikram has to decide if the constraint can become part of the design.",
           "whatToDo": "Vikram asks for a version where the monster appears through sound and brief silhouettes. The technical limit becomes a creative rule instead of a defeat.",
           "whyItMatters": "Difference becomes useful when each discipline's constraint is respected. The better answer appears when the limit is treated as design material."
@@ -2780,13 +2288,6 @@
             "public meeting",
             "integration"
           ],
-          "planSpec": {
-            "domain": "Eugene city hall",
-            "audience": "transportation planner",
-            "stakes": "drivers and cyclists expect a zero-sum vote",
-            "format": "decision_point",
-            "requiredBeat": "turn opposing needs into design criteria"
-          },
           "scenario": "Jules faces a packed Eugene city hall at 6:35 p.m. Cyclists want a protected lane on Alder Street, and shop owners fear lost loading space. Before the council vote, Jules must decide: count supporters or propose a curb design that treats safety and deliveries as joint requirements.",
           "whatToDo": "Jules presents a loading-window curb with protected bike barriers outside peak delivery hours. The plan treats both needs as design constraints.",
           "whyItMatters": "Creative cooperation asks more from the room than taking sides. When opposing needs become criteria, the result can exceed the first proposals."
@@ -2799,13 +2300,6 @@
             "teamwork",
             "variation"
           ],
-          "planSpec": {
-            "domain": "Auckland boatyard",
-            "audience": "production foreman",
-            "stakes": "craft knowledge and drawings conflict",
-            "format": "decision_point",
-            "requiredBeat": "honor different knowledge sources"
-          },
           "scenario": "Mei checks a misfit bench at 1:18 p.m. in an Auckland boatyard. The drawing says the seat is correct, but the carpenter says the hull curve changed during curing. Before ordering a rework, Mei must decide: trust the drawing alone or bring designer and carpenter to the hull with measuring tape.",
           "whatToDo": "Mei gathers both people at the boat and marks the live curve before revising the seat. She gives field knowledge and design intent equal standing.",
           "whyItMatters": "Synergy requires humility about partial sight. The drawing and the hand-built hull each know something, and the better fit needs both."
@@ -2824,8 +2318,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Synergy starts by valuing difference as material. Voting or splitting may end conflict without creating the third alternative.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2837,8 +2330,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The drawing and the hull each carry partial truth. Synergy needs both forms of sight to create the better fit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2850,8 +2342,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A midpoint can be tidy and shallow. Synergy keeps working until the underlying strengths combine into a better approach.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2863,8 +2354,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Emergency cooperation needs disciplined use of difference, not turf defense. The combined map can reveal a response no single team saw.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2876,8 +2366,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The constraint becomes creative material. Synergy appears when one discipline's limit helps another discipline invent a better form.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -2889,8 +2378,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is searching past both first positions. Polite compromise can stop the process before creative cooperation begins.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2902,8 +2390,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The third alternative begins when opposing needs become criteria. The question shifts from who wins to what design can serve both realities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2915,8 +2402,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Understanding the difference deeply is what makes it usable. The new proposal should contain insight from both sides.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2928,8 +2414,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Brainstorming can be noisy without being synergistic. The test is whether understood difference creates a true third alternative.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -2972,7 +2457,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Search for the Third Alternative",
         "coreSkill": "Use difference as design material. The framework is Safety, Difference, Shared Aim, Prototype, Third Alternative.",
         "ifThenPlans": [
           {
@@ -2997,19 +2481,13 @@
       },
       "memorableLines": [
         {
-          "text": "The third option appears after both first answers are understood.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "The third option appears after both first answers are understood."
         },
         {
-          "text": "Difference becomes useful when people are safe enough to learn from it.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "Difference becomes useful when people are safe enough to learn from it."
         },
         {
-          "text": "A third option is built from respected difference, not watered-down sameness.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "A third option is built from respected difference, not watered-down sameness."
         }
       ]
     },
@@ -3036,13 +2514,6 @@
             "physical",
             "work"
           ],
-          "planSpec": {
-            "domain": "Bend trailhead",
-            "audience": "forestry crew leader",
-            "stakes": "effort may replace maintenance",
-            "format": "decision_point",
-            "requiredBeat": "stop sawing long enough to sharpen capacity"
-          },
           "scenario": "Harlan leans on a dull crosscut saw at 6:30 a.m. near Bend. The crew wants to clear one more fallen pine before heat rises, but each pull drags. Before sending everyone back into the cut, Harlan has to decide if ten minutes of sharpening is an indulgence or the only way the morning improves.",
           "whatToDo": "Harlan stops the crew and files the blade before the next tree. He treats tool care as part of production, not a break from it.",
           "whyItMatters": "Renewal can look like lost time when output is urgent. The dull saw image shows why neglected capacity turns effort into waste."
@@ -3055,13 +2526,6 @@
             "healthcare",
             "capacity"
           ],
-          "planSpec": {
-            "domain": "Detroit hospital cafeteria",
-            "audience": "medical resident",
-            "stakes": "patient care may suffer under depleted energy",
-            "format": "decision_point",
-            "requiredBeat": "protect body capacity during a hard shift"
-          },
           "scenario": "Fatima stands in the Detroit hospital cafeteria at 2:05 p.m. after six hours without food. A new consult pings as she reaches the counter. Before running upstairs, Fatima has to decide if skipping lunch proves dedication or whether ten minutes to eat will make the next decision safer for the patient.",
           "whatToDo": "Fatima asks a colleague to start the chart review while she eats a real meal. She returns to the consult with enough fuel to think clearly.",
           "whyItMatters": "Physical renewal is not vanity. A depleted body narrows attention, lowers patience, and weakens the habits that depend on clear judgment."
@@ -3074,13 +2538,6 @@
             "learning",
             "library"
           ],
-          "planSpec": {
-            "domain": "Dublin public library",
-            "audience": "software analyst",
-            "stakes": "skills may stall under routine work",
-            "format": "planning_choice",
-            "requiredBeat": "feed the mind before work goes stale"
-          },
           "scenario": "Xavier shelves a stack of overdue manuals at 7:48 p.m. in Dublin. His job uses the same reports every week, and a data ethics course starts tonight online. Before closing the laptop, Xavier has to decide if fatigue gets the evening or whether mental renewal deserves a scheduled hour.",
           "whatToDo": "Xavier watches the first lesson and writes one question for tomorrow's report review. He links study to current work so learning becomes practice.",
           "whyItMatters": "Mental renewal keeps competence from becoming a rut. Reading, study, and reflection preserve the ability to meet work that has not arrived yet."
@@ -3093,13 +2550,6 @@
             "limits",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "Seville dance studio",
-            "audience": "flamenco instructor",
-            "stakes": "pushing through pain may end a season",
-            "format": "dilemma",
-            "requiredBeat": "distinguish discipline from self-neglect"
-          },
           "scenario": "Greta feels a sharp pull in her calf at 9:10 p.m. in a Seville dance studio. The spring showcase opens in twelve days, and students expect a full run-through. With the music waiting on the speaker, Greta must decide: model grit or stop and adjust rehearsal so the season survives.",
           "whatToDo": "Greta ends her own demonstration, assigns section leads, and books treatment the next morning. She protects the body that the work depends on.",
           "whyItMatters": "Renewal has limits that pride dislikes. Sharpening the saw sometimes means refusing a dramatic push that would damage future capacity."
@@ -3112,13 +2562,6 @@
             "garden",
             "rhythm"
           ],
-          "planSpec": {
-            "domain": "Santa Barbara community garden",
-            "audience": "volunteer coordinator",
-            "stakes": "a shared project may lose its grounding rhythm",
-            "format": "planning_choice",
-            "requiredBeat": "renew commitment through quiet routine"
-          },
           "scenario": "Kendra unlocks the Santa Barbara garden gate at 6:55 a.m. The beds are dry, the volunteer chat is noisy, and nobody wants the slow watering shift. Before assigning tasks for the fundraiser, Kendra has to decide if the visible event outranks the quiet practice that keeps the garden alive.",
           "whatToDo": "Kendra takes the watering row first and asks each volunteer to sign one weekly care slot. The routine reconnects the group with the reason for the fundraiser.",
           "whyItMatters": "Spiritual renewal can be a humble rhythm that returns people to purpose. Without it, public projects become busy but rootless."
@@ -3131,13 +2574,6 @@
             "arts",
             "balance"
           ],
-          "planSpec": {
-            "domain": "Edinburgh theater office",
-            "audience": "stage manager",
-            "stakes": "a production team may fray before opening night",
-            "format": "decision_point",
-            "requiredBeat": "renew relationships while deadlines press"
-          },
           "scenario": "Florian checks the Edinburgh rehearsal calendar at 10:40 p.m. Three departments are behind, and the lighting crew has stopped speaking to costumes. Before adding another late call, Florian has to decide if the schedule needs more hours or a short repair meeting that restores working trust.",
           "whatToDo": "Florian opens the next call with a fifteen-minute cross-team repair before technical notes. He renews the relationships that must carry the show.",
           "whyItMatters": "Social and emotional renewal keeps cooperation alive. A team can have enough hours and still fail if fatigue has emptied trust."
@@ -3156,8 +2592,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dull saw image treats renewal as production capability. More effort with depleted tools can waste strength and weaken the next result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3169,8 +2604,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Balanced renewal is not a spare-time luxury. Physical, spiritual, mental, and social or emotional capacity support one another.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3182,8 +2616,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Renewal preserves the worker who must do the work. The meal is not escape; it protects judgment for the personnel conversation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3195,8 +2628,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Spiritual renewal can be a humble practice that returns people to purpose. The public event cannot replace the root rhythm.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3208,8 +2640,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mental renewal needs practice, not just aspiration. Linking study to a live question turns reading into capacity building.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3221,8 +2652,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The daily renewal block is disciplined capacity work. It supports the person who must practice the other habits under pressure.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -3234,8 +2664,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The saw has more than one edge. A production can have enough hours and still fail when relational capacity is empty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3247,8 +2676,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Renewal respects limits while staying responsible to purpose. It is neither vanity nor quitting under a softer name.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3260,8 +2688,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The deeper claim is whole-person capacity. Overbuilding one dimension while starving others eventually shows up in weaker contribution.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -3304,7 +2731,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Renew the Whole Asset",
         "coreSkill": "Build renewal as scheduled maintenance, not recovery after collapse. The framework is Body, Spirit, Mind, Bond, Rhythm.",
         "ifThenPlans": [
           {
@@ -3329,19 +2755,13 @@
       },
       "memorableLines": [
         {
-          "text": "The worker is the asset most often spent without maintenance.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "The worker is the asset most often spent without maintenance."
         },
         {
-          "text": "Renewal is how the other habits stay alive under pressure.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "Renewal is how the other habits stay alive under pressure."
         },
         {
-          "text": "Neglecting renewal does not save time; it spends the person who keeps time useful.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "Neglecting renewal does not save time; it spends the person who keeps time useful."
         }
       ]
     },
@@ -3368,13 +2788,6 @@
             "family",
             "memory"
           ],
-          "planSpec": {
-            "domain": "Sacramento dining room",
-            "audience": "adult daughter",
-            "stakes": "one story may pass shame to another generation",
-            "format": "decision_point",
-            "requiredBeat": "interrupt inherited judgment with principle"
-          },
           "scenario": "Aaliyah opens an old photo album at 4:30 p.m. in Sacramento. Her aunt mocks a cousin's divorce in the same tone older relatives once used on her mother. Before the children return from the yard, Aaliyah must decide: laugh along or name a kinder family standard while the story is still small.",
           "whatToDo": "Aaliyah says the family can tell the truth without shaming the person. She changes the tone before the children learn it as the normal script.",
           "whyItMatters": "A transition person interrupts inheritance in ordinary moments. The new pattern begins when one person refuses to pass the old wound downstream."
@@ -3387,13 +2800,6 @@
             "legacy",
             "response"
           ],
-          "planSpec": {
-            "domain": "Rochester engineering office",
-            "audience": "senior engineer",
-            "stakes": "a harsh training style may repeat itself",
-            "format": "decision_point",
-            "requiredBeat": "choose a response that stops an old script"
-          },
           "scenario": "Morgan drafts feedback at 7:12 p.m. in a Rochester engineering office. A junior engineer made a basic calculation error, and Morgan hears the insult his first boss used on him years ago. Before sending the email, Morgan must decide: repeat the old training wound or correct the work without humiliation.",
           "whatToDo": "Morgan rewrites the email around the calculation step and the next review time. He removes the insult while keeping the standard firm.",
           "whyItMatters": "Inside-out change becomes visible when old pain loses command of the next response. Standards can survive without carrying the cruelty that once delivered them."
@@ -3406,13 +2812,6 @@
             "apology",
             "unity"
           ],
-          "planSpec": {
-            "domain": "Albuquerque school hallway",
-            "audience": "father at parent night",
-            "stakes": "an argument may become a public family pattern",
-            "format": "mistake_recovery",
-            "requiredBeat": "make repair before pride hardens"
-          },
           "scenario": "Diego stands outside a classroom in Albuquerque at 6:58 p.m. after snapping at his spouse about homework folders. Other parents are walking in, and his son is staring at the floor. Before the teacher opens the door, Diego must decide: act normal or repair the moment in front of the person he hurt.",
           "whatToDo": "Diego apologizes for the tone and asks his spouse what folder is still needed. He lets the child see repair happen as plainly as conflict.",
           "whyItMatters": "Unity is built from repaired moments, not from flawless calm. A family script changes when apology becomes stronger than saving face."
@@ -3425,13 +2824,6 @@
             "patterns",
             "principle"
           ],
-          "planSpec": {
-            "domain": "Queens apartment kitchen",
-            "audience": "grandmother",
-            "stakes": "a child may inherit fear around mistakes",
-            "format": "decision_point",
-            "requiredBeat": "pass a healthier pattern at the table"
-          },
           "scenario": "Iris serves rice in a Queens apartment at 6:14 p.m. Her grandson spills juice, and the first sentence rising in her throat is the one her father used before hitting the table. The whole table goes quiet. Before anyone moves, Iris must decide: repeat the threat or teach cleanup with dignity.",
           "whatToDo": "Iris hands the child a towel and says spills get cleaned, not punished. The table receives a new rule without denying the mess.",
           "whyItMatters": "Being a transition person is often physical and immediate. A hand offering a towel can carry a different future than a voice carrying fear."
@@ -3444,13 +2836,6 @@
             "leadership",
             "script"
           ],
-          "planSpec": {
-            "domain": "Cedar Rapids condo meeting",
-            "audience": "board chair",
-            "stakes": "a community habit of blame may continue",
-            "format": "decision_point",
-            "requiredBeat": "move the group from inherited complaint to responsibility"
-          },
           "scenario": "Leon opens the Cedar Rapids condo meeting at 7:03 p.m. The same three owners blame renters for every hallway issue, and the agenda is already slipping. Before the room repeats last month's fight, Leon must decide: let the script run or ask each speaker to attach one repair they will help make.",
           "whatToDo": "Leon changes the comment rule so every complaint must include an offered contribution. He redirects blame into shared upkeep before resentment takes the meeting.",
           "whyItMatters": "Old scripts do not belong only to families. Groups also inherit ways of speaking, and one leader can shift a pattern toward responsibility."
@@ -3463,13 +2848,6 @@
             "workplace",
             "legacy"
           ],
-          "planSpec": {
-            "domain": "Tulsa payroll office",
-            "audience": "new supervisor",
-            "stakes": "a dishonest shortcut may become team culture",
-            "format": "decision_point",
-            "requiredBeat": "stop a pattern before it becomes normal for others"
-          },
           "scenario": "Uma audits timesheets at 8:22 a.m. in Tulsa. Her predecessor approved rounded hours for favored staff, and two employees expect the practice to continue. Before the pay run closes, Uma must decide: preserve peace or apply the same rule to everyone and explain the change.",
           "whatToDo": "Uma corrects the rounded entries and sends a clear rule for future submissions. She absorbs the first discomfort so the team inherits fairness instead of favoritism.",
           "whyItMatters": "Transition can mean ending a small institutional habit. Principle-centered action changes what the next person believes is normal."
@@ -3488,8 +2866,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Transition happens in the response that interrupts inheritance. The mess is handled, but the old wound is not handed forward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3501,8 +2878,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The transition person does not excuse the old script or abandon the standard. The pattern changes when correction loses the cruelty attached to it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3514,8 +2890,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Scripts pass through groups as well as families. A new norm must be acted out where the old pattern usually appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3527,8 +2902,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inherited patterns explain the present, but they do not choose the next response. Culture changes when a visible response breaks the chain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3540,8 +2914,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ending's edge is responsibility across time. Compassion for inheritance does not remove the freedom to choose a next response.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3553,8 +2926,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A transition figure changes what gets modeled. The new pattern must be spoken where the old script is being taught.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3566,8 +2938,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unity is built through visible repair, not flawless calm. The public apology teaches a new family script in real time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3579,8 +2950,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is not an uplifting feeling. Principle-centered action changes what the next person experiences as normal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3592,8 +2962,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The final movement is responsibility across time. Private paradigm work matters because it changes what other people inherit.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -3636,7 +3005,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Interrupt the Inherited Script",
         "coreSkill": "Notice the old pattern before it moves through you. The framework is Script, Pause, Principle, Conversation, Handoff.",
         "ifThenPlans": [
           {
@@ -3661,19 +3029,13 @@
       },
       "memorableLines": [
         {
-          "text": "A script loses authority when one response refuses to repeat it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical center into a quotable line."
+          "text": "A script loses authority when one response refuses to repeat it."
         },
         {
-          "text": "A different future begins as one chosen response in an old room.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the concept into an action test."
+          "text": "A different future begins as one chosen response in an old room."
         },
         {
-          "text": "The past may write the first draft, but response writes the handoff.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter with a precise image."
+          "text": "The past may write the first draft, but response writes the handoff."
         }
       ]
     }

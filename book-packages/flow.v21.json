@@ -41,13 +41,6 @@
             "promotion",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a product manager after a promotion announcement",
-            "audience": "newly promoted knowledge workers who expected relief",
-            "stakes": "she has the title and the raise but the train ride home feels flatter than before",
-            "format": "decision_point",
-            "requiredBeat": "she closes the congratulatory email, leaves the salary tab open, and chooses whether to add another purchase to the wishlist or block a demanding design problem for the morning"
-          },
           "scenario": "The commuter train window throws office lights back at Emma's face while the promotion email sits open above a salary tab. Her wishlist is already three items deep and the train speaker keeps naming stations she barely hears. Monday's design review still has one hard user-flow problem she has avoided all week. She closes the congratulations, leaves the salary tab open, and faces a concrete choice: buy the next reward or block ninety morning minutes for the problem that might actually hold her attention.",
           "whatToDo": "Leave the wishlist alone for one night. Put the design problem on the calendar with a clear first question, so the new title becomes room for engagement instead of another cue to consume.",
           "whyItMatters": "The raise changes her conditions, but the design block changes the shape of her next experience. Inner order comes from what attention enters, not from the reward sitting beside it."
@@ -60,13 +53,6 @@
             "evening",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "a hospital scheduler redesigning his evenings after overtime",
-            "audience": "workers who confuse exhaustion relief with a good life",
-            "stakes": "his free night is rare and can become either passive collapse or a chosen absorbing activity",
-            "format": "before_after",
-            "requiredBeat": "contrast the old evening of scrolling in scrubs with the night he sets up a difficult model kit and notices the hour disappear"
-          },
           "scenario": "It took Daniel four Thursdays to admit the couch was not restoring him. The old evening was blue scrub top, muted television, and forty minutes of scrolling while his shoulders stayed tight. The changed evening starts with model kit sprues spread across the table, one diagram clipped under a lamp, and the first hour passing before he reaches for his phone.",
           "whatToDo": "Keep real rest, but give one part of the evening a chosen challenge with visible feedback. Set out the kit before sitting down, so relief has somewhere to become involvement.",
           "whyItMatters": "Exhaustion relief only removes demand. The model kit adds order, skill, and feedback, which is why the same free night starts to feel like experience instead of vacancy."
@@ -79,13 +65,6 @@
             "achievement",
             "study"
           ],
-          "planSpec": {
-            "domain": "a first-year student staring at perfect grades and no satisfaction",
-            "audience": "high achievers who mistake outcomes for experience quality",
-            "stakes": "she risks losing the point of study to grade-chasing",
-            "format": "dialogue",
-            "requiredBeat": "her tutor asks which assignment she would keep doing if nobody posted marks, and Camille has to choose a real project instead of another grade tactic"
-          },
           "scenario": "\"Which one would you still do without the grade?\" Camille's tutor asks at the campus cafe table. Her marked essay has a ninety-four on top. The course portal is open on her laptop. Camille points first to the number, then to the messy research question she dropped because it was harder to score. Before registration closes, she has to choose another grade tactic or the project that still feels alive.",
           "whatToDo": "Choose one study block around the living question, not the displayed mark. Give it a concrete next move, such as finding three primary sources before checking the portal again.",
           "whyItMatters": "Perfect outcomes can still leave attention empty. The project gives her consciousness a challenge to enter, while the grade only confirms that a prior demand was satisfied."
@@ -98,13 +77,6 @@
             "woodwork",
             "structure"
           ],
-          "planSpec": {
-            "domain": "a retired engineer with a paid-off house and empty mornings",
-            "audience": "people who reached a promised milestone and still feel restless",
-            "stakes": "his planned comfort is turning into aimless time",
-            "format": "predict_reveal",
-            "requiredBeat": "ask whether the quiet calendar will feel like freedom or drift, then show him testing one structured woodworking challenge against a blank morning"
-          },
           "scenario": "What happens when the calendar finally stops demanding anything? James predicts the blank wall calendar will feel like freedom. By Wednesday, he has reread the newspaper twice before ten. He puts a walnut offcut beside a dust mask and decides to test one box-joint cut before lunch. The reveal is plain: the quiet morning feels better when it has a hard edge to meet.",
           "whatToDo": "Treat the empty calendar as raw material. Put one skill challenge into the morning, with a visible standard for whether the attempt improved.",
           "whyItMatters": "A milestone can remove pressure without creating purpose. The woodworking cut gives the morning resistance and feedback, so comfort becomes usable instead of vague."
@@ -117,13 +89,6 @@
             "anxiety",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a new parent trying to buy her way out of anxiety",
-            "audience": "parents pressured by gear and comparison",
-            "stakes": "another purchase may deepen the same restless loop",
-            "format": "reflection",
-            "requiredBeat": "you stand in a baby store aisle and notice the promised calm moving one shelf farther away, then choose a tiny shared ritual over another item"
-          },
           "scenario": "You are holding the third sleep gadget and still checking reviews while Maja's receipt strip curls around her wrist. The white-noise machine promises calm, then the next shelf promises better calm. She pictures the nursery chair at home and the same two-minute song before the crib rail. The choice is not between caring and saving money. It is between another promise and one small ordered experience.",
           "whatToDo": "Return the extra device and choose a repeatable ritual: same chair, same lamp, same short song. Let the practice give the night a shape no product review can supply.",
           "whyItMatters": "Buying can postpone anxiety while feeding the next comparison. A small ritual gives attention a stable path, which is closer to inner order than another promised fix."
@@ -136,13 +101,6 @@
             "leisure",
             "sketching"
           ],
-          "planSpec": {
-            "domain": "a museum volunteer replacing passive Sundays with sketching duty",
-            "audience": "older adults and weekend drifters who need structured engagement",
-            "stakes": "his free time is abundant but thin unless attention has a task",
-            "format": "vignette",
-            "requiredBeat": "he sharpens one pencil, chooses a single sculpture, and measures its shadow line for forty minutes instead of wandering the galleries"
-          },
           "scenario": "Graphite dust marks the side of Akira's thumb as he sharpens one pencil beside the marble sculpture. His volunteer badge hangs crooked. He has the whole Sunday free and could wander every gallery again, but he decides to measure one shadow line in his sketchbook for forty minutes. The museum is no longer a place he passes through. It is a task his attention can enter.",
           "whatToDo": "Choose one object and one exact visual problem before wandering starts. Measure, sketch, and correct the same feature long enough for attention to settle.",
           "whyItMatters": "Leisure becomes thin when nothing answers back. The shadow line gives Akira a standard, so the same free time becomes structured experience instead of polite drifting."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits software lead finally gets the quiet office she wanted, but after a: The quiet office removed friction, but it did not give her attention a meaningful structure to enter; feedback enters. B misses software lead finally gets the quiet office she wanted, but after a: Use the quieter office to practice gratitude first; gear not practice. C misses software lead finally gets the quiet office she wanted, but after a: The office failure traces to leadership instability and unclear priorities that a quieter environment could not repair on its own; setting not structure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits teacher wins a long-awaited award and feels flat by the next morning: Choose one demanding part of teaching that gives live feedback, protect a block for it this week, and see whether the work...; goal named. A misses teacher wins a long-awaited award and feels flat by the next morning: Start applying for the next award while motivation is high, because another credential could restore the achievement structure...; status not experience. C misses teacher wins a long-awaited award and feels flat by the next morning: Treat the flatness as evidence that awards are a weak guide, then return to familiar classroom routines before adding another...; signal not order.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits couple buys new furniture to make evenings feel calmer: Create a shared task with a clear goal, such as cooking one new recipe and judging the result; attention shaped. A misses couple buys new furniture to make evenings feel calmer: Replace the furniture again with a cleaner, quieter style that promises less visual noise; wrapper not work. B misses couple buys new furniture to make evenings feel calmer: Keep rearranging the furniture until the room feels calmer, because the setting seems easier to control than the evening routine; tools not entry.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits graduate student says, \"I should be happy, my stipend increased and my: Those gains can matter, and you still need to ask what kind of ordered experience your days now contain; purpose governs. A misses graduate student says, \"I should be happy, my stipend increased and my: Those gains are important enough that she should focus on stabilizing the new apartment and stipend before questioning the...; wrong lever. C misses graduate student says, \"I should be happy, my stipend increased and my: Her dissatisfaction may simply reflect social comparison with the cohort; off lever.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits During retirement, a former engineer spends each morning streaming shows and complains: Add a challenging, feedback-rich practice to one morning block, such as woodworking with a joint he can check; practice answers. B misses During retirement, a former engineer spends each morning streaming shows and complains: Stream more educational shows so the morning keeps a learning theme while still preserving the low-demand recovery he says he...; input no test. C misses During retirement, a former engineer spends each morning streaming shows and complains: Fill the calendar with errands so the empty morning regains a visible sequence; misses loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits manager reads the lesson as saying people should stop wanting better pay: It confuses a bounded claim about inner order with a denial that material conditions can matter; order visible. A misses manager reads the lesson as saying people should stop wanting better pay: The pay increase described here may still fall below the income range where money stops correlating with reported wellbeing; delay not order. C misses manager reads the lesson as saying people should stop wanting better pay: Treat pay and safety as distractions from attention; not hinge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits shopper has a corner full of expensive hiking gear, talks often about: She is substituting improved conditions and identity signals for direct engagement with the activity; skill targeted. B misses shopper has a corner full of expensive hiking gear, talks often about: Equipment-heavy hobbies can create dependence on external resources that interrupt practice more than they enable direct...; comfort no task. C misses shopper has a corner full of expensive hiking gear, talks often about: She should buy higher-quality equipment so practice feels easier; room not loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits a city council member argues that residents' unhappiness proves public improvements are: Public improvements can be necessary and still insufficient for happiness unless daily experience gains order and purpose; testable loop. A misses a city council member argues that residents' unhappiness proves public improvements are: Public improvements may be beside the point because residents keep adapting to each new gain as normal; incomplete repair. B misses a city council member argues that residents' unhappiness proves public improvements are: Residents should lower expectations temporarily because frustration with services may be magnifying smaller improvements into...; resource detour.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two plans aim to improve a burned-out team's morale: Plan B, because it respects material reward while making progress and feedback visible inside the work; bounded choice. A misses Two plans aim to improve a burned-out team's morale: Plan A, because the bonus may reduce resentment and show material strain was noticed; reward no loop. C misses Two plans aim to improve a burned-out team's morale: Neither plan reaches the deeper issue if the team distrusts leadership and interprets both money and redesign as short-term...; too sweeping.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -303,7 +252,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build Inner Order First",
         "coreSkill": "The core skill is separating useful improvement from the deeper work of organizing experience. Let better conditions help, but do not hand them responsibility for your whole inner life.",
         "ifThenPlans": [
           {
@@ -328,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first move is to stop waiting for life to become satisfying from the outside in.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the opening claim into a clear reversal the reader can carry into ordinary upgrades."
+          "text": "The first move is to stop waiting for life to become satisfying from the outside in."
         },
         {
-          "text": "Comfort gave him space. Engagement gave the space a spine.",
-          "location": "breakdown.deepRead",
-          "why": "The paired sentences separate relief from ordered experience in a concrete, memorable way."
+          "text": "Comfort gave him space. Engagement gave the space a spine."
         },
         {
-          "text": "The mind still has to learn what to do with the room.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the value of better conditions while naming why they are not enough."
+          "text": "The mind still has to learn what to do with the room."
         }
       ]
     },
@@ -367,13 +309,6 @@
             "forecast",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a remote analyst with six dashboards open",
-            "audience": "remote workers whose busyness hides fractured attention",
-            "stakes": "the client forecast is due before noon and every tab claims urgency",
-            "format": "decision_point",
-            "requiredBeat": "she drags five dashboards to a later folder, writes the one question the forecast must answer, and starts with the data column that gives feedback first"
-          },
           "scenario": "At 8:17 a.m., Emily counts six open dashboards on the monitor beside her coffee. The client forecast is due before noon, and every chart has a red number begging to become the story. Her hand hovers over another tab while the calendar reminder begins to blink and the team channel starts filling with side requests from three time zones. Before Slack wakes up fully, her choice is sharp: keep sampling urgency or drag five dashboards into a later folder and write the one question the forecast must answer.",
           "whatToDo": "Move five dashboards out of sight, write the forecast question in one sentence, and begin with the data column that can confirm or challenge the answer fastest.",
           "whyItMatters": "Her attention is limited. Choosing one question gives consciousness a center, while sampling six dashboards lets urgency spend psychic energy without producing order."
@@ -386,13 +321,6 @@
             "postmortem",
             "entropy"
           ],
-          "planSpec": {
-            "domain": "an emergency dispatcher after a chaotic shift",
-            "audience": "operators and care workers who need order under pressure",
-            "stakes": "a mistake in call priority can cost real response time",
-            "format": "postmortem",
-            "requiredBeat": "he replays the shift and marks the moment his attention split between a radio code and a personal text, then builds a rule for the next call stack"
-          },
           "scenario": "The radio hiss is still in Hugo's ear after midnight as he studies the dispatch log. The delay was only forty seconds, but it started when a personal text lit beside a radio code and his eyes left the priority board. He circles that line, then writes a rule for the next call stack: personal phone face down before any open priority board. The postmortem is not blame. It is finding where attention fractured.",
           "whatToDo": "Mark the exact split, then remove that cue before the next high-pressure stack. Build the rule around where attention actually broke, not around a vague promise to focus.",
           "whyItMatters": "Entropy becomes usable when he can locate it. The radio code needed the whole current, and the text turned one ordered field into competing fragments."
@@ -405,13 +333,6 @@
             "study",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a chemistry student in a lab practical",
-            "audience": "students who mistake concentration for willpower",
-            "stakes": "one mislabeled vial ruins the trial and the grade",
-            "format": "dialogue",
-            "requiredBeat": "her lab partner asks what they are actually solving, and Rachel has to state the goal before touching the next pipette"
-          },
           "scenario": "\"What result are we trying to get first?\" Marta asks before Rachel touches the next pipette. The rack is full, the blue gloves are powdered at the wrist, and the lab timer is already running. Rachel wants to move fast because everyone else is moving. Her next move will either keep reacting to equipment or state the result they are solving for before the vial gets labeled.",
           "whatToDo": "Say the target result aloud, label the next vial against that target, and use the timer as feedback instead of as pressure.",
           "whyItMatters": "Willpower is too vague for a busy lab. A named goal organizes the same materials into a field of action, so attention knows what each next move is for."
@@ -424,13 +345,6 @@
             "noise",
             "control"
           ],
-          "planSpec": {
-            "domain": "a youth football referee handling sideline noise",
-            "audience": "people under public pressure who need a stable attentional target",
-            "stakes": "the match is getting rough and parents are shouting over every call",
-            "format": "predict_reveal",
-            "requiredBeat": "the sideline noise rises, he predicts he will miss the next offside unless he locks attention to the last defender, then tests it on the next attack"
-          },
           "scenario": "The wet touchline shines under the floodlights while Lukas hears three parents shout his name at once. He predicts the next offside call will vanish if he keeps tracking every complaint. As the striker starts a run, he has to choose whether to answer the sideline with his face or lock his eyes on the last defender until the pass leaves the foot.",
           "whatToDo": "Pick the last defender as the attentional target and let every shout stay outside that line until the pass is made.",
           "whyItMatters": "Pressure cannot be silenced in time. A stable target gives consciousness an order that noise cannot supply, which is why the next call becomes possible."
@@ -443,13 +357,6 @@
             "criticism",
             "choice"
           ],
-          "planSpec": {
-            "domain": "a shop owner deciding whether to answer every customer review",
-            "audience": "small business owners whose identity is pulled by criticism",
-            "stakes": "one angry review could consume the morning and damage the inventory plan",
-            "format": "dilemma",
-            "requiredBeat": "you read the review twice, feel the self contract around it, and must choose between a defensive reply and the stock count that restores order"
-          },
           "scenario": "You read the same one-star review for the second time while Laura's inventory clipboard waits beside the locked front door. The supplier cutoff is forty minutes away. A defensive reply would feel like taking the self back, but the damaged carton still needs a count. She has to choose whether the review gets the morning's psychic energy or the stock count that can still change the day.",
           "whatToDo": "Write one sentence for a later reply, turn the phone face down, and count the damaged stock before the supplier cutoff.",
           "whyItMatters": "The review contracts attention around threat. The stock count gives attention a chosen object and feedback, which rebuilds order without pretending the criticism did not hurt."
@@ -462,13 +369,6 @@
             "simulation",
             "self"
           ],
-          "planSpec": {
-            "domain": "a Toronto paramedic student building a simulation checklist",
-            "audience": "trainees learning to order attention before live pressure",
-            "stakes": "simulation errors are teaching habits that will travel into real calls",
-            "format": "before_after",
-            "requiredBeat": "show the messy first simulation beside the second run where he writes one cue for airway, pulse, and medication feedback before entering"
-          },
           "scenario": "Yusuf needed one failed simulation to see the problem. The first run was monitor alarm, medication tray, instructor face, and a mannequin he barely assessed while the instructor watched from the doorway. Before the second run, he writes three cues on a laminated card: airway, pulse, medication after confirmation. The room is still loud, but his attention enters in sequence instead of pieces.",
           "whatToDo": "Write the three cues before the door opens and follow them until each one gives feedback. Do not let the room decide the order for you.",
           "whyItMatters": "Training builds the self by repetition. If the sequence is scattered now, pressure will rehearse scatter; if the sequence is ordered now, pressure rehearses order."
@@ -487,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits designer says she was busy all morning, but she only moved among: Her attention was being spent without a chosen center; drift reduced. B misses designer says she was busy all morning, but she only moved among: She needs a better app for collecting messages; surface setting. C misses designer says she was busy all morning, but she only moved among: Wait for a calmer stretch before choosing which decision matters most; waiting no handle.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -500,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits nurse keeps replaying a rude comment while medication checks wait: Write the follow-up note for later, move the comment out of sight, and restart the medication sequence; participation concrete. A misses nurse keeps replaying a rude comment while medication checks wait: Force herself to feel positive before doing the checks, because the rude comment has become the emotional cue interrupting the...; morale not design. C misses nurse keeps replaying a rude comment while medication checks wait: Answer the comment immediately, because the conflict may keep pulling attention during the checks; surface move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -513,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits student opens lecture slides, a group chat, and a job application at: Name the next result he is trying to produce, close the two windows that do not feed it, and let that result organize the...; constraint respected. A misses student opens lecture slides, a group chat, and a job application at: Mute the major channels until the lecture task is finished, because the immediate problem is competing cues, not unclear...; pause no structure. B misses student opens lecture slides, a group chat, and a job application at: Keep all three open and rotate among them, because each window feels like a real obligation for the afternoon; skips test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -526,8 +423,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits junior lawyer sits down for a case memo after a tense client: The stress matters, and he still needs one chosen question that can organize the next work block; pressure organized. A misses junior lawyer sits down for a case memo after a tense client: Treat stress as a discipline problem, because the case still requires action and waiting for a better mood may waste the work...; later no loop. C misses junior lawyer sits down for a case memo after a tense client: Wait for the stress to settle a bit, because starting while flooded may produce careless work; avoidance intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -539,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits programmer keeps adding research links to solve a bug, but the bug: Pick one hypothesis and run the smallest test that could disprove it; contact tasked. B misses programmer keeps adding research links to solve a bug, but the bug: Collect more links until she feels confident enough to code the fix; timing dodge. C misses programmer keeps adding research links to solve a bug, but the bug: Switch to a brief contrasting task because that has restored her attention to the original bug within thirty minutes in prior...; weak fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -552,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits dispatcher still has energy after a shift, but three unfinished tasks keep: Psychic entropy means attention is fragmented by competing claims, even if the person still has energy; meaning selects. A misses dispatcher still has energy after a shift, but three unfinished tasks keep: Psychic entropy means the body lacks sleep, while tiredness means the mind lacks goals; side issue. B misses dispatcher still has energy after a shift, but three unfinished tasks keep: Psychic entropy means a person has too many ambitions and should lower standards before trying to organize the work; no answerback.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -565,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits coach tells a nervous archer to ignore the crowd, the archer still: Give attention one stable target, such as breath, sight line, and release sequence, then judge the shot by that sequence; sensation trained. B misses coach tells a nervous archer to ignore the crowd, the archer still: Ask nearby spectators to quiet down before the shot, because reducing the loudest external cue may help the archer regain sequence; wrong handle. C misses coach tells a nervous archer to ignore the crowd, the archer still: Treat the crowd reaction as practice noise so competition feels familiar next time; thin repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -578,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits a founder claims multitasking proves he has a complex self because he: Complexity requires both new capacities and integration around a direction, so the roles do not simply compete; progress checkable. A misses a founder claims multitasking proves he has a complex self because he: Add distinct roles first because his current life lacks the variety that complex consciousness requires before integration can...; missed target. B misses a founder claims multitasking proves he has a complex self because he: Respect working-memory bandwidth because too many commitments can become fragmentation; attitude no target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -591,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two study plans compete before an exam: Plan B, because attention needs a chosen object and feedback, not just an empty room; next move clear. A misses Two study plans compete before an exam: Plan A, because a clean room may reduce the most obvious distractions; equipment detour. C misses Two study plans compete before an exam: Neither plan is enough if exam pressure keeps pulling attention back into panic instead of the question; force not calibration.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -629,7 +520,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Spending Attention Deliberately Each Day",
         "coreSkill": "The core skill is noticing what is spending your attention before the day is gone. Once you see the competing claims, choose one goal and one feedback cue that can organize the next block of consciousness.",
         "ifThenPlans": [
           {
@@ -654,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Whatever receives it starts shaping experience.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence gives the abstract term psychic energy an immediate practical consequence."
+          "text": "Whatever receives it starts shaping experience."
         },
         {
-          "text": "Psychic entropy is what a split mind feels like when every open loop pulls on the same limited current.",
-          "location": "breakdown.deepRead",
-          "why": "It defines the source term through a felt experience nearly every reader recognizes."
+          "text": "Psychic entropy is what a split mind feels like when every open loop pulls on the same limited current."
         },
         {
-          "text": "Growth is not just adding more information to the self.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the chapter from becoming productivity advice and points to integration."
+          "text": "Growth is not just adding more information to the self."
         }
       ]
     },
@@ -693,13 +577,6 @@
             "skill",
             "break"
           ],
-          "planSpec": {
-            "domain": "a bakery supervisor choosing between scrolling break time and shaping a difficult pastry batch",
-            "audience": "workers who need richer recovery than passive relief",
-            "stakes": "the afternoon rush depends on whether she comes back dull or alive",
-            "format": "comparison",
-            "requiredBeat": "she compares the warm phone in her palm with the laminated croissant fold chart and chooses the task that gives immediate feedback"
-          },
           "scenario": "Butter softens at the edge of the steel table while Claire feels her phone warming her palm. Ten minutes of scrolling would count as a break, and nobody would call it wrong while the bakery is quiet before the mixer starts again. The laminated croissant fold chart beside the bench scraper asks more from her, and the first batch for the afternoon rush will show every mistake. She has to decide whether relief or a clean, difficult fold will restore her better.",
           "whatToDo": "Choose the fold chart, set one visible standard for the batch, and let the dough's response tell her what to correct before the rush starts.",
           "whyItMatters": "The phone lowers effort without giving feedback. The pastry task adds challenge close to her skill, so the break becomes absorbing instead of merely easy."
@@ -712,13 +589,6 @@
             "challenge",
             "hobby"
           ],
-          "planSpec": {
-            "domain": "a weekend climber stuck on easy routes",
-            "audience": "hobbyists whose fun has gone flat",
-            "stakes": "he may quit a sport he once loved because the challenge no longer matches skill",
-            "format": "decision_point",
-            "requiredBeat": "the climbing wall is nearly empty, and Thomas chooses a route with one move beyond his comfort instead of repeating the automatic one"
-          },
           "scenario": "The orange climbing holds run past the overhang, and Thomas knows exactly where he fell last Saturday. The gym is nearly empty, chalk dust hangs near the mats, and the easy blue route beside it would give him a clean finish with no surprise. His hand is already on the familiar start hold. Before he clips in, he faces the trade: repeat comfort or try the orange move that is just beyond his current skill.",
           "whatToDo": "Try the orange route slowly and define success as improving the hard move, not topping the wall. Use the slip point as feedback for the next attempt.",
           "whyItMatters": "His enjoyment faded because the easy route stopped asking enough. A reachable difficulty restores the challenge-skill match that makes the session feel alive."
@@ -731,13 +601,6 @@
             "practice",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a conservatory pianist practicing for tone rather than applause",
-            "audience": "students chasing approval instead of absorption",
-            "stakes": "her jury score matters, but the practice block can either become anxiety or precise listening",
-            "format": "dialogue",
-            "requiredBeat": "her teacher asks what sound she wants from the left hand, and Juliette sets a goal she can hear within four bars"
-          },
           "scenario": "\"What should the left hand sound like before you speed it up?\" the teacher asks. Juliette sits at the upright piano with a marked score, a metronome, and the jury date circled in red. She wants to practice for approval because the score feels like the only verdict that counts. The next four bars force a choice: chase the finished piece or set one tone goal she can hear now.",
           "whatToDo": "Name the left-hand sound, slow the metronome, and repeat four bars until the tone changes in a way she can hear.",
           "whyItMatters": "Approval sits too far away to organize attention. A sound she can test now gives the practice block a clear goal and immediate feedback."
@@ -750,13 +613,6 @@
             "routine",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a claims adjuster gamifying speed without sacrificing accuracy",
-            "audience": "office workers with repetitive tasks",
-            "stakes": "a dull queue can become careless unless feedback is visible",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the queue will feel worse if he chases speed alone, then adds an error-free streak card and checks whether time compresses"
-          },
           "scenario": "At 2:06 p.m., Michael opens the next insurance claim and predicts the queue will feel worse if he only chases speed. The red pen is beside a blank streak card, and the fluorescent clock has barely moved since lunch. He can race the claim count, or he can track ten error-free files before the next break. By the seventh file, the clock has moved without the usual drag.",
           "whatToDo": "Track accuracy as the challenge, not just speed. Mark each clean file so the routine task gives feedback before boredom turns into carelessness.",
           "whyItMatters": "Speed alone makes the queue shallow. A visible streak creates challenge and feedback, turning repetition into an activity attention can stay inside."
@@ -769,13 +625,6 @@
             "manual",
             "learning"
           ],
-          "planSpec": {
-            "domain": "a city-garden volunteer learning pruning cuts",
-            "audience": "people who think small manual skills are beneath growth",
-            "stakes": "the wrong cut costs the season's first blossoms",
-            "format": "before_after",
-            "requiredBeat": "contrast wandering the garden for pleasant air with the morning she learns three cuts and gets visible feedback from each stem"
-          },
           "scenario": "Ingrid used to call it helping until the roses proved otherwise. Before, she wandered the garden paths for pleasant air and carried the compost bucket when asked. Now she stands with pruning shears over one rose cane, choosing among three cuts a volunteer taught her. The first wrong angle will cost blossoms, and each stem shows whether her attention is improving.",
           "whatToDo": "Use the three cuts as rules, choose one cane, and check the visible result before moving to the next stem.",
           "whyItMatters": "The garden was pleasant before, but vague. The pruning rule gives her a goal and feedback, so the same morning becomes enjoyment instead of scenery."
@@ -788,13 +637,6 @@
             "reward",
             "learning"
           ],
-          "planSpec": {
-            "domain": "a hobby chess player shifting from winning to studying one endgame",
-            "audience": "competitive amateurs who have lost intrinsic enjoyment",
-            "stakes": "another online rating chase may drain the game he loves",
-            "format": "reflection",
-            "requiredBeat": "which feels better tomorrow: one more blitz win or finally understanding the rook ending that keeps beating him?"
-          },
           "scenario": "Which feels better tomorrow: another quick win or one position understood? Aman looks from the rating graph to the rook endgame diagram beside his wooden board. Blitz would give relief if he wins and a sour hour if he loses, which means the game keeps borrowing its value from the result. The ending that keeps beating him offers no public applause tonight, but it has a pattern he can finally learn and explain without the clock running.",
           "whatToDo": "Close the rating graph and set up the rook ending. Work until he can explain the drawing idea without moving the pieces.",
           "whyItMatters": "The rating chase moves the reward outside the play. Studying one position makes the game autotelic again because the doing itself starts paying attention back."
@@ -813,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits friend says a long nap was pleasant, but a hard piano practice: The practice gave attention a challenge, goal, and feedback; challenge calibrated. B misses friend says a long nap was pleasant, but a hard piano practice: The nap gave relief without training a skill; comfort no engagement. C misses friend says a long nap was pleasant, but a hard piano practice: The piano mattered mainly because other people recognize visible skill and effort; mood not method.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -826,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits runner is bored with the same easy loop but anxious on a: Choose a route with one measurable challenge just above current skill; experience ordered. A misses runner is bored with the same easy loop but anxious on a: Return to the easy loop until boredom fades; deferred entry. C misses runner is bored with the same easy loop but anxious on a: Choose a harder route because her pattern of comfortable routes has plateaued, and a deliberate difficulty jump may reset...; space not aim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -839,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits cook watches videos about knife skills every night but never practices, so: Set one cutting goal, practice on one onion, and check the pieces; aim clarified. A misses cook watches videos about knife skills every night but never practices, so: Watch longer videos from better chefs; watching no doing. B misses cook watches videos about knife skills every night but never practices, so: Buy a better knife before practicing, because better equipment may feel like the missing step; gear not practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -852,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits student hates studying because every session is just rereading highlighted pages with: Turn the session into a question she can answer from memory and check; loop visible. B misses student hates studying because every session is just rereading highlighted pages with: Reread in a nicer cafe so the setting feels pleasant; relief no order. C misses student hates studying because every session is just rereading highlighted pages with: Study later in the evening when the pressure feels lower and the room is quieter; setting not structure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -865,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits photographer says editing has become joyless because she only posts for likes: Pick one visual skill, such as shadow detail, and edit three photos against that standard; standard named. A misses photographer says editing has become joyless because she only posts for likes: Post more often so feedback arrives faster; intensity no aim. C misses photographer says editing has become joyless because she only posts for likes: Pause editing under the current incentive structure because external pressure has compromised the photographer's intrinsic...; speed not skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -878,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits tired parent feels guilty for wanting a warm meal and an easy: Pleasure can be valuable relief; enjoyment adds order, challenge, or growth to experience; choice integrated. B misses tired parent feels guilty for wanting a warm meal and an easy: Pleasure and enjoyment are basically the same once a person is relaxed and fed; unresolved cue. C misses tired parent feels guilty for wanting a warm meal and an easy: Enjoyment matters most when it produces visible skill, status, or a result others can recognize; partial fit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -891,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits gamer says a difficult level is fun even though it frustrates him: The level gives clear goals and fast feedback near his skill level; repair bounded. A misses gamer says a difficult level is fun even though it frustrates him: He knows the level is respected online; loose link. C misses gamer says a difficult level is fun even though it frustrates him: Treat frustration as useful evidence that challenge now exceeds skill, creating the edge where growth may begin; misread case.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -904,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits a company tries to make work enjoyable by adding snacks and lounge: A task structure with goals, feedback, and challenge; role clarified. A misses a company tries to make work enjoyable by adding snacks and lounge: Add chairs and snacks so work feels pleasant; wrapper not work. B misses a company tries to make work enjoyable by adding snacks and lounge: Ask employees to act more enthusiastic during the same vague tasks; pep no feedback.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -917,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two weekend plans compete after a hard week: passive streaming that gives: The song, if the challenge is reachable and the friend can give feedback while they practice it; effort directed. A misses Two weekend plans compete after a hard week: passive streaming that gives: Choose streaming because after a depleted week, low-effort activity may restore baseline energy before active attention is...; willpower weak. C misses Two weekend plans compete after a hard week: passive streaming that gives: Avoid the song because nostalgia may be driving the choice more than skill; poor match.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -955,7 +788,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Pleasure Answer Back",
         "coreSkill": "The core skill is upgrading a pleasant or dull activity into structured enjoyment. Add a reachable challenge, a clear goal, and feedback that arrives soon enough to hold attention.",
         "ifThenPlans": [
           {
@@ -980,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "The point is not to reject pleasure.",
-          "location": "breakdown.fastRead",
-          "why": "It protects the chapter's nuance before making the stronger claim for enjoyment."
+          "text": "The point is not to reject pleasure."
         },
         {
-          "text": "The feedback is why the hour starts to hold her.",
-          "location": "breakdown.deepRead",
-          "why": "It makes feedback feel like the active ingredient in enjoyment rather than a checklist item."
+          "text": "The feedback is why the hour starts to hold her."
         },
         {
-          "text": "You were not merely pleased. You were being called into form.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the pleasure-enjoyment distinction a memorable emotional shape."
+          "text": "You were not merely pleased. You were being called into form."
         }
       ]
     },
@@ -1019,13 +845,6 @@
             "mentor",
             "conditions"
           ],
-          "planSpec": {
-            "domain": "a robotics club mentor redesigning a chaotic build night",
-            "audience": "teachers and mentors whose groups lose focus in loose environments",
-            "stakes": "the regional qualifier is in two weeks and the team keeps drifting",
-            "format": "postmortem",
-            "requiredBeat": "she maps the failed build night to missing goals, missing feedback, and too many open stations, then changes the next session plan"
-          },
           "scenario": "The robotics lab floor is a tangle of battery leads when Megan reviews why build night failed. Three students waited for instructions, two rebuilt the same arm twice, and nobody tested on the mat until the final ten minutes. She marks the problem on the whiteboard: no goal, no feedback, too many stations. Then she must decide whether to lecture them again or redesign the room around one test mat, one checklist, and a visible pass line before the next build night.",
           "whatToDo": "Redesign the session around a single build goal, a test mat, and a public checklist that shows progress before attention scatters.",
           "whyItMatters": "The team did not only lack motivation. The room failed to show the next move or return feedback, so attention had no stable path into the work."
@@ -1038,13 +857,6 @@
             "feedback",
             "structure"
           ],
-          "planSpec": {
-            "domain": "a restaurant prep cook comparing two station setups",
-            "audience": "frontline workers who think engagement depends only on mood",
-            "stakes": "one setup makes errors invisible until service, the other gives feedback before the rush",
-            "format": "comparison",
-            "requiredBeat": "he places the old prep list beside the color-coded pans and watches which setup tells him the next move without a supervisor"
-          },
           "scenario": "Parsley stems cling to the damp cutting board while Nicolas places the old prep list beside the color-coded pans. The old station hides errors until service and leaves him guessing what matters next. The new one shows empty slots on the walk-in shelf before the rush begins. His decision is practical: trust the familiar messy list or use the setup that tells him the next move without a supervisor.",
           "whatToDo": "Use the color-coded pans and shelf order, then check each empty slot before service starts. Let the station answer whether prep is complete.",
           "whyItMatters": "Mood did not change the work. Feedback did. The second setup makes progress visible, which gives attention a route through a repetitive task."
@@ -1057,13 +869,6 @@
             "practice",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a family setting up Saturday piano practice for a child who resists",
-            "audience": "parents who confuse pressure with supportive conditions",
-            "stakes": "practice can become a weekly fight or a structured challenge the child can own",
-            "format": "dialogue",
-            "requiredBeat": "the child says the piece is too big, and Sophie helps split it into four bars with a sticker feedback row instead of demanding more discipline"
-          },
           "scenario": "\"It is too much,\" her son says before sitting down at the piano bench. Sophie sees the full page of music, the empty sticker row, and the clock on the shelf. She wants to say he needs discipline, because that would make the problem sound simple. Instead, the moment asks for a choice: argue about attitude or mark four bars and let the sticker row show each clean repeat.",
           "whatToDo": "Mark four bars, define one clean repeat, and use the sticker row as feedback. Make the first piece of practice small enough to enter.",
           "whyItMatters": "Pressure alone turns practice into a fight. A smaller goal and visible feedback change the condition so effort can become involvement."
@@ -1076,13 +881,6 @@
             "practice",
             "challenge"
           ],
-          "planSpec": {
-            "domain": "a bike courier deciding between a loose workout and a timed skills loop",
-            "audience": "active people whose training loses structure",
-            "stakes": "winter confidence depends on practicing the exact handling skill, not just riding more",
-            "format": "predict_reveal",
-            "requiredBeat": "ask whether motivation or structure will get him through wet cornering practice, then show him setting cones and measuring each turn"
-          },
           "scenario": "What makes a cold practice ride absorbing instead of merely hard? Marco predicts motivation will fade after the first wet corner, especially with spray on his glasses and buses passing close. He sets three traffic cones on the pavement, starts the handlebar timer, and faces two options: ride vaguely for an hour or measure five careful turns through the same slick loop.",
           "whatToDo": "Set the cones, time five repeats, and judge the turn by one handling cue. Give the ride a structure that can answer back.",
           "whyItMatters": "Riding more is too vague to hold attention. The loop creates a clear challenge with feedback, which makes practice more likely to become flow."
@@ -1095,13 +893,6 @@
             "culture",
             "search"
           ],
-          "planSpec": {
-            "domain": "a museum education lead changing a volunteer tour format",
-            "audience": "community workers designing cultural participation",
-            "stakes": "visitors leave bored when the tour gives no task for attention",
-            "format": "before_after",
-            "requiredBeat": "show the old lecture tour against the new route where visitors receive one object card and must match it to a gallery detail"
-          },
           "scenario": "Anna saw the old tour fail in the first room. Visitors stood politely on the gallery bench side of the rope while facts slid past them, and nobody had to look closely at anything. The new route begins with one object card in each hand and a search for a bronze handle somewhere in the cases. By the third room, people are leaning forward because the room now gives attention a job.",
           "whatToDo": "Replace part of the lecture with a search task. Give each visitor one object card, one detail to find, and a moment to check the match.",
           "whyItMatters": "Culture becomes easier to enter when it offers a rule for participation. The card turns passive listening into a goal with feedback."
@@ -1114,13 +905,6 @@
             "constraints",
             "inventory"
           ],
-          "planSpec": {
-            "domain": "a warehouse apprentice learning to create flow in a dull inventory job",
-            "audience": "people in low-autonomy roles who still need some controllable structure",
-            "stakes": "the work is repetitive and cannot be romanticized",
-            "format": "dilemma",
-            "requiredBeat": "you cannot change the whole warehouse, but you can choose whether to scan randomly or build a shelf-by-shelf feedback loop"
-          },
           "scenario": "You are handed a scanner and forty minutes of gray shelving while Pavel studies the shelf map. He cannot change the warehouse, the damaged carton policy, or the software that freezes between aisles. Random scanning would pass the time badly. Section-by-section scanning would show each completed row before handoff. The live choice is drift through the aisles or make one controllable feedback loop.",
           "whatToDo": "Scan by shelf section, mark each completed row on the map, and flag damaged cartons before moving on. Keep the structure honest and small.",
           "whyItMatters": "The job stays constrained, but attention gains a path. A modest feedback loop can reduce drift without pretending the whole environment is ideal."
@@ -1139,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits robotics team keeps losing focus during project nights: Name the next concrete test and the sign of progress, so willingness has a structure to enter; task entered. B misses robotics team keeps losing focus during project nights: A stronger speech about commitment, since the deadline pressure suggests motivation, not structure is the variable currently...; enthusiasm detour. C misses robotics team keeps losing focus during project nights: A larger room with more stations, since the team may simply need space to spread out; tools not entry.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits manager wants a dull weekly report to become more engaging after noticing: Add a visible quality target and a quick review cue before submission; pattern formed. A misses manager wants a dull weekly report to become more engaging after noticing: Tell staff to improve their attitude because the report may feel like compliance, not judgment; confidence dodge. C misses manager wants a dull weekly report to become more engaging after noticing: Move the deadline earlier so pressure makes the report feel serious; pressure no feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits parent says a child resists piano because he lacks character, but the: Whether practice has one reachable goal and visible feedback; focus anchored. A misses parent says a child resists piano because he lacks character, but the: Check whether he prefers another instrument; shallow fix. C misses parent says a child resists piano because he lacks character, but the: Make the practice room feel inviting so resistance seems less personal; comfort no task.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits volunteer museum tour bores visitors even though the facts are accurate and: Give visitors a search task that requires finding a detail in the room; feedback enters. B misses volunteer museum tour bores visitors even though the facts are accurate and: Add more dates to prove the tour is serious and give visitors a stronger sense of historical stakes; missing loop. C misses volunteer museum tour bores visitors even though the facts are accurate and: Ask visitors to stand still so they listen better; wrong lever.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1191,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits warehouse worker cannot change his job design, scanner software, or the damaged-carton: Create a shelf-by-shelf loop that shows completion before handoff and gives him a visible handoff standard; goal named. A misses warehouse worker cannot change his job design, scanner software, or the damaged-carton: Tell himself the work is exciting so attitude carries the shift; mood shortcut. B misses warehouse worker cannot change his job design, scanner software, or the damaged-carton: Quit caring because low autonomy prevents most local redesign, so emotional distance may protect him from needless frustration; off lever.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits workshop leader blames drifting apprentices for weak desire, but the benches hide: Because environments, tools, families, and cultures can make engagement easier or harder; attention shaped. B misses workshop leader blames drifting apprentices for weak desire, but the benches hide: Because poor benches may block feedback before effort can matter; motivation gap. C misses workshop leader blames drifting apprentices for weak desire, but the benches hide: Because naturally skilled apprentices may find feedback in messy rooms, while novices need more explicit structure to stay engaged; room not loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1217,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits designer says she has an autotelic personality because she enjoys every task: Autotelic means a habit of finding or making usable challenges inside real constraints; purpose governs. B misses designer says she has an autotelic personality because she enjoys every task: Autotelic means most tasks feel easy and pleasant once attitude improves, even when reviews are vague; effort talk. C misses designer says she has an autotelic personality because she enjoys every task: Autotelic means social conditions matter less once inner discipline develops; misses loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits a school adds a makerspace with new tools, but gives students no: A room alone does not supply goals, feedback, or challenge; practice answers. A misses a school adds a makerspace with new tools, but gives students no: The tools may distract from practice unless students are shown a first challenge; resource detour. C misses a school adds a makerspace with new tools, but gives students no: Students should already know how to use free time; not hinge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two coaches want better practice before a tournament: Coach B, because clear conditions make effort more likely to become involvement; order visible. A misses Two coaches want better practice before a tournament: Coach A, because the team may mainly need urgency after soft practices; morale not design. C misses Two coaches want better practice before a tournament: Neither plan is sufficient if the athletes distrust both coaches and read any new drill as pressure instead of useful feedback; strain no standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1281,7 +1056,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Designing the Conditions That Produce Flow",
         "coreSkill": "The core skill is moving from self-blame to condition design. Before demanding more motivation, make the activity easier to enter by adding a goal, feedback, and a reachable challenge.",
         "ifThenPlans": [
           {
@@ -1306,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "If you want deeper engagement, look first at the shape of the activity.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's condition-design idea into a practical diagnostic."
+          "text": "If you want deeper engagement, look first at the shape of the activity."
         },
         {
-          "text": "Flow is partly private, but it is never only private.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's balance between agency and environment in one sentence."
+          "text": "Flow is partly private, but it is never only private."
         },
         {
-          "text": "The conditions of flow are probability levers.",
-          "location": "breakdown.fullRead",
-          "why": "It names exactly what conditions can and cannot promise."
+          "text": "The conditions of flow are probability levers."
         }
       ]
     },
@@ -1345,13 +1113,6 @@
             "walking",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a physical therapist restarting a patient's walking practice",
-            "audience": "rehab patients and clinicians who need challenge without punishment",
-            "stakes": "too much difficulty risks pain, too little gives no involvement",
-            "format": "decision_point",
-            "requiredBeat": "she places two tape marks on the clinic floor and asks the patient to choose the stride target that is reachable but not automatic"
-          },
           "scenario": "The blue tape line curls at one corner of the clinic floor while Grace adjusts the parallel bars. Her patient can reach the first mark easily and grimaces at the third, while the walker waits beside the mat and the therapy clock clicks behind them. Grace places a second mark between them, taps the stride counter, and presents a live choice: repeat the safe step or try the target that is reachable but not automatic.",
           "whatToDo": "Use the middle tape mark and count only clean steps. Keep the challenge close enough to invite control without turning practice into punishment.",
           "whyItMatters": "The body enters flow through feedback it can use. A reachable stride target gives movement a clear problem instead of vague effort."
@@ -1364,13 +1125,6 @@
             "breath",
             "music"
           ],
-          "planSpec": {
-            "domain": "a community choir singer learning breath control",
-            "audience": "adults who think music is passive listening unless they perform professionally",
-            "stakes": "he may quit because he cannot hear progress yet",
-            "format": "before_after",
-            "requiredBeat": "show the flat first rehearsal beside the night he tracks one breath cue through the same phrase and hears the line hold"
-          },
           "scenario": "Lars nearly left the choir after the second rehearsal. Before, he sat on a folding chair and lost the same phrase halfway through, smiling as if it did not matter while the tenors carried him and the conductor kept moving. Tonight, one pencil mark on the lyric sheet tells him where to breathe. The line holds to the final note, and for the first time he hears progress inside his own ribs.",
           "whatToDo": "Mark one breath cue and sing only that phrase until the body can feel where the line begins to hold.",
           "whyItMatters": "Music becomes bodily feedback when breath, timing, and sound connect. Progress stops being an abstract hope and becomes something he can hear."
@@ -1383,13 +1137,6 @@
             "kitchen",
             "senses"
           ],
-          "planSpec": {
-            "domain": "a chef training her palate for acidity",
-            "audience": "people who consume taste but rarely train attention",
-            "stakes": "a sauce will fail service unless she can detect the imbalance",
-            "format": "predict_reveal",
-            "requiredBeat": "her mentor asks which cup has one extra drop of vinegar, and Olivia must predict before seeing the labels"
-          },
           "scenario": "\"Tell me which cup changed,\" the sous-chef says, setting three tasting spoons beside unlabeled cups. Olivia knows one cup has a single extra drop of vinegar, and the stockpot behind her is already warming for service while tickets begin to print. The dinner sauce will fail if she cannot catch that edge before service. She tastes twice, points to the middle cup, and waits for the label to turn over.",
           "whatToDo": "Taste slowly, name the mouthfeel before guessing, and check the label only after committing to one cup.",
           "whyItMatters": "Taste becomes a trained sense when it has a target and feedback. The reveal teaches her palate more than casual sampling ever could."
@@ -1402,13 +1149,6 @@
             "control",
             "movement"
           ],
-          "planSpec": {
-            "domain": "a beginner aikido student learning a fall",
-            "audience": "learners who confuse bodily control with force",
-            "stakes": "a stiff landing could injure him and end the class early",
-            "format": "scene",
-            "requiredBeat": "the mat is quiet, and Matteo loosens his shoulder, rolls once, then uses the impact sound as feedback for the next attempt"
-          },
           "scenario": "The dojo mat holds the print of bare feet while Matteo stands with a white belt tied badly at his waist. His first fall lands stiff and loud enough that everyone hears it, and his face gets hot before he stands. The instructor points to his shoulder, then to the canvas mat. On the next attempt, Matteo loosens the shoulder, rolls once, and listens to the lower impact before choosing the next correction.",
           "whatToDo": "Use the sound of the landing as feedback. Soften one joint, roll once, and correct only the part the body can feel.",
           "whyItMatters": "Control grows through small bodily feedback, not force. The mat tells him whether attention reached the shoulder before the fall."
@@ -1421,13 +1161,6 @@
             "photography",
             "commute"
           ],
-          "planSpec": {
-            "domain": "a photographer training sight during a dull commute",
-            "audience": "creative hobbyists who wait for inspiration",
-            "stakes": "the commute can be dead time or a practice in seeing",
-            "format": "vignette",
-            "requiredBeat": "you stand on the tram platform and choose one color reflection to track instead of letting the whole street blur"
-          },
           "scenario": "You are early for the tram and the pavement is still wet while Paula's camera strap presses into her coat. A red reflection from the shelter sign bends across the curb each time a car passes, then disappears under a taxi tire. She could let the street blur into waiting, but she chooses that one color and tracks it until the next tram bell, checking how the angle changes with each passing car.",
           "whatToDo": "Choose one visual cue and follow it for the wait. Do not hunt for a grand photo; train the eye on one changing detail.",
           "whyItMatters": "Seeing becomes active when attention has a cue. The same commute shifts from dead time to sensory practice because the eye has a job."
@@ -1440,13 +1173,6 @@
             "presence",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "a partner planning a non-graphic intimacy conversation around attention and presence",
-            "audience": "couples who confuse closeness with automatic chemistry",
-            "stakes": "the relationship needs care without turning the lesson into performance pressure",
-            "format": "reflection",
-            "requiredBeat": "ask what would change if the goal were shared attention rather than outcome, then show Devon putting the phone away and naming one boundary"
-          },
           "scenario": "What changes when closeness is treated as attention, not conquest? Devon looks at the phone on the bedside table, the low lamp, and the sentence he has been avoiding since dinner. He puts the phone in a drawer and names one boundary before the evening can become performance pressure. The decision is to make presence safer before asking for more.",
           "whatToDo": "Remove the phone, name one boundary, and treat the next few minutes as shared attention rather than a test to pass.",
           "whyItMatters": "Closeness deepens through safety and attention. The boundary gives the body enough trust for presence, instead of turning sensation into pressure."
@@ -1465,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits walker says her route is pleasant but forgettable because she finishes without: A precise cue, such as posture or stride rhythm, with feedback after the loop; skill targeted. B misses walker says her route is pleasant but forgettable because she finishes without: A longer route with the same easy rhythm; surface setting. C misses walker says her route is pleasant but forgettable because she finishes without: A reward snack after the route, because the walker may need a pleasant cue that makes returning to practice feel worthwhile; display not meaning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1478,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits beginner in yoga keeps trying to force deeper poses and leaves sore,: Track one breath and alignment cue in a reachable pose; testable loop. A misses beginner in yoga keeps trying to force deeper poses and leaves sore,: Push a little harder in the same pose; harder not clearer. C misses beginner in yoga keeps trying to force deeper poses and leaves sore,: Ease back until discomfort is absent before using any alignment cue; stalling move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1491,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits cook wants to train taste instead of just enjoy food, and the: Compare three samples, predict the changed one, then check against the actual sauce; bounded choice. A misses cook wants to train taste instead of just enjoy food, and the: Read restaurant reviews before tasting, because expert language may give her a vocabulary for noticing acidity and balance; data no check. B misses cook wants to train taste instead of just enjoy food, and the: Buy rarer ingredients so the meal feels more serious; equipment detour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1504,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits musician feels stuck in choir because progress is invisible and the same: Mark one breath cue and repeat the phrase until he can hear the change in the final note; drift reduced. B misses musician feels stuck in choir because progress is invisible and the same: Step away from choir until confidence returns, because repeated collapse may be teaching him to expect failure before the...; postponed practice. C misses musician feels stuck in choir because progress is invisible and the same: Sing louder during the phrase to reveal where support breaks; urgency detour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1517,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits commuter with a camera complains there is nothing worth seeing on the: Pick one changing visual detail and track it for the wait; participation concrete. A misses commuter with a camera complains there is nothing worth seeing on the: Search for a more visually dramatic station before trying to frame the wait; space not aim. B misses commuter with a camera complains there is nothing worth seeing on the: Scroll images from better photographers first; messages no practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1530,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits person says a stronger stimulus must mean deeper flow because the body: Flow requires trained attention, challenge, or feedback, not stimulation alone; constraint respected. B misses person says a stronger stimulus must mean deeper flow because the body: Treat bodily pleasure as a warning signal because in this case it has preceded lapses in self-regulation; incomplete repair. C misses person says a stronger stimulus must mean deeper flow because the body: High-intensity athletic movement is the clearest route to bodily flow; gear not practice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1543,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits martial arts student thinks control means using more force, but each loud: The body learns control through small feedback and correction; pressure organized. B misses martial arts student thinks control means using more force, but each loud: The loudest landing proves commitment and may show the roll is energetic enough; attitude no target. C misses martial arts student thinks control means using more force, but each loud: Sound mainly reveals natural coordination; surface move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1556,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits a couple treats closeness as chemistry that either appears or fails, while: Shared attention, consent, boundaries, and presence can make closeness safer and more involving; contact tasked. A misses a couple treats closeness as chemistry that either appears or fails, while: Chemistry is difficult to shape directly, so the couple may first need to reduce distractions before expecting closeness to deepen; skips test. C misses a couple treats closeness as chemistry that either appears or fails, while: The goal should include measurable response, so comfort is not confused with mutual attention; routine no edge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1569,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two plans aim to make exercise more engaging for a patient returning: Plan B, because bodily attention gets a goal, feedback, and a controllable rhythm; meaning selects. A misses Two plans aim to make exercise more engaging for a patient returning: Choose louder music because recent training has plateaued under low-stimulation conditions and external load may be missing; volume dodge. C misses Two plans aim to make exercise more engaging for a patient returning: Both plans use movement, so structure matters less than getting active; claim overdrawn.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1607,7 +1324,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Train One Bodily Cue",
         "coreSkill": "The core skill is turning passive sensation into trained attention. Pick one safe bodily cue, give it a goal, and let immediate feedback guide the next correction.",
         "ifThenPlans": [
           {
@@ -1632,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The body is not merely something you comfort.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's pivot from passive comfort to trained bodily engagement."
+          "text": "The body is not merely something you comfort."
         },
         {
-          "text": "The sound teaches because the body receives feedback before pride can argue.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence makes bodily feedback vivid and memorable."
+          "text": "The sound teaches because the body receives feedback before pride can argue."
         },
         {
-          "text": "The body in flow is not the body conquered.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the lesson from turning into harsh control or fitness moralizing."
+          "text": "The body in flow is not the body conquered."
         }
       ]
     },
@@ -1671,13 +1381,6 @@
             "archive",
             "question"
           ],
-          "planSpec": {
-            "domain": "a library volunteer turning local history into an inquiry puzzle",
-            "audience": "retirees and volunteers who want mental challenge without formal schooling",
-            "stakes": "the archive project will stay dull unless he finds a question inside it",
-            "format": "decision_point",
-            "requiredBeat": "the archive room smells of paper, and Thomas chooses one unanswered migration pattern instead of alphabetizing another box"
-          },
           "scenario": "The archive room fan clicks above three banker boxes while Thomas slides another index card into order. Dust hangs over the town map and the pencil tray is already full of careful labels. Alphabetizing would be useful and dull. Then he notices three families leaving the mill street in the same winter. His live choice is file another box or ask why that pattern appears and pin the first clue to the map.",
           "whatToDo": "Turn the pattern into a question and give the next hour one rule: every card must either support, weaken, or complicate the migration clue.",
           "whyItMatters": "The archive becomes absorbing when symbols start answering a question. Without the question, the same cards stay orderly but mentally flat."
@@ -1690,13 +1393,6 @@
             "crossword",
             "rules"
           ],
-          "planSpec": {
-            "domain": "a crossword constructor learning rule-bound wordplay",
-            "audience": "language lovers who consume puzzles but want deeper involvement",
-            "stakes": "her first grid either becomes random cleverness or a game with constraints",
-            "format": "scene",
-            "requiredBeat": "she erases a corner, writes the theme rule at the top, and tests each clue against that rule before filling squares"
-          },
           "scenario": "Eraser crumbs collect in the corner of Chiara's grid as she stares at three clever clues that do not belong together. A blank theme line sits above the page, and every answer feels possible in the worst way while the grid refuses to become a game. She wipes the corner clean, writes the rule in seven words, and now each clue must earn its place before any square gets filled.",
           "whatToDo": "Write the theme rule first, then test each clue against it. Keep only answers that make the grid harder in the right way.",
           "whyItMatters": "Wordplay becomes flow when language has constraints. The rule removes random cleverness and turns every square into feedback."
@@ -1709,13 +1405,6 @@
             "lab",
             "inquiry"
           ],
-          "planSpec": {
-            "domain": "a lab technician keeping science alive after routine work",
-            "audience": "technical workers whose job has become automatic",
-            "stakes": "comfort could freeze his learning just when equipment changes",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the calibration will stay boring unless he asks why the drift appears, then runs one side test for feedback"
-          },
           "scenario": "At 3:42 p.m., Andrew watches the calibration line drift for the second time this week. The sample vial is labeled, the reset procedure is familiar, and the side-test notebook is still blank beside the machine. He predicts the work will stay boring if he only resets. Before closing the panel, he chooses one question: why does the drift appear after the second sample?",
           "whatToDo": "Run one side test tied to the drift question and record the graph before resetting. Let the equipment answer a real inquiry.",
           "whyItMatters": "Routine becomes mental flow when a question changes the feedback. The same graph becomes evidence instead of background noise."
@@ -1728,13 +1417,6 @@
             "dialogue",
             "translation"
           ],
-          "planSpec": {
-            "domain": "a philosophy reading group host avoiding abstract display",
-            "audience": "readers intimidated by philosophy talk",
-            "stakes": "the group will collapse if it becomes status performance",
-            "format": "dialogue",
-            "requiredBeat": "a member asks what the passage means, and Anke turns it into a lived question each person can answer from one decision that week"
-          },
           "scenario": "\"Are we supposed to understand this sentence?\" someone asks. Anke sees the marked paperbacks, the tea tray, and three faces waiting for a performance of expertise. The room could become a contest in two minutes, with everyone pretending to follow. She pauses and offers a rule: translate the sentence into one decision from this week. Each person must bring the idea down to Tuesday before anyone explains it upward.",
           "whatToDo": "Turn the abstract line into a lived question and ask each person for one decision where it could be tested.",
           "whyItMatters": "Philosophy becomes playable when it has rules for use. Status display freezes the room; translation gives every mind a move."
@@ -1747,13 +1429,6 @@
             "bug",
             "logic"
           ],
-          "planSpec": {
-            "domain": "a software tester using a bug as a mental game",
-            "audience": "professionals who need fresh challenge inside familiar work",
-            "stakes": "a stubborn defect blocks release and his usual checklist has failed",
-            "format": "postmortem",
-            "requiredBeat": "you reconstruct the bug by writing the rule each failed theory broke, then find the one condition the logs keep hiding"
-          },
           "scenario": "You have run the same failing test eleven times while Ben's error log keeps ending on the same line. The usual checklist is exhausted, and the release channel is waiting for a clean build. He pulls sticky notes across the desk and writes the rule each failed theory broke. By the fifth note, one condition is missing from every test branch: the overnight import never ran.",
           "whatToDo": "Write the broken rule for each failed theory, then look for the condition no theory has tested yet.",
           "whyItMatters": "The bug becomes a mental game when the failed moves are visible. Rules turn frustration into a search path."
@@ -1766,13 +1441,6 @@
             "birds",
             "amateur"
           ],
-          "planSpec": {
-            "domain": "an adult learner building a map of bird calls",
-            "audience": "lifelong learners who need feedback outside school",
-            "stakes": "without structure her new interest will become another abandoned app",
-            "format": "before_after",
-            "requiredBeat": "contrast passive listening walks with the morning she records three calls, checks them against a guide, and marks one improvement"
-          },
           "scenario": "Aanya thought she liked birds until the calls all blurred together. Before, she walked the park bench path and let sound wash past while the app collected names she forgot by lunch. Today she records three calls on her phone, checks them against a field guide only after guessing, and marks one improvement in a notebook beside the duck pond. The walk now has rules, feedback, and a reason to continue.",
           "whatToDo": "Guess before checking the guide, record only three calls, and mark one improvement after each walk.",
           "whyItMatters": "Amateur learning needs feedback too. The rule keeps curiosity from dissolving into passive listening and gives the mind a next move."
@@ -1791,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits volunteer says archive work is dull until he starts asking why several: The work gained a playable question and rules for progress; sensation trained. B misses volunteer says archive work is dull until he starts asking why several: The archive became valuable because it felt rare, concrete, and connected to family stories; weak fit. C misses volunteer says archive work is dull until he starts asking why several: He made the task easier by ignoring details; pleasant still shapeless.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits language hobbyist wants more than solving crosswords because random clever clues are: Create a grid rule and test every clue against it; progress checkable. A misses language hobbyist wants more than solving crosswords because random clever clues are: Save more puzzles for a long weekend; side issue. C misses language hobbyist wants more than solving crosswords because random clever clues are: Read answer keys first so the grid feels less uncertain; information no feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits technician resets the same drifting instrument every day, but the graph keeps: Ask one cause question and run a small side test; next move clear. A misses technician resets the same drifting instrument every day, but the graph keeps: Reset faster to finish before boredom appears; setting not structure. B misses technician resets the same drifting instrument every day, but the graph keeps: Treat the drift as random and stop thinking about it; hesitation loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits reading group becomes a contest of who sounds smartest, and the passage: Require each person to translate the idea into one decision from the week; challenge calibrated. B misses reading group becomes a contest of who sounds smartest, and the passage: Choose harder texts so the group feels more serious; deadline shortcut. C misses reading group becomes a contest of who sounds smartest, and the passage: Let the most confident reader explain the passage so the discussion has direction; no answerback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits new birdwatcher keeps downloading apps but quits after two walks because every: A rule to guess three calls before checking feedback; experience ordered. B misses new birdwatcher keeps downloading apps but quits after two walks because every: A promise to become an expert within a month; wrong handle. C misses new birdwatcher keeps downloading apps but quits after two walks because every: A more expensive pair of binoculars before naming what she is trying to hear; wrapper not work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1519,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits crossword constructor says rules will restrict her thinking, but her grid is: Rules make moves matter, so attention can test progress; aim clarified. A misses crossword constructor says rules will restrict her thinking, but her grid is: Rules lower pressure by narrowing options before any test begins; push no loop. C misses crossword constructor says rules will restrict her thinking, but her grid is: Rules replace curiosity once the grid works; thin repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits professional says mental flow is only for scholars and scientists, not for: An amateur learner mapping bird calls with a guide and feedback; loop visible. B misses professional says mental flow is only for scholars and scientists, not for: A professor adding more footnotes before asking a question; reading detour. C misses professional says mental flow is only for scholars and scientists, not for: A student memorizing dates without a question, standard, or way to check insight; missed target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits a software tester keeps rereading logs and feeling stuck after eleven failed: It turns failed attempts into visible rules that guide the next test; standard named. A misses a software tester keeps rereading logs and feeling stuck after eleven failed: It makes the work look more organized to managers; unresolved cue. C misses a software tester keeps rereading logs and feeling stuck after eleven failed: Treat the bug as beyond current methods because it has resisted the senior engineer's approaches for a year; tools not entry.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1555,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two learners are curious about local history: The mapped question, because it gives thought rules and progress; choice integrated. A misses Two learners are curious about local history: Random browsing, because curiosity should stay loose; busy not better. C misses Two learners are curious about local history: History is better suited to absorbing stories than to rule-bound practice; partial fit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1933,7 +1592,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Making Thought Itself a Playable Activity",
         "coreSkill": "The core skill is turning vague curiosity into structured inquiry. Give thought a question, a rule for valid moves, and a feedback cue that shows progress.",
         "ifThenPlans": [
           {
@@ -1958,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "The mind wakes when thinking has rules.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's main mechanism into a clean sentence."
+          "text": "The mind wakes when thinking has rules."
         },
         {
-          "text": "Rules do not kill play. They make play possible.",
-          "location": "breakdown.deepRead",
-          "why": "It reverses a common misunderstanding about constraints."
+          "text": "Rules do not kill play. They make play possible."
         },
         {
-          "text": "The question does not have to impress anyone.",
-          "location": "breakdown.fullRead",
-          "why": "It protects amateur inquiry from status performance."
+          "text": "The question does not have to impress anyone."
         }
       ]
     },
@@ -1997,13 +1649,6 @@
             "public service",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a municipal permit clerk changing how applications answer back",
-            "audience": "office workers in repetitive public-service roles",
-            "stakes": "mistakes delay housing permits and make the day feel pointless",
-            "format": "decision_point",
-            "requiredBeat": "he chooses whether to batch-stamp forms mechanically or create a visible error pattern board that turns the queue into a solvable process"
-          },
           "scenario": "At 9:03 a.m., David lifts the first permit folder and hears the date stamp hit the counter. The queue already reaches the blue tape line, and the fluorescent light makes every folder look the same while a contractor waits at the glass. Three applications have the same missing drainage field. He can batch-stamp mechanically until lunch, or he can start an error board that turns the next fifty folders into a pattern he can actually reduce.",
           "whatToDo": "Create the error board, mark each repeated defect, and use the pattern to change the intake note before tomorrow's queue arrives.",
           "whyItMatters": "The queue becomes more than volume when it gives feedback. A visible pattern lets skill enter a task that otherwise feels like stamping paper."
@@ -2016,13 +1661,6 @@
             "service",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "a hotel laundry supervisor finding feedback in turnaround flow",
-            "audience": "service managers whose work is invisible when it goes right",
-            "stakes": "late linens ripple into guest complaints before dinner",
-            "format": "postmortem",
-            "requiredBeat": "she traces yesterday's late carts to one hidden bottleneck and marks a new load sequence by floor"
-          },
           "scenario": "Warm cotton fogs the laundry room windows as Marit studies yesterday's floor tags. The guest complaints started with late carts on floors six and eight, but the dryer clock shows the real bottleneck: mixed loads waited for sorting while clean sheets sat in unlabeled bins. She redraws the load sequence by floor and puts the first cart tag on the wall before the morning rush.",
           "whatToDo": "Trace the delay to the step that hid feedback, then sequence loads by floor so every cart shows whether the system is recovering.",
           "whyItMatters": "Invisible service can feel pointless until the process answers. The floor sequence makes progress visible before guests feel the delay."
@@ -2035,13 +1673,6 @@
             "apprentice",
             "skill"
           ],
-          "planSpec": {
-            "domain": "an apprentice electrician choosing a harder wiring run",
-            "audience": "tradespeople balancing speed and skill growth",
-            "stakes": "choosing only easy jobs keeps him fast but stagnant",
-            "format": "dialogue",
-            "requiredBeat": "his foreman asks which run will teach him, and Jack takes the conduit bend that gives immediate visible feedback"
-          },
           "scenario": "\"Which one will teach you something?\" the foreman asks, tapping the chalk line beside the panel label. Jack can take the straight run and finish early, or he can try the conduit bend that will show every mistake in the angle. The bender is cold in his hand, and the wall gives no flattery. Speed would feel good today; skill would answer for longer.",
           "whatToDo": "Take the bend, mark the angle, and check the fit before moving on. Let the visible result teach the hands.",
           "whyItMatters": "Work becomes absorbing when skill is on the line. The harder run gives feedback the easy run cannot provide."
@@ -2054,13 +1685,6 @@
             "language",
             "paradox"
           ],
-          "planSpec": {
-            "domain": "a call-center lead redesigning free time after a structured shift",
-            "audience": "workers who feel engaged at work and empty after clock-out",
-            "stakes": "her evening can collapse into passive exhaustion despite a competent day",
-            "format": "predict_reveal",
-            "requiredBeat": "ask why the shift felt more alive than the evening, then show her adding one goal and feedback loop to a language practice block"
-          },
           "scenario": "Why did the shift feel clearer than the free evening? Catarina hangs her headset and predicts the answer before opening the language notebook: work had a queue, her evening has fog. The notebook lies beside a cold mug and three unread messages. She sets a kitchen timer for twenty minutes, writes ten sentences to say aloud, and records one pass before dinner to hear what changed.",
           "whatToDo": "Borrow the useful structure, not the stress. Give the language block a short goal, a timer, and one recording for feedback.",
           "whyItMatters": "Free time can waste itself when it lacks shape. A small feedback loop lets leisure become chosen involvement instead of collapse."
@@ -2073,13 +1697,6 @@
             "illustration",
             "milestones"
           ],
-          "planSpec": {
-            "domain": "a freelance illustrator replacing vague client work with milestones",
-            "audience": "freelancers whose autonomy creates drift",
-            "stakes": "the contract deadline is close and no manager will define progress",
-            "format": "before_after",
-            "requiredBeat": "the studio wall has blank space, and Ryan turns the commission into six visible thumbnails with one client feedback gate"
-          },
           "scenario": "The north wall of the studio is still bare when Ryan rereads the client brief. Before, he waited for the commission to feel ready and lost two afternoons to reference folders, color tests, and one perfect opening sketch that never arrived while the deadline stayed abstract. Now he tapes six thumbnail boxes to the wall and marks one feedback gate before color. The same autonomy that created drift becomes a visible sequence.",
           "whatToDo": "Turn the brief into six thumbnails and one feedback gate. Put progress where the eye can see it before mood gets a vote.",
           "whyItMatters": "Autonomy without structure can scatter work. Milestones give the project a way to answer back before the deadline becomes panic."
@@ -2092,13 +1709,6 @@
             "constraints",
             "dignity"
           ],
-          "planSpec": {
-            "domain": "a lab sterilization tech protecting dignity in constrained work",
-            "audience": "workers in necessary jobs with limited autonomy",
-            "stakes": "the job cannot be made glamorous, but one controllable skill loop can reduce drift and errors",
-            "format": "reflection",
-            "requiredBeat": "you cannot rename the job, but you can decide whether each tray returns as a blur or as a timed accuracy challenge with a clean handoff"
-          },
           "scenario": "You slide the twelfth instrument tray under the lamp while Lin checks the indicator strip. The job will not become glamorous because someone says the right words, and the staffing board is still short two people. Still, each tray can blur into the next, or it can become a timed accuracy challenge with a clean handoff shelf. The choice is small, but the error rate is real and the next team will inherit the result.",
           "whatToDo": "Use the same tray sequence, check each indicator strip, and hand off only when the shelf label matches the log.",
           "whyItMatters": "The loop gives limited work a controllable standard. It protects dignity through accuracy without pretending the larger conditions disappear."
@@ -2117,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits permit clerk says a repetitive queue became more interesting once he tracked: The error board made feedback visible, so the clerk could measure and adjust the repetitive queue; repair bounded. B misses permit clerk says a repetitive queue became more interesting once he tracked: The queue became shorter instantly, since the error tracking would have surfaced inefficiencies the clerk could remove without...; loose link. C misses permit clerk says a repetitive queue became more interesting once he tracked: The job became prestigious because supervisors saw the clerk taking initiative; misread case.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits freelancer has autonomy but keeps drifting through reference folders because no manager: Create visible milestones and a feedback gate for the next draft; role clarified. A misses freelancer has autonomy but keeps drifting through reference folders because no manager: Wait for inspiration before starting, then use the deadline for pressure; delay not order. C misses freelancer has autonomy but keeps drifting through reference folders because no manager: Accept more requests to create pressure; force not calibration.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits call-center lead says evenings feel emptier than shifts because work has a: Give one leisure block a goal and feedback cue, such as one phrase of language practice with a check; effort directed. A misses call-center lead says evenings feel emptier than shifts because work has a: Schedule more paid overtime, because her clearest structure currently comes from work and may temporarily stabilize the evening; poor match. B misses call-center lead says evenings feel emptier than shifts because work has a: Keep leisure unstructured so it does not feel like another demand; shallow fix.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits hotel supervisor wants laundry work to feel less invisible after guest complaints: Trace delays to one bottleneck and make cart progress visible; task entered. B misses hotel supervisor wants laundry work to feel less invisible after guest complaints: Explain that guests depend on laundry and praise the team for caring about service; prize not practice. C misses hotel supervisor wants laundry work to feel less invisible after guest complaints: Add a recognition board beside the dryers; title detour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits apprentice chooses only easy wiring runs because he finishes faster and gets: Ask for a harder run that gives visible skill feedback during the bend; pattern formed. A misses apprentice chooses only easy wiring runs because he finishes faster and gets: Keep choosing easy runs because speed earns praise and preserves confidence; recognition detour. C misses apprentice chooses only easy wiring runs because he finishes faster and gets: Postpone feedback until the bend feels easier in practice; waiting no handle.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits supervisor tells an underpaid team to find flow in any job, even: Because unfair, unsafe, or degrading conditions can block real agency; focus anchored. B misses supervisor tells an underpaid team to find flow in any job, even: Because paid work brings deadlines, reporting structures, and customer demands that can undermine the autonomy flow requires; intensity no aim. C misses supervisor tells an underpaid team to find flow in any job, even: Leisure may offer more freedom than paid work; missing loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits manager adds free snacks to make a dull records job engaging, but: A way to direct skill, see feedback, and adjust errors inside the task; feedback enters. A misses manager adds free snacks to make a dull records job engaging, but: Add a larger reward after each shift so people tolerate dullness; reward shortcut. C misses manager adds free snacks to make a dull records job engaging, but: Keep boredom private so the team stays positive even if the records process stays unchanged; mood not method.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits a team says work is meaningful because it is always busy, with: Busyness can hide scatter unless tasks have goals and feedback; goal named. A misses a team says work is meaningful because it is always busy, with: Busyness can feel absorbing because constant demand leaves little room to notice drift; comfort no task. B misses a team says work is meaningful because it is always busy, with: Busyness means design matters less; wrong lever.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits Two plans address a dull records job after staff report that the: Plan B, because feedback and limited control let skill enter the records work; attention shaped. A misses Two plans address a dull records job after staff report that the: Plan A, because verbal recognition can remind workers that the job matters; prestige lure. B misses Two plans address a dull records job after staff report that the: Neither plan changes the task because the records process has run the same way for years with no variable the worker can adjust; false binary.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2259,7 +1860,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Work Answer Back",
         "coreSkill": "The core skill is finding or adding feedback inside work. Keep the ethical limits visible, then redesign one task so effort can become skill rather than mere endurance.",
         "ifThenPlans": [
           {
@@ -2284,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "The task changes when it answers back.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the work-flow mechanism in a direct image."
+          "text": "The task changes when it answers back."
         },
         {
-          "text": "An autotelic job is not a dream title; autotelic jobs are arranged so the doing itself can become absorbing.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents the idea from becoming career fantasy."
+          "text": "An autotelic job is not a dream title; autotelic jobs are arranged so the doing itself can become absorbing."
         },
         {
-          "text": "Work as flow is therefore a design problem and an ethical problem.",
-          "location": "breakdown.fullRead",
-          "why": "It holds together task redesign and real labor limits."
+          "text": "Work as flow is therefore a design problem and an ethical problem."
         }
       ]
     },
@@ -2323,13 +1917,6 @@
             "new city",
             "drawing"
           ],
-          "planSpec": {
-            "domain": "a new city resident planning her first empty Sunday",
-            "audience": "adults in transition who mistake solitude for failure",
-            "stakes": "the day can become either panic-scrolling or deliberate self-directed attention",
-            "format": "decision_point",
-            "requiredBeat": "you wake to a silent apartment and must choose between refreshing messages and setting one hard drawing exercise at the table"
-          },
           "scenario": "You wake up before the city buses start while Frida's silent apartment seems to grow larger around the table. The message thread has no new replies, the kettle clicks off too loudly, and her drawing pad is still wrapped in store paper. She can refresh the phone until the morning decides for her, or she can set one hard exercise: draw the same chair from three angles before noon.",
           "whatToDo": "Set the drawing task before opening messages again. Give solitude one clear object and one standard for finishing.",
           "whyItMatters": "An empty room can become drift or practice. The drawing exercise tames solitude by giving attention a chosen shape."
@@ -2342,13 +1929,6 @@
             "dinner",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a father changing dinner from logistics to shared challenge",
-            "audience": "parents whose family time is present but scattered",
-            "stakes": "everyone is in the room but attention is split into separate screens",
-            "format": "before_after",
-            "requiredBeat": "show the old dinner of reminders beside the night he asks each person to teach one skill from the day and keeps phones in the hallway"
-          },
           "scenario": "Olivier noticed the family was together only on paper. Before, dinner meant soup bowls, screen glow, and reminders about permission slips while everyone waited to leave the table. Tonight, the phones stay in a hallway basket, and each person has to teach one small skill from the day. The food is the same. The room has a shared rule now.",
           "whatToDo": "Keep the rule small: phones out of reach, one taught skill, one real question from everyone else.",
           "whyItMatters": "Family time needs more than bodies in chairs. A shared rule gives attention one object, so contact becomes participation."
@@ -2361,13 +1941,6 @@
             "repair",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a graduate student choosing a friendship ritual over vague catching up",
-            "audience": "students and young professionals whose friendships thin under busyness",
-            "stakes": "the friendship may become nothing but postponed plans",
-            "format": "dialogue",
-            "requiredBeat": "her friend says they should catch up soon, and Kasia proposes a weekly repair cafe shift with a real task between them"
-          },
           "scenario": "\"We should catch up soon,\" Nina says from the doorway. Kasia hears the polite future tense and sees the broken toaster on the repair cafe table behind her. Coffee would be easier to cancel, especially during exam month. A weekly shift would put a task between them. Kasia chooses the sign-up sheet and asks if Tuesday nights can become their actual plan.",
           "whatToDo": "Turn vague catching up into a recurring shared task. Put the friendship inside a rhythm that gives both people something to do together.",
           "whyItMatters": "Friendship thins when contact stays abstract. A repair shift creates shared attention, repeated presence, and feedback from the work."
@@ -2380,13 +1953,6 @@
             "community",
             "work"
           ],
-          "planSpec": {
-            "domain": "a widower testing whether a community garden gives grief a container",
-            "audience": "older adults facing loneliness after loss",
-            "stakes": "contact alone may feel exposing unless it has shared work",
-            "format": "predict_reveal",
-            "requiredBeat": "the garden gate sticks, and Matthew predicts whether working a plot beside others will feel intrusive or quietly ordered"
-          },
           "scenario": "The community garden gate sticks after rain while Matthew holds a seed packet and listens to voices near the shared hose. He predicts plain conversation will feel too exposed, and the thought of being asked how he is makes his hand tighten. The plot marker gives him another way in. He can stand at the fence and leave, or step inside to work the soil beside others without having to explain the whole grief.",
           "whatToDo": "Enter through the task, not the performance of being social. Work the plot, ask one practical question, and let contact build around shared care.",
           "whyItMatters": "Shared work can hold loneliness more gently than unstructured talk. The garden gives attention a role before emotion has to speak."
@@ -2399,13 +1965,6 @@
             "retreat",
             "trust"
           ],
-          "planSpec": {
-            "domain": "a project lead rescuing a team retreat from forced bonding",
-            "audience": "leaders who confuse social flow with icebreakers",
-            "stakes": "the retreat could deepen trust or create awkward performance",
-            "format": "postmortem",
-            "requiredBeat": "she reviews why the icebreaker failed, then replaces it with a shared build task where roles, goals, and feedback are visible"
-          },
           "scenario": "The unused name tags curl at the corners while Giulia reviews the failed retreat agenda. The icebreaker produced jokes, then silence, and the room kept rewarding whoever performed confidence fastest. Nobody had a shared problem to solve. She replaces the next round with a prototype kit, three roles, one build target, and a feedback wall. The team will talk because the work finally requires it.",
           "whatToDo": "Drop the forced bonding exercise. Give the group a shared build task with roles, a goal, and visible feedback.",
           "whyItMatters": "Social flow grows around shared attention. Icebreakers demand performance, while a real task lets trust form through coordinated action."
@@ -2418,13 +1977,6 @@
             "care work",
             "rest"
           ],
-          "planSpec": {
-            "domain": "a nurse protecting ten minutes of solitude between shifts",
-            "audience": "care workers whose alone time is invaded by rumination",
-            "stakes": "without structure the break becomes replaying every patient worry",
-            "format": "reflection",
-            "requiredBeat": "ask what solitude needs so it does not turn into rumination, then show her writing three breath-counts and one handoff note"
-          },
           "scenario": "What does a quiet room need before it becomes rest? Hadiya sits in the break-room chair with a paper cup cooling beside her and the medication cart still vivid in her mind. The last patient worry is already replaying. She writes one handoff note, counts three breaths with both feet on the floor, and names the next action before the room can become another ward in her head.",
           "whatToDo": "Write the handoff note first, then use three counted breaths and one next action to give the quiet room a boundary.",
           "whyItMatters": "Solitude without form can become rumination. A short ritual gives attention a safe path back from the shift."
@@ -2443,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits person feels worse after an empty Sunday alone because the morning became: Solitude needs a task or rhythm before it becomes ordered; purpose governs. B misses person feels worse after an empty Sunday alone because the morning became: Solitude is risky here because the person's recent alone time has produced rumination cycles that worsen mood for the week; pep no feedback. C misses person feels worse after an empty Sunday alone because the morning became: Live with someone so the day has outside structure; off lever.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2456,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits family is in the same room every night, but everyone is on: Create one shared dinner rule that requires participation; practice answers. A misses family is in the same room every night, but everyone is on: Discuss why dinner feels scattered before choosing a shared rule; misses loop. C misses family is in the same room every night, but everyone is on: Make the room warmer so dinner feels less strained; room not loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2469,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits Two friends keep saying they should catch up soon and never do,: Create a recurring shared task with a specific time; order visible. A misses Two friends keep saying they should catch up soon and never do,: Wait for both schedules to ease before adding another commitment; pause no structure. B misses Two friends keep saying they should catch up soon and never do,: Send longer messages about missing each other; scrolling substitute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2482,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits new volunteer feels awkward at a community garden after a loss and: Start with a practical garden task beside others; skill targeted. B misses new volunteer feels awkward at a community garden after a loss and: Tell one trusted person the whole story before joining the task; not hinge. C misses new volunteer feels awkward at a community garden after a loss and: Skip the garden until grief feels safer; later no loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2495,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits team retreat uses awkward icebreakers, and people shut down because the activity: Give the team a real shared challenge with roles, feedback, and a result they can judge together; testable loop. A misses team retreat uses awkward icebreakers, and people shut down because the activity: Use clearer icebreakers so roles feel less awkward; incomplete repair. B misses team retreat uses awkward icebreakers, and people shut down because the activity: Cancel the social block and return to project work, because forced bonding may be weakening trust before the group has earned it; speed not skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2508,8 +2055,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits lonely student joins three group chats but still feels alone because every: Contact can stay shallow if attention has no shared object or rhythm; bounded choice. A misses lonely student joins three group chats but still feels alone because every: Private effort still matters because loneliness is not solved by contact alone or by mere activity; willpower weak. C misses lonely student joins three group chats but still feels alone because every: More chats may increase activity; surface move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2521,8 +2067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits quiet break makes a nurse more anxious because she replays every patient: Quiet alone is not the same as ordered solitude; drift reduced. A misses quiet break makes a nurse more anxious because she replays every patient: Breaks may need a ritual that gives attention a gentle next step; skips test. B misses quiet break makes a nurse more anxious because she replays every patient: Rumination can enter quiet time; weak fit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2534,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits community group has many members but little participation because people receive announcements: The group needs roles, rituals, or tasks that let people take part; participation concrete. A misses community group has many members but little participation because people receive announcements: Membership numbers can signal interest while still leaving participation too passive; side issue. C misses community group has many members but little participation because people receive announcements: Send more announcements about the group; collection trap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2547,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits Two plans address a lonely Saturday after a move to a new: Plan B, because shared work gives contact rhythm and feedback; constraint respected. B misses Two plans address a lonely Saturday after a move to a new: Plan A, because random texts can soothe loneliness; soft drift. C misses Two plans address a lonely Saturday after a move to a new: Blend random texts with the repair shift so the day has both contact and a task; vague comfort.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2585,7 +2128,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Shape Solitude And Contact",
         "coreSkill": "The core skill is giving attention a form whether you are alone or with others. Choose a task, ritual, or shared rule before the hour starts drifting.",
         "ifThenPlans": [
           {
@@ -2610,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Solitude has to be tamed because an empty room does not automatically become a quiet mind.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the solitude mechanism vivid without turning it into loneliness advice."
+          "text": "Solitude has to be tamed because an empty room does not automatically become a quiet mind."
         },
         {
-          "text": "The room changes when attention has a common object.",
-          "location": "breakdown.deepRead",
-          "why": "It captures social flow as shared attention rather than proximity."
+          "text": "The room changes when attention has a common object."
         },
         {
-          "text": "Social flow is not charm. Solitude is not escape.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the social lesson away from personality performance."
+          "text": "Social flow is not charm. Solitude is not escape."
         }
       ]
     },
@@ -2649,13 +2185,6 @@
             "disruption",
             "rebuild"
           ],
-          "planSpec": {
-            "domain": "a small-theater director after the lead actor breaks an ankle",
-            "audience": "creative teams hit by sudden disruption",
-            "stakes": "opening night is close and panic can scatter the cast",
-            "format": "decision_point",
-            "requiredBeat": "the empty rehearsal mark is still taped on the floor, and Luke chooses whether to cancel practice or rebuild blocking around seated delivery"
-          },
           "scenario": "The center-stage tape mark has no actor on it when Luke walks into rehearsal. The lead's ankle is broken, opening night is nine days away, and the revised blocking page is blank. The cast watches him look at the empty mark while the stage manager holds a pencil over the schedule. He can cancel into panic, or he can pull a folding chair to center stage and test one seated scene before the room loses itself.",
           "whatToDo": "Test one revised scene around the chair before deciding anything larger. Give the cast a visible ordering move.",
           "whyItMatters": "The injury is real, but panic has no feedback. One rebuilt scene turns attention from total loss toward a pattern the group can work with."
@@ -2668,13 +2197,6 @@
             "loss",
             "triage"
           ],
-          "planSpec": {
-            "domain": "a cafe owner after a freezer failure ruins inventory",
-            "audience": "small business owners under material loss",
-            "stakes": "cash is tight and staff are waiting for a lead",
-            "format": "postmortem",
-            "requiredBeat": "she reviews the morning she yelled at the ruined stock, then the moment she sorted salvage, refunds, and a temporary menu into three visible piles"
-          },
           "scenario": "Meltwater runs under the freezer door as Anya remembers the first ten minutes: yelling, ruined stock, staff standing silent, and the morning baker waiting with a clipboard. The repair begins when she drags out three crates and labels them salvage, refund, temporary menu. The loss is still expensive, and the invoice will still hurt. The room changes because everyone can see the next category.",
           "whatToDo": "Sort the damage into three visible piles, then assign one action to each pile before discussing blame.",
           "whyItMatters": "The crates do not make the loss good. They keep attention from dissolving into panic and turn damage into separate decisions."
@@ -2687,13 +2209,6 @@
             "setback",
             "rehab"
           ],
-          "planSpec": {
-            "domain": "a university rower rehabbing after being cut from the boat",
-            "audience": "athletes whose identity breaks around a setback",
-            "stakes": "he can either obsess over the roster or turn rehab into measurable control",
-            "format": "dialogue",
-            "requiredBeat": "his coach asks what part of the week still belongs to him, and Chris chooses three rehab markers instead of replaying selection day"
-          },
           "scenario": "\"What still belongs to you this week?\" the coach asks while Chris folds the selection email into his gym bag. The resistance band and rehab chart sit on the bench beside a water bottle he has not opened. He wants to argue about the roster again because arguing keeps the old structure alive. Instead, the question narrows the week to three markers he can complete before Friday.",
           "whatToDo": "Write the three rehab markers and schedule them before reopening the selection email.",
           "whyItMatters": "The roster is outside his control now. The markers give attention a place to work without pretending the cut did not hurt."
@@ -2706,13 +2221,6 @@
             "stress",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a public defender after a brutal loss in court",
-            "audience": "professionals carrying moral stress",
-            "stakes": "the next client needs her attention before despair takes the whole day",
-            "format": "reflection",
-            "requiredBeat": "you sit with the file closed and must decide whether grief consumes the afternoon or becomes one corrected intake question for tomorrow"
-          },
           "scenario": "You close the file and the courthouse hallway keeps moving while Manon sits on the bench with the intake form under her thumb. The loss is not tidy, and the fluorescent clock seems indecently calm. The next client still arrives tomorrow. She can let the afternoon become pure replay, or she can write one question that would have surfaced the missing fact earlier.",
           "whatToDo": "Let grief have its place, then write the corrected intake question before leaving the courthouse.",
           "whyItMatters": "The question does not redeem the loss. It gives attention one repairable edge so the next case does not inherit only despair."
@@ -2725,13 +2233,6 @@
             "storm",
             "triage"
           ],
-          "planSpec": {
-            "domain": "a farmer responding to hail damage",
-            "audience": "people facing uncontrollable physical damage",
-            "stakes": "the crop loss is real and cannot be reframed away",
-            "format": "predict_reveal",
-            "requiredBeat": "ask what order is possible after hail, then show Jonas marking three fields by action instead of staring at every torn leaf"
-          },
           "scenario": "What can order mean when the field is already hit? Jonas stands among hail dents with a field map folded against his jacket and torn leaves stuck to his boots. He predicts another hour of staring will make the damage feel larger. Instead, he marks three actions: insurance photos, north fence repair, greenhouse starts. The crop is still hurt. The next hour is no longer shapeless.",
           "whatToDo": "Mark the map by next action, not by emotion. Photograph, repair, and check starts in that order.",
           "whyItMatters": "The map cannot reverse the storm. It keeps attention from being swallowed by total damage and creates a sequence for response."
@@ -2744,13 +2245,6 @@
             "simulation",
             "shame"
           ],
-          "planSpec": {
-            "domain": "a hospital resident after a failed procedure simulation",
-            "audience": "trainees under shame and stress",
-            "stakes": "if shame owns the night, the same mistake may repeat",
-            "format": "before_after",
-            "requiredBeat": "Layla first hides in the stairwell, then writes the one failed step on a practice card and repeats it until feedback changes"
-          },
           "scenario": "Layla spent six minutes in the stairwell before she could name the error. Before, the failed simulation tray meant one sentence in her head: I am not ready. After, the practice card holds one missed step, one repeat sequence, and the supply label she skipped under pressure. She runs the step again until the tray feedback changes from panic to correction.",
           "whatToDo": "Write the missed step as a procedure, not an identity. Repeat it until the practice tray gives different feedback.",
           "whyItMatters": "Shame turns a mistake into a whole self. A practice card turns it back into one correctable move."
@@ -2769,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits cafe owner loses inventory in a freezer failure before opening, with staff: Sort the damage into visible action categories; pressure organized. B misses cafe owner loses inventory in a freezer failure before opening, with staff: Name what was actually lost before sorting the work into tasks; no answerback. C misses cafe owner loses inventory in a freezer failure before opening, with staff: Tell staff which problem to contain; wrong handle.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2782,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits theater director loses the lead actor before opening night, and the empty: Test one revised scene around the new constraint; contact tasked. A misses theater director loses the lead actor before opening night, and the empty: Name the panic before rehearsing so the cast feels heard; thin repair. C misses theater director loses the lead actor before opening night, and the empty: Call the injury a useful challenge; missed target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2795,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits athlete is cut from a team and keeps rereading the roster, replaying: Name three training markers still under his control; meaning selects. A misses athlete is cut from a team and keeps rereading the roster, replaying: Ask for one clear reason behind the decision; unresolved cue. B misses athlete is cut from a team and keeps rereading the roster, replaying: Set the roster aside for now because dwelling on the disappointment has previously extended its emotional duration; resource detour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2808,8 +2299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits lawyer loses a painful case and has another client tomorrow, but the: Write one corrected intake question after making room for grief; sensation trained. B misses lawyer loses a painful case and has another client tomorrow, but the: Frame the loss as a lesson for tomorrow before choosing a specific correction; partial fit. C misses lawyer loses a painful case and has another client tomorrow, but the: Review the whole case late into the night; loose link.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2821,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits farmer faces hail damage across several fields, and staring at torn leaves: Mark the field map by the next action each area needs; progress checkable. A misses farmer faces hail damage across several fields, and staring at torn leaves: Walk every row so the loss feels real; misread case. B misses farmer faces hail damage across several fields, and staring at torn leaves: Wait for the first emotional wave to pass before naming any field; avoidance intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2834,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits friend says a painful loss must be good because it might teach: Because it praises the harm instead of the ordering response; next move clear. B misses friend says a painful loss must be good because it might teach: Because stress makes learning slower; poor match. C misses friend says a painful loss must be good because it might teach: Hold practical action until she knows which obligations she can honor; timing dodge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2847,8 +2335,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits trainee treats one failed procedure simulation as proof she is unfit, even: She should turn the failed step into a repeatable correction; challenge calibrated. A misses trainee treats one failed procedure simulation as proof she is unfit, even: Pause simulation to identify the failed step; shallow fix. C misses trainee treats one failed procedure simulation as proof she is unfit, even: Use shame as a signal to practice harder before trying the tray again; pressure no feedback.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2860,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits a team under pressure wants a coping lens that neither denies the: It shows how pressure can sometimes be reorganized into a new pattern without calling the pressure good; experience ordered. A misses a team under pressure wants a coping lens that neither denies the: Name the disorder first so reorganization does not minimize what broke; missing loop. C misses a team under pressure wants a coping lens that neither denies the: Frame the crisis as a growth test, because the team may need a demanding story to mobilize effort under pressure; enthusiasm detour.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2873,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits Two responses follow a setback after a project breaks in public: Plan A, because it creates order without making false claims about the loss; aim clarified. A misses Two responses follow a setback after a project breaks in public: Plan B, because a reason can comfort the team; thin involvement. B misses Two responses follow a setback after a project breaks in public: Plan A plus a later debrief, because reflection may help the lesson hold after the urgent repair; deferred entry.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2911,7 +2396,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Order The Next Move",
         "coreSkill": "The core skill is separating harm from response. Name what cannot be changed, then build a small structure around what attention can still order next.",
         "ifThenPlans": [
           {
@@ -2936,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "Chaos wants to write the whole day at once.",
-          "location": "breakdown.fastRead",
-          "why": "It personifies the attentional danger of disorder without romanticizing it."
+          "text": "Chaos wants to write the whole day at once."
         },
         {
-          "text": "Do not praise the break. Work the next pattern.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the moral boundary while giving a practical command."
+          "text": "Do not praise the break. Work the next pattern."
         },
         {
-          "text": "Small is not shallow when the alternative is letting chaos design the whole mind.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the chapter's small-action emphasis feel serious rather than timid."
+          "text": "Small is not shallow when the alternative is letting chaos design the whole mind."
         }
       ]
     },
@@ -2975,13 +2453,6 @@
             "purpose",
             "choice"
           ],
-          "planSpec": {
-            "domain": "a climate data analyst deciding whether scattered projects share a theme",
-            "audience": "mission-driven professionals with too many worthy options",
-            "stakes": "without a unifying purpose, every urgent request looks equally central",
-            "format": "decision_point",
-            "requiredBeat": "he places three project briefs side by side and chooses the one criterion that connects his skill to the public problem he actually serves"
-          },
           "scenario": "At 7:51 a.m., Julien lays three project briefs across the desk beside a flood map. Every request is worthy and urgent, and all three senders used the word critical. One improves a dashboard, one supports a grant, and one changes how coastal towns read risk. His cursor hovers over the reply window while he chooses one criterion: which project best connects his modeling skill to public decisions before storm season?",
           "whatToDo": "Use the public-decision criterion to choose the project, then decline or defer the others in language that protects the theme.",
           "whyItMatters": "Meaning requires a filter for good options. The criterion turns scattered urgency into a direction his skill can serve."
@@ -2994,13 +2465,6 @@
             "integration",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "a mid-career nurse connecting small practices into a life direction",
-            "audience": "care workers who see many meaningful moments but little harmony",
-            "stakes": "burnout rises when each act feels isolated",
-            "format": "before_after",
-            "requiredBeat": "show the years of disconnected competence beside the day she names patient dignity as the thread linking charting, handoffs, and training juniors"
-          },
           "scenario": "Astrid had done meaningful work for years without a sentence to hold it. Before, charting, handoffs, and training juniors felt like separate competencies stacked inside a tired week. In the quiet supply room, with gloves boxes behind her and the next admission due, she writes the phrase patient dignity on a training note. The next handoff, the next chart, and the next junior now point in the same direction.",
           "whatToDo": "Name the thread that links the small practices, then use it to judge the next handoff, chart, and teaching moment.",
           "whyItMatters": "Meaning grows when separate skills integrate. The phrase turns isolated good work into a purpose that can guide repeated choices."
@@ -3013,13 +2477,6 @@
             "tradeoff",
             "resolve"
           ],
-          "planSpec": {
-            "domain": "a musician choosing between gigs and teaching",
-            "audience": "artists balancing income, craft, and contribution",
-            "stakes": "the choice affects rent and identity, not just taste",
-            "format": "dialogue",
-            "requiredBeat": "his bandmate asks what he is building, and Tomas tests each option against the theme of making difficult music teachable"
-          },
           "scenario": "\"What are you actually building?\" his bandmate asks while Tomas looks from the gig calendar to the lesson notebook and the rent envelope. The late club set pays more this month, and the teaching series will require two unpaid prep nights. The teaching series fits the theme he keeps returning to: making difficult music teachable. He has to answer before the venue needs confirmation.",
           "whatToDo": "Test each option against the theme and the rent constraint. Choose the commitment that keeps the theme alive without ignoring the bill.",
           "whyItMatters": "A life theme is useful only when it guides trade-offs. It does not erase money, but it keeps money from being the only voice."
@@ -3032,13 +2489,6 @@
             "family",
             "theme"
           ],
-          "planSpec": {
-            "domain": "a parent returning to school after years of fragmented goals",
-            "audience": "adults rebuilding purpose under family constraints",
-            "stakes": "time is scarce and another abandoned plan would cost trust at home",
-            "format": "reflection",
-            "requiredBeat": "you look at the course catalog and must decide which class belongs to the same life theme as the bedtime story and the night shift"
-          },
           "scenario": "You have twenty minutes with the course catalog before pickup while Marta's phone alarm counts down. The bedtime story and the night shift are both waiting, and the kitchen table still has yesterday's forms on it. Another abandoned class would cost trust at home. She looks for the course that belongs to the same theme as both duties: making care more intelligent, not adding a separate life to the one she already has.",
           "whatToDo": "Choose the course that strengthens the existing theme, then write the family and work constraint beside it before enrolling.",
           "whyItMatters": "Meaning integrates instead of piling on. The right course connects her roles, while the wrong one becomes another fragment."
@@ -3051,13 +2501,6 @@
             "prestige",
             "service"
           ],
-          "planSpec": {
-            "domain": "a civil engineer choosing a boring maintenance specialty",
-            "audience": "professionals tempted by prestige over coherent contribution",
-            "stakes": "the glamorous project may scatter his values while the quiet one fits",
-            "format": "predict_reveal",
-            "requiredBeat": "the maintenance tunnel hums under the street, and Niklas predicts which path will still make sense after ten years of choices"
-          },
           "scenario": "The maintenance tunnel hums beneath a street nobody notices while Niklas holds an inspection lamp and a bridge file. The glamorous design role would sound better at dinner and photograph better on the company page. The maintenance specialty fits the ten-year note in his pocket: make public structures last. He predicts which path will still make sense after a decade of ordinary decisions.",
           "whatToDo": "Judge the choice by the ten-year theme, not the dinner-table story. Pick the role that keeps his work coherent across many projects.",
           "whyItMatters": "Prestige can scatter attention toward display. The maintenance path gives his skill a durable direction and a reason to persist."
@@ -3070,13 +2513,6 @@
             "calendar",
             "resolve"
           ],
-          "planSpec": {
-            "domain": "a neighborhood organizer turning events into a durable community theme",
-            "audience": "civic volunteers at risk of scattered good deeds",
-            "stakes": "without resolve the group will burn out after three visible wins",
-            "format": "postmortem",
-            "requiredBeat": "ask why three successful events still felt scattered, then show Adaeze rewriting the calendar around one purpose and three recurring commitments"
-          },
           "scenario": "Why can three good events still feel like no direction? Adaeze studies the community calendar after the folding tables are stacked and the volunteer list has grown. The clean-up, tenant clinic, and tool drive all worked, and each earned praise in the group chat. Still, the season feels scattered. She rewrites the calendar around one purpose: make the block easier to care for together.",
           "whatToDo": "Name the purpose, then turn one-off wins into recurring commitments that serve it.",
           "whyItMatters": "Good deeds can still fragment a group. A community theme gives volunteers resolve because each event belongs to a larger pattern."
@@ -3095,8 +2531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits person has many activities that absorb him, but they all point in: A life theme that integrates the activities; loop visible. A misses person has many activities that absorb him, but they all point in: More hours for absorbing hobbies; wrong lever. C misses person has many activities that absorb him, but they all point in: A tighter weekly schedule that keeps the activities from colliding; off lever.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3108,8 +2543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits mission-driven analyst faces three worthy projects before storm season, and every request: A criterion connecting his skill to the purpose he serves before the week fills; standard named. A misses mission-driven analyst faces three worthy projects before storm season, and every request: Choose the most recent request, because its timing may reflect the freshest public need before storm season; misses loop. B misses mission-driven analyst faces three worthy projects before storm season, and every request: Choose the easiest task this week to protect capacity for later work; stalling move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3121,8 +2555,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits nurse sees charting, handoffs, and mentoring as separate burdens, even though each: Name the thread that links them, then judge each practice by how it serves patient care; choice integrated. B misses nurse sees charting, handoffs, and mentoring as separate burdens, even though each: Drop the smaller tasks because the visible drama of care seems to matter more than hidden continuity; not hinge. C misses nurse sees charting, handoffs, and mentoring as separate burdens, even though each: Do the tasks faster so the shift feels lighter; strain no standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3134,8 +2567,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits musician must choose between a better-paying gig and a teaching series that: Test both options against the theme and the real constraint; repair bounded. A misses musician must choose between a better-paying gig and a teaching series that: Let the clearer purpose outweigh rent for now, then solve the money gap later; postponed practice. B misses musician must choose between a better-paying gig and a teaching series that: Take the better-paying gig first; incomplete repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3147,8 +2579,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits parent returning to school fears adding one more fragment to life because: The one that strengthens the existing pattern of care and work; role clarified. B misses parent returning to school fears adding one more fragment to life because: The most impressive title, because it may make the return feel worth the strain; symbol over substance. C misses parent returning to school fears adding one more fragment to life because: The least disruptive course; surface move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3160,8 +2591,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits person has flow in music, work, sport, and volunteering, but each practice: Because separate absorbing moments may not serve a shared purpose; effort directed. A misses person has flow in music, work, sport, and volunteering, but each practice: Because flow should support a visible career path; skips test. C misses person has flow in music, work, sport, and volunteering, but each practice: Because meaning requires fewer enjoyable activities and a calmer identity; confidence dodge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3173,8 +2603,7 @@
             ],
             "correctIndex": 2,
             "explanation": "C fits professional chooses the prestigious project every time, then feels incoherent because the: His choices may be serving display instead of a life theme; task entered. A misses professional chooses the prestigious project every time, then feels incoherent because the: Refuse the prestige offer because it carries structural commitments that would crowd out the deeper work he has been doing; status not experience. B misses professional chooses the prestigious project every time, then feels incoherent because the: He needs a larger title; signal not order.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3186,8 +2615,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A fits a community group runs three successful events but feels scattered because every: A purpose that turns one-off events into recurring commitments; pattern formed. B misses a community group runs three successful events but feels scattered because every: Run more events for different audiences; weak fit. C misses a community group runs three successful events but feels scattered because every: Grow the volunteer list first so future events have enough people and energy; side issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3199,8 +2627,7 @@
             ],
             "correctIndex": 1,
             "explanation": "B fits Two plans address life direction after a tempting offer arrives: Plan B, because meaning constrains choices instead of decorating them; focus anchored. A misses Two plans address life direction after a tempting offer arrives: Plan A, because public wording can make the theme easier to remember when pressure rises; reward no loop. C misses Two plans address life direction after a tempting offer arrives: Use the mission statement after one trade-off; no answerback.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3237,7 +2664,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Integrate The Good Hours",
         "coreSkill": "The core skill is connecting absorbing activities into a coherent direction. Name the theme they serve, then let that theme guide trade-offs among good options.",
         "ifThenPlans": [
           {
@@ -3262,19 +2688,13 @@
       },
       "memorableLines": [
         {
-          "text": "Flow episodes are not enough by themselves.",
-          "location": "breakdown.fastRead",
-          "why": "It states the final synthesis sharply and prevents mere flow collection."
+          "text": "Flow episodes are not enough by themselves."
         },
         {
-          "text": "Meaning is not a slogan on top of activity.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps purpose grounded in integrated action instead of branding."
+          "text": "Meaning is not a slogan on top of activity."
         },
         {
-          "text": "A life theme does not remove trade-offs.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the chapter practical by showing meaning as decision guidance."
+          "text": "A life theme does not remove trade-offs."
         }
       ]
     }

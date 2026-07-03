@@ -46,13 +46,6 @@
             "bakery",
             "growth"
           ],
-          "planSpec": {
-            "domain": "artisan bakery deciding between wholesale accounts and a direct-to-consumer subscription model",
-            "audience": "a small-business owner who has written down three growth goals but cannot decide which way to invest",
-            "stakes": "investing in the wrong channel depletes cash before the busy season and leaves both paths half-built",
-            "format": "decision_point",
-            "requiredBeat": "the owner lists the three growth goals and realizes that each goal requires a different capability and customer relationship: the three cannot be pursued at once without none of them cohering"
-          },
           "scenario": "'Can we add a fourth tier?' the line cook calls at 7:50 a.m. Claire is at the bakery counter with a wholesale proposal, flour still on her apron. Three goals are on the whiteboard: more wholesale accounts, a subscription box, a second location by spring. Wholesale needs a delivery van and a sales rep. The box needs a packing station. The location needs a manager and six months of cash. None of the three overlap. She must decide before the flour delivery at nine which goal gets this month's reinvestment.",
           "whatToDo": "Name which of the three goals fits the bakery's current capability (delivery, packaging, or a second kitchen) and fund only that one. The other two go on hold until the cascade from the first choice is stable.",
           "whyItMatters": "Three growth goals each requiring different customers, capabilities, and capital are three separate strategies. Pursuing all three simultaneously means none of them gets enough resources to cohere."
@@ -65,13 +58,6 @@
             "nonprofit",
             "portfolio"
           ],
-          "planSpec": {
-            "domain": "a nonprofit choosing between expanding grant-funded program breadth and deepening a single program's outcomes",
-            "audience": "an executive director facing a board that wants growth and funders who want depth",
-            "stakes": "if the org tries to grow program count and deepen impact simultaneously, neither goal will be achieved and the largest funder may walk",
-            "format": "vignette",
-            "requiredBeat": "the director sees that every program added in the last two years was chased because of a grant opportunity, not because it fit the org's stated aspiration; the wish list grew while the actual strategy dissolved"
-          },
           "scenario": "It took Thomas three budget cycles to notice the pattern. The nonprofit had added six programs in four years, each one triggered by a grant opportunity, not a strategic choice. The list had grown from three programs to nine, each serving a different population under a different theory of change. He has an annual impact report due in a week and must decide whether to present all nine programs as a coherent portfolio or acknowledge, for the first time, that the cascade has dissolved into funder management.",
           "whatToDo": "Before writing the impact report, trace each program back to the original aspiration. Any program whose origin was a grant opportunity rather than the stated mission signals that the cascade needs to be rebuilt.",
           "whyItMatters": "A portfolio shaped by incoming grants has replaced the strategic cascade with a set of funder priorities. The impact report cannot fix that, but naming it honestly is the first step toward building a coherent field choice."
@@ -84,13 +70,6 @@
             "consulting",
             "pipeline"
           ],
-          "planSpec": {
-            "domain": "a management consulting practice choosing which client industries to serve",
-            "audience": "a partner-level consultant who wants to grow revenue but has taken on projects in six different sectors",
-            "stakes": "the practice cannot build a repeatable capability in any sector if it keeps dispersing into new ones",
-            "format": "scene",
-            "requiredBeat": "the consultant lays out a pipeline of six potential new engagements in six different industries and recognizes that every proposal requires credentials the practice does not have. The cascade question forces a choice about which field to own"
-          },
           "scenario": "At 9:14 a.m. Monday, Etienne opens a shared drive with six new proposals in six different sectors. Each one was won on a different partner's personal relationship with a new industry client. He must decide before the two o'clock pipeline review which sectors to pursue and which to cut. The practice has never lost a proposal. It has also never built repeatable capability in any single sector. Every engagement is a restart from scratch.",
           "whatToDo": "Pick the one or two sectors where the practice's existing delivery record creates a real edge over generalists. Decline proposals that require building credentials from zero until the first sector choice is stable.",
           "whyItMatters": "Six sectors means six fresh starts. Revenue grows but capability stays flat. Without a coherent field choice, the practice cannot build the pattern-recognition that makes each next engagement faster to win and stronger to deliver."
@@ -103,13 +82,6 @@
             "radio",
             "format"
           ],
-          "planSpec": {
-            "domain": "a community radio station choosing between a hyper-local news format and a broad music and talk format",
-            "audience": "a board and programming director deciding where the station's scarce production capacity should go",
-            "stakes": "the station's current format serves no audience especially well, and digital competitors have already taken the casual listener",
-            "format": "predict_reveal",
-            "requiredBeat": "the programming director asks the board which listeners they are actually trying to serve: the question exposes that the current format was inherited, not chosen, and that no capabilities support either potential direction"
-          },
           "scenario": "Which listener is the station trying to win: the one who left for a podcast three years ago or the one who never found the station? Luca brings the question to the programming committee predicting quick consensus. After sixty minutes of debate, no one agrees. He realizes the current split format is not a programming choice. It is the documented result of a strategic decision that was never made.",
           "whatToDo": "Name which listener type the station is competing for in the next eighteen months. Every scheduling, staffing, and production decision should follow from that one choice, not be made independently of it.",
           "whyItMatters": "A format serving two incompatible audiences with one production budget serves neither well. Without naming which listener the station is competing to win, every quarterly format review restarts the same argument from zero."
@@ -122,13 +94,6 @@
             "academic",
             "hiring"
           ],
-          "planSpec": {
-            "domain": "an academic department deciding whether to compete for graduate student rankings or deepen undergraduate teaching quality",
-            "audience": "a department chair who has received budget for a new hire and must decide what kind of position to fill",
-            "stakes": "the hire will either reinforce a research identity or a teaching identity; the two paths require different capabilities and different measures of success",
-            "format": "before_after",
-            "requiredBeat": "the chair realizes the job description trying to attract both a researcher and a teacher is a symptom of a missing strategic choice, not a creative solution to it"
-          },
           "scenario": "The department conference room at 4:15 p.m. on a Tuesday in March: one hire budget, two printed job descriptions, twelve criteria total. Before: Hadiya submits the description with six research-aligned criteria and six teaching-aligned criteria, hoping to attract a candidate who can do both. After: the shortlist produces candidates mediocre in both directions, and she sees that the description was a symptom of a strategic choice the department had never made.",
           "whatToDo": "Choose which aspiration drives the hire: graduate ranking or undergraduate quality: rewrite the description from that choice alone. Criteria pointing two directions attract candidates who fit neither.",
           "whyItMatters": "A job description split between two aspirations signals the underlying strategic choice was never made. The resulting hire partially serves both directions and fully serves neither."
@@ -141,13 +106,6 @@
             "retail",
             "inventory"
           ],
-          "planSpec": {
-            "domain": "a regional hardware retailer deciding whether to compete on product selection breadth or on contractor-service relationships",
-            "audience": "a second-generation owner whose store has been caught between a big-box home-improvement chain and a specialty supplier",
-            "stakes": "the store cannot match the big-box on price and selection and cannot match the specialist on depth; the current position wins on nothing",
-            "format": "postmortem",
-            "requiredBeat": "the owner traces the last three years of inventory decisions and realizes each one was reactive to a competitor move, not advancing a coherent identity for any specific customer"
-          },
           "scenario": "Twelve pallets of slow-moving inventory fill the storeroom, each bought in the last three years to match a competitor's promotion. James has run the hardware store for eleven years. He traces the inventory purchase by purchase and finds that every decision was reactive: matching a competitor's move and not advancing a coherent position for any customer type. The store stocked for everyone and has loyalty from no one.",
           "whatToDo": "Name the one customer type the store's location, staff knowledge, and relationship capacity could serve better than any competitor in the area. Stop carrying inventory optimized for the other types.",
           "whyItMatters": "Stocking for every customer means competing against the chain's selection and the specialist's depth simultaneously. That position wins nothing. Coherent field choice means the inventory, staff, and service all point at the same customer."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A strategy requires five reinforcing choices. A growth target is an aspiration, a plan is an execution schedule, and an initiatives list is a set of priorities. None becomes strategy until all five choices cohere around a specific field, advantage, capability system, and management logic.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hotel's original positioning as a couples retreat defines one customer. Each addition targeting a different customer type breaks the cascade. Testing each addition against the original aspiration before committing keeps the five choices coherent and prevents the offer from drifting toward everyone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cutting by revenue is execution triage, not strategy. The coherence test asks whether removing any choice would weaken the others. A list where each priority can be swapped without affecting the rest has no shared logic and is not yet a strategy, just a collection of partners' preferences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Market size and seat revenue are financial metrics, not strategic ones. The strategic question is whether the feature reinforces the chosen customer and advantage. Building for two incompatible customer types prevents the capability system from pointing in one direction and weakens both simultaneously.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Grant-driven program addition substitutes funder agendas for the organization's own cascade. Growth without a coherent aspiration and field choice produces a portfolio where programs compete for staff and resources instead of building on each other toward a single winning position.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Partner dependency is a talent risk, not the strategic failure here. Without a chosen field, every engagement is a restart in unfamiliar territory. A practice that builds no sector depth cannot develop the pattern-recognition, case examples, or referral network that would make the next engagement there faster, stronger, or cheaper.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Independent priorities with no mutual dependence form a list. A real cascade means each choice constrains and enables the others. Five priorities that can each be swapped without disturbing the rest give the organization no resolution principle when trade-offs appear; every conflict is litigated from scratch.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hybrid hire feels like a creative solution but avoids the cascade decision. Choosing between graduate ranking and undergraduate quality requires commitment because the capabilities, measures, and downstream resource allocations for each direction differ. A hire serving both ends reinforces neither, and the cascade remains unresolved after the hire.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Revenue projection tests financial attractiveness, not strategic fit. The three goals are structurally different businesses in terms of customer, capability, and channel. Funding the one that fits the current activity system creates a coherent foundation. Spreading across all three produces partial infrastructure for each and strategic advantage in none.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -332,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "She was not planning badly. She was planning well while skipping strategy.",
-          "location": "breakdown.fastRead",
-          "why": "The two-beat sentence names the trap precisely: good process, wrong level of thinking."
+          "text": "She was not planning badly. She was planning well while skipping strategy."
         },
         {
-          "text": "A strategy is not what you say you are doing. A strategy is what the coherence of your choices reveals you are actually committed to.",
-          "location": "breakdown.fullRead",
-          "why": "The pivot from declaration to evidence surfaces the gap between stated aspiration and actual portfolio."
+          "text": "A strategy is not what you say you are doing. A strategy is what the coherence of your choices reveals you are actually committed to."
         },
         {
-          "text": "Name the cascade. Then check whether it coheres. That is where strategy begins.",
-          "location": "breakdown.fullRead",
-          "why": "Three short imperatives compress the whole chapter's lesson into a sequence the reader can run right now."
+          "text": "Name the cascade. Then check whether it coheres. That is where strategy begins."
         }
       ]
     },
@@ -371,14 +314,6 @@
             "hospital",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "a regional hospital unit redefining what a successful discharge means for post-surgical patients",
-            "audience": "a department head trying to reduce readmission rates but unsure which metric should guide the unit's work",
-            "stakes": "investing in the wrong program depletes a budget cycle; the right one depends on naming which patient the unit is competing to serve better than the hospital across town",
-            "format": "decision_point",
-            "openingDevice": "second_person",
-            "requiredBeat": "the aspiration cannot distinguish between two well-argued proposals; naming the specific patient and the specific alternative is the missing move"
-          },
           "scenario": "You put two proposals on the table. One is a discharge follow-up call program: a nurse reaches out to post-surgical patients at 48 hours, seven days, and thirty days. The other is a patient room redesign: quieter lighting, adjustable beds, a dedicated family chair. Margaux's unit aspiration reads: be a leader in high-quality post-surgical care. Both proposals satisfy it without strain. She has one budget slot this cycle. The aspiration cannot help her choose.",
           "whatToDo": "Name which patient the unit is specifically trying to serve better than the hospital in the next county. That choice will immediately distinguish between a follow-up program serving patients after discharge and a room design serving patients during admission. Without naming the specific patient and the specific alternative, the aspiration cannot adjudicate between two proposals both of which are defensible.",
           "whyItMatters": "A winning aspiration is not the most comprehensive statement of a unit's values. It is the most specific statement of which patient it is committed to serving better than the available alternative. That specificity is what gives it the power to say no to a well-designed proposal."
@@ -391,14 +326,6 @@
             "software",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "an independent software product deciding between enterprise licensing and a consumer subscription",
-            "audience": "a two-person founding team whose product has users from both segments but cannot support both",
-            "stakes": "the aspiration keeps fitting both markets, so the team cannot build a coherent capability or sales system for either",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "looking back at eight months of split priorities reveals that the vague aspiration caused the stall, not the market"
-          },
           "scenario": "Looking back on eight months of Monday support reviews, Marco could see the pattern that had made every roadmap negotiation a stalemate. Half the tickets were enterprise IT requests: slow to resolve, high value per client, requiring deep integrations his two-person team had never built. The other half were consumer onboarding questions: fast to answer, low retention rate, requiring a viral loop the team had never designed. The product aspiration said: the best productivity tool for teams who need flexible workflow management. Enterprise teams and consumer users both had workflows. The aspiration fit both without preferring either. The product could not move because the winning aspiration had never been named.",
           "whatToDo": "Look at which customer type generates the highest percentage of revenue that would compound with additional investment, then rewrite the aspiration to name that customer and the specific alternative that customer is currently choosing instead. The rewritten aspiration should be able to say no to the next feature request from the other segment.",
           "whyItMatters": "A founding aspiration that fits two incompatible customer types leaves the team renegotiating priorities between them with every build cycle. Naming one customer does not eliminate the other immediately; it makes every subsequent product and sales decision faster and more coherent."
@@ -411,14 +338,6 @@
             "library",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "a community library deciding whether to serve homeschooling families or remote-working adults as its primary growth audience",
-            "audience": "a library director presenting a new three-year service plan to a board that wants broader community reach",
-            "stakes": "the building, staff schedule, and digital subscriptions can fully support one audience, not both",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "a board member's question surfaces the missing aspiration: neither audience is named as primary, so the plan requires nothing specific"
-          },
           "scenario": "At 10:15, Hannah presents the three-year service plan to the board. The vision statement covers the first slide: the library will be a welcoming, accessible resource for every member of our community. Fourteen programs are listed: story time, ESL classes, quiet study zones, extended Wi-Fi access, makerspace workshops, homebound delivery, and eight more. No audience is ranked. No competing library or digital platform is named as the alternative to beat. A board member asks which of those user groups the library is specifically trying to serve better than the library in the next county. Hannah has no answer ready. The aspiration says every member. The plan was built to serve that aspiration, not to say no to anything.",
           "whatToDo": "Before the next service planning cycle, name the one or two user groups whose experience the library can realistically make better than the alternative they currently have access to. That answer will immediately reshape the program list, the staffing schedule, and the digital subscription budget.",
           "whyItMatters": "An aspiration built to include everyone is built to require nothing specific. The first strategic choice the library must make is not which programs to add but which audience to delight more than the competing alternative in its region."
@@ -431,14 +350,6 @@
             "restaurant",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "an urban family restaurant repositioning against fast-casual chains and neighborhood fine dining",
-            "audience": "an owner watching average check sizes stagnate while a fast-casual chain opens across the street",
-            "stakes": "competing against the chain on value requires different sourcing and pricing than competing against the neighborhood fine dining option on experience; neither is achievable from the middle",
-            "format": "before_after",
-            "openingDevice": "sensory_first",
-            "requiredBeat": "naming a specific customer and alternative immediately resolves menu, pricing, and service questions that had been stuck for months"
-          },
           "scenario": "The smell of garlic and olive oil at eleven-thirty in the morning, and the line cook is already behind. Before: David runs a family restaurant with forty-two items on the menu, decor that is neither casual nor elevated, and an aspiration to offer good food for everyone at a fair price. The fast-casual chain across the street has been open two months. The average check has dropped fourteen percent. He has lowered prices, added two lunch specials, and redesigned the loyalty card. Nothing has reversed the trend. After: he names a winning aspiration: the neighborhood's first-choice table for a weeknight dinner with kids. That sentence rejects the lunch battle with the fast-casual chain and the competition with the anniversary bistro two blocks over. Within sixty days he has cut the menu to twenty-eight items, dropped the loyalty card, and trained the servers on a different kind of greeting script.",
           "whatToDo": "If you are competing against two different alternatives for two different types of customers, name which customer and which alternative matter more. Rewrite the aspiration to reflect that choice. The downstream changes to menu, pricing, and service model will follow once the aspiration can say no.",
           "whyItMatters": "An aspiration of good food for everyone places a restaurant in competition with every other food option in the neighborhood simultaneously. The narrower aspiration does not serve fewer people; it makes the restaurant's choices coherent for the specific people it is trying to delight."
@@ -451,14 +362,6 @@
             "photography",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "a freelance photographer choosing between wedding clients and commercial brand clients",
-            "audience": "a photographer whose calendar is half weddings and half commercial shoots but whose portfolio is too mixed to win either kind of referral strongly",
-            "stakes": "the equipment, editing workflow, and network for each are different; a mixed portfolio signals that neither has been chosen",
-            "format": "dialogue",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "a commercial client's question exposes the missing aspiration and forces the choice Anya has been avoiding"
-          },
           "scenario": "'Could I see a portfolio of similar brand work?' The commercial client's email arrived at 8:47 on a Thursday. Anya opened her portfolio site and saw the problem before she had scrolled past the first page. Wedding galleries and product photography shared the same homepage. A soft-focus ring shot was followed by a hard-lit skincare product on white. A candid ceremony moment was followed by a restaurant interior for a regional chain. Both were technically solid. Neither told a commercial client that Anya had built the referral network, the equipment setup, and the fast-turnaround editing system the work required. She had been taking both kinds of work for three years, telling herself the mixed portfolio showed range. The commercial client read it as someone who had not committed to either.",
           "whatToDo": "Name the client type whose referral network would compound with each additional project. Then rebuild the portfolio to signal that specific aspiration: which work to show, which clients to quote, which projects to pursue next.",
           "whyItMatters": "A mixed portfolio is a symptom of an unmade aspiration. It signals to each potential client type that someone else in the market has committed to serving them more specifically, because the work on screen does not."
@@ -471,14 +374,6 @@
             "parks",
             "aspiration"
           ],
-          "planSpec": {
-            "domain": "a municipal parks department choosing between serving competitive youth sports leagues and unstructured family green space",
-            "audience": "a parks director with one new capital budget cycle and two competing park redesign proposals",
-            "stakes": "the budget can fully deliver one park type across the system, not a hybrid of both; neither proposal gives a user a specific reason to choose this park over the alternative",
-            "format": "thought_experiment",
-            "openingDevice": "environmental",
-            "requiredBeat": "imagining a parent's choice surfaces the missing aspiration: neither proposal names who to delight more than the neighboring town's park"
-          },
           "scenario": "The parks map is pinned to the back wall of the capital planning office, green patches scattered across the city grid. Two redesign proposals have been on Ben's desk for three weeks. The first: two synthetic turf fields and permanent scoreboards, designed for organized youth leagues. The second: a restored meadow, shaded picnic pavilions, and a nature play area for families. The department aspiration reads: create parks that serve the diverse recreational needs of all residents. Ben imagines a family in the northeast quadrant of the city on a Saturday morning, deciding whether to use this park or drive to the neighboring town's park. He realizes neither proposal gives that family a specific reason to stay here, because the aspiration has not named which residents the park is trying to delight more than the alternative a short drive away.",
           "whatToDo": "Before choosing between the two proposals, name which user group the parks system is specifically competing for against the nearest alternative. That answer will indicate which proposal reinforces the winning aspiration and which one serves a different aspiration that has not been made explicit.",
           "whyItMatters": "A park design that tries to serve organized leagues and unstructured families simultaneously serves neither as well as a design built for one. The aspiration question is not which design is better in the abstract; it is which design makes the right resident choose this park over the alternative."
@@ -497,8 +392,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The difference is specificity about customers and alternatives, not length, investment level, or ambition. A participation aspiration can be fully funded and genuinely held while remaining unable to guide a trade-off, because it does not name who to serve or what to beat them on.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -510,8 +404,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The can-it-say-no test checks whether an aspiration has enough specificity to reject a plausible option. If personalized service for small businesses can guide a decision about whether to add automated bookkeeping, it is working as a strategy. If it cannot say yes or no to that move, the specific customer and alternative have not been named clearly enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -523,8 +416,7 @@
             ],
             "correctIndex": 1,
             "explanation": "When an aspiration accepts both options equally, it is not specific enough to guide the choice. Comparing by volume is execution logic, not strategy. Funding both at reduced capacity splits resources without resolving the underlying strategic question of which patient to delight more than the alternative clinic in the region.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -536,8 +428,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Naming the import segment still left open which buyers within that segment to serve and what specific advantage would make them choose Saturn over the specific import they were already considering. Without those two specifics, Saturn's investments could not compound toward a clear advantage for any particular customer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -549,8 +440,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Help people transition into technology careers accepts data analytics, software engineering, UX design, cloud infrastructure, and dozens of other paths equally. Without naming the specific career transition and the employer relationship that makes graduates placeable, the aspiration cannot evaluate whether the data analytics offer fits the strategy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -562,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An aspiration that approves both an after-school youth program and a professional exhibition series without forcing a trade-off is not guiding choices. It endorses anything consistent with creativity and community, which is nearly everything the organization might consider. The approval signals the aspiration is still playing to play.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -575,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cannot-afford-mistranslation language could describe legal, medical, and high-stakes marketing clients equally. The aspiration still does not name which client type to serve better than the alternative, so it cannot guide a decision between a legal document project and a product launch campaign that arrive on the same day.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -588,8 +476,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Books that spark meaningful conversation accepts book clubs, curated shelves, and author events as equally valid responses. Without naming which reader is choosing between the independent bookshop and the chain, and what specifically that reader needs the chain cannot provide, each program runs independently, not building a reinforcing advantage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -601,8 +488,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Aspiration B names the customer more specifically (teams that cannot afford errors in operational data), implies an alternative (less reliable platforms), and sets a performance standard that guides capability investment. Aspiration A names a job to be done without specifying what kind of team or what standard of performance constitutes winning for that team.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -663,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "Stefan was not choosing between good options. He was choosing between three options his aspiration had no basis for evaluating.",
-          "location": "breakdown.fastRead",
-          "why": "The pivot from good options to no basis for evaluating names precisely why a broad aspiration fails at the moment of choice."
+          "text": "Stefan was not choosing between good options. He was choosing between three options his aspiration had no basis for evaluating."
         },
         {
-          "text": "Saturn's aspiration told the team what to avoid losing. It did not tell them what to win.",
-          "location": "breakdown.deepRead",
-          "why": "The two-sentence contrast isolates the gap in participation aspirations: they name the threat, not the target."
+          "text": "Saturn's aspiration told the team what to avoid losing. It did not tell them what to win."
         },
         {
-          "text": "An aspiration that cannot say no to anything is not making a choice. It is deferring one.",
-          "location": "breakdown.fullRead",
-          "why": "The paired sentences reframe broad aspirations from virtue (inclusivity) to failure mode (decision avoidance)."
+          "text": "An aspiration that cannot say no to anything is not making a choice. It is deferring one."
         }
       ]
     },
@@ -702,14 +582,6 @@
             "food-brand",
             "channels"
           ],
-          "planSpec": {
-            "domain": "a specialty food brand choosing between national grocery chain distribution and direct-to-consumer subscription",
-            "audience": "a founder who has been approached by a large grocery chain but whose margins depend on the direct channel",
-            "stakes": "accepting the grocery deal means competing in a channel where the brand has no advantage; refusing it means staying where the customer relationship is actually theirs",
-            "format": "decision_point",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Sophie names the field she is choosing, not defaulting to the bigger channel"
-          },
           "scenario": "'We can get you into four hundred stores by Q3.' The buyer's offer sat in Sophie's inbox for three days. On one side of the spreadsheet: a grocery distribution deal, lower unit price, standardized packaging, a promotional budget the brand could not fund. On the other: eight hundred subscribers who paid full price every month and left product reviews without being asked. Sophie had built the subscriber list over two years by being available only through the brand's own site. The grocery deal would reach four hundred stores but require the brand to compete on a shelf where national players had lower costs and larger promotional budgets.",
           "whatToDo": "Name the specific channel where the brand has a genuine advantage: the direct subscriber relationship and the full-price positioning it supports. Accepting the grocery deal means entering a channel where that advantage does not exist. Saying no to the grocery deal is not losing a channel; it is choosing the one where the brand can actually win.",
           "whyItMatters": "A field choice is as much about which channels to leave as which to enter. A brand with a real advantage in one channel gives that advantage up the moment it enters a channel where the value equation is completely different."
@@ -722,14 +594,6 @@
             "music-school",
             "segmentation"
           ],
-          "planSpec": {
-            "domain": "an independent music school deciding which age groups and skill levels to serve",
-            "audience": "a school owner who offers lessons for beginners through advanced students across seven instruments",
-            "stakes": "the studio time, teacher credentials, and scheduling system are stretched across three segments, none of which the school owns",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "three years of enrollment data reveals a field that was never chosen and three competitors who have each taken one of the unchosen segments"
-          },
           "scenario": "Three years of enrollment data told Andrew a story he had been avoiding. Adult beginners were canceling at twice the rate of other groups; he had been replacing them every quarter. Beginner children were the school's largest segment, but a competitor with a Suzuki-method program and a better parent waiting area had been winning that enrollment for two years. Advanced teens competed for spots in a university prep program that offered credentials the school could not match. By trying to serve all three segments, the school had become moderately adequate at each and genuinely strong at none.",
           "whatToDo": "Look at which segment the current staff credentials, space configuration, and scheduling system actually support at a high level. Choose that segment explicitly and build the enrollment process, marketing, and program design around it. The other segments may continue on a limited basis, but they should not shape the infrastructure.",
           "whyItMatters": "A music school that serves every age and skill level builds for no one in particular. The segment you choose should determine how the studio is scheduled, how teachers are hired, and what the student or parent experience is designed to achieve."
@@ -742,14 +606,6 @@
             "physical-therapy",
             "channels"
           ],
-          "planSpec": {
-            "domain": "a physical therapy practice deciding between sports rehabilitation and general post-surgical recovery",
-            "audience": "a clinic director whose patient mix has drifted into both segments but whose staff skills and referral networks are concentrated in one",
-            "stakes": "two referral channels that require different billing systems, certifications, and scheduling cannot both be primary",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "the referral sheet makes visible what the practice's current infrastructure actually supports at a competitive level"
-          },
           "scenario": "At 7:45, Vincent reviews the referral sheet before the clinic opens. Twelve incoming patients this week: six from an orthopedic surgeon group whose referrals require insurance pre-authorizations, hospital-system coordination, and a billing process that takes ninety days to clear; six from a sports medicine network whose athletes need weekend availability, performance-targeted protocols, and a direct-pay model that closes in forty-eight hours. The clinic's equipment and floor layout were built for post-surgical recovery. The sports medicine referrals were being seen in the same space, on the same schedule, by the same therapists. Both groups were getting adequate care. Neither group was getting the clinic that had been built specifically for them.",
           "whatToDo": "Map the referral channels, billing systems, scheduling requirements, and staff certifications that each patient segment requires. Then name which segment the clinic's current infrastructure supports at a competitive level. The other segment is an inherited field, not a chosen one.",
           "whyItMatters": "Two referral channels that require different clinic identities cannot both be primary. Choosing one means the other becomes secondary, which may mean redirecting those referrals or building the separate infrastructure to serve both at a genuinely competitive level."
@@ -762,14 +618,6 @@
             "beverage",
             "channels"
           ],
-          "planSpec": {
-            "domain": "a craft beverage brand deciding between on-premise bar and restaurant accounts and off-premise retail shelf distribution",
-            "audience": "a co-founder managing distribution relationships in both channels simultaneously with a sales team of two",
-            "stakes": "neither channel is generating reorders at the rate required to sustain the team's investment in it",
-            "format": "predict_reveal",
-            "openingDevice": "question_hook",
-            "requiredBeat": "an investor's question reveals that the brand occupies two channels without having actually won customers in either on the brand's own strengths"
-          },
           "scenario": "Which of the two channels had the brand actually won a customer through from nothing, without a personal visit or a placement incentive? The investor's question caught Giulia mid-sentence. She had been describing the distribution plan: twenty-two on-premise restaurant and bar accounts, fourteen retail shelf slots across two regional chains. Every on-premise placement had required a personal visit, a tasting, and follow-up training with bar staff. Every retail placement was underperforming because the brand lacked the promotion budget to move product from shelf to basket. Both channels were live. Neither channel was winning on the brand's actual strengths. The investor was asking which channel the brand occupied versus which one the brand performed in.",
           "whatToDo": "Track reorder rates and customer acquisition cost separately for each channel. The channel with the higher reorder rate and lower acquisition cost is the field the brand actually wins in. Name that as the primary field and build the sales team, inventory, and marketing around it.",
           "whyItMatters": "Presence in two channels is not a field choice. A chosen field is where the brand's specific advantage: relationship depth, story, premium pricing, or occasion fit actually drives a repeat purchase without requiring a personal sales visit to make it happen."
@@ -782,14 +630,6 @@
             "veterinary",
             "geography"
           ],
-          "planSpec": {
-            "domain": "a rural veterinary practice choosing between companion animal care and livestock medicine",
-            "audience": "a practice owner whose geography covers both farming communities and a growing suburban fringe",
-            "stakes": "the equipment, staff skills, and scheduling systems for each field are incompatible at the practice's current size",
-            "format": "before_after",
-            "openingDevice": "environmental",
-            "requiredBeat": "mapping the geographic trend reveals that the field is shifting and the practice has not yet chosen which direction to follow"
-          },
           "scenario": "The scheduling board had three farm visits before 7 a.m. and a waiting room filling with companion animals at 8 a.m. Before: Tomasz ran a practice that said yes to every call. Farm visits, companion animals, the occasional wildlife rehabilitation referral. Each category required a different vehicle configuration, different medications, different hours, and different staff training. No category was being served at the level of a focused competitor. After: he mapped the geographic radius of each client type and found that the suburban fringe was growing at twelve percent per year while farm-visit demand had dropped twenty percent over the same period. The field was shifting beneath him. The practice had not yet chosen which direction to follow.",
           "whatToDo": "Map the geographic trend for each patient segment over a three-year window. The segment growing faster in your geography is the field worth choosing explicitly. The field choice will then determine the equipment investment, the hiring plan, and the scheduling system.",
           "whyItMatters": "A practice that serves two incompatible fields simultaneously cannot build the equipment, scheduling, or staff expertise that either field requires at a specialist level. The field choice is not about abandoning existing clients immediately; it is about naming which direction the infrastructure investment should point."
@@ -802,14 +642,6 @@
             "podcast",
             "segmentation"
           ],
-          "planSpec": {
-            "domain": "an independent podcast choosing between a wide general-interest audience and a narrow professional listener segment",
-            "audience": "a host who has grown a mid-size audience without a clear positioning and is being pitched both advertiser sponsorships and professional association partnerships",
-            "stakes": "the general-interest advertisers require download scale the show does not have; professional association partnerships require content specificity the show has been avoiding",
-            "format": "reflection",
-            "openingDevice": "second_person",
-            "requiredBeat": "the listener survey reveals an inherited audience in a specific professional field the show never explicitly targeted"
-          },
           "scenario": "You are looking at a listener survey where you expected to find a general audience and found a profession instead. Laura had built a mid-size podcast about decision-making and leadership for two years, designing every episode for a thoughtful and curious listener who could be anyone. The survey showed something different: sixty-seven percent of respondents described themselves as working in operations management or supply chain. They had found the show not because of the broad framing but despite it, through a niche forum recommendation. The last ten episodes had been planned for the general-curiosity audience Laura hoped to reach. The actual audience was already there, in a specific field Laura had never explicitly chosen.",
           "whatToDo": "Review the listener, customer, or user data for the field you are actually winning in without trying to. Name that field explicitly: which specific person has already chosen you, in which specific context, and for which specific reason. Then ask whether your content, positioning, or product is designed for that person or for someone broader.",
           "whyItMatters": "An inherited audience is a field you have accidentally won. The question is whether it is the field worth competing in deliberately, and whether the current positioning is compounding that advantage or obscuring it."
@@ -828,8 +660,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Where to play is the multi-dimensional field choice that shapes all subsequent cascade choices. It is distinct from how to win (advantage logic) and from budget allocation (which is an execution decision, not a strategic one). Leaving any field dimension at the default means leaving part of the strategic choice unmade.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -841,8 +672,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Improving scheduling or adding services both leave the field undefined. Naming the client type to compete for explicitly forces decisions about the referral network, staff certifications, and pricing model. The other segments become secondary, not equal priorities, which is the difference between an inherited field and a chosen one.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -854,8 +684,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Low reorder rates in both channels is not a quality or staffing problem; it is a field problem. Each channel requires a different advantage logic: on-premise requires relationship depth and occasion fit; off-premise requires promotional budget and shelf placement. A brand without the capability for either channel's requirements will underperform in both.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -867,8 +696,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The margin gap between channels reveals a field mismatch. The subscription channel supports the brand's pricing, relationship, and storytelling advantage; the grocery channel does not. Continuing in a channel without an advantage consumes resources that could be reinforcing the channel where the advantage actually exists.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -880,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Investing equally in all three segments is the inherited-field pattern: no segment gets chosen. Reducing offerings is a cost move, not a strategic one. Naming advanced teens as the chosen segment and building the infrastructure around their requirements creates a field choice with downstream implications for the how-to-win choice and the capabilities needed to deliver it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -893,8 +720,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adding capacity for the declining segment is investing in the wrong field. Adding staff without naming the field still leaves infrastructure pointing in two directions. The field shift makes the where-to-play choice urgent; the right next move is the choice itself, not the investment that would follow it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -906,8 +732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The data reveals an inherited field: the show already wins in a specific professional segment without trying. Choosing that field explicitly allows content, positioning, and monetization to compound. Keeping the general framing while adding a separate series leaves the field unchosen and splits the audience without building advantage in either direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -919,8 +744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Bounty case illustrates that field choice enables the how-to-win choice that follows it. Competing across the full shelf would have required Bounty to match the value tier's pricing while also maintaining a premium position, which is unsustainable. The segment choice created the arena in which the advantage logic could be built and maintained.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -932,8 +756,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Option A improves execution within an unchosen field. Option B makes the field choice that determines what operational improvements should follow. A billing improvement in the wrong field is still investment in the wrong field. The sequence matters: choose the field, then optimize the operations within it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -994,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rosa was not losing the bird clients. She was choosing not to keep them. That is what a field choice is.",
-          "location": "breakdown.fastRead",
-          "why": "The three-sentence sequence reframes what feels like a loss as an act of strategic clarity."
+          "text": "Rosa was not losing the bird clients. She was choosing not to keep them. That is what a field choice is."
         },
         {
-          "text": "Bounty did not win by being everywhere. It won by concentrating where the advantage was real and the value could be captured.",
-          "location": "breakdown.deepRead",
-          "why": "The two-beat contrast names the mechanism that breadth prevents: concentration of resources where advantage is actually available."
+          "text": "Bounty did not win by being everywhere. It won by concentrating where the advantage was real and the value could be captured."
         },
         {
-          "text": "An inherited field is not the same as a chosen one. An inherited field means you compete in the places where you happen to be. A chosen field means you compete in the places where you have decided you can win.",
-          "location": "breakdown.fullRead",
-          "why": "The three-sentence definition gives the reader language to apply the test immediately to their own field."
+          "text": "An inherited field is not the same as a chosen one. An inherited field means you compete in the places where you happen to be. A chosen field means you compete in the places where you have decided you can win."
         }
       ]
     },
@@ -1033,14 +850,6 @@
             "accounting",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "a regional accounting firm deciding how to compete against large national tax practices",
-            "audience": "a managing partner trying to explain why the firm does not compete on turnaround speed or software credentials",
-            "stakes": "competing on speed or tech stack against the national competitor means competing on terms the national firm will always win",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Grace traces five departed clients and finds the alternate value equation in the one client who stayed and brought referrals"
-          },
           "scenario": "Grace traced the last five clients who had left the firm. Four of them had moved to a national practice for faster digital filing: the national firm's processing time was forty-eight hours and the firm's was ten days. She had been investing in software to close that gap. The fifth client had stayed, and had sent two referral notes with him. She pulled the file and read the referral letter: 'They caught something the software flagged as standard that our previous firm knew was a regulatory exception in our sector.' The departing clients had wanted speed. The staying client had wanted judgment. The firm had been competing on the wrong dimension entirely.",
           "whatToDo": "Name the specific capability the national firm cannot deliver at scale: industry-specific knowledge that catches what automated filing cannot flag. Build the practice around that capability and price accordingly. Stop competing on processing speed.",
           "whyItMatters": "An accounting practice that competes on software speed enters a race the software vendor already won. The alternate win path is the value the national firm structurally cannot deliver: judgment developed in one specific industry context that no automation replaces."
@@ -1053,14 +862,6 @@
             "soccer",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "a youth soccer club competing for players against a regional academy program",
-            "audience": "a club director who has been losing players to a more expensive regional academy",
-            "stakes": "matching the academy on coaching credentials and tournament access requires investment the club cannot make and concedes the game before it starts",
-            "format": "decision_point",
-            "openingDevice": "second_person",
-            "requiredBeat": "Daniel realizes that pitching recruitment outcomes puts the club in head-to-head competition with the academy's stronger credential; he must name the different value equation instead"
-          },
           "scenario": "You are in a room full of parents whose older children played for the regional academy and transferred out mid-season. They are sitting in plastic chairs waiting for Daniel to explain why this club is worth joining. His first instinct is to say: we will get your child recruited. That sentence puts the club in direct competition with the academy's credential, travel tournament record, and coaching staff, all of which are stronger. Daniel stops before he says it. The academy's recruiting model has a requirement: it serves players worth recruiting and moves on from those who are not. The club has no such requirement. That is not a weakness. It is a different value equation.",
           "whatToDo": "Name the outcome the academy cannot offer without becoming a different organization: consistent development, no cutoff for players who develop slowly, a path that does not require a recruiting result to justify the investment. Present that as the value equation, not as a consolation prize for families who could not make the academy.",
           "whyItMatters": "A club that competes on recruitment outcomes enters head-to-head competition with an academy that has invested everything in exactly that outcome. The alternate win path is built on the player need the academy's model structurally cannot serve: long-term development without the pressure of a recruitment timeline."
@@ -1073,14 +874,6 @@
             "coffee",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "a specialty coffee shop in a neighborhood with two established chain locations",
-            "audience": "a new owner trying to build regular morning foot traffic without the chain's scale, loyalty app, or price subsidies",
-            "stakes": "competing on convenience or speed against a chain means competing at the chain's strongest point",
-            "format": "before_after",
-            "openingDevice": "sensory_first",
-            "requiredBeat": "Henrik recognizes that matching the chain's throughput is a game he cannot win and names the value equation the chain structurally cannot build"
-          },
           "scenario": "The espresso machine steams at 6:55 in the morning and the queue already reaches the door. Before: Henrik has taped a stopwatch comparison above the register: his shop, four minutes average to door; the chain across the street, ninety seconds. He hired a second barista for peak hours to close the gap. Costs rose. Margins shrank. Morning traffic stayed flat. After: he removed the stopwatch and spent two weeks writing down regulars' orders from memory. By the third week he was calling the order before the customer reached the counter. The chain's format optimized for throughput and could not do that without changing the entire operating model. Henrik's shop became the destination for the customer the chain's speed had no room for.",
           "whatToDo": "Identify the specific customer behavior that the chain's format cannot accommodate: the regular who wants to be remembered, the customer who wants to ask a question about the origin of the beans, the person who wants the experience of being known. Build the value equation and operational model around that customer.",
           "whyItMatters": "A four-minute pour time is not a competitive advantage over ninety seconds. The question for Henrik was never how to close the speed gap but which problem the chain's speed creates that he can solve instead."
@@ -1093,14 +886,6 @@
             "health-clinic",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "a community health clinic serving uninsured adult patients in competition with an urgent care chain",
-            "audience": "a clinic director deciding whether to match the urgent care competitor's weekend hours or invest in longer appointment times",
-            "stakes": "matching weekend hours requires hiring the grant budget cannot support; investing in longer appointments creates a value equation the competitor has no incentive to match",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "a nurse's observation locates the alternate win path: depth of care per visit, not coverage per week"
-          },
           "scenario": "At 8:30, Chiara presents the two options to the staff before the first patient. Option one: expand weekend hours to match the urgent care chain's coverage. Option two: extend weekday appointment slots from thirty to sixty minutes and reduce the daily patient count. A nurse at the back of the room says: 'The urgent care will always have more hours. What they will never have is an hour.' The room is quiet. The urgent care chain's model is built around high visit volume. Adding time per visit would require restructuring the billing model, the staffing ratio, and the patient flow system. The clinic can do what the chain cannot without becoming something other than an urgent care chain.",
           "whatToDo": "Invest in the longer appointment time and build the clinical model around the specific patient need that an hour makes possible: chronic condition management, patient history continuity, follow-up that fits within one session. Name that as the value equation the clinic offers, not framing it as a limitation on visit volume.",
           "whyItMatters": "A clinic competing on coverage hours will always lose to a chain with more locations and more funding. The alternate win path is the value equation the chain has no incentive to build: depth of care per visit that only exists when time is not the main cost being managed."
@@ -1113,14 +898,6 @@
             "bookshop",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "an independent bookshop differentiating from online retail",
-            "audience": "an owner who has tried and failed to match online prices and is being advised to add a coffee bar",
-            "stakes": "adding a coffee bar addresses convenience without creating an advantage a customer would choose the bookshop specifically for",
-            "format": "dialogue",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Kasia's question surfaces that the coffee bar is a me-too addition, not an alternate path, and reveals the real value equation available to her"
-          },
           "scenario": "'The coffee brings people in. Once they are in, they buy books.' Kasia's retail advisor had a point. She had been losing online price comparisons for three years. The advisor was right that foot traffic was the problem. He had drawn a floor plan with a circled corner and written coffee bar option. Kasia looked at the chain coffee shop on the same block that was doing four times her volume. She asked: 'Will anyone walk past that to buy a latte from a bookshop?' The advisor paused. She continued: 'But would they walk past it to have a staff member who has read every book in the store and can tell you in ninety seconds which one is exactly right for the trip you just described?' That was not a coffee bar. That was a different value equation.",
           "whatToDo": "Invest in the staff capability that the platform structurally cannot deliver: staff who have read each title personally and can route a browser to exactly the right one in under ninety seconds based on a brief conversation. Build the marketing around that capability, not around the square footage or the coffee menu.",
           "whyItMatters": "A coffee bar competes on a dimension where chain coffee shops have more scale, more experience, and more brand. The alternate win path is the one thing an online platform's algorithm cannot replicate: a human who has read each title and can match exactly the right one to this specific customer standing here today."
@@ -1133,14 +910,6 @@
             "apprenticeship",
             "advantage"
           ],
-          "planSpec": {
-            "domain": "a trade apprenticeship program competing with a university degree pathway for technical talent",
-            "audience": "a program director trying to attract strong candidates who are choosing between a two-year apprenticeship and a four-year engineering degree",
-            "stakes": "matching the university on academic credentials is impossible; the alternate value equation is already visible in the placement data but has never been named",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Chris reviews placement data and finds the alternate value equation already present in every top hire: readiness over credentials"
-          },
           "scenario": "Chris reviewed five years of placement data from the apprenticeship's top employer. Every graduate hired in the first hiring round, across five cohorts, had the same characteristic: they had worked on live production systems for twelve months before graduation. University graduates from the same employer's recruitment pipeline took an average of six months of internal retraining before reaching the same productivity level. Chris had been positioning the apprenticeship as a faster route to the same credential. The credential was never what the employer was paying for. The employer was paying for twelve months of live system experience compressed into two years. That was the value equation. The program had never claimed it.",
           "whatToDo": "Name the specific advantage in employer terms: a graduate who reaches full production readiness in weeks, not months, because they have been working on real systems since day one. Stop competing on credential comparison. Lead with readiness and build the curriculum framing, alumni testimonials, and employer partnerships around that specific outcome.",
           "whyItMatters": "A program that competes on credentials enters head-to-head competition with a degree program that will always have more academic depth. The alternate win path is the one thing the degree cannot deliver without becoming an apprenticeship: time on live systems before graduation."
@@ -1159,8 +928,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction is in the problem being solved, not the customer or price point. Head-to-head competition uses the same terms the competitor has already optimized for. An alternate path identifies a problem the competitor is not optimizing for and builds a value equation around solving it differently.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1172,8 +940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Matching the software or lowering the rate keeps the firm in head-to-head competition on dimensions the national firm has already optimized. The alternate path names the value the national firm cannot deliver at scale: the judgment that accumulates from years of work in a specific industry and cannot be automated.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1185,8 +952,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chain's speed advantage is structural: it was built for high throughput and can sustain any speed improvement the shop makes by investing further. Adding a barista temporarily closes a gap the chain can reopen. The alternate path is a value equation built around something the chain structurally cannot offer: knowing regulars, being a destination, not a throughput stop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1198,8 +964,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ForceFlex case illustrates that competing on the competitor's strongest terms means fighting in an arena the competitor has already optimized. The alternate win path (bag strength under heavy load) addressed a problem rivals were not optimizing for, which created a different game the competitor could not immediately copy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1211,8 +976,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adding academic content puts the apprenticeship in direct competition on the degree program's strongest terms. The genuine alternate value equation is already visible in the placement data: employers get graduates who reach full productivity faster because they have been working on live systems throughout the program, something a degree cannot provide without becoming an apprenticeship.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1224,8 +988,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Matching the coach credential or lowering price keeps the club in head-to-head competition on terms the academy has already won. The alternate path is built on the player need the academy's elite-recruitment model structurally cannot serve: long-term development without the pressure of a recruitment timeline that the academy's business model requires.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1237,8 +1000,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chain can always add more hours by adding more locations and staff. It cannot add more time per visit without restructuring its billing model and patient flow system. The alternate win path is the option the competitor cannot copy without becoming something fundamentally different. Speed of launch and staff preference are execution criteria, not strategic ones.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1250,8 +1012,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A competitor can add a process step without building the underlying judgment that makes the step effective. The durability of an alternate path depends on whether the competitor can replicate the capability, not just the activity. An automated review step added to a volume-processing firm is not the same as the knowledge that develops over years of work in a specific industry.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1263,8 +1024,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A coffee bar adds a service that a nearby chain coffee shop already provides with more scale and experience. Expert staff recommendation is a capability the algorithm cannot deliver, which is a genuine alternate path. The test for any proposed investment: can the competitor match it without changing what they fundamentally are? The coffee competitor can. The online platform cannot.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1325,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "Nora stopped trying to match the franchise's coverage. She started doing the one thing the franchise could not: remember what confused each student last Tuesday.",
-          "location": "breakdown.fastRead",
-          "why": "The paired sentences name the structural source of the alternate win path: the competitor's model requires forgetting what it cannot afford to remember."
+          "text": "Nora stopped trying to match the franchise's coverage. She started doing the one thing the franchise could not: remember what confused each student last Tuesday."
         },
         {
-          "text": "Glad ForceFlex did not win by making a cheaper bag or fitting more bags in the box. It won by solving a failure mode the competitor had not named.",
-          "location": "breakdown.deepRead",
-          "why": "The two-beat contrast defines the alternate-path concept through the clearest available case: not a better version of the same offer, but a different game."
+          "text": "Glad ForceFlex did not win by making a cheaper bag or fitting more bags in the box. It won by solving a failure mode the competitor had not named."
         },
         {
-          "text": "The question is not how to be better at what the competitor already does. The question is which problem the competitor is structurally unable to solve without becoming something different.",
-          "location": "breakdown.fullRead",
-          "why": "The two-sentence pivot reframes the competitive question from improvement to structural asymmetry."
+          "text": "The question is not how to be better at what the competitor already does. The question is which problem the competitor is structurally unable to solve without becoming something different."
         }
       ]
     },
@@ -1364,14 +1118,6 @@
             "architecture",
             "capability-fit"
           ],
-          "planSpec": {
-            "domain": "an architecture studio evaluating a partnership with a construction management firm",
-            "audience": "a studio principal deciding whether to absorb a construction management team to offer design-build services",
-            "stakes": "construction management requires an activity system that is fundamentally different from the studio's design capabilities",
-            "format": "decision_point",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Emily asks which clients choose them for design versus build management and realizes the studio's activity system is built entirely around the former"
-          },
           "scenario": "'We can offer clients everything under one roof.' Emily's potential partner described the design-build opportunity over the phone: her studio would handle design, his construction management firm would handle the build. A term sheet was on her desk. Before agreeing, she asked him a question: which of her clients in the past three years had chosen the studio specifically for the design, and which had asked about construction management? The answer was immediate and one-sided. Every client in her file had hired a separate construction manager. Not one had come to her for both. The two client types were different people who valued different things. Her studio's activity system was built entirely around the former.",
           "whatToDo": "Map the activities the design-build partnership would require: scheduling systems, site supervision culture, construction contract management. Check each against the studio's current activity system. The overlap reveals whether the capability fit is real or assumed before any term sheet is signed.",
           "whyItMatters": "A design-build partnership adds a capability system the studio does not currently have. Building it requires adding scheduling, supervision, and contract expertise while maintaining the design capability the existing clients are paying for. Activity system mismatch shows up as diluted quality in both directions."
@@ -1384,14 +1130,6 @@
             "hospital",
             "capability-audit"
           ],
-          "planSpec": {
-            "domain": "a rural hospital evaluating whether to add an oncology unit",
-            "audience": "a hospital administrator responding to community demand for local cancer care",
-            "stakes": "an oncology unit requires a capability system the hospital's primary and emergency care infrastructure was not built to support",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "a retired oncologist board member asks Ryan to check five required activities against the hospital's current capability, and by the third check the room understands the gap is a decade-long build"
-          },
           "scenario": "At 9:00, Ryan presents the oncology unit proposal to the board. Two slides: rising cancer diagnosis rates in the county, forty minutes of travel time to the nearest oncology center. The case for the unit is obvious. A board member who is also a retired oncologist raises her hand and asks: can you list the five activities the unit would need to perform consistently to deliver safe oncology care? Ryan lists them: specialized oncology nurses, a radiation therapy facility, oncology pharmacy capability, a radiologist with oncology certification, and patient volume high enough to sustain specialist salaries. She then asks him to check each one against the hospital's current capability. By the third check, the room understands the gap is not a funding question. It is a decade-long capability build.",
           "whatToDo": "Before the capability funding request, list the five most critical activities the new unit would require at a consistent quality level. Check each one against the current activity system. The ones not present are not budget items; they are the activity system the strategy would need to build before the unit can open safely.",
           "whyItMatters": "Community demand for a service is not the same as a capability to deliver it. The question for the hospital board is not whether cancer patients need care locally but whether the activity system required to provide that care safely can be built at this hospital's scale without compromising the existing capability."
@@ -1404,14 +1142,6 @@
             "bootcamp",
             "activity-system"
           ],
-          "planSpec": {
-            "domain": "a coding bootcamp deciding whether to add a part-time online program alongside its full-time in-person curriculum",
-            "audience": "a program director reviewing the results of an online pilot cohort",
-            "stakes": "the activity system driving in-person outcomes does not translate to the online format without being rebuilt from scratch",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "six months of online cohort data reveals that the activity system producing in-person placements did not transfer"
-          },
           "scenario": "Six months after launching the online pilot, Antoine reviewed the graduation and placement numbers. Completion rate for the online cohort: forty-four percent. For the in-person program: eighty-eight percent. Employer partnership calls for the online cohort: three. For the in-person program in the same period: eleven. He had assumed the curriculum would work across both formats. The placement data said something different. The in-person program's results were driven by cohort accountability, joint debugging sessions, and a pair-programming culture that formed through daily proximity. Online, those interactions were optional. Employer calls had dropped because hiring managers had noticed that online graduates arrived without the collaborative habits the in-person graduates had built. The activity system that produced placement outcomes did not transfer.",
           "whatToDo": "Before launching the next online cohort, name the three activity-system elements responsible for the in-person placement rate. For each one, design a specific equivalent the online format can actually deliver. If none of those equivalents are feasible within the online model, the online cohort is a different product that requires a different capability system built from the start.",
           "whyItMatters": "A program format that looks the same on a course outline requires a completely different activity system when the delivery medium changes. Completion and placement outcomes are the evidence that the capability system either translated or did not."
@@ -1424,14 +1154,6 @@
             "food-distribution",
             "capability-gap"
           ],
-          "planSpec": {
-            "domain": "a specialty food distributor considering moving into direct retail sales",
-            "audience": "a distribution company owner who has signed a retail supply agreement with a major retailer",
-            "stakes": "distribution logistics and retail brand capability are two different activity systems that share a supply chain but require completely different organizational capabilities",
-            "format": "before_after",
-            "openingDevice": "environmental",
-            "requiredBeat": "the first retail season reveals that logistics skill has no capability in the consumer brand decisions that move product from shelf to basket"
-          },
           "scenario": "The warehouse smelled of cardboard and cold storage, optimized for movement: pallets in, pallets out, routes planned to minimize truck idle time. Before: Catarina signed the retail supply agreement after a meeting where the margin projection looked strong. Her team was exceptional at distribution logistics: route planning, supplier relationships, cold chain management, and inventory turnover. After: the first season's sell-through data arrived. The product had moved from warehouse to shelf. It had not moved from shelf to basket. The retail buyer called to discuss promotional strategy. Catarina's team had no one who knew how to design a retail promotion, negotiate endcap placement, or build the packaging story that drives a consumer to pick up an unfamiliar product. The activity systems were completely different.",
           "whatToDo": "Before the next retail supply agreement, list the activities required to move product from shelf to basket: promotional planning, endcap negotiation, consumer packaging decisions, retail buyer relationship management. Check whether any of these currently exist in the organization. The ones that do not are not services to hire; they are an activity system to build.",
           "whyItMatters": "Distribution logistics and retail brand management are two activity systems that share a supply chain but require completely different organizational capabilities. Entering retail distribution without the second system in place produces a shelf presence that does not convert."
@@ -1444,14 +1166,6 @@
             "museum",
             "capability-fit"
           ],
-          "planSpec": {
-            "domain": "a museum evaluating whether to build a traveling exhibition capability",
-            "audience": "a curator whose museum has a strong permanent collection but is being asked by a donor to develop touring exhibitions",
-            "stakes": "a traveling exhibition capability requires a different activity system than a permanent collection, and building it draws from the curatorial staff's research capacity",
-            "format": "thought_experiment",
-            "openingDevice": "second_person",
-            "requiredBeat": "Pavel imagines the first traveling show at a partner museum and realizes the operational precision required is not in the current activity system and training for it pulls from the research function"
-          },
           "scenario": "You are running the thought experiment with Pavel. The donor proposal is for three touring exhibitions over five years. He imagines the first show arriving at a partner museum: the partner curator sends installation requirements three weeks out. The crates travel with a specialist conservator. The lighting specs require an electrician familiar with museum climate standards. The installation schedule requires a site supervisor who can adapt to a different building's constraints on the fly. Pavel's curatorial staff is exceptional at scholarly interpretation and permanent collection research. None of them had been asked to coordinate a multi-city installation logistics system. He asks his deputy: how long would it take to build the operational capability the touring program requires without pulling the curatorial team away from the research work that makes this museum worth visiting? The answer makes the donor proposal look different.",
           "whatToDo": "Before accepting the touring exhibition proposal, list the activities a traveling show requires that the permanent collection model does not: logistics coordination, partner museum relations, on-site installation management, specialized conservation transport. Calculate the resource cost of building those capabilities against the cost of diverting curatorial staff from the research function. Name the trade-off explicitly before accepting.",
           "whyItMatters": "A traveling exhibition capability requires an activity system built around operational flexibility and logistics precision. A permanent collection capability requires an activity system built around scholarly depth and interpretive quality. Building both simultaneously pulls the activity systems in opposite directions."
@@ -1464,14 +1178,6 @@
             "sailing",
             "activity-system"
           ],
-          "planSpec": {
-            "domain": "a sailing club considering whether to add a competitive racing program to its recreational sailing membership",
-            "audience": "a club commodore whose facilities were designed for recreational adult sailors",
-            "stakes": "a competitive racing program requires an activity system that conflicts with the recreational club's existing facility allocation and coaching model",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "two years of racing program data reveals that the capability fit was never established before the program launched, and the club's existing activity system reliably undermined it"
-          },
           "scenario": "Two years after launching the racing program, Ingrid reviewed the membership data. The coaching hire had left after fourteen months: the club's slip assignments prioritized recreational members by seniority, which created regular availability conflicts for the racing fleet. Of the twenty-four competitive members who joined in the first year, eighteen had departed. Their resignation notes cited the same two issues: coaching inconsistency and facility conflicts. The recreational membership had grown. The racing program had collapsed. The capability fit problem had been visible before the launch if anyone had listed the five activities a competitive racing program required and checked them against the club's facility configuration, slip allocation system, and coaching hire model.",
           "whatToDo": "Before the next program expansion, list the five activity-system requirements the new program cannot run without: dedicated slip allocation, coaching credentials and schedule continuity, racing-specific equipment maintenance, a competition calendar that does not conflict with recreational booking. Check each against what the club currently has. The ones missing are conditions that must exist before the program is viable, not items to address after the launch.",
           "whyItMatters": "A recreational sailing club and a competitive racing program are two activity systems housed in the same facility. Adding the second without building the activity system it requires produces a program that the facility's existing configuration will reliably undermine."
@@ -1490,8 +1196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key distinction is the direction of the analysis. A strength list starts from what exists. A capability system starts from what the strategy requires and works backward. Strengths that do not connect to the how-to-win choice are costs, not advantages, regardless of how well-developed they are.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1503,8 +1208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The backward-mapping question starts from the how-to-win choice (reliability for downtime-averse financial teams) and asks what activity system must exist to deliver that specific advantage. Feature requests and current differentiators are both useful but describe what exists, not what the strategy requires for this specific field and customer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1516,8 +1220,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Motivation and screening are not the root cause. The completion and placement data reveal an activity system problem: the in-person program's results depend on activities that the online format cannot replicate without being redesigned. The online cohort needs its own capability system built for its specific format, not a copy of the in-person one.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1529,8 +1232,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A staffing gap or timing error are operational diagnoses. The case reveals an activity system mismatch: distribution logistics and retail brand management require fundamentally different activities. Signing the retail agreement without auditing the capability gap produced a predictable result: a shelf presence the missing consumer brand system could not convert to a purchase.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1542,8 +1244,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Acquisition size and revenue synergies are financial metrics, not strategic ones. The backward-mapping logic asks whether Gillette's activity system reinforces P&G's required capabilities. Gillette fit because the things Gillette could do well were specifically the things P&G's strategy needed done, not because of market position or brand value alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1555,8 +1256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Community demand does not resolve a capability gap. Temporary partnerships are operational tools, not strategic answers. The backward-mapping audit revealed that the oncology unit requires an activity system the hospital does not have. Building it is a decade-long commitment that must be evaluated as a strategic choice, not as a service addition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1568,8 +1268,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Client surveys identify demand, not capability fit. Delegating to the partner avoids the audit entirely. The capability audit must list the activities the partnership requires from the studio's side and check whether those activities exist in the current system. That check determines whether the partnership adds a genuine capability or exposes a gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1581,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A hiring error or a policy change are operational diagnoses. The strategic diagnosis is an activity system mismatch: the racing program required a facility configuration and resource allocation that the recreational club's existing system could not accommodate without being restructured. The capability audit should have identified this before the program launched.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1594,8 +1292,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Accepting for donor relationship reasons or piloting without the capability audit both skip the strategic question. The evaluation must start from the backward-mapping question: what does the touring capability require, and does building it reinforce or draw from the activity system the permanent collection strategy depends on? That answer determines whether the proposal is a strategic fit or a capability distraction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1656,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "Leon was not weak in the other three areas. He was diluting the one area that made the firm irreplaceable.",
-          "location": "breakdown.fastRead",
-          "why": "The two-sentence contrast names the trap precisely: not a weakness problem but a concentration problem, where strength in too many directions prevents advantage in any one."
+          "text": "Leon was not weak in the other three areas. He was diluting the one area that made the firm irreplaceable."
         },
         {
-          "text": "Gillette fit because the things Gillette was able to do well were the specific things P&G's strategy needed done.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence compresses the capability-fit concept into the most portable form: not size, not brand, not market position, but activity alignment."
+          "text": "Gillette fit because the things Gillette was able to do well were the specific things P&G's strategy needed done."
         },
         {
-          "text": "An isolated strength that does not connect to the how-to-win choice creates cost, not advantage.",
-          "location": "breakdown.fullRead",
-          "why": "The one-sentence rule gives the reader a test they can apply to any strength on any list: does it compound toward the strategy, or just maintain itself?"
+          "text": "An isolated strength that does not connect to the how-to-win choice creates cost, not advantage."
         }
       ]
     },
@@ -1695,14 +1386,6 @@
             "product",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a software product team redesigning its weekly sprint review after the strategy shifted from feature velocity to retention depth",
-            "audience": "a product manager whose team still reports ticket throughput in every review even though the strategic choice shifted to engagement quality",
-            "stakes": "the review format creates invisible pressure to keep building features while the retention metric declines unreported",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Rachel reviews six months of sprint reports and finds the misalignment between the review metric and the new strategic choice is the source of the stall"
-          },
           "scenario": "Rachel reviewed six months of sprint decks. Every single one celebrated a green velocity number in the top right corner. Every single one was missing the retention chart. She went back to the retention data separately and found that the rate had declined in four of the six months covered by those green reviews. The team had been accountable for throughput and hitting targets on throughput. No one had been accountable for retention depth because retention depth was not on any review slide. The system had reinforced exactly the wrong behavior: building faster toward the old strategic priority while the new one slowly worsened.",
           "whatToDo": "Replace velocity as the primary sprint review metric with the retention depth measure the new strategy requires. Remove throughput reporting from the standard review agenda or move it to an appendix. The change signals to the team which behavior the review now holds them accountable for.",
           "whyItMatters": "A review format that measures the previous strategy's priorities rewards the previous strategy's behavior regardless of what strategic choices were made six months ago. The sprint review is not a neutral report; it is the system that tells the team what they are accountable for."
@@ -1715,14 +1398,6 @@
             "hospital",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a hospital department restructuring its monthly leadership review after shifting strategic emphasis to preventive care",
-            "audience": "a department chief whose monthly review was designed for the acute treatment volume strategy",
-            "stakes": "the review measures the old strategy's outputs while the preventive care initiative has no visibility and no accountability",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "Luke asks which of the three reported numbers would change if the preventive care initiative were working, and no one answers"
-          },
           "scenario": "At 2:00 p.m., Luke walks into the monthly leadership review and sees the standard agenda printed on the table: bed occupancy, procedure counts, average length of stay. Three numbers. All three were designed to measure acute treatment volume. He sits down and asks the group a question before the first slide: which of those three numbers would look different next month if our preventive care initiative were working? Silence. Then someone says: none of them. The systems are reporting on the old strategy. The new one is invisible, unmeasured, and unaccountable.",
           "whatToDo": "Before the next monthly review, name the one or two measures that would show the preventive care initiative is gaining traction: early-intervention referral counts, screening completion rates, patient re-enrollment in wellness programs. Replace one of the existing agenda items with one of those measures to make the new strategy visible in the review.",
           "whyItMatters": "A review that cannot show whether the new strategy is working is not a strategy review. It is a performance report for the previous strategy. The gap becomes visible when the question is asked: which of these numbers would look different if the new strategy were working?"
@@ -1735,14 +1410,6 @@
             "sales",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a sales organization redesigning compensation after shifting from volume-based to customer-success-based strategy",
-            "audience": "a sales director whose team is compensated on new deals closed but whose strategy now emphasizes expansion revenue and renewal rates",
-            "stakes": "the commission structure is actively pushing the best people away from the new strategy and toward the behavior the old strategy rewarded",
-            "format": "decision_point",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Niklas's top rep tells him the commission structure is rewarding exactly the opposite of what the strategy now requires and she is about to leave"
-          },
           "scenario": "'I spend seventy percent of my time on renewal calls. I get paid for zero percent of it.' Niklas's top rep said it quietly after the team meeting, not in front of the room. She was not complaining about the work. She was pointing at the management system. The commission report from last quarter showed her at the bottom: the lowest new-deal commission of anyone on the team. The renewal-rate leaderboard showed her at the top. The new strategy said renewal and expansion were the priority. The commission structure said new accounts were. She was about to start job-searching because the system was telling her the new strategy was not the real one.",
           "whatToDo": "Redesign the commission structure so renewal and expansion revenue carries equal or greater weight than new account acquisition. The change does not require announcing a new culture; it requires changing the number that appears on the rep's commission statement. That is the communication that changes behavior.",
           "whyItMatters": "A commission structure is not a neutral financial instrument. It is the management system's most direct communication about which behavior the strategy actually values. When the commission and the stated strategy point in different directions, the commission wins."
@@ -1755,14 +1422,6 @@
             "agency",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a creative agency restructuring its client success review after pivoting from output quantity to campaign effectiveness",
-            "audience": "a managing director whose client reviews measure deliverable completion rates and budget adherence",
-            "stakes": "the review measures the old strategic position's outputs while the new position requires effectiveness evidence the current system cannot show",
-            "format": "before_after",
-            "openingDevice": "environmental",
-            "requiredBeat": "before: client asks a third time if the campaign moved behavior; after: Paula rebuilds the review around two effectiveness measures the new position requires"
-          },
           "scenario": "The conference room smells of cold coffee and printed slide decks: nine slides of deliverable checkboxes and one slide that says campaign results: data collection ongoing. Before: Paula runs the client review showing on-time delivery rates and budget variance. Both are green. The client asks for the third time whether the campaign moved any customer behavior. The review format has no answer for that question. It was designed for an agency that sold outputs. The new positioning sells effectiveness. After: Paula rebuilds the review template around two leading effectiveness indicators she can report monthly: behavioral signal rate from the campaign's target cohort and assisted conversion attribution. The client stops asking the question because the review now answers it.",
           "whatToDo": "Identify the one or two leading indicators of effectiveness that the new strategic position requires the agency to report. Replace the delivery compliance slides with those indicators in the standard client review template. The new format is the management system that makes the new position visible and accountable.",
           "whyItMatters": "A client review built around delivery compliance reinforces a delivery-focused strategic position even when the agency has formally committed to an effectiveness-focused one. The review format is not cosmetic; it is the system that determines what the agency is accountable for in every client relationship."
@@ -1775,14 +1434,6 @@
             "university",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a university department restructuring its annual faculty review after shifting emphasis from research publications to industry partnership outcomes",
-            "audience": "a department head whose annual review process was designed for the research-ranking strategy",
-            "stakes": "the promotion system assigns zero weight to industry partnership outcomes, systematically promoting the old strategy while leadership formally commits to the new one",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "three years of promotion decisions reveal a systematic pattern that shows the misalignment between the management system and the strategic choice"
-          },
           "scenario": "Janek reviewed three years of promotion committee notes. Every faculty member promoted to associate professor had a strong publications record and weak industry involvement. Two faculty members with strong industry partnership records and moderate publication counts had been denied in the same period. The committee had made reasonable decisions given the criteria the system used. But the criteria were the criteria of the research-ranking strategy the department had formally changed two years ago. The promotion system had made the decision every year that the management system required: reward publications. The new strategy was on the letterhead. It was not in the rubric.",
           "whatToDo": "Before the next promotion cycle, revise the review rubric to include industry partnership outcomes at a weight that reflects the new strategic emphasis. The change must be in the rubric, not in the committee's instructions. Instructions are interpreted; rubrics are applied.",
           "whyItMatters": "A promotion system that measures citation counts and journal tier for a department that has committed to an industry partnership strategy will systematically produce promotion decisions that reward the old strategy. The pattern shows up across multiple cycles, not as individual errors but as a management system performing exactly as designed."
@@ -1795,14 +1446,6 @@
             "family-business",
             "management-system"
           ],
-          "planSpec": {
-            "domain": "a family business restructuring its monthly review after adding a second product line with a different margin and growth profile",
-            "audience": "an operations director whose review format cannot distinguish performance drivers for the two lines",
-            "stakes": "the combined reporting makes the new line's low margins trigger cost-cutting conversations that suppress the growth investment it requires",
-            "format": "thought_experiment",
-            "openingDevice": "second_person",
-            "requiredBeat": "Camille imagines presenting the combined P&L to her father and sees that the reporting structure makes the new line look like a problem every month"
-          },
           "scenario": "You imagine standing at the whiteboard in front of Camille's father, the founder, presenting the combined month-end P&L. The new product line has low margins and fast growth. The mature line has high margins and slow growth. Combined, they produce a number that looks mediocre. Camille has run this mental exercise three times. Each time she gets to the margin line, she can predict the conversation: the new line's losses will trigger a cost-cutting discussion that will pull investment from exactly the initiative that needs it most. The management system does not distinguish two different strategies. It treats both product lines as one. Every month the combined P&L sends the same signal: the margins are lower than they should be. Every month the new line loses the investment argument.",
           "whatToDo": "Separate the two product lines in the monthly review structure and use different performance measures for each based on their respective strategic positions. Present the mature line on margin and cash contribution. Present the new line on revenue growth rate and market signal indicators. The review must distinguish two strategies to reinforce both.",
           "whyItMatters": "A combined P&L that aggregates two lines with different strategic profiles makes the new line look like a problem every time its low margins are averaged against the mature line's high ones. The review structure is suppressing investment in the growth strategy by measuring it against the wrong standard."
@@ -1821,8 +1464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The defining characteristic is whether new information in the review can change what the organization decides to do. A review designed to validate adherence to a plan asks whether we are on track, not whether the track is right. That question defends a committed position and cannot generate new decisions, which is the definition of corporate theater.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1834,8 +1476,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Briefing the team changes awareness, not incentive. Adding renewals to the dashboard without changing the commission leaves the existing reward in place. The management system must change the compensation, not just the reporting, to make the new strategic behavior the one that gets rewarded.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1847,8 +1488,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A verbal update leaves velocity as the primary metric, which still signals what the team is accountable for. A monthly strategic review does not change the sprint review that is reinforcing the old strategy every two weeks. Replacing the primary metric removes the old reward signal and puts the new strategy's required measure at the center of the review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1860,8 +1500,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Commitment and timeline are not the primary diagnosis. The review measures the old strategy's priorities and holds leaders accountable for the old strategy's outputs. The new strategy has no measure in the review, which means it has no reinforcement mechanism. The management system is actively rewarding the old direction, not failing to reward the new one.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1873,8 +1512,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A slide at the end or a parallel review both leave the primary template in place, continuing to reward delivery compliance. The management system change must make effectiveness the primary measure in the client review and remove the delivery measures that reinforce the old strategic position. Adding alongside is not alignment; it is addition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1886,8 +1524,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The committee decisions were correct given the criteria the system used. The problem is the criteria themselves: promotion processes built for the old strategy reward the old behavior regardless of what leadership formally commits to. Three years of data show a systematic management system problem, not a series of individual committee errors.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1899,8 +1536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Adjusting margin targets holds the new line to the wrong standard. Waiting extends the period in which combined reporting suppresses investment in the growth line. The management system must separate the lines so the different strategies governing each can be measured and rewarded independently, without one line's performance penalizing the other.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1912,8 +1548,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The commission-to-renewal inversion reveals that the management system rewards the old strategic behavior and penalizes the new one. This is not a rep capability problem; it is a design problem. The system is performing exactly as designed: rewarding new account acquisition, which is the opposite of what the new strategy requires.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1925,8 +1560,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Option A adds new measurement without removing the old measure. The existing metrics still dominate the review's accountability logic, meaning the old strategy's rewards remain active. Option B redesigns the review to reinforce the new strategy and removes the mechanism that continues to reward the old one. Management system alignment requires replacing the old rewards, not adding new ones alongside them.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1987,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "A strategy is not complete when the choices are made. It is complete when the management systems reward the behavior the choices require.",
-          "location": "breakdown.fastRead",
-          "why": "The two-sentence definition places the management system inside the strategy itself, not as an implementation step that follows strategy."
+          "text": "A strategy is not complete when the choices are made. It is complete when the management systems reward the behavior the choices require."
         },
         {
-          "text": "A review that cannot change a decision is not a strategy review. It is a briefing.",
-          "location": "breakdown.deepRead",
-          "why": "The two-sentence contrast gives the reader a portable test they can apply to any review they run or attend."
+          "text": "A review that cannot change a decision is not a strategy review. It is a briefing."
         },
         {
-          "text": "The test for any management system is one question: if the strategy were actually working, which of these numbers would look different?",
-          "location": "breakdown.fullRead",
-          "why": "The single-question test compresses the alignment audit into a form the reader can apply immediately to any dashboard, review template, or commission structure."
+          "text": "The test for any management system is one question: if the strategy were actually working, which of these numbers would look different?"
         }
       ]
     },
@@ -2026,14 +1654,6 @@
             "government",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a city government transportation committee developing options for a new transit corridor",
-            "audience": "a planning director preparing options for a council vote on a ten-year transit investment",
-            "stakes": "twelve studies were commissioned for the preferred route before any alternative routes were generated, leaving the committee with analysis but no strategic choice to make",
-            "format": "decision_point",
-            "openingDevice": "environmental",
-            "requiredBeat": "Anna reviews the twelve studies and realizes every one was commissioned to answer questions about the preferred route, not to generate information about alternative routes that might be strategically superior, then generates two genuine alternatives before the vote"
-          },
           "scenario": "Twelve transit study reports occupied the left side of Anna's conference table. Each one was thorough, and each one examined the same corridor from a different technical angle: soil conditions, ridership projections, cost estimates, environmental impact. The corridor had been informally designated as the preferred route before the first study was assigned. By the fifth report, Anna understood the problem: the studies were answers to questions about the preferred route, not information about whether alternative routes might be strategically superior. The analysis was comprehensive. The possibility set was one item deep. She spent the morning generating two genuine alternative routes before asking the analysis to evaluate any of them. The first concentrated service on a denser employment corridor the preferred route bypassed. The second prioritized the transit node with the weakest ridership in the existing network. Both had a real argument. Neither had been studied.",
           "whatToDo": "Before using existing analysis to prepare a recommendation, generate at least two genuine alternative options with different strategic logic. Write a paragraph for each alternative describing the winning aspiration, the where-to-play choice, and the how-to-win rationale. The analysis can then compare options that exist.",
           "whyItMatters": "Analysis commissioned before alternatives are generated answers questions about the preferred option, not questions about which option to prefer. A committee with one option cannot make a strategic choice; it can only approve or cancel."
@@ -2046,14 +1666,6 @@
             "media",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a media company considering a rebrand for a legacy print magazine entering digital distribution",
-            "audience": "a publisher who has commissioned a brand equity study before deciding whether to keep or change the current title",
-            "stakes": "the brand study answers questions about the current option but cannot generate the alternative options the publisher needs in order to make a strategic choice",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Sam reviews the brand equity study results and realizes he has analysis on one option but no articulated alternatives with their own logic, so he cannot yet make a genuine strategic choice"
-          },
           "scenario": "Sam had commissioned the brand equity study six months before the digital transition deadline, reasoning that the data would drive the decision. The results were clear: high recognition among readers over fifty, flat scores among non-readers under forty, and no evidence the current brand had pull with the audience the digital strategy needed. The study was well-designed. It told Sam what the current brand was worth to people who already had it. It told him nothing about what a different positioning might be worth to people who did not. He had analysis on one option: keep the brand. He did not have a second or third option with its own logic. He could not evaluate whether to keep the brand until he had articulated what rebuilding the brand or launching a new digital identity would look like as a strategic path: which audience it targeted, what the distribution advantage would be, and how the how-to-win logic would differ.",
           "whatToDo": "Before using the brand equity data to make a decision, articulate at least two alternative strategic paths as genuine options: which audience each targets, what the distribution approach would be, and what winning looks like for that audience. The study can then inform a choice between real alternatives.",
           "whyItMatters": "A study that answers questions about the current option is not a substitute for generating real alternative options. Analysis can only evaluate possibilities that already exist."
@@ -2066,14 +1678,6 @@
             "healthcare",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a hospital system evaluating options for a satellite clinic in an underserved district",
-            "audience": "a strategy director whose team has developed one option and is preparing to analyze its feasibility",
-            "stakes": "the feasibility analysis will validate or kill the single option; if it fails, there is no alternative and the project dies",
-            "format": "before_after",
-            "openingDevice": "second_person",
-            "requiredBeat": "before: Lars brings inconclusive feasibility analysis with no alternative to consider; after: he generates two genuine alternative models so the board can compare three options with different strategic logic"
-          },
           "scenario": "Lars had one option on the table six weeks before the board meeting: a full-service primary care clinic. The feasibility analysis was borderline, the recommendation inconclusive. If the board approved, the project proceeded. If they declined, the district went unserved and there was no alternative to consider. His director asked one question before he drafted the memo: what are the other options? Lars named two he had not yet analyzed. A mobile clinic rotating between three locations would cost forty percent less and reach two adjacent neighborhoods the fixed clinic could not serve. A partnership with an independent practice already operating in the district would require no capital investment and could launch in four months. Neither alternative had been studied. Both had a real argument. The difference between a strategic choice and an approval-or-cancel binary was the existence of those two alternatives.",
           "whatToDo": "Before presenting a single-option analysis to a board or decision-maker, generate at least two genuine alternatives with different strategic logic. Sketch the winning aspiration, the where-to-play, and the how-to-win for each. The board can then make a strategic choice, not an approval-or-cancel decision.",
           "whyItMatters": "When analysis covers only one option, decision-makers cannot choose between strategies; they can only approve or cancel. Three genuinely different options with different logic make a strategic choice possible."
@@ -2086,14 +1690,6 @@
             "education",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a school district evaluating curriculum options for a new secondary school",
-            "audience": "a superintendent who has assembled a committee to analyze a proposed STEM-focused curriculum",
-            "stakes": "the committee was formed after the STEM decision was informally made; no alternative curriculum philosophy is on the table for comparison",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "Isabel presents the committee analysis at the board meeting and a board member asks what the analysis would look like for a different kind of school; Isabel does not have an answer because no genuine alternatives were generated"
-          },
           "scenario": "At 9:14, Isabel advanced to the slide that was supposed to show alternative curriculum models. The slide was blank. The committee had spent four months analyzing the STEM-focused curriculum: implementation costs, teacher certification requirements, projected enrollment effects, and community feedback from three town halls. The STEM decision had been made informally before the committee was formed. A board member raised her hand. 'What would the analysis look like if we had designed a different kind of school?' Isabel did not have an answer. She had an excellent analysis of one curriculum philosophy and no articulated view of what a project-based learning model or a dual-language school would look like as genuine strategic alternatives for this community. The committee had spent four months optimizing a default. The board member was asking whether anyone had done strategic thinking. The answer was visible in the blank slide.",
           "whatToDo": "Before presenting a single-option curriculum analysis for board approval, generate two or three genuine alternatives and sketch the logic of each: which students it serves, what the how-to-win rationale is, and what capabilities are required. Bring those alternatives to the analysis instead of leaving the alternatives slide blank.",
           "whyItMatters": "A committee asked to analyze one option produces a thorough justification, not a strategic recommendation. The board member's question exposed the gap: the analysis had begun before the possibility set was built."
@@ -2106,14 +1702,6 @@
             "startup",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a climate technology startup preparing for a Series A fundraising decision",
-            "audience": "a founder trying to choose between a hardware product path, a software-only licensing model, and a services-and-data model",
-            "stakes": "the founder has deeply analyzed the hardware model but never built a comparable view of the alternatives; the investor discovers this gap during the pitch",
-            "format": "dialogue",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "the lead investor asks Marta to walk through what the company looks like on the software-only path, and Marta realizes she analyzed the hardware path but never generated the software-only path as a real option"
-          },
           "scenario": "'Walk me through what the company looks like if you take the software-only path,' the lead investor said. 'Not the risks of it. What the company actually looks like. Who the customer is, how you go to market, what winning means.' Marta had forty slides on the hardware path. She had a one-sentence footnote that said the software-only model had not been pursued due to scale limitations. She had spent six months analyzing manufacturing costs, supply chain options, distribution partnerships, and customer acquisition for the hardware path. She had not spent six hours generating what the software-only path would look like as a coherent strategy: which customers it served, why they would choose it, what the how-to-win logic was, and how the capabilities required differed from the hardware path. The investor was not asking whether the hardware path was well-analyzed. She was asking whether Marta had done the work of generating genuine options before committing to one.",
           "whatToDo": "For each strategic path under consideration, build a minimum one-page sketch: the target customer, the winning aspiration, the how-to-win rationale, and the three capabilities required. A footnote that explains why a path was not pursued is not a strategic possibility.",
           "whyItMatters": "A footnote explaining why an alternative was not pursued is not the same as having generated it as a genuine strategic possibility. Deep analysis of one path is not evidence of strategic thinking if the alternatives were never built out as real options."
@@ -2126,14 +1714,6 @@
             "product",
             "possibility-generation"
           ],
-          "planSpec": {
-            "domain": "a product team building a roadmap for the next year of a mid-stage SaaS product",
-            "audience": "a product lead whose team has generated an analysis of the top-requested features but has not identified different strategic options for where the product could go",
-            "stakes": "thorough feature analysis answered questions about one path while two competitors captured new buyers the team had never considered as a strategic alternative",
-            "format": "postmortem",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Jack reviews the previous year's roadmap and finds that rigorous feature analysis ran without generating the alternative strategic paths that later appeared as competitor moves"
-          },
           "scenario": "Jack went back through twelve quarters of product roadmap looking for the quarter where the team had considered a genuinely different strategic path. He found twelve quarters of feature delivery. Every sprint had addressed the most-requested items from the feedback queue. The customer data was real and the analysis was rigorous, and the product had grown slowly while two competitors launched adjacent products the team had discussed once in a whiteboard session and shelved. The team had not failed at analysis. They had failed to generate strategic options. Building the most-requested features was one path: deepen the current use case. Adding an integration marketplace was another: expand the ecosystem. Launching a lighter adjacent product was a third: extend the buyer. Each path had a different how-to-win logic, different capability requirements, and a different winning aspiration. The feature analysis had answered a question about one path without naming the other two.",
           "whatToDo": "In roadmap planning, name the three genuinely different strategic paths the product could take and write a one-paragraph logic for each: which buyer it serves, what winning looks like, and what the product would need to be able to do. Then use the customer data to compare the paths, not optimize the default.",
           "whyItMatters": "Feature analysis answers the question of what to build on the current path; it does not generate the question of whether a different path would win. The competitor launch that was discussed once and shelved was a strategic option that was never built as a genuine alternative."
@@ -2152,8 +1732,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Analysis can only evaluate what already exists as a possibility. The strategic thinking step, which must come first, is the generation of genuine alternatives before any analysis begins.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q02",
@@ -2165,8 +1744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not the quality of the analysis but the absence of genuine alternatives. Generating alternative routes first gives the analysis something to compare. Commissioning more studies or presenting the existing analysis for approval leaves the committee with one option, not a strategic choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q03",
@@ -2178,8 +1756,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Analysis applied to a single existing option produces arguments for that option, not a comparison between genuine alternatives. This is rationalization rather than strategic thinking: the process looks thorough and defends a predetermined choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q04",
@@ -2191,8 +1768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A genuine possibility requires at minimum a winning aspiration, a where-to-play logic, a how-to-win rationale, and a sense of the capabilities required. Financial analysis is what follows once the possibility exists, not a prerequisite for the possibility to be considered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q05",
@@ -2204,8 +1780,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The study is accurate about the present and tells Sam nothing about what alternative strategic paths would look like. He cannot choose between options until he has generated real alternatives with their own logic. The study alone can support neither keep nor rebrand as a strategic decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q06",
@@ -2217,8 +1792,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The committee's four months of work were thorough and the analysis was real. The problem was not the analysis; it was that no genuine alternatives were generated before the analysis began. The blank slide was where the strategic thinking should have started.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q07",
@@ -2230,8 +1804,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Marta's hardware analysis was thorough. The gap the investor exposed was that the software-only path had never been generated as a real option with its own logic. A footnote is not a strategic alternative. The investor was looking for evidence of strategic thinking, which requires generating and comparing genuine options.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q08",
@@ -2243,8 +1816,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The customer data was real and the analysis was rigorous. The problem was that the team never generated alternative strategic paths. Generating the three paths and comparing them with the existing data would have made the adjacent product option visible as a genuine strategic possibility, not a whiteboard idea that was shelved.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q09",
@@ -2256,8 +1828,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The five questions inform each other iteratively. A how-to-win choice may reveal that the initial where-to-play was too narrow, which requires reopening the winning aspiration. This is why each genuine possibility should be a complete cascade, not a one-sentence alternative that names only one dimension of the strategy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2318,19 +1889,13 @@
       },
       "memorableLines": [
         {
-          "text": "Vera had spent three weeks analyzing whether the brand identity path was viable. She had not yet spent three hours imagining what the packaging path would look like as a real strategy. That is not a gap in analysis. That is the absence of strategic thinking.",
-          "location": "breakdown.fastRead",
-          "why": "The contrast between three weeks of analysis and three hours of possibility-generation makes the asymmetry vivid and transfers directly to the reader's own planning habits."
+          "text": "Vera had spent three weeks analyzing whether the brand identity path was viable. She had not yet spent three hours imagining what the packaging path would look like as a real strategy. That is not a gap in analysis. That is the absence of strategic thinking."
         },
         {
-          "text": "The five questions do not run in one direction. Answering where to play may reopen what winning looks like. That is not a flaw in the logic. That is what the logic is for.",
-          "location": "breakdown.deepRead",
-          "why": "The two-sentence reframe turns what feels like a weakness of the strategy cascade into its most important feature: the iterative logic that forces each option to be genuinely coherent."
+          "text": "The five questions do not run in one direction. Answering where to play may reopen what winning looks like. That is not a flaw in the logic. That is what the logic is for."
         },
         {
-          "text": "The question is not whether your preferred option holds up under analysis. The question is whether the other options were real enough to lose to it.",
-          "location": "breakdown.fullRead",
-          "why": "The reframing shifts the standard from 'does this analysis support the option?' to 'were the alternatives genuine enough to constitute a real choice?' That is a test most organizations cannot pass."
+          "text": "The question is not whether your preferred option holds up under analysis. The question is whether the other options were real enough to lose to it."
         }
       ]
     },
@@ -2358,14 +1923,6 @@
             "startup",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "an early-stage startup deciding between two product directions at a funding inflection point",
-            "audience": "two co-founders who disagree on whether to build a B2B tool or a B2C consumer app and are about to split the team over it",
-            "stakes": "the team will spend the next twelve months building one of these paths, and the other co-founder's buy-in depends on feeling like the choice was made on evidence, not politics",
-            "format": "decision_point",
-            "openingDevice": "dialogue_first",
-            "requiredBeat": "Sarah asks what would have to be true for the B2C path to win, and her co-founder lists conditions, not positions; the conversation converts from argument to testable propositions"
-          },
           "scenario": "'You keep saying B2B is safer,' Sarah's co-founder said. 'You haven't said what would have to be true for B2C to win.' Sarah paused. That was the question she had been avoiding. She wrote it at the top of the whiteboard: what must be true for B2C to work? Her co-founder started listing: high organic word-of-mouth so the acquisition cost stays low, conversion from free to paid that is faster than the category average, and a viral loop that works without influencer spending. Sarah wrote each condition down. Then she asked which of those conditions they could test in the next six weeks without committing to the full build. The argument stopped being about who was right. It became about which conditions were most uncertain and what the cheapest honest test looked like.",
           "whatToDo": "When a strategic debate is stuck between two positions, stop arguing which option is correct and start listing what must be true for each option to succeed. Then identify which conditions are testable before full commitment and run those tests first.",
           "whyItMatters": "Turning conditions into testable propositions changes the conversation from defending positions to investigating evidence. The co-founders were not disagreeing about facts; they were assuming different conditions. Making the assumptions explicit is the first step to resolving them."
@@ -2378,14 +1935,6 @@
             "government",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "a city infrastructure committee deciding between repairing an aging bridge and building a new crossing route",
-            "audience": "a public works director presenting a recommendation to a city council that is split between the repair and new-build options",
-            "stakes": "the repair option is cheaper and faster but rests on the assumption that the bridge can be made safe for twenty more years; the debate is stuck because neither side can prove their assumption without testing it",
-            "format": "scene",
-            "openingDevice": "timestamp_named",
-            "requiredBeat": "Matt presents the committee report and a council member asks what would have to be true for the repair option to be the right choice; the question converts the debate from cost comparison to condition verification"
-          },
           "scenario": "At 2:15, Matt advanced to the slide comparing repair at four million and new build at twenty-two million. A council member in the third row raised her hand before he finished. 'Walk me through what would have to be true for the repair to be the right choice,' she said. Matt listed the conditions: the structural assessment must confirm twenty-year life, the foundation must be sound enough to hold the repaired load, and the contractor must be able to hold the budget through winter construction. The council member asked which of those three conditions they actually knew versus assumed. One was known. Two were assumed. The committee had a vote scheduled for Thursday and two conditions that had not yet been tested.",
           "whatToDo": "Before bringing a cost comparison to a decision-maker, list the specific conditions each option requires and mark which are supported by evidence versus which are currently assumed. The assumed conditions on the lower-cost option are often the ones that determine whether the savings are real.",
           "whyItMatters": "The council member's question converted a cost debate into a condition inventory. The two assumed conditions were the actual risk in the repair option, not the cost difference. Testing them before the vote was cheaper than discovering them during construction."
@@ -2398,14 +1947,6 @@
             "consumer-product",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "a consumer product company evaluating two possible launch markets for a new product",
-            "audience": "a marketing director choosing between launching first in a large urban market and launching first in a smaller, more concentrated regional market",
-            "stakes": "the urban launch offers faster volume but requires a marketing budget the company does not have; the regional launch requires word-of-mouth growth that the company has evidence for from a similar product",
-            "format": "predict_reveal",
-            "openingDevice": "question_hook",
-            "requiredBeat": "Julien asks his team to list what would have to be true for each launch path to succeed and finds that the urban launch requires three conditions his company has never met, while the regional launch requires two conditions supported by existing evidence"
-          },
           "scenario": "Which launch market was the right choice when the company could only afford one? Julien had predicted the urban market would win the argument on size alone. He asked his team to list what would have to be true for each path to succeed before the budget was allocated. The urban launch required a performance marketing budget the company did not have, a retail placement that would take six months to negotiate, and a customer acquisition cost below a threshold the company had never achieved in any market. The regional launch required word-of-mouth velocity that a similar product had demonstrated the previous year and a distribution partnership the company already had in that geography. The size argument had been true. The condition argument changed the decision.",
           "whatToDo": "Before choosing between two launch paths based on market size, list the specific conditions each path requires and check which conditions have supporting evidence from prior experience. The path with better evidence quality on its load-bearing conditions is often the one worth trying first.",
           "whyItMatters": "Market size is an outcome, not a condition. Julien's team had been debating which market was bigger when the real question was which conditions they already had evidence for. The condition list converted a size debate into an evidence inventory."
@@ -2418,14 +1959,6 @@
             "research",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "a clinical research team evaluating two study designs for a new therapeutic approach",
-            "audience": "a research director choosing between a large randomized controlled trial and a smaller adaptive trial design",
-            "stakes": "the adaptive trial is faster and cheaper but depends on the assumption that early signals will be robust enough to adjust the protocol without introducing bias",
-            "format": "before_after",
-            "openingDevice": "environmental",
-            "requiredBeat": "before: Diego brings the two designs as a budget choice; after: he reframes each as a set of conditions and finds the single most uncertain condition for the adaptive trial is testable with a small pilot before either full design is committed"
-          },
           "scenario": "Two study design proposals sat on the research committee table: the large randomized controlled trial on the left, labeled three years and full budget; the adaptive trial on the right, labeled eighteen months and sixty percent of the cost. Before: Diego framed the choice as a budget decision and the committee debated timelines. After: he asked what would have to be true for the adaptive trial to succeed and the conditions changed the conversation. The adaptive design required the early signal to be clean enough to adjust the protocol without introducing bias. That single condition was the most uncertain and the most consequential. It was also testable with a small preliminary study before either full design was committed. The committee stopped debating the budget and started planning the pilot.",
           "whatToDo": "Before choosing between a faster, cheaper option and a slower, more expensive one, list the conditions for each and identify the single most uncertain condition on the faster option. If that condition is testable with a small pilot, run the pilot before committing to either full design.",
           "whyItMatters": "The cost advantage of the adaptive trial was real only if the early signal condition held. That condition was testable before the commitment. Running a budget debate without first identifying the most uncertain condition meant the committee was evaluating the wrong question."
@@ -2438,14 +1971,6 @@
             "publishing",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "an independent publisher choosing between two manuscript acquisitions with limited budget for one",
-            "audience": "a senior editor who must recommend one of two strong manuscripts to the acquisitions committee",
-            "stakes": "manuscript A is from an established author with a reliable audience; manuscript B is from a debut novelist whose early reader response was exceptional but untested at scale",
-            "format": "vignette",
-            "openingDevice": "retrospective",
-            "requiredBeat": "Petra reviews previous debut acquisitions and reframes the question from which manuscript is better to what would have to be true for the debut to hit its target; she finds two of the three conditions are verifiable before the committee meeting"
-          },
           "scenario": "Petra had reviewed the comparison document three times: prose quality, marketability, category fit, all rated for both manuscripts. The established author scored reliably. The debut scored exceptionally on prose and unevenly on everything else. She put the comparison document aside and asked a different question: what would have to be true for the debut to reach its target? The conditions were specific. The exceptional reader response must hold across a broader test group, not just the original early readers. The social media following must represent genuine engagement, not inflated counts. The category must have room for a new voice in the current season. Petra could verify two of the three before the committee meeting. She brought the condition list instead of the comparison document.",
           "whatToDo": "Before making an acquisition decision based on evaluation criteria, ask what conditions must hold for the riskier option to succeed. Identify which conditions are verifiable before the commitment and gather that evidence before the decision meeting.",
           "whyItMatters": "The comparison document ranked both manuscripts on the same criteria and could not resolve the debate. The condition list gave the committee something actionable: two conditions worth verifying before committing the budget to either manuscript."
@@ -2458,14 +1983,6 @@
             "real-estate",
             "what-would-have-to-be-true"
           ],
-          "planSpec": {
-            "domain": "a real estate development team evaluating two sites for a mixed-use project",
-            "audience": "a development director whose team has built strong business cases for both sites but whose investment committee needs a clearer basis for choice",
-            "stakes": "site A has established foot traffic but higher land cost; site B has lower land cost but uncertain demand growth in a transitional neighborhood; both cases look good on paper but depend on different assumptions",
-            "format": "thought_experiment",
-            "openingDevice": "second_person",
-            "requiredBeat": "Frida imagines presenting both sites to the investment committee and being asked what would have to be true for Site B to be the right choice; the question converts the pro forma debate into a condition inventory with clear next tests"
-          },
           "scenario": "You are preparing both site presentations for the investment committee and you already know the question that will come. Site B's pro forma is strong, but the committee will ask: what would have to be true for this site to be the right choice? Frida ran through the conditions before the meeting. Neighborhood demand growth must continue at its current pace through the three-year construction period. The zoning approval must proceed on the projected timeline without the variance that would add a year. The anchor tenant must commit before construction begins, not after. The pro forma assumed all three. The first condition was supported by two years of demand data. The second was assumed. The third was the condition that had sunk three previous transitional-neighborhood projects in the region. She knew which condition to test before the committee meeting and what the test would cost.",
           "whatToDo": "Before presenting a business case to an investment committee, anticipate the 'what would have to be true' question for the riskier option and prepare condition-specific answers. Identify which conditions are assumed versus supported and have a plan for the most uncertain one.",
           "whyItMatters": "The pro forma comparison made both sites look attractive. The condition inventory showed that Site B's advantage rested on three assumptions, one of which had a documented history of causing project failures. That condition, not the pro forma, was the real decision variable."
@@ -2484,8 +2001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question reverses the direction of analysis: instead of projecting forward from available data, it works backward from a desired outcome to the conditions that must hold. The output is a list of conditions, not a confidence ranking.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q02",
@@ -2497,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Once conditions are listed, the next step is to sort them by testability before full commitment. The conditions that can be tested cheaply before the major investment are the ones that should be tested first. Market size analysis and customer surveys are useful but do not test the specific conditions that could change the decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q03",
@@ -2510,8 +2025,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The assumed conditions are where the cost advantage of the repair option can fail. Testing them before the vote is cheaper than discovering them during construction. The cost comparison gave the council a false sense of which decision was lower risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q04",
@@ -2523,8 +2037,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The condition inventory showed that the regional launch had supporting evidence for its key conditions while the urban launch required capabilities the company had never demonstrated. That evidence quality difference, not market size, is the strategically relevant finding. The regional path has better-supported conditions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q05",
@@ -2536,8 +2049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When the most uncertain condition for the riskier option is testable before full commitment, the correct step is to run that test. The preliminary study provides evidence on the condition that determines whether the faster path is viable, at a fraction of the cost of committing to either full design.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q06",
@@ -2549,8 +2061,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The comparison document could not resolve the debate because it ranked both manuscripts on criteria that did not reveal the specific conditions driving the risk. The condition list gave the committee something actionable: evidence to gather before the meeting, not subjective ratings to debate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q07",
@@ -2562,8 +2073,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The condition inventory gives the committee the actual information driving the decision: which conditions are supported and which are assumed. The plan to test the most uncertain condition before committing shows the committee a path to reduce the risk before committing, not simply accept or reject the site. Recommending Site A on the basis of one uncertain condition ignores the possibility that the condition is testable. Sensitivity analysis shows what happens if conditions fail but does not reduce the uncertainty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q08",
@@ -2575,8 +2085,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When analysis has not resolved a strategic disagreement, the problem is usually that both sides are defending positions, not examining conditions. Asking each side to list specific conditions converts the debate into an evidence inventory and identifies the assumptions that are actually driving the disagreement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q09",
@@ -2588,8 +2097,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Testing easy conditions first produces early confirmation but avoids the assumption that most threatens the decision. The condition worth testing first is the one that, if false, would change the choice. Easy tests on low-consequence conditions do not improve the odds; they generate activity that avoids the real question.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2650,19 +2158,13 @@
       },
       "memorableLines": [
         {
-          "text": "Nils was not asking which option was safer. He was asking which assumptions each option was betting on that he could not yet verify.",
-          "location": "breakdown.fastRead",
-          "why": "The reframe from 'safer' to 'which assumptions cannot yet be verified' captures the precise move the approach makes: it shifts the question from comfort to testability."
+          "text": "Nils was not asking which option was safer. He was asking which assumptions each option was betting on that he could not yet verify."
         },
         {
-          "text": "Instead of asking which option is right, ask what would have to be true for each option to work. The conditions that neither side can agree on are the ones worth testing before committing to either.",
-          "location": "breakdown.deepRead",
-          "why": "This two-sentence formulation gives the reader the exact question to ask and the exact output to look for. It is the practical instruction compressed into two sentences."
+          "text": "Instead of asking which option is right, ask what would have to be true for each option to work. The conditions that neither side can agree on are the ones worth testing before committing to either."
         },
         {
-          "text": "The uncertainty does not go away when you choose. But you can choose to test the most uncertain conditions before you commit, rather than discovering them after.",
-          "location": "breakdown.fullRead",
-          "why": "The two-sentence contrast acknowledges that uncertainty is real while giving the reader an action that is genuinely within their control. It closes the argument without false reassurance."
+          "text": "The uncertainty does not go away when you choose. But you can choose to test the most uncertain conditions before you commit, rather than discovering them after."
         }
       ]
     }

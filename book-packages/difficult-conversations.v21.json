@@ -50,13 +50,6 @@
             "hospital",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "regional hospital performance review",
-            "audience": "new managers giving feedback to veteran staff",
-            "stakes": "a missed medication-reconciliation deadline could become a patient-safety issue",
-            "format": "scene",
-            "requiredBeat": "the manager puts the printed deadline log beside a blank page labeled feelings and identity, then writes her own identity fear before drafting the first sentence"
-          },
           "scenario": "The stapled incident log glows under the medication-room fluorescents at 7:35 a.m. Sarah, eighteen months into management, has to review Mathieu, the nurse everyone has trusted for fourteen years. She sets the deadline log beside a blank sheet labeled feelings and identity. Before she drafts the first sentence, she writes, I am afraid he will think I am pretending to be a leader.",
           "whatToDo": "Sort the review before scripting it. Keep the deadline facts on one page, then name the feelings and identity stakes that will shape how both people hear those facts.",
           "whyItMatters": "If Sarah prepares only the log, she enters the facts conversation while her own authority fear and Mathieu's pride run underneath. The clean evidence will land in the wrong room."
@@ -69,13 +62,6 @@
             "family",
             "care"
           ],
-          "planSpec": {
-            "domain": "adult siblings coordinating dementia care",
-            "audience": "readers handling family logistics that carry old roles",
-            "stakes": "the next weekend visit to their father is still unassigned after 47 texts",
-            "format": "vignette",
-            "requiredBeat": "one sibling stops answering the logistics thread and circles the three separate layers on a notepad before calling"
-          },
           "scenario": "\"Just pick a train,\" Ingrid writes, and the phone keeps glowing beside their father's pill organizer. Mathieu is looking at a 47-message chain and a Sunday timetable. He must decide whether to send one more logistics reply. Instead, he circles three words on a notepad: weekend, grief, duty. Only then does he call.",
           "whatToDo": "Stop treating the text chain as a scheduling puzzle. Name the facts, the grief and resentment, and the identity question about being a good child before responding.",
           "whyItMatters": "The Sunday visit is real, but it is not the whole conversation. Once Mathieu sees the family-duty layer, he can stop answering old pain with train times."
@@ -88,13 +74,6 @@
             "startup",
             "trust"
           ],
-          "planSpec": {
-            "domain": "software co-founders debating a vendor renewal",
-            "audience": "founders and partners whose data argument is stuck",
-            "stakes": "the renewal deadline is Friday and trust between partners is eroding",
-            "format": "dialogue",
-            "requiredBeat": "the founder points to the same spreadsheet and then says the contract is not the only conversation in the room"
-          },
           "scenario": "At 3:10 p.m. Friday, Ingrid points at the renewal spreadsheet projected on the conference-room wall. \"The outage notes are still in column F.\" Luca folds his arms. \"You keep acting like I ignored them.\" Ingrid must decide whether to argue the numbers again. She taps the same cell and says, \"The contract is not the only conversation in here.\"",
           "whatToDo": "Use the spreadsheet to mark the facts, then name that trust and judgment are also in the room. Do not keep pretending a data review is all that is happening.",
           "whyItMatters": "Both founders can read column F. The stuck point is that the same numbers now carry feelings about trust and identity questions about judgment."
@@ -107,13 +86,6 @@
             "civic",
             "neighbors"
           ],
-          "planSpec": {
-            "domain": "tenant association meeting about elevator outages",
-            "audience": "neighbors in civic conflict with layered stakes",
-            "stakes": "elderly residents feel trapped and the board fears being branded negligent",
-            "format": "decision_point",
-            "requiredBeat": "you watch the board chair sort complaint dates, fear, and competence onto three separate sticky-note columns"
-          },
           "scenario": "You are at a tenant meeting where three columns of sticky notes cover a folding table. Aanya, the board chair, has the elevator outage calendar, a strip of blue tape, and the lobby sign-in sheet. She must decide whether to defend the repair schedule. Instead, she sorts the notes into dates, fear, and competence before she speaks.",
           "whatToDo": "Separate the outage facts from residents' fear and the board's fear of being seen as negligent. Speak after the three columns are visible.",
           "whyItMatters": "A repair calendar answers only one layer. The residents also need their trapped feeling seen, and the board needs to notice its own identity threat."
@@ -126,13 +98,6 @@
             "lab",
             "credit"
           ],
-          "planSpec": {
-            "domain": "university lab authorship dispute",
-            "audience": "graduate students facing credit and identity pressure",
-            "stakes": "a poster submission deadline forces unresolved contribution questions into the open",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes the student three weeks to see that the authorship fight is also about belonging in the field"
-          },
           "scenario": "At 9:30 p.m. Ingrid stands in the campus lab as a graduate researcher, staring at the half-finished poster on the shared drive. The conference deadline makes every comment urgent. She rereads her own line, \"Maybe I do not belong on this project,\" and must decide what layer to raise next.",
           "whatToDo": "Mark the authorship facts, then name the belonging question separately. Do not let the poster deadline hide the identity conversation.",
           "whyItMatters": "Credit matters, but the intensity comes from what the credit seems to say about place in the field. Seeing that layer changes the next sentence."
@@ -145,13 +110,6 @@
             "choir",
             "belonging"
           ],
-          "planSpec": {
-            "domain": "community choir solo assignment",
-            "audience": "volunteers in close community groups",
-            "stakes": "a singer believes the director's choice says something about her place in the group",
-            "format": "postmortem",
-            "requiredBeat": "the director names facts, hurt, and identity privately before replying to the singer's email"
-          },
           "scenario": "Sheet music is stacked on the piano bench after rehearsal, marked score on top, email printout beside it. David reads the singer's note about the solo assignment and reconstructs what he missed: the schedule was one layer, the hurt was another, and her fear of no longer mattering in the choir was the third.",
           "whatToDo": "Reply only after sorting the three layers privately. Address the rehearsal facts, acknowledge the hurt, and leave room for what the solo meant to her identity in the group.",
           "whyItMatters": "A choir assignment can look small from the outside and still carry belonging. The director's factual answer will fail if it skips the wound underneath."
@@ -170,8 +128,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Her fear is not only a feeling. It asks what this meeting says about whether she is a real leader. The timestamps remain facts, but they do not explain that identity pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -183,8 +140,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The promise is the visible fact, but the repeated line points to feeling and identity. Ending the call or proving the reminder would miss why the promise matters so much.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -196,8 +152,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Invoices answer the facts layer only. The residents are also naming a feeling, while the board may be defending competence. Sorting all three makes the room readable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -209,8 +164,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Her words name the facts layer, but her reaction to trust shows a feelings layer affecting the exchange. A tool or responsibility lecture would not address the hidden driver.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -222,8 +176,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The missed dinner is real, but the spike came when the question sounded like a verdict on friendship. Anger may be present, but the self-question explains the size of the reaction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -235,8 +188,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The preparation is useful because it separates the visible poster issue from the identity meaning attached to it. It is not a script and does not prove the fairness question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -248,8 +200,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The facts still matter, but the parent is hearing them as a self-verdict. More attendance details may feel like more character evidence unless that layer is recognized.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -261,8 +212,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frame helps you prepare and choose a better response. Turning it into a public diagnosis can make the other person feel analyzed, which often raises defense.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -274,8 +224,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dishes may be the facts layer, while respect points toward feelings and identity. Counting chores may be needed later, but first the real shape of the exchange has to be seen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -336,19 +285,13 @@
       },
       "memorableLines": [
         {
-          "text": "The log is evidence. It is not the whole map.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's diagnostic warning into a concrete image from the opening scene."
+          "text": "The log is evidence. It is not the whole map."
         },
         {
-          "text": "Diagnosis is not a cure.",
-          "location": "breakdown.deepRead",
-          "why": "It protects the first chapter from pretending that naming the layers solves them."
+          "text": "Diagnosis is not a cure."
         },
         {
-          "text": "The three conversations are a diagnostic tool, not a script.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader the exact boundary of the move in one portable sentence."
+          "text": "The three conversations are a diagnostic tool, not a script."
         }
       ]
     },
@@ -375,13 +318,6 @@
             "startup",
             "roadmap"
           ],
-          "planSpec": {
-            "domain": "startup product roadmap review",
-            "audience": "co-founders stuck in competing true stories",
-            "stakes": "four weeks of delay is threatening a customer pilot",
-            "format": "scene",
-            "requiredBeat": "Claire closes the feature spreadsheet and asks Jonas what user risk he sees that her dashboard does not show"
-          },
           "scenario": "Which risk is missing from the dashboard? Claire is in a glass phone room at 6:20 p.m., trackpad worn shiny beside the feature spreadsheet, pilot contract open in another tab. Jonas has the customer-call notes marked in blue. She is about to prove her roadmap again. Instead, she closes the sheet and asks what user risk he sees that her dashboard does not.",
           "whatToDo": "Ask for the part of the picture Jonas can see from his position. Keep the roadmap available, but stop using it as the final record.",
           "whyItMatters": "Jonas is not a blank page waiting for Claire's dashboard. He has a coherent story built from different contact with customers, and the pilot depends on comparing those stories."
@@ -394,13 +330,6 @@
             "museum",
             "interpretation"
           ],
-          "planSpec": {
-            "domain": "museum exhibit label dispute",
-            "audience": "curators revising public interpretation under deadline",
-            "stakes": "the opening preview is in nine days and each curator thinks the other is distorting the exhibit",
-            "format": "vignette",
-            "requiredBeat": "one curator reads the other's annotated label as a complete story rather than a mistake to correct"
-          },
           "scenario": "The glass case catches both label drafts in its reflection, one clean, one freckled with red pencil marks. Sofia stands in the gallery mockup with the preview invitation on the crate beside her. Her pencil hovers over Mathieu's first sentence. She reads the annotated label once as a complete story, asking what public risk he is guarding.",
           "whatToDo": "Read the other draft as a coherent version before editing it. Ask what concern the red marks are serving, then compare that concern with your own.",
           "whyItMatters": "If Sofia treats every mark as an error, Mathieu has to defend his whole interpretation. Reading the story first creates a chance to learn what value is underneath."
@@ -413,13 +342,6 @@
             "family",
             "newborn"
           ],
-          "planSpec": {
-            "domain": "couple dividing night-shift care for a newborn",
-            "audience": "partners exhausted by a fairness argument",
-            "stakes": "sleep deprivation is turning every request into evidence of selfishness",
-            "format": "dialogue",
-            "requiredBeat": "one partner asks what the night feels like from the other side before reopening the tally"
-          },
           "scenario": "\"I am not asking for a scorecard,\" James says beside the dim nursery lamp. The feeding log is open, the phone alarm is set for 3:40, and Catarina's finger is already on the column where she took four night shifts. She has to choose between reopening the tally and asking one real question. \"Tell me what the night feels like from your side first,\" she says.",
           "whatToDo": "Ask for James's experience before using the log. The numbers can wait long enough for both partners to understand what each night is costing.",
           "whyItMatters": "The tally may be accurate and still keep them in a contest. Asking for his view changes the purpose from winning the count to understanding the load."
@@ -432,13 +354,6 @@
             "nonprofit",
             "board"
           ],
-          "planSpec": {
-            "domain": "nonprofit board deciding grant priorities",
-            "audience": "board members with values conflict masquerading as facts",
-            "stakes": "a grant vote could cut either housing support or legal aid",
-            "format": "decision_point",
-            "requiredBeat": "Andrew writes the sentence he wants to deliver, then crosses it out and writes one question he does not know the answer to"
-          },
           "scenario": "At 8:05 p.m., Andrew sits with the grant rubric printed on heavy cream paper, two budget columns circled, community hearing notes spread beside his chair. He must decide whether to deliver the housing argument he rehearsed. He writes the sentence, crosses it out, and writes one question he cannot answer about the legal-aid priority.",
           "whatToDo": "Replace the prepared conclusion with a question whose answer could matter. Ask what need the other priority is protecting before defending your own.",
           "whyItMatters": "A grant vote can hide a values conflict. Andrew's polished speech would only make the other side sharpen theirs; the open question may reveal the value his column misses."
@@ -451,13 +366,6 @@
             "studio",
             "critique"
           ],
-          "planSpec": {
-            "domain": "architecture studio critique",
-            "audience": "students receiving conflicting design advice",
-            "stakes": "a model review has become a fight about taste instead of constraints",
-            "format": "predict_reveal",
-            "requiredBeat": "Kiran asks which constraint Margaux is optimizing for before defending his facade choice"
-          },
           "scenario": "At 5:15 p.m. in the architecture studio, cardboard casts a crooked shadow across the pin-up board, and the site wind diagram curls at one corner. Kiran predicts Margaux will call the facade heavy again. He must decide whether to defend the model before she speaks. Instead, he asks which constraint she is optimizing for: wind, cost, or street presence.",
           "whatToDo": "Ask which constraint is driving the critique before defending the facade. Treat Margaux's comment as a view from a different priority, not a taste verdict.",
           "whyItMatters": "If Kiran fights taste, the review stalls. If he asks about constraints, he may discover that the critique is coherent from a different design problem."
@@ -470,13 +378,6 @@
             "family",
             "school"
           ],
-          "planSpec": {
-            "domain": "parents choosing a high school program",
-            "audience": "family members reading the same brochure differently",
-            "stakes": "the child is beginning to treat the parents' argument as a verdict on her future",
-            "format": "postmortem",
-            "requiredBeat": "Margaux maps each parent's fear beside each claimed fact before the family meeting"
-          },
           "scenario": "It took Margaux until the third stack of program brochures to see why dinner kept turning quiet. The commute map, tuition worksheet, and arts-program page were not fighting by themselves. Before the family meeting, she mapped each parent's fear beside each claimed fact: debt, distance, lost opportunity, pressure.",
           "whatToDo": "Put each parent's facts beside the fear those facts are carrying. Let the family compare what each brochure represents before arguing for a program.",
           "whyItMatters": "The same brochure can mean freedom to one parent and risk to another. Mapping the fears keeps the child from hearing the argument as a verdict on her future."
@@ -495,8 +396,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not arithmetic compromise. Each partner holds a view built from different evidence. Learning asks what each view can see before deciding what should change.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -508,8 +408,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Changing the packaging does not change the stance. If all three versions aim at acceptance of a verdict, the employee keeps hearing correction, not curiosity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -521,8 +420,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The words sound curious, but the director is waiting to reload her case. That gap is exactly performed openness, and people usually sense it quickly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -534,8 +432,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first option asks for the other parent's underlying view and could reveal a real concern. Repeating statistics, even calmly, keeps her story in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -547,8 +444,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the draft as a complete story does not make it correct. It helps her find the concern behind it, so the revision can address more than surface wording.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -560,8 +456,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The interruptions show that his view is still functioning as the standard. Learning does not mean surrender, but it does require letting an answer arrive before defending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -573,8 +468,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The log may be accurate, but the stance matters. If it is used only to win the count, it blocks the missing experience that could change how they solve the nights.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -586,8 +480,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A question that could weaken her own case is evidence of real learning stance. It does not prevent advocacy; it makes later advocacy better informed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -599,8 +492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The constraint question asks what the critic sees from her side of the problem. It is not avoidance or a trap for praise; it tests whether his story is missing a priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -661,19 +553,13 @@
       },
       "memorableLines": [
         {
-          "text": "Keep your view. Loosen its job.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the stance shift without asking the reader to abandon their own judgment."
+          "text": "Keep your view. Loosen its job."
         },
         {
-          "text": "The learning stance changes the purpose.",
-          "location": "breakdown.deepRead",
-          "why": "It states the core move as a shift in aim rather than a cosmetic change in tone."
+          "text": "The learning stance changes the purpose."
         },
         {
-          "text": "A message delivery stance can wear soft clothes.",
-          "location": "breakdown.fullRead",
-          "why": "It warns that politeness can hide the same verdict-delivery structure."
+          "text": "A message delivery stance can wear soft clothes."
         }
       ]
     },
@@ -700,13 +586,6 @@
             "team",
             "repair"
           ],
-          "planSpec": {
-            "domain": "team meeting accent joke repair",
-            "audience": "managers who caused unintentional impact",
-            "stakes": "a junior engineer may stop trusting the manager who thought he was being warm",
-            "format": "scene",
-            "requiredBeat": "Grace deletes the defensive first sentence and writes the impact acknowledgment before any intent explanation"
-          },
           "scenario": "\"I did not mean it\" sits alone in Grace's draft reply at 8:42 p.m. A team-chat notification from Miriam glows beside the meeting transcript note where the accent joke appears. Grace is about to send the defense because it is true. She deletes the sentence and writes first: \"I can see that comment made you uncomfortable in front of the team.\"",
           "whatToDo": "Acknowledge the impact before explaining the joke. Make Miriam's experience the first thing Grace receives, then add intent only after the effect has been named.",
           "whyItMatters": "A true intent defense can still dismiss the impact. If Miriam hears only what Grace meant, she has to argue for what happened to her."
@@ -719,13 +598,6 @@
             "client",
             "exclusion"
           ],
-          "planSpec": {
-            "domain": "freelance client left off decision email",
-            "audience": "project volunteers and coordinators handling accidental exclusion",
-            "stakes": "the excluded designer learned about a decision in front of the client",
-            "format": "vignette",
-            "requiredBeat": "Lars stops explaining the email mistake and asks what changed for Chiara when she found out publicly"
-          },
           "scenario": "The conference-room speakerphone blinks red beside the client agenda, and the email thread on Lars's laptop shows Chiara missing from the decision note. He starts to say it was an honest mistake, then catches the old route. His hand leaves the trackpad. He has to choose impact first and asks what changed for Chiara when she found out in front of the client.",
           "whatToDo": "Stop explaining the omission long enough to ask about the public impact. Let Chiara describe what the exclusion changed before Lars describes how it happened.",
           "whyItMatters": "Chiara is not mainly asking whether Lars plotted the mistake. She is dealing with the effect of being excluded from a decision about her work in front of others."
@@ -738,13 +610,6 @@
             "relationship",
             "plans"
           ],
-          "planSpec": {
-            "domain": "partner canceling plans repeatedly",
-            "audience": "couples where overload and hurt collide",
-            "stakes": "three cancellations have started to feel like rejection",
-            "format": "dialogue",
-            "requiredBeat": "you separate the fact of canceled dinners from the story about not wanting time together"
-          },
           "scenario": "At 7:50 p.m. outside the closed restaurant, you see the unread reservation reminder, three calendar cancellations, and the late train alert that cost the deposit. Layla says, \"It lands as if you do not want time with me.\" You must decide whether to defend your workload or acknowledge the lonely impact first.",
           "whatToDo": "Say first that three cancellations would feel lonely and rejecting. Then explain the work pressure as intent, not as a reason the impact should disappear.",
           "whyItMatters": "Layla is reporting what the pattern has begun to mean. If you answer only with workload, you make her defend the impact instead of discussing it."
@@ -757,13 +622,6 @@
             "pharmacy",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "pharmacy shift handoff omission",
-            "audience": "healthcare coworkers in high-stakes routine work",
-            "stakes": "a missed handoff note caused a patient call to go unanswered",
-            "format": "decision_point",
-            "requiredBeat": "Ben names the impact on the shift before explaining why the note was skipped"
-          },
           "scenario": "At 7:12 a.m., Ben reaches for the handoff clipboard hanging from the metal hook. The patient callback list has one unanswered number circled, and the closing checklist shows where his note should have been. He is about to explain the printer jam. Before that, he must decide to name the impact on the morning shift.",
           "whatToDo": "Start with the missed callback and the extra risk it created for the shift. Explain the printer jam later, after the practical impact has been received.",
           "whyItMatters": "The printer jam may explain intent and circumstance. It does not answer the morning team's real problem: a patient call went unanswered because the handoff failed."
@@ -776,13 +634,6 @@
             "seminar",
             "authorship"
           ],
-          "planSpec": {
-            "domain": "research group authorship comment",
-            "audience": "graduate peers navigating accidental public slight",
-            "stakes": "one careless phrase made a collaborator feel erased from the work",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes Layla until the bus ride home to see that Etienne was describing impact, not accusing intent"
-          },
           "scenario": "At 6:35 p.m. on the campus bus, rain streaks the window and blurs the seminar lights over Layla's bus pass. She keeps replaying the slide where the authorship footnote vanished. Etienne said her phrasing made him feel erased. She must decide whether to treat that impact as real before arguing what she meant.",
           "whatToDo": "Reply to the erased feeling before clarifying the slide mistake. Treat Etienne's statement as impact unless he actually claims harmful intent.",
           "whyItMatters": "Layla's invented accusation makes her defensive. Hearing the comment as impact lets her address the public slight without fighting a motive Etienne did not state."
@@ -795,13 +646,6 @@
             "family",
             "wedding"
           ],
-          "planSpec": {
-            "domain": "wedding-planning family text",
-            "audience": "relatives interpreting delays as disrespect",
-            "stakes": "a seating-chart delay has become evidence of not caring",
-            "format": "postmortem",
-            "requiredBeat": "Etienne replies first to the embarrassment caused by the public follow-up, then explains the vendor delay"
-          },
           "scenario": "At 10:20 p.m. in the wedding venue office, Etienne studies the folded seating chart covered with crossed-out names. The vendor email explains the delay, but not the embarrassment of being excluded from the family group text. He must decide whether to accuse his sister of malice or start with what the exclusion changed for him.",
           "whatToDo": "Answer the public embarrassment before the vendor delay. Put the impact in the first sentence, then explain the logistics without asking them to cancel the hurt.",
           "whyItMatters": "The delay may be innocent and still humiliating in the family thread. Explaining logistics first repeats the pattern of missing what actually landed."
@@ -820,8 +664,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The compliment claim addresses motive, not what happened to the employee. The first sentence needs to show that the embarrassment landed before intent is discussed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -833,8 +676,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The public effect is the live issue. The auto-fill and honest mistake may be true, but both skip the impact the designer is asking to have recognized.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -846,8 +688,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The partner is reporting what the cancellations have started to feel like. Work pressure may explain intent, but it does not yet address the loneliness or rejection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -859,8 +700,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Impact first creates room for intent to be heard later. Explaining praise first can sound like a request that she withdraw the impact because you meant well.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -872,8 +712,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The delay had a real impact on her work, but she filled in motive without evidence. The correction is to separate what happened from the story about why.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -885,8 +724,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The jam may explain the circumstances, but the next shift is dealing with a missed patient call. That impact needs to be named before the explanation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -898,8 +736,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tracks remain separate, but harmful intent must be owned rather than defended away. The distinction clarifies the work; it does not excuse the speaker.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -911,8 +748,7 @@
             ],
             "correctIndex": 1,
             "explanation": "This starts with the abandonment impact and leaves room for the later intent. The other options ask the friend to shrink the effect because the motive was different.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -924,8 +760,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful question turns toward impact. Agreement about motive may be possible later, but it cannot replace hearing what public correction did to the member.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -986,19 +821,13 @@
       },
       "memorableLines": [
         {
-          "text": "What you meant belongs in the conversation. What landed belongs there first.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the order of operations without jargon."
+          "text": "What you meant belongs in the conversation. What landed belongs there first."
         },
         {
-          "text": "The order should not change.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the chapter's sequencing rule blunt and easy to remember."
+          "text": "The order should not change."
         },
         {
-          "text": "Start with the effect. Let your motive wait its turn.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with a compact practice rule."
+          "text": "Start with the effect. Let your motive wait its turn."
         }
       ]
     },
@@ -1025,13 +854,6 @@
             "management",
             "contribution"
           ],
-          "planSpec": {
-            "domain": "remote engineering check-in cycle",
-            "audience": "managers and remote employees in mutual distrust",
-            "stakes": "extra oversight is making a capable employee withdraw further",
-            "format": "scene",
-            "requiredBeat": "Hannah draws the loop: silence leads to check-ins, check-ins lead to more silence, then marks her own arrow"
-          },
           "scenario": "It took Hannah three check-ins to notice the frozen webcam thumbnail was not the whole story. The status dashboard, a Slack thread with nine questions, and a new calendar invite sit open on her screen. She must decide before sending another invite, so she draws the loop: silence leads to check-ins, check-ins lead to more silence, then marks her own arrow.",
           "whatToDo": "Map the cycle before adding more oversight. Hannah should name her check-ins as one contribution to the withdrawal pattern, then ask what reporting agreement would reduce both silence and surveillance.",
           "whyItMatters": "The engineer's silence may still need addressing, but another check-in repeats the same move. Marking her arrow shows Hannah where she can interrupt the contribution system."
@@ -1044,13 +866,6 @@
             "holidays",
             "roles"
           ],
-          "planSpec": {
-            "domain": "sibling holiday planning roles",
-            "audience": "adult families with entrenched competence patterns",
-            "stakes": "one sibling is burning out after a decade of invisible planning",
-            "format": "vignette",
-            "requiredBeat": "Mikkel names how his non-role has become a role, then asks for one concrete planning task"
-          },
           "scenario": "\"I thought you liked doing it,\" Mikkel says, then sees the holiday train tickets, shared grocery list, and folding table plan stacked beside his sister's plate. Before she takes the folder back, he has to choose between defending himself and naming the pattern: his non-role has become a role. He asks to own the train booking that night.",
           "whatToDo": "Name the role he has been playing, then take one concrete piece of the work. He should not pretend the burden was equal, but he can stop benefiting from her competence.",
           "whyItMatters": "The organizer may have carried far more of the load. Contribution mapping still helps because Mikkel can change the disengaged role that keeps the load there."
@@ -1063,13 +878,6 @@
             "handoff",
             "style-intersection"
           ],
-          "planSpec": {
-            "domain": "design handoff style clash",
-            "audience": "cross-functional teams with incompatible definitions of done",
-            "stakes": "missed review cycles are threatening a launch date",
-            "format": "dialogue",
-            "requiredBeat": "Giulia compares the fast rough draft and the slow polished draft as two styles intersecting, not two character flaws"
-          },
           "scenario": "Two files with the same project name fill Giulia's monitor while the launch countdown ticks in the corner. One prototype file is fast and rough; the QA checklist beside it expects polished handoff. She is about to decide whether to call the draft careless. Instead, she says, \"Our definitions of done are crossing each other.\"",
           "whatToDo": "Translate the clash into a style intersection. Giulia should define what counts as review-ready instead of treating fast work or polished work as a character flaw.",
           "whyItMatters": "Labels like careless and perfectionist keep both sides defending their identity. A style intersection gives the team a standard they can change."
@@ -1082,13 +890,6 @@
             "theater",
             "critic-defender"
           ],
-          "planSpec": {
-            "domain": "community theater rehearsal pattern",
-            "audience": "volunteer groups with critic-defender roles",
-            "stakes": "the director's notes are making actors defensive and rehearsal quality worse",
-            "format": "decision_point",
-            "requiredBeat": "Thomas pauses before giving the note and asks what his delivery is contributing to the same defensive scene"
-          },
           "scenario": "The stage floor glows with tape marks under the work lights. Thomas holds a marked script while actors shift in folding chairs near the rehearsal call sheet. He must decide how to give the next note. Before speaking, he asks himself what his clipped delivery contributes to the critic-defender scene that keeps repeating.",
           "whatToDo": "Change the delivery before judging the defense. Thomas can still give the note, but he should open with the shared aim and one observable adjustment instead of a verdict.",
           "whyItMatters": "The actors may need the correction. If the note arrives as a charge, their defense becomes the next predictable part of the same system."
@@ -1101,13 +902,6 @@
             "avoidance",
             "home"
           ],
-          "planSpec": {
-            "domain": "shared apartment cleaning standoff",
-            "audience": "roommates in avoider-pursuer loop",
-            "stakes": "a lease renewal depends on whether the home can stop feeling hostile",
-            "format": "predict_reveal",
-            "requiredBeat": "Yusuf lists what he avoided raising for months before asking Camille to change anything"
-          },
           "scenario": "At 7:10 p.m., Yusuf pulls the vacuum from behind the hall door and sees the lease renewal form under it. The sink photo and chore app history would make an easy case against Camille. He must decide what to say first. He lists three issues he avoided raising for months before asking her to change the cleaning pattern.",
           "whatToDo": "Begin with the avoidance contribution. Yusuf should say what he let build up, then ask for a new cleaning agreement without turning the whole conversation into a prosecution.",
           "whyItMatters": "A perfect evidence file can still recreate the pursuer-avoider loop. Naming his delay gives the conversation a different first move."
@@ -1120,13 +914,6 @@
             "scheduling",
             "role-assumptions"
           ],
-          "planSpec": {
-            "domain": "medical clinic scheduling backlog",
-            "audience": "clinic staff and physicians with role assumptions",
-            "stakes": "patients are waiting longer because everyone assumes someone else owns cancellations",
-            "format": "postmortem",
-            "requiredBeat": "Camille maps receptionist, nurse, and physician assumptions on the whiteboard before suggesting fixes"
-          },
           "scenario": "Who owned yesterday's cancellations after the triage phone started blinking? In the staff room, Camille stands before a whiteboard covered with colored appointment blocks and the cancellation list. She maps what receptionists, nurses, and physicians each assumed before proposing a fix, because the backlog came from the gap between roles.",
           "whatToDo": "Map the role assumptions before assigning a new procedure. Camille should show where each group expected someone else to act, then make one handoff owner visible.",
           "whyItMatters": "A backlog can look like individual negligence when it is really a role pattern. The map prevents a blame meeting and exposes the missing decision point."
@@ -1145,8 +932,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Contribution starts by mapping the pattern, not by awarding innocence or guilt. The vendor may still own much of the delay, but the team's late approvals are part of the system that can change.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1158,8 +944,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Her standards may still matter, but her reactions help explain why concerns arrived late. Naming that contribution gives her a lever besides accusing staff of poor courage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1171,8 +956,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful frame is the collision between definitions of ready. Calling one person slow or careless turns a style intersection back into a blame contest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1184,8 +968,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The photos may be valid, but the delay is part of the current pattern. Naming it keeps the first move from being prosecution and opens space for a new agreement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1197,8 +980,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The system includes both the younger sibling's passivity and the older sibling's rescue role. That does not make the burden equal; it shows why the pattern keeps working.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1210,8 +992,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Contribution is not arithmetic fairness. Her silence may be a changeable part of the pattern while the physician still owns the larger harm and authority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1223,8 +1004,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lead changes a move inside the loop: how the first note lands. The other options either avoid the work or blame the designers for the predictable defense.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1236,8 +1016,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A vague admission cannot guide change. The chair needs to name the concrete contribution, such as holding side conversations that leave volunteers reacting late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1249,8 +1028,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Contribution mapping has limits. A serious power or safety issue may need protection and consequences first; mapping your part must not be used to dilute accountability.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1347,13 +1125,6 @@
             "feelings",
             "cancellation"
           ],
-          "planSpec": {
-            "domain": "creative project cancellation meeting",
-            "audience": "creative leads whose feelings are hidden behind business language",
-            "stakes": "six months of work was shelved without consultation",
-            "format": "scene",
-            "requiredBeat": "Rachel names grief, fear, and anger on a notecard before asking for the meeting she actually needs"
-          },
           "scenario": "The cancelled campaign board leans against Rachel's wall, still covered with color chips from the mood board. A budget email waits beside a blank notecard. She must decide whether to request a business-rationale meeting or the meeting she actually needs, so she writes three words first: grief, fear, anger.",
           "whatToDo": "Name the feeling mix before naming the meeting purpose. Rachel can ask for the decision's impact to be acknowledged instead of pretending she only needs a budget explanation.",
           "whyItMatters": "The business reason may be useful, but it will not answer grief, fear, or anger. A meeting built around the wrong feeling leaves everyone confused."
@@ -1366,13 +1137,6 @@
             "social-performance",
             "hidden-hurt"
           ],
-          "planSpec": {
-            "domain": "friend group cheerful performance",
-            "audience": "friends sensing a hidden hurt everyone is stepping around",
-            "stakes": "a birthday dinner is becoming brittle because one friend keeps performing okay",
-            "format": "vignette",
-            "requiredBeat": "Niklas notices the joke that lands too sharply and asks what feeling has not had a place yet"
-          },
           "scenario": "At 9:12 p.m. at the corner table, you see the cake box tied with thin string and the unopened gift bag under the restaurant chair. The group chat had sounded cheerful all week, but one joke now lands with a hard little edge. Niklas must decide whether to laugh past it or ask, quietly, what feeling has not had a place yet.",
           "whatToDo": "Make room for the hidden feeling without forcing a public confession. Niklas can say the joke sounded sharper than usual and ask if something about the week hurt.",
           "whyItMatters": "Cheerfulness can become a performance everyone has to maintain. A small invitation may bring the feeling above ground before it comes out as a scene."
@@ -1385,13 +1149,6 @@
             "reorg",
             "acknowledgment"
           ],
-          "planSpec": {
-            "domain": "manager accepting the 'I'm fine' answer",
-            "audience": "people managers reading guarded emotion",
-            "stakes": "a direct report's silence after a reorg could harden into disengagement",
-            "format": "dialogue",
-            "requiredBeat": "Catarina does not force disclosure; she names space for the feeling without making the employee prove it"
-          },
           "scenario": "\"I am fine,\" James says too quickly, his muted video tile frozen beside the 1:1 agenda and the reorg FAQ. Catarina is about to decide whether politeness requires moving on. Instead, she says, \"You do not have to unpack it now, but I want there to be space here if the change is carrying more than logistics.\"",
           "whatToDo": "Acknowledge the possible feeling without demanding proof. Catarina should leave the door open and make clear that emotion is allowed material, not a performance problem.",
           "whyItMatters": "Forcing disclosure turns care into pressure. Accepting \"fine\" too quickly keeps the feelings conversation underground."
@@ -1404,13 +1161,6 @@
             "burnout",
             "legal-clinic"
           ],
-          "planSpec": {
-            "domain": "immigration clinic volunteer burnout",
-            "audience": "helpers whose anger comes out as contempt",
-            "stakes": "clients feel blamed by the person trying to help them",
-            "format": "decision_point",
-            "requiredBeat": "Evan writes the exact mix under frustration before speaking to the volunteer coordinator"
-          },
           "scenario": "A stack of intake folders leans beside the translation headset while the waiting-room ticket machine clicks again. Evan hears contempt in his own voice and must decide what to do before the next client sits down. He writes the exact mix under frustration: helpless, ashamed, angry, tired.",
           "whatToDo": "Separate the feeling from the client before speaking. Evan should tell the coordinator what is happening inside him and ask for a break or support before contempt shapes the work.",
           "whyItMatters": "Calling the feeling unprofessional would only bury it. Naming the mix helps Evan protect clients from the feeling's sideways expression."
@@ -1423,13 +1173,6 @@
             "money",
             "shame"
           ],
-          "planSpec": {
-            "domain": "partner discussing a quiet resentment about money",
-            "audience": "couples where a 'budget' talk is carrying shame",
-            "stakes": "a credit-card statement has become a proxy for fear and embarrassment",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes Hadiya a week to replace 'you make me feel small' with 'I feel embarrassed and scared'"
-          },
           "scenario": "It took Hadiya a week of opening the bank app beside unpaid envelopes to hear the rent reminder without flinching. She must decide between saying, \"You make me feel small,\" and naming the feeling itself. By Friday, she writes, \"I feel embarrassed and scared when I do not understand where the money went.\"",
           "whatToDo": "Turn the feelings-shaped accusation into a direct report. Hadiya can still ask for a budget conversation, but the first sentence should contain her feeling, not a verdict about her partner.",
           "whyItMatters": "The accusation invites a defense of character. The direct report lets the money problem and the shame around it both enter the room."
@@ -1442,13 +1185,6 @@
             "anger",
             "professional-context"
           ],
-          "planSpec": {
-            "domain": "school counselor after parent complaint",
-            "audience": "educators facing anger that wants to drive",
-            "stakes": "a parent email has made the counselor want to retaliate with policy language",
-            "format": "postmortem",
-            "requiredBeat": "Chloe waits until she can name humiliation separately from concern before drafting the response"
-          },
           "scenario": "At 3:18 p.m., Chloe lays the printed parent email on her desk blotter as the school bell rattles the hallway. The policy binder gives her a perfect cold reply. She waits until she can name humiliation separately from concern, then drafts a response that addresses the child instead of retaliating against the parent's tone.",
           "whatToDo": "Let the feeling be known before it writes the email. Chloe can use policy, but only after humiliation has stopped driving the sentence.",
           "whyItMatters": "A professional mask can still carry revenge. Naming the feeling privately keeps the response calibrated to the student's needs."
@@ -1467,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Annoyed is too vague to guide the conversation. Naming grief, fear, anger, or embarrassment helps her ask for what the feeling actually needs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1480,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sharp joke may be the hidden feeling leaking out. A gentle observation gives the feeling a place without accusing him of ruining dinner.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1493,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sentence does not report a feeling like fear or embarrassment. It reports a story about the other person's attitude, so the other person will defend against the verdict.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1506,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Humiliation is information, not a writing plan. Naming it privately lets policy serve the student instead of carrying retaliation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1519,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The manager leaves space without making the employee prove a feeling. That acknowledges the possible emotional material while respecting choice and timing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1532,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The precise feelings reveal different needs than contempt alone. Helplessness and exhaustion suggest support or a break before clients pay the price in his tone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1545,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Negotiating with a feeling means checking the story that produced it. The feeling is real, but the career-ending story may need revision before she acts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1558,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cost of disclosure can be real. Routing the feeling to a safer audience is different from suppression because the feeling is expressed and sorted before the client conversation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1571,8 +1299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Acknowledgment is not agreement with the teammate's whole story. It simply lets the hurt be legitimate material before the conversation turns to logistics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1669,13 +1396,6 @@
             "forecast",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "senior analyst receiving model criticism",
-            "audience": "experts whose competence identity is brittle",
-            "stakes": "a public model review may expose an error affecting a forecast",
-            "format": "scene",
-            "requiredBeat": "Laura writes an AND/BOTH competence statement before opening the review notes"
-          },
           "scenario": "What if the red cell is not a formatting issue? Laura sits with the forecast deck and sealed review notes before the public model review. She must decide whether to open the file as a verdict or as information, so she writes, \"I am competent and this model may contain an error and I can learn from it.\"",
           "whatToDo": "Ground the competence belief before reading the notes. Laura should make room for a real mistake without letting one error define her whole ability.",
           "whyItMatters": "If the red cell becomes a self-verdict, she will defend the model instead of using the review. The AND/BOTH statement keeps the error discussable."
@@ -1688,13 +1408,6 @@
             "goodness",
             "impact"
           ],
-          "planSpec": {
-            "domain": "parent hearing impact from a teenager",
-            "audience": "parents whose goodness identity is threatened",
-            "stakes": "a teenager's comment could become either repair or self-defense",
-            "format": "vignette",
-            "requiredBeat": "Henrik repeats that good parents can have bad effects before answering Emma"
-          },
           "scenario": "A bedroom doorway sits half closed, with a laundry basket on one side and Emma's school backpack on the other. Henrik hears, \"You make everything about grades,\" and has to choose between proving he is a good parent and listening. Before answering, he repeats that good parents can have bad effects.",
           "whatToDo": "Ground the goodness belief before responding. Henrik should let Emma's impact statement land without making her reassure him that he is still a good father.",
           "whyItMatters": "A goodness quake turns a teenager's hurt into a parent's character trial. Grounding lets repair begin before self-defense takes the room."
@@ -1707,13 +1420,6 @@
             "worthiness",
             "anniversary"
           ],
-          "planSpec": {
-            "domain": "long-term partner fearing relationship trouble means unlovable",
-            "audience": "couples with worthiness stakes",
-            "stakes": "a difficult anniversary conversation feels like evidence the relationship is ending",
-            "format": "dialogue",
-            "requiredBeat": "Isabel separates 'this relationship is in trouble tonight' from 'I am unworthy of love' on paper"
-          },
           "scenario": "Two untouched glasses sweat on the table beside an anniversary card, a shared calendar, and the couch blanket Isabel folded twice. Her partner wants to talk about the last year. Isabel must decide whether trouble tonight means rejection of her whole self. On paper she separates, \"This relationship is hurting\" from \"I am unworthy of love.\"",
           "whatToDo": "Separate relationship trouble from worthiness. Isabel should enter the conversation with both facts held apart so she can hear the problem without begging or attacking.",
           "whyItMatters": "When worthiness collapses, the conversation becomes a fight for reassurance. The relationship still needs attention, but it does not get to define her whole value."
@@ -1726,13 +1432,6 @@
             "peer-review",
             "competence"
           ],
-          "planSpec": {
-            "domain": "academic peer review on a weak article section",
-            "audience": "scholars receiving hard critique",
-            "stakes": "the author may lose the ability to use the critique if identity collapses",
-            "format": "decision_point",
-            "requiredBeat": "Daniel reads the harshest paragraph once, closes the laptop, and grounds the competence belief before responding"
-          },
           "scenario": "\"This section is underdeveloped,\" the reviewer PDF says, with comments stacked beside Daniel's citation manager under the desk lamp. He must decide whether to write a rebuttal immediately. He reads the harshest paragraph once, closes the laptop, and grounds the belief: weak section, real scholar, revision required.",
           "whatToDo": "Pause before the reply and ground competence. Daniel should let the critique identify a problem without making the problem equal his entire scholarly worth.",
           "whyItMatters": "A quick rebuttal might defend his identity instead of improving the section. The pause keeps critique usable."
@@ -1745,13 +1444,6 @@
             "morale",
             "anesthesia"
           ],
-          "planSpec": {
-            "domain": "founder told a team ritual is hurting morale",
-            "audience": "leaders whose self-image is 'supportive'",
-            "stakes": "team feedback says the ritual meant to help is exhausting people",
-            "format": "predict_reveal",
-            "requiredBeat": "Lin asks what the feedback should change after the AND/BOTH sentence lands"
-          },
           "scenario": "You see a bowl of unused team badges on a shelf and the Friday ritual calendar beside an anonymous survey. Lin has to choose between protecting her supportive-founder image and using the feedback. After writing the AND/BOTH sentence, she asks, \"What should this change by next Friday?\"",
           "whatToDo": "Use grounding to receive the survey, then require a change. Lin should not let AND/BOTH become a pleasant sentence that protects the ritual from revision.",
           "whyItMatters": "Feedback has not landed until it can alter behavior. A grounded identity lets Lin stay supportive by changing the thing meant to support people."
@@ -1764,13 +1456,6 @@
             "boundary",
             "worthiness"
           ],
-          "planSpec": {
-            "domain": "friendship boundary after repeated cancellations",
-            "audience": "friends whose worthiness story is active",
-            "stakes": "one friend reads a boundary as rejection of their whole self",
-            "format": "postmortem",
-            "requiredBeat": "Juliette names the quake before sending a reply that does not beg or attack"
-          },
           "scenario": "It took Juliette three deleted starts in the draft text to notice the quake. Her friend's voice memo mentioned another canceled train ticket refund, not a verdict on her whole self. After naming that difference, she sends a reply that owns the cancellations and asks what would rebuild trust without begging or attacking.",
           "whatToDo": "Name the identity quake before replying. Juliette should separate the boundary from total rejection, then answer the actual friendship problem.",
           "whyItMatters": "A worthiness quake makes a boundary feel like exile. Naming it lets her repair the pattern without turning the conversation into a demand for reassurance."
@@ -1789,8 +1474,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The red cell may be a real error, but the leap to total incompetence is the quake. Grounding keeps the error specific enough to examine.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1802,8 +1486,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The AND/BOTH belief lets the impact land without making it a verdict on his whole character. The other options defend goodness before hearing the effect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1815,8 +1498,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sentence holds both facts without collapsing one into the other. Acting casual avoids the problem, while the failure sentence turns trouble into a worthiness verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1828,8 +1510,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The immediate rebuttal may be identity defense, not scholarly judgment. Grounding first helps him separate a weak section from a failed self.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1841,8 +1522,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Grounding is not a way to sound calm while staying unchanged. If the ritual does not get examined, the feedback has not landed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1854,8 +1534,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The distinction keeps the boundary tied to behavior instead of total worth. Then she can repair cancellations without demanding reassurance first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1867,8 +1546,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The quake redirects attention away from what is being said. Grounding is useful because it keeps enough attention available to hear and respond.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1880,8 +1558,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful sentence makes room for change. The other choices preserve the self-image by keeping the feedback at a distance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1893,8 +1570,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Grounding is measured by whether hard information can enter. If each example is interrupted, the sentence is acting like a shield.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1991,13 +1667,6 @@
             "handoff",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "product handoff frustration",
-            "audience": "product managers deciding whether to raise a recurring issue",
-            "stakes": "the next release will repeat the same mistakes if the purpose is unclear",
-            "format": "scene",
-            "requiredBeat": "Anna separates the useful process goal from the part of her that wants an apology"
-          },
           "scenario": "A release checklist lies beside the handoff doc and Anna's private notes app in a quiet conference room. She must decide whether to raise the late handoff as a process problem or as a disguised demand for an apology. She copies the useful goal into the agenda: agree on review-ready handoff by Thursday noon.",
           "whatToDo": "Separate the legitimate problem-solving purpose from the apology wish. Anna can mention impact, but the meeting should be designed around a concrete handoff change.",
           "whyItMatters": "The process goal can produce a better next release. A hidden demand that the engineer feel bad would distort the conversation before it starts."
@@ -2010,13 +1679,6 @@
             "expression",
             "letting-go"
           ],
-          "planSpec": {
-            "domain": "old college friendship slight",
-            "audience": "friends choosing between expression and release",
-            "stakes": "a ten-year friendship could absorb honesty or be damaged by score-settling",
-            "format": "vignette",
-            "requiredBeat": "Anders asks whether saying it would complete something or only make Paula hurt too"
-          },
           "scenario": "It took Anders three drafts to notice the old postcard pinned beside his laptop was kinder than the email. The missed-call log is real, and so is the slight from last winter. He has to choose whether saying it would complete something or only make Paula hurt too, so he saves the draft and writes the purpose in one line.",
           "whatToDo": "Test whether expression is the true goal. If saying the hurt would complete something without requiring Paula to suffer, he can raise it; if not, it belongs somewhere else first.",
           "whyItMatters": "Expression is legitimate when the saying is the outcome. Confession as punishment turns a friendship conversation into score-settling."
@@ -2029,13 +1691,6 @@
             "fairness",
             "purpose-check"
           ],
-          "planSpec": {
-            "domain": "community garden allocation dispute",
-            "audience": "neighbors deciding whether a conversation can produce change",
-            "stakes": "plot assignments feel unfair but the committee may not be able to alter them this season",
-            "format": "dialogue",
-            "requiredBeat": "Paula tests whether learning, expression, or problem-solving is actually available before confronting the coordinator"
-          },
           "scenario": "At 8:40 a.m. beside plot 17, Paula says, \"The sunny plots all went to returning members,\" while holding a muddy plot map and seed packets against the committee rules. Before confronting the coordinator, she has to decide what is actually available: learn why the rule exists, express disappointment, or solve next season's allocation process.",
           "whatToDo": "Choose the available purpose before raising the issue. Paula should not build the talk around winning fairness if the rules cannot change this season.",
           "whyItMatters": "A fairness argument may be valid and still unproductive. Purpose tells her whether she is asking for understanding, expression, or a future process change."
@@ -2048,13 +1703,6 @@
             "risk",
             "purpose"
           ],
-          "planSpec": {
-            "domain": "employee considering feedback to a powerful director",
-            "audience": "junior staff weighing purpose against risk",
-            "stakes": "a conversation might expose the employee without changing anything",
-            "format": "decision_point",
-            "requiredBeat": "Michael writes what each possible purpose would require and which audience can safely receive it"
-          },
           "scenario": "Would courage be raising it, or would courage be naming the risk clearly? Michael's access badge flashes green at the executive floor while a draft agenda and HR policy link sit on his phone. He must decide what each possible purpose requires and which audience can safely receive it before he asks for time with the director.",
           "whatToDo": "Match purpose to audience and risk. Michael may need learning, protection, or documentation, but a direct conversation is not automatically the bravest or most useful route.",
           "whyItMatters": "Courage does not mean offering yourself to a conversation that cannot change anything. The purpose check protects clarity from performance."
@@ -2067,13 +1715,6 @@
             "letting-go",
             "apology"
           ],
-          "planSpec": {
-            "domain": "sibling apology never received",
-            "audience": "adult children processing a grievance elsewhere",
-            "stakes": "waiting for the exact apology has kept the relationship frozen",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes Akira two journal pages to see the conversation he wants cannot produce the childhood acknowledgment he wants"
-          },
           "scenario": "At 11:05 p.m. at his dining table, a notebook is open to the same sentence twice, with an old voicemail and a family photo envelope beside it. Akira must decide whether to call his sister again. After two journal pages, he sees the conversation he wants cannot produce the childhood acknowledgment he wants, so he takes the grievance to a friend first.",
           "whatToDo": "Distinguish letting go from pretending. Akira should process the grievance somewhere real before deciding whether any present-day conversation remains useful.",
           "whyItMatters": "Waiting for an exact apology can keep a relationship frozen. Letting go releases the demand that this person deliver what the conversation cannot produce."
@@ -2086,13 +1727,6 @@
             "meetings",
             "problem-solving"
           ],
-          "planSpec": {
-            "domain": "team lead bothered by meeting interruptions",
-            "audience": "leaders choosing a clean purpose before raising a pattern",
-            "stakes": "interruptions are harming decisions but irritation wants to make the interrupter feel it",
-            "format": "postmortem",
-            "requiredBeat": "Nicolas designs the meeting around shared decision quality, not around making the colleague squirm"
-          },
           "scenario": "At 9:05 a.m., Nicolas studies a meeting timer paused at seven minutes beside the decision log and whiteboard agenda. Interruptions changed the final call again. In the postmortem, he designs the conversation around shared decision quality, not around making the colleague squirm in front of the team.",
           "whatToDo": "Make the purpose problem-solving, not public discomfort. Nicolas should focus on the cost to decisions and the next meeting norm.",
           "whyItMatters": "A public callout may feel honest, but it aims at suffering. Decision quality gives the conversation a purpose it can actually produce."
@@ -2111,8 +1745,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mixed purposes are normal, but the warning-sign purpose should not design the talk. The process goal can still justify a problem-solving conversation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clue is the desired pain, not the calm wording. A conversation cannot be organized around producing suffering and still remain clean expression.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1769,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The current plots may not be changeable, but learning and future problem-solving are available. Winning fairness now asks the conversation to produce what the rules cannot.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1781,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Purpose and audience belong together. The issue may need documentation, advice, or protection before a direct conversation can serve any useful goal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1793,7 @@
             ],
             "correctIndex": 1,
             "explanation": "If the conversation only feels worthwhile when the other person hurts, honesty is covering a punishment purpose. That purpose should be processed elsewhere.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1805,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The external silence can look the same. The difference is whether the grievance is acknowledged and taken somewhere it can be received.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1817,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A shared norm is a concrete problem-solving purpose. Embarrassment and character transformation are warning-sign purposes because the conversation cannot reliably produce them.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1829,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A no on all three questions does not erase the grievance. It shows that this particular conversation may be unable to carry it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1841,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A handoff standard is specific and shared. Character change and forced admission ask for transformation or surrender, not a practical conversation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2313,13 +1938,6 @@
             "third-story",
             "discipline"
           ],
-          "planSpec": {
-            "domain": "co-parent discipline disagreement",
-            "audience": "separated parents trying not to make the other a defendant",
-            "stakes": "their child is hearing contradictory responses after tantrums",
-            "format": "scene",
-            "requiredBeat": "Emily rewrites 'you are undermining me' into a sentence about different ideas of what the tantrum needs"
-          },
           "scenario": "You see the child's rain boots by the front door, the pickup calendar on the shelf, and a bedtime note that contradicts yesterday's plan. Emily must decide how to start with her co-parent. She changes \"you are undermining me\" into \"I think we may have different ideas about what tantrums need from us.\"",
           "whatToDo": "Start with the gap between discipline views. Emily should invite comparison before arguing about which response was right.",
           "whyItMatters": "A softened accusation would still make the other parent the defendant. The third story names the conflict without assigning character failure."
@@ -2332,13 +1950,6 @@
             "handoff",
             "consulting"
           ],
-          "planSpec": {
-            "domain": "client handoff between agencies",
-            "audience": "consultants with competing versions of a failed transfer",
-            "stakes": "a client renewal depends on stopping the defensive spiral early",
-            "format": "vignette",
-            "requiredBeat": "Lukas opens with two teams working from different handoff assumptions, then invites notes comparison"
-          },
           "scenario": "A conference badge lanyard lies on the hotel table beside the handoff checklist, client renewal email, and call recording. Lukas must decide whether to deliver his first-story case. He opens instead: \"I think our teams were using different assumptions about what the handoff included. Can we compare notes from the call?\"",
           "whatToDo": "Name the differing assumptions before presenting evidence. Lukas can still use the recording, but as shared material rather than a prosecution file.",
           "whyItMatters": "The renewal depends on avoiding an early defensive spiral. A third-story opener lets the teams examine the transfer before either is cast as careless."
@@ -2351,13 +1962,6 @@
             "authority",
             "timeline"
           ],
-          "planSpec": {
-            "domain": "graduate student approaching advisor about delayed feedback",
-            "audience": "students under authority pressure",
-            "stakes": "a thesis timeline is slipping and the power gap makes a summons risky",
-            "format": "dialogue",
-            "requiredBeat": "Marta writes an opener the advisor could recognize without accepting all of it"
-          },
           "scenario": "At 11:40 a.m., Marta sits outside office hours with her thesis calendar, commented draft, and the sign-up sheet in her lap. \"I think we may be using different timelines,\" she says under her breath. She has to choose an opener the advisor could recognize without first accepting all of her frustration.",
           "whatToDo": "Use a third-story timeline frame. Marta should ask what feedback timeline is realistic and name the slipping thesis schedule without making the advisor a villain.",
           "whyItMatters": "The power gap already raises stakes. A summons disguised as fairness could make the advisor defend instead of clarify."
@@ -2370,13 +1974,6 @@
             "partners",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "restaurant partners disagreeing on tip pooling",
-            "audience": "small business partners with identity and fairness stakes",
-            "stakes": "staff trust could break if the policy change starts as an accusation",
-            "format": "decision_point",
-            "requiredBeat": "Chris names the gap between fairness assumptions before proposing a policy debate"
-          },
           "scenario": "\"We are going to lose the staff if we frame this badly,\" Chris says, holding a tip envelope sealed with blue tape beside the shift schedule and staff note. He must decide whether to open with a policy speech. Instead, he names the gap: they are using different assumptions about fairness in tip pooling.",
           "whatToDo": "Begin with the fairness assumptions, then discuss policy. Chris should invite his partner to compare what each policy is trying to protect.",
           "whyItMatters": "A policy speech would sound like judgment. Naming the assumption gap lets staff trust become the shared problem."
@@ -2389,13 +1986,6 @@
             "inheritance",
             "repairs"
           ],
-          "planSpec": {
-            "domain": "siblings discussing inherited house repairs",
-            "audience": "families where history sits under logistics",
-            "stakes": "a roof repair decision could reopen old roles if the opener blames one sibling",
-            "format": "predict_reveal",
-            "requiredBeat": "Adaeze tests whether Antoine would recognize the third-story version before calling"
-          },
           "scenario": "At 7:30 p.m. in Adaeze's hallway, a roofer's estimate folded in thirds sits on top of the probate letter while the family group text keeps lighting up. Adaeze must decide whether to call Antoine with the old \"you never help\" frame. She tests a third story first: they may have different assumptions about urgency, money, and who handles repairs.",
           "whatToDo": "Test whether Antoine could recognize the opener as plausible. Adaeze can raise the roof decision without starting from the old family role accusation.",
           "whyItMatters": "The repair decision is already tangled with history. A third-story opener gives the logistics a chance before the old roles take over."
@@ -2408,13 +1998,6 @@
             "review",
             "public-collaboration"
           ],
-          "planSpec": {
-            "domain": "open-source maintainers reviewing a rejected pull request",
-            "audience": "online collaborators with public defensiveness risk",
-            "stakes": "the contributor may leave if the opening frames them as careless",
-            "format": "postmortem",
-            "requiredBeat": "Simon begins with different assumptions about review readiness rather than with the rejection itself"
-          },
           "scenario": "At 11:18 p.m. in the maintainer dashboard, Simon rereads the rejected pull request and the failing CI check without sounding like an internet scold. The maintainer note now begins with different assumptions about review readiness, not with the rejection itself. He asks the contributor to compare what each side thought was ready for review.",
           "whatToDo": "Open around review-readiness assumptions. Simon should make the public note an invitation to compare standards, not a character judgment about carelessness.",
           "whyItMatters": "Public collaboration magnifies defensiveness. A third-story opener protects the contributor's dignity while still naming the failed checks."
@@ -2433,8 +2016,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tone is not the main issue. The opener still begins with her conclusion about the other parent's conduct rather than naming the gap between views.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2446,8 +2028,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct opener names a gap in assumptions without making either team guilty at the start. The other choices still deliver one side's conclusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2459,8 +2040,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timeline frame lets the advisor enter without first accepting the accusation. More proof may come later, but it should not be the opening position.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2472,8 +2052,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Different fairness assumptions create a shared object for inquiry. A private accusation is still a first-story opener, and avoidance does not address staff trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2485,8 +2064,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A third-story opener must be recognizable from outside the speaker's conclusion. Calm delivery alone does not change the structure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2498,8 +2076,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Review readiness is the shared gap. The other options keep the contributor's care or diligence on trial, which raises defensiveness in public.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2511,8 +2088,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The form only works when the invitation is real. Without a willingness to learn, third-story language becomes a softer delivery system for the same verdict.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2524,8 +2100,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A third-story opener can be the wrong sequence when the other person needs acknowledgment first. Neutrality can feel like avoidance if impact has not been received.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2537,8 +2112,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The opener can reduce defensiveness, but it cannot make an authority gap disappear. The person still has to plan around real power.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2635,13 +2209,6 @@
             "reorg",
             "listening"
           ],
-          "planSpec": {
-            "domain": "reorg 1:1 with unhappy direct report",
-            "audience": "managers whose internal voice is louder than the employee",
-            "stakes": "retention risk is rising because the employee feels unheard",
-            "format": "scene",
-            "requiredBeat": "Megan writes 'counterargument,' 'judgment,' and 'identity' on the margin before asking what has been hardest"
-          },
           "scenario": "At 4:45 p.m. in a video 1:1, \"I do not think anyone cared what this would do to my role,\" the employee says as Megan's mute icon glows beside the reorg FAQ and 1:1 doc. Megan must decide whether to answer the charge. She writes counterargument, judgment, and identity in the margin, then asks, \"What has been hardest so far?\"",
           "whatToDo": "Label the internal voice before responding. Megan should set down the case she is building long enough to ask a question she actually wants answered.",
           "whyItMatters": "Waiting silently would not be enough if her mind is already defending. The label makes room for real listening."
@@ -2654,13 +2221,6 @@
             "family-complaint",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "medical resident receiving patient-family anger",
-            "audience": "clinicians listening under accusation",
-            "stakes": "a family complaint could reveal a real care gap if judgment quiets down",
-            "format": "vignette",
-            "requiredBeat": "Frida notices her mind saying 'they are being unfair' and sets it aside for one question"
-          },
           "scenario": "What if the anger is carrying information the chart cannot show? The antiseptic smell in the consultation room sits with visitor chairs, a patient chart, and a tissue box. Frida has to choose between judging the family as unfair and asking one real question. She sets the judgment down and asks what they heard first.",
           "whatToDo": "Notice the judgment before using a listening move. Frida should ask about their first message from the care team rather than start with the medical timeline.",
           "whyItMatters": "The family may still have facts wrong, but judgment can block the care gap they are trying to describe."
@@ -2673,13 +2233,6 @@
             "loneliness",
             "paraphrase"
           ],
-          "planSpec": {
-            "domain": "partner explaining loneliness after a busy season",
-            "audience": "couples where one person is building rebuttals",
-            "stakes": "loneliness may harden if it is answered with schedule facts",
-            "format": "dialogue",
-            "requiredBeat": "Javier paraphrases the sting in his own words and leaves room for correction"
-          },
           "scenario": "At 8:30 p.m. in their apartment kitchen, work calendar blocks cover the wall while half-folded laundry waits and Sam's phone sits face down. \"You are already preparing your defense,\" Sam says. Javier must decide whether to list his hours. Instead he says, \"You felt alone before I ever got home, and the schedule facts do not touch that. Is that close?\"",
           "whatToDo": "Paraphrase the meaning in ordinary language. Javier should make room for correction instead of answering loneliness with evidence of effort.",
           "whyItMatters": "Schedule facts may be true and still miss the sting. A good paraphrase shows that the loneliness arrived."
@@ -2692,13 +2245,6 @@
             "identity",
             "questions"
           ],
-          "planSpec": {
-            "domain": "teacher hearing student complaint about grading",
-            "audience": "educators managing identity while listening",
-            "stakes": "a student may be pointing at a confusing rubric, not attacking competence",
-            "format": "decision_point",
-            "requiredBeat": "Nora notices the competence quake and asks what part of the rubric felt unclear"
-          },
           "scenario": "At 2:10 p.m. in office hours, a stack of essays with colored tabs leans beside the grading rubric and the office-hours chair. Nora hears, \"The grading felt random,\" and must decide whether to lecture about standards. She notices the competence quake, sets it beside her, and asks which part of the rubric felt unclear.",
           "whatToDo": "Name the identity reaction internally, then ask about the student's experience. Nora can explain standards later after she understands the confusing point.",
           "whyItMatters": "If competence takes over, the student becomes a threat. Listening may reveal a rubric problem rather than an attack."
@@ -2711,13 +2257,6 @@
             "incident",
             "customer-pain"
           ],
-          "planSpec": {
-            "domain": "software incident postmortem with angry customer-success lead",
-            "audience": "technical teams listening across roles",
-            "stakes": "fixing the outage depends on hearing the customer pain without judging tone",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes Hiroshi two minutes to stop composing the root-cause defense and ask what customers heard first"
-          },
           "scenario": "It took Hiroshi two minutes beside the yellow status page to stop writing the root-cause defense in his head. The incident timeline and support tickets are open, and the customer-success lead is furious. He has to choose the next question. He asks what customers heard first, before explaining what the system did.",
           "whatToDo": "Set down the technical defense long enough to learn the customer experience. Hiroshi can return to root cause after hearing what the outage sounded like from outside engineering.",
           "whyItMatters": "Technical facts matter, but they can become a shield against customer pain. Listening across roles requires hearing the first message customers received."
@@ -2730,13 +2269,6 @@
             "paraphrase",
             "ordinary-language"
           ],
-          "planSpec": {
-            "domain": "friend returning after months of silence",
-            "audience": "friendships where timing makes paraphrase delicate",
-            "stakes": "one scripted summary could sound like therapy and push the friend away",
-            "format": "postmortem",
-            "requiredBeat": "Manon uses ordinary language to check the meaning instead of a formula"
-          },
           "scenario": "At 4:26 p.m., Manon watches a voicemail waveform on a cracked phone screen from a park bench, the coffee receipt folded in her pocket. She does not use a formula when her friend explains the silence. She says, \"You thought I disappeared and then acted normal. Is that the part that hurt?\"",
           "whatToDo": "Check the meaning in words that sound like her. Manon should avoid a scripted paraphrase and leave room for her friend to correct the meaning.",
           "whyItMatters": "A formula can make intimacy feel managed. Ordinary language keeps the listening move human."
@@ -2755,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Silence only creates space. If the counterargument is running the room internally, the employee's meaning is not arriving.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2768,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Judgment filters the signal before it arrives. Setting it aside lets the doctor ask what the family heard or needed, which may reveal a real care gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2781,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The schedule facts may be true, but loneliness needs reception first. A paraphrase of the sting would show that the meaning landed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2794,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rubric question seeks information. The other choices make the student's complaint answer the teacher's competence threat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2807,8 +2335,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question turns toward the customer's experience instead of the engineer's defense. Root cause can return after the pain has been heard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2820,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Paraphrasing works when it sounds like genuine reception. A recognizable formula can read as technique, especially in an intimate or charged exchange.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2833,8 +2359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Paraphrase is proof of reception, not agreement. It lets disagreement happen after the other person's meaning has arrived.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2846,8 +2371,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A real question can produce an answer the listener did not expect. If the listener only wants a convenient answer, the question is performing curiosity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2859,8 +2383,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Acknowledgment depends on the inside-out move. If judgment is still running, the feeling statement can sound like a technique used on someone being judged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2957,13 +2480,6 @@
             "upward-expression",
             "owned-story"
           ],
-          "planSpec": {
-            "domain": "promotion visibility conversation",
-            "audience": "employees needing honest upward expression",
-            "stakes": "a missed promotion list has started a story about invisibility",
-            "format": "scene",
-            "requiredBeat": "Sophie names the announcement, the feeling, and the story without accusing her manager of ignoring her career"
-          },
           "scenario": "It took Sophie two days to stop rereading the announcement email printed beside her marked-up resume and performance notes. She must decide whether to accuse her manager of ignoring her career. Instead she names the list, the discouragement, and the story she started telling herself about being invisible in promotion decisions.",
           "whatToDo": "Use the three-part owned report. Sophie should describe the announcement, name discouragement, and offer the invisibility story as something to check.",
           "whyItMatters": "The story may contain useful truth, but as a verdict it invites defense. As a story, it invites information about visibility, criteria, and next steps."
@@ -2976,13 +2492,6 @@
             "hosting",
             "honest-version"
           ],
-          "planSpec": {
-            "domain": "friendship resentment after repeated hosting",
-            "audience": "friends who have minimized too long",
-            "stakes": "a friendship will become brittle if the point keeps being underdone",
-            "format": "vignette",
-            "requiredBeat": "Marit says the honest version before she can bury it in jokes"
-          },
           "scenario": "At 11:20 p.m. in Marit's apartment, you are looking at a sink full of wine glasses after everyone leaves, the group chat poll already choosing next month and spare bedding still folded on the chair. Marit has to choose between another joke and the honest version: she feels taken for granted after hosting four times in a row.",
           "whatToDo": "Say the honest version before the joke buries it. Marit should report the repeated hosting, her resentment, and the story that the work has become invisible.",
           "whyItMatters": "A joke lets the friendship avoid the issue. A scorekeeping speech would overstate it. The owned report gives the group something concrete to change."
@@ -2995,13 +2504,6 @@
             "critique",
             "observation"
           ],
-          "planSpec": {
-            "domain": "graduate seminar critique exchange",
-            "audience": "students separating observation from verdict",
-            "stakes": "a critique that landed as dismissal could become a learning conversation",
-            "format": "dialogue",
-            "requiredBeat": "Marco reports the exact sentence, the embarrassment, and the story it started"
-          },
           "scenario": "The recorder app blinks on the seminar table beside the marked article. Marco says, \"When you said 'that is basic,' I went quiet.\" He is about to call it humiliation, then chooses the cleaner report: the exact sentence, the embarrassment, and the story that his question made him look unprepared.",
           "whatToDo": "Keep the observation clean and the story owned. Marco should invite correction about what the comment meant without erasing the embarrassment.",
           "whyItMatters": "The verdict would put the other student on trial. The owned report keeps the critique exchange open to meaning, impact, and repair."
@@ -3014,13 +2516,6 @@
             "exclusion",
             "civic-work"
           ],
-          "planSpec": {
-            "domain": "task-force omission at city hall",
-            "audience": "civic professionals naming exclusion without motive claims",
-            "stakes": "a public committee missed one department whose work is affected",
-            "format": "decision_point",
-            "requiredBeat": "Ryan states the observable omission and the story he is checking before proposing any remedy"
-          },
           "scenario": "\"Our department is not on the agenda,\" Ryan says, pointing to a laminated seating chart in the council chamber beside the committee agenda and department memo. Before claiming exclusion, he must decide whether to state the observable omission plus the story he is checking before proposing a remedy.",
           "whatToDo": "Report the omission and own the interpretation. Ryan should say the absence made him wonder whether his department's impact was overlooked, then ask what happened.",
           "whyItMatters": "A motive claim would start a bureaucratic defense. The owned story keeps the missing seat visible without pretending to know why it happened."
@@ -3033,13 +2528,6 @@
             "client-edits",
             "calibration"
           ],
-          "planSpec": {
-            "domain": "designer responding to harsh client edits",
-            "audience": "freelancers who overstate when hurt",
-            "stakes": "a client relationship may survive if the feeling is serious but not inflated",
-            "format": "predict_reveal",
-            "requiredBeat": "Chidi trims 'you destroyed the project' into the honest version of what happened for him"
-          },
           "scenario": "A PDF covered with tracked edits sits beside Chidi's invoice draft and brand board. His cursor hovers over \"you destroyed the project,\" but he chooses not to send it. After walking the room once, he trims the line to the honest version: the edits left him discouraged, and he wondered whether the original direction still mattered.",
           "whatToDo": "Calibrate the expression before sending. Chidi should keep the seriousness without inflating the client's edits into total destruction.",
           "whyItMatters": "Overstatement may feel powerful, but it is easier to dismiss. The exact version gives the client a real choice about direction and repair."
@@ -3052,13 +2540,6 @@
             "old-pattern",
             "steadiness"
           ],
-          "planSpec": {
-            "domain": "adult child speaking to parent about old pattern",
-            "audience": "families where the hard thing gets taken back",
-            "stakes": "the parent's first flinch may tempt the adult child to erase the truth",
-            "format": "postmortem",
-            "requiredBeat": "Olivier lets the reaction happen and keeps the statement available for discussion"
-          },
           "scenario": "What happens after the kettle clicks off in the quiet kitchen? Olivier has a family photo and folded note beside his hand. His parent flinches at the first sentence. Instead of erasing it, he lets the reaction happen and keeps the statement available: the old pattern still affects how he visits.",
           "whatToDo": "Let the reaction happen without taking the truth back. Olivier can stay gentle and still keep the statement on the table for discussion.",
           "whyItMatters": "The first flinch is often where hard truth disappears. Steadiness keeps the point discussable without turning it into rigidity."
@@ -3077,8 +2558,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rewrite names the event, feeling, and story without making the interpretation a verdict. The other choices overstate or understate the issue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3090,8 +2570,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The direct sentence carries enough weight to discuss without scorekeeping. Jokes hide the point, while billing turns expression into punishment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3103,8 +2582,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Humiliated may describe impact, but the sentence also functions as a verdict. Naming the exact phrase, embarrassment, and story keeps it discussable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3116,8 +2594,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The omission is observable, while motive needs checking. Owning the story lets her raise the seriousness without pretending to know why it happened.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3129,8 +2606,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The honest version avoids both inflation and retreat. It can name discouragement and the story about direction without exaggerating the edits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3142,8 +2618,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Steadiness is not harshness. The point can remain on the table while the parent reacts and the conversation continues.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3155,8 +2630,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The phrase after \"I feel\" is a verdict, not an owned feeling. A clearer sentence would name the event, the response, and the story being checked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3168,8 +2642,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long runways often increase tension. A clear early statement gives the other person the real issue before the room fills with dread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3181,8 +2654,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Owning a story means it can be checked. Revising it is not retreat; it is the reason to offer interpretation as discussable rather than final.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3279,13 +2751,6 @@
             "hiring",
             "options"
           ],
-          "planSpec": {
-            "domain": "small-business first-hire decision",
-            "audience": "partners ready to move from understanding to design",
-            "stakes": "burnout and payroll risk both have real claims",
-            "format": "scene",
-            "requiredBeat": "Olivia proposes three options before either partner evaluates the first one"
-          },
           "scenario": "A payroll spreadsheet glows beside an empty job description while the revenue trigger sits in a yellow cell. Olivia must decide whether to pitch her preferred first hire. Instead she proposes three options before evaluation: contractor, cautious full-time hire, or deferred hire tied to revenue.",
           "whatToDo": "Lead the process by generating options first. Olivia should keep both burnout and payroll risk visible before either partner attacks a single answer.",
           "whyItMatters": "The first option often becomes a fight. Several options let the partners design instead of defend."
@@ -3298,13 +2763,6 @@
             "events",
             "next-steps"
           ],
-          "planSpec": {
-            "domain": "student organization event bottleneck",
-            "audience": "student leaders whose talk keeps ending in relief without action",
-            "stakes": "a campus event will fail if roles remain vague",
-            "format": "vignette",
-            "requiredBeat": "Maja ends the meeting with owners and dates instead of 'we will figure it out'"
-          },
           "scenario": "\"So who owns the permit by Friday?\" Maja asks, pointing from the permit form to the campus room calendar and task board. The group has finally understood why the last event stalled. Now Maja must decide whether to let relief end the meeting or name owners and dates before anyone closes a laptop.",
           "whatToDo": "Convert relief into action. Maja should assign the permit, room confirmation, and task-board updates with dates before the meeting ends.",
           "whyItMatters": "\"We will figure it out\" feels cooperative and changes nothing. Specific owners protect the event from drift."
@@ -3317,13 +2775,6 @@
             "quiet-hours",
             "standards"
           ],
-          "planSpec": {
-            "domain": "cohabiting partners designing quiet hours",
-            "audience": "housemates shifting from grievance to design",
-            "stakes": "sleep loss is turning affection into irritation",
-            "format": "dialogue",
-            "requiredBeat": "Diego asks for standards they would both accept before picking a rule"
-          },
           "scenario": "It took Diego a week of watching the decibel app glow on the bedside table to stop making it his rule against theirs. The work shifts and apartment lease sit between them. Before picking quiet hours, they must decide which standards both would accept: sleep, notice, guests, and lease limits.",
           "whatToDo": "Choose mutual standards before choosing the rule. Diego should ask what a fair quiet-hours agreement must protect for both people.",
           "whyItMatters": "Standards move the problem away from my way versus your way. A rule built against shared criteria has a better chance of holding."
@@ -3336,13 +2787,6 @@
             "handoff",
             "agency"
           ],
-          "planSpec": {
-            "domain": "hospital discharge handoff redesign",
-            "audience": "interdisciplinary teams needing agency-matched commitments",
-            "stakes": "patients are getting duplicate calls and missed instructions",
-            "format": "decision_point",
-            "requiredBeat": "Jack builds on the nurse's proposal before naming the part pharmacy can actually control"
-          },
           "scenario": "A discharge packet with two phone numbers lies under the call log while the pharmacy queue keeps moving. Jack must decide whether to take over the redesign. He builds on the nurse's proposal first, then names the part pharmacy can actually control: medication-call timing and escalation notes.",
           "whatToDo": "Build on the proposal and match commitments to agency. Jack should contribute pharmacy's controllable piece without making himself owner of the whole discharge system.",
           "whyItMatters": "Taking over would reduce shared ownership. A specific pharmacy commitment helps the handoff without pretending one role controls all variables."
@@ -3355,13 +2799,6 @@
             "power-gap",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "faculty committee workload plan",
-            "audience": "junior academics under power constraints",
-            "stakes": "a junior lecturer may agree to work they cannot control to end the meeting",
-            "format": "predict_reveal",
-            "requiredBeat": "Aman asks which commitments are actually his before the plan is recorded"
-          },
           "scenario": "At 2:17 p.m., Aman watches the committee minutes document projected on a screen beside the course roster and email deadline. The chair begins recording him as owner of a workload change. He has to choose between closure and accuracy, so he asks which commitments are actually his before the plan is saved.",
           "whatToDo": "Test agency before accepting the commitment. Aman can promise an impact note by Tuesday, but not a roster change he cannot approve.",
           "whyItMatters": "A false commitment gives the room closure and gives the junior person a burden without power. Specificity only helps when control matches the promise."
@@ -3374,13 +2811,6 @@
             "snow-removal",
             "next-steps"
           ],
-          "planSpec": {
-            "domain": "neighborhood snow-removal rota",
-            "audience": "neighbors turning recurring resentment into next steps",
-            "stakes": "elderly residents need predictable help before the next storm",
-            "format": "postmortem",
-            "requiredBeat": "Vincent turns three complaints into a rota with names, sidewalks, and first storm date"
-          },
           "scenario": "You can see the laminated block map on the porch table, a snow shovel against the rail, and a weather alert for Thursday. Vincent does not let the postmortem end with goodwill. He turns three complaints into a rota with names, sidewalks, and the first storm date.",
           "whatToDo": "Make the next step visible. Vincent should record who clears which sidewalk and when the rota starts before neighbors leave.",
           "whyItMatters": "Community goodwill does not help elderly residents during the first storm. Names, sidewalks, and dates turn concern into behavior."
@@ -3399,8 +2829,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A single early option invites attack or defense. Several options let both partners design around burnout and payroll risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3412,8 +2841,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Good energy can drift. A specific next step turns the conversation into action: who files what by when.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3425,8 +2853,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Standards give the rule a shared basis. Without them, the discussion stays trapped in preference against preference.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3438,8 +2865,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Building starts with the useful part, then adjusts the part pharmacy can control. Taking over would weaken shared ownership.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3451,8 +2877,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Specific commitments help only when the person controls the promised action. Otherwise the plan creates false closure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3464,8 +2889,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The conversation created shared concern but no action. Drift is the failure to convert understanding into next steps when action is needed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3477,8 +2901,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Surface agreement is not ownership. Joint inquiry invites the other person to shape the answer before commitment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3490,8 +2913,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Problem-solving belongs after enough understanding and expression. Used too early, it can become a lid on the conversation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3503,8 +2925,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Options and standards are not behavior yet. Owners and timing make it clear what will happen and how everyone will know.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3601,13 +3022,6 @@
             "integration",
             "listening"
           ],
-          "planSpec": {
-            "domain": "full arc for a strained team-lead conversation",
-            "audience": "readers needing the whole sequence without sounding scripted",
-            "stakes": "a key designer may quit if the team lead performs technique instead of being real",
-            "format": "scene",
-            "requiredBeat": "Beatrice works from preparation notes, then leaves them in her bag when the live conversation needs listening first"
-          },
           "scenario": "What if the right opener is not the next right move? Beatrice has preparation notes folded inside a canvas bag, a retention-risk email, and the conference room clock ticking above the door. She must decide whether to recite her plan. When the designer starts with hurt, Beatrice leaves the notes in the bag and listens first.",
           "whatToDo": "Use preparation to choose the live move. Beatrice should let the sequence change when the conversation clearly needs listening before her planned opener.",
           "whyItMatters": "A complete plan can become performance. The skill is staying oriented without forcing the conversation through a fixed order."
@@ -3620,13 +3034,6 @@
             "old-issue",
             "integration"
           ],
-          "planSpec": {
-            "domain": "lab group old issue resurfacing",
-            "audience": "students and researchers with recurring unfinished conflict",
-            "stakes": "an old authorship issue keeps entering every new decision",
-            "format": "vignette",
-            "requiredBeat": "Anke stops swatting away the old issue and asks whether the previous conversation ever actually finished"
-          },
           "scenario": "The lab freezer hums behind the tense meeting while an authorship spreadsheet sits under the new agenda. Anke has to choose between calling the old issue irrelevant and asking whether it ever actually finished. She pauses the grant decision and asks what from last year is still entering the room.",
           "whatToDo": "Treat the returning issue as unfinished, not irrelevant. Anke should ask what remains unresolved before trying to solve the new agenda item.",
           "whyItMatters": "Old issues often return because they were never closed. Swatting them away only pushes them into the next decision."
@@ -3639,13 +3046,6 @@
             "written-medium",
             "repair"
           ],
-          "planSpec": {
-            "domain": "partner conversation across text and in person",
-            "audience": "couples moving from risky written medium to live repair",
-            "stakes": "a late-night text thread has created tone neither person intended",
-            "format": "dialogue",
-            "requiredBeat": "Pablo moves the conversation out of the thread and restarts from purpose, feeling, and listening"
-          },
           "scenario": "At 12:18 a.m. on the front steps, \"This is getting worse by text,\" Luke writes while the text thread climbs and Pablo's phone charger drags across the concrete. Pablo must decide whether to perfect one more message. He stops typing and asks to talk live, then restarts with purpose, feeling, and a question.",
           "whatToDo": "Change the medium when writing is worsening tone. Pablo should use text only to move toward a live repair, not to complete a delicate conversation by perfect wording.",
           "whyItMatters": "Text gives drafting time but hides tone and curiosity. Moving live can restore the cues the conversation needs."
@@ -3658,13 +3058,6 @@
             "non-engagement",
             "limits"
           ],
-          "planSpec": {
-            "domain": "employee facing non-engagement from a senior leader",
-            "audience": "workers needing limits when the other person will not participate",
-            "stakes": "silence from the leader means the hoped-for talk cannot happen on hoped-for terms",
-            "format": "decision_point",
-            "requiredBeat": "Elliot documents the pattern and chooses a safer next move instead of forcing one more invitation"
-          },
           "scenario": "At 8:05 a.m. at Elliot's desk, a calendar invite is declined without comment for the third time, and the notes file now has dates beside each attempt. Elliot must decide whether one more invitation would be courage or denial. He documents the pattern, saves the messages, and contacts HR to choose a safer next move.",
           "whatToDo": "Recognize non-engagement as a limit. Elliot should stop treating the missing conversation as a personal failure and choose a path that does not require participation from the leader.",
           "whyItMatters": "The moves assume some engagement. When silence is the response, documentation, advice, or a third party may be the available route."
@@ -3677,13 +3070,6 @@
             "power-gap",
             "limits"
           ],
-          "planSpec": {
-            "domain": "friendship with large power gap in arts collective",
-            "audience": "creative communities where status changes the conversation",
-            "stakes": "a famous founder can decide access regardless of collaborative language",
-            "format": "predict_reveal",
-            "requiredBeat": "it takes Min one rehearsal to see she needs an ally and exit options, not only a better opener"
-          },
           "scenario": "It took Min one rehearsal under warming stage lights to see the empty room more clearly. The rehearsal schedule, access badge, and ally text show a power gap her opener cannot erase. Before meeting the famous founder, she must decide whether to rely on wording alone or choose an ally, an exit option, and then the cleanest sentence she can safely use.",
           "whatToDo": "Plan around structure, not only wording. Min should bring support and preserve exit options before relying on collaborative language.",
           "whyItMatters": "Skill does not erase power. A better opener may help, but access and status can still decide what happens."
@@ -3696,13 +3082,6 @@
             "avoidance",
             "full-arc"
           ],
-          "planSpec": {
-            "domain": "reader preparing the avoided conversation",
-            "audience": "general readers turning the framework into one concrete act",
-            "stakes": "the conversation has been delayed long enough that avoidance now has its own cost",
-            "format": "postmortem",
-            "requiredBeat": "Hugo writes the three layers, purpose, opener, listening reminder, and one possible next step before making the call"
-          },
           "scenario": "At 8:02 a.m., Hugo sets his phone face down beside a handwritten plan and half-finished tea. Before making the call, he writes the three layers, purpose, opener, listening reminder, and one possible next step. The call still changes shape, but avoidance no longer gets to decide.",
           "whatToDo": "Prepare the arc, then act. Hugo should use the plan to stay oriented while leaving room for the other person's response to change the next move.",
           "whyItMatters": "Abstract mastery is not the end. One real conversation, handled imperfectly but deliberately, is the transfer point."
@@ -3721,8 +3100,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Preparation should create range, not rigidity. The live conversation is asking for listening before the planned entry.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3734,8 +3112,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Old issues often return because they remain unfinished. Treating the authorship concern as live may be necessary before design can work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3747,8 +3124,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Writing can help draft, but it often hides tone and curiosity. When the medium is worsening the exchange, move the delicate work live.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3760,8 +3136,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The moves assume some participation. Repeated silence may call for documentation, advice, or a third party rather than another invitation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3773,8 +3148,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Collaborative language cannot erase structural power. Support and exits may be as important as wording.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3786,8 +3160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mechanical order can become performance. The moves should help the person sound clearer and more real, not like a procedure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3799,8 +3172,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Openness is not surrender. It means letting new information alter the story while still speaking honestly about what happened for you.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3812,8 +3184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Warmth can still drift. When action is needed, the close should name what remains open and what happens next.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3825,8 +3196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The point is not abstract mastery. A prepared, imperfect conversation is better than letting avoidance keep deciding.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },

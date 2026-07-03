@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch01",
       "number": 1,
       "title": "Let's Go Shopping",
@@ -124,8 +123,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 separates looking from choosing. The tempting error is to treat a pause at the display as the same thing as a purchase.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -137,8 +135,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says the study changed assortment size inside one category. It was not a test of jam against other foods or a universal ban on variety.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -150,8 +147,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 covers cheap choices too. The cost comes from noticing, screening, and rejecting, not only from spending a large amount.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -163,8 +159,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 makes preference clarity the hinge. A known standard lets Nathan skip options instead of comparing each tube from scratch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -176,8 +171,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says unclear preferences can make choice feel like self-discovery under pressure. The error is assuming that discovery is always fun.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -189,8 +183,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 links disappointment to high expectations. A good box can feel weak when the shelf suggests a better match was reachable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -202,8 +195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says rejected options can remain vivid. Continued comparison does not prove the purchase failed; it shows opportunity costs stayed alive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -215,8 +207,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 distinguishes autonomy from unmanaged abundance. The wrong readings either attack freedom itself or ignore low-value overload.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -228,8 +219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 gives the role of concrete shelves. Cereal and toothpaste are not decoration; they show the repeated decisions that make overload felt.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -266,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Trim the Shelf",
         "coreSkill": "Practice trimming the shelf before a small choice becomes a self-test. Name the standard that would make the choice good enough. Then stop comparing when an option meets that standard.",
         "ifThenPlans": [
           {
@@ -291,24 +280,17 @@
       },
       "memorableLines": [
         {
-          "text": "More choice can steal the joy it promised.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's reversal in one short sentence."
+          "text": "More choice can steal the joy it promised."
         },
         {
-          "text": "A shelf can be wide and still feel tight.",
-          "location": "breakdown.deepRead",
-          "why": "It turns choice overload into a visual contrast."
+          "text": "A shelf can be wide and still feel tight."
         },
         {
-          "text": "Freedom works best when it has a job.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the chapter from sounding anti-choice."
+          "text": "Freedom works best when it has a job."
         }
       ]
     },
     {
-      "schemaVersion": "chapter-v21",
       "chapterId": "the-paradox-of-choice-ch02",
       "number": 2,
       "title": "New Choices",
@@ -409,8 +391,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The retirement-plan fact says many fund options can lower participation because employees postpone rather than risk a bad choice. The other choices assume size itself helps.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -422,8 +403,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Institutional choice transfer can shift risk with authority. The question is not only how many controls Cyrielle receives, but who must research and defend the outcome.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -435,8 +415,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Medical autonomy can coexist with dependence on expertise. Patients may choose, but clinicians still need to interpret risks, benefits, and probabilities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -448,8 +427,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The education fact says majors and courses can stand in for future work, status, and self-definition. The other readings shrink the pressure to logistics.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -461,8 +439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The default supports autonomy when it reduces burden and remains optional. It is not a command, and it does not remove the need for basic understanding.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -474,8 +451,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Choice without guidance can be less empowering than supported choice. A bigger menu alone leaves the chooser responsible without a reliable way to compare.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -487,8 +463,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Major life choices carry longer consequences and identity ties. Routine purchases can be tiring, but they do not usually shape years of opportunity in the same way.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -500,8 +475,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The modern choice problem includes loosened social norms, not only markets. Work, marriage, religion, and family can all become individualized decisions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -513,8 +487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Alternatives cannot be ranked without standards for what counts as good enough. A list is not yet a decision aid if it leaves comparison unresolved.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -557,7 +530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask For Criteria First",
         "coreSkill": "Practice asking for the standard before you compare the menu. The move is called Ask For Criteria First. It helps you see whether a choice comes with guidance, a default, and a clear owner for risk.",
         "ifThenPlans": [
           {
@@ -582,24 +554,17 @@
       },
       "memorableLines": [
         {
-          "text": "A long menu can hide a lonely chooser.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's institutional claim into a scene a reader can feel."
+          "text": "A long menu can hide a lonely chooser."
         },
         {
-          "text": "Unsupported choice is blame in polite clothes.",
-          "location": "breakdown.deepRead",
-          "why": "It names the risk shift without making autonomy sound worthless."
+          "text": "Unsupported choice is blame in polite clothes."
         },
         {
-          "text": "Freedom needs rails, not handcuffs.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the chapter's balance between guidance and control."
+          "text": "Freedom needs rails, not handcuffs."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch03",
       "number": 3,
       "title": "Deciding and Choosing",
@@ -700,8 +665,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says remembered utility can differ from experience because memory compresses episodes around salient moments. A mild ending is not a full record.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -713,8 +677,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 supports the ending effect. The longer trial can be remembered better when its end is milder, even if total discomfort was greater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -726,8 +689,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 names availability: vivid examples can feel like frequency evidence. Easy recall is not the same as actual frequency.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -739,8 +701,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says framing assigns an option to a mental account, and the account changes which goals and costs are treated as relevant.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -752,8 +713,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says sunk costs distort choice by making people justify the past. The next decision should use future costs and benefits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -765,8 +725,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says people often construct preferences while choosing because context and comparison make some attributes salient and hide others.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -778,8 +737,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says salience can crowd out quieter but better information. The vivid complaint may steer weighting before calculation is done.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -791,8 +749,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 says choosing includes post-outcome revision. Experience reshapes later values and how future options are read.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -804,8 +761,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 supports prior criteria. Naming criteria before search reduces framing drift and limits the attributes competing for attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -848,7 +804,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Cue Before Choosing",
         "coreSkill": "Practice noticing the cue that starts shaping your preference. Count whether memory, a vivid story, a frame, or a sunk cost grabs you first. The skill is not distrusting every want; it is checking the source of the want before you act.",
         "ifThenPlans": [
           {
@@ -873,24 +828,17 @@
       },
       "memorableLines": [
         {
-          "text": "Memory edits the bill before choice reads it.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the memory problem a concrete image."
+          "text": "Memory edits the bill before choice reads it."
         },
         {
-          "text": "A cue named early loses some of its grip.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter's practice short and portable."
+          "text": "A cue named early loses some of its grip."
         },
         {
-          "text": "A changed mind is not a failed mind.",
-          "location": "breakdown.fullRead",
-          "why": "It protects revision from sounding like weakness."
+          "text": "A changed mind is not a failed mind."
         }
       ]
     },
     {
-      "schemaVersion": "v21-native",
       "chapterId": "the-paradox-of-choice-ch04",
       "number": 4,
       "title": "When Only the Best Will Do",
@@ -991,8 +939,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Satisficing uses an acceptability threshold. The shopper names budget and warmth first, then stops when an option satisfies those criteria.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1004,8 +951,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A larger option set can contain better choices, but it also makes proof harder. Maximizing asks the family to compare against more unseen rivals.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1017,8 +963,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bounded rationality treats limits as part of rational choice. The trainer should not equate rationality with exhaustive vendor comparison.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1030,8 +975,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Maximizing tendencies are linked with regret and lower happiness. The open listings keep other possible jobs mentally available after a strong offer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1043,8 +987,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Satisficing is about when search stops, not how low the standard is. The chef's threshold is demanding and still finite.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1056,8 +999,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Comparison tools help when they answer criteria. For maximizers, each new review can restart the hunt for a superior option.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1069,8 +1011,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Unexamined alternatives bother maximizers because each one can be imagined as superior. The untoured apartments stay alive as possible winners.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1082,8 +1023,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The best-choice ideal can move from products into major life choices. The student is treating college like a searchable market.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1095,8 +1035,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A stopping rule protects the aftermath. The team can compare the software with prior criteria instead of keeping every runner-up alive.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1139,7 +1078,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Set the Stop Line",
         "coreSkill": "Practice setting the standard before search begins. Write the traits that would make the choice acceptable, then use those traits as the finish line. The skill is not caring less; it is refusing to let every new option move the target.",
         "ifThenPlans": [
           {
@@ -1164,24 +1102,17 @@
       },
       "memorableLines": [
         {
-          "text": "High standards need a door, not an endless hallway.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the hard edge visible: quality can be high while search stays finite."
+          "text": "High standards need a door, not an endless hallway."
         },
         {
-          "text": "The best can become a tax on the good.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a short warning for the emotional cost of maximizing."
+          "text": "The best can become a tax on the good."
         },
         {
-          "text": "A stopping rule lets the choice stay chosen.",
-          "location": "breakdown.deepRead",
-          "why": "It names the after-decision benefit in one compact sentence."
+          "text": "A stopping rule lets the choice stay chosen."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch05",
       "number": 5,
       "title": "Choice and Happiness",
@@ -1282,8 +1213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Autonomy means meaningful control, not maximum assortment. The other choices confuse agency with either a bigger menu or no say at all.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1295,8 +1225,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-reports are imperfect, but repeated patterns across people can still teach. The trap is either dismissing them or treating them as exact instruments.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1308,8 +1237,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The American Paradox warns that affluence need not bring matching well-being. More wealth alone does not repair social ties or expectations.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1321,8 +1249,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Community goods are co-produced. A better private menu cannot fully replace the shared norm that made companionship happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1334,8 +1261,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A manageable set can increase confidence and completion. The mistake is assuming fewer options always block fit or that longer study always helps.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1347,8 +1273,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Commitment can end repeated evaluation. Keeping every option open may preserve anxiety instead of helping the person invest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1360,8 +1285,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Some defaults also coordinate behavior and expectations. Removing them can increase choice while weakening the support they quietly provided.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1373,8 +1297,7 @@
             ],
             "correctIndex": 0,
             "explanation": "More options can raise the expected standard. The meal can be good in absolute terms and still feel worse against the implied perfect match.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1386,8 +1309,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The relationship is nonlinear. Choice can help when it restores agency, then hurt when extra options add work and raise standards.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1430,7 +1352,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stop at Enough Choice",
         "coreSkill": "Practice noticing the moment choice stops giving you agency and starts giving you homework. Stop at Enough Choice by naming the choice that matters, moving the extra options out of view, and using one pre-written sentence to close or ask for support.",
         "ifThenPlans": [
           {
@@ -1455,24 +1376,17 @@
       },
       "memorableLines": [
         {
-          "text": "More options can make happiness work harder.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's curve into one plain reversal."
+          "text": "More options can make happiness work harder."
         },
         {
-          "text": "A shared good cannot be bought back alone.",
-          "location": "breakdown.deepRead",
-          "why": "It captures Lane's community point in a portable line."
+          "text": "A shared good cannot be bought back alone."
         },
         {
-          "text": "Every closed door buys back a little peace.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff at the chapter's boundary."
+          "text": "Every closed door buys back a little peace."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch06",
       "number": 6,
       "title": "Missed Opportunities",
@@ -1573,8 +1487,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says opportunity costs can keep working after the decision. The search-before-payment answer misses the post-choice charge from rejected features.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q02",
@@ -1586,8 +1499,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 links large sets to more visible trade-offs. More bids can raise the count of forfeited features, not just the chance of a perfect fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q03",
@@ -1599,8 +1511,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 comes from loss aversion: forfeited benefits can carry more emotional weight than comparable gains. Equal arithmetic is the near-miss.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q04",
@@ -1612,8 +1523,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says attractive alternatives can increase conflict when each option wins on a different feature. Extra appeal need not simplify the choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q05",
@@ -1625,8 +1535,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 warns about an unreal composite of rejected options. The sofa is being charged for several best features that never came together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q06",
@@ -1638,8 +1547,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says positive affect can broaden thought. That can aid creativity while also revealing more opportunity costs around the chosen theme.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q07",
@@ -1651,8 +1559,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says multi-attribute choices contain trade-offs. Search can inform the sacrifice, but it may not erase the sacrifice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q08",
@@ -1664,8 +1571,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 separates bad feeling from bad choice. Post-choice comparison can discount satisfaction even when the selected option was sound.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch06-q09",
@@ -1677,8 +1583,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 supports limiting comparison after commitment. The designer can keep a lesson without letting closed layouts reset the current standard.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1721,7 +1626,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Close the Comparison Tab",
         "coreSkill": "Practice closing comparison after it has helped you choose. Use Close the Comparison Tab by naming the trade-off once, keeping one lesson if needed, and refusing to keep scoring the chosen option against closed paths.",
         "ifThenPlans": [
           {
@@ -1746,19 +1650,13 @@
       },
       "memorableLines": [
         {
-          "text": "A real choice cannot beat an imaginary collage.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the unfair comparison easy to spot."
+          "text": "A real choice cannot beat an imaginary collage."
         },
         {
-          "text": "The option you choose inherits the losses you keep rehearsing.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why a sound choice can still feel costly."
+          "text": "The option you choose inherits the losses you keep rehearsing."
         },
         {
-          "text": "Trade-offs are not defects; they are the shape of choosing.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter's hard edge into a portable rule."
+          "text": "Trade-offs are not defects; they are the shape of choosing."
         }
       ]
     },
@@ -1863,8 +1761,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 ties regret to comparison with what could have happened. A bad outcome alone is not enough; the imagined path changes the feeling.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q02",
@@ -1876,8 +1773,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says near misses intensify regret because the better result feels close. Treating every missed train alike misses psychological closeness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q03",
@@ -1889,8 +1785,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 comes from norm theory: abnormal departures are easier to undo in thought. The outcome matters, but normality changes regret.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q04",
@@ -1902,8 +1797,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says more options can create more if-only stories. The common error is thinking choice abundance always protects against regret.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q05",
@@ -1915,8 +1809,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 names regret before the decision. He is seeking more information to avoid later blame, not learning from an outcome that already happened.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q06",
@@ -1928,8 +1821,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 separates short-run and long-run regret. Immediate consequences and unlived possibilities do not work on the same clock.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q07",
@@ -1941,8 +1833,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 allows useful counterfactual thought. The replay helps when it yields a criterion; avoiding all replay misses the learning side.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q08",
@@ -1954,8 +1845,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 warns that repeated simulation can poison satisfaction. Imagining alternatives is not always useful once it becomes comparison.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch07-q09",
@@ -1967,8 +1857,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says hindsight distorts what seemed predictable. The later result can make an option look obvious in a way it was not before.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2011,7 +1900,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Keep the Lesson, Drop the Trial",
         "coreSkill": "Practice turning regret into one usable rule. Use Keep the Lesson, Drop the Trial by asking what you could check earlier next time, then refusing to treat the imagined better path as a fact.",
         "ifThenPlans": [
           {
@@ -2036,24 +1924,17 @@
       },
       "memorableLines": [
         {
-          "text": "Regret edits the past with today's facts.",
-          "location": "breakdown.fastRead",
-          "why": "It captures hindsight in a short line."
+          "text": "Regret edits the past with today's facts."
         },
         {
-          "text": "A near miss feels like a door left ajar.",
-          "location": "breakdown.deepRead",
-          "why": "It gives norm theory a concrete image."
+          "text": "A near miss feels like a door left ajar."
         },
         {
-          "text": "Use regret as a teacher, not a judge.",
-          "location": "breakdown.fullRead",
-          "why": "It names the chapter's practical boundary."
+          "text": "Use regret as a teacher, not a judge."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch08",
       "number": 8,
       "title": "Why Decisions Disappoint: The Problem of Adaptation",
@@ -2154,8 +2035,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repeated use can turn a once-bright benefit into normal life. The fade does not by itself prove the app failed or needs more novelty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2167,8 +2047,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Affective forecasts often get the good or bad direction right but stretch the duration. The issue is the length of the feeling, not whether joy appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2180,8 +2059,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The treadmill image names a rising baseline. A gain can help and still become normal, which lets wanting start again.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2193,8 +2071,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The classic case is used because it reaches beyond small purchases. It looked at dramatic life changes, not only consumer choices.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -2206,8 +2083,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first reaction and lasting satisfaction are different outcomes. Grant is not rejecting feeling; he is checking what remains after it fades.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2219,8 +2095,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The emotional premium around acquisition is fragile. Paying extra can make sense for durable benefits, but not for store-floor glow alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2232,8 +2107,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Variation can slow boredom, but it can also train the need for the next switch. Novelty helps only when it serves something steadier.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2245,8 +2119,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Durable values are better criteria than short-lived thrill. The family should ask what keeps helping after the move stops feeling new.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2258,8 +2131,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fading satisfaction can reflect adaptation, not bad judgment. If the jacket still works, the lost thrill is not enough to condemn the choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2302,7 +2174,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Later Test",
         "coreSkill": "Practice separating the first rush from the later life of a choice. Run the Later Test by asking what will still help after the upgrade feels normal. Use it before you spend money, accept a perk, or restart a search for novelty.",
         "ifThenPlans": [
           {
@@ -2327,24 +2198,17 @@
       },
       "memorableLines": [
         {
-          "text": "More choice can sell you a feeling that time soon spends.",
-          "location": "breakdown.fastRead",
-          "why": "It makes adaptation feel like a cost paid after the purchase."
+          "text": "More choice can sell you a feeling that time soon spends."
         },
         {
-          "text": "Wanting can restart even when the choice was sound.",
-          "location": "breakdown.fastRead",
-          "why": "It protects readers from turning every faded feeling into self-blame."
+          "text": "Wanting can restart even when the choice was sound."
         },
         {
-          "text": "Do not buy a first-week mood with a year of money.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's spending test in one plain warning."
+          "text": "Do not buy a first-week mood with a year of money."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch09",
       "number": 9,
       "title": "Why Everything Suffers from Comparison",
@@ -2445,8 +2309,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says satisfaction depends on the outcome and the standard. The coat did not change, but the reference point changed how it looked.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q02",
@@ -2458,8 +2321,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says social comparison matters when objective standards are unavailable. The best-classmate answer turns a useful ruler into a ranking trap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q03",
@@ -2471,8 +2333,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 says upward comparison can inform and also reduce satisfaction. The always-harmful and always-helpful answers each drop half the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q04",
@@ -2484,8 +2345,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 says relative income can affect happiness judgments. The raise may still help, but peer comparison can change how it feels.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q05",
@@ -2497,8 +2357,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 defines positional goods by rank value. The other choices treat direct use as the whole story, which misses the status component.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q06",
@@ -2510,8 +2369,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says large menus create comparison points without another person. The alternatives can become standards after they are rejected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q07",
@@ -2523,8 +2381,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says satisfaction tracks the gap between outcome and reference point. A moving standard can absorb a real improvement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q08",
@@ -2536,8 +2393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says a composite standard is unfair because no real option can match it. The blend is made from several rejected offers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-paradox-of-choice-ch09-q09",
@@ -2549,8 +2405,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says changing comparison targets can change satisfaction without changing the option. The phone's features stayed the same.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2593,7 +2448,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Choose the Ruler First",
         "coreSkill": "Practice naming the ruler before you judge the choice. Use Choose the Ruler First by asking whether the comparison target teaches a next move, ranks you against someone else, or blends features no real option had.",
         "ifThenPlans": [
           {
@@ -2618,24 +2472,17 @@
       },
       "memorableLines": [
         {
-          "text": "A moving ruler can shrink a real win.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the mechanism short enough to remember."
+          "text": "A moving ruler can shrink a real win."
         },
         {
-          "text": "Comparison is useful when it teaches, cruel when it ranks.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's selective stance."
+          "text": "Comparison is useful when it teaches, cruel when it ranks."
         },
         {
-          "text": "No single life contains every best feature.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the composite-standard mistake a clean phrase."
+          "text": "No single life contains every best feature."
         }
       ]
     },
     {
-      "schemaVersion": "v21-native",
       "chapterId": "the-paradox-of-choice-ch10",
       "number": 10,
       "title": "Whose Fault Is It? Choice, Disappointment, and Depression",
@@ -2736,8 +2583,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says abundance can push blame inward. Cody may learn from the search, but the larger menu makes the missed option feel self-caused.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2749,8 +2595,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 keeps two truths together: Severine made the choice, and no chooser can master every hidden outcome. The other choices split what the source joins.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2762,8 +2607,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 centers on control beliefs. The key is not laziness; prior lack of control can teach that effort will not change the outcome.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -2775,8 +2619,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says the style of the explanation matters. Brady has made one setback about self, future, and many domains, which raises risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2788,8 +2631,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 defines the personal move. Adrien is not just noticing his role; he is making the result reveal something about his self.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2801,8 +2643,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 is about permanence. Rita has treated the failure as likely to continue, which weakens hope that future action can matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2814,8 +2655,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 names pervasive thinking. Lincoln is letting one rejection spread across work, calls, and action in general.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2827,8 +2667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 links maximizing to self-blame. The careful search can become evidence against the shopper when a skipped feature later stands out.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2840,8 +2679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 draws the line. Learning changes a future criterion; self-blame turns the uncertainty around Brady's job choice into a personal defect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2884,7 +2722,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask What Was Knowable",
         "coreSkill": "Practice separating agency from hindsight. Ask What Was Knowable by naming what you could see, what you could control, and what criterion should change next time. The skill keeps learning specific so one bad choice does not become a verdict on your whole self.",
         "ifThenPlans": [
           {
@@ -2909,24 +2746,17 @@
       },
       "memorableLines": [
         {
-          "text": "Blame grows in the gap between choice and control.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's core pressure into one concrete gap."
+          "text": "Blame grows in the gap between choice and control."
         },
         {
-          "text": "Learning edits criteria; self-blame edits the self.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a sharp test for responsibility without cruelty."
+          "text": "Learning edits criteria; self-blame edits the self."
         },
         {
-          "text": "A menu can be full while control stays thin.",
-          "location": "breakdown.fullRead",
-          "why": "It names the paradox in plain language a reader can repeat."
+          "text": "A menu can be full while control stays thin."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-paradox-of-choice-ch11",
       "number": 11,
       "title": "What to Do About Choice",
@@ -3027,8 +2857,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says decision effort is finite. The remedy is not equal attention for all choices, but care where the search can matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q02",
@@ -3040,8 +2869,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 defines satisficing as a practiced stop rule. Prior criteria tell the shopper when an option is acceptable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q03",
@@ -3053,8 +2881,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says second-order decisions reduce repeated deliberation. The house decided how to decide later.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q04",
@@ -3066,8 +2893,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 allows defaults when opt-out remains possible. Guidance is not the same as forbidding a different choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q05",
@@ -3079,8 +2905,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says commitment protects relationships from constant reevaluation. Some dissatisfaction calls for voice and repair, not shopping.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q06",
@@ -3092,8 +2917,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 distinguishes exit from voice. One leaves the setting; the other tries to change it from inside.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q07",
@@ -3105,8 +2929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says gratitude redirects attention to present benefits. It does not deny trade-offs or run a new comparison contest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q08",
@@ -3118,8 +2941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says continued comparison can keep regret alive. Post-choice discipline limits rumination after a sound commitment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-paradox-of-choice-ch11-q09",
@@ -3131,8 +2953,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says constraint can preserve meaningful agency. The constraint protects attention; it does not erase all later choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3169,7 +2990,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Spend Choice Where It Pays",
         "coreSkill": "Practice Spend Choice Where It Pays. First ask whether more search can truly improve the outcome. If not, use a rule, standard, default, or commitment to stop the choice from reopening.",
         "ifThenPlans": [
           {
@@ -3194,19 +3014,13 @@
       },
       "memorableLines": [
         {
-          "text": "A rule can be a door, not a wall.",
-          "location": "breakdown.fastRead",
-          "why": "It makes constraint feel chosen and usable."
+          "text": "A rule can be a door, not a wall."
         },
         {
-          "text": "Spend choice where choice can pay you back.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the whole chapter a short spending rule."
+          "text": "Spend choice where choice can pay you back."
         },
         {
-          "text": "A real commitment gives repair a place to stand.",
-          "location": "breakdown.fullRead",
-          "why": "It separates commitment from blind endurance."
+          "text": "A real commitment gives repair a place to stand."
         }
       ]
     }

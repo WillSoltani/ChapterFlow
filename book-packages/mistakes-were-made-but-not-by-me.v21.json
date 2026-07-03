@@ -47,13 +47,6 @@
             "incident",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "a hospital medication-incident review where a nurse manager is tempted to write that a dose was delayed",
-            "audience": "clinicians who have to learn from an error without turning the report into self-protection",
-            "stakes": "whether a dosing delay becomes a usable safety lesson or a bland incident note nobody can fix",
-            "format": "decision_point",
-            "requiredBeat": "Grace stops with the incident form open, circles the verb phrase, and replaces \"was delayed\" with the exact handoff choice that caused the missed dose"
-          },
           "scenario": "A laminated medication badge lies beside an unsigned incident form in the ward office at 7:10 a.m. Grace has written, The dose was delayed, and the sentence looks harmless. Before the safety huddle starts, her pen hovers over the verb. She must choose to leave the delay floating or name the shift handoff that left the antibiotic unsigned.",
           "whatToDo": "Circle the passive verb and replace it with the exact handoff choice. Keep the nurse, the action, and the repair step in the incident note.",
           "whyItMatters": "A delay no one caused cannot teach the team anything. Restoring the actor turns a bland report into a fixable sequence without turning one error into a character trial."
@@ -66,13 +59,6 @@
             "postmortem",
             "pilot"
           ],
-          "planSpec": {
-            "domain": "a seed-stage startup postmortem after a failed enterprise pilot",
-            "audience": "founders and operators who want a real lesson instead of a face-saving retrospective",
-            "stakes": "a second pilot will fail the same way if nobody names the choice to skip onboarding",
-            "format": "dialogue",
-            "requiredBeat": "Camille interrupts \"the rollout got confused\" and writes the exact decision, no customer onboarding call, on the shared screen"
-          },
           "scenario": "\"The rollout got confused,\" the founder says while the failed pilot customer waits in a muted tile. Camille is sharing the postmortem doc at 4:35 p.m. On the next line she types, No onboarding call was scheduled, then pauses. The room goes quiet because she now has to pick between a foggy lesson and the choice the team can repair.",
           "whatToDo": "Keep the shared screen open and write the skipped onboarding call as the first cause. Then ask what prevents the miss from repeating in the next pilot.",
           "whyItMatters": "A foggy rollout can fail again with no one wiser. A named skipped call gives the team a real lever and keeps self-protection from masquerading as analysis."
@@ -85,13 +71,6 @@
             "email",
             "apology"
           ],
-          "planSpec": {
-            "domain": "a youth soccer club email after a coach berated a referee",
-            "audience": "volunteer leaders who need accountability without turning it into punishment theater",
-            "stakes": "parents will read the apology as protection of the coach unless the action is named",
-            "format": "before_after",
-            "requiredBeat": "James rewrites \"tempers ran high\" into a sentence that keeps the coach, the referee, and the shouted words in view"
-          },
           "scenario": "Mud flecks dry on the assistant referee flag in the equipment shed. Before lunch, James drafts, Tempers ran high near the sideline. After rereading the parent complaints, he changes it to, Coach Dale shouted at the assistant referee after the offside call. The next sentence now has to carry repair, not fog.",
           "whatToDo": "Use the second sentence and add the repair: who will speak to the coach, what standard was broken, and what parents should expect next match.",
           "whyItMatters": "Softening the event protects the coach before it protects trust. Naming the action lets the apology repair a real breach instead of soothing the club."
@@ -104,13 +83,6 @@
             "postmortem",
             "safety"
           ],
-          "planSpec": {
-            "domain": "a university chemistry lab spill review after a graduate student left a reagent uncapped",
-            "audience": "lab supervisors who need precision without humiliating a junior researcher",
-            "stakes": "the lab either learns the handling failure or files it as vague equipment trouble",
-            "format": "postmortem",
-            "requiredBeat": "It takes Ingrid three minutes to notice every draft sentence names the spill but not the uncapped bottle; she inserts the missing action before discussing fixes"
-          },
           "scenario": "It takes Ingrid three minutes beside the yellow spill cone to see the pattern. The draft log names the fume hood, the spill kit, and the bench cleanup, but never the uncapped reagent bottle. She inserts, The bottle was left open during label printing, before she adds new storage steps for the graduate bench.",
           "whatToDo": "Insert the missing handling action before discussing cleanup. Keep the wording precise enough to fix the process and restrained enough to avoid shaming the student.",
           "whyItMatters": "A spill without a handling action becomes atmosphere. The uncapped bottle gives the lab a changeable point in the sequence."
@@ -123,13 +95,6 @@
             "memo",
             "route"
           ],
-          "planSpec": {
-            "domain": "a municipal snow-removal memo after two blocks were missed during an overnight storm",
-            "audience": "public works supervisors who write to angry residents",
-            "stakes": "the memo either teaches dispatch what went wrong or hides behind weather",
-            "format": "vignette",
-            "requiredBeat": "Luca asks which sentence names snow and which sentence names the route reassignment, then deletes the weather-only version"
-          },
           "scenario": "Which sentence teaches dispatch anything after the storm? Luca has a plow-route map speckled with road salt and thirty-two resident complaints open at 9:20 a.m. One draft blames changing conditions. The other names the route reassignment that left east blocks uncovered. He faces a choice: weather as cover or routing as lesson.",
           "whatToDo": "Delete the weather-only explanation. State the route reassignment, the missed blocks, and the dispatch check that will happen before the next overnight storm.",
           "whyItMatters": "Weather explains pressure, not agency. The route change is the part the crew can redesign, so it has to stay visible."
@@ -142,13 +107,6 @@
             "care",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a family care rota after an adult daughter misses a pharmacy pickup for her father",
-            "audience": "readers managing family obligations where blame can swallow repair",
-            "stakes": "a missed prescription becomes either a repairable commitment failure or a foggy family quarrel",
-            "format": "reflection",
-            "requiredBeat": "You watch Hadiya cross out \"there was confusion\" in the family chat and type the missed pickup, the pharmacy closing time, and her repair step"
-          },
           "scenario": "You see the paper pharmacy receipt folded under a lemon magnet while Hadiya opens the family chat at 8:05 p.m. Her first message says, There was confusion about Dad’s refill. She deletes it. Her thumb hovers, then she types that she missed the pickup before closing and will call the pharmacy at opening.",
           "whatToDo": "Send the version that names the missed pickup and the next action. Do not hide in family-wide confusion when one repairable commitment failed.",
           "whyItMatters": "Shared fog can feel kinder, but it leaves resentment with nowhere to go. Clear ownership gives the family a practical next step instead of a blame spiral."
@@ -167,8 +125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is blurred agency. The missing form is visible, but the skipped intake check is not. Formal tone and team blame are secondary issues.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -180,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The revision keeps the actor, action, effect, and repair together. The other choices preserve fog or explain pressure before ownership appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -193,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The phrase lets hurt exist without naming who caused it. Length and emotion are not the central problem; missing agency is.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -206,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Safety improves when action becomes fixable. Neutral wording can protect dignity, but it also hides the step the system must repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -219,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence turns a shout into general heat. It may be sincere self-protection, so deliberate lying is not the best reading.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -232,8 +185,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Self-justification can become believable to the person using it. The point is not that circumstances are irrelevant or that managers are unusually deceptive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -245,8 +197,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The best sentence names the action and repair without turning the student into a character verdict. The other options hide agency or overreach.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -258,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The storm pressure is context. The reassignment is the action the city can change. Punishment and vagueness both miss the practical lesson.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -271,8 +221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The message names the specific miss and the repair. Shared difficulty may be true, but it cannot replace ownership of the failed commitment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -333,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "Self-justification often begins before anyone tells a grand story.",
-          "location": "breakdown.fastRead",
-          "why": "It reframes the problem as a small early drift rather than a dramatic lie."
+          "text": "Self-justification often begins before anyone tells a grand story."
         },
         {
-          "text": "A self-justifying person edits the meaning of the event until the safer version feels honest enough to live inside.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why sincerity can coexist with evasion."
+          "text": "A self-justifying person edits the meaning of the event until the safer version feels honest enough to live inside."
         },
         {
-          "text": "Ownership begins at sentence level.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a precise first place to practice the lesson."
+          "text": "Ownership begins at sentence level."
         }
       ]
     },
@@ -372,13 +315,6 @@
             "injury",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "a marathon trainee who keeps running on a sore tendon after buying an expensive race package",
-            "audience": "readers who have invested money and identity in a plan that now hurts",
-            "stakes": "a small injury could become a season-ending tear if rationalization keeps winning",
-            "format": "scene",
-            "requiredBeat": "Andrew takes the printed training plan off the fridge, writes the pain score beside the nonrefundable race receipt, and decides whether the plan or the story changes"
-          },
           "scenario": "A race receipt is tucked under a blue freezer clip beside Andrew’s printed training plan. His tendon pulses when he steps onto the kitchen tile at 6:40 a.m. He writes pain score: 7 beside the nonrefundable entry fee. Before he laces up, he must choose between changing the plan or changing the story about why pain proves commitment.",
           "whatToDo": "Write the pain score beside the money already spent, then alter the run plan before the receipt gets to define toughness.",
           "whyItMatters": "The receipt makes quitting feel like waste, so the mind sells pain as discipline. The score gives the contradiction a fact that pride cannot polish as easily."
@@ -391,13 +327,6 @@
             "technology",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "a school district technology committee defending a tablet purchase after teachers report low use",
-            "audience": "leaders who made a public procurement choice",
-            "stakes": "children lose another semester to devices nobody has integrated well",
-            "format": "postmortem",
-            "requiredBeat": "Sophie separates evidence that calms the committee from evidence that tests whether the tablet rollout actually helped"
-          },
           "scenario": "Thirty unopened stylus boxes sit beside the projector cart after the committee leaves the school media room at 4:35 PM. Sophie has the teacher survey, the purchase vote, and three emails praising innovation. Before the next budget memo, she must decide whether login data tests learning or whether praise gets to protect the purchase.",
           "whatToDo": "Separate morale-soothing praise from usage and learning evidence. Let the committee face whether the rollout worked before funding another semester.",
           "whyItMatters": "Public votes make leaders hungry for confirming signs. Sorting the evidence by function blocks praise from pretending to be proof."
@@ -410,13 +339,6 @@
             "purchase",
             "service"
           ],
-          "planSpec": {
-            "domain": "a neighborhood restaurant owner defending a costly pizza oven that slows service",
-            "audience": "small business owners attached to an expensive choice",
-            "stakes": "Friday revenue keeps falling while pride turns complaints into excuses",
-            "format": "predict_reveal",
-            "requiredBeat": "Etienne predicts customers will praise the new crust, then reads the ticket times aloud and marks where the defense starts replacing the evidence"
-          },
           "scenario": "At 9:18 p.m. Friday, Etienne rests the stainless peel against the oven door and predicts the comment cards will praise the new crust. They do. Then he reads the ticket times: eighteen minutes slower than March. Before the next payment schedule, he must decide whether service evidence outweighs the comfort of compliments.",
           "whatToDo": "Put praise and ticket times on the same sheet, then choose one service change before reading another compliment.",
           "whyItMatters": "Compliments reduce the sting of a costly choice. Ticket times test whether the choice is working under pressure."
@@ -429,13 +351,6 @@
             "family",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "a family investment club holding a losing clean-energy stock because selling would admit a bad call",
-            "audience": "people whose judgment is publicly attached to a decision",
-            "stakes": "retirement savings shrink while members search only for bullish updates",
-            "format": "dialogue",
-            "requiredBeat": "Marta asks each member to bring one fact that would make them sell, not one fact that makes holding feel smarter"
-          },
           "scenario": "\"Bring one fact that would make you sell,\" Marta says, laying the dividend calendar beside the cracked tablet case. Her uncle has already opened a bullish quarterly report. The clean-energy stock is down again, and the family vote starts in ten minutes. Each member now has to choose a sell threshold or another soothing update.",
           "whatToDo": "Require a sell threshold before anyone shares more bullish news. Make the group define what evidence would change the decision.",
           "whyItMatters": "A public bad call makes supportive news feel like medicine. A sell threshold keeps evidence from becoming emotional pain relief."
@@ -448,13 +363,6 @@
             "attendance",
             "budget"
           ],
-          "planSpec": {
-            "domain": "a museum membership director defending a failed exhibit theme after donors praised the concept",
-            "audience": "cultural nonprofit staff balancing taste, evidence, and reputation",
-            "stakes": "next season repeats the same attendance miss if praise keeps outranking foot traffic",
-            "format": "before_after",
-            "requiredBeat": "It takes Daniel two budget meetings to see that donor compliments soothe dissonance while timed-entry data tells the harder truth"
-          },
           "scenario": "It takes Daniel two budget meetings to look under the admissions desk. A box of unused exhibit wristbands sits there while donor compliments fill the recap deck. Before next season’s budget locks, he needs to pick which record gets weight: timed-entry data from quiet afternoons or praise that makes the theme feel vindicated.",
           "whatToDo": "Put the unused wristbands and timed-entry data into the budget packet before donor praise. Let attendance test the theme.",
           "whyItMatters": "Compliments protect taste and reputation. Attendance shows whether the exhibit earned attention beyond the people already invested in it."
@@ -467,13 +375,6 @@
             "identity",
             "risk"
           ],
-          "planSpec": {
-            "domain": "an e-bike commuter defending a risky route because she already told friends it was the perfect switch from driving",
-            "audience": "readers whose public identity is tied to a lifestyle change",
-            "stakes": "near-misses accumulate while she keeps calling the route efficient",
-            "format": "decision_point",
-            "requiredBeat": "You watch Chiara pin a near-miss note to the route map and choose between changing streets and collecting reasons the old route is fine"
-          },
           "scenario": "You see a reflective ankle band looped around Chiara’s folded city map after another van brushes her pannier. She pins a near-miss note beside the route she praised online last week. Her finger hovers between the longer side street and the old shortcut. She must choose a safer route or collect fresh reasons the shortcut is fine.",
           "whatToDo": "Mark the near-miss on the map and change one street tomorrow. Do not let a public commitment turn risk into a badge of consistency.",
           "whyItMatters": "Once the route belongs to her identity, danger starts sounding like proof of dedication. The map returns the choice to evidence."
@@ -492,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Her public identity and the near-misses now conflict. The issue is not missing information or weak motivation; it is pressure to protect the choice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -505,8 +405,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The login data tests the decision; testimonials may only reduce discomfort. Immediate cancellation may be premature, but comfort evidence cannot lead.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -518,8 +417,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The story converts pain into proof of commitment. It does not test the injury or reduce uncertainty in a reliable way.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -531,8 +429,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ticket times test the operating result under pressure. Compliments and payments both make the costly choice easier to defend.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -544,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Post-choice certainty can be defense. The person may be reducing discomfort, not seeing more clearly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -557,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A sell threshold defines evidence that could revise the decision. Hopeful articles may only relieve the pain of a public bad call.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -570,8 +465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The failed prediction raises the cost of surrender, so reinterpretation becomes attractive. That is different from saying evidence never matters or fraud is certain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -583,8 +477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attendance data tests audience behavior. Donor praise can be real yet still serve as emotional relief for a defended theme.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -596,8 +489,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Revision criteria keep evidence alive after commitment. Trusting the old choice or asking for reassurance turns dissonance into comfort-seeking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -658,19 +550,13 @@
       },
       "memorableLines": [
         {
-          "text": "The mind wants that split to stop hurting.",
-          "location": "breakdown.fastRead",
-          "why": "It makes dissonance feel like pressure rather than theory."
+          "text": "The mind wants that split to stop hurting."
         },
         {
-          "text": "Relief is not correction.",
-          "location": "breakdown.deepRead",
-          "why": "It is short enough to function as the chapter’s warning label."
+          "text": "Relief is not correction."
         },
         {
-          "text": "The choice is no longer only a choice.",
-          "location": "breakdown.fullRead",
-          "why": "It names why commitment changes how evidence feels."
+          "text": "The choice is no longer only a choice."
         }
       ]
     },
@@ -697,13 +583,6 @@
             "scorecard",
             "fit"
           ],
-          "planSpec": {
-            "domain": "a hiring panel reviewing two candidates after a structured interview",
-            "audience": "managers who believe their gut read is unusually objective",
-            "stakes": "a qualified candidate gets discounted because the panel treats confidence as neutrality",
-            "format": "decision_point",
-            "requiredBeat": "Claire writes each panelist's first impression beside the scorecard criterion before anyone can call their favorite simply \"a better fit\""
-          },
           "scenario": "Two clipped scorecards sit under a glass conference-room nameplate at 3:15 p.m. Claire can feel the panel leaning toward the smoother candidate. Before someone says better fit, she writes first impression beside each criterion line. The panel must choose between treating the gut read as evidence or letting it pass as neutrality.",
           "whatToDo": "Write first impressions next to the criteria before discussing fit. Make the panel inspect its reaction instead of dressing it as objectivity.",
           "whyItMatters": "Fit language often hides the observer’s comfort. Placing the reaction beside criteria makes the filter visible before it becomes the verdict."
@@ -716,13 +595,6 @@
             "noise",
             "board"
           ],
-          "planSpec": {
-            "domain": "a condo board noise dispute between an upstairs pianist and a downstairs shift worker",
-            "audience": "neighbors whose own inconvenience feels like the whole truth",
-            "stakes": "the board may punish one resident while never testing its own assumptions",
-            "format": "dialogue",
-            "requiredBeat": "Julien asks both residents to mark the same week on a sound log before labeling either person unreasonable"
-          },
           "scenario": "At 8:10 PM in the condo lobby, Julien holds the decibel meter case beside the bylaws while the shift worker and pianist trade complaints. He chairs the building board, and the vote starts in twelve minutes. He has to choose a shared sound log over whichever neighbor sounds more reasonable to him.",
           "whatToDo": "Ask both residents to mark the same week on the sound log. Delay labels like unreasonable until the board sees a common record.",
           "whyItMatters": "Each neighbor experiences inconvenience as reality. A shared log gives the dispute a test before one person’s comfort becomes the official truth."
@@ -735,13 +607,6 @@
             "framing",
             "correction"
           ],
-          "planSpec": {
-            "domain": "a newsroom correction meeting after a local profile framed a neighborhood group as obstructionist",
-            "audience": "editors who treat their framing as facts",
-            "stakes": "the paper repeats a stereotype while insisting it is simply being realistic",
-            "format": "postmortem",
-            "requiredBeat": "It takes Anke reading the unused interview notes aloud to show how the article selected only the quotes that fit the obstruction frame"
-          },
           "scenario": "It takes Anke reading the annotated transcripts aloud under the blue copy desk lamp to change the meeting. The printed story says obstructionist. The unused notes include bus access, rent fear, and one angry line that became the lead. She marks every quote that fit the frame, then every quote the frame made easy to ignore.",
           "whatToDo": "Read the unused notes beside the published frame. Mark which facts were selected because they fit the label, not because they carried the whole story.",
           "whyItMatters": "A frame can feel factual when it keeps confirming itself. The unused notes expose the selection process the editor had mistaken for realism."
@@ -754,13 +619,6 @@
             "loyalty",
             "review"
           ],
-          "planSpec": {
-            "domain": "a youth rugby referee committee reviewing parent complaints after a regional final",
-            "audience": "volunteers sorting disputed calls under loyalty pressure",
-            "stakes": "the committee may protect its own club by calling the rival parents biased",
-            "format": "predict_reveal",
-            "requiredBeat": "David predicts which complaints came from his club, then opens the anonymized clips and sees his accuracy collapse"
-          },
           "scenario": "Which complaint came from the rival club? David has a whistle cord tangled around the tablet showing paused match footage. He predicts four of six before opening the anonymized clips. Two are from his own parents. Before the committee rules, he must choose whether loyalty gets treated as context or as a filter to test.",
           "whatToDo": "Keep the clips anonymized through the first review and score the calls before revealing club names. Test loyalty before calling anyone biased.",
           "whyItMatters": "Club identity changes what sounds reasonable. Anonymizing the clips makes the first filter visible before it protects the home side."
@@ -773,13 +631,6 @@
             "rubric",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "a scholarship committee reading essays from urban and rural applicants",
-            "audience": "reviewers who see themselves as fair but carry a narrow picture of promise",
-            "stakes": "the committee may reward familiarity while calling it merit",
-            "format": "reflection",
-            "requiredBeat": "You watch Isabel cover names and schools, then list which details she had been treating as ambition rather than mere familiarity"
-          },
           "scenario": "At 4:20 PM in the scholarship office, Isabel holds anonymized essays with a brass binder clip while the committee praises polished internships. She covers school names and hometowns, then lists the details she had been treating as ambition. Before rankings lock, she has to choose between the rubric and familiar signals that made some promise easier to recognize.",
           "whatToDo": "Cover names and schools, then map each praise comment to a rubric item. Separate evidence of promise from details that only feel familiar.",
           "whyItMatters": "Fair reviewers can reward what they already know how to read. The rubric slows the slide from familiarity into merit."
@@ -792,13 +643,6 @@
             "design",
             "users"
           ],
-          "planSpec": {
-            "domain": "a product design review for a banking app used by elderly customers",
-            "audience": "designers who confuse their own fluent use with obvious use",
-            "stakes": "older users keep abandoning bill pay while the team blames resistance to change",
-            "format": "before_after",
-            "requiredBeat": "Chidi watches a recorded session with the interface labels blurred, then changes the team's claim from \"users are confused\" to \"our path hides the next step\""
-          },
           "scenario": "At 10:05 a.m., Chidi tapes oversized checkout text over the tablet edge before replaying a bill-pay session. Before, the team wrote, users are confused. After the labels are blurred, every designer misses the same next step. The claim changes to, our path hides the action, before the redesign meeting ends.",
           "whatToDo": "Replay the session with labels blurred and make the team perform the path. Rewrite the problem statement around the hidden step, not the user.",
           "whyItMatters": "Fluent designers confuse their own ease with obvious design. The blurred test makes their perspective one data point, not the standard."
@@ -817,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The confidence may be real, but it still needs inspection. The scorecard tests the reaction instead of letting fit language carry the verdict.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -830,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A shared log tests both perspectives against the same record. Voting or pressuring one side lets one person’s reality become the board’s reality.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -843,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The unused notes reveal selection, not just tone. They show whether the frame created the impression it claimed merely to report.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -856,8 +697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test exposed his filter. It does not prove equal error or perfect neutrality; it shows loyalty had been entering the judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -869,8 +709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rubric separates actual evidence from familiarity. Past-winner similarity and ease of summary may deepen the same filter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -882,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The designers now see their perspective as situated. The problem shifts from user resistance to a hidden step in the path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -895,8 +733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bias blind spot makes other people’s distortions easier to spot than your own. Naming a commitment tests the fair self-image.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -908,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naive realism can operate on both sides. More facts may help only if each side also tests how its own certainty was formed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -921,8 +757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Change criteria test the filter. Agreement and softer wording may preserve the same conclusion without examining its route.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -983,19 +818,13 @@
       },
       "memorableLines": [
         {
-          "text": "Her confidence is no longer the judge.",
-          "location": "breakdown.fastRead",
-          "why": "It turns objectivity into something the reader can visualize losing authority."
+          "text": "Her confidence is no longer the judge."
         },
         {
-          "text": "The trap feels like clarity.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses naive realism into a sharp warning."
+          "text": "The trap feels like clarity."
         },
         {
-          "text": "Other people have biases; you have reasons.",
-          "location": "breakdown.fullRead",
-          "why": "It names the asymmetry that powers the blind spot."
+          "text": "Other people have biases; you have reasons."
         }
       ]
     },
@@ -1022,13 +851,6 @@
             "hospital",
             "memory"
           ],
-          "planSpec": {
-            "domain": "siblings reconstructing a hospital visit before dividing care duties for their mother",
-            "audience": "adult siblings whose memories protect different versions of loyalty",
-            "stakes": "one sibling may be cast as selfish because each remembers the visit around their own sacrifice",
-            "format": "dialogue",
-            "requiredBeat": "Hannah puts the parking receipt, nurse call log, and text thread on the table before deciding whose memory gets to carry blame"
-          },
           "scenario": "\"You left me alone with Mom,\" Hannah says, flattening the hospital parking receipt under a water glass. Her brother opens the nurse call log and a text thread from 2:18 p.m. The care rota is due tonight. Before blame sets the schedule, they must decide which parts of the visit the records force back into view.",
           "whatToDo": "Put the receipt, call log, and texts beside the memory before assigning care duties. Let sequence correct the story each sibling prefers.",
           "whyItMatters": "Each memory protects a different version of loyalty. Shared artifacts keep one vivid account from carrying all the blame."
@@ -1041,13 +863,6 @@
             "outage",
             "timeline"
           ],
-          "planSpec": {
-            "domain": "a software outage timeline where the product lead remembers warning engineering earlier than the messages show",
-            "audience": "teams rebuilding events after a public incident",
-            "stakes": "the postmortem either learns from timestamps or preserves each role's innocence",
-            "format": "postmortem",
-            "requiredBeat": "Nicolas drags the chat export beside the outage timeline and marks where his remembered warning appears two hours later than he thought"
-          },
           "scenario": "A server-status timeline with three red outage blocks covers the war-room table. Nicolas drags the chat export beside it and searches for the warning he remembers sending before lunch. The timestamp is 2:17 p.m. He marks it in red, two hours later than his memory, before writing the postmortem lesson.",
           "whatToDo": "Move the remembered warning to its actual timestamp and rewrite the incident sequence from the record, not from role-protecting memory.",
           "whyItMatters": "The team cannot fix a delay if the warning migrates earlier in memory. Timestamps make competence answer to sequence."
@@ -1060,13 +875,6 @@
             "calendar",
             "pickup"
           ],
-          "planSpec": {
-            "domain": "a co-parenting exchange after a missed school pickup",
-            "audience": "separated parents trying to separate memory from prosecution",
-            "stakes": "the child's schedule becomes another exhibit in a moral case",
-            "format": "decision_point",
-            "requiredBeat": "Astrid hears herself say \"you always do this,\" then opens the shared calendar and corrects the memory before sending the message"
-          },
           "scenario": "A child’s raincoat drips onto the hallway mat while Astrid types, You always do this. The missed pickup is real, but the shared calendar is still open. It shows three swapped Tuesdays she had forgotten. Her thumb hovers over send. She must choose between a prosecution sentence and a corrected message about today’s miss.",
           "whatToDo": "Open the calendar before sending. Keep today’s missed pickup in the message, but remove the always claim the record does not support.",
           "whyItMatters": "Stored grievance makes one event sound like a biography. The calendar protects repair from a memory that has recruited extra blame."
@@ -1079,13 +887,6 @@
             "deposit",
             "photos"
           ],
-          "planSpec": {
-            "domain": "a landlord deposit dispute over a scratched oak floor",
-            "audience": "people tempted to remember property damage around their preferred innocence",
-            "stakes": "a small dispute hardens into accusations because each side remembers the move-out walk-through differently",
-            "format": "predict_reveal",
-            "requiredBeat": "Michael predicts the move-out photos will prove his account, then compares the photo metadata to the inspection sheet before claiming certainty"
-          },
           "scenario": "At 5:42 p.m., Michael sets a silver key ring beside the scratched oak floor and predicts the move-out photos will prove the tenant caused it. The metadata opens first: the close-up was taken before the final inspection sheet. Before the deposit email leaves, he must decide whether to claim certainty now or check the sequence first.",
           "whatToDo": "Compare photo metadata with the inspection sheet before touching the deposit email. Let timing decide what the memory cannot carry alone.",
           "whyItMatters": "The scratch fits the story he wants. Metadata tests whether the story belongs to that tenant or to an earlier inspection."
@@ -1098,13 +899,6 @@
             "handoff",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "a surgical handoff review after a missing allergy bracelet",
-            "audience": "clinical teams whose confidence can outrun recorded sequence",
-            "stakes": "a safety fix depends on knowing whether the bracelet was absent, removed, or never checked",
-            "format": "before_after",
-            "requiredBeat": "It takes Paula watching the doorway camera log to separate what she usually does from what she actually did that morning"
-          },
           "scenario": "It takes Paula watching the doorway camera log twice to stop saying she checked the allergy bracelet. An empty plastic clasp sits in a specimen tray beside the handoff note. Before the replay, she remembers her usual routine. After the replay, she sees the interruption that pulled her eyes from the patient’s wrist.",
           "whatToDo": "Separate usual routine from recorded action. Build the safety fix around the interruption, not around confidence in what normally happens.",
           "whyItMatters": "A trusted habit can slide into memory as if it occurred. The log shows the exact break point the team can protect next time."
@@ -1117,13 +911,6 @@
             "committee",
             "email"
           ],
-          "planSpec": {
-            "domain": "an amateur choir committee revisiting why a long-time accompanist quit",
-            "audience": "small-group leaders whose recollections protect their own kindness",
-            "stakes": "the committee will repeat the insult if the past stays polished",
-            "format": "reflection",
-            "requiredBeat": "You watch Akira read the resignation email slowly and underline the sentence everyone had remembered as gratitude but that was actually a warning"
-          },
           "scenario": "At 8:35 PM in the rehearsal hall, Akira pulls a torn concert program from the piano bench and reads the accompanist’s resignation email aloud. The committee minutes remembered gratitude. The email says public corrections during rehearsal had become unbearable. Before the board closes the file, Akira has to choose whether the old kind self-story survives untouched.",
           "whatToDo": "Underline the warning sentence and add it to the committee minutes. Treat gratitude and harm as possible in the same goodbye.",
           "whyItMatters": "The polished memory protects the group’s kindness. The email restores the warning they need before they repeat the same insult."
@@ -1142,8 +929,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Artifacts cannot answer every moral question, but they can correct sequence. Vividness alone may protect one sibling’s innocence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1155,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The timestamp should reshape the incident sequence. Personal memory still has value, but confidence cannot overrule the record.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1168,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The current failure can be named. The calendar blocks memory from turning one event into a permanent indictment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1181,8 +965,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The metadata challenges timing. It may not settle every issue, but it weakens the landlord’s confident sequence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1194,8 +977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The routine may be real, but it cannot replace what happened that morning. The useful fix targets the interruption.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1207,8 +989,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A self-protective memory can keep the flattering part and drop the warning. Holding both details supports real change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1220,8 +1001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing worse-looking detail tests selective omission. Agreement and repetition can strengthen the protective version.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1233,8 +1013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Emotion may be accurately remembered and still attached to a revised sequence. Memory can be vivid and self-protective at once.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1246,8 +1025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The manager should not let a flattering memory rule the timeline. Marking it unverified gives records room to correct innocence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1308,19 +1086,13 @@
       },
       "memorableLines": [
         {
-          "text": "Memory is not a sealed recording.",
-          "location": "breakdown.fastRead",
-          "why": "It states the mechanism in plain words without sounding academic."
+          "text": "Memory is not a sealed recording."
         },
         {
-          "text": "Confidence is not proof.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence gives readers a usable guardrail."
+          "text": "Confidence is not proof."
         },
         {
-          "text": "A memory you love may still be true.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves nuance while warning against self-protective certainty."
+          "text": "A memory you love may still be true."
         }
       ]
     },
@@ -1347,13 +1119,6 @@
             "interview",
             "hypothesis"
           ],
-          "planSpec": {
-            "domain": "a school counselor interviewing a ten-year-old after a playground injury report",
-            "audience": "helpers who fear missing harm and may start leading before testing",
-            "stakes": "the child's answer may become evidence shaped by the adult's first theory",
-            "format": "scene",
-            "requiredBeat": "Laura writes two alternative explanations on a sticky note before asking the next question, then replaces a leading prompt with an open one"
-          },
           "scenario": "A cartoon bandage wrapper lies beside the child-sized chair while Laura reads the playground injury report. Her first theory is already leaning forward. She writes rough game and wet ladder on a sticky note, then crosses out, Did someone push you? Before the interview moves, she must choose an open question over a confirming one.",
           "whatToDo": "Write two alternative explanations before asking the next question. Replace the leading prompt with an open request for sequence.",
           "whyItMatters": "The child’s answer will become evidence. If the question carries the theory, the evidence starts contaminated before anyone notices."
@@ -1366,13 +1131,6 @@
             "care plan",
             "verification"
           ],
-          "planSpec": {
-            "domain": "an addiction clinic case conference where staff read missed appointments as denial",
-            "audience": "care teams whose rescue identity can close down rival hypotheses",
-            "stakes": "a patient loses housing support if practical barriers are misread as resistance",
-            "format": "dialogue",
-            "requiredBeat": "Mathieu asks the team to list what would disprove denial before they write the care plan"
-          },
           "scenario": "\"Three missed appointments means denial,\" the nurse says in the clinic conference room at 9:15 AM. Mathieu opens the intake folder and finds a bus-transfer slip folded behind the care plan. The housing form is due tomorrow. Before the team writes noncompliant, he must decide whether the bus evidence can disprove denial or whether the rescue story closes the file.",
           "whatToDo": "Ask what evidence would weaken the denial explanation before writing the plan. Check the bus route and appointment timing.",
           "whyItMatters": "A rescue identity can make every miss look like resistance. A disproof test keeps practical barriers from being mislabeled as refusal."
@@ -1385,13 +1143,6 @@
             "assessment",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "a speech-language assessment for a preschooler in a bilingual household",
-            "audience": "clinicians separating observation from theory",
-            "stakes": "a child may be mislabeled because every silence is interpreted through one favored explanation",
-            "format": "predict_reveal",
-            "requiredBeat": "Frida predicts what she would see if shyness, hearing trouble, or language exposure were each true, then changes the session plan"
-          },
           "scenario": "A felt animal board sits beside the audiology headset in the preschool assessment room. Frida predicts three patterns: shyness changes with the parent gone, hearing trouble changes sound response, language exposure changes across words. When the first activity gives mixed signs, she must choose the revised session plan instead of her first label.",
           "whatToDo": "Write predictions for three hypotheses and let the next activity test them. Change the session plan when signs do not fit the first label.",
           "whyItMatters": "Observation without rival predictions becomes a closed loop. The predictions keep silence from automatically proving one theory."
@@ -1404,13 +1155,6 @@
             "investigation",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "a workplace investigator reviewing a harassment complaint without assuming the first narrative is complete",
-            "audience": "internal investigators balancing care with verification",
-            "stakes": "a flawed interview sequence could contaminate testimony and undermine real accountability",
-            "format": "decision_point",
-            "requiredBeat": "Ben deletes a question that names the alleged motive and replaces it with a sequence question about what each person saw first"
-          },
           "scenario": "At 11:30 AM, Ben sets a digital recorder beside a blank chronology grid. His witness notes are open, and the next draft question says, Why did she target you? His cursor rests on target. Before the first interview, he must choose between a motive-loaded prompt and a sequence question about what the witness saw first.",
           "whatToDo": "Delete the motive word and ask for sequence: what happened first, who was present, and what each person saw or heard.",
           "whyItMatters": "A motive-loaded question can pull testimony toward the investigator’s story. Sequence questions protect accountability by preserving what the witness actually supplies."
@@ -1423,13 +1167,6 @@
             "youth",
             "interpretation"
           ],
-          "planSpec": {
-            "domain": "a nonprofit youth mentor interpreting a teenager's silence as trauma disclosure",
-            "audience": "well-meaning mentors who need humility around interpretation",
-            "stakes": "the teenager may be pushed into an adult story before trust or evidence exists",
-            "format": "reflection",
-            "requiredBeat": "You watch Catarina write \"maybe\" beside each interpretation, then ask what the teen wants help with today instead of naming the hidden wound"
-          },
           "scenario": "You watch a half-finished chessboard sit between Catarina and the teenager at the community center. Her mentor notes say silence, possible trauma. She writes maybe beside trauma, hunger, boredom, and distrust. Before the meeting ends, she has to choose the teen’s requested help over the hidden wound she feels ready to name.",
           "whatToDo": "Write maybe beside each interpretation, then ask what help the teen wants today. Keep the adult story provisional.",
           "whyItMatters": "Care can turn silence into a script. The maybe labels preserve humility until the teen supplies evidence or asks for help."
@@ -1442,13 +1179,6 @@
             "quality",
             "readmissions"
           ],
-          "planSpec": {
-            "domain": "a hospital quality-improvement analyst checking a senior consultant's theory about readmissions",
-            "audience": "analysts who must challenge confident experts without humiliating them",
-            "stakes": "resources go to the wrong fix if narrative fit outranks disconfirming data",
-            "format": "before_after",
-            "requiredBeat": "It takes Yusuf one cross-tab to show that the consultant's favored explanation predicts the wrong ward, then he designs a falsifying check for the next meeting"
-          },
           "scenario": "At 9:05 AM in the hospital quality office, Yusuf uses one green spreadsheet filter to disturb the consultant’s readmission theory. The discharge binder says the problem should peak on ward four. The cross-tab points to ward two. Before the next morbidity meeting, he designs a falsifying check that lets the senior expert stay respected while the data gets heard.",
           "whatToDo": "Bring the cross-tab and a falsifying check to the meeting. Challenge the prediction, not the consultant’s worth.",
           "whyItMatters": "Narrative fit can outrank data when status is involved. A falsifying check gives correction a route that does not depend on humiliation."
@@ -1467,8 +1197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The open question protects the evidence from the counselor’s first theory. It does not settle what happened or control emotion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1480,8 +1209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The team needs a disproof test before turning interpretation into a plan. The answer is not punishment or a new assumption in the opposite direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1493,8 +1221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rival predictions let the session test the theory. Waiting indefinitely and parent preference do not make the first interpretation more reliable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1506,8 +1233,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The prompt loads a motive into the interview. Serious claims still need careful sequence questions to keep evidence clean.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1519,8 +1245,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The maybe labels keep interpretation provisional. The teen’s stated need matters before adult certainty becomes the whole story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1532,8 +1257,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The check lets evidence challenge the theory without turning correction into humiliation. Hiding data or attacking status both damage learning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1545,8 +1269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good motives do not test themselves. Care matters, but it should increase discipline around disconfirmation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1558,8 +1281,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Every observation gets translated into the same theory, so the theory is insulated from error. Multiple hypotheses would create real tests.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1571,8 +1293,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence invites disconfirmation. Experience can inform hypotheses, but it should not block rival signs from mattering.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1633,19 +1354,13 @@
       },
       "memorableLines": [
         {
-          "text": "Good method is arrogance control.",
-          "location": "breakdown.fastRead",
-          "why": "It makes scientific discipline feel practical rather than cold."
+          "text": "Good method is arrogance control."
         },
         {
-          "text": "Kindness is not a method.",
-          "location": "breakdown.deepRead",
-          "why": "It lands the central warning in five plain words."
+          "text": "Kindness is not a method."
         },
         {
-          "text": "Science is not a cold personality trait.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the reader from misreading rigor as lack of care."
+          "text": "Science is not a cold personality trait."
         }
       ]
     },
@@ -1672,13 +1387,6 @@
             "security",
             "access"
           ],
-          "planSpec": {
-            "domain": "a campus security investigation into stolen lab laptops",
-            "audience": "investigators and managers who choose a suspect early",
-            "stakes": "a student worker could lose a scholarship if contradictory access logs are treated as noise",
-            "format": "decision_point",
-            "requiredBeat": "Sarah pins the first suspect's name at the bottom of the board, not the top, and forces the team to map evidence that points away from him"
-          },
           "scenario": "Two empty laptop docks sit under fluorescent lab shelving while Sarah faces the evidence board at 8:25 AM. The student worker had access, and his name is already on a sticky note. Before the team adds another confirming detail, she must choose where the name goes: at the top as the answer or at the bottom beneath access logs that point away.",
           "whatToDo": "Pin the suspect name below the evidence and map disconfirming access logs first. Make the board hold uncertainty before it rewards certainty.",
           "whyItMatters": "The first suspect can become the lens for every later fact. Board position changes whether evidence tests the theory or serves it."
@@ -1691,13 +1399,6 @@
             "confession",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "a public defender reviewing a signed confession from a frightened nineteen-year-old",
-            "audience": "lawyers and readers weighing confession against pressure",
-            "stakes": "the confession may bury timeline facts that make guilt less plausible",
-            "format": "postmortem",
-            "requiredBeat": "Lars lines up the interview breaks, sleep hours, and confession sentences before deciding how much weight the statement deserves"
-          },
           "scenario": "A transcript page is creased across the highlighted confession. Lars lines up the interview timeline, sleep hours, and signed statement on the library table. The words look damning until the breaks and pressure marks surround them. His next memo must choose how much weight the statement earns after the conditions are visible.",
           "whatToDo": "Place the confession beside sleep, breaks, and pressure before rating its strength. Treat the statement as evidence with conditions, not as free-standing truth.",
           "whyItMatters": "Pressure can shape what a frightened person says. The timeline keeps the signed words from burying facts that make guilt less plausible."
@@ -1710,13 +1411,6 @@
             "vendor",
             "fraud"
           ],
-          "planSpec": {
-            "domain": "a corporate compliance inquiry into a missing vendor payment",
-            "audience": "compliance teams whose first theory can harden into prosecution",
-            "stakes": "an employee may be accused of fraud when a banking cutoff explains the gap",
-            "format": "predict_reveal",
-            "requiredBeat": "Giulia asks the team to predict what the bank cutoff record would show if the fraud theory were false, then opens the record before interviewing again"
-          },
           "scenario": "\"If fraud is wrong, what would the cutoff show?\" Giulia asks, holding the vendor invoice stamped with two processing dates. The team predicts a late batch would sit outside the ledger. Then she opens the bank record. Before another interview, they must decide whether the fraud theory survives the very test they named.",
           "whatToDo": "Predict the cutoff record under the rival explanation, then open it before interviewing again. Let the theory face its own test.",
           "whyItMatters": "A first theory can harden fast in compliance work. The prediction gives innocent timing a chance before suspicion becomes prosecution."
@@ -1729,13 +1423,6 @@
             "metadata",
             "review"
           ],
-          "planSpec": {
-            "domain": "a university misconduct panel reviewing lab notebook alterations",
-            "audience": "committee members under pressure to defend an earlier finding",
-            "stakes": "new metadata could clear a researcher after the panel has already announced sanctions",
-            "format": "before_after",
-            "requiredBeat": "It takes Chris rereading the sanctions email aloud to hear why admitting new metadata now feels like confessing panel failure"
-          },
           "scenario": "It takes Chris rereading the sanctions email aloud to hear the trap. A photo of the lab notebook sits beside the USB evidence sleeve. Before the metadata report, the panel was protecting integrity. After the report, reopening the vote feels like admitting panel failure. The new file still has to be read.",
           "whatToDo": "Name the institutional cost before reviewing the metadata. Then let the new report be assessed on its own evidentiary weight.",
           "whyItMatters": "Public commitment makes correction feel like self-indictment. Naming that cost prevents reputation from quietly discounting new evidence."
@@ -1748,13 +1435,6 @@
             "reputation",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "a neighborhood fire investigation where a disliked tenant becomes the easy arson suspect",
-            "audience": "local officials and witnesses watching dislike become evidence",
-            "stakes": "real evidence gets filtered through the tenant's reputation",
-            "format": "scene",
-            "requiredBeat": "Tomasz writes \"unliked is not motive\" on the incident board and moves the accelerant test above the neighbor complaints"
-          },
           "scenario": "At 7:50 AM, Tomasz seals the melted doorbell camera casing in a paper evidence bag. The tenant is disliked, and the neighbor complaints are already loud. He writes, Unliked is not motive, on the incident board and moves the accelerant test above reputation notes. The team must choose evidence order before the story writes itself.",
           "whatToDo": "Put the accelerant test above neighbor complaints and mark reputation as context, not motive. Keep dislike from becoming evidence.",
           "whyItMatters": "A disliked person fits too easily into a guilt story. Evidence order slows the conversion of reputation into proof."
@@ -1767,13 +1447,6 @@
             "alibi",
             "review"
           ],
-          "planSpec": {
-            "domain": "an innocence clinic deciding whether to reopen a decade-old conviction file",
-            "audience": "students and supervisors learning why reversal threatens identity",
-            "stakes": "a credible alibi may sit unread because the original prosecutor is now a respected judge",
-            "format": "reflection",
-            "requiredBeat": "You watch Aanya place the judge's old press quote beside the new alibi record and name the reputation cost before assessing the evidence"
-          },
           "scenario": "You watch Aanya place a brittle courthouse clipping under a clear archival weight beside the new alibi record. The old press quote belongs to a prosecutor who is now a respected judge. Before the clinic votes on reopening the file, she needs to name the reputation cost or watch it silently shrink the alibi.",
           "whatToDo": "Place the old quote beside the alibi and name the reputation cost aloud. Then read the new record as evidence, not as an insult to the old verdict.",
           "whyItMatters": "Reversal threatens institutional honor. Naming the threat keeps it from becoming an invisible reason to dismiss exonerating evidence."
@@ -1792,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first suspect can become the lens. Access logs then risk being sorted by usefulness to the early decision.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1805,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The statement is evidence with conditions. The pressure and timing help determine its weight without declaring every confession false.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1818,8 +1489,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A rival prediction gives the innocent explanation a real test. Repeated interviews and narrowed focus can harden the first theory.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1831,8 +1501,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public commitment raises the identity cost of correction. Resistance can come from self-justification, not only bad faith.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1844,8 +1513,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reputation can bias interpretation, so evidence order matters. The point is not to erase context, but to keep dislike from becoming proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1857,8 +1525,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reputation cost can silently discount the alibi. Naming it helps the record be read as evidence rather than insult.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1870,8 +1537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Early uncertainty needs protection. The move is staged certainty, not endless doubt or premature closure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1883,8 +1549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Once separated from pressure, the confession looks self-generated. Keeping conditions visible preserves judgment about its weight.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1896,8 +1561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The safeguard forces the theory to face disconfirming evidence. More confirmation and reversed burden deepen the closed pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1958,19 +1622,13 @@
       },
       "memorableLines": [
         {
-          "text": "Suspicion stops being a question.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the shift from inquiry to lens in plain language."
+          "text": "Suspicion stops being a question."
         },
         {
-          "text": "Pressure changes what a statement is worth.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a concrete rule for evaluating confessions."
+          "text": "Pressure changes what a statement is worth."
         },
         {
-          "text": "The point is not to worship doubt.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the lesson practical instead of endlessly skeptical."
+          "text": "The point is not to worship doubt."
         }
       ]
     },
@@ -1997,13 +1655,6 @@
             "school",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "a breakfast argument over a forgotten allergy-safe school snack",
-            "audience": "parents whose logistical stress turns into character accusations",
-            "stakes": "a preventable miss becomes evidence that one partner does not care",
-            "format": "scene",
-            "requiredBeat": "Emily stops before saying \"you never think\" and names the exact calendar handoff that failed"
-          },
           "scenario": "An unopened sunflower-butter snack bar sits beside the school permission slip while Emily checks the school bag at 7:25 AM. Her partner forgot the allergy-safe snack, and you never think is already rising. Before the car leaves, she must choose between a character sentence and the exact calendar handoff that failed.",
           "whatToDo": "Name the missed snack handoff and the needed repair. Do not let one logistics failure become proof that the partner does not care.",
           "whyItMatters": "The character verdict feels powerful, but it gives the couple nothing to fix. The handoff points to the system that failed."
@@ -2016,13 +1667,6 @@
             "pickup",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a daycare pickup conflict after a delayed train",
-            "audience": "couples where one partner's lateness becomes a character trial",
-            "stakes": "pickup stress becomes another entry in a permanent unreliability file",
-            "format": "dialogue",
-            "requiredBeat": "Vincent repeats the accusation in situational terms, train delay plus no backup call, before defending himself"
-          },
           "scenario": "\"You are impossible to count on,\" his partner says. Vincent feels the paper daycare late-fee slip curled in his coat pocket. The train delay was real, and the missing backup call was real too. Before he defends himself, he has to choose a reply that restates the situation instead of fighting the character trial.",
           "whatToDo": "Say the situational version first: the train delay happened, and I failed to make the backup call. Then propose the pickup backup.",
           "whyItMatters": "Defending only the train protects innocence. Naming both facts keeps accountability alive without accepting a permanent unreliability label."
@@ -2035,13 +1679,6 @@
             "money",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "a renovation budget meeting between spouses after a surprise plumbing bill",
-            "audience": "partners whose money arguments turn one error into identity proof",
-            "stakes": "a shared repair project becomes a file of selfishness and control",
-            "format": "decision_point",
-            "requiredBeat": "Maja writes \"bad estimate\" and \"secret spending\" in separate columns before choosing which claim the evidence can support"
-          },
           "scenario": "A cracked ceramic tile rests on the contractor invoice at the end of the dining table. Maja writes bad estimate in one column and secret spending in the other. The plumbing bill is bigger than expected. Before the budget talk hardens, she must choose which claim the evidence supports instead of letting the bill become identity proof.",
           "whatToDo": "Put the estimate error and spending accusation in separate columns. Test each against the invoice and payment trail before arguing character.",
           "whyItMatters": "Money stress can turn one bill into a story about selfishness or control. Columns force the accusation to stay attached to evidence."
@@ -2054,13 +1691,6 @@
             "holiday",
             "grievance"
           ],
-          "planSpec": {
-            "domain": "a holiday visit where one spouse remembers every slight from the other's family",
-            "audience": "readers carrying a grievance archive into recurring family events",
-            "stakes": "the visit will be fought before anyone arrives if old memory becomes current proof",
-            "format": "reflection",
-            "requiredBeat": "You watch Jack sort last year's actual incidents from the character verdict he has attached to them before the guest room is made"
-          },
           "scenario": "At 9:15 PM in the spare bedroom, you watch Jack place a folded guest towel beside the unopened train timetable. His spouse’s family arrives tomorrow, and he can already list last year’s slights. Before the guest room is made, he has to choose which incidents were actual events and which character verdicts he packed around them.",
           "whatToDo": "List last year’s incidents separately from the verdict attached to them. Bring only the specific boundary needed for this visit.",
           "whyItMatters": "A grievance archive makes the new visit begin before anyone arrives. Sorting event from verdict keeps memory from prosecuting the whole family."
@@ -2073,13 +1703,6 @@
             "sleep",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "new parents arguing over night feeds after three weeks without sleep",
-            "audience": "couples under strain who mistake exhaustion for character evidence",
-            "stakes": "one missed bottle becomes proof of selfishness while both partners are depleted",
-            "format": "before_after",
-            "requiredBeat": "It takes Kasia three weeks to see that her partner's worst moment happened after two night shifts, then she changes the repair request"
-          },
           "scenario": "It takes Kasia three weeks to look at the night-feed chart beside the sterilized bottle cooling in the saucepan. Before, the missed bottle meant selfishness. After, she sees it followed two night shifts and a 5 AM handoff. The repair request changes from care more to take the first feed after your late shift.",
           "whatToDo": "Use the chart to change the request from character blame to schedule repair. Name the missed bottle and the next handoff rule.",
           "whyItMatters": "Exhaustion can impersonate selfishness. The chart keeps the harm visible while pointing repair at the pressure that produced it."
@@ -2092,13 +1715,6 @@
             "money",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "a retirement-planning disagreement after one spouse hides anxiety about savings",
-            "audience": "long-term partners who turn fear into accusation",
-            "stakes": "a practical money conversation becomes a verdict on courage and trust",
-            "format": "postmortem",
-            "requiredBeat": "Aman places the pension statement beside the angry text and identifies the fear before either partner argues character"
-          },
           "scenario": "At 8:10 PM, Aman folds the pension statement into thirds beside his reading glasses and the angry text. He had called his spouse reckless. The spreadsheet shows fear about savings, not proof of bad character. Before the next planning talk, he must name the fear plainly or keep arguing courage and trust.",
           "whatToDo": "Place the pension statement beside the text and name the fear underneath the accusation. Then return to the practical savings question.",
           "whyItMatters": "Fear often enters as attack. Naming it keeps the money problem from becoming a verdict on the person across the table."
@@ -2117,8 +1733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missed handoff is specific and repairable. The character verdict overreaches, while silence avoids the real problem.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The response includes circumstance and responsibility. The other answers protect innocence or counterattack character.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Separating claim from verdict lets evidence decide what happened. The character accusation may be too broad for the bill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1769,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The archive can prosecute the new visit in advance. The answer is not denial or politeness; it is event-verdict separation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1781,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chart points repair toward schedule pressure. Promises and blame lists leave the character fight intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1793,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fear is driving the character language. Naming it lowers the moral charge so the practical decision can be made.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1805,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The asymmetry protects each self and prosecutes the other. It does not require equal blame or total memory loss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reply shrinks the indictment back to the event without denying harm. Counterattack and refusal keep the trial going.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1829,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The standard keeps accountability while preventing premature character sentencing. It neither excuses every act nor forbids pattern recognition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2283,19 +1890,13 @@
       },
       "memorableLines": [
         {
-          "text": "The calendar handoff failed.",
-          "location": "breakdown.fastRead",
-          "why": "It models the precise shrink from character verdict to repairable event."
+          "text": "The calendar handoff failed."
         },
         {
-          "text": "Grievance stores evidence like a prosecutor.",
-          "location": "breakdown.deepRead",
-          "why": "It gives stored resentment a vivid job description."
+          "text": "Grievance stores evidence like a prosecutor."
         },
         {
-          "text": "Shrink the indictment.",
-          "location": "breakdown.fullRead",
-          "why": "It leaves the reader with a short, usable command."
+          "text": "Shrink the indictment."
         }
       ]
     },
@@ -2322,13 +1923,6 @@
             "safety",
             "memory"
           ],
-          "planSpec": {
-            "domain": "a union-management safety committee after a bruising lockout",
-            "audience": "workplace groups carrying institutional memory into negotiations",
-            "stakes": "a new guardrail dispute may become proof that the other side never changes",
-            "format": "dialogue",
-            "requiredBeat": "Megan separates the lockout wound from the current guardrail defect before the committee votes to retaliate procedurally"
-          },
           "scenario": "At 2:40 PM in the union safety committee room, Megan hears, \"They never cared about safety,\" while the dented guard lies across the bargaining-room credenza. The lockout wound is real, and the current defect still needs a vote. Before the committee retaliates procedurally, she must decide how to name the lockout wound and the guardrail evidence as separate facts.",
           "whatToDo": "Name the lockout as real history, then return to the current guardrail defect and the repair vote. Keep memory from casting the whole ballot.",
           "whyItMatters": "The old injury explains distrust, but it can also make every defect proof that the other side never changes. Separation protects the safety decision."
@@ -2341,13 +1935,6 @@
             "forum",
             "identity"
           ],
-          "planSpec": {
-            "domain": "a neighborhood redevelopment forum between long-time residents and new apartment owners",
-            "audience": "civic groups whose identity is built around being harmed or ignored",
-            "stakes": "a zoning meeting becomes a ritual of accusation rather than a decision about one block",
-            "format": "scene",
-            "requiredBeat": "Olivier maps who lost what in the last project and who would bear costs now, preventing either side from using one wound as the whole map"
-          },
           "scenario": "A foam-board zoning map leans on a scratched folding table in the school gym. Olivier draws one circle around what long-time residents lost in the last project and another around who pays the current cost. The speakers’ line is growing. Before the vote, he has to choose a two-map record over one wound carrying the whole block.",
           "whatToDo": "Map past loss and current cost separately before public comment resumes. Make each side specify which harm belongs to which decision.",
           "whyItMatters": "When one wound becomes the whole map, every current choice turns into accusation. Separate maps keep history true and decisions visible."
@@ -2360,13 +1947,6 @@
             "moderation",
             "grievance"
           ],
-          "planSpec": {
-            "domain": "an online fan community split after moderators banned a popular contributor",
-            "audience": "community leaders watching grievance turn into identity badges",
-            "stakes": "every moderation decision becomes evidence of betrayal or chaos",
-            "format": "predict_reveal",
-            "requiredBeat": "Marit predicts both factions' interpretation of the same moderation log, then posts the rule breach and the process miss together"
-          },
           "scenario": "Which fact will each faction reject first? Marit watches the moderation queue glow on her laptop in the spare room. She predicts one side will call the ban betrayal and the other will call it overdue order. Before she posts, she must decide whether to publish both the rule breach and the skipped warning, forcing the community to face a whole log over identity badges.",
           "whatToDo": "Post the rule breach and the process miss in the same update. Refuse to let either faction keep only the fact that preserves innocence.",
           "whyItMatters": "A split community turns records into loyalty tests. Holding both facts interrupts the grievance story before it hardens into identity."
@@ -2379,13 +1959,6 @@
             "merger",
             "towns"
           ],
-          "planSpec": {
-            "domain": "a regional school merger committee balancing two towns with a long rivalry",
-            "audience": "public officials handling inherited group memory",
-            "stakes": "bus routes and mascot choices become carriers for older humiliation",
-            "format": "decision_point",
-            "requiredBeat": "Sam reads the old closure minutes and the current enrollment numbers in the same meeting before letting either town claim pure victimhood"
-          },
           "scenario": "At 6:05 PM, Sam tapes a faded mascot patch beside the enrollment chart. The old closure minutes are on the table, and both towns are ready to claim pure victimhood. Before bus routes and mascot choices become symbols, Sam must decide to read the old injury and the current numbers in the same meeting.",
           "whatToDo": "Read the closure minutes and enrollment numbers together. Let neither town use old humiliation to erase present student needs.",
           "whyItMatters": "Inherited memory can turn logistics into identity war. Two records keep the merger from being decided by a single innocence story."
@@ -2398,13 +1971,6 @@
             "label",
             "admission"
           ],
-          "planSpec": {
-            "domain": "a museum repatriation working group after a disputed exhibit label",
-            "audience": "institutions and community representatives balancing truth, injury, and defensiveness",
-            "stakes": "one side may treat any admission as betrayal while the other treats any delay as denial",
-            "format": "before_after",
-            "requiredBeat": "It takes Javier two drafts to write a label that names the institution's acquisition choice without asking the harmed group to soften the wound"
-          },
           "scenario": "At 11:20 AM in the museum gallery, Javier stands under the track lighting and stops protecting the institution. The blank exhibit label sits beside the acquisition record. Before community review ends, he has to choose whether the label names the institution’s acquisition choice without asking the harmed group to soften the wound.",
           "whatToDo": "Name the acquisition choice plainly and keep the wound intact. Do not trade truth for institutional comfort or delay.",
           "whyItMatters": "Admission can feel like betrayal inside the institution. Clear wording keeps defensiveness from turning injury into another contest over innocence."
@@ -2417,13 +1983,6 @@
             "board",
             "aid"
           ],
-          "planSpec": {
-            "domain": "a refugee association board split between older arrivals and newly arrived families",
-            "audience": "community groups where past survival can become current gatekeeping",
-            "stakes": "aid allocation becomes a moral contest over who suffered correctly",
-            "format": "reflection",
-            "requiredBeat": "You watch Adaeze write two true sentences: what the older group endured, and what that history does not entitle them to deny newcomers"
-          },
           "scenario": "At 3:30 PM in the aid-board office, you watch translated intake forms sit under a chipped ceramic paperweight while Adaeze writes two sentences for the board. The older arrivals were denied help for years. That history gives us no right to deny new families a fair aid review. Before allocation starts, the board has to choose memory as guidance or memory as gatekeeping.",
           "whatToDo": "Write both sentences into the agenda before aid allocation. Honor the older wound while blocking it from becoming permission to exclude.",
           "whyItMatters": "Survival history can become a badge that polices newcomers. The second sentence keeps identity from becoming a weapon."
@@ -2442,8 +2001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lockout matters, but it should not decide every current fact. Separation protects both memory and repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2455,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Separate maps preserve the old harm while making the current decision visible. Moving on or handing control away avoids the real tension.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2468,8 +2025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Both facts interrupt factional innocence. A single favored fact feeds the grievance identity on one side.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2481,8 +2037,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The minutes honor inherited injury, and enrollment numbers show present needs. The other records may intensify identity claims.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2494,8 +2049,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clear wording accepts institutional responsibility. Delay and abstraction protect innocence while asking the wound to shrink.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2507,8 +2061,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sentence preserves the older wound and blocks it from becoming gatekeeping. The other choices turn history into permission.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2520,8 +2073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Loyalty can police memory by treating admission as betrayal. That does not mean groups lack facts or always seek revenge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2533,8 +2085,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Each side grants itself context and reads the other as essence. That asymmetry fuels escalation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2546,8 +2097,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Two true sentences preserve memory and constrain permission. Silence and anger-led action each keep the loop alive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2608,19 +2158,13 @@
       },
       "memorableLines": [
         {
-          "text": "The lockout belongs in the room, but it cannot cast the only ballot.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the balance between honoring harm and blocking permission."
+          "text": "The lockout belongs in the room, but it cannot cast the only ballot."
         },
         {
-          "text": "Pain is not the problem.",
-          "location": "breakdown.deepRead",
-          "why": "The punch line clarifies that the target is permission, not memory."
+          "text": "Pain is not the problem."
         },
         {
-          "text": "Two true facts cannot sit together because each group has made innocence into property.",
-          "location": "breakdown.fullRead",
-          "why": "It names the group-level mechanism in a memorable way."
+          "text": "Two true facts cannot sit together because each group has made innocence into property."
         }
       ]
     },
@@ -2647,13 +2191,6 @@
             "allergy",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a restaurant manager responding after a kitchen missed an allergy note",
-            "audience": "service leaders who need to own harm without hiding behind rush conditions",
-            "stakes": "a guest's trust and the restaurant's safety system depend on clear responsibility and repair",
-            "format": "scene",
-            "requiredBeat": "Anna removes \"the ticket was misread\" from the draft and writes the exact handoff failure plus the comped meal, staff retraining, and follow-up call"
-          },
           "scenario": "At 10:50 AM in the restaurant office, a red allergy flag is clipped to the grease-spotted order ticket while Anna drafts the guest email. The first line says the ticket was misread. She deletes it and writes, We missed the allergy note during expo handoff. Before the lunch rush, she must decide whether to add the comped meal, staff retraining, and follow-up call.",
           "whatToDo": "Use the handoff sentence and attach the repair: comped meal, retraining, and follow-up call. Do not hide behind rush conditions.",
           "whyItMatters": "Regret without the handoff failure protects the restaurant first. Clear ownership lets the guest see the safety system changing."
@@ -2666,13 +2203,6 @@
             "donor",
             "consequence"
           ],
-          "planSpec": {
-            "domain": "a nonprofit director correcting a donor report that overstated program reach",
-            "audience": "leaders whose image depends on impact claims",
-            "stakes": "funders may trust the correction only if consequence replaces polished regret",
-            "format": "decision_point",
-            "requiredBeat": "Henrik chooses to send the corrected number, the cause of the overstatement, and the budget consequence in one email instead of a soft regret note"
-          },
           "scenario": "At 8:05 AM in the nonprofit mailroom, stacks of donor postcards sit beside Henrik’s revised participant-count spreadsheet. The soft regret note is ready, but it does not show the corrected number or budget consequence. Before funders open their inboxes, Henrik must choose one email that names the overstatement, its cause, and the cut to next quarter’s projection.",
           "whatToDo": "Send the corrected number, cause, and budget consequence together. Let accountability carry a cost, not only a regretful tone.",
           "whyItMatters": "Impact claims support the leader’s image. Trust returns only when correction changes the record and the next decision."
@@ -2685,13 +2215,6 @@
             "car",
             "repair"
           ],
-          "planSpec": {
-            "domain": "a teenager telling a neighbor she dented a borrowed car",
-            "audience": "readers practicing ownership where shame is small but sharp",
-            "stakes": "a relationship either absorbs truth early or becomes a longer cover story",
-            "format": "dialogue",
-            "requiredBeat": "Manon keeps the verb \"I backed into\" in the first sentence and offers the repair plan before explaining panic"
-          },
           "scenario": "\"I backed into your car,\" Manon says, holding a chipped taillight shard in a paper napkin. The borrowed car is parked at the curb, and panic is pushing for a longer explanation. Before the neighbor answers, she has to choose the repair plan next: pay for the part, call the shop, and stop before excuses crowd the verb.",
           "whatToDo": "Keep I backed into in the first sentence, then offer the repair plan. Explain panic only after the action and cost are clear.",
           "whyItMatters": "Small shame invites a cover story. A clear verb keeps the relationship from absorbing a longer lie."
@@ -2704,13 +2227,6 @@
             "operations",
             "system"
           ],
-          "planSpec": {
-            "domain": "an airline operations lead apologizing for a preventable passenger rebooking failure",
-            "audience": "frontline managers whose systems cause harm they did not personally intend",
-            "stakes": "passengers hear either weather-like regret or specific ownership of preventable delay",
-            "format": "before_after",
-            "requiredBeat": "It takes Ryan three drafts to move from \"we regret the disruption\" to the crew-scheduling choice that stranded the passengers and the concrete remedy"
-          },
           "scenario": "It takes Ryan three drafts beside the gate podium drawer to stop writing weather-like regret. A torn boarding pass is stuck near the tape roll. Before, the note said, we regret the disruption. After, it names the crew-scheduling choice that stranded passengers and the hotel, meal, and rebooking remedy.",
           "whatToDo": "Name the crew-scheduling choice and the remedy in the same apology. Keep system ownership specific even without personal malice.",
           "whyItMatters": "Passengers cannot use vague regret. A specific system choice plus remedy tells them what failed and what will be repaired."
@@ -2723,13 +2239,6 @@
             "disclosure",
             "customers"
           ],
-          "planSpec": {
-            "domain": "a software security lead disclosing a delayed patch to customers",
-            "audience": "technical leaders whose competence feels threatened by disclosure",
-            "stakes": "users need the truth early enough to protect themselves",
-            "format": "postmortem",
-            "requiredBeat": "Pablo writes the timeline of discovery, delay, and customer risk before writing any sentence about commitment to security"
-          },
           "scenario": "At 7:40 AM in the security war room, Pablo prints the server certificate warning on thermal receipt paper and opens the disclosure draft. The first sentence wants to praise the company’s commitment to security. Before that sentence, he must write the discovery timeline, patch delay, and customer risk so users can protect themselves.",
           "whatToDo": "Put discovery, delay, and customer risk before any reputation sentence. Let users act on the facts before the company defends competence.",
           "whyItMatters": "Competence feels threatened by disclosure, but users need timing and risk. Ownership makes the warning usable."
@@ -2742,13 +2251,6 @@
             "caregiving",
             "letting go"
           ],
-          "planSpec": {
-            "domain": "siblings repairing a caregiving breach after one person carried hospital paperwork alone",
-            "audience": "families distinguishing letting go from pretending no harm happened",
-            "stakes": "future care depends on preserving the truth of the wound without keeping prosecution as the family structure",
-            "format": "reflection",
-            "requiredBeat": "You watch Lin say what she left to her brother, what it cost him, and what she will take over next Tuesday, without asking him to say it is fine"
-          },
           "scenario": "You watch a hospital parking token rest on the folded discharge packet while Lin speaks to her brother. She says she left the paperwork to him, it cost him a workday, and she will take the insurance call next Tuesday. Before he responds, she has to choose silence over the old request for him to say it is fine.",
           "whatToDo": "Name what you left to him, what it cost, and the next Tuesday task. Do not ask for forgiveness or relief in the same breath.",
           "whyItMatters": "Letting go belongs to the harmed person. Ownership becomes cleaner when repair is offered without demanding that the wound shrink."
@@ -2767,8 +2269,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The sentence hides the handoff failure. Emotion and context may matter later, but ownership needs action and repair.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2780,8 +2281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correction changes the record and accepts cost. Regret and reputation defense leave accountability thin.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2793,8 +2293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clear verb and repair come first. Panic may explain context, but it should not crowd out ownership.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2806,8 +2305,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Specific ownership and remedy help passengers. Warmth and complexity can smooth tone while hiding the preventable choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2819,8 +2317,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Users need actionable truth before reputation defense. The timeline and risk let them protect themselves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2832,8 +2329,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repair should not demand relief. Letting go belongs to the harmed person, not to the person seeking absolution.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2845,8 +2341,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Consequence separates accountability from soothing regret. It cannot guarantee forgiveness and need not make every matter public.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2858,8 +2353,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rewrite names action, effect, and repair. The other options keep agency blurred or shift to circumstance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2871,8 +2365,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The harmed person controls letting go. Ownership offers truth and repair without requiring forgetting, equal blame, or relief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2933,19 +2426,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ownership begins when language stops rescuing the self.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the final alternative to self-justifying grammar."
+          "text": "Ownership begins when language stops rescuing the self."
         },
         {
-          "text": "Clear verbs cost more.",
-          "location": "breakdown.deepRead",
-          "why": "It turns accountability into a concrete language test."
+          "text": "Clear verbs cost more."
         },
         {
-          "text": "A self that can own the verb has less to defend and more to repair.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the arc with dignity and action together."
+          "text": "A self that can own the verb has less to defend and more to repair."
         }
       ]
     }

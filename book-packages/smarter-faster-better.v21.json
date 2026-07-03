@@ -41,13 +41,6 @@
             "depot",
             "motivation"
           ],
-          "planSpec": {
-            "domain": "a shift sergeant at a city bus depot deciding how to restart a stalled cleanup after a fuel spill",
-            "audience": "a frontline supervisor who has learned to keep every small decision in her own pocket",
-            "stakes": "whether the mechanics start moving before dispatch or wait for another order at every step",
-            "format": "decision_point",
-            "requiredBeat": "she chooses whether to assign every cleanup task herself or make each mechanic claim one first move"
-          },
           "scenario": "Branka grips a wet floor cone at 4:58 a.m. in Bay 3 of the Meriden bus depot, diesel sharp in the drain grate and three mechanics staring at the spill kit. The first bus leaves in thirty-seven minutes. Her clipboard already has names beside absorbent pads, mop, filter check, and bay signoff. She can read the list aloud and get neat obedience. Then she sees the men waiting for her mouth to start their hands. She has to decide whether to keep commanding or put the clipboard down and make each mechanic claim the first move.",
           "whatToDo": "Put the clipboard on the lift rail and ask each mechanic to name the task he will start in the next sixty seconds. Keep the safety standard fixed, but give the launch back to the people doing the work.",
           "whyItMatters": "Motivation often dies at the handoff between knowing and starting. The depot does not need more awareness of the spill. It needs a first action each person can feel as his own."
@@ -60,13 +53,6 @@
             "rehab",
             "agency"
           ],
-          "planSpec": {
-            "domain": "a rehab aide working with a stroke patient who has stopped initiating small movements",
-            "audience": "a caregiver tempted to help so quickly that the patient never owns the next motion",
-            "stakes": "whether therapy becomes passive handling or a place where initiation starts to return",
-            "format": "dialogue",
-            "requiredBeat": "he stops moving the patient's hand for him and asks which cup the patient wants to reach for first"
-          },
           "scenario": "Cosimo sets two plastic cups on a tray at Tuesday 9:06 a.m. in the north therapy gym, blue on the left, yellow on the right, the rubber mat squeaking under his shoes. The patient's right hand lies open beside the tray. Cosimo reaches to guide it. \"I can help,\" he says. The patient looks past him at the wall clock. Cosimo stops with his fingers an inch above the wrist. \"Which cup do you want first?\" he asks. The patient's thumb twitches toward blue, and Cosimo has to decide whether to wait or finish the reach for him.",
           "whatToDo": "Ask for a choice before offering help, then wait long enough for the patient to begin the movement. Support the motion after it starts, not before ownership has a chance to appear.",
           "whyItMatters": "Help can steal the very action it wants to restore. A chosen reach, even a tiny one, trains the bridge from intention to motion better than a perfectly guided hand."
@@ -79,13 +65,6 @@
             "school",
             "robotics"
           ],
-          "planSpec": {
-            "domain": "a middle-school robotics captain reviewing why her team froze during a practice build",
-            "audience": "a capable student leader who confuses helping with taking every decision back",
-            "stakes": "whether the team learns to build without waiting for her or turns into six helpers around one captain",
-            "format": "postmortem",
-            "requiredBeat": "she realizes the team froze because she kept taking every choice back"
-          },
           "scenario": "Roksana kneels beside a shoebox of battery packs at 5:31 p.m. Friday in the storage closet behind the auditorium, the robot's claw still crooked on the carpet outside. Practice ended with six students watching her solder, cut zip ties, choose code branches, and retighten every screw. In her notebook she writes the stall points in order. The pattern is embarrassing. Every time someone picked a next step, she took it back to make it cleaner. The team did not lack effort. It had learned that every real choice returned to her hand.",
           "whatToDo": "Mark the moments where she reclaimed a decision, then redesign the next practice so each student owns one component, one first action, and one visible test before she touches the robot.",
           "whyItMatters": "A leader can drain initiative while looking useful. The team starts moving when ownership stays with the builder long enough to become responsibility, evidence, and pride."
@@ -98,13 +77,6 @@
             "training",
             "calls"
           ],
-          "planSpec": {
-            "domain": "a call-center trainer testing whether a tighter script will make new hires start faster",
-            "audience": "a trainer who mistakes clarity on the page for ownership in the headset",
-            "stakes": "whether trainees begin real calls with agency or hide behind words they did not choose",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts a script will speed trainees up, then sees calls move only after trainees write their own first line"
-          },
           "scenario": "Keon drops eight laminated scripts beside a knot of headsets at 11:18 a.m. Monday in Training Room B, sure the new hires will start calls faster if the opening line is decided for them. The first practice round crawls. Three trainees read the same sentence in flat voices, then freeze when customers interrupt. Keon must decide whether to keep handing out perfect scripts or let each trainee write a first line in their own words. Ten minutes later the room is louder, less neat, and every headset is live.",
           "whatToDo": "Let trainees write the first line they will actually say, then practice with that line under the same call standard. Keep the goal stable while making the opening move theirs.",
           "whyItMatters": "A script can clarify and still fail to launch. People act faster when the first move sounds like something they chose, not a borrowed sentence they are trying to survive."
@@ -117,13 +89,6 @@
             "family",
             "bills"
           ],
-          "planSpec": {
-            "domain": "an adult daughter helping her father with overdue mail after months of stalled calls",
-            "audience": "a family helper who keeps rescuing so completely that the other person never starts",
-            "stakes": "whether her father regains one owned action or becomes more passive under better organized help",
-            "format": "before_after",
-            "requiredBeat": "her rescue routine stalls him, then a single chosen phone call restarts movement"
-          },
           "scenario": "Solene lines up overdue envelopes at 2:44 p.m. Sunday on her father's card table, the chipped blue mug anchoring the phone bills in a neat stack. Before, she sorted, dialed, explained, and watched him shrink back into the chair. Today she slides three envelopes toward him and asks which call he wants to make before the kettle clicks off. He taps the smallest one, the water bill. After she reads only the number aloud, he presses the digits himself. His voice shakes, but it is his voice starting.",
           "whatToDo": "Stop turning care into takeover. Offer a small set of real choices, let him choose the first call, and stay close enough to support without becoming the person who acts.",
           "whyItMatters": "Rescue can make life neater while making initiative weaker. One chosen call restores the link between his decision and the next thing that happens."
@@ -136,13 +101,6 @@
             "study",
             "nightshift"
           ],
-          "planSpec": {
-            "domain": "a night janitor trying to restart GED study after months of opening the workbook and doing nothing",
-            "audience": "an adult learner who mistakes a full plan for the felt ownership of one starting move",
-            "stakes": "whether study begins tonight or the workbook becomes another object that proves he is behind",
-            "format": "reflection",
-            "requiredBeat": "he notices the workbook is not the problem, the first chosen question is"
-          },
           "scenario": "Davi turns page 47 of the GED workbook at 1:12 a.m. in the staff break room, the vending machine humming and floor wax drying on his cuffs. He has opened this book nine nights in a row and shut it after reading the table of contents like it was a verdict. Tonight he notices the pencil in his hand before he notices the exam date. Not the whole math section. Not the whole future. Just question 12, circled once, because he picked it. The workbook has not changed. The first move has.",
           "whatToDo": "Shrink the study session to one chosen question and do it before reviewing the whole plan. Let the owned start come first, then build the next block from the motion it creates.",
           "whyItMatters": "A huge plan can freeze the person it is meant to guide. A chosen first question makes action available from inside the moment, where motivation has to begin."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The block is not missing information. It is missing owned launch. Naming one first task gives each cook a concrete action that belongs to them while the standard still guides the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The help is arriving at the wrong moment. Smooth handling can remove the patient's first owned movement, which weakens the very bridge therapy needs to strengthen.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The folders show visibility, not movement. The fix is to make the first practice problem feel chosen and startable, because motivation is failing at launch rather than at planning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Agency has to affect what happens next. Cosmetic choice can feel like fake autonomy, because it changes the surface while leaving the actor without ownership at the launch point.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The choice is small but real. It turns a known list into an owned first move, which is different from doing the work for him or increasing pressure around consequences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The administrator needs a structure that gives live ownership without losing safety. A narrow choice zone lets action begin near the work instead of waiting for permission.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sticky note narrows the field to one owned start. More reporting adds awareness, and moral pressure adds weight, but neither directly repairs the launch point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question points at the design of authorship, not the volunteers' character. Initiative often disappears when the leader keeps every meaningful decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The replacement goal makes the first action immediate and owned. The larger plan can matter later, but motivation begins with a move the learner can start now.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Motivation starts when a person can feel a hand on the first move.",
-          "location": "breakdown.fastRead",
-          "why": "It makes agency concrete by putting motivation at the first physical start."
+          "text": "Motivation starts when a person can feel a hand on the first move."
         },
         {
-          "text": "Information can stay intact while initiative fails at the gate.",
-          "location": "breakdown.deepRead",
-          "why": "It separates knowing from launching in one compact distinction."
+          "text": "Information can stay intact while initiative fails at the gate."
         },
         {
-          "text": "A structure should guide the next action without stealing the authorship that makes action begin.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's central balance as a practical design rule."
+          "text": "A structure should guide the next action without stealing the authorship that makes action begin."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "icu",
             "teams"
           ],
-          "planSpec": {
-            "domain": "an ICU charge nurse running a shift huddle before a risky bed move",
-            "audience": "a charge nurse who wants clean coordination but needs bad news before assignments harden",
-            "stakes": "whether a quiet concern about bed 12 surfaces before the transfer puts two patients in the wrong rooms",
-            "format": "decision_point",
-            "requiredBeat": "she catches the room going silent after a risky bed move and asks for the concern before assigning rooms"
-          },
           "scenario": "Marzena turns a red census magnet sideways at 6:42 a.m. beside the nurses' station outside ICU bed 12, coffee cooling near the keyboard and monitors chiming behind the glass. She has just said the overflow patient can move into step-down by eight. Four nurses look at the board. No one objects, but no one reaches for a marker. Marzena's finger is already on the next assignment line when she catches the silence. She has to decide whether to keep the huddle moving or ask for the concern before the rooms lock in.",
           "whatToDo": "Pause the assignment and ask for the strongest worry in the room, naming bed 12 and the transfer window. Give the concern a job before the huddle rewards silence.",
           "whyItMatters": "Teams lose signal when quiet starts passing for agreement. Safety is useful because it lets risk enter early, while the plan can still change."
@@ -385,13 +321,6 @@
             "theater",
             "candor"
           ],
-          "planSpec": {
-            "domain": "a community theater director deciding whether to invite an unfinished safety worry before opening night",
-            "audience": "a director with a tired cast and a stagehand who rarely interrupts rehearsal",
-            "stakes": "whether a risky set change gets corrected before it becomes part of the show",
-            "format": "dialogue",
-            "requiredBeat": "he invites a stagehand's unfinished worry before the set change becomes permanent"
-          },
           "scenario": "Alon wipes blue paint from his thumb at 8:17 p.m. Wednesday under the fly rail, flats leaning against sandbags and a bucket of brushes souring beside the ladder. \"We freeze the set change tonight,\" he says. The cast nods. From the dark wing, a stagehand mutters, \"The sofa catches on the seam.\" Alon hears two actors sigh. \"Say the whole thing,\" he says. \"It catches when Mara crosses with the tray,\" the stagehand says. Alon is about to decide whether one rough comment is worth reopening the scene.",
           "whatToDo": "Invite the unfinished worry into the room and make everyone watch the crossing once before freezing the change. Treat the interruption as evidence, not disloyalty.",
           "whyItMatters": "Creative rooms fail when rough truth becomes socially expensive. A set problem named early is cheap. A set problem protected by politeness becomes opening-night damage."
@@ -404,13 +333,6 @@
             "architecture",
             "safety"
           ],
-          "planSpec": {
-            "domain": "a junior architect deciding whether to name a structural concern during a model review",
-            "audience": "a junior designer who has learned to protect status by sounding agreeable",
-            "stakes": "whether a load-bearing concern enters the room while the model can still change",
-            "format": "reflection",
-            "requiredBeat": "she notices that her silence is self-protection, not agreement, and chooses to name a load-bearing concern"
-          },
           "scenario": "Nerea brushes basswood dust from her sleeve at 3:05 p.m. Thursday in the model room, the west atrium model sitting under white lamps with one column hidden behind a foam-core wall. The principal loves the clean span. The engineers have not seen this revision. Nerea has a question about the load path, but her throat tightens because the room is pleased and she is still on probation. She calls her silence agreement for three seconds, then admits what it is: self-protection. She must decide whether to keep her place or protect the work.",
           "whatToDo": "Name the load-path concern as a question while the model is still open on the table. Speak in service of the work, not as a performance of certainty.",
           "whyItMatters": "Psychological safety is not niceness. It lowers the cost of useful truth so weak spots appear before status, deadlines, and pride make them expensive."
@@ -423,13 +345,6 @@
             "coaching",
             "teams"
           ],
-          "planSpec": {
-            "domain": "a rowing coach changing a film session dominated by one varsity captain",
-            "audience": "a coach who has mistaken the loudest confident analysis for team learning",
-            "stakes": "whether quieter rowers surface timing problems before race day or keep deferring to status",
-            "format": "before_after",
-            "requiredBeat": "he changes a film session from captain-led answers to round-robin risk spotting"
-          },
           "scenario": "Garron clicks pause at 7:33 a.m. Saturday in the boathouse loft, oars dripping on the racks below and the video frozen at the catch. Before, the varsity captain answered first, fast and certain, and the rest of the shell nodded along. The boat kept missing the same timing shift. Today Garron hands each rower a sticky note and asks for one risk before the captain speaks. The first note says bow seat is rushing the slide. By the fifth note, the captain is nodding instead of explaining, and the fix is finally visible.",
           "whatToDo": "Make the highest-status voice speak last and collect one concrete risk from each rower first. Use the film to make contribution normal before certainty fills the room.",
           "whyItMatters": "A team can look aligned because one voice is strong. Better signal appears when the room's rules make quieter observations cheaper than silent agreement."
@@ -442,13 +357,6 @@
             "cafeteria",
             "signal"
           ],
-          "planSpec": {
-            "domain": "a school cafeteria supervisor reviewing why a lunch line jammed after a tray shortage",
-            "audience": "a supervisor who rewards smooth service but accidentally trains cooks not to interrupt",
-            "stakes": "whether the next tray shortage gets reported while it is fixable or hidden until the line breaks",
-            "format": "postmortem",
-            "requiredBeat": "she sees the prep cook had spotted the tray problem but had learned not to interrupt"
-          },
           "scenario": "Amparo scrapes tomato sauce from a stack of trays at 1:48 p.m. Tuesday beside the industrial dishwasher, the lunchroom finally empty and the floor tacky under her clogs. The line had stalled for fourteen minutes because the shallow trays ran out. In the cleanup, she finds a prep note from 10:10 a.m.: only two sleeves left. The cook saw it, wrote it, and never called across the room. Amparo remembers snapping last week when he interrupted inventory. The jam was not a surprise. It was a warning that no longer felt safe to say aloud.",
           "whatToDo": "Trace the failure back to the moment the warning appeared, then tell the cook exactly when interruptions are expected. Build a rule that bad news gets airtime before service breaks.",
           "whyItMatters": "If a room punishes interruption, it buys cleaner moments and worse failures. Trust keeps small signals moving while they are still cheap to use."
@@ -461,13 +369,6 @@
             "incident",
             "engineering"
           ],
-          "planSpec": {
-            "domain": "a software incident commander testing whether a polished status update means the team is aligned",
-            "audience": "an incident lead who needs dissent before a rollback window closes",
-            "stakes": "whether a hidden database warning surfaces before the team ships the wrong fix",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the polished update means alignment, then learns the quietest engineer had the key warning"
-          },
           "scenario": "Dunja watches pager light flicker on a black monitor at 10:26 p.m. Friday, six faces stacked on the video bridge and the status doc glowing green. She predicts the room is aligned because every update is crisp. Dunja must decide whether to close the call or ask for the one worry nobody has said yet. The quietest engineer unmutes after seven seconds. The database replica is nine minutes behind, and the planned fix will hide the lag until checkout fails again. The polished update was not alignment.",
           "whatToDo": "Ask for the unsaid warning before closing the incident path, then wait through the silence. Make dissent part of status, not a personal risk taken by the quietest person.",
           "whyItMatters": "Polish can conceal fear. A useful team makes the warning easier to say than the green update, because the hidden signal is what keeps the fix honest."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful signal has to enter while it can still alter action. Nods may hide status pressure, so the safer team makes the tray concern speakable before the plan hardens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not weak taste. It is a speaking rule. The senior voice is closing the room before quieter evidence can travel, so useful disagreement gets displaced into private channels.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Friendliness alone is not enough. A standing risk step makes candor normal and connected to the work, so the team can use disagreement before late bugs expose it.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Changing the speaking order lowers the cost of contribution. The group needs a structure that captures observations before status and speed turn silence into false agreement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chef has to teach the room that bad news belongs in the live meeting. Publicly rewarding the first risk lowers the social price of useful interruption.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Safety is not the absence of disagreement. It is the ability to raise useful disagreement without social punishment, while the group still protects high standards for the work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The experiment changes the room rule. It lets signal appear before the dominant voice organizes everyone else's thinking, then the team can compare the risks openly.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The work improves when rough truth is normal and actionable in the main room. Hallway candor protects comfort at the cost of shared learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "No argument is ambiguous. If people saw problems and waited until retrospectives, the live room was not safe enough for useful truth at the moment it mattered.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "A quiet room can be a room doing math, or a room hiding risk.",
-          "location": "breakdown.fastRead",
-          "why": "It makes silence ambiguous instead of automatically reassuring."
+          "text": "A quiet room can be a room doing math, or a room hiding risk."
         },
         {
-          "text": "Safety is the working rule that truth can enter before status closes the door.",
-          "location": "breakdown.deepRead",
-          "why": "It defines psychological safety through timing and signal, not mood."
+          "text": "Safety is the working rule that truth can enter before status closes the door."
         },
         {
-          "text": "Nice is not the same as honest, and sharp is not the same as useful.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps both false comfort and harshness from masquerading as teamwork."
+          "text": "Nice is not the same as honest, and sharp is not the same as useful."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "ems",
             "focus"
           ],
-          "planSpec": {
-            "domain": "a county paramedic triaging a highway pileup while the loudest injury draws attention",
-            "audience": "a responder who needs focus wide enough to keep scanning under pressure",
-            "stakes": "whether transport order follows the whole scene or the most dramatic cue",
-            "format": "decision_point",
-            "requiredBeat": "she catches herself staring at the loudest injury and forces a head-to-toe scan before choosing transport order"
-          },
           "scenario": "Ilona kneels in sleet at 7:19 a.m. on the shoulder of Route 18, orange flares hissing behind her and a man's torn sleeve dripping bright blood onto the gravel. He is shouting. Everyone is looking at him. Ten feet away, a teenage girl sits upright against a guardrail, quiet, lips pale, one hand pressed under her ribs. Ilona's radio crackles for transport order. Her eyes keep snapping back to the blood. Before the first ambulance doors close, she must choose between the sleeve that owns the scene and the scan that may tell the truth.",
           "whatToDo": "Name the pull of the visible injury, then force the scan: airway, breathing, circulation, mental status, mechanism. Let the model rank the scene before the loud cue ranks it for her.",
           "whyItMatters": "Under stress, attention can feel sharp while it narrows. A mental model keeps the frame open long enough for quieter evidence to compete with the first alarming signal."
@@ -710,13 +589,6 @@
             "aviation",
             "model"
           ],
-          "planSpec": {
-            "domain": "an air-traffic trainee in a simulator reacting to a blinking altitude alert",
-            "audience": "a trainee who is being coached to resist cognitive tunneling under alarm pressure",
-            "stakes": "whether he preserves the whole traffic picture or fixes one alert into a new conflict",
-            "format": "dialogue",
-            "requiredBeat": "he stops answering the blinking altitude alert alone and talks through the whole traffic picture"
-          },
           "scenario": "Rafiq adjusts a plastic headset at 2:28 p.m. Thursday in simulator bay C, the altitude alert blinking amber above sector 14. \"Descend cargo 602?\" he asks, hand already on the strip. His coach says, \"Whole picture first.\" Rafiq exhales. \"Cargo 602 is high, medevac 31 is climbing through twelve, storm cell is closing the east handoff, and the west lane is empty.\" The blinking light keeps pulsing. His hand hovers over the strip. The question is whether the light gets one quick answer or the traffic picture gets to lead.",
           "whatToDo": "Speak the whole model before issuing the command. Place the alert inside traffic, weather, altitude, and handoff constraints, then choose the move that fits the full picture.",
           "whyItMatters": "Alarms are designed to seize attention. The model gives attention somewhere larger to stand, so the controller does not solve one blinking problem by creating another."
@@ -729,13 +601,6 @@
             "chess",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a youth chess coach demonstrating how an obvious threat can hide the board's real danger",
-            "audience": "a coach teaching children that intense attention is not the same as accurate attention",
-            "stakes": "whether students learn to scan the position or chase the flashiest piece",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the obvious queen threat is decisive, then reveals the quiet mate threat he missed by scanning only one part of the board"
-          },
           "scenario": "Orfeo taps a captured pawn into a bottle cap at 10:11 a.m. Saturday at table 6 of the library chess club, the position set and twelve kids leaning over the board. \"Black's queen fork decides it,\" he says, asking them to predict the best move. Most hands shoot up. Then quiet little rook h8 lands on the back rank, and the white king has no square. Orfeo lets the room groan. He had stared at the queen so hard the mate net became invisible. Now the question is which lesson to teach: the tactic, or the scan he skipped.",
           "whatToDo": "Teach the missed scan, not just the move. Have the students check king safety, forcing moves, loose pieces, and only then queen threats, so the obvious cue stops owning the board.",
           "whyItMatters": "A dramatic signal can become a tunnel. The cure is not weaker focus; it is a repeatable scan that keeps attention moving across the field."
@@ -748,13 +613,6 @@
             "bakery",
             "tunneling"
           ],
-          "planSpec": {
-            "domain": "a bakery owner reviewing why a batch burned after an oven alarm sounded",
-            "audience": "an owner who solved the loud problem and missed the quiet process failure beside it",
-            "stakes": "whether the next morning's bake fixes the system or only the alarm habit",
-            "format": "postmortem",
-            "requiredBeat": "she sees the oven alarm was real but became the whole story, hiding the proofing rack mistake"
-          },
           "scenario": "Gita stands beside the rack oven at 5:52 a.m. Monday, sesame smoke hanging low in the prep room and thirty-six blistered buns cooling like evidence. The oven alarm did fail, and she yelled about it for ten minutes. In the postmortem, she rebuilds the morning on butcher paper. Alarm at 5:12. Pull at 5:18. Proofing rack loaded at 4:03 instead of 3:47. The batch was already late before the alarm. The loud failure was real. It had swallowed the quieter one that set it up.",
           "whatToDo": "Keep the alarm on the timeline, then force the timeline backward until the earlier cause appears. Use the model of the process, not the noise of the failure, to decide the repair.",
           "whyItMatters": "Tunneling can attach to a true signal. The question is whether the true signal explains enough, or whether attention stopped before the full chain came into view."
@@ -767,13 +625,6 @@
             "newsroom",
             "election"
           ],
-          "planSpec": {
-            "domain": "a local reporter covering election returns while one dramatic precinct number keeps refreshing",
-            "audience": "a reporter under deadline pressure who needs a model before making the call",
-            "stakes": "whether the newsroom publishes a premature result based on the loudest visible number",
-            "format": "before_after",
-            "requiredBeat": "he moves from refreshing the loudest precinct number to building a checklist of what would have to be true"
-          },
           "scenario": "Ishaan refreshes the county map at 9:47 p.m. Tuesday in the newsroom, cold pizza stiff beside the monitor and one lakeside precinct flashing a wild swing. Before, he hit refresh every thirty seconds and felt focused because the number was moving. After his editor asks what else must be true, he writes three checks on a napkin: absentee count, turnout in the mill ward, same swing in two nearby precincts. The lakeside number still glows. It no longer gets to be the whole race.",
           "whatToDo": "Build the checklist before writing the alert. Name what else would have to be true for the swing to matter, then check those signals before treating one live number as the result.",
           "whyItMatters": "Pressure makes the moving number feel like the story. A model turns focus from staring into testing, so the newsroom can stay fast without becoming blind."
@@ -786,13 +637,6 @@
             "parenting",
             "focus"
           ],
-          "planSpec": {
-            "domain": "a father in a grocery aisle using a simple mental model during a toddler meltdown",
-            "audience": "a parent whose attention narrows around embarrassment and noise",
-            "stakes": "whether he reacts to the shriek alone or reads the full situation before acting",
-            "format": "scene",
-            "requiredBeat": "he catches the shriek narrowing his attention and uses a simple model of hunger, sleep, and exits before deciding what to do"
-          },
           "scenario": "Vesko grips the cart handle at 4:36 p.m. Sunday in aisle 9, cereal boxes bright as billboards and crushed crackers under the front wheel. His toddler is shrieking on the tile. Two shoppers turn. Vesko feels the whole store shrink to the sound and the heat in his face. Then he runs the small model taped in his head: hunger, sleep, exit. Lunch was early. Nap was missed. The exit is six steps behind him. The cereal box is in his hand, but the real decision is whether the shriek gets an argument or the model gets them out.",
           "whatToDo": "Use the model before responding to the noise. Check hunger, sleep, and exit, then act on the most useful read instead of trying to win against the loudest signal.",
           "whyItMatters": "Embarrassment narrows attention fast. A simple model can keep the parent from treating one shriek as the whole situation and choosing a response too small for the real problem."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The alarm may matter, but it cannot become the whole scene. A quick model of alarm, cameras, people, and exits keeps attention wide enough to choose well.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is narrowed attention, not scattered attention. One visible cue became the whole story, so the teacher stopped scanning for other evidence that mattered more.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful prompt widens the frame. It places the beep inside a patient model instead of letting a single device cue drive the next action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The email is evidence, not a verdict. The lead needs a model for confirming scope before one vivid cue pulls the whole plan into a tunnel.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A scan keeps attention mobile. The feet matter, but the model prevents one cue from crowding out other predictors that improve the read.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dip was real but incomplete. A business model would ask what else changed before making broad cuts, so one visible metric does not become the whole field.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dashboard is only one part of the situation. A quick driving model keeps attention on control, surroundings, and speed so the response stays safe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scan keeps attention from stopping at the first clear phrase. It forces the student to place that phrase inside the larger assignment before writing.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timer was real but not complete. The process model included staggered tray times, so the alarm needed context before becoming the action signal.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "Strong focus is not a stare. It is a scan under pressure.",
-          "location": "breakdown.fastRead",
-          "why": "It flips focus from intensity to range in a short, teachable contrast."
+          "text": "Strong focus is not a stare. It is a scan under pressure."
         },
         {
-          "text": "A model gives attention a route when stress wants to give it a tunnel.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the role of mental models concrete under pressure."
+          "text": "A model gives attention a route when stress wants to give it a tunnel."
         },
         {
-          "text": "The loudest cue is allowed into the room, but it does not get to become the room.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the core discipline of using evidence without surrendering to it."
+          "text": "The loudest cue is allowed into the room, but it does not get to become the room."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "hospital",
             "goals"
           ],
-          "planSpec": {
-            "domain": "a hospital discharge coordinator converting a vague improvement wish into a target that still protects safety",
-            "audience": "a coordinator under pressure to move beds without letting the metric replace the mission",
-            "stakes": "whether a stretch target speeds discharge or quietly rewards unsafe shortcuts",
-            "format": "decision_point",
-            "requiredBeat": "she turns a vague improvement wish into a specific stretch target while keeping patient safety visible"
-          },
           "scenario": "Odelia uncaps a purple dry-erase marker at 8:08 a.m. in the east-wing casework room, yesterday's discharge board still crowded with red initials and bed numbers. The administrator has said, improve flow. The nurses hear, rush families out. Odelia writes a draft target: eight safe discharges before noon, each with meds reconciled and transport confirmed. Her marker pauses over the word safe. She must decide whether to erase it and make the metric cleaner, or leave the messier target that names what must not be sacrificed.",
           "whatToDo": "Keep the target specific, dated, and ambitious, but attach the safety conditions to the score. Measure the result the hospital wants, not just the number that is easiest to count.",
           "whyItMatters": "A goal steers attention. If the target only counts speed, speed will start competing with care. The right target makes the next action clear without shrinking the mission."
@@ -1035,13 +857,6 @@
             "track",
             "smart-goals"
           ],
-          "planSpec": {
-            "domain": "a high school track coach helping a miler turn a vague wish into a usable training target",
-            "audience": "a coach who wants ambition without letting the word faster do all the work",
-            "stakes": "whether the runner trains toward a real split or keeps chasing a foggy identity goal",
-            "format": "dialogue",
-            "requiredBeat": "he makes the runner name a split, a date, and the training constraint instead of worshiping the vague goal"
-          },
           "scenario": "Kadir clicks a stopwatch at 5:12 p.m. Tuesday beside lane 1, rain darkening the lanyard and cinders sticking to his shoes. \"I just need to get faster,\" the miler says, hands on knees. Kadir points to the wet track. \"Faster where?\" \"Last lap.\" \"By when?\" \"Conference.\" \"What split?\" The runner wipes rain from his chin. \"Seventy-eight.\" Kadir has to decide whether to leave the wish vague or turn it into two hill days, one rest day, and a split they can test tomorrow.",
           "whatToDo": "Translate the wish into split, date, and training constraint. Make the goal specific enough to guide practice and bounded enough that ambition does not become reckless volume.",
           "whyItMatters": "Vague goals feel inspiring because they cannot be checked. A usable target tells effort where to go, when to measure, and what not to break on the way there."
@@ -1054,13 +869,6 @@
             "nonprofit",
             "metrics"
           ],
-          "planSpec": {
-            "domain": "a nonprofit director reviewing a donor drive that hit its number while hurting intake quality",
-            "audience": "a director who needs targets but cannot let the visible number outrank service quality",
-            "stakes": "whether next month's goal feeds people better or only produces cleaner fundraising reports",
-            "format": "postmortem",
-            "requiredBeat": "she sees the donation metric competed with the mission it was meant to serve"
-          },
           "scenario": "Bryn sits at 6:25 p.m. Friday in the food pantry office, receipt tape curling off the desk and canned peaches stacked where intake forms should be. The donor drive hit 10,000 items by noon. The photo looked perfect. Now she reads three intake notes: expired formula accepted, diabetic boxes mislabeled, Spanish forms skipped because volunteers were sorting faster. The number was real. So was the damage. In the postmortem, Bryn circles the target and writes the sentence she avoided: the metric won against the people it was supposed to feed.",
           "whatToDo": "Redesign the next goal so the count cannot stand alone. Pair volume with quality checks, intake completion, and discard rules, then report them together.",
           "whyItMatters": "Targets teach people what counts. When the visible metric can be won while the mission loses, disciplined effort starts serving the wrong master."
@@ -1073,13 +881,6 @@
             "craft",
             "stretch"
           ],
-          "planSpec": {
-            "domain": "a ceramics studio owner deciding whether a safe output target will protect quality or preserve waste",
-            "audience": "a small business owner nervous that ambition will damage craft standards",
-            "stakes": "whether the studio keeps losing clay and kiln time under a comfortable target",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts a safe goal will protect quality, then sees the safe target preserve old waste"
-          },
           "scenario": "Sabela shakes cracked test tiles into a coffee tin at 11:03 a.m. Wednesday beside kiln 2, glaze dust silvering her fingertips. She predicts a safe target, forty saleable mugs this week, will protect quality. The apprentices nod. Then she lays out last month's waste: twelve warped handles, nine overtrimmed bases, five shelves fired half-empty because nobody wanted to push the schedule. The safe target did not protect craft. It protected the habits that wasted it. Now the kiln calendar is open, and the question is whether to set a stretch target with quality gates attached.",
           "whatToDo": "Set the bigger output target only with explicit quality gates: handle test, base check, full-shelf rule. Stretch the studio while defining what cannot be traded away.",
           "whyItMatters": "Safe goals can protect comfort as easily as quality. A good stretch target asks for more while forcing the process to name the standards it must keep."
@@ -1092,13 +893,6 @@
             "fire",
             "scorecard"
           ],
-          "planSpec": {
-            "domain": "a fire captain revising a drill scorecard that rewarded speed while hiding search errors",
-            "audience": "a captain who needs measurable urgency without training crews to miss rooms",
-            "stakes": "whether the crew gets faster at rescue or faster at satisfying a narrow clock",
-            "format": "before_after",
-            "requiredBeat": "he moves from measuring only speed to measuring speed plus missed-room checks"
-          },
           "scenario": "Maksim coils the smoke-machine hose at 7:50 a.m. Saturday beside the training tower, the drill board showing one proud number: 3:41. Before, the crew chased the clock and shaved twenty seconds. Then a helmet-cam review found the nursery door skipped behind the stairwell. After that, Maksim rewrites the scorecard in block letters: time, rooms cleared, missed-room penalty. The next run is slower by nine seconds and better by one found room. The target has stopped flattering the wrong behavior.",
           "whatToDo": "Keep speed on the board, but score the mission beside it. Add the missed-room penalty and review footage before celebrating a faster run.",
           "whyItMatters": "Specific goals sharpen effort, but narrow goals can train narrow wins. The scorecard must measure the thing the drill exists to protect."
@@ -1111,13 +905,6 @@
             "school",
             "stretch"
           ],
-          "planSpec": {
-            "domain": "a graduate student turning an ambitious dissertation page target into a route with reality checks",
-            "audience": "a student who mistakes a dramatic target for a plan that can steer daily work",
-            "stakes": "whether ambition expands effort or becomes a number she can fail in silence",
-            "format": "reflection",
-            "requiredBeat": "she notices that her ambitious page target is empty without a route and a reality check"
-          },
           "scenario": "Edda spreads index cards across a law library basement table at 10:39 p.m., the highlighter dead beside a tower of footnotes. She has written 120 pages by March 1 on the first card because it sounds brave. The number glows and tells her almost nothing. No archive days. No advisor check. No weekly page floor. No kill list for arguments that do not earn space. She feels the difference in her stomach: a stretch goal can pull her forward, or it can become a poster taped over fog. She starts cutting the target into route, date, and review.",
           "whatToDo": "Keep the ambitious page target, then add the path: weekly pages, archive blocks, advisor dates, and a rule for cutting weak sections. Stretch must become steering, not theater.",
           "whyItMatters": "Ambition helps when it changes tomorrow's choices. Without route and feedback, a big goal can feel serious while leaving the work untouched."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The target gives action a time frame and a measurable result while keeping the mission visible. That makes it specific without letting speed become the only value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The count is steering behavior away from the mission. Pairing it with quality signals keeps specificity while making the visible score answer to the larger purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The revision turns aspiration into steering. It gives the runner a result, a route, and a constraint that prevents ambition from turning into reckless volume.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Average call time is specific, but it is not anchored to resolution. When agents can win the metric while customers lose, the measure has started steering the wrong behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stretch needs a route. Without assessments, time, and review, the target is a dramatic statement rather than a steering device for choices in classrooms.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A safe goal can preserve waste. A better stretch asks the system to improve while guardrails keep the team from buying the improvement with hidden quality costs.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question checks mission contact. A date helps, but the team must name the conditions that make shipping worth doing, or deadline loyalty can outrank product judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The replacement is specific, dated, and actionable. It turns a vague wish into a routine that can steer behavior and be reviewed honestly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The goal is being won without the mission being served. Adding confirmation keeps closure tied to actual repair instead of a quick status change.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "A goal is a steering wheel, not a trophy.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a simple test for whether a goal is doing work."
+          "text": "A goal is a steering wheel, not a trophy."
         },
         {
-          "text": "A metric that can win while the mission loses is not a measure. It is a rival.",
-          "location": "breakdown.deepRead",
-          "why": "It names the central danger of narrow measurement with force."
+          "text": "A metric that can win while the mission loses is not a measure. It is a rival."
         },
         {
-          "text": "The target should sharpen judgment, not replace it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the balance between clarity and distortion."
+          "text": "The target should sharpen judgment, not replace it."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "warehouse",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a warehouse manager deciding whether to revise a picking route from live scanner evidence",
-            "audience": "a manager proud of the morning plan but responsible for learning while work is still movable",
-            "stakes": "whether the shift keeps obeying a route that is already failing or corrects before late trucks stack up",
-            "format": "decision_point",
-            "requiredBeat": "he chooses a short feedback loop at the scanner instead of defending the morning plan"
-          },
           "scenario": "Aitor crouches by a bent pallet tag at 9:22 a.m. in aisle K-14, the handheld scanner chirping error after error while the morning route map sits folded in his back pocket. The pickers are detouring around a blocked cold-storage door. His plan assumed that door was clear. A lead asks if they should keep following the route anyway. Aitor must decide whether to defend the map until lunch or let live evidence trigger a two-hour revision.",
           "whatToDo": "Stop the route for five minutes, watch the failed scans, redraw the next two hours around the blocked door, and tell the team exactly what evidence changed the plan.",
           "whyItMatters": "Adaptive management depends on feedback while work can still move. If the manager defends yesterday's map, the team learns that reporting reality only creates trouble."
@@ -1360,13 +1125,6 @@
             "construction",
             "trust"
           ],
-          "planSpec": {
-            "domain": "a construction superintendent responding to a carpenter's report about a warped partition",
-            "audience": "a superintendent whose reaction will teach the crew whether field truth is welcome",
-            "stakes": "whether the wall is corrected in two hours or hidden behind drywall for three expensive weeks",
-            "format": "dialogue",
-            "requiredBeat": "he makes the report safe and changes the next two-hour work block before the wall closes"
-          },
           "scenario": "Tuvia wipes chalk dust off a laser level at 1:07 p.m. Thursday on the fourth-floor buildout, the drywall cart rattling near the elevator. \"Partition 4C is bowed,\" a carpenter says, not quite meeting his eyes. \"How bad?\" Tuvia asks. \"Half inch at the top track.\" The foreman groans. Tuvia looks at the open studs, then at the schedule taped to a column. He has to choose whether to punish the interruption or change the next two-hour block while the wall is still naked.",
           "whatToDo": "Thank the report first, verify it at the wall, and change the immediate work block before drywall hides the defect. Make the correction public enough that future bad news travels faster.",
           "whyItMatters": "Trust is built by the manager's first reaction to unwelcome facts. A crew that gets punished for field truth will wait until the wall is closed."
@@ -1379,13 +1137,6 @@
             "restaurant",
             "trust"
           ],
-          "planSpec": {
-            "domain": "a restaurant floor manager reviewing why servers hid a point-of-sale bug during dinner service",
-            "audience": "a manager who wants discipline but has trained the staff to soften bad news",
-            "stakes": "whether the next bug surfaces during service or gets hidden until tips and tickets collapse",
-            "format": "postmortem",
-            "requiredBeat": "she sees her earlier blame trained the staff to protect her from bad news"
-          },
           "scenario": "Selvi stands at the host stand at 12:18 a.m. Saturday, receipt paper pooled on the floor like streamers after a wrecked dinner service. The point-of-sale bug had doubled table 18's order and delayed six checks. Three servers knew by 7:40. No one told her until guests were already angry. In the postmortem, Selvi writes the timeline, then remembers last month, when she snapped, \"Stop bringing me problems during rush.\" The staff had obeyed. They stopped bringing her reality while it was still usable.",
           "whatToDo": "Name her earlier reaction as part of the system, then set a rush rule: bugs get reported on sight, with blame held until after service and fixes assigned immediately.",
           "whyItMatters": "A manager shapes the truth channel. If bad news feels dangerous, people do not create fewer problems. They create a cleaner story until the problems are expensive."
@@ -1398,13 +1149,6 @@
             "school",
             "learning-loop"
           ],
-          "planSpec": {
-            "domain": "an elementary principal revising a reading intervention plan from quarterly review to weekly teacher feedback",
-            "audience": "a principal who needs structure that learns from classrooms before students lose months",
-            "stakes": "whether struggling readers get timely adjustments or wait for a polished report after the window closes",
-            "format": "before_after",
-            "requiredBeat": "she moves from quarterly review to a weekly evidence board that teachers can change"
-          },
           "scenario": "Kasia presses colored magnets onto a filing cabinet at 3:36 p.m. Monday in the literacy closet, cardboard leveled readers stacked against her knees. Before, she reviewed intervention data every quarter, neat and too late. Teachers whispered in hallways that two groups were guessing through vowel teams, but the plan stayed official. After the change, every Friday a teacher moves one magnet: working, stuck, needs switch. By the second week, a stuck group gets a new decoding block before the quarter ever has a chance to bury them.",
           "whatToDo": "Keep the intervention goal, but shorten the learning loop. Let teachers update a visible weekly board and require one adjustment for every group marked stuck.",
           "whyItMatters": "Management under uncertainty needs evidence before the plan hardens. A quarterly review can explain failure; a weekly loop can still change it."
@@ -1417,13 +1161,6 @@
             "rescue",
             "adaptation"
           ],
-          "planSpec": {
-            "domain": "a search-and-rescue coordinator updating a search grid after field evidence conflicts with the original plan",
-            "audience": "a coordinator balancing command discipline with rapid revision from live evidence",
-            "stakes": "whether crews keep searching the wrong ravine after a missing hiker's heat mark appears elsewhere",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the original grid will hold, then sees the field team's report should revise it now"
-          },
           "scenario": "Domen pins a soaked grid map to corkboard at 6:14 p.m. in the fairground command trailer, rain ticking on the roof and radios hissing over muddy boots. He predicts the original ravine plan will hold until dark. Then the drone operator brings a thermal printout: a faint heat mark beyond the north fence, where yesterday's route notes said impassable. The field team confirms a fresh boot scrape at the fence wire. Domen must decide whether to keep crews in the clean grid or redraw while daylight is bleeding out of the sky.",
           "whatToDo": "Update the grid in public, send one crew to verify the heat mark, and explain which evidence overrode the original plan. Keep command clear while letting reality revise it.",
           "whyItMatters": "A plan earns trust by learning, not by pretending new evidence is disobedience. Fast revision keeps coordination tied to the field instead of to command pride."
@@ -1436,13 +1173,6 @@
             "craft",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "a violin shop owner training a repair tech to report a bench mistake without fear",
-            "audience": "a craft manager whose response will decide whether errors surface early or get hidden inside instruments",
-            "stakes": "whether delicate repairs improve through feedback or mistakes disappear until customers hear them",
-            "format": "scene",
-            "requiredBeat": "he lets the tech report a cracked soundpost without punishment and uses it to adjust the bench process"
-          },
           "scenario": "Yarden brushes spruce shavings from his apron at 4:49 p.m. Friday by the back repair bench, a student violin open under the lamp and rosin dust sweet in the air. The new repair tech holds up a cracked soundpost between tweezers. \"I tightened too fast,\" she says. Her voice is thin. Yarden can feel the cost of the replacement and the urge to lecture. Instead he sets the cracked post on the bench mat, asks her to show the clamp angle, and marks a slower check on the setup card before the next violin comes out of its case.",
           "whatToDo": "Treat the cracked post as data first. Have the tech reconstruct the step, adjust the setup card, and practice the clamp angle before any blame conversation happens.",
           "whyItMatters": "Craft quality improves when mistakes become visible early. Punishment may feel like standards, but hidden errors are worse standards with better manners."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The blocked dock is live evidence. Revising the next block keeps coordination while teaching the team that reality can update the plan before mistakes harden.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The reporting channel has been trained by reaction. People are not hiding because they lack forms; they are hiding because live truth feels personally costly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is feedback timing. A weekly loop gives the plan a chance to learn while the intervention can still change, not after the quarter is already lost.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "His reaction shapes the channel. If shortage reports are punished during the only useful window, staff will wait until the safer window, even though the information is then less useful.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adaptation still needs structure. A visible revision channel keeps new evidence from being ignored or turning into uncoordinated improvisation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The design lowers the cost of early signal and proves the signal changes action. That combination is what keeps reporting useful and trusted.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The quiet line may be filtering reality. The supervisor needs to inspect the reporting culture before assuming the problem is one bad worker or too much noise.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The late signal should revise the work quickly, and the miss should still be learned from. That keeps standards high without punishing the report that made improvement possible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The new report makes reality part of the job. It invites bad news early and ties it to adjustment, so optimism cannot hide avoidable gaps.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The manager receives the truth the room believes it is safe to send.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses trust and signal flow into one practical warning."
+          "text": "The manager receives the truth the room believes it is safe to send."
         },
         {
-          "text": "Control can make the room quieter while making the work dumber.",
-          "location": "breakdown.deepRead",
-          "why": "It names the hidden cost of overcontrol with plain force."
+          "text": "Control can make the room quieter while making the work dumber."
         },
         {
-          "text": "The plan should be strong enough to coordinate and humble enough to learn.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the balance between structure and adaptation."
+          "text": "The plan should be strong enough to coordinate and humble enough to learn."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "forecasting",
             "odds"
           ],
-          "planSpec": {
-            "domain": "a produce buyer making a strawberry order under rain-risk uncertainty",
-            "audience": "a buyer who must act before weekend demand and weather are fully known",
-            "stakes": "whether he treats the forecast as a promise or as a working estimate with update triggers",
-            "format": "decision_point",
-            "requiredBeat": "he writes the probability and update trigger before choosing the smaller strawberry order"
-          },
           "scenario": "Boaz rests his clipboard on a wet cardboard box at 4:06 a.m. by stall 17 of the wholesale market, strawberry flats breathing cold sugar under the scale. The weekend forecast says forty percent hard rain. If the rain misses, he will sell out by noon. If it hits, six hundred dollars of berries soften in the case. The vendor wants an order now. Boaz must decide whether to guess confidently or write 40 percent rain, smaller order, update at 1 p.m. if radar clears.",
           "whatToDo": "Write the odds, the action, and the update trigger before ordering. Buy for the current estimate, not for the fantasy that tomorrow's weather is already known.",
           "whyItMatters": "A forecast is a working estimate. Naming uncertainty lets Boaz act now and revise later without pretending that confidence and accuracy are the same thing."
@@ -1685,13 +1393,6 @@
             "medicine",
             "updating"
           ],
-          "planSpec": {
-            "domain": "an emergency physician revising a diagnosis after new lab evidence changes the field",
-            "audience": "a doctor who needs to model updating without treating revision as embarrassment",
-            "stakes": "whether the team follows the best current estimate or protects the first story",
-            "format": "dialogue",
-            "requiredBeat": "she says what evidence changed her estimate instead of defending the first read"
-          },
           "scenario": "Reva pulls warm printer paper from the lab machine at 2:33 a.m. Wednesday beside bed 5, the curtain half open and the patient's shoes tucked under a chair. \"Still kidney stone?\" the resident asks. Reva looks at the lactate, then the blood pressure trend. \"My first read was stone,\" she says. \"This result moves me toward sepsis until proved otherwise.\" She has to choose whether to protect her first call or let the new evidence move her to the antibiotic cart.",
           "whatToDo": "Say the original estimate, name the evidence that moved it, and change orders openly. Make revision part of good judgment, not a quiet retreat from being wrong.",
           "whyItMatters": "Hidden information changes decisions. The team learns accuracy when the lead updates in public and ties the update to evidence instead of ego."
@@ -1704,13 +1405,6 @@
             "events",
             "outcome-luck"
           ],
-          "planSpec": {
-            "domain": "a city event planner reviewing a weather cancellation that looked foolish after the storm missed",
-            "audience": "a planner under public criticism who must separate decision quality from outcome luck",
-            "stakes": "whether the next safety decision gets judged by odds at the time or by hindsight noise",
-            "format": "postmortem",
-            "requiredBeat": "he separates a good odds-based cancellation from bad outcome luck"
-          },
           "scenario": "Ludo sits at 8:41 p.m. Sunday in the parks office, unused festival wristbands piled in a plastic tub and angry emails open on the screen. The storm cell curved east. The park stayed dry. Online, the cancellation looks ridiculous. In the postmortem, Ludo pins the Saturday morning forecast beside the wind advisory and tent map. Sixty percent lightning inside three hours. Metal stages. No shelter for two thousand people. The miss hurts, but the odds were real. He underlines decision quality and writes outcome luck in the margin.",
           "whatToDo": "Review the evidence available before the call, not the weather that arrived afterward. Decide whether the odds and stakes justified cancellation at the time.",
           "whyItMatters": "Bad outcomes do not always mean bad decisions, and good outcomes do not prove wisdom. Judgment has to be graded against the field that was visible then."
@@ -1723,13 +1417,6 @@
             "sports",
             "decision-quality"
           ],
-          "planSpec": {
-            "domain": "a youth baseball coach reviewing a failed bunt decision with players",
-            "audience": "a coach teaching players not to judge a decision only by the outcome",
-            "stakes": "whether the team learns odds-based thinking or just blames the last visible result",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the bunt was wrong because it failed, then reveals the odds made it the right call at the time"
-          },
           "scenario": "Valya rubs dust from the lineup card at 11:58 a.m. Saturday beside field 3, the tying run still stranded on second and parents muttering behind the fence. She asks the players to predict whether the bunt call was bad. Every hand says yes because the pop-up was caught. Valya must decide whether to let the outcome rewrite the decision or turn the card over: slow pitcher, third baseman deep, fastest runner at second, next hitter 0 for 3 against high heat. The bunt failed. The read was still sound.",
           "whatToDo": "Separate the decision from the result. Walk through the odds available before the pitch, then ask what evidence would change the call next time.",
           "whyItMatters": "Outcome-only review trains superstition. Odds-based review lets the team learn from failed good calls and successful bad ones without confusing luck with judgment."
@@ -1742,13 +1429,6 @@
             "finance",
             "forecast"
           ],
-          "planSpec": {
-            "domain": "a startup finance lead revising a cash runway forecast under uncertain sales timing",
-            "audience": "a finance lead who must help founders act without pretending the future is fixed",
-            "stakes": "whether hiring decisions follow a brittle date or an estimate that can update as revenue evidence changes",
-            "format": "before_after",
-            "requiredBeat": "he moves from a single confident date to a range with evidence that would update it"
-          },
           "scenario": "Miklos sits in the shared office phone booth at 7:22 p.m. Monday, laptop balanced on his knees and green cells glowing against the glass. Before, he told the founders runway ends October 3, as if the date were stamped on a wall. Then two contracts slipped and one renewal arrived early. After dinner, he changes the slide: runway likely late September to mid-November, hires pause if renewals miss by May 15, restart if two signed contracts clear. The date becomes a range with doors that open and close as evidence arrives.",
           "whatToDo": "Show the runway as a range, name the assumptions, and attach hiring triggers to specific evidence. Let the forecast guide action without pretending to be a calendar prophecy.",
           "whyItMatters": "A single confident date can hide the uncertainty leaders need to manage. Ranges and triggers keep commitment possible while leaving room to update."
@@ -1761,13 +1441,6 @@
             "jury",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "a jury foreperson helping jurors weigh confident witness testimony against uncertain evidence",
-            "audience": "a foreperson trying to keep the room from mistaking confidence of voice for strength of proof",
-            "stakes": "whether deliberation follows evidence quality or the most certain-sounding witness",
-            "format": "scene",
-            "requiredBeat": "she keeps the room from treating certainty of voice as certainty of evidence"
-          },
           "scenario": "Sadaf lines up coffee stirrers at 3:14 p.m. Thursday in jury room B, one stirrer for each witness, the verdict form face down beside the box of tissues. Juror seven says the delivery driver sounded absolutely sure. Sadaf moves that stirrer forward, then puts two beside it: poor lighting, six-month delay. The room goes quiet. Confidence has weight, but it is not the same as proof. Sadaf needs to choose how the room will rank evidence before a confident voice becomes the shortcut everyone is tired enough to take.",
           "whatToDo": "Separate confidence from support. List what each witness could see, what memory conditions apply, and what independent evidence confirms before ranking testimony.",
           "whyItMatters": "A certain voice can feel like a high probability. Good judgment asks what information the certainty rests on before letting it carry the decision."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The plan acts on the current estimate and names an update trigger. It neither freezes while waiting for certainty nor pretends the forecast is a promise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Later success is outcome information, not automatic proof of bad judgment. The review should ask whether the original odds and action threshold were reasonable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The statement ties revision to evidence. It treats updating as accuracy, not embarrassment, and keeps the team aligned around the current best estimate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A result-only review teaches superstition. The team needs to separate the decision process from the outcome so luck does not become the teacher.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A range with assumptions and triggers keeps uncertainty visible while still supporting action. One confident number would hide the conditions leaders need to watch.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Probabilistic judgment still has to act. The stronger approach is to set the evidence threshold for moving now and the evidence that would later justify revision.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Confidence of voice is not probability. Listing support and assumptions helps the committee judge evidence quality instead of being carried by presentation certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful review looks at odds, stakes, and thresholds at the time. It can improve the rule without letting hindsight turn the missed freeze into a simple verdict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "New evidence should move the estimate, not force all-or-nothing certainty. Naming what could raise it again keeps the forecast revisable in both directions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "A forecast is a map drawn in pencil.",
-          "location": "breakdown.fastRead",
-          "why": "It makes a forecast useful without making it rigid."
+          "text": "A forecast is a map drawn in pencil."
         },
         {
-          "text": "Revision is not the opposite of judgment. It is judgment staying in contact with the field.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes updating as strength instead of retreat."
+          "text": "Revision is not the opposite of judgment. It is judgment staying in contact with the field."
         },
         {
-          "text": "Outcome luck is loud because it arrives last.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why hindsight can bully a decision review."
+          "text": "Outcome luck is loud because it arrives last."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "hospital",
             "transfer"
           ],
-          "planSpec": {
-            "domain": "a hospital equipment tech importing a pit-crew staging pattern into pump-cart handoffs",
-            "audience": "a technician who sees a useful pattern but must rebuild it for the ward's constraints",
-            "stakes": "whether the handoff gets faster through transformed borrowing or fails as copied theater",
-            "format": "decision_point",
-            "requiredBeat": "he imports a pit-crew staging pattern, then decides what to change so it fits the ward instead of copying it"
-          },
           "scenario": "Tavi loops an orange extension cord over a pump cart at 5:38 a.m. in the basement equipment cage, the elevator doors clanking behind him. He watched a pit-crew video last night and sketched the same tool zones on tape. The idea is good, but ward nurses do not move like mechanics, and pumps must be wiped between hands. His supervisor wants the tape down before rounds. Tavi must decide whether to copy the pit crew whole or rebuild the pattern with fewer zones, a wipe step, and a nurse signoff.",
           "whatToDo": "Import the staging pattern, then adapt it to pump cleaning, nurse reach, and elevator timing before rollout. Borrow the structure, not the surface show.",
           "whyItMatters": "Innovation often starts with transfer, but copied patterns fail when the new setting has different constraints. The borrowed idea has to be rebuilt until it fits."
@@ -2010,13 +1661,6 @@
             "pastry",
             "recombination"
           ],
-          "planSpec": {
-            "domain": "a pastry chef testing a dough fold inspired by textile pleating",
-            "audience": "a chef who values craft and does not want novelty to become decoration",
-            "stakes": "whether a borrowed fold improves texture or only gives the team a clever story",
-            "format": "dialogue",
-            "requiredBeat": "she makes the borrowed pattern prove it improves the croissant, not just look clever"
-          },
           "scenario": "Mouna taps cold butter under a rolling pin at 4:22 a.m. Thursday on the marble pastry bench, flour dusting the black cuffs of her coat. \"It's from a pleating video,\" the apprentice says, folding dough like silk. \"Pretty,\" Mouna says, cutting two test strips. Twenty minutes later, the pleated batch lifts higher but tears at the corner. Mouna has to choose whether to reject the outside idea or revise the fold until it answers to the croissant.",
           "whatToDo": "Test the borrowed fold against the house standard, then revise it where the pastry fails. Keep the useful lift, fix the tearing, and make the origin less important than the fit.",
           "whyItMatters": "Borrowing becomes innovation when the material changes under the new constraint. A clever source is only raw material until the work itself improves."
@@ -2029,13 +1673,6 @@
             "games",
             "prototype"
           ],
-          "planSpec": {
-            "domain": "a game designer reviewing why a borrowed mechanic failed in a prototype",
-            "audience": "a designer who must distinguish recombination from pasted-on imitation",
-            "stakes": "whether the next prototype transforms outside material or keeps decorating a weak core",
-            "format": "postmortem",
-            "requiredBeat": "he sees the borrowed mechanic stayed pasted on because the team never rebuilt it for their game"
-          },
           "scenario": "Pasha stands at 9:09 p.m. Friday in the studio playtest room, red sticky notes covering the wall and the failed prototype still running its menu music. The team had borrowed a card-drafting mechanic from a strategy game they loved. Players hated it. In the postmortem, Pasha rereads the notes: slows combat, breaks tension, rewards hoarding, story vanishes. The mechanic was not wrong. It was foreign. They had bolted it on whole and called the bolt creative. Pasha peels the note labeled drafting and writes, what job must it do here?",
           "whatToDo": "Stop defending the borrowed mechanic as borrowed. Name the job the game needs, then keep, cut, or rebuild only the pieces that serve that job under this game's pressure.",
           "whyItMatters": "Recombination is transformation, not attachment. A foreign pattern has to earn a new role or it remains imitation with better vocabulary."
@@ -2048,13 +1685,6 @@
             "school",
             "adaptation"
           ],
-          "planSpec": {
-            "domain": "a science teacher adapting a rehearsal-room blocking pattern for a solar-system lesson",
-            "audience": "a teacher trying to make borrowed structure serve understanding instead of novelty",
-            "stakes": "whether students feel orbital relationships or only copy vocabulary from slides",
-            "format": "before_after",
-            "requiredBeat": "she moves from a pure lecture to a borrowed rehearsal-room blocking pattern that students physically adapt"
-          },
           "scenario": "Sorina catches a foam Mars under the lab table at 1:26 p.m. Tuesday in room 214, the old lecture slides still open on the projector. Before, she talked through orbit, tilt, and distance while students copied terms. After watching the drama teacher block a crowd scene, she tapes arcs on the floor and assigns each student a planet card. The first version is chaos. Then one student moves Saturn farther out and another slows Neptune's walk. The borrowed rehearsal pattern becomes a solar-system model only after the class adapts it with their bodies.",
           "whatToDo": "Use the blocking pattern as a starting structure, then make students adjust spacing, speed, and position until the movement teaches the science.",
           "whyItMatters": "A borrowed format helps when it makes the hidden relationship visible. The lesson improves because the class transforms the pattern into a model of the concept."
@@ -2067,13 +1697,6 @@
             "prototype",
             "deadline"
           ],
-          "planSpec": {
-            "domain": "a toy-company prototype lead using an outside mechanism under trade-show pressure",
-            "audience": "a product lead whose team is tempted to protect the original design because the deadline is close",
-            "stakes": "whether the prototype reaches the trade show working or preserves a failing original mechanism",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the original mechanism must be protected, then sees a bicycle brake pattern solve the failure after cuts"
-          },
           "scenario": "Zulema pushes plastic gears into a tray at 8:48 p.m. Monday in the prototype shop, a cold burrito leaking foil beside the drill press. The trade-show demo is in thirty-six hours. She predicts they must protect the original pull-string mechanism because there is no time to rethink. Then an intern rolls a bicycle brake cable across the bench and pinches it once. The toy wing snaps open cleanly. Zulema must decide whether to protect three beloved gear features or cut down the borrowed brake pattern until it works.",
           "whatToDo": "Let the outside mechanism compete with the original, then cut features that prevent it from solving the real failure. Protect the demo's function, not the team's first design.",
           "whyItMatters": "Deadline pressure helps only when the room can still revise. The borrowed pattern matters because urgency forced the team to test, cut, and fit it fast."
@@ -2086,13 +1709,6 @@
             "library",
             "revision"
           ],
-          "planSpec": {
-            "domain": "a library maker-lab coordinator finishing a children's city exhibit by recombining borrowed ideas under deadline pressure",
-            "audience": "a coordinator who must cut beloved features without killing the exhibit's core effect",
-            "stakes": "whether the exhibit opens as a working experience or a table of unfinished clever pieces",
-            "format": "scene",
-            "requiredBeat": "she uses deadline pressure to cut three beloved features and combine two borrowed ideas into a working exhibit"
-          },
           "scenario": "Bora holds a soldering iron at 6:02 p.m. Saturday in the library maker lab, smoke curling above a cardboard skyline and children due in the room at ten tomorrow. The team loves the paper subway, the pulley elevator, the blinking harbor, and none of them work together. Bora pulls the museum pop-up book from one pile and a train-set switch from another. The subway dies. The harbor dies. The elevator becomes one drawbridge that rises when a paper boat arrives. She has to choose the working exhibit over the charming pieces scattered across the table.",
           "whatToDo": "Cut the features that do not join the experience, then combine the pop-up and switch ideas into one reliable interaction. Let the deadline force fit, not panic.",
           "whyItMatters": "Innovation is often less about keeping every idea than making fragments work together. Pressure sharpens when it makes the room choose and combine."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Transfer is only the start. The useful pattern has to be changed for the clinic's constraints before it becomes innovation rather than imitation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Originality does not require isolation. Outside patterns can widen the search space, as long as the team transforms them instead of merely copying.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The organizer needs to test fit. The borrowed format has to serve the new creative job, not preserve rules that made sense in a different domain.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pressure helps when it forces selection and fit. The team should protect the core function, not every beloved fragment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The routing logic may be valuable, but the surface details must change. Recombination means preserving the useful structure while adapting to a different job.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Borrowing is not the test. Transformation and fit are the test. If the structure now serves a new emotional job, it is part of the creative work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A mechanic carries behavior with it. The team must ask whether that behavior fits the budgeting constraint before making the borrowed piece prettier.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The outside source widened the field, but the cuts made it fit. Innovation came from transfer plus revision, not from preserving the source whole.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Urgency should not freeze the failing original. It should force comparison around the core function and make the team revise while the work can still move.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "New work often starts when an old pattern enters a new room.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the transfer move a concrete image without overexplaining it."
+          "text": "New work often starts when an old pattern enters a new room."
         },
         {
-          "text": "Borrowed material stays raw until the new constraint changes it.",
-          "location": "breakdown.deepRead",
-          "why": "It defines recombination through transformation and fit."
+          "text": "Borrowed material stays raw until the new constraint changes it."
         },
         {
-          "text": "Pressure sharpens creativity only when the work can still move.",
-          "location": "breakdown.fastRead",
-          "why": "It draws the line between useful urgency and panic."
+          "text": "Pressure sharpens creativity only when the work can still move."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "transit",
             "data"
           ],
-          "planSpec": {
-            "domain": "a city bus dispatcher turning a crowded delay dashboard into a rerouting decision",
-            "audience": "a dispatcher who has more visibility than interpretation during morning rush",
-            "stakes": "whether riders get a useful reroute or the control room keeps staring at a noisy display",
-            "format": "decision_point",
-            "requiredBeat": "he filters the display to the signals tied to rerouting before making the call"
-          },
           "scenario": "Tahir taps a cold radio console at 6:57 a.m. in the transit control room, stale coffee beside a dashboard crowded with red, yellow, and blue delay tiles. Route 22 is late, but so are nine others. The mayor's office is already calling. Tahir can keep reading every tile aloud until the room feels informed and helpless. Instead he drags three signals into one view: buses bunched south of bridge, driver hours left, open relief bus at depot 4. His hand hovers over the reroute button. The pile has become a read.",
           "whatToDo": "Filter the dashboard to the signals that affect the reroute, state the pattern in one sentence, and make the call from that read instead of from the full display.",
           "whyItMatters": "Data helps only after interpretation gives it shape. A crowded display can increase visibility while leaving the decision just as hungry as before."
@@ -2335,13 +1929,6 @@
             "school",
             "interpretation"
           ],
-          "planSpec": {
-            "domain": "a third-grade teacher interpreting reading scores with a specialist",
-            "audience": "a teacher who can list scores but needs a shared pattern that changes instruction",
-            "stakes": "whether students get a useful small group tomorrow or another week of undirected data review",
-            "format": "dialogue",
-            "requiredBeat": "she moves from listing scores to naming the pattern that changes tomorrow's small group"
-          },
           "scenario": "Livia smooths stapled fluency sheets at 3:18 p.m. Thursday on the kidney table, a green pencil rolling against her coffee mug. \"First student, ninety-two words. Second, eighty-one. Third, seventy-eight,\" she says. The specialist asks, \"What are they missing the same way?\" Livia has to decide whether to keep ranking scores or reread for a pattern. Three students skip endings on multisyllable words, but their comprehension answers are fine. Tomorrow's small group changes shape.",
           "whatToDo": "Group the scores by the error pattern they reveal, then name the instructional move for tomorrow. Do not stop at listing numbers the room cannot use.",
           "whyItMatters": "Knowledge appears when data becomes a pattern with a next action. The score sheet matters only after it changes what the teacher does."
@@ -2354,13 +1941,6 @@
             "health",
             "wearable"
           ],
-          "planSpec": {
-            "domain": "a physical therapist reviewing why a patient abandoned a wearable tracker",
-            "audience": "a clinician tempted to assume more numbers create better adherence",
-            "stakes": "whether the patient leaves with a meaningful trend and action or another unused device graph",
-            "format": "postmortem",
-            "requiredBeat": "she sees the patient had more numbers than meaning and no next action tied to the trend"
-          },
           "scenario": "Usha lifts a silicone watch band from the paper sheet at 12:07 p.m. Monday in exam room 4, the tracker face scratched and dead. Her patient wore it for nineteen days, then stopped. In the postmortem, Usha scrolls through steps, sleep, heart rate, stand minutes, colored rings, badges. Plenty of data. No sentence. Then she plots pain notes against step spikes and sees the pattern: flares two days after stairs, not after walking. The patient had quit the device because the device never told him what to do next.",
           "whatToDo": "Turn the tracker dump into one trend and one action: stair volume predicts pain, cap stairs for two weeks, keep walking steady, and review the pain notes again.",
           "whyItMatters": "More measurement can still fail if nobody converts it into meaning. The patient needs a read that changes behavior, not a brighter pile of numbers."
@@ -2373,13 +1953,6 @@
             "cafe",
             "pattern"
           ],
-          "planSpec": {
-            "domain": "a cafe owner interpreting pastry sales before changing the morning menu",
-            "audience": "an owner who keeps collecting receipts because choosing the pattern feels risky",
-            "stakes": "whether she fixes the pastry case or keeps drowning the decision in more slips",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts more data will settle the menu choice, then sees one framed pattern settle it faster"
-          },
           "scenario": "Basma clips receipt slips with a wooden clothespin at 10:44 p.m. Tuesday behind the flour-dusted counter, the pastry case dark except for one humming bulb. She predicts another month of sales will settle the croissant question. Then her nephew sorts the slips by weather instead of pastry type. On rainy days, savory sells out by 9:20. On dry days, almond wins. The answer was not more receipts. It was the right frame. Basma reaches for tomorrow's prep sheet, finally able to decide what changes before dawn.",
           "whatToDo": "Sort the sales by the condition tied to the decision, then change the prep plan from that pattern. Stop collecting until the current data has been framed.",
           "whyItMatters": "Accumulation can disguise avoidance. The same receipts become useful only when arranged around the question the menu has to answer."
@@ -2392,13 +1965,6 @@
             "wildfire",
             "briefing"
           ],
-          "planSpec": {
-            "domain": "a wildfire analyst revising a public risk briefing from layered maps to a shared evacuation read",
-            "audience": "an analyst who must make data usable for a room that has to act fast",
-            "stakes": "whether officials understand the trigger or leave with impressive maps and no common decision rule",
-            "format": "before_after",
-            "requiredBeat": "he changes from a map full of layers to a shared read with three signals and one evacuation trigger"
-          },
           "scenario": "Kelvin rubs his eyes at 5:05 a.m. Friday in the county emergency office, thermal maps glowing blue across two monitors and ash flecking the window ledge. Before, his briefing had twelve layers: slope, wind, brush age, humidity, road width, plume height. Officials praised the detail and still asked, so do we evacuate? After midnight, he rebuilt the slide around three signals: wind shift, canyon humidity, road clearance. If two cross threshold by noon, zone C goes. The maps did not vanish. They finally had a sentence.",
           "whatToDo": "Keep the underlying maps, but brief the shared read: three signals, thresholds, and the action tied to them. Let detail support the rule instead of burying it.",
           "whyItMatters": "Public decisions need common interpretation, not private admiration for data. A room can act together only when the pattern and trigger are legible."
@@ -2411,13 +1977,6 @@
             "lab",
             "summary"
           ],
-          "planSpec": {
-            "domain": "a graduate assistant converting a greenhouse data dump into a one-page lab summary",
-            "audience": "a researcher tempted to send all the measurements because selection feels risky",
-            "stakes": "whether the principal investigator sees the next experiment or receives another unreadable spreadsheet",
-            "format": "scene",
-            "requiredBeat": "he cuts a data dump into a pattern, meaning, and next experiment before sending it"
-          },
           "scenario": "Risto wipes condensation from a tomato tray at 11:31 p.m. Sunday in the greenhouse lab, nutrient meters blinking beside a spreadsheet with 1,842 rows. He can attach the file and prove he measured everything. Instead he prints one page: plants on drip line C grew taller but split fruit after the third calcium change; next test holds calcium steady and changes watering interval. Risto must decide whether to send the data dump or send the pattern, meaning, and next experiment.",
           "whatToDo": "Send the one-page read before the raw file: pattern, interpretation, and next test. Attach the spreadsheet as support, not as the main act.",
           "whyItMatters": "Data becomes knowledge when it changes the next experiment. Selection is not hiding information; it is giving the lab a usable map."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The manager needs interpretation tied to action. More columns or more waiting can increase the pile without creating a usable read for tomorrow's staffing choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scores alone are information. The team needs to turn the numbers into a shared pattern that changes Monday instruction; a larger export only adds more signal without a teaching move.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The coach narrows the pile around a decision. A metric becomes useful when its pattern changes action; otherwise more tracking can add confusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The maps may be valuable, but the room needed interpretation: which signals matter, what thresholds matter, and what action follows.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The value came from framing, not volume. Sorting by weather turned scattered receipts into a pattern that could guide tomorrow's prep.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The raw file remains available, but the PI needs a usable interpretation. Pattern, meaning, and next test convert the data into a decision aid.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Selection makes judgment usable, but it must stay honest. Keep the raw data and the evidence that would change the read so filtering does not become concealment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Starting with the decision gives the data a job. Otherwise staff can review indicators forever without converting them into an action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Transparency is not the same as understanding. Residents need the pattern and action rule, not only access to the agency's information pile.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "A dashboard is not a judgment.",
-          "location": "breakdown.fastRead",
-          "why": "It separates visibility from interpretation in one plain sentence."
+          "text": "A dashboard is not a judgment."
         },
         {
-          "text": "Data becomes knowledge only when someone can say what pattern matters and which action should follow.",
-          "location": "breakdown.deepRead",
-          "why": "It states the conversion step that defines the whole skill."
+          "text": "Data becomes knowledge only when someone can say what pattern matters and which action should follow."
         },
         {
-          "text": "The room wins when meaning outruns the pile.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the final idea a compact, memorable close."
+          "text": "The room wins when meaning outruns the pile."
         }
       ]
     }

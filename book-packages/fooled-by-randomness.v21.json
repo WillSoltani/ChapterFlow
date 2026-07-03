@@ -124,8 +124,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Outcome opacity changes the first question from who won to what the position risked, which paths stayed unseen, and how long the record ran. The story is only the doorway.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -137,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visible outcomes can split from process quality when randomness selects one path. Wisdom is not proven until the process survives review across possible histories.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -150,8 +148,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Noisy markets can reward exposure before the adverse state appears. Repeated reward during one regime does not prove the risk profile has been tested.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -163,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Solon and Croesus story is not decoration. It compresses the probability lesson into a concrete problem: do not judge success before the sequence unfolds.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -176,8 +172,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Nero Tulip's smaller, less fashionable exposure matters because hidden alternatives change the meaning of observed success. The point is survival, not moral ranking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -189,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reputation often sees the visible outcome before it sees the distribution that produced it. Lucky timing can make caution look dull and exposure look smart.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -202,8 +196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A single history creates pressure to turn winners into heroes and laggards into flawed people. Coherence can be fitted after chance has acted.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -215,8 +208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Risk-adjusted thinking judges decision quality by the bet's size, the record's length, and the cost of the bad path. Feelings track salience and regret.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -228,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is not resentment or moral sorting. It asks for evidence: process, exposure, and possible histories before ranking people.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -272,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Put Exposure Beside Applause",
         "coreSkill": "Practice judging a visible win by the exposure that produced it. The skill is not cynicism; it is refusing to let a bank statement do the work of a risk report.",
         "ifThenPlans": [
           {
@@ -293,19 +283,13 @@
       },
       "memorableLines": [
         {
-          "text": "A jackpot is not an audit.",
-          "location": "breakdown.fastRead",
-          "why": "It cuts the warning into one plain image."
+          "text": "A jackpot is not an audit."
         },
         {
-          "text": "The richest path is not the only path.",
-          "location": "breakdown.fastRead",
-          "why": "It makes possible histories easy to remember."
+          "text": "The richest path is not the only path."
         },
         {
-          "text": "Do not crown a process before it has met bad weather.",
-          "location": "breakdown.deepRead",
-          "why": "It turns risk review into a portable rule."
+          "text": "Do not crown a process before it has met bad weather."
         }
       ],
       "experiencePlan": {
@@ -331,7 +315,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch02",
       "number": 2,
       "title": "A Bizarre Accounting Method",
@@ -432,8 +415,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The concept changes the ledger from realized profit to expected exposure. Treating the log as a story or waiting for loss keeps the hidden fragility off the page.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -445,8 +427,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A profit can be bad evidence when the same process carried worse paths. The green result happened, but it does not settle process quality.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -458,8 +439,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Realized gains can flatter a process before its bad state appears. Admiration and repetition are weak tests when the rare loss has not arrived.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -471,8 +451,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The named cases are not decoration. They turn invisible alternatives into entries the student can compare with the realized line.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -484,8 +463,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expected value needs frequency and payoff size. A high win rate can still lose if the rare loss is large enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -497,8 +475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The option seller can look consistent until a rare event overwhelms the premiums. Reputation often arrives before the distribution is seen.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -510,8 +487,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Short windows can reward hidden fragility because the bad path may sit outside the sample. A smooth story can be fitted after luck has acted.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -523,8 +499,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Judgment improves when the strategy's distribution comes first. Pride and account balance are vivid, but they are not enough to judge exposure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -536,8 +511,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is survival. A ruin path cannot be averaged away like a normal bad trade, because it ends the sequence being measured.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -580,7 +554,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit The Unprinted Loss",
         "coreSkill": "Practice adding unprinted loss paths to clean-looking gains. The skill is to keep ordinary accounting useful without letting it hide ruin.",
         "ifThenPlans": [
           {
@@ -601,19 +574,13 @@
       },
       "memorableLines": [
         {
-          "text": "Profit is a receipt, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It separates the posted result from the judgment of the process."
+          "text": "Profit is a receipt, not a verdict."
         },
         {
-          "text": "A smooth ledger can hide a cliff.",
-          "location": "breakdown.fastRead",
-          "why": "It gives hidden fragility a picture the reader can keep."
+          "text": "A smooth ledger can hide a cliff."
         },
         {
-          "text": "Ruin is not a rounding error.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the hard edge of game-ending risk impossible to soften."
+          "text": "Ruin is not a rounding error."
         }
       ]
     },
@@ -718,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The central concept is possible histories. Monte Carlo and Croesus matter because they help the reader test lessons against neighboring outcomes.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -731,8 +697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The past feels inevitable because unrealized branches fade. The right move is to restore close alternatives before judging the decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -744,8 +709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Historical narrative overweights the path that left records. Failed alternatives often leave fewer fortunes, documents, and reputations to study.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -757,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Monte Carlo thinking is the practical metaphor: run many versions of a process and judge the spread, not one neat line.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -770,8 +733,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small early differences can compound into reputation before skill is clear. Repeated rewards do not prove quality by themselves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -783,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A person judged from one lifetime is like a strategy judged from one simulation path. Reputation sees the result before it sees the distribution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -796,8 +757,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Narrative pressure makes the same decision look heroic in a winning branch and foolish in a losing branch. Coherence can be fitted later.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -809,8 +769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Historical wisdom improves when lessons are tested against counterfactual paths. Feelings track vivid results, not the nearby paths or the cost of being wrong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -822,8 +781,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is narrow. Possible histories is not endless counterfactual play; it tests whether a lesson survives nearby alternatives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -866,7 +824,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Draw Neighboring Paths",
         "coreSkill": "Practice treating history as a sample, not a command. The skill is to draw close alternatives that could really have happened under the same facts.",
         "ifThenPlans": [
           {
@@ -887,19 +844,13 @@
       },
       "memorableLines": [
         {
-          "text": "One path is not proof.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the central warning portable."
+          "text": "One path is not proof."
         },
         {
-          "text": "History edits out its losers.",
-          "location": "breakdown.deepRead",
-          "why": "It gives survivorship of stories a sharp image."
+          "text": "History edits out its losers."
         },
         {
-          "text": "Do not take the archive for fate.",
-          "location": "breakdown.deepRead",
-          "why": "It turns hindsight skepticism into a compact rule."
+          "text": "Do not take the archive for fate."
         }
       ],
       "experiencePlan": {
@@ -1025,8 +976,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Narrative overfitting fits an intelligent story to a noisy result after the fact. The issue is not dull wording or a missing expert name.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1038,8 +988,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A polished explanation is not proof of a stable cause. The correction is not anti-expert or anti-cause; it asks for evidence beyond fluency.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1051,8 +1000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Price moves invite immediate stories, so market talk can outgrow real causal knowledge. Repetition or freshness does not turn one move into proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1064,8 +1012,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Scientific language can hide weak inference when data are noisy and the sample is small. The fix is discipline, not more impressive words.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1077,8 +1024,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The public expert can be rewarded for fluent interpretation rather than calibrated doubt. Applause does not audit hidden paths or personal quality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1090,8 +1036,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Random sequences naturally produce streaks and clusters. The first read is that chance may have drawn the shape without a story.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1103,8 +1048,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Demand for explanation after each move pushes overfitting. Testing opposite stories exposes when coherence has been fitted to the known result.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1116,8 +1060,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Good probabilistic thinking often sounds less entertaining because uncertainty comes first. Feeling and drama are weaker guides than exposure, sample, and payoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1129,8 +1072,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The easy misreading is anti-intellectualism. The sharper lesson separates disciplined inquiry from a status performance that hides uncertainty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1173,7 +1115,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write The Opposite Story",
         "coreSkill": "Practice testing explanations by making them compete with another story that fits the same noisy result. The skill is to separate fluency from evidence.",
         "ifThenPlans": [
           {
@@ -1194,19 +1135,13 @@
       },
       "memorableLines": [
         {
-          "text": "Chance writes clusters too.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the random-pattern warning portable."
+          "text": "Chance writes clusters too."
         },
         {
-          "text": "Smart words are not samples.",
-          "location": "breakdown.deepRead",
-          "why": "It separates fluent expertise from evidence."
+          "text": "Smart words are not samples."
         },
         {
-          "text": "A beautiful sentence can be a hiding place.",
-          "location": "breakdown.fullRead",
-          "why": "It turns doubt about fluent causes into one compact image."
+          "text": "A beautiful sentence can be a hiding place."
         }
       ]
     },
@@ -1311,8 +1246,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The concept says survival can reflect the last environment, not general fitness. The ranking is evidence, but only after the exposure is named.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1324,8 +1258,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Being selected by a noisy environment is not the same as being generally fit. The calm sample may not have tested the weak side.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1337,8 +1270,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Markets can reward fragile exposure before the adverse state appears. LTCM warns against treating repeated reward as proof of safety.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1350,8 +1282,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Survivors look fit partly because failed competitors vanish from the comparison set. The missing pile changes what the visible pile means.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1363,8 +1294,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Evolutionary language needs the right test. A short record in one climate may not reveal how the fund handles the next climate.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1376,8 +1306,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Risk-taking can look like adaptation when the market is calm. Reputation arrives before the distribution has shown its bad state.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1389,8 +1318,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Copying winners can import hidden exposures. A neat story may have been fitted after chance already chose the visible winner.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1402,8 +1330,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Selection teaches more when the old environment resembles the future one. Feel and story detail cannot replace exposure, sample, and payoff.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1415,8 +1342,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Selection is informative only when the selection environment resembles the future environment. The next question checks that resemblance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1459,7 +1385,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name The Selection Test",
         "coreSkill": "Practice asking what environment selected the visible winner. The skill is to copy less from success stories until the missing losers and untested stress are on the page.",
         "ifThenPlans": [
           {
@@ -1480,19 +1405,13 @@
       },
       "memorableLines": [
         {
-          "text": "A boom can crown the trader it should have warned.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's reversal in one concrete market image."
+          "text": "A boom can crown the trader it should have warned."
         },
         {
-          "text": "Survival names the winners, not the risks that spared them.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps survivor bias and hidden exposure tied together."
+          "text": "Survival names the winners, not the risks that spared them."
         },
         {
-          "text": "Copy the exposure, and you copy the trap.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the warning about copying winners into a portable rule."
+          "text": "Copy the exposure, and you copy the trap."
         }
       ]
     },
@@ -1597,8 +1516,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 names skewed payoff as the central concept. The mechanism asks for win and loss size, not only the visible count.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1610,8 +1528,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says high-probability small gains can be inferior depending on payoff size. The key keeps both sides in view.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1623,8 +1540,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 separates win rate from expected value. Magnitude can dominate frequency when the wrong occasion is large enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1636,8 +1552,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 uses option selling to make the payoff shape concrete. It does not say every option sale is automatically bad.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1649,8 +1564,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says option buyers may look foolish most days while retaining rare upside. It still requires the payoff to justify the cost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1662,8 +1576,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says skewness makes averages hard to infer from short samples. The tail may not have appeared yet.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1675,8 +1588,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 states this directly. A strategy can be right often and still lose if the wrong occasions are large enough.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1688,8 +1600,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says risk communication fails when it gives probability without consequence. The amount at stake completes the sentence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1701,8 +1612,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 warns against glorifying rare upside while ignoring cost. Skewness asks for payoff shape, not romance about tails.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1745,7 +1655,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use The Payoff Pair",
         "coreSkill": "Practice refusing win counts until frequency and payoff size sit together. The skill is to see the shape of the bet before the streak seduces you.",
         "ifThenPlans": [
           {
@@ -1766,24 +1675,17 @@
       },
       "memorableLines": [
         {
-          "text": "Win counts lie when payoff sizes differ.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's main correction in one portable sentence."
+          "text": "Win counts lie when payoff sizes differ."
         },
         {
-          "text": "A tail is not an excuse for fantasy.",
-          "location": "breakdown.deepRead",
-          "why": "It protects the lesson from romanticizing rare upside."
+          "text": "A tail is not an excuse for fantasy."
         },
         {
-          "text": "Smooth gains can hide a cliff.",
-          "location": "breakdown.deepRead",
-          "why": "It makes option-selling risk concrete without technical clutter."
+          "text": "Smooth gains can hide a cliff."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch07",
       "number": 7,
       "title": "The Problem of Induction",
@@ -1884,8 +1786,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Induction risk is the mechanism, not a decorative story. It asks whether a smooth past sampled the state that could overturn it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1897,8 +1798,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A long record without failure does not prove safety if the relevant failure state never appeared in the sample.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1910,8 +1810,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hume's problem applies because repeated reward can arrive before the adverse state reveals the exposure's cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1923,8 +1822,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The black swan is not decoration. It shows how one counterexample can overturn a universal claim built from many confirmations.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1936,8 +1834,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The turkey-like learner extrapolates from feeding data, so confidence can peak just before the adverse event.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1949,8 +1846,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Models trained on calm data can look better while becoming more dangerous if the relevant stress never enters the sample.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1962,8 +1858,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Confirmation accumulates emotionally faster than logically. A neat story after the fact can be fitted to the known outcome.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1975,8 +1870,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Robust decisions start with exposure, sample, payoff, and what has not been observed, not with emotional comfort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1988,8 +1882,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The precise lesson is not that evidence is useless. It is that evidence must be read with its sample and missing states in view.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2032,7 +1925,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read The Border Of The Sample",
         "coreSkill": "Practice asking what repeated data has not yet encountered. The skill is to use the past without letting repetition masquerade as proof.",
         "ifThenPlans": [
           {
@@ -2053,24 +1945,17 @@
       },
       "memorableLines": [
         {
-          "text": "Confidence is not proof; it is often comfort with repetition.",
-          "location": "breakdown.fastRead",
-          "why": "It names the emotional lure of repeated confirmation in one sentence."
+          "text": "Confidence is not proof; it is often comfort with repetition."
         },
         {
-          "text": "One black swan can do what a thousand white swans cannot.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the counterexample logic into a portable image."
+          "text": "One black swan can do what a thousand white swans cannot."
         },
         {
-          "text": "Evidence helps most when it admits what it has not seen.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge without rejecting evidence."
+          "text": "Evidence helps most when it admits what it has not seen."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch08",
       "number": 8,
       "title": "Too Many Millionaires Next Door",
@@ -2165,8 +2050,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Survivorship bias is the mechanism, not a side anecdote. The group needs the people who followed similar paths and disappeared before copying the winners.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2178,8 +2062,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A trait found in winners is not causal proof. The missing losers with the same trait decide whether the pattern is strong or just visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2191,8 +2074,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Survivorship bias can make repeated reward look safe before the bad state appears. The visible owners do not audit the absent paths.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2204,8 +2086,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source case warns that similar savers with bad asset histories can vanish. A car brand or prose style does not test the causal claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2217,8 +2098,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A bull market can make asset ownership look mechanically reliable. The harsher path is not decoration; it tests how much the habit explains.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2230,8 +2110,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visible millionaires are filtered by behavior and luck. The reply keeps good habits on the table without letting reputation stand in for an audit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2243,8 +2122,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sampling only winners confuses description with prescription. The sentence jumps from what winners shared to what will work for others.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2256,8 +2134,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good inference needs the full comparison group. Vividness and confidence sorting make the winners feel clearer without adding the missing attempts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2269,8 +2146,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is not anti-thrift. It is about inference: useful habits can be overclaimed when the sample starts with winners.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2313,7 +2189,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Add The Missing Denominator",
         "coreSkill": "Practice asking how many people tried the visible winner's habit without becoming visible. The skill is to respect useful habits without confusing a winner sample for causality.",
         "ifThenPlans": [
           {
@@ -2334,24 +2209,17 @@
       },
       "memorableLines": [
         {
-          "text": "Winner stories need missing names.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses survivorship bias into a sentence readers can use."
+          "text": "Winner stories need missing names."
         },
         {
-          "text": "A habit can help and still be overpraised.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the nuance without sounding anti-thrift."
+          "text": "A habit can help and still be overpraised."
         },
         {
-          "text": "Count the absent before you copy the seen.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the sampling warning into a portable test."
+          "text": "Count the absent before you copy the seen."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch09",
       "number": 9,
       "title": "It Is Easier to Buy and Sell Than Fry an Egg",
@@ -2446,8 +2314,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Action illusion is the central concept. The fast button can make Piper feel wiser without improving what she knows.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2459,8 +2326,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mechanical simplicity is not knowledge simplicity. The egg shows failure fast, while the trade hides the harder judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2472,8 +2338,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Noisy settings can reward exposure before the adverse state arrives. Repeated reward is not the same as safety.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2485,8 +2350,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Liquidity lowers action friction. That can make confidence rise for the wrong reason, so Coralie raises the evidence bar.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2498,8 +2362,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The egg gives visible feedback about heat and timing. The trade can succeed while hiding whether skill or path selection did the work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2511,8 +2374,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Transaction ease can create a false sense of control. The ability to click again does not control the random path that follows.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2524,8 +2386,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Both professional and amateur traders can confuse activity with competence. A coherent story after the fact is not strong proof.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2537,8 +2398,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When signal-to-noise is poor, reducing action can be rational. The click needs a clearer signal, enough trials, and a payoff worth the risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2550,8 +2410,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tempting surface lesson is to never trade. The stronger lesson is to raise discipline when action is cheap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2594,7 +2453,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Raise The Bar Before The Click",
         "coreSkill": "Practice separating ease of execution from quality of evidence. The skill is to make the cheap action wait until the reason improves.",
         "ifThenPlans": [
           {
@@ -2615,24 +2473,17 @@
       },
       "memorableLines": [
         {
-          "text": "Easy buttons sell confidence before evidence arrives.",
-          "location": "breakdown.fastRead",
-          "why": "It names the screen's danger in a sentence readers can recall before acting."
+          "text": "Easy buttons sell confidence before evidence arrives."
         },
         {
-          "text": "Noise pays rent with stories.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the day-trader trap into a sharp market image."
+          "text": "Noise pays rent with stories."
         },
         {
-          "text": "Patience costs status in rooms that worship action.",
-          "location": "breakdown.fullRead",
-          "why": "It states the tradeoff of applying this discipline."
+          "text": "Patience costs status in rooms that worship action."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch10",
       "number": 10,
       "title": "Loser Takes All - On the Nonlinearities of Life",
@@ -2727,8 +2578,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The key is nonlinear outcomes. Rank can concentrate rewards, so a visible winner is not just a colorful story or a clean measure of skill.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2740,8 +2590,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The leveraged trade paid through a threshold, not a smooth line. A single result without the path would hide why the forced exit happened.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2753,8 +2602,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated reward can come before the relevant adverse state appears. The ordinary gains do not prove safety until the ruin state is faced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2766,8 +2614,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Winner-take-most settings make visible success look more skill-driven than it is. The case is not decoration; it grounds the judgment problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -2779,8 +2626,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Nonlinear losses can dominate ordinary gains. A visible streak may reflect a path that has not yet met the bad state.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2792,8 +2638,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Leverage can turn a modest move into a survival event. Reputation may come from lucky timing, so the margin call point must be checked.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2805,8 +2650,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Averages hide nonlinear exposure when the path matters. A clean story after the fact can fit the known result without proving safety.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2818,8 +2662,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Risk management must focus on breaking points, not only typical movement. Feelings and normal moves can miss the payoff shape.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2831,8 +2674,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The wrong lesson is fatalism. The useful move is structural: find thresholds, leverage, and concentration points before judging effort or safety.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2875,7 +2717,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark The Bend",
         "coreSkill": "Practice finding the threshold where ordinary change becomes a different game. The skill is to see rank, leverage, and ruin before averages mislead you.",
         "ifThenPlans": [
           {
@@ -2896,19 +2737,13 @@
       },
       "memorableLines": [
         {
-          "text": "Small gaps can wear giant clothes.",
-          "location": "breakdown.fastRead",
-          "why": "It captures how rank can make tiny differences look huge."
+          "text": "Small gaps can wear giant clothes."
         },
         {
-          "text": "Averages hide the cliff.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the average-path warning easy to recall."
+          "text": "Averages hide the cliff."
         },
         {
-          "text": "Ruin gets the last word.",
-          "location": "breakdown.deepRead",
-          "why": "It states the loser-takes-all danger in a compact line."
+          "text": "Ruin gets the last word."
         }
       ]
     },
@@ -3013,8 +2848,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 makes probability blindness the central concept. It explains why emotional conviction can split from mathematical exposure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3026,8 +2860,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says visible results can diverge from process quality. The desk is judging the path it sees, not the distribution it does not see.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3039,8 +2872,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 warns that reward can arrive before the relevant adverse state. Concrete wins do not make abstract exposure safe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3052,8 +2884,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 names availability: vivid events feel more likely than dull statistical risks. The story is salient, not necessarily more probable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3065,8 +2896,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says pattern detection overfires in random data. Hidden alternatives can change what observed success means.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3078,8 +2908,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says gains and losses do not track expected value cleanly. Reputation often sees the outcome before it sees the distribution.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3091,8 +2920,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says training helps but does not remove the pull of outcomes. A clean story after the fact can be fitted to chance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3104,8 +2932,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says a person can understand randomness and still feel fooled. The check asks how much is at risk, how much evidence supports it, and what the bad case costs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3117,8 +2944,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 corrects the shallow lesson. Probability blindness is not an insult to intelligence; it calls for compensation around intuition.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3161,7 +2987,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Put The Base Rate First",
         "coreSkill": "Practice making the background count visible before the vivid story takes over. The skill is to respect intuition without letting it size the bet alone.",
         "ifThenPlans": [
           {
@@ -3182,19 +3007,13 @@
       },
       "memorableLines": [
         {
-          "text": "The brain loves stories more than samples.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses probability blindness into a line readers can reuse before a decision."
+          "text": "The brain loves stories more than samples."
         },
         {
-          "text": "A streak is not yet a signal.",
-          "location": "breakdown.deepRead",
-          "why": "It gives a clean warning against overreading random sequences."
+          "text": "A streak is not yet a signal."
         },
         {
-          "text": "Do not shame a mind for needing rails.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps cognitive limits from becoming blame."
+          "text": "Do not shame a mind for needing rails."
         }
       ]
     },
@@ -3299,8 +3118,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Superstitious reinforcement asks whether repeated behavior is causal or only strengthened by lucky timing. Profit after the tap is an entry point, not proof.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3312,8 +3130,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A behavior can feel validated when chance rewards it. The right move asks whether the sleeve touch had causal power, not whether it felt linked to the win.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3325,8 +3142,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Variable rewards pull attention because the payoff is uncertain. Repeated reward can train exposure before the hidden cost appears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3338,8 +3154,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Gambler rituals form when wins follow arbitrary gestures, seats, or timing. The concrete note matters because it shows how the false link gets built.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3351,8 +3166,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Skinner's pigeons show movement accidentally paired with food. Observed order alone does not reveal cause, even when the action looks purposeful.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -3364,8 +3178,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trader rituals can grow around screens, indicators, or routines. The audit asks whether the screen habit changed mechanics or only sat near a profitable trade.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3377,8 +3190,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A lucky outcome after an action is not evidence that the action caused it. A clean story can be fitted after the result is known.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3390,8 +3202,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Breaking superstition means splitting reinforcement history from causal mechanism. Feelings and morale can be vivid while the causal path stays missing.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -3403,8 +3214,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shallow lesson is mockery. The deeper lesson is broader: random reinforcement can train anyone when noisy feedback rewards lucky timing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3447,7 +3257,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Reward From Cause",
         "coreSkill": "Practice testing whether a rewarded habit actually changes the result. The skill is to keep comfort rituals from being promoted to evidence.",
         "ifThenPlans": [
           {
@@ -3468,24 +3277,17 @@
       },
       "memorableLines": [
         {
-          "text": "Pigeons do not need a theory to learn the wrong lesson.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the error vivid without mocking the learner."
+          "text": "Pigeons do not need a theory to learn the wrong lesson."
         },
         {
-          "text": "Luck can teach a habit before truth gets a hearing.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the speed gap between reward and proof."
+          "text": "Luck can teach a habit before truth gets a hearing."
         },
         {
-          "text": "A clean test beats a thrilling streak.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a short rule for noisy feedback."
+          "text": "A clean test beats a thrilling streak."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch13",
       "number": 13,
       "title": "Carneades Comes to Rome: On Probability and Skepticism",
@@ -3580,8 +3382,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 names practical skepticism as the center. Carneades is the entry point, but the working idea is graded belief that resists false certainty.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3593,8 +3394,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says responsible action refuses to confuse plausible with certain. One result can hide alternatives and the cost of being wrong.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3606,8 +3406,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 ties Carneades to challenges against certain knowledge. The common error is reading repeated reward or force as safety.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3619,8 +3418,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 supports probabilistic belief over binary certainty in uncertain domains. The honest move is grading confidence, not flattening it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3632,8 +3430,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says skepticism protects against early closure. A coherent story can be fitted after chance has already selected the visible path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3645,8 +3442,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says practical life still requires action, so doubt needs decision rules. Reputation can reflect lucky timing and selective observation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3658,8 +3454,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 links Sextus and Pyrrhonian tools to suspending overconfident judgment. Neat stories can be built after the outcome is known.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -3671,8 +3466,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says markets punish certainty. Risk judgment should start with position size, the record behind it, and the loss branch, not emotional vividness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3684,8 +3478,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 warns against the easy misreading that skepticism refuses commitments. The sharper version grades belief and acts without fake certainty.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3728,7 +3521,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Grade Belief Before Action",
         "coreSkill": "Practice matching confidence, language, and stake size. The skill is to act without smuggling certainty into uncertain evidence.",
         "ifThenPlans": [
           {
@@ -3749,24 +3541,17 @@
       },
       "memorableLines": [
         {
-          "text": "Certainty is expensive when chance is still moving.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a philosophical habit into a market cost the reader can remember."
+          "text": "Certainty is expensive when chance is still moving."
         },
         {
-          "text": "Doubt earns its keep when it changes size.",
-          "location": "breakdown.deepRead",
-          "why": "It makes skepticism practical by tying doubt to position size and action."
+          "text": "Doubt earns its keep when it changes size."
         },
         {
-          "text": "Act before certainty, but never as if certainty arrived.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the chapter's hard edge in one portable sentence."
+          "text": "Act before certainty, but never as if certainty arrived."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "fooled-by-randomness-ch14",
       "number": 14,
       "title": "Bacchus Abandons Antony",
@@ -3867,8 +3652,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dignified exposure is the mechanism. Antony's image opens the door, but the lesson is to avoid ruin, expect reversal, and keep the self from being owned by one result.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3880,8 +3664,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A sane stance checks the payoff shape and hidden alternatives. The latest result alone is not enough, and splitting wins into skill and losses into luck is too convenient.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3893,8 +3676,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Antony's fall shows how fast fortune can leave. Repeated reward may only mean the harmful state has not appeared yet, not that the exposure was safe.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3906,8 +3688,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stoic distance is not skipping review. It keeps emotional ownership away from outcomes chance helped choose while still examining the choices that were his.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3919,8 +3700,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Exposure choices decide how reversal lands on people, promises, and future options. Observed success or excitement can hide the missing bad branch.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3932,8 +3712,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dignified exposure favors robust habits over maximum visible success. Reputation often arrives after lucky timing and may miss the exposure that produced it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3945,8 +3724,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The final discipline is posture toward reversal, not perfect prediction. A clean story after the fact can be built around the known outcome.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3958,8 +3736,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Dignity comes from process, restraint, and preparedness. Applause and regret are vivid, but both can miss exposure, sample, and payoff shape.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3971,8 +3748,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stem asks for the surface reading. Romantic resignation is the tempting simplification; the hard lesson joins acceptance to active restraint before ruin arrives.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4015,7 +3791,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Set A Ruin Floor",
         "coreSkill": "Practice deciding what luck is not allowed to take. The skill is to cap preventable ruin before practicing emotional composure after the result.",
         "ifThenPlans": [
           {
@@ -4036,19 +3811,13 @@
       },
       "memorableLines": [
         {
-          "text": "Fortune can crown you and still be moving.",
-          "location": "breakdown.fastRead",
-          "why": "It turns success into a moving scene, not a settled identity."
+          "text": "Fortune can crown you and still be moving."
         },
         {
-          "text": "Survival is not proof; exposure is the clue.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the book's risk lesson into a clean test."
+          "text": "Survival is not proof; exposure is the clue."
         },
         {
-          "text": "Posture needs a floor under it.",
-          "location": "breakdown.fullRead",
-          "why": "It joins emotional discipline to concrete risk limits."
+          "text": "Posture needs a floor under it."
         }
       ]
     }

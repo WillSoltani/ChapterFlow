@@ -47,13 +47,6 @@
             "university",
             "dumbfounding"
           ],
-          "planSpec": {
-            "domain": "university research ethics review for a harmless-but-taboo survey",
-            "audience": "graduate coordinators and ethics reviewers",
-            "stakes": "Rebecca risks killing a study because the room feels disgust before it can name harm.",
-            "format": "scene",
-            "requiredBeat": "Rebecca slides the survey across the table and asks reviewers to separate the rule they can defend from the recoil they felt first."
-          },
           "scenario": "The consent forms smell of warm printer toner beside a plate of untouched cookies in the windowless seminar room. Rebecca watches a reviewer reach for the red ethics stamp after reading one taboo survey item. The study is anonymous and harmless by every checklist line. Before the committee votes, Rebecca has to decide whether to let the recoil pass as a rule or slide the survey packet across the table and ask which objection they can actually defend.",
           "whatToDo": "Separate the recoil from the rule. Ask the reviewers to name the specific harm, policy line, or participant risk before they stamp the study dead.",
           "whyItMatters": "The room may be right to pause, but disgust is not the same as an ethics violation. Naming the source of the no keeps a felt verdict from pretending to be a finished argument."
@@ -66,13 +59,6 @@
             "rules",
             "convention"
           ],
-          "planSpec": {
-            "domain": "municipal bylaw office sorting noise complaints and neighbor etiquette",
-            "audience": "city clerks handling ambiguous rule violations",
-            "stakes": "Mathieu has to decide whether a complaint is moral harm or social convention before issuing a warning.",
-            "format": "decision_point",
-            "requiredBeat": "Mathieu places two complaint files side by side and marks which one involves harm, not mere annoyance."
-          },
           "scenario": "Fluorescent light reflects off two blue folders on a scratched counter at the bylaw office. Mathieu has a decibel chart for one complaint and a warning letter template for both. One file says a tenant blasted music after midnight. The other says a family ate supper on the front steps. Mathieu has to decide whether both complaints are moral violations or whether one is only a bruised local convention.",
           "whatToDo": "Place the files side by side and mark the protected value in each one. Treat harm, coercion, and sleep loss differently from annoyance about how neighbors look.",
           "whyItMatters": "A rule can feel moral because a caller is offended. Sorting the alarm first stops a clerk from punishing etiquette as if it were injury."
@@ -85,13 +71,6 @@
             "vaccines",
             "teaching"
           ],
-          "planSpec": {
-            "domain": "pediatric clinic explaining vaccination hesitancy to new residents",
-            "audience": "medical residents who assume facts will settle every objection",
-            "stakes": "Aanya must teach residents why a parent feels a verdict before weighing evidence.",
-            "format": "dialogue",
-            "requiredBeat": "Aanya asks the resident to repeat the parent's exact first sentence and circle the moral alarm inside it."
-          },
           "scenario": "\"She said I was poisoning him,\" the resident says, still holding the chart tablet under a faded waiting-room sticker. Aanya hears three interns shift toward the risk tables. Before the next patient is called, she must decide whether to let them answer with facts first or ask the resident to repeat the parent's exact sentence and circle the moral alarm inside it.",
           "whatToDo": "Start with the parent's first words. Circle the alarm they reveal, then choose facts that speak to that alarm instead of burying it under statistics.",
           "whyItMatters": "The parent is not weighing numbers yet. She is protecting a child from a felt violation, so facts land only after the resident understands the verdict already in the room."
@@ -104,13 +83,6 @@
             "restoration",
             "sacred"
           ],
-          "planSpec": {
-            "domain": "restoration crew deciding whether to repaint a memorial wall",
-            "audience": "museum conservators facing public anger",
-            "stakes": "Henrik must distinguish sacred attachment from mere preference.",
-            "format": "postmortem",
-            "requiredBeat": "Henrik realizes the angry calls were not about color accuracy after he reads the names engraved under the old paint."
-          },
           "scenario": "It took Henrik, the city restoration lead, three days to understand why the beige sample had made callers sound betrayed. At dusk beside the veterans' memorial wall, the paint swatch matched the archive and the voicemail log looked like ordinary public anger. Then he crouched under the bronze name panels and read the engraved names under the old paint. The anger was not about color accuracy. It was about treating a place of memory like a hallway.",
           "whatToDo": "Reclassify the reaction before replying. Treat the wall as a moral object for the callers, then explain the restoration through memory and duty, not color alone.",
           "whyItMatters": "A sacred attachment can sound like a preference when heard from the outside. Henrik will miss the issue if he answers taste when the callers are defending obligation."
@@ -123,13 +95,6 @@
             "loyalty",
             "family"
           ],
-          "planSpec": {
-            "domain": "family-run bakery handling a recipe change after the founder's death",
-            "audience": "small business owners changing inherited practices",
-            "stakes": "Laura sees that the staff's no is moralized loyalty, not taste preference.",
-            "format": "before_after",
-            "requiredBeat": "You can call it a cheaper filling, but Laura watches the bakers touch the old recipe card like a photograph."
-          },
           "scenario": "You notice the laminated recipe card before anyone mentions cost. Laura has a cheaper apricot filling tub on the prep table and a black mourning ribbon still tied to the mixer. Last week the bakers rejected the change as if it were an insult. This morning, she watches two of them touch the founder's old card like a photograph and understands the no was loyalty before it was taste.",
           "whatToDo": "Name the loyalty before naming the price. Let the staff decide which parts of the recipe carry memory and which parts can be changed without betrayal.",
           "whyItMatters": "A cost argument cannot answer a loyalty alarm. Once Laura sees the card as a moral object, she can change the process without making the staff defend the dead."
@@ -142,13 +107,6 @@
             "culture",
             "moderation"
           ],
-          "planSpec": {
-            "domain": "online marketplace moderation call about a culturally loaded listing",
-            "audience": "trust-and-safety reviewers in a cross-border marketplace",
-            "stakes": "Diego has to pause a takedown argument until the team names which culture's moral boundary is being assumed.",
-            "format": "predict_reveal",
-            "requiredBeat": "Which policy line did Diego think was universal until the Dublin reviewer read the listing differently?"
-          },
           "scenario": "Which rule feels obvious only because everyone in your office shares it? On the moderation call, Diego has a flagged listing, a Dublin reviewer note, and a policy matrix open on his laptop. He predicts the takedown will be unanimous. Then the Dublin reviewer reads the listing differently. Diego has to decide whether the policy line is universal or only his office's moral boundary in formal language.",
           "whatToDo": "Pause the vote and name the assumed boundary. Ask each reviewer which culture's moral map the policy is using before treating the first reaction as universal.",
           "whyItMatters": "A global rule can hide a local instinct. Diego protects consistency better by naming the map underneath the policy than by pretending no map is there."
@@ -167,8 +125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key sign is a strong verdict with thin reasons. Quick expert discomfort may still matter, but the first task is to separate the felt no from the rule it claims to enforce.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -180,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The clerk should sort the kind of alarm before acting. Harm from a broken stair differs from discomfort with public behavior, even if both callers use moral language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -193,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Facts may matter, but they will land badly if they miss the alarm already active. Calling the reaction irrational only hardens the verdict the parent is defending.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -206,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The card points to a moralized attachment, not just a taste test. Cost pressure and flavor can still be discussed, but only after loyalty has been seen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -219,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The disagreement is evidence that a local moral map may be hiding inside a global rule. Majority speed would only bury the assumption under process.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -232,8 +185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shared tone can hide different categories. Turiel's distinction helps keep a local convention from being treated exactly like harm to another student.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -245,8 +197,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Changing reasons can signal a verdict looking for support. That does not make the concern fake, but it means the source of the alarm needs to be found.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -258,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk is not only translation or length. A narrow local moral map can be mistaken for the whole human range, especially around dignity, duty, and purity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -271,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Starting with the alarm exposes the source of the verdict. Jumping straight to reasons can make each side polish its defense while the real trigger stays hidden.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -333,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "Catch the verdict first. Then ask where it came from.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the whole chapter into a simple sequence the reader can perform in a real disagreement."
+          "text": "Catch the verdict first. Then ask where it came from."
         },
         {
-          "text": "Moral dumbfounding begins where the alarm is strong and the explanation is thin.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence gives a memorable test for recognizing the core phenomenon without jargon overload."
+          "text": "Moral dumbfounding begins where the alarm is strong and the explanation is thin."
         },
         {
-          "text": "A verdict is a footprint, not a birth certificate.",
-          "location": "breakdown.fullRead",
-          "why": "The image keeps the reader from treating a spoken reason as proof of the judgment's origin."
+          "text": "A verdict is a footprint, not a birth certificate."
         }
       ]
     },
@@ -372,13 +315,6 @@
             "review",
             "intuition"
           ],
-          "planSpec": {
-            "domain": "hospital morbidity review after a risky but successful shortcut",
-            "audience": "clinicians defending their judgments under scrutiny",
-            "stakes": "Emily hears polished reasons arrive after a gut-level loyalty response.",
-            "format": "scene",
-            "requiredBeat": "Emily writes the first emotional verdict on the board before allowing anyone to list clinical reasons."
-          },
           "scenario": "\"We would do it again,\" the surgeon says before anyone opens the case file. Emily stands beside the cold coffee urn in the Thursday morbidity review, marker uncapped over a whiteboard column labeled first reaction. The chief resident is already flipping to the vitals page. Before the team lists blood pressure, hallway load, and staffing ratios, she must decide whether to record the gut-level loyalty response that arrived before the clinical reasons.",
           "whatToDo": "Write the first verdict on the board before the reasons begin. Then let the team test which later reasons explain the case and which ones defend the team.",
           "whyItMatters": "The shortcut may have been sound, but the first sentence was loyalty, not analysis. Naming that order keeps clinical reasoning from becoming a shield for group pride."
@@ -391,13 +327,6 @@
             "design",
             "embarrassment"
           ],
-          "planSpec": {
-            "domain": "product team deciding whether a disliked feature is unethical or merely ugly",
-            "audience": "design leads with strong taste reactions",
-            "stakes": "Chris must find the intuition underneath his principled language.",
-            "format": "decision_point",
-            "requiredBeat": "Chris deletes three noble-sounding objections and names the embarrassment he felt when users mocked the prototype."
-          },
           "scenario": "The prototype loops silently on a wall monitor while nobody sits in the front row of the design review. Chris has a deleted comment draft full of principled phrases: manipulative, disrespectful, anti-user. His usability notes show users laughing at the clumsy animation, and the product lead is waiting for one clear recommendation. He has to decide whether the feature is unethical or whether embarrassment hired moral language to kill something ugly.",
           "whatToDo": "Delete the grand objections for a minute and name the feeling underneath them. Then rebuild the critique from user harm, not from the sting of being mocked.",
           "whyItMatters": "A bad feeling can find impressive words fast. Chris protects real ethics by refusing to let embarrassment pass itself off as a moral principle."
@@ -410,13 +339,6 @@
             "parents",
             "fairness"
           ],
-          "planSpec": {
-            "domain": "parent-teacher conference after a playground exclusion",
-            "audience": "teachers mediating parents who each feel morally certain",
-            "stakes": "Manon catches both parents using fairness language to defend their own child first.",
-            "format": "dialogue",
-            "requiredBeat": "Manon asks each parent to state the other child's strongest reason before giving another defense."
-          },
           "scenario": "Wet mittens drip under the conference table as two parents speak over each other. \"Fair is fair,\" one says, tapping the incident slip beside a tiny chair. \"Exactly,\" the other snaps. Manon hears the same word protecting two different children while the lunch bell rattles through the hallway. Before the principal arrives, she must decide whether to keep collecting defenses or ask each parent to state the other child's strongest reason first.",
           "whatToDo": "Make each parent argue the other child's best reason before adding another defense. Keep the fairness word, but make it carry both sides for one minute.",
           "whyItMatters": "Both parents are using fairness as an advocate for loyalty. Reversing the task reveals whether the reason can search or only defend."
@@ -429,13 +351,6 @@
             "reputation",
             "memo"
           ],
-          "planSpec": {
-            "domain": "investment committee rejecting a proposal from a rival office",
-            "audience": "finance partners protecting reputation through analysis",
-            "stakes": "Yusuf spots the memo becoming an advocate for office pride.",
-            "format": "postmortem",
-            "requiredBeat": "Yusuf compares the rejection memo with last year's identical risk that the committee accepted from its own team."
-          },
           "scenario": "It took Yusuf one archived memo to see that the spreadsheet had learned office politics. In the glass boardroom, the committee rejected a rival office's proposal for risk exposure while partners nodded at the red cells on the model. Last year's file showed the same risk model accepted from their own desk. The rejection memo was not nonsense. It was a technical brief recruited to defend office pride.",
           "whatToDo": "Compare the reason with a case where your own side benefited. If the same risk changes moral color by office, treat the memo as an advocate.",
           "whyItMatters": "Numbers can still serve identity. Yusuf does not need to reject analysis; he needs to ask whether analysis is applying one standard or defending a team."
@@ -448,13 +363,6 @@
             "campaign",
             "identity"
           ],
-          "planSpec": {
-            "domain": "climate nonprofit choosing campaign language after donor backlash",
-            "audience": "campaign strategists who believe they are just following evidence",
-            "stakes": "Pavel notices that donor identity selected the evidence the team called decisive.",
-            "format": "predict_reveal",
-            "requiredBeat": "At 10:12, Pavel asks the team to predict which fact each donor group will call most rational before showing the split."
-          },
           "scenario": "At 10:12 in the climate nonprofit's donor war room, Pavel dims the screen and leaves only the donor segments visible. The projector remote rests beside six fact cards about the same campaign, and yesterday's angry donor emails are stacked in the shared inbox. His fundraising team says they will choose the evidence that works. Before showing the backlash data, Pavel has to decide whether to ask them to predict which fact each donor group will call most rational.",
           "whatToDo": "Ask for the prediction before the data reveal. Make the team name how donor identity may choose the fact it later calls reasonable.",
           "whyItMatters": "A fact can be true and still be selected by belonging. Predicting the split exposes the advocate inside the evidence choice."
@@ -467,13 +375,6 @@
             "fairness",
             "feeling"
           ],
-          "planSpec": {
-            "domain": "couple deciding whether a holiday visit is fair",
-            "audience": "readers in intimate arguments where reasons arrive fast",
-            "stakes": "Grace identifies the feeling of being taken for granted before continuing the fairness debate.",
-            "format": "reflection",
-            "requiredBeat": "You pause with the calendar open and say the feeling first, then ask whether the fairness reason still fits."
-          },
           "scenario": "You have the shared family calendar open at 9:18 p.m. in the train station cafe, and your thumb is over the send button. Grace has added the train fare twice, counted last year's visits, and drafted a text about fairness to her brother. The unsent text sounds clean. Then she notices the heat behind it: she feels taken for granted. Before sending, she pauses and asks whether fairness is the reason or the lawyer.",
           "whatToDo": "Say the protected feeling first: I feel taken for granted. Then decide which fairness claim still stands after the feeling no longer has to hide.",
           "whyItMatters": "Intimate arguments produce excellent reasons quickly. Naming the feeling keeps fairness from becoming a polished weapon for a wound that needs direct words."
@@ -492,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The order matters: verdict first, reasons after. The reasons may still be valid, but they should be tested rather than granted neutral status.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -505,8 +405,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming embarrassment prevents it from hiring ethical language unchecked. The feature may still be bad, but the critique should rest on user harm, not wounded pride.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -518,8 +417,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reversal tests whether fairness can search beyond loyalty. Silence would not reveal the advocate role, and volume is a poor guide to moral clarity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -531,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The same standard applied differently suggests advocacy. The answer is not to reject numbers, but to test whether numbers are serving a team preference.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -544,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The facts can all be true while identity chooses which one feels compelling. The useful move is to expose that selection, not to abandon evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -557,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Moving reasons often signal a verdict looking for support. The concern may be sincere, but the source is likely earlier than the latest objection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -570,8 +465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is not false evidence. It is evidence being recruited to defend belonging and reputation, which changes how reasons are selected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -583,8 +477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fairness claim might still matter. The point is that it was doing double duty, arguing about schedules while protecting the feeling underneath.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -596,8 +489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The protected feeling reveals who hired the reason. More reasons can be useful later, but first the mediator needs to know whether they are searching or defending.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -658,19 +550,13 @@
       },
       "memorableLines": [
         {
-          "text": "The reasons may be true. They are not first.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the chapter's nuance by refusing both cynicism and naive trust in reasons."
+          "text": "The reasons may be true. They are not first."
         },
         {
-          "text": "Find the feeling that hired the reason.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence gives readers a compact diagnostic move they can use in live conflict."
+          "text": "Find the feeling that hired the reason."
         },
         {
-          "text": "Once you see the tail, you do not have to cut it off.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the lesson from becoming anti-reason while making the metaphor stick."
+          "text": "Once you see the tail, you do not have to cut it off."
         }
       ]
     },
@@ -697,13 +583,6 @@
             "default",
             "safety"
           ],
-          "planSpec": {
-            "domain": "food delivery dispatcher trying to reduce unsafe rush decisions",
-            "audience": "operations leads whose staff know the rule but ignore it under pressure",
-            "stakes": "Thomas changes the dispatch screen default before giving another safety talk.",
-            "format": "before_after",
-            "requiredBeat": "Thomas moves the safest route option to the top and watches riders stop choosing the shortcut."
-          },
           "scenario": "Rain beads on the dispatch window at the courier office while the old shortcut glows green on every rider screen. Thomas has already warned riders about the underpass twice, and the rain radar says it will flood again before dinner. On Monday, the shortcut sits first. By Wednesday, he moves the safer route to the top and puts the shortcut behind a warning toggle. The riders stop choosing it without another safety poster.",
           "whatToDo": "Change the default route before repeating the warning. Put the safer path first, add friction to the shortcut, and let the screen steer under pressure.",
           "whyItMatters": "The riders know the rule, but speed and rain give the old shortcut momentum. A better default changes the path the elephant sees first."
@@ -716,13 +595,6 @@
             "anger",
             "cue"
           ],
-          "planSpec": {
-            "domain": "public defender managing anger before a sentencing hearing",
-            "audience": "lawyers who cannot outthink a trigger in the moment",
-            "stakes": "Ingrid changes where she waits so the prosecutor's hallway smirk does not steer the whole hearing.",
-            "format": "scene",
-            "requiredBeat": "Ingrid takes the back stairwell and reviews one client photo before entering court."
-          },
           "scenario": "The courthouse stairwell smells like floor wax and wet wool. Ingrid has sentencing notes clipped under one arm and a client photo tucked inside the folder. The prosecutor usually waits in the main hallway with the smirk that makes her open too sharply. Before the hearing, she must decide whether to prove she can ignore him or take the back stairwell and look at the photo before entering court.",
           "whatToDo": "Take the back stairwell and review the client photo before entering. Remove the trigger instead of asking anger to behave at the hardest point.",
           "whyItMatters": "Ingrid's rider can promise composure, but the hallway cue has rehearsed the opposite. Changing the approach gives her judgment a cleaner start."
@@ -735,13 +607,6 @@
             "outage",
             "template"
           ],
-          "planSpec": {
-            "domain": "software incident commander avoiding blame spirals at 2 a.m.",
-            "audience": "engineering leads under outage stress",
-            "stakes": "Luca replaces blame chat with a forced status template that gives the elephant a track.",
-            "format": "decision_point",
-            "requiredBeat": "At 2:17, Luca locks the channel to three fields: symptom, owner, next check."
-          },
           "scenario": "At 2:17, Luca watches the outage channel fill with accusations faster than logs. The pager alert is still pulsing on his laptop. His status template is ready, but one senior engineer is already blaming the payments team. Luca has to decide whether to post another calm-down reminder or lock the channel to three fields: symptom, owner, next check.",
           "whatToDo": "Lock the channel to the template and require every update to name a symptom, owner, and next check. Give panic a track instead of a speech.",
           "whyItMatters": "During an outage, anxiety will move somewhere. The template channels momentum into useful updates before blame becomes the team's default path."
@@ -754,13 +619,6 @@
             "habit",
             "pantry"
           ],
-          "planSpec": {
-            "domain": "diabetes educator helping a patient skip late-night sweets",
-            "audience": "health coaches facing habits stronger than intentions",
-            "stakes": "Hadiya moves the sweets before discussing motivation.",
-            "format": "vignette",
-            "requiredBeat": "Hadiya asks where the biscuits live and has the patient choose a different shelf during the call."
-          },
           "scenario": "\"Show me where the biscuits are,\" Hadiya says during the diabetes clinic's video check-in, and the phone camera swings toward the pantry shelf. The glucose log is open on the kitchen table. Her patient has promised five times to stop the late-night handful. Hadiya asks him to choose a higher shelf across the room before they discuss motivation, because the first shelf has been making the choice before he does.",
           "whatToDo": "Move the biscuits during the call. Put them where the hand cannot reach without a second step, then talk about the evening plan.",
           "whyItMatters": "A habit with a visible cue is already halfway chosen. Moving the cue gives intention a chance before the old reach begins."
@@ -773,13 +631,6 @@
             "mood",
             "seating"
           ],
-          "planSpec": {
-            "domain": "choir director recovering after a sour rehearsal",
-            "audience": "arts leaders trying to shift group mood",
-            "stakes": "Claire changes the first song and seating pattern before asking singers to be more generous.",
-            "format": "postmortem",
-            "requiredBeat": "Claire sees the lecture failed, then opens rehearsal with the easiest shared harmony and mixed seating."
-          },
           "scenario": "It took Claire, the choir director at St. Anne's, one recorded Thursday rehearsal to hear the elephant refusing her sermon. The voice memo caught folding chairs scraping in the parish hall, hymn folders snapping shut, and her own lecture about generosity landing flat. The next week she mixed the seating and opened with the easiest shared harmony. Only after the room heard itself sound whole did she discuss the sourness.",
           "whatToDo": "Change the first sound and the seating before asking for a better attitude. Let the group feel cooperation once, then talk about the problem.",
           "whyItMatters": "A tense group cannot always be argued into softness. Claire gives the elephant a successful first step, and the rider can learn from that."
@@ -792,13 +643,6 @@
             "inspection",
             "friction"
           ],
-          "planSpec": {
-            "domain": "rail maintenance supervisor preventing shortcut inspections",
-            "audience": "field supervisors whose crews know the checklist by heart",
-            "stakes": "Jonas makes skipped steps physically impossible to hide.",
-            "format": "predict_reveal",
-            "requiredBeat": "What would Jonas change if the crew's hands, not their intentions, were carrying the inspection?"
-          },
           "scenario": "What if the problem is not the checklist but the path of the clipboard through the yard? Jonas watches a crew pass the yellow track gate with the inspection clipboard under one arm and a radio crackling by the tool shed. The hidden bolts are skipped again. Before the next shift, he has to decide whether to repeat the checklist lecture or tag the bolts and hang the clipboard at the gate so their hands cannot miss the step.",
           "whatToDo": "Tag the hidden bolts and move the clipboard to the gate. Make the skipped step visible in the crew's path rather than hidden in memory.",
           "whyItMatters": "The crew already knows the checklist. Jonas changes the environment so the right inspection becomes the path of least resistance."
@@ -817,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The old screen gives the shortcut momentum under pressure. Changing the default steers behavior before another speech has to fight the same cue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -830,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The back stairwell changes the cue before anger takes over. A self-command speech leaves the trigger in place, and a sharper opening feeds the same momentum.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -843,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The template gives anxious energy a track. A reminder asks the rider to override panic while the channel still rewards blame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -856,8 +697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shelf is part of the habit. Moving it changes the reach that starts the behavior, while more explanation leaves the cue untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -869,8 +709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The easier harmony lets the group feel cooperation before being corrected. Sternness and cancellation ask for attitude change without changing the first experience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -882,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not missing information. The environment lets the old inspection path continue, so tagging bolts and moving the clipboard changes the path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -895,8 +733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The workflow is doing the steering. The manager should change access, defaults, or friction rather than keep explaining a choice the path undermines.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -908,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The layout may be teaching against the speech. The elephant follows the path with less friction, so the path needs inspection before character judgments.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -921,8 +757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "High momentum favors the existing path. Reducing friction gives reflection a usable road, while a session leaves the old path ready to pull again.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -983,19 +818,13 @@
       },
       "memorableLines": [
         {
-          "text": "By Friday, the lecture has not improved, but the path in front of the rider has.",
-          "location": "breakdown.fastRead",
-          "why": "The short sentence makes the contrast between speech and environment land sharply."
+          "text": "By Friday, the lecture has not improved, but the path in front of the rider has."
         },
         {
-          "text": "A speech to the rider often fails because the elephant is already moving.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the control problem a concrete image without turning it into generic willpower advice."
+          "text": "A speech to the rider often fails because the elephant is already moving."
         },
         {
-          "text": "If the rider wants movement, it should design the ground.",
-          "location": "breakdown.fullRead",
-          "why": "The line converts the metaphor into an actionable design principle."
+          "text": "If the rider wants movement, it should design the ground."
         }
       ]
     },
@@ -1022,13 +851,6 @@
             "persuasion",
             "audience"
           ],
-          "planSpec": {
-            "domain": "city zoning hearing where neighbors cite safety to protect parking",
-            "audience": "planners reading moral rhetoric in public comments",
-            "stakes": "Megan maps each stated reason to the constituency it reassures.",
-            "format": "scene",
-            "requiredBeat": "Megan groups comment cards by the audience they signal to, not by the literal topic line."
-          },
           "scenario": "A stack of comment cards leans against a cracked microphone base in the planning office after a zoning hearing. Megan has the zoning map open beside them. Most cards say safety, but the red marks cluster where parking would disappear. Before she briefs council, she must decide whether to summarize the literal reasons or group the cards by the audience each reason reassures.",
           "whatToDo": "Sort the cards by the constituency they signal to: parents, homeowners, commuters, or council members. Then answer both the safety claim and the parking campaign underneath it.",
           "whyItMatters": "The word safety may be sincere and still be recruiting allies for another loss. Megan hears the argument better when she hears its audience."
@@ -1041,13 +863,6 @@
             "pivot",
             "reputation"
           ],
-          "planSpec": {
-            "domain": "startup founder explaining a pivot to employees and investors",
-            "audience": "founders under reputation pressure",
-            "stakes": "Daniel separates the reason that persuades staff from the reason that reassures investors.",
-            "format": "decision_point",
-            "requiredBeat": "You watch Daniel draft two versions and circle the sentence that protects his status more than the truth."
-          },
           "scenario": "You see the investor deck and the all-hands notes open on the same laptop in a startup conference room. Daniel has a runway chart in one tab and a draft pivot message in another. The investor line says discipline. The staff line says focus. One sentence, about always seeing the market early, protects his status more than the truth. Before Friday, he has to decide whether to keep it.",
           "whatToDo": "Circle the status-saving sentence and cut it. Keep separate reasons for investors and staff, but make each one carry truth instead of vanity.",
           "whyItMatters": "Different audiences need different explanations. The danger is letting reputation sneak into the reason and pretend it is evidence."
@@ -1060,13 +875,6 @@
             "solidarity",
             "language"
           ],
-          "planSpec": {
-            "domain": "union local choosing language for a contract rejection",
-            "audience": "labor organizers building solidarity",
-            "stakes": "Catarina rewrites a technical wage argument as a loyalty appeal to members.",
-            "format": "before_after",
-            "requiredBeat": "Catarina asks which sentence will make a wavering member feel seen by the group."
-          },
           "scenario": "\"Nobody chants a spreadsheet,\" Catarina says, tapping the wage table under the union hall lectern. The first flyer explains the contract gap in percentages. The second says a no vote tells part-time members they are not alone. Folded flyers sit in stacks by the door. Catarina asks which sentence will make a wavering member feel seen by the group.",
           "whatToDo": "Keep the wage table, but lead with the loyalty sentence. Let the technical reason support the shared reason members can carry together.",
           "whyItMatters": "The contract argument needs numbers and belonging. A public reason recruits action only when members can hear themselves inside it."
@@ -1079,13 +887,6 @@
             "trust",
             "rumor"
           ],
-          "planSpec": {
-            "domain": "school board candidate responding to a curriculum rumor",
-            "audience": "campaign volunteers tempted by fact dumps",
-            "stakes": "Devon hears the reply as an audition for trust, not only an answer to a rumor.",
-            "format": "postmortem",
-            "requiredBeat": "Devon marks which sentence would recruit anxious parents instead of humiliating them."
-          },
           "scenario": "It took Devon one rainy canvassing shift on Maple Avenue to see that the fact sheet was losing the porch. The door hanger corrected the curriculum rumor, but the porch light stayed on over parents who felt mocked. Back at school-board headquarters, he marked the sentence that sounded like a scold and wrote one that would recruit anxious parents instead of humiliating them.",
           "whatToDo": "Answer the rumor without performing superiority. Write the first sentence for anxious parents who need a way to join you without losing face.",
           "whyItMatters": "A correction can be accurate and socially useless. Devon needs a reason that persuades the audience in front of him, not a fact sheet that flatters volunteers."
@@ -1098,13 +899,6 @@
             "service",
             "staff"
           ],
-          "planSpec": {
-            "domain": "restaurant group defending a service charge policy",
-            "audience": "owners explaining an unpopular fee",
-            "stakes": "Olivier identifies which reason is for guests and which is for staff pride.",
-            "format": "dialogue",
-            "requiredBeat": "Olivier asks the manager to say the staff-facing reason aloud before writing the menu note."
-          },
           "scenario": "The receipt printer spits out a test check with the new service charge circled before the 5 p.m. dinner briefing. \"Guests will want transparency,\" the manager says, menu note open beside the printer. Olivier points to the line cooks visible through the pass. \"Say the staff reason aloud first.\" Before service, he has to decide which reason belongs on the menu and which belongs in the staff meeting.",
           "whatToDo": "Separate the audiences. Write guests a clear menu note, then tell staff the dignity and pay-stability reason without hiding behind guest transparency.",
           "whyItMatters": "One policy speaks to two rooms. Olivier weakens both if he uses a guest reason to avoid saying the staff reason plainly."
@@ -1117,13 +911,6 @@
             "replication",
             "reputation"
           ],
-          "planSpec": {
-            "domain": "research lab deciding how to announce a failed replication",
-            "audience": "scientists balancing truth and reputation",
-            "stakes": "Anya distinguishes the public reason from the status-saving reason in the draft statement.",
-            "format": "reflection",
-            "requiredBeat": "Which sentence in Anya's draft tells the truth, and which one is campaigning for the lab?"
-          },
           "scenario": "Which sentence would you keep if nobody knew your name was on the paper? Anya has the draft statement, the replication file, and the journal email open after midnight in the lab. One sentence says the finding did not replicate. Another says the lab has always modeled transparency. Before sending, she has to decide which sentence tells truth and which one campaigns for the lab.",
           "whatToDo": "Keep the sentence that tells what happened and revise the sentence that flatters the lab. Let reputation be a constraint, not the hidden author.",
           "whyItMatters": "The announcement must persuade peers, but persuasion should not turn a failed replication into a status performance."
@@ -1142,8 +929,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The safety concern may be real, but it is also doing public work. The planner should hear both the literal claim and the constituency it gathers.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1155,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Different audiences can need different reasons. The problem is the vanity sentence that recruits trust by rewriting the founder's status.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1168,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The numbers matter, but they are not enough to recruit collective action. A public reason must give members language for belonging as well as calculation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1181,8 +965,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reply has to recruit anxious parents, not humiliate them. More facts or mockery may satisfy supporters while losing the intended audience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1194,8 +977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same policy speaks to two rooms. Separating the audiences lets each reason do honest work instead of hiding staff pride behind guest language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1207,8 +989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not that reputation exists. The risk is letting reputation write the statement while pretending the draft is only about the result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1220,8 +1001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public reasons often address the visible audience and the imagined one. The useful analysis is the social job the reason performs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1233,8 +1013,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A reason can be true and still serve reputation. Testing the claim away from status pressure shows whether it is explanation or cover.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1246,8 +1025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Truth still matters, but public reasoning also has to invite people into a position. The warmer answer works only if it keeps the facts intact.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1308,19 +1086,13 @@
       },
       "memorableLines": [
         {
-          "text": "A reason often behaves like a campaign handbill for the side already chosen.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the chapter's source anchor in a concrete political image without becoming partisan."
+          "text": "A reason often behaves like a campaign handbill for the side already chosen."
         },
         {
-          "text": "The trick is to hear the invitation.",
-          "location": "breakdown.deepRead",
-          "why": "The short line turns persuasion analysis into a memorable listening skill."
+          "text": "The trick is to hear the invitation."
         },
         {
-          "text": "If you hear the social work, you can answer with more accuracy and less surprise.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the payoff: better response, not cynicism about motives."
+          "text": "If you hear the social work, you can answer with more accuracy and less surprise."
         }
       ]
     },
@@ -1347,13 +1119,6 @@
             "global",
             "gifts"
           ],
-          "planSpec": {
-            "domain": "international HR team revising a global gifts policy",
-            "audience": "managers applying one office's ethics rules worldwide",
-            "stakes": "Sophie catches the team treating a WEIRD discomfort as universal corruption risk.",
-            "format": "scene",
-            "requiredBeat": "Sophie lays three regional gift cases on the table and asks which concern each culture is protecting."
-          },
           "scenario": "Three sealed gift boxes sit under the video screen in the global compliance room, each with a different regional office label. Sophie has a policy grid open on the table while London calls every client gift a corruption risk and Singapore asks about respect rituals. Before the global rule is approved, she must decide whether to let one office's discomfort travel worldwide or ask which concern each region is protecting.",
           "whatToDo": "Lay out the regional cases and name the protected concern in each one: fairness, obligation, respect, or corruption risk. Then write the rule around values, not one office's reflex.",
           "whyItMatters": "A global policy can universalize a local moral instinct. Sophie widens the map before deciding which limits should travel."
@@ -1366,13 +1131,6 @@
             "sanctity",
             "wording"
           ],
-          "planSpec": {
-            "domain": "urban animal shelter mediating a dispute about ritual slaughter language",
-            "audience": "nonprofit staff in moral conflict",
-            "stakes": "Marco separates harm concerns from sanctity concerns without mocking either.",
-            "format": "dialogue",
-            "requiredBeat": "Marco asks each side to name the protected value before proposing wording."
-          },
           "scenario": "\"You keep saying humane, but she keeps saying sacred,\" Marco says beside the steel intake table. A draft brochure and translation note sit between two staff members who are close to quitting the wording meeting. Before the brochure goes to print, Marco must choose between forcing every concern into harm language and asking each side to name the value it is protecting.",
           "whatToDo": "Ask each side to name the protected value in plain words. Then draft language that distinguishes harm standards from sanctity concerns without mocking either one.",
           "whyItMatters": "If Marco hears only harm, one side will sound irrational. Naming sanctity lets the staff disagree about policy while seeing the moral concern in the room."
@@ -1385,13 +1143,6 @@
             "food",
             "tradition"
           ],
-          "planSpec": {
-            "domain": "university dining committee debating meatless defaults",
-            "audience": "students who assume harm/fairness covers every objection",
-            "stakes": "Chidi adds loyalty and tradition to the map before the vote.",
-            "format": "decision_point",
-            "requiredBeat": "Chidi draws a second column for tradition and watches the opposition stop looking irrational."
-          },
           "scenario": "Steam clouds the dining hall windows while the ballot box waits by the salad bar. Chidi has a menu placard in one hand and a harm-reduction brief in the other, and alumni emails about Sunday roasts sit unopened in the inbox. The opposition to meatless defaults sounds selfish to half the committee. The question is whether he adds a tradition column before the vote and asks what the old meals represent on campus.",
           "whatToDo": "Add the tradition column before the vote. Keep the harm argument, but make room for loyalty and ritual so the opposition becomes legible.",
           "whyItMatters": "The broader map does not decide the policy. It keeps Chidi from treating every non-harm concern as bad faith before the vote begins."
@@ -1404,13 +1155,6 @@
             "display",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "public library setting rules for a controversial display",
-            "audience": "librarians balancing inclusion, offense, and local norms",
-            "stakes": "Hanna notices that the complaint is not only harm but community boundary.",
-            "format": "postmortem",
-            "requiredBeat": "Hanna rereads the complaint letters and tags the moral concern each one assumes."
-          },
           "scenario": "It took Hanna, the branch librarian, the third handwritten letter after Tuesday closing to stop calling every objection censorship. The display case was locked, and the catalog cart still blocked the aisle under the local-history sign. She reread the letters with colored tags: harm to children, insult to elders, boundary of the town. The decision stayed hard, but the objections stopped looking like one crude thing.",
           "whatToDo": "Tag the moral concern inside each complaint before drafting display rules. Separate inclusion, harm, offense, and local boundary instead of treating all objections alike.",
           "whyItMatters": "Hanna can defend access more intelligently when she knows what each complaint protects. A wider map sharpens judgment instead of softening it."
@@ -1423,13 +1167,6 @@
             "family",
             "respect"
           ],
-          "planSpec": {
-            "domain": "wedding planner navigating family expectations across cultures",
-            "audience": "readers managing family rituals",
-            "stakes": "Juliette sees that one side hears a seating chart as fairness and the other hears it as respect.",
-            "format": "vignette",
-            "requiredBeat": "You watch Juliette move name cards only after naming which value each family is defending."
-          },
           "scenario": "You notice the gold name cards arranged like small verdicts on the hotel table two hours before the rehearsal dinner. Juliette, the wedding planner, has a floor plan, an aunt's voicemail, and two families using the word fair differently. One side wants equal distance from the couple. The other wants elders visibly honored. Before moving a single card, Juliette must decide whether to treat this as logistics or name which value each family is defending.",
           "whatToDo": "Name the competing values before touching the floor plan. Treat fairness and respect as different concerns, then design a seating compromise around both.",
           "whyItMatters": "The seating chart is not only logistics. Juliette avoids needless insult by hearing the moral language each family brings to the table."
@@ -1442,13 +1179,6 @@
             "product",
             "markets"
           ],
-          "planSpec": {
-            "domain": "consumer app team designing privacy prompts for multiple countries",
-            "audience": "product teams universalizing one market's moral assumptions",
-            "stakes": "Tomasz tests whether consent, dignity, and authority concerns vary by market.",
-            "format": "predict_reveal",
-            "requiredBeat": "At 3:45, Tomasz asks the team to predict which privacy phrase will calm each market before showing interviews."
-          },
           "scenario": "At 3:45 in the product research lab, Tomasz pins three translated prompts beneath the same red tracking icon. Interview clips are queued on the conference room screen, and the Berlin launch checklist is already overdue. The team predicts consent language will calm every market. Before he presses play, Tomasz faces a choice: accept the prediction or ask which phrase each country will trust, consent, dignity, or visible authority.",
           "whatToDo": "Ask for the market prediction first, then show the interviews. Make the team see where its own privacy assumptions travel poorly.",
           "whyItMatters": "A privacy prompt is a moral signal, not just legal text. Tomasz keeps one market's instincts from becoming the product's universal voice."
@@ -1467,8 +1197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The risk is not that gifts are always fine. It is that one office's moral map may be mistaken for the whole range of concerns a global rule must handle.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1480,8 +1209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming both values lets the group understand the conflict without surrendering policy judgment. Forcing all concern into harm language hides part of the dispute.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1493,8 +1221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The broader map does not decide the vote. It prevents the committee from treating every non-harm concern as irrational before debate starts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1506,8 +1233,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tagging concerns clarifies the actual dispute. It does not require removing the display or ignoring inclusion; it makes the judgment more precise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1519,8 +1245,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The planner needs both values on the table. Equal distance may solve fairness while still violating respect, and volume is no substitute for moral clarity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1532,8 +1257,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same product surface can activate consent, dignity, or authority concerns. The team should widen the moral interpretation before choosing copy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1545,8 +1269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is map width, not automatic endorsement. Other alarms can be real moral concerns while still needing evaluation and limits.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1558,8 +1281,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cross-cultural humility is not relativism. It helps you identify the real concern so you can evaluate it fairly, including when you still reject the norm.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1571,8 +1293,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The broader map improves diagnosis before decision. It does not force every concern into policy, but it prevents the group from debating a flattened version of the conflict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1633,19 +1354,13 @@
       },
       "memorableLines": [
         {
-          "text": "Harm and fairness matter deeply. They just do not exhaust what people moralize.",
-          "location": "breakdown.fastRead",
-          "why": "It preserves the chapter's balance: expansion without dismissing core liberal concerns."
+          "text": "Harm and fairness matter deeply. They just do not exhaust what people moralize."
         },
         {
-          "text": "Clarity is not surrender when you still judge the norm.",
-          "location": "breakdown.deepRead",
-          "why": "The short line guards against the common fear that understanding equals endorsement."
+          "text": "Clarity is not surrender when you still judge the norm."
         },
         {
-          "text": "A narrow map makes other people look irrational too quickly.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a plain diagnostic for when their own frame may be too small."
+          "text": "A narrow map makes other people look irrational too quickly."
         }
       ]
     },
@@ -1672,13 +1387,6 @@
             "training",
             "triggers"
           ],
-          "planSpec": {
-            "domain": "airport security training after inconsistent passenger judgments",
-            "audience": "trainers teaching staff to name moral triggers",
-            "stakes": "Rachel labels authority, harm, and fairness triggers before correcting officers.",
-            "format": "before_after",
-            "requiredBeat": "Rachel replays three lane incidents and has officers tag the receptor before debating the call."
-          },
           "scenario": "The training room screen freezes on a suitcase halfway through the scanner. Rachel has scanner footage, tag cards, and a lane incident log spread across the table, with three new officers waiting for a rule they can use tomorrow morning. At first the officers argue each call as simply right or wrong. After replaying three incidents, she has them tag authority, harm, or fairness before debating the call.",
           "whatToDo": "Tag the receptor before judging the officer's choice. Make the room say which kind of wrong it sees, then debate the response.",
           "whyItMatters": "The same word, wrong, is hiding different alarms. Rachel gets better training only when officers can tell which alarm fired."
@@ -1691,13 +1399,6 @@
             "discipline",
             "sanctions"
           ],
-          "planSpec": {
-            "domain": "sports league discipline panel reviewing taunting, cheating, and injury",
-            "audience": "volunteer panel members with mixed reactions",
-            "stakes": "Nicolas sorts the cases by receptor rather than penalty size.",
-            "format": "decision_point",
-            "requiredBeat": "Nicolas asks whether each outrage comes from harm, fairness, loyalty, or authority before setting sanctions."
-          },
           "scenario": "\"Why does the cheap shot feel different from the fake roster?\" Nicolas asks, opening the discipline folder beside a row of team jerseys. The penalty chart gives point ranges, and two club reps are already pushing for matching suspensions, but the panel is lumping taunting, cheating, and injury together. Before sanctions are set, Nicolas must choose whether to rank anger by size or sort it by harm, fairness, loyalty, and authority.",
           "whatToDo": "Sort each case by the receptor it activates before choosing penalty size. Then match the sanction to the kind of violation, not only the volume of outrage.",
           "whyItMatters": "A cheap shot and a fake roster can both anger the room. They need different reasoning because they touch different moral receptors."
@@ -1710,13 +1411,6 @@
             "ritual",
             "safety"
           ],
-          "planSpec": {
-            "domain": "nursing home staff deciding whether a family ritual can stay",
-            "audience": "care staff balancing safety and dignity",
-            "stakes": "Giulia names sanctity and care triggers in the same room.",
-            "format": "scene",
-            "requiredBeat": "Giulia moves the incense discussion from rule violation to competing moral receptors."
-          },
           "scenario": "A thin line of incense smoke curls above the plastic medication cart. Giulia sees a visitor badge on the table, an oxygen warning sign by the door, and two aides ready to call the ritual a rule violation. Before the evening round, she has to decide whether to shut it down in safety language or name the sanctity and care receptors competing in the same hallway.",
           "whatToDo": "Name both receptors before setting the rule. Protect breathing safety while recognizing that the ritual carries dignity for the family.",
           "whyItMatters": "The incense is not only smoke to the family, and it is not only sacred to the staff. Giulia needs both alarms visible to choose well."
@@ -1729,13 +1423,6 @@
             "moderation",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "online game moderation team judging betrayal inside player guilds",
-            "audience": "moderators who see only rule violations",
-            "stakes": "Kiran distinguishes fairness cheating from loyalty betrayal in player complaints.",
-            "format": "postmortem",
-            "requiredBeat": "Kiran tags the complaints and changes which cases get mediation instead of bans."
-          },
           "scenario": "It took Kiran, the game-moderation lead on the 7 p.m. escalation shift, twenty player tickets to see that betrayal had its own taste. The ticket queue called every guild fight cheating, and the canned reply template offered only warnings or bans. Then the guild log showed a member selling a shared map to rivals. Kiran stopped reaching for the ban button on every case, tagged loyalty betrayal separately, and moved some complaints into mediation.",
           "whatToDo": "Tag loyalty betrayal apart from fairness cheating. Use bans for clear rule breaks and mediation when the wound is broken trust inside the guild.",
           "whyItMatters": "A betrayal complaint can look like ordinary rule enforcement from outside. Kiran moderates better when he names the receptor the players are actually feeling."
@@ -1748,13 +1435,6 @@
             "supplier",
             "purity"
           ],
-          "planSpec": {
-            "domain": "food co-op board debating supplier standards",
-            "audience": "board members whose moral concerns talk past each other",
-            "stakes": "Lars maps purity, harm, and fairness before choosing criteria.",
-            "format": "dialogue",
-            "requiredBeat": "Which receptor is firing when Lars refuses a supplier that meets every safety rule?"
-          },
           "scenario": "Which concern remains after the lab results come back clean? Lars stands by the co-op chalkboard with a supplier sheet in one hand and lab results in the other, while the produce manager waits to place the morning order. \"Safe is not the same as right for us,\" a board member says. Before the vote, Lars has to decide whether to call that irrational or map purity, harm, and fairness as separate criteria.",
           "whatToDo": "Write the three receptors on the board, then test the supplier against each one. Do not let clean lab results answer every concern by default.",
           "whyItMatters": "Safety data answer harm. They may not answer purity or trust. Lars keeps the board from arguing past itself by naming the separate alarms."
@@ -1767,13 +1447,6 @@
             "authority",
             "access"
           ],
-          "planSpec": {
-            "domain": "architecture firm reviewing a courthouse redesign",
-            "audience": "designers navigating authority, access, and dignity",
-            "stakes": "Paula treats the building complaints as different moral receptors, not aesthetic preferences.",
-            "format": "reflection",
-            "requiredBeat": "You watch Paula mark which comments seek openness, which seek dignity, and which seek authority."
-          },
           "scenario": "You stand in the county architecture studio over a model courthouse with removable stone steps. Paula, the project architect, has a public comment binder open beside it before the 4 p.m. design review, and the foam-core entrance keeps coming loose under her hand. One resident wants access without intimidation. Another wants defendants treated with dignity. A judge wants the entrance to carry authority. You watch Paula mark the comments by receptor before anyone calls them mere aesthetic preferences.",
           "whatToDo": "Mark each comment by the moral concern it carries: access, dignity, authority, or safety. Then revise the model with those conflicts visible.",
           "whyItMatters": "A building can trigger moral reactions before anyone talks about style. Paula designs better when she sees the values inside the complaints."
@@ -1792,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The incidents touch different alarms: harm, fairness, and authority. Naming the receptor clarifies the judgment before anyone debates penalties.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1805,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cheap shot likely activates harm, while the roster activates fairness. Equal heat does not mean identical moral structure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1818,8 +1489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lead should not flatten the conflict. Naming both receptors makes the practical rule sharper and less dismissive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1831,8 +1501,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Betrayal activates loyalty more than ordinary fairness. A mediation path fits that wound better than treating every case as a standard cheat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1844,8 +1513,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lab results answer harm well. They may not answer purity or trust, so the board needs to name the extra receptor before deciding its weight.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1857,8 +1525,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The comments carry different moral receptors. The metaphor helps architects hear values in design reactions without handing over every decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1870,8 +1537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shared word hides different triggers. The metaphor is a framework, not biology, and it helps explain why both reactions feel real.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1883,8 +1549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "You cannot evaluate proportion well until you know the kind of concern. A loyalty alarm and a harm alarm call for different tests.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1896,8 +1561,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The receptor idea is practical, not vocabulary trivia. Live cases train people to identify the active trigger before debating the verdict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1958,19 +1622,13 @@
       },
       "memorableLines": [
         {
-          "text": "The taste-buds image lets you hear a rival's concern as another receptor firing, not as a defect in the tongue.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the source metaphor with a vivid image and an anti-contempt payoff."
+          "text": "The taste-buds image lets you hear a rival's concern as another receptor firing, not as a defect in the tongue."
         },
         {
-          "text": "He asks for the receptor first.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence turns the abstract framework into a repeatable editorial move."
+          "text": "He asks for the receptor first."
         },
         {
-          "text": "A receptor is an alarm, not a judge.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the metaphor from becoming automatic endorsement of every reaction."
+          "text": "A receptor is an alarm, not a judge."
         }
       ]
     },
@@ -1997,13 +1655,6 @@
             "foundations",
             "civic"
           ],
-          "planSpec": {
-            "domain": "transportation referendum campaign testing messages",
-            "audience": "civic organizers hearing rival moral languages",
-            "stakes": "Anna decodes each slogan by foundation before rewriting the flyer.",
-            "format": "scene",
-            "requiredBeat": "Anna places commuter safety, taxpayer fairness, and neighborhood loyalty on separate sticky notes."
-          },
           "scenario": "A transit map covers the folding table from edge to edge in the city campaign office at 7:15 p.m. Anna, the volunteer communications lead, has a flyer proof, a stack of sticky notes, and three angry survey quotes. Before the print deadline, she must decide whether to keep one slogan for everyone or place commuter safety, taxpayer fairness, and neighborhood loyalty on separate notes and rewrite the flyer around all three.",
           "whatToDo": "Decode each slogan by foundation before rewriting. Let the flyer speak safety, fairness, and loyalty without pretending one moral entrance fits every voter.",
           "whyItMatters": "The route is the same, but the moral doorway changes. Anna can answer more people when she knows which foundation each phrase wakes up."
@@ -2016,13 +1667,6 @@
             "council",
             "authority"
           ],
-          "planSpec": {
-            "domain": "immigration clinic preparing clients for a hostile council meeting",
-            "audience": "advocates translating claims across moral frames",
-            "stakes": "Javier reframes the appeal so authority and loyalty concerns are acknowledged before contested.",
-            "format": "dialogue",
-            "requiredBeat": "Javier rehearses a sentence that names residents' order concern before defending the clinic."
-          },
           "scenario": "\"Say the word order before they accuse you of ignoring it,\" Javier tells the volunteer. The clinic sign leans against the wall, and the council agenda is already marked public safety, with two councilors promising a hard line on the local radio show. With a rehearsal card in her hand, the volunteer has to decide whether to open with compassion alone or name residents' order concern before defending the clinic.",
           "whatToDo": "Rehearse one sentence that names order and neighbor responsibility before making the clinic's case. Acknowledge the foundation before contesting the conclusion.",
           "whyItMatters": "The room may hear disorder before care. Javier gives the appeal a chance by showing that the advocates heard the concern they are accused of ignoring."
@@ -2035,13 +1679,6 @@
             "coalition",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "rural broadband coalition uniting farmers and remote workers",
-            "audience": "coalition builders across political identities",
-            "stakes": "Min identifies which foundation each subgroup needs the project to satisfy.",
-            "format": "decision_point",
-            "requiredBeat": "Min rewrites the pitch so one page speaks fairness and another speaks loyalty to town survival."
-          },
           "scenario": "Dust from the grain elevator settles on the laptops after the community meeting. Min has a pitch packet, a coverage map, and two groups nodding for different reasons, while the town clerk waits for language for the grant packet. Remote workers talk fairness. Farmers talk town survival. Before the next meeting, Min has to decide whether one page can carry both or whether the pitch needs one page for access and another for loyalty.",
           "whatToDo": "Split the pitch by foundation. Write one page for fair access to work and another for loyalty to keeping the town alive.",
           "whyItMatters": "The coalition is real because different concerns support the same project. Min protects it by naming the foundations instead of flattening them."
@@ -2054,13 +1691,6 @@
             "phones",
             "parents"
           ],
-          "planSpec": {
-            "domain": "parent group fighting over school phone rules",
-            "audience": "school leaders diagnosing moral emphasis",
-            "stakes": "Margaux shows that one side hears protection and the other hears autonomy.",
-            "format": "before_after",
-            "requiredBeat": "You watch Margaux split the comments into care, authority, and fairness before proposing a trial."
-          },
           "scenario": "You see Margaux's confiscated phones lined up in numbered envelopes beside the assistant principal's sign-out sheet. Her comment spreadsheet turns one proposed phone rule into three moral claims: care for distracted students, authority for teachers, fairness to families who bought the devices. Before the trial calendar goes out, she splits the comments by foundation and changes the proposal's first paragraph.",
           "whatToDo": "Sort comments by care, authority, and fairness before proposing the trial. Then state which concern the trial is designed to test.",
           "whyItMatters": "Parents are not only disagreeing over devices. Margaux lowers the heat by showing which moral emphasis each side is carrying."
@@ -2073,13 +1703,6 @@
             "law",
             "audience"
           ],
-          "planSpec": {
-            "domain": "environmental lawsuit communication team choosing public language",
-            "audience": "lawyers explaining a case beyond legal terms",
-            "stakes": "David translates the same river case through harm, loyalty, and sanctity without changing facts.",
-            "format": "predict_reveal",
-            "requiredBeat": "At 9:30, David asks which version each audience will call moral common sense before revealing the split."
-          },
           "scenario": "At 9:30, David writes the river's name three times on the glass wall. River photos and audience cards sit beneath the lawsuit timeline, and the legal team has one hour before the press call. The facts are identical in every draft. Before revealing the test results, David has to decide whether to ask which audience will call harm, loyalty, or sanctity the moral common sense of the case.",
           "whatToDo": "Ask for predictions by audience before showing the split. Translate the same facts through harm, loyalty, and sanctity without changing the evidence.",
           "whyItMatters": "The lawsuit needs legal truth and moral translation. David shows that audiences may endorse the same case through different foundations."
@@ -2092,13 +1715,6 @@
             "allocation",
             "grief"
           ],
-          "planSpec": {
-            "domain": "hospital allocation committee after a scarce-bed decision",
-            "audience": "ethics committee members managing public explanation",
-            "stakes": "Marit separates fairness outrage from care outrage in family complaints.",
-            "format": "postmortem",
-            "requiredBeat": "Marit tags each complaint by moral emphasis before drafting the apology."
-          },
           "scenario": "It took Marit one night of voicemails to hear two kinds of pain in the same accusation. The bed board was full, the apology draft sounded flat, and the ethics committee chair wanted a statement by noon. In the voicemail transcript, some families asked why their patient was treated differently. Others asked how anyone could be left alone. Marit tagged fairness outrage and care outrage before rewriting.",
           "whatToDo": "Tag each complaint by moral emphasis before drafting the apology. Address unfairness and abandoned care as different wounds.",
           "whyItMatters": "Grief can use one accusation for several moral injuries. Marit writes more honestly when she stops treating all pain as one claim."
@@ -2117,8 +1733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The same proposal can be supported through different foundations. Decoding the moral entrance helps organizers speak accurately without changing facts.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Naming order shows the advocate heard the foundation the room thinks is threatened. It does not require accepting the hostile conclusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The coalition rests on different moral emphases. A strong pitch lets both groups hear their real reason for supporting the same project.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sorting reveals the moral emphases underneath the same policy fight. The trial can then answer the concerns rather than a vague cloud of anger.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1781,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The facts stay fixed, but harm, loyalty, and sanctity may each carry the case for different listeners. Translation is not distortion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1793,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The apology improves when it recognizes different moral injuries. Fairness and care complaints need different answers even when both arise from grief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1805,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Foundation diagnosis makes the claim legible, not automatically right. It shows what concern is active so disagreement can hit the real target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1817,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Different emphases can look like absence when you expect your own foundation to dominate. Diagnosis begins by asking what the other side protects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1829,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Translation is not surrender. It aims the response at the real concern, which makes disagreement more accurate and less contempt-driven.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2283,19 +1890,13 @@
       },
       "memorableLines": [
         {
-          "text": "Translation comes before judgment because the same fact can carry different moral cargo.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's main mental sequence into four plain words."
+          "text": "Translation comes before judgment because the same fact can carry different moral cargo."
         },
         {
-          "text": "Diagnosis is not endorsement; it is how you aim the disagreement.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents readers from confusing moral translation with surrender."
+          "text": "Diagnosis is not endorsement; it is how you aim the disagreement."
         },
         {
-          "text": "In political disagreement, interpretation is a discipline of translation before rebuttal.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical skill and keeps the focus away from partisan scoring."
+          "text": "In political disagreement, interpretation is a discipline of translation before rebuttal."
         }
       ]
     },
@@ -2322,13 +1923,6 @@
             "message",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "progressive housing campaign broadening its message",
-            "audience": "organizers whose case speaks mostly harm and fairness",
-            "stakes": "James adds neighborhood loyalty and order without abandoning tenant protection.",
-            "format": "scene",
-            "requiredBeat": "James rewrites one mailer to protect renters and long-time neighbors in the same paragraph."
-          },
           "scenario": "Rain has softened the stack of door hangers on the campaign office sill. James has tenant photos spread beside a neighborhood map. The mailer speaks harm and fairness well, but older homeowners hear only disruption. Before canvassers leave, he must decide whether to rewrite one paragraph so it protects renters and long-time neighbors in the same breath.",
           "whatToDo": "Add neighborhood loyalty and order to the renter-protection paragraph. Keep the tenant claim, but give long-time neighbors a moral place inside the message.",
           "whyItMatters": "The policy may be good, but the first message plays too few notes. James reaches more people by widening the moral register without changing the claim."
@@ -2341,13 +1935,6 @@
             "reform",
             "authority"
           ],
-          "planSpec": {
-            "domain": "conservative criminal justice reform group speaking to skeptics",
-            "audience": "policy advocates testing moral-register breadth",
-            "stakes": "Chiara keeps authority and loyalty in the reform argument instead of copying liberal language.",
-            "format": "dialogue",
-            "requiredBeat": "Chiara asks the sheriff which sentence lets him support reform without betraying order."
-          },
           "scenario": "\"Do not make him choose between mercy and order,\" Chiara says. The sheriff badge rests beside a draft op-ed and a recidivism chart. A reform sentence copied from liberal advocates sounds soft on duty. Before publication, Chiara has to decide which line lets the sheriff support reform while still honoring authority and loyalty to the county.",
           "whatToDo": "Ask the sheriff which sentence carries order and mercy together. Write reform as a way to protect the county, not as a retreat from authority.",
           "whyItMatters": "A skeptical audience may need the reform to speak its moral language. Chiara broadens the register instead of making support feel like betrayal."
@@ -2360,13 +1947,6 @@
             "county",
             "duty"
           ],
-          "planSpec": {
-            "domain": "public health team improving vaccine outreach in mixed counties",
-            "audience": "health communicators facing trust gaps",
-            "stakes": "Akira adds duty, protection, and local loyalty to a safety message.",
-            "format": "decision_point",
-            "requiredBeat": "Akira removes a scolding headline and replaces it with a county duty frame."
-          },
           "scenario": "County maps and clinic schedules cover the breakroom table at the rural health office on Monday morning. Akira, the outreach coordinator, reads the headline draft and winces: Do the right thing, get vaccinated. The safety facts are sound, but the tone scolds the very families the clinics need. Before printing, Akira has to decide whether to replace the headline with a county duty frame about protecting schools before term starts.",
           "whatToDo": "Replace the scolding headline with a duty-and-protection frame. Let safety facts support a message about caring for the county.",
           "whyItMatters": "The old headline narrows morality to compliance and blame. Akira adds local loyalty so the same health action feels like shared duty."
@@ -2379,13 +1959,6 @@
             "veterans",
             "service"
           ],
-          "planSpec": {
-            "domain": "labor party candidate trying to reach veterans",
-            "audience": "campaign staff missing moral registers",
-            "stakes": "Lukas sees why fairness-only language misses service, loyalty, and authority.",
-            "format": "postmortem",
-            "requiredBeat": "Lukas compares two stump speeches and marks the foundations the losing one never touched."
-          },
           "scenario": "It took Lukas one veterans' breakfast to hear the missing notes in the speech. The breakfast program was folded beside service pins while the candidate talked wages and fairness. Later, Lukas compared two stump speeches and marked the foundations the losing one never touched: duty, loyalty, authority, and service.",
           "whatToDo": "Mark the missing foundations before rewriting. Keep the fairness case, but add service and duty so veterans can hear their moral world in the speech.",
           "whyItMatters": "Fairness may be true and still incomplete for the room. Lukas improves reach by adding moral registers, not by pretending the audience changed teams."
@@ -2398,13 +1971,6 @@
             "supplier",
             "pledge"
           ],
-          "planSpec": {
-            "domain": "corporate ethics rollout after a supplier scandal",
-            "audience": "executives needing a message beyond compliance",
-            "stakes": "Camille builds a message that speaks purity, loyalty, and fairness without moral grandstanding.",
-            "format": "before_after",
-            "requiredBeat": "You watch Camille turn a legal memo into a pledge employees can recognize across foundations."
-          },
           "scenario": "You notice the supplier memo folded beside a box of recalled parts. Camille's first draft sounds like legal compliance: audit dates, reporting channels, fairness to vendors. By afternoon, she has turned it into an employee pledge about clean supply, loyalty to customers, and fair dealing. The recalled parts stay on the table during the rollout.",
           "whatToDo": "Turn the memo into a pledge that speaks across foundations. Keep the legal facts, but add purity, loyalty, and fairness in concrete promises.",
           "whyItMatters": "Compliance language can be too narrow after betrayal. Camille gives employees a broader moral reason to change behavior."
@@ -2417,13 +1983,6 @@
             "funding",
             "stewardship"
           ],
-          "planSpec": {
-            "domain": "school funding coalition combining tax and tradition appeals",
-            "audience": "coalition writers in a politically mixed town",
-            "stakes": "Andrew tests whether the message plays only fairness or also stewardship and local pride.",
-            "format": "predict_reveal",
-            "requiredBeat": "Which version would Andrew's mixed-town audience repeat at a diner table?"
-          },
           "scenario": "Which sentence can travel from the PTA meeting to the hardware store? Andrew has a PTA flyer, a tax chart, and a note from the hardware store counter. One draft says fair funding for every student. Another says stewardship of the school this town built together. Before mailing, he has to decide which mixed-town sentence people would repeat at a diner table.",
           "whatToDo": "Test the sentence for repeatability across foundations. Keep fairness, but add stewardship and local pride so the message can travel through the town.",
           "whyItMatters": "A funding message that only speaks taxes and fairness may stall. Andrew broadens it without turning the policy into a team trophy."
@@ -2442,8 +2001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The message may be morally narrow for its audience. Adding loyalty and order can widen reach without abandoning tenant protection.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2455,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The revision lets reform speak authority, loyalty, and care together. It does not require copying another side's preferred language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2468,8 +2025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The facts remain, but the moral register widens from blame to duty and local protection. That makes the same action easier to join.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2481,8 +2037,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is incompleteness, not worthlessness. Fairness can matter while the room also needs duty and service acknowledged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2494,8 +2049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "After a scandal, compliance alone may be too narrow. The pledge reaches purity, loyalty, and fairness while keeping concrete obligations.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2507,8 +2061,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The same policy may need a broader moral register to travel. Stewardship and pride can join fairness without changing the funding claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2520,8 +2073,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Breadth is about reach across foundations. It does not prove moral goodness or policy quality, and it still needs evaluation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2533,8 +2085,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The framework shows why a true message can still be narrow. Additional registers can widen reach without deleting care and fairness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2546,8 +2097,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mocking may satisfy insiders but narrows reach. Adding a recognized register tests whether the same claim can travel without caricaturing the audience.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2608,19 +2158,13 @@
       },
       "memorableLines": [
         {
-          "text": "The moral keyboard now has more keys.",
-          "location": "breakdown.fastRead",
-          "why": "The short line makes rhetorical breadth concrete through the keyboard image."
+          "text": "The moral keyboard now has more keys."
         },
         {
-          "text": "Moral breadth is not moral proof.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the politically sensitive claim from becoming a team scoreboard."
+          "text": "Moral breadth is not moral proof."
         },
         {
-          "text": "Rhetorical reach is a tool, not a moral verdict.",
-          "location": "breakdown.fullRead",
-          "why": "It states the central distinction in a phrase readers can carry into political analysis."
+          "text": "Rhetorical reach is a tool, not a moral verdict."
         }
       ]
     },
@@ -2647,13 +2191,6 @@
             "training",
             "group"
           ],
-          "planSpec": {
-            "domain": "volunteer fire brigade deciding who gets scarce training slots",
-            "audience": "volunteers balancing ambition and crew loyalty",
-            "stakes": "Olivia holds individual advancement and brigade readiness together.",
-            "format": "scene",
-            "requiredBeat": "Olivia moves one name down the list because the crew needs a pump operator more than another captain."
-          },
           "scenario": "Mud from last night's call dries on the volunteer firehouse floor beneath the training roster at 6:30 a.m. Olivia, the deputy captain, still has wet boots beside the pump manual on the bench. She wants the captain course, but the crew has no second pump operator. Before the roster is posted, she must decide whether her advancement or brigade readiness gets the scarce slot.",
           "whatToDo": "Move her name down and send the pump operator first. Name both costs: her delayed status and the crew's need to function under alarm.",
           "whyItMatters": "Olivia is not erasing ambition. She is treating the brigade as a level of survival that can outrank one member's next step."
@@ -2666,13 +2203,6 @@
             "norms",
             "review"
           ],
-          "planSpec": {
-            "domain": "open-source project enforcing maintainer norms",
-            "audience": "software contributors who mistake all conflict for ego",
-            "stakes": "Mikkel sees individual credit and group survival pulling at once.",
-            "format": "dialogue",
-            "requiredBeat": "Mikkel asks the contributor what would help the project live after the contributor leaves."
-          },
           "scenario": "\"Do you want the patch merged, or the project healthier?\" Mikkel asks in the open-source project's release channel. The pull request is elegant, the Tuesday release clock is red, and the maintainer guide forbids bypassing review. The contributor hears jealousy. Before the merge window closes, Mikkel has to decide whether to reward brilliance now or protect the norm that lets the project live after any one person leaves.",
           "whatToDo": "Hold the patch and require review. Explain that credit matters, but the rule protects the project after the strongest contributor is gone.",
           "whyItMatters": "The conflict is not only ego. Mikkel sees an individual contribution and a group norm pulling at the same decision."
@@ -2685,13 +2215,6 @@
             "neighbors",
             "cooperation"
           ],
-          "planSpec": {
-            "domain": "neighborhood flood response allocating sandbags",
-            "audience": "community organizers in emergency cooperation",
-            "stakes": "Adaeze notices when self-protection turns into block-level protection.",
-            "format": "before_after",
-            "requiredBeat": "Adaeze watches residents stop counting their own sandbags and start filling the weakest corner."
-          },
           "scenario": "Wet sand sticks to Adaeze's wrists on Maple Street as the river climbs the curb after the 5 p.m. flood warning. At first, every household counts its own sandbags against the river gauge. Then the corner house begins to leak. Adaeze watches neighbors stop guarding their private piles and start filling the weakest corner first. By dusk, the block is acting like one unit.",
           "whatToDo": "Name the shift and organize around the weakest corner. Let households keep their needs visible while making the block the unit of protection.",
           "whyItMatters": "The neighbors do not stop caring about their own basements. They add a group level because one failure can pull everyone under."
@@ -2704,13 +2227,6 @@
             "credit",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "academic department deciding whether to share grant credit",
-            "audience": "researchers balancing status and lab survival",
-            "stakes": "Jack frames credit as individual incentive and group resource.",
-            "format": "decision_point",
-            "requiredBeat": "At 4:05, Jack redraws the authorship chart to protect both contribution and lab continuity."
-          },
           "scenario": "At 4:05 in the biomedical lab conference room, Jack stands before an authorship chart no one wants to touch. The grant deadline is tomorrow, and the lab roster shows who may leave if credit disappears. One researcher did the visible analysis. Another holds the method the next project needs. Jack has to decide how to protect both individual contribution and lab continuity.",
           "whatToDo": "Redraw the chart with contribution and continuity named separately. Make the individual incentive visible while protecting the lab's next project.",
           "whyItMatters": "Credit is private currency and group infrastructure. Jack fails if he treats it as only ego or only sacrifice."
@@ -2723,13 +2239,6 @@
             "dues",
             "identity"
           ],
-          "planSpec": {
-            "domain": "local choir choosing dues for members who cannot pay",
-            "audience": "small associations with shared identity",
-            "stakes": "Kasia names the moment the choir pays a cost to remain a choir.",
-            "format": "reflection",
-            "requiredBeat": "You watch Kasia ask what kind of group they become if the best alto leaves over dues."
-          },
           "scenario": "You hear the alto part missing in the church basement before anyone discusses money. Kasia, the local choir treasurer, holds a dues envelope, an alto folder, and the practice piano key after rehearsal. The budget says every member should pay. The sound says the choir changes if the best alto leaves. You watch Kasia ask what kind of group they become if dues decide who belongs.",
           "whatToDo": "Ask the identity question before the budget vote. Decide whether covering dues is a cost the group pays to remain the group it claims to be.",
           "whyItMatters": "The choir is not just a set of individual payments. Kasia sees the shared sound as a group good worth protecting."
@@ -2742,13 +2251,6 @@
             "safety",
             "status"
           ],
-          "planSpec": {
-            "domain": "cycling club enforcing safety norms on a popular rider",
-            "audience": "club leaders facing status versus group welfare",
-            "stakes": "Antoine treats the rider's talent and the group's safety as competing levels.",
-            "format": "postmortem",
-            "requiredBeat": "Antoine reviews the near miss and suspends the rider for the group's future rides."
-          },
           "scenario": "It took Antoine, the cycling club ride captain, one helmet-camera clip after Sunday's descent to stop calling it a personality clash. The route sheet showed a fast hill where the popular rider nearly clipped three newcomers. The suspension email sat open for an hour. Antoine finally sent it, treating the rider's talent and the group's future safety as competing levels.",
           "whatToDo": "Send the suspension and explain the level conflict. Talent helps the club, but repeated risk weakens the group that makes rides possible.",
           "whyItMatters": "A group can lose something valuable to protect the conditions that let it exist. Antoine sees status and group welfare at once."
@@ -2767,8 +2269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The choice holds both levels together. Olivia still has ambition, but brigade readiness matters because the group must function under alarm.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2780,8 +2281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The project needs both contribution and shared rules. Review protects the group level without denying the value of the individual patch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2793,8 +2293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The block becomes a group-level concern without erasing individual needs. The organizing unit changes because one weak point affects everyone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2806,8 +2305,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dispute has both individual and group levels. Reducing it to ego misses continuity, while romanticizing sacrifice erases real career stakes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2819,8 +2317,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question moves from individual payment to group identity. The choir is deciding what shared sound and belonging are worth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2832,8 +2329,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rider's talent is real, but the group conditions are at risk. The suspension protects future rides, not a dislike of excellence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2845,8 +2341,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frame keeps both levels visible. It does not prove certainty or erase self-interest; it explains why group-level dynamics matter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2858,8 +2353,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Groupishness has two edges. It can create sacrifice and cooperation, but the same binding force can make dissent look like betrayal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2871,8 +2365,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The two-level account avoids both reductions. It sees why personal credit matters and why the group can make real claims on members.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2933,19 +2426,13 @@
       },
       "memorableLines": [
         {
-          "text": "Multilevel selection gives you a way to hold two facts together: people compete as individuals and bind into groups.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the source anchor while making the theoretical frame usable."
+          "text": "Multilevel selection gives you a way to hold two facts together: people compete as individuals and bind into groups."
         },
         {
-          "text": "The individual and the group pull at once.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence makes the individual-group tension memorable."
+          "text": "The individual and the group pull at once."
         },
         {
-          "text": "Groupishness is the moral feeling that a shared body exists, even when every member still has private interests.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter's nuance without collapsing into mob language."
+          "text": "Groupishness is the moral feeling that a shared body exists, even when every member still has private interests."
         }
       ]
     },
@@ -2972,13 +2459,6 @@
             "synchrony",
             "crew"
           ],
-          "planSpec": {
-            "domain": "rowing crew finding rhythm after weeks of individual correction",
-            "audience": "coaches watching coordination become shared attention",
-            "stakes": "Ben spots the moment eight private efforts become one stroke.",
-            "format": "scene",
-            "requiredBeat": "Ben stops shouting technique and lets the crew hear the catch timing until they synchronize."
-          },
           "scenario": "Oarlocks click out of order across the gray water at the rowing club's 6 a.m. practice. Ben, the novice coach, holds the coxswain mic near the fog line while eight rowers wait for another correction. Before the next piece, he must decide whether to keep shouting individual technique or let the crew hear the catch timing until the private pulls settle into one stroke.",
           "whatToDo": "Stop the individual corrections and make the crew listen for the shared catch. Use rhythm to move attention from separate bodies to one boat.",
           "whyItMatters": "The crew needs more than eight improved techniques. Ben uses synchrony to make the group feel like the unit doing the work."
@@ -2991,13 +2471,6 @@
             "safety",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "warehouse safety team using synchronized shutdown drills",
-            "audience": "operations teams trying to make safety collective",
-            "stakes": "Astrid turns a rule into a shared ritual with a visible group cue.",
-            "format": "before_after",
-            "requiredBeat": "Astrid starts the same red-light shutdown drill at every bay and watches workers move together."
-          },
           "scenario": "A red light washes over stacked pallets in six loading bays. Astrid's old shutdown card told workers what to do, but each bay improvised when alarms sounded. After she installs the same drill everywhere, the red light means stop, hands up, call clear, point to exit. By Friday, workers move together before anyone reads the card.",
           "whatToDo": "Turn the rule into a shared ritual. Use the red light, the same words, and the same hand movement in every bay.",
           "whyItMatters": "A safety rule becomes collective when bodies rehearse it together. Astrid gives the warehouse one cue instead of six private interpretations."
@@ -3010,13 +2483,6 @@
             "volunteers",
             "call-response"
           ],
-          "planSpec": {
-            "domain": "music festival volunteers forming trust before gates open",
-            "audience": "event leads managing strangers under pressure",
-            "stakes": "Aman uses shared timing and call-response to create group readiness.",
-            "format": "dialogue",
-            "requiredBeat": "Aman has volunteers practice the same gate call until strangers answer as one team."
-          },
           "scenario": "\"When I say blue gate, you answer clear,\" Aman tells forty strangers. Gate radios sit in milk crates, wristbands spill across the table, and the blue gate sign shakes in the wind. Before the first crowd arrives, Aman must choose between more role briefing and drilling the same call until strangers answer like one team.",
           "whatToDo": "Practice the call-response until the answer is automatic. Use shared timing to turn scattered volunteers into a ready gate team.",
           "whyItMatters": "Trust forms faster when strangers share a rhythm under a real task. The call gives the group a common pulse before pressure arrives."
@@ -3029,13 +2495,6 @@
             "roles",
             "drill"
           ],
-          "planSpec": {
-            "domain": "surgical unit preparing for a mass-casualty drill",
-            "audience": "medical teams that need coordinated mode shift",
-            "stakes": "Isabel notices the switch when names give way to roles.",
-            "format": "decision_point",
-            "requiredBeat": "At 6:40, Isabel calls the role drill and watches private chatter disappear into coordinated tasks."
-          },
           "scenario": "At 6:40 in the hospital trauma bay, Isabel hears the room go quiet before the mass-casualty drill starts. Role tags hang beside the trauma bay clock, and drill cards sit unopened on a cart. The team is still using first names and side comments. Before the first mock patient arrives, she must decide whether to let the briefing continue or call the role drill and watch private chatter disappear into coordinated tasks.",
           "whatToDo": "Call the role drill and hand out tags. Move the team from names to jobs so attention shifts from private chatter to shared action.",
           "whyItMatters": "In a mass-casualty drill, coordination has to arrive before the cases do. Roles help the group enter the right mode together."
@@ -3048,13 +2507,6 @@
             "labor",
             "identity"
           ],
-          "planSpec": {
-            "domain": "tenant association cleaning a neglected courtyard",
-            "audience": "neighbors who barely know each other",
-            "stakes": "Ryan sees shared labor turn complaint into group identity.",
-            "format": "postmortem",
-            "requiredBeat": "Ryan compares the meeting minutes with the morning when everyone picked up tools together."
-          },
           "scenario": "It took Ryan one Saturday with rented rakes to hear people say our courtyard. The meeting minutes had listed complaints for months. Then neighbors carried trash bags through the courtyard gate and pulled weeds beside strangers. Ryan compared the minutes with the morning of shared tools and saw complaint turn into group identity.",
           "whatToDo": "Create shared labor before another complaint meeting. Give neighbors one visible task they can complete together in the same space.",
           "whyItMatters": "The courtyard becomes ours through coordinated work. Ryan learns that shared action can bind people faster than shared dissatisfaction."
@@ -3067,13 +2519,6 @@
             "breach",
             "cadence"
           ],
-          "planSpec": {
-            "domain": "software security team during a live breach exercise",
-            "audience": "engineers moving from solo expertise to coordinated defense",
-            "stakes": "Anke creates a common pulse through timed status calls and shared risk.",
-            "format": "predict_reveal",
-            "requiredBeat": "What changes when Anke makes every defender answer on the same thirty-second cadence?"
-          },
           "scenario": "What if the fix is not more expertise but a shared pulse? Anke, the incident commander, watches the attack dashboard in the security war room while the bridge fills with overlapping theories. Every defender is smart, and the live breach exercise is still drifting. Before the next phase, she faces a choice: add a status cadence or let solo expertise keep colliding.",
           "whatToDo": "Add the cadence and hold it. Require every defender to answer the same prompts on the same beat until the team has one operating rhythm.",
           "whyItMatters": "Solo expertise can collide under shared risk. Anke turns intelligence into coordinated defense by giving the team a common pulse."
@@ -3092,8 +2537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cue is shared rhythm. The crew's attention moves from private technique to one coordinated motion, which is the hive-switch pattern.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3105,8 +2549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The red light and shared drill make the rule bodily and collective. The change is coordination, not merely better reading or fear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3118,8 +2561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Call-response gives strangers shared timing and attention. That creates readiness more directly than isolated reading.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3131,8 +2573,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Roles and the drill cue changed the mode of attention. The team moved from private chatter into coordinated work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3144,8 +2585,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The physical work created a shared body of action. People began belonging to the space through coordinated effort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3157,8 +2597,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The team's knowledge was not synchronized. The cadence created shared timing so expertise could combine instead of collide.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3170,8 +2609,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hive switch is a social mode, not simple conformity. The cues create shared-body coordination while judgment can remain present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3183,8 +2621,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chant may function as a coordination cue. The analysis should focus on shared attention, not caricatures about lost individuality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3196,8 +2633,7 @@
             ],
             "correctIndex": 1,
             "explanation": "If talent is already present, coordination may be the missing piece. A shared timing ritual can shift the group into a more usable mode.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3258,19 +2694,13 @@
       },
       "memorableLines": [
         {
-          "text": "It is not mystery. It is coordination becoming felt from the inside.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the hive switch grounded while preserving its felt force."
+          "text": "It is not mystery. It is coordination becoming felt from the inside."
         },
         {
-          "text": "The private self can loosen without disappearing.",
-          "location": "breakdown.deepRead",
-          "why": "The short line gives the self-to-group shift an image that is easy to remember."
+          "text": "The private self can loosen without disappearing."
         },
         {
-          "text": "The hive switch is not a spell.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks mystical overclaiming and directs attention back to observable cues."
+          "text": "The hive switch is not a spell."
         }
       ]
     },
@@ -3297,13 +2727,6 @@
             "mourning",
             "care"
           ],
-          "planSpec": {
-            "domain": "synagogue meal train after a family funeral",
-            "audience": "readers seeing ritual as coordinated care",
-            "stakes": "Michael notices belief, schedule, food, and duty forming one team response.",
-            "format": "scene",
-            "requiredBeat": "Michael watches the signup sheet fill before anyone asks whether the grieving family needs help."
-          },
           "scenario": "Foil-covered pans line the community room counter beside a handwritten signup sheet. Michael stands near the yahrzeit candle after the funeral and watches names fill the meal slots before anyone asks whether the grieving family needs help. Before leaving, he has to decide whether he is seeing private kindness or a practiced team response.",
           "whatToDo": "Read the signup as coordinated care. Notice how belief, schedule, food, and duty turn grief into a shared obligation.",
           "whyItMatters": "The meal train is not just sentiment. Michael sees a community practice that makes help happen before private mood has to invent it."
@@ -3316,13 +2739,6 @@
             "ritual",
             "accountability"
           ],
-          "planSpec": {
-            "domain": "secular recovery group borrowing ritual structure",
-            "audience": "facilitators building cohesion without doctrine",
-            "stakes": "Lin sees repeated words and chairs create accountability beyond private resolve.",
-            "format": "before_after",
-            "requiredBeat": "Lin changes the meeting from advice swapping to a shared opening and commitment round."
-          },
           "scenario": "The basement room at 7 p.m. has the same words, chairs, and coffee urn every week. Lin, the recovery-group facilitator, used to let the chairs face whoever gave advice first. After she adds a shared opening and commitment cards, the group stops drifting. Each meeting begins with the same words and ends with one named promise.",
           "whatToDo": "Keep the ritual structure: same circle, same opening, same commitment round. Use repeated form to build accountability beyond private resolve.",
           "whyItMatters": "Even without doctrine, ritual can make a group durable. Lin turns advice swapping into coordinated return."
@@ -3335,13 +2751,6 @@
             "service",
             "coordination"
           ],
-          "planSpec": {
-            "domain": "church youth group organizing flood cleanup",
-            "audience": "community leaders coordinating service",
-            "stakes": "Chloe treats prayer, vans, and work gloves as one coordination system.",
-            "format": "decision_point",
-            "requiredBeat": "Chloe pairs the spoken blessing with named crews and departure times so warmth becomes action."
-          },
           "scenario": "Work gloves are piled beneath the fellowship hall clock after Sunday prayer. Chloe, the youth minister, has van keys on one table and a crew list on another while the group waits. Warm feeling fills the room, but the flooded houses are across town. Before the blessing ends, she has to decide whether to let the feeling fade or pair it with named crews and departure times.",
           "whatToDo": "Pair the blessing with logistics. Name crews, hand out gloves, assign vans, and turn shared warmth into coordinated service.",
           "whyItMatters": "The prayer can open the hive switch, but the crew list turns that shared state into action. Chloe joins sacred language to practical coordination."
@@ -3354,13 +2763,6 @@
             "trust",
             "giving"
           ],
-          "planSpec": {
-            "domain": "mosque committee resolving a donation dispute",
-            "audience": "lay leaders protecting trust in sacred giving",
-            "stakes": "Tomas sees the ritual of transparent counting as team trust, not mere accounting.",
-            "format": "postmortem",
-            "requiredBeat": "Tomas introduces two-person counting in public view after hearing suspicion spread."
-          },
           "scenario": "It took Tomas one whispered accusation to see that trust needed a ritual, not a spreadsheet. The donation box was locked, the counting table was clean, and the receipt book balanced. Still, suspicion spread. After Friday prayers, he introduced two-person counting in public view so sacred giving could feel like team trust again.",
           "whatToDo": "Make the counting ritual visible. Pair accuracy with shared witness so donors can trust the practice, not only the spreadsheet.",
           "whyItMatters": "Sacred giving depends on public trust. Tomas protects that trust by turning accounting into a repeatable communal act."
@@ -3373,13 +2775,6 @@
             "duty",
             "care"
           ],
-          "planSpec": {
-            "domain": "interfaith hospital chaplaincy coordinating bedside coverage",
-            "audience": "care teams supporting families under stress",
-            "stakes": "Nina maps how shared sacred duty makes strangers cover hard hours.",
-            "format": "reflection",
-            "requiredBeat": "You watch Nina read the coverage board as a moral team, not a staffing puzzle."
-          },
           "scenario": "You see a chapel light still on after midnight beside the hospital coverage board. Nina, the night chaplain, holds a visitor pass and traces names from three traditions covering hard bedside hours. The board could look like staffing. Instead, you watch her read it as a moral team formed by shared sacred duty to families under stress.",
           "whatToDo": "Read the board as coordinated duty, not only staffing. Notice how shared sacred obligation makes strangers cover hours that private convenience would avoid.",
           "whyItMatters": "The coverage exists because a moral team has been trained to show up. Nina sees coordination where a schedule might hide it."
@@ -3392,13 +2787,6 @@
             "illness",
             "support"
           ],
-          "planSpec": {
-            "domain": "Buddhist meditation center handling a member's illness",
-            "audience": "small spiritual communities converting practice into support",
-            "stakes": "Vincent notices chanting, rides, and meals binding separate households.",
-            "format": "predict_reveal",
-            "requiredBeat": "Which part of Vincent's community response would disappear if practice stayed private?"
-          },
           "scenario": "What changes when silence on a cushion becomes a rota on the fridge? Vincent stands in the meditation center kitchen before the evening chant while a ride schedule and meal rota fill with names for a sick member. Before the bell rings, he has to decide which parts of the response would disappear if practice stayed private and never became shared duty.",
           "whatToDo": "Map the practice into support: chant, rides, meals, visits, and reminders. Treat the rota as part of the community's moral practice.",
           "whyItMatters": "Private calm does not automatically feed a sick member. Vincent sees how repeated practice can bind separate households into care."
@@ -3417,8 +2805,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The meal train shows religion organizing action. It does not settle belief claims, but it makes coordinated care visible.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3430,8 +2817,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated form organizes return and accountability. The point is ritual structure, not a claim that doctrine is required.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3443,8 +2829,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The blessing may bind attention, but logistics convert that shared state into action. Sacred warmth needs a route into service.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3456,8 +2841,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is shared trust, not only arithmetic. Public counting makes sacred giving accountable to the community.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3469,8 +2853,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The board shows coordinated duty. It is not a competition among traditions or a replacement for belief, but an organized moral practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3482,8 +2865,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chanting, rides, and meals show practice becoming support. The analysis concerns coordination, not proof of doctrine.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3495,8 +2877,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lens adds social coordination without settling truth claims or reducing all religion to control. It asks what shared life is organized.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3508,8 +2889,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Binding and blinding can come from the same mechanism. The point is to see both care and exclusion risks clearly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3521,8 +2901,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Doctrine matters, but the institution also coordinates behavior. Asking about organized action reveals the group-binding function.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3583,19 +2962,13 @@
       },
       "memorableLines": [
         {
-          "text": "The belief matters. So does the schedule, the food, the duty, and the practiced reflex of care.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter from reducing religion to either doctrine or logistics alone."
+          "text": "The belief matters. So does the schedule, the food, the duty, and the practiced reflex of care."
         },
         {
-          "text": "Shared moves make shared people.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence compresses ritual coordination into a memorable line."
+          "text": "Shared moves make shared people."
         },
         {
-          "text": "Religion Is a Team Sport is a lens, not a reduction.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the argument's nuance and prevents overclaiming."
+          "text": "Religion Is a Team Sport is a lens, not a reduction."
         }
       ]
     },
@@ -3622,13 +2995,6 @@
             "housing",
             "order"
           ],
-          "planSpec": {
-            "domain": "town council argument over refugee housing",
-            "audience": "local officials trying to lower righteous certainty",
-            "stakes": "Patrick restates the objector's sacred concern before defending the housing plan.",
-            "format": "scene",
-            "requiredBeat": "Patrick names order and neighbor duty in the first sentence, then argues for the shelter."
-          },
           "scenario": "\"You are afraid the town will stop feeling responsible to itself,\" Patrick says before opening his binder at the council lectern. The shelter map is clipped inside, and the timer shows two minutes. He supports the refugee housing plan. Before he defends it, he must decide whether to name order and neighbor duty in the first sentence or answer only with capacity numbers.",
           "whatToDo": "Name the sacred concern first, then defend the shelter. Show that order and neighbor duty can be honored without rejecting the families who need housing.",
           "whyItMatters": "Patrick's facts will miss if the objection is guarding civic identity. Entering that matrix lets his disagreement reach the real fear."
@@ -3641,13 +3007,6 @@
             "religion",
             "matrix"
           ],
-          "planSpec": {
-            "domain": "family dinner split over a religious school's policy",
-            "audience": "readers facing intimate politics and religion disputes",
-            "stakes": "Hiroshi enters the other moral matrix before rebutting.",
-            "format": "reflection",
-            "requiredBeat": "You watch Hiroshi write the sentence his sister would accept as her real concern before speaking."
-          },
           "scenario": "You can hear plates being stacked at the family dinner while the unsaid reply tightens in your throat. Hiroshi has the policy letter beside the kitchen doorway and a sister waiting for his answer. He thinks the rule is wrong. Before speaking, he writes one sentence she would recognize as her sacred concern: protecting children in a faithful community.",
           "whatToDo": "Write the sentence she would accept before rebutting. Then disagree with the policy while showing that you understood the duty she thinks it protects.",
           "whyItMatters": "Family arguments over religion move fast because sacred concerns are close to identity. Hiroshi lowers contempt without pretending the rule is harmless."
@@ -3660,13 +3019,6 @@
             "speaker",
             "values"
           ],
-          "planSpec": {
-            "domain": "company ERG debate about a speaker invitation",
-            "audience": "workplace facilitators managing sacred values",
-            "stakes": "Petra separates harm, dignity, loyalty, and free inquiry before proposing a path.",
-            "format": "decision_point",
-            "requiredBeat": "Petra draws the moral map on paper before asking for solutions."
-          },
           "scenario": "Name tents sit crooked around a workplace conference table after everyone has stopped making eye contact. Petra has the speaker bio and a blank page labeled moral map. One side names harm. Another names dignity. A third names free inquiry and loyalty to the ERG. Before solutions, Petra has to decide whether to draw the map on paper or force a premature vote.",
           "whatToDo": "Draw the moral map first. Put harm, dignity, loyalty, and free inquiry on paper before asking anyone to propose a path.",
           "whyItMatters": "The group cannot solve a conflict it has flattened. Petra makes the sacred values visible so disagreement can become specific."
@@ -3679,13 +3031,6 @@
             "interview",
             "opponent"
           ],
-          "planSpec": {
-            "domain": "podcast host preparing an interview with an ideological opponent",
-            "audience": "communicators avoiding gotcha reflexes",
-            "stakes": "Matthew starts by stating the opponent's moral load-bearing wall.",
-            "format": "before_after",
-            "requiredBeat": "At 8:20, Matthew replaces the opening gotcha with a premise the guest can recognize."
-          },
           "scenario": "At 8:20, Matthew highlights the first question and deletes the word hypocrite. Studio headphones sit beside the guest notes. His old opener would delight his audience and corner the guest. The new opener states the opponent's moral load-bearing wall before testing it. The interview will still be hard, but it will not start as a trap.",
           "whatToDo": "Replace the gotcha with a premise the guest can recognize. Then test the premise directly instead of scoring an early hit.",
           "whyItMatters": "Matthew keeps real disagreement while refusing the cheap thrill of contempt. The guest can answer the actual challenge, not just the insult."
@@ -3698,13 +3043,6 @@
             "memorial",
             "process"
           ],
-          "planSpec": {
-            "domain": "community mediation over a vandalized memorial",
-            "audience": "mediators balancing sacred injury and due process",
-            "stakes": "Sofia keeps real disagreement while reducing self-righteousness.",
-            "format": "postmortem",
-            "requiredBeat": "Sofia reviews the failed session and opens the next one with the sacred value each side guards."
-          },
           "scenario": "It took Sofia, the community mediator, one failed circle in the town hall annex to see that apology was not the first missing piece. The memorial plaque had been vandalized, the circle chairs were set, and the apology draft sounded thin. After reviewing the session, she opened the next one with the sacred value each side guarded: public memory and due process.",
           "whatToDo": "Open with the sacred values before the apology draft. Name public memory and due process as real concerns, then return to accountability.",
           "whyItMatters": "The disagreement remains, but self-righteousness loses force when each side hears its core concern stated accurately."
@@ -3717,13 +3055,6 @@
             "moderation",
             "translation"
           ],
-          "planSpec": {
-            "domain": "online forum moderator writing rules for political threads",
-            "audience": "moderators designing disagreement that can survive",
-            "stakes": "Janek turns the accumulated model into posting rules that force moral translation before rebuttal.",
-            "format": "predict_reveal",
-            "requiredBeat": "What rule would Janek add if the goal is not agreement but less blind disagreement?"
-          },
           "scenario": "What would a comment box ask before it lets the rebuttal through? Janek watches the forum moderation queue fill with political replies that answer caricatures after the 10 p.m. news cycle. A translation prompt sits in his draft rules. Before launch, he has to decide whether to require users to state the concern an opponent would recognize before posting an objection.",
           "whatToDo": "Add the translation prompt. Require each rebuttal to state the opponent's recognizable concern before the objection appears.",
           "whyItMatters": "The rule will not create agreement. It forces enough moral translation that disagreement becomes less blind and less easy to automate."
@@ -3742,8 +3073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "He names the sacred concern before defending the plan. That aims his disagreement at the real fear instead of only answering capacity numbers.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3755,8 +3085,7 @@
             ],
             "correctIndex": 1,
             "explanation": "He does not have to accept the policy. Naming the sacred duty first lets his disagreement reach the concern his sister is actually protecting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3768,8 +3097,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The map makes the sacred values visible. A vote before mapping would likely deepen the feeling that some concerns were erased.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3781,8 +3109,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stating the premise does not soften the interview into agreement. It makes the challenge cleaner by starting where the guest's real concern lives.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3794,8 +3121,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The apology cannot land until the core concerns are named. Public memory and due process remain in tension, but the room becomes more accurate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3807,8 +3133,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rule does not require agreement. It slows blind rebuttal by making users enter the other moral matrix first.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3820,8 +3145,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Entering a matrix helps you respond to the true concern. You can still reject a policy, norm, or claim after understanding it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3833,8 +3157,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The closing skill uses the whole model. Facts matter, but the dispute will not be legible until the moral machinery is visible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3846,8 +3169,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rule preserves disagreement while reducing caricature. It targets blindness, not conflict itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3908,19 +3230,13 @@
       },
       "memorableLines": [
         {
-          "text": "He has entered the objection first.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the closing move a concrete, memorable phrase."
+          "text": "He has entered the objection first."
         },
         {
-          "text": "Understanding is not agreement.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence protects the synthesis from becoming generic civility."
+          "text": "Understanding is not agreement."
         },
         {
-          "text": "Good people can remain divided.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the book's central tension while offering a cleaner way to disagree."
+          "text": "Good people can remain divided."
         }
       ]
     }

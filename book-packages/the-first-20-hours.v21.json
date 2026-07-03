@@ -41,13 +41,6 @@
             "language",
             "threshold"
           ],
-          "planSpec": {
-            "domain": "hospital triage nurse learning basic medical Spanish for intake",
-            "audience": "a reader with a high-value skill postponed because fluency feels impossible",
-            "stakes": "Spanish-speaking patients wait while questions pass through a coworker",
-            "format": "decision_point",
-            "requiredBeat": "Maja circles five intake questions on a laminated shift card and decides that clear pain-location questions will count as the first competence line"
-          },
           "scenario": "Alcohol wipes dry beside a laminated intake card at 1:18 a.m. while Maja waits for the night-shift handoff. A Spanish-speaking patient is at triage, and Maja's coworker is translating between two rooms. Maja circles five phrases: pain location, time, allergies, medication, contact. Her pen hovers over the rest of the page. Tonight's choice is those five useful questions, not fluency.",
           "whatToDo": "Circle the five questions that would move care along tonight, rehearse them aloud, and treat a clear answer to those questions as the first useful line.",
           "whyItMatters": "Fluency is too large to guide the first practice block. Five intake questions create a live threshold: the patient waits less, and Maja can test whether the skill works."
@@ -60,13 +53,6 @@
             "bookkeeping",
             "scope"
           ],
-          "planSpec": {
-            "domain": "small-town baker learning enough bookkeeping to catch cash leaks",
-            "audience": "a reader avoiding numbers because accounting expertise feels too large",
-            "stakes": "weekly ingredient costs are rising and nobody can explain the margin drop",
-            "format": "before_after",
-            "requiredBeat": "Lukas stops pricing himself against a certified accountant and marks one threshold: reconcile flour invoices against Friday deposits without help"
-          },
           "scenario": "It took Lukas three Fridays to notice the flour-dusted invoices were not the scary part. The first Friday, he sorted the slips by supplier and realized half the panic came from mixed dates. The second Friday, he matched five flour purchases against deposits and saw the same missing delivery note twice. The third Friday, he stopped reading about bookkeeping systems and clipped the flour invoices under the brass till key. On the calculator tape he wrote one line: flour invoices against Friday deposits, no payroll, no tax tables. That line became the first useful bookkeeping target.",
           "whatToDo": "Name the single bookkeeping result that would stop the leak, then practice that result before studying the whole field around it.",
           "whyItMatters": "A real threshold lets Lukas enter the numbers without pretending to own the profession. The bakery needs one cash leak found first, not broad financial identity."
@@ -79,13 +65,6 @@
             "access",
             "greeting"
           ],
-          "planSpec": {
-            "domain": "museum docent learning basic sign language greetings",
-            "audience": "a reader who wants inclusion without pretending instant fluency",
-            "stakes": "a deaf school group arrives next month and the museum has no interpreter for the welcome station",
-            "format": "scene",
-            "requiredBeat": "Camille asks a local tutor to test whether she can greet, point to the map, and explain the coatroom before adding any new signs"
-          },
           "scenario": "\"Can you test only the welcome?\" Camille asks, holding a folded gallery map between two nervous hands. The deaf school group arrives in three weeks, and the coatroom sign is still taped crookedly behind the desk. She wants to add numbers, colors, and exhibit names. The tutor points to the map. Camille has to choose whether the first line is greeting, map, coatroom, and no more.",
           "whatToDo": "Ask the tutor to test the first visitor sequence, then stop adding signs until that welcome can be done clearly and calmly.",
           "whyItMatters": "Inclusion starts with the moment visitors actually meet. A narrow threshold protects honesty: Camille can help at the desk without pretending to interpret the tour."
@@ -98,13 +77,6 @@
             "audio",
             "editing"
           ],
-          "planSpec": {
-            "domain": "community radio host learning audio editing basics",
-            "audience": "a creator stuck because professional production standards make starting look absurd",
-            "stakes": "a local interview sits unreleased because the raw file has two long mistakes",
-            "format": "predict_reveal",
-            "requiredBeat": "James predicts he needs full production training, then proves the useful threshold by cutting one cough, one dead pause, and exporting a clean two-minute segment"
-          },
           "scenario": "Which costs more, a messy first edit or another week with the interview unaired? James opens the community radio laptop and stares at a red waveform spike beside a sticky note that says cough. He predicts he needs real production training before touching anything. Before the station manager asks for the segment, James must decide now: cut one cough and one dead pause, or postpone the interview again.",
           "whatToDo": "Cut the cough, cut the dead pause, export the short segment, and let that working file define the first competence line.",
           "whyItMatters": "The whole craft is too large to judge tonight. A clean two-minute segment gives James evidence that the skill can return value before mastery is in view."
@@ -117,13 +89,6 @@
             "safety",
             "vocabulary"
           ],
-          "planSpec": {
-            "domain": "park volunteer learning basic chainsaw safety vocabulary without operating the saw",
-            "audience": "a cautious reader who needs bounded competence around a risky tool",
-            "stakes": "storm cleanup briefings are confusing and unsafe when she cannot name parts or hazards",
-            "format": "vignette",
-            "requiredBeat": "Anke writes her threshold as identifying chain brake, kickback zone, and stop command during safety briefing, not cutting wood herself"
-          },
           "scenario": "Orange safety chaps hang from a wet park-service hook while the storm cleanup roster fills with names. Anke is not operating a saw today, and that limit matters. She writes three terms beside her name: chain brake, kickback zone, stop command. Before the briefing starts, she has to choose between safe vocabulary she can use today and pretending she is ready to cut.",
           "whatToDo": "Define competence as naming the safety terms in the briefing and responding to the stop command, while keeping saw operation outside the target.",
           "whyItMatters": "Some thresholds protect people by naming the boundary. Anke needs enough knowledge to stay useful and safe, not a fake claim to operate a risky tool."
@@ -136,13 +101,6 @@
             "gardening",
             "focus"
           ],
-          "planSpec": {
-            "domain": "Toronto apartment gardener learning seed-starting for one balcony crop",
-            "audience": "a reader whose hobby remains imaginary because expert growers look unreachable",
-            "stakes": "her spring seedlings die every year before the first transplant",
-            "format": "thought_experiment",
-            "requiredBeat": "Aanya defines competence as getting six basil seedlings from tray to balcony planter, then removes every advanced gardening goal from the first month"
-          },
           "scenario": "You can see condensation on Aanya's clear seed-tray lid above six labeled basil cells. The balcony planter is empty, and last year's dead stems are still in a paper bag by the door. Aanya wants tomatoes, peppers, and a full herb wall. Before she opens another guide, she has to choose whether six basil seedlings from tray to planter will be the whole first line.",
           "whatToDo": "Make the six basil cells the full competence target, move every advanced crop off the first month, and practice only what gets seedlings to the planter.",
           "whyItMatters": "A small living threshold keeps the hobby honest. If the basil survives transplant, Aanya has a real skill foothold instead of another imagined garden."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The welcome-desk questions define usable competence in the live setting. The grammar course and embarrassment goal are too broad to test against the first useful job.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Flagging late shipments is concrete, useful, and testable. The other choices keep the skill priced at broad knowledge before the first work result appears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Early mess is not a verdict by itself. A smaller target, such as centering one cylinder, turns the friction into information instead of identity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The error is mixing mastery with entry competence. Pulling one reliable report may be worth learning even if engineering expertise remains far away.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The flat tire and rubbing brake are useful trip problems with visible tests. Rebuilding the bike is mastery drift, and watching channels may never cross into competence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The harsh sound may be normal entry cost. A clean open-string bow gives Ethan a precise line to practice, while switching or wandering through songs avoids the signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful threshold matters only when it is bounded and truthful. The other answers overpromise fluency or treat feeling confident as a substitute for accurate help.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ten-second caption has a visible output and a work standard. The other options keep the goal vague, identity-based, or tied to admiration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dinner target gives the first hours a job and a test. The broad goal is too vague, and avoiding feedback would keep practice from learning where it fails.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -323,24 +272,17 @@
           }
         ],
         "twentyFourHourChallenge": "Pick one postponed skill and write a one-sentence competence line that starts with: I can use this when I can. Make the line visible and testable.",
-        "weeklyPractice": "Once this week, review one learning goal and ask whether the target is useful, visible, and bounded. If it fails one test, rewrite the threshold before adding practice time.",
-        "title": "Define One Useful Threshold"
+        "weeklyPractice": "Once this week, review one learning goal and ask whether the target is useful, visible, and bounded. If it fails one test, rewrite the threshold before adding practice time."
       },
       "memorableLines": [
         {
-          "text": "The first job is smaller and stricter: name what no longer helpless would look like.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the abstract competence idea into a practical sentence the reader can use immediately."
+          "text": "The first job is smaller and stricter: name what no longer helpless would look like."
         },
         {
-          "text": "Beginner pain is noisy information, not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence gives readers a clean replacement for the common talent story that appears after rough first attempts."
+          "text": "Beginner pain is noisy information, not a verdict."
         },
         {
-          "text": "The first twenty hours are not a trophy; they are the bridge from helpless to useful.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the promise of the method while preventing the overclaim that twenty hours creates mastery."
+          "text": "The first twenty hours are not a trophy; they are the bridge from helpless to useful."
         }
       ]
     },
@@ -367,13 +309,6 @@
             "handoff",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "paramedic trainee practicing radio handoff clarity",
-            "audience": "a learner who needs a narrow professional subskill under time pressure",
-            "stakes": "unclear handoffs waste seconds when a patient is transferred",
-            "format": "scene",
-            "requiredBeat": "Emily strips the skill to a thirty-second SBAR radio handoff, records five attempts, and uses the instructor stopwatch and playback as fast feedback"
-          },
           "scenario": "At 6:20 a.m. Monday, Emily clips a scuffed radio beside a laminated SBAR card in the ambulance bay. The transfer drill starts in ten minutes, and her last handoff wandered for almost two minutes. She records one thirty-second version and hears the missing blood pressure on playback. Before the instructor restarts the stopwatch, Emily must decide now: rehearse the whole speech or make five tight attempts.",
           "whatToDo": "Limit the drill to one thirty-second SBAR handoff, record five attempts, and correct only the missing or unclear item before the next recording.",
           "whyItMatters": "The stopwatch and playback make feedback immediate. Emily gets more corrected reps on the subskill that matters, instead of rehearsing a vague speech."
@@ -386,13 +321,6 @@
             "lab",
             "tool"
           ],
-          "planSpec": {
-            "domain": "craft brewery quality tech learning yeast-cell counting",
-            "audience": "a technical learner whose project needs the right tool before reps can count",
-            "stakes": "a batch decision depends on whether the count is trustworthy by Friday",
-            "format": "decision_point",
-            "requiredBeat": "Mikkel borrows the hemocytometer first, clears one bench, and repeats only the counting grid until his supervisor can compare results"
-          },
           "scenario": "A glass counting chamber dries beside Mikkel's labeled yeast sample while the brewery floor rattles beyond the lab door. Mikkel has three articles open on cell viability, but the Friday batch decision needs one trustworthy count. The hemocytometer is locked in the supervisor's cabinet. His hand hovers over another article link. The next move is either more reading or borrowing the tool for one cleared-bench grid.",
           "whatToDo": "Get the hemocytometer first, clear the bench, and count the same grid until the supervisor can compare the result with his own.",
           "whyItMatters": "The critical tool turns reading into practice. Without it, Mikkel is preparing around the skill instead of producing a count that can be corrected."
@@ -405,13 +333,6 @@
             "intake",
             "triage"
           ],
-          "planSpec": {
-            "domain": "legal clinic volunteer learning intake triage questions",
-            "audience": "a reader who needs one usable service skill instead of whole-field knowledge",
-            "stakes": "walk-in clients are being booked with the wrong attorney slots",
-            "format": "dialogue",
-            "requiredBeat": "Grace asks a supervising attorney to mark the three triage questions that sort urgent eviction from general advice, then practices only those calls in short bursts"
-          },
           "scenario": "\"Which three questions decide the slot?\" Grace asks as a pink hearing notice slides under the scratched intake window at the legal-aid clinic. The supervising attorney marks eviction date, hearing notice, and current housing status on the call script. With the next walk-in already seated, Grace has to choose before phones reopen: learn the full housing packet later or run one call block around only those three questions.",
           "whatToDo": "Use the three marked triage questions for the next short call block, then review each wrong slot with the attorney before adding any new material.",
           "whyItMatters": "Deconstruction keeps the service skill usable. Three questions sort the urgent cases now; the wider housing field can wait until the first loop works."
@@ -424,13 +345,6 @@
             "mechanic",
             "iteration"
           ],
-          "planSpec": {
-            "domain": "cycling mechanic learning derailleur indexing",
-            "audience": "a hands-on learner who keeps expanding into the whole bicycle",
-            "stakes": "a charity repair day needs ten safe commuter bikes by Saturday",
-            "format": "predict_reveal",
-            "requiredBeat": "Hugo predicts watching repair videos will help more, then improves when he isolates one barrel-adjuster loop and gets immediate chain-noise feedback"
-          },
           "scenario": "Which will teach faster, another repair video or the ticking wheel in front of Hugo? The rear wheel clicks against a bent repair-stand tray in the charity bike workshop, and ten bikes are due Saturday. Hugo predicts the video will explain the whole derailleur. After one quarter-turn changes the chain noise, he must decide now: keep watching or repeat the adjustment while the wheel answers.",
           "whatToDo": "Isolate the barrel-adjuster loop: turn, pedal, listen, reverse if needed, and repeat until the chain sound gives clean feedback.",
           "whyItMatters": "The chain responds faster than a video can. Immediate sound feedback lets Hugo correct the exact subskill before the whole bicycle swallows the session."
@@ -443,13 +357,6 @@
             "language",
             "rehearsal"
           ],
-          "planSpec": {
-            "domain": "wedding officiant learning one bilingual ceremony segment",
-            "audience": "a reader whose lovable project gives practice emotional pull",
-            "stakes": "the couple wants the ring exchange understood by both families in two weeks",
-            "format": "before_after",
-            "requiredBeat": "Rachel limits the target to the ring exchange, removes unused readings from the folder, and rehearses ten short takes with feedback from the groom's aunt"
-          },
           "scenario": "Thin gold rings rest on a printed bilingual vow page while Rachel sorts a folder thick with readings she will not use. At a ceremony last spring, she had practiced every reading, then stumbled over the one ring sentence both families needed to hear clearly. Before, she treated the whole service as the practice unit and blurred the exchange under too many pages. After a call with the groom's aunt, she removes every unused page, records ten short takes of the ring exchange, and marks the two words that still wobble. The smaller drill protects the moment that actually carries the ceremony.",
           "whatToDo": "Make the ring exchange the whole target, record ten short takes, and use the aunt's feedback before restoring any other ceremony language.",
           "whyItMatters": "The lovable project gives Rachel urgency, but the narrow loop gives her progress. The family hears one reliable segment before she expands the script."
@@ -462,13 +369,6 @@
             "3D printing",
             "setup"
           ],
-          "planSpec": {
-            "domain": "library staff member learning 3D printer first-layer setup",
-            "audience": "a public-service learner who needs repeatable tool competence",
-            "stakes": "patrons keep losing reservations when prints fail in the first ten minutes",
-            "format": "postmortem",
-            "requiredBeat": "Lin traces three failed prints to bed leveling, tapes the setup card to the machine, and does six first-layer checks instead of browsing model catalogs"
-          },
           "scenario": "It took Lin three failed reservations in the makerspace lab to stop blaming the models. On the first night, the blue filament curled at the front-left corner before the print had a base. On the second, she changed models and watched the same corner lift again. On the third, the failed print log showed the first ten minutes were the whole problem. On the fourth attempt, Lin taped the bed-leveling card to the machine, closed the model catalog, and adjusted only the first layer. When the corner stayed flat, the result told her the practice target was bed contact, not model choice.",
           "whatToDo": "Trace the repeat failure, tape the setup card where the work starts, and run first-layer checks until the print bed gives stable feedback.",
           "whyItMatters": "The failure was at setup, not imagination. A tight first-layer loop protects patrons' bookings better than browsing more things to print."
@@ -487,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The address segment is the bottleneck, so it deserves its own feedback loop. Listening and longer templates may feel thorough while leaving the missing-address error untouched.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -500,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sample portraits tie target, reps, and feedback to the actual job. Broad tutorials and presets avoid deciding what performance level the first session must reach.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -513,8 +411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The throw is the failing subskill and needs fast distance feedback. Whole rescues add noise, and theory cannot correct the release point by itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -526,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Without quick comparison, two hours can repeat the same miss. The issue is feedback timing, not whether the project is lovable or the session is long.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -539,8 +435,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The copied file, column, and answer key make the first rep easy to start and easy to check. Reading later or outsourcing keeps the barrier in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -552,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One joint type plus immediate inspection creates a corrected rep. Full boards hide the signal until too late, and harder projects or longer sessions add clutter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -565,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The gallery, two-minute welcome, and reviewer define a loop. Enjoyment may help, but the key design is narrow target plus correction from a real standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -578,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Feedback cannot compound when the target keeps changing. A smaller subskill loop would let corrections stack instead of resetting every few minutes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -591,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Random volume hides whether the password-reset subskill is improving. A smaller loop with a model answer and correction would make each attempt teach the next one.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -649,24 +540,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one skill and write four labels on one line: target, first subskill, biggest barrier, fastest feedback source. Do one rep only after all four are named.",
-        "weeklyPractice": "Once this week, audit a practice loop. Ask what produced corrected reps, what only looked productive, and which barrier should be removed before the next session.",
-        "title": "Build a Corrected Practice Loop"
+        "weeklyPractice": "Once this week, audit a practice loop. Ask what produced corrected reps, what only looked productive, and which barrier should be removed before the next session."
       },
       "memorableLines": [
         {
-          "text": "Practice improves when the learner can attempt, hear the miss, and correct the next pass.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the loop design into a concrete sequence that applies across skill types."
+          "text": "Practice improves when the learner can attempt, hear the miss, and correct the next pass."
         },
         {
-          "text": "The point is not to make practice tidy. It is to make correction unavoidable.",
-          "location": "breakdown.deepRead",
-          "why": "The contrast protects the chapter from checklist neatness and keeps the emphasis on feedback."
+          "text": "The point is not to make practice tidy. It is to make correction unavoidable."
         },
         {
-          "text": "Build the loop until correction has nowhere to hide.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a memorable standard for whether the practice design is strong enough."
+          "text": "Build the loop until correction has nowhere to hide."
         }
       ]
     },
@@ -693,13 +577,6 @@
             "fieldwork",
             "checklist"
           ],
-          "planSpec": {
-            "domain": "architectural intern learning site-measure sketches",
-            "audience": "a learner whose prep must change the next field attempt",
-            "stakes": "wrong measurements force a contractor visit to be repeated",
-            "format": "scene",
-            "requiredBeat": "Daniel studies one example sketch, predicts where his first field sketch will fail, then uses a checklist on the actual stairwell landing"
-          },
           "scenario": "The tape measure hooks on chipped concrete stair nosing while Daniel crouches in the service stairwell at 4:10 p.m. One example sketch is folded in his pocket, and his prediction note says he will miss the landing depth. With the contractor leaving in twenty minutes, Daniel must decide now: office notes later or the stairwell checklist on the actual landing. The building manager waits upstairs, which keeps the prediction tied to the real stairwell.",
           "whatToDo": "Study one model sketch, predict the likely miss, then use the checklist in the stairwell where the measurement can prove the prediction right or wrong.",
           "whyItMatters": "The preparation changes the field attempt. Daniel is not collecting drafting knowledge; he is protecting the exact measurement most likely to break the visit."
@@ -712,13 +589,6 @@
             "music",
             "testing"
           ],
-          "planSpec": {
-            "domain": "community choir member learning sight-singing intervals",
-            "audience": "a reader who needs mental hooks tied to audible reps",
-            "stakes": "she loses her entrance every rehearsal and pulls the alto row with her",
-            "format": "dialogue",
-            "requiredBeat": "Sophie asks the section lead for one interval hook, sings it, predicts the next entrance, and checks the miss against the piano before reading more theory"
-          },
           "scenario": "\"Give me one hook.\" Sophie stands beside the church piano with wrinkled alto sheet music in one hand. The section lead plays the interval once. Sophie sings it, predicts the next entrance under her breath, and misses by a step. Before rehearsal resumes, she has to choose: printed explanation or the piano check while the miss is fresh. The choir folder stays closed until the note has answered the guess.",
           "whatToDo": "Use the interval hook, make the next entrance prediction, sing, and let the piano check the miss before adding theory.",
           "whyItMatters": "The hook helps only when it reaches sound. The piano turns the guess into feedback, so Sophie learns the entrance instead of admiring the explanation."
@@ -731,13 +601,6 @@
             "allergy",
             "scaffold"
           ],
-          "planSpec": {
-            "domain": "restaurant expeditor learning allergy-ticket checks",
-            "audience": "a learner who needs scaffolds before speed",
-            "stakes": "one missed nut allergy warning can send the wrong plate to table twelve",
-            "format": "decision_point",
-            "requiredBeat": "Etienne builds a three-box ticket checklist, tests it on five old tickets, and keeps it at the pass only after it catches the hidden allergy note"
-          },
           "scenario": "At 5:42 p.m., Etienne clips a yellow allergy ticket beside the heat lamp while the first dinner orders start printing. He has built a three-box checklist and tested it on five old tickets. On the fourth, it caught the hidden nut note he had missed. As the chef calls for speed at the pass, Etienne must choose now: visible checklist or memory tonight. The ticket rail keeps printing, so the checklist must work under dinner pressure.",
           "whatToDo": "Keep the three-box allergy checklist at the pass until it catches real tickets reliably, then speed up only after the scaffold has proven itself.",
           "whyItMatters": "The checklist keeps the danger visible while pressure rises. Speed without the scaffold only makes the same miss travel faster to table twelve."
@@ -750,13 +613,6 @@
             "field test",
             "spacing"
           ],
-          "planSpec": {
-            "domain": "field ecologist learning bird-call identification",
-            "audience": "a reader whose learning needs spacing and live tests",
-            "stakes": "the dawn survey loses value if she keeps confusing two common calls",
-            "format": "predict_reveal",
-            "requiredBeat": "Laura spaces three short call reviews across the day, predicts the species before opening the answer file, and logs which cue actually survived at dawn"
-          },
           "scenario": "At dawn, Laura watches cold mist bead on the field recorder clipped to a fence post before the reserve survey. Laura has spaced three short call reviews since yesterday, and the answer file is one tap away. She predicts the species before opening it, then hears she has confused the same two calls again. She has to decide which cue to log on the survey sheet before the next live call. The next bird call will not wait for another page of notes.",
           "whatToDo": "Predict before checking, open the answer file, and write the cue that survived or failed on the dawn survey sheet.",
           "whyItMatters": "The prediction exposes the confusion while the sound is fresh. Spacing helps only when the live test shows what Laura can still hear outside."
@@ -769,13 +625,6 @@
             "labeling",
             "practitioner"
           ],
-          "planSpec": {
-            "domain": "apprentice electrician learning breaker-panel labeling",
-            "audience": "a novice in a safety-sensitive trade who must talk to practitioners",
-            "stakes": "bad labels slow an outage response in a retirement building",
-            "format": "reflection",
-            "requiredBeat": "Pavel asks a senior electrician what mistake hurts most, imagines the opposite of a clear label, then tests his labels by having another apprentice find one circuit cold"
-          },
           "scenario": "Which label fails first during a basement outage at the retirement building? Pavel sits at the bench with the senior electrician's answer in his notebook: the one that makes sense only to the person who wrote it. Numbered breaker stickers curl at the metal panel door. Before the afternoon safety check, Pavel must decide whether to polish his own wording or ask another apprentice to find one cold circuit from it. The apprentice's search will show whether Pavel's words work for anyone else.",
           "whatToDo": "Turn the senior electrician's warning into a test: write the label, hand it to another apprentice, and see whether the circuit can be found cold.",
           "whyItMatters": "Practitioner advice becomes useful when it changes the test. Pavel learns whether the label works for the next person, not just for his own memory."
@@ -788,13 +637,6 @@
             "routing",
             "attention"
           ],
-          "planSpec": {
-            "domain": "municipal clerk learning emergency-call routing software",
-            "audience": "a learner whose attention quality matters during short training windows",
-            "stakes": "a misrouted storm call sends residents to the wrong department",
-            "format": "before_after",
-            "requiredBeat": "Hadiya moves training away from the ringing front desk, runs one distraction-free routing drill, and stops when fatigue starts adding false clicks"
-          },
           "scenario": "You hover over a red storm-call queue tab while Hadiya's front desk phone rings for the sixth time. Before, she trained between resident questions and misrouted two practice calls. After lunch, she moves to the back terminal, runs one clean routing drill, and stops when tired fingers start adding false clicks. The cutoff saves tomorrow's reps from bad practice. The quiet terminal gives Hadiya one clean route before the front desk gets loud again.",
           "whatToDo": "Move the drill away from the ringing desk, run one clean route sequence, and stop when fatigue starts producing false clicks.",
           "whyItMatters": "Attention quality is part of the learning design. A tired routing drill can rehearse the wrong clicks as efficiently as the right ones."
@@ -813,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing prediction leaves study detached from the attempt. More terms or avoidance of fieldwork would deepen the delay rather than expose the weak point.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -826,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hook, prediction, and piano check connect study to the sound. Reading longer stays passive, and rejecting hooks throws away a useful bridge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -839,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Practitioner advice becomes useful when it changes the next drill. More advice or manual study can be helpful later, but neither tests the named mistake.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -852,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The prediction and cut sample make the learning answer back. The videos are useful because they feed the fold, not because they replace it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -865,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Attention and fatigue shape what gets rehearsed. A quieter window and cutoff protect clean reps, while longer noisy drills may install the errors.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -878,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The checklist has to enter the task. If it never guides a real wheel removal, it is an object of preparation rather than a scaffold for practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -891,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The review needs a live test. A longer streak or extra grammar may preserve comfort while leaving the bakery exchange untouched.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -904,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A prediction gives the guide material a test in the planter. Reading less or waiting for full understanding does not create a clearer feedback signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -917,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Preparation earns its place when it changes the attempt. Field notes and predictions let the site visit answer back; reading alone can still postpone the first useful test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -975,24 +808,17 @@
           }
         ],
         "twentyFourHourChallenge": "Before your next practice block, write one prediction about what will go wrong and one test that will tell you whether you were right.",
-        "weeklyPractice": "Once this week, review your study time and mark each item as prediction, scaffold, practitioner cue, test, or delay. Cut one delay before the next session.",
-        "title": "Make Preparation Answer Practice"
+        "weeklyPractice": "Once this week, review your study time and mark each item as prediction, scaffold, practitioner cue, test, or delay. Cut one delay before the next session."
       },
       "memorableLines": [
         {
-          "text": "Study that never reaches the rep is only a quieter kind of delay.",
-          "location": "breakdown.fastRead",
-          "why": "It names the central failure mode in plain language without rejecting study itself."
+          "text": "Study that never reaches the rep is only a quieter kind of delay."
         },
         {
-          "text": "A prediction makes the lesson answer back.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact reason to test before checking the answer."
+          "text": "A prediction makes the lesson answer back."
         },
         {
-          "text": "Learning earns its place when practice can feel the difference.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with a concrete standard for useful preparation."
+          "text": "Learning earns its place when practice can feel the difference."
         }
       ]
     },
@@ -1019,13 +845,6 @@
             "footwork",
             "correction"
           ],
-          "planSpec": {
-            "domain": "adult beginner climbing footwork class",
-            "audience": "a body-skill learner overcomplicating the first movement",
-            "stakes": "she burns out her arms every session and thinks strength is the issue",
-            "format": "scene",
-            "requiredBeat": "Claire removes the steep-wall goal, lets the instructor tap one quiet foot placement on a slab route, and repeats only that corrected step"
-          },
           "scenario": "Chalk dust clings to the rubber edge of Claire's rented climbing shoe as she drops from the steep wall at the indoor gym with her arms shaking. The coach walks her to a slab route and taps one foothold with two fingers. Claire wants to prove she can try the overhang again. Before she chalks up, she must decide now: pride on the steep wall or one quiet foot placement until the step stops scraping. The mat under the slab route gives the coach one sound to listen for: scrape or quiet.",
           "whatToDo": "Leave the steep wall alone, place the foot where the instructor tapped, and repeat the quiet step until her arms stop doing the job her feet should do.",
           "whyItMatters": "The hard wall hides the real error inside effort. The slab route makes one foot placement visible enough for correction to reach it."
@@ -1038,13 +857,6 @@
             "balance",
             "basics"
           ],
-          "planSpec": {
-            "domain": "community tai chi class for balance basics",
-            "audience": "a reader embarrassed by slow visible correction",
-            "stakes": "his rushed weight shifts make each form feel confusing and unsafe",
-            "format": "dialogue",
-            "requiredBeat": "Nicolas asks whether he is doing the form wrong; the instructor removes the arm sequence and corrects only the heel-to-toe weight shift"
-          },
           "scenario": "\"Am I doing the whole thing wrong?\" Nicolas asks during the beginner tango class, soft-soled shoes lined along the polished community-center floor. The teacher smiles and says, \"Take the arms out.\" Nicolas freezes with both hands half raised. Before the next music cue, he has to choose between embarrassment over the smaller form and one corrected heel-to-toe transfer. The next partner is already waiting, so the small transfer has to stand on its own.",
           "whatToDo": "Drop the arm sequence, repeat the heel-to-toe weight shift, and let the instructor correct the transfer before restoring the full form.",
           "whyItMatters": "The arm pattern was stealing attention from the unstable base. Removing it makes the correction simple enough for Nicolas to feel."
@@ -1057,13 +869,6 @@
             "setup",
             "misconception"
           ],
-          "planSpec": {
-            "domain": "violin shoulder-rest setup for a returning adult player",
-            "audience": "a learner whose misconception makes the body fight the instrument",
-            "stakes": "neck pain ends every practice before the first scale settles",
-            "format": "before_after",
-            "requiredBeat": "Anna stops forcing a dramatic posture, lets the teacher adjust the shoulder rest, and repeats one open-string bow until her neck stops clenching"
-          },
           "scenario": "It took Anna four practices to admit the black shoulder rest beside the chipped practice mute mattered more than the photo she was copying. Before, she forced a dramatic posture and quit when her neck clenched. After the teacher adjusted the rest, she played one open-string bow at a time and stopped each rep when her jaw tried to grip again. The open string tells the teacher whether the jaw has relaxed or only pretended to.",
           "whatToDo": "Accept the shoulder-rest adjustment, practice one open-string bow, and treat a relaxed neck as the first corrected rep.",
           "whyItMatters": "The copied posture was false difficulty. The adjustment lets Anna learn the instrument without fighting a setup mistake every time she begins."
@@ -1076,13 +881,6 @@
             "catch",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "rowing club novice learning the catch position",
-            "audience": "a learner who mistakes complex sequence for useful difficulty",
-            "stakes": "the boat checks every stroke and frustrates the crew",
-            "format": "predict_reveal",
-            "requiredBeat": "Marco predicts power is the missing piece, then improves when the coach pauses the erg and corrects only the catch position with the monitor covered"
-          },
           "scenario": "What if the missing piece is not power? Marco pulls the rowing-machine chain against a covered performance monitor at the boathouse while the coach watches the catch. He predicts a harder drive will fix the check in the boat. When the coach pauses the erg before the stroke even opens, Marco must decide now: chase monitor numbers or repeat the same catch position. The covered monitor keeps the coach's eyes on the catch instead of the score.",
           "whatToDo": "Keep the monitor covered, pause at the catch, and repeat the corrected position until the coach can see the body arrive without overreaching.",
           "whyItMatters": "The full stroke and the numbers hide the first failure. The covered monitor makes Marco feel the position that has to improve."
@@ -1095,13 +893,6 @@
             "centering",
             "hands"
           ],
-          "planSpec": {
-            "domain": "pottery wheel centering lesson",
-            "audience": "a tactile learner drowning in aesthetic expectations",
-            "stakes": "every clay lump collapses before it becomes a bowl",
-            "format": "decision_point",
-            "requiredBeat": "Juliette wipes the reference photos off the bench, asks the instructor to correct only hand pressure, and keeps one cylinder ugly but centered"
-          },
           "scenario": "Gray slip dries in crescent streaks around the pottery wheel basin while Juliette lines up reference photos of perfect bowls. Her third lump collapses before the wall rises. The instructor points to her thumbs and says, \"Pressure first.\" Juliette's wet hand hovers over the photos. The bench offers perfect pictures or one ugly centered cylinder. The clay basin stays bare so the pressure of one hand can answer clearly.",
           "whatToDo": "Remove the reference photos, ask for one correction on hand pressure, and keep the short centered cylinder instead of chasing a finished bowl.",
           "whyItMatters": "The photos make the first rep answer to the wrong standard. Centering one ugly cylinder lets the clay teach the basic pressure."
@@ -1114,13 +905,6 @@
             "neutral walk",
             "control"
           ],
-          "planSpec": {
-            "domain": "physical theatre workshop learning a neutral walk",
-            "audience": "a performer who hides behind expressive complexity",
-            "stakes": "the audition panel keeps seeing mannerism instead of control",
-            "format": "vignette",
-            "requiredBeat": "Devon drops the dramatic character choice, lets the instructor call out one shoulder lift, and walks the tape line again without adding expression"
-          },
           "scenario": "You watch Devon's bare foot stop on a strip of white rehearsal tape in a physical-theatre studio while the instructor says, \"Your left shoulder is acting before you are.\" The audition panel has already called his work mannered twice. Devon has a dramatic character ready to hide inside. Before the next walk, he must decide: drop it, hear the shoulder correction, and add nothing. The tape line gives Devon nowhere to hide the extra shoulder lift.",
           "whatToDo": "Drop the character choice, let the shoulder correction stand alone, and walk the tape line again without adding expression.",
           "whyItMatters": "Expression can cover weak control. The neutral walk makes one extra shoulder lift visible, which gives Devon a correction he can actually repeat."
@@ -1139,8 +923,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The turn is the basic rep that needs correction. Full runs and harder routines add noise before the foot placement can be seen clearly.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The toss is the visible basic movement blocking the serve. Power and longer sessions would repeat the same misconception at higher volume.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The final images are adding false difficulty. One correction on hand pressure gives the clay a simpler question to answer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The copied posture may be costume, not function. Adjusting setup and testing one bow is more useful than praising tension or adding warmup time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1191,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The slab removes false difficulty and exposes the footwork error. Steep routes hide it inside fatigue, and videos delay the corrected step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The character layer hides the control problem. A plain walk exposes the shoulder movement so the student can repeat the correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1217,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The standard is not being softened. It is being aimed at the movement that can actually be corrected now, with risk and expertise still respected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The monitor is hiding the position error behind performance noise. Covering it is useful only because it exposes the catch for correction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Good simplification removes false difficulty, not the guardrails that make a body skill safe and correctable. Feedback and safety are part of the honest rep.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1301,24 +1076,17 @@
           }
         ],
         "twentyFourHourChallenge": "Pick one physical skill and cross out one difficulty that is mostly costume. Name the one correction you need on the next basic rep.",
-        "weeklyPractice": "Once this week, ask whether your physical practice got harder in a way that teaches or only in a way that looks serious. Remove one false layer.",
-        "title": "Strip False Difficulty From Movement"
+        "weeklyPractice": "Once this week, ask whether your physical practice got harder in a way that teaches or only in a way that looks serious. Remove one false layer."
       },
       "memorableLines": [
         {
-          "text": "The basic rep has to be visible before correction can change it.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the practical reason simplification matters in body skills."
+          "text": "The basic rep has to be visible before correction can change it."
         },
         {
-          "text": "The smaller rep is more exposing, which is why it works.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes small practice as more demanding and more useful, not easier."
+          "text": "The smaller rep is more exposing, which is why it works."
         },
         {
-          "text": "The body cannot correct a performance of effort.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's warning against theatrical difficulty in one memorable line."
+          "text": "The body cannot correct a performance of effort."
         }
       ]
     },
@@ -1345,13 +1113,6 @@
             "spreadsheet",
             "script"
           ],
-          "planSpec": {
-            "domain": "pharmacy inventory spreadsheet automation",
-            "audience": "a workplace learner with one repetitive technical problem",
-            "stakes": "expired stock counts are being copied by hand every Friday",
-            "format": "scene",
-            "requiredBeat": "Thomas reduces the project to one script that flags dates older than today, runs it on a copied sheet, reads the first error, and fixes only that input format"
-          },
           "scenario": "Orange expiry stickers stack beside a duplicated inventory sheet in the pharmacy office at 7:35 a.m. Thomas wants to automate the whole Friday count, but the copied sheet is waiting with dates in two formats. He writes one script to flag dates older than today, runs it, and sees the first error point to a slash-formatted cell. Before opening the full project plan, he must decide now: whole-system planning or that one input format. The pharmacy manager needs the old-date list before the noon stock check.",
           "whatToDo": "Keep the script to one date flag, run it on the copied sheet, and fix only the input format named by the first error.",
           "whyItMatters": "The copied sheet makes the lesson real. A narrow error teaches Thomas what the next line of code must handle."
@@ -1364,13 +1125,6 @@
             "data cleanup",
             "filter"
           ],
-          "planSpec": {
-            "domain": "university lab sensor-data cleanup",
-            "audience": "a research assistant who keeps reading libraries instead of testing data",
-            "stakes": "a grant report depends on removing impossible temperature readings",
-            "format": "postmortem",
-            "requiredBeat": "Ingrid sees that progress began when she stopped comparing libraries and wrote a tiny filter against ten ugly sensor rows"
-          },
           "scenario": "It took Ingrid six tabs to realize the ten sensor rows were the curriculum. One impossible minus sign was circled on the printout, and the grant report needed those readings cleaned before Friday. Progress began when she stopped comparing libraries, wrote a tiny temperature filter against the ten rows, and watched the output remove the ugly values without touching the rest. The dispatch supervisor watches because one wrong comma will send the driver to the wrong dock.",
           "whatToDo": "Close the library comparison, write the smallest temperature filter, and run it against the ten messy rows until the output matches the grant need.",
           "whyItMatters": "The real rows expose the right problem. Library research becomes useful only after Ingrid knows what the filter must actually remove."
@@ -1383,13 +1137,6 @@
             "CSV",
             "parser"
           ],
-          "planSpec": {
-            "domain": "community theatre ticket CSV import",
-            "audience": "a volunteer solving a real event problem under a deadline",
-            "stakes": "opening night check-in fails if the ticket list cannot load",
-            "format": "dialogue",
-            "requiredBeat": "David asks what one field must import first, writes the smallest parser for seat number, and lets the rejected comma line reveal the next bug"
-          },
           "scenario": "\"What field has to work first?\" David asks, the box-office laptop balanced on a stack of playbills. \"Seat number,\" the stage manager says. Opening night is tomorrow, and the CSV import fails on row nineteen. After a rejected comma line flashes red, David has to choose: database design later or the seat-number parser now. The theatre lobby printer is already warming up behind the ticket table.",
           "whatToDo": "Import seat number first, run the smallest parser, and let the rejected comma line define the next bug before adding fields.",
           "whyItMatters": "Opening night needs the list to load, not a complete system design. The comma bug turns the real file into the teacher."
@@ -1402,13 +1149,6 @@
             "SMS",
             "debugging"
           ],
-          "planSpec": {
-            "domain": "wildlife rescue volunteer building a feeding-reminder SMS rule",
-            "audience": "a reader who needs code tied to a visible service result",
-            "stakes": "orphaned animals miss interval checks when paper notes get buried",
-            "format": "decision_point",
-            "requiredBeat": "Paula chooses one reminder rule for one enclosure, sends a test message to herself, and debugs the wrong time zone before adding any other feature"
-          },
           "scenario": "At 8:05 a.m., Paula clips a laminated feeding chart to one wire enclosure door and opens the reminder file. The rescue needs many features, but one enclosure has missed two interval checks. She sends a test message to herself, and it arrives one hour late. Before the volunteer shift starts, Paula must decide now: add feature ideas or debug the wrong time zone. The shelter coordinator checks one enclosure while the reminder delay is still visible.",
           "whatToDo": "Choose one enclosure, send one reminder to yourself, fix the time zone bug, and delay every other feature until the message arrives correctly.",
           "whyItMatters": "The test message ties code to the feeding problem. The wrong time zone is not a side issue; it is the next visible failure."
@@ -1421,13 +1161,6 @@
             "search",
             "dates"
           ],
-          "planSpec": {
-            "domain": "local newspaper archive search cleanup",
-            "audience": "a learner turning curiosity into one executable tool",
-            "stakes": "reporters waste hours because scanned article dates sort incorrectly",
-            "format": "predict_reveal",
-            "requiredBeat": "Ben predicts more regex reading will solve it, then learns faster by running one date-normalizer against twelve bad archive filenames"
-          },
           "scenario": "Which teaches the date problem faster for Ben in the archive lab, a regex guide or twelve bad filenames? Ben studies the narrow search pane as scanned archive names glow in the wrong order. He predicts one more article will make the pattern click. After two names still sort badly, Ben must decide now: keep reading or let the failed sort check name the next fix. The file list stays on screen so the wrong order cannot become a vague feeling.",
           "whatToDo": "Run the date-normalizer against the twelve filenames, inspect the two that still sort badly, and fix that exact pattern next.",
           "whyItMatters": "The archive filenames are the real problem. A failed sort check gives Ben a sharper next step than more general regex confidence."
@@ -1440,13 +1173,6 @@
             "macro",
             "forms"
           ],
-          "planSpec": {
-            "domain": "airport baggage desk macro for damage-form IDs",
-            "audience": "a reader whose technical problem is small but costly",
-            "stakes": "duplicate claim IDs create angry passenger calls by noon",
-            "format": "before_after",
-            "requiredBeat": "Kiran stops studying macro syntax broadly, builds one ID-check function, runs it on yesterday's forms, and fixes the one duplicate case it misses"
-          },
           "scenario": "Kiran scans yesterday's claim IDs beside a torn suitcase handle and a stack of damage forms at the airport baggage counter. Before, he studied macro syntax and still missed duplicates by noon. After building one ID-check function, he runs the forms and finds the missed duplicate: a trailing space at the end of the ID. Before the next passenger call, he has to choose between broader macro study and fixing that one visible miss. The baggage lead has the duplicate form in hand, which keeps the bug tied to a real claim.",
           "whatToDo": "Run one ID-check function on yesterday's forms, inspect the missed duplicate, and fix the trailing-space case before adding any macro features.",
           "whyItMatters": "The duplicate case gives the macro a real standard. Broad syntax study did not show the exact input that broke the desk's workflow."
@@ -1465,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One test message creates a runnable slice. Dashboards and architecture may matter later, but they delay the output that can reveal the first bug.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1478,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The copied rows and duplicate check give the learner a real output and a real error. Watching or outsourcing avoids the run-fix loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1491,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bib number is the useful slice for today. Rejected rows make the next fix concrete, while full design and broad reading postpone the working import.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1504,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The date error is the practice loop working. Returning to tutorials can become escape if it avoids the exact input the code must handle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1517,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The copied-file rename creates an output that can be checked. Summaries and broad plans keep the work conceptual.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1530,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The simple output is valuable because it can fail clearly. Adding parts hides the bug, while abandoning the slice throws away useful feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1543,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Understanding has to meet execution. A runnable slice shows what the learner can actually make the machine do.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1556,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The failed sort check names the next bug. More reading may be useful after the pattern is visible, but the run made the problem specific.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1569,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A tiny runnable slice gives the learner a real error to debug. More overview or system sketching may feel useful, but neither makes the next line of code answer back.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1627,24 +1344,17 @@
           }
         ],
         "twentyFourHourChallenge": "Write the smallest technical output your current learning project could produce today, plus the first thing that could fail when you run it.",
-        "weeklyPractice": "Once this week, review a technical learning block and mark the exact output, error, and fix. If one is missing, shrink the next block.",
-        "title": "Build One Runnable Slice"
+        "weeklyPractice": "Once this week, review a technical learning block and mark the exact output, error, and fix. If one is missing, shrink the next block."
       },
       "memorableLines": [
         {
-          "text": "Programming starts teaching when the idea becomes a small thing that runs, breaks, and points to the next fix.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the source-specific programming lesson in one concrete sequence."
+          "text": "Programming starts teaching when the idea becomes a small thing that runs, breaks, and points to the next fix."
         },
         {
-          "text": "A good error narrows the world.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes debugging as focus rather than failure."
+          "text": "A good error narrows the world."
         },
         {
-          "text": "Cut the problem until the terminal, spreadsheet, macro, or parser can answer back.",
-          "location": "breakdown.fullRead",
-          "why": "It gives technical learners a practical standard for shrinking the next attempt."
+          "text": "Cut the problem until the terminal, spreadsheet, macro, or parser can answer back."
         }
       ]
     },
@@ -1671,13 +1381,6 @@
             "typing",
             "repair"
           ],
-          "planSpec": {
-            "domain": "court stenography student repairing finger placement",
-            "audience": "a learner whose old speed fights the new map",
-            "stakes": "mis-keyed words in practice transcripts hide the testimony structure",
-            "format": "scene",
-            "requiredBeat": "Marit covers the speed display, slows to one testimony phrase, and restarts whenever the old two-finger reach steals a key"
-          },
           "scenario": "Steno paper curls beside a covered speed display while Marit reads one testimony phrase from the stand in the courtroom. The old two-finger reach would get her through the line faster, but it mis-keys the same word every time. A restart mark waits in the margin. Before the next phrase, Marit must decide now: speed that looks competent or the slower phrase where every stolen key sends her back to the start. The trainer listens for clean keys rather than total words per minute.",
           "whatToDo": "Cover the speed display, work one testimony phrase, and restart whenever the old two-finger reach steals the key.",
           "whyItMatters": "Speed is defending the wrong pattern. The covered display makes the corrected finger placement the only result Marit is allowed to count."
@@ -1690,13 +1393,6 @@
             "fingering",
             "slowdown"
           ],
-          "planSpec": {
-            "domain": "piano student relearning a faulty left-hand fingering",
-            "audience": "a reader with a comfortable motor shortcut that blocks progress",
-            "stakes": "the shortcut collapses every time the piece reaches performance tempo",
-            "format": "before_after",
-            "requiredBeat": "Anders accepts a slower metronome mark, repeats the corrected fingering for four bars, and refuses the old shortcut even when it sounds cleaner once"
-          },
           "scenario": "It took Anders one rehearsal in the practice room to hear how persuasive the old shortcut could be. A metronome needle ticked beside four penciled bars, and the faulty left-hand fingering sounded cleaner once at the faster mark. Before repeating the bar, he has to choose: keep the pretty mistake or lower the tempo and count only corrected fingering. The teacher circles the bar number so the next attempt has no place to hide.",
           "whatToDo": "Lower the metronome, repeat the corrected fingering for four bars, and count only reps where the old shortcut stays out.",
           "whyItMatters": "The shortcut wins by sounding better briefly. A slower mark lets Anders protect the fingering that will still work when tempo returns."
@@ -1709,13 +1405,6 @@
             "keypad",
             "logging"
           ],
-          "planSpec": {
-            "domain": "warehouse scanner keypad entry repair",
-            "audience": "a worker whose familiar habit causes small costly errors",
-            "stakes": "wrong bin codes send returned medical supplies to quarantine twice a week",
-            "format": "decision_point",
-            "requiredBeat": "Megan decides to slow one receiving lane, speak the corrected keypad sequence, and log misses instead of rushing back to the old thumb pattern"
-          },
           "scenario": "At 9:12 a.m., Megan holds a handheld scanner above a tray of return labels while the receiving lane begins to stack up. Wrong bin codes have sent medical supplies to quarantine twice this week. Her thumb knows the old keypad path before her eyes finish reading. She can rush the lane or speak the corrected sequence aloud and mark every miss on the log. The returned-label cart keeps rolling behind her, which is why the slower sequence feels exposed.",
           "whatToDo": "Slow one receiving lane, say the corrected keypad sequence before pressing, and log each miss instead of hiding inside speed.",
           "whyItMatters": "The old thumb pattern feels efficient because the lane is visible. The miss log makes the hidden cost visible enough to repair."
@@ -1728,13 +1417,6 @@
             "grip",
             "rush"
           ],
-          "planSpec": {
-            "domain": "espresso bar milk-steaming grip correction",
-            "audience": "a tactile learner whose bad grip feels faster",
-            "stakes": "the morning rush keeps producing scorched milk and wasted pitchers",
-            "format": "dialogue",
-            "requiredBeat": "Matteo lets the trainer move his wrist, practices three slow pitchers before opening, and resists snapping back when the queue forms"
-          },
           "scenario": "\"Let me move your wrist once,\" the trainer says as steam fog beads on a stainless pitcher lip before the cafe opens. Matteo practices three slow pitchers, and the milk stops scorching. Then the morning queue forms by the pastry case. With the old grip already in his fingers, Matteo must decide now: one corrected wrist or the fast snap that keeps wasting milk. The trainer stands close enough to stop the pitcher before the old snap wins.",
           "whatToDo": "Use the trainer's wrist correction on three slow pitchers, then keep that grip when the queue forms instead of snapping back.",
           "whyItMatters": "Pressure makes the old grip feel like service. The corrected grip has to survive the first line of customers or it remains a private drill."
@@ -1747,13 +1429,6 @@
             "motor skill",
             "consolidation"
           ],
-          "planSpec": {
-            "domain": "surgical knot-tying practice board",
-            "audience": "a learner in a precise motor skill who must value corrected reps over relief",
-            "stakes": "a sloppy handoff in simulation keeps loosening the knot",
-            "format": "predict_reveal",
-            "requiredBeat": "Astrid predicts speed will make the knot feel natural, then learns the knot holds only after she slows the handoff and sleeps on the corrected sequence"
-          },
           "scenario": "Will speed make the handoff feel natural by tomorrow? Astrid loops blue practice cord across a foam knot board during evening rescue training and predicts the faster run will settle overnight. The next-day check says no: the knot loosens until she slows the handoff. Before logging the drill, Astrid has to choose between relief tonight and a knot that holds tomorrow. The board stays on the mat overnight so tomorrow's check has the same start point.",
           "whatToDo": "Slow the handoff, repeat the corrected knot sequence, and use the next-day check to count only the reps that still hold.",
           "whyItMatters": "Consolidation strengthens what Astrid actually rehearses. Slow clean reps give sleep a stable sequence to preserve; sloppy speed gives tomorrow's hands the same loose handoff faster."
@@ -1766,13 +1441,6 @@
             "chord change",
             "audition"
           ],
-          "planSpec": {
-            "domain": "guitar chord-change repair for a busker permit audition",
-            "audience": "a casual performer replacing a messy familiar motion",
-            "stakes": "the chord buzz returns every time a listener walks by",
-            "format": "reflection",
-            "requiredBeat": "Julien marks one chord change, lifts fingers in the corrected order for ten slow reps, and stops counting any rep where the old collapse sneaks in"
-          },
           "scenario": "You see Julien's fingertip hover above a penciled chord box on the busker permit form. The audition is next week, and every passerby makes the old chord collapse feel safer than the exposed corrected lift. Julien marks one change, plays ten slow reps, and refuses to count any take where the buzz returns under imaginary listeners. The buzzing string is the judge, not the number of times his fingers moved.",
           "whatToDo": "Mark one chord change, lift fingers in the corrected order for ten slow reps, and count only buzz-free reps.",
           "whyItMatters": "The old motion survives by hiding in performance pressure. The buzz check makes each rep answer to the sound Julien actually needs."
@@ -1791,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The speed dip is expected when an old route is being replaced. Abandoning the correction lets the comfortable error keep winning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The corrected fingering needs protected reps. Whole-piece repetition and postponement keep feeding the shortcut that fails under tempo.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The miss log exposes the cost of the shortcut. Speed targets or ignored misses let the old pattern hide inside workplace pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The corrected grip has to survive the pressure moment. Using it only in quiet periods leaves the old habit in charge when the stakes return.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Familiarity can masquerade as correctness. The test is whether the motion produces the needed result, not whether it offers immediate relief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The relevant point is what the day fed into consolidation. Sloppy comfort does not become corrected skill simply because a night passes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1531,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Counting buzzing reps rewards the old pattern. The set should measure corrected repetition, not total motion or performance speed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The display would tempt her to value old-speed relief. Covering it protects the corrected reach until speed can return honestly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The old habit can keep stealing the motion after the first session. Speed becomes a fair test only after clean corrected reps have made the new route reliable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1953,24 +1612,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one familiar motion you do poorly, slow one rep below comfort, and name the exact old shortcut you are refusing.",
-        "weeklyPractice": "Once this week, review one habit-repair practice and ask which reps truly installed the corrected motion and which only repeated familiar relief.",
-        "title": "Protect Corrected Reps From Speed"
+        "weeklyPractice": "Once this week, review one habit-repair practice and ask which reps truly installed the corrected motion and which only repeated familiar relief."
       },
       "memorableLines": [
         {
-          "text": "The learner is not only building a new route.",
-          "location": "breakdown.fastRead",
-          "why": "It makes clear that habit repair has an old competitor, not just a new skill to acquire."
+          "text": "The learner is not only building a new route."
         },
         {
-          "text": "Relief can be a liar with good timing.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the exact emotional trap that pulls learners back to the old pattern."
+          "text": "Relief can be a liar with good timing."
         },
         {
-          "text": "A repaired habit is built by refusing false fluency one visible rep at a time.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the chapter into a practical standard for what to count."
+          "text": "A repaired habit is built by refusing false fluency one visible rep at a time."
         }
       ]
     },
@@ -1997,13 +1649,6 @@
             "beds",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "emergency-room bed allocation during flu surge",
-            "audience": "a reader facing strategic complexity with scarce resources",
-            "stakes": "one wrong local decision blocks isolation rooms for incoming patients",
-            "format": "scene",
-            "requiredBeat": "Michael stops trying to optimize the whole shift, marks one local pressure cluster on the bed board, and decides which room must be defended for respiratory cases"
-          },
           "scenario": "Colored magnets crowd around two isolation-room slots on the bed board while the flu surge fills the waiting room. Michael can feel the whole shift turning into one unsolvable puzzle. A pressure cluster forms around respiratory cases and one discharge delay. His marker pauses over the board. The immediate fight is which isolation room to defend before the next ambulance arrives. The charge nurse is waiting for one room choice before the next ambulance call.",
           "whatToDo": "Mark the pressure cluster, name the respiratory rooms that must be defended, and make the next bed move around that local fight.",
           "whyItMatters": "The whole shift is too large to solve at once. One local pressure read protects the scarce rooms where the next wrong move would cost most."
@@ -2016,13 +1661,6 @@
             "curb",
             "defense"
           ],
-          "planSpec": {
-            "domain": "urban planning review of a contested bus stop relocation",
-            "audience": "a reader who needs pattern recognition without claiming total certainty",
-            "stakes": "moving one stop changes school access, shop deliveries, and traffic pinch points",
-            "format": "decision_point",
-            "requiredBeat": "Frida names the recurring curb-conflict pattern, then reads the one block where defense of school access matters more than attacking congestion"
-          },
           "scenario": "\"The delivery arrows keep crossing the school path,\" Frida says during the town traffic meeting, her hand flat on a laminated curb map marked in three colors. Moving the bus stop could ease congestion, but one block repeats the same conflict: shop loading, school access, and turning cars. Before the council vote, Frida has to choose: attack congestion now or defend the school crossing first. The school principal has five minutes before the next public comment slot.",
           "whatToDo": "Name the recurring curb-conflict pattern, then protect the school-access block before treating congestion as the main target.",
           "whyItMatters": "Frida does not need total certainty about the whole corridor to see which local pressure carries the highest cost today."
@@ -2035,13 +1673,6 @@
             "logins",
             "triage"
           ],
-          "planSpec": {
-            "domain": "cybersecurity analyst triaging suspicious login clusters",
-            "audience": "a technical reader working inside an overwhelming signal field",
-            "stakes": "a real account takeover can hide among harmless travel alerts",
-            "format": "predict_reveal",
-            "requiredBeat": "Jack predicts the dashboard is too broad, then spots one repeated login pattern and defends the payroll account before chasing every alert"
-          },
           "scenario": "Which alert is the fight and which is just noise? Jack stares at three red login dots stacked beside a payroll-account label in the security operations room while the queue keeps scrolling. He predicts the dashboard is too broad to use. When the same country pair repeats across one account, Jack must decide now: defend payroll or chase the rest of the alerts. The payroll lead is on call, and one false delay locks staff out before noon.",
           "whatToDo": "Read the repeated login pattern, defend the payroll account first, and leave the broader alert queue until the local risk is contained.",
           "whyItMatters": "The repeated pattern gives Jack an entry point. Treating every alert equally would let the most dangerous local pressure hide in the crowd."
@@ -2054,13 +1685,6 @@
             "overload",
             "halftime"
           ],
-          "planSpec": {
-            "domain": "youth soccer coach reading one flank overload",
-            "audience": "a learner translating pattern recognition into bounded action",
-            "stakes": "the team keeps conceding from the same side and halftime is almost over",
-            "format": "vignette",
-            "requiredBeat": "Manon stops giving whole-field advice, points to the repeated two-on-one on the left flank, and assigns one defender to hold rather than chase"
-          },
           "scenario": "At 10:46 a.m., muddy cones lie knocked sideways near the left touchline and Manon's halftime board has one circle drawn three times. The team has conceded from the same two-on-one twice. Before the whistle, Manon has to choose: talk about effort and spacing in general, or assign one defender to hold the left flank. The assistant coach points at the same chalk mark where the overload keeps starting.",
           "whatToDo": "Point to the repeated two-on-one, assign one defender to hold, and leave whole-field advice for after the local overload is handled.",
           "whyItMatters": "The team cannot fix the whole game at halftime. The repeated flank pattern gives Manon one pressure to defend immediately."
@@ -2073,13 +1697,6 @@
             "books",
             "pattern"
           ],
-          "planSpec": {
-            "domain": "antique-book dealer bidding at a regional auction",
-            "audience": "a reader who needs selective competence in a high-information market",
-            "stakes": "one misread lot can consume the entire buying budget",
-            "format": "postmortem",
-            "requiredBeat": "Andrew sees that the winning move was not knowing every lot, but recognizing one binding-damage pattern and defending his budget against a flashy rare title"
-          },
           "scenario": "It took Andrew until the drive home from the estate auction to see why the cracked leather spine under the lamp mattered more than the rare title's shine. He sat across the table from two bidders and did not know every lot in the room. When the bid rose, he had to choose between the flashy title and the binding-damage pattern that protected his budget. The auctioneer's hammer is already moving to the next bid, so the pattern has to guide him fast.",
           "whatToDo": "Use the binding-damage pattern to defend the bid ceiling, and let unknown lots remain unknown instead of pretending to read the whole auction.",
           "whyItMatters": "Selective competence protects Andrew from the high-information market. One trusted pattern keeps a single lot from consuming the budget."
@@ -2092,13 +1709,6 @@
             "outreach",
             "local pattern"
           ],
-          "planSpec": {
-            "domain": "public-health team choosing one outreach neighborhood",
-            "audience": "a reader navigating complex social data without total mastery",
-            "stakes": "limited vaccine staff can cover only one Saturday clinic route",
-            "format": "thought_experiment",
-            "requiredBeat": "Sofia reads one local pattern in missed appointments, defends the high-trust church lot, and declines a broader citywide campaign for this week"
-          },
           "scenario": "You watch Sofia's finger stop on a missed-appointment heat map beside a church parking lot in the county health office. Limited vaccine staff can cover one Saturday route, while three managers want a citywide campaign. Before assigning the van, Sofia must decide now: defend the trusted church-lot route or claim mastery of the whole city. The clinic director needs the route by Friday because volunteers are being scheduled.",
           "whatToDo": "Read the missed-appointment cluster, protect the high-trust church lot for Saturday, and decline the broader campaign until the route has been tested.",
           "whyItMatters": "The heat map gives Sofia a local pressure with a usable response. Citywide complexity can wait while the first route proves or disproves the pattern."
@@ -2117,8 +1727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The local pressure cluster gives a playable entry point. Waiting for total visibility stalls action, and easy movement may ignore the scarce resource.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated overload is the local fight. Broad morale or formation resets may sound strategic while leaving the visible pressure untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated payroll pattern is a strategic entry point. Equal treatment or queue sorting hides the live pressure inside the larger field.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1763,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A local read should guide a bounded move, not become overconfidence about the whole system. The other options preserve scope humility.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern supports a bounded defense of the budget. Ignoring it wastes selective competence, while aggressive bidding overclaims mastery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The trusted site gives a local response to the pattern. Citywide scale or complete modeling may delay the first useful test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1799,7 @@
             ],
             "correctIndex": 1,
             "explanation": "One local fight gives the learner a truthful entry point. Memorization or randomness avoids the pressure that makes the position teach.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The handoff can be a valid local fight while still remaining bounded. The danger is either paralysis or overclaiming from one pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A bounded local move creates a learnable result without claiming mastery of the whole system. Waiting freezes the learner, while random action ignores the pressure pattern.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2279,24 +1880,17 @@
           }
         ],
         "twentyFourHourChallenge": "Pick one complex situation and mark the smallest local fight: what pattern repeats, what is under attack, and what must be defended first?",
-        "weeklyPractice": "Once this week, review a complex decision and ask where you overclaimed from one pattern or froze while waiting for the whole board.",
-        "title": "Enter Complexity Through Local Pressure"
+        "weeklyPractice": "Once this week, review a complex decision and ask where you overclaimed from one pattern or froze while waiting for the whole board."
       },
       "memorableLines": [
         {
-          "text": "Pattern recognition does not erase complexity.",
-          "location": "breakdown.fastRead",
-          "why": "It prevents the Go lesson from flattening into simplistic strategy advice."
+          "text": "Pattern recognition does not erase complexity."
         },
         {
-          "text": "The whole map can wait for the urgent fight.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a crisp rule for bounded strategic entry."
+          "text": "The whole map can wait for the urgent fight."
         },
         {
-          "text": "Complexity should make you narrower, not frozen.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's main transfer lesson in a sentence that applies beyond games."
+          "text": "Complexity should make you narrower, not frozen."
         }
       ]
     },
@@ -2323,13 +1917,6 @@
             "harmonica",
             "listener"
           ],
-          "planSpec": {
-            "domain": "wedding toast speaker learning one short harmonica phrase",
-            "audience": "a reader narrowing a performance goal for real listeners",
-            "stakes": "the phrase must land cleanly before her sister's toast, not become a musicianship project",
-            "format": "scene",
-            "requiredBeat": "Olivia reduces the target to eight bars, isolates the breath change, records three takes, and plays it once for the best man before adding flair"
-          },
           "scenario": "A silver harmonica rests on the counter beside Olivia's folded toast card while the reception timeline sits open. She wants a sweet surprise before her sister's toast, but the phrase breaks at the breath change. Three recorded takes wait on her phone. Before the best man listens, Olivia must decide now: add flair for the fantasy version or play the eight clean bars once. The card trembles because this is for one sister, not for a fantasy stage.",
           "whatToDo": "Reduce the target to eight bars, isolate the breath change, record three takes, and play the cleanest one for the best man before adding anything.",
           "whyItMatters": "The listener turns practice into performance readiness. Olivia needs one phrase that lands, not a new musical identity before the toast."
@@ -2342,13 +1929,6 @@
             "puppet",
             "public-ready"
           ],
-          "planSpec": {
-            "domain": "museum educator learning a short puppet manipulation sequence",
-            "audience": "a performer who needs one reliable public-ready slice",
-            "stakes": "a school group will lose the exhibit story if the puppet collapses mid-demonstration",
-            "format": "dialogue",
-            "requiredBeat": "Luca asks which movement matters, drills only the puppet's turn-and-point until the wrist loop stops tangling, then tests it with two educators watching"
-          },
           "scenario": "\"Which movement matters if I get only one?\" Luca asks the teacher inside the museum education room, a felt puppet hand caught in a thin wrist loop. The school group arrives tomorrow, and the exhibit story dies if the puppet collapses mid-demonstration. With two educators standing by the case, Luca has to choose: rehearse the whole story or drill the turn-and-point until the loop stops tangling. The teacher keeps the puppet case open so the failed loop can be seen at once.",
           "whatToDo": "Drill only the turn-and-point, fix the wrist loop, and test the movement with two educators watching before adding any other puppet action.",
           "whyItMatters": "The story needs one reliable movement. A public-ready slice beats a wider routine that fails at the first visible gesture."
@@ -2361,13 +1941,6 @@
             "coin",
             "camera"
           ],
-          "planSpec": {
-            "domain": "amateur magician preparing one coin vanish for a family party",
-            "audience": "a reader who must isolate the move that will be seen",
-            "stakes": "a half-learned routine fails in front of cousins and kills the effect",
-            "format": "predict_reveal",
-            "requiredBeat": "Marta predicts the whole routine needs work, then discovers the vanish fails at the thumb transfer and repeats that single movement in front of a phone camera"
-          },
           "scenario": "What will the cousins actually see at Saturday's family party? Marta holds a worn coin under a phone camera light and predicts the whole routine needs work. The replay says otherwise: the vanish dies at the thumb transfer, long before the patter matters. Before recording another full run, Marta must decide now: polish the script or repeat that single movement until the flash disappears. The phone replay gives Marta a witness that her memory cannot soften.",
           "whatToDo": "Use the phone camera to isolate the thumb transfer, repeat that movement, and delay the rest of the routine until the vanish survives replay.",
           "whyItMatters": "The visible failure is smaller than the full act. Fixing the transfer makes the performance possible; polishing patter would leave the exposure untouched."
@@ -2380,13 +1953,6 @@
             "meetup",
             "story"
           ],
-          "planSpec": {
-            "domain": "language meetup participant preparing a two-minute story in French",
-            "audience": "a learner whose public-ready subset is verbal performance",
-            "stakes": "he wants to speak at the table instead of hiding behind listening",
-            "format": "before_after",
-            "requiredBeat": "Chris cuts the story to six sentences, isolates the two verb turns that trip him, and delivers it to one native speaker before the meetup"
-          },
           "scenario": "It took Chris two meetups at the language cafe to admit listening was becoming a hiding place. Six numbered sentences sit folded beside a metro ticket, and two verb turns are circled in blue. Before the next table rotation, Chris has to choose: prepare conversation in general or deliver the two-minute story to one native speaker and mark where the listener hesitates. The cafe timer leaves only one table rotation for the story to prove itself.",
           "whatToDo": "Cut the story to six sentences, drill the two verb turns, and deliver it to one native speaker before the meetup.",
           "whyItMatters": "The small story gives Chris a public-ready subset. He can test one spoken piece instead of waiting to feel ready for every conversation."
@@ -2399,13 +1965,6 @@
             "dessert",
             "service"
           ],
-          "planSpec": {
-            "domain": "line cook learning one plated dessert finish",
-            "audience": "a craft learner whose subset must face service",
-            "stakes": "the dessert station slows every table when the garnish collapses",
-            "format": "decision_point",
-            "requiredBeat": "Chiara chooses one quenelle-and-sauce finish, repeats the wrist turn on cold plates, and asks the sous-chef to judge only whether it can go to a guest"
-          },
           "scenario": "At 4:18 p.m., Chiara lines cold dessert plates along the pass beside a spoon dipped in hot water. She wants to practice every finish on the menu, but the quenelle keeps collapsing when service starts. The sous-chef is checking prep. Before tickets start printing, Chiara must decide now: one quenelle-and-sauce wrist turn on cold plates, judged by guest readiness, or a tour of every finish. The ticket rail above the pass makes guest readiness more important than private elegance.",
           "whatToDo": "Choose the quenelle-and-sauce finish, repeat the wrist turn on cold plates, and ask the sous-chef for guest-ready judgment only.",
           "whyItMatters": "Service is the listener here. The guest standard catches collapse that private repetition can miss, so Chiara should widen dessert practice only after the narrow finish survives the pass."
@@ -2418,13 +1977,6 @@
             "fade",
             "live"
           ],
-          "planSpec": {
-            "domain": "community radio producer learning one live sound-bed fade",
-            "audience": "a technical performer whose small move has public stakes",
-            "stakes": "the interview intro sounds amateur if the music crashes under the first sentence",
-            "format": "vignette",
-            "requiredBeat": "Akira narrows practice to the eight-second fade, repeats it with the host's first line, and runs it live only after a colleague hears it twice"
-          },
           "scenario": "Akira rests one fingertip on a sticky fader labeled BED while cueing the host's first line in the radio booth. The interview intro has sounded amateur twice because the music crashes under the sentence. A colleague waits outside the booth. Before the broadcast light turns red, Akira has to choose: repeat the eight-second fade until it lands clean twice or trust a rough private take. The colleague will hear the crash at once if the bed is still too loud.",
           "whatToDo": "Narrow practice to the eight-second fade, pair it with the host's first line, and run it live only after a colleague hears it clean twice.",
           "whyItMatters": "The fade is small but public. A colleague hears timing and balance that solo monitoring can excuse, giving Akira a real readiness signal before expanding the audio skill."
@@ -2443,8 +1995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The small listener-tested piece creates a public standard. Broad routines and private confidence can avoid the exact performance moment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2456,8 +2007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The six-sentence story is a defined performance subset with a listener. Broad topics and waiting for automatic grammar postpone exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2469,8 +2019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The camera found the visible failure. Repeating the transfer fixes the movement the audience would see, while patter or full runs hide it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2482,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Guest-ready judgment is the relevant public standard. More finishes or private beauty can leave the service failure untouched.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2495,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The turn-and-point is the public slice that fails. Colleagues make the test honest before a school group sees it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2508,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fade is ready only when it survives the listener's experience of the sentence. Private smoothness was an incomplete standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2521,8 +2067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The listener keeps the small target honest. Narrowing is weak only when it becomes private avoidance rather than public readiness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2534,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The breath change is the failing movement inside the public phrase. Flair and longer material avoid the weakness rather than making it reliable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2547,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Performance readiness needs a real listener. Private repetition is useful only if it returns to a public test where timing, steadiness, and meaning can be heard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2605,24 +2148,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one performance skill and write the smallest piece you would be willing to show one real listener after focused repetition.",
-        "weeklyPractice": "Once this week, take one private practice slice and expose it to one listener, viewer, colleague, or guest-ready standard.",
-        "title": "Prepare One Public Subset"
+        "weeklyPractice": "Once this week, take one private practice slice and expose it to one listener, viewer, colleague, or guest-ready standard."
       },
       "memorableLines": [
         {
-          "text": "The subset has to face real ears before it can count as ready.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the public-readiness standard into a short, tactile line."
+          "text": "The subset has to face real ears before it can count as ready."
         },
         {
-          "text": "A small standard can be ruthless when it has a witness.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes small performance targets as demanding rather than soft."
+          "text": "A small standard can be ruthless when it has a witness."
         },
         {
-          "text": "Do less, but make the less audible.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a compact rule for narrowing without hiding."
+          "text": "Do less, but make the less audible."
         }
       ]
     },
@@ -2649,13 +2185,6 @@
             "water",
             "edge"
           ],
-          "planSpec": {
-            "domain": "kayak rescue-club edging drill in a sheltered cove",
-            "audience": "a learner whose water skill needs live but bounded conditions",
-            "stakes": "open-water practice is unsafe until edge recovery stops surprising him",
-            "format": "scene",
-            "requiredBeat": "Jonas stays in the sheltered cove, repeats one edge-and-recover sequence beside the instructor boat, then tests it once where the current begins to tug"
-          },
           "scenario": "Green water taps Jonas's kayak blade near the buoy line while the coach idles the instructor boat in the sheltered cove. Open water is beyond today's target, but dry practice cannot teach the tug. Jonas repeats one edge-and-recover sequence beside the boat. Before leaving the cove, he must decide now: one pass near the current line or a full crossing he cannot yet read. The coach keeps the boat within reach so the test stays live without becoming reckless.",
           "whatToDo": "Stay in the sheltered cove, repeat one edge-and-recover sequence, and test it once where the current begins to tug.",
           "whyItMatters": "The cove keeps the risk bounded while the current keeps the practice honest. Jonas needs live water, not full open-water chaos."
@@ -2668,13 +2197,6 @@
             "crosswind",
             "landing"
           ],
-          "planSpec": {
-            "domain": "drone pilot learning crosswind landing in a marked field",
-            "audience": "a technical outdoor learner whose conditions change the assignment",
-            "stakes": "a client shoot fails if the drone drifts into trees during landing",
-            "format": "predict_reveal",
-            "requiredBeat": "Margaux predicts simulator time is enough, then isolates only crosswind landings between two field cones before flying near the tree line"
-          },
           "scenario": "Which is the real landing lesson, the simulator or the two orange cones trembling in a gust across the drone club's short grass field? Margaux works with a trainer and predicts simulator time is enough. Then the drone drifts on the last few feet, and the tree line waits beyond the field. Before flying near branches, Margaux has to choose: one crosswind landing lane between cones or another protected simulator loop. The trainer marks the cone lane again after the gust moves the first flag.",
           "whatToDo": "Practice only crosswind landings between the field cones, then move closer to the tree line only after the landing stops drifting.",
           "whyItMatters": "The gust changes the assignment in a way the simulator did not. The cones create a live but bounded test of the landing."
@@ -2687,13 +2209,6 @@
             "sled",
             "progression"
           ],
-          "planSpec": {
-            "domain": "ski patrol trainee practicing loaded sled turns on a low slope",
-            "audience": "a learner in a risky outdoor skill needing staged progression",
-            "stakes": "a full run with a loaded sled could endanger both trainee and patient",
-            "format": "decision_point",
-            "requiredBeat": "Ryan chooses the low slope, repeats only the loaded turn with a trainer walking beside him, and advances after the sled stops fishtailing"
-          },
           "scenario": "At 7:30 a.m., red sled straps lie across packed spring snow while Ryan looks from the low slope to the full patrol run. The sled fishtails on the first loaded turn, and the trainer is walking beside him. Before moving uphill, Ryan must decide now: repeat the loaded turn here until the sled tracks cleanly, or let pride drag him onto the full run. The trainer taps the sled brake after each pass so Ryan can feel the clean track.",
           "whatToDo": "Use the low slope, repeat only the loaded turn with the trainer beside him, and advance after the sled stops fishtailing.",
           "whyItMatters": "The low slope keeps the risk controlled while the loaded sled keeps the movement real. A full run too soon would bury the subskill in danger."
@@ -2706,13 +2221,6 @@
             "light",
             "histogram"
           ],
-          "planSpec": {
-            "domain": "outdoor photographer learning manual exposure in changing cloud cover",
-            "audience": "a creator whose practice must answer to moving conditions",
-            "stakes": "a paid family session will lose the faces whenever clouds break and return",
-            "format": "before_after",
-            "requiredBeat": "Catarina stops practicing every camera setting, isolates exposure changes every time a cloud crosses the sun, and checks the histogram after each five-shot set"
-          },
           "scenario": "It took Catarina one paid session in a damp city park to notice the cloud shadow sliding over the white reflector. Before, she practiced every camera setting and still lost faces when clouds broke. Afterward, she built five-shot sets around one variable. Before the next family arrives, she has to choose: chase every setting or adjust only when cloud cover changes, shoot, check the histogram, and repeat. The client will arrive at noon, so this drill has to answer before the light changes again.",
           "whatToDo": "Practice exposure changes only when cloud cover shifts, shoot five-frame sets, and check the histogram after each set.",
           "whyItMatters": "The moving cloud is the condition that changes the task. A five-shot set makes the environment teach without turning the whole session into camera theory."
@@ -2725,13 +2233,6 @@
             "canopy",
             "wind"
           ],
-          "planSpec": {
-            "domain": "outdoor market vendor learning canopy setup in wind",
-            "audience": "a practical learner whose equipment and conditions interact",
-            "stakes": "one loose canopy leg can damage neighboring stalls before opening",
-            "format": "dialogue",
-            "requiredBeat": "Luke asks the experienced vendor to isolate the windward-leg sequence, repeats it with empty weights first, then tests it when gusts hit the aisle"
-          },
           "scenario": "\"Which leg fails first?\" Luke asks the trainer as canvas snaps against a half-weighted canopy leg before the outdoor market opens. The experienced vendor points to the windward side and moves the empty weights into position. Before neighboring stalls unlock, Luke must decide now: practice the windward-leg sequence with empty weights or wait for a full gust with real stock at risk. The aisle tape marks the safe edge before any crates or glass jars come out.",
           "whatToDo": "Ask for the windward-leg sequence, repeat it with empty weights, then test that setup when gusts move through the market aisle.",
           "whyItMatters": "The canopy skill lives where equipment meets wind. Isolating the windward leg makes the condition trainable before neighboring stalls are exposed."
@@ -2744,13 +2245,6 @@
             "tripod",
             "uneven ground"
           ],
-          "planSpec": {
-            "domain": "field archaeologist learning total-station setup on uneven ground",
-            "audience": "a learner in a condition-sensitive technical field task",
-            "stakes": "bad leveling ruins the day's grid points before the trench team starts",
-            "format": "reflection",
-            "requiredBeat": "Adaeze narrows the session to leveling the tripod on uneven ground, repeats it beside one trench, and lets the morning's first grid reading judge whether it held"
-          },
           "scenario": "At dawn, Adaeze's boot presses into chalky soil beside three tripod feet while the archaeology trench team waits for the first grid point. Flat practice never had this wobble. She narrows the morning to tripod leveling on uneven ground, repeats it beside one trench, and lets the first grid reading decide whether the setup held. Before the team opens the trench, Adaeze has to choose between another flat-yard drill and the smallest live test on real soil. The survey lead watches the bubble level because one bad point can spoil the morning grid.",
           "whatToDo": "Level the tripod on uneven ground beside one trench, repeat the setup, and use the first grid reading as the live check.",
           "whyItMatters": "The uneven ground is the condition that matters. The first grid reading keeps the drill tied to field accuracy, not sheltered setup practice."
@@ -2769,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sheltered water keeps the condition present without full chaos. Open water is too broad, while dry land removes the variable that changes the skill.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2782,8 +2275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cone lane isolates the crosswind landing in a safer live setting. Gear and simulator time avoid the condition causing the drift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2795,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The loaded turn is the live subskill. A low slope keeps progression bounded, while a full run adds risk and unloaded turns remove the key condition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2808,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cloud cover is changing the task, so practice should answer that condition. Menus and composition may matter but do not target the live failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2821,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The windward leg is where equipment and condition meet. Garage practice removes the wind, while improvising at the market avoids learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2834,8 +2323,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Uneven soil is the condition that changes the setup. A real reading checks whether the staged practice still serves field accuracy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2847,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A good staged subskill preserves the variable that matters while managing risk. Avoidance and full chaos both fail the design standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2860,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The task starts with the condition and a trainable live slice. Specs or courage sessions can distract from the variable that actually breaks the skill.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2873,8 +2359,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Shelter helps only when it keeps a path back to the real condition. A low-risk live test lets wind, current, slope, or ground reveal whether the subskill transfers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2931,24 +2416,17 @@
           }
         ],
         "twentyFourHourChallenge": "Name one condition-shaped skill and define the smallest live subskill that could face a real but low-risk version of the environment.",
-        "weeklyPractice": "Once this week, audit one sheltered drill and ask whether it is preparing real contact or helping you avoid the condition that matters.",
-        "title": "Design a Bounded Live Drill"
+        "weeklyPractice": "Once this week, audit one sheltered drill and ask whether it is preparing real contact or helping you avoid the condition that matters."
       },
       "memorableLines": [
         {
-          "text": "Safe progression is not avoidance.",
-          "location": "breakdown.deepRead",
-          "why": "It defends staged field practice against the urge to rush into unsafe full conditions."
+          "text": "Safe progression is not avoidance."
         },
         {
-          "text": "The environment changes the assignment.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers the core mechanism for why windsurfing-style practice differs from earlier chapters."
+          "text": "The environment changes the assignment."
         },
         {
-          "text": "Let the world push back just enough to teach.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the final chapter with a portable rule for condition-shaped practice."
+          "text": "Let the world push back just enough to teach."
         }
       ]
     }

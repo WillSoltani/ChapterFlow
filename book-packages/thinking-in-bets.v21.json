@@ -47,13 +47,6 @@
             "clinical",
             "triage"
           ],
-          "planSpec": {
-            "domain": "hospital triage review after a missed sepsis warning",
-            "audience": "clinical leads who run morbidity reviews",
-            "stakes": "whether a nurse is blamed for a call that looked different before the lab result came back",
-            "format": "postmortem",
-            "requiredBeat": "Grace draws a vertical line on the review board, writes what was known before the lab result on the left, and refuses to let the later number cross the line until process quality has been judged."
-          },
           "scenario": "A laminated triage flowchart curls under fluorescent light in the Tuesday review room. Grace, the clinical lead, stands beside the triage board while a late lactate result glows red on the screen. The room is ready to blame the nurse who sent bed 4 to observation. Grace draws a vertical line, writes time-stamped notes on the left, and refuses to let the later lab number cross it until the process has been judged.",
           "whatToDo": "Rebuild the call from the evidence that existed when the nurse acted. Only after that should the team add the late lab result and decide what it changes.",
           "whyItMatters": "The lab result is real feedback, but it arrived after the call. Keeping the timelines separate protects learning from hindsight blame without excusing weak triage process."
@@ -66,13 +59,6 @@
             "architecture",
             "review"
           ],
-          "planSpec": {
-            "domain": "architecture bid review after a lost museum contract",
-            "audience": "creative directors who review proposals",
-            "stakes": "whether the studio throws out a sound process because the museum chose a flashier rival",
-            "format": "decision_point",
-            "requiredBeat": "Étienne lays the losing bid packet beside the original scoring sheet and separates the jury surprise from the criteria the team actually had."
-          },
           "scenario": "The smell of plotter ink hangs over the rolled museum drawings on Wednesday morning. Etienne pins the rival's glossy rendering on one wall and the studio's submission timeline on another. Before the client debrief at noon, he must choose between calling the proposal weak and marking which scoring criteria were visible before the jury surprise changed the story.",
           "whatToDo": "Put the scoring sheet and the lost bid side by side. Mark which standards were known before submission, then mark which preference became visible only after the jury chose.",
           "whyItMatters": "A lost bid may reveal a gap, but it may also reveal a preference the team could not price earlier. The review improves only when those two sources stay apart."
@@ -85,13 +71,6 @@
             "nonprofit",
             "weather"
           ],
-          "planSpec": {
-            "domain": "charity gala rain plan after an outdoor dinner loses money",
-            "audience": "nonprofit event chairs",
-            "stakes": "whether donors punish the planning team or inspect the weather odds and backup costs available before the storm",
-            "format": "before_after",
-            "requiredBeat": "Julia rewrites the review agenda from final revenue to pre-event weather probabilities, vendor constraints, and the backup-tent quote they declined."
-          },
           "scenario": "It took Julia three weeks to stop seeing only the soaked table linens. At the Thursday donor debrief, the refund list makes the outdoor gala look reckless, and the finance chair wants a quick apology. Julia replaces the first agenda item, final revenue, with the backup-tent quote, the morning weather probability, and the vendor constraints the committee had before the storm rolled in.",
           "whatToDo": "Start the debrief with the weather odds and backup choices available before the dinner. Let final revenue speak later, after the original decision frame is visible.",
           "whyItMatters": "The storm outcome matters, but it cannot be allowed to rewrite what the committee knew. The process may still be weak, but it must be judged in the right time."
@@ -104,13 +83,6 @@
             "sports",
             "coaching"
           ],
-          "planSpec": {
-            "domain": "youth soccer final after a goalkeeper pass is intercepted",
-            "audience": "parents and volunteer coaches",
-            "stakes": "whether a child learns from process or from adult hindsight shame",
-            "format": "dialogue",
-            "requiredBeat": "Luca asks the sideline to describe the open defenders before naming the interception, forcing the adults to evaluate the pass before the ending."
-          },
           "scenario": "\"Tell me what she could see before the kick,\" Luca says, holding the wet clipboard flat as parents crowd the sideline after the Sunday final. The goalkeeper's pass was intercepted, and the adults are calling it obvious while the league trophy sits on the bench. Luca points to two open defenders on his diagram. Before the next practice, the real decision is whether the child hears a verdict or a review of the live choice.",
           "whatToDo": "Ask the adults to describe the open options before naming the interception. Then coach the pass selection from that live view, not from the groan after the ball was stolen.",
           "whyItMatters": "The child can learn from the decision frame. If the adults teach only the ending, they train fear of losing instead of better judgment under pressure."
@@ -123,13 +95,6 @@
             "research",
             "grant"
           ],
-          "planSpec": {
-            "domain": "university lab grant review after a rejected equipment proposal",
-            "audience": "graduate researchers",
-            "stakes": "whether a junior scientist abandons a defensible grant strategy because one panel disliked it",
-            "format": "reflection",
-            "requiredBeat": "Marta covers the rejection score with a sticky note and first ranks the evidence quality, reviewer fit, and alternate proposals that existed when she submitted."
-          },
           "scenario": "What can a rejection letter know that the submission day did not? Marta sits in the university lab on Friday afternoon with reviewer comments, a yellow sticky note, and an equipment quote for the microscope upgrade. Before the department chair calls the proposal naive, she covers the score first, then ranks evidence quality, reviewer fit, and the alternate proposals that were possible when she submitted.",
           "whatToDo": "Cover the score long enough to grade the submission process. Then uncover the reviewer comments and decide which parts are new evidence and which parts are only panel taste.",
           "whyItMatters": "The rejection is information, not total truth. If Marta lets it speak too soon, it will make a defensible strategy look foolish just because one panel disliked it."
@@ -142,13 +107,6 @@
             "housing",
             "screening"
           ],
-          "planSpec": {
-            "domain": "tenant screening decision after a quiet applicant later damages an apartment",
-            "audience": "small landlords and housing managers",
-            "stakes": "whether a lawful screening process gets replaced by hindsight suspicion",
-            "format": "vignette",
-            "requiredBeat": "You place the signed checklist beside the repair invoice and mark which risk signals were actually visible before the lease was offered."
-          },
           "scenario": "You are looking at a repair invoice that seems to accuse last month's checklist. James, the housing manager, stands at his desk on Monday with the signed screening form, reference call notes, and photos of a damaged unit. The tenant committee wants a tougher rule by lunch. Before renewing the policy, he must decide whether the damage revealed a missed signal or only arrived after a lawful process found nothing visible.",
           "whatToDo": "Place the checklist beside the invoice. Mark which risks were visible before the lease, then mark what the damage added after the fact.",
           "whyItMatters": "A bad tenant outcome can expose a weak screen, but it can also tempt a manager into suspicion that no earlier evidence supported."
@@ -167,8 +125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first task is to rebuild the live information set. Recovery and later confidence may matter in other ways, but neither can judge what the clinician could see before the scan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -180,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stock bump is feedback, but the skipped supplier risk still belongs in the process review. Ignoring the result is too extreme, while treating it as proof repeats resulting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -193,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The failure is not ignored, but it cannot walk backward into the moment of choice. Practice history alone is incomplete, and the final result alone is resulting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -206,8 +161,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The review needs separate time boxes: evidence before the change, the outcome, and later facts. Personality and one invoice do not rebuild the decision environment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -219,8 +173,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A good ending can come from a weak process. The grade can be logged as feedback, but it cannot erase the risk in the thin preparation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -232,8 +185,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Later success raises a question, but the original notes and criteria test the process. Disappointment is emotion, and the promotion alone cannot show what the panel saw.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -245,8 +197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One vivid donor story may be useful evidence, but it cannot carry the whole renewal review. Outcomes count; the error is letting one outcome swallow process evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -258,8 +209,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Uncertainty blocks lazy outcome blame, but it does not grant immunity. The routing evidence and choices still need inspection, while automatic blame is too crude.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -271,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "This answer holds both sides: noisy outcome and process accountability. The flood does not prove everything, and the unusual storm does not erase the ignored report.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -309,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separating Decisions from Their Outcomes",
         "coreSkill": "You learn to split decision review into time zones. First reconstruct the live information set, then let the outcome add evidence without giving it total control.",
         "ifThenPlans": [
           {
@@ -334,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "A result can teach you, but it cannot pretend it was present before the decision.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clean test for hindsight contamination."
+          "text": "A result can teach you, but it cannot pretend it was present before the decision."
         },
         {
-          "text": "The ending is evidence, not a time machine.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence compresses the chapter's core distinction into a sharp image."
+          "text": "The ending is evidence, not a time machine."
         },
         {
-          "text": "Chess flatters the fantasy of a complete board; poker keeps the hidden cards in the room.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the source's governing contrast without turning it into a slogan."
+          "text": "Chess flatters the fantasy of a complete board; poker keeps the hidden cards in the room."
         }
       ]
     },
@@ -373,13 +315,6 @@
             "orchard",
             "insurance"
           ],
-          "planSpec": {
-            "domain": "orchard frost insurance purchase before blossom season",
-            "audience": "family-farm operators",
-            "stakes": "whether a costly premium is bought without knowing the late-April frost pattern",
-            "format": "decision_point",
-            "requiredBeat": "Daniel marks known bud counts, unknown night temperatures, and premium cost in separate columns before recommending a policy with a confidence range."
-          },
           "scenario": "Rows of closed apple buds shine silver in the cold before sunrise. Daniel stands beside the pickup on Monday with a bud count sheet, a weather model spread, and a frost-insurance premium invoice clipped to a board. His father wants a yes or no before breakfast. Daniel must choose on the policy, and he marks known buds, unknown night lows, and cost in separate columns before giving a 65 percent recommendation.",
           "whatToDo": "Name the visible facts, the hidden weather range, and the premium cost separately. Then recommend the policy with a confidence range instead of a false yes-or-no certainty.",
           "whyItMatters": "The frost risk is real but not fully visible. Separating known from hidden lets Daniel act without pretending the orchard has become a chess board."
@@ -392,13 +327,6 @@
             "games",
             "launch"
           ],
-          "planSpec": {
-            "domain": "indie game studio deciding whether to launch in early access",
-            "audience": "small creative teams",
-            "stakes": "cash runs out if they wait, reputation suffers if hidden bugs dominate release",
-            "format": "vignette",
-            "requiredBeat": "Camille tells the team which bugs are visible, which player reactions remain hidden, and what launch size preserves a chance to learn without pretending the board is complete."
-          },
           "scenario": "At 9:18 p.m., Camille watches the bug tracker refresh beside the payroll runway spreadsheet in the studio kitchen. The team has twelve visible crashes, six weeks of cash, and no proof of how players will react. Before the store page goes live, she must decide the launch size. She names the known bugs, the hidden reactions, and a limited early-access cohort that can teach them without betting the whole reputation.",
           "whatToDo": "Choose a limited cohort and state why. Keep visible bugs, unknown player reaction, and payroll runway in the same decision frame.",
           "whyItMatters": "A small launch treats uncertainty as structure, not panic. It lets the studio act while preserving room to learn from cards that are still facedown."
@@ -411,13 +339,6 @@
             "hospital",
             "staffing"
           ],
-          "planSpec": {
-            "domain": "emergency department holiday staffing schedule",
-            "audience": "nurse managers",
-            "stakes": "too few staff risks patient waits; too many staff empties a strained budget",
-            "format": "dialogue",
-            "requiredBeat": "\"Tell me what we do not know yet,\" Sophie says, then separates booked vacations, flu trend uncertainty, and agency-nurse cost before making the call."
-          },
           "scenario": "\"Show me the blank spots,\" Sophie says, tapping the holiday roster on Thursday afternoon. The nurse managers circle confirmed vacations, mark last year's flu curve, and price the agency backup in the margin. Before the staffing window closes, Sophie has to choose the Christmas Eve schedule by separating fixed constraints from the walk-in surge that still has to stay uncertain.",
           "whatToDo": "Build the roster around known constraints, then write the flu and walk-in uncertainty beside the agency backup plan. Make the call with the range visible.",
           "whyItMatters": "The schedule cannot wait for perfect information. Naming the hidden parts keeps Sophie decisive without turning staffing into a fake exact forecast."
@@ -430,13 +351,6 @@
             "museum",
             "forecast"
           ],
-          "planSpec": {
-            "domain": "museum exhibit attendance forecast before a traveling show opens",
-            "audience": "public programming directors",
-            "stakes": "printing too many catalogs wastes money; printing too few misses revenue",
-            "format": "predict_reveal",
-            "requiredBeat": "Pavel states a 60-75 percent range for the catalog order and names the hidden variables instead of giving the board a fake exact number."
-          },
           "scenario": "Fresh catalog paper snaps under Pavel's thumb as the board waits for one clean number before lunch. He has the print quote, school-tour bookings, weather-sensitive attendance history, and an unconfirmed radio interview. Before the catalog order locks, Pavel must decide what to print. He predicts a 60 to 75 percent chance that the mid-size order covers demand and names the hidden variables.",
           "whatToDo": "Give the board a range tied to the known bookings and open variables. Refuse the fake precision of one exact catalog count.",
           "whyItMatters": "The range makes uncertainty discussable. A single number would hide the weather, publicity, and attendance variables that still control the outcome."
@@ -449,13 +363,6 @@
             "municipal",
             "operations"
           ],
-          "planSpec": {
-            "domain": "municipal snowplow route redesign before the first storm",
-            "audience": "operations supervisors",
-            "stakes": "a wrong routing model strands side streets and exposes the city to complaints",
-            "format": "before_after",
-            "requiredBeat": "Lars moves from defending one perfect route map to showing three route options with assumptions written directly on each map."
-          },
           "scenario": "It took Lars one storm season to stop calling a route map finished. At 6:10 a.m. in the municipal depot, last winter's wall map shows one clean snowplow plan and no assumptions. This November, before the first storm, he brings three route overlays to the operations supervisors. Each map names the salt depot limit, school-zone priority, hill risk, and the complaint cost if a side street waits too long.",
           "whatToDo": "Show several route maps with their assumptions written on them. Let the crew choose with the hidden tradeoffs visible instead of defending one perfect-looking map.",
           "whyItMatters": "The city still needs a route before snow falls. Multiple assumption-labeled maps make the uncertainty usable without delaying until the weather is fully known."
@@ -468,13 +375,6 @@
             "exchange",
             "advising"
           ],
-          "planSpec": {
-            "domain": "student exchange placement choice with incomplete host-family information",
-            "audience": "college advisers and students",
-            "stakes": "a student must choose a placement before every variable about fit can be known",
-            "format": "reflection",
-            "requiredBeat": "You help Isabel state what she knows, what remains hidden, and what decision rule she will use if the missing information stays missing."
-          },
           "scenario": "You have three host profiles open on Tuesday evening, and none of them answers the question Isabel most wants answered. Her language placement score is clear, the deadline email is clear, and the family routines are partial. With the exchange coordinator waiting for her reply by 9 p.m., you put the confirmed facts in one column, the missing fit details in another, and the fallback rule Isabel will use if no host sends more information.",
           "whatToDo": "Write the knowns, the hidden fit questions, and the rule Isabel will use if no new details arrive. Then choose from the range she can defend.",
           "whyItMatters": "The placement deadline does not wait for a full picture. A clear rule lets Isabel act while staying honest about the host-family information she lacks."
@@ -493,8 +393,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The manager still needs to act, but a range reports the incomplete board accurately. A crisp yes-or-no hides uncertainty, and waiting for full visibility may be avoidance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -506,8 +405,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The probability range lets the farmer choose while naming missing information. Picking the comforting model hides uncertainty, while waiting until frost arrives misses the decision window.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -519,8 +417,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Her estimate is inspectable and honest about missing information. It is still a decision posture, not an escape, and the number is an estimate rather than proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -532,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The range lets finance plan while seeing what remains hidden. Exact precision would misdescribe the account list, and canceling the forecast treats uncertainty as paralysis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -545,8 +441,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The poker frame keeps skill and luck together. It rejects automatic verdicts from one result, but it still demands process review across evidence and repeated choices.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -558,8 +453,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Labeled assumptions expose the incomplete board. They do not guarantee the storm path, and the purpose is decision quality, not appearances.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -571,8 +465,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The range names the hidden variables while still allowing action. Maximum printing confuses boldness with accuracy, and waiting for all confirmations may miss the print deadline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -584,8 +477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The smaller launch acknowledges visible bugs and hidden reactions while preserving learning. It does not prove readiness, and it is still a real commitment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -597,8 +489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The decision rule lets the student choose while naming what remains hidden. A photo is weak evidence, and waiting for certainty may break the deadline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -635,7 +526,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Acting Under Incomplete Information Well",
         "coreSkill": "You learn to act under incomplete information without dressing uncertainty as certainty. The skill is naming visible facts, hidden variables, and the confidence range you can defend.",
         "ifThenPlans": [
           {
@@ -660,19 +550,13 @@
       },
       "memorableLines": [
         {
-          "text": "A complete board would be comforting. He does not get one.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the incomplete-information problem concrete without overexplaining it."
+          "text": "A complete board would be comforting. He does not get one."
         },
         {
-          "text": "That sentence is not weakness. It is accurate reporting.",
-          "location": "breakdown.deepRead",
-          "why": "It reframes uncertainty language as disciplined precision."
+          "text": "That sentence is not weakness. It is accurate reporting."
         },
         {
-          "text": "You do not need certainty to act.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a compact rule for commitment under uncertainty."
+          "text": "You do not need certainty to act."
         }
       ]
     },
@@ -699,13 +583,6 @@
             "brewery",
             "forecast"
           ],
-          "planSpec": {
-            "domain": "craft brewery seasonal demand forecast",
-            "audience": "founders and operations leads",
-            "stakes": "brewing too much ties up tanks; brewing too little loses summer accounts",
-            "format": "dialogue",
-            "requiredBeat": "Catarina asks the brewer to turn \"we will sell out\" into a confidence percentage and batch size he would defend before ordering hops."
-          },
           "scenario": "The taproom smells like citrus hops while empty keg labels wait in a stack on Tuesday. \"We will sell out by July,\" the brewer says, reaching for the hop contract as the wholesale order sheet sits half filled. Catarina, the operations lead, points to the batch-size chart and the cold-room limit. Before she signs, she must choose whether the sentence carries enough confidence, so she asks what percentage and batch size he would defend.",
           "whatToDo": "Turn the confident sentence into a percentage and a batch-size commitment before signing the hop contract. Then order from that priced belief.",
           "whyItMatters": "The brewery is not buying a mood. It is buying ingredients and tank time. Pricing the forecast exposes whether the claim can carry real operational cost."
@@ -718,13 +595,6 @@
             "wedding",
             "contract"
           ],
-          "planSpec": {
-            "domain": "wedding photography rain refund policy",
-            "audience": "solo service providers",
-            "stakes": "a photographer is overconfident about weather risk and underprices a refund clause",
-            "format": "decision_point",
-            "requiredBeat": "What would Tomás actually stake on \"it never rains here in June\"? He checks ten years of venue dates and changes the contract language from certainty to odds."
-          },
           "scenario": "What would Tomas actually stake on the sentence he keeps saying to nervous couples? On Friday afternoon, the venue calendar, weather archive, and refund clause sit open on his desk beside a half-signed June contract. He says it never rains here in June, but the archive shows two washed-out Saturdays. Before he sends the contract, he must decide whether his certainty deserves the clause he is about to offer.",
           "whatToDo": "Check the venue dates and rewrite the clause from certainty to odds. Price the rain risk in the contract instead of soothing couples with an absolute.",
           "whyItMatters": "A comforting sentence can underprice real exposure. The weather archive gives Tomas a better stake to stand behind than his usual confident line."
@@ -737,13 +607,6 @@
             "startup",
             "runway"
           ],
-          "planSpec": {
-            "domain": "startup runway estimate before a seed extension",
-            "audience": "finance leads and founders",
-            "stakes": "overstated confidence could push the company into a payroll cliff",
-            "format": "vignette",
-            "requiredBeat": "At the board packet review, Anya replaces \"we are fine through November\" with confidence bands tied to three customer-payment dates."
-          },
           "scenario": "At 7:42 a.m., Anya deletes the word fine from the runway slide before the board packet review. Three customer-payment dates sit under the cash chart, and the payroll cliff is circled in red beside the investor-call note. Before the packet goes out, she must decide whether to send a soothing sentence or confidence bands: ninety percent through September, seventy through October, forty through November.",
           "whatToDo": "Replace the broad reassurance with confidence bands tied to the payment dates. Let the board see which month depends on which invoice.",
           "whyItMatters": "The runway claim becomes useful only when its confidence changes with the evidence. A soft word like fine hides the cliff that finance needs to see."
@@ -756,13 +619,6 @@
             "clinic",
             "planning"
           ],
-          "planSpec": {
-            "domain": "public-health clinic vaccine appointment planning",
-            "audience": "clinic administrators",
-            "stakes": "too many slots wastes staff time; too few leaves vulnerable patients waiting",
-            "format": "predict_reveal",
-            "requiredBeat": "Michael asks each planner to write the odds behind their attendance estimate before the signup portal opens, then compares the spread rather than the volume of their voices."
-          },
           "scenario": "The waiting room chairs are stacked against the wall while the appointment grid glows on the monitor. Michael, the clinic administrator, hears three planners argue about vaccine turnout before the signup portal opens. Before staffing blocks are posted, he has to decide whose estimate to use, so he asks each planner to write the odds behind attendance. The quietest estimate has the tightest range.",
           "whatToDo": "Collect written odds before discussion continues. Compare the spread behind each attendance estimate, then set staffing blocks from the most defensible range.",
           "whyItMatters": "Volume can masquerade as confidence. Written odds show which forecast carries evidence and which one is only a loud guess."
@@ -775,13 +631,6 @@
             "radio",
             "fundraising"
           ],
-          "planSpec": {
-            "domain": "local radio pledge-drive target",
-            "audience": "station managers and volunteers",
-            "stakes": "a boastful target changes ad spend and volunteer shifts",
-            "format": "before_after",
-            "requiredBeat": "Olivia sees that the pledge target becomes more honest after every volunteer must write the donation total they would plan staffing around."
-          },
           "scenario": "Olivia watches one silent pass of the pledge sheet make the room's confidence shrink. On Monday night, volunteers cheer for a huge pledge-drive target while the ad spend cap, phone-bank schedule, and shift board sit beside the coffee urn. When each person writes the donation total they would actually staff around, the target drops by a third and the volunteer schedule finally matches the risk.",
           "whatToDo": "Ask each volunteer to write the donation total they would plan staffing and ad spend around. Build the target from those priced commitments.",
           "whyItMatters": "A rallying number costs nothing until it changes shifts and ads. The written totals reveal confidence the room will actually act on."
@@ -794,13 +643,6 @@
             "bookstore",
             "inventory"
           ],
-          "planSpec": {
-            "domain": "independent bookstore preorder estimate for a visiting novelist",
-            "audience": "booksellers and event coordinators",
-            "stakes": "ordering too many signed copies traps cash in unsold stock",
-            "format": "postmortem",
-            "requiredBeat": "You ask Mathieu to compare his confident preorder claim with the number he would have ordered if his own margin had been on the line."
-          },
           "scenario": "You are standing behind the register with three cartons of unsigned books at your feet on Sunday morning. Mathieu, the event coordinator, had told the owner that preorders would explode for the visiting novelist. The preorder list was modest, but his voice was certain. You ask him to compare that claim with the number he would have ordered if his own margin sheet had been on the line.",
           "whatToDo": "Treat the margin-backed number as the priced forecast. If it is much lower than the spoken claim, reprice the order before accepting the forecast; confidence that someone would not stake their own margin on is enthusiasm, not evidence.",
           "whyItMatters": "The unsold cartons show the cost of unpriced certainty. A margin-backed estimate would have exposed the difference between enthusiasm and confidence."
@@ -819,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful move prices the claim so the team can inspect it. Calling all confidence irresponsible overcorrects, and accepting tone as evidence leaves calibration undone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -832,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The order needs a priced belief: quantity and confidence. Excitement is not evidence, and rival sales may help only after the owner names her own estimate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -845,8 +685,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The tool has shifted into intimidation, which reduces truth. Literal money would make the status problem worse, and the scene is not producing honest measurement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -858,8 +697,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The range has a price and supporting assumptions, so it can be tested. Loud delivery is only tone, and dismissing all forecasts blocks useful planning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -871,8 +709,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Confidence bands reveal the priced belief and the evidence behind it. The point is not pessimistic tone or avoiding a position; it is measurable commitment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -884,8 +721,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The odds reveal that her internal certainty was inflated. They do not prove safety, and a 55 percent concern still deserves attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -897,8 +733,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bonus question makes the claim carry cost, which exposes real confidence. It does not guarantee correctness, and ambition is not the target.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -910,8 +745,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rare risk still needs a price. Ignoring it overstates certainty, while a full refund may overreact beyond what the archive supports.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -923,8 +757,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The written numbers exposed real confidence behind the applause. Lowering the target does not mean less loyalty, and optimism can still help if it is priced.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -961,7 +794,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pricing Belief as a Measurable Claim",
         "coreSkill": "You learn to convert confidence from tone into a measurable claim. The skill is pricing belief without turning the pricing into a social weapon.",
         "ifThenPlans": [
           {
@@ -986,19 +818,13 @@
       },
       "memorableLines": [
         {
-          "text": "The point is calibration, not swagger.",
-          "location": "breakdown.fastRead",
-          "why": "It protects the source idea from the common gambling or dominance misread."
+          "text": "The point is calibration, not swagger."
         },
         {
-          "text": "Once the belief has a price, tone stops doing the work that evidence should do.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's mechanism in three memorable words."
+          "text": "Once the belief has a price, tone stops doing the work that evidence should do."
         },
         {
-          "text": "Strong claims deserve a receipt. Not a weapon. A receipt.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the distinction between accountability and status pressure."
+          "text": "Strong claims deserve a receipt. Not a weapon. A receipt."
         }
       ]
     },
@@ -1025,13 +851,6 @@
             "transport",
             "pilot"
           ],
-          "planSpec": {
-            "domain": "coastal ferry ridership pilot after two foggy weekends",
-            "audience": "transport planners",
-            "stakes": "canceling too early strands island commuters; expanding too fast wastes public funds",
-            "format": "predict_reveal",
-            "requiredBeat": "Claire weights the fog cancellations separately from weekday commuter counts before moving the ridership forecast only a small amount."
-          },
           "scenario": "Fog beads on the ferry terminal windows while the ridership chart loads on Monday morning. Claire, the transport planner, sees two weak weekend runs, a fog cancellation log, and a steady weekday commuter count from the harbor workers. Before the budget memo goes out at noon, she must decide whether the pilot is failing. She weights fog cancellations separately, then moves the ridership forecast down only a small amount.",
           "whatToDo": "Split the fog cancellations from weekday commuter demand. Update the ridership forecast slightly and keep the pilot under review until cleaner weekend data arrives.",
           "whyItMatters": "The weak weekends contain feedback, but fog distorts the signal. Claire learns more by sizing the update than by canceling or expanding from one noisy slice."
@@ -1044,13 +863,6 @@
             "rehab",
             "running"
           ],
-          "planSpec": {
-            "domain": "marathon injury rehab after one painful training run",
-            "audience": "adult athletes and physical therapists",
-            "stakes": "quitting wastes months of recovery; pushing ignores a real warning sign",
-            "format": "decision_point",
-            "requiredBeat": "You ask Anders to compare one painful run with the prior three rehab markers and choose a two-day adjustment rather than a total verdict."
-          },
           "scenario": "You are looking at a training watch that seems angrier than Anders's knee feels on Thursday evening. One painful run sits beside three rehab markers that had improved for a month, and the coach's race-plan email is still unanswered. Before he emails the marathon coach, Anders must choose between quitting, pushing through, or adjusting. You ask him to compare the single red run with the prior markers and choose a two-day change.",
           "whatToDo": "Compare the painful run with the last three rehab markers. Pause speed work for two days and watch for repeated pain before changing the whole plan.",
           "whyItMatters": "One painful run may be a warning, but it is not automatically a verdict. A proportional adjustment respects the signal without surrendering months of evidence."
@@ -1063,13 +875,6 @@
             "cafe",
             "menu"
           ],
-          "planSpec": {
-            "domain": "neighborhood cafe menu trial after the first lunch rush",
-            "audience": "small restaurant owners",
-            "stakes": "a new menu item may need revision, not burial or blind faith",
-            "format": "dialogue",
-            "requiredBeat": "\"How much did the soup teach us?\" Manon asks, then separates weather, signage, and prep time before changing only the serving size."
-          },
           "scenario": "\"How much did the soup teach us?\" Manon asks, holding the prep clipboard after Tuesday lunch. The lentil soup sold slowly, the chalkboard sign hid behind the espresso machine, and hot weather kept customers on iced drinks near the patio door. Before tomorrow's prep starts, she must decide whether to kill the item. She separates weather, signage, and prep time, then changes only serving size.",
           "whatToDo": "Separate the low sales into possible causes before changing the menu. Adjust serving size and sign placement, then wait for a cleaner second reading.",
           "whyItMatters": "A poor first rush can point to several causes. Manon learns more by revising the piece with the clearest signal than by burying the soup outright."
@@ -1082,13 +887,6 @@
             "nonprofit",
             "email"
           ],
-          "planSpec": {
-            "domain": "nonprofit donor email subject-line test",
-            "audience": "communications managers",
-            "stakes": "one early open-rate spike could distort a year-end campaign",
-            "format": "vignette",
-            "requiredBeat": "At 4:06 p.m., Chris labels the first spike as early evidence, waits for donation conversion, and updates the campaign estimate by five points instead of rewriting the plan."
-          },
           "scenario": "At 4:06 p.m., Chris watches the open-rate graph jump before the donation conversion column moves. The year-end campaign calendar is open beside the subject-line test, and the communications director wants to rewrite the plan immediately. Before the team meeting, Chris must decide how much the spike deserves. He labels it early evidence, waits for conversion, and updates the estimate by five points.",
           "whatToDo": "Identify which funnel metric sits closest to the outcome you care about. A top-of-funnel open-rate spike earns only a small estimate move; let conversion data justify any larger campaign revision.",
           "whyItMatters": "The first number is vivid because it arrived first. Waiting for conversion keeps the update tied to donation signal, not the excitement of a fast graph."
@@ -1101,13 +899,6 @@
             "garden",
             "trial"
           ],
-          "planSpec": {
-            "domain": "urban garden seed trial after uneven germination",
-            "audience": "community garden coordinators",
-            "stakes": "abandoning a seed supplier may be premature if shade and watering differed by plot",
-            "format": "postmortem",
-            "requiredBeat": "Frida kneels by the patch map and codes shade, watering, and seed batch separately before revising the supplier estimate."
-          },
           "scenario": "Wet soil sticks to Frida's gloves as half the seed row stays bare in the Saturday garden. The supplier's seed batch label looks guilty until she opens the patch map, shade sketch, and watering log beside the hose reel. Frida kneels beside the row, codes shade, watering, and seed batch separately, and revises the supplier estimate only after the maple shadow and hose repair show how uneven the trial was.",
           "whatToDo": "Code each possible cause on the patch map before blaming the supplier. Revise the supplier estimate only by the portion the seed evidence earns.",
           "whyItMatters": "Uneven germination is feedback, but the plot conditions changed too. Separating causes prevents one bare row from becoming a total supplier verdict."
@@ -1120,13 +911,6 @@
             "robotics",
             "calibration"
           ],
-          "planSpec": {
-            "domain": "robotics team sensor calibration after one failed scrimmage",
-            "audience": "student engineering teams",
-            "stakes": "overreacting could replace a sound sensor setup; denial could cost the regional qualifier",
-            "format": "before_after",
-            "requiredBeat": "Javier changes the review from \"the sensor failed\" to a three-run evidence table and adjusts the calibration threshold only where repeated errors appear."
-          },
           "scenario": "It took Javier three replays to see the same bad bounce in different light. After Saturday's failed scrimmage, the robotics team wanted to replace the sensor before the regional qualifier, and the spare-parts bin was already open. Javier changed the review from the sensor failed to a three-run evidence table, then adjusted the calibration threshold only on the surface color where repeated errors appeared.",
           "whatToDo": "Build the three-run table before replacing hardware. Adjust only the calibration threshold tied to repeated errors, then test again before the qualifier.",
           "whyItMatters": "One failed scrimmage can hide a narrow calibration issue. The table keeps the team from overreacting while still acting on the repeated signal."
@@ -1145,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The weak weekends matter, but fog distorts them. A modest update uses the evidence without letting one noisy slice become the whole verdict.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1158,8 +941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lunch result contains mixed evidence. Adjusting the clearest factor learns from it, while killing the soup or ignoring the result gives the data too much or too little power.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1171,8 +953,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A short adjustment respects the pain signal without erasing the prior trend. Quitting overreacts, and ignoring the pain refuses to update.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1184,8 +965,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The open rate deserves a small update, but conversion is the stronger signal for fundraising. Rewriting now overweights speed; discarding the test wastes evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1197,8 +977,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bare row may contain supplier signal, but shade and watering also changed. The review should separate causes before moving the supplier estimate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1210,8 +989,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated surface-color error earns a targeted calibration update. Full replacement overreacts, while doing nothing ignores a repeated signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1223,8 +1001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A complaint is feedback, not a complete verdict. Its weight depends on context and repetition; ignoring it or letting it decide everything misses proportional updating.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1236,8 +1013,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The question tests the signal inside the win. Celebration and confidence do not reveal whether the result deserves a bigger discount.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1249,8 +1025,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Daily swings may contain signal, but strategy changes after each one suggest wobbling. The team is updating by vividness instead of evidence weight.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1287,7 +1062,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Sizing Updates to Signal Strength",
         "coreSkill": "You learn to size your updates. The skill is treating every new result as evidence with a weight, not as a verdict with total authority.",
         "ifThenPlans": [
           {
@@ -1312,19 +1086,13 @@
       },
       "memorableLines": [
         {
-          "text": "The chart is not a verdict yet. It is a piece of evidence.",
-          "location": "breakdown.fastRead",
-          "why": "It captures proportional updating in a plain scene."
+          "text": "The chart is not a verdict yet. It is a piece of evidence."
         },
         {
-          "text": "The signal gets a vote. It does not get the whole room.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a memorable rule for noisy feedback."
+          "text": "The signal gets a vote. It does not get the whole room."
         },
         {
-          "text": "The update should be no bigger than the evidence earned.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's central standard in one durable sentence."
+          "text": "The update should be no bigger than the evidence earned."
         }
       ]
     },
@@ -1351,13 +1119,6 @@
             "documentary",
             "editing"
           ],
-          "planSpec": {
-            "domain": "documentary edit room deciding whether a scene is fair",
-            "audience": "creative teams handling real people’s stories",
-            "stakes": "a dramatic scene could mislead viewers and damage a subject’s reputation",
-            "format": "dialogue",
-            "requiredBeat": "Rachel pauses the timeline and asks her editor to name what footage would weaken her preferred cut before she exports it."
-          },
           "scenario": "The edit suite is dark except for a paused frame on a woman's face late Thursday. Rachel loves the dramatic silence before the subject answers. Her editor points to the unused footage bin and the release form on the desk. Before export, Rachel faces a choice: protect the cut she loves or ask what footage would weaken it. She pauses the timeline and asks the editor to name the missing countercase.",
           "whatToDo": "Ask the editor to name the footage that would weaken the preferred cut before exporting. Then check the unused bin against the story the scene implies.",
           "whyItMatters": "Rachel needs an ally for accuracy, not applause for drama. The outside challenge protects the subject and the film from a self-serving edit."
@@ -1370,13 +1131,6 @@
             "tax",
             "freelance"
           ],
-          "planSpec": {
-            "domain": "freelance tax estimate before quarterly filing",
-            "audience": "self-employed professionals",
-            "stakes": "a comforting estimate could become a penalty notice",
-            "format": "decision_point",
-            "requiredBeat": "You ask Mikkel to show the invoice stack to the colleague who questions his deductions, not the friend who says it is probably fine."
-          },
           "scenario": "You have a shoebox of receipts and one tax number that feels too painless on the kitchen table. Mikkel wants to show it to the friend who always says, probably fine. Before the quarterly filing window closes, you ask him to choose the colleague who will question deductions, invoice dates, and the missing voucher before the estimate becomes a story he wants to protect.",
           "whatToDo": "Take the invoice stack to the colleague who will test it. Ask which deductions would fail if the tax office requested proof.",
           "whyItMatters": "Comfort will not pay the penalty notice. A trusted challenger makes the estimate face evidence before the filing turns into a defended story."
@@ -1389,13 +1143,6 @@
             "medical",
             "simulation"
           ],
-          "planSpec": {
-            "domain": "surgical resident preparing for a difficult procedure simulation",
-            "audience": "medical trainees",
-            "stakes": "confidence from easy praise could hide a weak handoff before a high-risk simulation",
-            "format": "predict_reveal",
-            "requiredBeat": "Laura chooses the attending who will stop the rehearsal at the first vague instruction and make her repeat the handoff until the risk is named."
-          },
           "scenario": "The St. Anne's simulation lab smells faintly of disinfectant and warm plastic on Tuesday morning before Laura's difficult procedure drill. Laura, a surgical resident, has one attending who smiles through every mistake and another who stops vague handoffs and makes her name the risk out loud. Before the assessment slot, Laura must decide which observer helps her most, and she chooses the one who exposes weak instructions while repair is still possible.",
           "whatToDo": "Choose the attending who interrupts vague handoffs. Repeat the instruction until the risk is named clearly on the card.",
           "whyItMatters": "Easy praise can leave a weak handoff intact. The stricter attending gives Laura confidence that has survived the pressure she will face later."
@@ -1408,13 +1155,6 @@
             "patent",
             "pitch"
           ],
-          "planSpec": {
-            "domain": "patent pitch practice before investor due diligence",
-            "audience": "technical founders",
-            "stakes": "an untested novelty claim could collapse in due diligence",
-            "format": "vignette",
-            "requiredBeat": "At 11:13 a.m., Henrik invites the engineer who doubts the novelty claim to interrogate slide seven before the investor does."
-          },
           "scenario": "At 11:13 a.m., Henrik keeps slide seven on the projector while the novelty claim glows in bold type. The investor diligence call is tomorrow, and the prior-art search is still open on the engineer's laptop. Before rehearsing the confident version again, Henrik must decide whether to invite the skeptical engineer to attack the claim while it can still be fixed.",
           "whatToDo": "Invite the engineer with a repair frame: identify any prior art that would force us to pull, narrow, or reframe this claim before rehearsal. If the challenge lands, choose the least misleading path and name its cost before the diligence call; rehearsing first only embeds a broken claim.",
           "whyItMatters": "A doubtful engineer is useful before diligence and expensive afterward. The challenge gives Henrik a chance to repair the claim while it is still private."
@@ -1427,13 +1167,6 @@
             "rescue",
             "route"
           ],
-          "planSpec": {
-            "domain": "mountain rescue route plan before a winter training exercise",
-            "audience": "search-and-rescue volunteers",
-            "stakes": "a team may mistake morale for route safety in worsening weather",
-            "format": "before_after",
-            "requiredBeat": "Aanya changes the route review after her partner asks which slope condition would make her abandon the plan before anyone leaves the trailhead."
-          },
           "scenario": "It took one whiteout rescue drill for Aanya to stop treating morale as evidence. At the trailhead debrief, the route card, avalanche bulletin, and slope-condition note sit under a wet glove. Her partner asks which condition should have canceled the route before departure, forcing Aanya to turn a brave story into a cleaner trigger for turning back.",
           "whatToDo": "Let the partner name the slope condition that should cancel the route. Write the turn-back trigger on the route card before departure.",
           "whyItMatters": "Team confidence can sound like safety. The partner's question forces the route plan to answer to conditions, not morale."
@@ -1446,13 +1179,6 @@
             "choir",
             "selection"
           ],
-          "planSpec": {
-            "domain": "community choir audition selection after a favorite singer stumbles",
-            "audience": "arts boards and volunteer directors",
-            "stakes": "personal affection could distort a fair casting decision",
-            "format": "reflection",
-            "requiredBeat": "What would David’s choice look like if his assistant compared the score sheet with the private note he wrote before the audition?"
-          },
           "scenario": "What does a score sheet know that affection wants to blur? David sits in the community hall after callbacks with a favorite singer's shaky take, his first-round notes, and the final list waiting in draft. Before posting the results, he must decide whether artistic instinct is carrying real evidence or laundering affection into a cleaner story.",
           "whatToDo": "Compare the score sheet with the private note before posting the list. Let the assistant question any choice that depends on affection more than evidence.",
           "whyItMatters": "David can turn liking into a polished explanation. The assistant keeps the selection fair by making the preferred story answer to the written record."
@@ -1471,8 +1197,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A useful buddy challenges the reasoning without taking over. Reassurance may feel good, but it does not test the assumption carrying the forecast.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1484,8 +1209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The right challenge tests the preferred story against missing footage. Praise and silence both leave the director's favorite version unexamined.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1497,8 +1221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The colleague adds truth-seeking pressure where the estimate is likely self-serving. Comfort may reduce anxiety, but it will not fix weak proof.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1510,8 +1233,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The partner is turning the postmortem into a future trigger, not a cleaner excuse. Morale and embarrassment do not test the route decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1523,8 +1245,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The stricter attending helps the handoff survive pressure. The issue is preparation quality, not judging the other attending's character or chasing calm.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1536,8 +1257,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The assistant tests whether affection is being dressed up as evaluation. The score sheet is not always supreme, but it protects against a convenient rewrite.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1549,8 +1269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The challenge finds weakness while repair is still possible. It does not guarantee acceptance, and humility is not the central mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1562,8 +1281,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful band needs both safety and challenge. A harsh critic reduces candor, while pure agreement leaves the reasoning untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1575,8 +1293,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question tests the forecast's conditions for revision. It supports action by making the estimate clearer, not by lowering morale or ranking commitment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1613,7 +1330,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Using a Trusted Challenger Effectively",
         "coreSkill": "You learn to choose correction over comfort at the moment your story is most likely to protect itself. The skill is giving a trusted challenger a specific assumption or record to test.",
         "ifThenPlans": [
           {
@@ -1638,19 +1354,13 @@
       },
       "memorableLines": [
         {
-          "text": "She does not need praise for the cut. She needs pressure on it.",
-          "location": "breakdown.fastRead",
-          "why": "It sharply distinguishes reassurance from useful challenge."
+          "text": "She does not need praise for the cut. She needs pressure on it."
         },
         {
-          "text": "The useful partner slows that convenience down.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the buddy system's mechanism in one plain sentence."
+          "text": "The useful partner slows that convenience down."
         },
         {
-          "text": "Comfort may settle the nerves; correction makes the estimate answer for itself.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the source distinction into a memorable contrast."
+          "text": "Comfort may settle the nerves; correction makes the estimate answer for itself."
         }
       ]
     },
@@ -1677,13 +1387,6 @@
             "aerospace",
             "safety"
           ],
-          "planSpec": {
-            "domain": "aerospace parts safety review before supplier approval",
-            "audience": "quality engineers and review boards",
-            "stakes": "a small tolerance concern could become a costly recall or safety incident",
-            "format": "dialogue",
-            "requiredBeat": "Thomas gives the dissenting tolerance note a formal slot on the approval agenda before the supplier vote can close."
-          },
           "scenario": "Thomas stands beside a tray of machined brackets under a magnifying lamp at the end of the conference table on Wednesday. \"It is only a tolerance note,\" someone says as the supplier vote nears and the purchasing lead checks the clock. The rejected sample part is still warm from the test rig. Thomas, the quality engineer, slides the note onto the approval agenda. Before the vote closes, he must decide whether the objection gets a formal answer or disappears as a small concern.",
           "whatToDo": "Put the tolerance note on the agenda and require the review board to answer it before supplier approval.",
           "whyItMatters": "The part risk may be small, but the group cannot know that by skipping it. A formal slot turns dissent into evidence work instead of hallway friction."
@@ -1696,13 +1399,6 @@
             "civic",
             "flood"
           ],
-          "planSpec": {
-            "domain": "neighborhood flood committee choosing a levee design",
-            "audience": "civic volunteers and local engineers",
-            "stakes": "polite consensus may hide that one street absorbs most of the overflow risk",
-            "format": "decision_point",
-            "requiredBeat": "Whose street disappears from the map if everyone nods? Ingrid asks each design supporter to name the strongest objection before the vote."
-          },
           "scenario": "The low street is shaded blue on the overflow map before anyone says its name. Ingrid stands in the school gym beside the levee labels and public-comment timer while the flood committee drifts toward polite agreement. Before the vote, she must decide whether calm is hiding risk, so she asks every supporter to write the hardest case against the design on the folding table notes.",
           "whatToDo": "Ask each supporter to state the strongest objection to the levee design before voting. Keep the overflow map visible while the room answers.",
           "whyItMatters": "Polite agreement can hide who carries the downside. Naming the objection forces the design to answer the risk before consensus hardens."
@@ -1715,13 +1411,6 @@
             "orchestra",
             "programming"
           ],
-          "planSpec": {
-            "domain": "orchestra programming council selecting a risky season opener",
-            "audience": "arts administrators",
-            "stakes": "a consensus favorite may be artistically exciting but financially fragile",
-            "format": "vignette",
-            "requiredBeat": "Paula assigns one council member to argue the ticket-risk case from subscription data, then makes the room answer it before applause decides."
-          },
           "scenario": "Paula hears violin cases click shut outside the rehearsal hall at 8:20 p.m. while the program list waits on the piano. The programming council warms to a daring season opener, and the subscription data sits unopened beside the minutes. Before applause carries the choice, she must decide how to protect the risk case. She assigns one member to argue the ticket numbers and makes the room answer before selecting the opener.",
           "whatToDo": "Assign the ticket-risk case to one council member and require the room to answer it from subscription data before approving the opener.",
           "whyItMatters": "Excitement can become fake evidence in a room that wants to agree. A named risk case gives dissent a job before the program is locked."
@@ -1734,13 +1423,6 @@
             "ethics",
             "research"
           ],
-          "planSpec": {
-            "domain": "university ethics board reviewing a data-sharing proposal",
-            "audience": "research administrators",
-            "stakes": "source prestige could silence the junior member who sees a consent problem",
-            "format": "postmortem",
-            "requiredBeat": "Chidi shows how the ignored consent question should have been judged by the same standard as the senior researcher’s claim."
-          },
           "scenario": "Chidi rereads the complaint letter at 7:30 a.m. and sees which objection the board had treated as impolite. The consent form, data-sharing proposal, and minutes from a senior researcher's presentation sit in one folder. A junior member had raised the consent problem, then gone quiet. Chidi shows how that question should have met the same standard as the senior claim before approval moved forward.",
           "whatToDo": "Compare the ignored consent question with the senior claim under the same evidence standard. Record how prestige distorted the review.",
           "whyItMatters": "Universal standards keep dissent from depending on rank. The board learns only if the uncomfortable question gets the same treatment as the prestigious answer."
@@ -1753,13 +1435,6 @@
             "restaurant",
             "opening"
           ],
-          "planSpec": {
-            "domain": "restaurant opening crew deciding whether the kitchen is ready",
-            "audience": "hospitality managers",
-            "stakes": "opening on schedule could burn first reviews if the line cooks are not ready",
-            "format": "before_after",
-            "requiredBeat": "You watch Anna move the objection from hallway whisper to prep-meeting agenda item, then require the team to test the weakest station before opening night."
-          },
           "scenario": "Anna hears the ticket printer test from the empty dining room before opening night. The line-cook objection starts as a hallway whisper: the weakest station will not survive a full rail. An hour later, with the prep list taped above the pass, the concern is on the meeting agenda. She requires the team to test that station before deciding whether the kitchen is ready for first reviews.",
           "whatToDo": "Set the readiness threshold before the test runs. If the weakest station passes, proceed; if it fails, delay rather than patching around the schedule, because a tested failure outranks a hallway whisper.",
           "whyItMatters": "Private grumbling cannot improve the call. Making the objection procedural lets the team test readiness without turning the meeting into a blame session."
@@ -1772,13 +1447,6 @@
             "security",
             "incident"
           ],
-          "planSpec": {
-            "domain": "cybersecurity incident table before a breach disclosure decision",
-            "audience": "security leads and executives",
-            "stakes": "withholding an uncomfortable log entry could delay notification and increase legal exposure",
-            "format": "predict_reveal",
-            "requiredBeat": "At 1:27 a.m., Lukas asks why the log entry no one wants in the summary is not first on the evidence list."
-          },
           "scenario": "At 1:27 a.m., Lukas stares at the access log glowing blue on the war-room screen. The disclosure clock is running, the legal channel is open, and the executives want a summary that sounds contained. One log entry complicates everything. Before the breach decision, Lukas must decide whether to leave it buried. He asks why the entry no one wants is not first on the evidence list.",
           "whatToDo": "Move the uncomfortable log entry to the top of the evidence list and make the disclosure decision answer it directly.",
           "whyItMatters": "The omitted entry may carry the real risk. Dissent protects the decision by forcing the room to face the evidence it most wants to hide."
@@ -1797,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dissenting note needs a protected place in the process. Private concerns or smooth alignment leave the supplier decision weaker than it looks.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1810,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The objection must be surfaced before the vote so consensus answers the downside. Calm speed and restricted speech both risk hiding important evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1823,8 +1489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A formal risk case keeps excitement from becoming fake evidence. Avoiding the data or trusting enthusiasm suppresses the useful dissent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1836,8 +1501,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim needs the same evidence standard regardless of rank. Politeness and speed are exactly what let the consent problem disappear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1849,8 +1513,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The objection needs a procedural test. Ignoring it hides evidence, while a month delay treats any dissent as a total veto.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1862,8 +1525,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is to force the hidden risk into review. It does not mean publishing blindly or using pressure for its own sake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1875,8 +1537,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Useful dissent targets the claim and evidence. Personal attack shifts the room into status conflict, which can make judgment worse.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1888,8 +1549,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The agenda item normalizes evidence-based dissent. It does not hand power to the loudest critic or block agreement after the objection is answered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1901,8 +1561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dissent serves accuracy only when objections improve the evidence. Thin objections for status turn challenge into performance, not organized skepticism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1939,7 +1598,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Making Dissent Procedural and Protected",
         "coreSkill": "You learn to make dissent procedural. The skill is giving strong objections a formal place and requiring evidence-based answers without rewarding hostility.",
         "ifThenPlans": [
           {
@@ -1964,19 +1622,13 @@
       },
       "memorableLines": [
         {
-          "text": "Silence would be efficient. It would also be expensive.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of suppressed dissent concrete."
+          "text": "Silence would be efficient. It would also be expensive."
         },
         {
-          "text": "The fact everyone avoids may be the one carrying the most information.",
-          "location": "breakdown.deepRead",
-          "why": "It gives readers a clean test for hidden group risk."
+          "text": "The fact everyone avoids may be the one carrying the most information."
         },
         {
-          "text": "Dissent has done its job when the group can move with fewer hidden assumptions, not when the room has enjoyed a fight.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the chapter's distinction between useful challenge and conflict theater."
+          "text": "Dissent has done its job when the group can move with fewer hidden assumptions, not when the room has enjoyed a fight."
         }
       ]
     },
@@ -2003,13 +1655,6 @@
             "renovation",
             "contract"
           ],
-          "planSpec": {
-            "domain": "home renovation contract before signing a change order",
-            "audience": "homeowners managing contractors",
-            "stakes": "current frustration could approve a costly shortcut that looks foolish by final inspection",
-            "format": "decision_point",
-            "requiredBeat": "You ask Megan to read the change order as if the inspector is already standing in the finished kitchen three months from now."
-          },
           "scenario": "You have a pen over the change order while drywall dust sits on the counter. Megan is tired of the contractor delays, and the shortcut would get the kitchen usable by Friday before her parents arrive. The inspection checklist is clipped behind the form. Before she signs, you ask her to read the change order as if the inspector is already standing in the finished kitchen three months from now.",
           "whatToDo": "Read the change order from the future inspection point. Mark any shortcut that would be hard to defend when the kitchen is finished and calm.",
           "whyItMatters": "The delay is loud today, but final inspection will ask different questions. The later view keeps frustration from buying a shortcut too cheaply."
@@ -2022,13 +1667,6 @@
             "marathon",
             "safety"
           ],
-          "planSpec": {
-            "domain": "city marathon permit decision during a heat-warning week",
-            "audience": "event directors and municipal staff",
-            "stakes": "present pressure from sponsors could crowd out the later safety review",
-            "format": "dialogue",
-            "requiredBeat": "\"What will the incident report ask us first?\" Julien says, moving the discussion from sponsor pressure to the later safety file."
-          },
           "scenario": "Julien opens the blank incident-report template beside the heat bulletin and sponsor email in the city permit room. The marathon permit meeting is ten minutes from closing, and the sponsor wants an announcement today. Before the city signs off, Julien must decide whether the sponsor timeline leads or whether the questions a safety review would ask about heat, water stations, and route exposure get the first word.",
           "whatToDo": "Move the discussion to the incident-report template. Let the later safety review ask what the heat bulletin requires before the permit is signed.",
           "whyItMatters": "Sponsor pressure is present and loud. A later safety file asks whether today's evidence was treated with enough respect before runners were exposed."
@@ -2041,13 +1679,6 @@
             "startup",
             "acquisition"
           ],
-          "planSpec": {
-            "domain": "startup acquisition term sheet with a fast deadline",
-            "audience": "founders and advisers",
-            "stakes": "a celebratory offer could hide terms future employees will resent",
-            "format": "vignette",
-            "requiredBeat": "At 6:35 p.m., Kasia backcasts from the first all-hands after acquisition and marks which terms would be hardest to defend then."
-          },
           "scenario": "At 6:35 p.m., Kasia puts the champagne back in the mini-fridge and opens the vesting schedule. The term sheet expires tomorrow, the buyer wants a fast reply, and the future all-hands is only a blank slide in her notes. Before she replies, she has to decide which terms can survive explanation. She backcasts from that first all-hands and marks the clauses employees would resent.",
           "whatToDo": "Backcast from the first all-hands after acquisition. Mark the clauses that will be hardest to explain to employees before accepting the term sheet.",
           "whyItMatters": "Celebration can hide future resentment. The later explanation forces the offer to answer for the people who will live with the terms."
@@ -2060,13 +1691,6 @@
             "college",
             "scholarship"
           ],
-          "planSpec": {
-            "domain": "college major selection before a scholarship deadline",
-            "audience": "students and advisers",
-            "stakes": "family pressure and deadline panic may narrow the view of future coursework and debt",
-            "format": "reflection",
-            "requiredBeat": "What would Ben ask after two semesters of the major, with the scholarship used and the first lab grade posted?"
-          },
           "scenario": "What would the second-semester version of Ben ask that deadline-night Ben is avoiding? At 11:40 p.m. in his dorm room, the scholarship deadline email is open, the course map is highlighted, and the first lab grade is still only a future possibility. Family pressure makes the practical major feel obvious. Ben writes three later-review questions before declaring the choice settled.",
           "whatToDo": "Write the questions a second-semester review would ask about coursework, debt, energy, and the first hard grade before choosing the major.",
           "whyItMatters": "The deadline narrows Ben's view to relief and approval. A later review point widens the frame without pretending to know the grade."
@@ -2079,13 +1703,6 @@
             "eldercare",
             "family"
           ],
-          "planSpec": {
-            "domain": "elder-care move decision after one frightening fall",
-            "audience": "adult children making family care decisions",
-            "stakes": "fear from the latest fall could rush a move that needs a wider view of health, autonomy, and support",
-            "format": "before_after",
-            "requiredBeat": "Astrid runs a premortem for both choices, naming what each future regret would accuse today of ignoring."
-          },
           "scenario": "The hallway night-light is still on at noon after the ambulance leaves. Astrid first wants to move her mother by Friday, and her brother is already calling care homes. Then she sets the care calendar, premortem list, and mobility assessment on the table. For staying home and for moving, she names what each future regret would accuse today of ignoring: safety, autonomy, support, and fear.",
           "whatToDo": "Run a premortem for both choices, not only the frightening one. Name what future regret would accuse each option of ignoring.",
           "whyItMatters": "The fall makes one future vivid. Two premortems keep fear from owning the whole frame and make both risks visible."
@@ -2098,13 +1715,6 @@
             "film",
             "jury"
           ],
-          "planSpec": {
-            "domain": "film festival jury choosing a controversial prize winner",
-            "audience": "jury chairs and arts critics",
-            "stakes": "present-room momentum may choose the safest film instead of the one the jury can defend later",
-            "format": "postmortem",
-            "requiredBeat": "Diego asks the jury to write the award note from one year later before the vote, exposing which choice survives distance."
-          },
           "scenario": "It took Diego one festival cycle to learn that applause in the room fades faster than the printed award note. This year, the jury ballot is split between the safest film and the controversial one, and the press release template is waiting on the laptop. Before the vote, Diego asks each juror to draft the award note from one year later. The room sees which choice survives distance and which only survives the mood.",
           "whatToDo": "Ask jurors to write the award note from one year later before voting. Use that later explanation to test which choice they can defend.",
           "whyItMatters": "Present-room momentum can reward the safest agreement. The one-year note asks whether the choice will still make sense after applause cools."
@@ -2123,8 +1733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The inspection question gives later accountability a voice. Relief is present pressure, and imagining perfection turns future perspective into fantasy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2136,8 +1745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The incident-report frame checks present pressure against later safety review. The sponsor schedule and hopeful memory make now louder, not wiser.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2149,8 +1757,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Backcasting from the all-hands tests today's terms against a later explanation. Fresh feelings are present bias, and exact prediction asks too much.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2162,8 +1769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The later review questions widen the frame around pressure. They do not guarantee career results or swap evidence for comforting vision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2175,8 +1781,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A two-sided premortem gives both possible regrets a voice. It cannot remove regret guarantees, and it need not postpone action indefinitely.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2188,8 +1793,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The later note tests defensibility after the room mood cools. It does not force a winner or provide certain prediction about reviews.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2201,8 +1805,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool asks later-review questions; it does not make imagined success count as proof. Dismissing the tool or using only disaster also narrows judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2214,8 +1817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The time horizons should ask different evidence questions. Ease and wished-for futures keep the team inside preference instead of later review.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2227,8 +1829,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The premortem is a planning check, not a scare tactic or a replacement for building. It brings a later failure mode forward while action can still change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2265,7 +1866,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Widening Perspective With Temporal Distance",
         "coreSkill": "You learn to let a later review point question today's pressure before the choice locks. The skill is widening perspective without pretending the future has become knowable.",
         "ifThenPlans": [
           {
@@ -2290,19 +1890,13 @@
       },
       "memorableLines": [
         {
-          "text": "Regret is a better tool before the signature than after the apology.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the source's regret-before-decision frame in a concrete action."
+          "text": "Regret is a better tool before the signature than after the apology."
         },
         {
-          "text": "The future does not become visible. The present becomes less bossy.",
-          "location": "breakdown.deepRead",
-          "why": "It cleanly distinguishes perspective from prediction."
+          "text": "The future does not become visible. The present becomes less bossy."
         },
         {
-          "text": "Let tomorrow's review ask today's decision what it is ignoring.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book-level method with a compact, memorable command."
+          "text": "Let tomorrow's review ask today's decision what it is ignoring."
         }
       ]
     }

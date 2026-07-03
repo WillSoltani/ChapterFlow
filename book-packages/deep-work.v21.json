@@ -41,13 +41,6 @@
             "planning",
             "sorting"
           ],
-          "planSpec": {
-            "domain": "a county GIS analyst separating flood-model work from reactive messages",
-            "audience": "a public-sector analyst whose best work is invisible until a storm hits",
-            "stakes": "whether the flood map is ready before the afternoon emergency briefing",
-            "format": "scene",
-            "requiredBeat": "she sees the inbox feel urgent and chooses whether the creek model gets first claim on her attention"
-          },
           "scenario": "At 8:12 a.m., Willa stands over a rain-specked flood map in the county planning annex while the inbox counter climbs to twenty-seven. Coffee cools beside the keyboard. The creek model is half solved, and the emergency briefing is at one. Each message has a sender, a subject line, and an easy next click. The map has no voice. Willa is about to decide whether the first clean hour goes to the model or to proving she is available.",
           "whatToDo": "Give the creek model the first uninterrupted block. Write a reply window on a sticky note, close the inbox, and do the cognitively hard work before the visible requests start grading the morning.",
           "whyItMatters": "The inbox feels responsible because other people can see it. The flood model creates the value no one can see yet. If the invisible work always waits, the day looks good while the important result stays weak."
@@ -60,13 +53,6 @@
             "bakery",
             "priority"
           ],
-          "planSpec": {
-            "domain": "a bakery owner distinguishing wholesale coordination from developing a new bread formula",
-            "audience": "an owner who keeps mistaking early activity for the craft that will save the shop",
-            "stakes": "whether the signature loaf improves before the weekend tasting",
-            "format": "dialogue",
-            "requiredBeat": "he names the spreadsheet as support work and the formula test as the deep work"
-          },
           "scenario": "At 5:46 a.m. Tuesday, Dov has rye starter on his sleeve and the big mixer thumping at the bakery prep table. \"The wholesale sheet is late,\" his manager says, holding the clipboard. Dov looks from the columns to the open jar fizzing beside the scale. \"The sheet keeps orders moving,\" he says. \"This loaf decides whether they come back.\" The oven timer clicks. He must choose which work gets the quiet twenty minutes before staff arrive.",
           "whatToDo": "Name the spreadsheet as support work and the loaf test as the demanding work. Finish the test first, then batch the order sheet inside a narrow admin window.",
           "whyItMatters": "Both tasks are real, but only one changes the product. Sorting them out loud keeps the easier, more visible task from stealing the hour meant for the craft."
@@ -79,13 +65,6 @@
             "museum",
             "grant"
           ],
-          "planSpec": {
-            "domain": "a museum grant writer reviewing how admin tasks displaced the proposal argument",
-            "audience": "a writer who ended the day tired and still missed the decisive intellectual work",
-            "stakes": "whether the museum submits a persuasive funding argument by Friday",
-            "format": "postmortem",
-            "requiredBeat": "she reconstructs the day and sees shallow completion masking the untouched hard paragraph"
-          },
           "scenario": "At 9:35 p.m. Thursday, Aisling sits under the museum basement pipes with a marked-up grant draft and a cold paper cup of tea. The sent folder shows seventeen neat admin notes: receipts, image permissions, donor follow-ups. The paragraph explaining why the archive matters is still a blank box. She reads the day backward on a legal pad and sees the trick. Every completed note gave proof of effort. None of them wrote the argument.",
           "whatToDo": "Carry the audit into tomorrow. Put the argument paragraph in the first block, leave the admin list closed, and do not let completed support tasks count as the win.",
           "whyItMatters": "A full sent folder can hide an empty core. The audit matters because it separates effort that only clears friction from effort that makes the proposal worth funding."
@@ -98,13 +77,6 @@
             "hospital",
             "study"
           ],
-          "planSpec": {
-            "domain": "a surgical resident choosing between message triage and board-review questions",
-            "audience": "a resident whose schedule makes shallow responsiveness feel safer than hard study",
-            "stakes": "whether he builds real diagnostic recall before rounds begin",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether another message sweep outranks a protected question block"
-          },
           "scenario": "At 6:20 a.m. Saturday, Rafiq sits in the hospital library carrel with a board-review sheet, a banana peel, and his pager faceup on the desk. Rounds start in ninety minutes. The group thread has six new messages about room changes, all solvable later. The renal questions in front of him are ugly and slow. His thumb hovers above the pager. He has to decide whether to buy the comfort of a clean thread or the strain of real recall.",
           "whatToDo": "Turn the pager facedown, set a forty-minute timer, and work the renal questions without checking. Triage the room messages in the ten-minute window after the block.",
           "whyItMatters": "The thread gives instant relief. The questions build the capacity he needs on call. If relief wins every morning, study time becomes a label for avoidance."
@@ -117,13 +89,6 @@
             "music",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a cellist comparing scattered practice minutes with focused playing quality",
-            "audience": "a conservatory student who logs hours but avoids measuring attention quality",
-            "stakes": "whether practice is strengthening the passage before an audition",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts two hours should show progress, then the recording reveals the scattered work"
-          },
           "scenario": "At 4:05 p.m. Sunday, Solenne props her phone on a dented music stand in practice room B and plays yesterday's audition passage back through the tiny speaker. Her logbook says two hours. The recording says squeaks, rushed shifts, and a missed harmonic in the same place as last week. She remembers the messages she answered between takes. Before starting again, she must decide whether to count minutes or protect one clean pass at the hard bar.",
           "whatToDo": "Stop counting the whole room as practice. Mark the difficult bar, silence the phone, and run focused repetitions until the recording changes in that exact spot.",
           "whyItMatters": "The logbook records duration, but the cello records attention. The flaw repeats because the hard bar never received continuous contact long enough to change."
@@ -136,13 +101,6 @@
             "design",
             "metric"
           ],
-          "planSpec": {
-            "domain": "a product designer redefining a good morning around solved design work instead of meeting attendance",
-            "audience": "a designer whose calendar looks full while the checkout problem persists",
-            "stakes": "whether the checkout flow improves before usability testing",
-            "format": "before_after",
-            "requiredBeat": "she shifts the score from visible participation to one solved checkout decision"
-          },
           "scenario": "At 11:18 a.m. Wednesday, Keiko stands beside a wall of printed checkout wireframes, blue tape curling at the corners. Before, she called a morning good if she attended the standup, answered comments, and kept the file tidy. Today she circles the broken payment step in red and writes one sentence above it: solve this before noon. By lunch the comments still wait, but the checkout decision is finally real.",
           "whatToDo": "Score the morning by the solved design problem, not by meeting attendance or comment hygiene. Give the red-circled issue the best hour and let visible upkeep follow.",
           "whyItMatters": "The new score changes behavior. When the win is defined as solved thinking, support work loses its ability to claim credit for a morning it did not improve."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The map analysis is deep work because it needs uninterrupted cognition. The channel questions are shallow enough to batch; answering them first would let visible urgency displace the work that changes the day.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The redesign keeps slipping because it asks more from attention than grading does. Moving it earlier protects cognitive demand; another meeting only adds shallow preparation around the untouched problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard problems test real understanding, which is the point of the protected forty minutes. Tidying notes feels productive, and quitting at confusion treats the signal of learning as a reason to escape.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The product decision needs sustained thought before the approval stream consumes the morning. Moving faster through approvals preserves the same shallow pattern, and waiting for crisis gives up control of depth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A timed phone-free interval trains attention inside a concrete boundary. Permanent removal is too broad for the scene, while checking whenever it feels harmless rewards the exact distraction habit being challenged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The performance problem is the cognitively demanding work. More logistics updates can look organized, but they do not make the team better at the core problem the review session should protect.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is that praise for responsiveness can make shallow work look like contribution. The second choice excuses the pattern, and the short-memo claim mistakes thin thinking for useful brevity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The design pass carries the cognitive demand, so it deserves the protected slot. Status replies may be countable, but countability is not value, and waiting for total silence usually means never starting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool should stay only if its real support outweighs its attention cost. One small benefit is too weak a test, while deleting everything ignores that some tools can serve genuinely important outcomes.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -321,19 +270,13 @@
       },
       "memorableLines": [
         {
-          "text": "A rain-specked flood map sits unfinished while twenty-seven harmless messages look urgent.",
-          "location": "hook",
-          "why": "The image makes the principle visible before any explanation begins."
+          "text": "A rain-specked flood map sits unfinished while twenty-seven harmless messages look urgent."
         },
         {
-          "text": "A full day is weak evidence until you know what kind of work filled it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical move into a line a reader can use at the calendar."
+          "text": "A full day is weak evidence until you know what kind of work filled it."
         },
         {
-          "text": "The calendar becomes clearer when every task has to admit what kind of attention it needs.",
-          "location": "breakdown.deepRead",
-          "why": "It names the tradeoff that makes the practice worth defending."
+          "text": "The calendar becomes clearer when every task has to admit what kind of attention it needs."
         }
       ]
     },
@@ -360,13 +303,6 @@
             "medicine",
             "learning"
           ],
-          "planSpec": {
-            "domain": "an ICU fellow learning a difficult device diagram before a procedure",
-            "audience": "a physician whose status replies feel safer than unfamiliar technical mastery",
-            "stakes": "whether she understands the valve assembly before tomorrow's high-risk case",
-            "format": "scene",
-            "requiredBeat": "she chooses between status replies and the diagram that will make the procedure safer"
-          },
           "scenario": "At 2:07 p.m., Imani stands in the ICU supply room with a cracked valve diagram glowing on a tablet and three status threads buzzing in her scrub pocket. The device rep left twenty minutes ago. Tomorrow's case will use this assembly, and the arrows on the diagram still blur together. The replies would take six minutes and feel competent. She is about to decide whether to clear them or stay with the ugly schematic until it becomes usable knowledge.",
           "whatToDo": "Keep the tablet open and silence the threads for thirty minutes. Trace the valve path by hand, then write the procedure risk in her own words before answering anything routine.",
           "whyItMatters": "The replies protect appearance. The diagram builds the capability that changes tomorrow's case. Deep work is valuable because hard learning turns directly into safer output."
@@ -379,13 +315,6 @@
             "software",
             "debugging"
           ],
-          "planSpec": {
-            "domain": "a machine-learning engineer tracing a model failure instead of patching symptoms",
-            "audience": "an engineer under pressure to produce a visible fix",
-            "stakes": "whether the model ships with a hidden failure mode",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether to keep quick-fixing symptoms or trace the whole failure chain"
-          },
           "scenario": "At 10:32 p.m., Bram sits in the Union Station cafe with a four-page model trace, a green pen, and an untouched paper bowl of chili. The failure has survived two days of quick patches. His teammate just sent another proposed flag. Bram can merge it in five minutes and look responsive. The trace in front of him is dense enough to hurt. His pen rests on the first bad prediction as he must choose between a visible patch and one deep pass through the chain.",
           "whatToDo": "Do the full trace before merging another flag. Mark each assumption, follow the first bad prediction backward, and write the root cause in one sentence before touching the code.",
           "whyItMatters": "Quick patches create motion without learning the system. The deep pass is valuable because it can improve both the fix and Bram's model of the model."
@@ -398,13 +327,6 @@
             "craft",
             "quality"
           ],
-          "planSpec": {
-            "domain": "a violin maker protecting focused inspection before invoicing",
-            "audience": "a craftsperson whose careful output depends on seeing small errors",
-            "stakes": "whether the instrument keeps its voice or carries a hidden flaw",
-            "format": "vignette",
-            "requiredBeat": "she sees the work improve when the demanding inspection gets the first hour"
-          },
           "scenario": "At 6:40 a.m., Saskia holds a carved maple plate to the back-room window, where winter light shows a ridge no customer would see yet. The invoice program is open on the bench behind her, blinking for yesterday's totals. Her thumb moves along the arch again. She must decide whether this focused hour belongs to the hidden millimeter or to the tidy invoices waiting behind her.",
           "whatToDo": "Stay with the plate while the eye is fresh. Mark the ridge, correct the arch, and leave the invoices for the hour when the work no longer needs fine judgment.",
           "whyItMatters": "The plate rewards attention in a way the invoice cannot. Deep work is valuable because quality rises when skilled perception gets time to notice what speed misses."
@@ -417,13 +339,6 @@
             "law",
             "production"
           ],
-          "planSpec": {
-            "domain": "a tax attorney moving client calls after concentrated legal drafting",
-            "audience": "an attorney whose strongest work appears only after quiet synthesis",
-            "stakes": "whether the final brief can survive partner review",
-            "format": "before_after",
-            "requiredBeat": "he changes the order and watches output quality rise after deep drafting comes first"
-          },
           "scenario": "At 7:55 a.m. Thursday, Enzo unlocks the small conference room with two tax-code volumes under his arm and a client-call list folded in his pocket. Before, he warmed up by returning calls and reached the brief after lunch with a tired mind. Today he writes the hardest section first, door closed, yellow tabs spread across the table. At 10:10 the argument finally has a spine. The calls still fit. The brief no longer sounds patched together.",
           "whatToDo": "Put the synthesis block first and move calls to a contained window. Use the fresh mind on the work whose quality depends on holding many rules at once.",
           "whyItMatters": "The brief improves because legal judgment needs continuity. Calls matter, but they do not require the same mental load as building an argument that must withstand review."
@@ -436,13 +351,6 @@
             "training",
             "emergency"
           ],
-          "planSpec": {
-            "domain": "a paramedic instructor testing focused practice against casual review",
-            "audience": "an instructor preparing trainees for a chaotic trauma scenario",
-            "stakes": "whether the team can execute under pressure instead of reciting steps",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the quiet drill will expose gaps that checklist review hid"
-          },
           "scenario": "At 3:25 p.m., Linnea wheels a silent trauma mannequin into bay 4 and hands three paramedics blank index cards. They have recited the airway sequence all week. Before the drill starts, she must decide whether to trust fluent recitation or test the team under quiet pressure. They predict a clean pass. Thirty seconds in, two cards name different priorities, and the room goes still around the smell of rubber gloves.",
           "whatToDo": "Use the silent drill again. Make each trainee commit to the next move on paper, then rehearse the weak transition until the sequence is shared under pressure.",
           "whyItMatters": "The drill turns claimed knowledge into visible performance. Deep practice matters because it exposes the gap between familiar words and usable skill."
@@ -455,13 +363,6 @@
             "ceramics",
             "learning"
           ],
-          "planSpec": {
-            "domain": "a ceramicist reviewing why browsing supplies did not improve his firing results",
-            "audience": "a maker who confuses research motion with hard technical learning",
-            "stakes": "whether the next kiln load stops blistering at cone six",
-            "format": "postmortem",
-            "requiredBeat": "he sees that only concentrated study of the kiln log can change output"
-          },
           "scenario": "At 8:48 p.m., Arturo sits on the studio floor with blistered bowls around his knees and a laptop still open to glaze shops. He spent the afternoon comparing colors, reading reviews, saving links. The kiln log beside him has three firings circled in pencil and no notes in the margin. He lifts one ruined bowl and hears the tiny grit under his thumb. The shopping felt like progress. The clay says he never studied the heat.",
           "whatToDo": "Close the shop tabs, open the kiln log, and compare the failed firings line by line. Write one testable change for the next load before looking at another glaze.",
           "whyItMatters": "The output will not improve until the hard variable gets attention. Deep work is valuable because it converts evidence into skill instead of surrounding the craft with motion."
@@ -480,8 +381,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The analysis creates the valuable output; the replies mostly support coordination around it. Starting with messages would protect availability, not the scarce skill that turns attention into a better result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -493,8 +393,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lesson redesign depends on fresh attention because quality rises when thought stays continuous. Another meeting adds talk about work, and hoping the schedule fixes itself leaves valuable output to leftovers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -506,8 +405,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The difficult problems force learning, which is where value compounds. Neat headings are easier to admire, and stopping at confusion abandons the pressure that tells the student what remains unknown.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -519,8 +417,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The product decision shapes the work that follows, so it belongs before small approvals. Speeding through approvals still lets shallow tasks set priority, and crisis timing is a poor substitute for judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -532,8 +429,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The phone urge is a chance to practice the concentration that learning requires. Removing everything forever misses the skill-building point, while live decisions let novelty win whenever the work gets hard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -545,8 +441,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A working session on performance turns attention toward output quality. More updates and busyness praise make activity visible, but neither helps the team learn the hard thing that would improve results.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -558,8 +453,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fast replies can earn praise while the strategic memo loses the concentration needed for quality. The tempting responsiveness choice keeps the false reward system intact instead of protecting valuable output.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -571,8 +465,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Design quality usually needs unbroken thought, so the pass deserves priority. Replies feel safer because they are easy to count, but the count is a weak proxy for the value of the finished design.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -584,8 +477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool earns a place only if it improves learning or output more than it taxes attention. A tiny benefit is not enough, and blanket deletion skips the value test this scene calls for.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -640,19 +532,13 @@
       },
       "memorableLines": [
         {
-          "text": "A cracked valve diagram on a tablet is worth more than forty polished status replies.",
-          "location": "hook",
-          "why": "The image makes the principle visible before any explanation begins."
+          "text": "A cracked valve diagram on a tablet is worth more than forty polished status replies."
         },
         {
-          "text": "If the work can raise your ceiling, it deserves better than leftover attention.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical move into a line a reader can use at the calendar."
+          "text": "If the work can raise your ceiling, it deserves better than leftover attention."
         },
         {
-          "text": "A mind that keeps returning before it wanders farther can build things a scattered mind only describes.",
-          "location": "breakdown.deepRead",
-          "why": "It names the tradeoff that makes the practice worth defending."
+          "text": "A mind that keeps returning before it wanders farther can build things a scattered mind only describes."
         }
       ]
     },
@@ -679,13 +565,6 @@
             "operations",
             "scoreboard"
           ],
-          "planSpec": {
-            "domain": "an operations lead seeing responsiveness dashboards overshadow root-cause analysis",
-            "audience": "a lead whose company praises speed more than prevention",
-            "stakes": "whether the team prevents the next outage or only looks responsive today",
-            "format": "scene",
-            "requiredBeat": "she sees the visible scoreboard reward shallow response before deep analysis"
-          },
           "scenario": "At 9:03 a.m., Gwenn stands on the operations floor with three dashboards glowing above the desks: first reply, ticket age, channel coverage. All are yellow. In a side tab on her laptop sits the outage analysis from Friday, still unopened. The dashboards will turn green if she spends the morning chasing replies. The analysis might prevent the next release failure. Her hand hovers over the trackpad as she decides which scoreboard gets obeyed.",
           "whatToDo": "Name the false scoreboard. Block ninety minutes for the outage analysis, then report the prevention finding alongside the response metrics so the room can see deeper value.",
           "whyItMatters": "Deep work is rare because visible measures get fed first. Unless the prevention work has a signal of its own, the team will keep optimizing what the wall can count."
@@ -698,13 +577,6 @@
             "architecture",
             "openoffice"
           ],
-          "planSpec": {
-            "domain": "an architect needing silence in a studio built for constant accessibility",
-            "audience": "a designer whose workplace layout makes deep work seem antisocial",
-            "stakes": "whether a courthouse roof detail gets solved before the client review",
-            "format": "vignette",
-            "requiredBeat": "the studio design itself shows why deep work is rare"
-          },
           "scenario": "At 1:18 p.m., Nikhil carries the courthouse roof sketches through the glass architecture studio, past ringing phones, model foam, and a printer coughing out site photos. Every focus room reservation screen is red. The roof joint needs a sustained mental picture of rain, steel, and weight. Before two, he must decide whether to stay visible in the studio or disappear long enough to know whether the roof is sound.",
           "whatToDo": "Treat the missing quiet as a design failure, not a personal flaw. Reserve deep space in advance or leave the studio for the roof pass, then bring back a solved detail.",
           "whyItMatters": "The room rewards being seen. The roof rewards concentration. Deep work becomes rare when the environment makes presence easier to provide than thought."
@@ -717,13 +589,6 @@
             "law",
             "busyness"
           ],
-          "planSpec": {
-            "domain": "a junior lawyer seeing comment clearance displace legal theory work",
-            "audience": "a lawyer rewarded for visible responsiveness while important argument work waits",
-            "stakes": "whether the antitrust memo gains a real theory before partner review",
-            "format": "postmortem",
-            "requiredBeat": "she reconstructs how praise for shallow speed hid the untouched hard memo"
-          },
           "scenario": "At 6:05 p.m., Sabine sits under the law library clock with a paper cup of soup and the partner's praise still warm in her inbox: ninety-two comments cleared. The antitrust theory memo is a blank document named tomorrow. She opens the time sheet and reconstructs the day in six-minute units. Every cleared comment was visible to someone. The memo would have been invisible until it was good. She sees why she chose the safer work.",
           "whatToDo": "Use tomorrow's first block for the theory memo and leave comment cleanup for a listed window. Ask the partner to review the memo draft as the primary signal of progress.",
           "whyItMatters": "Responsiveness was rewarded instantly, so it crowded out slower value. Changing the signal matters because people adapt to what gets noticed."
@@ -736,13 +601,6 @@
             "university",
             "research"
           ],
-          "planSpec": {
-            "domain": "a professor choosing research proof time over open-door availability",
-            "audience": "a professor whose helpfulness has become the department's shallow default",
-            "stakes": "whether a difficult proof advances before the grant deadline",
-            "format": "decision_point",
-            "requiredBeat": "he must choose whether to protect private thinking despite a culture of constant access"
-          },
           "scenario": "At 7:42 a.m., Corin reaches his office with chalk dust on his sleeve and the topology proof still broken at lemma four. The hallway is quiet for twelve minutes. His door policy says open unless teaching. Three students will drift in by eight, and each question will be good. The grant deadline is Friday. His key is still in his hand as he must decide whether closing the door is selfish or the only way the proof gets a chance.",
           "whatToDo": "Close the door for the proof hour and post the next open time. Keep the student promise, but stop letting unlimited access consume the one block that can move the research.",
           "whyItMatters": "A culture of constant access can make depth feel rude. Boundaries are necessary because the work that matters most may have no witness until it is finished."
@@ -755,13 +613,6 @@
             "media",
             "output"
           ],
-          "planSpec": {
-            "domain": "a news producer comparing rapid posts with one carefully reported segment",
-            "audience": "a producer in a newsroom that celebrates visible churn",
-            "stakes": "whether the broadcast gets a true investigation or more thin updates",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the quick posts will prove productivity, then sees the segment remain empty"
-          },
           "scenario": "At 4:28 p.m., Zora stands by the assignment board with six quick web updates under her name and a blank segment script for the contaminated playground story. The newsroom bell dinged for every post. No bell rings for source calls that take an hour. She predicts the editor will praise the count. He does. Then he asks where the segment is. The silence after the question is longer than any alert.",
           "whatToDo": "Change the production metric for the story. Protect the source-call block first, then let quick updates support the segment instead of replacing it.",
           "whyItMatters": "The room applauded the count because the count was visible. The deeper story stayed rare because its proof arrived late, after the shallow wins had already taken the day."
@@ -774,13 +625,6 @@
             "cityhall",
             "availability"
           ],
-          "planSpec": {
-            "domain": "a city clerk shifting from constant counter availability to protected permit review",
-            "audience": "a clerk whose public helpfulness delays the decisions residents need",
-            "stakes": "whether a stalled housing permit gets a serious review",
-            "format": "before_after",
-            "requiredBeat": "he creates a visible boundary so deep review stops losing to walk-up questions"
-          },
           "scenario": "At 3:11 p.m. Friday, Heath looks at the permit tray behind the city hall counter, where the blue folder for Maple Street has sat for eleven days. Before, he kept the window open through lunch because residents called him helpful. After one builder missed a financing date, he taped a review hour sign to the glass, lowered the shade, and read the blue folder without interruption. By two, the permit had an answer. The lobby grumbled for ten minutes.",
           "whatToDo": "Keep the closed-window review hour and explain what it produces. Public access still matters, but not every minute can belong to walk-up questions.",
           "whyItMatters": "Helpfulness becomes shallow when it prevents the decision people came for. The boundary makes the invisible review visible enough to defend."
@@ -799,8 +643,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The channel is setting a shallow scoreboard: quick answers look like work. Protecting the hard task and showing its output later resists that default; waiting for calm leaves the organization unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -812,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The redesign should be judged by learning, not by the number of messages surrounding it. A meeting or unchanged schedule would keep rewarding visible coordination while the real contribution slips.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -825,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tidy notebook is visible, but mastery appears in the hard problems. Choosing them counters the bias toward neat signals; stopping at confusion or rewriting headings lets appearance outrank learning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -838,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A morning output review changes what receives recognition before approvals flood the day. Moving faster through small tasks still rewards responsiveness, and crisis timing keeps deep contribution invisible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -851,8 +691,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A pre-set interval creates a stronger signal than impulse in a world built for interruption. Removing everything forever is blunt, while live decisions hand the default back to the easiest distraction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -864,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The team needs a standard for performance, not more proof that everyone is busy. Updates and busyness praise reinforce the shallow behavior that makes deep improvement rare inside the organization.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -877,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is the false scoreboard: fast response gets rewarded while the memo thins. The second choice names a real risk but does not expose the scoreboard, and the third excuses weak thinking.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -890,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The design pass may be slower to display, but it carries more value when finished. Replies are countable, which is why they seduce organizations; waiting for no needs lets shallow defaults win.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -903,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool must be judged by net support for important goals. Keeping it for one benefit repeats the any-benefit mistake, while deleting every tool avoids the harder work of measuring real contribution.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -959,19 +794,13 @@
       },
       "memorableLines": [
         {
-          "text": "The busiest floor in the company has no quiet room and three dashboards for responsiveness.",
-          "location": "hook",
-          "why": "The image makes the principle visible before any explanation begins."
+          "text": "The busiest floor in the company has no quiet room and three dashboards for responsiveness."
         },
         {
-          "text": "People repeat the behavior the room knows how to praise.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical move into a line a reader can use at the calendar."
+          "text": "People repeat the behavior the room knows how to praise."
         },
         {
-          "text": "A culture can say it values thinking while paying daily tribute to interruption.",
-          "location": "breakdown.deepRead",
-          "why": "It names the tradeoff that makes the practice worth defending."
+          "text": "A culture can say it values thinking while paying daily tribute to interruption."
         }
       ]
     },
@@ -998,13 +827,6 @@
             "craft",
             "meaning"
           ],
-          "planSpec": {
-            "domain": "a furniture restorer finding meaning through absorbed repair work",
-            "audience": "a restorer whose shop errands threaten to flatten the day",
-            "stakes": "whether the chair receives careful work or becomes another rushed ticket",
-            "format": "scene",
-            "requiredBeat": "she notices attention gather around a worthy standard while shallow errands wait"
-          },
           "scenario": "At 6:33 a.m. Monday, Anouk rubs shellac into a cracked chair back under a brass workbench lamp, the rag warm between her fingers. The repair shop is not open yet. Three pickup calls and a supply invoice sit on the counter. The crack runs just under the old maple grain, and if she rushes it the seam will catch light forever. Her phone buzzes once. She is about to decide whether the day begins with errands or with care.",
           "whatToDo": "Begin with the chair. Set a thirty-minute repair block, leave the phone across the shop, and work until the seam no longer catches the lamp.",
           "whyItMatters": "The chair gives her skill a standard. The errands only prove motion. Meaning appears when attention can stay with a real object long enough to make it better."
@@ -1017,13 +839,6 @@
             "hospital",
             "care"
           ],
-          "planSpec": {
-            "domain": "an ICU pharmacist showing how attention changes routine safety work",
-            "audience": "a pharmacist teaching a resident that routine checks still carry moral weight",
-            "stakes": "whether a decimal error gets caught before medication reaches a patient",
-            "format": "dialogue",
-            "requiredBeat": "he names the standard behind a routine label check"
-          },
           "scenario": "At 11:52 p.m., Pavel stands beside the ICU medication fridge with a dosage label in one hand and a resident bouncing on tired heels. \"It is the same antibiotic,\" she says. \"We checked it upstairs.\" Pavel points to the decimal, small as a pinhead under the plastic sleeve. Before the dose leaves the fridge, he must decide whether speed or care sets the standard. \"Read it for the person in bed nine,\" he says.",
           "whatToDo": "Slow the check and attach it to the patient, not the routine. Make the resident read the label again under the real standard: whether this dose is safe for bed nine.",
           "whyItMatters": "Routine work feels thin when it becomes mere processing. Attention restores meaning by reconnecting the small act to the consequence it serves."
@@ -1036,13 +851,6 @@
             "school",
             "absorption"
           ],
-          "planSpec": {
-            "domain": "a math teacher reflecting on why one solved misconception made the day meaningful",
-            "audience": "a teacher buried in tasks who notices the difference created by absorbed instruction",
-            "stakes": "whether she recognizes what made the day feel lived instead of merely busy",
-            "format": "reflection",
-            "requiredBeat": "she sees that the meaningful part was sustained attention to one student misconception"
-          },
           "scenario": "At 4:17 p.m. Friday, Soraya sits alone in room 214 with chalk dust on her sleeve and one slope diagram still on the board. The attendance portal is late, parent emails wait, and the copy machine jammed twice. Yet the day does not feel wasted. At 2:36, Ruben stopped calling slope a staircase and finally drew the line through two points himself. She keeps looking at his crooked graph. The full day had one hour with a real standard inside it.",
           "whatToDo": "Protect more of that hour. Batch the portal and emails, then design Monday's lesson around the next misconception that deserves patient attention.",
           "whyItMatters": "The day feels meaningful because one hard confusion met skilled care. The administrative tasks mattered, but none of them let her attention inhabit the work so fully."
@@ -1055,13 +863,6 @@
             "outdoors",
             "craft"
           ],
-          "planSpec": {
-            "domain": "a park ranger repairing a bridge with absorbed attention after a week of chatter",
-            "audience": "a ranger whose maintenance work has started to feel like errands",
-            "stakes": "whether the bridge repair receives a clear standard before hikers arrive",
-            "format": "before_after",
-            "requiredBeat": "he shifts from radio chatter to absorbed craft and feels meaning return"
-          },
           "scenario": "At 7:06 a.m. Saturday, Beren kneels at the cedar footbridge with a cordless drill, two warped planks, and creek water clicking below. Before, he kept the ranger radio loud and treated repairs as tasks to clear. Today he turns it down, sights the boards along the rail, and tests each screw by hand. When the first hiker crosses at nine, the bridge does not bounce. Beren knows exactly why.",
           "whatToDo": "Turn off the radio for the repair block and work to the bridge standard: straight board, tight screw, no bounce under weight. Let dispatch wait for the posted check-in.",
           "whyItMatters": "Meaning returns because the work has a felt standard. The bridge is not an item on a list when his attention stays long enough to make it safe."
@@ -1074,13 +875,6 @@
             "hospice",
             "writing"
           ],
-          "planSpec": {
-            "domain": "a hospice chaplain choosing between a quick condolence template and a careful family note",
-            "audience": "a chaplain whose emotional work can become shallow under time pressure",
-            "stakes": "whether a family receives a note that honors one true memory",
-            "format": "decision_point",
-            "requiredBeat": "she must choose boilerplate speed or careful attention to one real detail"
-          },
           "scenario": "At 8:44 p.m. Wednesday, Laleh sits in the hospice quiet room with a sympathy card, a black pen, and the family's story about the patient fixing radios in his garage. The template sentence is open on her laptop. It would be kind enough and fast enough. The real memory is messier: solder smell, baseball on AM static, his daughter handing him tiny screws. Her pen hovers over the card as she decides which version of care she will give.",
           "whatToDo": "Close the template and write the garage memory in plain language. Keep it short, but make the sentence answer to the actual person the family lost.",
           "whyItMatters": "The careful note matters because attention is part of the care. A generic kindness may be acceptable, but a real detail lets the work carry weight."
@@ -1093,13 +887,6 @@
             "restaurant",
             "craft"
           ],
-          "planSpec": {
-            "domain": "a chef reviewing why a busy service felt empty despite speed",
-            "audience": "a chef whose night was efficient but never absorbed in one hard standard",
-            "stakes": "whether he changes tomorrow's prep around a true culinary problem",
-            "format": "postmortem",
-            "requiredBeat": "he realizes the night felt hollow because no demanding problem held his attention"
-          },
           "scenario": "At 12:18 a.m. Sunday, Eamon stands at the stainless prep sink with shallot skins stuck to his clogs and the last pan cooling on the rack. Service was fast. Tickets cleared. The room praised the speed. Still, the night feels hollow. He writes the menu on a towel box and circles the sauce that broke twice. He spent four hours moving fast around it and not twenty minutes understanding it. That was the emptiness.",
           "whatToDo": "Make the sauce the first prep problem tomorrow. Work it slowly before service, note the heat and timing, and let one standard anchor the shift.",
           "whyItMatters": "Speed cleared the night but did not engage his craft. The work becomes meaningful when attention stays with a real flaw until skill has to answer."
@@ -1118,8 +905,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The demanding work becomes meaningful when it has a standard and enough attention to meet it. Servicing messages first would fracture care, and waiting for calm delays the only hour that can hold the standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1131,8 +917,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The misconception gives the teacher a craft problem worth shaping with attention. Another meeting is adjacent motion, and the unchanged schedule keeps meaningful work trapped after the lower-demand batch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1144,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard problems create absorption because they ask the student to stay with real difficulty. Tidying is surface comfort, and quitting at confusion treats resistance as failure instead of material for craft.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1157,8 +941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The product problem asks for judgment and care, so it belongs in the first protected block. Faster approvals only polish the shallow layer, while crisis timing strips the decision of deliberate attention.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1170,8 +953,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The quiet interval lets the task become absorbing instead of chopped into fragments. Removing every amusement is not the point, and live phone decisions train the mind to leave as soon as work deepens.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1183,8 +965,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Core practice lets the team feel the standard in action. Updates and busyness praise may be useful around the edges, but they do not create the intrinsic satisfaction of improving the real performance.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1196,8 +977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The thin memo shows the day is losing the work that could feel worth doing. The tempting responsiveness choice repeats the lure, and the short-memo claim turns a weakness into a false virtue.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1209,8 +989,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The design pass gives judgment room to form, which is why the work gains texture. Replies are easier to count, but they do not carry the same consequence; perfect quiet is an excuse to defer depth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1222,8 +1001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool should support the standards that make work and leisure richer. One small benefit ignores the cost to attention, and deleting everything misses the craft question of which tools truly help.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1278,19 +1056,13 @@
       },
       "memorableLines": [
         {
-          "text": "A task becomes richer when your whole mind is allowed to meet it.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "A task becomes richer when your whole mind is allowed to meet it."
         },
         {
-          "text": "Care is not a mood. It is attention held against a real consequence.",
-          "location": "breakdown.deepRead",
-          "why": "A surprising reframe that redefines something readers thought they understood; compressed into a form that survives retweeting."
+          "text": "Care is not a mood. It is attention held against a real consequence."
         },
         {
-          "text": "A scattered day can contain many tasks and still give the mind nothing solid to inhabit.",
-          "location": "breakdown.fullRead",
-          "why": "Names a paradox many readers experience but couldn't articulate; captures the hollow feeling that no amount of motion fixes."
+          "text": "A scattered day can contain many tasks and still give the mind nothing solid to inhabit."
         }
       ]
     },
@@ -1317,13 +1089,6 @@
             "law",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a court interpreter choosing a prep ritual over hallway chatter",
-            "audience": "an interpreter whose accuracy depends on entering the hearing with legal terms fresh",
-            "stakes": "whether she catches specialized language during a fast hearing",
-            "format": "decision_point",
-            "requiredBeat": "she decides whether to enter a ritualized prep block or keep chatting in the hallway"
-          },
           "scenario": "At 8:21 a.m. Monday, Nerea waits outside courtroom 3 with glossary cards clipped to a blue binder and a paper cup warming her palm. Three colleagues are laughing near the metal detector. The hearing starts at nine, and the witness list includes two technical terms she has missed before. Her ritual says twenty silent minutes, cards in hand, phone zipped away. She is about to decide whether the hallway gets her attention or the room does.",
           "whatToDo": "Step into the side alcove, zip the phone, and run the glossary cards until nine minus five. Let the ritual start because the hearing will not slow down later.",
           "whyItMatters": "The ritual protects accuracy before pressure arrives. If she waits to feel ready, hallway warmth will take the minutes meant for language she must deliver live."
@@ -1336,13 +1101,6 @@
             "archive",
             "sourcework"
           ],
-          "planSpec": {
-            "domain": "a historian using place and rules to start difficult source synthesis",
-            "audience": "a historian whose archive trips can dissolve into browsing without a ritual",
-            "stakes": "whether he connects shipping records to the strike timeline before closing",
-            "format": "scene",
-            "requiredBeat": "he uses place, duration, and rules to begin hard synthesis"
-          },
           "scenario": "At 2:09 p.m. Thursday, Aldo sits in the archive reading room with cotton gloves beside an 1891 shipping ledger and his phone locked in the lobby cubby. The pencil, notebook, and one allowed folder are squared on the oak table. His rule is ninety minutes and one paragraph tying the entries to the strike timeline. Before dust lifts from the ledger, he must choose whether the ritual or the lobby phone gets authority.",
           "whatToDo": "Keep the table exactly as designed: one ledger, one notebook, no phone, ninety minutes, one synthesis paragraph. Do not browse another box until the paragraph exists.",
           "whyItMatters": "The ritual narrows the world to the work that matters. Source synthesis is hard enough without leaving escape routes open on the table."
@@ -1355,13 +1113,6 @@
             "startup",
             "rules"
           ],
-          "planSpec": {
-            "domain": "a founder setting team rules for unreachable deep-work blocks",
-            "audience": "a seed-stage founder whose open-door norm keeps delaying a pricing decision",
-            "stakes": "whether the pricing decision gets real concentration without leaving emergencies undefined",
-            "format": "dialogue",
-            "requiredBeat": "she names when she is unreachable and what counts as emergency access"
-          },
           "scenario": "At 9:12 a.m. Tuesday, Celia stands by the whiteboard calendar with a red marker and a pricing model open on her laptop. \"So nobody can ask you anything?\" her engineer says. Before the meeting starts, she must decide whether the block is a wish or a rule. Celia draws two rectangles from nine to eleven. \"Customer lockout or money leaving the bank,\" she says. \"Everything else goes on the noon list.\"",
           "whatToDo": "Define the unreachable block and define emergency in the same breath. Put a noon capture list beside the calendar so the team has a place for non-urgent questions.",
           "whyItMatters": "The rule works because it removes ambiguity. People can respect a focus block when they know both the protected time and the narrow door for true emergencies."
@@ -1374,13 +1125,6 @@
             "factory",
             "ritual"
           ],
-          "planSpec": {
-            "domain": "a machinist testing a startup ritual before precision calibration work",
-            "audience": "a night-shift machinist skeptical of written rituals",
-            "stakes": "whether a calibration run avoids another costly restart",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts ritual is silly, then sees it prevent a restart"
-          },
           "scenario": "At 3:18 a.m., Tomasz stands at lathe 6 with brass shavings under his boots and a setup card taped to the control panel. He jokes that the card is for interns. Before the cut begins, he must decide whether to trust his mood or follow the ritual. He sweeps the chuck, checks coolant, locks the phone away, and reads tolerance twice. At 3:41, he catches the loose indicator that ruined last week's rod.",
           "whatToDo": "Keep the setup card and treat it as part of the work. Run the same pre-cut sequence every time before calibration begins.",
           "whyItMatters": "The ritual catches what tired judgment misses. It is not theater when it removes avoidable decisions and protects the precision the job requires."
@@ -1393,13 +1137,6 @@
             "writing",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "a novelist replacing hopeful writing with a scheduled deep block",
-            "audience": "a novelist who used to wait for mood and lose mornings",
-            "stakes": "whether the draft advances before family obligations begin",
-            "format": "before_after",
-            "requiredBeat": "she stops relying on mood and writes because the ritual starts"
-          },
           "scenario": "At 5:50 a.m. Sunday, Isolde unlocks the rented desk room above the pharmacy, sets a thermos by the radiator, and opens the draft to page 83. Before, she wrote when the house felt calm and called it a creative life. It rarely happened. Now the rule is two hours, same desk, no browser, one scene drafted before breakfast. The pipes bang at 6:10. Her hands are already moving.",
           "whatToDo": "Keep the rented-desk ritual and judge it by pages drafted, not mood felt. Begin when the clock starts, even if the sentence is awkward.",
           "whyItMatters": "The schedule removes the false requirement of inspiration. Deep work becomes repeatable when the environment starts the behavior before feelings get a vote."
@@ -1412,13 +1149,6 @@
             "product",
             "calendar"
           ],
-          "planSpec": {
-            "domain": "a product manager reviewing why an unscheduled focus week failed",
-            "audience": "a manager whose deep work was important but never protected",
-            "stakes": "whether the next week gives strategy work a real place",
-            "format": "postmortem",
-            "requiredBeat": "he sees unscheduled deep work was treated as available time by everyone"
-          },
           "scenario": "At 6:41 p.m. Friday, Harun sits on the office floor with a printed calendar, a highlighter, and seven untouched strategy notes. On Monday he told himself he would find deep time between meetings. By Wednesday, every blank had become hiring debriefs, quick approvals, and one customer call that could have waited. He highlights the empty spaces he thought were safe. None had rules. Everyone, including Harun, treated them as available.",
           "whatToDo": "Schedule the strategy blocks as appointments with output rules and a shutdown note. Tell the team when questions will be handled so blanks no longer look free.",
           "whyItMatters": "Unscheduled depth is fragile because it has no social protection. A blank calendar slot invites shallow work unless the deep work has already claimed it."
@@ -1437,8 +1167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The planned block and finish rule turn focus into a repeatable ritual. Answering first lets flashing messages rewrite the ritual, while waiting for a calmer season keeps depth dependent on luck.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1450,8 +1179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A named block with a clear output gives the redesign a doorway and a finish line. Another meeting delays entry into the hard work, and the current schedule leaves the ritual too vague to start.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1463,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard problems become the session output, so the student knows what counts as done. Tidying notes and quitting early both avoid the defined target that would make the focus block real.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1476,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Time, room, closed channels, and a finish sentence remove negotiation from the product decision. Faster approvals and crisis waiting leave depth unstructured, which is why the decision keeps drifting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1489,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The no-check rule has to be set before study begins so it can survive restlessness. Permanent removal is overbroad, and in-the-moment decisions make every urge a fresh trial the phone can win.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1502,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A practice ritual puts the team inside the hard problem before logistics starts. Extra updates and busyness praise preserve the old pattern, where coordination crowds out the work that needs repetition.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1515,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fast-reply praise warns that unscheduled depth is being treated as spare time. The tempting responsiveness choice rewards the same drift, and the short-memo claim excuses a calendar without protected blocks.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1528,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Explicit rules keep the design pass from looking like open time. Replies are countable but lower demand, and waiting until nobody needs anything gives the ritual no stable place to begin.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1541,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool must fit the ritual rather than invade it. Keeping it for a tiny benefit weakens the rules, while deleting everything avoids deciding which tools actually belong inside the focus system.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1597,19 +1318,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not wait to feel focused. Build the start of focus.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "Do not wait to feel focused. Build the start of focus."
         },
         {
-          "text": "A ritual turns deep work from a wish into the next scheduled action.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practical move into a line a reader can use at the calendar."
+          "text": "A ritual turns deep work from a wish into the next scheduled action."
         },
         {
-          "text": "The easier it is to start correctly, the more strength remains for the hard part itself.",
-          "location": "breakdown.deepRead",
-          "why": "It names the tradeoff that makes the practice worth defending."
+          "text": "The easier it is to start correctly, the more strength remains for the hard part itself."
         }
       ]
     },
@@ -1636,13 +1351,6 @@
             "commute",
             "boredom"
           ],
-          "planSpec": {
-            "domain": "a commuter practicing boredom instead of checking during a stalled train ride",
-            "audience": "a knowledge worker whose attention reaches for novelty before work even begins",
-            "stakes": "whether he trains the mind that will later need a deep block",
-            "format": "scene",
-            "requiredBeat": "he practices staying with boredom instead of reaching for the phone"
-          },
           "scenario": "At 7:38 a.m. Tuesday, Mirek sits on a stalled train with his phone face down on his knee and a dark tunnel pressed against the window. The conductor has stopped explaining. A child two rows back kicks a seat hinge in a slow metal rhythm. Mirek's thumb hovers over the glass without a plan. He has to decide whether nothing happening is a problem to solve or a rep to finish.",
           "whatToDo": "Leave the phone facedown until the train moves. Notice the urge, name it once, and let the dull minute pass without turning it into stimulation.",
           "whyItMatters": "The deep-work block later will inherit the mind he trains now. If every empty moment gets a reward, boredom will feel unbearable when hard work gets quiet."
@@ -1655,13 +1363,6 @@
             "medicine",
             "urge"
           ],
-          "planSpec": {
-            "domain": "a medical student deciding whether a message urge is an order or a sensation",
-            "audience": "a student whose late study blocks keep dissolving into checking",
-            "stakes": "whether she can stay with anatomy review long enough to learn it",
-            "format": "decision_point",
-            "requiredBeat": "she decides whether the itch to check is an instruction or just a sensation"
-          },
           "scenario": "At 10:14 p.m. Thursday, Safiya stands by the anatomy lab sink with blue nitrile gloves turned inside out beside the drain. Her phone is in her coat pocket across the room. The brachial plexus diagram waits under a plastic cover, still confusing after an hour. A message tone from someone else's phone echoes down the hall. Her own hand twitches toward the coat. She must decide whether that twitch gets to run the study block.",
           "whatToDo": "Return to the diagram before checking. Say, silently, urge, then trace the nerve path three more times before the planned break.",
           "whyItMatters": "The urge feels urgent because it has been rewarded often. Naming it without obeying it trains the attention she needs for the material itself."
@@ -1674,13 +1375,6 @@
             "chess",
             "waiting"
           ],
-          "planSpec": {
-            "domain": "a youth chess coach teaching a restless student to wait before moving",
-            "audience": "a coach whose student loses because he obeys the first impulse",
-            "stakes": "whether the student learns to hold attention long enough to see the board",
-            "format": "dialogue",
-            "requiredBeat": "he teaches waiting through the impulse before moving"
-          },
           "scenario": "At 2:06 p.m. Saturday, Luc sets a plastic chess clock beside the board and watches Nico grab the knight after three seconds. \"Hand off,\" Luc says. \"But I see it,\" Nico says. The room smells like pencil shavings and cafeteria pizza. Before the next move, Luc must decide whether to reward speed or train the wait. He taps the clock. \"Then wait until the urge gets bored of you.\"",
           "whatToDo": "Make the wait part of the drill. Require ten silent seconds before any move, then ask Nico to name one threat he would have missed.",
           "whyItMatters": "The lesson is not only chess. A student who cannot survive the urge to move cannot see the board deeply enough to choose well."
@@ -1693,13 +1387,6 @@
             "audio",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "a podcast editor testing scheduled distraction breaks against constant checking",
-            "audience": "an editor whose work fragments whenever a message badge appears",
-            "stakes": "whether the episode edit gets cleaner when checking is pre-decided",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts scheduled checking will feel worse, then sees the edit get easier"
-          },
           "scenario": "At 1:32 p.m. Wednesday, Antonia freezes the podcast waveform on her monitor and writes two check windows on a yellow sticky note: 2:15 and 3:30. Before she starts cutting, she must decide whether the rule governs the itch or the itch governs the rule. She predicts the rule will make her itchier. For twenty minutes it does. Then the guest's story arc holds, and at 2:15 the messages look smaller than they did in her imagination.",
           "whatToDo": "Keep the scheduled windows. When the itch arrives early, point to the sticky note and return to the waveform until the planned time.",
           "whyItMatters": "Pre-deciding distraction removes the constant negotiation. The edit improves because her attention can hold the audio structure long enough to make cleaner cuts."
@@ -1712,13 +1399,6 @@
             "running",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "a runner noticing boredom become recovery when she stops filling every quiet minute",
-            "audience": "an athlete whose recovery has become another stream of stimulation",
-            "stakes": "whether she learns that unstimulated minutes can settle the mind",
-            "format": "reflection",
-            "requiredBeat": "she notices boredom become recovery rather than emergency"
-          },
           "scenario": "At 6:19 a.m. Sunday, Farrah leans against the track fence after intervals, earbuds in her palm and sweat cooling at the back of her neck. Usually she starts a song before breathing slows. Today she waits. The empty field feels too wide for the first minute. Then the gulls over the parking lot get loud, her pulse drops, and the ache in her calves becomes information instead of noise. She had called this boredom. It is recovery.",
           "whatToDo": "Leave the earbuds out for the cooldown and let the body settle without input. Use the quiet to notice breath, soreness, and pace before adding sound.",
           "whyItMatters": "Not every empty minute needs filling. Recovery deepens when attention stops chasing novelty and learns to stay with the body that did the work."
@@ -1731,13 +1411,6 @@
             "exam",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a bar exam tutor reviewing why a long study block failed despite enough time",
-            "audience": "a tutor whose student keeps blaming schedule pressure for shallow review",
-            "stakes": "whether the next study plan trains attention instead of adding hours",
-            "format": "postmortem",
-            "requiredBeat": "she finds the issue was a mind trained to demand novelty"
-          },
           "scenario": "At 9:27 p.m. Monday, Gita sits on the couch with flashcards spread across the cushions and her student's screen-time report open on the coffee table. The failed study block was three hours long. Time was not missing. The first phone pickup came after four minutes, then seven, then five. Each check looked tiny. Together they trained the same escape route the evidence questions require him to resist. She circles the pickups in red.",
           "whatToDo": "Build the next study block around pre-set check windows and short boredom drills. Do not add hours until the existing hours stop leaking attention.",
           "whyItMatters": "The problem is not only time supply. A mind trained to expect novelty cannot use a long block well until it learns that restlessness is survivable."
@@ -1756,8 +1429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Keeping the phone closed turns the waiting into attention training before the work starts. Answering messages feeds novelty, and waiting for a calmer season avoids the small reps concentration needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1769,8 +1441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A phone-free block gives the mind practice staying with the redesign. Another planning meeting offers motion without training attention, and the unchanged schedule leaves distraction to decide the lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1782,8 +1453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The urge to check is the training surface, not a reason to switch. Neat headings dodge the hard contact, and stopping at confusion rewards the escape impulse that weakens concentration.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1795,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Checking windows decided in advance keep impulse from governing the product decision. Faster approvals still feed novelty, and waiting for crisis gives attention no chance to train under discomfort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1808,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The timed no-check rule lets restlessness rise without becoming a command. Removing entertainment forever is too broad, while live permission teaches the teenager that every urge deserves relief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1821,8 +1489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Scheduled breaks keep novelty from steering the practice session. More updates and busyness praise feel active, but they do not train the team to stay with the core problem when attention strains.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1834,8 +1501,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fast replies reward novelty exactly when the memo needs concentration. The tempting responsiveness choice misses the training problem, and the short-memo claim confuses thin attention with good brevity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1847,8 +1513,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The uninterrupted pass is a chance to let discomfort rise without obeying it. Replies are easy relief, and waiting for a need-free moment dodges the training that makes future depth easier.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1860,8 +1525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool can stay only if checking windows contain it. One small benefit ignores the attention habit it trains, while blanket deletion skips the more precise discipline of scheduled distraction.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1916,19 +1580,13 @@
       },
       "memorableLines": [
         {
-          "text": "Boredom is not the enemy of focus. It is where focus trains.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "Boredom is not the enemy of focus. It is where focus trains."
         },
         {
-          "text": "Every unfed urge is a small rep for the next hard block.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the practice into a metaphor readers can apply immediately to their own moments of restlessness."
+          "text": "Every unfed urge is a small rep for the next hard block."
         },
         {
-          "text": "Many checks do not relieve a real need. They relieve the discomfort of not checking.",
-          "location": "breakdown.fullRead",
-          "why": "It reveals the psychological mechanism that explains phone addiction and why training attention requires refusing comfort, not just information."
+          "text": "Many checks do not relieve a real need. They relieve the discomfort of not checking."
         }
       ]
     },
@@ -1955,13 +1613,6 @@
             "creative",
             "tools"
           ],
-          "planSpec": {
-            "domain": "a freelance illustrator auditing whether a social platform supports real commissions",
-            "audience": "an illustrator tempted by visible praise that does not pay invoices",
-            "stakes": "whether a platform earns daily attention or only offers small emotional rewards",
-            "format": "decision_point",
-            "requiredBeat": "she tests whether the tool substantially supports her real goals or only offers small benefits"
-          },
           "scenario": "At 9:04 p.m. Monday, Paloma sits at her kitchen table with a tablet stylus beside an unpaid invoice and the platform analytics page glowing blue. The post from noon has 486 likes, three flattering comments, and no commission inquiry. Her portfolio email has two unanswered client leads. The app gives proof that people looked. The invoice asks whether looking matters enough. She must decide if the tool earns tomorrow morning.",
           "whatToDo": "Measure the platform against the goal that matters: paid illustration work. Check whether it produces clients, then run a thirty-day removal or strict posting window if it does not.",
           "whyItMatters": "A tool can be pleasant and still be a poor trade. The cost is not only minutes spent posting, but the mental pull that follows her back into the work."
@@ -1974,13 +1625,6 @@
             "organizing",
             "channels"
           ],
-          "planSpec": {
-            "domain": "a union organizer distinguishing a useful channel from compulsive checking",
-            "audience": "an organizer whose phone carries both essential updates and endless anxiety",
-            "stakes": "whether attention goes to worker conversations or circular chat monitoring",
-            "format": "scene",
-            "requiredBeat": "he distinguishes a genuinely useful channel from compulsive checking"
-          },
           "scenario": "At 6:26 a.m. Friday, Idris folds union flyers on a laundromat table while dryers thump behind him and a group chat flashes about the warehouse vote. One channel has shift-change reports he needs before noon. Two side threads repeat the same fear. Before the first bus arrives, he must decide which channel earns attention and which only rents it. He mutes the side threads and writes three names for in-person talks.",
           "whatToDo": "Keep the one channel tied to concrete shift information and mute the loops that only recycle anxiety. Use the freed attention for direct conversations.",
           "whyItMatters": "The useful channel serves the organizing goal. The nervous loops imitate urgency while draining the attention needed for the real work of talking to people."
@@ -1993,13 +1637,6 @@
             "college",
             "experiment"
           ],
-          "planSpec": {
-            "domain": "a college admissions counselor testing platform removal against student outcomes",
-            "audience": "a counselor afraid leaving a platform will reduce access for first-generation students",
-            "stakes": "whether real advising outcomes suffer without daily platform use",
-            "format": "before_after",
-            "requiredBeat": "she compares feared losses with actual effects after thirty days"
-          },
           "scenario": "At 4:55 p.m. Wednesday, Briony tapes a thirty-day calendar beside her admissions desk and logs out of the campus social app. Before, she believed students would disappear if she left. After four weeks, the checkmarks tell a different story: office visits up, essay drafts on time, urgent questions arriving by email anyway. The only thing that fell was the number of times she watched students argue in comment threads between appointments.",
           "whatToDo": "Treat the thirty-day break as evidence. Keep the direct channels that helped students and drop the app if the feared losses never appeared.",
           "whyItMatters": "The experiment separates imagined usefulness from actual support. A tool earns access by serving the goal, not by making absence feel risky."
@@ -2012,13 +1649,6 @@
             "restaurant",
             "attention"
           ],
-          "planSpec": {
-            "domain": "a restaurant owner deciding whether a staff app deserves attention",
-            "audience": "an owner whose staff is being pulled into another optional digital channel",
-            "stakes": "whether the app improves service enough to justify constant checking",
-            "format": "dialogue",
-            "requiredBeat": "she asks what important goal the app serves and what attention it costs"
-          },
           "scenario": "At 2:37 p.m. Tuesday, Celestine stands by the prep list under a jar of pens while her sous chef pitches a new scheduling app. \"It sends reminders,\" he says. Before she approves it, she must decide whether fewer missed shifts justify another screen during prep. \"What goal does it serve?\" she asks. \"Fewer missed shifts.\" \"And what does it cost?\" He looks at the phones lighting up on the shelf. \"Attention,\" he says.",
           "whatToDo": "Ask for the goal and the cost in the same conversation. Use the app only if missed shifts are a real problem and notifications can be contained outside prep.",
           "whyItMatters": "Any-benefit thinking would admit the app immediately. A higher standard counts the pull on staff attention during the work that keeps dinner service clean."
@@ -2031,13 +1661,6 @@
             "research",
             "experiment"
           ],
-          "planSpec": {
-            "domain": "a junior researcher predicting isolation after deleting an app",
-            "audience": "a researcher afraid opportunities flow through social feeds",
-            "stakes": "whether direct professional opportunities survive a thirty-day deletion",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts isolation, then sees meaningful opportunities arrive through direct channels"
-          },
           "scenario": "At 8:11 p.m. Sunday, Kenji sits on his futon with the phone backup screen glowing and his thumb hovering above delete. Before the button press, he must decide whether his predicted losses are evidence or fear. He predicts missed lab gossip, calls for papers, and career chances. Thirty days later his notebook shows two seminar invites by email, one advisor collaboration, zero missed deadlines, and only the nightly scroll gone.",
           "whatToDo": "Use the evidence from the break. Reinstall only if a concrete opportunity was actually lost, and keep direct professional channels protected.",
           "whyItMatters": "The fear of missing out was a prediction, not a fact. Testing it shows which channels carry real opportunity and which mostly tax attention."
@@ -2050,13 +1673,6 @@
             "nonprofit",
             "cost"
           ],
-          "planSpec": {
-            "domain": "a nonprofit director reviewing small benefits from several outreach platforms",
-            "audience": "a director whose outreach month looked active but produced weak donor contact",
-            "stakes": "whether digital activity helped the mission enough to justify its attention cost",
-            "format": "postmortem",
-            "requiredBeat": "she finds that small benefits from three platforms did not justify the cost"
-          },
           "scenario": "At 7:48 p.m. Thursday, Maren spreads donor cards across the conference table and opens the outreach report beside a bowl of stale mints. Three platforms produced small wins: a shared post, twelve new followers, one volunteer comment. The donor calls she promised herself are still blank boxes on the sheet. She totals the hours and sees the month clearly. Each platform helped a little. Together they displaced the work that funds the shelter.",
           "whatToDo": "Cut the platforms to the one that directly produces volunteers or donors, then schedule calls before any posting window. Make attention follow the mission, not the channels.",
           "whyItMatters": "Small benefits add up on the benefit side and on the cost side. The audit matters because the mission pays for attention spent on marginal tools."
@@ -2075,8 +1691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tool needs an audit against the important work, not automatic access because it flashes. Answering first obeys convenience, and waiting for calm leaves admission standards to habit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2088,8 +1703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The redesign block comes first because tools should serve the teaching goal, not replace it. Another meeting or unchanged schedule keeps usefulness vague, which is how optional tools keep their place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2101,8 +1715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard problems are the learning work; optional feeds stay closed unless they directly help. Tidying notes feels safer, and quitting at confusion lets a tool-shaped escape stand in for progress.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2114,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A tool standard before approvals stops convenience from deciding access. Faster approvals still lets shallow demand drive behavior, and crisis waiting leaves the product decision exposed to every small channel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2127,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A thirty-day break turns fear about the tool into evidence. Removing everything forever is moral panic, while live decisions let the distracting tool defend itself every time study gets uncomfortable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2140,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test is whether a tool improves the performance problem enough to justify attention cost. Updates and busyness praise can be tool-supported noise if they do not improve the actual play.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -2153,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is that a useful-looking tool can train habits that weaken concentrated output. The responsiveness choice protects the wrong reward, and the short-memo claim ignores the tool cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2166,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The uninterrupted pass beats a tool with peripheral benefits because attention is finite. Replies are countable, and waiting for total quiet lets a minor tool keep charging rent on the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2179,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool is admitted only if its strongest benefits outweigh recurring attention cost. One small benefit is the any-benefit trap, while deleting everything avoids the craftsman test of fit.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2235,19 +1842,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not ask whether a tool has any benefit. Ask whether it earns its cost.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "Do not ask whether a tool has any benefit. Ask whether it earns its cost."
         },
         {
-          "text": "A small benefit can be a bad trade when it rents space in your mind every day.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the core test into a metaphor readers can apply immediately when deciding whether a tool earns access."
+          "text": "A small benefit can be a bad trade when it rents space in your mind every day."
         },
         {
-          "text": "A focused life is built as much by what you decline as by what you schedule.",
-          "location": "breakdown.fullRead",
-          "why": "It flips the frame from action to refusal, turning the chapter's central insight into a principle that redefines what productivity actually means."
+          "text": "A focused life is built as much by what you decline as by what you schedule."
         }
       ]
     },
@@ -2274,13 +1875,6 @@
             "lab",
             "batching"
           ],
-          "planSpec": {
-            "domain": "a lab manager making coordination work visible before it expands",
-            "audience": "a manager whose necessary admin keeps taking prime scientific attention",
-            "stakes": "whether experiments continue without shallow tasks owning the whole morning",
-            "format": "scene",
-            "requiredBeat": "she makes shallow coordination visible so it cannot expand invisibly"
-          },
           "scenario": "At 10:16 a.m. Monday, Odette hears the freezer alarm chirp behind her while reagent orders, access forms, and meeting polls scatter across three browser tabs. None of the tasks looks large enough to defend against. Together they have eaten the first hour. The assay design notebook is open under her elbow. She must decide whether the morning stays porous or gets a wall, then draws: admin, 11:30 to 12:15.",
           "whatToDo": "Batch the orders, forms, and polls into the admin box, then return to the assay design until 11:30. Keep emergency alarms separate from routine coordination.",
           "whyItMatters": "Shallow work becomes dangerous when it arrives as harmless fragments. A visible window contains it without pretending the lab can run on focus alone."
@@ -2293,13 +1887,6 @@
             "school",
             "email"
           ],
-          "planSpec": {
-            "domain": "a principal choosing a process-closing parent email over a vague update",
-            "audience": "a principal whose unclear messages keep creating new shallow loops",
-            "stakes": "whether one email settles the pickup-policy process or multiplies replies",
-            "format": "decision_point",
-            "requiredBeat": "he chooses a process-closing message over an open-ended loop"
-          },
           "scenario": "At 5:22 p.m. Tuesday, Nils sits in the school office with the hallway floor buffer whining and a draft parent email open in 14-point type. The easy version says the pickup policy is being reviewed and invites questions. He can already see forty replies. The harder version names the decision date, the two options, and the one address for comments before Friday noon. His cursor blinks after \"reach out anytime.\" He has to decide what that phrase will cost.",
           "whatToDo": "Delete the open invitation and write the process clearly: options, comment deadline, decision date, and one collection address. Close the loop before it multiplies.",
           "whyItMatters": "A vague email feels warm for ten seconds and creates hours of shallow work. A precise email protects everyone's time by making the next step unambiguous."
@@ -2312,13 +1899,6 @@
             "consulting",
             "budget"
           ],
-          "planSpec": {
-            "domain": "a consultant naming the time cost of daily client status calls",
-            "audience": "a consultant trying to protect analysis time without sounding evasive",
-            "stakes": "whether the client understands status calls as a tradeoff",
-            "format": "dialogue",
-            "requiredBeat": "she names the cost of daily status calls in lost analysis time"
-          },
           "scenario": "At 8:07 a.m. Thursday, Liora sits at a hotel lobby table with a half bagel, a legal pad, and the client on speaker. \"Can we do a daily status call?\" he asks. Before she answers, she must decide whether to absorb the cost silently or price it aloud. Liora writes five calls equals five hours. \"We can,\" she says, \"and it moves the pricing analysis to Monday. For Friday, I suggest two written updates.\"",
           "whatToDo": "Translate the shallow request into hours and output tradeoffs. Offer a lower-cost update rhythm that preserves the analysis block.",
           "whyItMatters": "The client can only choose well when the cost is visible. Status calls sound harmless until they are priced in the exact work they displace."
@@ -2331,13 +1911,6 @@
             "building",
             "batching"
           ],
-          "planSpec": {
-            "domain": "a building superintendent batching small repair requests into explicit windows",
-            "audience": "a superintendent whose helpfulness scatters every morning",
-            "stakes": "whether repairs get done without destroying larger maintenance work",
-            "format": "before_after",
-            "requiredBeat": "he stops letting small tasks scatter the day and makes service windows explicit"
-          },
           "scenario": "At 6:49 a.m. Saturday, Hamza clips a heavy key ring to a paint-splattered clipboard and reads seven tenant texts before the boiler room lights warm up. Before, he answered each knock as it came and never reached preventive maintenance. After the third missed filter change, he posted two service windows and an emergency number. By noon, the leaky faucet, stuck mailbox, and cracked tile were handled together. The boiler filter was changed before breakfast.",
           "whatToDo": "Keep the service windows and emergency line. Batch ordinary repairs by location, then protect the preventive work that keeps bigger failures away.",
           "whyItMatters": "The tenants still get help, but the day stops splintering. Batching preserves service while preventing small tasks from consuming the work that prevents larger costs."
@@ -2350,13 +1923,6 @@
             "college",
             "measurement"
           ],
-          "planSpec": {
-            "domain": "an academic advisor measuring email time instead of guessing",
-            "audience": "an advisor who underestimates shallow work because each message is small",
-            "stakes": "whether email is budgeted honestly before advising prep disappears",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts email is thirty minutes, then the time log reveals two hours"
-          },
           "scenario": "At 3:03 p.m. Wednesday, Greta opens a timer app beside a chipped mug and predicts email will take thirty minutes. Before she starts, she must decide whether to keep guessing or let the clock tell the truth. Scholarship forms become transfer credits, then a parent reply with a policy link. At 5:06 the mug is cold, the timer reads two hours, three minutes, and her advising prep notes are still blank.",
           "whatToDo": "Use the timer result to budget email honestly. Put a two-hour email window where it belongs and stop pretending it can fit around the edges.",
           "whyItMatters": "Shallow work expands when guessed low. Measurement gives it a real price, which is the first condition for moving it out of prime attention."
@@ -2369,13 +1935,6 @@
             "projects",
             "communication"
           ],
-          "planSpec": {
-            "domain": "a project coordinator reviewing how vague messages multiplied shallow work",
-            "audience": "a coordinator whose week vanished into clarification loops",
-            "stakes": "whether future requests are written tightly enough to protect project time",
-            "format": "postmortem",
-            "requiredBeat": "she sees unclear messages multiplied shallow work into repeated loops"
-          },
           "scenario": "At 4:38 p.m. Friday, Renata sits with a printed thread stack on her lap, each page marked with a pink tab where someone asked, \"Can you clarify?\" The original request was eight words: update the launch plan. By Tuesday it had become twelve replies, two calls, and a wrong spreadsheet. Her project board still shows the same blocked milestone. She draws a box around the first vague sentence. That was where the shallow work multiplied.",
           "whatToDo": "Create a request template with owner, deadline, desired output, and decision needed. Refuse to launch new work from vague asks.",
           "whyItMatters": "Unclear communication manufactures shallow work for everyone downstream. Tight requests protect depth by preventing avoidable loops before they start."
@@ -2394,8 +1953,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bounding coordination keeps shallow work from spreading into the clean hour. Answering every request first treats visibility as priority, and waiting for calm leaves the demanding task without a budget.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2407,8 +1965,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The redesign gets first claim, while grading and replies receive clear limits. Another meeting expands the shallow layer, and the current schedule lets support work grow until the lesson problem disappears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2420,8 +1977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hard problems should precede note organizing because support work can expand endlessly. Tidying feels like progress, and stopping at confusion hands the best block to work that does not need it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2433,8 +1989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Approvals need a budget so the product decision keeps a protected block. Faster approvals preserves the leak, and waiting for crisis means shallow requests have already spent the morning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2446,8 +2001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Phone-free work plus an admin window keeps shallow tasks from leaking everywhere. Permanent removal is too broad, while live checking lets small tasks keep claiming attention without a cap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2459,8 +2013,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Separating logistics from practice gives coordination a limit and protects the core work. More updates and busyness praise make shallow work look necessary even when it has swollen past its place.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -2472,8 +2025,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A high reply count warns that shallow work has escaped its budget. The responsiveness choice rewards the leak, and the short-memo claim misses that the memo is thin because depth was crowded out.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2485,8 +2037,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Design comes first because status replies can be batched with little loss. Replies feel safe because they are countable, and waiting for no needs gives shallow work a veto over the calendar.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2498,8 +2049,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool should reduce shallow loops more than it creates them. One small benefit ignores the loops it adds, while deleting everything skips the question of whether it can lower coordination cost.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2554,19 +2104,13 @@
       },
       "memorableLines": [
         {
-          "text": "Shallow work must be counted before it can be contained.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "Shallow work must be counted before it can be contained."
         },
         {
-          "text": "What stays vague will keep expanding until the calendar gives it walls.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the entire practice philosophy into one actionable principle with concrete imagery that a reader can apply immediately at their calendar."
+          "text": "What stays vague will keep expanding until the calendar gives it walls."
         },
         {
-          "text": "A task can deserve a place without deserving the best place.",
-          "location": "breakdown.fullRead",
-          "why": "This paradox grants permission and names something readers almost knew but couldn't articulate—legitimacy without unlimited claim, the heart of the solution."
+          "text": "A task can deserve a place without deserving the best place."
         }
       ]
     },
@@ -2593,13 +2137,6 @@
             "retreat",
             "routine"
           ],
-          "planSpec": {
-            "domain": "a database architect turning retreat into a repeatable thinking structure",
-            "audience": "an architect tempted to treat withdrawal as a rare luxury",
-            "stakes": "whether strategic thinking becomes regular enough to shape the system",
-            "format": "scene",
-            "requiredBeat": "he treats retreat as repeatable structure, not fantasy escape"
-          },
           "scenario": "At 6:12 a.m. Monday, Mircea closes the cabin door behind him and sets a thermos beside a notebook on the pine table. The lake is still black beyond the glass. Before email reaches him, he must decide whether this retreat is a mood or a standard. He writes the same question for the fourth Monday in a row: what will break at ten million users? It works because it is on the calendar again next week.",
           "whatToDo": "Keep the Monday retreat and its single question. Treat travel, start time, and output as part of the system, not as extras to improvise.",
           "whyItMatters": "A deep life needs repeatable withdrawal from noise. The value is not the cabin itself, but the structure that makes serious thinking return."
@@ -2612,13 +2149,6 @@
             "family",
             "agreement"
           ],
-          "planSpec": {
-            "domain": "a nurse manager making deep work a household agreement",
-            "audience": "a manager whose certification study needs family-visible structure",
-            "stakes": "whether study becomes sustainable without hidden resentment",
-            "format": "dialogue",
-            "requiredBeat": "she turns deep work into a life agreement with clear times and responsibilities"
-          },
           "scenario": "At 8:33 p.m. Sunday, Yara sits at the kitchen table with her spouse while the dishwasher hums and two lunch boxes dry on a towel. Before the week starts, she must decide whether study nights are private wishes or shared agreements. \"I need Tuesday and Thursday, seven to nine, for the certification cases,\" she says. \"I handle bedtime Monday and Wednesday.\" Her spouse asks, \"And if the school calls?\" \"You interrupt me. Otherwise I come back at nine.\"",
           "whatToDo": "Make the study block a household agreement: exact nights, traded duties, emergency rule, and return time. Keep the promise on both sides.",
           "whyItMatters": "Depth becomes sustainable when affected people can see the structure. Hidden focus breeds conflict; negotiated focus can become part of family life."
@@ -2631,13 +2161,6 @@
             "school",
             "continuity"
           ],
-          "planSpec": {
-            "domain": "a graduate student seeing a year of focus as repeated standards",
-            "audience": "a student tempted to credit one heroic final push",
-            "stakes": "whether he understands how the year actually changed",
-            "format": "reflection",
-            "requiredBeat": "he sees a deep life is repeated standards, not one sprint"
-          },
           "scenario": "At 11:09 a.m. on New Year's Day, Cassian finds a library receipt in his coat pocket dated February 3. It is for a study room, 7:00 to 9:00 p.m., the same slot he booked most Tuesdays. He had been telling people the thesis came together in a brilliant final month. The receipt corrects him. The final month worked because thirty ordinary Tuesdays had already taught him how to sit down, close the door, and stay.",
           "whatToDo": "Credit the repeated standard, not the heroic finish. Rebook the Tuesday room before the semester starts and keep the ritual visible.",
           "whyItMatters": "The receipt shows the real cause. A deep life is built through returns that look ordinary until the result makes them visible."
@@ -2650,13 +2173,6 @@
             "planning",
             "routine"
           ],
-          "planSpec": {
-            "domain": "a municipal planner replacing shallow weekly rhythm with protected depth",
-            "audience": "a planner whose commute and office habits decide whether serious design gets done",
-            "stakes": "whether neighborhood plans improve through repeated focused work",
-            "format": "before_after",
-            "requiredBeat": "he compares old shallow rhythm with a protected deep-life rhythm"
-          },
           "scenario": "At 7:25 a.m. Thursday, Rohit stands under the bus shelter with the route schedule taped inside his planner. Before, the commute was scrolling, the office morning was email, and the neighborhood plan waited for whatever energy survived. After three months, the bus ride is reading, 8:30 to 10:00 is plan design, and email opens at 10:15. The week looks less flexible. The work looks less thin.",
           "whatToDo": "Keep the new rhythm through another planning cycle. Protect the commute input, the morning design block, and the later email window as one connected system.",
           "whyItMatters": "The change works because depth is built into repeated places in the week. A better life pattern replaces the shallow default before the day can vote."
@@ -2669,13 +2185,6 @@
             "film",
             "standards"
           ],
-          "planSpec": {
-            "domain": "a documentary editor deciding whether depth becomes a long-term design",
-            "audience": "an editor facing months of footage and pressure for visible snippets",
-            "stakes": "whether the film is shaped by sustained judgment or by reactive clipping",
-            "format": "decision_point",
-            "requiredBeat": "she decides whether depth remains a mood or becomes the default design"
-          },
           "scenario": "At 5:17 p.m. Friday, Benedetta sits under a desk where hard drives hum like little fans. The documentary has 180 hours of footage and a producer asking for weekly teaser clips. She can keep treating deep edits as special days she hopes to find, or she can set six months of rules: mornings for story structure, afternoons for clips, Fridays for review. Her hand rests on the calendar invite titled footage sprint. She has to decide what the next half year will obey.",
           "whatToDo": "Choose the six-month rules. Give story structure the protected morning block, put teaser clips in their own window, and review the system every Friday.",
           "whyItMatters": "A long project will follow the default design. If depth remains an occasional mood, the film will be shaped by whatever request arrives loudest."
@@ -2688,13 +2197,6 @@
             "science",
             "structure"
           ],
-          "planSpec": {
-            "domain": "a lab technician reviewing a year of unfinished improvement ideas",
-            "audience": "a technician whose deep work stayed occasional despite many insights",
-            "stakes": "whether next year gives serious ideas recurring structure",
-            "format": "postmortem",
-            "requiredBeat": "she sees the cost of treating deep work as occasional instead of structural"
-          },
           "scenario": "At 3:46 p.m. on December 29, June stacks freezer inventory sheets beside a yellow notebook labeled ideas. Twelve entries are circled: sample labels, thaw timing, error-prone handoffs. None became a protocol. She remembers each one arriving during a quiet minute and vanishing when the bench got busy. The lab did not lack insight. It lacked a place where insight returned every week and became design.",
           "whatToDo": "Create a weekly protocol block for one circled idea at a time. Put the block on the lab calendar and attach each session to a draft change.",
           "whyItMatters": "Occasional insight is fragile. A deep life, even inside a lab role, needs a recurring place where careful thought becomes a changed system."
@@ -2713,8 +2215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A recurring block turns depth into a life pattern rather than a one-off rescue. Answering first keeps reaction in charge, and waiting for calm postpones the structure the week needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2726,8 +2227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The redesign belongs in a weekly structure because deep effort has to return. Another meeting gives the illusion of care, and the unchanged schedule keeps the work dependent on emergency energy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2739,8 +2239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated hard-problem sessions build the habit of return. Neat notes offer visible order without deep contact, and quitting at confusion prevents the continuity a deep life depends on.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2752,8 +2251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A standing ritual makes the product decision part of how the company works. Faster approvals preserves reactivity, and crisis timing lets shallow demand define when serious thought is allowed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2765,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Recurring phone-free agreements make attention a shared structure, not a private wish. Permanent removal is too broad, while live decisions leave the household pattern at the mercy of each urge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2778,8 +2275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Weekly performance practice makes depth likely before urgency appears. More updates and busyness praise keep the team reactive, which is the opposite of designing a repeatable deep standard.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -2791,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is that momentary praise for responsiveness can shrink the larger life. The responsiveness choice protects the immediate reward, and the short-memo claim excuses the loss of depth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2804,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A recurring design pass makes depth a standard instead of a mood. Replies are countable but smaller, and waiting for total quiet means the standard never becomes part of the life.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2817,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tool must fit the long-term standards being built. One small benefit is too weak for a life-design choice, while deleting every tool avoids deciding what deserves a permanent place.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2873,19 +2366,13 @@
       },
       "memorableLines": [
         {
-          "text": "A deep life is built by returning to the structures that protect serious thought.",
-          "location": "breakdown.fastRead",
-          "why": "This line appears in the breakdown and states the chapter move in a compact, repeatable form."
+          "text": "A deep life is built by returning to the structures that protect serious thought."
         },
         {
-          "text": "Depth becomes a life when it keeps showing up after the mood has passed.",
-          "location": "breakdown.fastRead",
-          "why": "It collapses the core insight into something a reader can use at the calendar."
+          "text": "Depth becomes a life when it keeps showing up after the mood has passed."
         },
         {
-          "text": "Do not wait for a different life to practice depth. Build the first structure inside this one.",
-          "location": "breakdown.fullRead",
-          "why": "It names the actual barrier most readers face: waiting for conditions that won't arrive."
+          "text": "Do not wait for a different life to practice depth. Build the first structure inside this one."
         }
       ]
     }

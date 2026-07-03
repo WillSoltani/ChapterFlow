@@ -11,7 +11,7 @@ import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { promoteBook, stripInternalFields } from "../src/promoteBook.js";
+import { promoteBook, stripInternalFields, productionManifestSidecarPath } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
@@ -41,6 +41,7 @@ function cleanupFixture(): void {
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), { force: true });
   rmSync(waiverPath(MAJOR_BOOK), { force: true });
   rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
+  rmSync(productionManifestSidecarPath(MAJOR_BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(MAJOR_BOOK), { force: true });
   rmSync(sourceRunDir(MAJOR_BOOK, "zz-test-major-clean"), { recursive: true, force: true });
@@ -542,12 +543,13 @@ test("promoteBook still promotes a complete correctly ordered canonical book", (
     restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
     restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
+    rmSync(productionManifestSidecarPath(bookId), { force: true });
     if (seededPackage) rmSync(packagePath, { force: true });
     else restoreFile(packagePath, packageBefore);
   }
 });
 
-test("promoteBook embeds a production manifest identity instead of trusting timestamp package metadata", () => {
+test("promoteBook writes a slim package (no embedded manifest, human-readable packageId) plus a state-side manifest sidecar", () => {
   const bookId = "drive";
   const runId = `zz-test-promote-manifest-identity-${process.pid}`;
   const index = loadChapterIndex(bookId);
@@ -598,8 +600,17 @@ test("promoteBook embeds a production manifest identity instead of trusting time
 
       assert.equal(result.promoted, true, result.reason);
       const pkg = JSON.parse(readFileSync(packagePath, "utf8"));
-      assert.equal(pkg.packageId, pkg.productionManifest?.contentId, "package identity must be derived from the embedded production manifest");
-      assert.equal(typeof pkg.productionManifest?.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
+      // K1: the shipped package carries reader content only — no embedded manifest.
+      assert.equal(pkg.productionManifest, undefined, "the shipped package must NOT embed a production manifest (it moved to the sidecar)");
+      assert.match(pkg.packageId, new RegExp(`^${bookId}-v21-\\d+$`), "packageId must be human-readable <bookId>-v21-<epochMs>, not a sha256");
+      // The manifest lives in the state-side sidecar; its contentId is a sha256 of
+      // the canonical payload and matches the sidecar's + package's identity fields.
+      const sidecar = JSON.parse(readFileSync(productionManifestSidecarPath(bookId), "utf8"));
+      assert.equal(sidecar.schemaVersion, "chapterflow-production-manifest-sidecar-v1");
+      assert.equal(sidecar.packageId, pkg.packageId, "sidecar packageId binds the shipped package");
+      assert.equal(sidecar.createdAt, pkg.createdAt, "sidecar createdAt binds the shipped package");
+      assert.match(sidecar.manifest.contentId, /^sha256:/, "the manifest carries a recomputable canonical content id");
+      assert.equal(typeof sidecar.manifest.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
     });
   } finally {
     for (const spec of index) restoreFile(chapterStatePath(spec.chapterId), chapterBefore.get(spec.chapterId) ?? null);
@@ -608,6 +619,7 @@ test("promoteBook embeds a production manifest identity instead of trusting time
     restoreFile(sourceVerifyRecordPath(bookId), sourceRecordBefore);
     restoreFile(waiverPath(bookId), waiverBefore);
     restoreFile(reportPath, reportBefore);
+    rmSync(productionManifestSidecarPath(bookId), { force: true });
     if (seededPackage) rmSync(packagePath, { force: true });
     else restoreFile(packagePath, packageBefore);
   }
@@ -773,21 +785,26 @@ test("promoteBook runs the intra-book suite and blocks on planted card reuse", (
   }
 });
 
-test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without staling the attestation hash", () => {
+test("reader-content-strip-v3 removes planSpec/sourceAnchorId AND the v3 internals; QC freshness is checked against the LOOSE chapter so the strip never stales a real attestation", () => {
   const ch = makeChapter(BOOK, 9);
   for (const ex of ch.examples) {
     ex.sourceAnchorId = "a1";
     ex.sourceAnchorIds = ["a1"];
+    (ex as any).namedCaseIds = ["nc1"];
+    (ex as any).sourceFactIds = ["sf1"];
   }
   for (const q of ch.quiz.questions) {
     q.sourceAnchorId = "a2";
     q.sourceAnchorIds = ["a2"];
     q.keyEvidenceAnchorIds = ["a2"];
+    (q as any).depthLevel = 2;
   }
   for (const card of ch.reviewCards) {
     card.sourceAnchorId = "a3";
     card.sourceAnchorIds = ["a3"];
   }
+  (ch as any).memorableLines = [{ text: "A memorable reader line.", location: "breakdown.deepRead", why: "it sticks" }];
+  ch.implementationPlan.title = "Some Skill Title";
   ch.authoring = {
     schemaVersion: "chapter-authoring-v1",
     sourceAnchors: {
@@ -798,15 +815,34 @@ test("stripInternalFields removes planSpec + sourceAnchorId everywhere, without 
     },
   };
 
-  const before = chapterContentHash(ch);
+  // What the reviewer attested is the LOOSE state chapter; the manifest checks
+  // freshness against it (productionManifest.ts gatherCommonPayload), never
+  // against the v3-stripped shipped chapter.
+  const looseHash = chapterContentHash(ch);
   const shipped = stripInternalFields(ch);
 
   const json = JSON.stringify(shipped);
+  // Deep-key internals gone.
   assert.doesNotMatch(json, /planSpec/, "writer scaffolding must not ship to readers");
   assert.doesNotMatch(json, /sourceAnchorId/, "gate provenance must not ship to readers");
   assert.doesNotMatch(json, /authoring/, "authoring audit map must not ship to readers");
+  assert.doesNotMatch(json, /namedCaseIds/, "v3: namedCaseIds must not ship");
+  assert.doesNotMatch(json, /sourceFactIds/, "v3: sourceFactIds must not ship");
+  assert.doesNotMatch(json, /depthLevel/, "v3: quiz depthLevel must not ship");
+  // Path-aware internals gone.
+  assert.equal((shipped as any).schemaVersion, undefined, "v3: per-chapter schemaVersion must not ship");
+  assert.equal(shipped.implementationPlan.title, undefined, "v3: implementationPlan.title must not ship");
+  assert.equal((shipped.memorableLines as any)[0].location, undefined, "v3: memorableLines[].location must not ship");
+  assert.equal((shipped.memorableLines as any)[0].why, undefined, "v3: memorableLines[].why must not ship");
+  // Reader content that SHARES a generic key name survives.
   assert.equal(shipped.examples[0].scenario, ch.examples[0].scenario, "reader content untouched");
-  assert.equal(chapterContentHash(shipped), before, "the strip must never stale a QC attestation");
+  assert.equal(shipped.examples[0].title, ch.examples[0].title, "examples[].title survives");
+  assert.equal(shipped.title, ch.title, "chapters[].title survives");
+  assert.equal(shipped.examples[0].whyItMatters, ch.examples[0].whyItMatters, "examples[].whyItMatters survives");
+  assert.equal((shipped.memorableLines as any)[0].text, "A memorable reader line.", "memorableLines[].text survives");
+  // The pipeline's freshness input (the loose chapter) is NOT mutated by the strip
+  // (the strip works on a copy), so a recorded attestation stays fresh.
+  assert.equal(chapterContentHash(ch), looseHash, "the strip must not mutate the loose chapter it hashes freshness against");
   assert.ok((ch.examples[0] as any).planSpec, "strip works on a copy — state chapters are not mutated");
 });
 

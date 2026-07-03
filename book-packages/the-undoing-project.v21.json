@@ -119,8 +119,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact warns that visible body type or a memorable flaw can get too much meaning. The miss is not using any cue; it is letting the sticky cue carry the forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -132,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Morey's Rockets used models to test conventional impressions against outcomes. Agreement among experts helps only if the shared impression predicts value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -145,8 +143,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sports frame asks which human judgments need trust and which need correction by data. The hiring version asks the same about interviewer signals.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -158,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source fact says a player can look wrong while producing the numbers that make the role valuable. The portable lesson is to test the mismatch against output.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -171,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Analytics changes signal weight before a bet. It does not erase uncertainty, so the team still has to track whether the weighted signals work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -184,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Daryl Morey and the Rockets are not decoration. The setting matters because talent was noisy and the edge came from testing which signals predicted value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -197,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second case adds a distinct mechanism: vividness can masquerade as usefulness. The danger is not size, but untested pull.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -210,8 +203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Moneyball bridge works at market scale. Many insiders do not fix the price if they share the same flawed shortcut.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -223,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge rejects the simple data-beats-people slogan. Models help when they reveal an error, name a better signal, and remain accountable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -267,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank the Visible Cue",
         "coreSkill": "Practice catching the cue that grabs your eye first. Name what outcome it claims to predict, then rank it beside two quieter signals. The skill is not doubting everything; it is making the loudest cue earn its weight.",
         "ifThenPlans": [
           {
@@ -292,24 +282,17 @@
       },
       "memorableLines": [
         {
-          "text": "The eye is quick; the box score is patient.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the NBA lesson into a contrast the reader can carry."
+          "text": "The eye is quick; the box score is patient."
         },
         {
-          "text": "A model earns trust by being checked.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps analytics accountable instead of turning it into a slogan."
+          "text": "A model earns trust by being checked."
         },
         {
-          "text": "Do not audit every hunch into silence.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the audit a clear counter-case and stops overuse."
+          "text": "Do not audit every hunch into silence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch02",
       "number": 2,
       "title": "The Outsider",
@@ -410,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sourced fact joins Tel Aviv, 1934, with early childhood in France under German occupation. The France material is not decoration; it changes the judgment lesson.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -423,8 +405,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Childhood under Nazi rule sharpened attention to mixed human behavior. The mistake is using one memorable cue as a simple character judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -436,8 +417,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source links psychology and mathematics to Kahneman's later decision work. The detail matters when it explains the mix of human attention and statistical checking.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -449,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The IDF work exposed weak intuitive leadership assessment. The mechanism travels: a lively scene can create confidence before outcomes test it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -462,8 +441,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The outsider stance includes distrust of one's own confidence. The issue is not quietness or structure first; it is the feeling of knowing before feedback.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -475,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Paris, 1940 German occupation, and Vichy France specifics anchor the idea. They show early ambiguity, not just mood or a trump card over the IDF evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -488,8 +465,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The wall exercise adds a distinct mechanism. The issue is not more drama; it is the gap between felt insight and later predictive evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -501,8 +477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The structured interview moves the idea to institutional scale. It keeps judgment but makes it answer first to separate ratings and feedback.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -514,8 +489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge rejects trauma as a shortcut to insight. The useful claim is narrower: feedback can expose strong impressions that do not predict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -558,7 +532,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Forecast",
         "coreSkill": "Practice turning a confident impression into a testable forecast. Check the Forecast by writing what you think you know, naming the outcome it predicts, and looking for feedback before you treat the impression as truth. The skill is not cold doubt; it is a slower path to better judgment.",
         "ifThenPlans": [
           {
@@ -583,24 +556,17 @@
       },
       "memorableLines": [
         {
-          "text": "Confidence is not evidence.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses Kahneman's stance into a sentence the reader can use under pressure."
+          "text": "Confidence is not evidence."
         },
         {
-          "text": "Strong scenes can make weak forecasts.",
-          "location": "breakdown.deepRead",
-          "why": "It names the wall exercise gap in plain words."
+          "text": "Strong scenes can make weak forecasts."
         },
         {
-          "text": "Suspicion curdles when it refuses all judgment.",
-          "location": "breakdown.fullRead",
-          "why": "It guards against making doubt its own error."
+          "text": "Suspicion curdles when it refuses all judgment."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch03",
       "number": 3,
       "title": "The Insider",
@@ -701,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 supports the second choice. The birth, math orientation, and military distinction belong together because they make the portrait concrete, not merely colorful.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch03-q02",
@@ -714,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 requires the live bangalore torpedo, shrapnel wounds, and Moshe Dayan recognition. Names help check the scene; they do not prove any claim by themselves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch03-q03",
@@ -727,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says Hebrew University and the University of Michigan connect biography to decision science. The doctorate is not the only cause, but it is not decoration.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch03-q04",
@@ -740,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 points to problem selection, speed, and intellectual confidence together. Liking the voice or enjoying simplicity misses the work under the speed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch03-q05",
@@ -753,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 supports productive asymmetry: doubt met decisiveness. The source does not say one man erases the other or that doubt should disappear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch03-q06",
@@ -766,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says the Haifa upbringing anchors this concept because social belonging and freedom reinforce confidence. A generic expert anecdote would lose that setting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-undoing-project-ch03-q07",
@@ -779,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says the rescue supplies a second check on insider charisma. It adds courage and confidence as persona, not a repeat of Haifa or a replacement for training.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch03-q08",
@@ -792,8 +751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 supports the first choice. The Michigan and Barbara Gans material broadens the idea because technical discipline gives charisma force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch03-q09",
@@ -805,8 +763,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 draws the boundary. Charisma alone is the common error; the claim needs rigor, taste, and relentless forward motion.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -843,7 +800,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Insider Test",
         "coreSkill": "Practice checking confidence before you follow it. Run the Insider Test: name the shine, then name the ballast beneath it. Look for discipline, problem taste, and a method that can outlast the person's voice.",
         "ifThenPlans": [
           {
@@ -864,24 +820,17 @@
       },
       "memorableLines": [
         {
-          "text": "Charm is not proof.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a compact warning against mistaking style for evidence."
+          "text": "Charm is not proof."
         },
         {
-          "text": "Confidence needs ballast.",
-          "location": "breakdown.fastRead",
-          "why": "It names the portable test in four plain words."
+          "text": "Confidence needs ballast."
         },
         {
-          "text": "Doubt and decisiveness need each other.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the productive contrast that makes the partnership plausible."
+          "text": "Doubt and decisiveness need each other."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch04",
       "number": 4,
       "title": "Errors",
@@ -982,8 +931,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The flight case warns that punishment can look effective when an extreme bad run moves closer to average. The memorable story is not enough without the mechanism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch04-q02",
@@ -995,8 +943,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Regression says an extreme result often drifts toward average on a later try. Names and vivid order help memory, but they do not prove praise caused the dip.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch04-q03",
@@ -1008,8 +955,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Meehl's pressure point is comparison. Rich judgment may contain true detail, but the forecast still needs to be tested against a scored statistical method.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch04-q04",
@@ -1021,8 +967,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small samples can carry a vivid pattern while staying unstable. The warning travels beyond one profession because the mechanism is sampling noise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch04-q05",
@@ -1034,8 +979,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The research target is the process that makes a weak inference feel plain. A slogan or vivid example skips the causal hinge.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch04-q06",
@@ -1047,8 +991,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The case is not a generic expert anecdote. Its force comes from cadet performance, praise, and natural variation doing the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-undoing-project-ch04-q07",
@@ -1060,8 +1003,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Meehl adds a second route: predictions should be scored, not merely felt. Biography alone does not change the decision rule.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch04-q08",
@@ -1073,8 +1015,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The small-sample case broadens the concept because a weak signal can fool careful research groups. Hebrew University and replication make that scope concrete.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch04-q09",
@@ -1086,8 +1027,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge rejects the broad insult. The useful claim names the specific statistical facts that make lived experience mislead.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1130,7 +1070,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Error Pattern",
         "coreSkill": "Practice naming the pattern before you name the person. Ask whether the result was extreme, the sample was small, or the forecast was never scored. The skill is not doubt for its own sake. It is a short pause before praise, blame, or confidence hardens.",
         "ifThenPlans": [
           {
@@ -1155,24 +1094,17 @@
       },
       "memorableLines": [
         {
-          "text": "Variation can wear the mask of a lesson.",
-          "location": "breakdown.fastRead",
-          "why": "It makes regression feel visible without turning the idea into jargon."
+          "text": "Variation can wear the mask of a lesson."
         },
         {
-          "text": "A score humbles a story.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses Meehl's clinical-versus-statistical lesson into five plain words."
+          "text": "A score humbles a story."
         },
         {
-          "text": "Small samples can fake a loud signal.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the sampling warning a line readers can reuse before overclaiming."
+          "text": "Small samples can fake a loud signal."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch05",
       "number": 5,
       "title": "The Collision",
@@ -1273,8 +1205,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 supports the third choice: Edwards treated people as conservative Bayesians. They moved with the evidence, but not far enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch05-q02",
@@ -1286,8 +1217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says the doubt was deeper than under-adjustment. The issue was whether everyday judgments follow that partly correct Bayesian process at all.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch05-q03",
@@ -1299,8 +1229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 says the first joint questionnaire tested statistical intuitions among sophisticated participants. That makes expertise part of the test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch05-q04",
@@ -1312,8 +1241,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 defines the law of small numbers as the false expectation that small samples closely resemble the population.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch05-q05",
@@ -1325,8 +1253,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says the collaboration worked because conversation itself became the lab where intuitions turned into problems.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch05-q06",
@@ -1338,8 +1265,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 anchors the scene in Ward Edwards's 70:30 bookbag task. It is not interchangeable because it supplies the formal mechanism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-undoing-project-ch05-q07",
@@ -1351,8 +1277,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says the questionnaire adds a second check: expertise in mathematics does not immunize intuition against sampling error.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch05-q08",
@@ -1364,8 +1289,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says the law of small numbers broadened the concept because a label turned the recurring error into a research object.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch05-q09",
@@ -1377,8 +1301,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 gives the hard edge: the meeting is not a simple origin myth. Its mechanism is disagreement becoming testable questions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1415,7 +1338,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the One-Rehearsal Test",
         "coreSkill": "Practice turning a neat first answer into one testable question. Use the One-Rehearsal Test: before you reply, say one sentence that names what evidence would change your mind. This keeps doubt practical instead of vague.",
         "ifThenPlans": [
           {
@@ -1440,24 +1362,17 @@
       },
       "memorableLines": [
         {
-          "text": "Clean tasks can hide messy minds.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's challenge to tidy probability models."
+          "text": "Clean tasks can hide messy minds."
         },
         {
-          "text": "A small sample can sound like a crowd.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the law of small numbers a portable warning."
+          "text": "A small sample can sound like a crowd."
         },
         {
-          "text": "A good argument makes a better instrument.",
-          "location": "breakdown.deepRead",
-          "why": "It captures how the partnership turns disagreement into method."
+          "text": "A good argument makes a better instrument."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch06",
       "number": 6,
       "title": "The Mind's Rules",
@@ -1558,8 +1473,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Representativeness judges by similarity. The engineer-like sketch may matter, but the probability judgment still has to start with the base rates.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1571,8 +1485,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Availability makes easy examples feel more frequent. Brooke's memory sample is not the same as the true word-frequency count.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1584,8 +1497,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anchoring makes estimates cling to a starting value. Even an arbitrary number can pull the answer when adjustment is not enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1597,8 +1509,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rules persist because they reduce effort and often help. Their errors matter because the same useful rule can fail in patterned ways.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1610,8 +1521,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The shift was from isolated errors to rules that generate patterns. Representativeness, availability, and anchoring each create a family of mistakes.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1623,8 +1533,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The engineer-lawyer problem is not a generic expert tale. It tests how representativeness can push probability judgment away from base rates.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1636,8 +1545,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The K-letter task adds a route distinct from base rates and anchors. It shows how memory fluency can impersonate evidence about frequency.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1649,8 +1557,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anchoring broadens the concept beyond one person. An irrelevant or stale starting point can still shape the team's numeric estimate.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1662,8 +1569,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is dual. Heuristics are not pure defects, but their errors are systematic enough to name, study, and guard against.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -1706,7 +1612,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Rule Check",
         "coreSkill": "Practice naming the quick rule before you accept the answer. Ask whether the pull came from similarity, easy recall, or a starting number. The skill is not distrust; it is knowing when a fast answer deserves a guardrail.",
         "ifThenPlans": [
           {
@@ -1731,24 +1636,17 @@
       },
       "memorableLines": [
         {
-          "text": "Fast answers often arrive wearing the face of sight.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why a heuristic feels like perception instead of a shortcut."
+          "text": "Fast answers often arrive wearing the face of sight."
         },
         {
-          "text": "A shortcut survives because it often helps.",
-          "location": "breakdown.fastRead",
-          "why": "It protects the hard edge that heuristics are useful as well as risky."
+          "text": "A shortcut survives because it often helps."
         },
         {
-          "text": "Check the rule before you trust the result.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the chapter's move in one portable sentence."
+          "text": "Check the rule before you trust the result."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch07",
       "number": 7,
       "title": "The Rules of Prediction",
@@ -1849,8 +1747,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Representativeness makes the clean fit feel stronger than it is. The profile can move the forecast, but only after Myriam asks how well such profiles predict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1862,8 +1759,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Regression does not call the first rating fake. It says an extreme result often includes noise, so later evidence often lands nearer the middle.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1875,8 +1771,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Base rates supply the class the story tries to displace. The story still matters, but it should adjust a starting point instead of replacing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1888,8 +1783,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expertise can notice real cues, but sincerity and practice do not fix prediction error by themselves. Myriam needs a rule for weighting the cue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1901,8 +1795,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The threat is not that case notes are short or cold. Scoring makes error visible, and that changes the status of untested confidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1914,8 +1807,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The paper anchors a precise mechanism: a good fit can feel too predictive. A generic expert story may be vivid while losing that testable link.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1927,8 +1819,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The IDF case is not a repeat with new scenery. It gives a field check on noisy evidence, base rates, and regression in leadership ratings.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1940,8 +1831,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The broader lesson is about answerable confidence. Scoring predictions tests whether expert judgment works across cases, not just in one rich file.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1953,8 +1843,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge is calibration, not distrust. Keep useful case detail, then weigh it against the class and the evidence's track record.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1997,7 +1886,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Shrink the Forecast First",
         "coreSkill": "Practice shrinking a forecast before it hardens. Start with the class, ask how well this kind of evidence predicts, then move only partway from the base rate. The move protects a vivid case from becoming a prophecy. It lets strong evidence count without letting it take over.",
         "ifThenPlans": [
           {
@@ -2022,24 +1910,17 @@
       },
       "memorableLines": [
         {
-          "text": "A vivid case is not a whole class.",
-          "location": "breakdown.fastRead",
-          "why": "It names the main correction in one plain sentence."
+          "text": "A vivid case is not a whole class."
         },
         {
-          "text": "Extreme evidence still needs a leash.",
-          "location": "breakdown.deepRead",
-          "why": "It makes moderation feel concrete instead of timid."
+          "text": "Extreme evidence still needs a leash."
         },
         {
-          "text": "Rules protect judgment from its own confidence.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the statistical rule into a portable reason to pause."
+          "text": "Rules protect judgment from its own confidence."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch08",
       "number": 8,
       "title": "Going Viral",
@@ -2134,8 +2015,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 supports the first choice: Redelmeier carried decision research into medicine because clinical work includes uncertain judgment. The other choices turn the medical case into decoration or replacement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch08-q02",
@@ -2147,8 +2027,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 names availability, anchoring, and representativeness in medical judgment. The near misses mistake vividness or naming for proof when both still need source support.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch08-q03",
@@ -2160,8 +2039,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 ties Sunstein and Thaler to policy design and regulation. They are not decorative biography; they show the work moving into institutional thought.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch08-q04",
@@ -2173,8 +2051,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says the spread came from explaining expert errors. That makes the mechanism portable without making every field the same as the original setting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch08-q05",
@@ -2186,8 +2063,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 gives the causal hinge: routines matter because other people bear the consequences. The wrong choices erase the concrete condition that makes the claim testable.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-undoing-project-ch08-q06",
@@ -2199,8 +2075,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says the Redelmeier case is not interchangeable. The hard specifics tie the lesson to clinical harm, not to a generic expert story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch08-q07",
@@ -2212,8 +2087,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 supports the policy route: a lab finding becomes institutional design when it predicts public errors. The other choices collapse the second case into repetition or background.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch08-q08",
@@ -2225,8 +2099,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 says evidence-based medicine broadens the concept and shows professional status does not remove vulnerability. The distractors make the broad claim less verifiable or too flattering.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch08-q09",
@@ -2238,8 +2111,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 preserves the boundary. The lesson does not reject expertise; it asks experts to use tools before an early impression turns rigid.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2276,7 +2148,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Judgment Backup",
         "coreSkill": "Practice catching the first story before it becomes the only story. Write a one-line backup note that names the early label, vivid case, or familiar pattern pulling your judgment. Then ask what evidence would still matter if that first story were wrong.",
         "ifThenPlans": [
           {
@@ -2297,19 +2168,13 @@
       },
       "memorableLines": [
         {
-          "text": "A vivid case can crowd out the quiet base rate.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's medical danger in one portable image."
+          "text": "A vivid case can crowd out the quiet base rate."
         },
         {
-          "text": "Expertise needs backup when the first story feels too easy.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter pro-expert while naming the risk."
+          "text": "Expertise needs backup when the first story feels too easy."
         },
         {
-          "text": "A check is not an insult; it is a handrail.",
-          "location": "breakdown.deepRead",
-          "why": "It turns debiasing into support rather than accusation."
+          "text": "A check is not an insult; it is a handrail."
         }
       ]
     },
@@ -2408,8 +2273,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source ties military identity and applied military work to real pressure. A vivid example alone is not enough; the mechanism is the link to pressured judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2421,8 +2285,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact rests on the Yom Kippur War period and institutional uncertainty. Familiar names or private notes would not prove the source's judgment lesson.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2434,8 +2297,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The field unit is not decoration. It connects judgment work to wartime needs, which is why the biographical detail changes the decision lesson.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2447,8 +2309,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stress amplifies reliance on cues already available. The photo may matter, but the trap is letting its vividness stand in for the whole route map.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2460,8 +2321,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The warrior image is not simple shine. It complicates the scientist image by linking abstract thought to consequence and authority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2473,8 +2333,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Yom Kippur War anchor is not interchangeable. The source's force comes from uncertainty growing harder when national stakes and identity join.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2486,8 +2345,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The field unit supplies a second route into the same concept. It is not a repeat or a decorative biography note; it adds operational pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2499,8 +2357,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact concerns biographical myth and authority. The memory can change reception, but it does not prove better judgment by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2512,8 +2369,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge rejects heroism by association. Pressure matters because it reveals the need to check confident stories and shared assumptions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2556,7 +2412,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Pressure Story Check",
         "coreSkill": "Practice catching the story that feels most obvious when pressure rises. Run the Pressure Story Check by naming the vivid cue, naming the story built from it, and asking for one fact that could weaken the story. The skill does not block action; it keeps action tied to evidence.",
         "ifThenPlans": [
           {
@@ -2581,24 +2436,17 @@
       },
       "memorableLines": [
         {
-          "text": "Pressure makes old stories feel new.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the stress mechanism into a line the reader can use under pressure."
+          "text": "Pressure makes old stories feel new."
         },
         {
-          "text": "A vivid story is not a check.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a fast test for confidence that feels too easy."
+          "text": "A vivid story is not a check."
         },
         {
-          "text": "Courage curdles when it stops listening.",
-          "location": "breakdown.fullRead",
-          "why": "It marks the overcorrection: bravery fails when it refuses correction."
+          "text": "Courage curdles when it stops listening."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch10",
       "number": 10,
       "title": "The Isolation Effect",
@@ -2699,8 +2547,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 supports the model answer: Prospect Theory challenged expected utility by describing observed risky choices. A vivid case without mechanism is not enough.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2712,8 +2559,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says risk attitude is reference-dependent. Gains tend to invite caution, while losses can invite risk seeking around the baseline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2725,8 +2571,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports the loss-heavy answer. In the value function, comparable losses carry more force than gains of the same size.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2738,8 +2583,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 defines the isolation effect as separating common elements and focusing on differences. The other choices name related ideas but not this mechanism.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -2751,8 +2595,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 supports reversal under equivalent outcomes. The causal hinge is the frame, not mere familiarity or the identity of the presenter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2764,8 +2607,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 ties the example to Prospect Theory and Econometrica. It is not interchangeable because it anchors the shift from ideal theory to observed choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2777,8 +2619,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says the Asian disease problem adds a second real-world check. Its distinct route is wording that changes the felt domain of gain or loss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2790,8 +2631,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 supports the preference-change answer. Certainty and isolation show that simplifying a choice can alter judgment, not just reduce effort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2803,8 +2643,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 rejects the simple risk-dislike slogan. The actual boundary is reference-dependent: gain and loss frames can flip risk appetite.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2853,7 +2692,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Frame First",
         "coreSkill": "Practice Name the Frame First before you accept a risky choice. Write the reference point, then mark whether the offer is being sold as a gain, a loss, or a sure thing. Put the common parts back beside the differences before you answer.",
         "ifThenPlans": [
           {
@@ -2882,24 +2720,17 @@
       },
       "memorableLines": [
         {
-          "text": "The frame chooses before the chooser notices.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the hidden order of influence easy to remember."
+          "text": "The frame chooses before the chooser notices."
         },
         {
-          "text": "A common part can vanish in plain sight.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the isolation effect a concrete warning."
+          "text": "A common part can vanish in plain sight."
         },
         {
-          "text": "Certainty has a special shine.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the certainty effect without technical clutter."
+          "text": "Certainty has a special shine."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch11",
       "number": 11,
       "title": "The Rules of Undoing",
@@ -3000,8 +2831,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says near misses feel different from similar outcomes. The easy edit, not the flight result alone, changes the emotion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch11-q02",
@@ -3013,8 +2843,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 defines the simulation heuristic: ease of building a scene can steer likelihood and feeling. Ease is evidence to inspect, not proof by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch11-q03",
@@ -3026,8 +2855,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 ties regret to imagined undoing. The one-lean replay matters because a small change seems able to alter the result.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch11-q04",
@@ -3039,8 +2867,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says imagined alternatives change felt meaning and travel beyond the original case. Keith should inspect the edit without letting it close the inquiry.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch11-q05",
@@ -3052,8 +2879,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says minds remake reality after the fact. The final record stays fixed, but a nearby imagined path changes the story people carry.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch11-q06",
@@ -3065,8 +2891,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 anchors the scene in ease of imagination governing judgment and regret. A name or vivid anecdote alone would miss the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-undoing-project-ch11-q07",
@@ -3078,8 +2903,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says closeness to an alternative shapes regret. A second case should show that route, not just rename the same surface story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-undoing-project-ch11-q08",
@@ -3091,8 +2915,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says emotion follows the imagined comparison, not only objective rank. Silver may look up to gold while bronze looks down to no medal.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-undoing-project-ch11-q09",
@@ -3104,8 +2927,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 rejects the shallow slogan. Regret is not mere noise; it follows the rule that easy alternatives can intensify the felt outcome.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3148,7 +2970,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Nearby Edit",
         "coreSkill": "Practice catching the exact edit your mind replays after a bad outcome. Count the nearby edit by naming the small change, checking how easy it is to picture, and asking what else would have had to shift. The skill turns regret into evidence without letting a vivid story become the whole truth.",
         "ifThenPlans": [
           {
@@ -3173,24 +2994,17 @@
       },
       "memorableLines": [
         {
-          "text": "Regret gets loud when the edit looks small.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the near-miss rule into a line readers can use."
+          "text": "Regret gets loud when the edit looks small."
         },
         {
-          "text": "The mind edits what the body already lost.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the thought-feeling bridge concrete."
+          "text": "The mind edits what the body already lost."
         },
         {
-          "text": "Easy edits are not always true causes.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against trusting the most vivid replay."
+          "text": "Easy edits are not always true causes."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-undoing-project-ch12",
       "number": 12,
       "title": "This Cloud of Possibility",
@@ -3291,8 +3105,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact ties the 2002 Nobel Memorial Prize to the work produced by the collaboration. Moving the partnership aside makes the cause look solo.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3304,8 +3117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact gives the date and rule. The unequal formal honor followed from Tversky's 1996 death and the no-posthumous-award rule.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -3317,8 +3129,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The middle choice is supported: the fact says their joint work reshaped those fields. Biography is not decoration when it explains that spread.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3330,8 +3141,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The middle choice is supported. The source says credit asymmetry and geographic separation strained the friendship even while the research stayed intertwined.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3343,8 +3153,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third choice is supported. The legacy is a method for asking where judgment departs from rational models, not a list to recite.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3356,8 +3165,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third choice follows the fact. The Kahneman 2002 Nobel Memorial Prize is not interchangeable because it anchors the afterlife in a verified institutional setting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3369,8 +3177,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source frames Tversky's death as a second check on the concept. Joint cause and unequal honor must be held together.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3382,8 +3189,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact says the concept broadens when institutions adopt the questions. Praise alone is weaker than use across fields.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3395,8 +3201,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge keeps both truths together. Friendship did not triumph neatly; the relationship hurt and the intellectual achievement endured.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3445,7 +3250,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Surviving Question Line",
         "coreSkill": "Practice the Surviving Question Line before you answer a claim about credit or legacy. Mark a small question on a surface you already see, count the claims in front of you, and write one line naming the question that should outlive praise or blame. The skill keeps hurt and usefulness in the same frame.",
         "ifThenPlans": [
           {
@@ -3474,19 +3278,13 @@
       },
       "memorableLines": [
         {
-          "text": "Credit can split; a question can still travel.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the split between formal honor and lasting use."
+          "text": "Credit can split; a question can still travel."
         },
         {
-          "text": "Honor is not the same as authorship.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the Nobel story from replacing the collaboration that produced the work."
+          "text": "Honor is not the same as authorship."
         },
         {
-          "text": "Hurt can end the talk; shared work can keep speaking.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the boundary and legacy in one portable line."
+          "text": "Hurt can end the talk; shared work can keep speaking."
         }
       ]
     }

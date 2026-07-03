@@ -117,8 +117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prospection is a preview of a possible future, not just optimism. The scene may be good, bad, or mixed, but it guides present behavior.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -130,8 +129,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The frontal-lobe link is planning, inhibition, and future-oriented control. Memory can feed forecasts, but frontal systems help steer behavior over time.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -143,8 +141,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gage anchors the link between frontal injury and changed control. The case does not locate happiness, and it is not a simple story of erased intelligence.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -156,8 +153,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Henry Molaison's 1953 surgery caused severe anterograde amnesia. The important split is damaged new episodic memory with partly spared intellect.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -169,8 +165,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A new scene still needs pieces: places, sequences, feelings, and context. That is why memory impairment can reduce future detail.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -182,8 +177,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scrub-jay work tested integrated what-where-when information. A smell cue or a familiar place alone would be closer to the reflex error.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -195,8 +189,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prospection can be adaptive while biased. A rough map may still help you pack, ask, save, or pause better than pure reaction.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -208,8 +201,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vividness is not the same as accuracy. A fluent scene can feel convincing while it leaves out friction, timing, or other people's needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -221,8 +213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-knowledge helps, but it misses omitted details. Outside evidence gives the forecast a chance to be corrected before it steers a large choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -259,7 +250,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Missing Scene",
         "coreSkill": "Practice using prospection without obeying it too fast. When a future scene feels clear, count one missing fact before you promise, buy, quit, or refuse. The move is simple: ask what the picture uses, then ask what it leaves out.",
         "ifThenPlans": [
           {
@@ -284,24 +274,17 @@
       },
       "memorableLines": [
         {
-          "text": "A clear inner movie can still be a bad map.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter's warning portable and visual."
+          "text": "A clear inner movie can still be a bad map."
         },
         {
-          "text": "Foresight needs brakes as much as it needs pictures.",
-          "location": "breakdown.deepRead",
-          "why": "It turns skepticism into a practical part of planning."
+          "text": "Foresight needs brakes as much as it needs pictures."
         },
         {
-          "text": "A forecast earns trust when the world gets a vote.",
-          "location": "breakdown.fullRead",
-          "why": "It names the outside check that makes prospection useful."
+          "text": "A forecast earns trust when the world gets a vote."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stumbling-on-happiness-ch02",
       "number": 2,
       "title": "Subjectivity",
@@ -396,8 +379,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact says happiness is a private felt state. Outside signs may hint at it, but they do not directly equal the feeling.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q02",
@@ -409,8 +391,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Imperfect reports can still be useful when gathered carefully and combined. The common error is throwing away any report that has bias.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q03",
@@ -422,8 +403,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Day Reconstruction Method is structured self-report about yesterday's episodes. It is not a neural measure or a treatment plan.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q04",
@@ -435,8 +415,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Question order can steer attention before the next answer. Clear wording does not remove that context effect, and the order alone does not prove cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q05",
@@ -448,8 +427,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The dating-order effect is about attention and judgment context. It does not show that dating causes overall happiness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q06",
@@ -461,8 +439,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Experienced utility names what felt true while it happened. Remembered utility names the later judgment, which can overweight peaks and endings.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q07",
@@ -474,8 +451,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The longer trial added discomfort, but the less unpleasant ending changed the memory of it. That is why the choice is revealing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q08",
@@ -487,8 +463,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One honest answer can still be shaped by mood, wording, or memory. Larger samples help separate pattern from noise.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stumbling-on-happiness-ch02-q09",
@@ -500,8 +475,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source frames the Day Reconstruction Method as a survey method for experienced well-being. It was not therapy or a brain measure.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -544,7 +518,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Feeling Close",
         "coreSkill": "Practice catching your happiness report before it becomes a speech. Ask about a concrete episode, mark what was happening around it, and treat the answer as evidence rather than a final verdict. The skill is not to distrust yourself; it is to ask yourself in a cleaner way.",
         "ifThenPlans": [
           {
@@ -569,24 +542,17 @@
       },
       "memorableLines": [
         {
-          "text": "Feelings need witnesses, not mind readers.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's measurement problem in plain words."
+          "text": "Feelings need witnesses, not mind readers."
         },
         {
-          "text": "Memory edits pain; endings hold the pen.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the cold-water finding easy to carry into daily choices."
+          "text": "Memory edits pain; endings hold the pen."
         },
         {
-          "text": "Bad questions can make honest answers wobble.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the survey-order warning short and usable."
+          "text": "Bad questions can make honest answers wobble."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stumbling-on-happiness-ch03",
       "number": 3,
       "title": "Realism",
@@ -687,8 +653,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact points to the optic disc, where the optic nerve exits the retina. The near misses treat the blind spot as noticed or attention-made.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q02",
@@ -700,8 +665,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visual filling-in is normal. The feeling of a complete field does not prove that every part was directly sensed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q03",
@@ -713,8 +677,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact says memory can be altered by post-event wording. The error is assuming memory works like video unless someone lies.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q04",
@@ -726,8 +689,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Loftus and Palmer's wording affected reports about the crash. The distractors shrink the task to vocabulary or grammar.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q05",
@@ -739,8 +701,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fact says large changes can be missed across interruptions. The common error is reducing change blindness to tiny edits.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q06",
@@ -752,8 +713,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Simons and Levin's door study concerns failed detection. The politeness answer matches the common error but not the finding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q07",
@@ -765,8 +725,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact says future simulations can miss because they omit relevant conditions. Getting the main event right is not enough.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q08",
@@ -778,8 +737,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Constructive imagination fills gaps with plausible material. Those supplied details can feel like part of the future.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "stumbling-on-happiness-ch03-q09",
@@ -791,8 +749,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact says construction itself creates the feeling of completeness. Introspection sees the result, not every hidden step.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -829,7 +786,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write The Missing Line",
         "coreSkill": "Practice catching the moment when a future scene feels finished. Use the Missing Line: write what the picture may be adding, omitting, or assuming. The skill is not doubting every plan. It is checking the seam before confidence hardens.",
         "ifThenPlans": [
           {
@@ -850,19 +806,13 @@
       },
       "memorableLines": [
         {
-          "text": "A filled gap can feel exactly like a seen one.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the blind-spot lesson into a portable warning."
+          "text": "A filled gap can feel exactly like a seen one."
         },
         {
-          "text": "Vivid does not mean checked.",
-          "location": "breakdown.deepRead",
-          "why": "It is short enough to recall when a forecast feels persuasive."
+          "text": "Vivid does not mean checked."
         },
         {
-          "text": "Realism costs you the comfort of a finished picture.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff at the chapter's edge."
+          "text": "Realism costs you the comfort of a finished picture."
         }
       ]
     },
@@ -967,8 +917,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Presentism is a prediction bias. The hungry state is real, but the error is using it as the main sample for a later state that may be different.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -980,8 +929,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Projection bias is current-self to future-self projection. It is not about reading other people; it is about expecting later tastes to resemble current tastes too much.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -993,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Their model links biased future utility prediction to choices. The fact does not make projection bias clinical or claim a simple list removes it.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q04",
@@ -1006,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source claim is about demand and preference, not shipping or product defects. Cold weather makes the need felt, so buyers overestimate later use.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1019,8 +965,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Higher returns after weather-shaped orders suggest state mismatch. The finding ties returns to temporary conditions at purchase, not product failure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1032,8 +977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gap is about your own state change too. A calm self may not feel the pull that hunger, pain, craving, or arousal later creates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1045,8 +989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is state-dependent prediction. Arousal changed what participants forecast, so fixed-preference and awkwardness readings miss the mechanism.",
-            "bloomsLevel": "remember",
-            "depthLevel": "standard"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1058,8 +1001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mood can color simulation. It may contain useful information, but the error is letting the current tone stand in for the later experience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1071,8 +1013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Adaptation changes intensity and meaning over time. The first imagined encounter is useful, but it is a poor copy of repeated daily life.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1115,7 +1056,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Label The Present State",
         "coreSkill": "Practice naming the state that is trying to write your forecast. Ask what your body, mood, weather, or stress is adding, then discount it if later-you will not share it. Use the projection-bias sequence: current state, under-adjusted forecast, future mismatch.",
         "ifThenPlans": [
           {
@@ -1140,24 +1080,17 @@
       },
       "memorableLines": [
         {
-          "text": "The present speaks first, so the future often borrows its voice.",
-          "location": "breakdown.fastRead",
-          "why": "It makes projection feel like a voice you can catch."
+          "text": "The present speaks first, so the future often borrows its voice."
         },
         {
-          "text": "Label the state before you trust the forecast.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a short action at the exact decision point."
+          "text": "Label the state before you trust the forecast."
         },
         {
-          "text": "Feelings are data, not marching orders.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the value of emotion while limiting its authority."
+          "text": "Feelings are data, not marching orders."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stumbling-on-happiness-ch05",
       "number": 5,
       "title": "Rationalization",
@@ -1258,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Immune neglect means missing your own later coping. It is psychological repair, not literal illness or a need for changed facts.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1271,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Durability bias is about how long a feeling is expected to last. It is not mainly the first intensity rating.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1284,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The psychological immune system can change how a fixed event feels. Recovery does not require the facts to change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1297,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A coherent account can lower the shock because the event feels less chaotic. The trap is either no explanation or a total verdict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1310,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Brehm's free-choice work showed post-decision spreading. The choice changed later liking for both options.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1323,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Post-decision rationalization is often partly outside awareness. It can ease regret without being deliberate lying.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1336,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reversibility can keep comparison active. The selected outcome gets less help from the mind's settling process.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1349,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Irreversible decisions can promote satisfaction because finality encourages adaptation. The rejected option need not be worthless.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1362,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Healthy rationalization needs balance. Recovery protects you from being crushed, but pain can still point to repair.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1406,7 +1330,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Recovery Box",
         "coreSkill": "Practice adding the missing recovery step to your forecast. Check the Recovery Box means you name the blow, mark one likely coping move, and leave a repair box open when action is still needed. The mark is evidence that the forecast has more than impact in it.",
         "ifThenPlans": [
           {
@@ -1431,24 +1354,17 @@
       },
       "memorableLines": [
         {
-          "text": "Forecasts freeze at impact; life keeps editing after the hit.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses immune neglect into a portable image."
+          "text": "Forecasts freeze at impact; life keeps editing after the hit."
         },
         {
-          "text": "Final doors can calm the mind that open doors keep bargaining.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the decisions-and-revisions lesson without jargon."
+          "text": "Final doors can calm the mind that open doors keep bargaining."
         },
         {
-          "text": "Pain is data; do not sand it flat.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves the chapter's boundary against over-rationalizing."
+          "text": "Pain is data; do not sand it flat."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "stumbling-on-happiness-ch06",
       "number": 6,
       "title": "Corrigibility",
@@ -1549,8 +1465,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Surrogation uses another person's actual experience as forecast evidence. It does not hand them the decision, and it does not strip feeling out of the report.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1562,8 +1477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact says useful reports can be discounted because people feel uniquely different. Poor advice can fail too, but that is not the only reason reports get rejected.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1575,8 +1489,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The surrogation finding is contextual: actual experience can improve an emotional forecast. It is not a universal override, and it need not require identical lives.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1588,8 +1501,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The work tested affective forecasting, not financial markets. The key comparison was simulation-based forecasts versus surrogate-based forecasts.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -1601,8 +1513,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The focusing illusion is about overweighting a highlighted factor. It does not say you cannot focus, and it does not claim weather has no mood effect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1614,8 +1525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Schkade and Kahneman found forecasts overstated the California advantage. The result complicates climate stories without proving weather never matters.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1627,8 +1537,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The adaptation evidence is nuanced. It shows less extreme differences than naive forecasts expect, not instant sameness or denial of real suffering.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1640,8 +1549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cultural beliefs can survive because repeated stories stay available. A single report may help, but appealing myths do not vanish automatically.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1653,8 +1561,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Concrete experience over time helps forecasting more than abstract ideals. Sincere slogans or status claims can still omit the felt details that matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1697,7 +1604,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Lived Report",
         "coreSkill": "Practice treating private imagination as one input, not the whole case. Ask the Lived Report means finding someone who has already lived a close version and asking for concrete felt details. Then place that report beside your forecast before you decide.",
         "ifThenPlans": [
           {
@@ -1722,19 +1628,13 @@
       },
       "memorableLines": [
         {
-          "text": "Borrowed experience is data, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps surrogation useful without making it sound like obedience."
+          "text": "Borrowed experience is data, not a verdict."
         },
         {
-          "text": "Weather is loud in imagination and quieter in life.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the California focusing illusion into an image readers can test."
+          "text": "Weather is loud in imagination and quieter in life."
         },
         {
-          "text": "Ask the person who lived the future.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the chapter's research correction into a plain next move."
+          "text": "Ask the person who lived the future."
         }
       ]
     }

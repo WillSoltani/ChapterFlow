@@ -41,13 +41,6 @@
             "decoy",
             "membership"
           ],
-          "planSpec": {
-            "domain": "museum membership desk with one deliberately weak patron tier",
-            "audience": "a museum visitor choosing an annual membership before a family exhibit opens",
-            "stakes": "committing to a donation level that may be steered by a decoy instead of actual visit plans",
-            "format": "decision_point",
-            "requiredBeat": "the visitor covers the middle tier on the laminated rate sheet with a receipt and checks whether the premium tier still looks worth buying"
-          },
           "scenario": "A laminated membership sheet is clipped to a brass stand beside the coat-check counter. Amelia came for the family pass before the dinosaur exhibit opens, but the patron line has lounge access and the supporter line costs almost as much without guest passes. Her receipt edge hovers over the middle tier. She has to decide whether patron still fits the visits her family will make once that weak tier is covered.",
           "whatToDo": "Cover the supporter tier and compare patron against actual visits, guest needs, and budget. Make the premium option win without help from the deliberate loser.",
           "whyItMatters": "The supporter tier can steer the choice even if nobody buys it. Removing it forces the patron tier to prove absolute fit instead of winning a rigged contrast."
@@ -60,13 +53,6 @@
             "pricing",
             "food"
           ],
-          "planSpec": {
-            "domain": "fish market stall comparing catch boxes before dawn",
-            "audience": "a restaurant buyer choosing between seafood boxes under time pressure",
-            "stakes": "overpaying for the largest box because a smaller damaged box makes it look clean",
-            "format": "predict_reveal",
-            "requiredBeat": "the buyer turns the cracked foam box backward so it cannot act as the loser, then reprices the remaining two boxes by portions served"
-          },
           "scenario": "Three foam seafood boxes sweat on crushed ice under a hanging scale before dawn. Ben predicts the largest catch box is the safe buy for Friday service because the cracked foam box beside it looks sloppy and overpriced. Before he points to the chalk price board, he must decide whether to turn the cracked box backward and price the remaining boxes by portions served.",
           "whatToDo": "Turn the cracked box out of sight, count usable portions, and compare the two real candidates by what the kitchen can sell tonight.",
           "whyItMatters": "The cracked box is doing contrast work. Once it stops acting as the loser, the large box has to justify itself against dinner service, not against damage."
@@ -79,13 +65,6 @@
             "passes",
             "time"
           ],
-          "planSpec": {
-            "domain": "independent film festival pass selection",
-            "audience": "a volunteer choosing between single-film, weekday, and all-access passes",
-            "stakes": "spending a week's food budget because the all-access pass dominates a badly priced weekday pass",
-            "format": "reflection",
-            "requiredBeat": "the volunteer writes the films they can actually attend on the back of the program before looking at the decoy pass again"
-          },
           "scenario": "On Saturday afternoon in the festival lobby queue, a folded program rests on Nora's lap, its showtimes circled in pencil beside a red all-access wristband. The weekday-only pass is badly priced, so all-access feels sensible. Nora turns the program over and writes the four films she can actually attend around volunteer shifts and the bus home. The wristband looks different beside those four titles.",
           "whatToDo": "Write the real attendance list before choosing. Compare each pass against the films Nora can see, not against a weak weekday-only offer.",
           "whyItMatters": "The all-access pass only looks disciplined while the bad pass stands next to it. The schedule exposes whether extra access has real use."
@@ -98,13 +77,6 @@
             "rental",
             "harvest"
           ],
-          "planSpec": {
-            "domain": "farm equipment rental counter during harvest week",
-            "audience": "a small orchard owner comparing lift rentals",
-            "stakes": "renting an oversized lift because a useless mid-size option makes it look prudent",
-            "format": "vignette",
-            "requiredBeat": "the owner steps outside and marks the actual branch height on the rental yard fence before choosing between lifts"
-          },
           "scenario": "Mud streaks the rental office mat beside a clipboard of lift heights. Grace studies three machines during harvest week. The mid-size lift misses the top branches and costs close to the largest model, so the largest looks prudent. Before signing, she has to decide whether to step outside, mark the branch height on the yard fence, and check which lift reaches the mark.",
           "whatToDo": "Use the branch height as the standard. Let the actual orchard need decide the rental instead of letting the useless middle lift make the biggest machine look safe.",
           "whyItMatters": "The mid-size lift is a bad reference option. A measured branch height replaces relative dominance with the work the machine must actually do."
@@ -117,13 +89,6 @@
             "donors",
             "materials"
           ],
-          "planSpec": {
-            "domain": "choir robe replacement committee",
-            "audience": "a treasurer evaluating fabric packages for a community choir",
-            "stakes": "using donor money on premium trim because the plain-but-overpriced package creates an easy contrast",
-            "format": "dialogue",
-            "requiredBeat": "the treasurer lays the fabric swatches over the price labels and asks which one meets the choir's actual durability rule"
-          },
           "scenario": "\"The premium trim is only a little more,\" someone says at Thursday's committee meeting in the church basement office. Three fabric swatches are pinned to a felt strip, and Martin sees the plain package is oddly overpriced. Before the committee votes, he must decide whether to lay the swatches over the price labels and ask which fabric meets the durability rule in the donor envelope.",
           "whatToDo": "Cover the price labels and test the swatches against durability, cleaning, and donor limits. Let the fabric answer before the weak package creates a winner.",
           "whyItMatters": "The premium trim feels responsible only because the plain option was set up to lose. The choir needs robes that last, not a prettier contrast."
@@ -136,13 +101,6 @@
             "storage",
             "contract"
           ],
-          "planSpec": {
-            "domain": "boat storage contract at a winter marina",
-            "audience": "a first-time boat owner choosing storage before the first freeze",
-            "stakes": "buying unnecessary indoor storage because a bad outdoor-plus-service option pushes the premium plan",
-            "format": "before_after",
-            "requiredBeat": "after ignoring the weak middle contract, the owner measures actual winter access needs against the basic covered rack"
-          },
           "scenario": "A salt-stiff contract packet flaps under a marina office paperweight. Tessa first circles indoor storage because the outdoor-plus-service plan is expensive and awkward. After ignoring that weak middle contract, she checks winter access hours against the basic covered rack and sees she will visit twice before spring. The indoor plan loses its shine.",
           "whatToDo": "Ignore the middle contract and compare covered rack storage against real winter access. Choose by use, not by the plan designed to make indoor storage glow.",
           "whyItMatters": "The premium plan borrowed its appeal from a bad neighbor. Once Tessa compares against her own access needs, the storage choice becomes smaller and clearer."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The middle package is built to lose beside the dessert bundle, so it changes the comparison frame. Absolute value would require checking headcount, appetite, and budget, not just the nearby loser.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hiding the weak middle license tests whether the largest license solves the real research problem. Vendor popularity keeps the seller's frame in charge, and clear dominance over a decoy is not enough.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cramped cabin may be making the spacious one look better than it is. Their real plans are the missing comparison, while scarcity and lake-view logic both stay inside the planted frame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ethical risk is steering through a losing comparison. Printing difficulty is irrelevant, and a decoy usually pushes toward the target tier, not toward the cheapest one.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Relativity explains the drop as a benchmark effect: the facts of the apartment did not change. Avoiding all comparison is too broad, and objective quality did not suddenly fall.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The ugly overpriced chair may have made a target chair look dominant. Once it is gone, people must compare the real candidates directly, which can change the result.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The buyer needs to rebuild the choice around route, repair, and storage needs. Dominating the weak option stays inside the decoy frame, and packet appearance is a separate pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expected visits and cancellation risk are the real rivals. Choosing either plan because of the absurd middle option lets the decoy keep control of the frame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Feature dominance over a weak neighbor is not the same as fit. The buyer still needs to test actual need and alternatives; calling all premium plans traps is just another shortcut.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -321,19 +270,13 @@
       },
       "memorableLines": [
         {
-          "text": "The weak option does not need buyers.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the decoy effect into a sentence that is easy to recall at any menu or pricing sheet."
+          "text": "The weak option does not need buyers."
         },
         {
-          "text": "A decoy is not a bad option by accident.",
-          "location": "breakdown.fullRead",
-          "why": "The line turns a vague suspicion into a concrete design role."
+          "text": "A decoy is not a bad option by accident."
         },
         {
-          "text": "A clear winner inside the wrong frame can still be the wrong choice.",
-          "location": "breakdown.fullRead",
-          "why": "It names the chapter's central danger without reducing it to generic caution."
+          "text": "A clear winner inside the wrong frame can still be the wrong choice."
         }
       ]
     },
@@ -360,13 +303,6 @@
             "anchor",
             "orchids"
           ],
-          "planSpec": {
-            "domain": "rare orchid auction preview",
-            "audience": "a hobby grower attending a regional orchid sale for the first time",
-            "stakes": "letting an opening auction estimate make every later plant seem affordable",
-            "format": "predict_reveal",
-            "requiredBeat": "before bidding starts, the grower writes a maximum price based on bloom health and care difficulty, then watches the auctioneer's opening number try to pull it upward"
-          },
           "scenario": "A greenhouse bench is lined with white tags and mist on the glass panes. Aanya studies a rare orchid whose bloom health is strong but whose care notes warn about winter light. Before bidding starts, she must decide whether to write a handwritten maximum in her catalog or let the auctioneer's opening estimate become the number every later bid feels measured against.",
           "whatToDo": "Write the maximum from bloom health, care difficulty, and replacement options before the auctioneer speaks. Treat the opening estimate as pressure, not as the ruler.",
           "whyItMatters": "The first public number can make higher bids feel coherent. A prior maximum gives Aanya a reference point that came from the plant, not from the room."
@@ -379,13 +315,6 @@
             "equipment",
             "estimate"
           ],
-          "planSpec": {
-            "domain": "independent bakery buying a used deck oven",
-            "audience": "a bakery owner comparing equipment listings with no prior market knowledge",
-            "stakes": "treating a seller's first inflated listing as the center of the market",
-            "format": "decision_point",
-            "requiredBeat": "the owner calls two repair technicians for replacement-part estimates before letting the first listing define the oven's value"
-          },
           "scenario": "A soot-dark oven listing is printed beside a flour-dusted calculator on Daniel's prep table. The seller's number is the first used deck-oven price he has seen, and it already makes every cheaper listing feel suspicious. Before he emails a deposit, he has to decide whether to call two repair technicians with the serial number and ask about part availability.",
           "whatToDo": "Call the technicians, price likely repairs, and build an oven estimate from heat reliability, parts, and delivery. Let those numbers challenge the seller's first listing.",
           "whyItMatters": "Without another reference point, the first listing becomes the market in Daniel's head. Repair data gives the price a real structure to answer to."
@@ -398,13 +327,6 @@
             "merch",
             "pricing"
           ],
-          "planSpec": {
-            "domain": "minor-league team setting souvenir cap prices",
-            "audience": "a merch manager deciding the first price fans will see on opening weekend",
-            "stakes": "creating an anchor that shapes what fans call reasonable all season",
-            "format": "postmortem",
-            "requiredBeat": "the manager compares two weeks of sales after the first rack displayed the premium cap at eye level before cheaper caps appeared"
-          },
           "scenario": "On Sunday afternoon on the stadium concourse, a wire cap rack rolls out before the gates open, with the premium cap at eye level and cheaper caps tucked lower. Two weeks later, Claire reviews the sales sheet and fan comments at her desk. The premium price did more than sell caps. It taught fans what a team cap should cost before they ever reached the lower hooks.",
           "whatToDo": "Review the rack order and first visible price as part of the pricing decision. Decide whether the team wants to anchor fans or learn clean demand.",
           "whyItMatters": "Opening weekend can set a season-long reference point. If the premium cap appears first, later prices may feel reasonable by distance from it."
@@ -417,13 +339,6 @@
             "bids",
             "storm"
           ],
-          "planSpec": {
-            "domain": "municipal tree-trimming bid review",
-            "audience": "a town administrator comparing contractor bids for storm cleanup",
-            "stakes": "mistaking the first emergency bid for the normal cost of tree work",
-            "format": "vignette",
-            "requiredBeat": "the administrator writes the cost per block from last year's routine work in the margin before reading the emergency contractor's number aloud"
-          },
           "scenario": "Wet maple limbs are stacked beside Reyna's council packet after the nor'easter. The emergency contractor's bid sits on top. Before the meeting starts, she writes last year's routine cost per block in the margin and adds a line for storm urgency. Only then does she read the contractor's number aloud to the council.",
           "whatToDo": "Put a grounded cost per block on the page before the emergency bid enters the room. Compare urgency against a known baseline.",
           "whyItMatters": "The first storm bid can redefine normal. Reyna's margin note gives the council a baseline that did not come from the contractor."
@@ -436,13 +351,6 @@
             "services",
             "quote"
           ],
-          "planSpec": {
-            "domain": "wedding photographer package selection at a venue fair",
-            "audience": "a couple comparing packages after seeing a luxury display first",
-            "stakes": "normalizing an expensive package because the first booth made it look moderate",
-            "format": "dialogue",
-            "requiredBeat": "one partner closes the glossy brochure and names the number they would have expected yesterday before they walked into the fair"
-          },
           "scenario": "\"This one seems moderate after that first booth,\" James says under the string lights. A glossy album is open on the table, and the deposit form is already clipped to the brochure. Laura closes it with one hand. Before they sign, she must decide whether to name the number she would have expected yesterday, before the luxury display taught them a new scale.",
           "whatToDo": "Close the brochure and say the pre-fair estimate out loud. Then compare packages against coverage hours, album needs, and the deposit they can carry.",
           "whyItMatters": "The first luxury booth can make the next expensive package feel calm. Naming yesterday's estimate exposes how far the anchor has moved."
@@ -455,13 +363,6 @@
             "equipment",
             "grant"
           ],
-          "planSpec": {
-            "domain": "used laboratory freezer purchase for a community clinic",
-            "audience": "a clinic operations lead buying equipment with grant money",
-            "stakes": "using the first refurbished freezer quote as the anchor for all later safety judgments",
-            "format": "before_after",
-            "requiredBeat": "after seeing the first quote, the lead builds a requirement sheet around temperature logs and service history, then rechecks whether the quote still looks fair"
-          },
           "scenario": "A temperature log binder lies beside a dented freezer photo in Marta's clinic office. The first refurbished quote nearly reaches the grant cap, and every cheaper unit now feels risky. After seeing the quote, she builds a requirement sheet around service history, alarm tests, and stable logs. The quote has to meet the sheet before it can feel fair.",
           "whatToDo": "Build the requirement sheet before ranking prices. Use temperature logs, service history, and grant limits to judge the quote.",
           "whyItMatters": "The first quote can make safety feel expensive by definition. Requirements let Marta separate real reliability from price-shaped fear."
@@ -480,8 +381,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The $9,000 number became the ruler, so $5,400 feels moderate by comparison. Loss aversion and social norms might matter elsewhere, but the key mechanism is the first price.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -493,8 +393,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A parts-and-hours estimate gives later quotes an independent reference point. Choosing the middle quote still orbits the first number, and rejecting every high quote overcorrects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -506,8 +405,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The old purchase has become evidence for future purchases, which is self-herding. Fairness still needs current comparables, and donor opinion is not the active mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -519,8 +417,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The estimate should exist before the vendor's number lands. Opening first lets the anchor do the framing, and last year's number may simply preserve an older anchor.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -532,8 +429,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key test is whether $160 feels fair independently or only low against $300. Feature comparison and affordability may matter, but they do not expose the anchor.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -545,8 +441,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Distance from the first bid can create a false bargain. The repair scope still needs its own estimate; neither vendor expertise nor price difference proves truth by itself.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -558,8 +453,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A private maximum built from the object and alternatives gives the buyer a competing anchor. Waiting for others or bidding low can still leave the auctioneer's number in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -571,8 +465,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The real test is built from use, risk, and outside comparables. Poster size and customer chatter may amplify the anchor, but they do not establish value.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -584,8 +477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The balanced response keeps useful information while refusing to make the first quote the ruler. Ignoring all first numbers and trusting all sellers are both too simple.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -640,19 +532,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first number built the scale.",
-          "location": "breakdown.fastRead",
-          "why": "It captures anchoring as a measuring problem, not just a pricing problem."
+          "text": "The first number built the scale."
         },
         {
-          "text": "You need a number before the first number if the stakes are real.",
-          "location": "breakdown.fullRead",
-          "why": "The sentence gives the reader a practical rule before a quote, bid, or listing appears."
+          "text": "You need a number before the first number if the stakes are real."
         },
         {
-          "text": "A later bargain is only a bargain against the ruler you accept.",
-          "location": "breakdown.fullRead",
-          "why": "It makes arbitrary coherence memorable by turning it into a warning about false discounts."
+          "text": "A later bargain is only a bargain against the ruler you accept."
         }
       ]
     },
@@ -679,13 +565,6 @@
             "free",
             "time"
           ],
-          "planSpec": {
-            "domain": "airport lounge trial attached to a delayed flight",
-            "audience": "a traveler deciding whether to accept a free lounge pass during a tight connection",
-            "stakes": "missing the boarding-zone update because the free pass feels like found value",
-            "format": "decision_point",
-            "requiredBeat": "the traveler writes the walk time to the far gate on the boarding pass before following the sign to the free lounge"
-          },
           "scenario": "A boarding pass curls around a free lounge voucher at a crowded gate twelve minutes before scheduled boarding. Theo's connection is already delayed, the lounge sign points left past a coffee stand, and the far gate is sixteen minutes right with a roller bag in tow. Before he follows the voucher, he must decide whether to write the walk time on the boarding pass, count the boarding-zone update he might miss, and judge the lounge against the carry-on he is dragging back through the terminal.",
           "whatToDo": "Write the gate walk and the missed-update risk on the boarding pass before moving. Judge the lounge against the connection, the bag, and the announcement window, not against the word free.",
           "whyItMatters": "The voucher hides the cost in time and attention. Making the walk and the missed announcement visible keeps zero from turning a tight connection into a casual detour."
@@ -698,13 +577,6 @@
             "storage",
             "labor"
           ],
-          "planSpec": {
-            "domain": "community garden offered free compost after a storm",
-            "audience": "a plot holder choosing whether to haul extra compost she cannot use this month",
-            "stakes": "losing a Saturday and blocking the shed path because zero price overrides storage reality",
-            "format": "vignette",
-            "requiredBeat": "she sets a tarp on the ground and marks the actual space her plot can absorb before loading another sack"
-          },
           "scenario": "On Saturday morning at the community garden, steaming compost sacks are piled beside a bent gate after the storm. Emily can take as many as she wants, and the shed path is already narrowing. Before loading another sack, she has to decide whether to set a tarp on the ground, mark the space her plot can absorb this month, and see where free would become hauling, storage, and blockage.",
           "whatToDo": "Mark the usable space first, then haul only what fits that outline. Let the plot's capacity set the amount.",
           "whyItMatters": "The compost costs no cash, but it still consumes space, lifting, and a Saturday. The tarp gives those costs a visible boundary."
@@ -717,13 +589,6 @@
             "family",
             "logistics"
           ],
-          "planSpec": {
-            "domain": "local theater distributing free preview tickets",
-            "audience": "a parent with one quiet evening deciding whether to accept four free seats",
-            "stakes": "turning rest into logistics because tickets with no price feel too valuable to decline",
-            "format": "reflection",
-            "requiredBeat": "the parent writes the babysitter cost and drive time on the envelope before deciding whether the free tickets are still a gift"
-          },
           "scenario": "Four preview tickets sit in a cream envelope on Isabel's hall table at six-fifteen on a Wednesday evening. The seats cost nothing, and that makes a quiet evening with the children already in pajamas feel wasteful. She uncaps a pen and writes the babysitter cost, the cross-town drive time, the late return, and the school-morning effect on the back of the envelope before texting anyone in the group thread. The tickets may turn out to be a treat. They are not weightless once the four hidden line items are facing her in pen.",
           "whatToDo": "Put the logistics on the envelope before accepting. Count care, travel, and next-morning strain as part of the offer.",
           "whyItMatters": "Free tickets can turn rest into work. Writing the noncash bill lets Isabel choose the evening she actually wants, not just the price she likes."
@@ -736,13 +601,6 @@
             "errors",
             "supplier"
           ],
-          "planSpec": {
-            "domain": "warehouse receiving free misprinted labels from a supplier",
-            "audience": "an inventory supervisor deciding whether to accept a pallet of free labels",
-            "stakes": "adding sorting errors because the labels cost nothing up front",
-            "format": "postmortem",
-            "requiredBeat": "the supervisor traces three mis-shelved cartons back to the free label pallet and calculates the labor spent correcting them"
-          },
           "scenario": "A pallet of misprinted labels sits wrapped in cloudy plastic near dock door five with the supplier slip still taped to the corner. Petra finds three mis-shelved cartons on Thursday morning and follows the bad scans back to that pallet. The labels cost nothing on the invoice, but the labor log shows two hours of correction across three pickers, one delayed shipment to the eastern hub, and a missed truck cutoff at four. Before the next courtesy pallet arrives, she has to decide whether to log the correction hours against the supplier's name or let the next free shipment quietly cost another afternoon.",
           "whatToDo": "Trace errors to the label source and add correction time to the decision. Accept free materials only if they do not create hidden operating costs.",
           "whyItMatters": "A zero invoice can hide sorting errors and labor. Petra's postmortem turns the supplier's courtesy back into a real operational tradeoff."
@@ -755,13 +613,6 @@
             "loyalty",
             "delay"
           ],
-          "planSpec": {
-            "domain": "pharmacy loyalty program offering a free vitamin bottle",
-            "audience": "a caregiver picking up prescriptions before work",
-            "stakes": "delaying needed pickup and buying unrelated items because the free bottle requires a second line",
-            "format": "dialogue",
-            "requiredBeat": "the caregiver points to the prescription pickup clock and asks whether the free vitamin is worth the extra line before joining it"
-          },
           "scenario": "\"You qualify for a free bottle today,\" the cashier says, clipping a bright coupon to Rachel's prescription bag. The pickup clock shows she has eleven minutes before work, and the vitamin shelf has a second line. Before she steps away from the counter, Rachel must decide whether to point at the clock and ask if the free bottle is worth the delay.",
           "whatToDo": "Point to the pickup clock and count the second line before leaving the counter. Keep the prescription pickup as the main job.",
           "whyItMatters": "The free bottle can make delay and impulse buying look harmless. The clock puts the real constraint back into the choice."
@@ -774,13 +625,6 @@
             "materials",
             "planning"
           ],
-          "planSpec": {
-            "domain": "public library giving away withdrawn atlases",
-            "audience": "a youth-program coordinator tempted to take a box for map-craft workshops",
-            "stakes": "using storage and planning time on materials that are free but stale",
-            "format": "before_after",
-            "requiredBeat": "before carrying the box, the teacher opens one atlas to the outdated map and names the exact lesson it would replace"
-          },
           "scenario": "A cardboard box of withdrawn atlases waits beside the library exit scanner at the late-Friday closing. Camille first imagines easy map-craft workshops, free supplies, and a colorful shelf for the after-school room. Before carrying the box the four blocks back to the classroom, she opens one atlas to a 1998 Yugoslavia spread and names the exact lesson slot it would replace, the storage cabinet shelf it would fill, and the planning hour it would consume to prep. After that, she takes five atlases for one map-overlay lesson instead of the whole box.",
           "whatToDo": "Open one atlas and name the lesson it will replace before taking the box. Accept only the number that has a real plan.",
           "whyItMatters": "Free materials can spend storage and planning time. A specific lesson slot separates useful supplies from stale paper with no job."
@@ -799,8 +643,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tote's zero price hid inconvenience and space. Paid quality and social obligation could matter in other scenes, but the core failure is not counting the nonmoney bill.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -812,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The freelancer needs to translate free into time and opportunity cost. Automatic acceptance ignores the hidden bill, while automatic refusal misses cases where the tradeoff is worth it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -825,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The free bowl draws attention away from extra spending. The added items are the hidden cost; nothing in the scene proves a real need or a social obligation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -838,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The free seats consume support coverage, which is the real tradeoff. Full price may be interesting, but the immediate hidden cost is a day away from customers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -851,8 +691,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Zero reduced the felt risk of accepting, which let time and space costs slip in later. The answer is not a universal storage problem or a market-norm shift.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -864,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The paid course may be the better tradeoff if it teaches more effectively. Counting practice and failure cost counters the emotional safety of zero.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -877,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tracking delay and rework converts the hidden cost into something comparable. Gratitude and selective use do not test whether the free folders are actually costly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -890,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right evaluation counts all costs and benefits. Market price alone overstates the gain, while rejecting all free offers misses useful cases.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -903,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The line is the hidden cost. A paid calmer visit might cost fewer total resources, while crowd size and appreciation do not answer the tradeoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -959,19 +794,13 @@
       },
       "memorableLines": [
         {
-          "text": "Put the missing cost back on the tag.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's mental move into a concrete action."
+          "text": "Put the missing cost back on the tag."
         },
         {
-          "text": "Free often wins because the competing cost is not counted in the same units.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why zero beats better options without calling the reader foolish."
+          "text": "Free often wins because the competing cost is not counted in the same units."
         },
         {
-          "text": "A free choice still sends an invoice.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact warning they can carry into everyday offers."
+          "text": "A free choice still sends an invoice."
         }
       ]
     },
@@ -998,13 +827,6 @@
             "norms",
             "recognition"
           ],
-          "planSpec": {
-            "domain": "blood-donation mobile clinic changing thank-you gifts into cash cards",
-            "audience": "a clinic coordinator deciding how to recognize repeat donors",
-            "stakes": "reducing donor identity by making the visit feel like a low-paid errand",
-            "format": "predict_reveal",
-            "requiredBeat": "the coordinator compares the sign-up sheet after the thank-you pin is replaced by a small cash card and sees regular donors hesitate at the table"
-          },
           "scenario": "A folding table holds donor pins in one tray and cash cards in another. Rebecca predicts the cards will lift repeat sign-ups at the mobile clinic. After the switch, she compares the sign-up sheet and sees regular donors hesitate at the table, looking from the card to the nurse. Before the next drive, she must decide which tray belongs there.",
           "whatToDo": "Restore recognition that speaks to donor identity, such as pins, names, and thanks. Do not price the visit unless the clinic truly wants a market exchange.",
           "whyItMatters": "The cash card makes donation feel like a low-paid errand. The pin supports the social norm that made donors proud to return."
@@ -1017,13 +839,6 @@
             "fine",
             "mutual aid"
           ],
-          "planSpec": {
-            "domain": "neighborhood snow-shoveling rota after a storm",
-            "audience": "a block captain deciding whether to fine households that skip their turn",
-            "stakes": "turning mutual aid into a cheap service residents can buy out of",
-            "format": "decision_point",
-            "requiredBeat": "the captain reads the proposed fine aloud, then asks whether residents will hear it as a penalty or as the price of staying inside"
-          },
           "scenario": "A clipboard of shoveled addresses rests on a snowbank at dusk. Andrew's rota list has three unshoveled steps and a proposed fine circled in red. Before the block meeting, he must decide whether to read the fine aloud and ask if residents will hear it as a penalty for skipping duty or as the price of staying inside.",
           "whatToDo": "Test the meaning of the fine before adopting it. Use names, rotations, and visible reciprocity if the block still runs on mutual aid.",
           "whyItMatters": "A small fine can become a fee. Once residents can buy out cheaply, the rota stops feeling like shared protection after a storm."
@@ -1036,13 +851,6 @@
             "security",
             "bounty"
           ],
-          "planSpec": {
-            "domain": "open-source security patch sprint",
-            "audience": "a maintainer deciding whether to add tiny bounties to every volunteer task",
-            "stakes": "making expert contributors price work they used to treat as stewardship",
-            "format": "dialogue",
-            "requiredBeat": "the maintainer watches a volunteer ignore the bounty amount and ask whether the project still trusts unpaid review"
-          },
           "scenario": "\"Is this review really worth ten dollars now?\" Marta asks on the late-night video call. Kiran has a terminal window open beside a bounty spreadsheet and a patch review queue. The volunteer is not bargaining. She ignores the amount and asks whether the project still trusts unpaid review. Kiran has to decide whether tiny bounties belong in this sprint.",
           "whatToDo": "Drop tiny task bounties and recognize stewardship directly, or pay real market rates for defined work. Do not mix token money with volunteer trust.",
           "whyItMatters": "The bounty spreadsheet changes the question from care for the project to price per task. Small money can weaken a stronger social motive."
@@ -1055,13 +863,6 @@
             "coaching",
             "thanks"
           ],
-          "planSpec": {
-            "domain": "choir section leaders asked to coach new singers",
-            "audience": "a music director deciding between handwritten thanks and per-session payments",
-            "stakes": "turning a shared musical duty into a low hourly wage comparison",
-            "format": "vignette",
-            "requiredBeat": "the director places thank-you notes and payment envelopes on the piano, then notices which one makes the section leaders start calculating hours"
-          },
           "scenario": "Sealed envelopes line the edge of an upright piano after rehearsal. Sophie has handwritten notes for section leaders in one stack and per-session payments in another. Before handing them out, she has to decide whether the small payments will honor the coaching or turn each missed dinner into a thin hourly rate.",
           "whatToDo": "Use handwritten thanks, public credit, and easier rehearsal support if the coaching is shared duty. If it is paid teaching, set a fair rate.",
           "whyItMatters": "The envelope changes the unit of judgment. Once leaders count hours, the old choir duty has entered the market frame."
@@ -1074,13 +875,6 @@
             "care",
             "meals"
           ],
-          "planSpec": {
-            "domain": "mutual-aid freezer meal network after surgery",
-            "audience": "a neighbor organizing meals for a recovering resident",
-            "stakes": "making care feel like catering when someone suggests reimbursing every casserole",
-            "format": "reflection",
-            "requiredBeat": "the organizer writes a grocery reimbursement line, then crosses it out and replaces it with dietary notes and a thank-you call"
-          },
           "scenario": "Foil-covered freezer meals are stacked in a cooler by the apartment lobby. Anna is organizing food after Ruth's surgery when someone suggests reimbursing every casserole. She writes a grocery reimbursement line, stares at it, then crosses it out and replaces it with dietary notes and a thank-you call. The cooler feels like care again.",
           "whatToDo": "Keep the exchange in care language: dietary details, delivery slots, and direct thanks. Do not turn each casserole into a tiny invoice.",
           "whyItMatters": "Reimbursement can make neighbors price generosity like catering. The replacement signals that the network is about care, not small transactions."
@@ -1093,13 +887,6 @@
             "club",
             "setup"
           ],
-          "planSpec": {
-            "domain": "amateur astronomy club telescope nights",
-            "audience": "a club board deciding whether to charge members for setting up telescopes at public nights",
-            "stakes": "weakening the pride of sharing the sky by pricing the setup duty too cheaply",
-            "format": "before_after",
-            "requiredBeat": "after a per-telescope payment is announced, the board hears members ask whether the amount includes teardown, revealing the norm has shifted"
-          },
           "scenario": "On Friday night at the astronomy club field, tripod legs fold beside a red flashlight. Leo's club once treated public telescope nights as pride in sharing the sky. After a per-telescope payment is announced, members ask whether the amount includes teardown and lens cleaning. The board hears the norm shift before the next star party even begins.",
           "whatToDo": "Withdraw the token payment and restore member recognition, easier setup support, and public credit. Pay fairly only if setup becomes a staff job.",
           "whyItMatters": "The small payment gives members a reason to price every task. The old pride cannot do its work once setup sounds like underpaid labor."
@@ -1118,8 +905,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The card can reclassify help as underpaid work. Distraction and card size miss the key switch from social recognition to market pricing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1131,8 +917,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rota and public thanks keep the act inside mutual aid. A small fee or token payment risks giving residents a market price for opting out or helping.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1144,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tiny bounty changed how contributors interpreted the work. Skill and task importance did not need to change; the meaning of participation changed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1157,8 +941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first question tests the norm shift. Payment logistics and supply use may matter later, but the main risk is reclassifying the act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1170,8 +953,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public credit and reduced burden support the social role without pricing each hour. Tiny hourly or per-singer payments invite leaders to evaluate the work as compensation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1183,8 +965,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When the work belongs in the market, it should be paid fairly. The problem is not money itself, but mixing family language with underpayment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1196,8 +977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dietary notes and thanks strengthen care. A low rate and value ranking turn meals into a priced service, which weakens the social meaning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1209,8 +989,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cleanup question shows a market frame taking over. Reducing the payment may keep the same problem, and calling members selfish misses the context change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1222,8 +1001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The answer is frame honesty. Market work deserves real pay, while social help should not be cheapened by token pricing. Cost alone and blanket anti-payment both fail.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1278,19 +1056,13 @@
       },
       "memorableLines": [
         {
-          "text": "The pin says, you are one of us.",
-          "location": "breakdown.fastRead",
-          "why": "It shows the social norm in a concrete object before the money arrives."
+          "text": "The pin says, you are one of us."
         },
         {
-          "text": "A fine can become a fee.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence captures the day-care mechanism in five plain words."
+          "text": "A fine can become a fee."
         },
         {
-          "text": "A relationship can survive money.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the reader from misreading the lesson as anti-payment."
+          "text": "A relationship can survive money."
         }
       ]
     },
@@ -1317,13 +1089,6 @@
             "safety",
             "threshold"
           ],
-          "planSpec": {
-            "domain": "whitewater rafting outfitter before spring melt",
-            "audience": "a guide deciding safety thresholds before clients arrive excited",
-            "stakes": "letting group adrenaline push a launch after river gauges cross the red line",
-            "format": "decision_point",
-            "requiredBeat": "the guide tapes the cancellation gauge level inside the equipment shed before the cheering group can argue at the riverbank"
-          },
           "scenario": "On Thursday morning at the rafting shed, a wet river-gauge printout is taped above hanging paddles. Rowan hears the first van of clients outside, already laughing about the spring melt. Before the riverbank fills with cheering, he must decide whether to tape the cancellation level inside the shed and make the launch rule visible before adrenaline gets a vote.",
           "whatToDo": "Post the cancellation level before clients arrive, then follow it when the gauge crosses the line. Make the safety threshold procedural, not negotiable.",
           "whyItMatters": "The excited group will argue from a hot state. A posted rule made in calm conditions protects the launch decision from riverbank pressure."
@@ -1336,13 +1101,6 @@
             "competition",
             "limit"
           ],
-          "planSpec": {
-            "domain": "auction-house absentee bidding for a collector",
-            "audience": "a collector who becomes competitive once paddles start rising",
-            "stakes": "blowing a restoration budget because the room's heat makes the limit feel negotiable",
-            "format": "predict_reveal",
-            "requiredBeat": "the collector signs an absentee maximum before entering the saleroom and gives the paddle to a friend once bidding reaches it"
-          },
           "scenario": "A numbered auction paddle lies beside Beatrice's signed absentee bid form. She predicts she will stop at her restoration budget, but the saleroom gets louder as paddles rise. Before the lot opens, she must decide whether to sign the absentee maximum and hand the paddle to a friend the moment bidding reaches it.",
           "whatToDo": "Sign the maximum while calm and arrange the paddle handoff before the lot opens. Let the form end the bidding, not the feeling of rivalry.",
           "whyItMatters": "Competition makes the limit feel flexible. The absentee maximum turns a private budget into a rule that the hot room cannot easily rewrite."
@@ -1355,13 +1113,6 @@
             "anger",
             "drafts"
           ],
-          "planSpec": {
-            "domain": "emergency-room resident after a public insult",
-            "audience": "a medical trainee writing a reply to a senior physician while angry",
-            "stakes": "damaging a rotation evaluation by sending a hot-state message",
-            "format": "vignette",
-            "requiredBeat": "the resident uses a prewritten rule that all conflict replies sit in drafts until the next shift handoff"
-          },
           "scenario": "An unsent email glows above pocket trauma shears on a break-room counter. Leah has just been insulted in front of a patient, and her reply sounds perfect while her pulse is still high. Before the next shift handoff, she has to decide whether to close the laptop and let the conflict reply sit in drafts until a colleague reads it.",
           "whatToDo": "Keep the reply in drafts until the handoff and ask one colleague to read it later. Use the rule written before the insult.",
           "whyItMatters": "Anger makes the message feel clearer than it may be. The draft rule creates time for the cold state to return before a rotation-damaging send."
@@ -1374,13 +1125,6 @@
             "fatigue",
             "portion"
           ],
-          "planSpec": {
-            "domain": "night-shift pastry kitchen tasting station",
-            "audience": "a pastry chef trying not to overeat rejected batches at 2 a.m.",
-            "stakes": "making exhausted taste-testing choices that the daytime plan did not anticipate",
-            "format": "before_after",
-            "requiredBeat": "before the shift, the chef portions tasting bites on a labeled tray and locks the reject bin before fatigue and sugar smell arrive"
-          },
           "scenario": "Tiny pastry squares line a steel tray under fluorescent light before service. Catarina knows the 2 a.m. batch will smell like butter when she is tired. Before the shift, she portions tasting bites on a labeled tray and locks the reject bin. After midnight, the tasting still happens, but the rejected trays no longer become a negotiation.",
           "whatToDo": "Portion the tasting tray and lock the reject bin before fatigue arrives. Decide the tasting rule in daylight, not beside warm pastry at 2 a.m.",
           "whyItMatters": "Exhaustion and smell change the choice. The tray keeps quality control intact while blocking the hot-state drift into endless sampling."
@@ -1393,13 +1137,6 @@
             "weather",
             "curfew"
           ],
-          "planSpec": {
-            "domain": "teen driver preparing for a snowstorm curfew",
-            "audience": "a parent and teen setting rules before friends start calling",
-            "stakes": "renegotiating a driving boundary once social pressure and excitement rise",
-            "format": "dialogue",
-            "requiredBeat": "they leave the car keys in a timed lockbox at 8 p.m. before the group chat starts pushing for a late drive"
-          },
           "scenario": "\"If the alert turns red, we are done driving,\" Nathan's mother says while a weather alert flashes on his phone. Car keys sit beside a small timed lockbox at 7:58 p.m. Before the group chat starts pushing for a late drive, Nathan must decide whether to drop the keys in until morning or keep the rule available for renegotiation.",
           "whatToDo": "Put the keys in the timed lockbox before the group chat heats up. Make the storm rule physical while everyone is still calm.",
           "whyItMatters": "Excitement and peer pressure will make the boundary feel excessive later. The lockbox prevents the hot state from reopening the driving decision."
@@ -1412,13 +1149,6 @@
             "anger",
             "review"
           ],
-          "planSpec": {
-            "domain": "public defender plea call after a courthouse confrontation",
-            "audience": "a lawyer deciding whether to respond immediately to a hostile prosecutor",
-            "stakes": "letting anger push a client-harming refusal that calm strategy would reject",
-            "format": "postmortem",
-            "requiredBeat": "the lawyer points to a laminated plea-response checklist and waits for a colleague's second read before returning the call"
-          },
           "scenario": "On Monday afternoon in the courthouse hallway, a phone blinks beside Simon's laminated plea-response checklist after a confrontation. Simon wants to reject the prosecutor's offer immediately. He points to the checklist, waits for a colleague's second read, and returns the call after reviewing the plea deadline. His anger was real; it did not get to choose for the client.",
           "whatToDo": "Use the checklist and second read before returning the call. Let the client's interests meet a calm process before anger answers.",
           "whyItMatters": "The hostile exchange changes Simon's state. The checklist creates a pause where legal strategy, not wounded pride, controls the response."
@@ -1437,8 +1167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The calm self mispredicted hot-state judgment near the summit. More data can help, but the central failure is assuming the later state will honor the same line.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1450,8 +1179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A signed maximum and handoff change the later choice. Promises and last-minute decisions leave the competitive state in charge.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1463,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is state-dependent judgment during night work. Removing all tasting is too blunt, and the scene does not show a lack of values.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1476,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lockbox makes renegotiation harder before social pressure rises. Repeating or remembering the rule still depends on the hot state.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1489,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The draft rule adds time and a second read before anger can send. Freshness and softer typing do not solve the hot-state judgment problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1502,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The group excitement is a hot-state pressure, not neutral data. Customer preference matters, but safety thresholds should be set before that pressure arrives.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1515,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Removing payment friction and moving approval to daytime changes the later choice. Awareness and social mention may help, but they do not bind the hot state.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1528,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anger changed the felt appeal of refusal. The offer still needed analysis; second reads are exactly the kind of cold-state process that can help.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1541,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Barriers fit high-risk state shifts where renegotiation is costly. Universal barriers are excessive, and willpower language misses the design problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1597,19 +1318,13 @@
       },
       "memorableLines": [
         {
-          "text": "Make the decision before the state changes.",
-          "location": "breakdown.fastRead",
-          "why": "It states the cold-state repair in plain imperative form."
+          "text": "Make the decision before the state changes."
         },
         {
-          "text": "You cannot fully interview your future hot self from a cold chair.",
-          "location": "breakdown.deepRead",
-          "why": "It gives state-dependent judgment a memorable image."
+          "text": "You cannot fully interview your future hot self from a cold chair."
         },
         {
-          "text": "The strongest plan is not the one you admire while calm.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why barriers matter more than elegant intentions."
+          "text": "The strongest plan is not the one you admire while calm."
         }
       ]
     },
@@ -1636,13 +1351,6 @@
             "inspection",
             "repairs"
           ],
-          "planSpec": {
-            "domain": "historic theater fire-inspection repairs",
-            "audience": "a facilities director with one annual inspection date",
-            "stakes": "discovering too late that exit lights and door hardware were left until inspection week",
-            "format": "decision_point",
-            "requiredBeat": "the director schedules three signed walkthroughs with the fire marshal before the final inspection can become the first real consequence"
-          },
           "scenario": "Thomas grips a clipboard beside an exit door with a cracked push bar in the historic theater. He has one annual inspection date, and the exit lights still blink out on rainy nights. Before June becomes the first real consequence, he must decide whether to schedule three signed walkthroughs with the fire marshal and let March reveal what is unfinished. The first walkthrough will be awkward, but it is cheaper than discovering the same defect with inspectors waiting.",
           "whatToDo": "Schedule the walkthroughs now and require signatures after each one. Give the repairs earlier consequences than the annual inspection.",
           "whyItMatters": "The final inspection is too far away to guide daily repair work. Signed walkthroughs make delay visible while the problems are still fixable."
@@ -1655,13 +1363,6 @@
             "scripts",
             "checkpoint"
           ],
-          "planSpec": {
-            "domain": "community radio pledge-drive script production",
-            "audience": "a volunteer producer coordinating scripts before pledge week",
-            "stakes": "going on air with rushed copy because every draft felt optional until broadcast",
-            "format": "before_after",
-            "requiredBeat": "after one failed drive, the producer requires each host to record a thirty-second script test two weeks before pledge week"
-          },
           "scenario": "On Tuesday afternoon in the radio studio, a clock hangs above a stack of blank pledge scripts. Moira remembers the failed drive where hosts wrote copy an hour before broadcast. After that, she requires each host to record a thirty-second script test two weeks before pledge week. The recording is short, but it proves whether a message exists before the microphone is live. Each host leaves with a file name, not a vague promise to write later.",
           "whatToDo": "Require a recorded script test before pledge week. Make every host produce a sample that can be heard and edited early.",
           "whyItMatters": "A blank script can hide until broadcast. The recorded test turns vague progress into evidence while revision is still cheap."
@@ -1674,13 +1375,6 @@
             "lab",
             "quality"
           ],
-          "planSpec": {
-            "domain": "dental lab preparing custom crowns",
-            "audience": "a lab manager whose technicians postpone quality checks",
-            "stakes": "shipping crowns late because defects are found only at final polish",
-            "format": "postmortem",
-            "requiredBeat": "the manager pins rejection photos beside each interim station and requires sign-off before a case moves down the bench"
-          },
           "scenario": "On Friday morning at the dental lab bench, porcelain crowns rest in foam slots under a magnifying lamp. Greta reviews late shipments and finds the same cause: defects discovered at final polish. She pins rejection photos beside each interim station and requires sign-off before a case tray moves down the bench. The delay moves earlier, where it can still save the case. Greta can now stop a flawed case at station two instead of apologizing after final polish.",
           "whatToDo": "Put rejection photos and sign-off at each station. Do not let a crown travel until the current defect check is complete.",
           "whyItMatters": "Final polish is too late for cheap correction. Interim sign-off makes quality failure visible before it becomes a shipping delay."
@@ -1693,13 +1387,6 @@
             "filing",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "immigration clinic filing renewal packets",
-            "audience": "a legal-aid coordinator managing clients with distant filing deadlines",
-            "stakes": "missing evidence because the real deadline does not create urgency soon enough",
-            "format": "vignette",
-            "requiredBeat": "the coordinator stamps three colored due dates on the packet cover so each evidence category has an earlier consequence"
-          },
           "scenario": "A manila renewal packet is stamped with three colored dates before Paola slides it across the clinic table. Green is identity evidence, blue is work history, red is filing review. Before the client leaves, Paola has to decide whether the distant filing deadline needs those earlier proof dates printed on the packet cover. The colors turn one far-off date into three small moments where missing evidence becomes visible.",
           "whatToDo": "Stamp separate due dates for each evidence category. Make missing documents visible before the filing deadline becomes urgent.",
           "whyItMatters": "The distant deadline hides small missing pieces. Colored interim dates turn a vague packet into staged commitments."
@@ -1712,13 +1399,6 @@
             "training",
             "proof"
           ],
-          "planSpec": {
-            "domain": "marathon relay team training for a charity race",
-            "audience": "a team captain whose runners keep promising future mileage",
-            "stakes": "arriving undertrained and letting down the charity spot",
-            "format": "dialogue",
-            "requiredBeat": "the captain changes the group chat from weekly promises to posted route screenshots every Tuesday and Saturday"
-          },
           "scenario": "\"I'll catch up next week,\" one runner writes under the charity race bib photo. Julia sees blank route slots on the cork strip and too many promises in the group chat. Before the relay gets close, she must decide whether to ask for route screenshots every Tuesday and Saturday instead of weekly claims that training is fine. The screenshots make skipped runs visible while the relay order can still change.",
           "whatToDo": "Require Tuesday and Saturday route screenshots in the chat. Replace promises with proof of miles while there is still time to train.",
           "whyItMatters": "A future race does not create enough pressure today. Posted routes make missed training visible before the team arrives underprepared."
@@ -1731,13 +1411,6 @@
             "grant",
             "digitization"
           ],
-          "planSpec": {
-            "domain": "archive digitization grant with monthly deliverables",
-            "audience": "a curator digitizing fragile letters before a grant report",
-            "stakes": "losing grant renewal because scanning is invisible until the quarter ends",
-            "format": "reflection",
-            "requiredBeat": "the curator places a public progress shelf in the reading room where each finished box moves forward every Friday"
-          },
           "scenario": "Colin sets acid-free letter boxes on a reading-room cart beside his grant report notes. Scanning work is quiet enough to disappear until the quarter ends. He places a public progress shelf near the desk, where each finished box moves forward every Friday. The shelf shows whether the grant deliverable is becoming real before the report week leaves no room to recover.",
           "whatToDo": "Use the public shelf and Friday move as the checkpoint. Let finished boxes, not private intentions, show progress.",
           "whyItMatters": "Invisible scanning makes delay easy to protect. Moving boxes in public gives the grant work a weekly consequence."
@@ -1756,8 +1429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A far deadline can fail to shape today's behavior. Freedom may help some teams, but without proof points, delay can hide until late.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1769,8 +1441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Signed walkthroughs create earlier consequences and evidence. A reminder and general awareness leave too much hidden until the final date.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1782,8 +1453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "If drafts surface only at the end, flexibility is shielding delay. Creative work can still use artifacts like outlines, sample pages, or recorded tests.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1795,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Colored category dates create earlier consequences for each missing piece. Importance speeches and waiting keep urgency too far from the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1808,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Interim sign-off and examples make quality failure visible during the work. Caring more and only moving the final date do not create useful checkpoints.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1821,8 +1489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The screenshots are concrete evidence early enough to correct undertraining. The value is proof, not entertainment or distrust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1834,8 +1501,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A reminder does not create consequence or evidence. The missing piece is a checkpoint where progress can be seen before the deadline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1847,8 +1513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shelf creates weekly evidence. It supports the monthly deliverable; it does not replace it or make the grant less serious.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1860,8 +1525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The strongest checkpoint produces inspectable evidence early. Confidence reports and reminder emails can leave actual work untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1916,19 +1580,13 @@
       },
       "memorableLines": [
         {
-          "text": "Move the consequence closer than the deadline.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses procrastination repair into one practical rule."
+          "text": "Move the consequence closer than the deadline."
         },
         {
-          "text": "A commitment device is not a prettier to-do list.",
-          "location": "breakdown.deepRead",
-          "why": "It separates real constraints from cosmetic planning."
+          "text": "A commitment device is not a prettier to-do list."
         },
         {
-          "text": "Early failure is useful. It is cheaper than late failure.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes checkpoints as protection rather than punishment."
+          "text": "Early failure is useful. It is cheaper than late failure."
         }
       ]
     },
@@ -1955,13 +1613,6 @@
             "pricing",
             "ownership"
           ],
-          "planSpec": {
-            "domain": "ceramic artist pricing a flawed kiln piece",
-            "audience": "a maker deciding whether to list or keep a vase she spent weeks glazing",
-            "stakes": "overpricing a flawed piece because labor and ownership feel like market value",
-            "format": "decision_point",
-            "requiredBeat": "the artist covers her initials on the base and asks what she would pay if another maker brought the same warped vase to the table"
-          },
           "scenario": "A blue-glazed vase with a warped rim cools on a kiln shelf. Bianca spent three weeks testing the glaze, and her initials are clean on the base. Before she writes the market table price, she must decide whether to cover the initials and ask what she would pay if another maker brought the same warped vase to her. The answer will not erase the kiln work, but it will keep her private effort from pretending to be a buyer's price.",
           "whatToDo": "Cover the initials and price the vase as a buyer would. Let the flaw, use, and market table decide before labor becomes the selling price.",
           "whyItMatters": "Bianca's work makes the vase feel more valuable to her than to a buyer. Hiding ownership cues separates attachment from market value."
@@ -1974,13 +1625,6 @@
             "ticket",
             "loss"
           ],
-          "planSpec": {
-            "domain": "season-ticket holder pricing a single playoff seat",
-            "audience": "a fan deciding whether to sell a ticket after years on a waiting list",
-            "stakes": "demanding a price no buyer would pay because giving up the seat feels personal",
-            "format": "dialogue",
-            "requiredBeat": "a friend asks the fan to name the maximum he would pay today if the ticket were not already in his account"
-          },
           "scenario": "\"What would you pay today if it were not already yours?\" Patrick asks. Dominic's playoff ticket barcode glows on a cracked phone screen, and the waiting list took years. Before he posts a selling price no buyer will touch, he has to decide whether to answer Patrick's maximum-today question or defend the seat as priceless. The question stings because it removes the waiting-list story and leaves only today's seat, opponent, and price.",
           "whatToDo": "Name the maximum buying price before naming the selling price. Separate the seat's current use from the pain of giving up a long-awaited ticket.",
           "whyItMatters": "Ownership makes selling feel like a loss. The maximum-today question forces Dominic to value the seat as a buyer, not only as an owner."
@@ -1993,13 +1637,6 @@
             "traffic",
             "effort"
           ],
-          "planSpec": {
-            "domain": "family recipe blog considering deletion of low-traffic posts",
-            "audience": "a blogger deciding whether to remove recipes that took years to photograph",
-            "stakes": "protecting dead pages because the work invested makes them feel too valuable to cut",
-            "format": "postmortem",
-            "requiredBeat": "the blogger compares traffic and remake requests after hiding author photos, then chooses which posts deserve the homepage"
-          },
           "scenario": "A spreadsheet of page views sits beside stained handwritten recipe cards. Corinne kept low-traffic posts on the homepage because she remembers the weekend photos. In the postmortem, she hides author photos, compares remake requests, and chooses which recipes deserve a homepage slot. Effort stops grading the page. The spreadsheet is dull on purpose; it makes reader use louder than the weekend she spent styling the photos.",
           "whatToDo": "Hide the authorship cues and sort by reader use, remake requests, and page value. Keep memory separate from homepage allocation.",
           "whyItMatters": "Years of work can make dead pages feel too valuable to cut. Use data gives the homepage a buyer's view of each recipe."
@@ -2012,13 +1649,6 @@
             "equipment",
             "replacement"
           ],
-          "planSpec": {
-            "domain": "research lab deciding whether to retire a custom apparatus",
-            "audience": "a principal investigator attached to a device built by former students",
-            "stakes": "keeping unreliable equipment because ownership and history inflate its practical worth",
-            "format": "reflection",
-            "requiredBeat": "the lab covers the engraved build plaque and prices the apparatus as if it appeared used from another lab"
-          },
           "scenario": "Iris reads the maintenance log beside an aluminum apparatus under a dust cover with an engraved plaque from former students. She feels the years of work inside the device. Before approving another repair cycle, she covers the plaque, imagines the apparatus appearing used from another lab, and writes the price she would pay today for that reliability. The lab history stays real, but it stops doing the reliability math.",
           "whatToDo": "Cover the plaque and judge the device by maintenance, accuracy, and replacement cost. Preserve the history somewhere other than the equipment decision.",
           "whyItMatters": "The plaque adds ownership and memory to the calculation. The used-lab price tests whether the apparatus still earns its place."
@@ -2031,13 +1661,6 @@
             "inventory",
             "pricing"
           ],
-          "planSpec": {
-            "domain": "vintage map dealer evaluating inherited stock",
-            "audience": "a dealer who inherited unsold maps from a mentor",
-            "stakes": "setting prices from attachment instead of actual buyer demand",
-            "format": "vignette",
-            "requiredBeat": "the dealer turns the mentor's notes facedown and sorts the maps by recent comparable sales before assigning prices"
-          },
           "scenario": "On Wednesday morning at the map shop counter, rolled maps tied with cotton tape stretch across Anton's green felt. Each one carries a mentor's note in careful pencil. Before assigning prices, Anton has to decide whether to turn the notes facedown and sort the maps by recent comparable sales. The stock still has history, but buyers will meet paper, condition, region, and demand. The mentor's pencil note can remain part of the provenance packet without becoming a surcharge every buyer must accept.",
           "whatToDo": "Turn the mentor notes over, sort by comparable sales, and price from condition and demand. Keep the notes for provenance, not valuation.",
           "whyItMatters": "Inherited ownership can make unsold stock feel precious. Comparable sales give Anton a market view before attachment sets the price."
@@ -2050,13 +1673,6 @@
             "sign",
             "rebrand"
           ],
-          "planSpec": {
-            "domain": "restaurant owner selling a hand-painted sign after rebranding",
-            "audience": "an owner deciding what the old sign is worth to another business",
-            "stakes": "confusing memory of opening night with what the sign can earn now",
-            "format": "before_after",
-            "requiredBeat": "after photographing the sign without the storefront behind it, the owner writes what a stranger could use it for and lowers the asking price"
-          },
           "scenario": "On Sunday before sunrise, a hand-painted sign leans against a brick wall behind Rita's closed restaurant. She first prices it from opening-night memory and the years it hung above the door. After photographing the sign without the storefront behind it, she writes what a stranger could use it for and lowers the asking price. The sign becomes an object again. The cropped photo makes the market question colder, which is exactly why it helps.",
           "whatToDo": "Photograph the sign away from the storefront, list practical uses, and price it for a stranger's business rather than the owner's memory.",
           "whyItMatters": "Opening-night memory inflates the selling price. A cropped photo removes the ownership story long enough to see what the sign can still do."
@@ -2075,8 +1691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gap between selling price and today's buy price points to ownership and loss aversion. Anchoring and social norms are not the main evidence in this scene.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2088,8 +1703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Hiding the signature helps her see the canvas as a buyer would. Labor may matter, but buyers do not automatically pay for every remembered hour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2101,8 +1715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ownership makes selling feel like a loss, which inflates the demanded price. The buy price test shows the market value is probably lower.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2114,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Covering the plaque separates history from usefulness. Former-student votes may deepen attachment, and custom status does not prove current value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2127,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reader use tests current value. Pride and age are ownership cues that may inflate the value without showing usefulness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2140,8 +1751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Comparable sales test market value. The mentor may matter privately, but buyers pay mainly for map condition, rarity, and demand.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2153,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Removing the storefront cue helps price the sign from a buyer's use. Loyal memories and rarity may inflate or inform price, but they do not answer current market fit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2166,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Customization can deepen ownership and inflate valuation. The tool might still have value, but that value needs a today's-buy test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2179,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Some items are rightly kept for memory. The key is not to confuse emotional value with what a buyer should pay in the market.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2235,19 +1842,13 @@
       },
       "memorableLines": [
         {
-          "text": "Price it once as if it were not yours.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the endowment-effect repair as a direct action."
+          "text": "Price it once as if it were not yours."
         },
         {
-          "text": "The object did not change hands in the mind.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the strange mental shift of ownership in a compact image."
+          "text": "The object did not change hands in the mind."
         },
         {
-          "text": "The price in your hand is not always the price in the world.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the ownership lesson with a memorable contrast."
+          "text": "The price in your hand is not always the price in the world."
         }
       ]
     },
@@ -2274,13 +1875,6 @@
             "focus",
             "runway"
           ],
-          "planSpec": {
-            "domain": "indie game studio maintaining three prototypes",
-            "audience": "a two-person studio deciding which demo to stop updating",
-            "stakes": "burning launch runway on keeping all prototypes playable for investors",
-            "format": "decision_point",
-            "requiredBeat": "the studio deletes two prototype build slots from the weekly test calendar and watches the remaining demo get a real polish pass"
-          },
           "scenario": "Three game builds are listed on a cracked whiteboard beside a countdown to investor demo day. Lucas and Erin have six runway weeks and a weekly test calendar that keeps all three barely alive. Before another test pass begins, Lucas must decide whether to delete two prototype slots and let the remaining demo get a real polish pass.",
           "whatToDo": "Delete the two low-probability test slots and move those hours to the strongest demo. Stop paying weekly upkeep on options that cannot launch.",
           "whyItMatters": "The prototypes are not free because they stay playable. Their maintenance spends the runway that the real demo needs."
@@ -2293,13 +1887,6 @@
             "season",
             "options"
           ],
-          "planSpec": {
-            "domain": "regional theater choosing scripts for a small season",
-            "audience": "an artistic director holding options on too many productions",
-            "stakes": "losing rehearsal quality because deposits keep every script technically alive",
-            "format": "postmortem",
-            "requiredBeat": "the director totals option fees and rehearsal conflicts on the lobby floor, then releases two scripts before casting begins"
-          },
           "scenario": "On Monday night in the community theater lobby, script packets are spread across the dark carpet after closing night. Celine totals option fees and rehearsal conflicts, then sees why last season felt thin. Keeping every script technically alive left each production underfed. Before casting begins, she releases two scripts and protects rehearsal time for the smaller season.",
           "whatToDo": "Total option fees and rehearsal conflicts before casting. Release scripts that cost more to preserve than they are likely to return.",
           "whyItMatters": "Deposits make unused scripts feel safely available, but they also split attention. Releasing two doors lets the chosen season deepen."
@@ -2312,13 +1899,6 @@
             "renewal",
             "skill"
           ],
-          "planSpec": {
-            "domain": "wildlife rehabilitator choosing species certifications",
-            "audience": "a volunteer deciding whether to maintain credentials for animals she rarely handles",
-            "stakes": "spending weekends on renewals instead of deepening skill for the species arriving daily",
-            "format": "reflection",
-            "requiredBeat": "she places the renewal forms beside the intake log and crosses out the certifications that served no animal in the last year"
-          },
           "scenario": "Renewal forms are tucked under a clipboard of injured songbird intakes. Harriet wants to stay certified for every species, because closing a path feels careless. She places the forms beside the intake log, counts last year's animals, and crosses out credentials that served no animal. The saved weekends go to songbird care.",
           "whatToDo": "Compare renewal forms with the intake log. Keep credentials that match real arrivals and let unused options close.",
           "whyItMatters": "Unused credentials still charge renewal time. Closing them deepens the skill that daily cases actually need."
@@ -2331,13 +1911,6 @@
             "freshness",
             "menu"
           ],
-          "planSpec": {
-            "domain": "specialty coffee roaster carrying too many seasonal beans",
-            "audience": "a roaster deciding which micro-lots to keep offering",
-            "stakes": "wasting roast attention and inventory freshness by preserving a long menu",
-            "format": "vignette",
-            "requiredBeat": "the roaster tips the last stale beans from three low-volume jars and writes the freshness cost next to each kept option"
-          },
           "scenario": "On Thursday morning at the roastery bench, glass sample jars of green coffee line up beneath a roasting curve printout. Marco has to decide whether to keep three low-volume micro-lots on the menu or tip the stale beans out and write the freshness cost beside each one. The long menu had looked generous. On the bench, it looks like scattered attention and aging inventory.",
           "whatToDo": "Write the freshness cost next to each micro-lot and cut the jars that cannot earn regular roasting attention.",
           "whyItMatters": "A long menu preserves choices for customers while reducing quality. Freshness makes the carrying cost visible."
@@ -2350,13 +1923,6 @@
             "nonprofit",
             "hours"
           ],
-          "planSpec": {
-            "domain": "nonprofit grant calendar with too many possible applications",
-            "audience": "a development director protecting staff time",
-            "stakes": "submitting weak proposals because every grant door feels too risky to close",
-            "format": "dialogue",
-            "requiredBeat": "the director removes the lowest-fit grants from the wall calendar during the staff meeting and assigns saved hours to one high-fit proposal"
-          },
           "scenario": "\"We could still apply to these three,\" someone says, pointing at colored grant cards pinned across the wall calendar. Ada sees strings between dates and staff hours vanishing. During the meeting, she must decide whether to remove the lowest-fit grants and assign the saved hours to one high-fit proposal.",
           "whatToDo": "Remove the lowest-fit cards in the room and assign the saved hours immediately. Make the closed grants fund the best proposal.",
           "whyItMatters": "Every possible grant has a writing cost. Closing weak doors turns vague opportunity into hours the strongest application can use."
@@ -2369,13 +1935,6 @@
             "training",
             "depth"
           ],
-          "planSpec": {
-            "domain": "apprentice chef choosing station rotations",
-            "audience": "a culinary apprentice trying to keep every station path open",
-            "stakes": "remaining mediocre across stations instead of becoming trusted on one critical station",
-            "format": "before_after",
-            "requiredBeat": "after missing prep on two stations, the apprentice gives up the least valuable rotation slot and spends the hour mastering fish butchery"
-          },
           "scenario": "On Saturday afternoon at the restaurant prep table, station cards are clipped above stainless steel before service. Diego first keeps every rotation open and misses prep on two stations. After the chef marks the gaps, he gives up the least valuable rotation slot and spends the hour mastering fish butchery. One closed path makes him useful where the kitchen needs him.",
           "whatToDo": "Drop the least useful rotation and spend the recovered hour on the critical station. Trade breadth for trust where performance matters.",
           "whyItMatters": "Keeping every station open made Diego shallow everywhere. Closing one route creates enough attention to become dependable in one place."
@@ -2394,8 +1953,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key cost is maintenance: testing, bug fixes, and attention. Emotional pain may exist, but it is not the option's ongoing rent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2407,8 +1965,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The director needs to count option upkeep and protect rehearsal quality. Keeping or delaying preserves possibility while spending resources.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2420,8 +1977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is option maintenance, not lack of care. Renewals keep possible paths alive while draining time from current cases.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2433,8 +1989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Freshness, attention, and sales show the carrying cost of each option. Menu impressiveness and old tasting notes can hide current waste.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2446,8 +2001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Closing low-fit grants converts maintenance time into quality. Shortening everything keeps the same option-hoarding problem in another form.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2459,8 +2013,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A door worth keeping needs a job, deadline, or likely use. Discomfort and remote possibility are exactly how weak options stay alive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2472,8 +2025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The apprentice needs to stop maintaining every path. Closing one rotation creates depth where the kitchen actually needs reliable skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2485,8 +2037,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The key is tradeoff: upkeep can damage the main path. Waiting for every possible use to vanish keeps weak doors open too long.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2498,8 +2049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Some doors deserve upkeep when risk and likely value justify the cost. Habit and avoidance are weak reasons to keep paying the option rent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2554,19 +2104,13 @@
       },
       "memorableLines": [
         {
-          "text": "Possibility has a carrying cost.",
-          "location": "breakdown.deepRead",
-          "why": "It names the hidden price of keeping doors open."
+          "text": "Possibility has a carrying cost."
         },
         {
-          "text": "The closure hurt for ten minutes.",
-          "location": "breakdown.fullRead",
-          "why": "It contrasts visible pain with ongoing hidden upkeep."
+          "text": "The closure hurt for ten minutes."
         },
         {
-          "text": "A door worth keeping should have a job, a deadline, or a clear probability of use.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a practical test for whether an option should stay open."
+          "text": "A door worth keeping should have a job, a deadline, or a clear probability of use."
         }
       ]
     },
@@ -2593,13 +2137,6 @@
             "blind",
             "reputation"
           ],
-          "planSpec": {
-            "domain": "violin shop evaluating two bows behind a curtain",
-            "audience": "an intermediate violinist who expects the older French bow to sound warmer",
-            "stakes": "spending savings on pedigree rather than actual tone and control",
-            "format": "predict_reveal",
-            "requiredBeat": "the shop owner wraps both frog labels and has the player rank balance and tone before revealing which bow was famous"
-          },
           "scenario": "On Saturday morning at the violin shop, two bows rest on velvet with their labels wrapped in paper. Anya expects the older French bow to sound warmer and predicts she will know it by the first scale. Before the shop owner reveals anything, she must decide whether to rank balance and tone behind the curtain and let her hand choose before pedigree returns.",
           "whatToDo": "Rank tone, balance, and control while the frog labels are wrapped. Reveal the famous bow only after the playing notes are recorded.",
           "whyItMatters": "The French label can change what warmth sounds like. Wrapping it lets Anya hear the bow before reputation starts conducting."
@@ -2612,13 +2149,6 @@
             "labels",
             "survey"
           ],
-          "planSpec": {
-            "domain": "city bus route pilot with a prestige neighborhood label",
-            "audience": "transit planners reviewing rider comments on two identical route maps",
-            "stakes": "misreading service quality because neighborhood reputation changes expectations",
-            "format": "postmortem",
-            "requiredBeat": "the planner swaps route names on the survey packet and sees complaints follow the label more than the timetable"
-          },
           "scenario": "On Monday afternoon in the transit-planning office, two bus route maps are clipped to a survey board. David reviews comments after riders saw identical timetables under different neighborhood names. In the postmortem, he swaps route names on the next packet and sees complaints follow the label more than the timetable. Service quality had not been judged alone.",
           "whatToDo": "Swap route labels in the test packet and compare comments. Treat neighborhood reputation as a variable, not as rider truth by itself.",
           "whyItMatters": "The label can make the same timetable feel more or less reliable. Swapping names shows what belongs to service and what belongs to expectation."
@@ -2631,13 +2161,6 @@
             "taste",
             "rumor"
           ],
-          "planSpec": {
-            "domain": "bakery sourdough tasting after ingredient rumors",
-            "audience": "a bakery owner testing whether a rumored flour change affected customers",
-            "stakes": "changing a recipe because expectation, not bread quality, drove complaints",
-            "format": "decision_point",
-            "requiredBeat": "the owner serves numbered slices from the same batch after removing the flour supplier sign and watches ratings converge"
-          },
           "scenario": "On Sunday morning at the bakery counter, numbered sourdough slices sit on slate boards beside a covered supplier card. Olivia has heard three complaints since a rumor spread about flour changes, though today's loaves came from the same batch. Before rewriting the recipe, she must decide whether to serve the numbered slices without the supplier sign and watch whether ratings converge.",
           "whatToDo": "Remove the supplier cue and serve numbered slices from the same batch. Record ratings before discussing the rumor.",
           "whyItMatters": "The rumor may be flavoring the bread before anyone bites. A covered card lets the loaf compete without the supplier story."
@@ -2650,13 +2173,6 @@
             "usability",
             "labels"
           ],
-          "planSpec": {
-            "domain": "software beta labeled experimental versus stable",
-            "audience": "a product researcher running usability tests on the same build",
-            "stakes": "overcounting bugs because the experimental label makes users search for problems",
-            "format": "vignette",
-            "requiredBeat": "the researcher changes only the build label on identical tablets and logs how many flaws users report before touching any code"
-          },
           "scenario": "Two identical tablets sit on a testing table, one labeled beta and one labeled stable. Before filing the bug report, Lin has to decide whether to change only the label and run the same build on both. Users report more flaws on the beta tablet before any code changes. The bug log now has a new column: what the user expected to find.",
           "whatToDo": "Run identical builds under swapped labels and log reports separately. Do not rewrite code until expectation effects are measured.",
           "whyItMatters": "The beta label tells users to search for problems. Label swapping separates product flaws from cue-driven attention."
@@ -2669,13 +2185,6 @@
             "critique",
             "reputation"
           ],
-          "planSpec": {
-            "domain": "ceramics class judging glaze quality by artist reputation",
-            "audience": "students critiquing cups before seeing maker names",
-            "stakes": "rewarding reputation rather than glaze execution",
-            "format": "dialogue",
-            "requiredBeat": "the instructor turns maker cards facedown and asks students to score pooling, pinholes, and color before names return"
-          },
           "scenario": "\"Score the glaze before you praise the maker,\" Marie says, turning maker cards facedown on the critique shelf. Small cups show pooling, pinholes, and color shifts. Before the strongest student's name returns, the class must decide whether to fill the score sheet from the cup in front of them or from reputation.",
           "whatToDo": "Turn maker cards facedown and score pooling, pinholes, and color first. Bring names back only after the surface has been judged.",
           "whyItMatters": "Reputation can make flaws look intentional and quiet work look ordinary. Facedown cards give the glaze a chance to be seen first."
@@ -2688,13 +2197,6 @@
             "messages",
             "comprehension"
           ],
-          "planSpec": {
-            "domain": "rural clinic comparing two appointment reminder messages",
-            "audience": "a clinic manager who expects the polished message to feel more caring",
-            "stakes": "choosing a reminder based on polish rather than patient comprehension",
-            "format": "before_after",
-            "requiredBeat": "after removing the hospital logo and designer formatting, the manager watches patients explain which reminder they actually understood"
-          },
           "scenario": "Two reminder cards sit on a clipboard with the logos covered by tape. Lukas first prefers the polished hospital design because it feels more caring. After removing the logo and designer formatting, he asks patients to explain each appointment message aloud. The plainer card wins because patients know where to go.",
           "whatToDo": "Cover logos and formatting before testing comprehension. Choose the message patients can explain, not the one that looks more caring to staff.",
           "whyItMatters": "Polish can create an expectation of care while hiding confusion. The covered-logo test puts patient understanding ahead of design prestige."
@@ -2713,8 +2215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The chef cue can alter expectation and therefore reported experience. Nothing suggests the soup changed chemically or that the diner is lying.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2726,8 +2227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Numbered samples delay the expectation cue so taste can be recorded first. Asking about rumors or adding a health label keeps expectations active.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2739,8 +2239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The identical code points toward expectation-driven attention. Hidden differences and sabotage are unsupported by the scene.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2752,8 +2251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hiding maker names protects the first judgment from pedigree. Announcing fame or a leader's preference adds expectation pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2765,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Swapping labels tests how much expectation is driving comments. Canceling or ignoring all comments overreacts before separating service from label.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2778,8 +2275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Facedown cards delay reputation and force attention to visible glaze features. Explanations and public votes increase the reputation effect.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2791,8 +2287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Patient comprehension under blinded formatting tests the message itself. Staff impressions and awards may reflect polish rather than understanding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2804,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is timing and purpose. Some labels protect safety, while others distort taste or quality judgments before evidence is recorded.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2817,8 +2311,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Removing leader names delays reputation long enough to record the training experience. Speaking first or pre-labeling quality adds more expectation pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2873,19 +2366,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hide the cue before it teaches your senses.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a precise action for expectation effects."
+          "text": "Hide the cue before it teaches your senses."
         },
         {
-          "text": "A prior belief can arrive before the evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It captures how expectations enter before conscious analysis."
+          "text": "A prior belief can arrive before the evidence."
         },
         {
-          "text": "A blind test is a way of giving perception a head start over reputation.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes blind testing as protection, not trivia."
+          "text": "A blind test is a way of giving perception a head start over reputation."
         }
       ]
     },
@@ -2912,13 +2399,6 @@
             "price",
             "comfort"
           ],
-          "planSpec": {
-            "domain": "running-store insole fitting with covered prices",
-            "audience": "a recreational runner choosing between insoles before a half marathon",
-            "stakes": "buying the most expensive pair because the price makes support feel stronger",
-            "format": "decision_point",
-            "requiredBeat": "the fitter covers the price stickers and has the runner jog the hallway before ranking knee comfort"
-          },
           "scenario": "On Wednesday evening at the running store, three insole pairs are lined on a rubber mat with tape over the price stickers. Serena is six weeks from a half marathon and expects the costly pair to protect her knee. Before she reaches for it, she must decide whether to jog the hallway in each pair and rank knee comfort before the fitter reveals any catalog price.",
           "whatToDo": "Jog in each pair with stickers covered and rank comfort first. Bring price back only after the knee has reported a result.",
           "whyItMatters": "The high sticker can make support feel stronger. Covered prices keep expectation from choosing the insole before Serena's knee gets a say."
@@ -2931,13 +2411,6 @@
             "tools",
             "blind"
           ],
-          "planSpec": {
-            "domain": "music producer testing budget and premium plug-ins",
-            "audience": "a producer mixing a vocal track under deadline",
-            "stakes": "hearing quality because the premium plug-in window looks expensive",
-            "format": "predict_reveal",
-            "requiredBeat": "a collaborator renames the plug-ins A and B, bounces both mixes, and asks the producer to choose before seeing the price"
-          },
           "scenario": "Two audio tracks labeled A and B glow on Jasper's mix screen near midnight. A collaborator has renamed the budget and premium plug-ins, bounced both vocal mixes, and hidden the price. Jasper predicts he can hear the expensive window. Before the deadline, he must decide which bounce actually makes the vocal sit better.",
           "whatToDo": "Choose between bounced mixes before seeing plug-in names or prices. Judge vocal fit, noise, and clarity first.",
           "whyItMatters": "The premium interface can sound better before the audio changes. Renaming the tools separates mix quality from price expectancy."
@@ -2950,13 +2423,6 @@
             "coupon",
             "tracking"
           ],
-          "planSpec": {
-            "domain": "pet owner comparing flea treatments after a coupon",
-            "audience": "a dog owner doubting a discounted treatment before the vet visit",
-            "stakes": "misreading ordinary scratching as product failure because discount lowered confidence",
-            "format": "dialogue",
-            "requiredBeat": "the vet covers the receipt total and asks the owner to track actual flea counts on the comb before judging effectiveness"
-          },
           "scenario": "\"Let's hide the receipt for a week,\" the vet says, folding it under the paper exam-table sheet. A flea comb lies beside Graham's anxious dog. The treatment had a coupon, and every scratch now feels like proof it was weaker. Before changing products, Graham must decide whether to track actual flea counts on the comb.",
           "whatToDo": "Cover the receipt and count fleas on the comb each day. Judge the treatment by observed counts before price doubt takes over.",
           "whyItMatters": "The discount lowered Graham's confidence, so ordinary scratching looks like failure. Counts give the result a measure separate from price."
@@ -2969,13 +2435,6 @@
             "discount",
             "practice"
           ],
-          "planSpec": {
-            "domain": "language-learning app offered through an employer discount",
-            "audience": "an employee deciding whether the discounted app is weaker than the full-price competitor",
-            "stakes": "abandoning useful practice because lower price feels like lower learning power",
-            "format": "reflection",
-            "requiredBeat": "the employee hides subscription prices and compares two weeks of completed speaking drills instead of prestige"
-          },
           "scenario": "On Tuesday morning at her desk, a phone shows completed speaking drills beside Cora's benefits enrollment page. Cora sees her employer discount and wonders whether the cheaper app teaches less. She hides subscription prices for two weeks and compares completed speaking drills, correction quality, and remembered phrases. The discounted app has to win or lose by practice.",
           "whatToDo": "Hide subscription prices and track completed speaking drills for two weeks. Compare practice evidence before judging learning power.",
           "whyItMatters": "A lower price can make a tool feel weaker before it is used. Practice logs let Cora judge learning by output, not prestige."
@@ -2988,13 +2447,6 @@
             "product",
             "hold"
           ],
-          "planSpec": {
-            "domain": "barber shop testing house-made hair product",
-            "audience": "a barber deciding whether clients believe the unlabeled jar works",
-            "stakes": "mistaking packaging price cues for hold and shine",
-            "format": "vignette",
-            "requiredBeat": "the barber fills identical tins from premium and house batches, marks them only by color dots, and checks which style holds by closing time"
-          },
           "scenario": "On Saturday afternoon in the barbershop, identical silver tins sit below Matteo's mirror with tiny color dots on the lids. One holds the premium batch, one the house-made product. Before choosing which tin to stock, he has to decide whether to style clients through the afternoon and check hold by closing time without packaging or price cues. The hair has to answer for shine, weight, and shape.",
           "whatToDo": "Use identical tins and color dots, then check hold and shine at closing. Reveal the batch only after the style has lasted or failed.",
           "whyItMatters": "Packaging price cues can make clients expect better hold. The color-dot test lets the product prove itself through the day."
@@ -3007,13 +2459,6 @@
             "chairs",
             "trial"
           ],
-          "planSpec": {
-            "domain": "public library ergonomic chair trial",
-            "audience": "a library director choosing chairs for staff workstations",
-            "stakes": "assuming the expensive chair reduces pain before staff try unlabeled models",
-            "format": "before_after",
-            "requiredBeat": "after a week of covered labels and rotation logs, the director compares reported back comfort to chair codes rather than catalog prices"
-          },
           "scenario": "Chair catalog pages are tucked under a checkout-desk keyboard tray. Helena first assumes the expensive chair will reduce staff back pain. After a week of covered labels and rotation logs, she compares reported comfort to chair codes rather than catalog prices. The priciest model is good, but it is not the only good one.",
           "whatToDo": "Cover labels, rotate chair codes, and compare comfort logs before reading catalog prices. Let staff backs report first.",
           "whyItMatters": "Catalog price can act like a quality signal before anyone sits down. Chair codes separate comfort from price expectancy."
@@ -3032,8 +2477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sticker may shape expected support before the result is tested. The knee can still matter, and the lesson is not that all expensive products are fake.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3045,8 +2489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Renaming and bouncing separates the audible result from the price cue. Reviews and confidence may matter later, but they do not test what he hears.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3058,8 +2501,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Observable counts separate effectiveness from discount-shaped doubt. Price alone should not decide whether the treatment worked.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3071,8 +2513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Learning evidence should lead the judgment. Prestige and discount size are price-related cues that may distort perceived effectiveness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3084,8 +2525,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Identical tins and closing-time checks test performance without packaging price cues. Trust questions and selective clients keep the cue active.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3097,8 +2537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The price signal can shape comfort reports. The repair is a covered-label rotation, not abandoning comparison or reversing the bias.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3110,8 +2549,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is order. Price may carry real information, but hiding it briefly protects the first result check from expectancy effects.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3123,8 +2561,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The discount can change expectation without changing performance. Blind evidence matters, but it does not prove every discounted item is a good deal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3136,8 +2573,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Blind result testing first, then price in the final comparison, keeps both performance and cost in their proper order. Labeled trials let price speak early.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3192,19 +2628,13 @@
       },
       "memorableLines": [
         {
-          "text": "Test the result while the price is quiet.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader the chapter's process in one short sentence."
+          "text": "Test the result while the price is quiet."
         },
         {
-          "text": "The tag can become part of the treatment.",
-          "location": "breakdown.deepRead",
-          "why": "It makes price expectancy vivid without overstating the mechanism."
+          "text": "The tag can become part of the treatment."
         },
         {
-          "text": "The tag belongs in the final comparison, not in the first sensation.",
-          "location": "breakdown.fullRead",
-          "why": "It distinguishes price-blinding from ignoring price altogether."
+          "text": "The tag belongs in the final comparison, not in the first sensation."
         }
       ]
     },
@@ -3231,13 +2661,6 @@
             "honesty",
             "cash"
           ],
-          "planSpec": {
-            "domain": "charity raffle ticket counting after a fundraiser",
-            "audience": "a volunteer treasurer reconciling cash and unsold ticket stubs",
-            "stakes": "rounding in her own favor while still feeling like a good volunteer",
-            "format": "decision_point",
-            "requiredBeat": "before counting cash, the treasurer reads the posted donor pledge aloud and initials the count sheet beside another volunteer"
-          },
           "scenario": "Raffle stubs spread across a folding table after the hall lights come up. Natalie is reconciling cash and unsold tickets, and a small rounding choice could favor her without looking like theft. Before she opens the cash box, she must decide whether to read the posted donor pledge aloud and initial the count sheet beside another volunteer. The pledge is not a speech; it is a speed bump before the arithmetic gets useful.",
           "whatToDo": "Read the pledge before counting and require second initials on the count sheet. Put the donor standard in the room before the numbers get flexible.",
           "whyItMatters": "The tempting lie is small enough to rationalize. An early pledge helps Natalie keep her honest self active before the rounding story begins."
@@ -3250,13 +2673,6 @@
             "honor",
             "flowers"
           ],
-          "planSpec": {
-            "domain": "farmers market honor jar for flower bouquets",
-            "audience": "a stall owner testing a payment setup when she steps away",
-            "stakes": "customers shaving a dollar while still seeing themselves as honest neighbors",
-            "format": "predict_reveal",
-            "requiredBeat": "the owner moves a simple honesty note from behind the jar to eye level before the first customer takes a bouquet"
-          },
           "scenario": "An honor jar sits beside wrapped flower bouquets under a striped awning. Fiona predicts customers will pay fairly, but she has seen a few short payments when the note sits behind the jar. Before the first customer takes a bouquet, she has to decide whether to move the honesty note to eye level and watch whether the bouquet price lands differently. The note is short enough to read while reaching, which is the only moment that matters.",
           "whatToDo": "Move the honesty note where customers see it before touching the flowers. Let the standard meet the hand before the shortcut appears.",
           "whyItMatters": "Shorting the jar can feel minor and neighborly. An eye-level cue makes the honest identity visible before the dollar gets shaved."
@@ -3269,13 +2685,6 @@
             "sign-out",
             "oath"
           ],
-          "planSpec": {
-            "domain": "library self-checkout for rare local-history folders",
-            "audience": "an archivist worried about patrons skipping sign-out steps",
-            "stakes": "folders going missing because the act feels too minor to count as dishonesty",
-            "format": "vignette",
-            "requiredBeat": "the archivist places the handling oath on top of the folder box, so patrons touch it before removing a folder"
-          },
           "scenario": "Cream-colored archive folders sit in a gray box beneath a cotton handling sheet. Before patrons remove folders for self-checkout, Julian has to decide whether to place the handling oath on top of the box so each hand touches the promise first. The sign-out line is still simple. The difference is that the promise now sits under the hand before the folder leaves. Julian is not adding surveillance; he is moving the standard to the exact second when the shortcut begins.",
           "whatToDo": "Place the handling oath on top of the box and keep the sign-out line beside it. Put the reminder in the path of the action.",
           "whyItMatters": "Skipping sign-out feels small when the rule is distant. Touching the oath first makes the standard present before the folder is taken."
@@ -3288,13 +2697,6 @@
             "referee",
             "report"
           ],
-          "planSpec": {
-            "domain": "youth soccer referee assigning final score reports",
-            "audience": "a volunteer referee entering scores after a disputed match",
-            "stakes": "softening a yellow-card report because one team is local and the lie feels small",
-            "format": "dialogue",
-            "requiredBeat": "the referee reads the fairness line at the top of the score form before filling in the card count"
-          },
           "scenario": "\"They're our kids,\" the assistant coach says as rain drips from the fence. Kate has a damp score form clipped after a muddy match, and the local team is one card away from suspension trouble. Before filling the card count, she must decide whether to read the fairness line at the top of the form and enter what happened. The sentence at the top of the form gives her honest self the first word.",
           "whatToDo": "Read the fairness line before writing the card count. Let the standard arrive before local loyalty softens the report.",
           "whyItMatters": "The softened report would feel small and kind. The cue reminds Kate that accuracy is part of the role before the excuse can sound generous."
@@ -3307,13 +2709,6 @@
             "minutes",
             "agreement"
           ],
-          "planSpec": {
-            "domain": "makerspace tool-time log",
-            "audience": "a member logging laser-cutter minutes after a late session",
-            "stakes": "underreporting use because nobody was watching and the extra minutes feel harmless",
-            "format": "postmortem",
-            "requiredBeat": "after discrepancies appear, the shop moves the member agreement above the time keypad and asks members to tap it before entering minutes"
-          },
           "scenario": "On Friday night at the makerspace, a laser-cutter keypad glows beside a stack of acrylic offcuts after a late session. Evan used extra minutes and almost rounds down. After discrepancies appear, the shop moves the member agreement above the time keypad and asks members to tap it before entering minutes. The log now starts with the promise, not the excuse. Evan now meets the shared-use rule before the flexible number field invites a story.",
           "whatToDo": "Place the agreement above the keypad and require a tap before minute entry. Put the shared-use standard before the number.",
           "whyItMatters": "Extra minutes feel harmless when nobody is watching. The agreement cue helps members report as the kind of people who keep the shop fair."
@@ -3326,13 +2721,6 @@
             "credits",
             "attestation"
           ],
-          "planSpec": {
-            "domain": "medical conference continuing-education attendance sheet",
-            "audience": "a conference organizer preventing inflated attendance claims",
-            "stakes": "attendees claiming credit for sessions they left early while preserving a professional self-image",
-            "format": "before_after",
-            "requiredBeat": "after moving the professional attestation above the session checklist, claimed credits drop without extra policing"
-          },
           "scenario": "Sylvia places a badge lanyard across a continuing-education checklist at the registration desk. She first finds inflated credits from attendees who left sessions early. After moving the professional attestation above the session checklist, claimed credits drop without extra policing. The same people now meet the standard before checking boxes, not after the convenient number is already chosen.",
           "whatToDo": "Move the attestation above the checklist and require it before claimed credits. Put professional identity before the boxes.",
           "whyItMatters": "Inflating credits can feel like paperwork, not dishonesty. The attestation makes the honest self salient before the check marks begin."
@@ -3351,8 +2739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is rationalized small cheating that preserves self-image. The scene does not require fixed bad character or higher punishment.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3364,8 +2751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The early visible cue interrupts rationalization before the act. Hiding price or delaying checks gives the excuse more room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3377,8 +2763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The oath belongs before the choice, in the path of action. Scolding afterward is late, and a smaller sheet may make the rule easier to dismiss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3390,8 +2775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fairness line arrives at the decision point. Later reminders and vague promises do not interrupt the current rationalization.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3403,8 +2787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The agreement cue appears before the number can be rounded down. It activates identity and fairness, not fear of machines or pricing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3416,8 +2799,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The attestation should appear before the claims are made. Afterward or weeks earlier is weaker because the rationalization happens at the checklist.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3429,8 +2811,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Moral reminders help when self-concept matters. They are not a full substitute for enforcement, and the point is not a blanket rejection of monitoring.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3442,8 +2823,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cue is late. It should appear before the count, where rounding and rationalization begin, not after the choices are complete.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3455,8 +2835,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The core move is early contextual support for honest self-concept. Total surveillance and no reminders both miss the middle ground where small cheating grows.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3511,19 +2890,13 @@
       },
       "memorableLines": [
         {
-          "text": "Put the standard at the front of the act.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the timing of honesty cues clear and actionable."
+          "text": "Put the standard at the front of the act."
         },
         {
-          "text": "The cue did not turn bad people good.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents a simplistic character reading of the mechanism."
+          "text": "The cue did not turn bad people good."
         },
         {
-          "text": "An honesty cue that arrives after the excuse is late to the meeting.",
-          "location": "breakdown.fullRead",
-          "why": "It gives timing a memorable, concrete ending."
+          "text": "An honesty cue that arrives after the excuse is late to the meeting."
         }
       ]
     },
@@ -3550,13 +2923,6 @@
             "parking",
             "value"
           ],
-          "planSpec": {
-            "domain": "hospital parking validation stickers",
-            "audience": "a clinic receptionist deciding whether to hand extras to friends",
-            "stakes": "misusing real value because stickers feel less like money than cash from the drawer",
-            "format": "decision_point",
-            "requiredBeat": "the receptionist writes the dollar value beside the validation roll before deciding whether an extra sticker is a harmless favor"
-          },
           "scenario": "On Monday morning at the hospital reception desk, a roll of parking validation stickers sits beside Gemma's clinic appointment ledger. A friend texts from the garage asking for an extra sticker. Before Gemma peels one from the roll, she must decide whether to write the six-dollar value beside it and ask whether the favor still feels different from taking cash from the drawer.",
           "whatToDo": "Write the dollar value beside the validation roll before handing out any extra sticker. Make the hidden value visible at the desk.",
           "whyItMatters": "The sticker feels less moral than cash because it is indirect. The written value makes the real loss visible before the favor is rationalized."
@@ -3569,13 +2935,6 @@
             "credits",
             "access"
           ],
-          "planSpec": {
-            "domain": "ski resort lift-pass barcode credits",
-            "audience": "a seasonal employee tempted to transfer unused guest credits",
-            "stakes": "giving away access because barcode credits feel like leftovers, not inventory",
-            "format": "dialogue",
-            "requiredBeat": "a supervisor scans one credit and shows the full ticket price before the employee calls it unused"
-          },
           "scenario": "On Saturday afternoon at the ski-rental counter, \"It's just an unused credit,\" Andreas says near the rack of rental skis. The lift-pass scanner blinks as his supervisor scans one barcode credit and shows the full ticket price. Before transferring access to a friend, Andreas has to decide whether the credit is leftover inventory or a ticket with its cash value hidden.",
           "whatToDo": "Scan the credit and show the ticket price before any transfer. Treat barcode access as inventory with value, not as a spare digital favor.",
           "whyItMatters": "The barcode makes access feel weightless. The scanner restores the ticket price and closes the moral distance."
@@ -3588,13 +2947,6 @@
             "voucher",
             "policy"
           ],
-          "planSpec": {
-            "domain": "corporate travel meal vouchers at a training hotel",
-            "audience": "a trainee deciding whether to trade unused vouchers for cash with another guest",
-            "stakes": "bending policy because vouchers feel like paper perks rather than reimbursed company money",
-            "format": "vignette",
-            "requiredBeat": "the trainee totals the voucher stack at menu prices and writes that amount on the envelope before deciding"
-          },
           "scenario": "At Thursday breakfast during corporate training, meal vouchers fan beside a hotel menu on Oliver's table. Another guest offers cash for the unused stack. Before handing them over, Oliver has to decide whether to total the vouchers at menu prices and write that amount on the envelope beside the training policy. The paper perk now looks like company value, not loose hotel paper.",
           "whatToDo": "Total the vouchers at menu prices and write the amount on the envelope before deciding. Tie the paper back to the policy it represents.",
           "whyItMatters": "Vouchers feel softer than reimbursed money. The envelope total makes the policy breach harder to dress up as harmless trading."
@@ -3607,13 +2959,6 @@
             "passes",
             "front-desk"
           ],
-          "planSpec": {
-            "domain": "aquarium membership guest passes",
-            "audience": "a front-desk manager tracking staff use of complimentary guest passes",
-            "stakes": "staff treating passes as no-cost favors because no cash changes hands",
-            "format": "postmortem",
-            "requiredBeat": "the manager converts each missing pass into the admission price on the weekly sheet and watches the pattern become harder to excuse"
-          },
           "scenario": "On Friday afternoon at the aquarium ticket window after the field-trip rush, blue guest passes are stacked under plexiglass beside a pen on a brass chain. Mabel reviews a week of missing complimentary passes and hears staff call them friendly favors for cousins, dentists, and a neighbor's birthday. In the postmortem, she converts each missing pass into the twenty-six-dollar admission price on the weekly sheet, then prints a four-week rolling total in red ink and clips it to the lanyard hook above the register. The pattern becomes harder to excuse once each favor carries a number the next shift can see.",
           "whatToDo": "Add the admission price beside every missing pass on the weekly sheet. Make complimentary access show its value.",
           "whyItMatters": "No cash changed hands, so the pass felt free to give away. Converting it to admission price restores moral weight."
@@ -3626,13 +2971,6 @@
             "grant",
             "codes"
           ],
-          "planSpec": {
-            "domain": "university lab using reagent allotment codes",
-            "audience": "a graduate student ordering supplies under a shared grant code",
-            "stakes": "adding personal side-project reagents because allotment codes feel abstract",
-            "format": "reflection",
-            "requiredBeat": "the student converts the code balance into grant dollars next to each reagent before submitting the order"
-          },
           "scenario": "On Tuesday evening at half past six in the lab, a reagent order screen glows beside Livia's handwritten grant-code card and a stack of cardboard reagent boxes. The shared allotment code makes a personal side-project reagent feel easy to add to the cart because the portal shows only an abstract balance. Before submitting, Livia converts each reagent into actual grant dollars in the margin of the printed pick list, writes the project owner's initials beside it, and routes the total through the principal investigator's inbox for sign-off. The extra line no longer looks abstract. It looks like someone else's research budget standing next to her name.",
           "whatToDo": "Write grant dollars beside each reagent before submitting the code order. Make the allotment's purpose visible line by line.",
           "whyItMatters": "The code hides the money and the owner of the value. Dollar translation brings the shared grant back into the decision."
@@ -3645,13 +2983,6 @@
             "tokens",
             "volunteers"
           ],
-          "planSpec": {
-            "domain": "festival drink tokens handled by volunteers",
-            "audience": "a volunteer captain preventing casual token skimming",
-            "stakes": "tokens disappearing because they look like plastic chips rather than revenue",
-            "format": "before_after",
-            "requiredBeat": "after the captain posts the cash equivalent above the token tray, volunteers count tokens with the same care as bills"
-          },
           "scenario": "On Saturday night at the festival booth near the river bandshell, colored drink tokens sit in a shallow tray under a string of bulb lights and a hand-painted price board. Rose first hears volunteers joke about missing plastic chips after a busy shift while the band tunes onstage. After she clips a small placard above the token tray reading two dollars per chip and adds a four-dollar mark beside the bigger reds, the shift count changes by Sunday morning. Volunteers stack and count tokens with the same care they use for bills, and a closing tally now shows up beside the cashbox photo every night.",
           "whatToDo": "Post the cash equivalent above the token tray and count tokens by value at each shift change. Make the plastic chips read as revenue.",
           "whyItMatters": "Tokens look playful, so skimming feels less serious. Cash equivalence restores the value before the count begins."
@@ -3670,8 +3001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sticker represents value but feels less like money. That distance makes misuse easier to rationalize; it does not mean the sticker is valueless.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3683,8 +3013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Showing the ticket price translates the credit back into value. Deleting or casually giving credits away both avoid the real moral-distance issue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3696,8 +3025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The menu-price total restores the value behind the voucher. Trustworthiness and breakfast size do not address the abstraction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3709,8 +3037,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Admission price makes the pass's value concrete. Color and friendliness do not make the noncash value morally visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3722,8 +3049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The abstraction hides money and purpose, lowering moral friction. The problem is not software skill or shared grants in general.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3735,8 +3061,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cash equivalence turns the chips back into revenue at the decision point. Brighter colors and no count leave the abstraction intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3748,8 +3073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Noncash systems can help operations, but abstraction can lower moral friction. The answer is translation, not pretending value disappears.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3761,8 +3085,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Conversion removes the moral distance. Expiration and other people's behavior can become excuses rather than value translation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -3774,8 +3097,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful fix preserves the efficient system while making value visible where misuse begins. Cash-only and total trust are both too blunt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3830,19 +3152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Put the dollars back beside the disguise.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the token-effect repair into a concrete visual."
+          "text": "Put the dollars back beside the disguise."
         },
         {
-          "text": "Distance from cash makes the act easier to explain away.",
-          "location": "breakdown.deepRead",
-          "why": "It states the chapter's specific moral-distance mechanism plainly."
+          "text": "Distance from cash makes the act easier to explain away."
         },
         {
-          "text": "A disguised dollar does not need shame.",
-          "location": "breakdown.fullRead",
-          "why": "It ends with a practical, non-moralizing correction."
+          "text": "A disguised dollar does not need shame."
         }
       ]
     },
@@ -3869,13 +3185,6 @@
             "privacy",
             "recommendations"
           ],
-          "planSpec": {
-            "domain": "bookstore staff choosing front-window picks aloud",
-            "audience": "a store manager trying to learn what books staff genuinely recommend",
-            "stakes": "filling the window with impressive picks rather than books staff can hand-sell well",
-            "format": "before_after",
-            "requiredBeat": "after switching from aloud nominations to sealed shelf cards, the manager sees more varied picks and stronger sales notes"
-          },
           "scenario": "Sealed shelf cards are stacked beside an empty bookstore window display. Clara first asked staff to nominate picks aloud, and the same impressive hardcovers kept winning. After switching to sealed cards, she sees more varied picks and stronger sales notes. The window starts holding books staff can actually hand-sell.",
           "whatToDo": "Collect sealed shelf cards before discussion. Use the private recommendations as the starting signal, then talk through placement.",
           "whyItMatters": "Aloud nominations reward taste performance. Sealed cards recover what staff genuinely recommend to customers."
@@ -3888,13 +3197,6 @@
             "meals",
             "private"
           ],
-          "planSpec": {
-            "domain": "firehouse meal planning board",
-            "audience": "a station captain trying to choose meals firefighters will actually eat",
-            "stakes": "public bravado pushing spicy or heavy meals that half the crew avoids",
-            "format": "decision_point",
-            "requiredBeat": "the captain replaces shouted meal votes with folded slips before the first senior firefighter can set the tone"
-          },
           "scenario": "On Sunday evening at the firehouse duty board, folded meal slips sit in a stainless pan beside the dinner roster. Mike knows the first senior firefighter can set the tone with one shouted vote for brutal chili. Before meal planning starts, he must decide whether to collect folded slips and learn what the crew will actually eat before bravado takes over.",
           "whatToDo": "Collect folded slips before any shouted vote. Let private appetite set the first count, then discuss constraints.",
           "whyItMatters": "The first public vote can turn dinner into a toughness signal. Folded slips separate appetite from performance."
@@ -3907,13 +3209,6 @@
             "ranking",
             "performance"
           ],
-          "planSpec": {
-            "domain": "dance studio recital music selection",
-            "audience": "teen dancers choosing songs while peers are watching",
-            "stakes": "selecting trendy music that weakens performance because no one wants to seem uncool",
-            "format": "dialogue",
-            "requiredBeat": "the instructor has dancers rank songs privately, then reveals that the strongest practice scores match the private favorite"
-          },
           "scenario": "\"Nobody say the cool one yet,\" Mara says as song title slips scatter on the sprung studio floor. The dancers laugh, already watching each other. Before jokes set the order, they must decide whether to rank songs privately. Later, Mara reveals that the strongest practice scores match the private favorite, not the loudest trend.",
           "whatToDo": "Have dancers rank songs privately before discussion. Compare rankings with practice scores before choosing the recital track.",
           "whyItMatters": "Peer visibility can make the trendy choice feel safer than the best performance choice. Private rankings protect the first preference."
@@ -3926,13 +3221,6 @@
             "retrospective",
             "anonymous"
           ],
-          "planSpec": {
-            "domain": "software incident retrospective choosing root causes",
-            "audience": "an engineering manager who wants honest prioritization after an outage",
-            "stakes": "engineers naming socially safe causes once senior staff speak first",
-            "format": "postmortem",
-            "requiredBeat": "the manager collects anonymous root-cause cards before anyone talks, then compares them with the spoken discussion"
-          },
           "scenario": "Anonymous root-cause cards sit beside a red incident timeline on the monitor. Henrik has watched retrospectives bend toward the first senior engineer's theory. In the postmortem, he collects cards before anyone talks, then compares them with the spoken discussion. The room still debates, but the first signal is no longer social safety.",
           "whatToDo": "Collect anonymous cards before discussion and compare them with the spoken themes. Let private diagnosis enter before hierarchy speaks.",
           "whyItMatters": "Once senior staff speak, engineers may name safe causes. Anonymous first cards protect the preference signal from sequence pressure."
@@ -3945,13 +3233,6 @@
             "preference",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "craft brewery tasting flight order forms",
-            "audience": "a taproom owner trying to learn real customer preference among experimental beers",
-            "stakes": "customers choosing the bold-sounding beer to look adventurous when ordering aloud",
-            "format": "predict_reveal",
-            "requiredBeat": "the owner lets half the room order by private numbered cards and compares reorder rates with the aloud-order group"
-          },
           "scenario": "On Friday night at the brewery bar, numbered tasting cards line the wood beside small flight glasses. Tomas predicts customers ordering aloud will choose the bold-sounding experimental beer. Before the tasting starts, he has to decide whether half the room should order by private cards and half aloud, then compare reorder rates. The private-card group points to the beer people actually want a second time.",
           "whatToDo": "Split the room between private numbered cards and aloud orders, then compare reorder rates. Trust the second glass more than the public first signal.",
           "whyItMatters": "Aloud ordering can become image management. Reorders after private cards reveal preference with less stage pressure."
@@ -3964,13 +3245,6 @@
             "repairs",
             "ballots"
           ],
-          "planSpec": {
-            "domain": "parent council selecting playground repairs",
-            "audience": "a school principal trying to learn what repairs families most value",
-            "stakes": "visible hands favoring prestigious additions while basic safety repairs lose",
-            "format": "vignette",
-            "requiredBeat": "the principal switches from show-of-hands to private ranked ballots and the cracked rubber surface rises above the new mural"
-          },
           "scenario": "On Tuesday evening at the school gym, ranked ballots sit under a photo of a cracked playground surface. Violet had watched show-of-hands favor a new mural while basic repairs stayed quiet. Before the parent vote, she has to decide whether to switch to private ranked ballots. After the switch, the cracked rubber surface rises above the mural, and the public prestige choice loses to the repair families most value.",
           "whatToDo": "Use private ranked ballots before open discussion. Let families mark safety and repair priorities without performing taste in the room.",
           "whyItMatters": "Visible hands can favor prestigious additions. Private rankings let basic needs surface before the audience edits the vote."
@@ -3989,8 +3263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Public ordering adds audience and sequence pressure. The scene does not imply the options were confusing or that private preference is meaningless.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4002,8 +3275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sealed cards capture first preferences before hierarchy or applause shapes them. Senior nominations and applause add public pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4015,8 +3287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Folded slips protect appetite from bravado and sequence. Making the dish spicier or canceling planning misses the preference-performance problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4028,8 +3299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Private rankings plus practice scores separate performance fit from peer image. Loudness and recognition are public signals, not better evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4041,8 +3311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Anonymous first cards protect diagnosis from sequence and hierarchy. Banning senior staff and longer meetings are heavier than the problem requires.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4054,8 +3323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gap suggests public ordering carried image pressure. Customers need not be dishonest; the setup mixed preference with performance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4067,8 +3335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Private ranked ballots reduce performance pressure and let safety needs surface. Removing input or requiring public defense can worsen the signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4080,8 +3347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A privacy fix changes the conditions so preferences surface with less social pressure. It does not force a result, and public visibility can distort as well as inform.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4093,8 +3359,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Private first choices preserve the initial signal, while later discussion can add information. Discussion first makes original preference hard to recover.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -4149,19 +3414,13 @@
       },
       "memorableLines": [
         {
-          "text": "Collect the private signal first.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter's practical design move in five words."
+          "text": "Collect the private signal first."
         },
         {
-          "text": "A choice made in public is not the same object as a choice made alone.",
-          "location": "breakdown.fullRead",
-          "why": "It names the public-choice distortion without reducing it to conformity."
+          "text": "A choice made in public is not the same object as a choice made alone."
         },
         {
-          "text": "Do not demand bravery when a better form would do.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book with the practical promise of low-cost design."
+          "text": "Do not demand bravery when a better form would do."
         }
       ]
     }

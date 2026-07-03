@@ -41,13 +41,6 @@
             "checkoff",
             "recall"
           ],
-          "planSpec": {
-            "domain": "Laura, a pharmacy resident preparing for a sterile-compounding checkoff",
-            "audience": "medical trainees who mistake repeated viewing for readiness",
-            "stakes": "one missed sequence can contaminate a practice batch and delay sign-off",
-            "format": "decision_point",
-            "requiredBeat": "the resident covers the laminated protocol and rebuilds the order of gowning steps aloud before touching the sealed tray"
-          },
           "scenario": "A blue sterile wrapper crackles under Laura's gloved fingers in the compounding lab at 7:20 a.m. The laminated gowning checklist sits face down beside a sealed tray, and the observer's clipboard is already open. Laura knows the steps looked easy five minutes ago. Before she breaks the tray seal, she must choose: flip the card for one more calming look or rebuild the order aloud from memory.",
           "whatToDo": "Keep the card face down. Say each gowning step aloud, stop at the first blank, check only that gap, and then restart the full sequence before touching the tray.",
           "whyItMatters": "The visible checklist can create recognition without readiness. Rebuilding the sequence before the tray opens shows which steps Laura owns and which steps were only familiar."
@@ -60,13 +53,6 @@
             "mechanic",
             "simulator"
           ],
-          "planSpec": {
-            "domain": "Lucas, a regional aircraft mechanic moving from piston engines to turboprops",
-            "audience": "technical learners in high-risk systems",
-            "stakes": "a simulator alarm will expose whether the fuel-system tolerances are retrievable",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the right corrective action before the instructor triggers a low-pressure warning on the simulator panel"
-          },
           "scenario": "At 9:05 p.m., Lucas sits in the regional maintenance simulator while hangar lights reflect in a dark windshield and the fuel-pressure gauge glows green. His tolerance card is folded in his shirt pocket, not in his hand. The instructor rests one finger near the warning switch and asks for the first corrective action if pressure drops. Lucas is about to answer from memory before the tone sounds and the panel turns red.",
           "whatToDo": "Make the prediction before the warning. Name the pressure threshold and first action from memory, then let the simulator reveal whether the knowledge holds without the card.",
           "whyItMatters": "A tolerance card in the pocket cannot be mistaken for command. The prediction forces Lucas to learn whether the procedure is retrievable before the alarm supplies the cue."
@@ -79,13 +65,6 @@
             "mootcourt",
             "transfer"
           ],
-          "planSpec": {
-            "domain": "Camille, a law student reviewing hearsay exceptions for moot court",
-            "audience": "students who equate highlighted casebooks with command",
-            "stakes": "a judge can ask a changed question that the margin notes will not answer",
-            "format": "dialogue",
-            "requiredBeat": "her partner asks for the exception before she can open the casebook, forcing her to name and apply it from memory"
-          },
           "scenario": "\"No notes,\" her partner says, sliding Camille's case packet across the library table at 9:15 p.m. The hearsay tabs are bright enough to be seen from the next carrel, and the mock bench timer is already running. \"A witness repeats a text from her supervisor. Which exception gets you in?\" Camille's hand pauses above the sticky tabs. She faces a choice between grabbing the comfort cue and answering the changed question cold.",
           "whatToDo": "Leave the packet closed. Name the exception, apply it to the supervisor text, then open the source only to check the missing condition and repair the answer.",
           "whyItMatters": "Highlighted tabs prove Camille can find the rule. Moot court asks whether she can recognize the situation and use the rule when the judge changes the shape of the prompt."
@@ -98,13 +77,6 @@
             "patrol",
             "search"
           ],
-          "planSpec": {
-            "domain": "Henrik, a ski-patrol trainee learning avalanche beacon search",
-            "audience": "outdoor trainees who drill one visible pattern",
-            "stakes": "a real search will not arrive with flags laid out in practice order",
-            "format": "scene",
-            "requiredBeat": "he leaves the beacon map behind and locates a buried transmitter after a delayed, mixed search route"
-          },
           "scenario": "At 6:40 a.m., Henrik stares at the untouched snowfield while wind crust scratches under his skis. The beacon map stays zipped in his jacket, and the probe line waits beside the rescue sled. Yesterday he followed flags in a neat row. Today the buried transmitter is delayed and the first signal comes from the wrong side of the practice bowl. Before he steps off, Henrik must choose a search route without the visible pattern.",
           "whatToDo": "Keep the map put away, start from the first real signal, and adjust the route as the beacon strength changes instead of replaying yesterday's flagged pattern.",
           "whyItMatters": "A clean drill can teach the route more than the skill. Mixed, delayed searching tests whether Henrik can recover the method when the snowfield stops matching practice."
@@ -117,13 +89,6 @@
             "violin",
             "memory"
           ],
-          "planSpec": {
-            "domain": "Sofia, a violin student preparing a jury piece",
-            "audience": "performers who trust smooth starts from measure one",
-            "stakes": "a jury professor may restart her from the bridge where her memory is thin",
-            "format": "before_after",
-            "requiredBeat": "show the change from fluent whole-piece run-throughs to random measure starts that reveal weak transitions"
-          },
           "scenario": "In practice room 214 at 8:10 p.m., Sofia realizes the bridge was not learned. Before, she played the jury piece from measure one, watched the metronome light, and felt the first page carry her forward. After, she drops measure numbers into a bowl beside the music stand. When she draws 47, her left hand hesitates in the quiet. The smooth opening had been lending her confidence the bridge never earned.",
           "whatToDo": "Draw random measure numbers, start from each one without the run-up, and mark any transition that fails when the familiar opening cannot pull it forward.",
           "whyItMatters": "A piece that works only from the beginning is partly riding momentum. Random starts reveal whether the music is available where pressure may actually begin."
@@ -136,13 +101,6 @@
             "incident",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Anders, a cybersecurity analyst learning incident runbooks",
-            "audience": "professionals whose notebooks feel reassuring during drills",
-            "stakes": "a live breach will force recall under time pressure",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem compares a smooth runbook reread with the moment he had to reconstruct the containment sequence after the dashboard froze"
-          },
           "scenario": "What happens when the runbook tab crashes first? Anders answers that question on the whiteboard after a pager alert left the dashboard frozen and the containment sequence half remembered. The drill logs show beautiful rereads every Friday. The incident timeline shows a seven-minute gap before he remembered which service token to revoke. The postmortem now has to name the difference between reading the runbook and owning the sequence.",
           "whatToDo": "Turn the postmortem into a recall drill. Anders should write the containment sequence from memory, compare it with the runbook, and rehearse the missing step after a delay.",
           "whyItMatters": "A runbook that feels reassuring during review can vanish when the browser fails. Recall practice makes the sequence portable when the tool is not."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Closed-binder explanation tests whether the sequence can be produced without visible support. More highlighting and a confidence rating keep the answer too close to judge durable recall.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The smooth drill may have trained the fixed route more than the skill. Practicing longer on the same pattern would likely deepen the cue dependence rather than expose it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Blank-sheet explanation removes the page cues and asks memory to rebuild the pathway. Cleaner copying and stronger page-location memory can increase recognition without proving use.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mixing objections tests selection and transfer after the visible order disappears. Speed on the same script can flatter fluency, and headings alone do not prove live use.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The failed bridge shows that momentum from the opening was supplying support. Removing the bridge or avoiding surprise starts protects comfort instead of testing availability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The value comes from exposing repair targets and making memory try again. Discomfort alone proves neither failure nor quality; the mechanism is recall plus correction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Closed-source recall plus delayed repair tests whether the runbook can travel without the tool. Attendance and friendlier prose may help access, but they still leave recall untested.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The roughness matters because memory has to produce before recognition can take over. Anxiety is not the mechanism, and no single recall round guarantees permanent memory.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Plan B asks knowledge to work under conditions closer to future use. Plan A may feel complete because everything is visible, but visibility is the very support being tested.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "The real test arrives later, when the page is gone.",
-          "location": "breakdown.fastRead",
-          "why": "It names the moment when familiar review stops helping and actual recall has to work."
+          "text": "The real test arrives later, when the page is gone."
         },
         {
-          "text": "Memory has not had to carry the load.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the fluency trap concrete without adding jargon."
+          "text": "Memory has not had to carry the load."
         },
         {
-          "text": "Durable recall is less flattering.",
-          "location": "breakdown.fastRead",
-          "why": "It contrasts honest learning evidence with smooth review."
+          "text": "Durable recall is less flattering."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "retrieval",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "Megan, an oncology nurse learning a new infusion reaction protocol",
-            "audience": "clinical staff who reread policy but freeze on sequence",
-            "stakes": "a wrong first move can delay epinephrine and escalation",
-            "format": "scene",
-            "requiredBeat": "the charge nurse takes the laminated protocol away and asks Megan to call out the first three actions before a mock patient deteriorates"
-          },
           "scenario": "\"Tell me before you look,\" the charge nurse says in simulation bay 4, lifting the laminated protocol from Megan's tray. The mock monitor is quiet, a saline bag hangs from the pole, and the instructor's thumb is near the deterioration button. Megan can picture the page but not the third action. Before the monitor starts chirping, she must choose between reaching for the covered protocol or calling out what memory can produce.",
           "whatToDo": "Call out the first three actions from memory, mark the missing one after feedback, and repeat the sequence before the mock patient deteriorates.",
           "whyItMatters": "The covered protocol turns uncertainty into useful evidence. Megan learns the exact step that needs repair while the stakes are still low enough to practice again."
@@ -385,13 +321,6 @@
             "shutdown",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "James, a bakery night manager memorizing oven shutdown steps",
-            "audience": "workers learning safety sequences after long shifts",
-            "stakes": "one skipped valve leaves the proofing line down by morning",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the shutdown order from memory, checks against the card, repairs the missed valve, then runs the sequence again"
-          },
           "scenario": "At 1:17 a.m., James wipes flour from the gas-valve label while the oven key hangs from a hook and the laminated shutdown card stays face down. He predicts the order: fan, gas, steam, proofing line. The reveal is immediate. The card puts the steam valve second, not third. James must choose now: treat the miss as proof he is too tired or use the card to repair the order and run it again.",
           "whatToDo": "Use the card only after the prediction. Circle the steam-valve miss, say the corrected order, and run the whole shutdown once more without looking.",
           "whyItMatters": "The prediction makes the gap visible. Checking after the attempt repairs a real weakness instead of letting another reread feel productive at 1:17 a.m."
@@ -404,13 +333,6 @@
             "tour",
             "oral"
           ],
-          "planSpec": {
-            "domain": "Claire, a museum docent preparing a new exhibit tour",
-            "audience": "public speakers who know the notes only while reading",
-            "stakes": "a school group will ask questions out of order",
-            "format": "vignette",
-            "requiredBeat": "she walks the gallery without the binder and retrieves the three turning points at each display before checking the script"
-          },
           "scenario": "The gallery is empty except for the hum behind the glass cases. Claire carries a closed binder against her hip, stops at the bronze label, and says the first turning point into her audio-guide earpiece. A school group will not ask in script order tomorrow. At the third case, the second turning point vanishes. Her finger tightens on the binder clip, and she must choose how to handle the blank.",
           "whatToDo": "Keep walking before opening the binder. Say what returns, check the missing transition at the end of the row, then revisit that case after another display.",
           "whyItMatters": "The empty gallery gives Claire a low-stakes retrieval round. The blank shows which part of the tour needs repair before children ask from a different angle."
@@ -423,13 +345,6 @@
             "dosage",
             "repair"
           ],
-          "planSpec": {
-            "domain": "Luca, a paramedic student reviewing pediatric dosage calculations",
-            "audience": "certification candidates who fear missed recall",
-            "stakes": "the miss has to become a repair target before a simulated call",
-            "format": "decision_point",
-            "requiredBeat": "after missing a weight conversion, he marks the exact step, gets feedback, and repeats a new calculation without the chart"
-          },
           "scenario": "A plastic infant mannequin lies under the exam lamp while Luca holds the weight tape in one hand and a calculator in the other. The feedback sheet shows the error: he converted the kilos correctly, then used the wrong range on the chart. The next simulated call starts in four minutes. Luca's pen rests over the sheet. He must choose between hiding the mistake under another full review or marking the exact conversion step and trying a fresh calculation.",
           "whatToDo": "Mark the conversion step, ask for quick feedback, cover the chart, and calculate a new weight from scratch before the simulation begins.",
           "whyItMatters": "A missed calculation becomes useful only when it points to the failed step. Full review can blur the error; targeted repair gives Luca a second retrieval with cleaner information."
@@ -442,13 +357,6 @@
             "outage",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Marta, a product-support lead learning outage scripts",
-            "audience": "teams that rely on searchable docs during incidents",
-            "stakes": "customers are waiting while the knowledge base is unavailable",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem shows how a five-minute daily blank-page recall of escalation steps would have exposed the missing handoff before the outage"
-          },
           "scenario": "In the Denver support room at 10:42 a.m., Marta sees the gap on a silent status page. During the outage, the knowledge base stalled, customers filled the chat queue, and the pager transcript shows six minutes lost before anyone named the handoff to infrastructure. In the postmortem, the escalation tree sits printed beside the timeline. Marta writes one sentence at the top: five minutes of blank-page recall would have found this before the page went silent.",
           "whatToDo": "Add a daily blank-page recall of the escalation steps, then compare it with the tree and rehearse any missed handoff later in the shift.",
           "whyItMatters": "Searchable docs feel safe until search is gone. A short recall routine exposes missing handoffs while the team still has time to repair them."
@@ -461,13 +369,6 @@
             "flashcards",
             "selfquiz"
           ],
-          "planSpec": {
-            "domain": "Kiran, a language learner using flashcards for Czech cases",
-            "audience": "self-directed learners tempted to flip cards too fast",
-            "stakes": "recognizing the answer side keeps hiding weak production",
-            "format": "before_after",
-            "requiredBeat": "you watch Kiran stop flipping immediately, speak the declension aloud, check it, and put the missed card back into a sooner box"
-          },
           "scenario": "On the 6:18 p.m. tram platform in Brno, you can hear the pause before Kiran finds the noun ending. He has an index-card box open on the bench, one pencil tick beside the Czech case ending he keeps recognizing too late. Before, he flipped fast and felt progress when the answer side looked familiar. After, he says the declension aloud first, checks it, and moves the missed card to a sooner slot. The pause becomes the practice.",
           "whatToDo": "Say the ending before flipping, check it, mark the miss with one pencil tick, and move that card forward so the repaired answer gets retrieved again sooner.",
           "whyItMatters": "Recognition after the flip can hide weak production. Speaking first makes memory do the work, and the sooner box turns the miss into the next useful rep."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The quiz works because recall plus feedback produces repair targets and a second retrieval. Fear is not the mechanism, and a score without correction leaves gaps vague.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Feedback, full-sequence recall, and delay turn the miss into repair. Rereading alone can restore fluency without recall, while stopping the drill wastes the information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Closed-binder retrieval in the gallery matches the future demand: produce points without visible support and repair blanks. Shorter bullets and rereading keep support nearby.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The exact miss should guide a corrected retrieval. Silent repetition may feel smoother without testing production, and skipping the valve preserves the weakest step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is not cards themselves but flipping before production. Longer same-order sessions can deepen recognition while still avoiding the hard recall move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Low stakes and repair shift the quiz away from judgment and toward practice. Promotion pressure turns it into a scoreboard, and documents alone do not exercise recall.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Quick targeted feedback keeps the miss specific and makes the next retrieval cleaner. Waiting too long or saving the error for grading turns useful information into discouragement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Blank-page recall tests whether the handoff sequence is portable when search fails. Faster tools and signatures improve access or compliance, not memory production.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A miss can be valuable when it points to repair and another retrieval. Rereading hides the gap again, while unchecked quizzes risk repeating errors without correction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "That second run is the learning event.",
-          "location": "breakdown.deepRead",
-          "why": "It pinpoints the moment where retrieval plus repair becomes learning."
+          "text": "That second run is the learning event."
         },
         {
-          "text": "Retrieval feels rough because it removes the prop.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why recall feels exposed and why that exposure matters."
+          "text": "Retrieval feels rough because it removes the prop."
         },
         {
-          "text": "If it does, the miss is useful.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a simple test for productive retrieval feedback."
+          "text": "If it does, the miss is useful."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "mixed",
             "selection"
           ],
-          "planSpec": {
-            "domain": "Daniel, a civil-engineering student sorting beam-load problems",
-            "audience": "students who complete problem sets by type and cannot identify the type later",
-            "stakes": "the final gives no heading that says which formula belongs",
-            "format": "predict_reveal",
-            "requiredBeat": "he shuffles shear, bending, and deflection problems, names the type first, then solves only after choosing the method"
-          },
           "scenario": "At 11:08 p.m., Daniel closes the formula sheet in the engineering library while three unlabelled diagrams sit under a desk lamp beside his scratch grid. One page shows shear, one bending, one deflection, but the headers are cut off. He predicts the type before solving and writes the cue beside it. Before any formula appears, Daniel must choose the method the diagram is asking for.",
           "whatToDo": "Shuffle the problem types, label each diagram before solving, and write the cue that made the label fit. Then open the formula sheet only after the choice is made.",
           "whyItMatters": "Daniel's final will not announce the method. Naming the type first trains the selection step that blocked problem sets can quietly remove."
@@ -710,13 +589,6 @@
             "craft",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "Sophie, a pastry apprentice learning laminated dough faults",
-            "audience": "craft learners who repeat one correction until it feels easy",
-            "stakes": "service depends on identifying butter leakage, underproofing, and overhandling by sight",
-            "format": "scene",
-            "requiredBeat": "she lines up three failed croissants, names the fault before touching the dough, and changes the next fold based on the diagnosis"
-          },
           "scenario": "At 4:45 a.m., Sophie studies three croissants on the pastry school marble: one beaded with butter, one squat and pale, one flaking into greasy shards. Sophie lays the bench scraper flat and studies all three before touching the dough. The head baker asks for the fault on each tray. Sophie is about to pick the next fold, but first she must choose which failure she is actually seeing.",
           "whatToDo": "Name the fault before changing the fold. Compare the three pastries, point to the visible cue, and let that diagnosis choose the next correction.",
           "whyItMatters": "Repeating one correction can feel skilled while the eye stays dull. Comparing near failures teaches Sophie to see which move the dough is asking for."
@@ -729,13 +601,6 @@
             "return",
             "variation"
           ],
-          "planSpec": {
-            "domain": "Marco, a tennis coach rebuilding serve return practice",
-            "audience": "athletes who look sharp against one predictable feed",
-            "stakes": "match play requires reading slice, kick, and flat serves without warning",
-            "format": "decision_point",
-            "requiredBeat": "he stops the basket of identical feeds and calls random serve types so the player must read toss and shoulder before moving"
-          },
           "scenario": "At 5:32 p.m., Marco drags the ball basket away from the baseline and lays tape on three return spots. His player has just ripped twelve identical flat serves and wants another streak for the score notebook. Marco holds up one ball, then changes the call: slice, kick, flat, no warning. Before the next serve, he must choose between protecting the clean streak and making her read the toss and shoulder.",
           "whatToDo": "End the identical-feed block. Mix serve types, then remove the call so the player reads the toss, shoulder, and bounce before moving.",
           "whyItMatters": "A returner who knows the feed can look sharp without selecting. Mixed serves make practice train the decision that match play demands."
@@ -748,13 +613,6 @@
             "slides",
             "contrast"
           ],
-          "planSpec": {
-            "domain": "Ingrid, a pathology resident comparing look-alike slides",
-            "audience": "medical trainees who memorize classic images but miss neighbors",
-            "stakes": "the exam and the lab both require separating similar patterns",
-            "format": "dialogue",
-            "requiredBeat": "her attending asks what it is not, forcing Ingrid to contrast two near-neighbor diagnoses before naming the slide"
-          },
           "scenario": "Pathology lab C hums at 2:20 p.m. \"Tell me the mimic first,\" the attending says as two look-alike slides land on Ingrid's microscope tray. The case history card is clipped shut. \"If you name it too fast, you will see only the classic picture.\" Ingrid adjusts the focus and sees a pattern she has memorized, but the second slide waits beside it. Before she answers, she must choose the feature that separates the neighbor diagnosis from the tempting one.",
           "whatToDo": "Name the closest wrong diagnosis first, then state the cue that rules it out. Only after that should Ingrid name the slide she thinks is right.",
           "whyItMatters": "Classic images can become recognition traps. Comparing the mimic forces Ingrid to use the distinguishing cue, which is what real lab work requires."
@@ -767,13 +625,6 @@
             "jazz",
             "ear"
           ],
-          "planSpec": {
-            "domain": "Tomás, a jazz guitarist practicing chord substitutions",
-            "audience": "musicians who drill one progression until it collapses in performance",
-            "stakes": "the band modulates unexpectedly during rehearsal",
-            "format": "before_after",
-            "requiredBeat": "show his change from twenty identical ii-V-I runs to a shuffled chart stack that makes him choose the substitution by ear"
-          },
           "scenario": "In rehearsal room 3B at 9:15 p.m., Tomas hears the wrong practice. Before, he ran twenty identical ii-V-I lines, tapped the amp footswitch, and watched his fingers win. Then the band modulated in rehearsal and his hand landed on the old shape. After, he shuffles a stack of charts beside a pencil-marked fretboard diagram. Each card makes him hear the key and choose the substitution before the fingers move.",
           "whatToDo": "Shuffle the chart stack and call the substitution by ear before playing. Mark any card where the fingers start moving before the choice is clear.",
           "whyItMatters": "The old drill trained speed inside one progression. Shuffled charts train Tomas to recognize the musical situation before habit grabs the neck."
@@ -786,13 +637,6 @@
             "documents",
             "contrast"
           ],
-          "planSpec": {
-            "domain": "Adaeze, a customs officer trainee identifying counterfeit documents",
-            "audience": "security trainees who need flexible discrimination under pressure",
-            "stakes": "a false pass or false stop can harm real travelers",
-            "format": "vignette",
-            "requiredBeat": "she rotates passports, visas, and work permits from different countries and must state the feature that made each suspicious before checking the guide"
-          },
           "scenario": "Which document is wrong if every seal looks almost right? At 3:30 p.m. in the border-training lab, Adaeze stands under the UV lamp with a passport tray, two visas, and a work permit from three countries. The reference guide stays closed while she rotates the documents one slot at a time. Before any page is cleared, Adaeze must decide which suspicious feature explains the risk: fiber glow, laminate edge, photo shadow, or date spacing.",
           "whatToDo": "Rotate mixed document types and name the suspicious feature before checking the guide. Keep the cases close enough that one cue can separate them.",
           "whyItMatters": "Counterfeit detection is a discrimination task. Mixed documents teach Adaeze to choose from cues rather than memorize one perfect passport image."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The block trained execution after the type was known. The mixed test requires discrimination first: notice the kind of case, then choose the method.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mixed drill keeps the skill domain intact while adding the selection cues the player will face. More identical shots protect the streak but narrow the learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Near-neighbor comparison trains the distinguishing cue. More classic-image repetition can deepen recognition while leaving the trainee weak at separating look-alikes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Randomized serves with cue naming train the read before the return. Flat-only blocks can look good while hiding selection weakness, and definitions alone do not build live discrimination.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not confidence or any repetition at all. She lacked contrast among similar dough failures, so the visible cue did not guide the right correction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Productive mixing sharpens comparison inside a domain. Random variety across unrelated tasks overloads attention and removes the cue relationships learners need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Conversation asks for selection among nearby grammar demands. Mixed prompts train that choice; pure blocks and immersion-only hope leave the selection step underpracticed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Interleaving needs some initial structure. If learners cannot recognize any case yet, mixing becomes noise; after basic exposure, comparison can train discrimination.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Plan B trains selection as well as solving. Plan A may raise momentary strength inside a block while leaving learners dependent on headings that will disappear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "That is discrimination made visible.",
-          "location": "breakdown.deepRead",
-          "why": "It names the mechanism after a concrete study anchor."
+          "text": "That is discrimination made visible."
         },
         {
-          "text": "Practice should resemble the decision you will face later.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter a practical rule readers can transfer."
+          "text": "Practice should resemble the decision you will face later."
         },
         {
-          "text": "Real use rarely announces the move in advance.",
-          "location": "breakdown.fastRead",
-          "why": "It explains why blocked practice can mislead in plain language."
+          "text": "Real use rarely announces the move in advance."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "triage",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "Rachel, an emergency-dispatch trainee handling mixed radio calls",
-            "audience": "public-safety trainees whose drills are either too easy or overwhelming",
-            "stakes": "the first real multi-unit call will expose whether the difficulty trained triage",
-            "format": "decision_point",
-            "requiredBeat": "the supervisor removes one distraction, keeps two competing calls, and makes Rachel choose the first callback with feedback after the run"
-          },
           "scenario": "Two radio channels crackle over a dark dispatch console while Rachel studies three incident cards and a feedback headset. Her supervisor removes the fake siren track but keeps two live callers in the drill: one chest-pain report, one road hazard near a school. Rachel's finger moves between callback buttons. Before the timer reaches thirty seconds, she must choose the first call and be ready to hear why the choice held or failed.",
           "whatToDo": "Keep the two competing calls, remove the useless noise, make the callback choice, and review the decision through the feedback headset immediately after the run.",
           "whyItMatters": "The drill stays hard because triage is hard. Removing one distraction keeps the challenge teachable instead of turning the console into noise."
@@ -1035,13 +857,6 @@
             "generation",
             "correction"
           ],
-          "planSpec": {
-            "domain": "Thomas, a chess-club coach teaching rook endings",
-            "audience": "coaches who need challenge without drowning beginners",
-            "stakes": "students lose interest if every puzzle is either obvious or impossible",
-            "format": "vignette",
-            "requiredBeat": "he hides the engine, gives a position just beyond comfort, lets students generate candidate moves, then replays the correction"
-          },
           "scenario": "At 7:05 p.m., Thomas slides move slips across the school library table while the tournament clock ticks beside three wooden rooks. The engine screen is covered with a score sheet. The position is not a trick, but it is one step beyond the drill they solved last week. Students write candidate moves, then watch the correction played back on the board. Thomas must choose whether to reveal the engine line now or let the wrong slips show what each move missed.",
           "whatToDo": "Give the position before the engine line, collect candidate moves, replay the correction, and ask for one sister position while the repair is fresh.",
           "whyItMatters": "Generation creates a useful struggle only because feedback follows. The students are not guessing into the dark; they are making a move that can be corrected."
@@ -1054,13 +869,6 @@
             "sterile",
             "error"
           ],
-          "planSpec": {
-            "domain": "Juliette, a surgical-tech instructor practicing sterile breaks",
-            "audience": "health-care trainers designing errorful but safe practice",
-            "stakes": "real procedures require noticing and repairing a contamination break quickly",
-            "format": "scene",
-            "requiredBeat": "she stages a low-stakes sterile-field error, waits for the trainee to catch it, then has him reset the field correctly"
-          },
           "scenario": "At 10:06 a.m., Juliette folds one blue drape corner the wrong way beside an instrument tray and a reset checklist. The trainee reaches for the forceps, then stops. His eyes go back to the corner. Juliette waits without scolding. He now faces a choice: keep moving because the drill is simulated, or call the sterile break and rebuild the field from the checklist.",
           "whatToDo": "Let the trainee catch the break, name it, and reset the field correctly. Keep the error small, visible, and followed by a full repair.",
           "whyItMatters": "The mistake teaches only because it is safe and corrected. A hidden or punished error would train fear, not sterile-field judgment."
@@ -1073,13 +881,6 @@
             "search",
             "overload"
           ],
-          "planSpec": {
-            "domain": "Niklas, a firefighter academy instructor adding smoke to search drills",
-            "audience": "instructors balancing realism and overload",
-            "stakes": "too much smoke makes the drill blind panic instead of learning",
-            "format": "predict_reveal",
-            "requiredBeat": "he asks the recruit to predict the route, adds controlled smoke and one blocked doorway, then debriefs the missed hand sweep"
-          },
           "scenario": "How much smoke teaches before it erases the room? Niklas stands by the rope line with a thermal camera while a recruit predicts the search route. One doorway is blocked, the smoke is controlled, and the floor plan still has edges. The reveal comes after the run: the recruit reached the room but missed the hand sweep at the blocked door. Niklas must choose whether the next run adds more smoke or repairs that one missed action.",
           "whatToDo": "Hold the smoke level steady, debrief the missed hand sweep, and rerun the same route before adding another variable.",
           "whyItMatters": "Realism helps only while the learner can still read and repair the task. More smoke would look tougher but could hide the specific skill that failed."
@@ -1092,13 +893,6 @@
             "generation",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "Catarina, a language tutor using generation before explanation",
-            "audience": "adult learners who want rules before trying",
-            "stakes": "students need to produce a sentence without waiting for the rule to be served first",
-            "format": "dialogue",
-            "requiredBeat": "she asks for a guessed past-tense sentence, corrects the error, and has the learner say a new sentence with the repair"
-          },
           "scenario": "\"Guess first,\" Catarina says, covering the verb table with a folder. Sentence strips sit between her and Martin, who wants the past-tense rule before risking a word. \"I went yesterday,\" he says in the new language, and the verb comes out wrong. Catarina marks the ending with a correction pencil. Martin looks at the covered table, then at a fresh strip. He must choose whether to wait for the rule or build the next sentence with the repair.",
           "whatToDo": "Ask for the generated sentence, correct the verb ending, and have Martin say a new sentence before uncovering the full table.",
           "whyItMatters": "The guess is useful because it is supported and repaired. Catarina is not praising error; she is using generation to make the correction attach."
@@ -1111,13 +905,6 @@
             "postmortem",
             "recovery"
           ],
-          "planSpec": {
-            "domain": "Chidi, a robotics mentor preparing students for sensor failure",
-            "audience": "competition teams that overfit to smooth lab runs",
-            "stakes": "the robot will face uneven light and noisy sensors at regionals",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem identifies which added obstacles forced recovery and which ones merely broke the practice"
-          },
           "scenario": "After regionals practice in the robotics room at 5:50 p.m., Chidi stops calling every obstacle useful. The black-tape maze worked when a single light sensor failed and the team recovered with fallback code. Then he added a low battery, glare, and a bent wheel, and the robot died in place beside the battery cart. In the postmortem, the sensor log is split into two columns: obstacles that forced recovery and obstacles that only broke the run.",
           "whatToDo": "Keep the one-sensor failure, remove the unrelated breakdowns, and rerun the maze until students can explain the fallback code they used.",
           "whyItMatters": "A useful obstacle forces recovery. Too many obstacles make the result unreadable, so the team learns that the robot failed, not how to respond."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A desirable difficulty should force a useful action and reveal repair targets. Worse performance alone does not prove learning; random pressure can bury the signal.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful part is generated effort followed by correction and another try. Guessing without support would be weak, and avoiding correction leaves the error unintegrated.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The challenge should stay hard enough to require technique but clear enough to repair mistakes. More smoke hides the skill, while no smoke removes needed realism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Generation plus reachable feedback is the mechanism. Mystery and embarrassment are not reliable learning tools and can distract from the repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The staged break is useful because it is low stakes, visible, and repaired. Error alone is not the point, and banning all error removes practice in recovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One fault created a recoverable challenge tied to the target skill. The pileup made the result too noisy to interpret, so the difficulty stopped teaching.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Spacing can help when the delay makes memory recover. Smoothness is the wrong standard, and removing all difficulty may preserve comfort over durability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Random pitch types create contextual interference tied to the skill of reading pitches. Blindfolding or unrelated fatigue adds hardship without the same learning mechanism.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Targeted feedback and a later corrected retrieval convert strain into repair. Unsupported repetition breeds frustration, while passive review avoids the useful challenge entirely.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hard practice teaches only when it makes the learner remember, try, compare, recover, or fix a miss while the work is still safe enough to learn from.",
-          "location": "breakdown.fastRead",
-          "why": "It gives a concrete test for when difficulty is productive instead of decorative."
+          "text": "Hard practice teaches only when it makes the learner remember, try, compare, recover, or fix a miss while the work is still safe enough to learn from."
         },
         {
-          "text": "The drill is harder, but the hard part has a job.",
-          "location": "breakdown.fastRead",
-          "why": "It states the chapter distinction in a sentence a reader can reuse."
+          "text": "The drill is harder, but the hard part has a job."
         },
         {
-          "text": "Do not keep hardship because it looks serious.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against the common misread in direct language."
+          "text": "Do not keep hardship because it looks serious."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "calibration",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "Grace, a radiology resident reviewing chest films",
-            "audience": "advanced learners who feel sure because a pattern looks familiar",
-            "stakes": "an overconfident first read could miss a subtle pneumothorax",
-            "format": "decision_point",
-            "requiredBeat": "she writes the diagnosis, then covers it and forces herself to name the disconfirming signs before checking the attending note"
-          },
           "scenario": "A pale crescent hides near the top of the lung field while Grace stands at the lightbox with the attending note sealed in an envelope. The first read feels familiar: no acute finding. She writes it, then covers the line with her palm. Before opening the note, she must choose whether to trust the familiar pattern or name three signs that could prove her read wrong.",
           "whatToDo": "Write the first read, cover it, name the disconfirming signs, and check the sealed note only after Grace has made confidence answer to the film.",
           "whyItMatters": "The familiar pattern can hide a subtle miss. Naming disconfirming signs turns confidence into calibrated judgment instead of recognition with a white coat."
@@ -1360,13 +1125,6 @@
             "knot",
             "check"
           ],
-          "planSpec": {
-            "domain": "Ben, a climber checking knot knowledge after months off",
-            "audience": "hobbyists who mistake recognition of a knot diagram for competence",
-            "stakes": "a partner will trust the knot on a real route",
-            "format": "scene",
-            "requiredBeat": "he ties the knot without the guide, stress-tests it, finds the wrong tail length, and reties before leaving the gym floor"
-          },
           "scenario": "At 7:48 p.m., Ben pulls the rope through his harness in silence on the rubber gym floor. The belay check card hangs behind him, close enough to comfort him but not close enough to use. He ties the knot, loads it with a hard pull, and sees the tail is wrong. His partner is waiting near the wall. Ben now has to choose between laughing it off as a warm-up or untying the rope and rebuilding it from memory.",
           "whatToDo": "Retie the knot without the guide, stress-test it, and ask the partner to check tail length before leaving the floor.",
           "whyItMatters": "Recognizing the diagram is not the same as tying a safe knot. The stress test gives Ben feedback before a partner's weight depends on his confidence."
@@ -1379,13 +1137,6 @@
             "rules",
             "explanation"
           ],
-          "planSpec": {
-            "domain": "Margaux, a tax preparer auditing new deduction rules",
-            "audience": "professionals who remember where the rule sits on a page but not what it means",
-            "stakes": "a client return could be filed on borrowed certainty",
-            "format": "dialogue",
-            "requiredBeat": "her senior asks her to explain the rule for a changed client case before she can search the PDF"
-          },
           "scenario": "\"Explain it without the PDF,\" the senior says, turning Margaux's monitor so the search box is disabled. A client worksheet lies beside a yellow legal pad, and the deduction rule sits somewhere in the file Margaux has been reading all morning. \"Same client, different income source,\" the senior adds. Margaux's pen hovers over the pad. She must choose whether to explain the rule from memory or ask for the page back.",
           "whatToDo": "Explain the rule on the legal pad for the changed client, then reopen the PDF to check the exact condition Margaux missed.",
           "whyItMatters": "Knowing where a rule sits is not knowing how it works. The changed case forces Margaux to test understanding without search doing the steering."
@@ -1398,13 +1149,6 @@
             "simulation",
             "instrument"
           ],
-          "planSpec": {
-            "domain": "Lars, a flight-sim trainee after a smooth autopilot lesson",
-            "audience": "trainees whose confidence comes from ideal conditions",
-            "stakes": "instrument failure will reveal whether the procedure is independent",
-            "format": "predict_reveal",
-            "requiredBeat": "the instructor blanks one display and asks Lars to state the cross-check before touching the controls"
-          },
           "scenario": "At 2:35 p.m., Lars sits in the flight-sim bay as the simulator horizon goes black and the backup gauge glows beside the trim wheel. Lars had finished the autopilot lesson cleanly ten minutes earlier, and his hands still expect the same sequence. The instructor says, \"Cross-check before you touch anything.\" Lars predicts the next two instruments aloud. Before moving the trim wheel, Lars has to choose between the smooth lesson and the gauge that contradicts it.",
           "whatToDo": "State the cross-check before touching the trim wheel, then compare the prediction with the backup gauge and repair the mistaken instrument scan.",
           "whyItMatters": "Smooth autopilot practice can make judgment feel independent when it is not. The blanked display lets Lars test whether the procedure survives without ideal cues."
@@ -1417,13 +1161,6 @@
             "peercheck",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "Paula, a museum conservator identifying varnish damage",
-            "audience": "specialists who trust the first familiar label",
-            "stakes": "wrong treatment can damage the painting surface",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem shows how a delayed peer check caught that her confident identification came from one familiar stain pattern"
-          },
           "scenario": "It took Paula a second lamp angle to lose her certainty. The first condition report called the mark varnish bloom because last month's stain looked the same. Under raking light, the ridge catches differently, and the varnish swab stays sealed. In the postmortem, Paula writes that the peer check was not a courtesy. It was the moment a familiar label had to answer to the surface.",
           "whatToDo": "Add the delayed peer check before treatment. Use raking light, keep the swab sealed, and make the first label survive a second form of evidence.",
           "whyItMatters": "The painting cannot afford confident recognition. A second angle lets the material contradict Paula before the treatment makes the mistake permanent."
@@ -1436,13 +1173,6 @@
             "numbers",
             "assumptions"
           ],
-          "planSpec": {
-            "domain": "Hadiya, a policy analyst preparing briefing numbers",
-            "audience": "knowledge workers who feel numbers are learned because the spreadsheet is open",
-            "stakes": "a minister may ask for the logic behind the figures without the file",
-            "format": "before_after",
-            "requiredBeat": "you watch her close the sheet, reconstruct the three assumptions, then reopen it to find which one was only recognition"
-          },
           "scenario": "In the Ottawa briefing room at 8:10 a.m., you see the spreadsheet vanish and the room get quieter. Hadiya has a briefing folder open, a closed laptop beside it, and three assumptions to reconstruct before the minister asks for the numbers aloud. Before, the figures felt learned because every cell was visible. After she closes the sheet, only two assumptions return. She reopens the file and finds the third had been recognition, not command.",
           "whatToDo": "Close the laptop, write the three assumptions from memory, reopen the file, and repair the one that disappeared without the cells in view.",
           "whyItMatters": "Open spreadsheets can lend confidence to numbers. The failed third assumption shows what was borrowed from the file, then gives Hadiya a precise repair before the briefing."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Disconfirming signs make confidence answer to evidence. Stronger familiarity or another quick impression can reinforce recognition without testing the read.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Tying and stress-testing produce performance evidence. Watching again or trusting the mental picture keeps the cue close and leaves competence unproven.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Remembering location is a cue, not a full explanation. A changed client case tests whether the rule can be used without search doing the work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A display failure removes the ideal cue and tests the independent procedure. Repeating the ideal lesson may increase fluency while hiding fragile judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second angle disciplines the first label without banning expertise. It gives the material a chance to contradict recognition before treatment begins.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reconstructing assumptions without the file tests understanding. Visual clarity and headings may improve navigation while still letting the sheet supply the logic.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The drill needs feedback on what behavior it is actually producing. Removing all simulation goes too far, and confidence in repetition can hide a bad automatic action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The goal is disciplined confidence, not permanent doubt. Evidence earns trust; untested feeling does not. Rejecting all confidence would paralyze action.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Closed-source explanation removes the visible cues and reveals what can stand alone. More highlights and faster reading strengthen the same fluency signal being tested.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "Feeling sure is not the same as being calibrated.",
-          "location": "breakdown.deepRead",
-          "why": "It distinguishes confidence from checked confidence in plain language."
+          "text": "Feeling sure is not the same as being calibrated."
         },
         {
-          "text": "What check would be allowed to prove you wrong?",
-          "location": "breakdown.fullRead",
-          "why": "It turns calibration into a concrete question."
+          "text": "What check would be allowed to prove you wrong?"
         },
         {
-          "text": "Let confidence make its claim, then ask for evidence it could not borrow.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter a memorable closing rule."
+          "text": "Let confidence make its claim, then ask for evidence it could not borrow."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "osmosis",
             "design"
           ],
-          "planSpec": {
-            "domain": "Emily, a biology lecturer redesigning osmosis instruction",
-            "audience": "teachers tempted to sort students into visual or verbal groups",
-            "stakes": "students must predict membrane behavior on a novel lab question",
-            "format": "decision_point",
-            "requiredBeat": "she chooses a diagram, a physical membrane demo, and a retrieval prompt because osmosis requires movement and pressure differences, not because students voted for visuals"
-          },
           "scenario": "Two beakers sit on a lab bench with a sagging membrane between them, and Emily has a stack of prediction cards in her hand. A colleague suggests sorting students by visual or verbal preference before the osmosis lesson. Emily looks at the beakers, the semipermeable membrane, and the lab question students will see next week. She must choose whether style labels or the movement of water will drive the design.",
           "whatToDo": "Use the diagram, the membrane demo, and a prediction card because osmosis needs movement, pressure, and retrieval, not because students voted for a format.",
           "whyItMatters": "Representation fit beats preference matching. The beakers show the process, and the prediction card tests whether students can use it on a new case."
@@ -1685,13 +1393,6 @@
             "prior knowledge",
             "recall"
           ],
-          "planSpec": {
-            "domain": "David, a safety trainer teaching lockout-tagout",
-            "audience": "industrial trainers with mixed prior knowledge",
-            "stakes": "a mislabeled energy source can injure someone",
-            "format": "scene",
-            "requiredBeat": "he checks what trainees already know, then pairs a real disconnect box with a recall step instead of offering three style versions"
-          },
           "scenario": "At 6:25 a.m., David stands on the packaging line beside a red lock on the disconnect switch, a lock tag, and a prior-knowledge checklist. Half the trainees have worked near the line for years; two have never opened the cabinet. David could offer visual, verbal, and hands-on versions of the same slideshow. Before anyone touches the tag, David faces a choice: sort by preference or ask each person to name the energy source. The wrong choice would hide a missing hazard until the cabinet is open.",
           "whatToDo": "Check prior knowledge, use the real disconnect box, and require each trainee to recall the energy source before placing the tag.",
           "whyItMatters": "The danger is not a style mismatch. It is acting without knowing what energy source is being controlled. The representation must fit the task."
@@ -1704,13 +1405,6 @@
             "rhythm",
             "transfer"
           ],
-          "planSpec": {
-            "domain": "Chloé, a piano teacher explaining polyrhythm",
-            "audience": "arts instructors deciding when sound, notation, and movement each help",
-            "stakes": "the student can clap it but cannot transfer it to the keyboard",
-            "format": "dialogue",
-            "requiredBeat": "she asks the student to tap, count, and notate the same rhythm because the material needs multiple representations tied to retrieval"
-          },
           "scenario": "\"Show me where the three lands against the two,\" Chloe says from the piano bench as the metronome pulse clicks. The student can clap the pattern but loses it at the keyboard. A rhythm grid lies beside the keys. \"Tap it, count it, mark it, then play it,\" Chloe says. Before the next attempt, the student must choose whether to keep clapping what feels comfortable or retrieve the pattern across all three forms.",
           "whatToDo": "Have the student tap, count, notate, and play the rhythm, with each form requiring retrieval of the same relation.",
           "whyItMatters": "The rhythm needs multiple representations because transfer is failing. The choice comes from the material, not from a claim about learner type."
@@ -1723,13 +1417,6 @@
             "overfitting",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "Mikkel, a data-science mentor teaching model overfitting",
-            "audience": "technical mentors whose learners prefer videos but need diagnosis skill",
-            "stakes": "the junior analyst must detect overfitting in a new dataset",
-            "format": "predict_reveal",
-            "requiredBeat": "he has the learner predict model behavior on fresh data before showing the graph, making the task demand drive the representation"
-          },
           "scenario": "Which curve lies when the training score looks perfect? Mikkel writes the question above a blank train-test graph while a fresh dataset waits in a prediction field. The junior analyst wants a video walkthrough first. Mikkel keeps the graph hidden and asks for the test-set prediction before the reveal. The prediction is wrong, which is exactly why the graph will matter: it has to correct a mistaken model of what fresh data should do.",
           "whatToDo": "Ask for the fresh-data prediction before showing the graph, then reveal the train-test curves and compare the prediction with the model's behavior.",
           "whyItMatters": "Overfitting is a relation best seen in curves, but the wrong prediction makes the learner process that relation instead of watching passively."
@@ -1742,13 +1429,6 @@
             "multilingual",
             "retrieval"
           ],
-          "planSpec": {
-            "domain": "Isabel, a literacy coach supporting multilingual readers",
-            "audience": "educators balancing learner differences without style mythology",
-            "stakes": "students need vocabulary, background knowledge, and retrieval practice before the text will open up",
-            "format": "before_after",
-            "requiredBeat": "show the shift from style grouping to a prep routine that builds background knowledge, key terms, and oral retrieval"
-          },
           "scenario": "It took Isabel three reading groups to stop asking who was visual. Before, she sorted students by preference and watched the same paragraph stall. After, she opened with a map of the setting, word cards for key terms, and an oral retell sheet. The students still differed, but the useful difference was preparation. Background and retrieval made the text open.",
           "whatToDo": "Build background knowledge, teach key terms, and use oral retrieval before the reading instead of sorting students by preferred style.",
           "whyItMatters": "Learner differences matter, but the difference that blocked comprehension was prior knowledge. Style grouping was not solving that problem."
@@ -1761,13 +1441,6 @@
             "route",
             "prediction"
           ],
-          "planSpec": {
-            "domain": "Akira, a climbing instructor teaching route reading",
-            "audience": "coaches whose students prefer watching demonstrations",
-            "stakes": "the climber must choose holds under changed conditions",
-            "format": "vignette",
-            "requiredBeat": "he uses a route diagram only after the climber predicts the sequence from the wall, tying representation to discrimination"
-          },
           "scenario": "At 8:05 p.m., Akira points to the blank wall before the route card. Colored holds run left, then high, then back under the overhang. The climber says he learns best by watching. Akira nods, keeps the card down, and asks for the first six holds from the wall itself. Before showing the diagram, Akira must choose whether comfort or route-reading evidence leads the lesson.",
           "whatToDo": "Have the climber predict the hold sequence from the wall, then use the route card to check and refine the plan.",
           "whyItMatters": "Watching may feel comfortable, but route reading requires choosing holds under changed conditions. The diagram helps after prediction has done its work."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The design should start with the material and proof of use. Comfort matters less than whether students can predict membrane behavior in a new problem.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prior knowledge is the meaningful learner difference here. Preference labels do not tell the trainer who understands the energy source well enough to act safely.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The task requires transfer across forms, so the representations should be tied together by retrieval. Staying in one preferred format preserves the failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The prediction makes the learner process the relation before the graph appears. Preference can be respected, but task demand drives the design.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The bottleneck is preparation for the text, not a finer preference label. Learner differences matter through background, language, and retrieval demands.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Moving beyond style labels is not one-size-fits-all. Good design still checks prior knowledge, content fit, and the performance learners must produce.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Route reading requires prediction from the wall. The diagram supports the task after active processing, rather than serving preference alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Transfer depends on representation fit and active use. Preference satisfaction can rise without improving what people can do later.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A useful diagram shows representation fit. It does not prove that preferred style matching is the core cause of learning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Fit the representation to the job.",
-          "location": "breakdown.deepRead",
-          "why": "It replaces the style-label habit with a practical rule."
+          "text": "Fit the representation to the job."
         },
         {
-          "text": "Preference gets heard. The task gets the final vote.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves learner experience while keeping evidence in charge."
+          "text": "Preference gets heard. The task gets the final vote."
         },
         {
-          "text": "Learning styles put preference in charge.",
-          "location": "breakdown.fastRead",
-          "why": "It names the exact weak move the chapter corrects."
+          "text": "Learning styles put preference in charge."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "setback",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "Olivia, a first-year engineering student who failed the first statics exam",
-            "audience": "students tempted to convert one setback into an identity",
-            "stakes": "dropping the course would close a path she still wants",
-            "format": "decision_point",
-            "requiredBeat": "you watch her replace I am bad at this with a fault log, office-hours feedback, and three targeted retrieval sets"
-          },
           "scenario": "You see the red exam score and the blank withdrawal form beside it. Olivia has a fault log open, office-hours notes half written, and three empty retrieval sets marked beams, trusses, friction. The sentence in her head is simple: I am bad at this. Her pen rests over the withdrawal form. She must choose whether that sentence becomes the verdict or the first line of a repair plan.",
           "whatToDo": "Write the fault log, take it to office hours, and build three targeted retrieval sets from the exact problem types that broke.",
           "whyItMatters": "The failed exam becomes useful only when it points to strategy. A fixed label closes the course; a fault log gives the next rep a target."
@@ -2010,13 +1661,6 @@
             "deliberate",
             "skill"
           ],
-          "planSpec": {
-            "domain": "Andrew, a paramedic practicing difficult intubation technique",
-            "audience": "skill learners who plateau because practice stays comfortable",
-            "stakes": "field performance requires a smoother hand under constraints",
-            "format": "scene",
-            "requiredBeat": "he chooses one measurable weakness, practices it slowly with feedback, then raises the constraint only after correction holds"
-          },
           "scenario": "The airway mannequin jaw clicks under the lab light while Andrew watches his last attempt on the feedback camera. The constraint card says poor view, one-hand reposition, sixty seconds. His easy reps all pass; field conditions do not. Andrew points to one weakness, his blade angle on entry. Before adding the time limit, he must choose whether to slow the motion until the correction holds or keep chasing full-speed wins.",
           "whatToDo": "Practice the blade angle slowly with video feedback, repeat until the correction appears twice, then add the constraint card back.",
           "whyItMatters": "Plateaus hide inside comfortable reps. A measurable weakness and immediate feedback make practice deliberate instead of merely harder."
@@ -2029,13 +1673,6 @@
             "mnemonic",
             "practice"
           ],
-          "planSpec": {
-            "domain": "Anya, a memory-contest novice building a card system",
-            "audience": "learners attracted to mnemonics as shortcuts",
-            "stakes": "the system fails unless cues are practiced until retrieval is reliable",
-            "format": "before_after",
-            "requiredBeat": "show the difference between reading about memory palaces and testing a route until missed cards point to repairs"
-          },
           "scenario": "It took Anya six wrong queens to stop admiring the method and start drilling it. Before, she read about memory palaces and drew a beautiful route map beside a card deck. After, she walked the route cold, turned over the deck, and marked every miss on an error tally. The palace stopped being a trick on the page and became a system that had to survive retrieval.",
           "whatToDo": "Test the route with the card deck closed, mark each missed image on the tally, and rebuild only the weak locations before another cold run.",
           "whyItMatters": "Mnemonic cues expand ability only when they are practiced. The route map is a scaffold, not a substitute for reliable retrieval."
@@ -2048,13 +1685,6 @@
             "adultlearning",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "Nicolas, a late-career accountant learning Python automation",
-            "audience": "adults who assume age makes new technical skill unreachable",
-            "stakes": "manual reporting is consuming Fridays and younger colleagues are moving faster",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem identifies which practice changed his skill: tiny scripts, immediate feedback, and revisiting errors, not a broad brain-training app"
-          },
           "scenario": "A blinking cursor waits under a failed test message while Nicolas compares a terminal window with last Friday's spreadsheet export. The postmortem is not about becoming young or downloading a brain-training app. It lists what changed: one tiny script, one immediate test failure, one return to the same error after lunch. The manual report still matters, but the failed test has become feedback instead of proof he started too late.",
           "whatToDo": "Keep the script tiny, run the test immediately, and revisit the same error after a delay until Nicolas can explain the fix.",
           "whyItMatters": "The skill changed through domain practice and feedback. Age was a story; the test failure was information he could use."
@@ -2067,13 +1697,6 @@
             "goalkeeper",
             "video"
           ],
-          "planSpec": {
-            "domain": "Giulia, a youth soccer goalkeeper rebuilding distribution",
-            "audience": "coaches and athletes using deliberate practice rather than praise",
-            "stakes": "her team keeps losing possession after saves",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts her pass target, receives video feedback on foot angle, and repeats with one constraint until the pattern changes"
-          },
           "scenario": "At 4:22 p.m., Giulia sets three cones near the sideline while a video tablet leans against a water bottle. Her pass target is the far cone. She predicts it aloud, kicks, and watches the ball skid behind the middle cone. The reveal is on video: her foot angle opens late. The coach asks for one constraint, not more praise. Giulia must choose whether to repeat with that angle cue or keep proving she can kick hard.",
           "whatToDo": "Predict the target, kick once, watch the foot angle, then repeat with only that constraint until the pass lands twice.",
           "whyItMatters": "Praise cannot change distribution, and the first kick still misses. A narrow cue plus video feedback gives Giulia a practice loop that can actually move the ball."
@@ -2086,13 +1709,6 @@
             "cue",
             "workingmemory"
           ],
-          "planSpec": {
-            "domain": "Yusuf, a community-college chemistry student using memory cues",
-            "audience": "learners whose working memory overloads on reaction sequences",
-            "stakes": "passing requires retrieving steps without confusing similar reactions",
-            "format": "dialogue",
-            "requiredBeat": "his tutor has him build a cue from mechanism, test it cold, and discard the cue once understanding carries the sequence"
-          },
           "scenario": "At 4:40 p.m. in the community-college tutoring room, \"What does the cue make you see?\" the tutor asks, spreading reaction cards beside Yusuf's cue sketch and a practice quiz. The mechanism keeps collapsing in working memory, so he has drawn a three-step image from electron movement. \"Now cold,\" she says, covering the sketch. Yusuf starts the sequence, stalls, then points to the missing step. Yusuf faces a choice: decorate the cue or test it until the chemistry carries it.",
           "whatToDo": "Build the cue from the mechanism, test it with the sketch covered, and retire parts of the cue once Yusuf can retrieve the sequence without them.",
           "whyItMatters": "A cue helps ability when it supports understanding and retrieval. If Yusuf only decorates the sequence, working memory stays overloaded."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expandable ability needs strategy and feedback, not denial. The fault log converts the setback into a domain-specific practice plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deliberate practice targets a specific weakness with feedback. Full-speed repetition and broad brain training do not address the blade angle or field constraint.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mnemonic tools need practice and feedback. The error tally shows where cues fail; decorative maps and confidence alone do not build reliable recall.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gains are tied to Python automation and feedback. The lesson is domain improvement, not a universal claim about age or all cognition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Growth needs a practice loop with a target and usable feedback. Praise may support morale, but it does not tell her how to change the pass.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cue is a scaffold. Covering it tests whether retrieval and understanding are taking over; it is not punishment or a rejection of cues.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Belief can keep learners engaged, but it needs strategy, feedback, and practice to affect outcomes. Optimism alone is too thin.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Transfer and durability are the key evidence. Difficulty and stories can sell a promise without proving broad ability gains.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A specific feature, feedback, and delayed retry create a domain loop. Repeating the label or outsourcing to general games does not test the language skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "A setback is information when it leads to a next rep.",
-          "location": "breakdown.fastRead",
-          "why": "It reframes failure without empty optimism."
+          "text": "A setback is information when it leads to a next rep."
         },
         {
-          "text": "The memory palace did not remove effort.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the chapter from treating mnemonic tools as shortcuts instead of practice systems."
+          "text": "The memory palace did not remove effort."
         },
         {
-          "text": "A label changes only when the next attempt has a specific target.",
-          "location": "breakdown.fullRead",
-          "why": "It closes with a memorable action standard."
+          "text": "A label changes only when the next attempt has a specific target."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "schedule",
             "repair"
           ],
-          "planSpec": {
-            "domain": "Anna, a graduate student building a semester study cycle",
-            "audience": "students who have learned the pieces but need a schedule",
-            "stakes": "comps require material from months apart, not last week only",
-            "format": "before_after",
-            "requiredBeat": "show her moving from topic-by-topic notes to a calendar that returns to old material, mixes questions, checks misses, and repairs weak areas each Friday"
-          },
           "scenario": "It took Anna one failed practice exam to stop collecting tips. Before, her semester calendar moved topic by topic and her question bank sat untouched until Sunday nights. After, the calendar sends old material back every Wednesday, mixes questions on Thursday, and leaves Friday for a repair list. The missed concepts no longer float around as guilt. Each one has a return date.",
           "whatToDo": "Put delayed retrieval, mixed questions, a cue-free check, and a Friday repair list on the semester calendar.",
           "whyItMatters": "Comps pull from months at once. Anna needs a system that keeps old material returning, not another tip that works only during the week it is learned."
@@ -2335,13 +1929,6 @@
             "training",
             "simulation"
           ],
-          "planSpec": {
-            "domain": "Michael, a hospital educator designing nurse onboarding",
-            "audience": "trainers who must turn principles into a course architecture",
-            "stakes": "new nurses need transfer from classroom to floor handoffs",
-            "format": "decision_point",
-            "requiredBeat": "he lays out a month that cycles medication safety, handoff, escalation, and patient education through retrieval and simulation instead of one-week blocks"
-          },
           "scenario": "Four colored onboarding folders stretch across the conference table while Michael studies the simulation schedule and a handoff rubric. The old month has one topic per week. The floor will not. A new nurse may handle medication safety, patient education, and escalation in one hour. Michael's marker pauses above the calendar. He must choose between tidy one-week blocks and a cycle that keeps old topics returning inside mixed simulations.",
           "whatToDo": "Cycle medication safety, handoff, escalation, and patient education through weekly retrieval and mixed simulation instead of sealing each topic inside one week.",
           "whyItMatters": "Floor transfer requires combined action. Returning topics in mixed simulations trains nurses to retrieve and choose when real handoffs blur the folders."
@@ -2354,13 +1941,6 @@
             "understudy",
             "retrieval"
           ],
-          "planSpec": {
-            "domain": "Manon, an actor understudying two roles in repertory",
-            "audience": "performers needing retrieval, cues, and interleaving",
-            "stakes": "she may be called in with a few hours notice",
-            "format": "scene",
-            "requiredBeat": "she records cue lines, covers her own lines, rotates scenes from both roles, and checks missed entrances before rehearsal"
-          },
           "scenario": "At 6:05 p.m. in rehearsal room B, the tiny recorder warms in Manon's palm while her covered script lies open on a chair. She records cue lines from both roles, rotates scenes on a handwritten list, and speaks only when the other character's line gives her the opening. One entrance disappears. Before rehearsal, she must choose whether to reread the whole scene or mark that entrance for a delayed cue check.",
           "whatToDo": "Use the recorder for cue lines, cover her own lines, rotate scenes from both roles, and schedule missed entrances for a later check.",
           "whyItMatters": "Understudy work arrives out of order. Manon needs retrieval shaped by cues and interleaving, not comfort from reading pages straight through."
@@ -2373,13 +1953,6 @@
             "quiz",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "Jonas, a technical bootcamp instructor redesigning assessments",
-            "audience": "teachers moving from big exams to learning routines",
-            "stakes": "students can pass weekly projects while forgetting prior commands",
-            "format": "dialogue",
-            "requiredBeat": "he tells the cohort that every Monday quiz will include last month’s commands and asks them to explain one miss in a learning paragraph"
-          },
           "scenario": "\"Old material comes back Monday,\" Jonas says while a terminal prompt blinks on the projector. A student asks if the weekly quiz is punishment for forgetting commands from last month. Jonas points to the learning paragraph template beside the quiz. \"One miss, explained and repaired,\" he says. Before the cohort starts, he must choose whether the quiz is a grade event or a scheduled return with reflection attached.",
           "whatToDo": "Include old commands in Monday quizzes and require one learning paragraph that explains a miss, the repair, and when it returns.",
           "whyItMatters": "Students can pass weekly projects while old commands fade. Scheduled retrieval plus reflection keeps prior material alive without turning the quiz into a trap."
@@ -2392,13 +1965,6 @@
             "lifelong",
             "mixed"
           ],
-          "planSpec": {
-            "domain": "Chiara, a small-business owner learning insurance licensing material",
-            "audience": "lifelong learners studying alongside work",
-            "stakes": "licensing requires retrieval across products, regulations, and client scenarios",
-            "format": "vignette",
-            "requiredBeat": "she builds a rotating box of product questions, client cases, and wrong-answer repairs for lunch breaks and Saturday review"
-          },
           "scenario": "At 12:12 p.m., Chiara opens a shoe box of mixed client cards beside a wrong-answer sheet and half a sandwich. Product questions, regulation prompts, and client scenarios sit in the same stack. Each lunch break gives her ten cards; Saturday review gets only the misses. Before returning to the counter, Chiara must choose whether the wrong answers go back into the box with a repair date or disappear into another full reread.",
           "whatToDo": "Rotate client cards at lunch, write misses on the wrong-answer sheet, and use Saturday for repaired retrieval instead of another full reread.",
           "whyItMatters": "Licensing requires choosing across products, rules, and client facts. The mixed box keeps retrieval and repair moving inside a crowded workweek."
@@ -2411,13 +1977,6 @@
             "crosstraining",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "Lin, a maintenance supervisor building cross-training for technicians",
-            "audience": "operations leaders applying the whole learning system",
-            "stakes": "technicians must diagnose unfamiliar faults when senior staff are away",
-            "format": "postmortem",
-            "requiredBeat": "the postmortem redesigns cross-training so each tech retrieves, simulates, rotates fault types, and repairs misses before certification"
-          },
           "scenario": "What failed when the only trained technician was off shift? At 7:30 a.m. in the maintenance cage, Lin writes the question above a fault log, a rotation board, and a certification checklist. The postmortem shows attendance at the old workshop, but no one could diagnose the unfamiliar motor fault. Before signing the next checklist, Lin must choose between another workshop and a system of retrieval, rotating faults, repair notes, and delayed checks.",
           "whatToDo": "Replace the one-time workshop with rotating fault simulations, closed-source retrieval, repair notes, and delayed certification checks.",
           "whyItMatters": "Coverage depends on available skill, not attendance. The failed fault diagnosis shows why Lin needs technicians who can retrieve and adapt when the senior expert is gone."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A system assigns each method a recurring job and gives misses a return date. Lists and last-minute review do not keep learning honest over time.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The floor requires combined retrieval and selection. Mixed simulations with returning topics train transfer better than clean blocks or reading alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cue-based retrieval and interleaved scenes match the performance demand. Straight rereading can feel safe while leaving out-of-order entrances fragile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Older-command retrieval fights forgetting, and the learning paragraph turns a miss into repair. Current-only grading lets prior knowledge fade unseen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mixed card routine uses retrieval, interleaving, and repair inside limited time. Full rereads and preference-first study leave selection and weak spots underworked.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Certification should require available skill: retrieve, diagnose, repair, and return after delay. Attendance and slides do not prove technicians can act.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Retrieval answers one problem, but spacing and interleaving add recovery and selection. The methods reinforce each other instead of competing for one slot.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Structure supports active work when students retrieve, compare answers to standards, reflect, and repair. Structure without student production can become passive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The wrong-answer list becomes useful when misses return for retrieval. Without a scheduled return, it records weakness without repairing it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "A system is a set of scheduled returns.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the final chapter's core in one simple sentence."
+          "text": "A system is a set of scheduled returns."
         },
         {
-          "text": "What would your week look like if every miss had a return date?",
-          "location": "breakdown.fullRead",
-          "why": "It turns the synthesis into a practical design question."
+          "text": "What would your week look like if every miss had a return date?"
         },
         {
-          "text": "The loop matters because every piece gives the next piece better evidence.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why the methods need to work as a system instead of as isolated tips."
+          "text": "The loop matters because every piece gives the next piece better evidence."
         }
       ]
     }

@@ -41,13 +41,6 @@
             "ferry",
             "fog"
           ],
-          "planSpec": {
-            "domain": "harbor ferry control during a morning fog closure",
-            "audience": "a ferry operations supervisor with two crews waiting for direction",
-            "stakes": "commuters are stranded and the captains are hearing different rumors about visibility",
-            "format": "scene",
-            "requiredBeat": "the supervisor stops the radio chatter, points to the tide window and radar sweep, assigns one boat to hold and one to prep, then names the next visibility check time"
-          },
           "scenario": "Claire studies the scene as condensation beads on the harbor office window while a green radar sweep turns over empty water. Claire, the ferry operations supervisor, has two captains on the radio and a lobby full of stranded commuters. One captain says the fog is lifting, the other says the channel is gone. Claire is about to decide whether to keep listening or stop the chatter. She points to the tide-window printout, taps the radar screen, assigns North Star to hold, Harbor Belle to prep, and names 7:20 as the next visibility check.",
           "whatToDo": "Stop the radio pileup and give both crews the same picture: tide window, radar status, one boat holding, one boat prepping, and the next check time.",
           "whyItMatters": "The fog remains uncertain, but the crews stop operating from separate rumors. One shared order lets them act safely while the next fact is still coming."
@@ -60,13 +53,6 @@
             "hospital",
             "transport"
           ],
-          "planSpec": {
-            "domain": "neonatal transport dispatch during a highway pileup",
-            "audience": "a charge nurse coordinating a transport team and a receiving hospital",
-            "stakes": "a premature infant needs movement but the normal route has closed",
-            "format": "decision_point",
-            "requiredBeat": "the charge nurse gathers the partial road report, names the safest staging point, assigns the respiratory therapist to equipment check, and sets a ten-minute update cadence"
-          },
           "scenario": "Natalie checks the first sign: you are close enough to see the tiny transport incubator glowing blue beside a half-filled route board. Natalie, the charge nurse, has a road-closure note in one hand and the receiving hospital line blinking on hold. The normal highway is blocked by a pileup. The team keeps asking whether to roll. Natalie must decide in the next minute whether to wait for perfect traffic data or name the safest staging point, assign the respiratory therapist to equipment check, and set ten-minute updates.",
           "whatToDo": "Use the partial road report to choose the staging point, put the respiratory therapist on the equipment check, and keep the receiving line open for timed updates.",
           "whyItMatters": "A premature infant cannot wait for a perfect map. A clear staging order gives the transport team movement without pretending the closed road is solved."
@@ -79,13 +65,6 @@
             "restaurant",
             "alarm"
           ],
-          "planSpec": {
-            "domain": "restaurant lunch rush after a fire alarm trips falsely",
-            "audience": "a floor manager with cooks, servers, and guests frozen mid-service",
-            "stakes": "panic can empty the dining room and leave hot stations unattended",
-            "format": "vignette",
-            "requiredBeat": "the manager sends one server to the exit doors, one cook to kill open flames, and one host to give guests the same calm sentence"
-          },
           "scenario": "Marta stands close while the fryer basket hangs above bubbling oil while the alarm light flashes red at 12:18 Friday. Marta, the floor manager, sees cooks frozen at the line, servers staring at the exit doors, and a host gripping the stand like it might move. The panel already shows a false trip, but guests do not know that. Marta has to decide before the room breaks: she sends one server to the doors, one cook to kill open flames, and one host to repeat the same calm sentence to every table.",
           "whatToDo": "Turn the alarm into three visible assignments: doors, flames, and guest message. Keep the sentence consistent until the panel is cleared.",
           "whyItMatters": "People freeze when every signal feels equal. Three assignments give the room a shape, so panic does not outrun the facts."
@@ -98,13 +77,6 @@
             "theater",
             "stage"
           ],
-          "planSpec": {
-            "domain": "community theater opening night when the lead actor loses his voice",
-            "audience": "a stage manager responsible for volunteers and a paid audience",
-            "stakes": "the production can collapse into blame before the curtain rises",
-            "format": "dialogue",
-            "requiredBeat": "the stage manager cuts off backstage speculation, confirms the understudy plan, assigns costume and cue changes, and tells the cast exactly what happens at curtain"
-          },
           "scenario": "\"Hold there,\" Daniel says as a cracked throat-lozenge wrapper sits on the props table beside the first act call sheet. The lead actor cannot speak above a rasp, and six volunteers are trading blame near the curtain. \"Understudy takes act one. Costume moves the gray jacket. Lights hold cue twelve until my count.\" Daniel must decide before house opens whether to let the speculation run or tell the cast exactly what happens at curtain through the cue headset.",
           "whatToDo": "Cut off the backstage guessing, confirm the understudy plan, assign the costume and cue changes, and give the cast the curtain sequence.",
           "whyItMatters": "A paid audience does not need a blame session backstage. The cast needs one plan they can execute before nerves turn one lost voice into a lost show."
@@ -117,13 +89,6 @@
             "relief",
             "warehouse"
           ],
-          "planSpec": {
-            "domain": "storm-relief warehouse sorting supplies after roads reopen",
-            "audience": "a volunteer coordinator with seventy boxes and no clear intake system",
-            "stakes": "the wrong supplies may leave first while shelters wait for critical items",
-            "format": "postmortem",
-            "requiredBeat": "after the first hour goes sideways, the coordinator owns the missing standard, tapes three intake lanes on the floor, and assigns one person to reject unlabeled boxes"
-          },
           "scenario": "Later, Anna traces the lesson back to wet cardboard cartons sagging under fluorescent warehouse lights. The roads reopened at dawn, seventy boxes arrived in one hour, and volunteers sent blankets out before the shelter request sheet asked for batteries. Anna could blame the rush. Instead she owns the missing standard, tears strips of blue intake-lane tape across the concrete, marks food, power, and medical, and assigns one volunteer to reject unlabeled boxes.",
           "whatToDo": "Name the standard that was missing, tape the three lanes where everyone can see them, and give one person authority to stop unlabeled boxes.",
           "whyItMatters": "Relief work can look generous while still sending the wrong supplies first. Visible lanes turn goodwill into the order shelters actually need."
@@ -136,13 +101,6 @@
             "sailing",
             "weather"
           ],
-          "planSpec": {
-            "domain": "youth sailing regatta as a squall warning arrives",
-            "audience": "a race committee chair responsible for young sailors and anxious parents",
-            "stakes": "hesitation can leave small boats scattered when weather turns",
-            "format": "predict_reveal",
-            "requiredBeat": "the chair asks each safety boat what it will do if the horn sounds, finds two different answers, then gives one recall signal and one harbor route everyone repeats"
-          },
           "scenario": "Ryan takes the handoff as what changes once the orange storm flag snaps against the committee boat rail? Ryan, the race chair, asks each safety boat what it will do if the recall horn sounds. One says collect the far mark. Another says lead the youngest fleet to the breakwater. The answers do not match. Ryan has to decide before the squall line reaches the bay whether to keep the start sequence or give one recall signal and one harbor route from the laminated card.",
           "whatToDo": "Ask for the safety boat actions out loud, catch the mismatch, then give one recall horn signal and one harbor route everyone repeats.",
           "whyItMatters": "Young sailors cannot follow six private plans in bad weather. The chair turns a warning into shared action before small boats scatter."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice converts scattered alarm into shared action. Waiting protects the manager more than the swimmers, and a calm tone without assignments leaves the guards guessing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The conductor does not solve electricity, but she gives the room a shared plan. Canceling may be premature, while separate section plans would multiply confusion.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The detour assignment creates action from partial facts. The bad app can be reviewed later, and vague judgment pushes the same confusion down to the drivers.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One line, one ticket owner, and one check time turn a messy reset into work people can follow. The other options delay clarity or scatter it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The owner splits the problem into visible work and a timed review. A speech may sound steady, and one expert may help, but neither gives the team a common operating picture.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Silence lets private stories fill the gap. The supervisor can still give a local holding instruction and check time without pretending to control the signal fault.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The coordinator turns three loose concerns into owned movement. Discussion may matter later, and vendor confirmation is only one fact, not the whole first move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful evaluation is action plus revision point. Respect and blame are distractions when the crew needs one safe sequence before conditions worsen.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The marked area and call owner create a shared baseline. An email may help later, and separate improvisation increases the chance that the sidewalk gets less controlled.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "The move is small and hard: make the next action visible while the picture is still incomplete.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's practical demand without turning leadership into mood or charisma."
+          "text": "The move is small and hard: make the next action visible while the picture is still incomplete."
         },
         {
-          "text": "No one can execute a mood; the team needs one shared action it can repeat under pressure.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence cuts through vague calm and forces the reader back to visible action."
+          "text": "No one can execute a mood; the team needs one shared action it can repeat under pressure."
         },
         {
-          "text": "The standard is not heroic certainty. It is usable clarity.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the source's pressure while rejecting false confidence."
+          "text": "The standard is not heroic certainty. It is usable clarity."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "lab",
             "safety"
           ],
-          "planSpec": {
-            "domain": "hospital specimen lab after a mislabeled blood tube reaches processing",
-            "audience": "a lab supervisor facing angry nurses and a shaken technician",
-            "stakes": "a patient result could be tied to the wrong person if the chain is not repaired",
-            "format": "postmortem",
-            "requiredBeat": "the supervisor says the miss belongs to her process, marks the unclear handoff on the accession log, and changes the two-person check before the next batch"
-          },
           "scenario": "A red-top blood tube lies beside an accession label with one digit wrong. Julia, the lab supervisor, reviews the morning miss while two nurses wait at the counter and a shaken technician stares at the floor. She could let everyone focus on the last person who touched the rack. Instead she says the process belongs to her, circles the unclear handoff on the accession log, and changes the two-person check before the next batch leaves processing.",
           "whatToDo": "Own the handoff system first. Mark the failure point in the log, rewrite the two-person check, and then address the technician inside the new standard.",
           "whyItMatters": "The patient is protected by a changed chain, not by a supervisor proving she feels bad. Ownership has to reach the part that can prevent the next wrong label."
@@ -385,13 +321,6 @@
             "airport",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "regional airport baggage desk after mobility equipment is sent to the wrong city",
-            "audience": "a baggage operations lead with agents blaming the connecting carrier",
-            "stakes": "a passenger lands without essential equipment and the desk loses trust",
-            "format": "scene",
-            "requiredBeat": "the lead stops the carrier blame, walks to the transfer tag printer, finds the missing exception step, and assigns a manual verification for mobility items"
-          },
           "scenario": "Mark checks the first sign: you are close enough to see a torn transfer tag curling from the edge of a stalled baggage belt. Mark, the baggage operations lead, hears agents blaming the connecting carrier while a passenger waits without essential mobility equipment. He has to decide whether to join the complaint or inspect his own handoff. Mark stops the carrier blame, walks to the transfer tag printer, finds the missing mobility-equipment flag step, and starts a manual verification list.",
           "whatToDo": "Stop the blame loop at the desk and inspect the local transfer process. Add manual verification for mobility items before the next connection window.",
           "whyItMatters": "The carrier may share fault, but the desk controls the exception step. Fixing that step restores more trust than explaining why another company failed."
@@ -404,13 +333,6 @@
             "security",
             "access"
           ],
-          "planSpec": {
-            "domain": "cybersecurity incident from an old contractor account",
-            "audience": "an IT director briefing executives after a limited breach",
-            "stakes": "leaders may blame one analyst instead of closing the access-control gap",
-            "format": "decision_point",
-            "requiredBeat": "the director opens with my offboarding process failed, shows the stale account in the access report, and commits to a weekly owner review"
-          },
           "scenario": "The stale contractor username glows amber on an access-review report. Aanya, the IT director, stands outside the executive room with a limited breach summary and an analyst's name already appearing in angry texts. She must decide before the briefing whether to protect herself with the analyst's miss or open with the process. Inside, she says her offboarding process failed, shows the contractor account, and commits to a weekly owner review.",
           "whatToDo": "Open with the process failure, not the analyst's name. Show the stale account and install a weekly owner review for every contractor credential.",
           "whyItMatters": "The breach came through an access gap the system allowed. Naming that gap first directs executive attention toward the repair that closes it."
@@ -423,13 +345,6 @@
             "bakery",
             "allergy"
           ],
-          "planSpec": {
-            "domain": "artisan bakery after sesame cross-contact in a nut-free order",
-            "audience": "a bakery owner managing a frightened parent and defensive bakers",
-            "stakes": "a food-allergy trust breach can close wholesale accounts",
-            "format": "before_after",
-            "requiredBeat": "the owner traces the failure to unlabeled cooling racks, relabels allergen zones before reopening, and personally briefs the staff on the changed flow"
-          },
           "scenario": "\"Hold there,\" Rebecca says as sesame seeds cling to parchment under a tray marked for the wrong order. A frightened parent is on the phone, and the bakers are already pointing toward the newest hire. Before, Rebecca would have apologized and reopened fast. Today she traces the failure to unlabeled cooling racks, prints allergen-zone labels before the front door unlocks, and personally briefs the staff on the changed flow.",
           "whatToDo": "Treat the cross-contact as a flow failure. Label the racks, walk the staff through the new allergen route, and then handle individual accountability.",
           "whyItMatters": "A food-allergy breach can repeat if the room still invites the same mix-up. The relabeled flow turns ownership into a safer next service."
@@ -442,13 +357,6 @@
             "public works",
             "route"
           ],
-          "planSpec": {
-            "domain": "city snow removal after one cul-de-sac is missed twice",
-            "audience": "a public works foreman with drivers blaming an outdated route file",
-            "stakes": "residents are trapped on an icy hill and council pressure is rising",
-            "format": "vignette",
-            "requiredBeat": "the foreman owns the route-control miss, pins the omitted street on the dispatch wall, and requires drivers to mark exceptions before leaving the yard"
-          },
           "scenario": "At 5:18 a.m. in the public works yard, Thomas traces the mistake to a pink street tab hanging crooked on the laminated snow route wall. The cul-de-sac on the icy hill has been missed twice, residents are calling council, and drivers blame the outdated file. Thomas must decide whether to defend the route file or own the route-control miss; he pins the omitted street at eye level on the dispatch wall and requires each driver to mark exceptions before leaving the yard.",
           "whatToDo": "Own the route-control system. Put the omitted street where drivers cannot miss it, then require exception marks before trucks roll.",
           "whyItMatters": "Weather did not erase the cul-de-sac. The route system did. Repairing the wall and exception habit protects residents better than another excuse."
@@ -461,13 +369,6 @@
             "event",
             "donors"
           ],
-          "planSpec": {
-            "domain": "nonprofit gala check-in after donor QR codes fail",
-            "audience": "an event director with volunteers blaming the ticketing vendor",
-            "stakes": "major donors wait in a line long enough to sour the evening",
-            "format": "dialogue",
-            "requiredBeat": "the director tells the volunteer lead the backup table was her responsibility, opens the printed guest binder, and moves three people to handwritten check-in"
-          },
           "scenario": "Emily takes the handoff as what changes once the locked phone stand displays a spinning QR code at the ballroom entrance? Emily, the event director, hears a volunteer say, \"The vendor broke it.\" Donors are stacking past the coat check. Emily has to decide whether to join the vendor blame. \"Backup table was my responsibility,\" she tells the volunteer lead, opening the printed guest binder. \"Three people on handwritten check-in now.\"",
           "whatToDo": "Name the backup failure as hers, open the guest binder, and move volunteers to handwritten check-in before discussing the vendor.",
           "whyItMatters": "The donor line needs a working intake path, not a correct villain. Ownership moves people to the backup the event should already have had."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The labeled tray and second check change the path that made the miss likely. The write-up may be needed later, but it does not by itself repair the handoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The manager begins where repair lives: naming, release checks, and schema control. Letting teams absorb a scolding leaves the conflicting fields in place.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third answer owns the system that split the facts and names a concrete repair. Feeling terrible may be sincere, and culprit hunting may be satisfying, but neither closes the loop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Conflicting maps are a leadership-controlled condition. Discipline without one map may punish a person while preserving the confusion that produced the near-miss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The exception check is the leader-controlled guardrail between an app error and a hungry pantry. Volunteer discipline matters only after the route system is inspected.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trust improves when patrons see the conflicting sources corrected. Apologies and refunds address harm, but the approval gap will keep hurting evenings until it changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dated packets and retired sheets change the conditions around the driver. Parent-facing blame may sound decisive, but it leaves the old-route risk alive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Removing old notes and adding readback attacks the route of failure. Guest detail may help, but waiting for it should not delay the obvious handoff repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The third option asks how the system made the unsafe act likely. It does not excuse the operator, but it finds the leader-controlled levers that prevent repetition.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Blame names a person. Ownership changes the route.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a sharp distinction between accusation and repair."
+          "text": "Blame names a person. Ownership changes the route."
         },
         {
-          "text": "Trust returns when people see the route change.",
-          "location": "breakdown.deepRead",
-          "why": "It links accountability to visible system repair instead of remorse."
+          "text": "Trust returns when people see the route change."
         },
         {
-          "text": "Ownership rejects that starting point because every excuse that protects the leader also protects the broken system.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why reasonable excuses can still block useful leadership."
+          "text": "Ownership rejects that starting point because every excuse that protects the leader also protects the broken system."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "standards",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "warehouse pick crew with the lowest accuracy on the night shift",
-            "audience": "a shift supervisor who thinks his crew is lazy",
-            "stakes": "incorrect shipments are threatening a retail contract",
-            "format": "before_after",
-            "requiredBeat": "the supervisor changes his own start-of-shift standard, demonstrates one clean pick path, audits the first ten orders with the crew, and the error pattern changes"
-          },
           "scenario": "A handheld scanner buzzes red over a bin of identical black cables Eleanor studies the oar failure inside warehouse pick crew with the lowest accuracy on the night shift. The live choice is whether to reset the practiced standard or preserve the comfortable story. The supervisor changes his own start-of-shift standard, demonstrates one clean pick path, audits the first ten orders with the crew, and the error pattern changes. Incorrect shipments are threatening a retail contract.",
           "whatToDo": "Make the standards move visible through the planned action: the supervisor changes his own start-of-shift standard, demonstrates one clean pick path, audits the first ten orders with the crew, and the error pattern changes. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In warehouse pick crew with the lowest accuracy on the night shift, the risk is specific: incorrect shipments are threatening a retail contract. A generic speech leaves that risk intact; this action changes the next decision."
@@ -710,13 +589,6 @@
             "standards",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "high-school debate squad losing every cross-examination round",
-            "audience": "a coach tempted to blame student confidence",
-            "stakes": "the regional qualifier is two weeks away and the team is spiraling",
-            "format": "scene",
-            "requiredBeat": "the coach records his own vague feedback, replaces it with a three-question cross-exam standard, and drills it until students can run it without him"
-          },
           "scenario": "The checks the first sign: creased rebuttal cards spill from a debate tub onto the hallway floor. Marco has to choose a oar response before the oar room splits into private fixes. The coach records his own vague feedback, replaces it with a three-question cross-exam standard, and drills it until students can run it without him. The audience is a coach tempted to blame student confidence, and the risk is clear: the regional qualifier is two weeks away and the team is spiraling.",
           "whatToDo": "Make the standards move visible through the planned action: the coach records his own vague feedback, replaces it with a three-question cross-exam standard, and drills it until students can run it without him. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In high-school debate squad losing every cross-examination round, the risk is specific: the regional qualifier is two weeks away and the team is spiraling. A generic speech leaves that risk intact; this action changes the next decision."
@@ -729,13 +601,6 @@
             "standards",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "ambulance dispatch shift with growing call backlog",
-            "audience": "a dispatch supervisor hearing complaints about slow trainees",
-            "stakes": "delayed ambulance assignment can put callers at risk",
-            "format": "postmortem",
-            "requiredBeat": "the supervisor reviews her training gaps, rewrites the escalation rule in plain language, and shadows the next two calls instead of blaming trainees"
-          },
           "scenario": "Five pending calls stack yellow on the dispatch console. Ingrid hovers over the next call in ambulance dispatch shift with growing call backlog. One option keeps the oar problem moving by habit; the other uses standards to reset the practiced standard. The supervisor reviews her training gaps, rewrites the escalation rule in plain language, and shadows the next two calls instead of blaming trainees. Delayed ambulance assignment can put callers at risk.",
           "whatToDo": "Make the standards move visible through the planned action: the supervisor reviews her training gaps, rewrites the escalation rule in plain language, and shadows the next two calls instead of blaming trainees. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In ambulance dispatch shift with growing call backlog, the risk is specific: delayed ambulance assignment can put callers at risk. A generic speech leaves that risk intact; this action changes the next decision."
@@ -748,13 +613,6 @@
             "standards",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "hotel housekeeping floor with repeated room-readiness failures",
-            "audience": "an assistant manager blaming one floor team",
-            "stakes": "guests are arriving before rooms are inspected",
-            "format": "predict_reveal",
-            "requiredBeat": "the manager swaps floor leads for one morning, keeps the same attendants, and watches the inspection score change when the standard is demonstrated differently"
-          },
           "scenario": "Aanya makes the call after brass room key envelope waits on the desk while room 814 still shows dirty. Aanya faces a choice before the oar handoff locks in. The wrong oar move would leave oar standards implied. The better move is visible: the manager swaps floor leads for one morning, keeps the same attendants, and watches the inspection score change when the standard is demonstrated differently. Guests are arriving before rooms are inspected.",
           "whatToDo": "Make the standards move visible through the planned action: the manager swaps floor leads for one morning, keeps the same attendants, and watches the inspection score change when the standard is demonstrated differently. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In hotel housekeeping floor with repeated room-readiness failures, the risk is specific: guests are arriving before rooms are inspected. A generic speech leaves that risk intact; this action changes the next decision."
@@ -767,13 +625,6 @@
             "standards",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "student robotics pit failing safety inspection",
-            "audience": "a robotics mentor who thinks the build team lacks discipline",
-            "stakes": "the robot cannot compete unless wiring and guards pass inspection",
-            "format": "decision_point",
-            "requiredBeat": "the mentor admits he never defined ready, posts a visible inspection standard, demonstrates one compliant wiring run, and assigns peer checks before the next inspection"
-          },
           "scenario": "Loose battery lead dangles beside a yellow inspection sticker. Peter needs to decide through the oar signal whether the oar team gets another oar standards reminder or a concrete standards change. The mentor admits he never defined ready, posts a visible inspection standard, demonstrates one compliant wiring run, and assigns peer checks before the next inspection. The case speaks to a robotics mentor who thinks the build team lacks discipline; the robot cannot compete unless wiring and guards pass inspection.",
           "whatToDo": "Make the standards move visible through the planned action: the mentor admits he never defined ready, posts a visible inspection standard, demonstrates one compliant wiring run, and assigns peer checks before the next inspection. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In student robotics pit failing safety inspection, the risk is specific: the robot cannot compete unless wiring and guards pass inspection. A generic speech leaves that risk intact; this action changes the next decision."
@@ -786,13 +637,6 @@
             "standards",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "line-cook station missing ticket times during dinner service",
-            "audience": "a sous-chef frustrated with a quiet new station team",
-            "stakes": "the dining room backs up and plates die in the pass",
-            "format": "dialogue",
-            "requiredBeat": "the sous-chef stops blaming speed, calls the standard at the pass, resets the station layout with the cooks watching, and runs the next five tickets beside them"
-          },
           "scenario": "Camille takes the handoff as ticket rail spits out six chits while sauce skins over under the heat lamp. Camille must tell the oar team whether to keep improvising or use standards to reset the practiced standard. The answer shows up in the beat: the sous-chef stops blaming speed, calls the standard at the pass, resets the station layout with the cooks watching, and runs the next five tickets beside them. The dining room backs up and plates die in the pass.",
           "whatToDo": "Make the standards move visible through the planned action: the sous-chef stops blaming speed, calls the standard at the pass, resets the station layout with the cooks watching, and runs the next five tickets beside them. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In line-cook station missing ticket times during dinner service, the risk is specific: the dining room backs up and plates die in the pass. A generic speech leaves that risk intact; this action changes the next decision."
@@ -959,19 +803,13 @@
       },
       "memorableLines": [
         {
-          "text": "That slow boat may be telling the truth about the leader before it tells the truth about the crew.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "That slow boat may be telling the truth about the leader before it tells the truth about the crew."
         },
         {
-          "text": "Standards are taught twice: once by instruction and again by what the leader tolerates.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Standards are taught twice: once by instruction and again by what the leader tolerates."
         },
         {
-          "text": "The first repair is not a louder demand. It is a clearer standard with the leader inside it.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "The first repair is not a louder demand. It is a clearer standard with the leader inside it."
         }
       ]
     },
@@ -998,13 +836,6 @@
             "mission",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "mobile vaccination team asked to serve a distrustful rural fairground",
-            "audience": "a clinic lead whose nurses think the assignment is political theater",
-            "stakes": "families will skip care if the team arrives resentful and unable to explain the purpose",
-            "format": "scene",
-            "requiredBeat": "the lead admits her own doubts, calls the county nurse for the real access problem, then explains the fairground plan in terms of missed appointments and transport gaps"
-          },
           "scenario": "Samuel studies the scene as at dawn beside the cattle-show pen, folding vaccine privacy screens lean against the rail while Samuel studies the cooler failure inside the mobile vaccination team. He must decide whether to sell the route as mandatory or make the mission purpose plain. The team needs to serve a distrustful rural fairground, and the visible turn comes when the lead explains why the awkward route protects the people most likely to skip the dose.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the lead admits her own doubts, calls the county nurse for the real access problem, then explains the fairground plan in terms of missed appointments and transport gaps. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In mobile vaccination team asked to serve a distrustful rural fairground, the risk is specific: families will skip care if the team arrives resentful and unable to explain the purpose. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1017,13 +848,6 @@
             "mission",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "university archive staff moving rare documents for a flood-wall project",
-            "audience": "an archive director facing staff anger about disruptive relocation",
-            "stakes": "the move can damage trust and irreplaceable materials if people treat it as pointless",
-            "format": "vignette",
-            "requiredBeat": "the director studies the flood-risk map, walks staff to the lowest stacks, and explains why the temporary move protects access instead of just ordering boxes packed"
-          },
           "scenario": "The checks the first sign: blue flood-line sticker sits three inches above a row of acid-free boxes. Beatrice has to choose a cooler response before the cooler room splits into private fixes. The director studies the flood-risk map, walks staff to the lowest stacks, and explains why the temporary move protects access instead of just ordering boxes packed. The audience is an archive director facing staff anger about disruptive relocation, and the risk is clear: the move can damage trust and irreplaceable materials if people treat it as pointless.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the director studies the flood-risk map, walks staff to the lowest stacks, and explains why the temporary move protects access instead of just ordering boxes packed. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In university archive staff moving rare documents for a flood-wall project, the risk is specific: the move can damage trust and irreplaceable materials if people treat it as pointless. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1036,13 +860,6 @@
             "mission",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "software privacy migration that slows feature work",
-            "audience": "an engineering manager with developers angry about deleting legacy data",
-            "stakes": "rushed compliance work can turn into resentment and sloppy migration",
-            "format": "dialogue",
-            "requiredBeat": "the manager stops selling the deadline, reads the user deletion request history, and explains the migration as keeping a promise users already made visible"
-          },
           "scenario": "Lukas stands close while data-retention ticket shows a user request that has been waiting forty-three days. Lukas hovers over the next call in software privacy migration that slows feature work. One option keeps the cooler problem moving by habit; the other uses mission purpose to give the route a carried purpose. The manager stops selling the deadline, reads the user deletion request history, and explains the migration as keeping a promise users already made visible. Rushed compliance work can turn into resentment and sloppy migration.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the manager stops selling the deadline, reads the user deletion request history, and explains the migration as keeping a promise users already made visible. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In software privacy migration that slows feature work, the risk is specific: rushed compliance work can turn into resentment and sloppy migration. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1055,13 +872,6 @@
             "mission",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "wildlife crossing build that closes a popular trailhead",
-            "audience": "a park ranger whose crew is tired of visitor complaints",
-            "stakes": "the crew may enforce the closure harshly if they do not believe in the purpose",
-            "format": "reflection",
-            "requiredBeat": "the ranger reviews the collision reports, walks the crew to the underpass survey stakes, and has each person practice explaining the closure in one honest sentence"
-          },
           "scenario": "Sofia makes the call after at 6:40 a.m. beside the highway fence, orange survey ribbon flutters near fresh deer tracks. Sofia, the wildlife crossing project lead, faces a choice before the trailhead closure notice goes up. The wrong move would leave mission purpose implied. She must decide whether to defend the closure as policy or explain how the crossing keeps animals and drivers safer before crews block the popular path.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the ranger reviews the collision reports, walks the crew to the underpass survey stakes, and has each person practice explaining the closure in one honest sentence. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In wildlife crossing build that closes a popular trailhead, the risk is specific: the crew may enforce the closure harshly if they do not believe in the purpose. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1074,13 +884,6 @@
             "mission",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "food bank changing pickup rules for partner pantries",
-            "audience": "an operations lead whose volunteers think the new appointment system is needless hassle",
-            "stakes": "families may receive less food if partner pantries keep arriving in clumps",
-            "format": "before_after",
-            "requiredBeat": "the lead shows volunteers the previous week’s spoiled produce count, connects it to uneven pickups, and has them test the new appointment sheet before explaining it to partners"
-          },
           "scenario": "Crate of wilted cilantro sits beside a clipboard of late partner pickups. Kiran needs to decide through the cooler signal whether the cooler team gets another cooler mission purpose reminder or a concrete mission purpose change. The lead shows volunteers the previous week’s spoiled produce count, connects it to uneven pickups, and has them test the new appointment sheet before explaining it to partners. The case speaks to an operations lead whose volunteers think the new appointment system is needless hassle; families may receive less food if partner pantries keep arriving in clumps.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the lead shows volunteers the previous week’s spoiled produce count, connects it to uneven pickups, and has them test the new appointment sheet before explaining it to partners. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In food bank changing pickup rules for partner pantries, the risk is specific: families may receive less food if partner pantries keep arriving in clumps. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1093,13 +896,6 @@
             "mission",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "orchestra section asked to adopt an unpopular slower tempo",
-            "audience": "a principal violinist leading musicians who think the conductor is overcorrecting",
-            "stakes": "the section can comply mechanically and still make the passage lifeless",
-            "format": "predict_reveal",
-            "requiredBeat": "the section lead listens to the singer’s breath mark, has the violins play both tempos, and asks which one lets the phrase land before defending the change"
-          },
           "scenario": "Penciled breath mark circles one measure on the violin part. Grace must tell the cooler team whether to keep improvising or use mission purpose to turn purpose into a next action. The answer shows up in the beat: the section lead listens to the singer’s breath mark, has the violins play both tempos, and asks which one lets the phrase land before defending the change. The section can comply mechanically and still make the passage lifeless.",
           "whatToDo": "Make the mission purpose move visible through the planned action: the section lead listens to the singer’s breath mark, has the violins play both tempos, and asks which one lets the phrase land before defending the change. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In orchestra section asked to adopt an unpopular slower tempo, the risk is specific: the section can comply mechanically and still make the passage lifeless. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1266,19 +1062,13 @@
       },
       "memorableLines": [
         {
-          "text": "Borrowed conviction cracks as soon as the work gets expensive.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Borrowed conviction cracks as soon as the work gets expensive."
         },
         {
-          "text": "If you cannot explain the why without decoration, you may not understand it yet.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "If you cannot explain the why without decoration, you may not understand it yet."
         },
         {
-          "text": "Belief is not a mood you demand. It is purpose made clear enough to work through resistance.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "Belief is not a mood you demand. It is purpose made clear enough to work through resistance."
         }
       ]
     },
@@ -1305,13 +1095,6 @@
             "ego",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "aircraft maintenance bay where an apprentice catches a senior tech’s missed cotter pin",
-            "audience": "a lead mechanic known for being the best in the hangar",
-            "stakes": "status pride can turn a real safety catch into silence next time",
-            "format": "dialogue",
-            "requiredBeat": "the lead mechanic repeats the apprentice’s concern aloud, checks the assembly in front of the crew, and thanks him before touching the tool cart"
-          },
           "scenario": "Robert studies the scene as at 7:12 a.m. in the aircraft maintenance bay, a bent cotter pin sits half-seated under the landing-gear light while Robert studies the miss. He must decide whether to protect the senior tech from embarrassment or let correction outrank status. The apprentice has caught the missed pin, and Robert asks the senior tech to step back, inspect the part, and thank the apprentice before the panel closes.",
           "whatToDo": "Make the ego move visible through the planned action: the lead mechanic repeats the apprentice’s concern aloud, checks the assembly in front of the crew, and thanks him before touching the tool cart. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In aircraft maintenance bay where an apprentice catches a senior tech’s missed cotter pin, the risk is specific: status pride can turn a real safety catch into silence next time. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1324,13 +1107,6 @@
             "ego",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "surgical suite where a scrub nurse challenges the attending’s count",
-            "audience": "a senior surgeon under schedule pressure",
-            "stakes": "ego can push past a safety stop that exists for a reason",
-            "format": "decision_point",
-            "requiredBeat": "the surgeon feels the room waiting, lowers the instrument, asks for the count again, and treats the pause as protecting the patient rather than challenging his authority"
-          },
           "scenario": "The checks the first sign: at 9:03 a.m. in the OR, the blue sponge-count board shows one blank square beside the clock. Anya, the scrub nurse, has to choose whether to soften the challenge or make the count explicit. The surgeon feels the room waiting, lowers the instrument, and repeats the count before incision because Anya keeps the missing square in view.",
           "whatToDo": "Make the ego move visible through the planned action: the surgeon feels the room waiting, lowers the instrument, asks for the count again, and treats the pause as protecting the patient rather than challenging his authority. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In surgical suite where a scrub nurse challenges the attending’s count, the risk is specific: ego can push past a safety stop that exists for a reason. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1343,13 +1119,6 @@
             "ego",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "fine-dining kitchen corrected by a health inspector",
-            "audience": "a chef-owner whose reputation is built on precision",
-            "stakes": "defensiveness can keep a temperature problem alive after the inspector leaves",
-            "format": "postmortem",
-            "requiredBeat": "the chef stops arguing about his record, checks the inspector’s probe reading against his own log, and changes the holding process before dinner service"
-          },
           "scenario": "James stands close while probe thermometer rests in a pan of duck confit reading four degrees too warm. James hovers over the next call in fine-dining kitchen corrected by a health inspector. One option keeps the cotter problem moving by habit; the other uses ego to let correction outrank status. The chef stops arguing about his record, checks the inspector’s probe reading against his own log, and changes the holding process before dinner service. Defensiveness can keep a temperature problem alive after the inspector leaves.",
           "whatToDo": "Make the ego move visible through the planned action: the chef stops arguing about his record, checks the inspector’s probe reading against his own log, and changes the holding process before dinner service. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In fine-dining kitchen corrected by a health inspector, the risk is specific: defensiveness can keep a temperature problem alive after the inspector leaves. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1362,13 +1131,6 @@
             "ego",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "elite cycling training camp where support staff flags a brake issue",
-            "audience": "a team captain who dismisses slower riders and mechanics",
-            "stakes": "status rivalry can turn a preventable crash into a team failure",
-            "format": "vignette",
-            "requiredBeat": "the captain hands the bike to the mechanic, asks the support rider what she felt on descent, and makes the squad inspect brakes before the next climb"
-          },
           "scenario": "At 6:20 a.m. at the bench in the cycling camp repair tent, Giulia sees a carbon brake pad leave a gray smear across her glove. She faces a choice before the next descent: protect the rider’s status or make ego give way to the brake issue. The support mechanic flags the pad, Giulia calls the rider over, and the bike stays on the stand until the correction is made.",
           "whatToDo": "Make the ego move visible through the planned action: the captain hands the bike to the mechanic, asks the support rider what she felt on descent, and makes the squad inspect brakes before the next climb. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In elite cycling training camp where support staff flags a brake issue, the risk is specific: status rivalry can turn a preventable crash into a team failure. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1381,13 +1143,6 @@
             "ego",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "venture-backed startup founder reading support tickets after a botched release",
-            "audience": "a founder convinced customers just resist change",
-            "stakes": "ego can convert useful feedback into noise while churn accelerates",
-            "format": "before_after",
-            "requiredBeat": "the founder reads three refund transcripts out loud, removes his defensive wording from the release note, and asks support to mark the confusing step in the product"
-          },
           "scenario": "Refund transcript prints with the same sentence highlighted three times. Patrick needs to decide through the cotter signal whether the cotter team gets another cotter ego reminder or a concrete ego change. The founder reads three refund transcripts out loud, removes his defensive wording from the release note, and asks support to mark the confusing step in the product. The case speaks to a founder convinced customers just resist change; ego can convert useful feedback into noise while churn accelerates.",
           "whatToDo": "Make the ego move visible through the planned action: the founder reads three refund transcripts out loud, removes his defensive wording from the release note, and asks support to mark the confusing step in the product. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In venture-backed startup founder reading support tickets after a botched release, the risk is specific: ego can convert useful feedback into noise while churn accelerates. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1400,13 +1155,6 @@
             "ego",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "bridge repair review where a welder spots a crack the engineer missed",
-            "audience": "a licensed engineer overseeing an overnight lane closure",
-            "stakes": "credential pride can bury field knowledge that protects the structure",
-            "format": "scene",
-            "requiredBeat": "the engineer kneels beside the welder, looks at the dye mark, revises the repair sequence, and names the welder’s catch in the shift briefing"
-          },
           "scenario": "Red dye bleeds from a hairline crack under a portable work light. Zoe must tell the cotter team whether to keep improvising or use ego to let correction outrank status. The answer shows up in the beat: the engineer kneels beside the welder, looks at the dye mark, revises the repair sequence, and names the welder’s catch in the shift briefing. Credential pride can bury field knowledge that protects the structure.",
           "whatToDo": "Make the ego move visible through the planned action: the engineer kneels beside the welder, looks at the dye mark, revises the repair sequence, and names the welder’s catch in the shift briefing. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In bridge repair review where a welder spots a crack the engineer missed, the risk is specific: credential pride can bury field knowledge that protects the structure. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1573,19 +1321,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ego makes a small correction feel like a public defeat.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Ego makes a small correction feel like a public defeat."
         },
         {
-          "text": "Confidence says the mission can use the truth. Ego asks whether the truth flatters you.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Confidence says the mission can use the truth. Ego asks whether the truth flatters you."
         },
         {
-          "text": "The mission does not care who looked right first.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "The mission does not care who looked right first."
         }
       ]
     },
@@ -1612,13 +1354,6 @@
             "mutual",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "emergency department and radiology during a stretcher backlog",
-            "audience": "an ER charge nurse whose team says imaging delays are not their problem",
-            "stakes": "patients wait in hallways while each department protects its own numbers",
-            "format": "scene",
-            "requiredBeat": "the charge nurse sends one tech to clear transport paperwork, frees two hallway bays for returning patients, and tells radiology exactly what support they can count on"
-          },
           "scenario": "Nora studies the scene as at 10:26 a.m. in the emergency department hall, a stretcher tag dangles from a rail beside a full imaging queue. Nora studies the backlog and must decide whether to let radiology absorb the delay alone or cover the exposed adjacent lane. She assigns one nurse to prep patients for transport while radiology clears the scanner order.",
           "whatToDo": "Make the mutual support move visible through the planned action: the charge nurse sends one tech to clear transport paperwork, frees two hallway bays for returning patients, and tells radiology exactly what support they can count on. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In emergency department and radiology during a stretcher backlog, the risk is specific: patients wait in hallways while each department protects its own numbers. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1631,13 +1366,6 @@
             "mutual",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "independent film shoot where sound and lighting are fighting over generator load",
-            "audience": "a production manager trying to save the final exterior shot",
-            "stakes": "the day can wrap without the critical scene if departments defend only their own setup",
-            "format": "dialogue",
-            "requiredBeat": "the sound lead offers a lower-power recorder setup, lighting gives back one lamp, and the production manager ties both sacrifices to finishing the shot"
-          },
           "scenario": "The checks the first sign: humming generator dips as a rain cover snaps over the cable run. Antoine has to choose a stretcher response before the stretcher room splits into private fixes. The sound lead offers a lower-power recorder setup, lighting gives back one lamp, and the production manager ties both sacrifices to finishing the shot. The audience is a production manager trying to save the final exterior shot, and the risk is clear: the day can wrap without the critical scene if departments defend only their own setup.",
           "whatToDo": "Make the mutual support move visible through the planned action: the sound lead offers a lower-power recorder setup, lighting gives back one lamp, and the production manager ties both sacrifices to finishing the shot. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In independent film shoot where sound and lighting are fighting over generator load, the risk is specific: the day can wrap without the critical scene if departments defend only their own setup. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1650,13 +1378,6 @@
             "mutual",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "ecommerce warehouse racing a carrier cutoff",
-            "audience": "a fulfillment lead watching packing blame inventory control",
-            "stakes": "hundreds of paid orders miss pickup if one lane waits for the other to fail",
-            "format": "decision_point",
-            "requiredBeat": "the fulfillment lead moves two packers to scan exception bins, inventory sends a runner to verify substitutions, and both teams protect the carrier cutoff together"
-          },
           "scenario": "Olivia stands close while thermal shipping label peels itself from a printer as the cutoff clock turns red. Olivia hovers over the next call in ecommerce warehouse racing a carrier cutoff. One option keeps the stretcher problem moving by habit; the other uses mutual support to support the exposed handoff. The fulfillment lead moves two packers to scan exception bins, inventory sends a runner to verify substitutions, and both teams protect the carrier cutoff together. Hundreds of paid orders miss pickup if one lane waits for the other to fail.",
           "whatToDo": "Make the mutual support move visible through the planned action: the fulfillment lead moves two packers to scan exception bins, inventory sends a runner to verify substitutions, and both teams protect the carrier cutoff together. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In ecommerce warehouse racing a carrier cutoff, the risk is specific: hundreds of paid orders miss pickup if one lane waits for the other to fail. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1669,13 +1390,6 @@
             "mutual",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "soccer team whose midfield leaves the fullback isolated",
-            "audience": "a youth coach teaching team defense without shaming one player",
-            "stakes": "the opponent keeps attacking the same open channel",
-            "format": "predict_reveal",
-            "requiredBeat": "the coach freezes a drill, has the midfielder stand where the fullback needs cover, restarts play, and lets the stopped attack prove the support point"
-          },
           "scenario": "Torn corner flag leans while the winger waits alone on the sideline. Daniel faces a choice before the stretcher handoff locks in. The wrong stretcher move would leave stretcher mutual support implied. The better move is visible: the coach freezes a drill, has the midfielder stand where the fullback needs cover, restarts play, and lets the stopped attack prove the support point. The opponent keeps attacking the same open channel.",
           "whatToDo": "Make the mutual support move visible through the planned action: the coach freezes a drill, has the midfielder stand where the fullback needs cover, restarts play, and lets the stopped attack prove the support point. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In soccer team whose midfield leaves the fullback isolated, the risk is specific: the opponent keeps attacking the same open channel. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1688,13 +1402,6 @@
             "mutual",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "museum exhibition install where security and curators have separate opening priorities",
-            "audience": "an exhibition manager balancing artifact care and visitor flow",
-            "stakes": "the exhibit may open with protected objects but unsafe visitor bottlenecks",
-            "format": "postmortem",
-            "requiredBeat": "after a failed walk-through, the manager pairs one guard and one curator at each fragile case, then changes the stanchion layout from both perspectives"
-          },
           "scenario": "Glass crate sits unopened beside a coil of black stanchion rope. Karin needs to decide through the stretcher signal whether the stretcher team gets another stretcher mutual support reminder or a concrete mutual support change. After a failed walk-through, the manager pairs one guard and one curator at each fragile case, then changes the stanchion layout from both perspectives. The case speaks to an exhibition manager balancing artifact care and visitor flow; the exhibit may open with protected objects but unsafe visitor bottlenecks.",
           "whatToDo": "Make the mutual support move visible through the planned action: after a failed walk-through, the manager pairs one guard and one curator at each fragile case, then changes the stanchion layout from both perspectives. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In museum exhibition install where security and curators have separate opening priorities, the risk is specific: the exhibit may open with protected objects but unsafe visitor bottlenecks. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1707,13 +1414,6 @@
             "mutual",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "municipal water main repair next to a mistimed traffic signal",
-            "audience": "a water crew chief and traffic technician working different trouble tickets",
-            "stakes": "repair success still creates gridlock and worker danger if traffic stays unmanaged",
-            "format": "vignette",
-            "requiredBeat": "the water chief radios the signal tech before opening the trench, shares the lane-closure timing, and waits for the signal cycle change before moving the excavator"
-          },
           "scenario": "Luis takes the handoff as at 3:40 p.m. beside the open traffic cabinet, a blue utility flag trembles in the wind. Luis, the water-main repair lead, must tell the crew whether to keep improvising or protect the exposed traffic-signal lane. He calls the signal tech, moves cones before the trench widens, and keeps the shared street repair moving.",
           "whatToDo": "Make the mutual support move visible through the planned action: the water chief radios the signal tech before opening the trench, shares the lane-closure timing, and waits for the signal cycle change before moving the excavator. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In municipal water main repair next to a mistimed traffic signal, the risk is specific: repair success still creates gridlock and worker danger if traffic stays unmanaged. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1880,19 +1580,13 @@
       },
       "memorableLines": [
         {
-          "text": "A silo can look efficient right up to the moment it strands the mission.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "A silo can look efficient right up to the moment it strands the mission."
         },
         {
-          "text": "Support is not a rescue fantasy. It is protection of the shared route.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Support is not a rescue fantasy. It is protection of the shared route."
         },
         {
-          "text": "Local victory is cheap if the next team is left uncovered.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "Local victory is cheap if the next team is left uncovered."
         }
       ]
     },
@@ -1919,13 +1613,6 @@
             "clarity",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "campground wildfire evacuation notice for weekend campers",
-            "audience": "a park superintendent whose draft plan has six color-coded zones",
-            "stakes": "families may not remember the route when smoke lowers visibility",
-            "format": "before_after",
-            "requiredBeat": "the superintendent replaces the color code with three named exits, has a seasonal ranger repeat the plan back, and cuts any step the ranger cannot say cleanly"
-          },
           "scenario": "Ash flecks land on a laminated campground map at the ranger kiosk Monica studies the smoke failure inside campground wildfire evacuation notice for weekend campers. The live choice is whether to make the smoke plan repeatable or preserve the comfortable story. The superintendent replaces the color code with three named exits, has a seasonal ranger repeat the plan back, and cuts any step the ranger cannot say cleanly. Families may not remember the route when smoke lowers visibility.",
           "whatToDo": "Make the clarity move visible through the planned action: the superintendent replaces the color code with three named exits, has a seasonal ranger repeat the plan back, and cuts any step the ranger cannot say cleanly. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In campground wildfire evacuation notice for weekend campers, the risk is specific: families may not remember the route when smoke lowers visibility. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1938,13 +1625,6 @@
             "clarity",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "pharmacy recall instruction for a crowded neighborhood counter",
-            "audience": "a pharmacist explaining a medication recall to technicians and patients",
-            "stakes": "confusing directions can send patients home with the wrong bottles",
-            "format": "scene",
-            "requiredBeat": "the pharmacist rewrites the recall into three bins and one patient sentence, then asks the newest tech to process a sample return"
-          },
           "scenario": "The checks the first sign: at the neighborhood pharmacy counter, orange recall stickers scatter beside three empty plastic bins. Mathieu has to choose whether to explain the whole recall bulletin or make the smoke plan repeatable in three steps. He labels return, hold, and call-back bins, then has the clerk repeat the sequence before the line grows.",
           "whatToDo": "Make the clarity move visible through the planned action: the pharmacist rewrites the recall into three bins and one patient sentence, then asks the newest tech to process a sample return. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In pharmacy recall instruction for a crowded neighborhood counter, the risk is specific: confusing directions can send patients home with the wrong bottles. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1957,13 +1637,6 @@
             "clarity",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "software incident runbook during a payment outage",
-            "audience": "an incident commander with engineers arguing over twelve tabs of instructions",
-            "stakes": "customers cannot pay while the team debates which procedure applies",
-            "format": "decision_point",
-            "requiredBeat": "the commander closes the extra tabs, names one rollback path, one customer message, and one owner for each, then has the room repeat it"
-          },
           "scenario": "Checkout error graph spikes red beside twelve open browser tabs. Ingrid hovers over the next call in software incident runbook during a payment outage. One option keeps the smoke problem moving by habit; the other uses clarity to make the drill easy to repeat. The commander closes the extra tabs, names one rollback path, one customer message, and one owner for each, then has the room repeat it. Customers cannot pay while the team debates which procedure applies.",
           "whatToDo": "Make the clarity move visible through the planned action: the commander closes the extra tabs, names one rollback path, one customer message, and one owner for each, then has the room repeat it. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In software incident runbook during a payment outage, the risk is specific: customers cannot pay while the team debates which procedure applies. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1976,13 +1649,6 @@
             "clarity",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "wedding venue rain switch with an anxious couple waiting",
-            "audience": "an event captain leading servers, florist, and musicians",
-            "stakes": "a complex contingency sheet can collapse during the thirty-minute weather pivot",
-            "format": "dialogue",
-            "requiredBeat": "the captain cuts the rain plan to aisle, chairs, music, and guest path, assigns one owner to each, and refuses a decorative change that would confuse the move"
-          },
           "scenario": "Catarina makes the call after raindrops darken the edge of a printed seating chart on the ceremony table. Catarina faces a choice before the smoke handoff locks in. The wrong smoke move would leave smoke clarity implied. The better move is visible: the captain cuts the rain plan to aisle, chairs, music, and guest path, assigns one owner to each, and refuses a decorative change that would confuse the move. A complex contingency sheet can collapse during the thirty-minute weather pivot.",
           "whatToDo": "Make the clarity move visible through the planned action: the captain cuts the rain plan to aisle, chairs, music, and guest path, assigns one owner to each, and refuses a decorative change that would confuse the move. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In wedding venue rain switch with an anxious couple waiting, the risk is specific: a complex contingency sheet can collapse during the thirty-minute weather pivot. A generic speech leaves that risk intact; this action changes the next decision."
@@ -1995,13 +1661,6 @@
             "clarity",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "scuba certification emergency ascent drill",
-            "audience": "a dive instructor with nervous students overloaded by safety detail",
-            "stakes": "students must remember the emergency sequence underwater",
-            "format": "predict_reveal",
-            "requiredBeat": "the instructor reduces the drill to stop, signal, breathe, ascend, then has each student demonstrate it with a pressure gauge before entering open water"
-          },
           "scenario": "Pressure gauge needle rests in the red while fins slap against the dock. George needs to decide through the smoke signal whether the smoke team gets another smoke clarity reminder or a concrete clarity change. The instructor reduces the drill to stop, signal, breathe, ascend, then has each student demonstrate it with a pressure gauge before entering open water. The case speaks to a dive instructor with nervous students overloaded by safety detail; students must remember the emergency sequence underwater.",
           "whatToDo": "Make the clarity move visible through the planned action: the instructor reduces the drill to stop, signal, breathe, ascend, then has each student demonstrate it with a pressure gauge before entering open water. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In scuba certification emergency ascent drill, the risk is specific: students must remember the emergency sequence underwater. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2014,13 +1673,6 @@
             "clarity",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "animal shelter intake after a hoarding seizure",
-            "audience": "a shelter director with volunteers facing thirty incoming cats",
-            "stakes": "unclear intake steps can lose medical notes and separate bonded animals",
-            "format": "vignette",
-            "requiredBeat": "the director replaces a long intake packet with four station cards, walks the first carrier through them, and stops when a volunteer cannot explain station three"
-          },
           "scenario": "Cardboard cat carrier scratches against a folding intake table. Lin must tell the smoke team whether to keep improvising or use clarity to keep stress from decoding the plan. The answer shows up in the beat: the director replaces a long intake packet with four station cards, walks the first carrier through them, and stops when a volunteer cannot explain station three. Unclear intake steps can lose medical notes and separate bonded animals.",
           "whatToDo": "Make the clarity move visible through the planned action: the director replaces a long intake packet with four station cards, walks the first carrier through them, and stops when a volunteer cannot explain station three. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In animal shelter intake after a hoarding seizure, the risk is specific: unclear intake steps can lose medical notes and separate bonded animals. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2187,19 +1839,13 @@
       },
       "memorableLines": [
         {
-          "text": "If the plan cannot be repeated at the edge, it has not reached the edge.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "If the plan cannot be repeated at the edge, it has not reached the edge."
         },
         {
-          "text": "Simple is not less thinking. It is thinking finished enough for other people to use.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Simple is not less thinking. It is thinking finished enough for other people to use."
         },
         {
-          "text": "A plan that needs a translator will fail when the translator is busy.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "A plan that needs a translator will fail when the translator is busy."
         }
       ]
     },
@@ -2226,13 +1872,6 @@
             "priority",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "aquarium life-support pump failure before opening",
-            "audience": "an aquarium operations manager with alarms from three tanks at once",
-            "stakes": "animals and visitors are both at risk if the team scatters",
-            "format": "scene",
-            "requiredBeat": "the manager steps back from the alarm panel, identifies oxygen in the reef tank as first priority, assigns one technician, then delays visitor messaging until life support stabilizes"
-          },
           "scenario": "Laura studies the scene as at 8:04 a.m. behind the aquarium reef window, an oxygen meter flashes low beside a darkened tank. Laura studies the pump failure and must decide whether to chase every alarm or choose the first pump problem. She assigns one technician to life support, one to visitor delay, and one to check the backup valve.",
           "whatToDo": "Make the priority move visible through the planned action: the manager steps back from the alarm panel, identifies oxygen in the reef tank as first priority, assigns one technician, then delays visitor messaging until life support stabilizes. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In aquarium life-support pump failure before opening, the risk is specific: animals and visitors are both at risk if the team scatters. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2245,13 +1884,6 @@
             "priority",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "alpine rescue after an avalanche beacon signal splits",
-            "audience": "a rescue lead with weather worsening and two possible search zones",
-            "stakes": "searchers can waste minutes chasing every clue",
-            "format": "decision_point",
-            "requiredBeat": "the lead takes one breath, chooses the strongest beacon line, sends one probe team, and keeps a second team staged until the first result returns"
-          },
           "scenario": "The checks the first sign: beacon screen blinks two arrows above a field of broken snow. Ben has to choose a pump response before the pump room splits into private fixes. The lead takes one breath, chooses the strongest beacon line, sends one probe team, and keeps a second team staged until the first result returns. The audience is a rescue lead with weather worsening and two possible search zones, and the risk is clear: searchers can waste minutes chasing every clue.",
           "whatToDo": "Make the priority move visible through the planned action: the lead takes one breath, chooses the strongest beacon line, sends one probe team, and keeps a second team staged until the first result returns. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In alpine rescue after an avalanche beacon signal splits, the risk is specific: searchers can waste minutes chasing every clue. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2264,13 +1896,6 @@
             "priority",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "food truck festival power outage at noon",
-            "audience": "a festival operations lead with vendors, guests, and health inspectors calling at once",
-            "stakes": "food safety fails if power restoration competes with crowd appeasement",
-            "format": "before_after",
-            "requiredBeat": "the lead first gets cold storage onto the backup circuit, then posts one guest update, then checks vendor cooking lines in order"
-          },
           "scenario": "Petra stands close while breaker panel hangs open while a freezer alarm chirps behind the taco truck. Petra hovers over the next call in food truck festival power outage at noon. One option keeps the pump problem moving by habit; the other uses priority to act on the first constraint. The lead first gets cold storage onto the backup circuit, then posts one guest update, then checks vendor cooking lines in order. Food safety fails if power restoration competes with crowd appeasement.",
           "whatToDo": "Make the priority move visible through the planned action: the lead first gets cold storage onto the backup circuit, then posts one guest update, then checks vendor cooking lines in order. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In food truck festival power outage at noon, the risk is specific: food safety fails if power restoration competes with crowd appeasement. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2283,13 +1908,6 @@
             "priority",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "newsroom election night results system glitch",
-            "audience": "a managing editor with reporters demanding fixes for every race page",
-            "stakes": "a wrong call can publish if the team works every symptom at once",
-            "format": "postmortem",
-            "requiredBeat": "the editor freezes publication for unverified races, assigns one data editor to the source feed, and only then lets page producers fix display errors"
-          },
           "scenario": "Precinct dashboard freezes at 68 percent counted under the studio lights. Diego faces a choice before the pump handoff locks in. The wrong pump move would leave pump priority implied. The better move is visible: the editor freezes publication for unverified races, assigns one data editor to the source feed, and only then lets page producers fix display errors. A wrong call can publish if the team works every symptom at once.",
           "whatToDo": "Make the priority move visible through the planned action: the editor freezes publication for unverified races, assigns one data editor to the source feed, and only then lets page producers fix display errors. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In newsroom election night results system glitch, the risk is specific: a wrong call can publish if the team works every symptom at once. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2302,13 +1920,6 @@
             "priority",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "dental office sterilizer failure before a full morning schedule",
-            "audience": "a practice manager juggling patients, hygienists, and instruments",
-            "stakes": "infection-control priority must outrank keeping the schedule intact",
-            "format": "dialogue",
-            "requiredBeat": "the manager cancels the first elective block, routes critical instruments to a partner clinic, and tells the front desk the exact patient sentence to use"
-          },
           "scenario": "Autoclave tray sits cool with a failed cycle strip beside it. Emily needs to decide through the pump signal whether the pump team gets another pump priority reminder or a concrete priority change. The manager cancels the first elective block, routes critical instruments to a partner clinic, and tells the front desk the exact patient sentence to use. The case speaks to a practice manager juggling patients, hygienists, and instruments; infection-control priority must outrank keeping the schedule intact.",
           "whatToDo": "Make the priority move visible through the planned action: the manager cancels the first elective block, routes critical instruments to a partner clinic, and tells the front desk the exact patient sentence to use. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In dental office sterilizer failure before a full morning schedule, the risk is specific: infection-control priority must outrank keeping the schedule intact. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2321,13 +1932,6 @@
             "priority",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "manufacturing plant chemical spill alarm during shift change",
-            "audience": "a plant supervisor with evacuation, containment, and staffing questions colliding",
-            "stakes": "people can move into danger if the first priority is wrong",
-            "format": "vignette",
-            "requiredBeat": "the supervisor chooses personnel accountability first, assigns containment to the trained crew only, then updates production after the headcount closes"
-          },
           "scenario": "At shift change in the control room, Simon watches a yellow absorbent sock lie half-unrolled beside the spill threshold. He must tell the pump team whether to keep improvising or make the first priority visible. He assigns one person to isolate the spill, one to hold the line, and one to verify the alarm source before anyone restarts production.",
           "whatToDo": "Make the priority move visible through the planned action: the supervisor chooses personnel accountability first, assigns containment to the trained crew only, then updates production after the headcount closes. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In manufacturing plant chemical spill alarm during shift change, the risk is specific: people can move into danger if the first priority is wrong. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2494,19 +2098,13 @@
       },
       "memorableLines": [
         {
-          "text": "Equal urgency is usually confusion wearing a uniform.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Equal urgency is usually confusion wearing a uniform."
         },
         {
-          "text": "The first priority is the problem that changes the shape of the other problems.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "The first priority is the problem that changes the shape of the other problems."
         },
         {
-          "text": "Look up after you execute, because yesterday’s priority can become today’s trap.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "Look up after you execute, because yesterday’s priority can become today’s trap."
         }
       ]
     },
@@ -2533,13 +2131,6 @@
             "intent",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "orchard harvest as frost forms before dawn",
-            "audience": "an orchard manager who cannot be in every block at once",
-            "stakes": "waiting for central permission can lose fruit across the lower rows",
-            "format": "scene",
-            "requiredBeat": "the manager gives block leads the frost threshold, fan-start limits, and quality standard the night before, then lets the north-block lead start fans without a call"
-          },
           "scenario": "Rachel studies the scene as before dawn in the orchard, white frost beads on a low apple branch beside a sensor stake. Rachel studies the frost risk and must decide whether to keep every call at the top or push frost authority with limits. She gives row leads the temperature threshold, fan rules, and check-in time before fruit damage begins.",
           "whatToDo": "Make the intent move visible through the planned action: the manager gives block leads the frost threshold, fan-start limits, and quality standard the night before, then lets the north-block lead start fans without a call. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In orchard harvest as frost forms before dawn, the risk is specific: waiting for central permission can lose fruit across the lower rows. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2552,13 +2143,6 @@
             "intent",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "marathon medical coverage along a city route",
-            "audience": "an EMS coordinator with aid stations spread over twenty-six miles",
-            "stakes": "central approval delays care when runners collapse far from command",
-            "format": "vignette",
-            "requiredBeat": "the coordinator gives station captains treatment limits, transport triggers, and radio escalation rules before the race, then backs the mile-eight captain’s call"
-          },
           "scenario": "The checks the first sign: at mile eight beside the folding cot, Anders, the marathon medical lead, watches the banner snap near the curb. He has to choose whether every treatment call runs through central medical or station captains get boundaries. He gives treatment limits, ambulance triggers, and a radio check time so decisions happen near the runners.",
           "whatToDo": "Make the intent move visible through the planned action: the coordinator gives station captains treatment limits, transport triggers, and radio escalation rules before the race, then backs the mile-eight captain’s call. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In marathon medical coverage along a city route, the risk is specific: central approval delays care when runners collapse far from command. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2571,13 +2155,6 @@
             "intent",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "SaaS outage where support leads see customer patterns first",
-            "audience": "a customer operations director above regional support leads",
-            "stakes": "customer harm grows if every concession waits for executive approval",
-            "format": "decision_point",
-            "requiredBeat": "the director gives support leads a credit limit, message intent, and escalation boundary, then lets the Brazil lead handle a key account live"
-          },
           "scenario": "Priority customer chat turns purple in the regional support queue. Sophie hovers over the next call in SaaS outage where support leads see customer patterns first. One option keeps the frost problem moving by habit; the other uses intent to move intent to the front. The director gives support leads a credit limit, message intent, and escalation boundary, then lets the Brazil lead handle a key account live. Customer harm grows if every concession waits for executive approval.",
           "whatToDo": "Make the intent move visible through the planned action: the director gives support leads a credit limit, message intent, and escalation boundary, then lets the Brazil lead handle a key account live. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In SaaS outage where support leads see customer patterns first, the risk is specific: customer harm grows if every concession waits for executive approval. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2590,13 +2167,6 @@
             "intent",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "touring concert crew facing a weather delay at an outdoor venue",
-            "audience": "a production director with rigging, sound, and security teams spread across the site",
-            "stakes": "a storm cell can make waiting for one command channel unsafe",
-            "format": "dialogue",
-            "requiredBeat": "the director briefs team leads on go/no-go criteria, protected equipment priorities, and stop-work authority, then lets rigging call a pause from the roofline"
-          },
           "scenario": "Wind meter clicks against the truss while tarps flap below. Kiran faces a choice before the frost handoff locks in. The wrong frost move would leave frost intent implied. The better move is visible: the director briefs team leads on go/no-go criteria, protected equipment priorities, and stop-work authority, then lets rigging call a pause from the roofline. A storm cell can make waiting for one command channel unsafe.",
           "whatToDo": "Make the intent move visible through the planned action: the director briefs team leads on go/no-go criteria, protected equipment priorities, and stop-work authority, then lets rigging call a pause from the roofline. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In touring concert crew facing a weather delay at an outdoor venue, the risk is specific: a storm cell can make waiting for one command channel unsafe. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2609,13 +2179,6 @@
             "intent",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "field archaeology dig when a trench exposes unexpected human remains",
-            "audience": "a site director supervising crews across several trenches",
-            "stakes": "legal and ethical handling can fail if junior trench leads wait too long",
-            "format": "postmortem",
-            "requiredBeat": "the director had already trained trench leads on stop-work signs and reporting limits, so the junior lead covers the find, halts the trench, and calls the designated authority without asking first"
-          },
           "scenario": "Square trowel pauses above a pale curved fragment in the trench wall. Martin needs to decide through the frost signal whether the frost team gets another frost intent reminder or a concrete intent change. The director had already trained trench leads on stop-work signs and reporting limits, so the junior lead covers the find, halts the trench, and calls the designated authority without asking first. The case speaks to a site director supervising crews across several trenches; legal and ethical handling can fail if junior trench leads wait too long.",
           "whatToDo": "Make the intent move visible through the planned action: the director had already trained trench leads on stop-work signs and reporting limits, so the junior lead covers the find, halts the trench, and calls the designated authority without asking first. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In field archaeology dig when a trench exposes unexpected human remains, the risk is specific: legal and ethical handling can fail if junior trench leads wait too long. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2628,13 +2191,6 @@
             "intent",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "concrete pour for a hospital foundation",
-            "audience": "a site superintendent with inspectors at separate pour zones",
-            "stakes": "a bad slump test in one zone can compromise a critical foundation",
-            "format": "predict_reveal",
-            "requiredBeat": "the superintendent gives inspectors reject authority and the project intent, then the east-zone inspector stops one truck before the superintendent arrives"
-          },
           "scenario": "Isabel takes the handoff as at the east-zone formwork, wet concrete slumps over a cone beside the hospital foundation pour. Isabel must tell the site leads whether to wait for every answer from the office or turn permission into intent. She names the finish standard, weather limit, and stop-work trigger, then lets the pour lead decide inside those lines.",
           "whatToDo": "Make the intent move visible through the planned action: the superintendent gives inspectors reject authority and the project intent, then the east-zone inspector stops one truck before the superintendent arrives. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In concrete pour for a hospital foundation, the risk is specific: a bad slump test in one zone can compromise a critical foundation. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2686,8 +2242,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lead at the far row has the cue and the practiced trigger. Restating the rule and confirming authority lets the edge act inside the seconds frost gives. Holding for the truck spends the window. Forcing a synchronized call across rows turns a local decision into a committee while the leaves freeze. Decentralized command works when the rail is clear and the lead nearest the facts moves first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2699,8 +2254,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Heat stroke is treated by minutes, not by hierarchy. The volunteers practiced the protocol; the tent lead is closest to the runner. Confirming the trigger and the rails lets the aid tent act while the physician closes distance. Waiting for the physician spends the runner's clock. Suspending decisions across the route is a centralization reflex that punishes every tent for one situation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2712,8 +2266,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A climbing queue with a leader-bottleneck is the exact failure decentralized command prevents. Naming a ceiling, naming the exceptions, and pushing the rail outward in five minutes lets the senior agent move while preserving the cases Sophie truly needs to own. Taking the queue herself proves the principle wrong. Routing every credit up confirms the bottleneck and trains the floor to wait.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2725,8 +2278,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The squad boss has the cue, the bench, and a trained authority to relocate inside the safety rule. Confirming it, marking the new anchor on the net, and informing division command keeps speed and visibility together. Walking the ridge personally spends the window. Pulling the whole division back trades local judgment for a centralized panic that surrenders ground the fire will take.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2738,8 +2290,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated page is the cue. The charge nurse has trained for the call but the rule has not been made visible at the point of work. Walking the three triage points, posting the rule, and forcing a brief-back turns intent into behavior the nurse can carry through pressure. Tightening sign-off confirms the bottleneck. Moving her elsewhere trades a training repair for a roster shuffle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2751,8 +2302,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calling routing discipline misreads the after-action. The fix is to show, decision by decision, which level should have owned the call, then force each squad leader to publish the rights he holds. Praising the routing pattern guarantees the next contact stalls the same way. Reassigning the slowest leader looks like accountability and leaves the system unchanged. Visible decision rights move the next call to the right level.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "rich"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2813,19 +2363,13 @@
       },
       "memorableLines": [
         {
-          "text": "Permission can become a bottleneck disguised as control.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Permission can become a bottleneck disguised as control."
         },
         {
-          "text": "Intent gives freedom a direction. Limits give it a fence.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Intent gives freedom a direction. Limits give it a fence."
         },
         {
-          "text": "Local leaders cannot move fast on a purpose they never received.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "Local leaders cannot move fast on a purpose they never received."
         }
       ]
     },
@@ -2852,13 +2396,6 @@
             "contingency",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "hospital generator transfer drill before hurricane season",
-            "audience": "a facilities director coordinating nurses, security, and electricians",
-            "stakes": "backup power can fail in practice if every group rehearses alone",
-            "format": "scene",
-            "requiredBeat": "the director states the intent, rehearses the transfer path with each role present, and names what changes if the east switchgear fails"
-          },
           "scenario": "Julia studies the scene as at 6:15 a.m. in the hospital generator room, a brass key tag swings beside the transfer cabinet. Julia studies the drill failure and must decide whether to trust the paper plan or rehearse generator roles before hurricane season. She assigns transfer, patient-elevator, fuel, and communications owners, then walks the backup sequence.",
           "whatToDo": "Make the contingency move visible through the planned action: the director states the intent, rehearses the transfer path with each role present, and names what changes if the east switchgear fails. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In hospital generator transfer drill before hurricane season, the risk is specific: backup power can fail in practice if every group rehearses alone. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2871,13 +2408,6 @@
             "contingency",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "school bus evacuation plan for a steep rural route",
-            "audience": "a transportation supervisor responsible for drivers and substitute monitors",
-            "stakes": "a stalled bus on the hill needs practiced roles, not a binder nobody opens",
-            "format": "vignette",
-            "requiredBeat": "the supervisor walks drivers through who leads children uphill, who places triangles, and what changes if the rear door is blocked"
-          },
           "scenario": "The checks the first sign: three reflective triangles lean against the bus steps during the yard drill. Thomas has to choose a generator response before the generator room splits into private fixes. The supervisor walks drivers through who leads children uphill, who places triangles, and what changes if the rear door is blocked. The audience is a transportation supervisor responsible for drivers and substitute monitors, and the risk is clear: a stalled bus on the hill needs practiced roles, not a binder nobody opens.",
           "whatToDo": "Make the contingency move visible through the planned action: the supervisor walks drivers through who leads children uphill, who places triangles, and what changes if the rear door is blocked. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In school bus evacuation plan for a steep rural route, the risk is specific: a stalled bus on the hill needs practiced roles, not a binder nobody opens. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2890,13 +2420,6 @@
             "contingency",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "product launch rollback rehearsal for a subscription billing change",
-            "audience": "a product lead with engineering, support, and finance dependencies",
-            "stakes": "a failed launch can double-bill customers if rollback is improvised",
-            "format": "decision_point",
-            "requiredBeat": "the lead writes commander’s intent in customer terms, rehearses the rollback button owner, and defines the billing-stop trigger before launch morning"
-          },
           "scenario": "Sandbox invoice shows duplicate charges in the rehearsal account. Aanya hovers over the next call in product launch rollback rehearsal for a subscription billing change. One option keeps the generator problem moving by habit; the other uses contingency to practice the contingency handoff. The lead writes commander’s intent in customer terms, rehearses the rollback button owner, and defines the billing-stop trigger before launch morning. A failed launch can double-bill customers if rollback is improvised.",
           "whatToDo": "Make the contingency move visible through the planned action: the lead writes commander’s intent in customer terms, rehearses the rollback button owner, and defines the billing-stop trigger before launch morning. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In product launch rollback rehearsal for a subscription billing change, the risk is specific: a failed launch can double-bill customers if rollback is improvised. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2909,13 +2432,6 @@
             "contingency",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "mountain hut resupply before a late-spring storm",
-            "audience": "a hut manager coordinating packers, cook, and weather volunteer",
-            "stakes": "missed contingencies can strand guests without fuel or staple food",
-            "format": "before_after",
-            "requiredBeat": "the manager plans the main route, cache point, and storm hold rule, then rehearses who calls the turn-back before anyone loads packs"
-          },
           "scenario": "Blue fuel canisters line the mudroom floor beside a storm bulletin. Patrick faces a choice before the generator handoff locks in. The wrong generator move would leave generator contingency implied. The better move is visible: the manager plans the main route, cache point, and storm hold rule, then rehearses who calls the turn-back before anyone loads packs. Missed contingencies can strand guests without fuel or staple food.",
           "whatToDo": "Make the contingency move visible through the planned action: the manager plans the main route, cache point, and storm hold rule, then rehearses who calls the turn-back before anyone loads packs. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In mountain hut resupply before a late-spring storm, the risk is specific: missed contingencies can strand guests without fuel or staple food. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2928,13 +2444,6 @@
             "contingency",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "courtroom evidence handoff for a complex fraud trial",
-            "audience": "a paralegal lead coordinating lawyers, clerk, and expert witnesses",
-            "stakes": "one missed exhibit handoff can derail testimony in front of the jury",
-            "format": "postmortem",
-            "requiredBeat": "after a rehearsal exposes a gap, the lead labels each exhibit seal, assigns a handoff owner, and prepares a backup order if the expert is called early"
-          },
           "scenario": "Catherine reads the room when green exhibit seals line up beside a witness schedule with arrows drawn in pencil. Catherine needs to decide through the generator signal whether the generator team gets another generator contingency reminder or a concrete contingency change. After a rehearsal exposes a gap, the lead labels each exhibit seal, assigns a handoff owner, and prepares a backup order if the expert is called early. The case speaks to a paralegal lead coordinating lawyers, clerk, and expert witnesses; one missed exhibit handoff can derail testimony in front of the jury.",
           "whatToDo": "Make the contingency move visible through the planned action: after a rehearsal exposes a gap, the lead labels each exhibit seal, assigns a handoff owner, and prepares a backup order if the expert is called early. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In courtroom evidence handoff for a complex fraud trial, the risk is specific: one missed exhibit handoff can derail testimony in front of the jury. A generic speech leaves that risk intact; this action changes the next decision."
@@ -2947,13 +2456,6 @@
             "contingency",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "farmers market cold-rain setup for fragile spring seedlings",
-            "audience": "a market manager with vendors arriving before sunrise",
-            "stakes": "vendors can lose inventory and block aisles if weather contingencies are vague",
-            "format": "dialogue",
-            "requiredBeat": "the manager briefs intent, assigns canopy-weight checks, defines the rain-route for customers, and rehearses what happens if the north lot floods"
-          },
           "scenario": "Marco takes the handoff as canvas canopy weights thud onto wet asphalt beside trays of basil seedlings. Marco must tell the generator team whether to keep improvising or use contingency to turn roles into rehearsal. The answer shows up in the beat: the manager briefs intent, assigns canopy-weight checks, defines the rain-route for customers, and rehearses what happens if the north lot floods. Vendors can lose inventory and block aisles if weather contingencies are vague.",
           "whatToDo": "Make the contingency move visible through the planned action: the manager briefs intent, assigns canopy-weight checks, defines the rain-route for customers, and rehearses what happens if the north lot floods. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In farmers market cold-rain setup for fragile spring seedlings, the risk is specific: vendors can lose inventory and block aisles if weather contingencies are vague. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3005,8 +2507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A rehearsal earns its place when the miss has somewhere to go. Rewriting the role card and rerunning the segment puts the fix into behavior before the wind arrives. Praising the meeting and deferring to a post-storm review is exactly the binder-in-the-wrong-room failure. Replacing the nurse trades a planning repair for a roster move and leaves the handoff unpracticed in the new pair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3018,8 +2519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An evacuation step that fails beside the ditch is the step that fails on the day. Running it again at the real spot, timing the pause, and forcing a brief-back puts the repair where the pressure will land. Signing on indoor narration trades comfort for a future casualty. Halting the route for a multi-agency exercise overshoots the problem and surrenders the two-hour window the county actually gave Thomas.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3031,8 +2531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A mock cross is the cheap place to find an expensive miss. Naming a cue, assigning a single owner, and timing two more drills converts the gap into behavior the team can carry under aggressive pacing. Trusting natural surfacing ignores the rehearsal that just revealed the failure. Reassigning to a paralegal during trial hides the gap behind a workaround opposing counsel will read in the first hour.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3044,8 +2543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A predawn variant is not a translation of the morning rehearsal; it is a new rehearsal. Walking the variant, naming headlamp checkpoints, and running the first switchbacks in real darkness puts the change into behavior before the column commits. Trusting on-the-move translation invites the lead porter to invent. Canceling resupply spends the storm window the upper hut cannot afford.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3057,8 +2555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Unassigned branches survive planning only because no one has been forced to own them out loud. Naming an owner, a trigger, and a first action, then rehearsing the call-out on the mock-up, turns paper into reflex the platoon can execute under fire. Pushing assignment up to the brief-back hides the gap behind rank. Dropping the radio-link branch prunes a contingency because the recent past was kind.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3070,8 +2567,7 @@
             ],
             "correctIndex": 1,
             "explanation": "After a checkpoint casualty the worst-case branch is the only branch that matters first, because the room that just produced one is now producing the next plan. Forcing the branch to the top of every variant with call-out, authority, and brake visible is the discipline that protects the next gate. Meeting the deadline first invites a repeat. Replacing the planner makes the chain feel decisive while the planning habit stays intact.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "rich"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3132,19 +2628,13 @@
       },
       "memorableLines": [
         {
-          "text": "Planning earns its keep when the original route breaks.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Planning earns its keep when the original route breaks."
         },
         {
-          "text": "Intent tells people what must survive when the steps have to change.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Intent tells people what must survive when the steps have to change."
         },
         {
-          "text": "A rehearsal is a cheap place to find an expensive miss.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "A rehearsal is a cheap place to find an expensive miss."
         }
       ]
     },
@@ -3171,13 +2661,6 @@
             "alignment",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "railway maintenance night possession near a busy junction",
-            "audience": "a track supervisor between field crew and operations center",
-            "stakes": "field workers and dispatch can hold different pictures of when the track is safe",
-            "format": "scene",
-            "requiredBeat": "the supervisor tells the crew the dispatch constraint, sends the ballast delay upward before it becomes hidden risk, and confirms the release time in both directions"
-          },
           "scenario": "Michael studies the scene as at 11:38 p.m. in the rail maintenance trailer, a track possession board glows while rain dots the window. Michael studies the junction risk and must decide whether to keep purpose and friction in separate layers. He sends the closure purpose down to crews and pushes the signal conflict up before the night possession begins.",
           "whatToDo": "Make the alignment move visible through the planned action: the supervisor tells the crew the dispatch constraint, sends the ballast delay upward before it becomes hidden risk, and confirms the release time in both directions. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In railway maintenance night possession near a busy junction, the risk is specific: field workers and dispatch can hold different pictures of when the track is safe. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3190,13 +2673,6 @@
             "alignment",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "zoo carnivore enclosure latch issue before public opening",
-            "audience": "a keeper lead responsible to both keepers and the director",
-            "stakes": "a small field concern can stay invisible above while keepers miss the reason for a closure",
-            "format": "decision_point",
-            "requiredBeat": "the lead explains to keepers why the exhibit stays closed, sends the exact latch risk and visitor-impact estimate upward, and asks for a clear opening decision"
-          },
           "scenario": "The checks the first sign: red latch tag hangs from the snow leopard night gate. Camille has to choose a rail response before the rail room splits into private fixes. The lead explains to keepers why the exhibit stays closed, sends the exact latch risk and visitor-impact estimate upward, and asks for a clear opening decision. The audience is a keeper lead responsible to both keepers and the director, and the risk is clear: a small field concern can stay invisible above while keepers miss the reason for a closure.",
           "whatToDo": "Make the alignment move visible through the planned action: the lead explains to keepers why the exhibit stays closed, sends the exact latch risk and visitor-impact estimate upward, and asks for a clear opening decision. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In zoo carnivore enclosure latch issue before public opening, the risk is specific: a small field concern can stay invisible above while keepers miss the reason for a closure. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3209,13 +2685,6 @@
             "alignment",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "nonprofit canvass team hearing donor confusion about a policy change",
-            "audience": "a field director leading canvassers and reporting to the executive team",
-            "stakes": "the campaign can burn trust if donor confusion never travels upward",
-            "format": "dialogue",
-            "requiredBeat": "the director gives canvassers the purpose sentence, collects three exact donor objections on envelopes, and sends the pattern up with a recommended script change"
-          },
           "scenario": "Three pledge envelopes carry the same question written in blue pen. Robert hovers over the next call in nonprofit canvass team hearing donor confusion about a policy change. One option keeps the rail problem moving by habit; the other uses alignment to send context down the chain. The director gives canvassers the purpose sentence, collects three exact donor objections on envelopes, and sends the pattern up with a recommended script change. The campaign can burn trust if donor confusion never travels upward.",
           "whatToDo": "Make the alignment move visible through the planned action: the director gives canvassers the purpose sentence, collects three exact donor objections on envelopes, and sends the pattern up with a recommended script change. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In nonprofit canvass team hearing donor confusion about a policy change, the risk is specific: the campaign can burn trust if donor confusion never travels upward. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3228,13 +2697,6 @@
             "alignment",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "hospital cafeteria substituting meals during a supplier shortage",
-            "audience": "a food-service manager between procurement and dietary aides",
-            "stakes": "patients with restrictions can receive wrong meals if purpose and constraints split",
-            "format": "before_after",
-            "requiredBeat": "the manager explains the shortage logic down to tray-line staff, sends allergy-risk concerns up to procurement, and changes the menu placard before lunch service"
-          },
           "scenario": "Menu placard lists turkey while the delivery crate holds only chicken. Giulia faces a choice before the rail handoff locks in. The wrong rail move would leave rail alignment implied. The better move is visible: the manager explains the shortage logic down to tray-line staff, sends allergy-risk concerns up to procurement, and changes the menu placard before lunch service. Patients with restrictions can receive wrong meals if purpose and constraints split.",
           "whatToDo": "Make the alignment move visible through the planned action: the manager explains the shortage logic down to tray-line staff, sends allergy-risk concerns up to procurement, and changes the menu placard before lunch service. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In hospital cafeteria substituting meals during a supplier shortage, the risk is specific: patients with restrictions can receive wrong meals if purpose and constraints split. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3247,13 +2709,6 @@
             "alignment",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "civil engineering inspection team finding sinkhole risk under a sidewalk",
-            "audience": "a field engineer linking inspectors, city manager, and repair crew",
-            "stakes": "senior leaders may underestimate risk while the repair crew misses the public-access reason",
-            "format": "vignette",
-            "requiredBeat": "the engineer sends soil-core photos and a closure recommendation upward, then explains to the crew why the detour must protect a senior-center entrance"
-          },
           "scenario": "Soil core tube comes up hollow at the edge of a cracked sidewalk panel. Daniel needs to decide through the rail signal whether the rail team gets another rail alignment reminder or a concrete alignment change. The engineer sends soil-core photos and a closure recommendation upward, then explains to the crew why the detour must protect a senior-center entrance. The case speaks to a field engineer linking inspectors, city manager, and repair crew; senior leaders may underestimate risk while the repair crew misses the public-access reason.",
           "whatToDo": "Make the alignment move visible through the planned action: the engineer sends soil-core photos and a closure recommendation upward, then explains to the crew why the detour must protect a senior-center entrance. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In civil engineering inspection team finding sinkhole risk under a sidewalk, the risk is specific: senior leaders may underestimate risk while the repair crew misses the public-access reason. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3266,13 +2721,6 @@
             "alignment",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "software compliance deadline with a hidden vendor dependency",
-            "audience": "a program manager between executives and implementation teams",
-            "stakes": "executives see green while teams privately know the vendor export may arrive late",
-            "format": "postmortem",
-            "requiredBeat": "the manager stops smoothing status, sends the vendor dependency upward with decision options, then tells teams which compliance promise still matters most"
-          },
           "scenario": "Vendor export date sits blank on the audit calendar. Anya must tell the rail team whether to keep improvising or use alignment to link the decision layers. The answer shows up in the beat: the manager stops smoothing status, sends the vendor dependency upward with decision options, then tells teams which compliance promise still matters most. Executives see green while teams privately know the vendor export may arrive late.",
           "whatToDo": "Make the alignment move visible through the planned action: the manager stops smoothing status, sends the vendor dependency upward with decision options, then tells teams which compliance promise still matters most. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In software compliance deadline with a hidden vendor dependency, the risk is specific: executives see green while teams privately know the vendor export may arrive late. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3324,8 +2772,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Leading up the chain in a narrowing window means handing the higher commander exactly the picture and the ask he needs to authorize. Naming the risk, the cost, the proposed change, and the deadline in one transmission lets headquarters decide in time. Drafting the memo trades a man's possession for tidy paperwork. Holding the original plan and reporting in the morning is silence dressed as discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3337,8 +2784,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A loose latch before opening is the kind of friction that has to move up while it is still useful. Pulling facilities, interrupting the donor meeting with the keeper's specific risk, and briefing the gate team carries context to the people who can act. Opening on schedule with a posted staffer hopes the latch holds. Waiting for a single authority freezes a decision the morning will not.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3350,8 +2796,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Friction up the chain works when it carries facts, not feelings. Three verbatim quotes and a door count gives the manager something to act on. A clear holding answer down the chain keeps the canvass moving while the memo gets fixed. Holding the original language ignores donors in real time. Pulling the team off the route surrenders the afternoon and trains canvassers to wait.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3363,8 +2808,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A broken partner relationship is fixed in person, by owning what happened before you, naming the next concrete task, and only then reporting up with the specific commitment. Asking brigade to suspend combined operations protects the schedule but cedes the mission. Running unilaterally looks tidy and hardens the rift. Sterling's job is to carry the right meaning both directions before the next patrol forms.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "rich"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3376,8 +2820,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Leading down means carrying purpose to the drivers; leading up means carrying friction to corporate with detail they can act on. Walking the floor, capturing named friction steps, and bringing a proposed adjustment turns a complaint into a decision corporate can make. Defending the drivers by hand-waving keeps the friction stuck. Suspending the rollout looks decisive and trains the floor that complaints kill software.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3389,8 +2832,7 @@
             ],
             "correctIndex": 0,
             "explanation": "When operators read a tasking as stupid, the failure is almost always that the why has not traveled. Carrying the brigade-level reason down to the squad in language the squad can repeat, then letting each leader own the brief, restores initiative without burning the window. Pushing the order without the reason buys obedience and loses initiative. Pausing for a memo teaches the team that orders are negotiable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3451,19 +2893,13 @@
       },
       "memorableLines": [
         {
-          "text": "A chain breaks quietly when context stops traveling.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "A chain breaks quietly when context stops traveling."
         },
         {
-          "text": "Purpose without friction is fantasy. Friction without purpose is complaint.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Purpose without friction is fantasy. Friction without purpose is complaint."
         },
         {
-          "text": "Alignment is built by moving the right meaning before the wrong action starts.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "Alignment is built by moving the right meaning before the wrong action starts."
         }
       ]
     },
@@ -3490,13 +2926,6 @@
             "uncertainty",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "river regatta with lightning risk and boats already staged",
-            "audience": "a race director balancing safety, fairness, and impatient crews",
-            "stakes": "waiting too long exposes crews, while canceling too early wastes the only race window",
-            "format": "decision_point",
-            "requiredBeat": "the director uses the last reliable radar scan, the lightning distance rule, and rescue-boat readiness to call a thirty-minute hold, then names the update point"
-          },
           "scenario": "At the regatta dock, race director Grace holds a lightning-distance card beside numbered bow tags. She must decide whether to wait for certainty or act on enough lightning truth. She postpones the start, names the harbor route, and tells safety boats what signal would reopen racing.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the director uses the last reliable radar scan, the lightning distance rule, and rescue-boat readiness to call a thirty-minute hold, then names the update point. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In river regatta with lightning risk and boats already staged, the risk is specific: waiting too long exposes crews, while canceling too early wastes the only race window. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3509,13 +2938,6 @@
             "uncertainty",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "vineyard frost fan activation before the forecast settles",
-            "audience": "a vineyard manager deciding whether to spend fuel before dawn",
-            "stakes": "waiting for perfect forecast can lose the lower block crop",
-            "format": "predict_reveal",
-            "requiredBeat": "the manager compares leaf temperature, low-block history, and fuel limit, starts fans in the vulnerable rows, and checks again after twenty minutes"
-          },
           "scenario": "The checks the first sign: leaf thermometer reads just above freezing under a headlamp. Lukas has to choose a lightning response before the lightning room splits into private fixes. The manager compares leaf temperature, low-block history, and fuel limit, starts fans in the vulnerable rows, and checks again after twenty minutes. The audience is a vineyard manager deciding whether to spend fuel before dawn, and the risk is clear: waiting for perfect forecast can lose the lower block crop.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the manager compares leaf temperature, low-block history, and fuel limit, starts fans in the vulnerable rows, and checks again after twenty minutes. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In vineyard frost fan activation before the forecast settles, the risk is specific: waiting for perfect forecast can lose the lower block crop. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3528,13 +2950,6 @@
             "uncertainty",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "airport gate operation when a crew member is missing",
-            "audience": "a gate manager with passengers boarding and dispatch giving partial updates",
-            "stakes": "boarding too soon or too late can both create cascading delays",
-            "format": "scene",
-            "requiredBeat": "the manager decides to hold boarding for twelve minutes, tells passengers the concrete next update, and prepares the aircraft swap if crew timing misses the window"
-          },
           "scenario": "Crew-status tile stays gray above a line of passengers at gate C17. Sofia hovers over the next call in airport gate operation when a crew member is missing. One option keeps the lightning problem moving by habit; the other uses uncertainty to move before certainty arrives. The manager decides to hold boarding for twelve minutes, tells passengers the concrete next update, and prepares the aircraft swap if crew timing misses the window. Boarding too soon or too late can both create cascading delays.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the manager decides to hold boarding for twelve minutes, tells passengers the concrete next update, and prepares the aircraft swap if crew timing misses the window. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In airport gate operation when a crew member is missing, the risk is specific: boarding too soon or too late can both create cascading delays. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3547,13 +2962,6 @@
             "uncertainty",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "pediatric emergency department considering transfer before final lab results",
-            "audience": "an ER attending with a sick child and incomplete diagnostics",
-            "stakes": "delay can close the transfer window, but premature transfer has risks",
-            "format": "dialogue",
-            "requiredBeat": "the attending states what is known, what would change the decision, starts the transfer call now, and leaves room to cancel if the lab returns differently"
-          },
           "scenario": "Ambulance bay light reflects across a half-completed lab panel. James faces a choice before the lightning handoff locks in. The wrong lightning move would leave lightning uncertainty implied. The better move is visible: the attending states what is known, what would change the decision, starts the transfer call now, and leaves room to cancel if the lab returns differently. Delay can close the transfer window, but premature transfer has risks.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the attending states what is known, what would change the decision, starts the transfer call now, and leaves room to cancel if the lab returns differently. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In pediatric emergency department considering transfer before final lab results, the risk is specific: delay can close the transfer window, but premature transfer has risks. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3566,13 +2974,6 @@
             "uncertainty",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "elementary school dismissal during wildfire smoke",
-            "audience": "a principal deciding between outdoor pickup and indoor release",
-            "stakes": "families need direction before air-quality data fully stabilizes",
-            "format": "before_after",
-            "requiredBeat": "the principal uses the current air-quality monitor, bus timing, and nurse guidance to switch to indoor pickup, then revises the plan when wind changes"
-          },
           "scenario": "Air-quality monitor blinks orange beside a stack of dismissal placards. Catarina needs to decide through the lightning signal whether the lightning team gets another lightning uncertainty reminder or a concrete uncertainty change. The principal uses the current air-quality monitor, bus timing, and nurse guidance to switch to indoor pickup, then revises the plan when wind changes. The case speaks to a principal deciding between outdoor pickup and indoor release; families need direction before air-quality data fully stabilizes.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the principal uses the current air-quality monitor, bus timing, and nurse guidance to switch to indoor pickup, then revises the plan when wind changes. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In elementary school dismissal during wildfire smoke, the risk is specific: families need direction before air-quality data fully stabilizes. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3585,13 +2986,6 @@
             "uncertainty",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "mining conveyor line after a vibration spike",
-            "audience": "a site supervisor balancing production pressure and mechanical uncertainty",
-            "stakes": "a bearing failure can injure workers if the line keeps running for proof",
-            "format": "postmortem",
-            "requiredBeat": "the supervisor halts the conveyor on the spike plus noise report, assigns inspection, and sets the restart condition before production leaders press for speed"
-          },
           "scenario": "Vibration readout jumps red while ore dust settles on the stop cord. Peter must tell the lightning team whether to keep improvising or use uncertainty to revise after the first signal. The answer shows up in the beat: the supervisor halts the conveyor on the spike plus noise report, assigns inspection, and sets the restart condition before production leaders press for speed. A bearing failure can injure workers if the line keeps running for proof.",
           "whatToDo": "Make the uncertainty move visible through the planned action: the supervisor halts the conveyor on the spike plus noise report, assigns inspection, and sets the restart condition before production leaders press for speed. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In mining conveyor line after a vibration spike, the risk is specific: a bearing failure can injure workers if the line keeps running for proof. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3643,8 +3037,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A grounded call under uncertainty names what is known, the move that happens now, and the sign that changes the answer. Stating confirmed strikes, holding for twenty minutes, and naming the trigger gives the dock a decision people can act on and revise. Postponing the day spends a move before anyone owns it. Starting on time on conflicting reports is decisiveness aimed at the wrong target.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3656,8 +3049,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Decisiveness amid shifting numbers is not certainty; it is a named threshold spoken cleanly enough that the foreman can act when Lukas is on the next row. Waiting for two more updates lets the clock decide. Starting every fan now is reckless speed dressed as caution. The threshold approach commits the vineyard while keeping the next revision possible if the temperature drifts the other way.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3669,8 +3061,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A grounded call names the threshold and keeps motion honest enough to revise. Recommending the confirmable swap, naming the trigger, and continuing to board lets Sofia commit while the picture builds. Holding boarding entirely surrenders the slot to the clock. Pushing without the crew member is reckless speed and a regulatory violation. The point is movement that can still be updated, not waiting for certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3682,8 +3073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Timely action with incomplete facts is enough truth to move plus enough humility to update. Committing on trending signs, naming the single value that would flip the answer, and briefing the receiving team makes both branches actionable. Holding for every lab spends the window. Launching without a reversal trigger removes the leader's ability to update. The grounded call is one that can turn.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "rich"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -3695,8 +3085,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Forty seconds and a point-man report is enough truth to act on. Waiting for a clean picture trades initiative for a feeling of certainty that will not arrive. Switching to the rear with a one-line net call commits the element on the best information available and keeps revision possible inside the building. Holding burns the window. Executing unchanged is decisiveness aimed at the wrong direction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3708,8 +3097,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Blue-on-blue risk is the uncertainty where the decisive call is the cautious one: hold fire, runners, and reestablished comms before any trigger is pulled. Authorizing engagement on incomplete information is decisiveness aimed at the wrong target and can kill friendly operators. Silence abdicates the decision to a unit that does not know a sniper element is in the building. The discipline here is stopping the wrong action while the picture is built.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -3770,19 +3158,13 @@
       },
       "memorableLines": [
         {
-          "text": "Delay is still a decision when the window is closing.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Delay is still a decision when the window is closing."
         },
         {
-          "text": "The standard is not certainty. It is enough truth to move and enough humility to update.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "The standard is not certainty. It is enough truth to move and enough humility to update."
         },
         {
-          "text": "A grounded call can be revised. A missed window cannot always be reopened.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "A grounded call can be revised. A missed window cannot always be reopened."
         }
       ]
     },
@@ -3809,13 +3191,6 @@
             "discipline",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "arborist crew preparing for storm-damaged tree removals",
-            "audience": "a crew lead balancing strict setup with field judgment",
-            "stakes": "loose preparation can waste daylight and create hazards near power lines",
-            "format": "scene",
-            "requiredBeat": "the lead uses the same morning gear check every day, which frees the crew to adjust the cut plan when the first tree leans differently than expected"
-          },
           "scenario": "Evelyn studies the scene as at 6:30 a.m. beside the arborist truck, color-coded climbing ropes hang from a rack near a saw fuel can. Evelyn studies the shelf failure and must decide whether to improvise the storm response or free judgment with the shelf standard. She checks ropes, fuel, helmets, and saw tags before assigning the first damaged tree.",
           "whatToDo": "Make the discipline move visible through the planned action: the lead uses the same morning gear check every day, which frees the crew to adjust the cut plan when the first tree leans differently than expected. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In arborist crew preparing for storm-damaged tree removals, the risk is specific: loose preparation can waste daylight and create hazards near power lines. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3828,13 +3203,6 @@
             "discipline",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "jazz ensemble opening a set with rehearsed cue language",
-            "audience": "a bandleader who wants improvisation without musical drift",
-            "stakes": "freedom onstage can turn into noise if the shared structure is weak",
-            "format": "vignette",
-            "requiredBeat": "the bandleader drills the cue endings in rehearsal, then gives the saxophonist more solo room because everyone knows how to land together"
-          },
           "scenario": "The checks the first sign: brass mute rests on a piano while the drummer taps the cue ending softly. Anders has to choose a shelf response before the shelf room splits into private fixes. The bandleader drills the cue endings in rehearsal, then gives the saxophonist more solo room because everyone knows how to land together. The audience is a bandleader who wants improvisation without musical drift, and the risk is clear: freedom onstage can turn into noise if the shared structure is weak.",
           "whatToDo": "Make the discipline move visible through the planned action: the bandleader drills the cue endings in rehearsal, then gives the saxophonist more solo room because everyone knows how to land together. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In jazz ensemble opening a set with rehearsed cue language, the risk is specific: freedom onstage can turn into noise if the shared structure is weak. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3847,13 +3215,6 @@
             "discipline",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "restaurant prep system before an unexpected theater crowd arrives",
-            "audience": "a chef balancing prep discipline with real-time menu judgment",
-            "stakes": "the kitchen needs freedom to adapt without losing food safety or timing",
-            "format": "before_after",
-            "requiredBeat": "because prep labels, station lists, and par counts are done, the chef can cut one menu item and shift cooks without chaos when the crowd hits"
-          },
           "scenario": "Beatrice stands close while labeled squeeze bottles line the cold station as theater tickets pile at the host stand. Beatrice hovers over the next call in restaurant prep system before an unexpected theater crowd arrives. One option keeps the shelf problem moving by habit; the other uses discipline to protect attention with discipline. Because prep labels, station lists, and par counts are done, the chef can cut one menu item and shift cooks without chaos when the crowd hits. The kitchen needs freedom to adapt without losing food safety or timing.",
           "whatToDo": "Make the discipline move visible through the planned action: because prep labels, station lists, and par counts are done, the chef can cut one menu item and shift cooks without chaos when the crowd hits. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In restaurant prep system before an unexpected theater crowd arrives, the risk is specific: the kitchen needs freedom to adapt without losing food safety or timing. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3866,13 +3227,6 @@
             "discipline",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "sailing expedition packing storm lines before leaving harbor",
-            "audience": "a skipper teaching a novice crew why routine matters",
-            "stakes": "loose packing steals attention when weather turns",
-            "format": "predict_reveal",
-            "requiredBeat": "the skipper insists on the same line-stow routine in calm water, then when wind rises the crew can reef quickly and choose a safer heading"
-          },
           "scenario": "Lin makes the call after before departure in the cockpit, coiled storm lines sit clipped under the bench. Lin faces a choice before the harbor window closes: leave discipline implied or standardize the shelf routine for rough weather. She checks line placement, radio charge, and reefing order, then lets the skipper decide the route with attention free.",
           "whatToDo": "Make the discipline move visible through the planned action: the skipper insists on the same line-stow routine in calm water, then when wind rises the crew can reef quickly and choose a safer heading. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In sailing expedition packing storm lines before leaving harbor, the risk is specific: loose packing steals attention when weather turns. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3885,13 +3239,6 @@
             "discipline",
             "pressure"
           ],
-          "planSpec": {
-            "domain": "software on-call rotation using disciplined incident templates",
-            "audience": "an engineering lead balancing procedure with rapid diagnosis",
-            "stakes": "without basics handled, every incident consumes attention on formatting and ownership",
-            "format": "postmortem",
-            "requiredBeat": "the lead shows how the same incident template let the responder skip status confusion and spend attention deciding whether to roll back or patch forward"
-          },
           "scenario": "Pager alert opens a prefilled incident template at 2:16 a.m. Victoria needs to decide through the shelf signal whether the shelf team gets another shelf discipline reminder or a concrete discipline change. The lead shows how the same incident template let the responder skip status confusion and spend attention deciding whether to roll back or patch forward. The case speaks to an engineering lead balancing procedure with rapid diagnosis; without basics handled, every incident consumes attention on formatting and ownership.",
           "whatToDo": "Make the discipline move visible through the planned action: the lead shows how the same incident template let the responder skip status confusion and spend attention deciding whether to roll back or patch forward. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In software on-call rotation using disciplined incident templates, the risk is specific: without basics handled, every incident consumes attention on formatting and ownership. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3904,13 +3251,6 @@
             "discipline",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "physical therapy clinic standardizing intake while tailoring treatment",
-            "audience": "a clinic director with therapists worried protocols will flatten patient care",
-            "stakes": "inconsistent basics hide real clinical differences and slow treatment choices",
-            "format": "dialogue",
-            "requiredBeat": "the director standardizes pain scale, range check, and red-flag questions, then shows therapists how that frees them to choose different exercises with better facts"
-          },
           "scenario": "Row of resistance bands hangs beside a freshly printed intake sheet. Martin must tell the shelf team whether to keep improvising or use discipline to save judgment for balance. The answer shows up in the beat: the director standardizes pain scale, range check, and red-flag questions, then shows therapists how that frees them to choose different exercises with better facts. Inconsistent basics hide real clinical differences and slow treatment choices.",
           "whatToDo": "Make the discipline move visible through the planned action: the director standardizes pain scale, range check, and red-flag questions, then shows therapists how that frees them to choose different exercises with better facts. Name the owner or check so the scene changes before it repeats.",
           "whyItMatters": "In physical therapy clinic standardizing intake while tailoring treatment, the risk is specific: inconsistent basics hide real clinical differences and slow treatment choices. A generic speech leaves that risk intact; this action changes the next decision."
@@ -3962,8 +3302,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A basic skipped in calm air is the basic that fails over the playground. Stopping the truck, running the inspection in front of the climber, and forcing a brief-back makes the standard visible in the moment that matters. Letting the drift go protects the schedule and quietly trains the crew to skip. Reassigning the job hides the standard behind seniority and leaves the next climber the same gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3975,8 +3314,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A basic eroding on a familiar set is the moment the leader plants a flag, especially before a live feed. Pausing soundcheck, running the cue three times, and briefing section leaders puts the standard in front of the section the broadcast will catch. Trusting instincts on a slipping basic invites a stumble on camera. Dropping the language for hand signals trades a rehearsed tool for improvisation under the most exposed hour.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -3988,8 +3326,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A checklist skipped on a familiar symptom is exactly how Monday's wider outage was made. Running the next drill with the engineer leading, holding the full sequence, and forcing a brief-back at handoff turns the lesson into behavior the rotation can see. Informal coffee leaves the standard invisible. Moving the engineer off rotation looks decisive and leaves the actual habit unchanged in the rest of the team.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "rich"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -4001,8 +3338,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Discipline at the edge of a window is the part that holds the dock together when the wind arrives. Walking the dock and running the sequence himself on the next slips puts the standard in front of the crews who need to carry it. Loosening to beat the weather is the precise moment a packing failure becomes a loss. Standing down entirely surrenders cargo the harbor cannot afford and trains the dock to fold.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -4014,8 +3350,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Discipline at the end of a deployment is the part the relief unit will inherit, so the leader runs the basic himself in front of the chiefs and passes the standard forward by name. Loosening the step in the last five days is the moment a negligent discharge or lost weapon is most likely. Replacing the chiefs trades a leadership problem for a personnel rotation that does not fix the basic. Standing on the standard is the dichotomy in motion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -4027,8 +3362,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Equal casualties on opposite approaches is exactly the evidence that leadership lives on a dichotomy and not on a single setting. Naming three decisions on each side and teaching both edges in the next workup gives the relief unit the judgment they will actually need. Recommending aggression flatters the task unit and trains the next one to over-commit. Recommending caution flatters the sister unit and trains the next one to under-commit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "rich"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -4089,19 +3423,13 @@
       },
       "memorableLines": [
         {
-          "text": "Freedom grows when the basics stop asking for fresh courage every morning.",
-          "location": "breakdown.fastRead",
-          "why": "It puts the chapter move into a concrete sentence."
+          "text": "Freedom grows when the basics stop asking for fresh courage every morning."
         },
         {
-          "text": "Discipline is the shelf that lets judgment find the right tool fast.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a retrieval line for the mechanism."
+          "text": "Discipline is the shelf that lets judgment find the right tool fast."
         },
         {
-          "text": "The dichotomy is not a compromise. It is the leader staying awake to both sides.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter-specific limit in plain language."
+          "text": "The dichotomy is not a compromise. It is the leader staying awake to both sides."
         }
       ]
     }

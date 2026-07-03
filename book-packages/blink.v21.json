@@ -45,13 +45,6 @@
             "tone",
             "thin-slicing"
           ],
-          "planSpec": {
-            "domain": "couples therapy intake",
-            "audience": "therapists reading brief exchanges",
-            "stakes": "a noisy life history could hide the emotional cue that predicts repair",
-            "format": "decision_point",
-            "requiredBeat": "Freya weighs a short Gottman-style exchange against a long intake file"
-          },
           "scenario": "Freya sits at 8:35 a.m. in a Seattle counseling office with a red intake folder open and a Gottman love lab note on her screen. The couple keeps circling a dog-care fight. Freya must decide whether to read the full thirty-page history first or code the small exchange for contempt, repair, and warmth before the next session starts.",
           "whatToDo": "Score the brief exchange for the emotional cue that predicts repair, then use the long history only to test what the slice suggests.",
           "whyItMatters": "The Gottman material shows that a small sample can be strong when it tracks the right variable. Freya should not let more pages bury the cue."
@@ -64,13 +57,6 @@
             "cadence",
             "Morse"
           ],
-          "planSpec": {
-            "domain": "cybersecurity radio-pattern audit",
-            "audience": "analysts comparing sparse signals",
-            "stakes": "a hidden operator may be missed if content is treated as the only evidence",
-            "format": "predict_reveal",
-            "requiredBeat": "Sabine uses Morse-code fist logic to trust rhythm before content"
-          },
           "scenario": "Sabine is in a Munich security lab at 11:12 p.m., replaying encrypted radio bursts beside a paper note about Morse-code fists. The message content is unreadable. She must tell the incident lead whether the same sender is back before the night shift closes the file, and the only stable clue is the uneven rhythm between bursts.",
           "whatToDo": "Compare the cadence pattern before forcing a content answer, then flag the sender match as a rhythm-based judgment with a narrow claim.",
           "whyItMatters": "The Morse example proves that pattern can reveal identity even when meaning stays hidden. The slice works because Sabine names its limit."
@@ -83,13 +69,6 @@
             "rooms",
             "Gosling"
           ],
-          "planSpec": {
-            "domain": "residential adviser selection",
-            "audience": "student-life staff",
-            "stakes": "friendly references may normalize behavior that room evidence exposes",
-            "format": "audit",
-            "requiredBeat": "Dario separates Samuel Gosling-style residue from decorative noise"
-          },
           "scenario": "Dario stands at 4:20 p.m. in a residence hall office with applicant photos, reference notes, and a Samuel Gosling dorm-room study summary on a tablet. He must answer before the hiring committee meets. One applicant's friends praise reliability, but the room walkthrough shows calendars, labeled supplies, and repeated signs of follow-through.",
           "whatToDo": "Use the room evidence as behavioral residue, then ask whether the objects show repeated habits that matter for the adviser role.",
           "whyItMatters": "Gosling's dorm-room judgments warn that friends can miss what spaces preserve. Dario should read traces of conduct, not room style."
@@ -102,13 +81,6 @@
             "trust",
             "audio"
           ],
-          "planSpec": {
-            "domain": "hospital communication review",
-            "audience": "clinical quality teams",
-            "stakes": "technical skill may be blamed when the social injury is tone",
-            "format": "postmortem",
-            "requiredBeat": "Hyejin uses doctor-patient tone studies to isolate respect cues"
-          },
           "scenario": "Hyejin listens at 2:05 p.m. in a hospital quality room while a malpractice training clip plays through a small speaker. The surgeon's chart work was sound, yet the patient felt brushed off. Hyejin has to tell the review panel whether the case is about medical error alone or about the rushed, dominant tone in the visit.",
           "whatToDo": "Replay the short audio for warmth, pace, and respect, then separate the trust cue from the technical record before revising training.",
           "whyItMatters": "The malpractice tone studies show that people react to how harm is carried. Hyejin needs the social signal, not just the chart."
@@ -121,13 +93,6 @@
             "metrics",
             "signal"
           ],
-          "planSpec": {
-            "domain": "subscription churn review",
-            "audience": "product leaders facing noisy dashboards",
-            "stakes": "too many measures can disguise the one behavior tied to cancellation",
-            "format": "decision_memo",
-            "requiredBeat": "Gustavo applies thin-slicing by choosing the predictive cue, not the biggest dashboard"
-          },
           "scenario": "Gustavo writes at 7:10 a.m. in a Lisbon product war room with a churn dashboard covering two walls and a thin-slicing note beside his laptop. The board wants every metric in the Friday deck. He must decide before the memo goes out whether to lead with all usage data or the one cue tied to cancellations: ignored setup prompts in week one.",
           "whatToDo": "Lead with the week-one setup cue and treat the rest of the dashboard as context, not equal evidence.",
           "whyItMatters": "Thin-slicing asks for disciplined compression. Gustavo improves the fast call by cutting to the signal that predicts churn."
@@ -140,13 +105,6 @@
             "tone",
             "malpractice"
           ],
-          "planSpec": {
-            "domain": "legal mediation prep",
-            "audience": "attorneys testing how trust cues shape settlement",
-            "stakes": "a case theory may miss why the patient felt dismissed",
-            "format": "reflection",
-            "requiredBeat": "Marisol uses malpractice tone studies to narrow a settlement question"
-          },
           "scenario": "Marisol sits at 1:14 p.m. in a Denver mediation room with a transcript, earbuds, and a malpractice tone study excerpt beside the demand letter. The doctor apologized in writing, but the audio clip sounds clipped and superior. Marisol must decide before the settlement call whether the case turns on the chart alone or on the trust signal in the voice.",
           "whatToDo": "Treat the voice clip as a trust slice, then prepare one settlement question about respect rather than arguing only from the medical record.",
           "whyItMatters": "The doctor-patient studies show why a tiny social cue can carry large legal force. Marisol needs the cue that explains the patient's anger."
@@ -165,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Thin-slicing is not a mood from a short meeting. The counselor should identify cues that predict the outcome, then keep the claim narrow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -178,8 +135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A larger file is not automatically a better slice. The decisive issue is whether the cue Rina uses predicts the renewal she cares about.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -191,8 +147,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Morse-code fist logic supports a limited judgment from cadence. It does not turn rhythm into knowledge of message content or motive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -204,8 +159,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The brief tone sample can carry the social information that shapes trust after harm. The clinic should examine the interaction, not only the procedure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -217,8 +171,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The dorm-room studies support reading residues of behavior, not converting decoration into character. The claim has to stay tied to role-relevant evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -230,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Good compression is selective. The founder needs the diagnostic cue first, with other data used to test rather than drown the judgment.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -243,8 +195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The panel should ask whether the cue predicts the decision at hand. Dislike of the messenger adds noise to a small but useful signal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -256,8 +207,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The slice improves when the coach ties it to a known predictor. Feeling familiar or collecting more film may help less than choosing the right cue.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -269,8 +219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Thin-slicing can guide a narrow test, but it cannot support a sweeping verdict when the slice only captured one label and one visitor moment.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -313,7 +262,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find the Predictive Cue",
         "coreSkill": "Practice making small judgments by naming the cue before naming the verdict. The skill is to shrink the field without shrinking the rigor. A good slice says what it can predict and what it cannot touch.",
         "ifThenPlans": [
           {
@@ -338,19 +286,13 @@
       },
       "memorableLines": [
         {
-          "text": "Thin-slicing works when the observer knows which cue deserves weight.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the concept into a rule for deciding what counts."
+          "text": "Thin-slicing works when the observer knows which cue deserves weight."
         },
         {
-          "text": "A thin slice earns trust when the cue is tied to the outcome.",
-          "location": "breakdown.deepRead",
-          "why": "It states the standard that separates insight from guessing."
+          "text": "A thin slice earns trust when the cue is tied to the outcome."
         },
         {
-          "text": "The slice is thin, but the cue is thick with meaning.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter's core idea a compact image."
+          "text": "The slice is thin, but the cue is thick with meaning."
         }
       ]
     },
@@ -377,13 +319,6 @@
             "expertise",
             "Braden"
           ],
-          "planSpec": {
-            "domain": "junior tennis coaching",
-            "audience": "coaches with hard-to-explain reads",
-            "stakes": "forcing a verbal rule could damage a useful trained hunch",
-            "format": "decision_point",
-            "requiredBeat": "Anouk treats a Braden-like prediction as skilled but narrow"
-          },
           "scenario": "Anouk stands at 6:45 a.m. on court three in Rotterdam with a serve chart clipped to her sleeve and Vic Braden's double-fault puzzle in mind. Her junior player's toss drifts left, and Anouk feels the miss coming before contact. She must decide whether to invent a confident reason for the parent watching nearby or keep the read narrow until more serves confirm the cue.",
           "whatToDo": "Name the prediction as a trained court read, chart the next ten tosses, and avoid pretending she already knows the exact trigger.",
           "whyItMatters": "Braden's case shows that expertise can be accurate before it is explainable. Anouk protects the judgment by refusing a false reason."
@@ -396,13 +331,6 @@
             "office",
             "Bargh"
           ],
-          "planSpec": {
-            "domain": "call-center performance reset",
-            "audience": "team leads designing cues",
-            "stakes": "unseen primes may shift behavior while looking like attitude",
-            "format": "before_after",
-            "requiredBeat": "Keisha uses Bargh's priming logic to alter context before judging workers"
-          },
           "scenario": "Keisha walks into a Phoenix call center at 9:18 a.m. and sees posters about burnout beside the coaching board. A John Bargh priming summary sits in her binder. Average call pace has slowed all week. Before the supervisor blames motivation, Keisha has to decide whether the hallway cues are loading the shift with fatigue before agents log in.",
           "whatToDo": "Replace the fatigue cues with service-specific prompts for the next shift, then compare pace before making a character judgment about agents.",
           "whyItMatters": "Bargh's priming work warns that behavior can move without conscious intent. Keisha should test context before blaming attitude."
@@ -415,13 +343,6 @@
             "identity",
             "GRE"
           ],
-          "planSpec": {
-            "domain": "scholarship exam setup",
-            "audience": "program directors protecting fair performance",
-            "stakes": "an identity cue may change the psychological load of a test",
-            "format": "planning_choice",
-            "requiredBeat": "Lionel recognizes the race prompt before the GRE risk"
-          },
           "scenario": "Lionel sits at 7:55 p.m. in a scholarship office with answer sheets stacked beside a race prompt before the GRE case note. The new practice exam asks students to mark identity before question one. Lionel must answer the vendor before printing starts, choosing whether to keep the form order or move identity questions after the timed section.",
           "whatToDo": "Move identity questions until after the timed work, then treat any score change as evidence about the testing environment.",
           "whyItMatters": "The GRE prompt case shows that a small cue can add load before performance. Lionel can fix the setup before judging ability."
@@ -434,13 +355,6 @@
             "preference",
             "Fisman"
           ],
-          "planSpec": {
-            "domain": "customer research interviews",
-            "audience": "researchers comparing stated and revealed preferences",
-            "stakes": "participants may narrate criteria after the choice",
-            "format": "dialogue",
-            "requiredBeat": "Farah borrows the speed-dating lesson about after-the-fact reasons"
-          },
           "scenario": "Farah is in a Toronto research suite at 3:30 p.m. with six-minute product interviews on one monitor and a Sheena Iyengar and Raymond Fisman speed-dating note on another. Participants claimed price mattered most, then chose the harder-to-use premium tool. Farah must tell the product lead whether the stated criteria or the observed choice should drive the next test.",
           "whatToDo": "Keep the stated criteria as a story to investigate, then design the next test around the choice participants actually made.",
           "whyItMatters": "Speed-dating research shows that reasons can change after a preference forms. Farah should not mistake fluent explanation for access."
@@ -453,13 +367,6 @@
             "hunch",
             "guardrails"
           ],
-          "planSpec": {
-            "domain": "credit-risk committee",
-            "audience": "analysts weighing gut calls",
-            "stakes": "a hidden cue may be either trained pattern recognition or irrelevant priming",
-            "format": "dilemma",
-            "requiredBeat": "Dmitri separates trained cue history from possible locked-door contamination"
-          },
           "scenario": "Dmitri reviews a loan file at 5:06 p.m. in a Prague credit room, tapping a pencil against a locked door note from Blink. He feels the borrower is risky before the spreadsheet supports it. The committee vote starts in nine minutes. Dmitri must decide whether to trust the hunch, suppress it, or ask what recent cases and office cues may have shaped it.",
           "whatToDo": "State the hunch, list the cases that trained it, and check for irrelevant cues before letting the committee use it.",
           "whyItMatters": "The locked door makes both trust and doubt necessary. Dmitri needs a guardrail because hidden judgment can be skilled or primed."
@@ -472,13 +379,6 @@
             "context",
             "identity"
           ],
-          "planSpec": {
-            "domain": "medical entrance exam logistics",
-            "audience": "test designers reducing hidden load",
-            "stakes": "a form cue may alter performance before the test begins",
-            "format": "reset_moment",
-            "requiredBeat": "Soraya moves a race prompt before the GRE style cue out of the timed path"
-          },
           "scenario": "Soraya checks a tablet at 6:40 a.m. in a Baltimore exam center while proctors tape room numbers to the doors. A race prompt before the GRE case note is highlighted in her folder. She must decide before registration opens whether demographic questions stay on the first screen or move after the timed science section.",
           "whatToDo": "Move the demographic prompt behind the timed section, then compare completion data before drawing conclusions about preparation.",
           "whyItMatters": "The locked door includes context the student may never name. Soraya reduces a hidden cue before it can distort the score."
@@ -497,8 +397,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The locked door allows skilled judgment without full explanation. The kitchen should test the hunch against experience instead of demanding a fake reason.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -510,8 +409,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The GRE prompt case shows that context can add psychological load. Moving the cue protects performance before interpretation begins.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -523,8 +421,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Like the speed-dating participants, the panel can give sincere reasons that do not reveal the process that made the choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -536,8 +433,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A hidden process is stronger when grounded in repeated expert exposure. The issue is training history, not instant verbal clarity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -549,8 +445,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Priming can guide behavior outside awareness. The team should test the cue rather than assume shoppers can explain the shift.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -562,8 +457,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The locked door makes after-the-fact explanations suspect but not worthless. The lead should compare the story with actual cues from the interview.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -575,8 +469,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Preference can form behind the locked door. Behavioral evidence and verbal accounts need to be compared rather than collapsed into one answer.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q08",
@@ -588,8 +481,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Braden's puzzle warns against false clarity. The coach may have a real read, but she should not pretend to know the trigger.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -601,8 +493,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The room around the hidden process can be designed. The practice respects expertise while reducing primes that could distort judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -645,7 +536,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit the Hidden Cue",
         "coreSkill": "Separate the snap answer from the story that follows it. Give trained hunches room to be tested, but inspect the context for primes that could have shaped them. The goal is neither blind trust nor blanket doubt.",
         "ifThenPlans": [
           {
@@ -670,19 +560,13 @@
       },
       "memorableLines": [
         {
-          "text": "The locked door sits between a snap judgment and the story we can tell about it.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the hidden process a simple image."
+          "text": "The locked door sits between a snap judgment and the story we can tell about it."
         },
         {
-          "text": "The reason is being built from outside the room where the choice formed.",
-          "location": "breakdown.deepRead",
-          "why": "It captures after-the-fact explanation without accusing anyone of lying."
+          "text": "The reason is being built from outside the room where the choice formed."
         },
         {
-          "text": "The door being locked tells us to become better stewards of the room around it.",
-          "location": "breakdown.fullRead",
-          "why": "It turns humility about introspection into a practical design rule."
+          "text": "The door being locked tells us to become better stewards of the room around it."
         }
       ]
     },
@@ -709,13 +593,6 @@
             "appearance",
             "Harding"
           ],
-          "planSpec": {
-            "domain": "executive director search",
-            "audience": "boards choosing leaders",
-            "stakes": "a polished candidate may be confused with judgment",
-            "format": "decision_point",
-            "requiredBeat": "Simone catches the Warren Harding error before the vote"
-          },
           "scenario": "Simone sits at 5:42 p.m. in a nonprofit boardroom with a headshot packet, a work-sample rubric, and a Warren Harding note beside her coffee. The finalist looks calm and commanding. Simone must decide before the vote whether the room is reading polish as leadership or checking how the candidate handled a real budget cut.",
           "whatToDo": "Move the board from the headshot packet to the work-sample rubric and ask which past decision predicts the job.",
           "whyItMatters": "The Harding story warns that leader-like appearance can masquerade as proof. Simone needs task evidence before the room votes."
@@ -728,13 +605,6 @@
             "IAT",
             "promotion"
           ],
-          "planSpec": {
-            "domain": "engineering promotion review",
-            "audience": "managers noticing automatic associations",
-            "stakes": "speed can hide gender or race cues inside talent judgments",
-            "format": "audit",
-            "requiredBeat": "Rajan uses the Implicit Association Test as a warning about automatic links"
-          },
           "scenario": "Rajan reviews promotion packets at 10:25 a.m. in a Bangalore engineering office while an Implicit Association Test article is open on his laptop. The committee keeps calling one candidate a natural leader after two confident demos. Rajan must answer before rankings lock whether speed and polish are hiding the absence of peer-debugging evidence.",
           "whatToDo": "Pause the ranking and require one observed collaboration behavior for every leadership claim before the packets move forward.",
           "whyItMatters": "The IAT shows that automatic links can feel like judgment. Rajan needs evidence that belongs to the promotion, not the stereotype."
@@ -747,13 +617,6 @@
             "Golomb",
             "customer"
           ],
-          "planSpec": {
-            "domain": "appliance showroom coaching",
-            "audience": "sales leads building fair first contact",
-            "stakes": "a shopper's appearance may shape effort before behavior is observed",
-            "format": "coach_talk",
-            "requiredBeat": "Beverly borrows Bob Golomb's equal-probability door rule"
-          },
           "scenario": "Beverly stands at 9:05 a.m. near a refrigerator display in Newark with Bob Golomb's Flemington Nissan story printed on a clipboard. A trainee has already tagged a young couple as browsers. Beverly has to say, before the couple reaches the ranges, whether the first greeting should treat them as low intent or as real buyers until behavior says otherwise.",
           "whatToDo": "Give the couple the same first-contact effort as any buyer and coach the trainee to read questions and follow-through.",
           "whyItMatters": "Golomb's discipline keeps first impressions useful without letting demographics close the sale. Beverly protects the behavioral read."
@@ -766,13 +629,6 @@
             "Ayres",
             "dealership"
           ],
-          "planSpec": {
-            "domain": "used-car pricing compliance",
-            "audience": "operators checking identity bias",
-            "stakes": "ordinary price instincts may reproduce unfair treatment",
-            "format": "postmortem",
-            "requiredBeat": "Kwame uses Ian Ayres's Chicago dealership design to test offers"
-          },
           "scenario": "Kwame is in a Dallas dealership office at 7:18 p.m. with first-offer logs, shopper scripts, and Ian Ayres's Chicago car-dealership study on a legal pad. Complaints claim women receive higher quotes. Kwame must decide before tomorrow's training whether to trust salesperson instinct or compare matched visits by script, model, and opening price.",
           "whatToDo": "Audit first offers against matched shopper scripts and show each salesperson where identity changed the quote.",
           "whyItMatters": "Ayres's study proves bias can hide inside normal bargaining. Kwame needs controlled comparison rather than reassurance."
@@ -785,13 +641,6 @@
             "height",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "student council candidate forum",
-            "audience": "teachers designing fair selection",
-            "stakes": "confidence and height may crowd out service behavior",
-            "format": "planning_choice",
-            "requiredBeat": "Inez separates leader-like presence from behavior after the Harding case"
-          },
           "scenario": "Inez sits at 2:33 p.m. in a middle-school auditorium with candidate cards, a microphone list, and Harding's face-as-destiny story in her lesson plan. Taller students are drawing louder applause. Inez must decide before speeches begin whether the ballot guide should feature photos and slogans or service records and peer commitments.",
           "whatToDo": "Shift the guide toward service records and commitments so voters judge behavior before stage presence.",
           "whyItMatters": "The Harding error can start early. Inez helps students see that presence is not the same as contribution."
@@ -804,13 +653,6 @@
             "polish",
             "cue"
           ],
-          "planSpec": {
-            "domain": "startup investment meeting",
-            "audience": "investors filtering charisma",
-            "stakes": "a smooth founder may get capital without evidence of learning",
-            "format": "dilemma",
-            "requiredBeat": "Fatima notices socially loaded polish and asks for predictive behavior"
-          },
           "scenario": "Fatima watches a pitch at 11:50 a.m. in a Riyadh venture studio with a cap table, user notes, and a Warren Harding error card beside her tablet. The founder's suit, voice, and calm answers impress the partners. Fatima must decide before the term-sheet discussion whether that polish predicts learning or only makes the room feel safe.",
           "whatToDo": "Ask for the last product change driven by user evidence and score the founder on learning behavior, not room command.",
           "whyItMatters": "The error is not liking polish. The error is letting polish stand in for the behavior the investment needs."
@@ -829,8 +671,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The board needs behavior tied to the job. A leader-like look can feel predictive while saying little about judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -842,8 +683,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Matched comparison can reveal identity cues steering treatment. Feel and self-report are weaker than checking equivalent cases.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -855,8 +695,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Golomb reads quickly but keeps the door open. Appearance starts observation, but it should not settle the probability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -868,8 +707,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The IAT material shows that automatic associations can differ from explicit commitments. Good intent does not remove the need for better process.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -881,8 +719,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The redesign moves attention toward behavior that predicts contribution. It does not replace one surface cue with another.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -894,8 +731,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful cue is learning behavior, not the partners' response to polish. The question asks for conduct tied to startup execution.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -907,8 +743,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A vague surface impression needs to be converted into behavior. Otherwise the phrase can smuggle in appearance and status cues.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -920,8 +755,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Checklist use is behavior tied to the task. Height and image are socially loaded cues with weak connection to the actual work.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -933,8 +767,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is not speed by itself. The problem is cue misuse, so the committee should design for better evidence at the point of judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -977,7 +810,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Replace Surface With Behavior",
         "coreSkill": "Catch the visible cue before it becomes the verdict. Then name the behavior that would actually predict the task. This skill keeps first impressions from turning prejudice into confidence.",
         "ifThenPlans": [
           {
@@ -1002,19 +834,13 @@
       },
       "memorableLines": [
         {
-          "text": "The Warren Harding error is thin-slicing with the wrong slice.",
-          "location": "breakdown.fastRead",
-          "why": "It states the mechanism in one plain sentence."
+          "text": "The Warren Harding error is thin-slicing with the wrong slice."
         },
         {
-          "text": "A first glance may start the observation.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps speed alive while limiting its authority."
+          "text": "A first glance may start the observation."
         },
         {
-          "text": "The surface can open the door, but only evidence should sign the contract.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the correction a memorable close."
+          "text": "The surface can open the door, but only evidence should sign the contract."
         }
       ]
     },
@@ -1041,13 +867,6 @@
             "Van Riper",
             "simulation"
           ],
-          "planSpec": {
-            "domain": "cyber incident simulation",
-            "audience": "security leads running war games",
-            "stakes": "the defending team may model an attacker who behaves too neatly",
-            "format": "decision_point",
-            "requiredBeat": "Kiran uses Van Riper's Millennium Challenge lesson to remove expected channels"
-          },
           "scenario": "Kiran stands at 8:10 a.m. in a Singapore cyber range with a Red Team badge, a network map, and Paul Van Riper's Millennium Challenge notes in his folder. Blue Team expects every attack through monitored cloud logs. Kiran must decide before the exercise clock starts whether to play the modeled intruder or use offline handoffs and low-tech signals.",
           "whatToDo": "Change the Red Team communication path and test whether Blue Team can act when the attacker stops feeding the model.",
           "whyItMatters": "Van Riper's win shows that a plan can fail when the opponent behaves outside its expected channels."
@@ -1060,13 +879,6 @@
             "training",
             "offers"
           ],
-          "planSpec": {
-            "domain": "customer-service role play",
-            "audience": "trainers building fast response",
-            "stakes": "too much freedom may make trainees freeze",
-            "format": "coach_talk",
-            "requiredBeat": "Petra uses improvisational comedy rules to create usable spontaneity"
-          },
           "scenario": "Petra is at 2:47 p.m. in a Warsaw training studio with complaint cards, a timer, and an improvisational comedy rules handout on the wall. New agents are freezing during angry-customer drills. Petra has to tell them before the next round whether to improvise freely or follow one rule: accept the customer's stated problem and add the next useful question.",
           "whatToDo": "Give the agents one offer-accepting rule, then run the scene again so speed comes from a shared frame.",
           "whyItMatters": "Improv looks free because rules reduce panic. Petra's constraint lets agents respond instead of hunting for perfect lines."
@@ -1079,13 +891,6 @@
             "Cook County",
             "triage"
           ],
-          "planSpec": {
-            "domain": "urgent-care triage redesign",
-            "audience": "clinical directors under overload",
-            "stakes": "weak symptoms may crowd out urgent indicators",
-            "format": "audit",
-            "requiredBeat": "Maren applies the Cook County and Goldman decision-tree logic"
-          },
           "scenario": "Maren reviews intake forms at 6:32 p.m. in an Omaha urgent-care clinic while a Cook County Hospital case summary sits beside the electrocardiogram printer. Chest-pain visits are backing up. She must decide before the night shift whether nurses should gather every detail first or route patients through a Goldman-style short list of urgent signs.",
           "whatToDo": "Move the electrocardiogram and core risk factors to the top of intake, then send other details behind the triage decision.",
           "whyItMatters": "Cook County shows that fewer variables can improve high-pressure judgment when the variables are the right ones."
@@ -1098,13 +903,6 @@
             "jam",
             "choice"
           ],
-          "planSpec": {
-            "domain": "specialty grocery launch",
-            "audience": "retail managers choosing displays",
-            "stakes": "a large selection may win attention but reduce purchase",
-            "format": "predict_reveal",
-            "requiredBeat": "Luis uses jam-choice overload to favor a smaller set"
-          },
           "scenario": "Luis walks into a Portland grocery at 7:25 a.m. with shelf tags, sample spoons, and a jam-choice overload note in his apron pocket. The launch table can hold twenty-four spreads, but the cashier needs a buying lift by noon. Luis must decide before doors open whether to display abundance or six clear options with tasting cards.",
           "whatToDo": "Run the smaller tasting set first and track purchases, not just how many shoppers stop at the table.",
           "whyItMatters": "The jam study warns that attention is not action. Luis needs the choice set that helps shoppers decide."
@@ -1117,13 +915,6 @@
             "roles",
             "speed"
           ],
-          "planSpec": {
-            "domain": "storm-response dispatch",
-            "audience": "operations teams facing live disruption",
-            "stakes": "full-route analysis may slow crews during outages",
-            "format": "planning_choice",
-            "requiredBeat": "Zofia creates a lean rule for fast field action"
-          },
           "scenario": "Zofia is in a Krakow utility office at 4:05 a.m. with outage calls, crew radios, and a structured spontaneity note taped to the dispatch card. Snow has cut three feeder lines. She must answer before trucks roll whether dispatchers should wait for the full map or send crews by a lean rule: hospital circuits, live wires, then dense blocks.",
           "whatToDo": "Use the lean dispatch order and let crews update the map from the field as they restore priority circuits.",
           "whyItMatters": "Structured spontaneity lets Zofia act without pretending the storm map is complete. The rule channels field judgment."
@@ -1136,13 +927,6 @@
             "constraints",
             "roles"
           ],
-          "planSpec": {
-            "domain": "software outage command",
-            "audience": "engineering managers in incident response",
-            "stakes": "too many voices may delay the rollback",
-            "format": "dilemma",
-            "requiredBeat": "Noor sets roles and variables before improvising through the outage"
-          },
           "scenario": "Noor joins a 10:58 p.m. outage bridge in Dubai with latency graphs, a rollback button, and Van Riper's speed lesson scribbled in her notebook. Twelve engineers are talking at once. She must decide before the customer dashboard turns red whether to invite more diagnosis or restrict the bridge to commander, database lead, app lead, and one rollback criterion.",
           "whatToDo": "Set four roles and one rollback trigger, then let those owners improvise inside the frame until service steadies.",
           "whyItMatters": "The outage needs action, not theatrical control. Noor's structure reduces noise while preserving expert speed."
@@ -1161,8 +945,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Van Riper's lesson is about acting outside expected channels. The test exposes whether the model can handle a less legible opponent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1174,8 +957,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Improv speed comes from constraints, not empty freedom. A shared rule helps agents respond without freezing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1187,8 +969,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Goldman's sparse rule improved triage by focusing on key indicators. Long histories can delay the variables that matter first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1200,8 +981,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The jam-choice case separates attention from action. The manager should test whether fewer options help shoppers decide.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1213,8 +993,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The bridge needs a lean frame for action. Roles and a trigger reduce noise while preserving expert judgment.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1226,8 +1005,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The structured-spontaneity move is not anti-data. It asks which variables deserve the fast decision.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1239,8 +1017,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A lean priority rule lets action begin under uncertainty. Field updates can improve the picture without stopping the response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1252,8 +1029,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The plating principle creates a frame for fast local judgment. The other choices offer either drift or bottlenecked control.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -1265,8 +1041,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Complex settings cannot be fully modeled. Roles and limits prepare the team to respond when the situation moves.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1309,7 +1084,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build a Lean Action Frame",
         "coreSkill": "Create rules that help people move quickly when full information is unavailable. The skill is to choose variables, roles, and limits before pressure arrives. Good structure makes judgment faster, not narrower in a foolish way.",
         "ifThenPlans": [
           {
@@ -1334,19 +1108,13 @@
       },
       "memorableLines": [
         {
-          "text": "Structured spontaneity is not chaos.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the common misread in four words."
+          "text": "Structured spontaneity is not chaos."
         },
         {
-          "text": "The lesson is engineered speed.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the chapter's move practical and compact."
+          "text": "The lesson is engineered speed."
         },
         {
-          "text": "Structure earns its keep when it leaves people more alive to the moment, not less.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the limit of structure a strong test."
+          "text": "Structure earns its keep when it leaves people more alive to the moment, not less."
         }
       ]
     },
@@ -1373,13 +1141,6 @@
             "Kenna",
             "research"
           ],
-          "planSpec": {
-            "domain": "music streaming launch research",
-            "audience": "label teams testing unusual artists",
-            "stakes": "a stripped test may confuse unfamiliarity with weak demand",
-            "format": "decision_point",
-            "requiredBeat": "Roshan changes a Kenna-style test to include context and repetition"
-          },
           "scenario": "Roshan sits at 8:22 p.m. in a London label office with Kenna's market-test story, a listening panel sheet, and a live-session video open on his laptop. The first online scores are poor. He must decide before the release meeting whether to drop the artist or retest with performance footage, repeated listens, and a comparison set.",
           "whatToDo": "Redesign the test so listeners meet the artist with performance, repetition, and category context before the label treats scores as demand.",
           "whyItMatters": "Kenna's dilemma shows that unfamiliar work can fail a thin test while having value in the fuller setting where taste forms."
@@ -1392,13 +1153,6 @@
             "Pepsi",
             "New Coke"
           ],
-          "planSpec": {
-            "domain": "beverage reformulation study",
-            "audience": "brand managers reading taste tests",
-            "stakes": "a sip result may mislead a whole-serving product decision",
-            "format": "predict_reveal",
-            "requiredBeat": "Celine uses the Pepsi Challenge and New Coke lesson"
-          },
           "scenario": "Celine is in an Atlanta sensory lab at 10:16 a.m. with blind cups, a red package mockup, and the Pepsi Challenge notes beside the sample tray. The sweeter formula wins the sip test. She must answer before executives arrive whether to recommend a full reformulation or run a home-use test with cans, meals, and full servings.",
           "whatToDo": "Treat the sip result as a sweetness signal, then require a full-serving test before changing the brand formula.",
           "whyItMatters": "New Coke failed because the slice did not match the real preference. Celine keeps the test from outrunning the experience."
@@ -1411,13 +1165,6 @@
             "Aeron",
             "novelty"
           ],
-          "planSpec": {
-            "domain": "office furniture pilot",
-            "audience": "workplace teams testing unfamiliar design",
-            "stakes": "early ugliness scores may punish a new category",
-            "format": "before_after",
-            "requiredBeat": "Diego applies the Herman Miller Aeron lesson about learning to read novelty"
-          },
           "scenario": "Diego walks through a Mexico City pilot floor at 1:03 p.m. with Aeron chair photos, posture surveys, and mesh samples under his arm. Employees call the new task chair ugly after five minutes. He must decide before procurement closes whether to cancel the order or let people use the chair for two weeks with ergonomic coaching.",
           "whatToDo": "Extend the pilot and add use-based measures so the chair is judged after people learn what its design is for.",
           "whyItMatters": "The Aeron case shows that novelty can be mislabeled as bad. Diego needs time and use to reveal the preference."
@@ -1430,13 +1177,6 @@
             "Civille",
             "expertise"
           ],
-          "planSpec": {
-            "domain": "bakery quality panel",
-            "audience": "operators building expert taste",
-            "stakes": "ordinary tasters may feel a difference they cannot name",
-            "format": "coach_talk",
-            "requiredBeat": "Hana uses Gail Vance Civille and Judy Heylmun's tasting expertise as a model"
-          },
           "scenario": "Hana stands at 6:55 a.m. in a Kyoto bakery test kitchen with crumb charts, cooling racks, and a Gail Vance Civille and Judy Heylmun tasting note near the mixer. Staff say batch two tastes off but cannot explain why. Hana must decide before production starts whether to average vague votes or train the panel on texture, butter note, and stale-flour cues.",
           "whatToDo": "Give the panel vocabulary for the differences, then retaste the batches before changing the recipe.",
           "whyItMatters": "Expert first impressions improve when people can name what they sense. Hana turns vague dislike into useful discrimination."
@@ -1449,13 +1189,6 @@
             "Cheskin",
             "retail"
           ],
-          "planSpec": {
-            "domain": "skin-care packaging test",
-            "audience": "consumer researchers separating clean method from real experience",
-            "stakes": "removing packaging may remove the cue consumers actually use",
-            "format": "audit",
-            "requiredBeat": "Ingrid uses sensation transference to test package and product together"
-          },
           "scenario": "Ingrid reviews samples at 4:44 p.m. in a Copenhagen retail lab with plain jars, branded cartons, and Louis Cheskin's sensation transference note on the table. The fragrance scores well in blank packaging. She must decide before the client call whether the product is ready or whether the carton, jar weight, and shelf setting need testing too.",
           "whatToDo": "Run a second test with the real carton, jar, and shelf context so perceived quality includes the cues customers will meet.",
           "whyItMatters": "Sensation transference means packaging can change product experience. Ingrid should not call the blank-jar result complete."
@@ -1468,13 +1201,6 @@
             "context",
             "survey"
           ],
-          "planSpec": {
-            "domain": "enterprise software trial",
-            "audience": "product teams reading survey certainty",
-            "stakes": "users may reject a workflow before they understand its category",
-            "format": "dilemma",
-            "requiredBeat": "Bastien asks whether the preference test recreated real use"
-          },
           "scenario": "Bastien sits at 11:27 a.m. in a Montreal product lab with survey charts, onboarding videos, and a context-sensitive preference card beside the keyboard. Trial users dislike the new workflow after a five-minute demo. He must decide before roadmap review whether the score reflects real use or a test that removed training, repeated tasks, and team handoff.",
           "whatToDo": "Create a task-based trial with onboarding and repeated use, then compare that behavior with the five-minute dislike score.",
           "whyItMatters": "The clean survey may measure confusion instead of preference. Bastien needs a test that matches the real work setting."
@@ -1493,8 +1219,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is not experts versus listeners. The issue is whether the test gave unfamiliar music the context needed for judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1506,8 +1231,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Pepsi and New Coke material warns that a sip can measure the wrong experience. Whole-serving context matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1519,8 +1243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Aeron case shows that novelty can be misread before people learn the category. Use and context can change the judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1532,8 +1255,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Professional tasting shows that vocabulary structures first impressions. The panel needs tools to name the difference.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q05",
@@ -1545,8 +1267,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sensation transference means package and product experience can merge. A clean test can become misleading if it removes real cues.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1558,8 +1279,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test should resemble the lived experience. Otherwise it may measure confusion at first contact rather than stable preference.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1571,8 +1291,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Strangeness may signal category unfamiliarity. The next question is whether the test supplied the cues needed for interpretation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1584,8 +1303,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The one-sip test can be useful for sweetness, but it is weak for a whole brand decision that includes ritual and memory.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -1597,8 +1315,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right context is not noise when it belongs to the real encounter. The test should remove distortion, not the experience itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1641,7 +1358,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Match Test to Encounter",
         "coreSkill": "Judge research by the experience it creates. Before trusting a score, ask what the test removed and whether those removed cues belong to real use. The skill is to protect preference from false cleanliness.",
         "ifThenPlans": [
           {
@@ -1666,19 +1382,13 @@
       },
       "memorableLines": [
         {
-          "text": "Preference is not a pure vote floating in the air.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's main trap in direct language."
+          "text": "Preference is not a pure vote floating in the air."
         },
         {
-          "text": "The useful question is not, what did people say?",
-          "location": "breakdown.deepRead",
-          "why": "It shifts attention from score to test design."
+          "text": "The useful question is not, what did people say?"
         },
         {
-          "text": "The score is only as wise as the situation that produced it.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the whole argument a practical standard."
+          "text": "The score is only as wise as the situation that produced it."
         }
       ]
     },
@@ -1705,13 +1415,6 @@
             "Diallo",
             "distance"
           ],
-          "planSpec": {
-            "domain": "police scenario training",
-            "audience": "trainers redesigning ambiguous encounters",
-            "stakes": "close pursuit may make a wallet read as a weapon",
-            "format": "decision_point",
-            "requiredBeat": "Patrice uses the Amadou Diallo case to create time and distance"
-          },
           "scenario": "Patrice stands at 7:08 a.m. in a Bronx training room with a foam vestibule door, a wallet prop, and Amadou Diallo's Wheeler Avenue case notes on a clipboard. Recruits are rushing the doorway. Patrice must decide before the next drill whether to grade speed alone or require distance, clear identification, and one facial read before approach.",
           "whatToDo": "Change the drill so recruits create distance and identify themselves before treating a pocket movement as the whole cue.",
           "whyItMatters": "Diallo's death shows how fear and speed can erase the face. Patrice trains the conditions before the final instant."
@@ -1724,13 +1427,6 @@
             "Ekman",
             "training"
           ],
-          "planSpec": {
-            "domain": "airport security interview training",
-            "audience": "screeners learning emotion cues",
-            "stakes": "untrained suspicion may miss fear or confusion",
-            "format": "coach_talk",
-            "requiredBeat": "Yara uses Tomkins and Ekman to make facial reading trainable"
-          },
           "scenario": "Yara is in a Doha airport classroom at 3:12 p.m. with laminated faces, a tablet of Paul Ekman action units, and Silvan Tomkins notes on the lectern. Screeners keep calling nervous travelers evasive. Yara must tell them before practice begins whether to trust general suspicion or learn the eye, brow, and mouth movements that separate fear from deceit.",
           "whatToDo": "Teach the action-unit cues for fear and confusion, then have screeners name the face before naming the suspicion.",
           "whyItMatters": "Ekman and Tomkins make mind reading teachable. Yara replaces vague suspicion with trained attention."
@@ -1743,13 +1439,6 @@
             "speed",
             "security"
           ],
-          "planSpec": {
-            "domain": "executive protection review",
-            "audience": "security teams studying time limits",
-            "stakes": "expert scanning may fail when the window is too short",
-            "format": "postmortem",
-            "requiredBeat": "Bennett uses the John Hinckley and Reagan attack to respect speed limits"
-          },
           "scenario": "Bennett sits at 9:40 p.m. in a hotel security office with Reagan motorcade footage, a stopwatch, and John Hinckley notes beside the monitor. The team wants a rule that guards should read intent sooner. Bennett must decide before tomorrow's briefing whether the tape proves poor vigilance or shows that the perceptual window was brutally short.",
           "whatToDo": "Use the tape to separate training gaps from time limits, then adjust routes and spacing so guards have more usable seconds.",
           "whyItMatters": "The Reagan attack shows that even trained vigilance can be beaten by speed. Bennett needs procedure that creates time."
@@ -1762,13 +1451,6 @@
             "fear",
             "one second"
           ],
-          "planSpec": {
-            "domain": "school safety response",
-            "audience": "staff handling ambiguous student movement",
-            "stakes": "a frightened reach may be misread as aggression",
-            "format": "dilemma",
-            "requiredBeat": "Jun applies the officer who waited one extra second lesson"
-          },
           "scenario": "Jun is in a Minneapolis school hallway at 1:58 p.m. with a radio, a locker key, and the officer who waited one extra second story in his training notes. A student backs away and reaches into a hoodie after a fight. Jun must decide before stepping closer whether to shout commands at the hands or pause behind cover long enough to read the student's terrified face.",
           "whatToDo": "Use cover, lower the command pace, and read the face before deciding whether the reach means attack or fear.",
           "whyItMatters": "The extra-second case shows that a face can change the meaning of a hand movement. Jun needs that cue."
@@ -1781,13 +1463,6 @@
             "procedure",
             "objects"
           ],
-          "planSpec": {
-            "domain": "transit enforcement policy audit",
-            "audience": "supervisors reducing stereotype pressure",
-            "stakes": "ambiguous objects may be sorted through threat expectation",
-            "format": "audit",
-            "requiredBeat": "Saskia connects race-priming risk to procedure before a stop"
-          },
           "scenario": "Saskia reviews body-camera clips at 5:35 p.m. in a Rotterdam transit office with object cards, stop reports, and Diallo race-priming notes on a spreadsheet. Officers describe dark phones and wallets as threats more often in some neighborhoods. She must decide before policy review whether to call it wording drift or change the stop script and distance rule.",
           "whatToDo": "Audit object descriptions by location and require a distance script that slows ambiguous pocket movements before escalation.",
           "whyItMatters": "Threat expectation can shape what an object seems to be. Saskia moves the repair into procedure rather than intent alone."
@@ -1800,13 +1475,6 @@
             "arousal",
             "procedure"
           ],
-          "planSpec": {
-            "domain": "psychiatric emergency intake",
-            "audience": "clinicians managing arousal",
-            "stakes": "staff may read panic as aggression when the doorway is crowded",
-            "format": "reset_moment",
-            "requiredBeat": "Mei uses mind reading under pressure to redesign the first seconds"
-          },
           "scenario": "Mei stands at 12:21 a.m. in a hospital emergency bay with a badge scanner, a restraint cart, and an Ekman fear-expression card tucked into the intake binder. A panicked patient stops at the doorway and reaches for his bag. Mei must decide before security closes in whether to crowd the entrance or clear space, speak slowly, and read the face.",
           "whatToDo": "Clear the doorway and slow the verbal pace so staff can see whether the bag reach is panic, confusion, or threat.",
           "whyItMatters": "High arousal narrows perception. Mei changes the doorway so the team can read more than the object."
@@ -1825,8 +1493,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The danger is a compressed field where the hand becomes the only cue. Distance and identification create time for a fuller read.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1838,8 +1505,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Facial reading can be trained. The goal is to name the emotion more precisely before converting it into suspicion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1851,8 +1517,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Hinckley case shows a severe time limit. Better procedure can create more time than a demand for perfect perception.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1864,8 +1529,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The one-extra-second case shows that a face can change the meaning of a reach. Cover and pacing make that cue available.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1877,8 +1541,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mechanism includes expectation, speed, and procedure. Auditing labels plus changing the stop script targets the decision point.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1890,8 +1553,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Crowding and arousal narrow perception. A calmer doorway gives staff more cues than the object alone.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q07",
@@ -1903,8 +1565,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pressure effect is perceptual narrowing. The observer may lose subtle social cues right when they matter most.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q08",
@@ -1916,8 +1577,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The prevention frame must handle interacting causes. Moral responsibility and design repair belong together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1929,8 +1589,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A small distance rule can widen the perceptual window. It lets facial fear or confusion enter before the hand defines the scene.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1973,7 +1632,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Create One Readable Second",
         "coreSkill": "Design tense moments so perception has time to include the face, not only the feared object. The skill is to add distance, reduce speed, and name emotional cues before the final judgment. This is a procedure practice, not a hope for calm.",
         "ifThenPlans": [
           {
@@ -1998,19 +1656,13 @@
       },
       "memorableLines": [
         {
-          "text": "The object is a wallet.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the moral stakes with spare force."
+          "text": "The object is a wallet."
         },
         {
-          "text": "The last instant cannot carry the whole burden.",
-          "location": "breakdown.deepRead",
-          "why": "It turns tragedy into an upstream design demand."
+          "text": "The last instant cannot carry the whole burden."
         },
         {
-          "text": "The humane work is to build conditions where the face is still visible.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book's final lesson with both moral and practical weight."
+          "text": "The humane work is to build conditions where the face is still visible."
         }
       ]
     }

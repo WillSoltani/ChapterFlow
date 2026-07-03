@@ -41,13 +41,6 @@
             "warmth",
             "hospitality"
           ],
-          "planSpec": {
-            "domain": "hotel service",
-            "audience": "front-desk staff and anyone greeting strangers",
-            "stakes": "a tired guest decides whether the desk feels personal or automatic",
-            "format": "scene",
-            "requiredBeat": "she notices her pasted-on smile arriving before she has really seen the guest and delays it until contact is real"
-          },
           "scenario": "Hannah wipes a water ring from the brass bell at 11:42 p.m. in the Oakhurst Hotel lobby when a man in a rain-dark suit drags a carry-on to the desk. Her service smile starts before his eyes lift from the floor. She catches it, lets her face rest for one beat, reads the soaked cuffs and shaking hand on the suitcase handle, then smiles as if the sight of him caused it. She is about to decide how much warmth the lobby can hold.",
           "whatToDo": "Let the greeting begin with seeing. Pause long enough to take in one real detail, then let the smile and words follow that detail instead of firing as a reflex.",
           "whyItMatters": "A smile that arrives after recognition feels selected. The guest does not have to wonder whether he is just the next body at the counter."
@@ -60,13 +53,6 @@
             "teaching",
             "body language"
           ],
-          "planSpec": {
-            "domain": "classroom",
-            "audience": "teachers and presenters",
-            "stakes": "a quiet student decides whether asking was safe",
-            "format": "dialogue",
-            "requiredBeat": "he turns his whole body toward a shy student instead of answering while still writing on the board"
-          },
           "scenario": "Grady has the dry-erase cap in his teeth at 8:06 a.m. in room 214, writing mitosis in blue, when Leah asks from the second row, \"Does it split once or twice?\" His hand keeps moving for half a second. Before the next word, he has to decide whether to answer the board or the student. He caps the marker, turns his shoes and shoulders toward her desk, and says, \"Ask it again while I am looking at you.\" The class goes quiet enough to hear the heater click.",
           "whatToDo": "Stop the side-task before answering. Turn your whole body toward the person, then answer the question as if it deserved a full landing place.",
           "whyItMatters": "Partial attention makes even a kind answer feel cheap. Full orientation tells the other person they do not need to compete with the board, phone, or doorway."
@@ -79,13 +65,6 @@
             "composure",
             "entry"
           ],
-          "planSpec": {
-            "domain": "job interview",
-            "audience": "applicants and people entering high-stakes rooms",
-            "stakes": "first seconds can make competence feel calm or scrambled",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to rush into polished answers or settle her hands and meet the panel cleanly"
-          },
           "scenario": "Sophie pinches the corner of a navy folder at 2:17 p.m. outside the Willow Street shelter conference room. Inside, three interviewers are laughing at something on a laptop. Her answers are memorized, but her thumb is worrying the folder edge soft. The coordinator reaches for the door. Sophie has to decide whether to stride in talking or stop, square the folder under one arm, and let one quiet greeting land first.",
           "whatToDo": "Settle the visible scramble before you speak. Put the object still, enter at the room's current volume, and greet one person cleanly before giving any answer.",
           "whyItMatters": "The panel reads composure before content. A calm first signal lowers the work they must do to believe the polished answers that come after."
@@ -98,13 +77,6 @@
             "events",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "wedding photography",
-            "audience": "freelancers and event workers",
-            "stakes": "nervous self-checking made the room tighten around him",
-            "format": "postmortem",
-            "requiredBeat": "he realizes his restless gear-checking made guests tense before he ever raised the camera"
-          },
           "scenario": "Cormac lines six memory cards beside the coffee grinder at 6:35 a.m. Sunday, still in yesterday's wrinkled dress shirt. The reception files are sharp, but the candid table shots look stiff. In every mirror and window behind the guests, he can see himself tugging a strap, checking a battery, touching the lens cap. He circles the same reflection with a red pencil. His gear was ready. His hands told the room he was not.",
           "whatToDo": "Use the replay to set one rule for the next job: check gear out of sight, then enter the room with quiet hands and eyes on people, not equipment.",
           "whyItMatters": "Guests borrow their ease from the person watching them. Restless self-management makes the camera feel like pressure before the first photo is taken."
@@ -117,13 +89,6 @@
             "room-reading",
             "composure"
           ],
-          "planSpec": {
-            "domain": "music audition",
-            "audience": "performers and speakers",
-            "stakes": "visible technique can start to look managed instead of settled",
-            "format": "before_after",
-            "requiredBeat": "she first overperforms composure, then reads the room and enters at a smaller volume"
-          },
           "scenario": "Isolde stands behind the black curtain at Hall B at 9:28 a.m. Friday, bow hair freshly rosined and left shoe tapping once every bar of the pianist's warmup. At last year's audition she floated in with a pageant smile and held eye contact until the panel looked down. Today she hears the low voices inside, sees one judge rubbing his temples, and lets the smile shrink. When her name is called, she walks in quiet enough for the room to stay itself.",
           "whatToDo": "Read the room before choosing the size of the entrance. Keep the signal warm, but lower its volume when the room is tired, formal, or already tense.",
           "whyItMatters": "Technique fails when people can feel it being performed at them. Fit makes the same smile and stillness feel like presence instead of pressure."
@@ -136,13 +101,6 @@
             "parents",
             "attention"
           ],
-          "planSpec": {
-            "domain": "youth sports",
-            "audience": "coaches and volunteers",
-            "stakes": "a new parent decides whether the gym is safe for her kid",
-            "format": "vignette",
-            "requiredBeat": "he lets eye contact and stillness make the parent feel chosen in a noisy gym"
-          },
           "scenario": "Andrew rests one palm on the scorer's table at 12:03 p.m. Saturday while whistles bounce off the Eastview Rec walls. A new parent, Soraya, stands near the bleachers with a medical form folded into thirds. Before the next drill starts, he has to choose between a quick wave and a real arrival. He walks over after the drill ends, plants both feet, looks at the form, then at her, and waits through the horn blast before saying her son's name correctly.",
           "whatToDo": "Let stillness carry the welcome. End the competing noise before you speak, hold eye contact without rushing, and show you know one detail that belongs to them.",
           "whyItMatters": "A noisy room makes people feel like background. A settled greeting tells the parent and child they have been noticed as specific people."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The problem is visible scramble, not lack of words. A short reset lets the room see steadiness before it hears the update.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Personal warmth follows contact. The badge, eye contact, and name make the greeting feel chosen instead of sprayed across the line.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch01-q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tapping pulls attention toward her nerves. Still hands and direct attention make the answer easier to trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Divided body signals divide the message. The answer may be right, but the parent feels treated as one task among many.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The room sets the volume. Warmth still helps, but it has to arrive at a size people can receive.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The signal has become too visible. Responsive attention keeps the care while removing the pressure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Chosen attention beats broad friendliness. Stopping the side conversation and facing one person gives the greeting weight.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch01-q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A signal that works in a lively room can feel pushy in a quiet one. Fit decides whether warmth feels generous or loud.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Once people notice the management, the move stops lowering friction. It becomes one more thing they have to read.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -321,19 +270,13 @@
       },
       "memorableLines": [
         {
-          "text": "Make the person feel chosen before you try to sound interesting.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the first-impression skill into a clean order of operations."
+          "text": "Make the person feel chosen before you try to sound interesting."
         },
         {
-          "text": "A first impression is not a single trick.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the lesson from shrinking into one body-language tactic."
+          "text": "A first impression is not a single trick."
         },
         {
-          "text": "Whoever is facing you should feel less effort after your first ten seconds, not more.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a simple test for whether the entrance worked."
+          "text": "Whoever is facing you should feel less effort after your first ten seconds, not more."
         }
       ]
     },
@@ -360,13 +303,6 @@
             "listening",
             "library"
           ],
-          "planSpec": {
-            "domain": "public library",
-            "audience": "volunteers and service workers",
-            "stakes": "a routine checkout can become a warm exchange",
-            "format": "dialogue",
-            "requiredBeat": "she hears a patron repeat one odd phrase and uses it as the next conversational hook"
-          },
           "scenario": "Claire slides a tote under the barcode scanner at 4:18 p.m. Wednesday at the Maple Row branch, and the scanner chirps through the quiet holds desk. The patron says, \"These are my attic books,\" then says it again while patting the canvas bag. Claire nearly answers, \"Great,\" and reaches for the receipt. Instead she has to decide whether to keep the line moving or ask, \"What makes a book an attic book?\"",
           "whatToDo": "Catch the phrase that has heat on it. Ask one short question using the exact words the other person already chose, then let the answer set the next path.",
           "whyItMatters": "Repeated language is a marked trail. When you follow it, the other person does not have to invent a new topic for you."
@@ -379,13 +315,6 @@
             "listening",
             "follow-up"
           ],
-          "planSpec": {
-            "domain": "software sales",
-            "audience": "product and sales leads",
-            "stakes": "a buyer may reveal the real obstacle before the demo starts",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether to launch his demo or ask about the buyer’s loaded opening line"
-          },
           "scenario": "Ryan sits on a hard stool in the shared phone booth at 9:05 a.m., headset foam warm against one ear. The hospital buyer opens with, \"We have been burned by pilots.\" Slide one waits on his screen with a blue button that says Start demo. His finger hovers over the trackpad. He has to decide whether to begin the tour or ask what burned looked like last time.",
           "whatToDo": "Stop at the loaded word before presenting. Ask for the picture inside it, then shape the demo around the wound they already named.",
           "whyItMatters": "A demo answers generic interest. The buyer gave you a live objection. Following that word turns the call from performance into diagnosis."
@@ -398,13 +327,6 @@
             "small talk",
             "setting"
           ],
-          "planSpec": {
-            "domain": "school picnic",
-            "audience": "parents meeting other parents",
-            "stakes": "a thin greeting can open or close a new connection",
-            "format": "scene",
-            "requiredBeat": "she turns a thin “nice weather” exchange into a concrete setting-based question"
-          },
           "scenario": "Julia balances a sagging paper plate beside the orange cooler at 11:31 a.m. Saturday in Riverview Park. A father she has never met says, \"Nice weather,\" while three kids stomp mud near the slide. Julia feels the old blank answer rising. She is about to say, \"It really is,\" then leave. Instead she has to choose whether to point at the muddy knees and ask which child found the puddle first.",
           "whatToDo": "Use the shared scene, not the generic topic. Turn weather, food, noise, or waiting into one visible detail both of you can answer from.",
           "whyItMatters": "Concrete hooks lower the social load. The other person can respond from what they are seeing instead of inventing charm on demand."
@@ -417,13 +339,6 @@
             "teenagers",
             "listening"
           ],
-          "planSpec": {
-            "domain": "barbershop",
-            "audience": "people talking with quiet strangers",
-            "stakes": "the real topic may be hiding under a service task",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the haircut is the topic, then finds the real fuel in a repeated team name"
-          },
           "scenario": "Lawson clips a black cape at 5:52 p.m. Friday while the shop TV flickers under the soccer poster. The teenager in chair two answers every haircut question with a shrug, but says Northgate keeper twice while watching a replay on his phone. Lawson predicts the cut is all he will get. Before the fade line reaches the temple, he must decide whether to ask about bangs again or ask if the Northgate keeper took his spot.",
           "whatToDo": "Notice the word that wakes the quiet person up. Leave the service script for one question, then come back if the answer closes.",
           "whyItMatters": "The stated task is not always the live topic. A repeated team, place, or object can show where the person has energy to speak."
@@ -436,13 +351,6 @@
             "openers",
             "objects"
           ],
-          "planSpec": {
-            "domain": "museum tours",
-            "audience": "guides and presenters",
-            "stakes": "visitors can either receive a speech or enter the object",
-            "format": "before_after",
-            "requiredBeat": "she stops giving a canned opener and starts offering one vivid object for visitors to answer"
-          },
           "scenario": "Emma stands at 10:07 a.m. Monday by the glass case of cracked blue tile, laminated tour notes curled in her hand. For months she began with trade routes and glaze dates. Visitors nodded, then looked for the restroom sign. Today she taps the empty corner of the case and says, \"Someone broke this seven hundred years ago. What do you think happened?\" Three faces move closer before she gives a single date.",
           "whatToDo": "Open with a concrete object people can inspect. Ask for a guess, then attach the formal information to what they just noticed.",
           "whyItMatters": "A vivid object gives listeners a job. Once they have looked and guessed, the facts arrive as answers instead of fog."
@@ -455,13 +363,6 @@
             "postmortem",
             "conversation"
           ],
-          "planSpec": {
-            "domain": "professional conference",
-            "audience": "conference attendees and networkers",
-            "stakes": "polite answers can still make talk die",
-            "format": "postmortem",
-            "requiredBeat": "he sees he answered every prompt but gave no handle for the other person to grab"
-          },
           "scenario": "Hugo presses his name badge onto the hotel bathroom mirror at 11:46 p.m., the adhesive picking up lint from his jacket. He replays the reception over the sink: Where are you from? Seattle. What do you do? Research ops. First time here? Yes. Every answer was true and every one landed flat. He writes three words on the notepad by the soap: give them handles.",
           "whatToDo": "Add one usable detail to bare answers. Give a place, object, tension, or image the other person can pick up without having to start over.",
           "whyItMatters": "Conversation dies when each answer closes a door. A small handle keeps the exchange easy without turning it into a speech."
@@ -480,8 +381,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated word has energy. Asking about it lets her define the problem instead of receiving a generic comfort line.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q02",
@@ -493,8 +393,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A bare place can stall. One image gives the other person a path to ask, compare, or share.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch02-q03",
@@ -506,8 +405,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The word messy hides the real issue. Asking for the picture inside it finds the live edge before solving.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q04",
@@ -519,8 +417,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The visible object gives the talk a handle. It is more answerable than a flat return of busy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q05",
@@ -532,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good follow-up shares the load. Too many questions make the other person perform while you collect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q06",
@@ -545,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The repeated phrase points to the fear. A short question finds the story that the dosage talk has to address.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q07",
@@ -558,8 +453,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A visible shared object lowers pressure. One question plus patience is less work than a rapid search for intimacy.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch02-q08",
@@ -571,8 +465,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Survive my nephews is the warm phrase. Asking for the picture behind it makes the advice specific and keeps the talk alive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q09",
@@ -584,8 +477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Shared talk needs exchange. A follow-up plus one relevant detail keeps the conversation from feeling mined or closed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -640,19 +532,13 @@
       },
       "memorableLines": [
         {
-          "text": "Give the other person something easy to answer, and the talk starts carrying its own weight.",
-          "location": "breakdown.fastRead",
-          "why": "It states the purpose of conversational fuel in plain terms."
+          "text": "Give the other person something easy to answer, and the talk starts carrying its own weight."
         },
         {
-          "text": "Early conversation does not need fireworks.",
-          "location": "breakdown.fullRead",
-          "why": "It lowers the pressure that makes people overwork the first minute."
+          "text": "Early conversation does not need fireworks."
         },
         {
-          "text": "The best next line is often already in the room, waiting to be noticed.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a memorable search pattern for small talk."
+          "text": "The best next line is often already in the room, waiting to be noticed."
         }
       ]
     },
@@ -679,13 +565,6 @@
             "events",
             "precision"
           ],
-          "planSpec": {
-            "domain": "catering",
-            "audience": "professionals explaining their work",
-            "stakes": "a job label can flatten skill or open curiosity",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to answer “What do you do?” with a job label or a compact vivid line"
-          },
           "scenario": "Valentina brushes powdered sugar from her black sleeve at 7:36 a.m. Thursday in the botanical garden atrium. A donor holding coffee asks, \"What do you do?\" The pear tarts behind her are cooling on silver trays. She is about to say pastry chef, the old answer that ends the talk. She has to decide whether to give the label or say, \"I build the bite people remember after the speeches.\"",
           "whatToDo": "Turn the title into a vivid line under twelve words. Name the result of the work, not just the job category, then stop and let curiosity arrive.",
           "whyItMatters": "A label sorts you. A compact picture gives the listener something to ask about and makes your work feel specific without sounding inflated."
@@ -698,13 +577,6 @@
             "workplace",
             "specificity"
           ],
-          "planSpec": {
-            "domain": "legal filing office",
-            "audience": "junior professionals and service users",
-            "stakes": "gratitude can feel empty or sharply seen",
-            "format": "dialogue",
-            "requiredBeat": "he avoids a naked thank-you and names the exact help"
-          },
           "scenario": "Lukas slides the stamped motion back through window three at 5:18 p.m., fluorescent lights buzzing over the county filing office. The clerk has reopened the drawer for him. \"Thanks,\" he starts, already backing away. He sees her hand still on the metal stamp. He must decide whether to leave it bare or say, \"Thank you for checking the date before you locked up. That saved tomorrow's hearing.\"",
           "whatToDo": "Name the exact act and the consequence. Keep the gratitude short, but make it clear what you noticed and why it mattered.",
           "whyItMatters": "Specific thanks proves attention. Vague thanks asks the other person to supply the meaning of their own effort."
@@ -717,13 +589,6 @@
             "interviews",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "scholarship interview",
-            "audience": "students and applicants",
-            "stakes": "eagerness can steal someone else’s story",
-            "format": "scene",
-            "requiredBeat": "she catches herself blurting “me too” and waits before adding a specific connection"
-          },
           "scenario": "Olivia sits at 3:44 p.m. in a cinderblock lab, a stripped gear on the table between her and the scholarship panel. The chair mentions growing up above a laundromat. Olivia's mouth opens around, \"Me too,\" because her aunt owned one. She catches the grab in time. Before the next question, she has to decide whether to claim sameness or offer the coffee can of repair tickets she sorted as a kid.",
           "whatToDo": "Delay the quick match. If you share a connection, make it concrete and yours, then return the floor instead of taking over the other person's story.",
           "whyItMatters": "Surface sameness can sound needy. A specific memory shows real overlap without turning their detail into your performance."
@@ -736,13 +601,6 @@
             "leadership",
             "specificity"
           ],
-          "planSpec": {
-            "domain": "firehouse",
-            "audience": "team leads and coaches",
-            "stakes": "praise must sound observed to carry weight",
-            "format": "before_after",
-            "requiredBeat": "he trades cliché-heavy praise for exact naming of what the crew did"
-          },
           "scenario": "Milton stands outside bay two at 6:12 a.m. Saturday, turnout coats steaming on the rail after the warehouse call. He starts with the usual, great job out there, proud of everyone. The volunteers nod like they have heard a station poster speak. He stops, points to Jules, and names the hydrant line she kept clear when the truck boxed them in. Petra looks up before he even says her name.",
           "whatToDo": "Replace broad praise with observed praise. Name the person, the action, and the pressure under which the action mattered.",
           "whyItMatters": "General praise washes over people. Exact praise tells them their real work was seen, which makes it cleaner and harder to dismiss."
@@ -755,13 +613,6 @@
             "media",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "radio production",
-            "audience": "writers and presenters",
-            "stakes": "fancy language can blur the person being introduced",
-            "format": "reflection",
-            "requiredBeat": "she sees that fancy words made her sound less clear, not more impressive"
-          },
           "scenario": "Ingrid sits at 10:09 p.m. Tuesday with studio headphones coiled beside a transcript. The guest intro she wrote says multidisciplinary, transformative, and community-centered in the first two lines. On playback, the guest sounds smaller than his work. He mapped storm drains for three flooded blocks. She underlines the swollen words and writes the plain sentence in the margin.",
           "whatToDo": "Cut the impressive fog until the real work can be seen. Use plain nouns and verbs that let the listener picture what happened.",
           "whyItMatters": "Big words can make the speaker look busy while the meaning gets dim. Clear wording gives status to the subject, not to your vocabulary."
@@ -774,13 +625,6 @@
             "sales",
             "restraint"
           ],
-          "planSpec": {
-            "domain": "trade show",
-            "audience": "vendors and founders",
-            "stakes": "precise restraint can land better than gushing admiration",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts a gushy approach will win the executive, then sees precise restraint land better"
-          },
           "scenario": "Henrik stands at booth 418 at 1:27 p.m., a sample badge printer clicking out crooked names. The keynote executive walks the aisle with two aides. Henrik predicts praise will win her: loved the talk, brilliant vision, huge fan. Then he sees her eyes slide past another vendor doing exactly that. He lifts one misprinted badge and must decide whether to gush or say, \"Your check-in line probably breaks right here.\"",
           "whatToDo": "Trade gushing for one precise observation. Point to a detail that matters to the other person, then let the usefulness carry the respect.",
           "whyItMatters": "Powerful people hear broad admiration all day. A restrained, accurate sentence signals that you noticed the work, not just the status."
@@ -799,8 +643,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first answer gives a picture and a result. The others make the listener translate vague status language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q02",
@@ -812,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Specific thanks names the act. It shows the person exactly what you saw and why it mattered.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03-q03",
@@ -825,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Inflated language often reveals effort and need. Clean examples make the meaning easier to receive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q04",
@@ -838,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Quick sameness can feel like a grab. A delayed, specific detail is less needy and easier to trust.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q05",
@@ -851,8 +691,7 @@
             ],
             "correctIndex": 1,
             "explanation": "It names the action, pressure, and result. That makes the praise credible instead of decorative noise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q06",
@@ -864,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Precise restraint treats status calmly. Broad praise makes the employee's need more visible than the idea.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q07",
@@ -877,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A strong self-description gives the listener a clear picture. Size without clarity weakens the sentence.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch03-q08",
@@ -890,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Everything names nothing. People trust praise more when it points to real acts under real pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q09",
@@ -903,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Precision does not require distance. It helps warmth land because the listener can see what you mean.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -959,19 +794,13 @@
       },
       "memorableLines": [
         {
-          "text": "Polished talk is not fancy talk.",
-          "location": "breakdown.fastRead",
-          "why": "It overturns the common mistake in five plain words."
+          "text": "Polished talk is not fancy talk."
         },
         {
-          "text": "Exact gratitude has more weight than loud gratitude.",
-          "location": "breakdown.deepRead",
-          "why": "It gives a clear test for better thanks."
+          "text": "Exact gratitude has more weight than loud gratitude."
         },
         {
-          "text": "Clean words respect the listener's time.",
-          "location": "breakdown.fullRead",
-          "why": "It frames clarity as a social courtesy, not just style."
+          "text": "Clean words respect the listener's time."
         }
       ]
     },
@@ -998,13 +827,6 @@
             "planning",
             "preparation"
           ],
-          "planSpec": {
-            "domain": "fishing cooperative",
-            "audience": "public officials entering specialized groups",
-            "stakes": "a plan can die if locals feel translated badly",
-            "format": "scene",
-            "requiredBeat": "he notices one local term and asks for its meaning before offering his plan"
-          },
           "scenario": "Thomas steps around wet rope at 5:48 a.m. Monday on Dock 9, the bait freezer coughing behind him. The fishers keep saying ghost set while pointing toward the gray channel. His harbor access plan is clipped under his arm. He is about to clear his throat and start the pitch. Instead he has to decide whether to ask, before anything else, what ghost set means when they say it.",
           "whatToDo": "Use the local term as a doorway. Ask for its meaning before offering your plan, and listen for the worry carried inside the word.",
           "whyItMatters": "A term is often a compressed history. Asking about it shows that you are not asking the group to translate itself for free."
@@ -1017,13 +839,6 @@
             "honesty",
             "jargon"
           ],
-          "planSpec": {
-            "domain": "biotech lunch",
-            "audience": "technical outsiders and cross-functional workers",
-            "stakes": "bluffing can break trust faster than ignorance",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to fake fluency or admit partial knowledge with a precise question"
-          },
           "scenario": "Anna stands at 12:22 p.m. Thursday by the sandwich tray while pipette tips rattle in a plastic bin. Two scientists debate batch drift, and she understands the software logs but not the wet-lab shorthand. Her mouth is ready with, \"Totally, drift is brutal.\" She has to decide whether to bluff or ask, \"When you say drift, do you mean the instrument, the sample, or both?\"",
           "whatToDo": "Admit the edge of your knowledge with a precise question. Use the term carefully, then mark exactly where you need help.",
           "whyItMatters": "Groups can teach a learner. They distrust a faker because every sentence makes them check what else is pretend."
@@ -1036,13 +851,6 @@
             "hot concerns",
             "reporting"
           ],
-          "planSpec": {
-            "domain": "chess club",
-            "audience": "reporters and newcomers",
-            "stakes": "a broad compliment can miss the issue insiders care about",
-            "format": "dialogue",
-            "requiredBeat": "she uses the group’s hot concern instead of a broad compliment"
-          },
           "scenario": "Grace ducks under the basement fluorescent clock at 7:03 p.m. in the Black Knight Club, notebook closed in her coat pocket. \"Brilliant room,\" she starts to say. At the next table, three players argue about the city cutting junior boards. She must decide whether to flatter the club or ask, \"Are junior boards how you keep kids long enough to become adult members?\" The pieces stop clicking.",
           "whatToDo": "Skip the broad compliment and name the live concern. Ask about the worry insiders are already debating, in language they recognize.",
           "whyItMatters": "People feel less studied when you find their real issue. A hot concern opens more trust than praise aimed at the walls."
@@ -1055,13 +863,6 @@
             "events",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "synagogue fundraiser catering",
-            "audience": "service providers entering religious or cultural settings",
-            "stakes": "one missed custom can undo good work",
-            "format": "postmortem",
-            "requiredBeat": "he reconstructs which custom he missed and writes the repair for next time"
-          },
           "scenario": "Marco stacks kugel pans in foil at 9:16 p.m. Sunday on the loading dock, his apron smelling of onions and steam. The synagogue fundraiser stayed on schedule, yet the dessert table went quiet. He flips through photos on his phone and sees it: dairy sweets placed beside meat serving spoons. He writes a new prep note on a box flap before the van arrives.",
           "whatToDo": "Turn the missed custom into a checklist item. Ask a knowledgeable host to review serving order, tools, and labels before the next event opens.",
           "whyItMatters": "Customs are trust signals. When you miss one, people may not correct you out loud, but they stop relaxing around your work."
@@ -1074,13 +875,6 @@
             "workplace",
             "preparation"
           ],
-          "planSpec": {
-            "domain": "machine shop organizing",
-            "audience": "advocates and organizers",
-            "stakes": "slogans fail when they ignore the shop’s actual complaint",
-            "format": "before_after",
-            "requiredBeat": "she first talks in slogans, then reads the shop bulletin and asks about a real grievance"
-          },
           "scenario": "Linnea stands beside the time-clock corkboard at 2:41 p.m. Tuesday, metal dust clinging to the tape on a rejected glove request. Last week she talked about dignity and the machinists watched the clock. Today she reads three glove notes, then asks Earl which brand tears on the deburring wheel. Two people turn from their lockers before she reaches for the pamphlets.",
           "whatToDo": "Read the posted surface before giving the larger message. Start with the real grievance people already track, then connect the bigger idea later.",
           "whyItMatters": "Local proof earns attention. A slogan asks people to trust your frame before you have shown you understand their day."
@@ -1093,13 +887,6 @@
             "conferences",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "medical conference",
-            "audience": "professionals entering a specialty conversation",
-            "stakes": "broad questions waste the chance to learn from insiders",
-            "format": "reflection",
-            "requiredBeat": "he sees that reading the specialty newsletter would have given him enough entry points to ask better questions"
-          },
           "scenario": "Jack props an ironing board open at 6:58 a.m. Friday, the nephrology lanyard spread across the hotel bed. Yesterday he asked every speaker, \"What is the big issue right now?\" and got polite fog. Now he reads the specialty newsletter beside the iron: home dialysis staffing, phosphate binders, transplant wait times. The questions he needed were sitting there before breakfast.",
           "whatToDo": "Read one current source before entering the specialty room. Bring questions about the issues insiders are already naming this week.",
           "whyItMatters": "Preparation changes the burden. Instead of asking insiders to build the map, you arrive with enough landmarks for them to guide you further."
@@ -1118,8 +905,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The term carries local meaning. Asking about it shows homework and prevents false fluency.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q02",
@@ -1131,8 +917,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Honest partial fluency is safer than bluffing. It gives insiders a clear place to help.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch04-q03",
@@ -1144,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A live concern from their own source gives the visitor a real entry point, not just decoration.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q04",
@@ -1157,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Groups read small rules as respect. Missing one can make good work feel careless.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q05",
@@ -1170,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Confident use without real understanding makes insiders police every sentence. That is the cost of bluffing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q06",
@@ -1183,8 +965,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Small homework lowers the burden on insiders and gives you honest questions to ask.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch04-q07",
@@ -1196,8 +977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Broad praise often misses the living issue. A current concern shows she has listened to the room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q08",
@@ -1209,8 +989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "One live blocker shows useful preparation. Too many jokes or corrections make the effort feel performative.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q09",
@@ -1222,8 +1001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "It uses one term and marks the question clearly. That is enough knowledge to enter without pretending.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1278,19 +1056,13 @@
       },
       "memorableLines": [
         {
-          "text": "A little honest homework tells people they do not have to translate their whole world for you.",
-          "location": "breakdown.fastRead",
-          "why": "It names the social relief that preparation creates."
+          "text": "A little honest homework tells people they do not have to translate their whole world for you."
         },
         {
-          "text": "Groups forgive a learner faster than a tourist in costume.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the ethics of partial fluency memorable."
+          "text": "Groups forgive a learner faster than a tourist in costume."
         },
         {
-          "text": "Every group has a front door and a side door.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a simple image for formal topics and hidden customs."
+          "text": "Every group has a front door and a side door."
         }
       ]
     },
@@ -1317,13 +1089,6 @@
             "echoing",
             "rapport"
           ],
-          "planSpec": {
-            "domain": "physical therapy",
-            "audience": "care providers and coaches",
-            "stakes": "clinical precision can either connect or distance",
-            "format": "dialogue",
-            "requiredBeat": "he echoes the patient’s own phrase “rusty hinge” instead of translating it into clinical language"
-          },
           "scenario": "Mikkel loops a red resistance band around the treatment table leg at 10:14 a.m. Tuesday. Mrs. Kwan, a retired dancer, taps her knee and says, \"This rusty hinge refuses to open.\" His chart says limited flexion. He must decide whether to answer in clinic words or say, \"Then we warm the hinge before we ask it to swing.\" Her hand stops gripping the table edge.",
           "whatToDo": "Use the patient’s vivid phrase once, then guide the next action through that image. Keep the clinical term in reserve unless it helps.",
           "whyItMatters": "Her phrase carries the felt problem. Echoing it respectfully makes the instruction sound close to her body, not just to the chart."
@@ -1336,13 +1101,6 @@
             "empathy",
             "imagery"
           ],
-          "planSpec": {
-            "domain": "rental housing",
-            "audience": "managers and service workers",
-            "stakes": "a repair can feel bureaucratic or personally understood",
-            "format": "scene",
-            "requiredBeat": "she uses potent imagery to show she understands the tenant’s night, not just the repair order"
-          },
           "scenario": "Chiara stands at 8:39 p.m. under the bulging plaster seam in apartment 3C, rainwater plinking into a dented mixing bowl. The tenant points to the crib and says the sound woke the baby every hour. Chiara is about to promise a rush ticket. She has to decide whether to stop there or say, \"You had a tiny bell ringing over the crib all night.\"",
           "whatToDo": "Picture the inconvenience in sensory detail before discussing the fix. Name the sound, object, or lost sleep the person actually lived with.",
           "whyItMatters": "Repair language solves the job. Vivid empathy shows you understand the cost of waiting for the job to be solved."
@@ -1355,13 +1113,6 @@
             "kids",
             "shared identity"
           ],
-          "planSpec": {
-            "domain": "summer camp",
-            "audience": "counselors and mentors",
-            "stakes": "premature sameness can flatten a child’s private feeling",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to say “we all miss home” too soon or wait for real shared ground"
-          },
           "scenario": "Megan smells bug spray outside cabin Cedar at 6:27 p.m. Sunday while a camper twists a friendship bracelet until the knot bites her thumb. \"The dining hall smells wrong,\" the girl says. Megan nearly answers, \"We all miss home.\" She has to decide whether to claim the feeling for everyone or ask what dinner smells like at the girl's kitchen table.",
           "whatToDo": "Delay the shared label. Ask for the private picture first, then use “we” only if real overlap appears and the other person seems ready for it.",
           "whyItMatters": "Too-quick sameness can erase the person’s exact hurt. Waiting lets shared identity grow from recognition instead of pressure."
@@ -1374,13 +1125,6 @@
             "family language",
             "before after"
           ],
-          "planSpec": {
-            "domain": "funeral planning",
-            "audience": "advisers and caregivers",
-            "stakes": "generic empathy can miss a family’s own meaning",
-            "format": "before_after",
-            "requiredBeat": "he first gives generic empathy, then repeats the family’s exact phrase for their father"
-          },
           "scenario": "Hollis sits at 1:05 p.m. Friday beside a box of hymn cards while two siblings describe their father as a back-porch man. He begins with the practiced line about honoring a full life, and both faces stay still. He starts again: \"Then the service should feel like people pulled chairs onto the porch.\" The sister lifts one hymn card and finally says, \"Yes, that.\"",
           "whatToDo": "Listen for the family’s own phrase and build the plan around it. Let their language set the emotional shape before your professional language enters.",
           "whyItMatters": "Generic empathy asks people to accept your frame. Their own phrase, returned with care, lets them recognize the plan as theirs."
@@ -1393,13 +1137,6 @@
             "imagery",
             "listening"
           ],
-          "planSpec": {
-            "domain": "auto repair",
-            "audience": "technical workers hearing nontechnical complaints",
-            "stakes": "technical translation can either connect or erase the customer’s picture",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the issue is technical, then hears the driver’s image and answers in that image"
-          },
           "scenario": "Aanya smells hot rubber at lift bay three at 4:48 p.m. while a rideshare driver grips the counter with both hands. He says the steering feels like a shopping cart with one bad wheel. Aanya predicts alignment before he finishes. Then she hears the image. Before printing the work order, she must decide whether to say tie rod or say, \"Let's find which wheel is arguing with the cart.\"",
           "whatToDo": "Translate after you connect. Use the customer’s image to confirm the complaint, then move to the technical check once they feel heard.",
           "whyItMatters": "The image is not childish. It is the customer’s best map of the problem. Keeping it alive makes the technical step feel collaborative."
@@ -1412,13 +1149,6 @@
             "reflection",
             "timing"
           ],
-          "planSpec": {
-            "domain": "blended family",
-            "audience": "parents and partners",
-            "stakes": "shared identity can feel imposed before trust catches up",
-            "format": "reflection",
-            "requiredBeat": "he sees that saying “our routine” before it was earned made the child pull away"
-          },
           "scenario": "Ansel lays wet mittens on the radiator at 7:22 p.m. Wednesday, the wool smell filling the hallway. At school pickup he had said, \"In our routine, backpacks go by the door.\" His stepdaughter kept the straps on and looked at the mat. Now he hears the word our as the problem. Two pickups did not make a routine. Tomorrow he writes a different sentence on a sticky note.",
           "whatToDo": "Earn “we” through repeated small acts before naming it. Ask where the backpack feels best tonight, then build the routine together.",
           "whyItMatters": "Shared words are powerful only when both people can stand inside them. Used too soon, they feel like a claim instead of a welcome."
@@ -1437,8 +1167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The patient gave a useful image. Using it once makes the instruction feel close to her experience before clinical terms arrive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q02",
@@ -1450,8 +1179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A quick we can feel like pressure. Shared identity lands best after recognition, not before it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch05-q03",
@@ -1463,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The vivid phrase carries the experience. Returning it shows the tenant you heard the lived problem, not only the maintenance category.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q04",
@@ -1476,8 +1203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Real overlap can help, but quick claiming can steal the floor. Let their story breathe first.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q05",
@@ -1489,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Too much echoing makes the person feel studied. One phrase is recognition; constant repetition is pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q06",
@@ -1502,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The phrase holds the family’s meaning. Building around it makes the plan feel recognized instead of generic.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch05-q07",
@@ -1515,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vivid empathy uses sensory proof. It shows you pictured the experience, not just the label.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q08",
@@ -1528,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Answering inside the image builds connection. The technical label can come after the customer feels understood.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q09",
@@ -1541,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Shared identity becomes real through repeated proof. Timing makes the same word feel warm instead of claimed.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1597,19 +1318,13 @@
       },
       "memorableLines": [
         {
-          "text": "Rapport is not sameness shouted across the table.",
-          "location": "breakdown.fastRead",
-          "why": "It warns against the loud, premature version of likeness."
+          "text": "Rapport is not sameness shouted across the table."
         },
         {
-          "text": "The goal is to answer from close enough that they stop feeling alone in the sentence.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the emotional function of echoing and vivid empathy."
+          "text": "The goal is to answer from close enough that they stop feeling alone in the sentence."
         },
         {
-          "text": "Good rapport feels like relief.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a simple felt standard for success."
+          "text": "Good rapport feels like relief."
         }
       ]
     },
@@ -1636,13 +1351,6 @@
             "praise",
             "art"
           ],
-          "planSpec": {
-            "domain": "ceramics class",
-            "audience": "teachers and mentors",
-            "stakes": "a student learns what to repeat from exact praise",
-            "format": "scene",
-            "requiredBeat": "she praises one observed choice instead of the whole person"
-          },
           "scenario": "Paula rinses clay slip from the classroom sink at 3:12 p.m. Wednesday while a student stands beside a lopsided vase. The easy line is, \"You are so talented.\" Her thumb rests on the faucet. She is about to decide whether to praise the whole person or point to the rim and say, \"You left the wobble there and made it look chosen.\"",
           "whatToDo": "Praise the observed choice, not the whole identity. Name the feature, the choice, and the effect it created.",
           "whyItMatters": "Specific praise teaches. The student can return to the rim and know what to try again, instead of guessing what talent means."
@@ -1655,13 +1363,6 @@
             "donors",
             "gratitude"
           ],
-          "planSpec": {
-            "domain": "nonprofit fundraising",
-            "audience": "fundraisers and leaders",
-            "stakes": "donor praise can feel sincere or transactional",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether to flatter the donor’s generosity or name the specific risk she took"
-          },
           "scenario": "Ben sits at 8:04 a.m. with a stamped envelope under his coffee mug, the kitchen window fogged from oatmeal steam. His thank-you draft to the donor says, \"Your incredible generosity inspires us.\" The clinic had only a folding table when she gave. He has to decide whether to flatter the size of the heart or name the risk she took before proof existed.",
           "whatToDo": "Praise the specific risk. Say what was uncertain when the person acted, and what their choice made possible.",
           "whyItMatters": "Generosity is easy to praise in bulk. Naming risk proves you saw the judgment inside the gift, not just the money."
@@ -1674,13 +1375,6 @@
             "indirect praise",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "hospital nursing",
-            "audience": "managers and supervisors",
-            "stakes": "praise after stress can sound cleaner when carried by a witness",
-            "format": "dialogue",
-            "requiredBeat": "she passes praise through a third-party report so it lands cleaner"
-          },
           "scenario": "Camille punches the medication-room keypad at 6:46 p.m. Friday while carts rattle toward shift change. Natalie expects a talk about the missed lunch breaks. Camille says, \"The night resident told me you caught the insulin mismatch before rounds.\" Natalie looks at the floor. Camille must decide whether to add a speech or simply say, \"I wanted you to know it was noticed.\"",
           "whatToDo": "Let the witness carry part of the compliment. Name who saw the act, what they saw, and then stop before praise turns into pressure.",
           "whyItMatters": "Third-party praise feels less like management technique. It gives the compliment an outside source and a specific event."
@@ -1693,13 +1387,6 @@
             "coaching",
             "specific praise"
           ],
-          "planSpec": {
-            "domain": "youth theater",
-            "audience": "coaches and directors",
-            "stakes": "broad talent praise can hide the repeatable choice",
-            "format": "before_after",
-            "requiredBeat": "he stops praising talent broadly and names the actor’s disciplined choice"
-          },
           "scenario": "Simon peels gaffer tape from his shoe at 2:19 p.m. Saturday backstage while a thirteen-year-old actor waits in a mothball-smelling costume. Last month he would have said, \"You are a natural.\" Today he points to the final line and says, \"You held the quiet after it, and the audience leaned in.\" The actor turns back to the script instead of grinning at the mirror.",
           "whatToDo": "Praise the disciplined behavior the actor can repeat. Tie it to the effect on the room, then let the work stay in focus.",
           "whyItMatters": "Talent praise can make growth feel mysterious. Behavior praise shows the path back to the good moment."
@@ -1712,13 +1399,6 @@
             "postmortem",
             "timing"
           ],
-          "planSpec": {
-            "domain": "executive sales lunch",
-            "audience": "vendors and account leads",
-            "stakes": "praise can spoil itself when it precedes an ask",
-            "format": "postmortem",
-            "requiredBeat": "she sees her praise sounded like a sales lever because it preceded the ask"
-          },
           "scenario": "Jillian rides the elevator at 2:33 p.m. Monday with an untouched cheesecake box in hand, the plastic fork clicking inside. The executive lunch died after her third compliment and before the pilot request. She replays the order: visionary leadership, brave expansion, culture everyone admires, then the ask. The praise may have been true. In that order, it sounded priced.",
           "whatToDo": "Move praise away from the ask or make it sharply observational. If you need something, keep admiration small, exact, and separate from the request.",
           "whyItMatters": "The listener hears motive before wording. Praise that arrives as a ramp to an ask feels like handling, even when the words are accurate."
@@ -1731,13 +1411,6 @@
             "trait praise",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "family celebration",
-            "audience": "family members and close friends",
-            "stakes": "a toast can flatter broadly or name a life pattern",
-            "format": "reflection",
-            "requiredBeat": "she finds the trait-level recognition beneath a lifetime of small acts"
-          },
           "scenario": "Rebecca spreads index cards beside a half-deflated balloon at 11:08 p.m. Thursday. Her father's birthday toast has warm-up-the-car, fix-neighbor-mailbox, save-every-receipt on three separate cards. \"Best dad ever\" sits at the top and now looks too small and too big at once. She taps the cards until the trait appears: he made care happen before anyone had to ask.",
           "whatToDo": "Gather the small acts until the trait underneath becomes clear. Praise the trait through the evidence, not as a slogan.",
           "whyItMatters": "Deep praise needs proof. A trait named through remembered acts feels earned, so the listener can believe it without brushing it away."
@@ -1756,8 +1429,7 @@
             ],
             "correctIndex": 2,
             "explanation": "It names the exact choice and effect. The student can repeat that move next time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q02",
@@ -1769,8 +1441,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Timing changes the taste of praise. The listener may hear motive more loudly than observation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q03",
@@ -1782,8 +1453,7 @@
             ],
             "correctIndex": 1,
             "explanation": "It names the witness, the act, and the pressure. That makes the praise credible and proportional.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q04",
@@ -1795,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The size outruns the evidence. Oversized praise makes the listener inspect the motive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q05",
@@ -1808,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "It points to an action under pressure. The runner can practice that again.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q06",
@@ -1821,8 +1489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trait praise works through evidence. Specific moments let the larger quality feel earned.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch06-q07",
@@ -1834,8 +1501,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Praise can survive near an ask only when it is restrained and clearly observed. Grand praise will sound priced.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q08",
@@ -1847,8 +1513,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The motive test is direct. If the compliment depends on getting something, the listener may feel handled.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -1860,8 +1525,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Specific evidence gives the praise a place to land. Intensity without evidence still slides off.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1916,19 +1580,13 @@
       },
       "memorableLines": [
         {
-          "text": "Make the compliment small enough to be believed and exact enough to be kept.",
-          "location": "breakdown.fastRead",
-          "why": "It gives a compact standard for praise that lands."
+          "text": "Make the compliment small enough to be believed and exact enough to be kept."
         },
         {
-          "text": "Praise gets cleaner when it points to risk.",
-          "location": "breakdown.deepRead",
-          "why": "It explains why naming cost is stronger than broad admiration."
+          "text": "Praise gets cleaner when it points to risk."
         },
         {
-          "text": "Praise should leave the other person seen, not handled.",
-          "location": "breakdown.fullRead",
-          "why": "It draws the ethical line between recognition and flattery."
+          "text": "Praise should leave the other person seen, not handled."
         }
       ]
     },
@@ -1955,13 +1613,6 @@
             "healthcare",
             "recognition"
           ],
-          "planSpec": {
-            "domain": "pediatric scheduling",
-            "audience": "call handlers and health staff",
-            "stakes": "a frightened parent can feel processed or reached",
-            "format": "dialogue",
-            "requiredBeat": "she lets recognition show in her voice before moving to logistics"
-          },
           "scenario": "Petra tugs her headset cord free from under the appointment keyboard at 7:58 a.m. Monday. The voicemail light blinks beside three messages from Ari Feld about a rash. When he answers, she hears the baby crying near the receiver. She must decide whether to start with available times or let her voice land first: \"Ari, I got all three messages. That sounds like a long night.\"",
           "whatToDo": "Let recognition come before logistics. Say the person’s name and one accurate sign that you know what moment they are in, then move to the schedule.",
           "whyItMatters": "The caller cannot see your face. Warmth has to become audible before the facts feel safe to receive."
@@ -1974,13 +1625,6 @@
             "timing",
             "phone"
           ],
-          "planSpec": {
-            "domain": "home repair",
-            "audience": "service professionals",
-            "stakes": "good information can land badly at the wrong moment",
-            "format": "decision_point",
-            "requiredBeat": "he must ask whether it is a good time before launching into repair details"
-          },
           "scenario": "Cedric sits in his van at 6:21 p.m. outside P&L Hardware, receipt tape curling on the dash. The homeowner answers on speaker, a pan clattering and a child crying behind her. Cedric has the leak diagnosis ready. He has to decide whether to launch into shutoff valve details or ask, \"Do you have two minutes now, or should I give you the first morning slot?\"",
           "whatToDo": "Ask for timing before detail. Offer a short choice so the other person can protect the moment without losing your help.",
           "whyItMatters": "Phone calls enter unseen rooms. A timing check gives control back to the person whose room you just entered."
@@ -1993,13 +1637,6 @@
             "legal",
             "clarity"
           ],
-          "planSpec": {
-            "domain": "public defense",
-            "audience": "professionals leaving urgent messages",
-            "stakes": "a short voicemail must work without context",
-            "format": "scene",
-            "requiredBeat": "she gives identity, reason, and next step before the beep cuts her off"
-          },
           "scenario": "Isabel stands in courthouse stairwell C at 4:09 p.m. Thursday, mop water sharp under the rail and one bar of signal on her phone. The jail voicemail will cut her off in twelve seconds. She is about to decide what survives the beep: name, case, hearing time, blue folder, callback by six. She drops the greeting polish and records the message like a lifeline.",
           "whatToDo": "Leave the message in order: who you are, why you called, what happens next, and the deadline. Cut every decoration before the beep does.",
           "whyItMatters": "A voicemail is useful only if it can act without you. Clean structure keeps the listener from replaying twice to find the task."
@@ -2012,13 +1649,6 @@
             "voicemail",
             "updates"
           ],
-          "planSpec": {
-            "domain": "bakery operations",
-            "audience": "small business owners",
-            "stakes": "stale phone messages waste callers’ time",
-            "format": "before_after",
-            "requiredBeat": "he replaces a stale generic greeting with a current message that respects callers’ time"
-          },
           "scenario": "Niklas dusts flour from the phone cradle at 5:43 a.m. Tuesday while the mixer knocks against the big bowl. His outgoing message still promises holiday stollen. Yesterday twelve callers asked the same sourdough question. He records again: open until three, sourdough sold out, rye at ten, catering callbacks after lunch. By seven, the phone rings less and the counter line moves faster.",
           "whatToDo": "Keep the message current and useful. State today’s hours, the common answer, and when callers can expect a return call.",
           "whyItMatters": "An outgoing message is part of the service. A stale greeting makes callers spend extra effort before anyone even answers."
@@ -2031,13 +1661,6 @@
             "calls",
             "repair"
           ],
-          "planSpec": {
-            "domain": "project management",
-            "audience": "remote workers and managers",
-            "stakes": "split attention becomes obvious faster by phone",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts multitasking will be fine, then hears the client notice the split attention"
-          },
           "scenario": "Selene sits on a train station bench at 1:16 p.m., a paper schedule folded in her coat pocket and another line beeping in her ear. The client is explaining a missed permit. Selene predicts she can listen and silence the beep at once. Then the client stops and says, \"Do you need to take that?\" Selene must decide whether to pretend nothing changed or name the split and repair it.",
           "whatToDo": "Name the interruption and choose. Say you heard the other line, silence it or reschedule, then return with a brief replay of what the person was saying.",
           "whyItMatters": "On the phone, divided attention has no visual explanation. Repairing it out loud keeps the caller from feeling quietly dropped."
@@ -2050,13 +1673,6 @@
             "postmortem",
             "phone warmth"
           ],
-          "planSpec": {
-            "domain": "family caregiving",
-            "audience": "adult children and caregivers",
-            "stakes": "efficient help can still feel emotionally absent",
-            "format": "postmortem",
-            "requiredBeat": "he sees that he handled the facts but missed the audible warmth she called for"
-          },
           "scenario": "Tomasz stands at 8:32 p.m. Sunday with a dish towel over his shoulder, his mother’s call log still open. He booked the eye appointment, found the insurance number, and texted the address. Her last sentence was, \"You sound busy, so I will let you go.\" He replays his own voice and hears the missing first line: \"Hi, Mama. I am glad you called.\"",
           "whatToDo": "Put audible welcome before efficient help. Let the person hear that their call is wanted, then move through the facts.",
           "whyItMatters": "Family calls often ask for care inside logistics. If warmth is absent, the solved problem can still feel lonely."
@@ -2075,8 +1691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recognition comes first. The caller hears that a person has understood the moment before logistics begin.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q02",
@@ -2088,8 +1703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A timing check respects the unseen room. It helps the other person choose how to receive the information.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q03",
@@ -2101,8 +1715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The message has to work without you. Structure beats polish when time is short.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q04",
@@ -2114,8 +1727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stale messages waste caller attention and create repeat calls. Current information is a form of respect.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q05",
@@ -2127,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The client already heard the split. Naming and repairing it rebuilds attention faster than pretending.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q06",
@@ -2140,8 +1751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recognition should sound human, not scripted. Too much name use feels like technique.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q07",
@@ -2153,8 +1763,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The facts were handled, but the relationship cue was absent. Phone warmth has to be heard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q08",
@@ -2166,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A brief recap gives the listener a handle without turning the ending into a transcript.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch07-q09",
@@ -2179,8 +1787,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Warmth must fit the moment. Cheer over bad news can feel dismissive, while calm clarity carries respect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2235,19 +1842,13 @@
       },
       "memorableLines": [
         {
-          "text": "The caller cannot see your care, so let them hear it.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the central phone challenge in one sentence."
+          "text": "The caller cannot see your care, so let them hear it."
         },
         {
-          "text": "Timing respect is warmth in phone form.",
-          "location": "breakdown.deepRead",
-          "why": "It turns a practical question into a memorable rule."
+          "text": "Timing respect is warmth in phone form."
         },
         {
-          "text": "A call can be technically useful and emotionally thin at the same time.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why efficiency alone is not enough on the phone."
+          "text": "A call can be technically useful and emotionally thin at the same time."
         }
       ]
     },
@@ -2274,13 +1875,6 @@
             "scanning",
             "choice"
           ],
-          "planSpec": {
-            "domain": "museum donor reception",
-            "audience": "new board members and hosts",
-            "stakes": "a room can be navigated or avoided",
-            "format": "scene",
-            "requiredBeat": "she scans the room before choosing whom to approach instead of drifting to the snack table"
-          },
           "scenario": "Freya hears olive pits click into a porcelain dish at 6:11 p.m. Thursday in the museum atrium. She is new to the board and the snack table shines like shelter. Instead of drifting there, she stops near the doorway with her glass untouched. She has to decide whom the room actually asks her to meet: the lone textile donor by the case, the chair at the bar, or the couple pinned near the coat rack.",
           "whatToDo": "Pause at the edge and map the room before eating or drifting. Identify who is alone, who is central, and who needs release, then choose one first approach.",
           "whyItMatters": "The first minute sets whether you act or hide. Scanning turns a crowd into choices instead of noise."
@@ -2293,13 +1887,6 @@
             "hiring",
             "initiative"
           ],
-          "planSpec": {
-            "domain": "hiring mixer",
-            "audience": "founders and job seekers",
-            "stakes": "waiting passively can miss the person you came for",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether to wait to be chosen or cross the room toward the candidate he actually wants to meet"
-          },
           "scenario": "Nathan stands at 7:34 p.m. under a neon exit sign, his lanyard twisted around his thumb at the hiring mixer. The machine-learning candidate he came to meet is across the room by the water pitchers. A recruiter is drifting toward her. Nathan has to decide whether to wait for an introduction or cross during the next laugh and say why he hoped to meet her.",
           "whatToDo": "Be the chooser with courtesy. Cross with a short reason, make the ask small, and give the person an easy way to leave.",
           "whyItMatters": "Waiting hands control to the room. A clean approach respects both your purpose and the other person’s time."
@@ -2312,13 +1899,6 @@
             "welcome",
             "memory"
           ],
-          "planSpec": {
-            "domain": "school open house",
-            "audience": "hosts and community leaders",
-            "stakes": "approach signals decide whether parents step closer",
-            "format": "dialogue",
-            "requiredBeat": "she uses open hands and one remembered detail to make approach feel safe"
-          },
           "scenario": "Diane stands at 5:57 p.m. Tuesday with the cafeteria milk cooler humming behind her. Parents hover near the door, coats still zipped. Her clipboard is tucked under one arm so both hands are open. \"Mr. Bello,\" she says, \"Tobin showed me the bridge drawing from math.\" He glances toward the exit, then back. Diane must decide whether to keep space open or fill it with the principal speech.",
           "whatToDo": "Make approach easy. Keep hands free, body open, and use one remembered detail before any formal message.",
           "whyItMatters": "A visible welcome plus proof of memory lowers the parent’s risk. They can step closer without fearing a pitch."
@@ -2331,13 +1911,6 @@
             "memory",
             "associations"
           ],
-          "planSpec": {
-            "domain": "trade association event",
-            "audience": "professionals meeting many people",
-            "stakes": "collected cards are useless without remembered context",
-            "format": "before_after",
-            "requiredBeat": "he starts tracking details right after meetings instead of collecting cards blindly"
-          },
           "scenario": "Pavel drops six business cards beside a sweating ice bucket at 9:22 p.m. Friday in his hotel room. Last year he sent six identical emails and got one polite reply. Tonight he writes on each card before brushing his teeth: daughter vet school, freight software pain, Midwest cold storage, red scarf, hates panels, knows Alma. The cards stop being trophies and become doors.",
           "whatToDo": "Write one useful detail within five minutes of leaving the exchange. Use it later to make the next contact specific.",
           "whyItMatters": "Memory turns contact into continuity. Without a detail, follow-up sounds like a label pulled from a pile."
@@ -2350,13 +1923,6 @@
             "power mapping",
             "observation"
           ],
-          "planSpec": {
-            "domain": "neighborhood festival",
-            "audience": "organizers and aides",
-            "stakes": "the loudest cluster may not hold the useful information",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts the loud cluster is best, then spots the quiet person who controls the real route"
-          },
           "scenario": "Laura grips a folding map at 1:49 p.m. Saturday while wind snaps it beside the churro stand. The loud cluster near the stage looks like the place to be. She predicts the route problem lives there. Then she sees a quiet woman at the permit table redirecting every vendor cart. Laura must decide whether to chase the noise or ask the woman which alley gate keeps failing.",
           "whatToDo": "Scan for function, not volume. Watch who people consult, who redirects traffic, and who holds the practical map.",
           "whyItMatters": "Crowds make noise look like power. The useful person may be the quiet one who makes the room work."
@@ -2369,13 +1935,6 @@
             "postmortem",
             "avoidance"
           ],
-          "planSpec": {
-            "domain": "faculty reception",
-            "audience": "students and early-career professionals",
-            "stakes": "food can become an avoidance strategy",
-            "format": "postmortem",
-            "requiredBeat": "he realizes he munched instead of mingled because the food gave him a hiding place"
-          },
           "scenario": "Oliver sits on a dorm stairwell at 10:06 p.m., spinach puff crumbs stuck to the faculty reception program on his knee. He can describe the cheese board and the safest window corner. He cannot name one professor he meant to meet. The plate gave his hands a job and his fear a reason to stay busy. He circles the printed guest list and writes one name for next time.",
           "whatToDo": "Choose one target before taking food. Hold the plate only after you have made the first approach, or the food will become your alibi.",
           "whyItMatters": "Crowds reward escape routes. Naming one person in advance gives your attention a job stronger than hiding."
@@ -2394,8 +1953,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scanning turns the room into choices. Food can become a hiding place before any real approach happens.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q02",
@@ -2407,8 +1965,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Initiative does not require force. A clear, courteous approach beats passive waiting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q03",
@@ -2420,8 +1977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Visible openness and memory reduce approach risk. Parents can feel seen before the formal talk begins.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q04",
@@ -2433,8 +1989,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Follow-up needs roots. One detail makes the second contact feel real instead of processed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q05",
@@ -2446,8 +2001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Function often matters more than volume. Watch who makes the room work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q06",
@@ -2459,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The room starts feeling harvested when people become counts. Curiosity keeps contact human.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q07",
@@ -2472,8 +2025,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A named target beats vague pressure. It also prevents food from becoming an excuse.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch08-q08",
@@ -2485,8 +2037,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A graceful exit respects the event. It keeps approach and departure easy for both people.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q09",
@@ -2498,8 +2049,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Open body shape signals room for one more. Size alone tells you little about entry.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2554,19 +2104,13 @@
       },
       "memorableLines": [
         {
-          "text": "Work the room so the room does not work you.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a compact reason to act deliberately."
+          "text": "Work the room so the room does not work you."
         },
         {
-          "text": "Choosing is not aggression. It is responsibility.",
-          "location": "breakdown.deepRead",
-          "why": "It corrects the fear that initiative must be pushy."
+          "text": "Choosing is not aggression. It is responsibility."
         },
         {
-          "text": "Rooms are easier when you treat them as maps instead of storms.",
-          "location": "breakdown.fullRead",
-          "why": "It makes scanning feel practical and calming."
+          "text": "Rooms are easier when you treat them as maps instead of storms."
         }
       ]
     },
@@ -2593,13 +2137,6 @@
             "face-saving",
             "correction"
           ],
-          "planSpec": {
-            "domain": "pharmacy counter",
-            "audience": "professionals correcting sensitive errors",
-            "stakes": "a public correction can embarrass a customer into resistance",
-            "format": "scene",
-            "requiredBeat": "she quietly gives a customer a face-saving correction instead of exposing the dosing mistake aloud"
-          },
           "scenario": "Sabine hears the receipt printer squeal at 9:13 a.m. Monday beside the blood-pressure cuff. A customer tells the line, loudly, that he will take three tablets at night. The label says one. Sabine’s hand hovers near the register mic. She has to decide whether to correct him across the counter or step closer, point to the label, and say the print is easy to misread here.",
           "whatToDo": "Move the correction into a quieter channel. Point to the object, not the person, and give a plausible path back to the right answer.",
           "whyItMatters": "Embarrassment makes people defend mistakes. A face-saving correction protects the truth by reducing the need to fight it."
@@ -2612,13 +2149,6 @@
             "reciprocity",
             "timing"
           ],
-          "planSpec": {
-            "domain": "team leadership",
-            "audience": "managers and teammates",
-            "stakes": "instant repayment can turn apology into resentment",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether to demand quick repayment or let the favor settle before reciprocity"
-          },
           "scenario": "Daniel stands in the stairwell at 4:37 p.m., apology note folded under his phone. The teammate missed the client deck and apologized in front of six people. Daniel wants to text, \"Stay late and fix it tonight.\" His thumb hovers over the screen. He has to decide whether to collect proof right away or let the public cost of the apology settle before assigning repair.",
           "whatToDo": "Separate apology from repayment. Acknowledge the apology first, then set a repair plan later when the person is not paying in public twice.",
           "whyItMatters": "Immediate debt can poison remorse. Letting the first cost settle keeps repair from feeling like punishment theater."
@@ -2631,13 +2161,6 @@
             "hidden motives",
             "dignity"
           ],
-          "planSpec": {
-            "domain": "condo mediation",
-            "audience": "mediators and community leaders",
-            "stakes": "naming motives can calm or expose people",
-            "format": "dialogue",
-            "requiredBeat": "she names the hidden motive without making either side lose face"
-          },
           "scenario": "Marisol hears folding chairs scrape at 6:52 p.m. Wednesday on the community-room tile. The condo fight is about bikes in the hallway, at least on paper. Mrs. Vale taps her walker. Jules, a renter, keeps saying owners get everything. Marisol must decide whether to call out control and status or say, \"I hear safe passage on one side and being treated as a real resident on the other.\"",
           "whatToDo": "Name the deeper concerns as respectable needs. Use balanced language that gives both sides a dignified reason to move.",
           "whyItMatters": "Hidden motives get louder when exposed as accusations. Framed as human concerns, they can soften without public defeat."
@@ -2650,13 +2173,6 @@
             "correction",
             "escape"
           ],
-          "planSpec": {
-            "domain": "restaurant service",
-            "audience": "hosts and service leaders",
-            "stakes": "public correction can damage a guest and the room",
-            "format": "before_after",
-            "requiredBeat": "he first wants to correct publicly, then gives the guest an escape line"
-          },
           "scenario": "Eamon stands at the pass at 8:08 p.m. Friday, lemon oil slick on his fingers. A celebrity guest has just told the table the sauce is yuzu butter. The cooks know it is preserved lemon and olive oil. Eamon starts toward the table ready to correct him. Then he brings a ramekin and says, \"We changed the language on this one earlier, easy miss. Preserved lemon tonight.\" The guest repeats it with relief.",
           "whatToDo": "Offer the correction as updated shared language, not a public verdict. Hand the person the line they can use to recover.",
           "whyItMatters": "An escape line lets the fact change without forcing the person to perform being wrong in front of the room."
@@ -2669,13 +2185,6 @@
             "favors",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "family money",
-            "audience": "relatives and friends exchanging help",
-            "stakes": "help can become a trap when gratitude is demanded",
-            "format": "postmortem",
-            "requiredBeat": "she sees that pushing for instant gratitude made the favor feel like a trap"
-          },
           "scenario": "Catarina sits at 11:19 p.m. Sunday with the folded loan receipt tucked under the salt shaker. She covered her cousin’s rent, then brought it up twice at dinner where two aunts could hear. The cousin repaid early and has not answered since. Catarina reads the receipt like evidence, then sees the real line item: she made gratitude happen onstage.",
           "whatToDo": "Let help stand without immediate display. Accept thanks once, privately if possible, and let any return favor come later without an audience.",
           "whyItMatters": "A favor watched too closely stops feeling like help. The other person starts working to escape the debt instead of trusting the relationship."
@@ -2688,13 +2197,6 @@
             "anger",
             "reflection"
           ],
-          "planSpec": {
-            "domain": "new manager one-on-one",
-            "audience": "managers and team leads",
-            "stakes": "matching heat can turn one problem into two",
-            "format": "reflection",
-            "requiredBeat": "he realizes containment means slowing the room, not matching the heat"
-          },
           "scenario": "Basil sits at 7:06 p.m. Tuesday while the office lights blink off above a cold mug. In the one-on-one, the new hire raised his voice, and Basil matched it sentence for sentence. The same scheduling problem remains, now wrapped in pride. He waves the lights back on and writes the repair he should have made: lower voice, smaller question, private next step.",
           "whatToDo": "Contain heat by slowing the room. Lower your voice, narrow the issue, and choose one next action instead of answering force with force.",
           "whyItMatters": "Anger wants company. If you match it, the conflict gets a second fuel source and the original problem becomes harder to reach."
@@ -2713,8 +2215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correction still happens, but the person gets a path back without public embarrassment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q02",
@@ -2726,8 +2227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The apology already carries a public cost. Immediate repayment can make repair feel like a trap.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q03",
@@ -2739,8 +2239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "It names the motive as a respectable concern. That gives people room to soften.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q04",
@@ -2752,8 +2251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact changes without public defeat. The guest receives language that lets them recover.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q05",
@@ -2765,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Public pressure changes the meaning of the favor. The borrower may focus on escape, not trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q06",
@@ -2778,8 +2275,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Containment slows the heat and keeps the original problem reachable. Matching force adds fuel.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q07",
@@ -2791,8 +2287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "An exit line lets the correction happen while dignity remains intact.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q08",
@@ -2804,8 +2299,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A concern can be discussed. An accusation makes the person defend pride instead of solve the issue.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q09",
@@ -2817,8 +2311,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tact is not avoidance. It is a way to let truth land without needless damage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2873,19 +2366,13 @@
       },
       "memorableLines": [
         {
-          "text": "The truth lands better when it does not bruise on arrival.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the chapter’s tact standard vivid and concise."
+          "text": "The truth lands better when it does not bruise on arrival."
         },
         {
-          "text": "Favors and apologies need time to settle.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the timing lesson in plain words."
+          "text": "Favors and apologies need time to settle."
         },
         {
-          "text": "Tact is the art of keeping truth and dignity in the same room.",
-          "location": "breakdown.fullRead",
-              "why": "It closes the social-pressure theme with a clear principle."
+          "text": "Tact is the art of keeping truth and dignity in the same room."
         }
       ]
     }

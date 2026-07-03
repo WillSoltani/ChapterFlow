@@ -21,1151 +21,6 @@
       "acceleration-at-limits"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:b93753dfbff0b0f3f59ea40e6641d97076055a372d0e0bd59194495fe841ec14",
-    "payloadHash": "sha256:b93753dfbff0b0f3f59ea40e6641d97076055a372d0e0bd59194495fe841ec14",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-compound-effect",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Compound Effect",
-        "author": "Darren Hardy",
-        "categories": [
-          "Psychology",
-          "Investing",
-          "Leadership"
-        ],
-        "tags": [
-          "delayed-compounding",
-          "conscious-choice",
-          "habit-control",
-          "behavioral-momentum",
-          "influence-design",
-          "acceleration-at-limits"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-compound-effect.json",
-        "semanticHash": "sha256:d2ee4e0a35868cd1201bcf33b7a2e863582c2ea2ec3a065368b738501c72b546",
-        "chapters": [
-          {
-            "chapterId": "the-compound-effect-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "The Compound Effect in Action"
-          },
-          {
-            "chapterId": "the-compound-effect-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "Choices"
-          },
-          {
-            "chapterId": "the-compound-effect-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "Habits"
-          },
-          {
-            "chapterId": "the-compound-effect-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "Momentum"
-          },
-          {
-            "chapterId": "the-compound-effect-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "Influences"
-          },
-          {
-            "chapterId": "the-compound-effect-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "Acceleration"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-compound-effect-ch01",
-          "chapterNumber": 1,
-          "title": "The Compound Effect in Action",
-          "readerContentHash": "sha256:21052d8a65b991b4897923544e1b699ba126e77849c5af1798d3d3aa7e2a8860",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:357a64ac4f66280c0b438dcb974e419570f3116e9257cb3c7ffc32d2963ba936",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:f65c74fa0aeb9491941772cdc6b74c53542668690247171ace2dccc393ffaa25",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:bfa30ec76b3b703604fff38841746f1fac4b354a24777f1af2557409a59cef4f"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch01.qc.json",
-            "semanticHash": "sha256:6c98fe5bfc123b5ae65d935f5ee1eaf52d45bd62455650d48466213f32d19f09",
-            "roundId": "r20260626160042-158184",
-            "contentHash": "2eb7f6f49a9f8e23",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626160042-158184",
-            "reviewedAt": "2026-06-26T16:08:13.201Z"
-          }
-        },
-        {
-          "chapterId": "the-compound-effect-ch02",
-          "chapterNumber": 2,
-          "title": "Choices",
-          "readerContentHash": "sha256:5c5a6f01855282a687f52b4aa5ad91e6059a0e2445212b2250b867f7feef03cb",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:a04b5179d8b040936eb123a7297f610d71cb50b9665d86222465e5bd731695cf",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:d639eea6899ae247a2cc66ef1e905533c172bf16211fa11f636df0b930b05c0c",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:1c19684c5e8c9d96184115a4a9b02ad09a732f52522d95cb82fd94dc9ef9b6f8"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch02.qc.json",
-            "semanticHash": "sha256:ba4ceeda3bc8793d12100c57e9bf98b2a9b345c20953feb89f2a43feae462741",
-            "roundId": "r20260626160042-158184",
-            "contentHash": "11ea234c8a36ec0f",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626160042-158184",
-            "reviewedAt": "2026-06-26T16:08:13.201Z"
-          }
-        },
-        {
-          "chapterId": "the-compound-effect-ch03",
-          "chapterNumber": 3,
-          "title": "Habits",
-          "readerContentHash": "sha256:1c7ed9414078946f03d7b77438c4c0cbcf6802d58f0d6bc3e2532112fb8a9c24",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:0d675add4492e18488a1ac2d8d660b1198921a1f5d79a516ee277863600275a2",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:bd3a0497b92d6149da15b4d3e7ec8c7e5de86ac4e97c55818b013c3978e0bcf3",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:982b96b39a76ae09189ad30c96343dd12426ff3b17c436bef2990d728bfd503a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch03.qc.json",
-            "semanticHash": "sha256:e21c04817d9bb67d2e5ab2b88266209106356d7e03984914e80320238e79a047",
-            "roundId": "r20260626161120-d74272",
-            "contentHash": "36e1ecf63f1325c8",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626161120-d74272",
-            "reviewedAt": "2026-06-26T16:14:51.050Z"
-          }
-        },
-        {
-          "chapterId": "the-compound-effect-ch04",
-          "chapterNumber": 4,
-          "title": "Momentum",
-          "readerContentHash": "sha256:6fe22f570e412f9184181d17648484c870b77e6fa720ee81d0ec27c22a4a9639",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:c482e1671e2ca791eeefaabcf2806b1f611483b9956477e9cb455b370e8e45e1",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:0b16e530aad1407d88e40d3f2fb548494b3b23af16d6ec962190f09f93fa59ed",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:2dd946d60ec6f082dfd58ad22e3e69113a7d97ffd50205fe44c287a0b4c3f3ab"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch04.qc.json",
-            "semanticHash": "sha256:4946fda5e5d8298ecccbe03c741fe43a490aed3c1f73572484b437f719aa9175",
-            "roundId": "r20260626160042-158184",
-            "contentHash": "7852b79ee7e1f786",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626160042-158184",
-            "reviewedAt": "2026-06-26T16:08:13.201Z"
-          }
-        },
-        {
-          "chapterId": "the-compound-effect-ch05",
-          "chapterNumber": 5,
-          "title": "Influences",
-          "readerContentHash": "sha256:716e928adcd11e7610e2373ff2888a4795314c6cb02c2b2179fc2ff276e0a05c",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:3a47e2d39972687e472d77a74656afe4ae884b34e46c3819ce05086255427b0a",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:8cf160c7ee46fd7fcf9290e9c07dd32e706b864712a5452528a32ac13eabdf15",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "069576da246e58435c5eba166500f8854507fb1b962bd75f1eb097d6775fc5e2"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch05.qc.json",
-            "semanticHash": "sha256:a47fda88d71fb7c0ea28f4a73897dcaa33beea14b0e344e0ebdd85ac90fa3d30",
-            "roundId": "r20260626160042-158184",
-            "contentHash": "d467e602e9c94c1b",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626160042-158184",
-            "reviewedAt": "2026-06-26T16:08:13.202Z"
-          }
-        },
-        {
-          "chapterId": "the-compound-effect-ch06",
-          "chapterNumber": 6,
-          "title": "Acceleration",
-          "readerContentHash": "sha256:13edf8f971e0cd0c07b52103e15f91f9a306586ce6bc4a2e5999942b9d50303e",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-compound-effect/20260626T152637427Z-80bda9d5-d59a-43f5-9be6-b9fc4d0c9cf2/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:2a2385c6fa31a9148ab87804f4bfad8cc3545910874946e5305fc034632ff5c2",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-compound-effect-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:3afe8413b90523b4ea7e04e711d3079628c9eb8d36c387da23414b1ab27400e4",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "5a167ce8009b5ceb501427d1388fc7f45890c6a4870b4de49039ef27405100b5"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-compound-effect-ch06.qc.json",
-            "semanticHash": "sha256:3fd739332e1d9b9a4c55dce92476fb93ea6c24160651b5611003885104fd4727",
-            "roundId": "r20260626160042-158184",
-            "contentHash": "2e002029ecede6bb",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260626160042-158184",
-            "reviewedAt": "2026-06-26T16:08:13.202Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-compound-effect",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-compound-effect.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:7f34e82cc9c8b535318a325cba5ff098ca11e172f3aad97ac1793edb39dc8b7e",
-          "bookId": "the-compound-effect",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:dd5e8df47d6f199e422b4d9bde9b2f79e894b485a46e5ca5d9ac5b1199217a97",
-          "fileCount": 36,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:600f58db777edaf51eee63e145b45dc1c8c4a6cfcde542c5f488fa14ed7554eb"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:d897e2595c849397b685f0cfb1eda5cfbc3ddbf4ece76124fdad312c62ea6459"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:4f06499eeeb5eee003ccfe1a2aeaa9cdbebdb7003feaa8a95b7101c885a69fbc"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:c325d544a978ed0d41d07b5d48cfea41cda31b32a369817dbd14eb08c8254359"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:5ea77e3745a0e41fd653dd1168865476abe3d2362623c670d318099cd48d11ba"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:0d6ad29a3a1cdf494c489bc25a0a6b2e1ec3a043e4b093faede02cb0f2c70479"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:ff761ae79702a1d2874743b1f5ee9782f427949ccb129dbf130577d98a9e6398"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:b3d198c05bbe4e445ff1ecf5ea3704d62e79756086114a162cbd4cc5a6bf80c9"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:944542af9172d409cf7094a52896c86af396ee51ab09e9ccf134c9706f3a23c7"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:8f8b3eebfde6f1f36b6a9c9cb3c9258ff95ed028ba93eb7422f25ef453507086"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:1ff4d158c9d964fdfc6b029c1a86efa4c61bd615c3c5c614be60f3ac9a887b60"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:ad966d203cf2f692b60b32fba51e4927214a32edfd2bee17ca068c72db3a9ace"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:401bb33585ac2ac14b0580ebacaaafe2ab7a983be99d57609057958d4ebd494c"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:a25803598031232a7b9980bc3b7e02f8f4c924956c01050559eff6713f94f0fc"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:86fb5ef91f3c5f31d67dd3239056dc9ef2b27d548fc4c441adf89d570c5546a3"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:1a1e448f989fb919766610a5c415d08d02e5626683fe34677a2193bc68f88cad"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:0e01499682288944fb6909288b96acef6914afa21641c0044183519334041397",
-          "fileCount": 16,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:3de6d00688cf467a98d9645768585238ac63d7bde8c3b711a23d192f7352932d"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/common-given-names.json",
-              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:099a2c70cc2164ec5baa7a467e2a0ea38dbf5c96e8c868aeefa2c97bb2b95ca9",
-          "fileCount": 163,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:2aeb73471797ac4fd9286327997806c894657716271000d34d9acc6f45a15e84"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:f1683aac5b4b7e865e138dfbb4532d458d0c7dd90f8944c0637b028d83ad5298"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:8497cd1a40734f6bfe9fe59e4d1dd74f9f0fa1a90ad91becce2b7e5e7165fbb7"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:c6686634332a0efcd6721801c77c351e78930c935f5f0dff65ff6146b1d3d765"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:b0838ebbf2d162b16ede327f09adc02074203daf4ccd16cc56e98af32d1b4984"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:90f9fc0958255c81ff2672458624c809f1455e3432c4c293e98e44f4e75afcbe"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:c0f804e0bd940552b4a351b2528380f2e1c284173c96b44691e4570fd1646987"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:5eca291142f6b015c1ac2e99c233c55dbf828dd6d664e1707e80fe1d09986573"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:efd8474cd56bc643badeedd5bf427df4314a574d44eb84c52831fbd3970811fd"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:fabc0fd3a046aedd992c89b5f11267b5023db331396347bfc9fa942a25848e32"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:e14bb4063c4d66233331bacc9e993c44c8cace50abf83d17c0e06443ba631fbd"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:f46637ba9ea89f5080b0d7ed03954ec4562fb934ba2677c77ef5d74a8059e79e"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:157f87dc4ab5b501e9c348ce4b9cb4ef613e0e2610a6cb51e4412329330f135e"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:28f3e93b5e762fafa8f60c1cc9b6bc55e843367c69d63133cb6fcc824827fd2a"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:22e27e23047110602252d5109306cf180a665e58843ba4c2707b4d09fd09f08b"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:88d1a25238ef9d84f6fd57c5f5185524fe11129763d1a4692843c4678035fc5b"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:2276512d7838e3eedf7906a5326c3c9915c275a4282cdf3c5cb5c92b5afacfac"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:dc30ba5e073f133e485b64f6aed7319b7b6168186ac8da5f3f28fc4874194f39"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:92e405e1d1b29433cd6e602799711a292dfe2575118b67209f4840b9d491ea42"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:e5a29140ab757083a13e05833804ba2a93db5e572ed0cdc8381c370e19996338"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:0685cfe756bfc4df06213f1d764027a048a8ebbe01d509bb391991e5bca0d1a4"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:9f6413f09ce238af382706b2e65ba71d4a3fed79e59bc636858c0615885405d6"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:6dd1d597c3f4824cb711f1e8aefb62bf9f4c7bfde175832ed7311adc1f46d659"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:a9356298ff87d6d24fef42e68c985fcc62de83e72f8f54db625485b516109192"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0c926d987466945ed50774b06e720a56320d8168b1c11871211af2bc03ff863"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/evidenceIntegrity.ts",
-              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
-            },
-            {
-              "path": "src/critics/evidenceWitness.ts",
-              "sha256": "sha256:7528811aae991587ed2e9fe7ecf3f1682bafb832bdc0d9a8e1dc2e55be4e5264"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:c1dec838295bf47668f18abebb9062afdd3c1d2d73cb3658b7b378d8d0bc8466"
-            },
-            {
-              "path": "src/critics/groundedNumbers.ts",
-              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:3595f3356e0c9e37545a972cf3c257bcaf7031e2c81914f1a93abbb4678b376a"
-            },
-            {
-              "path": "src/critics/outcomeVariety.ts",
-              "sha256": "sha256:2a836db54bf2d196d4b117f0149f24a88b628ab11b11143fa8ef650aaea26d47"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:1e824372385ba368d3697252d8f80ce6230a8c29a16cf8b0c86cb8a3d2adaec5"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:6f6a4ab2e05fb62935c88dc9bb7cbf9fc50d730c6dbcd6930e4f33f8ca5aec4f"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:93bf473a2636d7a8ec066ec116d149e1ab7db93de5ef1532f9a3cf8f269f3d42"
-            },
-            {
-              "path": "src/critics/sceneConcreteness.ts",
-              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:55a7625d5f5021a8b8c42e475552560c38a7b4b7131e450d350a2f83fdfc94ae"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:b87c8ea06c8f332af6b91a9e83a266b5e7397640aff600e513cd80cac291a08b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:b328e7fa5a3e36cd633a2911337ad83dc1bfaae457bfcf01cac1f601ef7f9cf9"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:e5e3cddd9d58792ece72840572e06c7c5eaeb68050595818856540169024311c"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:ccc20df4f559e86d3926d69e3ee69d81dc16b96d4fbd4a6522e56da5508aa783"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:07312d442ea536fae75cebf3834a3f02c69657f7978645ac5f9811e36f153bdf"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:a1e7d5b4b8043c062fc998026dab29e43838456d0f4cdc48be7b34126e3d7528"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:b6dc3455f79f9cefe7961d832276ecc951ed9596e6ae7533d2f0a29506546f9d"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:0d7af1950a5476d7472d7f584024b74cb4c4f8c2d02a087127815076743de0b1"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:ae301e7a500fa1cb865bcf1e28a6ade3eb48d08b7b16e66981c48fc41707d011"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:e5c5b7bb44873eee0bbad478f34cab49ae36cf5744327bc97f99f92be54ce9c5"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:1592b596e4d99b2bc0db2ae096f65445b71384a97ea582edb3d05bd3e3f26f8a"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:70b7ed2805c6a3101ef1d77f65fee72190fbcbb80cdaca6170d01a8b96dee860"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:c6acf88ff4a37c093d5e643b39e514a2bf34a20d18af52419bdaf8da234067ad"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:a88f709d8e19ae2235bb8abcdbdbb432677f762fb86856fac30b59fada969cb7"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:484d020fb9704086ea61c51833bac5cd4dda29843f78a18b283c9bb9e67a5b6c"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:62b4f6c653701cabd78e0992e29c17dfba978b36132da0ceb2bf54f94398585e"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:e40f72d308d6b00f8a1f08cea7f13746b1f2b78cb15a853bcdbebd6377e9944a"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:a1fd21bab474f8fdc334acb95e9f651080618bff60294bd196e3895c22058c7e"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:c611a7b12b3605dff443296e78080d7308b3f8ae50577191e215ea564e9bc62f"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:f504121cd0a6a8d65ce8081bce10f12354b5a0021124bceeb119d90cf7a3c978"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/normalizeProvenance.ts",
-              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:991ba361dea4cc0029ad3329052ad4eceb6ba64c90aa1d4fe4b2d3fed013e351"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:02d4ea59b78aa9c5b1de91298194b967262c8ad3e91831f46d95999de5e51179"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7d45f49d1c5a1049d8c3758c317e93fb535a7b9f1951126b847aaeb9240551e6"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:7e1d0c19b3d260f2ab635a2260267bb0ea20379c675b5bdf3aeb6d7f08f3ce19"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:96813042beec77aa2c87dc343379e82c2a4e8d9ba103881127dffdd492df2752"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:bf3bd293a85c1c0a6dfb5938769fe4e64b9bfbee6703a76128dc005a177052c0"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:f7c052fd8bbbe83cbd2b80eb75e06bc9f853ecf48b3ab93c8708fcb9a73da231"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:5721c9a1b276fe4214c619ee54a2d098deafaa029a05a8f9cee77f3513b9909b"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:021d771a36dfc8edbeacb0e0f6e4fbaf68d1addae3433a6bc831f0e042fb87b4"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:24082375a4d034724364654adfe785c0c7ea3b2dc4604295b24db5ba90d871c7"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:a4ffc05abdc9ec6a5cc50529e9d986f692b549ecd8011598d5b366b4d8b77073"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-26T16:19:31.602Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/the-compound-effect.v21.json"
-    }
-  },
   "chapters": [
     {
       "chapterId": "the-compound-effect-ch01",
@@ -1262,8 +117,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source comparison is exact: $3 million upfront versus one penny doubled daily for 31 days. It does not claim the penny feels rewarding at the start.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1275,8 +129,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The penny is still only $5,243 after 19 days in the source frame. Small-looking progress can be normal, so direction matters before size.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1288,8 +141,7 @@
             ],
             "correctIndex": 0,
             "explanation": "By day 31, the penny total is described as about $10 million, above the $3 million option. The early totals do not settle the comparison.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1301,8 +153,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Responsibility starts now because ordinary choices are already compounding. Waiting for a bigger opening lets current inputs keep steering the path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1314,8 +165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The prompt asks for six small positive steps that can be used daily. It favors repeatable inputs over one dramatic overhaul.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q06",
@@ -1327,8 +177,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The inventory includes six negative actions to remove. Repeated small losses matter because they compound in the wrong direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1340,8 +189,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A complacency audit looks for areas where prior success faded after attention dropped. Past success is not a permanent pass.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1353,8 +201,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The curve depends on repeated inputs, not isolated bursts. Intense days can help, but they do not replace consistency.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1366,8 +213,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Compounding is already active through repeated behavior. A formal plan can guide inputs, but it does not start the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1410,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Direction Line",
         "coreSkill": "Practice writing one short line that names the repeated input and its direction. Use Write the Direction Line when a goal feels too large or a leak feels too small. The line turns a wish into a daily input you can repeat or remove.",
         "ifThenPlans": [
           {
@@ -1435,24 +280,17 @@
       },
       "memorableLines": [
         {
-          "text": "Direction beats drama.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the anti-quick-fix lesson into a line the reader can use."
+          "text": "Direction beats drama."
         },
         {
-          "text": "Tiny leaks also compound.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the negative side of compounding hard to ignore."
+          "text": "Tiny leaks also compound."
         },
         {
-          "text": "Patience is not waiting; it is staying aligned.",
-          "location": "breakdown.deepRead",
-          "why": "It separates passive waiting from repeated direction."
+          "text": "Patience is not waiting; it is staying aligned."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-compound-effect-ch02",
       "number": 2,
       "title": "Choices",
@@ -1553,8 +391,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Small choices are exactly the inputs that compound. Logging the repeated update exposes autopilot; waiting for a larger miss lets the old path keep running.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1566,8 +403,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Goal alignment needs ongoing attention at the choice level. A stronger written goal can still sit untouched while the default choice repeats.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1579,8 +415,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Responsibility does not mean pretending no mistake happened. The mistake becomes useful when it produces a future decision rule.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1592,8 +427,7 @@
             ],
             "correctIndex": 1,
             "explanation": "PAOA does not deny opportunity. It shows that readiness and action help decide whether an opening becomes useful instead of passing by.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1605,8 +439,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source move starts with at least one behavior tied to the area you want to change. Waiting for the perfect system extends the old pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1618,8 +451,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Work hours are a named tracking example for productivity. The log replaces a vague feeling with observable data; memory alone is the near miss.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1631,8 +463,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Phone time is named as a small daily decision worth tracking. Treating it as too trivial misses how repeated inputs set the path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1644,8 +475,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A metric needs a target context to be useful. Random measurement may look active, but the action sequence begins with the area for change.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1657,8 +487,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Starting now shortens time on the old default path. A later intense plan does not erase the repeated inputs that keep compounding today.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1701,7 +530,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the One-Choice Audit",
         "coreSkill": "Practice making one default choice visible before you try to fix your whole life. Choose 1 area, name the repeated behavior, and track it long enough to see the pattern. The skill is clean responsibility: own the input you can change without turning the audit into self-criticism.",
         "ifThenPlans": [
           {
@@ -1726,24 +554,17 @@
       },
       "memorableLines": [
         {
-          "text": "Autopilot spends your life without asking.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the invisible cost of defaults feel personal and immediate."
+          "text": "Autopilot spends your life without asking."
         },
         {
-          "text": "A tracked choice stops being a fog.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the measurement lesson into one clear image."
+          "text": "A tracked choice stops being a fog."
         },
         {
-          "text": "Blame cannot edit what you keep repeating.",
-          "location": "breakdown.fullRead",
-          "why": "It separates responsibility from self-criticism in a portable line."
+          "text": "Blame cannot edit what you keep repeating."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-compound-effect-ch03",
       "number": 3,
       "title": "Habits",
@@ -1844,8 +665,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A habit can be unwanted. The key test is repeated practice becoming a default, not whether the person enjoys the routine.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1857,8 +677,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The compound effect makes repeated small habits decisive. Waiting for a crisis misses the way the routine adds up.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1870,8 +689,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Motivation fades when the reason stays vague. The source sequence asks for values, inspiration, and goals that can guide repetition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1883,8 +701,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 5 Ws locate the context around the unwanted behavior. Attacking the habit without context leaves the main cue hidden.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -1896,8 +713,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Removing triggers lowers the number of moments that invite the routine. Strong willpower is not the main design tool here.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1909,8 +725,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Substitution works because the old routine provided a reward. A healthier path can meet the reward without keeping the bad habit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1922,8 +737,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The unit offers both paces. The best pace depends on the routine, so one removal speed should not become the whole method.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1935,8 +749,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good-habit design removes barriers. Making the desired action easy is the method, not a sign that the habit lacks seriousness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1948,8 +761,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Public commitment and updates help create the habit. Accountability is not just a reward after the pattern is already stable.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -1992,7 +804,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Cue Before Craving",
         "coreSkill": "Practice finding the cue before you fight the habit. Use Mark the Cue Before Craving to name why, what, who, when, or where, then put one visible check beside the cue. After the mark, remove one trigger or make the better action easier to start.",
         "ifThenPlans": [
           {
@@ -2017,24 +828,17 @@
       },
       "memorableLines": [
         {
-          "text": "A habit is a vote cast on repeat.",
-          "location": "breakdown.fastRead",
-          "why": "It makes automatic behavior feel small and cumulative."
+          "text": "A habit is a vote cast on repeat."
         },
         {
-          "text": "Friction is cheaper than willpower.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the design-first habit move into five words."
+          "text": "Friction is cheaper than willpower."
         },
         {
-          "text": "A public promise turns drift into data.",
-          "location": "breakdown.fullRead",
-          "why": "It gives accountability a practical reason without making it performative."
+          "text": "A public promise turns drift into data."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-compound-effect-ch04",
       "number": 4,
       "title": "Momentum",
@@ -2129,8 +933,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Momentum needs execution in the day, not just a stronger wish. A fixed routine slot gives the reading a place to happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-compound-effect-ch04-q02",
@@ -2142,8 +945,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A routine is meant to become easier to start through repetition. Difficulty is not the proof of value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-compound-effect-ch04-q03",
@@ -2155,8 +957,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Big Mo is the nickname for behavioral momentum. The physical-speed reading misses how repeated routines create a default path.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-compound-effect-ch04-q04",
@@ -2168,8 +969,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The daily run example shows momentum when missing the behavior feels odd. Optional-every-day is the weaker pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-compound-effect-ch04-q05",
@@ -2181,8 +981,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The day-anchor move protects the start and end because the middle changes. The busiest-hours reading aims at the least stable part.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-compound-effect-ch04-q06",
@@ -2194,8 +993,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is consistency toward a useful result. Revision is right when the ritual no longer contributes.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-compound-effect-ch04-q07",
@@ -2207,8 +1005,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Rhythm Register expands tracking beyond the daily check. Daily-only tracking is the near miss this fact warns against.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-compound-effect-ch04-q08",
@@ -2220,8 +1017,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Momentum needs repeated continuation. A manageable routine is safer than a burst that burns out.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-compound-effect-ch04-q09",
@@ -2233,8 +1029,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Supportive people lower the friction around small changes. Treating momentum as purely individual misses that surrounding help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2277,7 +1072,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Rhythm Check",
         "coreSkill": "Practice giving each important behavior a repeatable place in the day. Run the Rhythm Check by asking whether the action has a morning or evening anchor, whether it appears in the Rhythm Register, and whether it still helps. Keep the rhythm, but revise any ritual that no longer produces a useful result.",
         "ifThenPlans": [
           {
@@ -2302,24 +1096,17 @@
       },
       "memorableLines": [
         {
-          "text": "Momentum needs a track, not a pep talk.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter into one practical contrast."
+          "text": "Momentum needs a track, not a pep talk."
         },
         {
-          "text": "A stale ritual is not discipline.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the hard edge of the source easy to remember."
+          "text": "A stale ritual is not discipline."
         },
         {
-          "text": "Your rhythm assumes a result worth repeating.",
-          "location": "breakdown.fullRead",
-          "why": "It names the quiet precondition behind the whole method."
+          "text": "Your rhythm assumes a result worth repeating."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-compound-effect-ch05",
       "number": 5,
       "title": "Influences",
@@ -2420,8 +1207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Influence design uses three channels: information, associations, and environment. Friends matter, but a feed and a room can shape the habit too.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2433,8 +1219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The information section makes intake part of the behavior system. If the brain processes what enters it, low-quality input is not separate from later action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2446,8 +1231,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Guarding against garbage means reducing repeated news and media that crowd attention. Knowing your goal does not make the input neutral.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2459,8 +1243,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Drive-Time University turns travel and routine listening into learning inputs. It does not wait for a perfect reading chair before instruction can start.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2472,8 +1255,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The claim gives associations a direct role in outcomes. Support matters, but the group also shapes norms, expectations, and tolerated behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2485,8 +1267,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The audit asks whether nearby people support and inspire the direction. Equal time can keep a draining norm in place, even when the goal is clear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2498,8 +1279,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The unit allows quality-focused limits. The answer is not blanket rejection or unchanged exposure; it is more intentional contact with less drag.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2511,8 +1291,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mentors and advisers are tied to the future position you want. Likability and shared struggle may help, but relevant distance ahead is the key test.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2524,8 +1303,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Environment includes physical and mental clutter. A room is only one part; unfinished and poisonous material can keep pulling behavior away.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2568,7 +1346,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Input Gate",
         "coreSkill": "Practice catching the input before it becomes the mood. Run the Input Gate by naming which channel is active: information, associations, or environment. Then make one small change to what enters next.",
         "ifThenPlans": [
           {
@@ -2593,24 +1370,17 @@
       },
       "memorableLines": [
         {
-          "text": "Inputs become instructions when they repeat.",
-          "location": "breakdown.fastRead",
-          "why": "It makes repeated influence feel active without using jargon."
+          "text": "Inputs become instructions when they repeat."
         },
         {
-          "text": "Better company makes better choices cheaper.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the association audit into one practical sentence."
+          "text": "Better company makes better choices cheaper."
         },
         {
-          "text": "Your room votes before you do.",
-          "location": "breakdown.fullRead",
-          "why": "It turns environment design into a concrete image the reader can recall."
+          "text": "Your room votes before you do."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-compound-effect-ch06",
       "number": 6,
       "title": "Acceleration",
@@ -2711,8 +1481,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Acceleration adds energy or thought at the margin. Sending the baseline may be competent, and trimming care misreads acceleration as less effort.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2724,8 +1493,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Obstacle Leverage reads the hard point as the growth point. Treating the hill as system failure sends him away from the exact test.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2737,8 +1505,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The easy period is a warm-up. It builds capacity for pressure; it is not the whole aim or proof that hard weeks should be avoided.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2750,8 +1517,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The split is response, not freedom from ordinary barriers. The unit says many people face similar limits, and some continue through them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2763,8 +1529,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Arnold's example uses an adjustment after the weight-lifting limit. Ending at once or changing early misses the after-limit move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2776,8 +1541,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The grounded detail is five to six extra reps. The example is not same-count smoothing or replacing the hard set before strain.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2789,8 +1553,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A smart detour sustains effort after a real barrier. Skipping testing before the barrier avoids work instead of extending it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2802,8 +1565,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expectation-plus means added value beyond the expected baseline. Holding at the baseline misses the accelerator; replacing the repair skips competence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2815,8 +1577,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Acceleration asks for behavior outside the average response when limits appear. Repeating the usual stop is not enough for unusual results.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2859,7 +1620,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Cut One Demand at the Wall",
         "coreSkill": "Practice finding the hard spot where momentum starts to stall. Use Cut One Demand at the Wall: remove one lesser task, option, or flourish so extra energy can go to the part that changes the result. Then choose the lever that fits: extra energy, obstacle leverage, or expectation-plus.",
         "ifThenPlans": [
           {
@@ -2884,19 +1644,13 @@
       },
       "memorableLines": [
         {
-          "text": "The hard spot is the hinge.",
-          "location": "breakdown.fastRead",
-          "why": "It turns pressure into the reader's cue to act."
+          "text": "The hard spot is the hinge."
         },
         {
-          "text": "A detour is honest when it keeps you working.",
-          "location": "breakdown.deepRead",
-          "why": "It separates a smart adjustment from a shortcut."
+          "text": "A detour is honest when it keeps you working."
         },
         {
-          "text": "Extra effort has a bill.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the cost of acceleration easy to remember."
+          "text": "Extra effort has a bill."
         }
       ]
     }

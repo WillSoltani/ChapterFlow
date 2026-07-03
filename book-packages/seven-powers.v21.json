@@ -41,13 +41,6 @@
             "food",
             "capacity"
           ],
-          "planSpec": {
-            "domain": "regional frozen-meal producer deciding whether to add a second blast freezer",
-            "audience": "operations lead facing demand from three grocery chains",
-            "stakes": "a six-month lease could lower cost per meal or add cold storage waste",
-            "format": "decision_point",
-            "requiredBeat": "Rebecca puts the freezer lease beside the per-tray energy log and circles the order volume where cost per meal finally drops below the rival quote."
-          },
           "scenario": "The freezer door seals with a rubber thump at 6:10 a.m. while Rebecca stands in the loading bay with a six-month lease in one hand and the per-tray energy log in the other. Three grocery chains want a larger order by Friday. She circles the volume where cost per meal finally drops below the rival quote, then pauses at the signature line. She has to choose whether the extra trays will fill the freezer or turn cheap volume into cold rent.",
           "whatToDo": "Use the circled break point as the decision line. Sign only if committed grocery volume spreads freezer, labor, energy, and spoilage costs across enough meals to lower real unit cost.",
           "whyItMatters": "The larger order creates scale only if fixed costs get lighter per tray. If the freezer sits partly idle, the apparent discount moves into rent and waste instead of becoming power."
@@ -60,13 +53,6 @@
             "forecast",
             "fixed-cost"
           ],
-          "planSpec": {
-            "domain": "independent audiobook studio pricing a celebrity-narrated catalog",
-            "audience": "producer deciding whether one expensive recording can serve enough subscribers",
-            "stakes": "the narrator fee is fixed but helps only if enough listeners spread it thin",
-            "format": "predict_reveal",
-            "requiredBeat": "Mathieu asks the team to predict the per-listener narration cost at three subscriber levels, then reveals the break-even row."
-          },
           "scenario": "\"Show me where the voice gets cheaper,\" Mathieu says in the control room before the narrator contract comes off the printer. The team guesses the per-listener cost at 2,000, 20,000, and 80,000 subscribers while the forecast glows on the wall monitor. He reveals the break-even row and points to the smallest audience that can carry the fee. The studio must decide by noon: record now, or wait for demand proof.",
           "whatToDo": "Treat the narrator fee as a fixed cost and price the catalog at several subscriber levels. Record only when the expected audience makes the premium voice cheaper per listener than a rival can match.",
           "whyItMatters": "A fixed creative cost can become scale, but only after enough listeners carry it. Before that point, the famous voice is a heavy expense disguised as ambition."
@@ -79,13 +65,6 @@
             "density",
             "route"
           ],
-          "planSpec": {
-            "domain": "urban laundry pickup route redesign in a dense apartment district",
-            "audience": "route manager choosing whether density creates real cost advantage",
-            "stakes": "drivers either fill vans block by block or waste hours crossing the city",
-            "format": "scene",
-            "requiredBeat": "Ingrid moves colored route pins closer together until one van can clear the district without a second fuel stop."
-          },
           "scenario": "Warm dryer lint clings to Ingrid's sleeve in the dispatch room as she studies a corkboard of blue and yellow route pins. Fuel receipts from last week sit under her elbow. She slides the apartment pickups closer together until one van can clear the whole district before lunch without a second fuel stop. Her marker hovers over the new boundary while she decides if density, not more vans, is the advantage.",
           "whatToDo": "Redraw the route around dense pickups first. Add vans only after the map shows that each stop lowers miles, fuel, and driver time per bag instead of scattering the same work farther apart.",
           "whyItMatters": "Distribution density is a scale economy when nearby demand makes each stop cheaper to serve. More orders spread across a wide map can raise cost even while revenue grows."
@@ -98,13 +77,6 @@
             "inventory",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "specialty bicycle parts importer negotiating a bulk bearing order",
-            "audience": "purchasing manager tempted by a larger shipment discount",
-            "stakes": "inventory cash can get trapped if the lower per-part price needs demand that will not arrive",
-            "format": "postmortem",
-            "requiredBeat": "Diego reopens last season's unsold boxes and marks the point where purchasing economy became dead stock."
-          },
           "scenario": "It took Diego two returned pallets to stop calling every discount scale. In the back of the parts warehouse, he cuts open last season's bearing cartons and lays the supplier quote beside the aging report. The price per bearing fell after 10,000 units, but half the boxes are still taped shut under a layer of dust. He marks the order size where purchasing economy turned into dead stock for the next negotiation.",
           "whatToDo": "Recalculate the bulk discount after storage time, cash tied up, and obsolete sizes. Use last season's unsold cartons to set the maximum order that demand can actually carry.",
           "whyItMatters": "Purchasing scale works when volume lowers the cost of units that move. If demand is too thin, the discount becomes trapped inventory rather than a barrier rivals must chase."
@@ -117,13 +89,6 @@
             "learning",
             "crew"
           ],
-          "planSpec": {
-            "domain": "community solar installer comparing crew learning across repeated roof types",
-            "audience": "founder deciding whether repetition is lowering install time",
-            "stakes": "lower quoted prices only make sense if crews actually learn faster on repeated layouts",
-            "format": "before_after",
-            "requiredBeat": "Aanya pins the first and tenth install photos side by side and subtracts ladder moves until the learning curve becomes visible."
-          },
           "scenario": "On a Toronto rowhouse roof at 3:40 p.m., you can see the waste before the crew does: ladders shifted twice, conduit staged on the wrong side, three workers waiting near the ridge. Aanya, the community solar founder, pins that photo beside the tenth install from the same housing block, then subtracts every ladder move on the crew time sheet. Before she cuts the next quote, she has to decide whether repetition has truly lowered install time or only made the team feel smoother.",
           "whatToDo": "Compare repeated jobs with the same roof type and count visible time savings. Lower the quote only when the crew log proves learning has reduced labor per install.",
           "whyItMatters": "Learning economies are earned through repeated work that changes the time per unit. Confidence from a busy crew is not enough; the labor record has to show the curve bending."
@@ -136,13 +101,6 @@
             "packaging",
             "thought"
           ],
-          "planSpec": {
-            "domain": "regional pet-food bakery weighing a national retailer trial",
-            "audience": "founder deciding whether a large account creates or destroys scale economics",
-            "stakes": "a huge order could lower ingredient costs while forcing packaging and compliance costs up",
-            "format": "thought_experiment",
-            "requiredBeat": "Thomas writes two cost lines on the packaging sample and decides which one moves faster as volume rises."
-          },
           "scenario": "What if the biggest order is the one that makes each bag more expensive? In the bakery packing room at 11:15 a.m., Thomas stands beside a pallet of sample pet-food bags while a national retailer checklist blinks on his laptop. He writes ingredient savings on one side of the packaging sample and compliance cost on the other. The buyer wants an answer by noon. Thomas must decide whether volume lowers the unit cost or merely adds a larger customer with stricter rules.",
           "whatToDo": "Put the falling cost and the rising cost on the same physical sample. Accept the trial only if ingredient, baking, and delivery savings outrun packaging and compliance burdens per bag.",
           "whyItMatters": "Large accounts can create scale or destroy it. The test is not order size; it is whether the next bag becomes cheaper after every new constraint is counted."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Scale begins with real unit cost. The lease discount is only one line; spoilage and power may erase it. Credibility is not the mechanism, and last year's rent does not prove the next box gets cheaper.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "More tutors are not enough. The useful sign would be lower cost per lesson or better matching from density. Network language is tempting, but the prompt gives no evidence that each user raises value for others.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Purchasing power counts only for units the bakery can use economically. The largest order may rot or strain cash. Rejecting bulk outright also fails because a smaller committed order might still lower real input cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The route got larger while cost per package rose, and no barrier appears. Revenue growth can be useful, but it is not scale economies. Truck visibility does not create a trust premium here.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A fixed cost becomes power when scale lowers the leader's burden and forces rivals to carry the same burden with less volume. Polish and team enthusiasm do not show a protected cost advantage.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The prompt lists costs that may repeat site by site, so the key is finding what truly gets shared or learned. Announcements and perceived size do not prove declining unit cost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated roof type teaches the crew and lowers labor per install. The rival's scattered jobs limit that learning. The scenario does not show a price premium from trust or customer lock-in.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The right move counts all added burdens, not just the cheaper input. Large contracts can create scale, but only when total unit cost drops. Refusing every complex order is too blunt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cost structure differs: fixed recording expense gets lighter as student count rises. Popularity may signal quality or brand, but the scale-economy claim rests on cost per student.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Half-empty steel is not scale.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the abstract scale test into a visible warning about idle capacity."
+          "text": "Half-empty steel is not scale."
         },
         {
-          "text": "The second half is the barrier.",
-          "location": "breakdown.deepRead",
-          "why": "It forces readers to remember that a lower cost alone is not yet power."
+          "text": "The second half is the barrier."
         },
         {
-          "text": "Scale is allowed to be boring.",
-          "location": "breakdown.fullRead",
-          "why": "It gives permission to value the unglamorous cost mechanics over growth theater."
+          "text": "Scale is allowed to be boring."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "marketplace",
             "density"
           ],
-          "planSpec": {
-            "domain": "same-day medical courier marketplace adding hospital labs in one city",
-            "audience": "marketplace operator deciding whether new labs improve value for existing couriers and clinics",
-            "stakes": "added volume only matters if wait times fall and routing reliability improves for both sides",
-            "format": "scene",
-            "requiredBeat": "Claire watches two new lab pickups pull idle couriers into the same district and redraws the dispatch radius around the denser loop."
-          },
           "scenario": "At 7:18 a.m., Claire sees three courier dots stop drifting apart on the dispatch screen. Two hospital lab onboarding forms are still warm from the printer, and the pickup radius map shows idle riders suddenly inside the same district. Before she approves the launch email, she must decide if these new labs make every existing clinic faster to serve or only add more pins to a pretty map.",
           "whatToDo": "Redraw the radius around actual pickup density and measure wait time for existing clinics. Count the labs as network value only if they improve courier availability for users already in the market.",
           "whyItMatters": "Network economies depend on cross-user value. More labs matter because they tighten the loop for couriers and clinics, not because the marketplace can report a larger count."
@@ -385,13 +321,6 @@
             "boundedness",
             "product"
           ],
-          "planSpec": {
-            "domain": "language-exchange app splitting travelers and exam students into separate rooms",
-            "audience": "product manager facing a tempting all-in-one community feed",
-            "stakes": "one large network may be weaker if users want incompatible interaction",
-            "format": "decision_point",
-            "requiredBeat": "Lukas deletes the universal feed from the prototype and draws two bounded networks after reading mismatched chat logs."
-          },
           "scenario": "\"They are both learning Spanish for different nights,\" Lukas says as chat logs sit below the prototype feed. Travelers are asking for bar phrases and train-station help. Exam students are trading correction notes. His cursor rests over the delete button for the universal feed. Before the demo, he has to choose between one impressive member count and two bounded networks that actually help their own users.",
           "whatToDo": "Delete the universal feed and build around the two purposes. Let each room grow only where an added member makes that room more useful for the people already inside it.",
           "whyItMatters": "Boundedness protects the network test. A bigger mixed crowd can lower value when participants want different interactions, while a smaller purposeful group can compound."
@@ -404,13 +333,6 @@
             "complements",
             "schools"
           ],
-          "planSpec": {
-            "domain": "digital sheet-music platform courting arrangers after schools join",
-            "audience": "platform lead deciding whether complements are reinforcing the user base",
-            "stakes": "more school accounts matter if arrangers create versions that make the platform better for the next school",
-            "format": "predict_reveal",
-            "requiredBeat": "Catarina spreads three new brass arrangements on the piano and marks which appeared only after the school accounts grew."
-          },
           "scenario": "The rehearsal room smells of valve oil and wet wool coats as Catarina spreads three new brass arrangements on the piano. The school account list sits beside an arranger payout table. She asks her team which pieces existed before the district contracts, then marks the versions that appeared only after schools joined. Before raising arranger payouts, she has to decide whether complements are now strengthening the network.",
           "whatToDo": "Track which arrangements appeared because the school base grew, then fund the complements that make the platform better for future schools. Do not treat every upload as proof of a network loop.",
           "whyItMatters": "Indirect network effects show up when complements gather around demand and raise value for later users. The brass parts matter if they make the next school more likely to join."
@@ -423,13 +345,6 @@
             "tools",
             "availability"
           ],
-          "planSpec": {
-            "domain": "neighborhood tool-lending cooperative adding apartment buildings",
-            "audience": "cooperative treasurer deciding whether membership density improves the value of borrowing",
-            "stakes": "a larger member list can still fail if tools are too far away or duplicated badly",
-            "format": "postmortem",
-            "requiredBeat": "Yusuf maps the drill requests that arrived after the third building joined and separates real availability gains from a crowded inventory list."
-          },
           "scenario": "It took Yusuf four missing drill bits to stop trusting the member count. On Sunday night, he tapes the drill request log beside a building map and cabinet tags from the tool room. The third apartment building added forty members, but half the requests came from people too far from the cabinet. He marks which new borrowers actually improved availability for neighbors and which only crowded the inventory list.",
           "whatToDo": "Map requests against location and tool availability before recruiting more buildings. Add members where their borrowing and returning patterns make the collection more useful for existing members.",
           "whyItMatters": "A cooperative network strengthens when nearby participation raises availability. A member count that increases demand without improving access can make the shared product worse."
@@ -442,13 +357,6 @@
             "fisheries",
             "bounded"
           ],
-          "planSpec": {
-            "domain": "freight-load board for small Nordic fisheries",
-            "audience": "reader judging whether a narrow exchange can beat a broad logistics site",
-            "stakes": "the board works only if boats and refrigerated trucks create value for each other in a bounded route pattern",
-            "format": "vignette",
-            "requiredBeat": "Marit moves the ferry timetable beside the load board and highlights the first week when more boats made the trucks more useful."
-          },
           "scenario": "At 5:50 a.m. in the Halifax harbor freight office, the window is fogged before the first auction notice prints. Marit, the route coordinator, slides the ferry timetable beside the freight-load board, then draws a yellow line under the first week when added boats filled refrigerated truck slots that had been leaving half empty. Marit has to choose between a working route network and a local noticeboard with more names on it.",
           "whatToDo": "Compare boats, ferry times, and refrigerated slots by week. Treat the board as network power only when added boats make truck routes and fishery listings more valuable to each other.",
           "whyItMatters": "The network is bounded by the cold route and ferry schedule. A broad logistics site may be larger, but this narrow exchange can be stronger if each side improves the other."
@@ -461,13 +369,6 @@
             "plugins",
             "components"
           ],
-          "planSpec": {
-            "domain": "open-source design-component library trying to attract plugin makers",
-            "audience": "maintainer deciding whether user growth is drawing complements that improve the core product",
-            "stakes": "stars and downloads are weak unless plugin makers make the library harder to leave",
-            "format": "before_after",
-            "requiredBeat": "Ben compares the issue queue before and after plugin submissions and marks the features users no longer have to build themselves."
-          },
           "scenario": "When do downloads become a better product for the next developer? In a Montreal coworking room at 8:30 p.m., Ben opens the issue queue from March beside the plugin submissions from June. The same date-picker and export requests that once filled the queue now sit in the component catalog. Before he advertises download growth, he has to decide whether plugin makers are reducing work for existing users or merely adding badges to the README.",
           "whatToDo": "Mark the issues that disappeared because plugins now solve them. Court plugin makers only where their work lowers build time for current users and improves the library for the next adopter.",
           "whyItMatters": "Complements can create network strength when they turn user demand into a better product. Stars and downloads alone do not show that developers are helping one another."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Network value depends on useful interaction, not total membership. Parents in distant towns do not help existing parents find swaps. Nothing in the prompt shows lock-in from accumulated value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The added restaurants matter because they improve the service for existing diners and drivers. Logos and posts may help marketing, but they do not prove user-to-user value inside the network.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Boundedness asks what kind of interaction the network serves. Mixing incompatible purposes can make a larger feed less useful. Winner-take-all pressure can still exist in bounded networks.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The arrangers are complements drawn by demand, and their versions make the platform better for future schools. The prompt does not show printing cost falling or a willingness-to-pay premium from trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Easy multi-homing weakens the barrier: users can join without committing. Photography could still have network effects in the right context. Warehouse fixed costs belong to scale economies, not this issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The new sellers improve the product for current buyers through better matches. Investor familiarity and platform language are surface signals; the mechanism is value moving between participants.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The added members are reducing value for existing users, so growth is working against the network. Fees might manage demand, but the fix is to restore useful participation inside the bounded geography.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The shared plugin lets one participant improve the product for others, which is network logic through complements. Counters and logos may help perception without changing the work users do.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The boundary is practical: travel distance shapes whether users can help one another. Dense local pools preserve network value, while province-wide growth may dilute matching. National scale is not required.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "A bigger crowd looks safer, but actually the useful test is narrower.",
-          "location": "counterintuition",
-          "why": "It cuts through the common mistake of equating user count with network power."
+          "text": "A bigger crowd looks safer, but actually the useful test is narrower."
         },
         {
-          "text": "The limit is simple: a large audience that can ignore one another is still just a large audience.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the audience-versus-network distinction concrete without relying on a slogan."
+          "text": "The limit is simple: a large audience that can ignore one another is still just a large audience."
         },
         {
-          "text": "If all you can see is a crowd, keep looking.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a practical diagnostic line for future network claims."
+          "text": "If all you can see is a crowd, keep looking."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "subscription",
             "incumbent"
           ],
-          "planSpec": {
-            "domain": "mobile dental clinic selling subscription visits to employers",
-            "audience": "founder comparing a subscription route against legacy fee-for-service offices",
-            "stakes": "incumbent clinics could copy the subscription but would undercut their appointment book",
-            "format": "decision_point",
-            "requiredBeat": "Sophie places the employer contract beside the clinic price sheet and marks the revenue line a traditional office would have to wound to match her offer."
-          },
           "scenario": "The folding dental chair clicks open under a fluorescent warehouse light while Sophie sets an employer contract beside a clinic price sheet. Her route calendar can fill Tuesday mornings with subscription cleanings. The old office across town could match the price only by cutting its single-visit revenue. Her pen rests on the contract while she must decide whether that wounded revenue line is the barrier or just a sales story.",
           "whatToDo": "Mark the incumbent revenue line that would shrink if it copied the subscription. Build the offer only where the mobile model improves value and makes the office harm its own economics.",
           "whyItMatters": "Counter-positioning needs both halves. The entrant model must work better for the customer, and imitation must damage the incumbent business enough to slow copying."
@@ -710,13 +589,6 @@
             "rental",
             "retail"
           ],
-          "planSpec": {
-            "domain": "used-camera rental service competing with retail camera shops",
-            "audience": "reader deciding whether a rental model creates an incumbent copying problem",
-            "stakes": "the shop can rent gear only by cannibalizing its profitable new-equipment sales",
-            "format": "scene",
-            "requiredBeat": "Julien tags one camera as rental-only and shows how the old retailer would lose a sale every time it copied the move."
-          },
           "scenario": "At 6:42 p.m., Julien zips a rented lens into a padded case behind the used-camera counter. A red rental tag hangs from the camera body, and the new-equipment margin sheet is taped beside the deposit receipt. The retailer two blocks away can copy the service by tomorrow, but each weekend rental may replace a full sale. Julien must decide whether the shop will protect its shelf or chase his model.",
           "whatToDo": "Price the rental around the customer job and trace the sale the retailer would sacrifice to copy it. The barrier is the lost new-equipment margin, not the rental tag.",
           "whyItMatters": "A visible model is not automatically easy to imitate. If copying teaches customers to stop buying the incumbent product, the old seller has a reason to delay."
@@ -729,13 +601,6 @@
             "flat-fee",
             "billing"
           ],
-          "planSpec": {
-            "domain": "low-cost legal forms platform serving uncontested tenant filings",
-            "audience": "product lead deciding whether a narrow flat-fee model threatens traditional hourly billing",
-            "stakes": "copying would teach clients to stop paying for routine partner time",
-            "format": "dialogue",
-            "requiredBeat": "Anya asks which line of hourly work the firm would have to erase, then highlights the routine filings her platform removes."
-          },
           "scenario": "\"Which invoice would they volunteer to shrink?\" Anya asks, sliding an hourly bill across the table. Her filing checklist for uncontested tenant cases is open beside a flat-fee page. \"This line,\" her cofounder says, tapping routine partner review. Anya highlights the filings her platform removes. Before launch pricing locks, she must choose whether the law firm can copy without teaching clients to reject that bill.",
           "whatToDo": "Identify the old billable line your workflow makes unnecessary. Launch only if the flat-fee model improves the customer job and makes the firm protect the hourly structure.",
           "whyItMatters": "The firm can see the workflow, but copying it attacks the meaning of its own invoice. That self-cannibalization is the barrier the entrant needs."
@@ -748,13 +613,6 @@
             "buyback",
             "retail"
           ],
-          "planSpec": {
-            "domain": "modular furniture refurbisher offering buy-back credits",
-            "audience": "operator deciding whether circular inventory is superior and hard for new-furniture stores to copy",
-            "stakes": "the incumbent would have to devalue full-price new inventory to match the credit model",
-            "format": "postmortem",
-            "requiredBeat": "Chidi pins returned chair tags under the new-stock price list and traces where the incumbent would poison its own premium shelf."
-          },
           "scenario": "In a Manchester furniture showroom at 8:15 a.m., sawdust gathers under the returned chair legs before the store opens. Chidi pins buy-back credit slips below the new-stock price list and traces the week customers began trading modules instead of buying full sets. The premium retailer could copy the credit, but every returned chair would sit under a shelf of new inventory. In the postmortem, Chidi marks where the old model would poison its own display.",
           "whatToDo": "Keep the buy-back model tied to modular value and show exactly where a full-price retailer would devalue its own shelf by matching the credit.",
           "whyItMatters": "The refurbisher can welcome returned inventory because its model is built for it. The incumbent sees the same move as a threat to the new-product premium it depends on."
@@ -767,13 +625,6 @@
             "booking",
             "commission"
           ],
-          "planSpec": {
-            "domain": "no-commission music venue booking platform",
-            "audience": "marketplace founder deciding whether removing commission hurts incumbent agencies",
-            "stakes": "agencies can copy only by attacking the fee structure their staff depends on",
-            "format": "predict_reveal",
-            "requiredBeat": "Marco has you choose whether the incumbent copies the no-commission screen or protects the commission ledger, then reveals the lost-fee column."
-          },
           "scenario": "You can hear the opening band through the office wall while Marco waits beside a booking screen and an agency commission ledger. He asks you to pick what the agency copies: the no-commission artist payout or the old fee column. You choose the screen. Marco turns the ledger around and reveals the lost-fee column that pays the booking staff. Now he has to decide whether that pain is enough to slow imitation.",
           "whatToDo": "Compare the entrant payout with the incumbent fee ledger. Treat the no-commission model as protected only if copying it breaks the agency economics that keep the old channel alive.",
           "whyItMatters": "The better artist payout is visible to everyone. The strategic question is whether the incumbent can adopt it without cutting the revenue column its organization is built around."
@@ -786,13 +637,6 @@
             "usage",
             "dealer"
           ],
-          "planSpec": {
-            "domain": "pay-per-use industrial washer service replacing equipment sales",
-            "audience": "manufacturer strategy lead evaluating a service entrant",
-            "stakes": "copying usage billing would slow the incumbent equipment sales cycle and anger dealers",
-            "format": "thought_experiment",
-            "requiredBeat": "Rachel draws the dealer channel in red and asks which relationship breaks if the manufacturer copies the entrant."
-          },
           "scenario": "Which customer wins if the old seller copies the new model? In a leasing firm service bay at 2:30 p.m., Rachel stands over a dealer agreement, a usage meter, and an equipment quote for industrial washers. She draws the dealer channel in red and labels the commission that depends on full equipment sales. Before the manufacturer responds to the pay-per-use entrant, Rachel has to decide which relationship breaks when the old seller bills by the wash instead of by the machine.",
           "whatToDo": "Map the dealer relationship before copying the usage meter. The service model is counter-positioned only if it helps customers while forcing the manufacturer to injure its sales channel.",
           "whyItMatters": "A usage model can be superior for customers, but the barrier comes from the dealer conflict it creates for the incumbent. Without that conflict, imitation is easier."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The entrant has a model that fits prepaid workplace demand, while incumbents would damage full-price lunches by copying it. The app and restaurant count are not the protective mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key is incumbent harm: copying the flat fee may weaken a profitable bundle. Equipment quality and disruptive language do not show why the old leader would hesitate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The direct model threatens the incumbent channel that still produces revenue. Large firms can sell online, and nothing says farmers reject incumbents; the pain sits in the dealer relationship.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A better interface alone is not enough. If incumbents can copy without real damage to economics or channels, the barrier is thin. Simplicity may help customers but may not protect the entrant.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rental model becomes hard to copy when it cannibalizes the incumbent sale. Showrooms and naming may affect perception, but they do not create the painful tradeoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The chain sees the move clearly, but adoption would harm profitable visits. That painful choice is the counter-positioning barrier; the issue is not ignorance or age.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The simple niche works if it helps customers and threatens a function firms still value. Size alone does not settle the contest, and copying the website misses the business-model conflict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The old newspaper may hesitate because free articles would damage subscription revenue. Learning economies involve cost improvement with repetition; switching costs involve customer migration pain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "If the threatened channel is no longer important, copying may not hurt much. Dealer dependence strengthens the barrier; customer preference shows the entrant benefit but not incumbent pain.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "The newcomer needs a better model, and the old leader needs a reason to flinch.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the benefit and barrier test into one concrete sentence."
+          "text": "The newcomer needs a better model, and the old leader needs a reason to flinch."
         },
         {
-          "text": "The incumbent may see the move clearly and still delay because both choices hurt.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the rational hesitation behind counter-positioning."
+          "text": "The incumbent may see the move clearly and still delay because both choices hurt."
         },
         {
-          "text": "A strong entrant turns the old leader's strengths into hesitation.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the incumbent trap memorable without generic disruption language."
+          "text": "A strong entrant turns the old leader's strengths into hesitation."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "records",
             "migration"
           ],
-          "planSpec": {
-            "domain": "veterinary clinic considering a cheaper patient-records system",
-            "audience": "clinic manager comparing software subscription savings against migration damage",
-            "stakes": "saving money may erase appointment history, dosage notes, and owner preferences",
-            "format": "decision_point",
-            "requiredBeat": "Fiona opens a patient file and counts the fields the cheap system cannot carry before she signs the cancellation form."
-          },
           "scenario": "\"Show me where the allergy note goes,\" Fiona says, opening Luna's patient file while the cancellation form waits under her wrist. The cheaper records system promises a lower monthly fee, but the import preview drops dosage notes and owner preferences. Her pen stops above the signature line before the 3:00 p.m. staff meeting. She must decide whether the saving is real after the missing fields are rebuilt.",
           "whatToDo": "Count every field, workflow, and risk that must move before signing. Compare the cheaper fee with the labor and clinical danger of rebuilding the patient history.",
           "whyItMatters": "The rival price competes against the old system plus migration pain. If leaving destroys useful history, the incumbent has continuity value the invoice does not show."
@@ -1035,13 +857,6 @@
             "calibration",
             "workflow"
           ],
-          "planSpec": {
-            "domain": "commercial print shop moving from one color-calibration workflow to another",
-            "audience": "owner tempted by lower ink prices",
-            "stakes": "new vendor saves on supplies but forces months of recalibrating client jobs",
-            "format": "scene",
-            "requiredBeat": "Nicolas lays two proof sheets under the light booth and writes the lost calibration hours next to the lower ink quote."
-          },
           "scenario": "In the print shop light booth at 7:20 p.m., cyan looks wrong before Nicolas touches the calculator. Two proof sheets for the same museum catalog sit beside a lower ink quote from the new vendor. The quote saves money on every cartridge, but the gray balance from three repeat clients would need recalibration. Nicolas writes the lost hours next to the discount and must decide if the supplier switch is cheaper after color trust is rebuilt.",
           "whatToDo": "Price the recalibration hours and client-proofing risk beside the ink savings. Change vendors only if the lower supply cost survives the procedural rebuild.",
           "whyItMatters": "Switching costs hide in routines that already work. A cheaper input can be costly when it forces the customer to recreate calibration knowledge clients depend on."
@@ -1054,13 +869,6 @@
             "barcode",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "regional food distributor changing warehouse management vendors",
-            "audience": "operations director assessing procedural lock-in",
-            "stakes": "the rival system is cheaper until every picker, barcode, and freezer location must be rebuilt",
-            "format": "postmortem",
-            "requiredBeat": "Kasia scans the first frozen aisle and marks every barcode rule that would have to be rebuilt before the new vendor goes live."
-          },
           "scenario": "The freezer fan rattles above aisle F while Kasia's barcode scanner flashes red for the third time. The freezer aisle map says the location imported. The migration checklist says the rule imported too. In the postmortem, she marks every picker shortcut, substitute code, and frozen-bin exception the new vendor missed before go-live and calculates the work the cheaper contract left out.",
           "whatToDo": "Rebuild the migration estimate from the failed scan outward. Count barcode rules, picker routines, aisle exceptions, and training time before comparing vendors again.",
           "whyItMatters": "Procedural value accumulates quietly. When a new system cannot carry those rules, the customer pays through errors and retraining instead of through the subscription line."
@@ -1073,13 +881,6 @@
             "placement",
             "trust"
           ],
-          "planSpec": {
-            "domain": "private language school replacing a long-time placement-test provider",
-            "audience": "school director weighing relational and procedural switching costs",
-            "stakes": "families trust the old test results and teachers have built lesson paths around them",
-            "format": "before_after",
-            "requiredBeat": "Hadiya compares last year placement notes with the new test rubric and underlines the trust she would need to rebuild."
-          },
           "scenario": "It took Hadiya one parent call to see the real cost was not the invoice. Before the switch, teachers could read last year's placement notes and predict who needed extra speaking practice. After the trial, a parent email asks what the new B2 score means. Hadiya lays the old notes beside the new rubric and underlines every trust conversation the cheaper provider would force her to repeat.",
           "whatToDo": "Treat parent confidence and teacher interpretation as migration work. Switch tests only after the school has a plan to translate old meaning into the new rubric.",
           "whyItMatters": "Relational switching costs come from trust already earned. A cheaper test can be costly if families and teachers must relearn what the scores mean."
@@ -1092,13 +893,6 @@
             "parts",
             "supplier"
           ],
-          "planSpec": {
-            "domain": "municipal fleet garage switching maintenance parts suppliers",
-            "audience": "procurement lead comparing lower prices against continuity risk",
-            "stakes": "the lower bid matters only after cross-references, warranties, and mechanic routines survive the change",
-            "format": "predict_reveal",
-            "requiredBeat": "James has you pick the cheaper supplier, then reveals the shelf of unmatched part numbers that appears on day three."
-          },
           "scenario": "You notice the savings first and the unlabeled filters second. James places the supplier bid beside the warranty binder and asks you to pick the lower-cost parts vendor for the fleet garage. After you choose it, he opens a photo from day three: a shelf of unmatched part numbers and two mechanics waiting on cross-references. He must decide if the bid still wins after the routines break.",
           "whatToDo": "Run the supplier bid through part-number matching, warranty handling, and mechanic workflow before awarding it. Count the day-three confusion as part of the switch price.",
           "whyItMatters": "The incumbent supplier may be protected by continuity, not affection. Part numbers and warranty routines are value the garage would have to rebuild."
@@ -1111,13 +905,6 @@
             "portability",
             "model"
           ],
-          "planSpec": {
-            "domain": "architecture firm leaving a proprietary model library",
-            "audience": "partner deciding whether portability weakens lock-in",
-            "stakes": "if templates export cleanly, the rival offer can be judged more directly; if not, the old system owns years of detail",
-            "format": "thought_experiment",
-            "requiredBeat": "Astrid exports one building model and circles every missing door schedule before comparing license prices."
-          },
           "scenario": "What exactly comes with you when you leave? At 4:45 p.m. in the architecture studio, Astrid exports a building model from the proprietary library and opens it in the rival tool. Walls arrive. Door schedules do not. Material tags scatter into blank fields. The license renewal is due Friday, and Astrid has to choose whether a lower subscription still wins after every missing schedule is rebuilt.",
           "whatToDo": "Export a real model before judging license prices. If schedules, tags, and revision notes travel cleanly, the old provider has less lock-in; if not, price the rebuild.",
           "whyItMatters": "Portability weakens switching costs. The easier it is to carry accumulated work into a rival system, the less protection the incumbent has."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The saving is incomplete until migration loss is priced. Missing allergy and dosage data are continuity value. Logos and staff preference may matter, but they do not measure switching cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repeat purchase is not enough. Switching costs require value that would be lost or rebuilt by leaving. Habit can create inertia without a durable barrier.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The print shop must rebuild a workflow and client proofing routine. That is procedural migration pain. The prompt does not show user-to-user value or an incumbent self-harm trap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clean portability reduces migration pain, so the rival price can be compared more directly. Long usage matters only if accumulated work is hard to carry forward.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The school has relational and procedural value in the old scores. Accuracy may be real, but parents and teachers must relearn meaning before the saving is clean.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The old supplier carried procedural continuity. The cheaper bid ignored the work of matching parts and warranties. Brand affection and fleet size are not the issue described.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Some assets travel and others may not. The team should price the value trapped in searchable history. Easy file export lowers part of the barrier but does not erase every cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Payroll, references, and deposits are accumulated setup that must be rebuilt. The prompt does not show declining unit cost from branch count or value moving among account holders.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clean exports and low setup burden weaken lock-in. Renewals may reflect satisfaction or inertia. Process power would require an embedded activity system, which the prompt does not show.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "A lower invoice can still be an expensive exit.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the central comparison vivid and short."
+          "text": "A lower invoice can still be an expensive exit."
         },
         {
-          "text": "What exactly would you lose on the first day after leaving?",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a practical diagnostic question."
+          "text": "What exactly would you lose on the first day after leaving?"
         },
         {
-          "text": "The practical move is to price the migration, not just the product.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter's operating rule in direct language."
+          "text": "The practical move is to price the migration, not just the product."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "premium",
             "blind-test"
           ],
-          "planSpec": {
-            "domain": "boutique running-shoe maker pricing a plain black training shoe",
-            "audience": "product lead deciding whether customers will pay more for trust or just design",
-            "stakes": "the premium is real only if runners choose it over similar foam from an unknown label",
-            "format": "predict_reveal",
-            "requiredBeat": "Olivia covers the logos on two similar shoes, records the blind ratings, then uncovers the trusted label before checking the price premium."
-          },
           "scenario": "At 2:15 p.m. in a Vancouver running shop, rain ticks against the window while two black shoes sit unlaced on the bench. Olivia covers both logos, hands runners blind rating cards, and watches the scores land almost even. Then she uncovers the trusted label and places the higher price tag beside it. Before the sales meeting, Olivia must decide whether the premium comes from brand history or from an unnamed feature.",
           "whatToDo": "Run the blind comparison before using the brand name. Price the premium only where similar function still leaves buyers willing to pay more for the trusted label.",
           "whyItMatters": "Brand power appears after product differences are controlled. If the premium survives similarity, history and trust are doing work a rival cannot copy quickly."
@@ -1360,13 +1125,6 @@
             "hotel",
             "trust"
           ],
-          "planSpec": {
-            "domain": "regional cheese maker entering hotel breakfast contracts",
-            "audience": "sales director deciding whether old fair awards reduce buyer uncertainty",
-            "stakes": "the hotel can buy a similar wheel for less unless the known label lowers guest complaint risk",
-            "format": "decision_point",
-            "requiredBeat": "Etienne places the award card beside the cheaper sample and asks which one the hotel manager trusts on a buffet with no explanation."
-          },
           "scenario": "\"Which wheel would you serve without standing beside it?\" Etienne asks, setting an award card next to a cheaper cheese sample in the hotel pantry. The breakfast order is due before the weekend. Both wheels taste clean. Only one has a history the manager recognizes. Etienne's hand rests on the order sheet while he must decide whether the award reduces enough uncertainty to justify the premium.",
           "whatToDo": "Make the trust signal sit beside the similar sample and ask what risk it removes for the buyer. Charge the premium only if that history changes the hotel manager's choice.",
           "whyItMatters": "A brand premium is payment for reduced doubt. The award matters if it lets the buyer serve the cheese without explaining or defending the decision."
@@ -1379,13 +1137,6 @@
             "trust",
             "recall"
           ],
-          "planSpec": {
-            "domain": "medical glove distributor selling to dental practices after a recall scare",
-            "audience": "distributor deciding whether trust justifies a higher price",
-            "stakes": "the dentists are paying for reduced fear of defects, not for a new functional feature",
-            "format": "scene",
-            "requiredBeat": "Giulia sets the recall notice beside the inspection certificate and watches which sheet the dentist touches before the price list."
-          },
           "scenario": "In a Calgary dental supply closet at 9:10 a.m., the latex smell reaches the hallway before the sample box opens. Giulia places last month's recall notice beside a fresh inspection certificate and a price list for dental gloves. The dentist reads the certificate first, not the discount column. Giulia is about to quote the higher case price, and she has to choose between selling gloves and selling relief from another recall morning.",
           "whatToDo": "Anchor the price discussion in the trust record, not in vague reputation. Show how inspection history lowers the buyer's perceived risk compared with a similar glove.",
           "whyItMatters": "The functional product may look the same, but the remembered scare changes willingness to pay. Branding works when history makes uncertainty smaller."
@@ -1398,13 +1149,6 @@
             "email",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "privacy-focused email service renewing small-law-firm accounts",
-            "audience": "founder testing whether years without a breach create willingness to pay",
-            "stakes": "the premium should come from accumulated trust under uncertainty, not from feature count",
-            "format": "before_after",
-            "requiredBeat": "Kiran has you compare two identical feature tables, then adds the breach-history file and watches the renewal decision change."
-          },
           "scenario": "You think the feature table settles it until the breach-history file lands beside the renewal invoice. Kiran shows a law-firm partner two email services with nearly identical storage, search, and admin controls. Before the file appears, the cheaper service looks obvious. After five clean years of incident notes, the partner reaches for the pen. Kiran must judge whether the premium is trust or just fear dressed up as pricing.",
           "whatToDo": "Separate feature parity from trust history. Ask whether the no-breach record changes the renewal decision when the functional table is already matched.",
           "whyItMatters": "The law firm pays to reduce uncertainty around client files. That willingness to pay comes from accumulated proof, not from another feature checkbox."
@@ -1417,13 +1161,6 @@
             "soap",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "independent hotel group replacing generic toiletries with a heritage soap supplier",
-            "audience": "operator judging whether the story changes guest willingness to pay",
-            "stakes": "the soap only matters if guests perceive reduced uncertainty or meaning in an otherwise similar room",
-            "format": "postmortem",
-            "requiredBeat": "David reads the guest notes after the switch and separates actual premium language from compliments about scent."
-          },
           "scenario": "It took David six guest cards to stop confusing charm with pricing power. At the front desk, he lays the heritage soap wrapper beside the room-rate report and sorts notes into two piles: scent compliments and premium language. Several guests liked the soap. Fewer said the room felt more careful. In the postmortem, he marks whether the supplier created willingness to pay or merely a nicer bathroom detail.",
           "whatToDo": "Separate pleasant comments from premium evidence. Keep the supplier only if guest language and room-rate data show the soap changes what customers will pay for the stay.",
           "whyItMatters": "Brand meaning can decorate without protecting economics. The test is whether the story changes willingness to pay for an otherwise similar room."
@@ -1436,13 +1173,6 @@
             "safety",
             "premium"
           ],
-          "planSpec": {
-            "domain": "children's helmet company deciding whether safety history supports a premium",
-            "audience": "product manager weighing trust against commodity certification",
-            "stakes": "parents pay more only if the company's history lowers doubt beyond the standard sticker",
-            "format": "thought_experiment",
-            "requiredBeat": "Maja covers the brand names on two certified helmets, then uncovers the accident-test archive before asking which one a parent chooses."
-          },
           "scenario": "What does a parent buy after the certificates match? Maja covers the brand names on two children's helmets and leaves only the certification stickers visible. The retail shelf card shows the same standard on both. Then she opens the accident-test archive for one brand and watches the room quiet. Before approving the higher price, she has to decide if the history lowers doubt beyond the sticker.",
           "whatToDo": "Match the functional safety claim first, then reveal the history. Use the premium only if parents choose the same-certified helmet because the archive changes perceived risk.",
           "whyItMatters": "Certification creates parity. Brand history creates extra confidence only if buyers treat it as evidence they cannot get from the standard sticker alone."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Branding power appears when a similar offer commands a higher price because trust changes the buyer's choice. Logo brightness and color copying do not prove willingness to pay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recognition helps only if it changes willingness to pay or choice. Here the premium disappears after functional comparison. Network economies would require user-to-user value, not cafe awareness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The premium comes from trust under uncertainty, built by audit history. Factory cost would be scale economies, and novelty does not explain why buyers pay more for a similar product.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pleasure is not the same as willingness to pay. The soap may be worthwhile, but branding power requires evidence that meaning changes price, choice, or repeat behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The premium is tied to trusted history beyond the shared certification. Packaging and advertising may create attention, but the buyer must value the history enough to pay more.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Branding is not exclusive by default. Different histories and meanings can support different premiums. Winner-take-all pressure belongs more naturally to some network settings.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The feature table is already matched, so the premium depends on trust history. Dislike of change could be switching costs, but this prompt asks why the brand earns more before the switch is considered.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "If tiny price differences move buyers away, the familiar name is not supporting much premium. Process power and counter-positioning require mechanisms not described in the cereal aisle.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rival can imitate visible signals quickly, but trust accumulates through time and proof. Lower unit costs are not shown, and similar packaging does not automatically transfer belief.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The foam did not change. The buyer's uncertainty did.",
-          "location": "breakdown.fastRead",
-          "why": "It shows brand power without abstract language."
+          "text": "The foam did not change. The buyer's uncertainty did."
         },
         {
-          "text": "A brand earns power only when a buyer pays more for the same functional job because history has created higher willingness to pay and reduced doubt.",
-          "location": "breakdown.deepRead",
-          "why": "It states the source anchor as a practical test."
+          "text": "A brand earns power only when a buyer pays more for the same functional job because history has created higher willingness to pay and reduced doubt."
         },
         {
-          "text": "What fear does the brand quietly remove?",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a compact diagnostic question for premiums."
+          "text": "What fear does the brand quietly remove?"
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "license",
             "yield"
           ],
-          "planSpec": {
-            "domain": "battery-recycling startup with an exclusive university membrane license",
-            "audience": "founder checking whether a licensed process is truly cornered",
-            "stakes": "the license matters only if the membrane improves yield and rivals cannot buy an equivalent path",
-            "format": "decision_point",
-            "requiredBeat": "Laura places the license letter beside yield-test jars and crosses out the supplier alternatives that do not match the recovery rate."
-          },
           "scenario": "Three cloudy jars sit under the lab hood with different amounts of metal settled at the bottom. Laura places the exclusive university license letter beside the yield-test sheet and a list of supplier alternatives. Two alternatives are cheaper. Neither matches the recovery rate in the clear jar. Her marker pauses over the crossed-out list as Laura has to choose whether this license is a cornered resource or a credential with nice stationery.",
           "whatToDo": "Treat the license as strategic only after the yield tests prove independent value and the substitute list shows rivals cannot buy a comparable path on similar terms.",
           "whyItMatters": "A license protects power when it controls a valuable input. Without better recovery and weak substitutes, exclusivity is paperwork rather than a cornered resource."
@@ -1685,13 +1393,6 @@
             "seasonal",
             "access"
           ],
-          "planSpec": {
-            "domain": "Arctic construction firm with first call on a seasonal ice-road crew",
-            "audience": "operator deciding whether a scarce crew is a resource or ordinary staffing",
-            "stakes": "the crew raises value only if its access terms and skill cannot be recreated before the short season ends",
-            "format": "scene",
-            "requiredBeat": "Henrik pins the crew calendar next to the thaw forecast and marks the weeks no rival can staff safely."
-          },
           "scenario": "Cold grit squeaks under Henrik's boots as the thaw forecast curls on the trailer wall. He pins the crew calendar beside the safety log and circles the three weeks when heavy equipment can cross the ice road. The rival can hire skilled workers in April, but not this crew in this window. Henrik has to decide if first call on the team creates value or if he is merely proud of good staffing.",
           "whatToDo": "Tie the crew access to the seasonal constraint. Count it as cornered only if first call lets the firm do valuable work rivals cannot safely staff before thaw.",
           "whyItMatters": "Talent becomes a cornered resource only when access terms and timing block substitutes. A good crew available to everyone is ordinary quality, not protected power."
@@ -1704,13 +1405,6 @@
             "contract",
             "scarcity"
           ],
-          "planSpec": {
-            "domain": "specialty coffee roaster with long-term access to a tiny hillside lot",
-            "audience": "buyer deciding whether the relationship creates independent value",
-            "stakes": "the lot must produce a flavor customers seek and rivals cannot source at similar terms",
-            "format": "predict_reveal",
-            "requiredBeat": "Isabel asks the team to taste the lot blind, then reveals the contract terms that keep the beans unavailable to nearby roasters."
-          },
           "scenario": "In the roastery cupping room at 10:05 a.m., Isabel says taste first and contract second while she sets spoons beside three unlabeled bowls. The team ranks the hillside lot highest before the harvest email appears. Only then does she reveal the long-term contract that keeps those beans from nearby roasters. Before committing the roast schedule, Isabel must decide whether genuine cup value or scarcity is doing the work.",
           "whatToDo": "Prove the flavor value blind, then examine the access terms. Treat the lot as cornered only if customers value it and rivals cannot source an equivalent harvest on similar terms.",
           "whyItMatters": "Scarcity without customer value is romance. Value without privileged access is competition. The power appears only when the two conditions meet."
@@ -1723,13 +1417,6 @@
             "talent",
             "tool"
           ],
-          "planSpec": {
-            "domain": "animation studio with a retained physics-simulation tool creator",
-            "audience": "producer deciding whether one specialist is a cornered resource",
-            "stakes": "the specialist matters only if the tool changes output and the retention terms block comparable access",
-            "format": "postmortem",
-            "requiredBeat": "Akira replays two render tests and writes the recruiting lead time next to the retained toolmaker contract."
-          },
           "scenario": "It took Akira one failed water scene to understand what the contract protected. In the postmortem, he replays two render tests: the off-the-shelf splash collapses, the retained toolmaker's version catches the light correctly. He writes the recruiting lead time beside the retention contract. The next budget call turns on whether the specialist changes the product or merely feels irreplaceable.",
           "whatToDo": "Compare output before praising talent. Keep the retention premium only if the tool changes the work and the recruiting lead time makes comparable access hard for rivals.",
           "whyItMatters": "A person is not cornered just because the team admires them. The resource must independently raise value and be difficult for competitors to obtain or replace."
@@ -1742,13 +1429,6 @@
             "access",
             "permits"
           ],
-          "planSpec": {
-            "domain": "rural broadband cooperative with exclusive pole-attachment rights",
-            "audience": "cooperative chair evaluating whether access terms create power",
-            "stakes": "the right matters because it lowers build difficulty while rivals face permits, delay, or substitutes that do not work",
-            "format": "before_after",
-            "requiredBeat": "Patrick has you compare two street maps, one with pole access and one with trenching permits, then count the months saved."
-          },
           "scenario": "You see the patricke road twice, but only one map has usable poles marked in green. Patrick places the pole-access agreement beside a trenching permit list and asks you to count the months between them. Before the cooperative funds the build, he must judge whether exclusive attachment rights change the economics or whether a rival could trench around the patricke problem cheaply enough.",
           "whatToDo": "Compare the pole route with the trenching substitute in months and cost. Count the agreement as cornered only if it creates valuable access rivals cannot reasonably duplicate.",
           "whyItMatters": "Control of a scarce asset matters when it changes the build and blocks good substitutes. If trenching is easy, the green poles are convenient rather than strategic."
@@ -1761,13 +1441,6 @@
             "validated-line",
             "scarcity"
           ],
-          "planSpec": {
-            "domain": "pharmaceutical packaging supplier with a validated sterile-line slot",
-            "audience": "sales lead deciding whether scarce validated capacity is independently valuable",
-            "stakes": "the slot is cornered only if validation time and regulatory trust block substitutes",
-            "format": "thought_experiment",
-            "requiredBeat": "Petra writes the validation timeline under the production slot and asks which rival can offer the patricke launch date."
-          },
           "scenario": "What is the scarce thing: the machine, or the already-approved line? Petra stands beside a validated sterile-line slot, a regulatory file, and a launch timeline. The machine itself can be bought. The approval history cannot be bought by Friday. She writes the validation months under the slot and asks which rival can offer the patricke date before she quotes the premium.",
           "whatToDo": "Separate equipment scarcity from validated access. Charge for the slot only if regulatory timing creates independent value and rivals cannot match the launch date with substitutes.",
           "whyItMatters": "The protected input is the approved capacity, not the metal machine. The corner holds when validation time makes comparable access unavailable."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A cornered resource needs value and limited substitutes. Exclusivity without performance difference is thin protection. Branding would require willingness to pay from trust, not a license label.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The dock access is scarce, favorable, and changes freshness. More boats do not create user-to-user value here, and the prompt does not show customers trapped by migration pain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Talent qualifies only when it changes value and cannot be matched easily. Similar hiring in three weeks weakens the access claim, and ordinary output weakens the value claim.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lot both improves the product and is unavailable to rivals on similar terms. Storytelling may help, but the strategic resource is value plus access, not smallness alone.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The scarce resource is approved capacity in time for launch. The machine itself has substitutes. Sales team size does not explain independent value or privileged access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A close substitute breaks the corner. The pole right may be convenient, but if trenching matches it quickly and cheaply, rivals are not blocked. Process power would require embedded activities.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The toolmaker changes customer-valued output and comparable access is slow. Furniture and headcount do not show independent value plus scarce access.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first issue is independent value. Legal language may block access, but blocking access to an input customers do not value is weak. Founder stories belong to a different test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "If rivals can buy equivalent data on normal terms, access is not meaningfully cornered. Data can matter, and normal rates are not automatically unattractive; the failure is substitutability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "The resource must change the result before scarcity matters.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents readers from worshiping rarity alone."
+          "text": "The resource must change the result before scarcity matters."
         },
         {
-          "text": "Ask the rude question: what would a capable rival use instead?",
-          "location": "breakdown.fullRead",
-          "why": "It gives a memorable substitution test."
+          "text": "Ask the rude question: what would a capable rival use instead?"
         },
         {
-          "text": "A cornered resource is a locked door only when something valuable is behind it and the side entrance is missing.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the three-part test into a concrete image."
+          "text": "A cornered resource is a locked door only when something valuable is behind it and the side entrance is missing."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "loop",
             "milling"
           ],
-          "planSpec": {
-            "domain": "custom orthotics lab linking scans, milling, fitting feedback, and reorder data",
-            "audience": "operations lead deciding whether the lab has more than good routines",
-            "stakes": "a rival can copy one checklist but not years of fitting loops tied to equipment and clinician notes",
-            "format": "scene",
-            "requiredBeat": "Emily threads a rejected insole note back through the scan, mill settings, and reorder file to show the process as one loop."
-          },
           "scenario": "Plaster dust lies in a crescent around the milling machine while Emily holds a rejected insole note in one hand and the scan file in the other. She opens the mill settings, then the reorder file, and traces how one pressure complaint changes the next pair. Before the lab rewrites the checklist, Emily must decide whether the low return rate comes from one routine or from the whole loop working together.",
           "whatToDo": "Trace the rejected insole through scan, milling, fitting, and reorder data. Protect the linked loop, not just the checklist that outsiders can copy.",
           "whyItMatters": "Process power sits in interdependence. A rival can copy a form, but not years of feedback between clinicians, machines, and repeat orders."
@@ -2010,13 +1661,6 @@
             "humidity",
             "delivery"
           ],
-          "planSpec": {
-            "domain": "fresh-pasta wholesaler coordinating dough humidity, delivery windows, and chef feedback",
-            "audience": "plant manager assessing whether quality comes from a system",
-            "stakes": "the advantage disappears if any single activity is copied without the rest",
-            "format": "decision_point",
-            "requiredBeat": "Matteo moves the humidity card beside the delivery route and the chef complaint log, then refuses a shortcut that would break the chain."
-          },
           "scenario": "The dough feels tacky before the morning route has left the loading bay. Matteo sets the humidity card beside the delivery route and the chef complaint log. The shortcut is tempting: dry the dough slightly and ship fifteen minutes earlier. His thumb rests on the batch approval stamp while he must decide whether the saved time will break the chain that keeps chefs from calling before lunch.",
           "whatToDo": "Keep the humidity rule tied to delivery timing and chef feedback. Reject shortcuts that improve one activity while damaging the system that produces the quality advantage.",
           "whyItMatters": "A process advantage can disappear when one link is optimized alone. The power comes from coordinated activities, not from one tidy routine."
@@ -2029,13 +1673,6 @@
             "diagnostics",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "repair depot for hospital imaging probes with shared diagnostics and technician memory",
-            "audience": "depot supervisor deciding whether low turnaround time is embedded process power",
-            "stakes": "competitors can buy tools but not the accumulated handoffs between diagnostics, parts, and technician judgment",
-            "format": "postmortem",
-            "requiredBeat": "Frida traces one returned probe through five handoffs and shows why no single step explains the fast repair."
-          },
           "scenario": "At 4:11 p.m., Frida traces the returned probe label with a gloved finger. In the postmortem, she follows it from intake to diagnostic log, parts drawer, technician note, and final test. The repair was fast, but no step explains it alone. She marks the shared phrase that moved the probe between hands and decides what the depot must preserve before rivals copy the tools.",
           "whatToDo": "Map the full handoff path and name the shared diagnostic language that speeds repair. Defend the system memory, not only the equipment or one technician.",
           "whyItMatters": "Competitors can buy tools. Matching the practiced handoffs between labels, logs, parts, and judgment takes longer and is harder to see."
@@ -2048,13 +1685,6 @@
             "kiln",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "heritage tile maker using kiln placement, glaze mixing, and installer callbacks",
-            "audience": "production lead testing whether craft routines form a durable system",
-            "stakes": "the process must improve product in a way that takes rivals prolonged commitment to match",
-            "format": "before_after",
-            "requiredBeat": "Chloe reads an installer callback aloud, adjusts the glaze card, and moves the tile to a different kiln shelf before the next batch."
-          },
           "scenario": "\"This crack starts before delivery,\" Chloe says, reading the installer callback aloud beside the kiln shelf map. Before the call, the glaze card looked correct. After it, she changes the mix, moves the sample tile to a lower shelf, and writes the new note for the next batch. Chloe is about to decide whether callbacks belong in customer service or inside the production process itself.",
           "whatToDo": "Feed the installer callback into glaze and kiln choices before the next batch. Treat field information as part of the process when it changes product quality.",
           "whyItMatters": "The system improves because outside feedback changes production. A rival copying the glaze recipe without the callback loop misses the process that keeps defects down."
@@ -2067,13 +1697,6 @@
             "logistics",
             "errors"
           ],
-          "planSpec": {
-            "domain": "regional blood-sample logistics service with routing, labeling, and lab feedback loops",
-            "audience": "logistics director separating process power from punctual habits",
-            "stakes": "a rival truck route is not enough if accuracy comes from the full label-to-lab feedback system",
-            "format": "predict_reveal",
-            "requiredBeat": "Hiroshi has you remove one labeling feedback step and predict the error rate before he opens last month exception report."
-          },
           "scenario": "In a London pathology courier office at 5:35 p.m., you think the route is the trick until the exception report lands open. Hiroshi points to the label printer, covers one lab feedback sheet, and asks you to predict the error rate without that step. The courier path still looks efficient. Then he uncovers last month's exception report. Before renewing dispatch software, he has to decide which parts of the accuracy system are invisible from the route map.",
           "whatToDo": "Test the process by removing one feedback link at a time. Preserve labeling, lab feedback, and dispatch adjustments together if accuracy depends on the full loop.",
           "whyItMatters": "A route can be copied from a map. The accuracy advantage comes from interlocking feedback that tells each courier and lab what to correct next."
@@ -2086,13 +1709,6 @@
             "design",
             "supplier"
           ],
-          "planSpec": {
-            "domain": "outdoor-gear warranty shop turning failure data into design changes",
-            "audience": "reader evaluating whether a service workflow has become product advantage",
-            "stakes": "the power is in the loop from repair bench to design file to supplier spec, not in fast service alone",
-            "format": "thought_experiment",
-            "requiredBeat": "Andrew tapes a torn seam to the design file and writes the supplier change that prevents the next claim."
-          },
           "scenario": "When does a warranty bench become part of the product? At 3:25 p.m. in an outdoor-gear repair room, a torn seam gets taped to the design file and Andrew opens the supplier spec beside it. The customer wants a replacement jacket. The product team wants a defect count. Andrew writes the stitch change that prevents the next claim. Before the weekly review, Andrew must decide whether the warranty shop is a cost center or a loop that improves the next production run.",
           "whatToDo": "Move the failure from warranty into design and supplier instructions. Treat the repair bench as process power only when it prevents future defects through a linked activity loop.",
           "whyItMatters": "Fast service is useful, but the protected advantage comes when failure data changes the product. The loop is harder to copy than a generous replacement policy."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key is the linked activity system that produces faster repairs. Branding would require a premium from trust, and network power would require user-to-user value.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A copied routine that transfers the full gain is not protected. Process power needs embedded, interlocking activities that take prolonged commitment to match.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The humidity card is tied to delivery and feedback. Optimizing one step can damage the system. A route map alone does not address the interlocking quality loop.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Process power should live in the embedded system, not only one person. A rare person might be a resource, but the prompt shows no durable interlocking process.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The loop ties repair, design, and sourcing into product improvement. Replacement generosity and inventory size may matter, but they do not show an embedded activity system.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "One visible routine may depend on other activities around it. The color is irrelevant, and process systems can be matched, but usually only through prolonged commitment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Tracking may be ordinary operational excellence. The analyst needs to find linked activities that create superior performance. Truck count and story do not prove process power.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The callback is valuable because it feeds into glaze and kiln decisions. Feeling heard may help relationships, and kiln cost alone does not create process power.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Portable routines that transfer quickly are not a durable process system. The firm may be well run, but the rarity and prolonged-commitment requirements are missing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "The fix is not one heroic technician. The fix is the loop.",
-          "location": "breakdown.fastRead",
-          "why": "It captures process power as system rather than person."
+          "text": "The fix is not one heroic technician. The fix is the loop."
         },
         {
-          "text": "The rival can copy the intake form.",
-          "location": "breakdown.deepRead",
-          "why": "The one-sentence paragraph creates a sharp contrast between visible routine and hidden system."
+          "text": "The rival can copy the intake form."
         },
         {
-          "text": "Process power is the difference between owning a recipe card and having a kitchen that has learned through years of service where the recipe lies.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the chapter with a concrete analogy for embedded process."
+          "text": "Process power is the difference between owning a recipe card and having a kitchen that has learned through years of service where the recipe lies."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "invention",
             "budget"
           ],
-          "planSpec": {
-            "domain": "specialty diagnostics startup choosing between faster lab service and a new at-home collection model",
-            "audience": "founder deciding whether better execution or invention opens the path",
-            "stakes": "faster service improves operations, but the at-home model might create switching and scale opportunities",
-            "format": "decision_point",
-            "requiredBeat": "Megan has you sort the two options into better execution and possible barrier creation before moving the launch budget."
-          },
           "scenario": "At 8:40 a.m. in a diagnostics lab conference room, Megan can make the lab faster tomorrow and still own nothing defensible. She places the launch budget between a lab turnaround chart and an at-home sample kit prototype. The chart improves what competitors already do. The kit may change how patients enter the system. Her cursor stays off the transfer button while she must decide whether to fund operational excellence or a possible path to power.",
           "whatToDo": "Classify the faster lab as execution and the sample kit as a possible barrier-forming invention. Move budget only after naming which future power the chosen path could create.",
           "whyItMatters": "Execution can improve a me-too position without protecting it. The strategic spend is the one that could change switching costs, scale, network, or another barrier later."
@@ -2335,13 +1929,6 @@
             "subscription",
             "crux"
           ],
-          "planSpec": {
-            "domain": "regional boat-repair company considering a predictive maintenance subscription",
-            "audience": "owner weighing a crux directional choice against more efficient repairs",
-            "stakes": "the subscription could change customer lock-in while faster repairs alone remain copyable",
-            "format": "scene",
-            "requiredBeat": "Lars pins the repair calendar under the sensor proposal and marks which choice could change the future barrier."
-          },
           "scenario": "Salt dries in white lines on the repair calendar above the workbench. Lars pins the sensor proposal beneath it and circles two choices: answer repair calls faster, or install monitors that turn breakdowns into renewals. The crew can do the first by Monday. The second changes the customer relationship. Before buying sensors, Lars must pick which path can create a barrier, not just a smoother shop.",
           "whatToDo": "Mark the repair-calendar move as operational improvement and the sensor subscription as the possible crux. Choose the path only if it can build continuity value customers would not easily abandon.",
           "whyItMatters": "A faster shop may still be copied. A monitored subscription could reshape renewal behavior, which gives execution a strategic path to reinforce."
@@ -2354,13 +1941,6 @@
             "data",
             "features"
           ],
-          "planSpec": {
-            "domain": "education publisher moving from textbook updates to adaptive practice data",
-            "audience": "product director deciding whether invention serves barrier creation",
-            "stakes": "new features matter only if they create data, switching costs, or network effects that rivals cannot easily match",
-            "format": "predict_reveal",
-            "requiredBeat": "Sofia asks which proposed feature creates a barrier, then removes every feature that merely copies the competitor catalog."
-          },
           "scenario": "\"Which one gets harder to copy after launch?\" Sofia asks, standing beside a feature list, a competitor catalog, and a practice data mockup. The team votes for six updates. She removes every feature already in the rival catalog and leaves the data loop on the table. Before the roadmap freezes, she must decide whether invention is serving barrier creation or only making the list longer.",
           "whatToDo": "Cut copied catalog features from the strategy argument. Keep the adaptive data feature only if it can create learning, switching costs, or another barrier after launch.",
           "whyItMatters": "New features are strategic when they change what rivals must overcome. Matching the market standard may be necessary, but it does not build power by itself."
@@ -2373,13 +1953,6 @@
             "software",
             "choice"
           ],
-          "planSpec": {
-            "domain": "urban farming supplier choosing between lower-cost deliveries and proprietary crop-planning software",
-            "audience": "strategy lead deciding where the crux sits",
-            "stakes": "delivery excellence is useful but may not create power; the planning tool might reshape switching costs and data advantage",
-            "format": "thought_experiment",
-            "requiredBeat": "Lin writes barrier or no barrier next to each initiative and refuses to fund the neatest operational improvement first."
-          },
           "scenario": "Which improvement would still matter if every rival copied it next month? In a Toronto farm-supply planning room at 1:10 p.m., Lin lays an initiative list beside a crop-planning mockup and a delivery cost sheet. The delivery route saves money. The planning tool might gather farm data and guide future orders. She writes barrier or no barrier next to each line, then she must decide whether to fund the neat operational win or the rougher software experiment.",
           "whatToDo": "Label each initiative by the barrier it could create. Do not fund the cleanest efficiency gain first if it leaves the supplier in the same copyable position.",
           "whyItMatters": "Operational gains can be real and still exposed. The crux move is the one that could reshape data, switching, or customer behavior in a way rivals cannot instantly match."
@@ -2392,13 +1965,6 @@
             "training",
             "data"
           ],
-          "planSpec": {
-            "domain": "cybersecurity training firm inventing role-specific breach drills",
-            "audience": "founder separating product invention from polished course delivery",
-            "stakes": "the firm needs a new basis for protection, not just smoother workshops",
-            "format": "before_after",
-            "requiredBeat": "Daniel compares the old workshop checklist with the first role-specific drill and circles the client data that could make the second defensible."
-          },
           "scenario": "It took Daniel two perfect workshops to admit perfection had no moat. Before, his checklist ran cleanly and clients applauded. After, the first role-specific breach drill produced messy but useful client data fields. He places the workshop checklist beside the drill report and circles the data that a generic training firm would not have. The renewal call now depends on whether rough invention beats polished sameness.",
           "whatToDo": "Treat the old workshop as execution and the role-specific drill as the strategic candidate. Build the drill further only where client data can create learning and defensibility.",
           "whyItMatters": "A perfect workshop can still be copied. The rough drill matters because it may create information and habits that make future training harder to replace."
@@ -2411,13 +1977,6 @@
             "timing",
             "niche"
           ],
-          "planSpec": {
-            "domain": "specialty insurer deciding whether to underwrite a new climate-risk niche",
-            "audience": "executive weighing a directional choice under market timing",
-            "stakes": "the opening may close if the firm waits until the niche is obvious and every carrier has the same data",
-            "format": "postmortem",
-            "requiredBeat": "Camille lays the flood maps over the claims file and marks the date when the niche stops being early enough to build power."
-          },
           "scenario": "The map paper buckles where Camille has spilled coffee on the coastline. In the postmortem, she lays flood maps over the claims file and an underwriting calendar, then marks the month when the niche became obvious to every carrier. The firm waited for cleaner data and lost the early learning window. Camille writes the date when operational caution stopped protecting the company and started costing it power.",
           "whatToDo": "Mark the window when the niche is still early enough to build unique learning or relationships. Use operations to support that choice, not to delay until every rival sees the same opening.",
           "whyItMatters": "Some paths to power require moving before the market is comfortable. Waiting for perfect execution can surrender the timing that would have made the choice defensible."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is not ease or novelty. The strategic question is which choice can create switching costs, scale, data, or another barrier that rivals must overcome.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The company may be well run and liked, but power needs a barrier. The missing piece is a crux or invention that changes the contest rather than perfects sameness.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Copied features may be necessary but remain me-too. The data loop could become a barrier if it improves the product and makes future replacement harder.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scheduling helps, but the subscription may create continuity value. The best answer separates operational support from a possible barrier-forming path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Invention matters when it opens a route to power. Difference without customer value or barrier logic is only novelty. Attention alone does not establish branding power.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful classification separates exposed efficiency from a possible barrier-forming path. Preference and announcement timing do not answer the strategic question.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rough drill might create learning or switching value that generic workshops lack. Flawless execution of a copyable offer can still leave the firm exposed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Some powers require early directional choice. Waiting for perfect certainty can remove the chance to build unique learning, relationships, or position. The prompt shows no network or brand premium.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Operations matter, but the critique is missing barrier creation. Process power would require an embedded interlocking system, not a general list of improvements.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "You can make the lab faster tomorrow and still own nothing defensible.",
-          "location": "breakdown.fastRead",
-          "why": "It separates useful improvement from protected strategy."
+          "text": "You can make the lab faster tomorrow and still own nothing defensible."
         },
         {
-          "text": "Operational excellence makes the chosen path work. It rarely chooses the path.",
-          "location": "breakdown.deepRead",
-          "why": "It clarifies sequence in two plain sentences."
+          "text": "Operational excellence makes the chosen path work. It rarely chooses the path."
         },
         {
-          "text": "Which initiative changes the contest if it works?",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers the chapter's core diagnostic question."
+          "text": "Which initiative changes the contest if it works?"
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "origination",
             "resource"
           ],
-          "planSpec": {
-            "domain": "robotics startup reviewing whether to chase brand before product-market proof",
-            "audience": "founder matching power pursuit to origination",
-            "stakes": "branding is premature if the firm still needs a cornered technical resource or counter-positioned model",
-            "format": "decision_point",
-            "requiredBeat": "Grace moves the brand campaign card out of the origination column and puts the exclusive actuator option where the first power can form."
-          },
           "scenario": "At 7:55 p.m. in a robotics workshop, Grace stands over prototype arms hanging motionless above a table of colored planning cards. She has three stage columns marked origination, take-off, and stability. The brand campaign card looks exciting, but the customer proof is thin. She moves it out of origination and places the exclusive actuator option there instead. She must decide whether to chase a future brand or build the resource that can matter now.",
           "whatToDo": "Sort each power by stage before funding it. In origination, test counter-positioning or cornered-resource paths before spending on brand signals the market has not learned to trust.",
           "whyItMatters": "Branding needs history, while early access or business-model choices may still be available. The wrong stage turns a good power into a premature expense."
@@ -2660,13 +2197,6 @@
             "take-off",
             "retention"
           ],
-          "planSpec": {
-            "domain": "meal-kit company entering take-off after local retention improves",
-            "audience": "operator deciding whether scale, network, or switching costs can now emerge",
-            "stakes": "the window has shifted from inventing the model to using volume and retention before rivals crowd in",
-            "format": "scene",
-            "requiredBeat": "Luca sorts delivery density, recipe data, and saved preferences into the take-off powers that are actually forming."
-          },
           "scenario": "At 9:03 a.m., Luca spreads three reports across the packing table: delivery density, recipe data, and saved preferences. Local retention has improved for eight straight weeks. He sorts the reports under scale economies, network effects, and switching costs, then pushes the old product-discovery notes aside. The company is no longer asking if families will reorder; it is deciding which take-off power can grow before rivals crowd in.",
           "whatToDo": "Use the take-off evidence in front of you. Test route density, user data, and saved preferences for scale, network, or switching-cost potential while demand is running.",
           "whyItMatters": "Take-off is the window where volume and repeated use can harden into power. Treating it like origination wastes the data and demand that just became useful."
@@ -2679,13 +2209,6 @@
             "stability",
             "process"
           ],
-          "planSpec": {
-            "domain": "industrial-sensor firm reaching stability after years of installations",
-            "audience": "strategy lead checking whether process power or brand now fits better than counter-positioning",
-            "stakes": "late-stage advantage should come from embedded installation routines or trust, not a belated entrant move",
-            "format": "postmortem",
-            "requiredBeat": "Marta reviews old install tickets and customer renewal notes, then marks which stability power is real and which is nostalgia."
-          },
           "scenario": "It took Marta five renewals to see that the early fight was over. In the postmortem, she opens old install tickets, renewal notes, and the service playbook from three years of industrial-sensor work. The sales team wants a fresh entrant story. Marta marks the stability powers instead: process routines that reduce failures and trust that helps renewals. She also marks the counter-positioning idea as nostalgia.",
           "whatToDo": "Use stability evidence: repeated routines, service history, and renewal trust. Do not revive an early-stage story unless the old incumbent trap truly exists again.",
           "whyItMatters": "Later-stage firms often have the raw material for process or brand power. Chasing an origination move after the window closes can distract from powers that time has made possible."
@@ -2698,13 +2221,6 @@
             "network",
             "timing"
           ],
-          "planSpec": {
-            "domain": "new marketplace for surplus laboratory equipment choosing when to seed buyers and sellers",
-            "audience": "product lead tracking the transition from origination to take-off",
-            "stakes": "the marketplace cannot claim network power until enough qualified users make the product better for each other",
-            "format": "predict_reveal",
-            "requiredBeat": "Adaeze asks the team to predict the first week when an added seller helps existing buyers, then compares it with the actual listing log."
-          },
           "scenario": "\"Which week does one more seller help someone already here?\" Adaeze asks in a university lab-equipment marketplace office at 10:20 a.m., pointing to a seller seed list and a buyer request sheet. The team predicts week six. She opens the listing log and shows the first week when added microscopes matched existing buyer alerts. Before the next seed budget is approved, she must decide if the marketplace is still in origination or entering a take-off network window.",
           "whatToDo": "Find the first week when added sellers improve matches for existing buyers. Keep seeding until that point, then manage the marketplace as a take-off network question.",
           "whyItMatters": "Network power is mistimed before users help one another. The stage changes when the product begins compounding through participant value, not when the team wants it to."
@@ -2717,13 +2233,6 @@
             "timing",
             "substitute"
           ],
-          "planSpec": {
-            "domain": "craft-tool manufacturer deciding whether a late patent can still corner a resource",
-            "audience": "reader evaluating timing pressure after the market has stabilized",
-            "stakes": "a resource that could have mattered in origination may be too late once substitutes and standards are fixed",
-            "format": "thought_experiment",
-            "requiredBeat": "Ryan places the patent filing date against the substitute catalog and decides whether the window has already closed."
-          },
           "scenario": "At 4:05 p.m. in a craft-tool parts office, Ryan asks what happens when the right power arrives after the market stops needing it. He places the patent filing date beside a substitute catalog and the standards sheet. The protected feature would have mattered two years ago. Now buyers have standardized around a cheaper insert. Before paying maintenance fees, Ryan must decide whether the patent still corners a resource or only records a missed window.",
           "whatToDo": "Compare the filing date with standards and substitutes. Treat the patent as live only if the protected resource still changes value and rivals cannot route around it.",
           "whyItMatters": "Timing can drain a resource of strategic force. A power that fit origination may matter little after substitutes and standards settle."
@@ -2736,13 +2245,6 @@
             "review",
             "stage"
           ],
-          "planSpec": {
-            "domain": "regional payments firm conducting a quarterly power review",
-            "audience": "executive team deciding which power is emerging, fading, or unavailable",
-            "stakes": "bad timing wastes investment on a power that belongs to a stage the firm has already passed",
-            "format": "before_after",
-            "requiredBeat": "Javier has you place each initiative under origination, take-off, or stability, then cross out the ones whose window has passed."
-          },
           "scenario": "In a Madrid boardroom at 6:30 p.m., Javier feels the room quiet when the old initiative lands under the wrong stage. He places the quarterly initiative list below origination, take-off, and stability labels. Before the review, every line had a sponsor. After the stage sort, he crosses out the funding line for a late cornered-resource bet and moves the service-playbook investment under stability. The team now has to fund timing, not nostalgia.",
           "whatToDo": "Run each initiative through the stage labels and cross out the ones whose window has passed. Move resources toward powers the current stage can still build.",
           "whyItMatters": "A good idea can be strategically dead if the timing is wrong. The progression prevents teams from funding yesterday's opening with today's budget."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "In origination, cornered resource or counter-positioning may be live while brand history is thin. Stability powers need repeated performance and trust, which the startup lacks.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Take-off is when demand and repeated use can support scale, networks, or switching costs. Brand may come later, and counter-positioning is not automatically live at every stage.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Stability gives raw material for process power and branding. Acting new may be theater if the early window has passed. The old records are evidence, not clutter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Network power is live only when added participants help existing participants. Before that, the marketplace may still be in origination or seeding mode.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Timing can narrow later options. A resource that mattered before standards settled may lose force after substitutes become normal. The answer is not to assume a different power without evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Process power usually depends on interlocking activities that mature through repeated performance. Origination may create other powers, but it is not the only stage where power can form.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The review should respect timing. If the resource window closed, service routines and trust may support process or brand power. Sunk effort is not stage fit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The progression disciplines desire. A firm should ask which powers its stage and evidence can support. Listing attractive powers is not the same as building them.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "simple"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Origination can fit counter-positioning when invention creates an incumbent trap. Scale and process are not supported by the evidence, and uncertain demand does not create brand trust by itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "The progression is a timing discipline: some powers are built before the market is obvious, some only after demand begins to run.",
-          "location": "breakdown.fastRead",
-          "why": "It lands the source anchor in a practical sentence."
+          "text": "The progression is a timing discipline: some powers are built before the market is obvious, some only after demand begins to run."
         },
         {
-          "text": "The sequence is not a law of nature. It is a warning about windows.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents deterministic misuse of the progression."
+          "text": "The sequence is not a law of nature. It is a warning about windows."
         },
         {
-          "text": "A strong strategy respects the clock.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book's planning arc with a compact timing rule."
+          "text": "A strong strategy respects the clock."
         }
       ]
     }

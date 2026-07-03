@@ -46,13 +46,6 @@
             "apartment",
             "refusal"
           ],
-          "planSpec": {
-            "domain": "late-night apartment stairwell after a grocery run",
-            "audience": "a renter coming home alone",
-            "stakes": "whether to accept unwanted help after a first no",
-            "format": "scene",
-            "requiredBeat": "sets one bag down, steps back onto the landing, and calls a neighbor instead of defending the refusal again"
-          },
           "scenario": "At 10:42 p.m., Sarah hears the paper grocery bag tear on the third-floor landing. The stairwell light buzzes above her phone screen. A man below her reaches for the bag after she has already said she has it. He says he is just helping and takes another step. Sarah must decide whether to explain her no again or set the bag down and call her neighbor out loud.",
           "whatToDo": "Set the bag down, step back onto the landing, and call the neighbor by name. Do not improve the refusal. Change the scene so the ignored no stops being a private negotiation.",
           "whyItMatters": "The danger cue is not the offer. It is the offer surviving refusal. Moving toward witness and distance answers the behavior you can see without pretending to know his intention."
@@ -65,13 +58,6 @@
             "hotel",
             "client"
           ],
-          "planSpec": {
-            "domain": "hotel elevator after a professional dinner",
-            "audience": "a conference attendee managing a client who keeps entering private space",
-            "stakes": "whether business politeness will override a clean exit",
-            "format": "dialogue",
-            "requiredBeat": "says one final no, lets the doors close, and walks to the front desk instead of laughing it off"
-          },
           "scenario": "\"One more drink upstairs,\" the client says while his thumb holds the elevator button under a gold key card. Thomas stands beside his rolling suitcase, five steps from the lobby desk. He has already said he is done for the night. The client laughs and asks his floor again. Thomas must decide whether to laugh it off or say no once, let the doors close, and walk to staff. It is Wednesday evening.",
           "whatToDo": "Say one plain no, release the elevator, and walk to the lobby desk. Treat the repeated floor question as access pressure, not as a joke you need to manage.",
           "whyItMatters": "Business politeness can blur the signal. The visible behavior is that a private boundary keeps being pressed, so the safer answer is public space, not a better explanation."
@@ -84,13 +70,6 @@
             "school",
             "parent"
           ],
-          "planSpec": {
-            "domain": "suburban pickup line after winter practice",
-            "audience": "a parent watching another adult press a teenager to wait in his car",
-            "stakes": "whether to treat repeated offers as kindness or pressure",
-            "format": "vignette",
-            "requiredBeat": "moves the teenager beside staff after the second ignored refusal"
-          },
           "scenario": "Wet snow hisses on the school awning while orange cones narrow the pickup lane. Camille watches a teenager with a team bag shake his head at a man offering a warm car. The man repeats it and points across the lot. The office window is twenty feet away. Camille must decide whether to call it kindness or move the teenager beside staff after the second ignored refusal. It is Thursday morning.",
           "whatToDo": "Walk the teenager to the office window and involve staff. Do not debate the offer. The second ignored refusal has already changed the meaning of the interaction.",
           "whyItMatters": "Pressure often arrives dressed as concern. Moving the teen toward staff answers the pattern while it is still small, before the scene depends on proof nobody has yet."
@@ -103,13 +82,6 @@
             "garage",
             "nurse"
           ],
-          "planSpec": {
-            "domain": "city parking garage pay station",
-            "audience": "a nurse leaving a late shift",
-            "stakes": "whether to keep chatting with a man who keeps asking where she parked",
-            "format": "decision_point",
-            "requiredBeat": "turns back to the staffed booth after he mirrors her pace twice"
-          },
           "scenario": "You are Lars, a nurse leaving a late shift, and fluorescent stripes run across every windshield in the garage. A man at the pay station asks where you parked. You say you are fine and keep your ticket stub in your hand. He matches your pace once, then again, asking about your lanyard. You must decide whether to keep chatting or turn back to the staffed security booth.",
           "whatToDo": "Turn back to the booth and name the behavior: he kept pace after you declined conversation. Keep the ticket stub in hand and move toward staff rather than toward the car.",
           "whyItMatters": "The question alone may be harmless. The mirrored pace after refusal is the cue. A staffed booth changes access without requiring you to prove his motive."
@@ -122,13 +94,6 @@
             "rental",
             "doorway"
           ],
-          "planSpec": {
-            "domain": "short-term rental hallway after a delayed check-in",
-            "audience": "a traveler whose host keeps pushing past doorway boundaries",
-            "stakes": "whether to preserve politeness or regain access control",
-            "format": "postmortem",
-            "requiredBeat": "reviews the moment the host stepped inside after being asked to wait outside"
-          },
           "scenario": "It took Giulia until morning to understand the brass door chain stretched tight across the short-term rental doorway. Her carry-on bag was still behind her, the entry code still open on her phone, when the host stepped inside after she asked him to wait in the hall. Nothing happened. Still, she reviews the moment and sees the cue she missed: her boundary did not move him. It is Saturday afternoon.",
           "whatToDo": "Carry forward the doorway rule: if someone steps past a clear wait-here request, close the door, keep the chain set, and finish the exchange through a safer channel.",
           "whyItMatters": "A postmortem is useful when it finds the first ignored no, not when it shames the delay. The lesson is access control, not self-blame."
@@ -141,13 +106,6 @@
             "terminal",
             "commute"
           ],
-          "planSpec": {
-            "domain": "ferry terminal at the last sailing",
-            "audience": "a commuter being followed through a quiet terminal",
-            "stakes": "whether a helpful stranger has become a boundary test",
-            "format": "before_after",
-            "requiredBeat": "crosses to the ticket agent and names the repeated ignored no"
-          },
           "scenario": "The empty ticket windows reflect dark water beyond the ferry terminal. Before, Hadiya sat in the bench row with her paper ticket while a stranger kept offering to walk her to the car deck. She said no twice and shifted seats. After the second offer, she crosses to the agent counter and says, clearly, that he kept following after she refused help.",
           "whatToDo": "Go to the agent counter and describe the repeated ignored no in plain terms. Stay near the staff line until boarding changes the access around you.",
           "whyItMatters": "The move turns private pressure into observable behavior. Staff do not need a full theory of danger to help when you can name what changed after refusal."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The signal is the second push after refusal. The heavy folder explains the first offer, but it does not explain why her no failed to change his behavior.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated stop question is access pressure after a refusal. Moving to staff changes the conditions. Vague answers and more questions keep the negotiation alive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Useful fear can point to behavior in the room. Appearance and past nerves may distract from the actual cue: private access questions that continue after refusal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is no longer policy education. The customer pressed a boundary and moved toward access. A coworker and a blocked handle answer the visible behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeated personal question after redirection is a present cue. A lit stop and a call reduce access. A cover story still plays inside his frame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first offer may be kind. The repeated push after no and the request for private access are the pattern. The other choices overstate or dodge the behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sequence carries the signal. Small talk may explain one piece, and proof of intent is too high a threshold for choosing a safer exit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Early action often leaves no dramatic evidence behind. That does not make it wrong. Confronting intent would reopen the private negotiation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key comparison is behavior after refusal. The second person changed course. The first kept seeking access, which justifies involving staff.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -324,24 +273,17 @@
           }
         ],
         "twentyFourHourChallenge": "Before tomorrow night, identify one place where you usually soften a no. Write the exact second-push behavior that would make you stop explaining and move.",
-        "weeklyPractice": "Once this week, review a low-stakes boundary moment. Mark the first no, the second push if it came, and the access change that would have made the scene cleaner.",
-        "title": "Reading Behavior After Refusal"
+        "weeklyPractice": "Once this week, review a low-stakes boundary moment. Mark the first no, the second push if it came, and the access change that would have made the scene cleaner."
       },
       "memorableLines": [
         {
-          "text": "A no that has to defend itself has already told you something.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter move into a sentence readers can apply instantly."
+          "text": "A no that has to defend itself has already told you something."
         },
         {
-          "text": "The body does not need a courtroom standard.",
-          "location": "breakdown.deepRead",
-          "why": "It gives permission for proportionate action before impossible certainty."
+          "text": "The body does not need a courtroom standard."
         },
         {
-          "text": "Worry invents scenes and asks you to live inside them.",
-          "location": "breakdown.fullRead",
-          "why": "It sharply separates evidence-bound fear from imagination."
+          "text": "Worry invents scenes and asks you to live inside them."
         }
       ]
     },
@@ -368,13 +310,6 @@
             "urgent care",
             "cue"
           ],
-          "planSpec": {
-            "domain": "urgent-care waiting room triage desk",
-            "audience": "a nurse whose body reacts before she can explain why",
-            "stakes": "whether to trust the unease or locate its cue",
-            "format": "scene",
-            "requiredBeat": "spots the cue: the visitor knows a patient detail he should not know, then changes seating and alerts security"
-          },
           "scenario": "At 6:18 p.m., Emily pauses with a triage clipboard above a half-filled form. The visitor sticker on the man beside bay 4 says reception cleared him, but he uses a patient nickname that has not been spoken aloud. The privacy screen is still closed. Emily must decide whether to call the unease fatigue or move the patient to a different chair and alert security.",
           "whatToDo": "Locate the cue, then change seating and notify security. Do not argue with the feeling, and do not obey it blindly. Tie it to the nickname he should not know.",
           "whyItMatters": "Once the cue is named, the action becomes proportionate. Emily is responding to a fact in the environment, not to a vague feeling after a hard shift."
@@ -387,13 +322,6 @@
             "airport",
             "pattern"
           ],
-          "planSpec": {
-            "domain": "airport arrivals hall after a delayed flight",
-            "audience": "a traveler separating intuition from tired irritability",
-            "stakes": "whether the feeling has evidence or only exhaustion",
-            "format": "dialogue",
-            "requiredBeat": "names the actual cue: the same man has changed lanes each time she changed lanes"
-          },
           "scenario": "\"You look tense,\" the rideshare dispatcher says as the carousel belt grinds with one red suitcase left. Daniel has his baggage tag in one hand and the glass exit doors ahead. \"I might just be tired,\" he says. Then he looks toward the rideshare sign. The same man has changed lanes each time Daniel changed lanes. He must decide whether that is the cue or only travel irritation. It is Thursday morning.",
           "whatToDo": "Name the lane changes, not the mood. Move to the dispatcher line and wait under the rideshare sign where staff can see the exchange.",
           "whyItMatters": "Exhaustion can explain a feeling, but it cannot explain another person matching every lane change. The named cue turns irritation into usable perception."
@@ -406,13 +334,6 @@
             "lab",
             "perception"
           ],
-          "planSpec": {
-            "domain": "university lab during a weekend equipment check",
-            "audience": "a graduate researcher sensing something wrong in a familiar room",
-            "stakes": "whether to dismiss the feeling as nerves",
-            "format": "vignette",
-            "requiredBeat": "finds the concrete cue: the incubator latch is ajar and the log sheet was altered"
-          },
           "scenario": "A blue indicator light blinks in the empty lab while Sophie scans the bench. The badge reader clicked normally, and the lab log sits in its binder, but her hand stops before the incubator. She must decide whether the weekend quiet is making her nervous. Then she sees the incubator latch is ajar and the last log time has been altered.",
           "whatToDo": "Check the latch, preserve the log, and call the supervisor before touching the samples. Let the concrete mismatch, not the mood, drive the response.",
           "whyItMatters": "The feeling becomes useful only when it points to the latch and altered log. Without those cues, it would be a private alarm with no clean action."
@@ -425,13 +346,6 @@
             "pool",
             "sightline"
           ],
-          "planSpec": {
-            "domain": "community pool closing shift",
-            "audience": "a lifeguard distinguishing signal from imagination",
-            "stakes": "whether a gut feeling belongs to a real pattern",
-            "format": "decision_point",
-            "requiredBeat": "traces the feeling to one adult repeatedly choosing sightlines near the changing-room door"
-          },
           "scenario": "You are Henrik, coiling the last lane rope on wet tile with a whistle against your shirt and a locker key in your palm. The pool deck clock says closing was seven minutes ago. One adult has moved twice to benches with a direct sightline to the changing-room door. You must decide whether the feeling is imagination or a pattern worth interrupting. It is Saturday afternoon.",
           "whatToDo": "Trace the cue aloud to another guard, then redirect the adult away from the door and stay near the changing rooms until the last child leaves.",
           "whyItMatters": "The issue is not a mysterious feeling. It is repeated positioning around a vulnerable doorway. Naming the sightline gives the team something observable to act on."
@@ -444,13 +358,6 @@
             "archive",
             "records"
           ],
-          "planSpec": {
-            "domain": "library archive reading room",
-            "audience": "an archivist who felt watched all afternoon",
-            "stakes": "whether to worship the feeling or test it",
-            "format": "postmortem",
-            "requiredBeat": "checks the sign-in sheet and notices the same visitor requested every box she handled"
-          },
           "scenario": "It took Catarina until closing to test the feeling instead of worshiping it. White cotton gloves lay beside a file box, and the reading-room camera blinked over table 6. She pulls the request slips and the sign-in sheet. The same visitor requested every box she handled. Now she must decide what rule to carry into the next shift.",
           "whatToDo": "Record the pattern, flag the visitor for the supervisor, and change table assignments. Do not call the feeling proof until the request slips give it a backbone.",
           "whyItMatters": "Testing the feeling protects against both denial and overconfidence. The sign-in sheet turns a watched feeling into a pattern someone else can verify."
@@ -463,13 +370,6 @@
             "pharmacy",
             "access"
           ],
-          "planSpec": {
-            "domain": "downtown pharmacy during a power flicker",
-            "audience": "a pharmacist hearing an alarm before the alarm sounds",
-            "stakes": "whether anxiety or perception is speaking",
-            "format": "before_after",
-            "requiredBeat": "connects the unease to a customer blocking the only clear path to the staff door"
-          },
           "scenario": "The backup lights turn the aisle labels green during the power flicker. Before, Kiran kept filling the prescription tote while calling the unease anxiety. After, he notices the customer has shifted beside the staff door, the only clear path behind the counter, and is no longer looking at the shelves. He decides to call a technician forward before moving.",
           "whatToDo": "Connect the unease to the blocked staff door, then bring another employee into the aisle before leaving the counter. Keep the path visible.",
           "whyItMatters": "Anxiety floats. Perception points. The customer's position changes access, so Kiran can act on the doorway instead of on a nameless alarm."
@@ -488,8 +388,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful part is the named cue: private knowledge not shown on the sheet. Intensity and busyness do not prove the feeling belongs to reality.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -501,8 +400,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The disciplined move is to translate the signal into cues. Ignoring loses data, while confrontation gives the feeling more certainty than it has earned.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -514,8 +412,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The latch and altered log are environmental cues. Quiet and stress may explain mood, but they do not support a concrete safety decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -527,8 +424,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A vague feeling deserves a cue search, not instant obedience or dismissal. The next step is to identify behavior that can guide a proportionate response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -540,8 +436,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cue is repeated positioning around a vulnerable doorway. A quiet team response fits the evidence better than public alarm or waiting for a threat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -553,8 +448,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fatigue may explain mood, but matching lane changes explains the alarm. The behavior is external, repeated, and tied to access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -566,8 +460,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The blocked door gives the feeling structure. Strange lighting may raise tension, but access control is the reason to adjust staff movement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -579,8 +472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Speed is not enough. The feeling has to point to a cue. The other choices either dismiss perception or turn intensity into authority.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -592,8 +484,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Present cues deserve the first action. Memory may be important, but by itself it is not evidence about the current room.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -650,24 +541,17 @@
           }
         ],
         "twentyFourHourChallenge": "Today, catch one uneasy feeling and write the cue it points to in seven words or fewer. If no cue appears, label it worry and do not build a story.",
-        "weeklyPractice": "For one week, keep a three-column note: feeling, cue, action. Review whether your actions stayed tied to cues rather than to intensity.",
-        "title": "Translating Intuition Into Evidence"
+        "weeklyPractice": "For one week, keep a three-column note: feeling, cue, action. Review whether your actions stayed tied to cues rather than to intensity."
       },
       "memorableLines": [
         {
-          "text": "The work is not to bow to the feeling.",
-          "location": "breakdown.fastRead",
-          "why": "It rejects blind obedience while keeping perception alive."
+          "text": "The work is not to bow to the feeling."
         },
         {
-          "text": "Name the cue first.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact operational rule."
+          "text": "Name the cue first."
         },
         {
-          "text": "Useful fear points to something in the room; worry keeps borrowing scenes from memory and imagination.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the difference between fear and worry concrete."
+          "text": "Useful fear points to something in the room; worry keeps borrowing scenes from memory and imagination."
         }
       ]
     },
@@ -694,13 +578,6 @@
             "theatre",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "youth theatre backstage after rehearsal",
-            "audience": "a director reading repeated boundary tests from one volunteer",
-            "stakes": "whether to treat each awkward moment as isolated",
-            "format": "scene",
-            "requiredBeat": "lays out the sequence of after-hours arrivals, private questions, and ignored sign-out rules before changing access"
-          },
           "scenario": "At 9:11 p.m., Claire takes the clipboard from a paint-splattered nail beside the prop trunk. One volunteer has arrived after rehearsal three times, asked two students private ride questions, and skipped the sign-out sheet again near the stage door. Claire must decide whether to treat each moment as awkward or lay the sequence out before changing access.",
           "whatToDo": "List the behaviors in order and change stage-door access for the next rehearsal. Keep the forecast modest: the pattern predicts more boundary testing, not a certain crime.",
           "whyItMatters": "The sequence carries more meaning than any single excuse. A narrow access change fits what Claire knows without asking her to prove hidden intent."
@@ -713,13 +590,6 @@
             "bike shop",
             "closing"
           ],
-          "planSpec": {
-            "domain": "bike repair shop at closing",
-            "audience": "a shop owner deciding whether an angry customer is likely to return",
-            "stakes": "whether apology language should erase repeated behavior",
-            "format": "dialogue",
-            "requiredBeat": "maps the sequence from refund demand to waiting outside to asking employee schedules"
-          },
           "scenario": "\"He apologized,\" the mechanic says, while a stripped gear cable curls on the counter. James lowers the garage shutter and points to the repair ticket. \"After the refund demand, he waited outside. After that, he asked who closes Friday.\" The schedule board is still visible by the register. James must decide whether the apology erases the sequence.",
           "whatToDo": "Move the schedule board, close with two staff, and document the sequence. Accept the apology as one data point, not as a reset button.",
           "whyItMatters": "Prediction depends on order. The apology is less important than refund demand, waiting outside, and staff-schedule questions lining up around access."
@@ -732,13 +602,6 @@
             "clinic",
             "calls"
           ],
-          "planSpec": {
-            "domain": "county clinic appointment line",
-            "audience": "a receptionist forecasting access pressure from repeated calls",
-            "stakes": "whether to wait for an explicit threat",
-            "format": "vignette",
-            "requiredBeat": "marks the pattern of hang-ups, callback timing, and questions about staff exits"
-          },
           "scenario": "The phone handset is warm from repeated calls when Juliette opens the call log. Three hang-ups sit between two questions about an appointment card and one question about the side entrance. She must decide whether to wait for an explicit threat. Instead, she marks timing, callbacks, and exit questions as a pattern to hand to the clinic manager.",
           "whatToDo": "Mark the timing and access questions, then stop sharing exit details and ask the manager to cover closing. Do not wait for the caller to supply a quotable threat.",
           "whyItMatters": "The risk is carried by repetition and access interest. Waiting for ugly words would ignore the behavior already making the next step easier."
@@ -751,13 +614,6 @@
             "festival",
             "badge"
           ],
-          "planSpec": {
-            "domain": "film festival volunteer office",
-            "audience": "a coordinator assessing a rejected applicant",
-            "stakes": "whether to call the pattern disappointment or pursuit",
-            "format": "decision_point",
-            "requiredBeat": "compares three emails, two lobby appearances, and a request for a badge reprint"
-          },
           "scenario": "You are Mikkel, and the lanyard printer spits blank plastic while the email thread stays open on your screen. A rejected applicant has sent three notes, appeared in the lobby twice, and now asks whether a volunteer badge could be reprinted. The roster is beside your elbow. You must decide whether this is disappointment or pursuit of access.",
           "whatToDo": "Compare the emails, lobby appearances, and badge request as one access pattern. Notify front-door staff and remove the applicant from badge systems.",
           "whyItMatters": "Disappointment explains feelings, not behavior. The badge request changes the forecast because it seeks a tool for entering spaces the applicant lost."
@@ -770,13 +626,6 @@
             "co-op",
             "access"
           ],
-          "planSpec": {
-            "domain": "neighborhood repair co-op",
-            "audience": "a tool-library manager after a member is suspended",
-            "stakes": "whether one apology resets the forecast",
-            "format": "postmortem",
-            "requiredBeat": "weights the pattern of rule bending, equipment hoarding, and door rattling after hours"
-          },
           "scenario": "It took Sofia one quiet evening under fluorescent light to stop treating the apology as the end. The locked drill case sat inside the tool cage, the suspended membership card clipped to an incident note. Before the apology, there had been rule bending, equipment hoarding, and door rattling after hours. She must decide what forecast to carry forward.",
           "whatToDo": "Keep the suspension access limits in place and document the full sequence. Let the apology sit beside the behavior, not on top of it.",
           "whyItMatters": "A pleasant sentence cannot erase repeated access pressure. The pattern predicts what needs changing: keys, cages, and after-hours procedures."
@@ -789,13 +638,6 @@
             "courthouse",
             "exit"
           ],
-          "planSpec": {
-            "domain": "small claims courthouse hallway",
-            "audience": "a legal-aid worker planning exit support",
-            "stakes": "whether a litigant will follow after losing",
-            "format": "before_after",
-            "requiredBeat": "uses behavior sequence, not the courtroom speech, to request a deputy at the exit"
-          },
           "scenario": "A docket sheet is folded into Yusuf's coat pocket as the metal detector line thins. Before the ruling, the litigant stared at his client, waited outside the restroom, and asked which exit corridor she used. After the loss, the speech is calm. Yusuf still asks a deputy to stand by the exit because the behavior sequence matters more.",
           "whatToDo": "Request deputy support at the exit and use a different corridor. Base the action on the sequence before the ruling, not on the calm tone after it.",
           "whyItMatters": "A calm speech can mask a continuing access pattern. Yusuf does not need certainty that the litigant will follow; he needs a safer exit plan."
@@ -814,8 +656,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Prediction comes from repetition and access interest. One rude call may be noise, but timed callbacks and exit questions create a behavior sequence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -827,8 +668,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence is the evidence. A narrow access change fits the pattern. Reputation checks and waiting for a larger incident both weaken the forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -840,8 +680,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The apology matters, but it does not cancel waiting outside and schedule questions. Good prediction keeps all the behavior in order.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -853,8 +692,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The badge request seeks access, so badge control fits. An accusation overreaches, while waiting for a threat ignores the pattern already present.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -866,8 +704,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The plan should answer the access pattern, not the final tone. Calm words do not erase earlier positioning and exit questions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -879,8 +716,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A modest forecast tied to a small action stays disciplined. Confidence and worst-case certainty turn pattern reading into theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -892,8 +728,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The route questions and badge request create an access sequence. Intent remains hidden, but action can now focus on badge and hallway control.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -905,8 +740,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The useful forecast is probabilistic. It does not know the future; it narrows present action based on a repeated pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -918,8 +752,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated access behavior has more predictive value than drama by itself. Planning can be narrow and fair without pretending certainty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -976,24 +809,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one uneasy pattern and write three behaviors in order. Then choose one action that changes access, timing, or witness without accusing anyone.",
-        "weeklyPractice": "Once this week, practice a sequence-only note: no motives, no labels, no drama. Just behavior, order, and the narrow action it supports.",
-        "title": "Sequencing Behavior Before Prediction"
+        "weeklyPractice": "Once this week, practice a sequence-only note: no motives, no labels, no drama. Just behavior, order, and the narrow action it supports."
       },
       "memorableLines": [
         {
-          "text": "A pattern beats a performance.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a memorable contrast between sequence and show."
+          "text": "A pattern beats a performance."
         },
         {
-          "text": "The narrow action is the point.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps prediction tied to proportionate action."
+          "text": "The narrow action is the point."
         },
         {
-          "text": "Wild prediction turns people into villains too early.",
-          "location": "breakdown.fullRead",
-          "why": "It names the ethical limit of forecasting."
+          "text": "Wild prediction turns people into villains too early."
         }
       ]
     },
@@ -1020,13 +846,6 @@
             "museum",
             "cluster"
           ],
-          "planSpec": {
-            "domain": "museum coat check before opening",
-            "audience": "a front-desk lead spotting early pressure from a visitor",
-            "stakes": "whether odd friendliness plus access questions should count",
-            "format": "scene",
-            "requiredBeat": "marks the cluster: gift, private schedule questions, and refusal to stay behind the rope"
-          },
           "scenario": "At 8:06 a.m., Rachel slides a numbered coat tag across the marble while the visitor map is still stacked flat. A man offers her a wrapped gift, asks when she works alone, and steps past the velvet rope after she says the museum is closed. Rachel must decide whether the friendliness cancels the pressure or whether the gift, schedule question, and rope refusal belong together.",
           "whatToDo": "Treat the three cues as a cluster. Keep him behind the rope, call another staff member forward, and record the schedule question with the gift offer.",
           "whyItMatters": "The gift alone might be nothing. The schedule question and rope refusal give it context. The cluster points to access before anything overt happens."
@@ -1039,13 +858,6 @@
             "dorm",
             "door"
           ],
-          "planSpec": {
-            "domain": "boarding school dorm lobby",
-            "audience": "a resident adviser reading several small signals",
-            "stakes": "whether one weird comment is enough",
-            "format": "dialogue",
-            "requiredBeat": "waits for cluster, then acts when the student repeats room-number questions and blocks the stair door"
-          },
           "scenario": "\"Which room is Liam in again?\" the visitor asks as the stairwell door clicks shut too slowly. David checks the room list and the visitor badge. \"You can wait at the desk,\" he says. The visitor laughs and stays in front of the stair door. After a second room-number question, David must decide whether the weird comment is enough or the cluster now is.",
           "whatToDo": "Move the visitor to the desk and call another resident adviser. Name the cluster: room questions, badge mismatch, and blocked stair door.",
           "whyItMatters": "One weird comment might not mean much. Repeated room questions plus a blocked route create a context that justifies staff support."
@@ -1058,13 +870,6 @@
             "retail",
             "closing"
           ],
-          "planSpec": {
-            "domain": "mobile phone store after a return dispute",
-            "audience": "a shift lead weighing scattered cues",
-            "stakes": "whether to overreact to a disgruntled customer",
-            "format": "vignette",
-            "requiredBeat": "clusters the fake apology, parking-lot waiting, and interest in closing time"
-          },
           "scenario": "A cracked screen protector glints under the counter light while Chloe reviews the return receipt. The customer apologizes twice and leaves with the refund slip folded into his coat. Twelve minutes later, she sees him still in the parking lot near the employee door. When she walks back to the register, he returns to ask whether the locking gate comes down at eight or nine. Chloe must decide whether the apology, the waiting, and the gate question are scattered customer-service annoyances or one cluster around closing time and staff access.",
           "whatToDo": "Close with two employees, keep the demo phone counter clear, and document the apology, waiting, and gate question together.",
           "whyItMatters": "The cues gain weight because they point in the same direction: timing and staff access. Acting on that cluster is not overreaction."
@@ -1077,13 +882,6 @@
             "train",
             "aisle"
           ],
-          "planSpec": {
-            "domain": "regional train quiet carriage",
-            "audience": "a passenger deciding whether to move seats",
-            "stakes": "whether a single stare should drive action",
-            "format": "decision_point",
-            "requiredBeat": "moves only after the cluster forms: seat changes, luggage questions, and blocked aisle"
-          },
           "scenario": "You are Anders, watching rain streak the train window above your seat reservation card. One stare from the next row is not enough, so you stay. Then the passenger moves when you move, asks which overhead bag is yours, and stands in the aisle near the conductor call button. You must decide whether the cluster now deserves a seat change. It is Tuesday afternoon.",
           "whatToDo": "Move to the conductor's end of the carriage and keep your bag with you. Act on the seat change, luggage question, and blocked aisle together.",
           "whyItMatters": "The stare alone would be weak. The later cues create context around access to Anders and his bag, so moving seats fits the evidence."
@@ -1096,13 +894,6 @@
             "shelter",
             "access"
           ],
-          "planSpec": {
-            "domain": "animal shelter adoption desk",
-            "audience": "a coordinator noticing early warning behavior",
-            "stakes": "whether charm should cancel oddness",
-            "format": "postmortem",
-            "requiredBeat": "pauses the adoption when flattery, staff-route questions, and anger at a routine delay cluster"
-          },
           "scenario": "It took Chiara until the leash was looped twice around the chair leg to stop admiring the charm. The adoption form was nearly done, the kennel key hung behind her, and the front buzzer had just sounded. He had flattered every staff member, asked staff-route questions, then snapped at a routine delay. She must decide what that cluster means for access.",
           "whatToDo": "Pause the adoption, keep the kennel key back, and ask a supervisor to review the behavior sequence before granting private animal access.",
           "whyItMatters": "Charm does not cancel route questions and anger at delay. The cluster affects access to animals and staff, which is enough reason to slow down."
@@ -1115,13 +906,6 @@
             "pool",
             "corridor"
           ],
-          "planSpec": {
-            "domain": "public pool family locker corridor",
-            "audience": "a supervisor reading context around repeated oddness",
-            "stakes": "whether policy should wait for a complaint",
-            "format": "before_after",
-            "requiredBeat": "intervenes when the same adult lingers near three different doors after being redirected"
-          },
           "scenario": "The wet floor sign reflects in tile at the public pool. Before, Lin treated one linger near the family locker corridor as odd but not actionable. After the same adult appears by three doors, ignores two redirects, and watches the corridor clock, Lin uses the radio clip to call staff over and writes the pattern on the incident pad before any complaint arrives.",
           "whatToDo": "Call staff before any family complaint turns the moment into a debate. On the incident pad, fill in time, exact door, repeated locker questions, the two redirections, and who was notified, so the next shift receives a pattern rather than a vague concern.",
           "whyItMatters": "Policy should not require a family to complain before context counts. Repeated door-lingering after redirects creates the signal."
@@ -1140,8 +924,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The gift gains meaning beside schedule questions and rope refusal. The cluster points toward access; no single cue has to carry the whole read.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1153,8 +936,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A stare is weak alone. The later cues create context around access and movement, so changing seats near the conductor fits the cluster.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1166,8 +948,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The issue is the cluster, not charm or a public verdict. Pausing access answers the route questions and anger without overclaiming.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1179,8 +960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The room questions and blocked stair door create the signal. Staff support is proportionate; proof from a door handle would be too late.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1192,8 +972,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The action is narrow and tied to the cluster around timing and staff access. It neither panics nor isolates the apology from the rest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1205,8 +984,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Clustering asks whether cues support one another in context. It prevents both panic over one oddity and dismissal of a real pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1218,8 +996,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Repetition after redirects gives the cue its force. Location and visibility set the scene, but the repeated behavior is the signal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1231,8 +1008,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A friendly cue needs context. It becomes meaningful when paired with access questions, refusal testing, timing, or repeated oddness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1244,8 +1020,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Survival signals improve timing through clusters. The action can be small, but repeated cues around access deserve attention before proof arrives.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1298,24 +1073,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one uneasy moment and write three cues. Draw a line through any cue with no context. Decide whether the remaining cluster deserves a small action.",
-        "weeklyPractice": "Once this week, practice a cluster note with three columns: cue, context, action. Keep the action no larger than the cluster supports.",
-        "title": "Clustering Signals Before Acting"
+        "weeklyPractice": "Once this week, practice a cluster note with three columns: cue, context, action. Keep the action no larger than the cluster supports."
       },
       "memorableLines": [
         {
-          "text": "One strange note is noise.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the reader from overvaluing isolated oddness."
+          "text": "One strange note is noise."
         },
         {
-          "text": "Context gives the signal its weight.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why clustering matters more than cue collecting."
+          "text": "Context gives the signal its weight."
         },
         {
-          "text": "Some signals are weak alone because they were never meant to stand alone.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the mechanism a memorable shape."
+          "text": "Some signals are weak alone because they were never meant to stand alone."
         }
       ]
     },
@@ -1342,13 +1110,6 @@
             "market",
             "behavior"
           ],
-          "planSpec": {
-            "domain": "urban farmer market stall before sunrise",
-            "audience": "a vendor judging a stranger by behavior, not category",
-            "stakes": "whether to accept help from a familiar-looking man",
-            "format": "scene",
-            "requiredBeat": "declines the help and watches whether the refusal changes his behavior"
-          },
           "scenario": "At 5:37 a.m., Laura kneels beside a crate of peaches splitting at one corner. Her cash apron hangs from the folding table, and stall weights are still stacked on the curb. A familiar-looking man reaches toward the apron after she says she has it. Laura must decide whether recognition is enough comfort or whether to watch what his hand does after no.",
           "whatToDo": "Keep the apron on your side of the table, repeat no once, and step where other vendors can see. Judge the hand after refusal, not the familiar face.",
           "whyItMatters": "The category is vague. The behavior is live. When help turns toward cash and survives no, Laura has a better signal than familiarity."
@@ -1361,13 +1122,6 @@
             "lobby",
             "badge"
           ],
-          "planSpec": {
-            "domain": "corporate visitor center lobby",
-            "audience": "a receptionist handling a well-dressed unknown visitor",
-            "stakes": "whether status cues should create trust",
-            "format": "dialogue",
-            "requiredBeat": "moves from name and suit to behavior: repeated badge requests and elevator-watching"
-          },
           "scenario": "\"My meeting is upstairs,\" the man says as the visitor badge laminator warms up. Michael checks the appointment tablet. No host has confirmed. The man smiles, asks for a temporary badge again, and keeps watching the elevator bank. Michael must decide whether the suit and name matter more than repeated badge requests. It is Monday night.",
           "whatToDo": "Hold the badge until the host confirms, and keep the visitor away from the elevator bank. Track the repeated access request, not the polish.",
           "whyItMatters": "Status cues can soften judgment. The relevant behavior is that he keeps trying to get a tool for access before the appointment is verified."
@@ -1380,13 +1134,6 @@
             "bus",
             "destination"
           ],
-          "planSpec": {
-            "domain": "rural bus shelter in hard rain",
-            "audience": "a passenger reconsidering stranger danger rules",
-            "stakes": "whether the known local or unknown traveler is safer",
-            "format": "vignette",
-            "requiredBeat": "chooses distance from the person pressing for destination details, regardless of familiarity"
-          },
           "scenario": "Rainwater drips from the timetable frame while Manon tightens her duffel strap under the shelter light. The local man asks her destination twice after she gives a short answer. The unknown traveler asks about the bus once and steps away. Manon must decide whether familiar is safer or whether repeated destination pressure deserves distance. It is Tuesday afternoon.",
           "whatToDo": "Move closer to the traveler who respected the boundary and stop answering destination questions. Let behavior outrank the familiar label.",
           "whyItMatters": "The known local is the one pressing for access to her route. The unknown traveler adjusted after one answer, which is the safer behavior in context."
@@ -1399,13 +1146,6 @@
             "hospital",
             "ward"
           ],
-          "planSpec": {
-            "domain": "hospital volunteer desk",
-            "audience": "a coordinator facing a charming repeat visitor",
-            "stakes": "whether knowing his first name lowers concern",
-            "format": "decision_point",
-            "requiredBeat": "blocks ward access after he keeps asking for patient room numbers"
-          },
           "scenario": "You are Lukas at the hospital volunteer desk, sorting plastic-sleeved smocks beside the visitor log. A charming repeat visitor jokes with you by name, then asks for a ward pass and two patient room numbers. He already received directions to reception. You must decide whether knowing his first name lowers concern or whether the room-number questions control access.",
           "whatToDo": "Keep the ward pass back, call the nurse station, and direct him to reception only. Treat room-number questions as access behavior.",
           "whyItMatters": "First-name familiarity does not answer why he keeps seeking patient locations. Behavior-first judgment protects private space without needing a character verdict."
@@ -1418,13 +1158,6 @@
             "garden",
             "keys"
           ],
-          "planSpec": {
-            "domain": "community garden tool shed",
-            "audience": "a garden lead after a neighbor asks for keys",
-            "stakes": "whether neighborhood familiarity should override behavior",
-            "format": "postmortem",
-            "requiredBeat": "keeps the shed locked when the neighbor pushes for solo access after refusal"
-          },
           "scenario": "It took Isabel one cold morning by the padlock to see how neighborliness had clouded the shed key request. Seed trays sat by the door and the watering roster was closed. She had refused solo access. He mentioned living on the block for years and asked again. She must decide what to remember: the shared street or the pressure after refusal. It is Thursday morning.",
           "whatToDo": "Keep the shed locked and require scheduled access with another gardener present. Do not let neighborhood familiarity rewrite the second request.",
           "whyItMatters": "Familiarity explains why trust was easy at first. It does not explain why a key request continued after refusal."
@@ -1437,13 +1170,6 @@
             "cinema",
             "regular"
           ],
-          "planSpec": {
-            "domain": "independent cinema ticket booth",
-            "audience": "a cashier assessing a regular customer",
-            "stakes": "whether regular status should count more than pressure",
-            "format": "before_after",
-            "requiredBeat": "calls the manager when the regular asks when she gets off and waits by the side door"
-          },
           "scenario": "A roll of ticket stubs curls beside the booth glass. Before, Chidi liked the regular who chatted at the cash drawer every Friday. After the customer asks when Chidi gets off and waits by the side door, the regular label stops doing the work. Chidi calls the manager forward before closing the drawer and leaving the booth.",
           "whatToDo": "Call the manager, leave through a staffed route, and record the time question plus side-door wait. Do not let regular status erase pressure.",
           "whyItMatters": "Regular status belongs to the past. The live behavior concerns exit timing and access, so Chidi needs a witness and a different route."
@@ -1462,8 +1188,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The behavior after refusal is the signal. Familiarity and timing set context, but they do not outweigh pressure around cash access.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1475,8 +1200,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated badge request is access behavior. Verification answers that behavior; status cues are not a substitute for confirmation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1488,8 +1212,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The known local is applying pressure for route information. The unknown traveler adjusted, so stranger status is weaker than behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1501,8 +1224,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Knowing names does not justify room access. The behavior keeps seeking patient locations, so the response should protect the ward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1514,8 +1236,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key issue is pressure after no around access to the shed. Longevity and offense can distract from the live behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1527,8 +1248,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A label can scare or soothe before behavior is examined. Observation is stronger because it tracks what the person is doing now.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1540,8 +1260,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The live pattern is about when and where the cashier exits. Familiarity explains history, not the current pressure around access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1553,8 +1272,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Categories can add context, but they cannot replace observation. The behavior still has to carry the decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1566,8 +1284,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The behavior after refusal decides the read. Respecting no lowers concern; pressing no raises it, regardless of familiarity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1624,24 +1341,17 @@
           }
         ],
         "twentyFourHourChallenge": "Choose one person you have mentally labeled safe or unsafe. Write two current behaviors and one access question before trusting the label.",
-        "weeklyPractice": "For a week, replace category words with verbs in your notes: asked, followed, waited, accepted no, pressed for access.",
-        "title": "Judging Strangers By Behavior"
+        "weeklyPractice": "For a week, replace category words with verbs in your notes: asked, followed, waited, accepted no, pressed for access."
       },
       "memorableLines": [
         {
-          "text": "A known face can still push for access.",
-          "location": "breakdown.fastRead",
-          "why": "It counters the false comfort of familiarity in plain language."
+          "text": "A known face can still push for access."
         },
         {
-          "text": "Watch what changes after your answer.",
-          "location": "breakdown.deepRead",
-          "why": "It gives a behavioral test the reader can use immediately."
+          "text": "Watch what changes after your answer."
         },
         {
-          "text": "The label is easy; the behavior is useful.",
-          "location": "breakdown.fullRead",
-          "why": "It states the chapter distinction in a compact contrast."
+          "text": "The label is easy; the behavior is useful."
         }
       ]
     },
@@ -1668,13 +1378,6 @@
             "boat",
             "weather"
           ],
-          "planSpec": {
-            "domain": "charter boat dock during a weather delay",
-            "audience": "a skipper choosing action under uncertainty",
-            "stakes": "whether to wait for certainty before canceling",
-            "format": "scene",
-            "requiredBeat": "cancels a short run after wind, passenger behavior, and radio reports form enough pattern"
-          },
           "scenario": "At 7:22 a.m., Hannah hears a dock line snap against the cleat while the weather radio stutters through a small-craft update. The life jacket rack is still half full, and two passengers joke about beating the delay. She cannot prove the short run will turn bad. She must decide whether wind, radio, and passenger behavior are enough to cancel.",
           "whatToDo": "Cancel the run, keep the boat tied, and explain that the pattern is strong enough for a narrow protective action. Do not wait for perfect weather proof.",
           "whyItMatters": "The stakes change the threshold. A canceled trip is reversible; a late return with passengers aboard is not."
@@ -1687,13 +1390,6 @@
             "surgery",
             "access"
           ],
-          "planSpec": {
-            "domain": "surgery center intake morning",
-            "audience": "a charge nurse escalating a visitor concern",
-            "stakes": "whether stronger action needs perfect proof",
-            "format": "dialogue",
-            "requiredBeat": "restricts access after repeated false names and attempts to learn recovery-room doors"
-          },
           "scenario": "\"I am her brother,\" the visitor says as a plastic wristband curls in the printer tray. Andrew checks the visitor form. The first name was false, then the second. The man keeps glancing at the recovery door and asks what color wristband leaves first. Andrew must decide whether imperfect proof is enough to restrict access.",
           "whatToDo": "Restrict recovery-room access, keep the visitor in intake, and bring another nurse forward. Tie the action to false names and recovery-door questions.",
           "whyItMatters": "Sedated patients raise the cost of waiting. The action is narrow: hold access. It does not require Andrew to prove intent."
@@ -1706,13 +1402,6 @@
             "field trip",
             "departure"
           ],
-          "planSpec": {
-            "domain": "university field trip bus bay",
-            "audience": "a faculty lead reading an escalating parent conflict",
-            "stakes": "whether one angry voicemail is enough",
-            "format": "vignette",
-            "requiredBeat": "adds staff at departure after voicemails, parking-lot waiting, and access demands align"
-          },
           "scenario": "Diesel exhaust hangs under the idling buses while Etienne checks the bus manifest against permission slips. One angry voicemail would not be enough. The later parking-lot waiting, campus radio call, and demand to know which bus carries which students form a stronger pattern. He must decide whether to add staff at departure.",
           "whatToDo": "Add staff at the bus bay, keep student bus assignments private, and use the campus radio for boarding changes. Do not base the plan on the voicemail alone.",
           "whyItMatters": "The pattern has moved from anger into access. Extra staff at departure matches the stakes without turning one voicemail into certainty."
@@ -1725,13 +1414,6 @@
             "architecture",
             "contractor"
           ],
-          "planSpec": {
-            "domain": "architecture office bid presentation",
-            "audience": "a partner assessing a fired contractor",
-            "stakes": "whether the cost of being wrong changes the threshold",
-            "format": "decision_point",
-            "requiredBeat": "moves the meeting online after tools, emails, and lobby appearances escalate"
-          },
           "scenario": "You are Astrid, holding a model stair tread chipped in the sample box. Security email shows two lobby appearances by the fired contractor, and the conference pass system still lists him for tomorrow. The bitter emails alone did not settle it. You must decide whether tools, emails, and lobby appearances now justify moving the bid presentation online.",
           "whatToDo": "Move the meeting online, cancel the conference pass, and send security the sequence. Keep the action focused on access to the office and presentation.",
           "whyItMatters": "The cost of being wrong is high, but the action is limited. Online presentation reduces access without claiming certainty about what he would do."
@@ -1744,13 +1426,6 @@
             "wedding",
             "route"
           ],
-          "planSpec": {
-            "domain": "wedding venue rehearsal night",
-            "audience": "a planner deciding how much protection fits the pattern",
-            "stakes": "whether uncertainty should freeze action",
-            "format": "postmortem",
-            "requiredBeat": "quietly changes entrances after a former partner asks staff for the bride schedule twice"
-          },
           "scenario": "It took Diego one look at the seating chart pinned under glass to stop treating uncertainty as a reason to freeze. A former partner had asked two servers for the bride's schedule and watched the service door during rehearsal. Staff headsets were already charged. Diego must decide how much protection fits without making the night a spectacle.",
           "whatToDo": "Change the bride's entrance, put two staff on headsets, and keep schedule details private. Make the action early but quiet.",
           "whyItMatters": "The stakes are high enough to act before certainty. The action stays narrow because it changes route and information, not the whole event."
@@ -1763,13 +1438,6 @@
             "food bank",
             "badge"
           ],
-          "planSpec": {
-            "domain": "food bank distribution line",
-            "audience": "a coordinator handling a volunteer removal",
-            "stakes": "whether narrower action can beat dramatic action",
-            "format": "before_after",
-            "requiredBeat": "keeps the volunteer off-site after repeated boundary tests without calling it prophecy"
-          },
           "scenario": "A crate of canned tomatoes sits by the loading door as the distribution line forms. Before, Aanya hoped the removed volunteer would cool off after returning his badge. After he asks about the shift list and waits near the loading door, she keeps him off-site and briefs staff. She does not call it prophecy; she calls it repeated boundary testing. It is Saturday afternoon.",
           "whatToDo": "Keep the volunteer off-site, remove him from the shift list, and staff the loading door. Use the badge delay and door waiting as the evidence.",
           "whyItMatters": "A narrow action beats dramatic guessing. Aanya changes access to the line and loading door without pretending to know the future."
@@ -1788,8 +1456,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The action fits the cost of delay and the pattern. Radio and passenger behavior support canceling, but neither provides certainty by itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1801,8 +1468,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The stakes of recovery access justify earlier restriction. Waiting for a door attempt is too late, and explanation can become another delay.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1814,8 +1480,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern has moved toward student access. Extra staff and private assignments match the evidence without overreacting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1827,8 +1492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Online meeting and pass cancellation address access. Public accusation overreaches; waiting wastes the chance to lower exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1840,8 +1504,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The route questions and door watching justify a quiet access change. The move is early because stakes are high and narrow because evidence is limited.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1853,8 +1516,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The disciplined move is proportion. Stronger stakes may move action earlier, but evidence still limits the size of that action.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1866,8 +1528,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sequence concerns schedule and loading-door access. A narrow off-site rule addresses that pattern without requiring a threat.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1879,8 +1540,7 @@
             ],
             "correctIndex": 2,
             "explanation": "High stakes change the cost of delay. Small protective steps can be justified by pattern support without claiming certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1892,8 +1552,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Badge cancellation matches the evidence and is reversible. Public accusation is larger than the pattern requires; waiting ignores cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1950,24 +1609,17 @@
           }
         ],
         "twentyFourHourChallenge": "Name one high-stakes area in your life. Write the pattern support you already have and one narrow action that would lower the cost of being late.",
-        "weeklyPractice": "Once this week, practice the proportion rule: evidence, stakes, narrow action. Do not let any one column do all the work.",
-        "title": "Acting Narrowly Under High Stakes"
+        "weeklyPractice": "Once this week, practice the proportion rule: evidence, stakes, narrow action. Do not let any one column do all the work."
       },
       "memorableLines": [
         {
-          "text": "Uncertainty is not the same as permission to wait.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the high-stakes threshold shift."
+          "text": "Uncertainty is not the same as permission to wait."
         },
         {
-          "text": "Earlier does not mean bigger.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps action proportionate."
+          "text": "Earlier does not mean bigger."
         },
         {
-          "text": "A narrow action is often more defensible than a dramatic one.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a practical alternative to panic or passivity."
+          "text": "A narrow action is often more defensible than a dramatic one."
         }
       ]
     },
@@ -1994,13 +1646,6 @@
             "property",
             "threat"
           ],
-          "planSpec": {
-            "domain": "apartment management office after an eviction notice",
-            "audience": "a property manager receiving a threat",
-            "stakes": "whether the sentence or surrounding behavior matters more",
-            "format": "scene",
-            "requiredBeat": "compares the threat with lock tampering, hallway waiting, and access attempts before deciding next steps"
-          },
           "scenario": "At 4:16 p.m., Megan sets a bent mailbox key on the blotter beside the notice envelope. The message says she will pay for the eviction, and the camera still shows hallway waiting near the side door. She must decide whether the sentence or the surrounding access attempts should guide the next step.",
           "whatToDo": "Compare the words with lock tampering, hallway waiting, and door access. Change locks, brief staff, and document the sequence rather than answering the message privately.",
           "whyItMatters": "The threat gains meaning from the behavior around it. The words point toward access because the key and hallway waiting already moved in that direction."
@@ -2013,13 +1658,6 @@
             "newsroom",
             "caller"
           ],
-          "planSpec": {
-            "domain": "local newspaper newsroom",
-            "audience": "an editor assessing an angry caller",
-            "stakes": "whether ugly words alone settle the risk",
-            "format": "dialogue",
-            "requiredBeat": "asks what the caller wants the threat to do and checks prior visits before changing procedures"
-          },
           "scenario": "\"He said he would make us sorry,\" the reporter says as a voicemail light blinks on the old desk phone. Matthew reads the transcript, then checks the press pass log and front buzzer notes. The caller has visited twice. Matthew must decide whether ugly words settle the risk or whether the function and visits matter more.",
           "whatToDo": "Ask what the threat is trying to make the paper do, then check prior visits and tighten front-door procedure. Keep the transcript with the access notes.",
           "whyItMatters": "The words are data, not the whole case. Prior visits and the front buzzer show whether the sentence is attached to approach behavior."
@@ -2032,13 +1670,6 @@
             "athletics",
             "status"
           ],
-          "planSpec": {
-            "domain": "college athletics office",
-            "audience": "a coach after a benched player threatens staff",
-            "stakes": "whether to ignore heat-of-the-moment language",
-            "format": "vignette",
-            "requiredBeat": "looks at function: restoring status, intimidating access, and prior equipment-room confrontations"
-          },
           "scenario": "A pair of cleats sits outside the office door while Margaux scans the roster sheet. The benched player threatened staff, then asked who held the equipment key and when practice schedule changes were posted. She must decide whether heat-of-the-moment language explains everything or whether the words are trying to restore status through access. It is Thursday morning.",
           "whatToDo": "Review the threat with the equipment-room confrontations and schedule questions. Add staff at practice and remove solo access to equipment.",
           "whyItMatters": "The function is not just anger. The words aim at status and access, so the response should protect practice routes and equipment areas."
@@ -2051,13 +1682,6 @@
             "civic",
             "public"
           ],
-          "planSpec": {
-            "domain": "small-town council chamber",
-            "audience": "a clerk hearing a threat during public comment",
-            "stakes": "whether theatrical language means harmlessness",
-            "format": "decision_point",
-            "requiredBeat": "records the words and checks them against repeated approach behavior after meetings"
-          },
           "scenario": "You are Niklas, and the microphone is still live after the gavel. The speaker card is bent in your hand, the meeting agenda is open, and the same resident has waited by the side exit after two prior meetings. He uses theatrical threat language at the podium. You must decide whether theater means harmlessness or whether to compare words with approach behavior.",
           "whatToDo": "Record the words, keep the speaker card, and brief staff at the side exit. Judge the sentence beside the repeated post-meeting approaches.",
           "whyItMatters": "Theatrical language can still function as pressure. The prior approach behavior tells Niklas whether the words belong to a larger pattern."
@@ -2070,13 +1694,6 @@
             "billing",
             "calls"
           ],
-          "planSpec": {
-            "domain": "medical billing call center",
-            "audience": "a supervisor evaluating a caller threat",
-            "stakes": "whether the safest response is alarm or dismissal",
-            "format": "postmortem",
-            "requiredBeat": "separates venting from access-seeking by tracking callbacks, staff names, and facility questions"
-          },
           "scenario": "It took Javier until the red call timer hit nine minutes to stop asking whether the caller was only venting. The headset sat beside account notes filled with callbacks, staff names, and questions about the badge door. He must decide what to carry forward: the caller's anger alone or the access-seeking pattern around it. It is Saturday afternoon.",
           "whatToDo": "Track callbacks, staff-name requests, and facility questions with the threat. Route the account to a supervisor and remove direct staff contact.",
           "whyItMatters": "Venting is less concerning when it stays abstract. It becomes access pressure when it collects names, doors, and callback routes."
@@ -2089,13 +1706,6 @@
             "brewery",
             "keys"
           ],
-          "planSpec": {
-            "domain": "craft brewery taproom after a firing",
-            "audience": "a general manager receiving a revenge message",
-            "stakes": "whether anger without access is the same as anger with access",
-            "format": "before_after",
-            "requiredBeat": "acts because the words arrive with keys not returned and repeated loading-bay drive-bys"
-          },
           "scenario": "A returned uniform shirt is folded beside the register. Before, Adaeze treated the revenge message as anger after a firing. After she checks the key log and sees repeated loading-bay drive-bys, the words change shape. She must decide whether anger without access is the same as anger with a missing key and tested route. It is Monday night.",
           "whatToDo": "Change the lock tied to the missing key, staff the loading bay, and document the drive-bys with the message. Do not reply to the threat.",
           "whyItMatters": "Access changes the meaning of anger. The message is more serious because it arrives with an unreturned key and route testing."
@@ -2114,8 +1724,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The threat has to be read with behavior around it. Anger alone is weaker than a pattern that seeks access.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2127,8 +1736,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The move is to stop feeding the pattern. More explanation keeps the loop alive, while access change answers behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2140,8 +1748,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The phrase matters more when it is followed by an access question. Anger and drama add context, but the entrance question shows what the threat may be building toward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2153,8 +1760,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Function matters more than volume. A sentence aimed at access, intimidation, or control deserves a different response than vague venting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2166,8 +1772,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The surrounding sequence gives the words a job. Prior attempts to reach staff alone make the note more than ugly language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2179,8 +1784,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Threat interpretation starts with what the words try to accomplish, what came before, and what access the person is seeking. Tone alone is too thin.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2192,8 +1796,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The threat is trying to produce a private meeting at a specific access point. That function matters more than the medium or outside certainty.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2205,8 +1808,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The weak version isolates one piece. The stronger read uses sequence, context, and access pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2218,8 +1820,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Access attempts change what can happen next. Ugly words may matter, but behavior that opens a route deserves earlier planning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2280,24 +1881,17 @@
           }
         ],
         "twentyFourHourChallenge": "Take one ugly sentence you have heard or read. Write what it tries to get, what behavior came before it, and what access it seeks.",
-        "weeklyPractice": "For one week, practice a threat note in four lines: words, prior behavior, access, narrow response.",
-        "title": "Interpreting Threats By Function"
+        "weeklyPractice": "For one week, practice a threat note in four lines: words, prior behavior, access, narrow response."
       },
       "memorableLines": [
         {
-          "text": "Words alone are thinner than words inside a pattern.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter distinction in a concise form."
+          "text": "Words alone are thinner than words inside a pattern."
         },
         {
-          "text": "Function gives the words a job.",
-          "location": "breakdown.deepRead",
-          "why": "It makes threat interpretation practical."
+          "text": "Function gives the words a job."
         },
         {
-          "text": "Treat the threat as information.",
-          "location": "breakdown.fullRead",
-          "why": "It avoids both dismissal and panic."
+          "text": "Treat the threat as information."
         }
       ]
     },
@@ -2324,13 +1918,6 @@
             "bookstore",
             "refusal"
           ],
-          "planSpec": {
-            "domain": "independent bookstore after a breakup at work",
-            "audience": "a manager dealing with unwanted visits",
-            "stakes": "whether kindness will quiet persistence",
-            "format": "scene",
-            "requiredBeat": "sets one clear refusal and stops private replies after the third appearance"
-          },
           "scenario": "At 8:04 p.m., Olivia grips a handwritten staff-pick shelf card while the message thread glows on her phone. Her ex has appeared at the bookstore three times and is now near the back-room door asking for a kinder talk. Olivia must decide whether another private reply will quiet him or whether one clear refusal and no further replies ends the loop.",
           "whatToDo": "Send one clear refusal through a visible channel, tell staff not to route private messages, and stop replying after the third appearance.",
           "whyItMatters": "More kindness can become more access. The boundary is clear enough; the missing piece is ending the private route that rewards persistence."
@@ -2343,13 +1930,6 @@
             "choir",
             "gift"
           ],
-          "planSpec": {
-            "domain": "community choir rehearsal",
-            "audience": "a singer being pursued by another member",
-            "stakes": "whether repeated gifts are sincerity or pressure",
-            "format": "dialogue",
-            "requiredBeat": "returns the gift through leadership and changes seating instead of negotiating meaning"
-          },
           "scenario": "\"She left it for you again,\" the section leader says, pointing to a wrapped scarf on the piano bench. Ben holds his choir folder while the rehearsal roster waits on the stand. He already declined private contact. The scarf box is the third gift. Ben must decide whether to explain the meaning privately or return it through leadership and change seats.",
           "whatToDo": "Return the gift through choir leadership and adjust seating on the roster. Do not turn the scarf into a private discussion about feelings.",
           "whyItMatters": "The gift creates a new exchange if Ben handles it alone. Leadership and seating changes remove the reward without debating sincerity."
@@ -2362,13 +1942,6 @@
             "tenant",
             "email"
           ],
-          "planSpec": {
-            "domain": "tenant association email list",
-            "audience": "a chair managing a member who will not let go",
-            "stakes": "whether explaining better will end the pursuit",
-            "format": "vignette",
-            "requiredBeat": "sends one clear boundary through the board, then blocks off-list replies"
-          },
           "scenario": "An inbox search shows twelve subject lines while Antoine opens the board minutes. The mailing list has an official process, but one member keeps moving the dispute into private email threads after being told no. Antoine must decide whether a better explanation will end pursuit or whether one board message and blocked off-list replies are the boundary. It is Friday night.",
           "whatToDo": "Send one board-approved boundary through the mailing list, then stop off-list replies. Keep future contact in the recorded process.",
           "whyItMatters": "Private replies are the access route. Moving the issue to the board channel keeps logistics possible while ending the reward for persistence."
@@ -2381,13 +1954,6 @@
             "gym",
             "access"
           ],
-          "planSpec": {
-            "domain": "rock-climbing gym membership desk",
-            "audience": "a staff member handling a banned climber",
-            "stakes": "whether a calm tone makes persistence harmless",
-            "format": "decision_point",
-            "requiredBeat": "moves from conversation to access control after repeated returns after refusal"
-          },
           "scenario": "You are Ingrid at the climbing gym, wiping chalk dust from a locked membership card. A banned climber stands by the waiver tablet, calm and smiling, asking if the turnstile can open for one quick talk. He has returned three times after refusal. You must decide whether his calm tone keeps this conversational or whether access control now matters more. It is Saturday afternoon.",
           "whatToDo": "Keep the card locked, refuse the turnstile request, and move all appeals to written management contact. Stop holding desk conversations.",
           "whyItMatters": "Calm persistence is still persistence. Repeated returns after refusal show that conversation itself has become the access reward."
@@ -2400,13 +1966,6 @@
             "studio",
             "corridor"
           ],
-          "planSpec": {
-            "domain": "artist residency studio building",
-            "audience": "a resident receiving repeated hallway waits",
-            "stakes": "whether to keep softening no for community harmony",
-            "format": "postmortem",
-            "requiredBeat": "logs the waits and asks staff to change access instead of giving another explanation"
-          },
           "scenario": "It took Luca three softened refusals and one drying canvas facing the corridor to see the pattern. His studio key was in his pocket, the visitor book showed repeat entries, and the corridor camera caught the same waits.",
           "whatToDo": "Log the waits, give staff the visitor-book entries, and request an access change. Do not provide another corridor explanation.",
           "whyItMatters": "Softened refusals can train persistence by proving that another wait produces another explanation. Staff access changes remove that reward without turning the dispute into a performance."
@@ -2419,13 +1978,6 @@
             "committee",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "dog park volunteer committee",
-            "audience": "a volunteer after repeated unwanted contact",
-            "stakes": "whether the person just needs closure",
-            "format": "before_after",
-            "requiredBeat": "stops closure talks and uses public handoff only after refusal has been given"
-          },
           "scenario": "A leash is clipped to an empty fence ring by the gate latch. Before, Akira answered committee chat requests for closure after repeated unwanted contact. After one final refusal, Akira uses only the public schedule sheet for handoffs and stops private talks. The question is whether closure is a need or another route to access. It is Tuesday afternoon.",
           "whatToDo": "Use the public schedule sheet for handoffs and end closure talks. Keep any necessary contact visible to the committee.",
           "whyItMatters": "Closure can be a word for continued access. A public handoff solves logistics without reopening the refused relationship."
@@ -2444,8 +1996,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The boundary has already been given. One clear refusal plus no private replies stops persistence from earning another exchange.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2457,8 +2008,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gifts keep the relationship active if handled privately. Returning them through leadership changes access and removes negotiation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2470,8 +2020,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Off-list replies teach the member that repeated contact works. A board channel keeps the boundary clear and visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2483,8 +2032,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Calm tone does not erase repeated returns after refusal. Access control answers the pattern without debating attitude.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2496,8 +2044,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Another explanation rewards corridor waiting. Logging the waits and changing access interrupts the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2509,8 +2056,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Persistence often borrows the language of care. The test is whether no changes behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2522,8 +2068,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Negotiation after no turns refusal into a process the other person can keep extending.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2535,8 +2080,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Closure can be a clean public handoff, but repeated closure talks after no preserve access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2548,8 +2092,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Private replies after refusal keep the loop alive. Public, limited contact can close logistics without feeding pursuit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2606,24 +2149,17 @@
           }
         ],
         "twentyFourHourChallenge": "Draft one final refusal sentence for an ongoing negotiation, then name the access route you will close afterward.",
-        "weeklyPractice": "For a week, notice any no that turns into a long explanation. Practice replacing the second explanation with an access change.",
-        "title": "Closing Access After Refusal"
+        "weeklyPractice": "For a week, notice any no that turns into a long explanation. Practice replacing the second explanation with an access change."
       },
       "memorableLines": [
         {
-          "text": "A no cannot do its job while you keep reopening the meeting.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the persistence loop visible."
+          "text": "A no cannot do its job while you keep reopening the meeting."
         },
         {
-          "text": "Kindness can become fuel.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the trap in four plain words."
+          "text": "Kindness can become fuel."
         },
         {
-          "text": "Closure is often the word persistence uses when it wants another door.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers language for a common pressure tactic."
+          "text": "Closure is often the word persistence uses when it wants another door."
         }
       ]
     },
@@ -2650,13 +2186,6 @@
             "permits",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "municipal permits counter after a denial",
-            "audience": "a supervisor seeing grievance become access pressure",
-            "stakes": "whether routine paperwork is hiding risk",
-            "format": "scene",
-            "requiredBeat": "links repeated appeals, staff-name collection, and building-route questions before changing coverage"
-          },
           "scenario": "At 3:05 p.m., Grace watches the denial stamp dry on the permits counter while the counter camera clicks above her. The same applicant has filed appeals, collected staff names, and asked which hall reaches the back offices. The staff rota is beside her. She must decide whether routine paperwork is hiding access pressure. The waiting area has two clerks, one public counter, and a side hall that leads to staff-only files.",
           "whatToDo": "Join the appeals, staff-name collection, and route questions in one note, then adjust counter coverage and route privacy.",
           "whyItMatters": "Each item looks routine alone. Together they show grievance moving toward staff access, so process has to preserve the pattern."
@@ -2669,13 +2198,6 @@
             "warehouse",
             "badge"
           ],
-          "planSpec": {
-            "domain": "warehouse shift change",
-            "audience": "an operations lead after a disciplinary meeting",
-            "stakes": "whether to treat threats as personal drama",
-            "format": "dialogue",
-            "requiredBeat": "keeps signal alive through handoff notes, exit timing, and badge restrictions"
-          },
           "scenario": "\"He was just heated,\" the supervisor says, stepping around a pallet jack parked across the yellow line. Chris checks the badge reader and opens the handoff log by the loading ramp. The disciplinary meeting ended badly, and the worker knows exit timing. Chris must decide whether to treat threats as personal drama or keep the signal alive across shifts. It is Friday night. A forklift alarm chirps behind them, and the outbound supervisor will inherit the same ramp in twenty minutes.",
           "whatToDo": "Write the handoff, change exit timing, and restrict the badge until the next supervisor is briefed. Keep facts out of gossip and inside process.",
           "whyItMatters": "Shift change can erase patterns. Handoff notes keep the access conflict visible without turning it into rumor."
@@ -2688,13 +2210,6 @@
             "hospital",
             "departments"
           ],
-          "planSpec": {
-            "domain": "hospital parking office",
-            "audience": "a manager tracking an ex-employee grievance",
-            "stakes": "whether process is burying the pattern",
-            "format": "vignette",
-            "requiredBeat": "connects complaints, car sightings, and requests for nurse schedules across departments"
-          },
           "scenario": "A scraped parking decal lies beside Nicolas's incident folder and staff lot map. Complaints went to HR, car sightings went to parking, and nurse-schedule requests went to a department assistant. Nicolas must decide whether process is burying the pattern or whether the pieces need to meet before another shift begins. The parking clerk has photos, nursing has schedule questions, and security has the visitor report with the same name.",
           "whatToDo": "Combine the complaints, car sightings, and schedule requests, then brief parking, nursing, and security from one sequence.",
           "whyItMatters": "The risk is cross-department blindness. The pattern appears only when routine reports are joined."
@@ -2707,13 +2222,6 @@
             "software",
             "termination"
           ],
-          "planSpec": {
-            "domain": "software support floor after termination",
-            "audience": "a team lead managing access conflict",
-            "stakes": "whether IT deactivation alone is enough",
-            "format": "decision_point",
-            "requiredBeat": "pairs account shutdown with desk access, client-contact attempts, and building entry logs"
-          },
           "scenario": "You are Maja, looking at a laptop dock with one cable still warm. IT has shut down accounts, but the access log shows a building entry attempt and the client list shows two calls after termination. You must decide whether deactivation alone is enough or whether desk access and client contact need the same process. The front desk still has visitors in line, so Maja adds a lobby note before the next badge scan is attempted.",
           "whatToDo": "Pair account shutdown with building access review, client-contact blocks, and a front-desk note. Treat digital and physical access as one pattern.",
           "whyItMatters": "System access is only one route. Workplace process has to catch desks, clients, doors, and people too."
@@ -2726,13 +2234,6 @@
             "kitchen",
             "tools"
           ],
-          "planSpec": {
-            "domain": "restaurant kitchen before dinner rush",
-            "audience": "a chef after a cook is sent home",
-            "stakes": "whether a grievance is normal shift heat",
-            "format": "postmortem",
-            "requiredBeat": "acts when knife-roll return, alley waiting, and payroll accusations become a sequence"
-          },
           "scenario": "It took Marco until the knife roll was strapped shut on the prep table to stop calling it normal shift heat. The alley door had been watched twice, the shift board still showed closing roles, and payroll had angry accusations by name. He must decide whether the sequence needs action before dinner rush. The sous-chef is calling tickets, the alley light is out, and Marco has one minute to brief the closer.",
           "whatToDo": "Move the knife roll, staff the alley door, and write the payroll accusations with the door waiting in the manager log.",
           "whyItMatters": "Tools, exit, and grievance line up. The handoff keeps the next manager from seeing only one piece."
@@ -2745,13 +2246,6 @@
             "registrar",
             "signals"
           ],
-          "planSpec": {
-            "domain": "university registrar office",
-            "audience": "a deputy registrar handling a dismissed student worker",
-            "stakes": "whether policy checkboxes caught the risk",
-            "format": "before_after",
-            "requiredBeat": "creates a signal handoff when grievance emails and office loitering cross departments"
-          },
           "scenario": "A stack of transcript envelopes sits under the glass divider. Before, Aman had policy checkboxes: badge collected, account closed, supervisor notified. After grievance emails arrive at one desk and office loitering appears near the map at another, Aman creates a signal handoff so the next shift sees both the emails and the student badge notes. Aman writes the handoff while the registrar window is still open and the student assistant badge list is on screen.",
           "whatToDo": "Create one handoff note joining emails, badge status, office map loitering, and supervisor contacts. Put it where the next shift must read it.",
           "whyItMatters": "Checkboxes can be complete while the pattern remains split. A handoff keeps repeated signals from starting over each morning."
@@ -2770,8 +2264,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern matters across notes. Coverage should change when appeals, names, and route questions line up.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2783,8 +2276,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A handoff prevents the concern from dying at shift change. Badge and exit timing answer access, not gossip.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2796,8 +2288,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ordinary process can scatter the evidence. The risk is the sequence disappearing into separate folders.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2809,8 +2300,7 @@
             ],
             "correctIndex": 0,
             "explanation": "IT shutdown is not physical access control. Entry logs and client attempts complete the workplace read.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2822,8 +2312,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A knife roll, alley waiting, and payroll accusations create a sequence around tools, exits, and grievance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2835,8 +2324,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Workplaces divide responsibility. Violence-prevention judgment needs the repeated signals joined back together.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2848,8 +2336,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Grievance becomes more meaningful when it seeks access, repeats, escalates, or follows people through routines.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2861,8 +2348,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A signal handoff keeps cross-department behavior visible before a decisive incident.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2874,8 +2360,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared sequence beats isolated paperwork. The safer workplace keeps access pressure visible across handoffs.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2936,24 +2421,17 @@
           }
         ],
         "twentyFourHourChallenge": "Find one workplace concern split across people or tools. Write one handoff note that joins the behavior in order.",
-        "weeklyPractice": "Once this week, audit a routine process for signal loss: where would route questions, schedule requests, and grievance notes fail to meet? ",
-        "title": "Preserving Workplace Warning Signals"
+        "weeklyPractice": "Once this week, audit a routine process for signal loss: where would route questions, schedule requests, and grievance notes fail to meet? "
       },
       "memorableLines": [
         {
-          "text": "The signal has to survive the handoff.",
-          "location": "breakdown.fastRead",
-          "why": "It gives workplace process a memorable safety purpose."
+          "text": "The signal has to survive the handoff."
         },
         {
-          "text": "The process should make those facts meet.",
-          "location": "breakdown.deepRead",
-          "why": "It turns handoff into a concrete safety task."
+          "text": "The process should make those facts meet."
         },
         {
-          "text": "Process becomes a lens instead of a shredder.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the chapter mechanism in one image."
+          "text": "Process becomes a lens instead of a shredder."
         }
       ]
     },
@@ -2980,13 +2458,6 @@
             "court",
             "control"
           ],
-          "planSpec": {
-            "domain": "family court parking lot after a hearing",
-            "audience": "a sister supporting a survivor",
-            "stakes": "whether apology should reset a control pattern",
-            "format": "scene",
-            "requiredBeat": "walks to the marshal station after seeing the same control behavior repeat outside court"
-          },
           "scenario": "At 2:18 p.m., Anna folds the custody order inside her coat sleeve and holds the parking ticket in her other hand. The apology sounded calm in court. Outside, he blocks her sister's path and asks where she will sleep tonight. Anna must decide whether apology resets the pattern or whether to walk to the marshal desk now. The marshal sign is above the metal detector, and her sister has the custody order folded where staff can see it.",
           "whatToDo": "Walk to the marshal desk with her sister and describe the repeated blocking and housing questions. Do not debate whether the apology was sincere.",
           "whyItMatters": "The control returned after the apology. The safest read gives more weight to recurrence than to the softer sentence."
@@ -2999,13 +2470,6 @@
             "move-out",
             "door"
           ],
-          "planSpec": {
-            "domain": "shared apartment move-out weekend",
-            "audience": "a roommate watching an ex-partner control access",
-            "stakes": "whether the soft apology changes the pattern",
-            "format": "dialogue",
-            "requiredBeat": "keeps the door closed after apology turns into blocking the hallway again"
-          },
           "scenario": "\"I just want to say sorry,\" the ex-partner says while labeled moving boxes line the wall. Jack has the lease copy beside the door wedge. The apology is soft until the hallway is blocked again. Jack must decide whether to open the door for one more talk or keep it closed and move the handoff outside. The lease copy names the move-out time, and the hallway camera covers only the public landing.",
           "whatToDo": "Keep the door closed, move the handoff to a public spot, and keep another roommate present. Let the blocking, not the apology, guide access.",
           "whyItMatters": "Apology without changed behavior does not reduce risk. The hallway block is the current cue."
@@ -3018,13 +2482,6 @@
             "clinic",
             "voice"
           ],
-          "planSpec": {
-            "domain": "rural clinic exam room",
-            "audience": "a nurse hearing a partner answer for the patient",
-            "stakes": "whether concern can look like care",
-            "format": "vignette",
-            "requiredBeat": "creates private time when answers, phone checks, and doorway positioning cluster"
-          },
           "scenario": "The paper exam sheet crackles while Mathieu watches the partner answer every question. The patient phone stays under the partner's hand, and the privacy curtain is blocked by his stance. Mathieu must decide whether concern explains the pattern or whether the patient needs private time before the visit continues. The clinic door has a routine privacy notice posted, giving Mathieu a normal way to separate the conversation.",
           "whatToDo": "Create a routine private portion of the visit, separate the phone from the partner, and let the patient answer without an audience.",
           "whyItMatters": "The pattern controls voice, phone, and exit. Private time responds to behavior without making an accusation in the room."
@@ -3037,13 +2494,6 @@
             "childcare",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "childcare pickup window",
-            "audience": "a director noticing post-separation control",
-            "stakes": "whether familiarity with both parents dulls the signal",
-            "format": "decision_point",
-            "requiredBeat": "follows the safety plan when charm shifts to schedule interrogation"
-          },
           "scenario": "You are Frida, looking at a laminated pickup card under the glass while the intercom hums. You know both parents by name. One smiles, then asks twice for next week's pickup schedule after you point to the custody note. You must decide whether familiarity softens the signal or whether the safety plan controls the answer. The pickup note lists exactly who receives schedule details, and Frida has the logbook open beside the intercom.",
           "whatToDo": "Follow the custody note, keep schedule details private, and log both questions. Do not let charm or familiarity override the written plan.",
           "whyItMatters": "Post-separation schedule questions are access behavior. Familiarity with both parents can dull the read if process does not hold."
@@ -3056,13 +2506,6 @@
             "bank",
             "money"
           ],
-          "planSpec": {
-            "domain": "bank branch loan desk",
-            "audience": "a teller seeing financial control",
-            "stakes": "whether couple status makes pressure private",
-            "format": "postmortem",
-            "requiredBeat": "pauses the transaction when one partner monitors every answer and keeps the ID card"
-          },
           "scenario": "It took Paula until the debit card stayed under the partner's hand to pause the loan form. Every answer had been monitored, the ID card was not returned, and the privacy booth was open. She must decide what to carry forward: couple status as privacy, or control behavior around money and identity. Paula sees the customer glance twice at the privacy booth while the ID remains under the partner’s hand.",
           "whatToDo": "Pause the transaction and create a separate privacy-booth conversation before continuing. Keep the ID with the customer whose name is on it.",
           "whyItMatters": "Couple status does not erase financial control. The bank can protect voice and identity without judging the whole relationship."
@@ -3075,13 +2518,6 @@
             "theater",
             "access"
           ],
-          "planSpec": {
-            "domain": "community theater green room",
-            "audience": "a stage manager after a cast breakup",
-            "stakes": "whether reconciliation talk erases recurrence",
-            "format": "before_after",
-            "requiredBeat": "moves dressing-room access after flowers arrive with demands and waiting outside"
-          },
           "scenario": "A bouquet wilts beside the costume rack before call. Before, Layla treated reconciliation talk as a private cast issue. After the flowers arrive with demands, the call sheet is studied, and waiting starts outside the dressing room, she moves the dressing-room key and changes access for the night. It is Thursday morning. Layla has the stage manager radio, the call sheet, and the dressing-room key all within reach before curtain.",
           "whatToDo": "Move the key, adjust the call sheet route, and keep dressing-room access with stage management. Do not let flowers erase demands and waiting.",
           "whyItMatters": "The pattern is recurrence around access. Reconciliation language does not make the dressing-room route safe by itself."
@@ -3100,8 +2536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Apology belongs in the read, but repeated control outside court is the stronger safety cue because it shows recurrence.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3113,8 +2548,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The apology does not erase the renewed blocking. A closed door and public handoff reduce access without debating feelings.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3126,8 +2560,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cluster shows control around voice, phone, and exit. Private time lets the patient speak without escalating the room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3139,8 +2572,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Familiarity can dull the read. Repeated schedule interrogation after separation is access behavior, so the safety plan should govern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3152,8 +2584,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Couple status does not erase control behavior. A pause and private conversation protect the customer without accusing the partner.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3165,8 +2596,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Closeness supplies explanations that can soften recurrence and control. Behavior still needs to be read in sequence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3178,8 +2608,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The issue is recurrence and access. Flowers may be sincere, but demands plus waiting require a route and access change.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3191,8 +2620,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Apology matters only if behavior changes. The safety read should track recurrence and control after the apology.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3204,8 +2632,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeated blocking is behavior that limits access and movement. Softness does not reduce the need for planning when control recurs.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3262,24 +2689,17 @@
           }
         ],
         "twentyFourHourChallenge": "Name one repeated control behavior in plain words, without apology or history. Then name the boundary or support that would reduce access.",
-        "weeklyPractice": "Once this week, practice separating story from behavior in a difficult relationship concern: story in one column, repeated behavior in another.",
-        "title": "Reading Repeated Intimate Control"
+        "weeklyPractice": "Once this week, practice separating story from behavior in a difficult relationship concern: story in one column, repeated behavior in another."
       },
       "memorableLines": [
         {
-          "text": "If the control repeats, the apology has not done the safety work.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a clear test for apology."
+          "text": "If the control repeats, the apology has not done the safety work."
         },
         {
-          "text": "Closeness is not evidence of safety.",
-          "location": "breakdown.deepRead",
-          "why": "It challenges the central distortion directly."
+          "text": "Closeness is not evidence of safety."
         },
         {
-          "text": "When they conflict, let repeated control speak clearly.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the safety read tied to visible recurrence."
+          "text": "When they conflict, let repeated control speak clearly."
         }
       ]
     },
@@ -3306,13 +2726,6 @@
             "coffee",
             "contact"
           ],
-          "planSpec": {
-            "domain": "coffee shop first-date aftermath",
-            "audience": "a barista deciding how to end contact",
-            "stakes": "whether being nice will prevent anger",
-            "format": "scene",
-            "requiredBeat": "sends one direct refusal and stops replying instead of adding softeners"
-          },
           "scenario": "At 9:14 p.m., Lucy presses a receipt with a phone number flat beside her bus pass. The draft message says she is busy and maybe not in the right place. Three new texts are waiting. She must decide whether being nice will prevent anger or whether one direct refusal and a blocked contact will close the loop.",
           "whatToDo": "Send one direct no, remove softeners like maybe and busy, then stop replying. Block the contact if messages continue.",
           "whyItMatters": "Soft wording can read like future possibility. A clear refusal plus no replies gives persistence less room to feed."
@@ -3325,13 +2738,6 @@
             "seminar",
             "channel"
           ],
-          "planSpec": {
-            "domain": "graduate seminar project group",
-            "audience": "a student handling repeated invitations",
-            "stakes": "whether gentle hints are being read as possibility",
-            "format": "dialogue",
-            "requiredBeat": "states no in one sentence and moves all project contact to the group channel"
-          },
           "scenario": "\"We can talk project stuff over dinner,\" the message says above a laptop screen full of private bubbles. Ethan has the seminar syllabus open at the library table. He has hinted twice. The invitations keep returning. Ethan must decide whether another gentle hint will land or whether to state no and move all project contact to the group channel.",
           "whatToDo": "Write one sentence refusing private contact, then move project logistics to the shared chat. Do not continue the private thread.",
           "whyItMatters": "Private logistics are being used as access. The group channel preserves the work while closing the false opening."
@@ -3344,13 +2750,6 @@
             "soccer",
             "parking"
           ],
-          "planSpec": {
-            "domain": "recreational soccer league",
-            "audience": "a player after two unwanted post-game waits",
-            "stakes": "whether avoidance is enough clarity",
-            "format": "vignette",
-            "requiredBeat": "asks the captain to deliver one clear boundary and changes parking routine"
-          },
           "scenario": "Mud dries on Lea's shin guards while she checks the team roster and parking pass. After two unwanted post-game waits, avoidance has not become clarity. He still waits by the same fence. Lea must decide whether a different gate is enough or whether the captain should deliver one clear boundary while she changes parking. It is Tuesday afternoon.",
           "whatToDo": "Ask the captain to deliver one direct boundary and change the parking routine. Keep the message visible, not private.",
           "whyItMatters": "Avoidance may reduce contact without ending ambiguity. A visible boundary and route change close both the message and the access path."
@@ -3363,13 +2762,6 @@
             "marketplace",
             "pickup"
           ],
-          "planSpec": {
-            "domain": "online marketplace pickup",
-            "audience": "a seller after a buyer keeps asking to meet again",
-            "stakes": "whether politeness in logistics has opened access",
-            "format": "decision_point",
-            "requiredBeat": "ends all non-transaction replies and uses a public pickup counter"
-          },
           "scenario": "You are Jonas, holding a shipping label curling at one corner. The buyer has the pickup code, and the counter camera covers the desk. The chat keeps shifting from pickup logistics to meeting again. You must decide whether polite replies are opening access or whether to end non-transaction contact and use only the public counter. It is Wednesday evening.",
           "whatToDo": "Use the public pickup counter, answer only transaction details, and stop all personal replies after pickup is complete.",
           "whyItMatters": "Polite logistics can become a personal channel. Ending non-transaction replies keeps the sale from turning into pursuit."
@@ -3382,13 +2774,6 @@
             "meetup",
             "exit"
           ],
-          "planSpec": {
-            "domain": "language exchange meetup",
-            "audience": "a participant managing a persistent match",
-            "stakes": "whether cultural awkwardness explains repeated contact",
-            "format": "postmortem",
-            "requiredBeat": "names refusal plainly after repeated wait-by-door behavior and stops one-on-one practice"
-          },
           "scenario": "It took Tomas until the phrase notebook opened to the same page for the third week to stop calling it awkwardness. The meetup badge was still on his jacket, and the same person waited near the venue exit again. He must decide whether to keep hinting or name refusal plainly and end one-on-one practice. It is Thursday morning.",
           "whatToDo": "Say no to one-on-one practice, leave through the group, and keep future language work in public sessions only.",
           "whyItMatters": "Awkwardness may explain one moment. Repeated exit waiting after hints is persistence using ambiguity as access."
@@ -3401,13 +2786,6 @@
             "conference",
             "hierarchy"
           ],
-          "planSpec": {
-            "domain": "medical conference poster session",
-            "audience": "a resident after a senior doctor keeps pursuing",
-            "stakes": "whether hierarchy requires soft refusal",
-            "format": "before_after",
-            "requiredBeat": "moves correspondence to a supervisor after clear no is recast as shyness"
-          },
           "scenario": "A poster tube leans against the lecture-hall wall. Before, Min softened no because the senior doctor had rank and the conference app made replies feel professional. After he recasts clear refusal as shyness, Min moves correspondence to a supervisor and faculty email, with no private thread left open.",
           "whatToDo": "Use the faculty email thread with the supervisor copied, state that private contact is not welcome, and attach the prior app messages. Min stops answering conference-app notes, hallway requests, and any reply that tries to move the exchange back into a private channel.",
           "whyItMatters": "Hierarchy pressures softness. A formal channel protects the refusal from being reinterpreted as shyness or future possibility."
@@ -3426,8 +2804,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A soft refusal can be heard as future possibility. Clear no plus no replies closes the access loop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3439,8 +2816,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The group channel keeps necessary work visible and stops private invitations from hiding inside logistics.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3452,8 +2828,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Avoidance may reduce contact without communicating refusal. One clear boundary plus changed parking closes ambiguity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3465,8 +2840,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The transaction is finished. Public pickup and no extra replies stop logistics from becoming access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3478,8 +2852,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated wait-by-door behavior needs plain refusal and an access change, not more hints.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3491,8 +2864,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Minimization can be interpreted as hesitation, not refusal, especially when persistence is already present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3504,8 +2876,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Hierarchy can pressure softness. Formal routing prevents pursuit from being recast as misunderstanding.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3517,8 +2888,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Comfort phrases often create openings for argument or hope. A clean refusal is easier to respect and enforce.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3530,8 +2900,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The direct sentence removes possibility and names the channel. The vague sentence leaves the door open.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3588,24 +2957,17 @@
           }
         ],
         "twentyFourHourChallenge": "Rewrite one soft no into one direct sentence. Remove maybe, later, busy, not ready, and anything that invites comfort.",
-        "weeklyPractice": "For a week, notice where you soften refusal out of discomfort. Practice pairing direct language with a channel change.",
-        "title": "Closing Ambiguous Refusals"
+        "weeklyPractice": "For a week, notice where you soften refusal out of discomfort. Practice pairing direct language with a channel change."
       },
       "memorableLines": [
         {
-          "text": "Soft words can keep hard patterns alive.",
-          "location": "breakdown.fastRead",
-          "why": "It names the trap without blaming the person refusing."
+          "text": "Soft words can keep hard patterns alive."
         },
         {
-          "text": "A channel can carry hope even when the words say no.",
-          "location": "breakdown.deepRead",
-          "why": "It makes access closure as important as wording."
+          "text": "A channel can carry hope even when the words say no."
         },
         {
-          "text": "The next task is closing the access loop.",
-          "location": "breakdown.fullRead",
-          "why": "It turns clarity into an action, not just wording."
+          "text": "The next task is closing the access loop."
         }
       ]
     },
@@ -3632,13 +2994,6 @@
             "robotics",
             "tools"
           ],
-          "planSpec": {
-            "domain": "middle school robotics club",
-            "audience": "a coach seeing fixation in a student",
-            "stakes": "whether innocence means ignoring repeated signals",
-            "format": "scene",
-            "requiredBeat": "documents access attempts to locked tools and isolates support before the next meeting"
-          },
           "scenario": "At 4:32 p.m., Rebecca watches a servo motor spin on an empty table beside the robot chassis. The attendance sheet shows the same student staying late, and the locked tool cabinet has fresh scrape marks. Her choice is no longer between kindness and severity; it is between ignoring recurrence and arranging support before the next meeting.",
           "whatToDo": "Document the tool attempts, late stays, and fixation, then bring in the school contact before the next session. Keep the language behavioral.",
           "whyItMatters": "The concern is access and repetition, not a diagnosis. Early support is possible only if adults name the pattern."
@@ -3651,13 +3006,6 @@
             "park",
             "guardians"
           ],
-          "planSpec": {
-            "domain": "suburban skateboard park",
-            "audience": "a youth worker tracking escalation",
-            "stakes": "whether rough talk is just adolescence",
-            "format": "dialogue",
-            "requiredBeat": "compares repeated threats, weapon drawings, and targeted waiting before calling guardians"
-          },
           "scenario": "\"They all talk rough,\" a volunteer says, nudging a cracked skateboard deck under the bench. Ryan opens the incident note beside the park map and phone list. Repeated threats, weapon drawings, and targeted waiting point to one teen. Before the park closes, Ryan has to choose between calling it adolescence and giving guardians the facts.",
           "whatToDo": "Call guardians with the behavior sequence: threats, drawings, targeted waiting, and prior redirects. Avoid labels and stick to facts.",
           "whyItMatters": "Rough talk alone may not mean much. Repetition plus targeted waiting raises the need for support before escalation."
@@ -3670,13 +3018,6 @@
             "gaming",
             "rehearsal"
           ],
-          "planSpec": {
-            "domain": "after-school gaming room",
-            "audience": "a program lead reading group fixation",
-            "stakes": "whether online boasting deserves any action",
-            "format": "vignette",
-            "requiredBeat": "acts when threats, access to a rival, and repeated rehearsal language cluster"
-          },
           "scenario": "A controller cable knots around a chair leg while Olivier checks the sign-in sheet. The chat printout shows boasting, but the console cabinet questions and repeated rehearsal language point toward one rival. The next program starts in twenty minutes, and Olivier has to choose between treating the talk as online noise or acting on the cluster. It is Wednesday evening.",
           "whatToDo": "Lock the console cabinet, separate the students, and bring the chat printout to the program director. Keep the concern tied to access and rehearsal language.",
           "whyItMatters": "The online boasting matters because it connects to a rival and a physical access point. The response can be supportive and specific."
@@ -3689,13 +3030,6 @@
             "music",
             "fixation"
           ],
-          "planSpec": {
-            "domain": "private music lesson studio",
-            "audience": "a teacher noticing a child targeting another student",
-            "stakes": "whether talent and youth soften the pattern",
-            "format": "decision_point",
-            "requiredBeat": "changes overlap times after fixation, property damage, and hallway blocking repeat"
-          },
           "scenario": "You are Hanna, looking at a violin case with one latch open beside the lesson roster. A talented student has fixated on another student, damaged a folder, and blocked the practice-room door twice. A parent email is drafted. Before the next overlap, you have to choose whether youth and talent soften the pattern or whether schedules change.",
           "whatToDo": "Change overlap times, send the parent email with behavior only, and keep the practice-room door supervised.",
           "whyItMatters": "Talent is not a safety signal. The repeated targeting and door blocking are the behaviors that need intervention."
@@ -3708,13 +3042,6 @@
             "camp",
             "equipment"
           ],
-          "planSpec": {
-            "domain": "summer camp archery shed",
-            "audience": "a counselor weighing youth behavior",
-            "stakes": "whether to wait until intent is clear",
-            "format": "postmortem",
-            "requiredBeat": "removes access after repeated rule testing and fascination with a specific cabinmate"
-          },
           "scenario": "It took Pablo until the quiver hung above a locked pegboard to stop waiting for intent. The equipment key had been tested, the cabin list had one name circled in conversation, and the range whistle was missing twice. Before the next range period, Pablo has to choose access limits over another wait-and-see hour. It is Friday night.",
           "whatToDo": "Remove archery access, change cabin overlap, and tell the camp director the exact behavior sequence. Do not wait for intent to become clearer.",
           "whyItMatters": "Intent can arrive too late. Equipment access plus fixation supports a narrow intervention now."
@@ -3727,13 +3054,6 @@
             "library",
             "support"
           ],
-          "planSpec": {
-            "domain": "public library teen room",
-            "audience": "a librarian after repeated hostile drawings",
-            "stakes": "whether reassurance is delaying help",
-            "format": "before_after",
-            "requiredBeat": "brings in a youth specialist when fixation and access questions keep recurring"
-          },
           "scenario": "A sketchbook lies open on a beanbag chair in the teen room. Before, Hiroshi reassured staff that hostile drawings might be expression. After the same fixation appears with access questions about the branch schedule, he rings the desk bell, calls a youth specialist, and documents the pattern before the next program.",
           "whatToDo": "Give the youth specialist the order of events: drawings, branch-schedule questions, and repeated presence near the teen-room door. Change room access before the next program, add desk coverage, and document behavior and target without diagnosis.",
           "whyItMatters": "Reassurance can delay help. A specialist can respond to the pattern without turning the teen into a label."
@@ -3752,8 +3072,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The action is documentation and support, not diagnosis. Tool access plus fixation is enough to prepare before the next meeting.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3765,8 +3084,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated threats, drawings, and targeted waiting form a behavior pattern. Guardians need facts early, not after escalation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3778,8 +3096,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cluster is the reason to act. The move is limited access and supervision, not certainty about intent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3791,8 +3108,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Talent and youth can soften perception, but recurrence around another student is the stronger signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3804,8 +3120,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Equipment access is the lever. Removing it and changing schedules fits the evidence without a public label.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3817,8 +3132,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Innocence stories can treat recurrence as a phase. Intervention starts when behavior repeats around access or fixation.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3830,8 +3144,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Behavior-first work keeps to facts: what happened, who has access, what support is needed. It does not diagnose.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3843,8 +3156,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A youth specialist can help plan support and boundaries. Reassurance alone can delay action when access questions recur.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3856,8 +3168,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The pattern with fixation, access, and escalation deserves earlier intervention. One joke lacks that sequence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3918,24 +3229,17 @@
           }
         ],
         "twentyFourHourChallenge": "Write one youth concern as four factual lines: behavior, access, fixation, escalation. Choose who needs that information for support.",
-        "weeklyPractice": "This week, practice replacing reassuring labels with observable notes whenever a youth pattern concerns you.",
-        "title": "Naming Youth Warning Signals"
+        "weeklyPractice": "This week, practice replacing reassuring labels with observable notes whenever a youth pattern concerns you."
       },
       "memorableLines": [
         {
-          "text": "Innocence should not erase recurrence.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter warning without diagnosis."
+          "text": "Innocence should not erase recurrence."
         },
         {
-          "text": "Naming is not blaming.",
-          "location": "breakdown.deepRead",
-          "why": "It separates intervention from accusation."
+          "text": "Naming is not blaming."
         },
         {
-          "text": "Innocence is a reason to intervene carefully.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves care while rejecting denial."
+          "text": "Innocence is a reason to intervene carefully."
         }
       ]
     },
@@ -3962,13 +3266,6 @@
             "city hall",
             "route"
           ],
-          "planSpec": {
-            "domain": "city hall constituent office",
-            "audience": "a scheduler reading recognition-seeking threats",
-            "stakes": "whether theatrical letters are harmless because they want attention",
-            "format": "scene",
-            "requiredBeat": "separates spectacle from access attempts and changes the councilor route"
-          },
           "scenario": "At 11:26 a.m., Julia holds a glossy headshot marked with red pen beside a constituent letter. The front desk has logged two route questions, and the councilor's route card is missing from its tray. Before the afternoon meeting, Julia has to choose between dismissing spectacle and changing the exit path. The scheduler has the public calendar open, but she closes the route drawer before the next visitor approaches.",
           "whatToDo": "Keep the letter, note the route questions, and change the councilor's exit path. Do not reward the spectacle with a private reply.",
           "whyItMatters": "The red pen may be performance. Route questions are access behavior, and access changes the safety read."
@@ -3981,13 +3278,6 @@
             "radio",
             "airtime"
           ],
-          "planSpec": {
-            "domain": "public radio station lobby",
-            "audience": "a producer handling a caller obsessed with airtime",
-            "stakes": "whether wanting recognition lowers risk",
-            "format": "dialogue",
-            "requiredBeat": "links repeated calls, grievance scripts, and arrival at the studio door"
-          },
           "scenario": "\"He says he deserves airtime,\" the receptionist says as the on-air light glows behind frosted glass. Luke checks the call sheet, guest log, and studio badge drawer. The caller has repeated the same grievance script and is now at the studio door. Luke has to choose whether recognition seeking lowers concern or changes access. The receptionist can see the badge drawer, the lobby camera, and the caller’s name written twice on the sheet.",
           "whatToDo": "Restrict studio access, brief reception, and keep the caller out of airtime decisions. Join the calls, scripts, and arrival in one note.",
           "whyItMatters": "Recognition seeking can be the motive, not a reason to relax. The lobby arrival turns the script into an access pattern."
@@ -4000,13 +3290,6 @@
             "festival",
             "author"
           ],
-          "planSpec": {
-            "domain": "book festival signing line",
-            "audience": "an event manager seeing fixation on an author",
-            "stakes": "whether fan language cancels grievance",
-            "format": "vignette",
-            "requiredBeat": "uses staff escort after gifts, accusations, and hotel questions appear together"
-          },
           "scenario": "A hardback lies open to a blank dedication page while Vincent watches the signing wristband line. The guest carries a gift bag, accuses the featured writer of betrayal, and asks which hotel shuttle the featured writer uses. Vincent has to choose whether fan language cancels grievance or whether staff escort and hotel privacy are needed. It is Thursday morning. The festival shuttle clipboard is on the volunteer table, so Vincent moves it before the signing line advances.",
           "whatToDo": "Add staff escort, keep hotel shuttle details private, and separate the guest from the featured writer route. Document the gift, accusation, and question together.",
           "whyItMatters": "Admiration and grievance can coexist. Hotel questions shift the behavior from emotional display toward access."
@@ -4019,13 +3302,6 @@
             "campaign",
             "recognition"
           ],
-          "planSpec": {
-            "domain": "mayoral campaign field office",
-            "audience": "a volunteer coordinator assessing an angry supporter",
-            "stakes": "whether public loyalty means safety",
-            "format": "decision_point",
-            "requiredBeat": "removes access after recognition demands turn into route questions"
-          },
           "scenario": "You are Marit, and walk sheets are stacked on a folding chair beside a route map. An angry supporter wearing a campaign button says he deserves recognition, then asks which canvass route the mayor will join. You have to choose whether public loyalty means safety or whether route access should be removed. Marit must decide before the protected route or access point changes. It is Friday night. The route map is close enough for volunteers to photograph, and Marit removes it before the supporter leans nearer.",
           "whatToDo": "Remove route maps from open areas, keep candidate movement with staff, and record the recognition demand with the route question.",
           "whyItMatters": "Loyalty can sit beside grievance. Route questions are the practical cue that changes the response."
@@ -4038,13 +3314,6 @@
             "lecture",
             "approach"
           ],
-          "planSpec": {
-            "domain": "university lecture hall for a visiting judge",
-            "audience": "a security lead reading approach behavior",
-            "stakes": "whether theatrical complaints are only protest",
-            "format": "postmortem",
-            "requiredBeat": "redirects entry after repeated grievance notes and attempts to reach the green room"
-          },
           "scenario": "It took Matteo until the reserved-seat placard was taped to the chair to see the approach pattern. The green-room pass had been requested twice, grievance notes filled the program booklet, and a hallway door was tested. He has to choose protest management or entry redirection before the judge arrives. It is Saturday afternoon. The hallway door alarm is quiet but armed, giving Matteo a specific access point to protect before applause starts.",
           "whatToDo": "Redirect entry, tighten green-room passes, and keep grievance notes with the hallway-door attempts. Protect the room without debating the protest.",
           "whyItMatters": "The complaint may be public speech. Attempts to reach the green room are access behavior."
@@ -4057,13 +3326,6 @@
             "television",
             "spectacle"
           ],
-          "planSpec": {
-            "domain": "television studio audience line",
-            "audience": "a page handling a guest who wants to be noticed",
-            "stakes": "whether spectacle means unseriousness",
-            "format": "before_after",
-            "requiredBeat": "flags the pattern when performance, grievance, and door-testing line up"
-          },
           "scenario": "A numbered audience card is bent in half near the studio line. Before, Devon treated the loud performance as normal audience energy. After the guest repeats a grievance, demands to be noticed, and tests the stage door, Devon uses the security radio. Spectacle no longer stays separate from access. It is Monday night. Devon sees the stage manager look over, and the radio call happens while the guest is still outside the door.",
           "whatToDo": "Flag the guest to security, keep the stage door covered, and record the performance, grievance, and door test as one pattern.",
           "whyItMatters": "Spectacle can distract staff from the practical cue. Door testing makes the performance actionable."
@@ -4082,8 +3344,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Spectacle is less important than access. Route questions show where the behavior could go next.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4095,8 +3356,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern moved from calls into a physical door. Studio access should change before airtime becomes the bargaining chip.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4108,8 +3368,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fan language may coexist with grievance. Gifts, accusations, and hotel questions justify escort and privacy.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4121,8 +3380,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Recognition demands become more serious when they shift toward route knowledge. Remove that access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4134,8 +3392,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Protected-space approach turns complaint into an access problem. The green room matters more than theatrical wording.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4147,8 +3404,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Spectacle can make behavior look like performance. The question is whether performance pairs with grievance and access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4160,8 +3416,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recognition can be the payoff the behavior seeks. When paired with access, it deserves planning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4173,8 +3428,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The show is not the issue; the stage door test is. Access behavior makes it actionable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4186,8 +3440,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Approach behavior changes the case. Dramatic writing alone may need documentation; routes and doors need planning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4244,24 +3497,17 @@
           }
         ],
         "twentyFourHourChallenge": "Take one public-facing complaint and split it into three lines: recognition sought, grievance repeated, access attempted.",
-        "weeklyPractice": "This week, practice route-first thinking for public events: what information, door, badge, or path would you protect if spectacle turned practical?",
-        "title": "Separating Spectacle From Access"
+        "weeklyPractice": "This week, practice route-first thinking for public events: what information, door, badge, or path would you protect if spectacle turned practical?"
       },
       "memorableLines": [
         {
-          "text": "Attention can be the prize and the pathway.",
-          "location": "breakdown.fastRead",
-          "why": "It captures recognition motive without making it glamorous."
+          "text": "Attention can be the prize and the pathway."
         },
         {
-          "text": "The signal strengthens when grievance pairs with repeated approach behavior and protected routes.",
-          "location": "breakdown.deepRead",
-          "why": "It states the specific access pattern the reader should retrieve."
+          "text": "The signal strengthens when grievance pairs with repeated approach behavior and protected routes."
         },
         {
-          "text": "The answer is behavioral: recognition sought, grievance repeated, access attempted, route protected.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the chapter a complete operational checklist."
+          "text": "The answer is behavioral: recognition sought, grievance repeated, access attempted, route protected."
         }
       ]
     },
@@ -4288,13 +3534,6 @@
             "trail",
             "margin"
           ],
-          "planSpec": {
-            "domain": "mountain trailhead before a storm",
-            "audience": "a trip leader deciding under thin signal",
-            "stakes": "whether to predict lightning or build margin",
-            "format": "scene",
-            "requiredBeat": "turns the group back because forecast uncertainty plus exposed ridge leaves no buffer"
-          },
           "scenario": "At 6:50 a.m., Natalie grips a topo map snapping in the wind beside the trail register. The headlamp batteries are fresh, but the exposed ridge has no shelter and the forecast will not settle. Before the group starts, she has to choose between predicting lightning and turning back because there is no buffer.",
           "whatToDo": "Turn the group back at the trailhead and choose a lower route later. Treat exposed terrain plus uncertain forecast as a margin problem.",
           "whyItMatters": "The issue is not proving lightning. The ridge leaves no room for being wrong, and margin is cheapest before ascent."
@@ -4307,13 +3546,6 @@
             "flood",
             "preparation"
           ],
-          "planSpec": {
-            "domain": "basement apartment during flood watch",
-            "audience": "a tenant preparing without panic",
-            "stakes": "whether preparation means fear has taken over",
-            "format": "dialogue",
-            "requiredBeat": "moves documents and medicine upstairs because prediction is weak and loss is high"
-          },
           "scenario": "\"It is only a watch,\" Peter's neighbor says as a plastic document box sits on the second stair. The weather alert glows on his phone, and the medicine pouch is beside the sink. The floor is dry. Peter has to choose whether preparation means fear has taken over or whether weak prediction plus high loss justifies moving the box. It is Thursday morning.",
           "whatToDo": "Move documents and medicine upstairs, then stop. Do the cheap protective action without building a disaster story around it.",
           "whyItMatters": "The flood is uncertain, but the cost of moving irreplaceable items is low. Margin protects without panic."
@@ -4326,13 +3558,6 @@
             "data center",
             "backup"
           ],
-          "planSpec": {
-            "domain": "data center overnight maintenance",
-            "audience": "an engineer facing a rare cascade risk",
-            "stakes": "whether confidence should outrun weak signals",
-            "format": "vignette",
-            "requiredBeat": "adds rollback staff and spare hardware instead of betting on the dashboard"
-          },
           "scenario": "A server rail sits half pulled from the rack while Julien checks the rollback checklist. The dashboard is mostly green, but one spare drive is already used and latency has flickered twice. He has to choose whether confidence should outrun weak signals or whether to add rollback staff and spare hardware before maintenance continues. It is Friday night.",
           "whatToDo": "Add rollback staff, stage spare drives, and delay the risky step until the backup is ready. Do not ask the dashboard for certainty it cannot give.",
           "whyItMatters": "Rare cascades offer thin signal. Spare capacity is the practical answer when confidence would be mostly a story."
@@ -4345,13 +3570,6 @@
             "winter",
             "route"
           ],
-          "planSpec": {
-            "domain": "winter highway car-share trip",
-            "audience": "a driver weighing black-ice uncertainty",
-            "stakes": "whether no visible crash means safe enough",
-            "format": "decision_point",
-            "requiredBeat": "waits at the service plaza and changes route because margin is cheap now"
-          },
           "scenario": "You are Anke, watching a salt truck idle under sodium lights while the route printout curls beside a fuel receipt. The snow brush is still dry, and no crash is visible from the service plaza. Before the next highway stretch, you have to choose whether no visible wreck means safe enough or whether waiting here keeps margin cheap. It is Saturday afternoon.",
           "whatToDo": "Wait at the service plaza, change to the slower route, and message the arrival delay. Keep help nearby while the signal is uncertain.",
           "whyItMatters": "Black ice does not need to prove itself at the plaza. The plaza gives time, light, and help, which disappear on the empty road."
@@ -4364,13 +3582,6 @@
             "theatre",
             "exits"
           ],
-          "planSpec": {
-            "domain": "small theatre pyrotechnic rehearsal",
-            "audience": "a stage manager handling low-frequency hazard",
-            "stakes": "whether expertise removes the need for margin",
-            "format": "postmortem",
-            "requiredBeat": "stops rehearsal until ventilation and exits are rechecked, despite no incident yet"
-          },
           "scenario": "It took Marta one coil of ignition wire beside the apron to stop trusting expertise alone. The exit plan was outdated, and the vent fan sounded weak. No incident had happened. Before rehearsal continued, she had to choose between experienced confidence and rechecking ventilation and exits.",
           "whatToDo": "Stop rehearsal until the vent fan and exit plan are checked, then restart with the margin visible to the crew.",
           "whyItMatters": "Low-frequency hazards punish overconfidence. Expertise helps only when the exits and ventilation still work."
@@ -4383,13 +3594,6 @@
             "clinic",
             "cooler"
           ],
-          "planSpec": {
-            "domain": "remote clinic vaccine fridge outage",
-            "audience": "a nurse planning for a rare failure",
-            "stakes": "whether worry or preparation is speaking",
-            "format": "before_after",
-            "requiredBeat": "moves stock to a backup cooler because temperature signal is thin but stakes are high"
-          },
           "scenario": "A thermometer blinks inside the cooler lid during the remote clinic outage. Before, Aisha watched the temperature log and backup battery, hoping the fridge would hold. After the second flicker, she moves the vaccine stock to a backup cooler. The signal is thin, but the stakes are too high for waiting.",
           "whatToDo": "Move the stock to the backup cooler, log the temperature, and check the battery. Stop once the margin is in place.",
           "whyItMatters": "Preparation has a concrete endpoint. The cooler protects the stock without pretending failure is certain."
@@ -4408,8 +3612,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The signal is thin, but the exposed ridge makes margin cheap now and costly later. Turning back is preparation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4421,8 +3624,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Moving documents and medicine protects high-loss items without claiming the flood will happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4434,8 +3636,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rollback staff and spare drives add resilience without pretending the dashboard proves failure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4447,8 +3648,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The service plaza creates buffer. No visible crash does not mean black ice risk has disappeared.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4460,8 +3660,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expertise helps, but low-frequency hazards need margin. Rechecking exits and ventilation is the narrow preparation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4473,8 +3672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "When signals are thin, certainty can outrun evidence. Preparation handles uncertainty better than prediction theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4486,8 +3684,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Margin creates room: time, backup, route, exit, or spare capacity. Panic creates story without useful buffer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4499,8 +3696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The backup cooler protects stock while evidence is still limited. It is a proportionate margin move.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4512,8 +3708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Preparation accepts uncertainty. Forced certainty either overclaims or delays until the cheap margin is gone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4566,24 +3761,17 @@
           }
         ],
         "twentyFourHourChallenge": "Pick one severe but hard-to-predict risk. Add one margin today: backup route, spare key, charged battery, copied document, extra time, or a named contact.",
-        "weeklyPractice": "Once this week, review a plan and ask where ten minutes, one spare, or one extra person would make a bad turn easier to survive.",
-        "title": "Building Margin For Extreme Hazards"
+        "weeklyPractice": "Once this week, review a plan and ask where ten minutes, one spare, or one extra person would make a bad turn easier to survive."
       },
       "memorableLines": [
         {
-          "text": "When you cannot know, create room.",
-          "location": "breakdown.fastRead",
-          "why": "It captures the chapter move in a portable sentence."
+          "text": "When you cannot know, create room."
         },
         {
-          "text": "Preparation is not panic.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful margin from dread."
+          "text": "Preparation is not panic."
         },
         {
-          "text": "Planning is not panic because planning ends in a concrete margin.",
-          "location": "breakdown.fullRead",
-          "why": "It gives a clear test for productive preparation."
+          "text": "Planning is not panic because planning ends in a concrete margin."
         }
       ]
     },
@@ -4610,13 +3798,6 @@
             "elevator",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "downtown office elevator at closing",
-            "audience": "a worker checking whether fear has evidence",
-            "stakes": "whether to obey anxiety or the cue pattern",
-            "format": "scene",
-            "requiredBeat": "names the cues: blocked door angle, access questions, and a step closer, then exits at reception"
-          },
           "scenario": "At 6:41 p.m., Emma sees two pairs of shoes in the mirrored elevator wall. The elevator panel is behind the other person, and he asks which floor her access card opens. When she shifts, he steps closer. Before the doors close, Emma has to choose whether this is anxiety or a cue pattern and exits at reception.",
           "whatToDo": "Name the cues: blocked panel, access question, step closer. Get off at reception and stay near the bell and staff until the route is clear.",
           "whyItMatters": "The fear is evidence-bound. It points to specific access behavior, so Emma can take a specific boundary action."
@@ -4629,13 +3810,6 @@
             "bus stop",
             "present"
           ],
-          "planSpec": {
-            "domain": "late bus stop after a concert",
-            "audience": "a commuter sorting fear from fantasy",
-            "stakes": "whether the alarm is present-bound",
-            "format": "dialogue",
-            "requiredBeat": "checks what is real now: repeated approach, empty shelter, and ignored distance"
-          },
           "scenario": "\"You waiting for the last bus too?\" the man asks as a poster peels in damp air. Adam checks the transit app beside the empty shelter bench. He steps toward the streetlight; the man follows after Adam says he is fine. Adam has to choose whether the alarm is fantasy or present-bound: repeated approach, empty shelter, ignored distance. It is Friday night.",
           "whatToDo": "Move under the streetlight, keep the transit app open, and call someone while staying visible. Act on the present cues, not on a private movie.",
           "whyItMatters": "The alarm can point to behavior in the current scene. That makes it fear worth using rather than worry to feed."
@@ -4648,13 +3822,6 @@
             "lab",
             "cue"
           ],
-          "planSpec": {
-            "domain": "shared lab freezer room",
-            "audience": "a researcher comparing worry with signal",
-            "stakes": "whether the feeling belongs to memory or this room",
-            "format": "vignette",
-            "requiredBeat": "discovers the present cue: the same visitor has followed through three restricted doors"
-          },
           "scenario": "Frost smokes from an open freezer drawer while Hugo steadies a sample tray. He almost calls the feeling memory from old late shifts. Then the access badge log on the wall tablet shows the same visitor followed through three restricted doors. Hugo has to choose whether the feeling belongs to memory or this room. It is Saturday afternoon.",
           "whatToDo": "Leave the freezer room, call security, and preserve the badge record. Use the restricted-door cue, not the old memory, as the reason.",
           "whyItMatters": "The present cue separates fear from worry. The same visitor through three restricted doors is evidence enough for a narrow action."
@@ -4667,13 +3834,6 @@
             "hotel",
             "route"
           ],
-          "planSpec": {
-            "domain": "conference hotel corridor",
-            "audience": "a speaker after a panel reception",
-            "stakes": "whether not seeming dramatic matters more than evidence",
-            "format": "decision_point",
-            "requiredBeat": "acts because the fear can point to route questions, matching pace, and a blocked exit"
-          },
           "scenario": "You are Kasia, passing a room-service tray in a quiet hotel corridor with your lanyard still on. The hallway sign points left, but the same person has asked route questions, matched pace, and paused near the service alcove by the exit. You have to choose whether not seeming dramatic matters more than the evidence. Kasia must decide before the protected route or access point changes. It is Monday night.",
           "whatToDo": "Walk toward the lobby, call the front desk, and stop answering route questions. Let the cue pattern decide, not the fear of looking dramatic.",
           "whyItMatters": "The fear can point to route questions, matching pace, and a partly blocked exit. That is enough for a boundary action."
@@ -4686,13 +3846,6 @@
             "community",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "community center front desk",
-            "audience": "a volunteer postmortem after a tense shift",
-            "stakes": "whether the alarm was panic or useful fear",
-            "format": "postmortem",
-            "requiredBeat": "lists the actual cues after the fact and rewrites the safety handoff"
-          },
           "scenario": "It took Pavel until the desk calendar opened to tomorrow's shift to separate panic from useful fear. The visitor ledger showed repeated questions, the panic button side of the counter had been crowded, and the handoff note said only “weird vibe.” He has to choose whether to leave a mood or list the actual cues. It is Tuesday afternoon.",
           "whatToDo": "Rewrite the handoff note with the visitor ledger entries, counter position, and panic-button crowding. Give the next volunteer evidence, not mood.",
           "whyItMatters": "A useful postmortem turns fear into transferable information. The next shift can act on cues, not on atmosphere."
@@ -4705,13 +3858,6 @@
             "parking",
             "boundary"
           ],
-          "planSpec": {
-            "domain": "parking lot payment kiosk",
-            "audience": "a driver integrating boundary and preparation",
-            "stakes": "whether fear should freeze action or guide it",
-            "format": "before_after",
-            "requiredBeat": "uses the evidence-bound alarm to move toward light, staff, and a locked door"
-          },
           "scenario": "A payment kiosk screen flashes transaction canceled while Nina holds her parking ticket and car key. Before, the alarm froze her at the machine. After she notices the repeated closing distance, she moves toward the lit storefront, locks the car remotely, and calls staff from the door instead of staying at the kiosk.",
           "whatToDo": "First lock the car remotely while still facing the open area, then move toward the lit storefront instead of staying at the kiosk. Tell staff, “A person kept closing distance after I moved,” and ask to wait inside because the kiosk keeps her alone and fixed in place.",
           "whyItMatters": "The alarm is tied to repeated closing distance. Light, staff, and a locked door turn fear into a practical boundary."
@@ -4730,8 +3876,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cues are present and specific. Reception gives light, staff, and distance without needing a debate about intent.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -4743,8 +3888,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The test is whether the alarm belongs to the present scene. Repeated approach and ignored distance are usable cues.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -4756,8 +3900,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The feeling now points to restricted-door behavior. It is not certainty, but it is enough for a narrow action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -4769,8 +3912,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Social embarrassment is weaker than route questions, matched pace, and a blocked exit. Those cues justify action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -4782,8 +3924,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A postmortem should preserve the cues that made the alarm useful so the next volunteer has a better handoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -4795,8 +3936,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful alarm points to real conditions. Panic and vague dread may feel strong without being evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -4808,8 +3948,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Without a cue, the feeling may be worry, memory, or fantasy. Naming that prevents a private movie from becoming fact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4821,8 +3960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Boundaries turn evidence into action: leave, lock, document, bring staff, change route, or reduce access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -4834,8 +3972,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Present evidence deserves the first action. Vivid imagination may need care, but it is not the same as a signal.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4888,24 +4025,17 @@
           }
         ],
         "twentyFourHourChallenge": "Ask one fear what present evidence it points to. If the answer is specific, take one boundary action. If not, write “worry” and stop building the scene.",
-        "weeklyPractice": "For one week, practice the evidence question whenever alarm appears: what does it point to, and what is the smallest boundary action that fits?",
-        "title": "Keeping Fear Evidence Bound"
+        "weeklyPractice": "For one week, practice the evidence question whenever alarm appears: what does it point to, and what is the smallest boundary action that fits?"
       },
       "memorableLines": [
         {
-          "text": "The alarm earns trust by naming what is real.",
-          "location": "breakdown.fastRead",
-          "why": "It sums up evidence-bound fear."
+          "text": "The alarm earns trust by naming what is real."
         },
         {
-          "text": "Evidence-bound fear improves judgment. Free-floating worry consumes it.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful fear from vague worry."
+          "text": "Evidence-bound fear improves judgment. Free-floating worry consumes it."
         },
         {
-          "text": "With reality, fear becomes a tool for timing.",
-          "location": "breakdown.fullRead",
-          "why": "It closes the book on practical fear rather than panic."
+          "text": "With reality, fear becomes a tool for timing."
         }
       ]
     }

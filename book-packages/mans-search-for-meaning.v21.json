@@ -41,13 +41,6 @@
             "ethics",
             "blackout"
           ],
-          "planSpec": {
-            "domain": "hospital ethics board deciding whether a pandemic triage policy has earned trust under blackout conditions",
-            "audience": "a physician asked to defend a calm policy after the generator failed overnight",
-            "stakes": "a rule written in conference-room language may fail the first time frightened families meet it",
-            "format": "decision_point",
-            "requiredBeat": "the physician places the printed triage policy beside the blackout incident log and strikes the sentence that never survived the night"
-          },
           "scenario": "The emergency stairwell still smells faintly of diesel from the failed generator when Amelia reaches the ethics board table at 7:40 a.m. She sets the paper triage policy beside the blackout incident log and the stairwell radio. One sentence assumes families can be updated every fifteen minutes. Last night, that sentence collapsed. Her pen hovers over it. She must decide whether to defend the calm wording or strike the line that never survived the dark.",
           "whatToDo": "Put the policy beside the incident log and mark the sentence that failed under pressure. Let the night test the rule before the board protects its language.",
           "whyItMatters": "A humane policy earns trust by surviving the conditions it claims to guide. If the sentence only works in a calm room, defending it protects polish instead of patients."
@@ -60,13 +53,6 @@
             "winter",
             "capacity"
           ],
-          "planSpec": {
-            "domain": "winter shelter director deciding whether to keep a donor-friendly program while turning people away from beds",
-            "audience": "a nonprofit leader who has to choose between public praise and actual night capacity",
-            "stakes": "a glossy program may consume the blankets and staff needed for freezing nights",
-            "format": "before_after",
-            "requiredBeat": "after seeing three names turned away on the weather-night clipboard, she cancels the donor event and moves the staff hours back to intake"
-          },
           "scenario": "It took Emily two snowstorms at the Halifax winter shelter to understand what the gala budget was hiding. Before, the donor program binder looked like dignity: photographs, linen napkins, a short speech. After the second cold alert, the 11:20 p.m. weather-night clipboard showed three names turned away while folding cots sat unstaffed in storage. She cancels the donor event and moves those staff hours back to intake.",
           "whatToDo": "Test the donor program against the weather-night clipboard. Cancel the event that cannot survive the shelter's coldest duty and move the hours to intake.",
           "whyItMatters": "Public praise is not proof of service. The turned-away names show whether the program carries real cost or only tells a clean story about care."
@@ -79,13 +65,6 @@
             "graduate",
             "care"
           ],
-          "planSpec": {
-            "domain": "graduate fellowship decision colliding with eldercare for a parent after a stroke",
-            "audience": "a doctoral student who wants the prestigious exit but sees a concrete duty at home",
-            "stakes": "the fellowship solves status while leaving a parent without reliable transport to therapy",
-            "format": "reflection",
-            "requiredBeat": "The smell of disinfectant on the transfer belt makes him test the fellowship against duty, not ambition, and defer for one term with a care schedule in hand"
-          },
           "scenario": "The transfer belt is still damp from the rehab aide wiping it down. Andrew reads the fellowship email again beside his father's therapy schedule, and the prestige feels thinner in the disinfectant smell. The offer would move him across the ocean in six weeks. The schedule would leave his mother without transport every Tuesday and Friday. He stops asking what the fellowship says about his ambition and tests it against the duty in the room.",
           "whatToDo": "Place the fellowship email beside the therapy schedule and decide from the concrete duty first. Defer for one term if the care plan cannot honestly survive his absence.",
           "whyItMatters": "A prestigious choice can still be untested. The transfer belt and calendar reveal the cost the offer letter does not mention."
@@ -98,13 +77,6 @@
             "language",
             "testimony"
           ],
-          "planSpec": {
-            "domain": "municipal interpreter deciding whether to testify about asylum office language failures",
-            "audience": "a bilingual city employee asked to risk a quiet job by naming a failure she has seen",
-            "stakes": "families keep missing deadlines because official notices are unreadable in practice",
-            "format": "dialogue",
-            "requiredBeat": "she reads one mistranslated appointment notice aloud at council, then stops before explaining so the room hears the failure itself"
-          },
           "scenario": "\"Read the second line exactly as the family received it,\" the council chair says. Sophie stands at the microphone with the mistranslated notice and the case deadline stamp clipped together. \"Report after your hearing date,\" she reads. The room goes quiet because everyone hears the trap. Her supervisor watches from the back row. Sophie must decide whether to explain around the failure or let the broken sentence testify first.",
           "whatToDo": "Read the mistranslated notice aloud, then stop. Let the council hear the deadline failure before you soften it with explanation or workplace caution.",
           "whyItMatters": "The bad sentence carries the cost better than a summary. Once the room hears it, the claim is no longer abstract concern about access."
@@ -117,13 +89,6 @@
             "support",
             "term-sheet"
           ],
-          "planSpec": {
-            "domain": "software founder refusing an investor escape clause that would abandon a small support team after launch",
-            "audience": "a founder tempted by a clean acquisition clause while her team carries customer fallout",
-            "stakes": "the legal exit protects her upside while leaving customers and staff with the mess",
-            "format": "predict_reveal",
-            "requiredBeat": "when asked what the clause would require on day one after signing, she writes the names of support staff beside every unresolved ticket and rejects the clause"
-          },
           "scenario": "What does an escape clause cost on the morning after everyone celebrates? Megan predicts the term sheet will only simplify the acquisition. Then her operations lead opens the support queue: 418 unresolved tickets and four people scheduled for launch fallout. Megan writes each support person's name beside the queue on the whiteboard. Before the investor call, she must decide whether the clean clause has earned trust under day-one conditions.",
           "whatToDo": "Write the support names beside the unresolved queue before signing. Reject the escape clause if it protects the founder while abandoning the people who carry the launch.",
           "whyItMatters": "A legal clause can look clean until it is placed next to day-one responsibility. The names on the board make the cost visible before celebration hides it."
@@ -136,13 +101,6 @@
             "restitution",
             "postmortem"
           ],
-          "planSpec": {
-            "domain": "museum curator deciding whether a public statement about restitution is credible before returning the object in storage",
-            "audience": "a curator asked to publish values while the action that would prove them remains delayed",
-            "stakes": "a graceful statement may protect reputation while a family keeps waiting",
-            "format": "postmortem",
-            "requiredBeat": "you watch the curator move the draft statement under the repatriation file and schedule the return before approving the language"
-          },
           "scenario": "You see the cotton gloves first, laid flat beside a statement nobody has signed. Daniel's draft says the museum honors restitution, but the repatriation file is still under a stack of exhibition notes. In the postmortem, the failure is simple: the values statement was ready before the return was scheduled. Daniel moves the draft under the repatriation file and books the family call before approving a public word.",
           "whatToDo": "Put the statement under the repatriation file and schedule the return first. Let the action earn the language before the institution publishes itself as virtuous.",
           "whyItMatters": "A graceful statement can protect reputation while leaving the central duty untouched. The file order makes credibility depend on the return, not the phrasing."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The storm log tests the plan under cost, so revision earns more trust than reassurance. A stronger statement protects appearance while the failed radio rule remains unexamined.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The form barrier is the cost test for the belonging claim. Warmer outreach or photos may sound sincere, but they leave the untested obstacle in place.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The promotion record is where the value meets cost. Listening can help later, but defending fairness before testing it against decisions only preserves language.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The debt notices are the pressure test for honesty. Positive reasons and careful wording may matter, but they cannot replace letting the claim face the real cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The flood alert exposes whether access is real under pressure. The weakness is not abstraction or cost alone, but a value that has not survived the condition it names.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dignity is tested at the discharge desk, where privacy costs something. Empathy training or narrower wording misses the pressure point built into the room.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The care calendar makes the cost visible. Happiness and resentment are relevant emotions, but the stronger test is whether meaning survives the duty in the room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The second leader lets the value face cost and changes behavior. Repetition can help memory, but it does not prove the value when praise pulls the other way.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning is about comfort arriving before cost. The right action is not silence forever or excluding families, but making language answer to the return it claims to honor.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -303,7 +252,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test Meaning Against Cost",
         "coreSkill": "You learn to place a belief beside the pressure it claims to answer. The skill is not cynicism. It is refusing to lean hard on comfort that has never been tested.",
         "ifThenPlans": [
           {
@@ -328,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Meaning cannot arrive as a soft sentence.",
-          "location": "hook",
-          "why": "It rejects easy consolation while leaving room for a harder kind of meaning to emerge."
+          "text": "Meaning cannot arrive as a soft sentence."
         },
         {
-          "text": "No comfort enters until it has faced cost.",
-          "location": "breakdown.deepRead",
-          "why": "The short sentence gives the lesson a hard threshold and breaks the rhythm cleanly."
+          "text": "No comfort enters until it has faced cost."
         },
         {
-          "text": "Pressure-tested claims have been made to stand beside the people they affect.",
-          "location": "breakdown.fullRead",
-          "why": "It turns an abstract standard into a visible test a reader can apply."
+          "text": "Pressure-tested claims have been made to stand beside the people they affect."
         }
       ]
     },
@@ -367,13 +309,6 @@
             "intake",
             "facts"
           ],
-          "planSpec": {
-            "domain": "wildfire evacuation center intake when families arrive without addresses, medicine, or certainty",
-            "audience": "a Red Cross intake lead trying to triage needs while everyone keeps asking whether the town is still standing",
-            "stakes": "the first stories people tell themselves may determine whether insulin, pets, or missing relatives are recorded accurately",
-            "format": "scene",
-            "requiredBeat": "she separates rumor from record by taping three columns to the folding table: confirmed, feared, unknown, then makes each family place its sentence in one column"
-          },
           "scenario": "Ash falls from a jacket sleeve onto the intake form while Rachel works the folding table at the wildfire center. One family says the north road is gone. Another says the school is still standing. A man keeps repeating that his insulin cooler is probably in the truck, though nobody has found the truck. Rachel tears masking tape into three columns: confirmed, feared, unknown. Before she logs the next family, she must decide whether every sentence gets a column or becomes part of the rumor pile.",
           "whatToDo": "Tape confirmed, feared, and unknown onto the table. Make each family place its sentence before you record medicine, pets, addresses, or missing names.",
           "whyItMatters": "Shock turns guesses into working facts if no one gives them a place. The columns let fear speak without letting it overwrite the record people need later."
@@ -386,13 +321,6 @@
             "hotline",
             "timestamp"
           ],
-          "planSpec": {
-            "domain": "financial fraud hotline after retirees discover accounts were emptied overnight",
-            "audience": "a caseworker hearing callers bargain with impossible explanations",
-            "stakes": "wrong first actions can erase records or expose people to a second scam",
-            "format": "dialogue",
-            "requiredBeat": "he stops one caller from wiring recovery fees by asking her to read the bank timestamp aloud and label the hope as shock, not evidence"
-          },
           "scenario": "\"Maybe the bank can reverse it if I pay the recovery fee,\" she says. Michael sits at the fraud hotline with the case number open and a wire-transfer form blinking in the caller's email. \"Read me the bank timestamp first,\" he says. \"Now read the fee request.\" The account was emptied at 2:13 a.m.; the recovery email arrived at 2:19. Before she wires money, Michael must decide how to name the hope without shaming it.",
           "whatToDo": "Ask for the timestamp, case number, and fee request in order. Say plainly that the recovery hope is shock talking, not evidence worth wiring money to.",
           "whyItMatters": "The caller needs protection from the story that makes the loss feel reversible. Naming shock preserves dignity while stopping the next scam from using it."
@@ -405,13 +333,6 @@
             "layoff",
             "consent"
           ],
-          "planSpec": {
-            "domain": "factory layoff gate where workers are told their badges no longer open the turnstile",
-            "audience": "an operations manager responsible for the first thirty minutes after an abrupt closure notice",
-            "stakes": "people may sign bad paperwork while stunned because the familiar building no longer recognizes them",
-            "format": "decision_point",
-            "requiredBeat": "the manager moves the severance forms away from the turnstile and gives workers a separate room before signatures begin"
-          },
           "scenario": "The turnstile clicks red for the third badge in a row at the factory gate. Thomas hears the badge reader deny people who have entered this building for twenty years. A severance packet sits on the same folding table as the closure notice, and the first worker is already reaching for a pen. Thomas has to choose, before signatures begin, whether stunned people should read legal forms beside the machine that just erased their morning.",
           "whatToDo": "Move the severance packets away from the turnstile and set up a private room behind the folding screen. Let shock settle before any signature carries legal weight.",
           "whyItMatters": "The red badge light narrows judgment. Physical distance from the shock protects consent from becoming a reflex in the first stunned minutes."
@@ -424,13 +345,6 @@
             "diagnosis",
             "teach-back"
           ],
-          "planSpec": {
-            "domain": "oncology clinic first diagnosis visit when a family hears only one word after the scan result",
-            "audience": "a nurse navigator watching a family nod while absorbing almost nothing",
-            "stakes": "treatment consent can become theater if shock has blocked comprehension",
-            "format": "before_after",
-            "requiredBeat": "it takes one failed teach-back for her to replace the packet with a single card: diagnosis, next appointment, who to call tonight"
-          },
           "scenario": "It took Lea one silent elevator ride to see the packet had become a wall. Before, she handed the family a scan result folder, consent forms, and a treatment calendar while they nodded at every sentence. After the teach-back question, nobody could name the next appointment. Lea takes back the packet and writes one card: diagnosis, Tuesday at 9:00, call this number tonight.",
           "whatToDo": "Replace the packet with a single contact card after the failed teach-back. Keep only the first facts the family must use before the next appointment.",
           "whyItMatters": "Shock can make agreement look like understanding. The single card protects the next decision from a stack of words the family cannot yet hold."
@@ -443,13 +357,6 @@
             "repatriation",
             "rumors"
           ],
-          "planSpec": {
-            "domain": "airport repatriation desk after a sudden border closure leaves exchange students stranded",
-            "audience": "a consular volunteer sorting panic from actionable information",
-            "stakes": "students repeating hopeful rumors may miss the one bus that is actually confirmed",
-            "format": "predict_reveal",
-            "requiredBeat": "he asks each student to predict which rumor will still be true in two hours, then pins only confirmed transport to the board"
-          },
           "scenario": "Which sentence will still be true when the battery dies? Juliette asks it at the airport repatriation desk while exchange students hold low-battery phones full of border-closure rumors. One message promises a private coach; another says the embassy bus leaves at 6:10. She asks each student to predict which sentence will survive two hours, then must decide what reaches the confirmed board beside the bus manifest.",
           "whatToDo": "Move every travel claim onto the confirmed board only after it matches the manifest or an embassy update. Leave unverified messages off the departure list.",
           "whyItMatters": "Panic rewards the newest hopeful message. The confirmed board gives students one place where action is separated from rumor before batteries and patience run out."
@@ -462,13 +369,6 @@
             "training",
             "shock"
           ],
-          "planSpec": {
-            "domain": "search-and-rescue cold-water training when a trainee freezes after entering the lake",
-            "audience": "an instructor teaching that shock is a body event before it is a character verdict",
-            "stakes": "a trainee may misread panic as cowardice and quit the skill that could save someone later",
-            "format": "postmortem",
-            "requiredBeat": "you watch the instructor replay the first ninety seconds on a waterproof slate and mark each automatic gasp before discussing choices"
-          },
           "scenario": "You hear the gasp before anyone says the water is cold. At 6:15 a.m. on a search-and-rescue training dock near Lac Simon, Antoine stands with a waterproof slate, a rescue rope, and a thermal blanket around the trainee who froze at the buoy. In the postmortem, he replays the first ninety seconds and marks each automatic gasp before any talk about courage. The failed swim becomes a body event first, then a training decision.",
           "whatToDo": "Replay the first ninety seconds and mark the automatic gasps on the slate before discussing choices. Separate cold shock from a verdict on character.",
           "whyItMatters": "A trainee who calls panic cowardice may quit before learning. Naming the body event preserves responsibility without turning shock into shame."
@@ -487,8 +387,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The columns protect the record from shock-driven certainty. Reassurance may soothe, and dismissal may sound efficient, but both risk turning fear into fact.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -500,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the timestamps slows the bargain and grounds the decision in sequence. A quick call feeds the second scam, while a lecture may outrun his shock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -513,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The single card respects the narrowing caused by shock and preserves usable facts. More paper or slower speech can still become a wall.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -526,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Physical distance protects consent from the immediate shock cue. Explanation or sharing may help later, but neither changes the narrowed state at the gate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -539,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The prediction question separates hope from action without humiliating anyone. Letting rumor drive behavior or seizing phones both mishandle the shock.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -552,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Marking automatic gasps keeps shock from turning into shame. The goal is not blame or removal, but clearer training after the body narrows.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -565,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The minor-breach story may be shock bargaining. Sorting the logs protects decisions without pretending full certainty is already available.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -578,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Team B protects the record from the first narrowing. Hope may have a place, but if it leads before facts are sorted, it can become false certainty.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -591,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The safer story is a shock response, not a fact. Firm correction may shame the parent, while a second opinion is not the immediate issue when identifiers already match.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -629,7 +520,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Sort Shock From Evidence",
         "coreSkill": "You learn to preserve facts while shock is narrowing the room. The skill is not emotional control. It is giving fear, hope, and unknowns separate places before they start making decisions for you.",
         "ifThenPlans": [
           {
@@ -654,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first adjustment is often both protective and damaging.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence keeps adaptation morally complicated instead of making shock look simple."
+          "text": "The first adjustment is often both protective and damaging."
         },
         {
-          "text": "Name the narrowing before it starts naming reality for you.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's mental move in a sentence with pressure and agency."
+          "text": "Name the narrowing before it starts naming reality for you."
         },
         {
-          "text": "A fact held apart from fear can still guide you when fear has taken the rest of the room.",
-          "location": "breakdown.fullRead",
-          "why": "The image turns fact-sorting into a stabilizing act without denying fear."
+          "text": "A fact held apart from fear can still guide you when fear has taken the rest of the room."
         }
       ]
     },
@@ -693,13 +577,6 @@
             "choice",
             "injury"
           ],
-          "planSpec": {
-            "domain": "long-term rehabilitation ward after a cyclist learns one hand may not fully return",
-            "audience": "an occupational therapist helping a patient distinguish loss from the next chosen practice",
-            "stakes": "false cheer will insult the injury, but total resignation will steal the reachable skill",
-            "format": "scene",
-            "requiredBeat": "the therapist leaves the prognosis paper visible, then asks the patient to choose which shirt button to practice first with the adaptive hook"
-          },
           "scenario": "The blue shirt hangs from the therapy peg with every button fastened. Anna leaves the prognosis paper visible on the table: partial hand function may not return. Her patient stares past the adaptive hook and says there is no point. Anna does not cover the paper or soften the sentence. She places the hook beside the cuff. He must choose between treating the verdict as the whole day and picking the first button to practice.",
           "whatToDo": "Leave the prognosis visible and ask for the first button. Keep the loss in the room while locating the smallest practice still available.",
           "whyItMatters": "False cheer insults the injury, but total resignation gives the injury more territory than it owns. The button marks the remaining field honestly."
@@ -712,13 +589,6 @@
             "detention",
             "truth"
           ],
-          "planSpec": {
-            "domain": "immigration detention visitor room where a volunteer can offer only one reliable message",
-            "audience": "a legal volunteer facing arbitrary delays she cannot control",
-            "stakes": "promising hope would be cruel, but one accurate next step can preserve dignity",
-            "format": "dialogue",
-            "requiredBeat": "she crosses out the comforting prediction and writes the one verified filing date on the visitor-room form"
-          },
           "scenario": "\"Do not tell me it will be fine,\" the man says. James sits down in the immigration detention visitor room with a clear plastic folder, a visitor-room form, and one verified filing date. The next hearing may move again for reasons nobody explains. \"I can tell you what is true today,\" James says. His pen hovers over a comforting prediction he wrote out of habit. He must decide whether to cross it out before it becomes a promise.",
           "whatToDo": "Cross out the prediction and write the verified filing date. Offer the one reliable message without pretending arbitrary delay has become fair.",
           "whyItMatters": "Dignity is not preserved by false hope. A true next step gives the person something to hold without making the volunteer's comfort the priority."
@@ -731,13 +601,6 @@
             "insurance",
             "task"
           ],
-          "planSpec": {
-            "domain": "flooded neighborhood cleanup where insurance decisions are arbitrary and uneven",
-            "audience": "a block captain watching neighbors compare who was approved and who was denied",
-            "stakes": "resentment may swallow the one useful act the block can still coordinate",
-            "format": "decision_point",
-            "requiredBeat": "the captain stops the argument over adjuster luck and assigns the only shared task: photograph every furnace serial plate before debris pickup"
-          },
           "scenario": "Mud has dried in a brown ring around the furnace door. David listens as neighbors compare insurance decisions that make no sense: one approved, three denied, two still waiting. The debris pickup deadline is tomorrow, and the furnace serial plates will be gone with the wreckage. His phone is already open to the camera. David faces a choice: argue over adjuster luck, or assign the one shared task before the trucks arrive.",
           "whatToDo": "Stop the argument long enough to photograph every furnace serial plate. Name the unfairness, then protect the documentation still within reach.",
           "whyItMatters": "Arbitrary outcomes can swallow attention. The photos do not fix the unfairness, but they preserve the one action the block can still take together."
@@ -750,13 +613,6 @@
             "burnout",
             "repair"
           ],
-          "planSpec": {
-            "domain": "burnout leave from a public-defender office where a lawyer cannot repair every failed case",
-            "audience": "a lawyer returning from leave without pretending the system became fair",
-            "stakes": "if she treats every loss as personal failure, she will collapse; if she treats none as personal, she will harden",
-            "format": "reflection",
-            "requiredBeat": "after rereading three closed files, she writes one repairable practice on a sticky note and one unfixable fact below it"
-          },
           "scenario": "It took Olivia six months away to stop calling every bad outcome her verdict. On Sunday night, three closed case files sit beside her return-to-work letter. One client missed a hearing because the notice came late. One plea was rushed by a crowded docket. One family never got her call. Olivia writes one repairable practice on a yellow sticky note, then one unfixable fact below it.",
           "whatToDo": "Write one practice you can change and one fact you cannot repair. Return with both sentences visible instead of blaming yourself for all of it or none of it.",
           "whyItMatters": "Inner freedom gets distorted when responsibility is either total or absent. The two sentences keep repair from becoming self-destruction."
@@ -769,13 +625,6 @@
             "memory",
             "love"
           ],
-          "planSpec": {
-            "domain": "nursing home dining room where a son visits a mother who no longer recognizes him",
-            "audience": "an adult child deciding whether love depends on being known in return",
-            "stakes": "the visit may become either performance for recognition or a chosen act without reward",
-            "format": "vignette",
-            "requiredBeat": "you watch him stop correcting her and cut the peach into smaller pieces because care is still available even when recognition is not"
-          },
           "scenario": "You notice the peach first, untouched on the rim of the plate. Matthew sits in the nursing home dining room with a visitor name tag curling at the edge. His mother asks when her son is coming. He begins to correct her, then sees the fork slide away on the vinyl tray. He must decide whether to chase recognition again or cut the peach into smaller pieces because care is still available.",
           "whatToDo": "Stop correcting and cut the peach smaller. Let love take the form still open today, even when recognition has not arrived with it.",
           "whyItMatters": "The visit cannot choose memory back into place. It can still choose care, and that keeps love from depending only on being known in return."
@@ -788,13 +637,6 @@
             "fieldwork",
             "log"
           ],
-          "planSpec": {
-            "domain": "remote weather station crew trapped by a storm after supply flight cancellation",
-            "audience": "a field scientist keeping morale from becoming denial",
-            "stakes": "chance controls the flight window, but not the log entry that may protect the next crew",
-            "format": "postmortem",
-            "requiredBeat": "when the supply flight is cancelled, she writes the failed assumption into the station log instead of giving another morale speech"
-          },
           "scenario": "What remains for Chloe when the plane turns back and nobody has done anything wrong? At 5:30 a.m. inside the remote weather station, she reads the cancelled flight notice while the barometer printout keeps dropping. In the postmortem, the crew remembers the morale speech she almost gave. Instead, she opened the station log and wrote the failed assumption: three clear days after the first front was not enough for resupply.",
           "whatToDo": "Write the failed assumption into the station log before giving another morale speech. Let chance remain chance while preserving what the next crew can use.",
           "whyItMatters": "A storm may control the flight window, but it does not control the record. The log turns one arbitrary failure into usable care for people who come later."
@@ -813,8 +655,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first button preserves a real choice without denying the prognosis. Hiding the paper or offering hopeful odds makes comfort compete with truth.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -826,8 +667,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The verified date is the small response available under arbitrary delay. A prediction lies kindly, while a full explanation may bury the only usable fact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -839,8 +679,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The photos protect the action still available. Comparing approvals may be understandable, and positivity is insulting, but neither preserves evidence before pickup.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -852,8 +691,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The two sentences keep responsibility narrow and real. Blaming only the system hardens her, while total blame turns repair into collapse.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -865,8 +703,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cutting the peach chooses the care still available. Correction chases a form of recognition that is absent, and leaving may abandon the remaining act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -878,8 +715,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Agency must stay narrow or it becomes blame. The problem is not too much emotion, but language that shrinks damage and overstates choice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -891,8 +727,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The log is the response still under her control. Morale may matter later, but the record protects future crews without denying chance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -904,8 +739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The second keeps the remaining choice narrow and concrete. Broad attitude language can sound like the person is responsible for overcoming fate by will.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -917,8 +751,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Liberation or relief may feel unreal and mixed with bitterness. Forcing gratitude turns narrow freedom into a demand for emotional performance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -955,7 +788,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Protect the Remaining Response",
         "coreSkill": "You learn to separate what fate controls from what still belongs to you. The skill is precision. Make the remaining choice small enough to be honest and concrete enough to act on.",
         "ifThenPlans": [
           {
@@ -980,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "A narrow freedom is still a freedom.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence preserves agency without inflating it."
+          "text": "A narrow freedom is still a freedom."
         },
         {
-          "text": "It is not the power to make reality kinder.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks the positive-thinking misread in plain language."
+          "text": "It is not the power to make reality kinder."
         },
         {
-          "text": "A small response is not a small thing when everything around it is trying to decide for you.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the narrowness of the response feel morally serious."
+          "text": "A small response is not a small thing when everything around it is trying to decide for you."
         }
       ]
     },
@@ -1019,13 +845,6 @@
             "engineering",
             "service"
           ],
-          "planSpec": {
-            "domain": "retired civil engineer whose first year after work is filled with errands and television but no claim on his skill",
-            "audience": "a retiree who is comfortable and still increasingly hollow",
-            "stakes": "pleasure and free time are not answering the empty mornings",
-            "format": "before_after",
-            "requiredBeat": "he opens a box of old bridge inspection notes and agrees to mentor a town culvert committee for six weeks, turning skill into service"
-          },
           "scenario": "The garage shelf holds three binders of bridge inspections nobody has asked about in a year. Before retirement, Nicolas complained that every morning had a deadline. After retirement, errands and television fill the space but leave no claim on his skill. A neighbor brings a culvert map from the town committee and a list of flooded driveways. Nicolas opens the binders, lays out a six-week calendar, and agrees to mentor the review.",
           "whatToDo": "Turn the unused skill toward a bounded service. Open the binders, accept the six-week culvert review, and let the morning answer to a real need.",
           "whyItMatters": "Free time can become hollow when nothing has a claim on the person. The committee gives Nicolas's skill a direction without pretending work has to return whole."
@@ -1038,13 +857,6 @@
             "clinic",
             "work"
           ],
-          "planSpec": {
-            "domain": "pediatric speech clinic aide bored by repetitive articulation cards until a child points to one sound she needs for her own name",
-            "audience": "a clinic aide who has been treating the work as dull compliance",
-            "stakes": "meaning appears when the exercise becomes a responsibility to one child, not when the task becomes glamorous",
-            "format": "scene",
-            "requiredBeat": "she writes the child's name above the sound deck and slows the drill because the work now has a face"
-          },
           "scenario": "The laminated card squeaks under the dry-erase marker. Giulia is on her tenth articulation drill at the pediatric speech clinic, with the timer buzzer taped to the table and the sound deck sliding under her wrist. A child points to the sound in her own name and whispers, \"That one.\" Giulia must choose whether to push through the stack or write the child's name above the deck and slow the drill.",
           "whatToDo": "Write the child's name above the sound deck and slow the timer. Let the repetitive exercise become responsibility to one child, not a task to finish.",
           "whyItMatters": "The work changes when it has a face. The cards do not become glamorous, but they become answerable to the child who needs the sound."
@@ -1057,13 +869,6 @@
             "accessibility",
             "vacuum"
           ],
-          "planSpec": {
-            "domain": "software quality analyst caught in an existential vacuum after promotion removes hands-on craft",
-            "audience": "a promoted analyst with status, salary, and no daily responsibility that feels real",
-            "stakes": "the promotion offers power but strips away the work that carried meaning",
-            "format": "decision_point",
-            "requiredBeat": "he declines one status meeting and takes ownership of a recurring accessibility defect until the screen reader flow actually works"
-          },
           "scenario": "What if the promotion gave him power and removed the work that made him answerable? Ryan looks at a status meeting invite beside a screen reader transcript and a defect queue full of reopened accessibility bugs. His new title has salary and influence, but no object that needs his craft today. Before the meeting starts, he can attend another status loop or decline once and own the broken booking flow until it works.",
           "whatToDo": "Block two hours for the screen reader transcript, assign yourself the defect, and define success as a completed booking by keyboard and audio.",
           "whyItMatters": "Status can hide emptiness when it removes direct responsibility. The defect gives Ryan's skill a concrete claim and a user who will feel the repair."
@@ -1076,13 +881,6 @@
             "love",
             "promise"
           ],
-          "planSpec": {
-            "domain": "widower learning that love can still organize action after the beloved person is gone",
-            "audience": "a man resisting the idea that love has any task left after death",
-            "stakes": "memory can become either shrine maintenance or a responsibility to keep a promise alive",
-            "format": "reflection",
-            "requiredBeat": "you see him move one recipe card from the memory box to the counter and cook the soup his wife made for neighbors after surgery"
-          },
           "scenario": "You see the recipe card before you see the photograph. Jack has kept it in the memory box since the funeral: lentil soup, written in his wife's square handwriting. The neighbor's surgery date sits on the calendar, and Jack remembers the promise they once kept together. He moves the card to the counter, sets out the soup pot, and lets love become an action instead of only an object to preserve.",
           "whatToDo": "Move the recipe card from the memory box to the counter and cook for the neighbor after surgery. Let love organize one concrete promise.",
           "whyItMatters": "Memory can become a shrine that asks nothing. The soup makes love active again without pretending grief has been solved."
@@ -1095,13 +893,6 @@
             "anxiety",
             "intention"
           ],
-          "planSpec": {
-            "domain": "stand-up trainee with crippling stage anxiety using paradoxical intention in a small open mic",
-            "audience": "a performer whose fear of shaking makes the shaking worse",
-            "stakes": "fighting the symptom directly keeps feeding it",
-            "format": "predict_reveal",
-            "requiredBeat": "the coach tells her to begin by deliberately showing the audience her shaking hand, and the prediction is whether the tremor grows or loses command"
-          },
           "scenario": "\"Try to make the tremor obvious in the first ten seconds,\" the coach says. Aanya waits beside the open-mic stool with one index card and a shaking hand she has tried to hide all month. She predicts the audience will notice nothing else. Before her name is called, she must decide whether to fight the tremor again or begin by deliberately showing it.",
           "whatToDo": "Begin by showing the shaking hand on purpose. Let the feared symptom enter the room deliberately so hiding it stops feeding its command.",
           "whyItMatters": "The tremor grows when every move is organized around concealment. Paradoxical intention changes the relation to the symptom instead of wrestling it directly."
@@ -1114,13 +905,6 @@
             "choice",
             "service"
           ],
-          "planSpec": {
-            "domain": "university advising office where a student has every option open and feels emptier each week",
-            "audience": "an advisor helping a student move from abstract choice to one concrete responsibility",
-            "stakes": "limitless options are becoming paralysis rather than freedom",
-            "format": "dialogue",
-            "requiredBeat": "after three meetings of preference lists, the advisor asks whom the next semester of study would serve and circles one practicum tied to that answer"
-          },
           "scenario": "It took Marco three advising appointments to admit that every open door felt weightless. The course grid covers the desk, and the practicum form sits untouched beside a list of preferences. \"Who would next semester serve?\" his advisor asks. Marco looks at the community clinic row. He must decide whether to keep ranking options or circle the practicum tied to someone outside his own uncertainty.",
           "whatToDo": "Ask whom the next semester would serve, then circle the practicum tied to that answer. Convert open choice into one concrete responsibility.",
           "whyItMatters": "Limitless options can feel like freedom while emptying action of weight. A served person gives the semester a claim stronger than preference."
@@ -1139,8 +923,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The committee gives his skill a concrete responsibility. A hobby may fill hours, and refusal may protect rest, but neither answers the specific emptiness of unused service.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1152,8 +935,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The name makes the drill answerable to one child. More repetitions or entertainment can help technique, but the meaningful shift is responsibility with a face.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1165,8 +947,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owning the defect turns power back into responsibility to users. Delegating later or accepting emptiness leaves the existential vacuum untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1178,8 +959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cooking turns love into a concrete responsibility without denying grief. Preserving or discussing the card may honor memory, but neither carries the old promise forward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1191,8 +971,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Deliberately showing the tremor changes her relation to the symptom. Relaxation or cancellation keeps the whole stage organized around hiding it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1204,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The served person gives choice weight beyond preference. The question narrows freedom in a useful way, and career return is not the central test here.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1217,8 +995,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Power has not answered the need for meaning because responsibility disappeared. More pleasure or lower expectations may avoid the sharper problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1230,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The responsibility response addresses the will to meaning directly. Stimulation can cover emptiness for a while, but it may leave the vacuum intact.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1243,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The humane limit prevents responsibility from becoming accusation. Some emptiness may involve frustrated meaning, but need, illness, and danger still matter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1281,7 +1056,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Turn Emptiness Into Responsibility",
         "coreSkill": "You learn to answer emptiness with a concrete claim rather than more noise. The skill is to identify whether work, love, or an unavoidable fact is asking for the next responsible action.",
         "ifThenPlans": [
           {
@@ -1306,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Responsibility gives emptiness an address.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence is compact and turns an abstract vacuum into a practical image."
+          "text": "Responsibility gives emptiness an address."
         },
         {
-          "text": "Love becomes responsibility when it changes what the hands do next.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the love route concrete without sentimentality."
+          "text": "Love becomes responsibility when it changes what the hands do next."
         },
         {
-          "text": "Meaning does not need the task to glow.",
-          "location": "breakdown.fullRead",
-          "why": "It blocks passion-language drift and keeps the focus on claim and duty."
+          "text": "Meaning does not need the task to glow."
         }
       ]
     },
@@ -1345,13 +1113,6 @@
             "guilt",
             "repair"
           ],
-          "planSpec": {
-            "domain": "restorative justice preparation after a drunk-driving injury where apology cannot undo harm",
-            "audience": "a facilitator helping an offender move from shame performance to concrete repair",
-            "stakes": "guilt may become either self-punishment theater or one verifiable change",
-            "format": "dialogue",
-            "requiredBeat": "she removes the polished apology from the folder and asks for the weekly ride schedule he will fund before the meeting happens"
-          },
           "scenario": "\"Do not bring me a speech yet,\" the facilitator says. Simon sits across from her with an apology draft, a restitution receipt, and shaking hands after the drunk-driving injury. The meeting room clock says 8:10 p.m., and the victim still needs rides to therapy three mornings a week. The facilitator slides the draft back into the folder. Simon must decide whether guilt will stay polished on the page or become a weekly ride schedule he funds before the meeting.",
           "whatToDo": "Bring a paid ride calendar, receipt, and contact plan to the meeting. Let the apology wait until the injured person's week is practically supported.",
           "whyItMatters": "A polished apology may serve the offender's need to be seen as sorry. The ride schedule changes the harmed person's week without pretending harm is undone."
@@ -1364,13 +1125,6 @@
             "review",
             "repair"
           ],
-          "planSpec": {
-            "domain": "palliative care team after a missed symptom call hastened a patient crisis",
-            "audience": "a nurse manager holding pain, guilt, and death in the same review without collapse",
-            "stakes": "the team needs repair without pretending a protocol change redeems the death",
-            "format": "postmortem",
-            "requiredBeat": "she writes the missed call time on the board, leaves the patient's name visible, and assigns one callback rule before anyone uses closure language"
-          },
           "scenario": "The whiteboard has one time written in black marker: 2:17 a.m. Rebecca stands with the missed-call log open and the patient's name card still visible. In the postmortem, the team keeps reaching for phrases that would let the meeting end gently. Rebecca writes one callback rule under the time before anyone says closure: symptom calls after midnight get a nurse response within fifteen minutes.",
           "whatToDo": "Keep the name visible, write the missed-call time, and assign one callback rule before any closure language enters the room.",
           "whyItMatters": "A protocol change does not redeem the death. It keeps guilt from becoming either blame theater or a soft ending with no repair."
@@ -1383,13 +1137,6 @@
             "inspection",
             "guilt"
           ],
-          "planSpec": {
-            "domain": "bridge maintenance office after an inspection error contributed to a cyclist injury",
-            "audience": "an engineer whose guilt can become hiding or changed practice",
-            "stakes": "the next inspection standard matters more than his need to feel absolved",
-            "format": "decision_point",
-            "requiredBeat": "the engineer circles the unchecked expansion joint in red and sends the revised inspection checklist before drafting his explanation"
-          },
           "scenario": "Rainwater beads in the photograph of the unchecked expansion joint. Mateusz sits in the bridge maintenance office with a red pencil, the inspection photo, and a revised checklist. A cyclist was injured after the missed line on his old form, and the Tuesday inspection deadline is still on the wall calendar. His explanation draft is open, but the checklist is not sent. He must decide whether the next act will defend the miss or circle the joint in red and change the standard.",
           "whatToDo": "Circle the unchecked joint in red and send the revised inspection checklist before drafting the explanation. Make changed practice precede self-defense.",
           "whyItMatters": "Guilt can hide inside explanation. The checklist makes responsibility concrete where the next inspection will happen."
@@ -1402,13 +1149,6 @@
             "workshop",
             "promise"
           ],
-          "planSpec": {
-            "domain": "family sorting a father's workshop after sudden death and finding unfinished repair promises",
-            "audience": "an adult daughter deciding whether death means only loss or also a clearer responsibility",
-            "stakes": "sentiment may preserve every object while avoiding the one promise that can still be kept",
-            "format": "vignette",
-            "requiredBeat": "you watch her keep only the neighbor's broken lamp ticket and deliver the repair instead of turning the whole workshop into a shrine"
-          },
           "scenario": "You find the masking-tape label before you open the drawer. On Saturday at 9:20 a.m., Julia stands in her father's basement workshop after his sudden death, with a broken lamp ticket from the neighbor stuck to a tool drawer. Every object feels impossible to move. She must decide whether to preserve the whole room as a shrine or keep the ticket, find the part, and deliver the one repair still promised.",
           "whatToDo": "Keep the lamp ticket and complete the promised repair. Let death sharpen one responsibility instead of freezing every object in place.",
           "whyItMatters": "Sentiment can protect grief while avoiding the promise still available. The delivered lamp honors the loss without pretending repair equals closure."
@@ -1421,13 +1161,6 @@
             "plagiarism",
             "change"
           ],
-          "planSpec": {
-            "domain": "graduate plagiarism case where a student can either deny, confess vaguely, or rebuild trust through concrete loss",
-            "audience": "an academic integrity officer guiding guilt toward change",
-            "stakes": "a clean confession without forfeited advantage leaves responsibility abstract",
-            "format": "predict_reveal",
-            "requiredBeat": "the officer asks which consequence would make the false grade impossible to keep, and the student chooses to withdraw the prize application before appeal"
-          },
           "scenario": "What would make the stolen advantage impossible to keep? Erik asks the question with the prize application, appeal form, and source comparison sheet on the table. The student predicts a full confession will be enough. Erik points to the pending prize tied to the false grade. Before the appeal begins, the student has to choose whether guilt will cost anything concrete.",
           "whatToDo": "Ask which consequence makes the false advantage impossible to keep. Require withdrawal of the prize application before treating the confession as repair.",
           "whyItMatters": "A confession can leave the benefit untouched. Concrete loss turns guilt toward change instead of letting clean language protect the stolen advantage."
@@ -1440,13 +1173,6 @@
             "pain",
             "contribution"
           ],
-          "planSpec": {
-            "domain": "community choir after a singer loses her voice permanently and refuses both pity and false triumph",
-            "audience": "a choir director helping pain become contribution without performance of bravery",
-            "stakes": "the singer may be pushed into inspiration theater unless the new role is specific and chosen",
-            "format": "before_after",
-            "requiredBeat": "after weeks of sitting in the back row, she marks breath cues in the alto scores for two new singers and chooses the work herself"
-          },
           "scenario": "It took Natalie five rehearsals to stop accepting the chair everyone called brave. Before, she sat in the back row of the community hall after losing her voice permanently while the choir director protected her from every task. After rehearsal five, she takes two alto scores, marks breath cues in pencil for new singers, and chooses that work herself. No standing ovation follows.",
           "whatToDo": "Give Natalie a specific chosen role: mark breath cues in the alto scores for new singers. Refuse both pity and false triumph.",
           "whyItMatters": "Pain becomes distorted when others turn it into inspiration theater. A concrete contribution respects the loss while letting Natalie choose useful work."
@@ -1465,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The ride schedule makes guilt concrete. A polished apology may be sincere, but if it costs nothing, it can serve the offender more than the harmed person.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1478,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible time, name, and rule hold pain, guilt, and repair together. Delaying or depersonalizing the review can turn grief into an ending without change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1491,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The checklist makes guilt a changed standard. Explaining first may hide inside self-defense, and waiting keeps responsibility abstract.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1504,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The delivered repair keeps one promise exact without pretending death has become meaningful. Preserving everything may avoid the specific responsibility still present.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1517,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Withdrawing the application forfeits the false advantage. A longer apology may sound complete while leaving the concrete benefit untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1530,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The breath cues make contribution specific and chosen. Praise alone risks inspiration theater, while avoidance may turn pain into permanent exclusion.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1543,8 +1263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Silver-lining talk hurries past the wound. Tragic optimism keeps the pain named while asking what responsibility now becomes exact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1556,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Concrete loss changes reality. Public self-punishment can become performance if it leaves the advantage or risk untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1569,8 +1287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A bounded repair matters, but it must not be inflated into redemption. Waiting for grief to pass or using easy healing language both avoid the hard distinction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1607,7 +1324,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Making Tragedy Exact Without Redeeming It",
         "coreSkill": "You learn to answer pain, guilt, or death without denying it. The skill is to find the bounded responsibility the hard fact makes more exact, then refuse to inflate that response into redemption.",
         "ifThenPlans": [
           {
@@ -1632,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "The repair does not redeem it. It only makes the next answer more truthful.",
-          "location": "breakdown.fastRead",
-          "why": "The line prevents repair from turning into sentimental redemption."
+          "text": "The repair does not redeem it. It only makes the next answer more truthful."
         },
         {
-          "text": "Death can make the next promise more exact because time no longer pretends to be endless.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the source anchor without softening death."
+          "text": "Death can make the next promise more exact because time no longer pretends to be endless."
         },
         {
-          "text": "Do that one thing. Leave the tragedy named.",
-          "location": "breakdown.fullRead",
-          "why": "The closing instruction is direct, bounded, and anti-sentimental."
+          "text": "Do that one thing. Leave the tragedy named."
         }
       ]
     }

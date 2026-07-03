@@ -46,13 +46,6 @@
             "recall",
             "commitment"
           ],
-          "planSpec": {
-            "domain": "hospital device purchasing committee reviewing a monitor recall",
-            "audience": "Laura, a clinical operations director who already defended last quarter's vendor choice in public",
-            "stakes": "whether sunk consistency keeps a weak device contract alive through another patient-safety review",
-            "format": "decision_point",
-            "requiredBeat": "Laura draws two columns on the agenda packet, one for interests and one for distortions, then writes the recall rate under evidence instead of letting the room reopen the old defense speech"
-          },
           "scenario": "The recall notice slides across the glossy committee table at St. Agatha's while Laura, clinical operations director, sees her signature on the vendor contract beside it. The chief nurse is waiting for her to speak. Laura draws two columns on the agenda packet, interests and distortions, then writes the recall rate under evidence. She has to decide whether to defend last quarter's public choice or treat the pattern as a fresh warning.",
           "whatToDo": "Separate the contract from your pride. Name the interests in the room, name the pressure on your own judgment, and let the recall rate sit under evidence before anyone replays the old defense.",
           "whyItMatters": "Public commitment makes revision feel personal. The two-column check turns a face-saving impulse back into a decision about patient risk and vendor performance."
@@ -65,13 +58,6 @@
             "public promise",
             "reversal"
           ],
-          "planSpec": {
-            "domain": "municipal flood-risk update after a popular levee promise",
-            "audience": "Mathieu, a deputy mayor facing residents who applauded the original plan",
-            "stakes": "whether public commitment prevents revision before spring melt exposes the weak assumption",
-            "format": "scene",
-            "requiredBeat": "Mathieu circles the snowpack number on the engineer's map and asks what would have to be true for the old promise to remain safe"
-          },
           "scenario": "Wet boot prints dry beside a rolled floodplain map in the deputy mayor's office. Mathieu can hear residents gathering outside, the same residents who applauded the levee promise in February. The engineer has added a snowpack number in blue pencil. Before the briefing starts, Mathieu circles it and asks what would have to be true for the old promise to remain safe. He must decide whether applause or runoff gets the stronger vote.",
           "whatToDo": "Put the snowpack number ahead of the remembered applause. Ask for the condition that would keep the promise valid, then revise the plan if the condition fails.",
           "whyItMatters": "A popular promise can turn correction into humiliation. A reversal threshold lets the evidence change the stance before spring water does it for you."
@@ -84,13 +70,6 @@
             "missing evidence",
             "group confidence"
           ],
-          "planSpec": {
-            "domain": "seed-stage venture memo where one charismatic founder dominates the evidence",
-            "audience": "Anke, an associate who likes the founder and knows the diligence file is thin",
-            "stakes": "whether social admiration turns into an investment memo that hides missing information",
-            "format": "predict_reveal",
-            "requiredBeat": "Anke asks the partners to predict what evidence would make them pass, then opens the empty customer-reference folder after each prediction"
-          },
           "scenario": "What would make the partners pass on the founder everyone likes? Anke asks the question before the Monday vote, with the customer-reference folder open on her laptop. One partner says weak references. Another says no repeat-use proof. Anke clicks the folder after each answer. It is empty both times, with the cursor blinking in the search bar. The room has to decide whether admiration is covering for missing information.",
           "whatToDo": "Ask for the kill condition before the vote, then open the file that should contain it. Let the empty folder compete with the founder's charm.",
           "whyItMatters": "Group confidence can feel like evidence when everyone likes the same person. Naming the missing proof breaks the social spell without insulting the room."
@@ -103,13 +82,6 @@
             "postmortem",
             "family"
           ],
-          "planSpec": {
-            "domain": "eldercare scheduling text thread after three repeated sibling fights",
-            "audience": "Diego, an adult son trying not to repeat last month's defensive exchange",
-            "stakes": "whether a familiar conflict loop makes the next medical appointment harder for their father",
-            "format": "postmortem",
-            "requiredBeat": "Diego prints the last three text threads, marks the same sequence in each one, and sends one reset question before answering the latest accusation"
-          },
           "scenario": "It took Diego three Friday nights to notice the care schedule fight was not three fights. At 11:20 p.m., three printed text threads sit beside a pharmacy receipt and a half-filled pill organizer. In each one, his sister accuses, Diego defends, both skip the appointment details, and their father waits. Diego marks the same sequence in blue pen and sends one reset question before answering the latest message.",
           "whatToDo": "Treat the fight as a repeated sequence. Mark where the old loop starts, then send one question that returns both of you to the appointment instead of the accusation.",
           "whyItMatters": "A repeated conflict feels morally fresh each time. Seeing the sequence on paper gives you a way to interrupt it before defense becomes the whole conversation."
@@ -122,13 +94,6 @@
             "pilot result",
             "alternatives"
           ],
-          "planSpec": {
-            "domain": "university replication lab deciding whether to publish a surprising pilot result",
-            "audience": "Aanya, a doctoral student whose supervisor is excited by the finding",
-            "stakes": "whether a desired result and group excitement hide the missing alternative explanations",
-            "format": "dialogue",
-            "requiredBeat": "Aanya asks the lab to name two mundane explanations before anyone writes the result into the abstract"
-          },
           "scenario": "\"What else would make this graph jump?\" Aanya asks in the replication lab, marker uncapped beside the projector glow. Her supervisor is already talking about the abstract. Two postdocs are smiling at the pilot result. Aanya writes mundane explanation 1 and mundane explanation 2 on the board. Before anyone drafts the claim, the lab must decide whether excitement has replaced alternative explanations.",
           "whatToDo": "Make the lab name ordinary explanations while the result is still only a result. Keep those explanations on the board before the abstract turns excitement into a claim.",
           "whyItMatters": "Desired outcomes attract friendly evidence. A visible alternatives list keeps the graph from becoming a conclusion before the lab has tested what else could explain it."
@@ -141,13 +106,6 @@
             "vivid case",
             "scoring"
           ],
-          "planSpec": {
-            "domain": "nonprofit emergency grant panel after one emotional applicant video",
-            "audience": "Nathan, a program officer who feels the room leaning toward the visible case",
-            "stakes": "whether one vivid story crowds out the quieter applications with stronger documented need",
-            "format": "before_after",
-            "requiredBeat": "Nathan asks each panelist to score the file once with the video hidden and once after viewing it, then compares the swing before a vote"
-          },
           "scenario": "You watch a thumbnail freeze on a paused applicant video while Nathan hands each grant panelist a scoring sheet. Before: the file is scored with the video hidden, using rent arrears, medical bills, and income loss. After: the video plays, and three scores jump. Nathan places both columns on the table before the vote, beside the printed rubric, so the room can see what the vivid story changed.",
           "whatToDo": "Score the file once without the video, then again after the video. Compare the swing openly before the room turns one vivid case into the whole evidence base.",
           "whyItMatters": "A moving story can deserve attention and still distort weighting. Two scores let the panel see whether empathy added information or simply moved the room."
@@ -166,8 +124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful check targets public commitment without pretending the promise has no value. Nights protect the old stance, and ignoring the promise skips the real pressure that is bending the review.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -179,8 +136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shared comfort may be useful, but it is not a substitute for evidence. Reviewing the sample tests the case directly, while the other choices either overtrust or overreject the room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -192,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repeated sequence is the object to study. A harsher consequence stays inside the loop, and silence only delays it. A reset question changes the pattern before it completes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -205,8 +160,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A reversal threshold lets evidence work before messaging protects the earlier stance. The communications route recruits pride, and waiting makes the correction more expensive.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -218,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The analyst is not rejecting surprise. She is keeping alternative explanations alive while excitement is strongest. The other answers turn a review step into blanket dismissal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -231,8 +184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The status signal is the pressure to inspect. Keeping a famous client may be valid only if the economics survive. The other choices either worship status or ban it blindly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -244,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A label helps only when it sends the group back into evidence, incentives, or missing alternatives. Here it shuts down thought. The problem is misuse, not vocabulary itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -257,8 +208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The before-and-after comparison shows what the vivid material changed, while the file keeps need visible. Banning videos or discounting feelings skips the actual weighting test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -270,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Two tracks keep the outside situation and the inside pressure visible at the same time. Ignoring the relationship loses context, and outsourcing the call to volume adds social pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -332,19 +281,13 @@
       },
       "memorableLines": [
         {
-          "text": "Ask what old trap this new case resembles.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's practical move into a direct question the reader can use immediately."
+          "text": "Ask what old trap this new case resembles."
         },
         {
-          "text": "The label is not the work; the review is.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against bias vocabulary becoming another shortcut."
+          "text": "The label is not the work; the review is."
         },
         {
-          "text": "That question does not make him wise.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the standard modest and practical instead of inflated."
+          "text": "That question does not make him wise."
         }
       ]
     },
@@ -371,13 +314,6 @@
             "fairness",
             "payoff"
           ],
-          "planSpec": {
-            "domain": "independent restaurant changing a tip-pooling rule before summer patio season",
-            "audience": "Claire, a general manager hearing servers defend fairness in opposite directions",
-            "stakes": "whether a rushed policy turns good servers against hosts during the busiest month",
-            "format": "dialogue",
-            "requiredBeat": "Claire writes each role's visible payoff beside its fairness claim before deciding which complaint is principle and which is pressure from the new split"
-          },
           "scenario": "\"So fairness means the bar keeps the patio tips?\" Claire hears at the receipt-strewn service station before the Saturday patio schedule is posted. The general manager has the new tip-out sheet in one hand and three angry hosts waiting by the POS. She writes each fairness claim beside the role that gains from it. Before she locks the schedule, she must decide which complaint is principle and which is pressure from the split.",
           "whatToDo": "Write the stated fairness claim beside the visible payoff for each role. Decide only after the money, status, and workload pressure are on the same page.",
           "whyItMatters": "Fairness language can be sincere and self-serving at once. Seeing the payoff beside the claim keeps you from treating either side as pure principle."
@@ -390,13 +326,6 @@
             "sponsor",
             "roadmap"
           ],
-          "planSpec": {
-            "domain": "open-source maintainer deciding whether to accept a sponsor's roadmap request",
-            "audience": "Lukas, a volunteer maintainer praised by a company that now wants priority work",
-            "stakes": "whether praise and funding quietly move the project away from user need",
-            "format": "decision_point",
-            "requiredBeat": "Lukas pins the sponsor email next to the issue backlog and labels which request serves the project and which serves the sponsor's release date"
-          },
           "scenario": "A GitHub issue list glows beside a sponsor email full of compliments on Lukas's laptop after midnight. He has maintained the package for seven unpaid years, and the company now asks for a roadmap item before its June release. The backlog has older accessibility bugs. Lukas pins the email beside the issues and labels serves project, serves sponsor. He has to decide whether praise and funding are changing the order of work.",
           "whatToDo": "Put the sponsor request next to the backlog and label who benefits from each item. Accept the request only if it still serves the project after the praise is separated from the work.",
           "whyItMatters": "Praise lowers your guard, and funding adds a real obligation. Naming the beneficiary lets gratitude inform the decision without quietly owning it."
@@ -409,13 +338,6 @@
             "reputation",
             "approval"
           ],
-          "planSpec": {
-            "domain": "community theatre casting committee after a donor's nephew auditions",
-            "audience": "Isabel, a stage manager watching compliments change after the donor enters the lobby",
-            "stakes": "whether reputation and local approval distort a casting choice the audience will notice",
-            "format": "vignette",
-            "requiredBeat": "Isabel asks the committee to score the audition sheets before discussing the donor connection, keeping approval pressure from rewriting memory"
-          },
           "scenario": "Dust from the stage curtain hangs in the warm rehearsal room after the donor's nephew finishes his audition. Isabel sees the playbill draft on the piano, with the donor name already printed under lighting sponsor. The committee is about to discuss him while the donor waits in the lobby with his coat still on. Isabel asks for audition sheets first, before local approval rewrites what everyone just heard.",
           "whatToDo": "Capture the audition score before the donor relationship enters the conversation. Let the performance record exist before reputation pressure starts editing memory.",
           "whyItMatters": "Approval pressure works best when it changes what people claim they saw. A written score protects the evidence without accusing the committee of bad faith."
@@ -428,13 +350,6 @@
             "reciprocity",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "hospital nurse shift swap that looks generous but hides burnout risk",
-            "audience": "Hadiya, a charge nurse asked to approve a fourth swap between the same two nurses",
-            "stakes": "whether reciprocity pressure creates unsafe fatigue on a night shift",
-            "format": "postmortem",
-            "requiredBeat": "Hadiya maps the last four swaps on the staffing board and notices the favor debt is overriding rest rules"
-          },
           "scenario": "It took Hadiya until the fourth shift swap to see the pattern. Colored magnets crowd the night-shift staffing board outside bay 12 on a rainy Wednesday, all between the same two nurses. Each request sounds generous: I owe her, she covered me, I can manage. Hadiya maps the four swaps and sees the favor debt pushing one nurse past the rest rule again.",
           "whatToDo": "Map the swaps as a chain, not as isolated favors. Approve generosity only after the rest rule survives the pattern created by reciprocity.",
           "whyItMatters": "Reciprocity can make unsafe fatigue look like kindness. The board shows when a social debt has started overruling the protection built for patients and staff."
@@ -447,13 +362,6 @@
             "friendship",
             "conflict"
           ],
-          "planSpec": {
-            "domain": "real estate referral where a friend recommends an inspector",
-            "audience": "Jack, a first-time buyer who trusts the friend but sees the referral fee disclosure",
-            "stakes": "whether similarity and friendship make a conflicted recommendation feel safer than it is",
-            "format": "second_person",
-            "requiredBeat": "Jack places the disclosure form beside the inspection quote and calls two unaffiliated inspectors before accepting the friendly recommendation"
-          },
           "scenario": "You sit with Jack at a cafe table, the referral disclosure folded under a house key while he reads the inspection quote from a friend who knows the neighborhood. The friend sounds helpful, and the inspector's fee is not high. Jack places the disclosure beside the quote and has to decide whether to accept the familiar recommendation before calling two unaffiliated inspectors.",
           "whatToDo": "Place the disclosure beside the quote and get two outside prices before accepting the friendly referral. Keep trust in the friend separate from the incentive in the referral.",
           "whyItMatters": "Similarity and familiarity make advice feel cleaner than it may be. Outside quotes test the recommendation without treating the friend as a villain."
@@ -466,13 +374,6 @@
             "award",
             "reciprocity"
           ],
-          "planSpec": {
-            "domain": "student engineering society choosing an award winner after one team helped everyone else",
-            "audience": "Marta, a treasurer trying to separate gratitude from merit scoring",
-            "stakes": "whether reciprocity turns a technical award into a thank-you note",
-            "format": "predict_reveal",
-            "requiredBeat": "Marta asks judges to predict their winner before seeing the peer-favor log, then compares how gratitude changes their rankings"
-          },
           "scenario": "Which team wins before gratitude enters the room? Marta asks the engineering society judges to write a winner from the scoring rubric first, while the trophy case stands open behind them. Then she slides over the peer-favor log, names highlighted in yellow for every team that got help from the same group. Two rankings change immediately. The judges must decide whether the technical award is becoming a thank-you note.",
           "whatToDo": "Record the rubric winner before showing the favor log, then compare the shift. Honor helpfulness separately if needed, but do not let gratitude overwrite the technical score.",
           "whyItMatters": "Reciprocity is a real social force. Measuring the ranking swing keeps a debt of thanks from pretending to be evidence of engineering quality."
@@ -491,8 +392,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The benefit does not prove deceit or merit. It marks a pressure to inspect beside the fairness claim. The other choices either turn incentive analysis into cynicism or endorsement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -504,8 +404,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A one-shot encounter removes tomorrow's relationship cost, so upfront payment deserves scrutiny. Politeness is weak protection, and a low bid can increase risk instead of proving virtue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -517,8 +416,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The favor can be real and still unsafe. The correct reading preserves both layers: reciprocity explains the pressure, while the rest rule tests whether the pressure has gone too far.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -530,8 +428,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Written criteria protect memory before approval pressure changes the tone. Hearing the donor first increases the pressure, while automatic rejection is just another untested reaction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -543,8 +440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Her cynicism narrows the map. Incentives include more than money or selfish gain, and people who feel presumed guilty will hide useful information. Punishment and instinct miss that damage.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -556,8 +452,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The fee changes the advice environment without proving bad intent. Outside quotes test whether the familiar recommendation still holds up when the conflict is visible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -569,8 +464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The split names both layers: project value and sponsor payoff. Counting praise misses the work itself, and accepting every request lets gratitude govern the roadmap.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -582,8 +476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The comparison shows how reciprocity moved the score. A separate recognition may honor help honestly. Ignoring it or letting gratitude choose the technical winner both blur the categories.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -595,8 +488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The teamwork reason may contain truth, but status pressure can still shape the rule. The careful move reads fear and reputation beside the explanation instead of accepting or dismissing it wholesale.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -657,19 +549,13 @@
       },
       "memorableLines": [
         {
-          "text": "Put the reason and the payoff on the same page.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the reader a concrete act for mixed-motive analysis."
+          "text": "Put the reason and the payoff on the same page."
         },
         {
-          "text": "Do not flatten people into one motive.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the cynical misread in one plain sentence."
+          "text": "Do not flatten people into one motive."
         },
         {
-          "text": "The explanation tells you how people understand themselves.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves respect for stated reasons while adding incentive awareness."
+          "text": "The explanation tells you how people understand themselves."
         }
       ]
     },
@@ -696,13 +582,6 @@
             "insurance",
             "base rate"
           ],
-          "planSpec": {
-            "domain": "wildfire insurance underwriting for cabins near a newly thinned forest edge",
-            "audience": "Emily, an underwriter tempted by fresh mitigation photos",
-            "stakes": "whether one neat property file overrides regional burn frequencies in the premium decision",
-            "format": "decision_point",
-            "requiredBeat": "Emily writes the county burn base rate at the top of the file before opening the glossy mitigation photos"
-          },
           "scenario": "The faint smoke smell in the courier envelope reaches Emily before the cabin photos do. At her underwriting desk on Thursday morning, the file shows a newly thinned forest edge, gravel breaks, and a proud owner's note. The county burn table sits unopened in the database. Emily writes that base rate at the top of the file first. She has to decide whether the glossy mitigation photos should adjust the premium or overwhelm it.",
           "whatToDo": "Write the county burn rate before reviewing the photos. Let the mitigation work move the estimate only after the older frequency is visible.",
           "whyItMatters": "Fresh action feels like control. The base rate keeps the cleared trees inside the larger fire history instead of letting one neat property file run the price."
@@ -715,13 +594,6 @@
             "basketball",
             "hot streak"
           ],
-          "planSpec": {
-            "domain": "minor-league basketball scouting after one 38-point game",
-            "audience": "Henrik, a scout whose coach wants to sign the player by Monday",
-            "stakes": "whether a single hot night beats three seasons of ordinary shooting percentages",
-            "format": "predict_reveal",
-            "requiredBeat": "Henrik covers the player's name, asks the room to predict next-season shooting from the three-year line, then reveals the highlight game last"
-          },
           "scenario": "At 10:12 p.m., Henrik pauses the highlight reel on a corner three while the coach says they should sign the guard by Monday. In the scouting room, Henrik covers the player's name and shows only the three-year shooting chart. He asks everyone to predict next season's percentage before the 38-point game is revealed. The room must decide whether one hot night deserves to beat the longer line.",
           "whatToDo": "Make the room forecast from the three-year shooting line before showing the highlight game. Reveal the hot night after the base estimate is written.",
           "whyItMatters": "A highlight reel turns recency into confidence. The longer line gives the single game a place to land instead of letting it become the whole forecast."
@@ -734,13 +606,6 @@
             "screening",
             "prior probability"
           ],
-          "planSpec": {
-            "domain": "medical clinic interpreting a positive screening result for a rare condition",
-            "audience": "Sofia, a physician assistant explaining why the scary test is not a diagnosis yet",
-            "stakes": "whether a patient leaves panicked because case evidence outran prior probability",
-            "format": "dialogue",
-            "requiredBeat": "Sofia draws 1,000 small boxes on the exam-table paper and shades the base-rate group before discussing the positive result"
-          },
           "scenario": "\"Before we talk about your result, I want to draw the whole room,\" Sofia says as the exam-table paper crinkles under her pen. The patient has a positive screening result for a rare condition and is staring at his phone. Sofia draws 1,000 boxes, shades the base-rate group, then marks what the positive test changes. He has to decide whether to hear the result as a diagnosis or as evidence inside a prior probability.",
           "whatToDo": "Draw the base-rate group before discussing the positive result. Show how the test changes the estimate without letting the test stand alone.",
           "whyItMatters": "A positive screen feels enormous when it arrives without the denominator. The boxes make the older frequency visible enough for the new evidence to be interpreted."
@@ -753,13 +618,6 @@
             "A/B test",
             "coincidence"
           ],
-          "planSpec": {
-            "domain": "product team reading an A/B test that barely cleared significance during a holiday spike",
-            "audience": "Devon, a growth lead who wants to ship the winning button color",
-            "stakes": "whether coincidence and seasonal traffic masquerade as a durable product improvement",
-            "format": "before_after",
-            "requiredBeat": "Devon reruns the test excluding the holiday campaign traffic before letting the green lift number into the launch deck"
-          },
           "scenario": "Devon's dashboard tile glows green under a calendar full of holiday campaign blocks. Before lunch, the product team celebrates the button color that barely cleared the test. Before the launch deck goes out, Devon reruns the A/B dashboard with the holiday campaign filter excluded. After the traffic spike is removed, the lift fades into noise. The team sees how easily coincidence can dress as product truth.",
           "whatToDo": "Rerun the test without the holiday campaign traffic before putting the lift in the deck. Treat the green tile as a lead, not a verdict.",
           "whyItMatters": "A pattern can be real in the data and still be caused by the wrong thing. Filtering the spike tests whether the result survives outside the lucky window."
@@ -772,13 +630,6 @@
             "safety margin",
             "bulletin"
           ],
-          "planSpec": {
-            "domain": "avalanche guide deciding whether blue sky overrides the snowpack bulletin",
-            "audience": "Thomas, a backcountry guide with clients staring at perfect morning light",
-            "stakes": "whether visible calm erases low-frequency but lethal risk",
-            "format": "scene",
-            "requiredBeat": "Thomas reads the persistent weak-layer bulletin aloud, sets a turnaround line on the map, and cuts the route despite the clear sky"
-          },
           "scenario": "You can hear ski skins rip in the blue morning while the snowpack bulletin sits in Thomas's glove. His clients stare at perfect light on the ridge, and the first slope looks calm. Thomas reads the persistent weak-layer warning aloud, draws a turnaround line on the map, and must decide whether visible calm should override a low-frequency risk with lethal consequences.",
           "whatToDo": "Read the bulletin aloud, mark the turnaround line, and cut the route if the known weak layer puts the group outside the safety margin.",
           "whyItMatters": "Good weather is case evidence, not a full risk model. The line on the map respects paths to failure that the bright morning cannot reveal."
@@ -791,13 +642,6 @@
             "authentication",
             "forgery"
           ],
-          "planSpec": {
-            "domain": "museum curator authenticating a painting after one exciting provenance letter",
-            "audience": "Kasia, a curator whose donor wants the find announced at the gala",
-            "stakes": "whether one vivid artifact beats the prior odds of a real lost masterwork",
-            "format": "postmortem",
-            "requiredBeat": "Kasia tapes the known forgery-rate estimate beside the provenance letter and delays the gala announcement until pigment testing returns"
-          },
           "scenario": "It took Kasia one night with the cream-colored provenance letter under the conservation lamp to feel the gala announcement pulling at her. The donor wanted the painting named by Friday. On Tuesday morning, she taped the known forgery-rate estimate beside the letter and sent the pigment test request. The announcement waited, because the prior odds had to stand beside the exciting artifact.",
           "whatToDo": "Put the forgery-rate estimate beside the letter and wait for pigment testing before announcing. Let the vivid document argue only after the prior odds are visible.",
           "whyItMatters": "A beautiful artifact can make a rare event feel newly likely. The forgery rate keeps excitement from outrunning the slow evidence authentication requires."
@@ -816,8 +660,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The longer record provides the starting estimate. The portfolio can adjust it, but should not erase it. The wrong choices either let one bright case dominate or turn base rates into rigid verdicts.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -829,8 +672,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The base rate gives the test a denominator, and the positive result then updates the estimate. Calling it wrong dismisses evidence, while symptoms alone may inflate fear.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -842,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The festival is a plausible alternate cause, so the comparison tests whether the display survives outside that spike. Keeping or removing it without that check overreads the small cluster.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -855,8 +696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A quiet first week is weak case evidence against rare severe failures. Margin of safety belongs where the bad outcome is costly. Driver confidence and tiny samples do not carry enough weight.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -868,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hot game may have value, but its vividness can make it overweighted. The right move is to place it against the longer line, not dismiss it or let it replace the line.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -881,8 +720,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The letter is case evidence inside a low prior probability, so testing should precede publicity. Announcing first lets excitement harden, while indefinite delay avoids judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -894,8 +732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The seasonal traffic may explain the lift, so the test needs a cleaner comparison. The other choices either discard useful data or accept it without checking the likely confound.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -907,8 +744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line protects against a hidden failure path with severe consequences. It is not a vote by comfort, and it is not a rule to avoid every uncertain trip.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -920,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The auditor should combine frequency evidence with margin for remaining paths. Accepting the claim overestimates control, while rejecting every multi-path risk confuses caution with judgment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -982,19 +817,13 @@
       },
       "memorableLines": [
         {
-          "text": "Put the old frequency on the page first.",
-          "location": "breakdown.fastRead",
-          "why": "It turns probability into a concrete ordering rule."
+          "text": "Put the old frequency on the page first."
         },
         {
-          "text": "The case can move the number, but it cannot become the number.",
-          "location": "breakdown.deepRead",
-          "why": "It balances respect for evidence with resistance to overreaction."
+          "text": "The case can move the number, but it cannot become the number."
         },
         {
-          "text": "Probability does not remove judgment.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the idea from becoming mechanical or anti-human."
+          "text": "Probability does not remove judgment."
         }
       ]
     },
@@ -1021,13 +850,6 @@
             "policy",
             "system"
           ],
-          "planSpec": {
-            "domain": "city scooter parking policy near a commuter rail station",
-            "audience": "Olivia, a transportation planner under pressure to clear sidewalks before Monday",
-            "stakes": "whether a quick ban moves the problem into wheelchair ramps and train exits",
-            "format": "scene",
-            "requiredBeat": "Olivia walks the ban route at 7:40 a.m., marks where riders will drop scooters next, and changes the policy to add corrals before enforcement starts"
-          },
           "scenario": "A row of scooters leans against a rain-dark rail-station wall as Olivia reaches the commuter exit at 7:40 a.m. The mayor wants sidewalks cleared before Monday, and the ban notice is ready. Olivia walks the route with chalk and marks where riders will drop scooters next: ramp, curb, train doors. Before enforcement starts, she must decide whether to add scooter corrals or move the mess into a worse place.",
           "whatToDo": "Walk the route before enforcing the ban. Mark the next likely drop points, then add corrals where the reaction will happen instead of pretending the rule ends the system.",
           "whyItMatters": "People still need somewhere to leave scooters. If the policy ignores that response, the first clear sidewalk becomes a blocked ramp or train exit."
@@ -1040,13 +862,6 @@
             "quota",
             "reaction"
           ],
-          "planSpec": {
-            "domain": "fisheries co-op negotiating a higher catch quota after a good season",
-            "audience": "Nicolas, a co-op analyst whose members want the immediate revenue bump",
-            "stakes": "whether first-year income damages next year's stock and the buyer relationship",
-            "format": "predict_reveal",
-            "requiredBeat": "Nicolas asks the room to predict buyer response and stock response separately, then places both consequences on the same harbor map"
-          },
           "scenario": "What happens after the first full hold leaves the dock? Nicolas asks the co-op members gathered around the harbor map on a Thursday night. The quota sheet promises a strong first-year bump. He asks for two predictions before the vote: buyer response next season, stock response after the heavier take. Both notes land on the same map, and the room has to decide whether the cash now is borrowing trust from later.",
           "whatToDo": "Separate the immediate revenue from the buyer and stock responses. Put all three on the map before the quota vote, so the first-year bump cannot stand alone.",
           "whyItMatters": "A higher catch can look clean on this year's ledger while weakening next year's bargaining power. The second response is part of the decision, not an afterthought."
@@ -1059,13 +874,6 @@
             "discount",
             "renewal"
           ],
-          "planSpec": {
-            "domain": "SaaS sales team offering an aggressive annual discount to close quarter",
-            "audience": "Chiara, a revenue operations lead watching the deal desk celebrate",
-            "stakes": "whether a first-quarter win resets renewal expectations and traps support capacity",
-            "format": "decision_point",
-            "requiredBeat": "Chiara adds renewal price, support hours, and competitor expectations under the discount line before approving the contract"
-          },
           "scenario": "At 5:18 p.m., Chiara sees the discount approval field flash red in the deal desk while sales celebrates the quarter-saving contract. The customer wants a deep annual cut and premium onboarding. Chiara adds renewal price, support hours, and competitor expectations under the discount line, then circles the renewal month in red. Her cursor hovers over approve, and she has to decide whether the booked win is creating three later costs.",
           "whatToDo": "Price the renewal expectation, support load, and market signal before approving the discount. Make the later burdens visible on the same screen as the close.",
           "whyItMatters": "A discounted win can reset the customer's future anchor and consume support capacity. If those costs stay off the approval screen, the first-quarter number lies by omission."
@@ -1078,13 +886,6 @@
             "food waste",
             "delay"
           ],
-          "planSpec": {
-            "domain": "middle school cafeteria replacing hot lunch with faster grab-and-go meals",
-            "audience": "Yusuf, a district nutrition coordinator trying to reduce lunch lines",
-            "stakes": "whether shorter lines produce more wasted food and hungry students by last period",
-            "format": "before_after",
-            "requiredBeat": "Yusuf weighs the untouched packaged meals after dismissal and traces the first consequence of speed into the delayed consequence of afternoon nurse visits"
-          },
           "scenario": "Cold plastic clamshells stack beside a humming cafeteria scale after dismissal. Before the grab-and-go switch, Yusuf's lunch lines stretched into sixth period. After the switch, the line moves in half the time, but untouched meals pile up and the nurse-visit log grows after 2:00 p.m. Yusuf weighs the waste, checks the late-day attendance sheet, and traces the first consequence of speed into hungry students by last period.",
           "whatToDo": "Measure the waste and afternoon nurse visits, not just line speed. Keep the first improvement only if the later student cost is designed around.",
           "whyItMatters": "Speed at pickup can move the cost into hunger and wasted food. The cafeteria scale reveals the burden that the shorter line no longer shows."
@@ -1097,13 +898,6 @@
             "automation",
             "constraint"
           ],
-          "planSpec": {
-            "domain": "warehouse automation rollout that speeds picking but jams packing",
-            "audience": "Daniel, an operations manager offered a vendor pilot before holiday peak",
-            "stakes": "whether improving one station shifts congestion and overtime into another",
-            "format": "postmortem",
-            "requiredBeat": "Daniel follows one order ticket from robot pick to packing table and records where the saved minutes reappear as a queue"
-          },
           "scenario": "It took Daniel one bent order ticket taped to the side of a stalled packing chute to see the pilot clearly. The robot picker had saved four minutes per order before holiday peak. Daniel followed that ticket from pick to packing and watched the saved minutes reappear as a queue beside the packing counter, where two packers waited for labels. The vendor's first metric was true, but the system had moved the constraint.",
           "whatToDo": "Follow one order through the whole flow. Record where the saved time reappears before expanding the pilot beyond the station that improved.",
           "whyItMatters": "A local improvement can shift congestion downstream. The order ticket shows whether the system got faster or only moved the waiting."
@@ -1116,13 +910,6 @@
             "boarding",
             "metric"
           ],
-          "planSpec": {
-            "domain": "airline boarding experiment that boards window seats first",
-            "audience": "Ingrid, a gate supervisor testing a faster boarding script on a snowy evening",
-            "stakes": "whether a faster first scan creates overhead-bin fights and missed connections later",
-            "format": "dialogue",
-            "requiredBeat": "Ingrid stops timing at door closure rather than last scanned pass, then rewrites the metric after seeing the bin conflict delay"
-          },
           "scenario": "\"Ingrid, we shaved six minutes,\" the gate agent says at the gate desk while a stroller blocks the jet bridge in Toronto during snow delay. Ingrid holds the boarding timer and watches window-seat passengers argue over overhead bins. The last pass scanned fast, but the door is still open. Before the trial report goes out, Ingrid must decide whether to time the experiment at last scan or at door closure.",
           "whatToDo": "Move the timing endpoint to door closure. Count the bin conflict delay as part of the boarding experiment before calling the new script faster.",
           "whyItMatters": "A metric can flatter the first step while hiding the later delay. Door closure measures the trip consequence, not just the scanner's good news."
@@ -1141,8 +928,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Earlier departures may be real, but overtime shows a possible displaced burden. The key is to follow the system past the first metric, not crown one metric or psychologize resistance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1154,8 +940,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The policy needed to anticipate the reaction it would create. Fines and statements may clear the first block, but they do not answer where the displaced activity will go.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1167,8 +952,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first win created a future anchor. The issue is not that large clients are always bad or that pride exists; it is that renewal expectations were part of the original deal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1180,8 +964,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The added measures capture delayed and displaced costs, not just speed. Package design and old complaints may matter, but they do not test whether the fix harmed the system later.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1193,8 +976,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The robot improved one station, but the system bottleneck moved. The other answers invent motives or reject the tool instead of tracing where the saved time reappeared.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1206,8 +988,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Last scan is too early an endpoint. Door closure captures the downstream delay from bin conflicts. Random boarding and satisfaction-only metrics dodge the specific measurement error.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1219,8 +1000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The vote needs the economic and ecological responses that follow the heavier catch. Fuel, maintenance, and meeting dynamics may matter less than the two consequences the quota itself triggers.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1232,8 +1012,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The point is better action, not paralysis. You cannot map everything, but you can inspect the predictable responses and hidden costs before committing to the first design.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1245,8 +1024,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Lower call volume is a real first result, but missed follow-ups show a displaced burden. The right response is to redesign access, not declare total failure or cling to the old metric.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1307,19 +1085,13 @@
       },
       "memorableLines": [
         {
-          "text": "Follow the burden after it leaves your desk.",
-          "location": "breakdown.fastRead",
-          "why": "It gives second-order thinking a concrete tracking image."
+          "text": "Follow the burden after it leaves your desk."
         },
         {
-          "text": "A system answers back after the first result leaves the room.",
-          "location": "breakdown.deepRead",
-          "why": "It makes reactions and downstream effects feel active rather than abstract."
+          "text": "A system answers back after the first result leaves the room."
         },
         {
-          "text": "The stronger operator does not worship complexity.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the lesson from collapsing into paralysis."
+          "text": "The stronger operator does not worship complexity."
         }
       ]
     },
@@ -1346,13 +1118,6 @@
             "omission",
             "tray"
           ],
-          "planSpec": {
-            "domain": "sterile processing team preparing orthopedic instrument trays",
-            "audience": "Grace, a lead technician who has seen the same torque handle missing twice",
-            "stakes": "whether a preventable omission delays surgery after everyone thought the tray was complete",
-            "format": "scene",
-            "requiredBeat": "Grace tapes a three-item tray-close checklist beside the washer door and makes the torque handle the final spoken check before sealing the wrap"
-          },
           "scenario": "Steam fogs the small window of the instrument washer while Grace lines up orthopedic trays before 6:00 a.m. The torque handle has been missing twice this month, though every technician can name the step. Grace tapes a three-item tray-close checklist beside the washer door and points to it during tray close. Before sealing the wrap, she must decide whether the final spoken check is worth slowing a room that already feels behind.",
           "whatToDo": "Tape the three-item list where tray close happens and make the torque handle the final spoken check before the wrap is sealed.",
           "whyItMatters": "The team does not lack knowledge. It loses one known step under speed and familiarity. The checklist protects that exact omission at the exact moment it happens."
@@ -1365,13 +1130,6 @@
             "recall",
             "opening"
           ],
-          "planSpec": {
-            "domain": "climbing gym opening inspection after a belay-device recall",
-            "audience": "Julien, a gym manager opening at dawn with a line of members outside",
-            "stakes": "whether familiarity with the wall makes a recalled device stay clipped for another class",
-            "format": "decision_point",
-            "requiredBeat": "Julien refuses to unlock the bouldering area until the recall card is checked against each rental bin, even though the front desk is crowded"
-          },
           "scenario": "Chalk dust sits on the latch of the still-locked climbing gate at dawn while members gather outside. Julien has a recall card for one belay-device model and four rental bins behind the counter. The front desk is crowded, and the wall looks the same as yesterday after hundreds of safe openings. Julien's hand hovers over the gate key. He has to decide whether to open on time or check every bin against the card first.",
           "whatToDo": "Keep the gate locked until the recall card has been checked against each rental bin. Let the opening checklist outrank the pressure at the front desk.",
           "whyItMatters": "Familiarity makes the wall feel safe by default. The card catches a specific device risk that routine sight cannot distinguish."
@@ -1384,13 +1142,6 @@
             "deadline",
             "verification"
           ],
-          "planSpec": {
-            "domain": "local newspaper correction workflow after two misspelled names reach print",
-            "audience": "Frida, a copy chief protecting a Friday obituary page",
-            "stakes": "whether deadline pressure makes the staff skip the phone verification they all agree matters",
-            "format": "postmortem",
-            "requiredBeat": "Frida circles the two past name errors, then adds a two-person name-read checkpoint before page export"
-          },
           "scenario": "It took Frida two clipped obituaries with red circles around family names to stop blaming carelessness. At the local paper, everyone agreed phone verification mattered, and Friday pressure still pushed the page toward export. Frida circles both errors, then adds a two-person name-read checkpoint beside the page export button on the layout desk. The next edition cannot leave until both readers initial the names.",
           "whatToDo": "Place a two-person name-read checkpoint at page export, not in a style guide. Require initials before the obituary page can leave.",
           "whyItMatters": "Deadline pressure makes agreed steps disappear. The checkpoint sits at the point of omission, so verification survives the rush that used to erase it."
@@ -1403,13 +1154,6 @@
             "allergy",
             "service"
           ],
-          "planSpec": {
-            "domain": "wedding caterer managing allergy labels during a rushed venue flip",
-            "audience": "Chidi, a catering captain who trusts his team but knows the dessert station changes fastest",
-            "stakes": "whether one unlabeled almond tart reaches the wrong guest during service",
-            "format": "dialogue",
-            "requiredBeat": "Chidi makes the dessert runner touch each tray label and read the allergen aloud before the doors open"
-          },
           "scenario": "\"Read me the one with almonds,\" Chidi says at the pass on the banquet counter, beside silver trays under heat lamps as the ballroom flips from ceremony to dinner. The dessert runner points to the almond tart, then the gluten-free plate, then the nut-free tray. Guests are outside the doors and the DJ has started the entrance music. Chidi must decide whether to trust the labels silently or make every allergen spoken before service starts.",
           "whatToDo": "Have the runner touch each tray label and read the allergen aloud before the doors open. Make the check physical and spoken.",
           "whyItMatters": "The dessert station changes fast and looks orderly. Speaking each label catches the unlabeled or misplaced tray before speed turns trust into exposure."
@@ -1422,13 +1166,6 @@
             "rollback",
             "runbook"
           ],
-          "planSpec": {
-            "domain": "data center migration where the rollback step keeps being assumed",
-            "audience": "Michael, an infrastructure lead facing a 1:00 a.m. cutover",
-            "stakes": "whether a familiar migration skips the rollback verification and traps a payments outage",
-            "format": "predict_reveal",
-            "requiredBeat": "Michael asks the team to point to the tested rollback command before the cutover clock starts, then delays when nobody can show the current script hash"
-          },
           "scenario": "At 12:47 a.m., Michael sees the rollback line blank on the runbook screen while the payments cutover clock counts down in the data center bridge. The team has done similar migrations all year. He asks everyone to point to the tested rollback command before the window opens. Nobody can show the current script hash. Michael must decide whether to delay or let familiarity stand in for the missing check.",
           "whatToDo": "Stop the cutover until the tested rollback command and current script hash are visible in the runbook. Do not let a familiar migration skip its exit.",
           "whyItMatters": "Rollback is easy to assume because it is rarely needed. When it is needed, the absence matters immediately. The checklist protects the escape route before pressure starts."
@@ -1441,13 +1178,6 @@
             "pickup",
             "authorization"
           ],
-          "planSpec": {
-            "domain": "daycare pickup authorization after a substitute teacher joins midweek",
-            "audience": "Paula, a center director who has the names memorized but knows substitutes do not",
-            "stakes": "whether one familiar parent face overrides the written pickup rule",
-            "format": "second_person",
-            "requiredBeat": "Paula moves the pickup-card check to the door clipboard and makes every adult show the card before greeting by name"
-          },
           "scenario": "You hear stroller wheels outside while the substitute reaches for the classroom door at Willow Street Daycare. Paula knows most parent faces by memory, but the substitute does not. The pickup cards are inside a desk drawer, away from the moment they matter. Paula moves the check to the door clipboard beside the sign-out sheet and must decide whether every adult shows the card before anyone is greeted by name.",
           "whatToDo": "Move the pickup-card check to the door clipboard and require the card before the greeting. Put the rule at the doorway, where the familiar face appears.",
           "whyItMatters": "Memory belongs to the regular staff, not the substitute. The door checklist keeps familiarity from overriding authorization at the exact handoff point."
@@ -1466,8 +1196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The staff already knows the rule. The repeated miss happens under handoff pressure, so the fix belongs at the point where the step vanishes. More training may miss the mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1479,8 +1208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The miss is narrow and repeated, so the list should be short and placed at release. A manual is too broad for the moment, and a meeting reminder fades before the rack.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1492,8 +1220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A bloated list invites scanning. The stronger design targets the interaction check at the moment it is missed. The problem is list quality, not the whole idea of process protection.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1505,8 +1232,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The list belongs where the omission happens. A handbook or office wall may contain the rule, but the reset clipboard forces the check during the live transition that keeps dropping it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1518,8 +1244,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Familiarity is the danger here. The team may be skilled, but the exit step can disappear because it feels routine. The checklist protects the current rollback, not every historical detail.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1531,8 +1256,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The doorway is the point of risk. A familiar face can beat a rule hidden in a drawer. The point is placement, not mistrust of substitutes or clipboard psychology.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1544,8 +1268,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Touching and speaking force the label check into the live moment. Accountability may help, but the main value is catching a specific omission before service begins.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1557,8 +1280,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A good list protects the recurring miss while judgment handles context. Refusing all process leaves known omissions exposed, and long lists often bury attention.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1570,8 +1292,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The checkpoint sits at the failure point and protects the agreed step under deadline pressure. Pride and punishment may create concern, but they do not keep the verification visible at export.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1632,19 +1353,13 @@
       },
       "memorableLines": [
         {
-          "text": "Protect the step that keeps disappearing.",
-          "location": "breakdown.fastRead",
-          "why": "It captures checklist design as omission protection, not productivity advice."
+          "text": "Protect the step that keeps disappearing."
         },
         {
-          "text": "The card is a guardrail, not a brain.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves judgment while defending the use of process."
+          "text": "The card is a guardrail, not a brain."
         },
         {
-          "text": "A checklist hidden in a manual is a wish.",
-          "location": "breakdown.fullRead",
-          "why": "It makes placement concrete and memorable."
+          "text": "A checklist hidden in a manual is a wish."
         }
       ]
     },
@@ -1671,13 +1386,6 @@
             "handoff",
             "status"
           ],
-          "planSpec": {
-            "domain": "emergency department handoff after a senior physician snaps at a resident",
-            "audience": "Rachel, a resident who knows the protocol but feels publicly humiliated",
-            "stakes": "whether status threat makes her skip a clarifying question during a risky transfer",
-            "format": "scene",
-            "requiredBeat": "Rachel writes the clarifying question on her glove cuff and asks it before signing the handoff, despite the heat in her face"
-          },
           "scenario": "The alcohol-wipe smell is sharp under fluorescent triage lights when the senior physician snaps at Rachel in front of two nurses. The handoff form is on a clipboard, and the transfer is moving fast. Rachel knows the clarifying question, but humiliation makes signing feel like escape. She writes the question on her glove cuff and must decide whether to ask it before the form leaves her hand.",
           "whatToDo": "Write the question where you can see it and ask before signing. Let the glove cuff hold the protocol while status pressure tries to hurry you out.",
           "whyItMatters": "Humiliation narrows attention toward escape. The visible question gives better judgment a place to stand before the handoff becomes official."
@@ -1690,13 +1398,6 @@
             "pride",
             "revision"
           ],
-          "planSpec": {
-            "domain": "family estate meeting where one sibling frames revision as betrayal",
-            "audience": "Mikkel, an executor trying not to let pride answer first",
-            "stakes": "whether embarrassment over an old promise blocks a fair update after new tax numbers arrive",
-            "format": "dialogue",
-            "requiredBeat": "Mikkel reads the new tax letter aloud, folds his first defensive note in half, and asks for ten minutes to recalculate before replying"
-          },
           "scenario": "\"You promised Dad,\" Mikkel's sister says across the dining-room table, the new tax letter between them. Mikkel has a defensive first sentence written on his legal pad. The old promise matters, but the numbers have changed. He folds the note in half, reads the tax letter aloud, and must decide whether to answer pride first or ask for ten minutes to recalculate.",
           "whatToDo": "Fold the defensive note, read the new numbers aloud, and ask for ten minutes before answering. Make pride wait while the calculation comes back into view.",
           "whyItMatters": "Status inside a family can turn revision into betrayal. A short delay lets the old promise and the new facts share the same table."
@@ -1709,13 +1410,6 @@
             "loss limit",
             "fear"
           ],
-          "planSpec": {
-            "domain": "commodity trading desk after a loss breaches the prewritten limit",
-            "audience": "Catarina, a junior trader hearing the room call the dip temporary",
-            "stakes": "whether fear of looking weak makes her ignore the loss limit she wrote while calm",
-            "format": "decision_point",
-            "requiredBeat": "Catarina touches the printed loss-limit card taped under her monitor and exits the position before explaining herself to the desk lead"
-          },
           "scenario": "At 9:36 a.m., Catarina watches copper drop through the red line on screen while the desk lead calls the dip temporary. The printed loss-limit card is taped under her monitor, written on a calm Friday. Two traders joke about weak hands. Catarina touches the card and has to decide whether to exit the position now or explain later why fear of looking weak owned the rule.",
           "whatToDo": "Touch the prewritten limit card and exit before defending yourself to the desk. Let the calm rule act before the room's status pressure rewrites it.",
           "whyItMatters": "Fear of looking weak can make a written limit feel optional. The card preserves the judgment made before the loss and the audience arrived."
@@ -1728,13 +1422,6 @@
             "panic",
             "truth"
           ],
-          "planSpec": {
-            "domain": "immigration interview prep when a client panics and wants to embellish",
-            "audience": "Layla, a legal clinic volunteer who knows panic can make truth look insufficient",
-            "stakes": "whether fear turns a fixable omission into a credibility problem",
-            "format": "before_after",
-            "requiredBeat": "Layla places the original document gap and the honest explanation on the same folder, then has the client practice the plain answer twice before adding anything"
-          },
           "scenario": "You watch a client twist a folder corner until the paper fibers split in the legal clinic waiting room. Before practice, he wants to add a stronger story about the missing document. Layla places the document gap and the honest explanation on the same folder. After two plain-answer rehearsals, the client can say what happened without embellishing what fear made feel inadequate.",
           "whatToDo": "Put the gap and honest explanation on the same folder, then practice the plain answer twice before adding any detail.",
           "whyItMatters": "Panic makes truth feel too small. Rehearsing the honest answer gives fear a script that does not create a credibility problem."
@@ -1747,13 +1434,6 @@
             "postmortem",
             "status"
           ],
-          "planSpec": {
-            "domain": "startup outage response where the founder wants to blame a vendor publicly",
-            "audience": "Andrew, an engineering lead with the incident timeline open",
-            "stakes": "whether status defense corrupts the postmortem before the root cause is known",
-            "format": "postmortem",
-            "requiredBeat": "Andrew locks the draft public post, adds a twelve-hour no-blame review line, and writes the unknowns under the knowns before Slack outrage becomes the official story"
-          },
           "scenario": "A status page is stuck on amber while Slack messages stack faster than alerts. Andrew has the incident timeline open after midnight, and the founder wants a public post blaming the vendor. Andrew locks the draft, adds a twelve-hour no-blame review line, and writes unknowns under knowns. The next morning's postmortem starts from the timeline, not the outrage.",
           "whatToDo": "Lock the blame draft, add a no-blame review window, and write unknowns under knowns before anyone publishes the story.",
           "whyItMatters": "Status defense wants a fast culprit. The timeline protects learning from the emotional need to look in control while facts are still incomplete."
@@ -1766,13 +1446,6 @@
             "feedback",
             "pride"
           ],
-          "planSpec": {
-            "domain": "orchestra audition feedback after a conductor dismisses a musician too sharply",
-            "audience": "Janek, an assistant conductor asked to deliver feedback without protecting his own authority",
-            "stakes": "whether pride turns a correct technical note into a humiliating exchange that teaches nothing",
-            "format": "reflection",
-            "requiredBeat": "Janek crosses out the clever first sentence, names the single bowing issue, and invites one replay instead of defending the conductor's tone"
-          },
           "scenario": "It took Janek three crossed-out sentences on the back of an audition score to hear his own pride in the rehearsal room after lunch. The conductor had dismissed the musician too sharply, and Janek wanted a clever first line that defended authority. He crosses it out, names one bowing issue, and invites one replay. The technical feedback survives because he stops trying to win the exchange.",
           "whatToDo": "Cross out the clever opening, name the single bowing issue, and ask for one replay. Let the feedback teach before authority defends itself.",
           "whyItMatters": "Pride can turn a correct note into a humiliating performance. Removing the clever line keeps the correction useful and the musician able to hear it."
@@ -1791,8 +1464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rule is known, but humiliation is making it hard to use. The skill is preserving access under pressure, not becoming numb or burying the moment in more paperwork.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1804,8 +1476,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the numbers and asking for time creates a gap before pride answers. Defending too fast lets status drive the result, while withdrawal avoids the judgment that still needs to happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1817,8 +1488,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The calm limit exists for this moment. Waiting or doubling down lets the audience rewrite the rule. Exiting first keeps status pressure from receiving voting rights.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1830,8 +1500,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Practice gives fear a truthful script. Embellishment creates credibility risk, and avoidance leaves panic in charge when the question arrives.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1843,8 +1512,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fast culprit protects status and control while facts are incomplete. Transparency would separate knowns from unknowns, and report length is not the force driving the blame draft.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1856,8 +1524,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The memory is cleaning up the pressured reaction, which blocks learning. The issue is not missing frameworks or excess fairness; it is the edited story after the fact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1869,8 +1536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The technical point survives when pride is removed from delivery. A clever opening turns feedback into status defense, and silence leaves the musician without the useful correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1882,8 +1548,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The aim is not emotional absence. It is enough space to use the rule, limit, or question while emotion is active. The other answers turn temperament into fantasy or niche advice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1895,8 +1560,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The tools may be sound but unreachable under authority pressure. The missing move is a gap that lets those tools re-enter before the decision hardens.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1957,19 +1621,13 @@
       },
       "memorableLines": [
         {
-          "text": "Keep the tool reachable while the room is hot.",
-          "location": "breakdown.fastRead",
-          "why": "It captures temperament as access to judgment, not calmness."
+          "text": "Keep the tool reachable while the room is hot."
         },
         {
-          "text": "A pause can be a tool holder when the room gets loud.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the abstract value of delay concrete and memorable."
+          "text": "A pause can be a tool holder when the room gets loud."
         },
         {
-          "text": "Memory is a friendly editor after pressure passes.",
-          "location": "breakdown.fullRead",
-          "why": "It gives self-serving revision a sharp image readers can retrieve."
+          "text": "Memory is a friendly editor after pressure passes."
         }
       ]
     }

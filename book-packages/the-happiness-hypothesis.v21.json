@@ -25,7 +25,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch01",
       "number": 1,
       "title": "The divided self",
@@ -120,8 +119,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The metaphor is uneven. The rider can guide, but the elephant has speed, mass, and habit. Equal voting misses the point.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q02",
@@ -133,8 +131,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Plato's image is built around inner struggle. The charioteer and horses show parts that must work together.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q03",
@@ -146,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Interpreter findings show that speech can fill in reasons after behavior. Confidence does not prove full access to the cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q04",
@@ -159,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The case ties impulse control to neural systems. That does not erase harm, but it rejects a brain-free view of restraint.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q05",
@@ -172,8 +167,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Automatic processes can move before inspection. The rider often manages reactions that have already started.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q06",
@@ -185,8 +179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Clear decisions can still lose to stronger appetites, threat responses, or avoidance. The problem is not just weak wording.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q07",
@@ -198,8 +191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Insight helps, but the automatic side learns through repeated pairings. A cue change gives the elephant a new track.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q08",
@@ -211,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The left hemisphere can act as an interpreter. A coherent story can make behavior feel orderly without proving causal access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch01-q09",
@@ -224,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The elephant changes through conditions and practice. Criticism adds heat without teaching the automatic response what to do next.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -268,7 +258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rank The Strongest Pull",
         "coreSkill": "Practice ranking cues before you scold yourself. The skill is to ask which trigger moves the elephant first, then make that trigger easier, smaller, or less tempting. This gives the rider a path it can actually steer.",
         "ifThenPlans": [
           {
@@ -289,19 +278,13 @@
       },
       "memorableLines": [
         {
-          "text": "Reason steers best when habit has already learned the road.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the rider-and-elephant lesson easy to carry into daily life."
+          "text": "Reason steers best when habit has already learned the road."
         },
         {
-          "text": "A smooth story is not proof of a true cause.",
-          "location": "breakdown.deepRead",
-          "why": "It turns split-brain research into a quick test for self-explanation."
+          "text": "A smooth story is not proof of a true cause."
         },
         {
-          "text": "Blame cannot train a system that learns by practice.",
-          "location": "breakdown.fullRead",
-          "why": "It names why shame fails as a method of self-command."
+          "text": "Blame cannot train a system that learns by practice."
         }
       ],
       "experiencePlan": {
@@ -343,7 +326,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch02",
       "number": 2,
       "title": "Changing your mind",
@@ -444,8 +426,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Affective priming supports the middle choice: evaluation can move before conscious recognition. The other choices assume awareness must come first.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q02",
@@ -457,8 +438,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Implicit egotism is small, not total. It says self-linked liking can tilt choices, while the distractors make it either everything or nothing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q03",
@@ -470,8 +450,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Beck's method tests and revises appraisals. It is not forced cheer, and it does not heal by dodging the thought.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q04",
@@ -483,8 +462,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Meditation changes the relationship to thought. The aim is not a blank mind or longer rumination, but less automatic obedience.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q05",
@@ -496,8 +474,7 @@
             ],
             "correctIndex": 2,
             "explanation": "SSRIs can shift baseline reactivity for some sufferers. That help does not erase habits, relationships, or appraisal work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q06",
@@ -509,8 +486,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same event can meet different baseline expectations. The fact does not reduce optimism to a simple choice or instant switch.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q07",
@@ -522,8 +498,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rumination can prolong distress by reactivating the same meaning. More thought is not always better thought.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q08",
@@ -535,8 +510,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mindfulness-based cognitive therapy targets the response to early negative thoughts. It is more than relaxation, and it does not ask you to obey each thought.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch02-q09",
@@ -548,8 +522,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Durable change usually needs repetition. One insight can help the rider, but automatic appraisal changes through practice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -586,7 +559,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice Catch Test Rehearse",
         "coreSkill": "Practice Catch, Test, Rehearse. Catch the first appraisal in plain words, test it against visible evidence, then rehearse one truer response. The skill is small on purpose because the elephant learns from repeated contact.",
         "ifThenPlans": [
           {
@@ -607,24 +579,17 @@
       },
       "memorableLines": [
         {
-          "text": "Your first reaction is trained, so train the next one.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's mechanism into a sentence the reader can carry."
+          "text": "Your first reaction is trained, so train the next one."
         },
         {
-          "text": "A slogan lectures the rider; practice reaches the elephant.",
-          "location": "breakdown.deepRead",
-          "why": "It separates insight from durable emotional retraining."
+          "text": "A slogan lectures the rider; practice reaches the elephant."
         },
         {
-          "text": "Changing your mind costs the comfort of being instantly right.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff at the close of the chapter."
+          "text": "Changing your mind costs the comfort of being instantly right."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch03",
       "number": 3,
       "title": "Reciprocity with a vengeance",
@@ -719,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trivers's reciprocal altruism depends on repeated encounters. Pure selflessness and lucky error both miss how future return and defection costs support help.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q02",
@@ -732,8 +696,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Wilkinson's vampire bats matter because reciprocal exchange appears without human etiquette. Calling it mere culture or mere biology drops the exchange pattern.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q03",
@@ -745,8 +708,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reciprocity creates pressure through informal imbalance. A contract or exact demand can make it clearer, but the social norm starts before paperwork.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q04",
@@ -758,8 +720,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cialdini's reciprocity principle does not require a large gift or a clear bargain. A small imposed benefit can still make the recipient feel indebted.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q05",
@@ -771,8 +732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gossip can carry reputation information beyond direct experience. The near miss is treating all gossip as idle talk rather than social monitoring.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q06",
@@ -784,8 +744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Costly punishment can stabilize cooperation by changing future incentives. Direct payback is not required for enforcement to matter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q07",
@@ -797,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Golden Rule fits reciprocity by reversing roles. It does not erase every request, but it blocks special pleading from the collector's side.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q08",
@@ -810,8 +768,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Vengeance is not the opposite of reciprocity. It uses the same balance logic, but sends it toward harm and can keep the cycle going.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch03-q09",
@@ -823,8 +780,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cialdini lists reciprocity with commitment and consistency, social proof, liking, authority, and scarcity. Influence often stacks more than one lever.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -873,7 +829,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask What Is Owed",
         "coreSkill": "Practice noticing the ledger before it runs the conversation. Ask What Is Owed means naming the favor, harm, or warning in plain words before you collect, comply, or punish. The skill keeps gratitude warm without letting pressure hide inside it.",
         "ifThenPlans": [
           {
@@ -898,19 +853,13 @@
       },
       "memorableLines": [
         {
-          "text": "Debt can wear a friendly face.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the gift-pressure problem easy to remember."
+          "text": "Debt can wear a friendly face."
         },
         {
-          "text": "Gossip is a social memory.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the reputation function into one clean image."
+          "text": "Gossip is a social memory."
         },
         {
-          "text": "Vengeance keeps the books in blood.",
-          "location": "breakdown.fullRead",
-          "why": "It makes revenge feel like corrupted accounting, not random anger."
+          "text": "Vengeance keeps the books in blood."
         }
       ]
     },
@@ -1015,8 +964,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Batson's moral hypocrisy work shows how self-benefit can sit beside a fair self-image. The error is assuming hypocrisy always feels like conscious fraud.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1028,8 +976,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Confirmation bias can feel like honest search from the inside. Kuhn and Perkins show that reasons can defend a side instead of testing it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1041,8 +988,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Baumeister's myth of pure evil points to the story gap. Victims and perpetrators often narrate motive in ways that protect their own side.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1054,8 +1000,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Looking inward can produce a smooth story without proving the cause. The near miss is trusting confidence as if it were direct access.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1067,8 +1012,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The bias blind spot means other people's distortions are easier to see than your own. Bias knowledge can become a weapon if it never turns inward.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1080,8 +1024,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fundamental attribution error makes personality too visible and situation too faint. The route changes are the kind of pressure to inspect first.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1093,8 +1036,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Motivated reasoning can use intelligence as a defense team. Facts still matter, but desire can shape which facts feel decisive.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1106,8 +1048,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Taking off moral glasses means searching for your own role. Explaining the other person's wrongness more clearly leaves the self-exempt story intact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1119,8 +1060,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Everyday argument can sound rational while trying to win. Testing asks what could change the view; advocacy gathers reasons after the view is favored.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1163,7 +1103,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run The Beam Check",
         "coreSkill": "Practice distrusting your first innocence story. The Beam Check is simple: before you correct someone else, write the fact your anger wants to skip. Then compare your excuse with the excuse you would deny them.",
         "ifThenPlans": [
           {
@@ -1188,19 +1127,13 @@
       },
       "memorableLines": [
         {
-          "text": "Clean anger can hide a dirty mirror.",
-          "location": "breakdown.fastRead",
-          "why": "It makes self-protective outrage easy to remember."
+          "text": "Clean anger can hide a dirty mirror."
         },
         {
-          "text": "A reason can be a lawyer wearing a lab coat.",
-          "location": "breakdown.deepRead",
-          "why": "It captures motivated reasoning without technical fog."
+          "text": "A reason can be a lawyer wearing a lab coat."
         },
         {
-          "text": "A fair fight starts with your missing piece.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the chapter's practice into a short rule."
+          "text": "A fair fight starts with your missing piece."
         }
       ]
     },
@@ -1299,8 +1232,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The formula keeps three inputs together. Reducing happiness to habit, biology, or circumstances repeats the one-lever error the formula rejects.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1312,8 +1244,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Brickman work matters because dramatic events often last less emotionally than expected. First shock alone can mislead the forecast.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1325,8 +1256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Lykken and Tellegen finding supports a set range, not a blank slate. It allows change while admitting inherited differences.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -1338,8 +1268,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Money has uneven effects. Relief from insecurity can change daily life, while later status gains may adapt away quickly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1351,8 +1280,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Prosocial spending can lift happiness by changing social emotion. The key is not the amount alone, but what the spending does between people.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1364,8 +1292,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flow is rewarding because effort becomes absorbed attention. The common error is treating happiness as mere ease.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1377,8 +1304,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Affective forecasting errors send effort toward rewards that fade. The issue is not that nothing matters, but that duration is easy to misjudge.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1390,8 +1316,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Choice helps when it serves valued activity. Past that point, more comparison can add regret and paralysis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1403,8 +1328,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The formula's hard edge is balance. Some externals adapt away, but relationships, work, commute, noise, and insecurity can still shape daily mood.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1447,7 +1371,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Rehearse The Lasting Change",
         "coreSkill": "Practice sorting a desired change before you chase it. Say whether it will affect your set range, conditions, or voluntary activities, then ask whether the feeling will last, fade, or deepen connection. This keeps hope without letting first-week excitement run the whole plan.",
         "ifThenPlans": [
           {
@@ -1472,24 +1395,17 @@
       },
       "memorableLines": [
         {
-          "text": "Adaptation is a shock absorber, not a life plan.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps adaptation from becoming either panic or surrender."
+          "text": "Adaptation is a shock absorber, not a life plan."
         },
         {
-          "text": "A range is not a cage.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the twin-study constraint feel usable instead of fatal."
+          "text": "A range is not a cage."
         },
         {
-          "text": "Spend where life keeps touching you.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the money lesson into a daily test."
+          "text": "Spend where life keeps touching you."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch06",
       "number": 6,
       "title": "Love and attachments",
@@ -1590,8 +1506,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Bowlby's point was that warm, continuous care is central, not decorative. Food and warmth matter, but they do not replace responsive presence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1603,8 +1518,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cloth choice shows contact comfort. A feeding-only account cannot explain why the frightened monkey runs to the soft surrogate.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1616,8 +1530,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Adult attachment work names secure, anxious, and avoidant patterns. The prompt shows anxious pursuit and avoidant retreat.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1629,8 +1542,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Belonging is not just a bonus. Stable bonds help people regulate emotion and build meaning, so isolation has real costs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1642,8 +1554,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Love is a family of systems. Different forms do different jobs, so one blanket feeling gives bad guidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1655,8 +1566,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Secure attachment gives a safe base. Confidence in return often supports autonomy rather than blocking it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1668,8 +1578,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is not no attachment. Humans are deeply social, and advice that prizes total detachment can miss the cost of isolation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1681,8 +1590,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reciprocal self-disclosure can increase closeness. The point is patterned exchange, not fate or pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1694,8 +1602,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Commitment stabilizes love through maintenance processes. It helps partners repair and resist alternatives, but it is not a rule to stay in harm.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1738,7 +1645,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice the Reach-Back Rule",
         "coreSkill": "Practice the Reach-Back Rule: when your first urge is to vanish, reach back with one clear signal before you take space. Name the attachment need in plain words. Then ask for a form of contact that another person can actually give.",
         "ifThenPlans": [
           {
@@ -1759,24 +1665,17 @@
       },
       "memorableLines": [
         {
-          "text": "Need is not failure; it is part of the design.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the chapter's main false ideal in one sentence."
+          "text": "Need is not failure; it is part of the design."
         },
         {
-          "text": "Secure love gives courage somewhere to come home.",
-          "location": "breakdown.deepRead",
-          "why": "It turns secure attachment into a clear image of return."
+          "text": "Secure love gives courage somewhere to come home."
         },
         {
-          "text": "Attachment curdles when it calls every bond a chain.",
-          "location": "breakdown.fullRead",
-          "why": "It names the overcorrection without rejecting wise distance."
+          "text": "Attachment curdles when it calls every bond a chain."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch07",
       "number": 7,
       "title": "The uses of adversity",
@@ -1877,8 +1776,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Posttraumatic growth is linked to the struggle after adversity, not to trauma as an automatic benefit. The other choices credit the event too simply.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1890,8 +1788,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The framework has several domains, not just toughness. It includes relational change, new possibilities, strength, spiritual change, and appreciation.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -1903,8 +1800,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Expressive writing can help because language gives shape to emotional upheaval. Avoiding the material or leaving it wordless misses the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1916,8 +1812,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sternberg's view makes wisdom a balanced judgment across self, others, and context. Suffering alone can also harden a person.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1929,8 +1824,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Resilience research allows more than one path after loss. Some people maintain or regain functioning, even though distress can still be real.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1942,8 +1836,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is moderate and conditional. Some challenge can build coping, but too much can overwhelm and total protection may leave little practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1955,8 +1848,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Benefit-finding searches for gains or lessons within hardship. It does not turn the harm into a good thing or erase the loss.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1968,8 +1860,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Developmental timing changes impact. The same challenge can strengthen one person and overwhelm another, depending on capacity and support.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1981,8 +1872,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Supportive relationships help adversity become integrated rather than isolating. Pure willpower makes recovery sound more private than the source allows.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2025,7 +1915,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count The Meaning Gap",
         "coreSkill": "Practice Count the Meaning Gap before you explain a hard event. Name the loss first, then count whether support, timing, and meaning are present. If one is missing, do not force a lesson yet.",
         "ifThenPlans": [
           {
@@ -2050,24 +1939,17 @@
       },
       "memorableLines": [
         {
-          "text": "Pain is not a teacher until someone can stay with the lesson.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter humane by making support part of learning."
+          "text": "Pain is not a teacher until someone can stay with the lesson."
         },
         {
-          "text": "A wound can change you without becoming a gift.",
-          "location": "breakdown.deepRead",
-          "why": "It separates growth from gratitude for harm."
+          "text": "A wound can change you without becoming a gift."
         },
         {
-          "text": "Wisdom begins when pain widens the circle.",
-          "location": "breakdown.fullRead",
-          "why": "It makes Sternberg's balance view easy to remember."
+          "text": "Wisdom begins when pain widens the circle."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch08",
       "number": 8,
       "title": "The felicity of virtue",
@@ -2198,8 +2080,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The chart made virtue behavioral. The near misses treat the list as preaching or one-time resolve, not daily training.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2211,8 +2092,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Aristotle links virtue to habituated action and practical judgment. Rule recall alone is the common misread.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2224,8 +2104,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Arete is broader than niceness. It carries the sense of excellence and full functioning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2237,8 +2116,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Their classification gives modern psychology a structured language of virtues and strengths.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2250,8 +2128,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Modern ethics often stresses rules and consequences. The risk is losing the older focus on practiced character.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2263,8 +2140,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Narrative and imitation train automatic response. Logic matters, but it is not the only teacher.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2276,8 +2152,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Character strengths are meant to be used. Knowing or endorsing one is not the same as living it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2289,8 +2164,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The positive psychology project seeks shared character language across differences, not silence or one imposed code.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2302,8 +2176,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Ancient ethics links flourishing with excellent character. Reliable habits make good action easier and relationships safer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2346,7 +2219,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use the Mark the Virtue Cue Practice",
         "coreSkill": "Practice the Mark the Virtue Cue move: choose one virtue word only when it points to a next act. Mark that word on a surface you already see. Then use the mark to do one small repeat before excuse hardens.",
         "ifThenPlans": [
           {
@@ -2367,24 +2239,17 @@
       },
       "memorableLines": [
         {
-          "text": "Virtue grows where practice makes goodness easier than excuse.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's core move as a compact rule."
+          "text": "Virtue grows where practice makes goodness easier than excuse."
         },
         {
-          "text": "A chart can train the heart before crisis asks.",
-          "location": "breakdown.deepRead",
-          "why": "It turns Franklin's method into a portable image."
+          "text": "A chart can train the heart before crisis asks."
         },
         {
-          "text": "Strengths become virtues only when they enter the day.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the strengths framework tied to action."
+          "text": "Strengths become virtues only when they enter the day."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch09",
       "number": 9,
       "title": "Divinity with or without God",
@@ -2485,8 +2350,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flatland supports the missing-dimension analogy. It does not prove a creed, but it warns against assuming everyone senses the same moral height.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q02",
@@ -2498,8 +2362,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The research links bodily revulsion with moralized reactions. The error is keeping disgust trapped in smell and spoiled food alone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q03",
@@ -2511,8 +2374,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Elevation is the positive response to moral beauty or virtue. It can move a person toward imitation and help, unlike disgust or mere surprise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q04",
@@ -2524,8 +2386,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Awe is not just a stronger startle. It joins perceived vastness with a need to adjust the mental frame that was too small.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q05",
@@ -2537,8 +2398,7 @@
             ],
             "correctIndex": 1,
             "explanation": "James treated religious experience as psychologically serious by looking at its lived consequences, not by first settling metaphysical proof.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q06",
@@ -2550,8 +2410,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Maslow supplied secular language for unity, wonder, and transcendence. Divinity-like experience is not confined to religious belief.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q07",
@@ -2563,8 +2422,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sacredness changes what feels negotiable. The stone is not merely liked more than usual; it is protected as part of identity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q08",
@@ -2576,8 +2434,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge cuts both ways. Purity emotions can support nobility and community, but they can also stigmatize outsiders.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-happiness-hypothesis-ch09-q09",
@@ -2589,8 +2446,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ritual can coordinate attention, body, and meaning. That shared focus gives repetition a psychological function beyond empty habit.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2633,7 +2489,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read The Vertical Pull",
         "coreSkill": "Practice reading the vertical pull before you obey it. Name whether the moment gives you disgust, elevation, or awe, then ask what action the feeling is asking for. The skill is not to flatten the feeling or worship it. It is to check whether the pull will make you more humane.",
         "ifThenPlans": [
           {
@@ -2658,19 +2513,13 @@
       },
       "memorableLines": [
         {
-          "text": "Height can lift a life or harden a wall.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps both sides of sacred feeling in one compact image."
+          "text": "Height can lift a life or harden a wall."
         },
         {
-          "text": "Disgust is a smoke alarm, not a moral judge.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the warning about purity easy to use in real time."
+          "text": "Disgust is a smoke alarm, not a moral judge."
         },
         {
-          "text": "Awe makes the self smaller without making it worthless.",
-          "location": "breakdown.deepRead",
-          "why": "It separates humility from self-erasure in plain words."
+          "text": "Awe makes the self smaller without making it worthless."
         }
       ]
     },
@@ -2775,8 +2624,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cross-level coherence moves from one abstract answer to meaning within life. The error is waiting for cosmic proof before building lived purpose.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2788,8 +2636,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Good Work is not performance alone. The framework links excellence with ethics and engagement, so skill must stay tied to responsibility and attention.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q03",
@@ -2801,8 +2648,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Vital engagement is not mere busyness. It joins attention, interest, and valued goals; late hours without connection can point the other way.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2814,8 +2660,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Wrzesniewski's finding concerns orientation. The same work can carry different meaning, so prestige or title does not decide calling by itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2827,8 +2672,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Love and work matter because they connect the self to people and contribution. Withdrawal may reduce strain, but it can also cut off purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2840,8 +2684,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Self-determination theory names relatedness, competence, and autonomy. This plan keeps choice and challenge but severs connection to people.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2853,8 +2696,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Frankl separates meaning from pleasure. The careful claim is not that pain is good, but that purpose can organize endurance and duty.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2866,8 +2708,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Personal projects need fit among goal, self, and context. Intensity and praise can hide a clash that drains coherence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2879,8 +2720,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Religion can be a source of coherence, not only doctrine. Ritual and belief can bind personal conduct to community and a larger order.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2923,7 +2763,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Bridge Love Work Purpose",
         "coreSkill": "Practice bridging love, work, and purpose before you add more effort. Name the task, the bond, and the larger reason involved. Then repair the part that is being cut off or asked to carry too much.",
         "ifThenPlans": [
           {
@@ -2948,24 +2787,17 @@
       },
       "memorableLines": [
         {
-          "text": "Meaning needs a bridge, not a mirror.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's reversal into one portable image."
+          "text": "Meaning needs a bridge, not a mirror."
         },
         {
-          "text": "Good work joins skill to service.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the Good Work test easy to carry."
+          "text": "Good work joins skill to service."
         },
         {
-          "text": "Fit is not obedience to every group.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the chapter's idea from a dangerous overuse."
+          "text": "Fit is not obedience to every group."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-happiness-hypothesis-ch11",
       "number": 11,
       "title": "On balance",
@@ -3066,8 +2898,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Yin-yang imagery keeps both poles in the pattern. The point is interdependence, not victory by one side or a blurry removal of conflict.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3079,8 +2910,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Buddhist middle way is not indulgence, and it is not severe asceticism. It names both edges as paths to avoid.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3092,8 +2922,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Berlin's pluralism says some value conflicts are real. The hard case is not always solved by exposing one side as fake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3105,8 +2934,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Old insight and new method can reinforce each other. Science can explain and refine a useful practice without erasing where it came from.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3118,8 +2946,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ancient traditions can carry practices for attention, character, and community. That does not excuse every theory, but it does give science something to learn from.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3131,8 +2958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source pairs acceptance and striving because each can go wrong alone. Balance uses each one to check the other's excess.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3144,8 +2970,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Balanced wisdom reads political rivals as partial, not empty. Each vision can notice goods the other neglects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3157,8 +2982,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rigid responses fail when the setting changes. Flexibility is not having no stance; it is adjusting the stance to the situation.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -3170,8 +2994,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Integrative judgment is not averaging. It keeps the useful insight of each side, then lets the concrete situation decide what leads.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3214,7 +3037,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Balance Handoff",
         "coreSkill": "Practice the Balance Handoff. When a tradeoff feels stuck, write the short note a wiser future self would need: what each side protects, what each side risks, and which truth should lead now. The skill is not staying neutral; it is choosing with both truths still visible.",
         "ifThenPlans": [
           {
@@ -3239,19 +3061,13 @@
       },
       "memorableLines": [
         {
-          "text": "Balance is not a shrug; it is a trained grip.",
-          "location": "breakdown.fastRead",
-          "why": "It separates disciplined balance from bland compromise."
+          "text": "Balance is not a shrug; it is a trained grip."
         },
         {
-          "text": "Opposites can correct without canceling each other.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's mechanism in one portable line."
+          "text": "Opposites can correct without canceling each other."
         },
         {
-          "text": "One big answer makes small truths disappear.",
-          "location": "breakdown.fullRead",
-          "why": "It warns against the single-master-answer mistake."
+          "text": "One big answer makes small truths disappear."
         }
       ]
     }

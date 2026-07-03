@@ -1,4 +1,3 @@
-import type { ProductionPackageManifest } from "./productionManifest.js";
 import type { GenerationRunManifestV1 } from "./generationDegradation.js";
 
 /**
@@ -444,7 +443,12 @@ export type BookPackageV21 = {
     edition?: BookEdition;
   };
   chapters: ChapterV21[];
-  productionManifest: ProductionPackageManifest;
+  // NOTE (WS1/K1): the production manifest is NO LONGER embedded in the shipped
+  // package. It lives in the state-side sidecar
+  // `state/books/<bookId>.production-manifest.json` (ProductionManifestSidecar).
+  // The distribution package carries reader content only. A package that STILL
+  // carries this field is the pre-v24 shape and is hard-rejected by
+  // verifyProductionPackage (PPKG.embedded_manifest_forbidden).
 };
 
 export type ChapterV21 = {

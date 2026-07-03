@@ -45,13 +45,6 @@
             "source assumptions",
             "manufacturing"
           ],
-          "planSpec": {
-            "domain": "auto assembly",
-            "audience": "plant leaders",
-            "stakes": "recurring final repair",
-            "format": "decision_point",
-            "requiredBeat": "Premise before repair"
-          },
           "scenario": "Defect rates are flat, yet the final-fit bay is full of mechanics tapping door seams into place. The plant manager stands beside the door-fit gauge with finance waiting for a staffing request. She needs to decide before the capital review: add more repair labor, or trace why the door reaches the end of the line misaligned at all.",
           "whatToDo": "The plant manager moves the door-fit review to the design and tooling decision. The late repair log becomes evidence for changing the first premise, not a reason to hire more finishers.",
           "whyItMatters": "Source assumptions shape the whole line. When the start is questioned, the team can prevent the defect instead of building pride around a cleaner rescue."
@@ -63,13 +56,6 @@
             "source assumptions",
             "process design"
           ],
-          "planSpec": {
-            "domain": "operations benchmarking",
-            "audience": "process leaders",
-            "stakes": "copying the wrong thing",
-            "format": "decision_point",
-            "requiredBeat": "Unseen system before copied method"
-          },
           "scenario": "The operations director returns from a Japanese assembly visit with photos of fixtures, training notes, and one uncomfortable observation: the cleanest line had fewer rescue stations. In the conference room, the president asks for a shopping list. The director's choice before the debrief is stark: buy visible tools, or name the prevention belief that made those tools useful.",
           "whatToDo": "The operations director studies the beliefs behind the Japanese process before buying matching equipment. The tour notes become a question about prevention, not a shopping list.",
           "whyItMatters": "Copying tools can preserve the old cause of failure. The useful transfer is the upstream standard that made late correction unnecessary."
@@ -81,13 +67,6 @@
             "source assumptions",
             "software"
           ],
-          "planSpec": {
-            "domain": "software release",
-            "audience": "engineering managers",
-            "stakes": "repeat production defects",
-            "format": "decision_point",
-            "requiredBeat": "Design review before QA patch"
-          },
           "scenario": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint. The release manager has a new gate ready, and the engineering lead can implement it by Monday. Before sprint planning closes, the manager is deciding whether the car-door lesson points to another checkpoint or to the design review where the bug first becomes likely.",
           "whatToDo": "The release manager shifts the bug conversation into design review. The final QA gate stays, but the recurring issue is traced to the moment the weak assumption entered the sprint.",
           "whyItMatters": "A defect caught late still teaches where work began wrong. Treating QA as the answer lets the same source assumption keep producing rework."
@@ -99,13 +78,6 @@
             "source assumptions",
             "health care"
           ],
-          "planSpec": {
-            "domain": "hospital discharge",
-            "audience": "clinic leadership",
-            "stakes": "repeat patient returns",
-            "format": "decision_point",
-            "requiredBeat": "Handoff before follow-up"
-          },
           "scenario": "At the hospital quality board, the nurse manager pins a weekend readmission chart beside a sample discharge sheet. Families heard the instructions, signed the form, and still returned confused. The staffing request is due at noon. The manager faces a choice: add a follow-up call after discharge, or redesign the handoff where misunderstanding entered the case.",
           "whatToDo": "The nurse manager rewrites the discharge handoff around family understanding. The weekend readmission chart becomes a signal about the first explanation patients received.",
           "whyItMatters": "Adding calls after discharge may help, but the source assumption sits in the handoff. Prevention begins where confusion first became likely."
@@ -117,13 +89,6 @@
             "source assumptions",
             "measurement"
           ],
-          "planSpec": {
-            "domain": "supplier management",
-            "audience": "procurement leaders",
-            "stakes": "misread quality data",
-            "format": "decision_point",
-            "requiredBeat": "Measurement frame before contract switch"
-          },
           "scenario": "The supplier council has a scorecard on the screen and a vendor replacement memo in draft. The vice president of supply recalls the American car-door line, where visible correction hid an earlier premise. Contracts roll over soon, and the council asks a sharper question: does the bad score name the vendor, or expose a measurement frame that taught the wrong behavior?",
           "whatToDo": "The supply leader tests the scoring frame before changing vendors. The visible supplier result is used to inspect the premise behind the measure.",
           "whyItMatters": "A bad score can be real and still point to the wrong cause. Source assumptions decide whether procurement fixes the vendor or the lens."
@@ -135,13 +100,6 @@
             "source assumptions",
             "training"
           ],
-          "planSpec": {
-            "domain": "pilot training",
-            "audience": "training directors",
-            "stakes": "bad model reinforced by practice",
-            "format": "decision_point",
-            "requiredBeat": "Lesson model before extra drills"
-          },
           "scenario": "A Japanese assembly report sits beside a simulator report shows pilots repeating the same landing-sequence mistake after extra drills. The training director studies the syllabus beside a printed cockpit flow. Before the next class begins, she needs to choose: add repetitions to prove seriousness, or change the first explanation students receive about the failure.",
           "whatToDo": "The training director repairs the lesson before adding simulator time. Practice remains useful, but the first explanation for the landing error gets corrected.",
           "whyItMatters": "More repetitions strengthen whatever premise the syllabus teaches. A pilot learns faster when the root explanation is sound before practice begins."
@@ -160,8 +118,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The car-door case points upstream. Extra repair speed can hide the premise that produced the defect, while assumption testing changes the system that keeps making the repair necessary.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -173,8 +130,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Copying the surface tactic misses the cause. The useful question asks what premise, process choice, or design belief created the result before the tactic became visible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -186,8 +142,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recurring complaints are evidence of an upstream pattern. The source-assumption move locates the point where the problem is born rather than polishing the response after it appears.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -199,8 +154,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Numbers help only after the right cause is being studied. A dashboard can make failure vivid while leaving the belief that creates the failure fully intact.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -212,8 +166,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A fix that worked once may still depend on a bad premise. The disciplined move distinguishes visible repair from the underlying reason repair was needed.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -225,8 +178,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The mallet story is a warning about false certainty. A repair can be competent and still reveal that no one has named the source condition yet.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -238,8 +190,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A bonus can aim effort at the visible rescue instead of the source condition. The better measure asks whether the need for rescue is shrinking.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -251,8 +202,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A practice carries hidden assumptions. When the setting changes, the visible move can lose the premise that made it effective in the original system.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -264,8 +214,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Another inspection step may catch more failures without changing why failures appear. The source move finds and tests the earlier decision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -302,7 +251,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit the First Premise",
         "coreSkill": "Name the premise before naming the fix. Look at a repeated defect, delay, or complaint, then ask which starting belief makes that outcome likely. The useful repair changes the condition that creates the pattern.",
         "ifThenPlans": [
           {
@@ -323,19 +271,13 @@
       },
       "memorableLines": [
         {
-          "text": "A clean finish can still hide a broken start.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A clean finish can still hide a broken start."
         },
         {
-          "text": "If the first premise is wrong, more effort only gives the mistake a louder engine.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "If the first premise is wrong, more effort only gives the mistake a louder engine."
         },
         {
-          "text": "The right repair begins where the defect first entered the work.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The right repair begins where the defect first entered the work."
         }
       ]
     },
@@ -361,13 +303,6 @@
             "manipulation",
             "Motorola"
           ],
-          "planSpec": {
-            "domain": "mobile phones",
-            "audience": "phone executives",
-            "stakes": "purchased demand",
-            "format": "decision_point",
-            "requiredBeat": "Separate sales lift from loyalty"
-          },
           "scenario": "The Motorola RAZR sales chart spikes whenever the carrier adds a rebate, then drops when the offer expires. In the mobile-phone war room, the promotion calendar is already open to the next discount window. The marketing lead is about to decide whether the campaign created belief-led demand or merely taught customers to wait for another price cue.",
           "whatToDo": "The Motorola team separates promotional heat from customer commitment. The rebate plan is judged by repeat demand after the discount ends, not by the first spike alone.",
           "whyItMatters": "Manipulation can make motion look like loyalty. The RAZR warning is that a bought response fades when a stronger cue reaches the same buyer."
@@ -379,13 +314,6 @@
             "inspiration",
             "Apple"
           ],
-          "planSpec": {
-            "domain": "consumer technology",
-            "audience": "launch team",
-            "stakes": "novelty versus meaning",
-            "format": "decision_point",
-            "requiredBeat": "Belief before novelty"
-          },
           "scenario": "During the iPhone launch rehearsal, the product story can still be changed. One slide lists features, another explains a belief about remaking everyday technology around the user. The keynote team has minutes before the final run-through. They need to choose which story leads and which details arrive as proof.",
           "whatToDo": "The Apple team presents the iPhone as proof of a belief about personal technology. Features support the point instead of carrying the whole launch story.",
           "whyItMatters": "Inspiration gives the customer a reason to return when novelty slows. The purchase connects to identity rather than only to a clever device list."
@@ -397,13 +325,6 @@
             "manipulation",
             "Colgate"
           ],
-          "planSpec": {
-            "domain": "retail toothpaste",
-            "audience": "category managers",
-            "stakes": "choice mistaken for loyalty",
-            "format": "decision_point",
-            "requiredBeat": "Reason before variety"
-          },
           "scenario": "A Colgate shelf map covers the category table with whitening, freshness, cavity, flavor, and size variants. The retailer offers one more slot if the team can fill it by Friday. The category director faces a choice: add another box for attention, or ask whether the extra option gives shoppers a clearer reason to care.",
           "whatToDo": "The Colgate team cuts through the crowded shelf by asking which option expresses a real promise. Another variant must earn its place by clarifying belief.",
           "whyItMatters": "Choice can create noise without building trust. Manipulation uses attention as the win; inspiration gives the buyer a reason to care."
@@ -415,13 +336,6 @@
             "fear",
             "fundraising"
           ],
-          "planSpec": {
-            "domain": "nonprofit fundraising",
-            "audience": "development leaders",
-            "stakes": "pressure-driven giving",
-            "format": "decision_point",
-            "requiredBeat": "Pressure fades, loyalty remains"
-          },
           "scenario": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close. At the donor review, the development director sees the danger in the numbers. The choice before print approval is whether to repeat the pressure cue or measure which supporters still act when the fear is removed.",
           "whatToDo": "The fundraising director measures support after the fear appeal is removed. The next message names the cause clearly before using urgency.",
           "whyItMatters": "Fear may lift response while weakening commitment. Supporters who act only under pressure have not yet found themselves in the purpose."
@@ -433,13 +347,6 @@
             "status",
             "manipulation"
           ],
-          "planSpec": {
-            "domain": "fashion retail",
-            "audience": "brand team",
-            "stakes": "borrowed attention",
-            "format": "decision_point",
-            "requiredBeat": "Status cue versus belief"
-          },
           "scenario": "A Motorola status lesson follows a fashion buyer has celebrity mockups on one side of the table and repeat-purchase data on the other. The status tie-in would make the quarter easier to explain. Before factory time is reserved, the brand director needs to decide if customers would still choose the line after the borrowed attention fades.",
           "whatToDo": "The retail brand treats celebrity attention as a loan, not an asset. The product has to stand for something customers would choose after status cools.",
           "whyItMatters": "Borrowed status can sell the moment and still leave the brand empty. Inspiration asks whether people keep choosing when the crowd stops pointing."
@@ -451,13 +358,6 @@
             "novelty",
             "subscriptions"
           ],
-          "planSpec": {
-            "domain": "software subscriptions",
-            "audience": "product leaders",
-            "stakes": "feature addiction",
-            "format": "decision_point",
-            "requiredBeat": "Cause before surprise"
-          },
           "scenario": "The subscription roadmap meeting opens with a list of small surprises that could lift signups for a week. Product analytics show a matching drop after each novelty wears off. Before the roadmap vote, the product council is deciding which features express the product's cause and which features only reset the appetite for surprise.",
           "whatToDo": "The product council filters novelty through the product cause. Widgets that only create surprise are delayed, while features that advance the promise stay.",
           "whyItMatters": "Novelty resets the appetite for the next surprise. A belief-led roadmap teaches users what the product is here to protect or change."
@@ -476,8 +376,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A discount can move behavior, but it also trains a transactional pattern. The risk is not that the tactic fails; the risk is dependence on purchased response.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -489,8 +388,7 @@
             ],
             "correctIndex": 2,
             "explanation": "More variants can create motion without loyalty. The useful test asks whether the choice helps people join a belief or merely nudges another transaction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -502,8 +400,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Novelty and status can produce dramatic adoption. They become fragile when the buyer is attached to the stimulus rather than to a purpose.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -515,8 +412,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fear can work, which is why it needs scrutiny. Durable loyalty is visible when people still act after the external pressure disappears.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -528,8 +424,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The same behavior can come from different causes. A bought response and an inspired response look similar at checkout but diverge when incentives stop.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -541,8 +436,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Inspiration changes the reason for action. The buyer or employee moves because the belief fits, not because a temporary lever made refusal uncomfortable.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -554,8 +448,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Manipulation can create a January surge. The loyalty question appears after the trigger fades, when members either return by belief or vanish with the pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -567,8 +460,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Multiple levers can bury the real reason to choose. The worry is activation tied to urgency and status rather than to the cause the product serves.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -580,8 +472,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A unit spike can hide loyalty decay. The key distinction is whether people returned for the belief or merely responded to a temporary deal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -618,7 +509,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Separate Lift From Loyalty",
         "coreSkill": "Before celebrating a response, identify the lever that created it. Mark each tactic as pressure, reward, novelty, fear, status, or belief. Then decide whether the result should be repeated or replaced with a clearer reason to care.",
         "ifThenPlans": [
           {
@@ -639,19 +529,13 @@
       },
       "memorableLines": [
         {
-          "text": "A bought response is not the same as a chosen return.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A bought response is not the same as a chosen return."
         },
         {
-          "text": "The strongest warning is not that manipulation fails; it is that manipulation works too easily.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "The strongest warning is not that manipulation fails; it is that manipulation works too easily."
         },
         {
-          "text": "Every carrot creates a memory of the last carrot.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Every carrot creates a memory of the last carrot."
         }
       ]
     },
@@ -677,13 +561,6 @@
             "Golden Circle",
             "Apple"
           ],
-          "planSpec": {
-            "domain": "brand messaging",
-            "audience": "marketing leaders",
-            "stakes": "feature commodity",
-            "format": "decision_point",
-            "requiredBeat": "WHY before WHAT"
-          },
           "scenario": "Apple's campaign draft sits beside a product grid of computers, phones, and store services. The first page can open with specifications or with the challenge-the-status-quo belief that links them. The brand lead is about to approve the order. The Golden Circle turns the question into sequence: center first, proof second.",
           "whatToDo": "The Apple marketing team leads with the challenge-the-status-quo belief. Product names and specifications arrive later as proof that the belief has taken form.",
           "whyItMatters": "The Golden Circle starts at the center. When WHY comes first, the buyer can understand why many different Apple WHATs belong together."
@@ -695,13 +572,6 @@
             "WHY",
             "sales"
           ],
-          "planSpec": {
-            "domain": "enterprise software",
-            "audience": "sales team",
-            "stakes": "feature parity",
-            "format": "decision_point",
-            "requiredBeat": "Cause before feature comparison"
-          },
           "scenario": "The Golden Circle sits beside the enterprise software buyer has reduced two vendors to a spreadsheet of matched features. In the pitch room, the sales lead sees that another bullet will only deepen the comparison game. Before the presentation starts, she is deciding whether to lead with the belief the software serves, then let features become evidence.",
           "whatToDo": "The sales lead opens the enterprise pitch with the problem the software exists to change. Feature tables become support after the buyer sees the cause.",
           "whyItMatters": "Feature comparisons trap the conversation on the outside ring. WHY gives the buyer a frame for judging which facts matter."
@@ -713,13 +583,6 @@
             "HOW",
             "proof"
           ],
-          "planSpec": {
-            "domain": "service design",
-            "audience": "customer experience leaders",
-            "stakes": "empty purpose line",
-            "format": "decision_point",
-            "requiredBeat": "Principles make purpose actionable"
-          },
           "scenario": "A service-design review has purpose language on the wall and service standards in a separate binder. The director points to the gap before the policy is published. The decision is whether the Golden Circle remains a messaging diagram or becomes a set of HOW behaviors customers can feel at the counter.",
           "whatToDo": "The service director defines the behaviors that will carry the belief. Purpose language is allowed only where a service standard can make it visible.",
           "whyItMatters": "HOW protects WHY from becoming a poster. The belief becomes credible when customers can feel it in the service routine."
@@ -731,13 +594,6 @@
             "WHY",
             "fundraising"
           ],
-          "planSpec": {
-            "domain": "startup fundraising",
-            "audience": "founders",
-            "stakes": "opportunity without meaning",
-            "format": "decision_point",
-            "requiredBeat": "Market proof follows purpose"
-          },
           "scenario": "The Golden Circle reshapes a founder's investor deck that opens with market size, growth rate, and a product screenshot. A partner meeting starts in the afternoon. While the team revises the first slide, the founder chooses whether to ask for capital around a category opportunity or make the product a receipt for a belief investors can understand.",
           "whatToDo": "The founder rebuilds the investor deck from belief to product proof. Market size stays, but the first claim names why the company deserves to exist.",
           "whyItMatters": "Investors can fund a model without believing in a cause. The Golden Circle asks the pitch to show conviction before the spreadsheet speaks."
@@ -749,13 +605,6 @@
             "WHY",
             "culture"
           ],
-          "planSpec": {
-            "domain": "recruiting",
-            "audience": "hiring managers",
-            "stakes": "task-only attraction",
-            "format": "decision_point",
-            "requiredBeat": "Belief before job tasks"
-          },
           "scenario": "The recruiting draft lists tasks, salary range, and remote-work perks. Candidates will see the posting by morning. The hiring manager pauses over the opening paragraph, deciding if the role should begin with the belief behind the work so the right people understand the trade-offs before applying.",
           "whatToDo": "The hiring manager rewrites the role around the belief behind the work. Tasks and perks are used to show how that belief will be practiced.",
           "whyItMatters": "A candidate can compare duties anywhere. WHY helps the right person decide whether the job's trade-offs feel worth making."
@@ -767,13 +616,6 @@
             "WHAT",
             "brand"
           ],
-          "planSpec": {
-            "domain": "retail experience",
-            "audience": "store leaders",
-            "stakes": "visible offer as evidence",
-            "format": "decision_point",
-            "requiredBeat": "Visible offer proves WHY"
-          },
           "scenario": "A retail reset has arranged the wall by price and specification, making every item easy to compare. The store director walks the floor with the Golden Circle sketched on a note card. Before the crew moves fixtures, he needs to choose whether the layout should teach shoppers only WHAT is sold or WHY the offers belong together.",
           "whatToDo": "The retail director arranges offers so the store proves the center of the circle. Price and specs remain visible but no longer lead the conversation.",
           "whyItMatters": "WHAT earns trust when it points back to WHY. The shopper should see a pattern of belief, not only a wall of products."
@@ -792,8 +634,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The model starts with WHY, then HOW, then WHAT. Features become persuasive when they prove a belief rather than stand alone as commodities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -805,8 +646,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A WHY is not enough by itself. The middle and outer rings must show principles and tangible proof that make the belief credible.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -818,8 +658,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Apple example is not a costume lesson. The belief works because the actions and products carry the same challenge to the status quo.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -831,8 +670,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A clear WHAT can still fail to inspire. The outer ring gains meaning when the center gives people a cause to join.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -844,8 +682,7 @@
             ],
             "correctIndex": 0,
             "explanation": "HOW translates belief into action. It is the set of principles that makes WHY visible before WHAT carries it into the market.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -857,8 +694,7 @@
             ],
             "correctIndex": 1,
             "explanation": "People may see similar WHATs and still choose differently. Trust grows when the tangible offer feels like proof of a belief they share.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -870,8 +706,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The outside ring names the offer, but inspiration starts at the center. A belief about community gives coffee and Wi-Fi meaning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -883,8 +718,7 @@
             ],
             "correctIndex": 0,
             "explanation": "HOW is not clutter when it proves WHY. Methods become useful when each one shows how the firm acts on its belief.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -896,8 +730,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Purpose does not excuse weak proof. A premium becomes credible when principles and tangible actions show what the belief costs and creates.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -934,7 +767,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Lead With the Cause",
         "coreSkill": "Rewrite one message from center to edge. First state the belief you want people to recognize. Then name the action principles that prove it, and finish with the tangible offer as evidence.",
         "ifThenPlans": [
           {
@@ -955,19 +787,13 @@
       },
       "memorableLines": [
         {
-          "text": "People compare features when the belief is missing.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "People compare features when the belief is missing."
         },
         {
-          "text": "A clear WHY lets different WHATs feel like one promise.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A clear WHY lets different WHATs feel like one promise."
         },
         {
-          "text": "The product is the receipt, not the cause.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The product is the receipt, not the cause."
         }
       ]
     },
@@ -993,13 +819,6 @@
             "limbic decision-making",
             "trust"
           ],
-          "planSpec": {
-            "domain": "B2B purchasing",
-            "audience": "buying committee",
-            "stakes": "unspoken preference",
-            "format": "decision_point",
-            "requiredBeat": "Feeling translated into proof"
-          },
           "scenario": "Two vendor scorecards look nearly equal, yet the buying committee chair notices the room relax when one supplier is mentioned. In the procurement debrief, she writes trust cues beside the numbers. Before the vote is recorded, she faces a choice: dismiss the feeling as sloppy or translate it into evidence the committee can test.",
           "whatToDo": "The buying committee chair names the trust cues behind the safer feeling. The scorecards stay on the table while the group tests what the feeling noticed.",
           "whyItMatters": "Limbic decision-making gives feelings a role before language. Translating the cue lets the committee use biology without surrendering judgment."
@@ -1011,13 +830,6 @@
             "neocortex",
             "communication"
           ],
-          "planSpec": {
-            "domain": "medical-device sales",
-            "audience": "clinical sales team",
-            "stakes": "facts without trust",
-            "format": "decision_point",
-            "requiredBeat": "Belief opens, facts defend"
-          },
           "scenario": "The Neocortex slide sits behind the clinical-sales deck begins with accuracy rates, device tolerances, and a dense comparison chart. The sales director sees physicians checking out before the patient-care frame appears. Before the second presentation begins, he is deciding whether the neocortex should get facts first or whether the limbic belief about care should lead.",
           "whatToDo": "The sales director opens with the patient-care belief, then brings the device data in as support. Technical proof is sequenced after the human reason.",
           "whyItMatters": "The neocortex can process facts, but trust often forms first. Data persuades more cleanly when it defends a belief the audience can feel."
@@ -1029,13 +841,6 @@
             "gut feeling",
             "hiring"
           ],
-          "planSpec": {
-            "domain": "executive hiring",
-            "audience": "interview panel",
-            "stakes": "hard-to-verbalize concern",
-            "format": "decision_point",
-            "requiredBeat": "Unease becomes testable signal"
-          },
           "scenario": "A Limbic signal follows a polished executive candidate with clean references, but the panel keeps returning to one uneasy moment from the interview. The offer recommendation is due by four. By four, the panel chair either keeps the hesitation private or turns it into concrete observations matched against the role.",
           "whatToDo": "The hiring panel chair turns unease into specific observations. References and results remain important, but the vague pause becomes a testable hiring question.",
           "whyItMatters": "Gut feeling can signal real fit concerns or hidden bias. Naming the cue gives the limbic signal discipline instead of letting it rule quietly."
@@ -1047,13 +852,6 @@
             "emotion and proof",
             "fundraising"
           ],
-          "planSpec": {
-            "domain": "charity fundraising",
-            "audience": "development leaders",
-            "stakes": "statistics without belonging",
-            "format": "decision_point",
-            "requiredBeat": "Purpose before statistics"
-          },
           "scenario": "A Limbic decision frame changes the donor appeal draft opens with audited outcomes and a table of program efficiency. The fundraising director knows the figures are strong, yet the cause arrives late. Before the appeal goes to print, she is about to decide whether donors should meet the belief first and use the numbers as support.",
           "whatToDo": "The fundraising director leads with the cause donors are being invited to join. The numbers follow as evidence that the belief can be acted on.",
           "whyItMatters": "Facts alone can be understood and still fail to move. Belief gives donors a reason for the numbers to matter."
@@ -1065,13 +863,6 @@
             "limbic brain",
             "research"
           ],
-          "planSpec": {
-            "domain": "consumer research",
-            "audience": "brand researchers",
-            "stakes": "unexplained loyalty",
-            "format": "decision_point",
-            "requiredBeat": "Preference cue analysis"
-          },
           "scenario": "In a Neocortex consumer panel, shoppers choose the familiar grocery brand over an equal alternative and then struggle to explain the choice. The brand analyst studies the recording in the research room. Before finalizing the report, he needs to decide whether to call the preference irrational or identify the trust cues that moved before language.",
           "whatToDo": "The brand analyst studies the cues that made one equal product feel trustworthy. The report names the signal instead of calling preference irrational.",
           "whyItMatters": "Preference can form before explanation. The limbic lens helps the team examine trust without pretending buyers are purely calculating."
@@ -1083,13 +874,6 @@
             "emotion",
             "employee communication"
           ],
-          "planSpec": {
-            "domain": "HR policy",
-            "audience": "HR leaders",
-            "stakes": "rational explanation without acceptance",
-            "format": "decision_point",
-            "requiredBeat": "Value frame before policy rationale"
-          },
           "scenario": "A Limbic trust frame guides an HR team with a legal memo ready for a policy announcement, while managers expect employee suspicion. In the communications room, the draft starts with compliance language. Before the post goes live, HR can publish the rationale first or name the value being protected before the clauses appear.",
           "whatToDo": "The HR team starts the policy note with the value being protected. Legal details come second, so employees know what the rule is meant to guard.",
           "whyItMatters": "People receive rules through trust before they parse clauses. The right order lets the policy feel coherent before the rationale gets technical."
@@ -1108,8 +892,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The decision system described here can act before language catches up. Facts still matter, but they help people justify and share a choice that already feels aligned.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1121,8 +904,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Purpose-first communication gives the audience an emotional frame. The specifications become stronger once they support a felt belief rather than arrive as isolated facts.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1134,8 +916,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The biology frame does not license blind instinct. It treats feeling as meaningful decision data that still deserves evidence and language.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1147,8 +928,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Facts are not discarded. They become more useful when belief gives them a role in a decision the donor can feel and defend.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1160,8 +940,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Language may lag feeling, so the team should translate the trust cue into testable evidence. That preserves the signal without surrendering judgment.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1173,8 +952,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The model pairs feeling with explanation. Belief may move the decision first, while rational proof helps people explain and repeat the decision.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1186,8 +964,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The frame pairs feeling and proof. A story can activate trust, and numbers can then give the decision a defensible language.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1199,8 +976,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A feeling can hold real information without being complete. Naming cues and checking conduct translates the signal into judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1212,8 +988,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Purpose-first does not mean proof-free. Evidence gives people language to justify, share, and repeat a decision that feels right.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1250,7 +1025,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pair Feeling With Proof",
         "coreSkill": "When a choice feels right or wrong, slow down long enough to name the cue. Then gather the facts that either support or challenge that cue. The aim is not to bury feeling, but to translate it into a decision others can understand.",
         "ifThenPlans": [
           {
@@ -1271,19 +1045,13 @@
       },
       "memorableLines": [
         {
-          "text": "The spreadsheet can support a choice it did not start.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "The spreadsheet can support a choice it did not start."
         },
         {
-          "text": "A fact without belonging may be understood and still ignored.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A fact without belonging may be understood and still ignored."
         },
         {
-          "text": "The body often votes before language files the paperwork.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The body often votes before language files the paperwork."
         }
       ]
     },
@@ -1309,13 +1077,6 @@
             "alignment",
             "values as verbs"
           ],
-          "planSpec": {
-            "domain": "company values",
-            "audience": "executive team",
-            "stakes": "empty value language",
-            "format": "decision_point",
-            "requiredBeat": "Value converted to behavior"
-          },
           "scenario": "The Golden Circle leadership huddle has integrity printed at the top of the agenda, but no one can say what it requires on today's customer issue. The chief operating officer circles the word and asks for a verb. Before the call begins, the chief operating officer asks which visible behavior will prove the value.",
           "whatToDo": "The chief operating officer translates the value into one observable behavior for the call. The team leaves with a standard it can use immediately.",
           "whyItMatters": "Alignment requires values to govern action. A verb-based value can choose conduct; a decorative noun only sounds good."
@@ -1327,13 +1088,6 @@
             "decision certainty",
             "alignment"
           ],
-          "planSpec": {
-            "domain": "strategic planning",
-            "audience": "senior leaders",
-            "stakes": "safe revenue versus purpose fit",
-            "format": "decision_point",
-            "requiredBeat": "Decision certainty includes purpose fit"
-          },
           "scenario": "Three product bets sit on the strategy offsite wall, each with a confident sponsor and a different fit with WHY, HOW, and WHAT. The chief strategy officer hands out a certainty scale before the portfolio vote. The choice is whether enthusiasm sets priority or alignment across the circle earns confidence.",
           "whatToDo": "The senior team scores each product bet by fit across WHY, HOW, and WHAT. Confidence rises only when all three rings support the choice.",
           "whyItMatters": "Decision certainty depends on alignment, not enthusiasm. The circle protects the portfolio from options that look strong in only one ring."
@@ -1345,13 +1099,6 @@
             "HOW",
             "hiring"
           ],
-          "planSpec": {
-            "domain": "recruiting",
-            "audience": "hiring committee",
-            "stakes": "culture contradiction",
-            "format": "decision_point",
-            "requiredBeat": "Hiring must prove HOW"
-          },
           "scenario": "The Golden Circle reaches the hiring committee has a candidate with extraordinary sales results and a pattern of ignoring the company's service behavior. The offer letter can be drafted before lunch. The committee is deciding if performance alone should win or if the HOW standard has authority over who carries the promise.",
           "whatToDo": "The hiring committee weighs sales skill through the operating principles. The offer waits until the candidate can prove the HOW, not only the result.",
           "whyItMatters": "A strong WHAT can weaken the culture when HOW is ignored. Consistent belief has to shape who is allowed to carry the promise."
@@ -1363,13 +1110,6 @@
             "consistency",
             "customer behavior"
           ],
-          "planSpec": {
-            "domain": "customer support",
-            "audience": "support leaders",
-            "stakes": "public contradiction",
-            "format": "decision_point",
-            "requiredBeat": "Public WHAT proves value"
-          },
           "scenario": "A Golden Circle refund script protects speed but sounds evasive when read aloud in the support room. The customer promise says something warmer. Before agent training starts, the support director has a choice: keep the efficient wording or make the public action prove the belief customers were given.",
           "whatToDo": "The support director rewrites the refund script so it performs the customer promise. Efficiency remains useful, but it cannot contradict the value.",
           "whyItMatters": "Customers learn the WHY from public action. A script that saves time while betraying belief teaches the wrong pattern."
@@ -1381,13 +1121,6 @@
             "discipline",
             "product"
           ],
-          "planSpec": {
-            "domain": "product roadmap",
-            "audience": "product managers",
-            "stakes": "competitor-driven feature",
-            "format": "decision_point",
-            "requiredBeat": "Feature must fit HOW"
-          },
           "scenario": "The Golden Circle product council watches a competitor feature gain attention while its own roadmap is locked for the quarter. A copycat ticket is already written. Before sprint scope freezes, the product lead is deciding whether market noise should define discipline or whether an operating principle has to defend the work.",
           "whatToDo": "The product lead admits the competitor feature is tempting, then tests it against the operating principle. Only fit earns sprint space.",
           "whyItMatters": "Discipline keeps clarity from collapsing under market noise. The team proves its WHY by refusing work that does not belong."
@@ -1399,13 +1132,6 @@
             "clarity",
             "public proof"
           ],
-          "planSpec": {
-            "domain": "crisis communication",
-            "audience": "crisis team",
-            "stakes": "slogan without action",
-            "format": "decision_point",
-            "requiredBeat": "Action precedes purpose language"
-          },
           "scenario": "After a Golden Circle public issue, the communications war room has a purpose statement ready for release. The operations update behind it is thin. Before the statement posts, the communications lead faces a choice: speak first and hope the words carry, or take one visible action that makes the words true.",
           "whatToDo": "The communications lead takes one concrete action before posting the purpose line. The statement reports alignment instead of trying to manufacture it.",
           "whyItMatters": "Consistency needs proof before words. In a crisis, action gives the public a reason to believe the stated purpose."
@@ -1424,8 +1150,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Values become useful when they can be acted out. Clarity names the belief, discipline makes it behavioral, and consistency proves it repeatedly.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1437,8 +1162,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A clear center loses force when actions point in different directions. The model requires repeated proof across principles and visible outputs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1450,8 +1174,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The decision must pass through the operating principles, not just the message. A feature fits when the HOWs make the choice coherent.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1463,8 +1186,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Abstract values do not guide action. Verbs and observable behaviors create the discipline needed for the belief to show up in public.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1476,8 +1198,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Consistency is behavioral proof across decisions. Design polish can help recognition, but trust comes when different actions point back to the same WHY.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1489,8 +1210,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stress test for alignment comes when trade-offs appear. If HOWs bend whenever pressure rises, the visible outputs stop proving the cause.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1502,8 +1222,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A value becomes disciplined when it changes a concrete process. Vague criteria let the word remain noble without governing behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1515,8 +1234,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Support interactions are visible WHATs. If they contradict the cause, the issue is not message recall but proof failure.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1528,8 +1246,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Consistency is not sameness of tactic. It is repeated proof of the same belief through changing actions and conditions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1566,7 +1283,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Turn Belief Into Verbs",
         "coreSkill": "Choose one stated value and convert it into a visible behavior. Use that behavior as a filter for one decision, one meeting norm, or one customer promise. Consistency starts when people can see what the belief requires.",
         "ifThenPlans": [
           {
@@ -1587,19 +1303,13 @@
       },
       "memorableLines": [
         {
-          "text": "A value that cannot choose a behavior is only a decoration on the wall.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A value that cannot choose a behavior is only a decoration on the wall."
         },
         {
-          "text": "Consistency is proof repeated until people stop needing the speech.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "Consistency is proof repeated until people stop needing the speech."
         },
         {
-          "text": "The public learns the WHY by watching the WHAT under pressure.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The public learns the WHY by watching the WHAT under pressure."
         }
       ]
     },
@@ -1625,13 +1335,6 @@
             "trust",
             "Continental"
           ],
-          "planSpec": {
-            "domain": "airline turnaround",
-            "audience": "executive team",
-            "stakes": "values under pressure",
-            "format": "decision_point",
-            "requiredBeat": "Value under pressure"
-          },
           "scenario": "A storm delay has stranded passengers, and Continental's new promise is about to be tested at the airport. The airline operations review includes crews, gate notes, and a draft announcement. Before the delay plan goes out, leadership asks: will the promise survive the inconvenience where employees and passengers can both see it?",
           "whatToDo": "Continental leadership keeps the delay promise visible to employees and passengers. The plan protects the value even when the storm makes the shortcut tempting.",
           "whyItMatters": "Trust through shared values appears during strain. People believe the airline when they see the promise survive inconvenience."
@@ -1643,13 +1346,6 @@
             "shared values",
             "front line"
           ],
-          "planSpec": {
-            "domain": "airport operations",
-            "audience": "front-line managers",
-            "stakes": "policy credibility",
-            "format": "decision_point",
-            "requiredBeat": "Front-line value proof"
-          },
           "scenario": "At an overbooked gate, the supervisor sees a line of tired passengers and a departure clock moving fast. Clearing the queue would protect the metric, but it could break the service standard the turnaround depends on. Boarding begins soon, and the supervisor needs to pick the action that preserves trust under public pressure.",
           "whatToDo": "The gate supervisor chooses the slower answer that honors the new standard. Queue speed is managed without letting passengers absorb a broken promise.",
           "whyItMatters": "Operational success is not the same as trust. The gate counter shows whether the culture will protect people when pressure is public."
@@ -1661,13 +1357,6 @@
             "Apple",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "consumer technology",
-            "audience": "brand leaders",
-            "stakes": "loyalty versus satisfaction",
-            "format": "decision_point",
-            "requiredBeat": "Expectation beyond satisfaction"
-          },
           "scenario": "A product roadmap review compares buyer expectations for the Mac maker, Dell, and Creative Technology. The research says customers expect different promises from each name. Before trade-offs are chosen, the product team is deciding which future choices will keep protecting the experience customers already trust.",
           "whatToDo": "The Apple product team asks which roadmap trade-offs keep protecting the expected experience. New features must fit the belief buyers already trust.",
           "whyItMatters": "Trust carries future expectation. Customers choose Apple partly because they believe later choices will still serve the same value."
@@ -1679,13 +1368,6 @@
             "features",
             "trust"
           ],
-          "planSpec": {
-            "domain": "enterprise buying",
-            "audience": "procurement team",
-            "stakes": "feature-only scorecard",
-            "format": "decision_point",
-            "requiredBeat": "Trust beyond feature parity"
-          },
           "scenario": "The enterprise procurement committee has Dell's specification score in front of it, but the users keep asking what happens after something breaks. The purchase order is ready. Before signing, the committee asks: is the feature score enough, or does vendor behavior during trouble belong in the evaluation?",
           "whatToDo": "The procurement committee adds values-in-trouble evidence to the Dell review. Specification scores are weighed beside how the vendor behaves when problems appear.",
           "whyItMatters": "Trust matters most after the purchase order. A buyer needs to know whether performance will be backed by conduct when the spreadsheet stops helping."
@@ -1697,13 +1379,6 @@
             "Creative Technology",
             "trust"
           ],
-          "planSpec": {
-            "domain": "music devices",
-            "audience": "product strategists",
-            "stakes": "category confusion",
-            "format": "decision_point",
-            "requiredBeat": "Belief gives features context"
-          },
           "scenario": "Creative Technology's launch message opens with strong technical claims for a music device. In the positioning meeting, the strategy group sees the sheet can impress without giving customers a larger belief. Before approval, the group needs to decide what value the company can be trusted to protect after the launch.",
           "whatToDo": "The Creative strategy group names the customer value before approving the launch message. Technical strength has to serve a belief people can rely on.",
           "whyItMatters": "A device can be impressive without earning trust. Shared values give customers a reason to see the company as safe, not merely capable."
@@ -1715,13 +1390,6 @@
             "culture",
             "trust"
           ],
-          "planSpec": {
-            "domain": "employee culture",
-            "audience": "department heads",
-            "stakes": "internal trust",
-            "format": "decision_point",
-            "requiredBeat": "Employee challenge proves culture"
-          },
           "scenario": "Inside an operations meeting, a department head can save the week by taking a shortcut that contradicts the stated value. An employee quietly points out the conflict. The plan is due before close of business, and the head is deciding whether urgency or the shared standard will teach the culture what is real.",
           "whatToDo": "The department head honors the employee challenge as evidence of the culture. Urgency is not allowed to erase the value the team claims to share.",
           "whyItMatters": "Inside behavior teaches the outside promise. Trust grows when employees see that the stated value has authority over shortcuts."
@@ -1740,8 +1408,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Competence matters, but trust grows when people believe leaders will act from familiar values under pressure. Operational gains alone do not create that belief.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1753,8 +1420,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trust needs repeated evidence that the stated values govern hard calls. A costly public choice can show that the relationship is not merely a performance tactic.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1766,8 +1432,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Satisfaction can be transactional. Loyalty carries an expectation about future behavior because the buyer sees a familiar belief behind the product.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1779,8 +1444,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Trust is not the same as pleasant interaction. People watch whether the organization keeps faith with its values when money or speed tests the relationship.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1792,8 +1456,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A superior feature can prompt a purchase. Trust makes people stay, recommend, and give the organization room when a problem appears.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -1805,8 +1468,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trust becomes cultural when people use shared values to govern behavior without waiting for a reward or threat. The standard has moved inside the group.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1818,8 +1480,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Speed can satisfy a transaction without creating trust. Customers need evidence that the bank will act from values when pressure tempts another path.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1831,8 +1492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Trust takes root when values remain visible under strain. The storm delay becomes evidence that the standard survives inconvenient conditions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1844,8 +1504,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trust does not erase failure. It gives people a larger pattern for interpreting failure, which can preserve the relationship long enough for repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1882,7 +1541,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Values Predictable",
         "coreSkill": "Choose one relationship where competence is present but trust feels thin. Identify the value the other party needs to see protected. Then make one decision that proves the value even when a faster option is available.",
         "ifThenPlans": [
           {
@@ -1903,19 +1561,13 @@
       },
       "memorableLines": [
         {
-          "text": "Reliability says the job was done; trust says the people are safe with you.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "Reliability says the job was done; trust says the people are safe with you."
         },
         {
-          "text": "A culture cannot sell a promise it does not practice inside.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A culture cannot sell a promise it does not practice inside."
         },
         {
-          "text": "Shared values lower the cost of taking a small leap.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Shared values lower the cost of taking a small leap."
         }
       ]
     },
@@ -1941,13 +1593,6 @@
             "diffusion",
             "TiVo"
           ],
-          "planSpec": {
-            "domain": "consumer technology",
-            "audience": "product leaders",
-            "stakes": "usefulness without movement",
-            "format": "decision_point",
-            "requiredBeat": "Belief before majority adoption"
-          },
           "scenario": "The Rogers curve frames a TiVo adoption report: people recognize the product and still leave it on the shelf. In the product review, another feature demo is easy to fund. Before the next media buy, product leaders face a funding question: more function demos, or a message for early adopters who see a belief worth the risk?",
           "whatToDo": "The TiVo team stops treating feature explanation as the whole launch. The message names the belief that would make early risk feel worthwhile.",
           "whyItMatters": "Diffusion starts with people willing to act before proof is common. Awareness without belief leaves the majority informed and unmoved."
@@ -1959,13 +1604,6 @@
             "early adopters",
             "risk"
           ],
-          "planSpec": {
-            "domain": "product launch",
-            "audience": "marketing team",
-            "stakes": "wrong first audience",
-            "format": "decision_point",
-            "requiredBeat": "Believers before majority"
-          },
           "scenario": "The Rogers segmentation map puts cautious households in the largest circle and innovators at the thin left edge. The marketing team can aim broad, but proof from the majority does not exist yet. Before targeting closes, the team is deciding which audience is willing to act before safety becomes common.",
           "whatToDo": "The marketing team aims the first invitation at left-curve buyers. Average households can wait while early adopters create visible evidence.",
           "whyItMatters": "The Law of Diffusion puts risk tolerance in order. The edge carries the idea first so the middle can later feel safe enough to follow."
@@ -1977,13 +1615,6 @@
             "MLK",
             "movement"
           ],
-          "planSpec": {
-            "domain": "civil rights organizing",
-            "audience": "movement organizers",
-            "stakes": "visible risk",
-            "format": "decision_point",
-            "requiredBeat": "Visible belief creates safety"
-          },
           "scenario": "Buses for the March on Washington are being counted in a church basement while organizers review the call to action. The language could be softened for undecided observers. Before confirmations go out, the organizers face a choice: dilute the cause or mobilize believers whose visible commitment will lower risk for others.",
           "whatToDo": "The march organizers mobilize believers without watering down the call. Visible commitment from the committed group becomes proof for later observers.",
           "whyItMatters": "A movement tips when believers make the cause public. The crowd grows after the first group turns conviction into evidence."
@@ -1995,13 +1626,6 @@
             "early adopters",
             "marketing"
           ],
-          "planSpec": {
-            "domain": "consumer campaign",
-            "audience": "brand strategists",
-            "stakes": "false early adopters",
-            "format": "decision_point",
-            "requiredBeat": "Risk posture before reach"
-          },
           "scenario": "A Rogers campaign brief ranks social accounts by follower count, but no one has checked who would act before consensus. The brand strategist marks reach and risk in separate columns. Before outreach begins, she needs to decide whether attention or willingness to move early is the better launch signal.",
           "whatToDo": "The brand strategist looks for people willing to act before consensus. Follower count is treated as secondary to risk accepted for the cause.",
           "whyItMatters": "Reach is not the same as adoption. Influencer logic fails when attention is mistaken for the courage to be early."
@@ -2013,13 +1637,6 @@
             "tipping point",
             "social proof"
           ],
-          "planSpec": {
-            "domain": "category growth",
-            "audience": "growth leaders",
-            "stakes": "premature mass push",
-            "format": "decision_point",
-            "requiredBeat": "Early proof bridges to majority"
-          },
           "scenario": "The growth team has national rollout funding on the agenda and only a handful of strong early-user stories. Cautious buyers keep asking who else has tried it. Before budget is released, the team is deciding whether to push the middle harder or deepen proof from people already carrying the idea.",
           "whatToDo": "The growth team deepens stories from early believers before funding a broad rollout. The cautious middle receives proof created by real use.",
           "whyItMatters": "Majority buyers often need social safety. Evidence from the left side of the curve gives them a bridge across uncertainty."
@@ -2031,13 +1648,6 @@
             "diffusion",
             "communication"
           ],
-          "planSpec": {
-            "domain": "media strategy",
-            "audience": "communications team",
-            "stakes": "name recognition mistaken for adoption",
-            "format": "decision_point",
-            "requiredBeat": "Commitment over recognition"
-          },
           "scenario": "A Rogers media strategy review shows TiVo awareness rising while voluntary trial stays weak. The communications team can buy more recognition by Friday. Before approving the spend, communications leaders weigh name recall against public explanation and accepted risk.",
           "whatToDo": "The communications team measures voluntary trial and public explanation, not recognition alone. Media spend waits until commitment signals improve.",
           "whyItMatters": "A known product can still lack a tipping path. Diffusion needs believers who can explain why the risk made sense."
@@ -2056,8 +1666,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The left side of the curve accepts risk for belief or possibility. The majority usually follows after believers make the behavior feel safer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2069,8 +1678,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The TiVo example separates usefulness from movement. People need a reason to risk joining before a majority can normalize the behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2082,8 +1690,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Trying to please the whole curve can erase the cause. Early believers need a strong reason to step forward before the cautious middle follows.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2095,8 +1702,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Movements do not start by persuading everyone at once. Visible commitment from believers creates proof and safety for later participants.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2108,8 +1714,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Early adoption is not a magic segment. Believers move early when the possibility or cause matters enough to accept uncertainty.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -2121,8 +1726,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Before a tip, the strongest sign is committed adoption by people willing to carry the belief. Awareness without risk does not create momentum.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2134,8 +1738,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cautious middle usually waits for proof. Risk-tolerant believers create the first visible evidence that makes later adoption safer.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2147,8 +1750,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A demo can impress without starting movement. Early users need language for the cause, not just appreciation for functions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2160,8 +1762,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Strong belief attracts the people who move first. Hiding the claim can remove the very reason risk-tolerant supporters would commit before the crowd.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2198,7 +1799,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find the First Believers",
         "coreSkill": "Stop trying to flatten the message for everyone. Identify the people who already care enough to accept risk, then give them a clear cause and a concrete first action. Let their visible commitment create proof for the cautious middle.",
         "ifThenPlans": [
           {
@@ -2219,19 +1819,13 @@
       },
       "memorableLines": [
         {
-          "text": "The middle waits for proof; the edge creates it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "The middle waits for proof; the edge creates it."
         },
         {
-          "text": "A tipping point starts as a small group with a strong reason.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A tipping point starts as a small group with a strong reason."
         },
         {
-          "text": "The safest buyer is rarely the first buyer.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The safest buyer is rarely the first buyer."
         }
       ]
     },
@@ -2257,13 +1851,6 @@
             "WHY-type",
             "Disney"
           ],
-          "planSpec": {
-            "domain": "creative enterprise",
-            "audience": "founders",
-            "stakes": "vision without structure",
-            "format": "decision_point",
-            "requiredBeat": "Vision paired with structure"
-          },
           "scenario": "In a Disney studio planning session, the creative concept fills the room before the financing model is stable. Walt's kind of vision can pull people toward the horizon, but Roy's discipline has to make the road usable. Before approval, leadership needs to decide how the budget and schedule can protect the dream rather than shrink it.",
           "whatToDo": "The Disney leadership team pairs Walt's creative ambition with Roy's financial discipline. Approval depends on both the dream and the operating path.",
           "whyItMatters": "WHY-types and HOW-types protect different parts of the cause. The dream reaches the world when structure carries it without shrinking it."
@@ -2275,13 +1862,6 @@
             "HOW-type",
             "Disney"
           ],
-          "planSpec": {
-            "domain": "studio operations",
-            "audience": "finance leaders",
-            "stakes": "cause without form",
-            "format": "decision_point",
-            "requiredBeat": "Process serves vision"
-          },
           "scenario": "Roy Disney's operating team has a production plan full of cost pressure and a creative promise no spreadsheet can fully capture. The next phase starts Monday. The operators face a choice: flatten the ambition until the numbers look easy, or shape the risk so the belief can survive actual work.",
           "whatToDo": "Roy's operating team shapes the production risk instead of cutting the dream flat. Budgets and schedules are used to make the belief survivable.",
           "whyItMatters": "HOW is not the enemy of WHY. The builder gives the cause enough form to endure deadlines, debt, and complexity."
@@ -2293,13 +1873,6 @@
             "Apple",
             "builder partnership"
           ],
-          "planSpec": {
-            "domain": "personal computing",
-            "audience": "startup team",
-            "stakes": "vision without engineering",
-            "format": "decision_point",
-            "requiredBeat": "Builder makes belief tangible"
-          },
           "scenario": "Jobs and Wozniak are represented by two artifacts in the startup review: a public launch story and a working circuit board. The prototype can impress the room, but roles are still unsettled. Before assignments are made, the early-computer founders weigh whether conviction and craft will share authority.",
           "whatToDo": "The Apple startup team gives public vision and technical craft equal authority. The prototype decision honors both conviction and usability.",
           "whyItMatters": "Jobs and Wozniak show that belief needs working form. A cause cannot scale through vision alone when the product must actually function."
@@ -2311,13 +1884,6 @@
             "Microsoft",
             "scale"
           ],
-          "planSpec": {
-            "domain": "software company",
-            "audience": "executive team",
-            "stakes": "charisma versus organization",
-            "format": "decision_point",
-            "requiredBeat": "Scale carries belief"
-          },
           "scenario": "A software-company scale plan cites Gates for vision and Ballmer for managerial force. The executive team can treat management as mere administration, yet the belief will not travel by itself. Before funding the next layer, leaders need to decide how operating discipline will carry the cause farther.",
           "whatToDo": "The software executives treat management discipline as part of carrying the belief. Scale planning is tied to the purpose Gates wanted the company to serve.",
           "whyItMatters": "A WHY can stall near the founder without HOW strength. Ballmer-style execution helped the belief travel through a larger company."
@@ -2329,13 +1895,6 @@
             "WHY-type risk",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "founder-led startup",
-            "audience": "leadership team",
-            "stakes": "inspiration without delivery",
-            "format": "decision_point",
-            "requiredBeat": "Structure before another speech"
-          },
           "scenario": "In a Disney-style founder-led startup, employees still believe the mission but wait for the founder to settle ordinary decisions. The operating review has missed deadlines, unclear owners, and another proposed vision speech. Before the next meeting is scheduled, leaders assign roles and standards that can make the cause tangible.",
           "whatToDo": "The founder-led team installs roles and standards that make the cause repeatable. The next meeting assigns operating owners rather than asking for more enthusiasm.",
           "whyItMatters": "A bottleneck forms when belief has no route. HOW lets employees act without waiting for the founder to restate the dream."
@@ -2347,13 +1906,6 @@
             "HOW without WHY",
             "management"
           ],
-          "planSpec": {
-            "domain": "mature operations",
-            "audience": "operations leaders",
-            "stakes": "efficient emptiness",
-            "format": "decision_point",
-            "requiredBeat": "Process reconnected to cause"
-          },
           "scenario": "The Roy Disney warning reaches the operations vice president has tightened dashboards, reviews, and controls until the machine looks impressive. The room is quieter, but the reason for the routines has faded. Before the next operating review opens, the leadership group faces a choice: celebrate control or reconnect the routines to the belief they were built to serve.",
           "whatToDo": "The operations leader reconnects dashboards to the belief they are supposed to serve. Tight routines are kept only where they help the cause move.",
           "whyItMatters": "Execution without WHY becomes cold control. The HOW-type gift is powerful when it carries meaning instead of replacing it."
@@ -2372,8 +1924,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Walt and Roy Disney illustrate interdependence. Possibility needs structure, finance, and process if the cause is going to survive contact with scale.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2385,8 +1936,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lesson is not founder worship. HOW-type builders turn conviction into something users can touch, use, and trust.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2398,8 +1948,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A clear WHY without disciplined HOWs remains fragile. The practical partner gives the cause a body without replacing the cause.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2411,8 +1960,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Structure without belief can run smoothly and still fail to inspire. The partnership works because process serves a cause, not because process replaces it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2424,8 +1972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The HOW-type role makes the vision operational. Repetition, sales systems, and management discipline carry belief farther than charisma can.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -2437,8 +1984,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A WHY-type can create energy without durable delivery. The missing HOW leaves followers with a future they can picture but not build.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2450,8 +1996,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing piece is not more vision. The cause needs operational habits that let people rely on the promise.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2463,8 +2008,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Efficient systems can become hollow. WHY-type leadership restores the future-facing reason those systems exist to serve.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2476,8 +2020,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A builder's questions can feel constraining, but they give belief form. The partnership protects the cause by making it real enough to last.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2514,7 +2057,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Pair Vision With Build",
         "coreSkill": "Identify whether a stalled effort lacks belief or lacks structure. Then pair the missing role with the existing strength. The aim is not to make one person everything, but to connect future-facing conviction with repeatable execution.",
         "ifThenPlans": [
           {
@@ -2535,19 +2077,13 @@
       },
       "memorableLines": [
         {
-          "text": "A sermon cannot scale until a builder gives it bones.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A sermon cannot scale until a builder gives it bones."
         },
         {
-          "text": "The quiet operator often protects the loudest dream.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "The quiet operator often protects the loudest dream."
         },
         {
-          "text": "Vision needs a route, not only a horizon.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Vision needs a route, not only a horizon."
         }
       ]
     },
@@ -2573,13 +2109,6 @@
             "megaphone",
             "scale"
           ],
-          "planSpec": {
-            "domain": "growing company",
-            "audience": "senior leaders",
-            "stakes": "message distortion",
-            "format": "decision_point",
-            "requiredBeat": "Trace source to visible output"
-          },
           "scenario": "The Golden Circle expansion plan increases media spend, store count, and regional managers, yet the message changes as it moves through the company. In the scale meeting, senior leaders mark each layer of the cone. Before approval, they need to decide where WHY is losing shape before buying a larger megaphone.",
           "whatToDo": "The senior team audits the path from WHY to HOW before funding expansion. The broken layer is repaired before louder advertising begins.",
           "whyItMatters": "An organization acts as a megaphone. If the signal changes inside the cone, scale only broadcasts the distortion farther."
@@ -2591,13 +2120,6 @@
             "Apple 1984",
             "advertising"
           ],
-          "planSpec": {
-            "domain": "brand campaign",
-            "audience": "brand team",
-            "stakes": "copying a famous ad",
-            "format": "decision_point",
-            "requiredBeat": "Ad must carry real WHY"
-          },
           "scenario": "A Macintosh-era brand campaign pitch has the spirit of the 1984 commercial, but the internal choices behind it are weaker than the spot. The production deposit is due tomorrow. In the review, the brand team faces a choice: buy bold imagery or verify that the public WHAT has a real source.",
           "whatToDo": "The brand team tests the 1984-style concept against real company choices. Production waits until the bold public WHAT has an internal source.",
           "whyItMatters": "A campaign can make belief visible, but it cannot invent belief. The public signal needs conduct behind it or the megaphone exposes the gap."
@@ -2609,13 +2131,6 @@
             "Think Different",
             "systems"
           ],
-          "planSpec": {
-            "domain": "campaign planning",
-            "audience": "marketing leaders",
-            "stakes": "manifesto versus rewards",
-            "format": "decision_point",
-            "requiredBeat": "Internal HOW before public WHAT"
-          },
           "scenario": "A Think Different draft sits beside an incentive plan that rewards safe, incremental product choices. The manifesto sounds strong on the wall. Before copy testing starts, marketing leaders ask if public language can carry the cause while the scorecard teaches employees to behave another way.",
           "whatToDo": "The marketing leaders align incentives before copy testing Think Different language. The manifesto must be supported by decisions employees are rewarded to make.",
           "whyItMatters": "Words travel through systems. If incentives teach the opposite behavior, the organization will communicate that contradiction to the market."
@@ -2627,13 +2142,6 @@
             "MLK",
             "movement infrastructure"
           ],
-          "planSpec": {
-            "domain": "social movement",
-            "audience": "organizers",
-            "stakes": "belief that cannot scale",
-            "format": "decision_point",
-            "requiredBeat": "Systems carry belief"
-          },
           "scenario": "Civil-rights organizers have a speech, local committees, church networks, and transportation lists spread across the planning table. The cause has language, but language alone will not move bodies into public action. Before logistics close, the organizers need to decide which channels will let belief become repeated behavior.",
           "whatToDo": "The movement organizers build channels for repeated action before relying on inspiration. Logistics give the cause places to go after the speech.",
           "whyItMatters": "A WHY scales through structure. MLK's message needed organizers, buses, and local commitment so belief could become public behavior."
@@ -2645,13 +2153,6 @@
             "WHAT",
             "employee behavior"
           ],
-          "planSpec": {
-            "domain": "retail operations",
-            "audience": "store managers",
-            "stakes": "small action as public message",
-            "format": "decision_point",
-            "requiredBeat": "Employee action transmits WHY"
-          },
           "scenario": "At a Golden Circle store counter, a return dispute looks like a small operations problem until the manager sees it as the base of the megaphone. A customer is waiting. Before the issue is closed, the store leader needs to decide what visible WHAT will carry the company's WHY in that moment.",
           "whatToDo": "The store manager coaches the counter interaction as a visible WHAT. The small service moment is treated as part of the signal, not a local nuisance.",
           "whyItMatters": "Customers meet the base of the cone. Front-line behavior tells them what the organization believes more loudly than leadership intent."
@@ -2663,13 +2164,6 @@
             "HOW",
             "management"
           ],
-          "planSpec": {
-            "domain": "middle management",
-            "audience": "department heads",
-            "stakes": "translation drift",
-            "format": "decision_point",
-            "requiredBeat": "Metric translates source belief"
-          },
           "scenario": "The department scorecard rewards speed even though the company says care is the source belief. Middle managers can publish the metric by Friday. Before it reaches teams, the department head is deciding whether measurement will transmit the cause or quietly change the message employees repeat.",
           "whatToDo": "The department head rewrites the metric that would reward drift. Measurement is allowed only where it preserves the source belief.",
           "whyItMatters": "Middle layers translate WHY into daily pressure. A metric that pays for the wrong behavior changes the message before customers hear it."
@@ -2688,8 +2182,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Scale works like a megaphone only when the signal travels cleanly. Managers and front-line outputs must carry the same belief the founder names.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2701,8 +2194,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The visible campaign was powerful because it expressed a belief already embedded in the organization. A loud WHAT without source clarity becomes theater.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2714,8 +2206,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The base of the cone is what outsiders meet, but it carries meaning from the source. Culture and systems decide whether the product signal is clear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2727,8 +2218,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Movements scale through structure as well as words. Infrastructure lets the original WHY become meetings, commitments, and visible behaviors.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2740,8 +2230,7 @@
             ],
             "correctIndex": 2,
             "explanation": "More reach magnifies confusion when the signal is unclear. Transmission discipline comes before volume.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -2753,8 +2242,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The megaphone is working when small visible actions carry the original belief. The signal survives translation through people and systems.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2766,8 +2254,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The middle layer translates source belief into front-line behavior. A local shortcut can distort the signal even when it improves a local metric.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2779,8 +2266,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The organization communicates through systems as much as words. A bonus formula can speak louder than a founder's speech.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2792,8 +2278,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The visible base is where outsiders test the message. More reach only magnifies the mismatch if service keeps communicating a different belief.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2830,7 +2315,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Trace the Signal Path",
         "coreSkill": "Pick one public action and trace it backward to the belief it should prove. Then check each translation layer: leader message, operating principle, employee behavior, and customer-facing result. Repair the first layer where the signal changes meaning.",
         "ifThenPlans": [
           {
@@ -2851,19 +2335,13 @@
       },
       "memorableLines": [
         {
-          "text": "A megaphone makes confusion louder too.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A megaphone makes confusion louder too."
         },
         {
-          "text": "The market meets the base of the cone, not the leader at the top.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "The market meets the base of the cone, not the leader at the top."
         },
         {
-          "text": "Scale is translation under pressure.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Scale is translation under pressure."
         }
       ]
     },
@@ -2889,13 +2367,6 @@
             "Celery Test",
             "decision filter"
           ],
-          "planSpec": {
-            "domain": "strategic choices",
-            "audience": "business leaders",
-            "stakes": "conflicting advice",
-            "format": "decision_point",
-            "requiredBeat": "Visible choice proves WHY"
-          },
           "scenario": "A strategy exercise leaves celery, rice milk, Oreos, and M&Ms written on the board. Every option has a business case, but only some make the health belief easy to hear. Before the list becomes strategy, the leadership team needs to decide what the audience will understand from the basket itself.",
           "whatToDo": "The leadership team selects the basket items that make the health belief obvious. Plausible but confusing options are removed before the list becomes strategy.",
           "whyItMatters": "The Celery Test makes choices speak. The audience reads the cart as proof of WHY before it listens to any explanation."
@@ -2907,13 +2378,6 @@
             "signal clarity",
             "partnerships"
           ],
-          "planSpec": {
-            "domain": "brand partnerships",
-            "audience": "marketing leaders",
-            "stakes": "reach versus fit",
-            "format": "decision_point",
-            "requiredBeat": "Fit before reach"
-          },
           "scenario": "The rice milk partnership offers less reach than a louder retail deal, but the signal fits the health-centered WHY without a long explanation. Contracts are routed for review. The marketing leaders need to decide if clarity to the right audience is worth more than a bigger but confusing platform.",
           "whatToDo": "The marketing leaders choose the rice milk partnership because the signal fits. Reach is considered only after the audience meaning is clear.",
           "whyItMatters": "Communication is received, not merely sent. A fitting partner lets people hear the belief without forcing a defensive story."
@@ -2925,13 +2389,6 @@
             "Oreos and M&Ms",
             "brand discipline"
           ],
-          "planSpec": {
-            "domain": "retail promotion",
-            "audience": "category team",
-            "stakes": "tempting mismatch",
-            "format": "decision_point",
-            "requiredBeat": "Refusal clarifies signal"
-          },
           "scenario": "The category calendar includes an Oreo and M&M promotion with attractive exposure. In the planning room, the exposure number looks clean while the basket signal looks muddy. Before the promotion locks, category leaders face a trade-off: accept reach with explanation, or refuse a mismatch customers will read first.",
           "whatToDo": "The category team refuses the snack promotion that muddies the signal. Exposure is left on the table so the basket still says health.",
           "whyItMatters": "A good opportunity can still send the wrong message. The Celery Test protects clarity by letting WHY rule visible trade-offs."
@@ -2943,13 +2400,6 @@
             "Harley-Davidson",
             "identity"
           ],
-          "planSpec": {
-            "domain": "motorcycle brand",
-            "audience": "brand leaders",
-            "stakes": "symbol as belonging",
-            "format": "decision_point",
-            "requiredBeat": "Symbol earned by choices"
-          },
           "scenario": "A Harley-Davidson tattoo photo is pinned beside campaign options in the brand identity meeting. The image is not just logo affection; it reflects years of rider experience and repeated choices. Before the brief is written, brand leaders identify which behaviors have to be protected so the symbol keeps meaning.",
           "whatToDo": "The Harley-Davidson team protects the experiences that earned the tattoo. The next campaign starts from rider identity, not logo affection alone.",
           "whyItMatters": "Symbols gain power after behavior teaches meaning. The tattoo matters because choices made the brand worth carrying on the body."
@@ -2961,13 +2411,6 @@
             "listening",
             "communication"
           ],
-          "planSpec": {
-            "domain": "customer research",
-            "audience": "executive team",
-            "stakes": "received contradiction",
-            "format": "decision_point",
-            "requiredBeat": "Received signal over intended message"
-          },
           "scenario": "Customer research says a community-support campaign sounded like a cash grab because the action came before the explanation. The executive communications team has a response draft ready. Before it posts, executives ask whether louder intent language can fix what customers already heard from the choice.",
           "whatToDo": "The executive team studies what customers heard from the action itself. The response changes behavior before adding louder intent language.",
           "whyItMatters": "Listening means accepting the audience's received signal. If the act says cash grab, more words will not make it sound like community."
@@ -2979,13 +2422,6 @@
             "earned symbols",
             "brand proof"
           ],
-          "planSpec": {
-            "domain": "brand identity",
-            "audience": "creative directors",
-            "stakes": "image without proof",
-            "format": "decision_point",
-            "requiredBeat": "Behavior before symbol"
-          },
           "scenario": "In the identity studio, a proposed emblem tests well with customers who have not seen recent company decisions. Harley tattoo logic hangs over the design review. Before production starts, the creative director needs to decide whether the symbol has earned meaning or is being asked to create it alone.",
           "whatToDo": "The creative director delays the emblem until one public choice gives it weight. Design becomes a carrier of meaning, not a shortcut to it.",
           "whyItMatters": "A symbol cannot substitute for a clear WHY. It communicates best after repeated action has taught people what to see in it."
@@ -3004,8 +2440,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Celery Test uses visible choices as proof. A narrower basket can communicate more clearly when every item fits the WHY.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3017,8 +2452,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Communication is judged by received signal. Listening means checking whether visible behavior is heard as proof or contradiction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3030,8 +2464,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A tattoo is not ordinary satisfaction. It shows identification: the visible symbol lets people express something about themselves.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3043,8 +2476,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Signals work when they point to real choices. Without earned behavior, symbolism becomes a louder way to reveal contradiction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3056,8 +2488,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visible choice is communication. The right tactic is the one that lets the audience read the belief without needing a long defense.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -3069,8 +2500,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Clarity is not only output. The organization must listen to the signal its actions create in the minds of people watching.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3082,8 +2512,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Celery Test includes refusal. Declining a tempting mismatch can make the signal clearer than accepting every opportunity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3095,8 +2524,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Listening treats audience interpretation as data about the action. If people heard contradiction, the decision needs scrutiny, not just more explanation.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3108,8 +2536,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An identity symbol is earned by belief and behavior. A logo becomes personal only when people can use it to express who they are.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3146,7 +2573,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Use Visible Choice Filters",
         "coreSkill": "Turn your stated purpose into a buying filter, partnership filter, or scheduling filter. Then make one choice that an outsider could read without a speech. Good communication happens when the action carries the message.",
         "ifThenPlans": [
           {
@@ -3167,19 +2593,13 @@
       },
       "memorableLines": [
         {
-          "text": "People hear the cart before they hear the pitch.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "People hear the cart before they hear the pitch."
         },
         {
-          "text": "A clear WHY makes some good options wrong for you.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A clear WHY makes some good options wrong for you."
         },
         {
-          "text": "The audience listens to trade-offs because trade-offs cannot flatter.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "The audience listens to trade-offs because trade-offs cannot flatter."
         }
       ]
     },
@@ -3205,13 +2625,6 @@
             "fuzzy WHY",
             "Volkswagen"
           ],
-          "planSpec": {
-            "domain": "automotive brand",
-            "audience": "brand executives",
-            "stakes": "luxury extension",
-            "format": "decision_point",
-            "requiredBeat": "Purpose fit before extension"
-          },
           "scenario": "In Volkswagen's product review, the Phaeton quality report is excellent and the luxury forecast is serious. The unease is fit, not engineering. Before executives approve the next milestone, they need to decide if the car proves the founding belief or merely proves the company can build beyond its meaning.",
           "whatToDo": "Volkswagen leaders test the Phaeton against the brand's founding belief, not only against engineering ability. Fit has to be proven before prestige counts.",
           "whyItMatters": "A fuzzy WHY can hide behind a strong WHAT. The car may be excellent and still fail to explain why Volkswagen should be the one offering it."
@@ -3223,13 +2636,6 @@
             "WHAT expansion",
             "brand drift"
           ],
-          "planSpec": {
-            "domain": "product portfolio",
-            "audience": "automotive planners",
-            "stakes": "numbers hiding drift",
-            "format": "decision_point",
-            "requiredBeat": "Metrics cannot replace WHY"
-          },
           "scenario": "The premium platform spreadsheet shows attractive margins and channel capacity. Product planners can defend the investment with numbers, but the purpose fit remains vague. Before development money is released, planners face a fork: let the forecast settle the matter, or require the founding belief to explain the move.",
           "whatToDo": "The product planners require purpose fit before funding the premium platform. Forecast strength is treated as insufficient evidence for belonging.",
           "whyItMatters": "Growth can flatter a weak decision. A clear WHY should defend the move before revenue projections make it feel safe."
@@ -3241,13 +2647,6 @@
             "Wal-Mart",
             "founder memory"
           ],
-          "planSpec": {
-            "domain": "retail operations",
-            "audience": "store leaders",
-            "stakes": "legacy without force",
-            "format": "decision_point",
-            "requiredBeat": "Founder story becomes rule"
-          },
           "scenario": "At a Wal-Mart leadership meeting, a Sam Walton story opens the session and then disappears when policy choices begin. The story gets warm nods but no authority. Before rollout, retail leaders test whether the origin memory can become a present rule instead of a sentimental preface.",
           "whatToDo": "Wal-Mart leaders turn the Walton story into a present rule for policy. The origin story must decide something now or it stays sentimental.",
           "whyItMatters": "Founder stories lose power when they become decoration. Fuzzy WHY appears when memory no longer governs current trade-offs."
@@ -3259,13 +2658,6 @@
             "purpose decay",
             "retail metrics"
           ],
-          "planSpec": {
-            "domain": "retail headquarters",
-            "audience": "finance leaders",
-            "stakes": "winning while blurring",
-            "format": "decision_point",
-            "requiredBeat": "Purpose evidence beside performance"
-          },
           "scenario": "The finance packet shows strong store performance after Sam Walton, yet no slide asks what belief the results advance. The board meeting is scheduled for the morning. Before the packet is final, the finance team needs to decide how performance will be judged against purpose rather than only growth.",
           "whatToDo": "The finance team adds a purpose-fit question to the board packet. Strong numbers have to show which cause they advance or weaken.",
           "whyItMatters": "A scorecard can hide meaning decay. Performance matters, but it cannot prove the organization still knows why the performance matters."
@@ -3277,13 +2669,6 @@
             "fuzzy WHY",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "brand extension",
-            "audience": "strategy team",
-            "stakes": "opportunity without meaning",
-            "format": "decision_point",
-            "requiredBeat": "Purpose must forbid options"
-          },
           "scenario": "A Volkswagen category-expansion map shows the company can sell a new product through existing channels. The strategy room likes the access, but the WHY fit is thin. Before concept testing begins, strategists ask if capability is enough or if meaning can forbid the opportunity.",
           "whatToDo": "The strategy team lets WHY veto the category if fit stays weak. Channel readiness is not allowed to replace meaning.",
           "whyItMatters": "Capability does not equal belonging. Fuzzy WHY grows when the company says yes because it can, not because the move proves the cause."
@@ -3295,13 +2680,6 @@
             "fuzzy WHY",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "executive offsite",
-            "audience": "senior team",
-            "stakes": "unstated disagreement",
-            "format": "decision_point",
-            "requiredBeat": "Shared purpose before expansion"
-          },
           "scenario": "Purpose cards from an executive offsite disagree in subtle but important ways. The senior team wants to move on to more WHATs, because the wording feels close enough. Before strategy work resumes, leaders face a choice: clarify the shared cause now or let fuzzy WHY steer later decisions quietly.",
           "whatToDo": "The senior team clarifies the shared WHY before choosing more WHATs. The purpose cards are used to expose disagreement, not to rush past it.",
           "whyItMatters": "Strategy built on assumed cause will drift. A clear center lets later choices make sense together instead of scattering into attractive options."
@@ -3320,8 +2698,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Volkswagen Phaeton problem is not luxury by itself. The issue is a visible WHAT that no longer feels governed by the original WHY.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3333,8 +2710,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Success can keep WHATs expanding while WHY fades. Founder stories matter only if they still guide decisions, not if they become sentimental background.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3346,8 +2722,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A strong WHAT can mask fuzzy WHY for a while. The danger appears when choices keep expanding without a clear cause to govern them.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3359,8 +2734,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A fuzzy WHY often shows up as attractive numbers without purpose discipline. The belief has to judge the opportunity, not trail behind it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3372,8 +2746,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Nostalgia is not the same as clarity. WHY stays clear only when origin stories still constrain present choices.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -3385,8 +2758,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fuzziness begins when outputs dominate memory and decision-making. The organization may still perform well while belief becomes harder to use.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3398,8 +2770,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sales do not settle the question. A successful extension can still make WHY fuzzy if people cannot connect it to the founding belief.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3411,8 +2782,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Founder language loses force when incentives tell a different truth. The cause must govern current trade-offs or it becomes ritual.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3424,8 +2794,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A clear WHY rules some options out. If every extension fits, the cause may no longer be sharp enough to guide choices.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3462,7 +2831,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Defog the Original Cause",
         "coreSkill": "Choose one successful activity and ask whether it still serves the founding belief. Separate performance evidence from purpose evidence. Keep the activity only if the WHY can defend the current WHAT without nostalgia.",
         "ifThenPlans": [
           {
@@ -3483,19 +2851,13 @@
       },
       "memorableLines": [
         {
-          "text": "Success can keep the lights on while the meaning goes dim.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "Success can keep the lights on while the meaning goes dim."
         },
         {
-          "text": "A strong product can still be the wrong proof.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "A strong product can still be the wrong proof."
         },
         {
-          "text": "Growth is a poor substitute for a clear cause.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Growth is a poor substitute for a clear cause."
         }
       ]
     },
@@ -3521,13 +2883,6 @@
             "split",
             "Microsoft"
           ],
-          "planSpec": {
-            "domain": "technology company",
-            "audience": "board leaders",
-            "stakes": "purpose transfer",
-            "format": "decision_point",
-            "requiredBeat": "Transfer founder judgment"
-          },
           "scenario": "A technology board reviews a leadership handoff while the product machine still looks healthy. The Microsoft example sits in the background: output can continue after founder judgment grows less portable. Before the handoff is approved, directors need to decide how the founder's WHY will live in standards, not memory alone.",
           "whatToDo": "The technology board embeds founder judgment into standards before approving the handoff. Output strength is not treated as proof that WHY transferred.",
           "whyItMatters": "The split hides behind continuity. Products can keep moving while the decision logic that gave them meaning becomes less portable."
@@ -3539,13 +2894,6 @@
             "School Bus Test",
             "succession"
           ],
-          "planSpec": {
-            "domain": "leadership risk",
-            "audience": "executive team",
-            "stakes": "single-point purpose risk",
-            "format": "decision_point",
-            "requiredBeat": "Cause survives absence"
-          },
           "scenario": "The School Bus Test lands awkwardly in the succession workshop. Executives smile at first, then notice how many calls still depend on the founder's instinct. Before planning continues, the executive team needs to decide what questions and routines would let the organization choose well without that person in the room.",
           "whatToDo": "The executive team takes the School Bus Test seriously. Succession planning names how the WHY would guide choices without the founder present.",
           "whyItMatters": "Meaning must outlive the person who first carried it. The test exposes whether purpose is in the system or only in the leader."
@@ -3557,13 +2905,6 @@
             "professional systems",
             "management"
           ],
-          "planSpec": {
-            "domain": "professional management",
-            "audience": "operating leaders",
-            "stakes": "efficient emptiness",
-            "format": "decision_point",
-            "requiredBeat": "Systems serve WHY"
-          },
           "scenario": "A Microsoft management cadence has made the company cleaner, faster, and easier to monitor. In the operating review, the dashboards look mature while the cause behind them feels faint. Before the cadence becomes permanent, managers need to decide which systems carry WHY and which systems only polish control.",
           "whatToDo": "The management team attaches each operating cadence to the WHY it serves. Processes that cannot explain their source are revised.",
           "whyItMatters": "A system can look mature while becoming hollow. The split grows when professional order replaces judgment instead of carrying it."
@@ -3575,13 +2916,6 @@
             "culture transfer",
             "founder stories"
           ],
-          "planSpec": {
-            "domain": "organizational culture",
-            "audience": "HR leaders",
-            "stakes": "memory without use",
-            "format": "decision_point",
-            "requiredBeat": "Story becomes decision tool"
-          },
           "scenario": "The School Bus Test reaches the onboarding room has founder stories ready for new managers, but the stories end as inspiration instead of judgment. The HR team reviews trade-off examples from recent decisions. Before the next class begins, it needs to decide how stories become questions managers can use when the founder is absent.",
           "whatToDo": "The HR team converts founder stories into decision questions for managers. Onboarding teaches judgment, not only admiration.",
           "whyItMatters": "Stories preserve WHY only when people can use them. Retelling alone does not help a manager choose under pressure."
@@ -3593,13 +2927,6 @@
             "WHAT drift",
             "Microsoft"
           ],
-          "planSpec": {
-            "domain": "product strategy",
-            "audience": "division leaders",
-            "stakes": "fragmented priorities",
-            "format": "decision_point",
-            "requiredBeat": "Outputs trace to one WHY"
-          },
           "scenario": "Division leaders bring separate roadmaps to a portfolio-funding table. Each line has its own metric, and each metric looks reasonable alone. Before funding is renewed, division leaders test whether the public promises still trace back to the original cause or merely satisfy local scorecards.",
           "whatToDo": "Division leaders trace each roadmap promise back to the original cause before funding. Local metrics do not get to define fit alone.",
           "whyItMatters": "Portfolio drift can look rational one product at a time. The split appears when many sensible WHATs no longer share a center."
@@ -3611,13 +2938,6 @@
             "succession",
             "decision rules"
           ],
-          "planSpec": {
-            "domain": "executive succession",
-            "audience": "new CEO",
-            "stakes": "hard choice after founder",
-            "format": "decision_point",
-            "requiredBeat": "Decision rule after founder"
-          },
           "scenario": "The School Bus Test asks whether a successor can imitate the founder's style, follow the financial model, or apply the transferred WHY to a new trade-off. The CEO announcement is ready. Before it goes public, the board needs to decide what kind of judgment the transition is really transferring.",
           "whatToDo": "The successor uses transferred WHY rules to make the public decision. Founder style and pure model obedience are both treated as incomplete.",
           "whyItMatters": "Succession needs judgment, not mimicry. The new leader protects continuity by applying the cause to a fresh trade-off."
@@ -3636,8 +2956,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The split is not a failure of activity. It is the widening gap between the original belief and the structures that now keep producing outputs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3649,8 +2968,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Professional systems are necessary. The risk is that systems scale WHAT without preserving the WHY those systems were meant to serve.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3662,8 +2980,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The School Bus Test exposes fragility. If one person holds the WHY, the organization needs transfer mechanisms, not more dependence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3675,8 +2992,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is the gap between production strength and purpose clarity. Scale can continue while inspiration becomes harder to locate.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3688,8 +3004,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Structure is not the enemy; empty structure is. Rules need a WHY to protect, or they turn into machinery that only preserves activity.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -3701,8 +3016,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The split becomes visible when execution remains possible but judgment loses its source. People can run the system without knowing what it is for.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3714,8 +3028,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stories can carry WHY, but transfer requires usable rules. The cause needs to survive without depending on one speaker's presence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3727,8 +3040,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The split can appear during success. Output metrics may hold while the meaning behind the outputs stops guiding decisions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3740,8 +3052,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The test exposes dependence. If the cause disappears with one person, the organization has not transferred its source of judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3778,7 +3089,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Transfer the Living Cause",
         "coreSkill": "Identify where the purpose currently lives: person, story, rule, ritual, or metric. Then move one piece of it from memory into a decision standard others can use without the founder in the room.",
         "ifThenPlans": [
           {
@@ -3799,19 +3109,13 @@
       },
       "memorableLines": [
         {
-          "text": "A company can inherit the machine and lose the music.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A company can inherit the machine and lose the music."
         },
         {
-          "text": "The School Bus Test asks whether meaning can walk without its founder.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "The School Bus Test asks whether meaning can walk without its founder."
         },
         {
-          "text": "Succession is a transfer of judgment, not only a transfer of authority.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Succession is a transfer of judgment, not only a transfer of authority."
         }
       ]
     },
@@ -3837,13 +3141,6 @@
             "WHY discovery",
             "origin"
           ],
-          "planSpec": {
-            "domain": "consulting business",
-            "audience": "founder",
-            "stakes": "identity crisis",
-            "format": "decision_point",
-            "requiredBeat": "Origin pattern before wording"
-          },
           "scenario": "The Origin Pattern founder has three years of stalled pitches, awkward client fits, and old notes spread across a solo strategy review. A market-friendly purpose line would be easy to buy. Before hiring a brand agency, the founder needs to decide whether to invent a phrase or look backward for the cause already present in past choices.",
           "whatToDo": "The consulting founder studies the repeated frustrations behind the slump. The brand agency waits until the past reveals the cause already present.",
           "whyItMatters": "Discovery protects WHY from invention. A market-friendly phrase cannot supply conviction if it does not explain prior choices."
@@ -3855,13 +3152,6 @@
             "discovery",
             "history"
           ],
-          "planSpec": {
-            "domain": "leadership reflection",
-            "audience": "executive team",
-            "stakes": "generic purpose risk",
-            "format": "decision_point",
-            "requiredBeat": "Sacrifice reveals belief"
-          },
           "scenario": "At a Sacrifice Timeline retreat, executives map sacrifices on a wall: clients refused, projects saved, arguments repeated, risks accepted. The prettiest language is not yet the strongest evidence. Before the workshop turns to wording, the group needs to decide which recurring costs reveal the belief underneath.",
           "whatToDo": "The executive team marks sacrifices on a timeline before choosing language. The repeated costs become clues to the belief underneath.",
           "whyItMatters": "A WHY is easier to trust when it has paid a price. Sacrifice gives origin evidence more weight than polished workshop wording."
@@ -3873,13 +3163,6 @@
             "market research",
             "WHY"
           ],
-          "planSpec": {
-            "domain": "brand research",
-            "audience": "brand team",
-            "stakes": "customer-invented cause",
-            "format": "decision_point",
-            "requiredBeat": "Research refines wording only"
-          },
           "scenario": "Customer interviews have produced a purpose phrase that tests well, but it does not explain the organization's earliest choices. The brand team studies the research in a conference room. Before the phrase becomes official, the brand team tests whether customers are refining language or being allowed to invent conviction.",
           "whatToDo": "The brand team uses customer research to refine expression, not to decide the cause. Origin evidence keeps authority over the final line.",
           "whyItMatters": "The market can react to language, but it cannot create conviction. Discovery asks leaders to find the source before testing the wording."
@@ -3891,13 +3174,6 @@
             "Apple",
             "pre-product cause"
           ],
-          "planSpec": {
-            "domain": "company origin",
-            "audience": "product leaders",
-            "stakes": "product mistaken for source",
-            "format": "decision_point",
-            "requiredBeat": "Belief before products"
-          },
           "scenario": "A strategy workshop lists devices, campaigns, and early challenger beliefs from a pre-product company history. Product leaders are tempted to start with categories because they are easy to see. Before recommendations are written, the workshop needs to decide which belief existed before the visible WHATs.",
           "whatToDo": "Product leaders identify Apple's challenge-the-status-quo belief before listing devices. The products are treated as proof, not as the origin.",
           "whyItMatters": "A cause can precede its best-known WHATs. Apple makes sense because the belief existed before any single category carried it."
@@ -3909,13 +3185,6 @@
             "strategy",
             "discovered WHY"
           ],
-          "planSpec": {
-            "domain": "growth strategy",
-            "audience": "founders",
-            "stakes": "tempting mismatch",
-            "format": "decision_point",
-            "requiredBeat": "Purpose creates constraint"
-          },
           "scenario": "A Discovery term sheet would open a fast growth path, but it asks the founders to soften the cause they recently uncovered. The deadline is tonight. Before they answer, the founders need to decide whether a discovered WHY has enough authority to reject a good opportunity.",
           "whatToDo": "The founders let the discovered WHY judge the tempting deal. If the opportunity asks them to betray the source, they pass.",
           "whyItMatters": "A real WHY constrains as well as inspires. Discovery has teeth when it can forbid a good-looking path."
@@ -3927,13 +3196,6 @@
             "origin stories",
             "facilitation"
           ],
-          "planSpec": {
-            "domain": "organizational history",
-            "audience": "leadership facilitators",
-            "stakes": "thin workshop output",
-            "format": "decision_point",
-            "requiredBeat": "Evidence before purpose sentence"
-          },
           "scenario": "Recorded origin interviews fill the facilitator's laptop: early frustrations, odd sacrifices, and stories that do not yet form a slogan. Leaders want a sentence before lunch. Before the workshop closes, the facilitator needs to decide whether to compress the evidence or keep listening until the recurring cause is clear.",
           "whatToDo": "The facilitator keeps collecting concrete origin stories until the pattern is clear. The group earns the sentence by hearing enough remembered choices.",
           "whyItMatters": "Purpose rooted in history is harder to fake. Deep interviews give strategy a source that quick phrasing cannot provide."
@@ -3952,8 +3214,7 @@
             ],
             "correctIndex": 0,
             "explanation": "WHY discovery is historical, not invented from a blank page. Past patterns reveal the cause that has already been operating.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3965,8 +3226,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The origin often holds the pattern. Frustrations, commitments, and early choices show what the person or organization has been trying to prove.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -3978,8 +3238,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Market input can refine expression, but the source of WHY is the origin pattern. Letting outsiders invent it produces positioning, not purpose.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -3991,8 +3250,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is to find the belief before the offer. Products are later evidence, not the birthplace of the WHY.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -4004,8 +3262,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A discovered WHY guides by constraining choices. If it never rules anything out, it has not become a decision standard.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -4017,8 +3274,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Discovery depends on origin evidence. A timeline of patterns can reveal the belief that market language or future planning might hide.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -4030,8 +3286,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Discovery works by tracing repetition. The recurring belief inside old choices is stronger evidence than a polished future-facing phrase.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4043,8 +3298,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A discovered WHY has explanatory power. If it does not illuminate prior sacrifices, it may be positioning language rather than origin truth.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4056,8 +3310,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Research can refine expression, but it should not invent the cause. The source pattern remains the standard for discovery.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4094,7 +3347,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mine the Origin Pattern",
         "coreSkill": "Build a short timeline of choices that felt costly, proud, or frustrating. Look for the repeated belief underneath them. Then write the WHY as a discovered pattern and test it against one future opportunity.",
         "ifThenPlans": [
           {
@@ -4115,19 +3367,13 @@
       },
       "memorableLines": [
         {
-          "text": "A WHY is uncovered in the evidence of your own past.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "A WHY is uncovered in the evidence of your own past."
         },
         {
-          "text": "The market can describe demand; it cannot donate conviction.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "The market can describe demand; it cannot donate conviction."
         },
         {
-          "text": "Discovery gives purpose roots before strategy gives it branches.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "Discovery gives purpose roots before strategy gives it branches."
         }
       ]
     },
@@ -4153,13 +3399,6 @@
             "self-competition",
             "Ben Comen"
           ],
-          "planSpec": {
-            "domain": "cross-country running",
-            "audience": "coaches",
-            "stakes": "rank versus progress",
-            "format": "decision_point",
-            "requiredBeat": "Yesterday as opponent"
-          },
           "scenario": "Ben Comen crosses the course far behind the field while the coach watches a different race unfold. The stopwatch matters, but the comparison to Ben's own prior standard matters more. Before the team debrief, the coach needs to decide whether the story is about losing to others or improving against yesterday.",
           "whatToDo": "The coach measures Ben Comen against his own prior race. The team debrief treats progress as fidelity to the runner's standard, not defeat by the field.",
           "whyItMatters": "Competing against yourself changes what counts as winning. Ben's race shows progress that does not depend on another runner losing."
@@ -4171,13 +3410,6 @@
             "internal standard",
             "sales"
           ],
-          "planSpec": {
-            "domain": "sales leadership",
-            "audience": "sales team",
-            "stakes": "winning while weakening purpose",
-            "format": "decision_point",
-            "requiredBeat": "Purpose score beside rival rank"
-          },
           "scenario": "Ben Comen's quarterly leaderboard shows a sales win over the nearest competitor, but service complaints have climbed in the same period. The head of sales studies both sheets before bonuses are announced. She needs to decide whether beating the rival counts as progress if the win cut against the company's WHY.",
           "whatToDo": "The head of sales checks the rival win against the service promise. Bonuses wait until the team knows whether the victory stayed true to WHY.",
           "whyItMatters": "A competitor scoreboard can hide self-betrayal. The new competition asks whether success made the organization more faithful to its cause."
@@ -4189,13 +3421,6 @@
             "self-improvement",
             "product"
           ],
-          "planSpec": {
-            "domain": "software product",
-            "audience": "product managers",
-            "stakes": "competitor distraction",
-            "format": "decision_point",
-            "requiredBeat": "Internal promise before rival feature"
-          },
           "scenario": "A competitor launch note arrives the same morning users complain about a promise the product has not kept. Product managers can chase the rival feature immediately. Before sprint scope freezes, the question is whether the better race is against the competitor's announcement or against their own stated standard.",
           "whatToDo": "Product managers compare the sprint to the product's own promise before chasing the rival feature. The baseline decides the next improvement.",
           "whyItMatters": "Rivals can set a noisy agenda. Competing against yesterday keeps the team focused on becoming clearer rather than merely faster to copy."
@@ -4207,13 +3432,6 @@
             "cause others join",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "organizational change",
-            "audience": "executive leaders",
-            "stakes": "fight versus cause",
-            "format": "decision_point",
-            "requiredBeat": "Cause invites allies"
-          },
           "scenario": "The all-hands draft makes the rival company the center of the story. Executive leaders know the language will create energy, but it may also hand the organization a borrowed scoreboard. Before the meeting starts, leaders need to choose if the work should be framed as becoming truer to its own WHY.",
           "whatToDo": "Executive leaders frame the all-hands around becoming truer to the organization's WHY. The rival is mentioned only as context, not as the center.",
           "whyItMatters": "People rally more deeply around a cause than around resentment. Internal improvement invites allies instead of making the opponent the point."
@@ -4225,13 +3443,6 @@
             "personal best",
             "practice"
           ],
-          "planSpec": {
-            "domain": "team routines",
-            "audience": "department managers",
-            "stakes": "progress without rival focus",
-            "format": "decision_point",
-            "requiredBeat": "Daily evidence of fidelity"
-          },
           "scenario": "Ben Comen's weekly review board has competitor charts in three colors and a blank column for yesterday's purpose-matching behavior. The department manager sees how little the team tracks its own conduct. Before the format is renewed, the manager needs to decide whether external movement or daily fidelity should anchor the review.",
           "whatToDo": "The department manager adds one daily WHY-matching behavior to the review board. Competitor charts move from main story to supporting signal.",
           "whyItMatters": "Daily baselines make self-competition observable. The team can see whether conduct improved instead of only tracking outside movement."
@@ -4243,13 +3454,6 @@
             "Ben Comen",
             "mission"
           ],
-          "planSpec": {
-            "domain": "nonprofit growth",
-            "audience": "mission leaders",
-            "stakes": "mission versus comparison",
-            "format": "decision_point",
-            "requiredBeat": "Mission fidelity as finish line"
-          },
           "scenario": "A nonprofit annual report draft celebrates size: more donors, more chapters, more reach. Mission leaders compare those gains with Ben Comen's standard of progress against self. Before publication, leaders face a choice: define the finish line as scale alone, or measure improvement against the mission's own promise.",
           "whatToDo": "Mission leaders report progress against the mission's own standard. Size is included only after the annual report shows fidelity to the cause.",
           "whyItMatters": "A mission can grow and drift at the same time. Competing against yourself asks whether scale made the cause stronger, not merely larger."
@@ -4268,8 +3472,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ben Comen shifts the meaning of competition. The visible race becomes about perseverance against yesterday's limit, which invites others to help.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -4281,8 +3484,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rivals still exist, but they should not define identity. Purpose-led progress compares today's behavior with the standard the organization claims to serve.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -4294,8 +3496,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Beating others can focus effort, but it rarely invites broad help. Competing against yourself creates a cause people can support.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -4307,8 +3508,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Internal comparison makes improvement a proof of belief. The question is whether the organization is closer to its own standard than before.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -4320,8 +3520,7 @@
             ],
             "correctIndex": 2,
             "explanation": "People are more likely to help a cause than a feud. Self-competition invites contribution because the standard points inward to purpose.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q06",
@@ -4333,8 +3532,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful scoreboard tracks fidelity and improvement against the organization's own prior behavior. Rival data can inform, but it should not define direction.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -4346,8 +3544,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Beating a rival can hide purpose drift. The internal scoreboard asks whether improvement stayed faithful to the cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -4359,8 +3556,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Competing against yesterday changes what others can join. Support gathers around visible fidelity and improvement, not merely around winning rank.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -4372,8 +3568,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Competitors can inform, but they should not set identity. The first move is to clarify the internal standard the response must serve.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4410,7 +3605,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Race Yesterday First",
         "coreSkill": "Choose one standard that belongs to your purpose, not to a rival. Measure today's action against yesterday's version of that standard. Use competitors as information, but let your own WHY define the improvement target.",
         "ifThenPlans": [
           {
@@ -4431,19 +3625,13 @@
       },
       "memorableLines": [
         {
-          "text": "People help a race that does not ask them to lose.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main move into a concrete image."
+          "text": "People help a race that does not ask them to lose."
         },
         {
-          "text": "Yesterday is a cleaner rival than the crowd beside you.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the warning into a line readers can remember under pressure."
+          "text": "Yesterday is a cleaner rival than the crowd beside you."
         },
         {
-          "text": "A cause turns improvement into an invitation.",
-          "location": "breakdown.fullRead",
-          "why": "It names the practical test readers should carry."
+          "text": "A cause turns improvement into an invitation."
         }
       ]
     }

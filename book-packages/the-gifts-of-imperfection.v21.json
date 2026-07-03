@@ -24,7 +24,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch01",
       "number": 1,
       "title": "Courage, Compassion, and Connection: The Gifts of Imperfection",
@@ -125,8 +124,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shame grows when the story stays private and self-condemning. The right move is not polishing or waiting; it is truthful contact with earned trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q02",
@@ -138,8 +136,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ashley's model works by staying present without taking over. Revenge, advice, and one-upmanship protect the listener more than they meet the shame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q03",
@@ -151,8 +148,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Compassion is not pity from a safe height. Pema Chödrön's frame asks the listener to stand beside pain, which removes the fixer hierarchy.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q04",
@@ -164,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Boundaries prevent hidden anger from becoming contempt. Accountability is not the opposite of compassion; it is what keeps care honest.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q05",
@@ -177,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Connection is not one-way usefulness. If receiving help feels like a demotion, giving help can quietly become superiority.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q06",
@@ -190,8 +184,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The idea makes courage repeatable by bringing it back to truthful speech from the heart. Heroics are not the only place courage lives.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q07",
@@ -203,8 +196,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The three tools are practiced, not owned as fixed traits. A ranking mindset removes the ordinary choices that actually build them.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q08",
@@ -216,8 +208,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pity preserves distance. Real compassion asks for shared vulnerability, so the listener does not stand above the person in pain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch01-q09",
@@ -229,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lesson is not indiscriminate disclosure. Vulnerability needs a trustworthy listener; otherwise exposure can create a second layer of shame.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -273,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make the Trusted Call",
         "coreSkill": "Practice finding the right listener before shame starts editing the story. Make the Trusted Call by naming the real feeling in one sentence, choosing a person with steadiness and boundaries, and letting connection interrupt secrecy. The skill is not broadcasting vulnerability; it is placing the truth where compassion can hold it.",
         "ifThenPlans": [
           {
@@ -298,19 +287,13 @@
       },
       "memorableLines": [
         {
-          "text": "Secrecy gives shame room to narrate alone.",
-          "location": "breakdown.fastRead",
-          "why": "It names the mechanism behind ordinary courage in a compact sentence."
+          "text": "Secrecy gives shame room to narrate alone."
         },
         {
-          "text": "Boundaries keep compassion honest.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the surprising link between care and accountability."
+          "text": "Boundaries keep compassion honest."
         },
         {
-          "text": "Receiving care is not a demotion.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the receiving side of connection easy to remember."
+          "text": "Receiving care is not a demotion."
         }
       ]
     },
@@ -415,8 +398,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fitting in wins approval through self-modification. Murray moves toward belonging by seeing the edit and risking a truer version in the same room.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -428,8 +410,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Love is not proved by warmth alone. Diego has to practice care through responsibility, trust, respect, and a repair the staff can verify.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -441,8 +422,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern is postponed worthiness. Farah treats connection as something she may receive later, after visible proof has made her acceptable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -454,8 +434,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Belonging cannot grow around an identity that stays hidden. Gaelle should test whether the panel rewarded a real voice or a careful performance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -467,8 +446,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Worthiness now protects Bohdan's humanity, not his excuses. Accountability, boundaries, and repair still belong inside love.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -480,8 +458,7 @@
             ],
             "correctIndex": 1,
             "explanation": "External affection can miss its mark when Tracy believes the real self does not deserve it. Worthiness is the access point for receiving care.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -493,8 +470,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fitting in often lowers short-term exposure. Roland may feel safer, but the concealed self blocks the kind of participation belonging requires.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -506,8 +482,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Warm rooms help, but they cannot welcome a self Murray keeps out of sight. Self-acceptance raises the ceiling on what belonging can become.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -519,8 +494,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Strong feeling can coexist with behavior that damages trust. Diego's care becomes love only when it is practiced in dependable ways.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -563,7 +537,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Fitting-In Price",
         "coreSkill": "Name the Fitting-In Price by catching the exact edit you are about to make for approval. Write what the edit protects and what belonging loses if you keep it. Then choose one small act that lets the real self stay present while still honoring trust and boundaries.",
         "ifThenPlans": [
           {
@@ -588,24 +561,17 @@
       },
       "memorableLines": [
         {
-          "text": "Fitting in can win the room and still cost the self.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the fitting-in versus belonging split into one clean contrast."
+          "text": "Fitting in can win the room and still cost the self."
         },
         {
-          "text": "Love is action, so warmth without responsibility is not enough.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps love tied to behavior instead of mood."
+          "text": "Love is action, so warmth without responsibility is not enough."
         },
         {
-          "text": "Worthiness now is not a pass on repair.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the hard edge between enoughness and accountability."
+          "text": "Worthiness now is not a pass on repair."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch03",
       "number": 3,
       "title": "The Things That Get in the Way",
@@ -706,8 +672,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shame turns exposure into a verdict on belonging. Embarrassment may fade, and guilt needs a violated value; Donna is hearing an identity threat.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -719,8 +684,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Shame grows when secrecy, silence, and judgment trap a person alone with the harshest reading. Perspective interrupts that closed loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -732,8 +696,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Guilt names a repairable behavior. The other choices keep Nicholas centered on identity, avoidance, or self-punishment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -745,8 +708,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Appropriate guilt connects discomfort to a specific action. Self-condemnation and delay can steal focus from the actual repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -758,8 +720,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sting comes from vulnerable joy becoming exposed to judgment. Shame is not limited to grave failures or obvious misconduct.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -771,8 +732,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Owning the story with someone trustworthy breaks isolation. Empathy does not erase facts; it tests the false verdict that Arlo is alone and defective.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -784,8 +744,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Comfort pasted over barriers is too thin. Positive messages help only when people also face the shame patterns blocking belonging.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -797,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Expertise can help Kwame name the emotion sooner, but it does not remove human vulnerability. Immunity is the false standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -810,8 +768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Shame often corrodes the confidence needed to do better. Guilt can guide repair when it stays tied to behavior rather than identity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -854,7 +811,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Shame Sentence",
         "coreSkill": "Practice Name the Shame Sentence by catching the exact identity claim shame makes, then translating it into behavior-level guilt when repair is needed. The skill has three parts: name the shame message, reality-check it, and tell someone trustworthy enough to keep perspective with you. It treats connection as part of resilience, not as a reward earned after you feel better.",
         "ifThenPlans": [
           {
@@ -879,24 +835,17 @@
       },
       "memorableLines": [
         {
-          "text": "Guilt can guide repair; shame tries to cancel the self.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's main distinction into one contrast."
+          "text": "Guilt can guide repair; shame tries to cancel the self."
         },
         {
-          "text": "Shame turns exposure into exile.",
-          "location": "breakdown.fullRead",
-          "why": "It makes shame's threat to belonging easy to remember."
+          "text": "Shame turns exposure into exile."
         },
         {
-          "text": "Shame cannot survive honest naming and trustworthy company.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the practice of shame resilience into a portable line."
+          "text": "Shame cannot survive honest naming and trustworthy company."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch04",
       "number": 4,
       "title": "Guidepost #1. Cultivating Authenticity: Letting Go of What People Think",
@@ -997,8 +946,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Authenticity is a repeated choice, not a trait Isabelle either owns or lacks. The practice restarts with one truthful update that keeps boundaries.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1010,8 +958,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The having-doing-being order keeps Avery's real story postponed. Young's reversal starts with being, then lets action and outcomes follow.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1023,8 +970,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sacred-ground cue rejects both shrinking and puffing up. Dean's task is grounded truth, not appeasement or dominance.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1036,8 +982,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Authenticity requires boundaries. Tiago can let the real issue be seen without giving everyone unlimited access to his private life.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1049,8 +994,7 @@
             ],
             "correctIndex": 2,
             "explanation": "People-pleasing may avoid conflict in public while building anxiety and anger inside. The cost comes from repeated self-sacrifice.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1006,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Criticism can follow authentic change when others benefited from the old editing. Pushback alone does not prove the real choice was wrong.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1018,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Cummings frame makes authenticity a sustained fight. One declaration does not end the pressure to edit the self for acceptance.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1030,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Enoughness means belonging is not outsourced to the approval signal. Avery can seek praise without letting praise decide what truth may appear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1042,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rejection after honest action can hurt, but it does not carry the same self-abandonment as pleasing through concealment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1145,7 +1085,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Stand on Sacred Ground",
         "coreSkill": "Practice pausing inside approval pressure long enough to name the pull: shrink, puff up, or stand. The skill is one honest, bounded move that keeps compassion intact without handing approval the right to edit the self.",
         "ifThenPlans": [
           {
@@ -1174,19 +1113,13 @@
       },
       "memorableLines": [
         {
-          "text": "Approval can clap for the edited self while the real self goes hungry.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of approval-seeking concrete and easy to remember."
+          "text": "Approval can clap for the edited self while the real self goes hungry."
         },
         {
-          "text": "Grounded honesty refuses both collapse and armor.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the sacred-ground middle way in one portable sentence."
+          "text": "Grounded honesty refuses both collapse and armor."
         },
         {
-          "text": "Still, rejection after truth hurts less than approval bought by hiding.",
-          "location": "breakdown.fullRead",
-          "why": "It names the emotional difference between ordinary loss and self-betrayal."
+          "text": "Still, rejection after truth hurts less than approval bought by hiding."
         }
       ]
     },
@@ -1291,8 +1224,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The email shows how shame can hide inside a socially acceptable label. Perfectionism sounds respectable, so the deeper fear becomes easier to avoid.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1304,8 +1236,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The distinction is motivation and worth. Healthy striving can improve work without making acceptance depend on looking flawless.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1317,8 +1248,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Self-compassion supports repair. Aubrey still corrects the error, but she does not use shame as the tool for getting herself to act.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1330,8 +1260,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Neff's framework has three parts: warmth toward the self, remembering struggle is shared, and balanced awareness of pain.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -1343,8 +1272,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Messy-house hospitality trains visible imperfection. Estelle still values care, but she does not make connection wait for perfect staging.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1356,8 +1284,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mindfulness is balanced attention. It allows the feeling to be known without either burying it or exaggerating it into a self-definition.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1369,8 +1296,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shield language matters. Perfectionism tries to prevent exposure by making the self appear beyond criticism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1382,8 +1308,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Common humanity counters isolation. The mistake may need repair, but it does not prove the person is alone in defectiveness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1395,8 +1320,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Good-enough is active practice. Stress can bring perfectionism back, so the reader rehearses compassion in small visible moments.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1439,7 +1363,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Compassion Reply",
         "coreSkill": "Practice the Compassion Reply whenever imperfection becomes visible. First name the shield perfectionism is offering, then answer with one kind sentence, one common-humanity reminder, and one honest next step. The skill is not softer standards; it is repair without worth-hustling.",
         "ifThenPlans": [
           {
@@ -1464,19 +1387,13 @@
       },
       "memorableLines": [
         {
-          "text": "Self-compassion lowers the shield without lowering standards.",
-          "location": "breakdown.fastRead",
-          "why": "It names the chapter's hard edge in a compact contrast."
+          "text": "Self-compassion lowers the shield without lowering standards."
         },
         {
-          "text": "Shame tries to force repair by attacking identity.",
-          "location": "breakdown.deepRead",
-          "why": "It clarifies why self-attack can feel responsible while making repair harder."
+          "text": "Shame tries to force repair by attacking identity."
         },
         {
-          "text": "The release is not effort.",
-          "location": "breakdown.fullRead",
-          "why": "It prevents the common misread that good-enough means giving up."
+          "text": "The release is not effort."
         }
       ]
     },
@@ -1581,8 +1498,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Resilience includes help-seeking, social support, and belief in coping. Working alone removes support, while waiting for confidence treats resilience as a mood.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1594,8 +1510,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Snyder's hope is cognitive: goals, pathways, backup routes, and agency. Cheerful expectation and repetition may soothe, but they miss the planning structure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1607,8 +1522,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is selectivity. Numbing pain also reduces access to joy and gratitude, while shame adds another wound and sleep relief may dodge the real hurt.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1620,8 +1534,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The reclaimed definition ties power to purpose and change, not domination. Avoiding power can deepen powerlessness, and control is the old misread.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1633,8 +1546,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Critical awareness reality-checks cultural and status messages. It neither swallows the pressure whole nor refuses feedback that may serve the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1646,8 +1558,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The resilience frame is broad: connection, love, compassion, and meaning beyond the individual. One tradition is too narrow, and tools alone miss the foundation.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1659,8 +1570,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A resilient spirit includes feeling difficult emotions and seeking support. Timed escape can still numb, and reduced sensitivity may only hide pain.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1672,8 +1582,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hope and power reinforce each other when agency makes pathways believable. Purpose without routes can slide into wishfulness after a setback.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1685,8 +1594,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Powerlessness threatens hope when no change seems possible. Naming purpose and one change restores agency without denying the hard cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1735,7 +1643,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Hope Route Check",
         "coreSkill": "Practice turning a hard feeling into a workable route before you reach for numbness. The Hope Route Check asks for one feeling, one goal, one pathway, one backup route, and one source of support. It treats agency as something you build in small moves.",
         "ifThenPlans": [
           {
@@ -1760,24 +1667,17 @@
       },
       "memorableLines": [
         {
-          "text": "Resilience is not the art of staying untouched.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the toughness misread in one compact line."
+          "text": "Resilience is not the art of staying untouched."
         },
         {
-          "text": "Hope needs routes, not speeches.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the hope model practical and easy to recall."
+          "text": "Hope needs routes, not speeches."
         },
         {
-          "text": "Numbing rents relief by shrinking the whole room.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why taking the edge off costs more than pain."
+          "text": "Numbing rents relief by shrinking the whole room."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch07",
       "number": 7,
       "title": "Guidepost #4. Cultivating Gratitude and Joy: Letting Go of Scarcity and Fear of the Dark",
@@ -1872,8 +1772,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The research pattern runs from gratitude practice toward steadier joy. Waiting for safer circumstances keeps joy outside the reader's reach.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q02",
@@ -1885,8 +1784,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The guidepost treats gratitude as something embodied and repeated. Sofia's ritual gives students an action, not merely a cheerful display.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q03",
@@ -1898,8 +1796,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The distinction explains why joy can be present without ideal conditions. It is not simply a stronger burst of favorable circumstance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q04",
@@ -1911,8 +1808,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fear can arrive precisely because the moment is loved. The work is to receive joy without treating worry as proof of responsibility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q05",
@@ -1924,8 +1820,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Premature grief feels useful, but it cannot control loss. It usually reduces the strength and tenderness available now.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q06",
@@ -1937,8 +1832,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Twist's frame includes a mindset that scans for deficit even amid adequacy. It does not deny practical constraints.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q07",
@@ -1950,8 +1844,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sufficiency is a context of enoughness, not a tiny quantity or a denial of pressure. It changes the stance from which choices are made.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q08",
@@ -1963,8 +1856,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Loss stories show that everyday scenes often become sacred in memory. Gratitude asks for that attention while the moment is still available.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch07-q09",
@@ -1976,8 +1868,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gratitude does not erase darkness. It gives joy and meaning a place to breathe while hard conditions remain real.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2014,7 +1905,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice the Enough Moment",
         "coreSkill": "Practice the Enough Moment by naming one ordinary good thing, naming why it is enough for now, and stopping before scarcity or fear rewrites it. The point is not to feel cheerful on command. The point is to make gratitude behavioral so joy has a place to live even when vulnerability is real.",
         "ifThenPlans": [
           {
@@ -2039,24 +1929,17 @@
       },
       "memorableLines": [
         {
-          "text": "Sufficiency is not a lower bar; it is a different place to stand while life is ordinary.",
-          "location": "breakdown.deepRead",
-          "why": "It makes a source term feel embodied instead of abstract."
+          "text": "Sufficiency is not a lower bar; it is a different place to stand while life is ordinary."
         },
         {
-          "text": "Gratitude is not a charm against future grief; it is a way to stop paying grief early.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the hard edge without flattening the hope."
+          "text": "Gratitude is not a charm against future grief; it is a way to stop paying grief early."
         },
         {
-          "text": "Not everything has to be fine for one ordinary good thing to count.",
-          "location": "breakdown.fullRead",
-          "why": "It lands the chapter's permission in plain language."
+          "text": "Not everything has to be fine for one ordinary good thing to count."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch08",
       "number": 8,
       "title": "Guidepost #5. Cultivating Intuition and Trusting Faith: Letting Go of the Need for Certainty",
@@ -2157,8 +2040,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The revised view keeps reason inside intuition through stored knowledge and pattern matching. Treating intuition as a replacement for thought repeats the thin definition.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q02",
@@ -2170,8 +2052,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lamott's framing separates faith from certainty. Eliana can offer presence and courage without pretending that grief has a neat spiritual answer.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q03",
@@ -2183,8 +2064,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Polling can become a certainty strategy. Tanner is no longer gathering needed data; he is making the decision feel less exposed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q04",
@@ -2196,8 +2076,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rohr's comparison exposes certainty as a human craving, not a science-versus-faith split. Seo keeps humility available to both groups.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q05",
@@ -2209,8 +2088,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The prayer helps Gaston regulate control hunger. It distinguishes what cannot change, what action is possible, and what judgment is needed.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q06",
@@ -2222,8 +2100,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rushing can be avoidance, not intuition. A reliable inner signal does not need to outrun facts that may change the decision.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q07",
@@ -2235,8 +2112,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The integrated move lets evidence, memory, instinct, and mystery contribute. Kyle does not have to exile one mode to trust another.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q08",
@@ -2248,8 +2124,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Intuition may signal insufficient data. Sade respects the inner no by seeking the missing fact, rather than obeying or dismissing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-gifts-of-imperfection-ch08-q09",
@@ -2261,8 +2136,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The conflict grows when certainty or rightness takes over. Faith and reason can both serve care when neither is forced to dominate.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2305,7 +2179,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Hold the Knowing Open",
         "coreSkill": "Practice delaying false closure long enough to consult more than one way of knowing. Hold the Knowing Open means naming the gut signal, checking the missing facts, and admitting the part that remains mystery before you act.",
         "ifThenPlans": [
           {
@@ -2330,24 +2203,17 @@
       },
       "memorableLines": [
         {
-          "text": "Certainty can feel like safety while it steals information.",
-          "location": "breakdown.fastRead",
-          "why": "It names certainty hunger's central danger in a compact contrast."
+          "text": "Certainty can feel like safety while it steals information."
         },
         {
-          "text": "A gut signal is not a verdict; sometimes it asks for data.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps intuition integrated with fact-finding and reason."
+          "text": "A gut signal is not a verdict; sometimes it asks for data."
         },
         {
-          "text": "Faith grows cleaner when certainty stops demanding the last word.",
-          "location": "breakdown.fullRead",
-          "why": "It separates spiritual trust from forced closure."
+          "text": "Faith grows cleaner when certainty stops demanding the last word."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch09",
       "number": 9,
       "title": "Guidepost #6. Cultivating Creativity: Letting Go of Comparison",
@@ -2448,8 +2314,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Comparison is conformity plus competition. Harold's students are learning to match the approved shape and then beat classmates by the same rules.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2461,8 +2326,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The New Orleans memory places creativity in ordinary family life. Mia does not need gallery status before sewing and cooking count as making.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2474,8 +2338,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Houston move shows place as a value shift. Sameness, achievement, and acquisition begin to replace the ordinary creative life of home.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2487,8 +2350,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The framework rejects the split between creative and noncreative people. Valentin's creativity may show through repair, song, photography, or another form of meaning-making.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2500,8 +2362,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Unused creativity remains active. Carly's bitterness is not random; it may be neglected expression asking for a place to go.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -2513,8 +2374,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Making is broad here. Cooking, sewing, repairing, singing, and other forms can cultivate meaning without needing a formal art label.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2526,8 +2386,7 @@
             ],
             "correctIndex": 1,
             "explanation": "William Plomer's idea expands creativity to connection. Natalia's pattern-finding is not separate from creative work when it links scattered details into meaning.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2539,8 +2398,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gourd-painting class matters because it schedules expression. Jesse moves from agreeing with the idea to making with other people.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2552,8 +2410,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Creativity weakens comparison when Carly expresses what is hers. Using it to beat other makers reinstalls the status trap she is trying to leave.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2602,7 +2459,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Practice Make Before You Measure",
         "coreSkill": "Practice Make Before You Measure by acting on creativity before comparison gets a vote. Get deliberate by naming the ranking cue, get inspired by one concrete maker or memory, then get going with a small act of making. The skill works because originality grows through expression, not through winning the group's approval first.",
         "ifThenPlans": [
           {
@@ -2631,19 +2487,13 @@
       },
       "memorableLines": [
         {
-          "text": "Make first, then let the ranking voice lose volume.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's definition of comparison into a testable sentence."
+          "text": "Make first, then let the ranking voice lose volume."
         },
         {
-          "text": "Unused creativity does not vanish; it waits, then leaks as resentment, fear, or grief.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the cost of neglecting creativity emotionally concrete."
+          "text": "Unused creativity does not vanish; it waits, then leaks as resentment, fear, or grief."
         },
         {
-          "text": "Make something before you measure yourself against someone else.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader the chapter's practice in one clean instruction."
+          "text": "Make something before you measure yourself against someone else."
         }
       ]
     },
@@ -2748,8 +2598,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The point is status reversal. If tiredness earns admiration, people learn to offer depletion as proof of worth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2761,8 +2610,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The guidepost questions the reflex to convert childhood into performance. A free evening may be the very source of joy and meaning.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2774,8 +2622,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Output can hide cost for a while. Rest is paired with play as a basic need, not as a perk after performance stays high.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2787,8 +2634,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The comic detour is not throwaway embarrassment. It points to a culture that lacks ordinary words for adult play outside output or sex.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2800,8 +2646,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Stuart Brown's research treats play as serious human support. Its value is not limited to amusement after important work ends.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2813,8 +2658,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rest may help work, but that cannot be its whole defense. Otherwise productivity remains the master value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -2826,8 +2670,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The list exercise separates status dreams from lived nourishment. It asks whether present practices already hold the desired feeling.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2839,8 +2682,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Play can feel frightening because it refuses achievement logic. The unease is about worth tied to usefulness.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -2852,8 +2694,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source matters because the claim is not merely taste. The research links play with capacities the founder needs, including creativity and social life.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           }
         ]
       },
@@ -2896,7 +2737,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Joy-Meaning Swap",
         "coreSkill": "Practice the Joy-Meaning Swap by comparing what your schedule is chasing with what actually gives you rest, play, and connection. Name one status-driven demand, then trade it for one protected pocket of purposeless fun or sleep. The skill works best when the new space is protected before productivity has a chance to approve it.",
         "ifThenPlans": [
           {
@@ -2925,24 +2765,17 @@
       },
       "memorableLines": [
         {
-          "text": "Exhaustion loses its shine when worth is no longer proven by being spent.",
-          "location": "breakdown.fastRead",
-          "why": "It names the status reversal in plain, quotable language."
+          "text": "Exhaustion loses its shine when worth is no longer proven by being spent."
         },
         {
-          "text": "Play works because it loosens the grip of use.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the mechanism in a compact sentence."
+          "text": "Play works because it loosens the grip of use."
         },
         {
-          "text": "Rest is not the absence of devotion; it is one way devotion stays human.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the guidepost from sounding like withdrawal."
+          "text": "Rest is not the absence of devotion; it is one way devotion stays human."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch11",
       "number": 11,
       "title": "Guidepost #8. Cultivating Calm and Stillness: Letting Go of Anxiety as a Lifestyle",
@@ -3043,8 +2876,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The therapy insight is not tougher endurance. The tempting routine fix leaves the same anxiety intact, while the body is already signaling that the pattern needs to change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3056,8 +2888,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calm is practiced behavior, not a mood that arrives after fear vanishes. A lecture can still be anxiety talking; rehearsal creates a usable pause.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3069,8 +2900,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pattern map refuses fixed identities. Calling Natalie the only competent one rewards takeover, while waiting passively leaves Claude stuck in the other role.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3082,8 +2912,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source treats calm as modeled and rehearsed. Hiding all feeling is not the same as steadiness, and making calm a temperament would remove the practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3095,8 +2924,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Stillness is not blank-mind performance or another productivity trick. It lets truth catch up, which is why discomfort can be useful, not failure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -3108,8 +2936,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The goal is not dependence or isolation. Naming underfunctioning as a pattern lets Claude accept support while recovering a visible piece of agency.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -3121,8 +2948,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The contagion frame cuts both ways. Fast fixing may spread urgency; a regulated response can alter the emotional weather without pretending anxiety is private.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3134,8 +2960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A full calendar can be dedication or avoidance. The test is what the motion is doing; adding status or postponing stillness may protect the same avoidance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3147,8 +2972,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The guidepost keeps anxiety human and workable. Immunity is the false standard, and avoidance lets anxiety organize the life it is supposed to loosen.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3197,7 +3021,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Calm Clearing Pause",
         "coreSkill": "Practice catching anxiety before it becomes the manager of the moment. Run the Calm Clearing Pause by naming the pattern, slowing the first response, and leaving enough stillness for the real feeling or question to surface. The skill joins calm and stillness without pretending anxiety disappears.",
         "ifThenPlans": [
           {
@@ -3226,24 +3049,17 @@
       },
       "memorableLines": [
         {
-          "text": "The aim is not a life without anxiety.",
-          "location": "breakdown.fullRead",
-          "why": "It protects the chapter from the shallow calm-down reading."
+          "text": "The aim is not a life without anxiety."
         },
         {
-          "text": "Calm has to be seen before it can be copied.",
-          "location": "example.ex04",
-          "why": "It compresses the modeled-behavior lesson from Maud Bryt and Steve."
+          "text": "Calm has to be seen before it can be copied."
         },
         {
-          "text": "Stillness is not blankness.",
-          "location": "example.ex06",
-          "why": "It makes the stillness distinction portable."
+          "text": "Stillness is not blankness."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch12",
       "number": 12,
       "title": "Guidepost #9. Cultivating Meaningful Work: Letting Go of Self-Doubt and \"Supposed To\"",
@@ -3344,8 +3160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The earrings already show a gift in use. The error is letting income decide whether Phoebe can name work that is real and shared.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3357,8 +3172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The slash does not excuse vagueness. It gives Eloi honest language for a plural identity that one title compresses too tightly.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3370,8 +3184,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Thurman's frame links aliveness with contribution. Nora is not ranking prestige; she is helping energy become useful service.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3383,8 +3196,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gladwell's criteria add structure. Carla tests complexity, autonomy, and feedback before turning one dull task into a verdict on the whole job.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -3396,8 +3208,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Calling is treated as spiritual and practical. Chen honors the pull by giving it form, not by pretending livelihood has disappeared.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3409,8 +3220,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Supposed-to messages gain power when they run unseen. Naming the rule lets Wendy own the fear instead of obeying it.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3422,8 +3232,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Unused gifts are not framed as harmless. Resentment can be a cost of keeping talent locked away from expression and connection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -3435,8 +3244,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The guidepost is grounded. Purpose may need a slash, a day job, or gradual redesign instead of a sudden exit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3448,8 +3256,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Meaning comes from gifts in use, not from social digestibility. Eloi can make the answer accurate instead of smaller.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -3492,7 +3299,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Gift Ledger",
         "coreSkill": "Write the Gift Ledger when a title, paycheck, or supposed-to rule starts shrinking your sense of work. Name the gift, the rule judging it, and one committed way the gift can be used without waiting for perfect legitimacy.",
         "ifThenPlans": [
           {
@@ -3517,24 +3323,17 @@
       },
       "memorableLines": [
         {
-          "text": "Money can matter without becoming the judge of every gift.",
-          "location": "breakdown.fastRead",
-          "why": "It separates practical income from false legitimacy."
+          "text": "Money can matter without becoming the judge of every gift."
         },
         {
-          "text": "A slash can be a truthful map, not an apology.",
-          "location": "breakdown.deepRead",
-          "why": "It makes plural work identity feel clear and memorable."
+          "text": "A slash can be a truthful map, not an apology."
         },
         {
-          "text": "Purpose grows sturdier when it can survive a paycheck, a label, and a bad week.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the grounded version of meaningful work."
+          "text": "Purpose grows sturdier when it can survive a paycheck, a label, and a bad week."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-gifts-of-imperfection-ch13",
       "number": 13,
       "title": "Guidepost #10. Cultivating Laughter, Song, and Dance: Letting Go of Being Cool and \"Always in Control\"",
@@ -3635,8 +3434,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The parent protects joy by joining before the gaze teaches shame. Redirecting or staying distant still lets image management set the lesson.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -3648,8 +3446,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Song connects through shared feeling, ritual, and memory. The best choice serves comfort and common breath, not performance polish.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3661,8 +3458,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The watching group makes coolness social before it becomes internal. Treating the gaze as harmless misses how shame is taught.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3674,8 +3470,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Knowing laughter recognizes common humanity. Targeting one singer would shame; shutting it down would miss the warmth already forming.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -3687,8 +3482,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The gendered rule equates visible joy with foolishness. One chosen step weakens that control without turning dance into a test of skill.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3700,8 +3494,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Personal control can become policing. Letting safe movement exist may restore connection while the cleanup still gets done.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -3713,8 +3506,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hard edge is relational. When expression feels forbidden inside, a person can begin restricting it in children, friends, partners, or teams.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3726,8 +3518,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Music can connect through ritual and atmosphere, not lyrics alone. The shared sound may hold comfort or pride before people speak.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q09",
@@ -3739,8 +3530,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The harder warning is betrayal. The adult can trade a child's visible joy for public composure, then call that trade maturity.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3789,7 +3579,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Join Before You Judge",
         "coreSkill": "Practice catching the instant when coolness asks you to manage the room. Use Join Before You Judge by naming the joy in front of you, checking whether it is kind, and taking one small embodied step toward connection.",
         "ifThenPlans": [
           {
@@ -3814,19 +3603,13 @@
       },
       "memorableLines": [
         {
-          "text": "Joy survives when an adult protects it from the social gaze.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the Nordstrom scene into the chapter's moral test."
+          "text": "Joy survives when an adult protects it from the social gaze."
         },
         {
-          "text": "Control can keep an image intact while a relationship goes hungry.",
-          "location": "breakdown.fullRead",
-          "why": "It names the hidden cost of coolness in one sharp contrast."
+          "text": "Control can keep an image intact while a relationship goes hungry."
         },
         {
-          "text": "The body learns belonging by doing it.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses embodied connection into a portable line."
+          "text": "The body learns belonging by doing it."
         }
       ]
     }

@@ -25,7 +25,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch01",
       "number": 1,
       "title": "Biases and Blunders",
@@ -126,8 +125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source separates fast intuition from slower correction. Thinking harder can help, but many choices happen before the Reflective System fully engages.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch01-q02",
@@ -139,8 +137,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Anchoring works by incomplete adjustment. The Chicago and Green Bay prompts can matter even when they are only starting points, not trusted facts.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch01-q03",
@@ -152,8 +149,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Availability turns ease of recall into a false feel for frequency. The fix is not to ignore the story, but to set it beside the base rate.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch01-q04",
@@ -165,8 +161,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Representativeness makes resemblance feel like probability. A short streak can look meaningful even when random sequences naturally contain clusters.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch01-q05",
@@ -178,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Status quo bias makes existing arrangements sticky. Keeping a default may reflect inertia and effort costs, not a fresh endorsement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch01-q06",
@@ -191,8 +185,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Loss aversion means losses loom larger than comparable gains. Equivalent outcomes can feel different when one is heard as giving something up.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch01-q07",
@@ -204,8 +197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Optimism bias makes people understate their own exposure. A warning can lose to the belief that bad outcomes mostly happen elsewhere.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "nudge-ch01-q08",
@@ -217,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Framing changes behavior by changing the visible reference point. The incentive can stay the same while the decision feels different.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch01-q09",
@@ -230,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A nudge targets predictable error. If the miss repeats in the same setting, the design can change without treating the person as stupid.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -274,7 +264,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move the First Cue",
         "coreSkill": "Practice finding the cue that reaches your mind before careful thought does. The cue might be a first number, a loud story, a checked box, or a loss frame. Move one object into the path of the task so you remember to ask what is steering the choice.",
         "ifThenPlans": [
           {
@@ -299,24 +288,17 @@
       },
       "memorableLines": [
         {
-          "text": "A bad setting can make a good mind look careless.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the hard edge away from blame and on the choice environment."
+          "text": "A bad setting can make a good mind look careless."
         },
         {
-          "text": "The number you meet first can steer the number you give.",
-          "location": "breakdown.deepRead",
-          "why": "It turns anchoring into a line the reader can remember at any estimate."
+          "text": "The number you meet first can steer the number you give."
         },
         {
-          "text": "A nudge begins where repeated error becomes visible.",
-          "location": "breakdown.fullRead",
-          "why": "It names the precondition that makes design more than advice."
+          "text": "A nudge begins where repeated error becomes visible."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch02",
       "number": 2,
       "title": "Resisting Temptation",
@@ -417,8 +399,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Vivid immediate pleasure can beat abstract later costs. The common error is reading the lapse as proof the earlier plan was not sincere.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch02-q02",
@@ -430,8 +411,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A commitment device is voluntary. It lets a cooler planning state protect a hotter future state without erasing choice forever.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch02-q03",
@@ -443,8 +423,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Small hassles can matter because impulses decay. Self-control support does not require a ban or a heavy penalty for every weak moment.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch02-q04",
@@ -456,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mischel's lesson is attention management, not pure force. Looking away can reduce pull while keeping the option open.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch02-q05",
@@ -469,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Planner-doer conflict explains why people ask for constraints. Seeking help can be rational when weakness is predictable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch02-q06",
@@ -482,8 +459,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Delayed feedback can be a weak teacher. Some costs arrive after the choice feels finished.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch02-q07",
@@ -495,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Public commitments can reinforce private intentions through social visibility. They do not need legal force to matter.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch02-q08",
@@ -508,8 +483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Choice architecture can support self-control without prohibition. The option remains, but the automatic path is less ready.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "nudge-ch02-q09",
@@ -521,8 +495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Ulysses logic is voluntary constraint. A cooler self can protect a considered plan without treating all later choice as worthless.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -565,7 +538,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Cool the Moment First",
         "coreSkill": "Practice changing the moment before it tests you. Cool the Moment First means you notice the hot cue, add one pause or friction point, and let your cooler plan speak before the fast reach wins.",
         "ifThenPlans": [
           {
@@ -590,19 +562,13 @@
       },
       "memorableLines": [
         {
-          "text": "Willpower works better when it has less work to do.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's design-first answer to temptation."
+          "text": "Willpower works better when it has less work to do."
         },
         {
-          "text": "A cooler self can protect a hotter self.",
-          "location": "breakdown.deepRead",
-          "why": "It gives planner-doer conflict a sentence readers can keep."
+          "text": "A cooler self can protect a hotter self."
         },
         {
-          "text": "Do not moralize what you can redesign.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the hard edge into a portable rule."
+          "text": "Do not moralize what you can redesign."
         }
       ]
     },
@@ -707,8 +673,7 @@
             ],
             "correctIndex": 0,
             "explanation": "People often use visible choices as evidence under uncertainty. The error is treating every copied choice as weakness instead of possible social learning.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -720,8 +685,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pluralistic ignorance can keep a norm alive when dissent stays hidden. Each person reads quiet as approval, so the group looks more united than it is.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -733,8 +697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Authority cues matter when responsibility feels shifted to the person giving orders. Milgram-style compliance does not require physical force.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -746,8 +709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A descriptive norm reports what people do; an injunctive norm signals what people approve. Reporting common bad conduct can normalize it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -759,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Social comparison can shift behavior without a price change. The household learns where it stands beside peers and may move toward that norm.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -772,8 +733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "An information cascade grows when each visible choice becomes evidence for the next person. A large group can amplify an early mistake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -785,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Making beneficial behavior visible can lower uncertainty for others. Social proof is not only a trap; it can also spread good choices.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -798,8 +757,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Social nudges work better when the comparison group feels close and relevant. Distant groups are weaker guides for action.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -811,8 +769,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Correcting a misperceived norm can reduce harmful behavior. Exaggerating the danger may make the conduct seem more common than it is.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -855,7 +812,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask What The Crowd Shows",
         "coreSkill": "Practice asking what the visible crowd is really telling you. Before you copy, name whether the signal is information, approval, authority, or hidden fear. Then decide whether to follow it, question it, or make a better cue visible.",
         "ifThenPlans": [
           {
@@ -880,19 +836,13 @@
       },
       "memorableLines": [
         {
-          "text": "The crowd is a clue, not a conscience.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the useful and risky sides of social influence in one short line."
+          "text": "The crowd is a clue, not a conscience."
         },
         {
-          "text": "Silence can look like agreement.",
-          "location": "breakdown.deepRead",
-          "why": "It gives pluralistic ignorance a scene the reader can spot in real life."
+          "text": "Silence can look like agreement."
         },
         {
-          "text": "A good nudge shows the right crowd.",
-          "location": "breakdown.fullRead",
-          "why": "It turns norm design into a portable rule for signs, bills, and group messages."
+          "text": "A good nudge shows the right crowd."
         }
       ]
     },
@@ -997,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Delayed feedback is weak teaching. A mortgage mistake can reveal its cost years later, so regret after closing may not protect the borrower in time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1010,8 +959,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Complexity can coexist with formal freedom. The useful move is to simplify the comparison, not to assume more listed details solve confusion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1023,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Practice matters. Mortgages and similar choices happen too rarely for easy learning, so experience alone is a thin guardrail.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1036,8 +983,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A nudge steers rather than commands. Moving fruit changes salience while preserving opt-out freedom; removing or requiring food uses a stronger tool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1049,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mapping connects options to outcomes people understand. A bigger menu can still mislead if the borrower cannot see the later cost.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Defaults matter because inaction selects them. Formal alternatives do not erase the steering effect when many people accept the starting point.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1019,7 @@
             ],
             "correctIndex": 0,
             "explanation": "High stakes can strengthen the case for good design. A small flaw in a hard money choice can create a large welfare loss.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Incentives must be perceived and understood. Fees and future costs can stay hidden even when prices are formally present.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A useful nudge should be cheap to avoid. Heavy exit costs turn steering into pressure, even when an opt-out exists on paper.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1145,7 +1086,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Nudge Need Test",
         "coreSkill": "Practice spotting where a choice is a poor teacher. Ask whether feedback is fast, practice is common, options map to real outcomes, and exit stays easy. Run the Nudge Need Test before you blame the chooser.",
         "ifThenPlans": [
           {
@@ -1170,24 +1110,17 @@
       },
       "memorableLines": [
         {
-          "text": "A nudge belongs where learning is weak.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the nudge test in one plain sentence."
+          "text": "A nudge belongs where learning is weak."
         },
         {
-          "text": "Freedom needs a map, not just a menu.",
-          "location": "breakdown.deepRead",
-          "why": "It separates formal options from usable choice."
+          "text": "Freedom needs a map, not just a menu."
         },
         {
-          "text": "When refusal is costly, a nudge has become pressure.",
-          "location": "breakdown.fullRead",
-          "why": "It marks the liberty line the reader should remember."
+          "text": "When refusal is costly, a nudge has become pressure."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch05",
       "number": 5,
       "title": "Choice Architecture",
@@ -1288,8 +1221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Choice architecture exists whenever options are presented. The near-misses treat neutrality as a style choice, but order and grouping still steer.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1301,8 +1233,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Defaults matter because people often stay with the preselected outcome. The other choices miss how inaction can shape real consequences.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1314,8 +1245,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Expect error means designing for predictable slips. Longer instructions and attestations still blame the user when the interface could catch the problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1327,8 +1257,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Feedback tells people whether they succeeded or failed. The other answers hide the signal or move it away from the moment of learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1340,8 +1269,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Mappings connect options to lived consequences. More information alone can still fail if it does not answer the chooser's real tradeoff.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1353,8 +1281,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Structuring complex choices can preserve options while easing search. The near-misses confuse structure with either removal or overload.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1366,8 +1293,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Schiphol fly shows that a salient cue can change behavior without persuasion or punishment. The other answers overrate lectures and penalties.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1379,8 +1305,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Incentive salience means costs and benefits must be visible to shape choice. Hidden or delayed costs often fail as guides.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1392,8 +1317,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Design is inevitable because options cannot be presented without some order, grouping, or default. Avoiding the issue does not avoid responsibility.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1436,7 +1360,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run A Setup Check",
         "coreSkill": "Practice a Setup Check: look at one choice and ask what the setup is doing before anyone decides. Name the default, the likely error, the feedback, the mapping, the menu structure, and the visible incentive.",
         "ifThenPlans": [
           {
@@ -1461,24 +1384,17 @@
       },
       "memorableLines": [
         {
-          "text": "Every choice has a frame.",
-          "location": "breakdown.fastRead",
-          "why": "It names the unavoidable setup behind every menu, form, and default."
+          "text": "Every choice has a frame."
         },
         {
-          "text": "A smaller menu can give back freedom.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the jam-display lesson portable without making less choice sound like less agency."
+          "text": "A smaller menu can give back freedom."
         },
         {
-          "text": "Defaults spend attention on your behalf.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why defaults can help or harm when people do not actively switch."
+          "text": "Defaults spend attention on your behalf."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "nudge-ch06",
       "number": 6,
       "title": "Save More Tomorrow",
@@ -1579,8 +1495,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says the problem remains when people want to save more later than now. The bare menu answer misses the timing and payroll friction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1592,8 +1507,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says defaults work by changing the path of least resistance. Direct persuasion and full reading are not the only routes to behavior.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1605,8 +1519,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 treats Skylar's delay as an active savings setting. While she waits, some default remains in force and shapes the outcome.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1618,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 favors clearer mapping, not more paper by itself. The raise link helps workers compare today's choice with later welfare.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1631,8 +1543,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says opt-out freedom matters only when refusal is practical. Higher saving or hidden disclosure cannot carry the liberty claim alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1644,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 names Richard Thaler as a real-world anchor with observable design features. A generic or invented story is weaker grounding.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1657,8 +1567,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says Brigitte Madrian supplies a second anchor, reducing one-story overfit. It does not erase the earlier case or make every menu identical.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1670,8 +1579,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 draws the line between chooser welfare and designer preference. Clarity and measurement do not justify improving the designer's favorite result.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1683,8 +1591,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says Save More Tomorrow fits the nudge frame because the preferred arrangement remains avoidable. A mandate carries heavier penalties or removes alternatives.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1727,7 +1634,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test the Exit",
         "coreSkill": "Practice checking whether a helpful path is still easy to refuse. Use Test the Exit before you praise a default, copy a preset option, or ask someone to accept automatic escalation. The move is one question: can the person say no without a fight?",
         "ifThenPlans": [
           {
@@ -1752,24 +1658,17 @@
       },
       "memorableLines": [
         {
-          "text": "A default is a decision with a head start.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the hidden force of a preset path easy to remember."
+          "text": "A default is a decision with a head start."
         },
         {
-          "text": "Tomorrow is easier to promise than today.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the timing trick behind Save More Tomorrow."
+          "text": "Tomorrow is easier to promise than today."
         },
         {
-          "text": "An opt-out matters only when exit is real.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the freedom boundary sharp and portable."
+          "text": "An opt-out matters only when exit is real."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "nudge-ch07",
       "number": 7,
       "title": "Naive Investing",
@@ -1870,8 +1769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says portfolio choice overload remains even with formal choice. A long menu can push crude splitting or delay when the architecture is poor.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -1883,8 +1781,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 supports Wendy. Defaults, salience, and friction can change behavior without a speech, especially when the choice is hard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1896,8 +1793,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 treats Phoebe's pause as consequential. A default, status quo, or old allocation can keep acting while fees still matter.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1909,8 +1805,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 favors clearer mapping at the decision point. More documents can fail if the saver cannot use them while choosing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1922,8 +1817,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says steering needs a practical opt-out. A hidden form is not enough, even when the target-date path may help many savers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1935,8 +1829,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 names the U.S. SEC as an independent anchor. A real design case carries more weight than an invented or isolated story.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -1948,8 +1841,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 asks whether the portfolio path serves the saver rather than Claude's taste. Better design is justified by likely saver welfare, not a designer favorite.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1961,8 +1853,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says the nudge frame depends on an avoidable preferred path. A mandate removes or heavily penalizes alternatives.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1974,8 +1865,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 points to overload and crude diversification rules. Equal splitting may reveal an unusable menu, not a well-formed preference.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2018,7 +1908,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Menu Shape",
         "coreSkill": "Practice noticing when a menu is doing hidden work. Check the Menu Shape means you compare the broad low-cost route with the busy list before you split money evenly. The move is not to avoid choice; it is to make the real choice visible.",
         "ifThenPlans": [
           {
@@ -2043,24 +1932,17 @@
       },
       "memorableLines": [
         {
-          "text": "Too many doors can make the hallway smaller.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the way a larger menu can reduce usable freedom."
+          "text": "Too many doors can make the hallway smaller."
         },
         {
-          "text": "A cheap broad fund can beat an impressive menu.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the chapter's low-cost diversification lesson portable."
+          "text": "A cheap broad fund can beat an impressive menu."
         },
         {
-          "text": "Guidance curdles when exit becomes theater.",
-          "location": "breakdown.fullRead",
-          "why": "It names the overcorrection that turns a nudge into pressure."
+          "text": "Guidance curdles when exit becomes theater."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch08",
       "number": 8,
       "title": "Credit Markets",
@@ -2161,8 +2043,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Transparent borrowing is about usable comparison, not the mere presence of options or paper. Hidden fees and timing can make formal choice hard to use.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch08-q02",
@@ -2174,8 +2055,7 @@
             ],
             "correctIndex": 0,
             "explanation": "APR disclosure can nudge by changing what is easy to notice. The mechanism is salience and friction, not a speech telling Kathleen what to do.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch08-q03",
@@ -2187,8 +2067,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Postponement is not neutral. When a hard detail is delayed, the status quo often keeps moving and the fee becomes visible too late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch08-q04",
@@ -2200,8 +2079,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Standardized terms help when consequences are hard to compare. More pages do not help if Beatrice cannot match today's words to later costs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch08-q05",
@@ -2213,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Comparison shopping stays liberty-preserving only when exit is realistic. A welfare gain alone does not settle the freedom question.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch08-q06",
@@ -2226,8 +2103,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Truth in Lending Act and APR supply a real anchor. Transparent borrowing needs actual credit-market design, not only a plausible invented story.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "nudge-ch08-q07",
@@ -2239,8 +2115,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The CFPB case gives an independent anchor for the same mechanism. It keeps the lesson from resting on one anecdote about APR alone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch08-q08",
@@ -2252,8 +2127,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A nudge is defended by welfare as the chooser would judge it. Designer preference is not enough, and steering is not automatically coercion.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch08-q09",
@@ -2265,8 +2139,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The larger nudge structure requires the preferred arrangement to remain avoidable. Heavy penalties make refusal too costly to count as a practical opt-out.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2309,7 +2182,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Total Cost Line",
         "coreSkill": "Practice turning scattered credit terms into one sentence you can compare. Write the Total Cost Line by naming the APR, the fee most likely to hit, and when that fee would arrive. The skill is not doing finance like an expert. It is refusing to let the easiest number stand for the whole price.",
         "ifThenPlans": [
           {
@@ -2334,24 +2206,17 @@
       },
       "memorableLines": [
         {
-          "text": "Paperwork is not transparency.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the main warning into a line anyone can test on a form."
+          "text": "Paperwork is not transparency."
         },
         {
-          "text": "A cheaper loan should be easy to recognize.",
-          "location": "breakdown.fastRead",
-          "why": "It turns disclosure from a legal idea into a borrower-friendly standard."
+          "text": "A cheaper loan should be easy to recognize."
         },
         {
-          "text": "Freedom needs a usable exit.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the liberty claim attached to real opt-out costs."
+          "text": "Freedom needs a usable exit."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "nudge-ch09",
       "number": 9,
       "title": "Privatizing Social Security: Smorgasbord Style",
@@ -2452,8 +2317,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says retirement menu design remains a problem when options are hard to use. A formal list alone can still overwhelm or mislead.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -2465,8 +2329,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 2 says defaults, salience, and friction can influence behavior without argument. The path of least resistance matters.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2478,8 +2341,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 makes Blake's non-click a live outcome. Delay can leave an implicit result in force, even when the chooser feels undecided.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2491,8 +2353,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 favors clearer mapping through low-cost diversification. More documents do not help if the saver cannot use them at the choice point.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2504,8 +2365,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says opt-out protects freedom only when exit is practical. Better averages or hidden disclosure cannot carry the whole defense.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2517,8 +2377,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 names Sweden as a real-world anchor with observable design features. A hypothetical or shopping scene weakens the factual grounding.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -2530,8 +2389,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says 401(k) automatic enrollment supplies a second anchor for the same design problem. It does not erase Sweden or prove all plans identical.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2543,8 +2401,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 separates the chooser's welfare from designer preference. The point is not the agency's favorite metric or a paper-only exit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2556,8 +2413,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 marks retirement nudges by the exit they preserve. The preset path may steer, but it must stay avoidable; mandates close or punish other routes.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2594,7 +2450,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Ask the Menu Question",
         "coreSkill": "Practice spotting the moment a menu starts doing the choosing for you. Ask the Menu Question: what is the default, what does it cost, and how do I leave? The skill is not picking the perfect fund. It is refusing to let confusion, ads, or delay pick first.",
         "ifThenPlans": [
           {
@@ -2619,24 +2474,17 @@
       },
       "memorableLines": [
         {
-          "text": "More choice can hide the choice that matters.",
-          "location": "breakdown.fastRead",
-          "why": "It reverses the usual praise for a big menu in one short sentence."
+          "text": "More choice can hide the choice that matters."
         },
         {
-          "text": "A default is the answer delay will sign.",
-          "location": "breakdown.deepRead",
-          "why": "It makes postponement feel active instead of harmless."
+          "text": "A default is the answer delay will sign."
         },
         {
-          "text": "Exit is freedom only when ordinary people can find it.",
-          "location": "breakdown.fullRead",
-          "why": "It ties the liberty claim to a concrete test."
+          "text": "Exit is freedom only when ordinary people can find it."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "nudge-ch10",
       "number": 10,
       "title": "Prescription Drugs: Part D for Daunting",
@@ -2737,8 +2585,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says the problem is Medicare choice overload. Formal options can still be unusable when complexity makes good matching hard.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2750,8 +2597,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says plan matching changes the path of least resistance. A nudge can work through defaults, salience, and friction.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2763,8 +2609,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 warns Yvonne that no click is still a path. An old plan or implicit default can keep operating while she waits.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2776,8 +2621,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says review improves choice by mapping options to later welfare. More documents alone can fail at the decision point.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2789,8 +2633,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says intelligent assignment protects freedom only when exit is realistic. A costly refusal changes the design's character.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2802,8 +2645,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says Part D grounds the claim with named institutions and observable design features. A bare hypothetical is weaker evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2815,8 +2657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says Plan Finder supplies an independent anchor. The same mechanism appears outside one isolated case.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2828,8 +2669,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 puts Ella's question first: does the match help the enrollee? Office convenience cannot stand in for chooser welfare.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2841,8 +2681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 says the preferred arrangement remains avoidable in the nudge framework. A mandate makes alternatives much costlier.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -2885,7 +2724,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Map the Match First",
         "coreSkill": "Practice making hard choices start with the facts that make them personal. Use Map the Match First when a menu looks fair but feels foggy. The move is to put the person's own list, place, and exit path before the shiny headline number.",
         "ifThenPlans": [
           {
@@ -2910,24 +2748,17 @@
       },
       "memorableLines": [
         {
-          "text": "A big menu can hide a bad fit.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's choice-overload warning in one concrete sentence."
+          "text": "A big menu can hide a bad fit."
         },
         {
-          "text": "Good help starts with the chooser's life.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps Plan Finder's design lesson tied to personal facts."
+          "text": "Good help starts with the chooser's life."
         },
         {
-          "text": "Better help costs the pride of total choice.",
-          "location": "breakdown.fullRead",
-          "why": "It names the tradeoff of useful guidance without hiding the price."
+          "text": "Better help costs the pride of total choice."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "nudge-ch11",
       "number": 11,
       "title": "How to Increase Organ Donations",
@@ -3028,8 +2859,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says formal options are not enough when the architecture makes a choice hard to use. The bare-options view misses how the registry path works.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -3041,8 +2871,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 says friction and defaults can steer without direct persuasion. Marc's speech-only view ignores the force of the easiest route.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3054,8 +2883,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 says delay is not neutral. While the driver waits, some default or status quo still governs the record.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3067,8 +2895,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 favors usable mapping over more paper. The prompt connects today's answer to the later registry outcome at the moment of choice.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -3080,8 +2907,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says freedom depends on a realistic opt-out. Better outcomes do not justify a refusal path that ordinary people cannot use.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3093,8 +2919,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 makes Eric Johnson a grounding anchor, not a shortcut to one universal rule. The value is that the design features can be checked.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -3106,8 +2931,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 says the license registry is an independent anchor. It reduces overfit to one case without replacing the other levers.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3119,8 +2943,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 asks whose interests the donor rule serves. A higher count matters, but it cannot replace the driver's or family's welfare standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3132,8 +2955,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 draws the organ-donor boundary around practical exit. Donation may be favored, but a nudge differs from a mandate while leaving remains easy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3176,7 +2998,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Test the Recorded Default",
         "coreSkill": "Practice finding the answer that gets recorded when no one acts. Test the Recorded Default means you look for the preset path, then check whether refusal is easy enough to use. The skill matters when a form looks fair but one answer has a head start.",
         "ifThenPlans": [
           {
@@ -3201,24 +3022,17 @@
       },
       "memorableLines": [
         {
-          "text": "Silence still signs forms.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the hidden default feel like an action."
+          "text": "Silence still signs forms."
         },
         {
-          "text": "A good default leaves the exit door in daylight.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the liberty test into a visible image."
+          "text": "A good default leaves the exit door in daylight."
         },
         {
-          "text": "Donation design fails when families feel ambushed.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the policy lesson tied to trust."
+          "text": "Donation design fails when families feel ambushed."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch12",
       "number": 12,
       "title": "Saving the Planet",
@@ -3319,8 +3133,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says formal options are not enough. Environmental harms are distant and invisible, so the setup needs feedback and social comparison.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q02",
@@ -3332,8 +3145,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 supports Adele. Feedback, salience, defaults, and friction can shape the easy route without a persuasive essay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -3345,8 +3157,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 makes Kira's postponed comparison consequential. Waiting can leave a default or status quo active while the hard comparison stays unseen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3358,8 +3169,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 favors clearer mapping at the decision point. More documents can fail when readers cannot use them during the choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3371,8 +3181,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 5 says welfare gains do not settle the question. Steering becomes coercive when refusal is costly or hard to find.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -3384,8 +3193,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says Hunt Allcott grounds the claim with real actors and observable design features. A hypothetical can sound plausible without testing the mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3397,8 +3205,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 supports Jacques. The U.S. EPA example keeps the lesson from leaning only on Opower and shows the carbon-mapping problem in a separate tool.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3410,8 +3217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 ties nudges to chooser welfare. A design can make hidden costs visible, but designer convenience is not the justification.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3423,8 +3229,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 asks whether the green default still has a usable off-ramp. Keeping the standard plan reachable makes it a nudge; removing or punishing it turns into mandate territory.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3467,7 +3272,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Make Hidden Carbon Visible",
         "coreSkill": "Practice making the environmental cost visible before you choose. Use the Make Hidden Carbon Visible move: find the hidden cost, place one comparison beside it, and check that refusal or a lower-impact path is still practical.",
         "ifThenPlans": [
           {
@@ -3492,24 +3296,17 @@
       },
       "memorableLines": [
         {
-          "text": "Hidden costs need visible handles.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's mechanism in a short, repeatable line."
+          "text": "Hidden costs need visible handles."
         },
         {
-          "text": "A private bill can teach a public habit.",
-          "location": "breakdown.fastRead",
-          "why": "It captures how social feedback links household action to shared harm."
+          "text": "A private bill can teach a public habit."
         },
         {
-          "text": "Freedom shrinks when refusal is only theoretical.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the opt-out boundary clear and memorable."
+          "text": "Freedom shrinks when refusal is only theoretical."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch13",
       "number": 13,
       "title": "Improving School Choices",
@@ -3610,8 +3407,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says formal options are not enough. School choice can fail when families cannot compare the facts that make the menu usable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch13-q02",
@@ -3623,8 +3419,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 supports the middle choice. Search support works by changing the easy path, not by adding a persuasive essay.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch13-q03",
@@ -3636,8 +3431,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says delay is not neutral. When hard choices wait, some default or status quo often keeps moving.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch13-q04",
@@ -3649,8 +3443,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 favors clearer mapping at the choice point. More documents can fail when families cannot use them during ranking.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch13-q05",
@@ -3662,8 +3455,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says refusal must remain realistic. A welfare gain alone does not justify steering when the exit is buried.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch13-q06",
@@ -3675,8 +3467,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says the Hoxby case grounds the policy claim. A hypothetical can sound neat while avoiding real design details.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch13-q07",
@@ -3688,8 +3479,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 supports Sabine. New York City puts the mechanism into ranked choices, deadlines, and assignment rules instead of leaving it as one example.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch13-q08",
@@ -3701,8 +3491,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 ties nudges to chooser welfare. The design can clarify choices, but the designer's preferred outcome is not enough.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch13-q09",
@@ -3714,8 +3503,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 tests the school assignment by the family's way out. A default can guide, but it remains a nudge only while another assignment path is workable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -3758,7 +3546,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read The Real Menu",
         "coreSkill": "Practice reading the real menu, not just the school list. Put odds, deadlines, travel, fit, and exit in one place before you accept a ranking, a default, or a recommendation. The skill is to ask what the family can actually use at the decision point.",
         "ifThenPlans": [
           {
@@ -3783,24 +3570,17 @@
       },
       "memorableLines": [
         {
-          "text": "A menu is not a map.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the school-choice warning into a line a reader can reuse."
+          "text": "A menu is not a map."
         },
         {
-          "text": "The busy family pays for clutter.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of poor design concrete and memorable."
+          "text": "The busy family pays for clutter."
         },
         {
-          "text": "Freedom shrinks when exit is fake.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the opt-out boundary in plain language."
+          "text": "Freedom shrinks when exit is fake."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch14",
       "number": 14,
       "title": "Should Patients Be Forced to Buy Lottery Tickets?",
@@ -3900,8 +3680,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says options alone do not solve medical liability choice. The package must be usable, not merely present on paper.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch14-q02",
@@ -3913,8 +3692,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 focuses on the path of least resistance. Layout, salience, and friction can steer without explicit persuasion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch14-q03",
@@ -3926,8 +3704,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 warns Helena that waiting can leave law in place. When hard choices wait, an implicit route or status quo often keeps running.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch14-q04",
@@ -3939,8 +3716,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 favors clear mapping at the choice point. More disclosure fails when patients cannot use it while deciding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch14-q05",
@@ -3952,8 +3728,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says exit must remain realistic. Better average welfare is not enough if refusal carries a hidden cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch14-q06",
@@ -3965,8 +3740,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 grounds the claim in medical malpractice. A made-up form can sound neat while dodging real costs and legal features.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch14-q07",
@@ -3978,8 +3752,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 uses the American Arbitration Association as an independent anchor. It shows the issue again in contract-based dispute resolution, not one isolated malpractice case.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch14-q08",
@@ -3991,8 +3764,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 centers the patient, not the clinic budget. The menu is defensible only when it serves the patient's welfare.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch14-q09",
@@ -4004,8 +3776,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 treats patient exit as the boundary. An arbitration default can steer only while refusal stays practical; a mandate takes that choice away or penalizes it.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -4048,7 +3819,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Refusal Line",
         "coreSkill": "Practice turning a bundled choice into one visible handoff note. Write the price change, the right at stake, the dispute route, and the refusal step before anyone signs. The skill is not legal analysis; it is making the exit plain enough to use.",
         "ifThenPlans": [
           {
@@ -4073,24 +3843,17 @@
       },
       "memorableLines": [
         {
-          "text": "A choice hidden in paperwork is not much of a choice.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's liberty test into one plain image."
+          "text": "A choice hidden in paperwork is not much of a choice."
         },
         {
-          "text": "A waiver is consent only when refusal still works.",
-          "location": "breakdown.deepRead",
-          "why": "It names the practical condition that keeps waiver from becoming pressure."
+          "text": "A waiver is consent only when refusal still works."
         },
         {
-          "text": "A thick menu can hide a shove.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the overcorrection a short warning the reader can remember."
+          "text": "A thick menu can hide a shove."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch15",
       "number": 15,
       "title": "Privatizing Marriage",
@@ -4191,8 +3954,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 1 says formal choice can still be unusable when state marriage bundles legal benefits, religious meaning, and social endorsement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch15-q02",
@@ -4204,8 +3966,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 supports the first choice. The path of least resistance can change behavior without explicit persuasion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch15-q03",
@@ -4217,8 +3978,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 treats Curtis's postponement as a status choice in practice. Delay can leave a default or status quo in force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch15-q04",
@@ -4230,8 +3990,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 favors clearer mapping at the decision point. More documents can fail when people cannot use them in the moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch15-q05",
@@ -4243,8 +4002,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says exit must remain realistic. Steering becomes coercive when refusal is too costly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch15-q06",
@@ -4256,8 +4014,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 supports Cyrielle. Civil union supplies another anchor for the same design problem.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch15-q07",
@@ -4269,8 +4026,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 ties the defense of a nudge to chooser welfare. The designer's preferred outcome is not enough.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch15-q08",
@@ -4282,8 +4038,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 draws the civil-status line at refusal. A default may point couples toward one bundle, but a mandate eliminates the competing status.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch15-q09",
@@ -4295,8 +4050,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 says consequences must be easy to compare. Disclosure can fail when people cannot use it while choosing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -4339,7 +4093,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Split The Label",
         "coreSkill": "Practice splitting a loaded label before you react to it. Ask which part is legal work, which part is private meaning, which benefits must be clear, and where the exit sits. Use the Split The Label line when a single word starts doing too many jobs.",
         "ifThenPlans": [
           {
@@ -4364,24 +4117,17 @@
       },
       "memorableLines": [
         {
-          "text": "One word can hide many jobs.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the marriage-privatization unbundling move into a portable line."
+          "text": "One word can hide many jobs."
         },
         {
-          "text": "The label should not do the law's work.",
-          "location": "breakdown.deepRead",
-          "why": "It names the practical design warning without jargon."
+          "text": "The label should not do the law's work."
         },
         {
-          "text": "A right needs a reachable door.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the opt-out condition easy to remember."
+          "text": "A right needs a reachable door."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch16",
       "number": 16,
       "title": "A Dozen Nudges",
@@ -4482,8 +4228,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says formal choice can still be unusable. The surrounding design can help or hurt even when the options are listed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch16-q02",
@@ -4495,8 +4240,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 supports the path-of-least-resistance account. A nudge can work through timing and friction, not only persuasion.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch16-q03",
@@ -4508,8 +4252,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 treats Lydia's delay as design-relevant. When a hard task waits, the default or status quo keeps acting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch16-q04",
@@ -4521,8 +4264,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 favors usable mapping at the decision point. More documents can fail when the chooser cannot connect a choice to later welfare.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch16-q05",
@@ -4534,8 +4276,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 makes realistic exit the key condition. A welfare gain is not enough when refusal or correction is buried.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch16-q06",
@@ -4547,8 +4288,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 7 supports Clara. Give More Tomorrow gives an independent anchor, so the lesson does not rest on one anecdote.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch16-q07",
@@ -4560,8 +4300,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 ties nudges to chooser welfare. The filing page should serve Lydia's usable choice, not just the agency's completion count.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch16-q08",
@@ -4573,8 +4312,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 looks for a working decline path. A charity default can suggest a pledge; a requirement removes that way out.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch16-q09",
@@ -4586,8 +4324,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 supports clear mapping between today's choice and later welfare. The same thread also keeps the pressure from hiding the exit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -4630,7 +4367,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Place The Choice Cue",
         "coreSkill": "Practice placing the choice cue where the decision happens. The cue may be a form, pledge note, deadline, correction link, or exit step. Place The Choice Cue works only when the person can still say no.",
         "ifThenPlans": [
           {
@@ -4655,24 +4391,17 @@
       },
       "memorableLines": [
         {
-          "text": "Small nudges work when the exit stays real.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's liberty test into one plain sentence."
+          "text": "Small nudges work when the exit stays real."
         },
         {
-          "text": "A reminder is a choice moved closer.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the mechanism easy to recall and use."
+          "text": "A reminder is a choice moved closer."
         },
         {
-          "text": "Good friction blocks harm; bad friction blocks help.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a sharp way to judge when friction helps or hurts."
+          "text": "Good friction blocks harm; bad friction blocks help."
         }
       ]
     },
     {
-      "schemaVersion": "v21-native",
       "chapterId": "nudge-ch17",
       "number": 17,
       "title": "Objections",
@@ -4773,8 +4502,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says formal choice is not enough. The critique asks whether manipulation, autonomy, and competence problems make the option hard to use.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch17-q02",
@@ -4786,8 +4514,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 says nudges can work through defaults, salience, and friction. Explicit persuasion is not the only way behavior changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch17-q03",
@@ -4799,8 +4526,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 treats postponement as active in practice. If people delay, the default or current state often wins without a fresh choice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch17-q04",
@@ -4812,8 +4538,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says usable mapping matters. More documents do not help if the person cannot use them at the decision point.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch17-q05",
@@ -4825,8 +4550,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 ties chooser welfare to realistic exit. A welfare gain does not excuse a nudge when refusal carries hidden cost.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch17-q06",
@@ -4838,8 +4562,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 makes Gigerenzer the real-world anchor. A hypothetical can illustrate, but it cannot carry the factual grounding by itself.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch17-q07",
@@ -4851,8 +4574,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says Mols gives an independent anchor. The added case reduces overfitting instead of leaning on one story.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch17-q08",
@@ -4864,8 +4586,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 makes chooser welfare do the justificatory work. The defense depends on what helps the chooser by their own lights, not the agency metric.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch17-q09",
@@ -4877,8 +4598,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 checks whether Brayden's steer leaves a path out. Mandates remove or heavily penalize alternatives; nudges keep the route avoidable.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -4921,7 +4641,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark The Exit Line",
         "coreSkill": "Practice judging a nudge by its exit, not only by its goal. Mark The Exit Line means writing the exact refusal route in plain words before you accept the steer. If the line is hard to write, the design needs more scrutiny.",
         "ifThenPlans": [
           {
@@ -4946,24 +4665,17 @@
       },
       "memorableLines": [
         {
-          "text": "Exit is where freedom becomes visible.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the liberty test into one concrete place to look."
+          "text": "Exit is where freedom becomes visible."
         },
         {
-          "text": "A hidden nudge asks for suspicion.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps transparency tied to trust without turning the idea into a slogan."
+          "text": "A hidden nudge asks for suspicion."
         },
         {
-          "text": "Neutral design is usually a costume.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the inevitability of choice architecture easy to remember."
+          "text": "Neutral design is usually a costume."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "nudge-ch18",
       "number": 18,
       "title": "The Real Third Way",
@@ -5064,8 +4776,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says options alone do not solve the problem. Poor architecture can overwhelm or mislead while keeping every option formal.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch18-q02",
@@ -5077,8 +4788,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 points to ease, not persuasion. Defaults, salience, and friction can steer people without an argument.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch18-q03",
@@ -5090,8 +4800,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 treats Colette's wait as a choice environment, not a pause. Delay can leave a default or current path in force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch18-q04",
@@ -5103,8 +4812,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 4 favors clear mapping at the decision point. Extra pages fail when people cannot use them during the choice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "nudge-ch18-q05",
@@ -5116,8 +4824,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 makes realistic exit central. A welfare gain does not excuse steering when refusal is costly or hard to find.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch18-q06",
@@ -5129,8 +4836,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 6 says the Law Review anchor grounds the idea in real material. It does not let a writer skip concrete design features.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "nudge-ch18-q07",
@@ -5142,8 +4848,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 says AER supplies an independent anchor for the same design problem. The gain is stronger grounding, not citation for its own sake.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "nudge-ch18-q08",
@@ -5155,8 +4860,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 8 separates Margaux's welfare question from office convenience. Fewer calls may help staff while still failing choosers.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "nudge-ch18-q09",
@@ -5168,8 +4872,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 9 asks whether refusal remains practical. A default differs from a mandate because alternatives are still realistic choices.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -5212,7 +4915,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check Refusal Before Praise",
         "coreSkill": "Practice checking a choice setup before you praise it as free. Use Check Refusal Before Praise: name the easy path, name whose welfare it serves, then check whether refusal is visible and practical. If any part is missing, the design needs repair before it earns trust.",
         "ifThenPlans": [
           {
@@ -5237,19 +4939,13 @@
       },
       "memorableLines": [
         {
-          "text": "A menu is never blank.",
-          "location": "breakdown.fastRead",
-          "why": "It makes hidden steering easy to remember."
+          "text": "A menu is never blank."
         },
         {
-          "text": "Freedom needs a working exit.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the opt-out test into one plain rule."
+          "text": "Freedom needs a working exit."
         },
         {
-          "text": "Exit is the proof of freedom.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the liberty claim a concrete audit point."
+          "text": "Exit is the proof of freedom."
         }
       ]
     }

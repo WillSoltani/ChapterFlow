@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-now-habit-ch01",
       "number": 1,
       "title": "Why We Procrastinate",
@@ -118,8 +117,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Steel's line turns on expected harm. A useful wait can improve the work, but choosing delay while foreseeing a worse result is the self-defeating pattern.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch01-q02",
@@ -131,8 +129,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The calm is part of the reward loop. Fiore's threat frame asks what unpleasant feeling the task carries before assuming the person does not care.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch01-q03",
@@ -144,8 +141,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Perfectionism ties the work to worth. Treating the first draft as work breaks that tie; raising the standard or waiting for confidence keeps the task risky.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch01-q04",
@@ -157,8 +153,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Self-worth has to be separated from the first try. A rough attempt gives confidence a place to grow; perfect proof before starting keeps the gate locked.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch01-q05",
@@ -170,8 +165,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Shame adds danger to a task that already feels unsafe. It may spark one sprint, but it often strengthens the urge to escape next time.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch01-q06",
@@ -183,8 +177,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deliberate priority is not the same as procrastination. The defining feature is expected harm from the wait, not the mere fact that a task is unfinished.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch01-q07",
@@ -196,8 +189,7 @@
             ],
             "correctIndex": 0,
             "explanation": "More tools leave the threat meaning untouched. The first useful target is what the task seems to say about Bruno, because that meaning drives escape.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch01-q08",
@@ -209,8 +201,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeated relief can make avoidance feel automatic. The message check is not a fresh plan each time; it is a learned exit when the cue appears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch01-q09",
@@ -222,8 +213,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Calling the delay a lack of caring misses fear and overwhelm. The added guilt can make the project feel even less safe to approach.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -266,7 +256,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Run the Threat Note",
         "coreSkill": "Practice spotting the threat hidden inside a delay cue. Run the Threat Note by naming what the task seems to prove, removing one demand from the start, and writing the first words you will use. The skill is not kinder delay; it is making action safe enough to begin.",
         "ifThenPlans": [
           {
@@ -291,24 +280,17 @@
       },
       "memorableLines": [
         {
-          "text": "Relief can train the habit that later hurts you.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the cost of short-term relief easy to remember."
+          "text": "Relief can train the habit that later hurts you."
         },
         {
-          "text": "Shame makes the task louder.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the chapter's warning about guilt into five plain words."
+          "text": "Shame makes the task louder."
         },
         {
-          "text": "A rough start is not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a portable sentence for lowering the stakes."
+          "text": "A rough start is not a verdict."
         }
       ]
     },
     {
-      "schemaVersion": "chapter-v21",
       "chapterId": "the-now-habit-ch02",
       "number": 2,
       "title": "How We Procrastinate",
@@ -397,7 +379,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Map the Escape Loop",
         "coreSkill": "Practice catching the moment when delay changes costume. Write three parts: the cue, the escape behavior, and the immediate payoff. The map works only when it sounds like observation, not prosecution.",
         "ifThenPlans": [
           {
@@ -432,8 +413,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 says substitute work can hide the avoided priority. The work may be real, but its role in the loop matters.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -445,8 +425,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 4 is anchored in Akerlof's delayed clothing shipment. Simple tasks can still be delayed when immediate relief wins.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -458,8 +437,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 names denial and trivialization as ways to lower awareness of importance. The sentence protects delay in the moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -471,8 +449,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 says repeated last-minute work can make urgency feel required. A good finish can still reinforce the same loop.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -484,8 +461,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 7 separates pattern naming from blame. The useful version names the loop; the blaming version raises threat.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -497,8 +473,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 6 says self-imposed deadlines help only when they structure behavior realistically. A date alone does not change the pattern.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -510,8 +485,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 3 says distraction removes attention from the task cue. Even brief relief can reinforce the same repeated loop.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -523,8 +497,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 8 allows that obstacles can be real. Blame becomes avoidance when it keeps the next controllable step undefined.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -536,8 +509,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 says the payoff is part of the reinforcement. Without the relief, the map misses why the loop keeps running.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -581,24 +553,17 @@
       ],
       "memorableLines": [
         {
-          "text": "Real work can still be hiding work.",
-          "location": "breakdown.fastRead",
-          "why": "It makes productive-looking avoidance easy to spot."
+          "text": "Real work can still be hiding work."
         },
         {
-          "text": "A pattern map is a flashlight, not a verdict.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps the diagnostic tool from turning into self-attack."
+          "text": "A pattern map is a flashlight, not a verdict."
         },
         {
-          "text": "Panic is a starter, not proof of genius.",
-          "location": "breakdown.fullRead",
-          "why": "It punctures the romance of last-minute work."
+          "text": "Panic is a starter, not proof of genius."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-now-habit-ch03",
       "number": 3,
       "title": "How to Talk to Yourself",
@@ -699,8 +664,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A chosen start is executable. The finish demand is too large and undefined, so it can raise threat instead of giving Kelsey a first move.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -712,8 +676,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A half-hour matters because it breaks inertia. The near miss is thinking size equals value; the short window helps Piper begin.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -725,8 +688,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rough outline is useful because it is not final. Polish-first pressure can block the material Quentin needs to revise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -738,8 +700,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Separating worth from output makes experimentation safer. Talent verdicts and higher first-pass standards keep the threat attached.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -751,8 +712,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fear of success can make completion feel dangerous because praise may bring more exposure. More threat would deepen the same risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -764,8 +724,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Agency language accepts reality while removing needless coercion. Choice is about the next behavior, not about canceling consequences.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -777,8 +736,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Behavior promises can be done and changed. Identity attacks raise shame, which can make avoidance stronger instead of building discipline.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -790,8 +748,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A start time needs a defined action. Without the action, Piper reaches the moment and has to decide again under pressure.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -803,8 +760,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Useful self-talk narrows scope. It does not need to pretend the task is easy; it needs to make the first move clear.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -847,7 +803,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Choose the First Start",
         "coreSkill": "Practice turning threat sentences into chosen starts. Name the task, choose the first rough action, and keep the promise small enough to begin. The move is not positive thinking; it is a clear first contract with yourself.",
         "ifThenPlans": [
           {
@@ -872,24 +827,17 @@
       },
       "memorableLines": [
         {
-          "text": "Threat talks big; work starts small.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the chapter's core contrast into a line the reader can use at the page."
+          "text": "Threat talks big; work starts small."
         },
         {
-          "text": "A rough outline gives fear a draft it can edit.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the anti-perfectionism move concrete and easy to remember."
+          "text": "A rough outline gives fear a draft it can edit."
         },
         {
-          "text": "Agency costs the drama of the last-minute rescue.",
-          "location": "breakdown.fullRead",
-          "why": "It names the real tradeoff of choosing a calmer start."
+          "text": "Agency costs the drama of the last-minute rescue."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-now-habit-ch04",
       "number": 4,
       "title": "Guilt-Free Play, Quality Work",
@@ -984,8 +932,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 1 turns on worry during rest. Deborah earned the ski day, but mental punishment keeps threat active and drains renewal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch04-q02",
@@ -997,8 +944,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 2 rejects total deprivation. The skiing case shows regular play can support sustained work instead of proving the work is unserious.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch04-q03",
@@ -1010,8 +956,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 3 supports reward after completion. The near-miss treats reward as escape or status, not reinforcement tied to honest behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch04-q04",
@@ -1023,8 +968,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 makes earned timing the line. Vague intention breaks trust, while a kept work block lets play stay clean.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch04-q05",
@@ -1036,8 +980,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 5 links positive mood with continued self-regulation. The walk is not a cure-all, but mood repair can support the next start.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch04-q06",
@@ -1049,8 +992,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 explains the rebellion. Withholding all play can make work feel like the jailer, which feeds avoidance.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch04-q07",
@@ -1062,8 +1004,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 makes play planned and bounded. Vague deserving and total removal both miss the system that protects energy.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "the-now-habit-ch04-q08",
@@ -1075,8 +1016,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says quality depends partly on condition. Renewal matters because exhausted hours do not produce the same attention.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch04-q09",
@@ -1088,8 +1028,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 9 rejects guilt as a surcharge on earned reward. Long projects need clean enjoyment during progress, not only at the end.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1132,7 +1071,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Earn the Play Block",
         "coreSkill": "Practice making one honest bargain: work first, play cleanly after. Earn the Play Block means you name the work block, name the reward, then refuse to spend the reward time rehearsing guilt.",
         "ifThenPlans": [
           {
@@ -1157,24 +1095,17 @@
       },
       "memorableLines": [
         {
-          "text": "Guilt is not fuel.",
-          "location": "breakdown.fastRead",
-          "why": "It flips the common belief that shame drives better work."
+          "text": "Guilt is not fuel."
         },
         {
-          "text": "Clean play makes work feel livable.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the chapter's system a short everyday phrase."
+          "text": "Clean play makes work feel livable."
         },
         {
-          "text": "A rested worker brings back a better mind.",
-          "location": "breakdown.fullRead",
-          "why": "It links renewal directly to the quality of later work."
+          "text": "A rested worker brings back a better mind."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-now-habit-ch05",
       "number": 5,
       "title": "Overcoming Blocks to Action",
@@ -1275,8 +1206,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fact says one chunk lowers the intimidation of starting. The other choices keep attention on the whole workload, which is the source of the freeze.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1288,8 +1218,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A rough start is valid because later quality needs material. The near misses confuse a starter action with final work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1301,8 +1230,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The 15-to-30-minute starter block is meant to bypass inertia. Waiting for a long session or ranking ideas leaves the start untouched.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1314,8 +1242,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The breathing pause creates a gap between discomfort and escape. Switching right away can train the avoidance loop the reset is meant to interrupt.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1327,8 +1254,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Email can become avoidance when it supplies quick relief at the hard moment. The other choices treat the break as neutral or helpful by default.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1340,8 +1266,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The fact reverses the order: action can create momentum. Waiting for motivation preserves the block instead of testing a small start.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1353,8 +1278,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A general plan often fails at the moment of action. A concrete first behavior reduces decision load and leaves less room for delay.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1366,8 +1290,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lowering startup friction does not lower final standards. The distractors fuse the start and the finish, which is the error the hard edge rejects.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1379,8 +1302,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A roadblock can be a cue for reset, not proof of impossibility. Replacing the task or widening the review treats stuckness as a verdict.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1423,7 +1345,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Starter Line",
         "coreSkill": "Practice turning a frozen project into one written starter line. The line names the next behavior, not the whole goal. Use it to lower the entry cost, then return to standards when you have material to improve.",
         "ifThenPlans": [
           {
@@ -1448,19 +1369,13 @@
       },
       "memorableLines": [
         {
-          "text": "A rough start is a door, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It separates beginning from judging in a sentence the reader can use at the blank page."
+          "text": "A rough start is a door, not a verdict."
         },
         {
-          "text": "Momentum is often a consequence, not a permission slip.",
-          "location": "breakdown.deepRead",
-          "why": "It flips the common wait-for-readiness story into an action-first rule."
+          "text": "Momentum is often a consequence, not a permission slip."
         },
         {
-          "text": "The first line does not carry the final grade.",
-          "location": "breakdown.deepRead",
-          "why": "It preserves high standards while lowering the fear around a rough beginning."
+          "text": "The first line does not carry the final grade."
         }
       ]
     },
@@ -1565,8 +1480,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The numbered contents make The Unschedule a named technique. Calling it a loose label misses why its place in the sequence matters.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch06-q02",
@@ -1578,8 +1492,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The order places calendar structure after action blocks and before flow. Forcing it earlier or saving it until later changes the method's job.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch06-q03",
@@ -1591,8 +1504,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Blank space often hides real claims on time. The Unschedule makes those claims visible before work promises are made.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch06-q04",
@@ -1604,8 +1516,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Completed blocks build trust because they are evidence. A large promise can soothe guilt while leaving the same work untouched.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch06-q05",
@@ -1617,8 +1528,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Protected play lowers deprivation. Treating all enjoyment as a future prize makes the workday feel like a sentence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch06-q06",
@@ -1630,8 +1540,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Deadlines help when their spacing changes behavior. A cluster at the end can preserve the same last-minute rush.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch06-q07",
@@ -1643,8 +1552,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Unschedule fights imagined capacity. Ambition helps only when the plan includes the real life that work must live inside.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch06-q08",
@@ -1656,8 +1564,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Planning can support action, but the credit belongs to completed focus. Early credit rewards intention instead of work.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "the-now-habit-ch06-q09",
@@ -1669,8 +1576,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Compassion and structure can support each other. The lax version ignores deadlines; the harsh version hides rest and invites collapse.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1713,7 +1619,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build the Evidence Calendar",
         "coreSkill": "Practice making time visible before work starts bargaining with it. Build the Evidence Calendar by placing fixed commitments and guilt-free play first, then crediting focused work only after it is done. The skill is not a prettier schedule; it is a truth check you can repeat.",
         "ifThenPlans": [
           {
@@ -1738,19 +1643,13 @@
       },
       "memorableLines": [
         {
-          "text": "Blank squares are not promises.",
-          "location": "breakdown.fastRead",
-          "why": "It turns the empty calendar from comfort into evidence to inspect."
+          "text": "Blank squares are not promises."
         },
         {
-          "text": "Credit belongs to work you finished, not work you imagined.",
-          "location": "breakdown.fastRead",
-          "why": "It separates real progress from the relief of planning."
+          "text": "Credit belongs to work you finished, not work you imagined."
         },
         {
-          "text": "Honest time beats heroic time.",
-          "location": "breakdown.fullRead",
-          "why": "It names the whole calendar shift in one portable contrast."
+          "text": "Honest time beats heroic time."
         }
       ]
     },
@@ -1855,8 +1754,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Challenge-skill balance matters. If Mathias removes all stretch, the hour may become dull instead of absorbing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch07-q02",
@@ -1868,8 +1766,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clear goals do not kill flow. They reduce guessing, so Lana can stay with action instead of stopping to decide what work means.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch07-q03",
@@ -1881,8 +1778,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Immediate feedback helps Peyton adjust without leaving the task. Waiting until the end makes feedback too late to guide the session.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch07-q04",
@@ -1894,8 +1790,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Flow can feel rewarding, but it is active engagement. A passive break may be useful rest, yet it is not the same work state.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch07-q05",
@@ -1907,8 +1802,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Even a brief switch can break concentration. Sarah may feel productive, but the task channel loses the attention it needed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch07-q06",
@@ -1920,8 +1814,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A roadblock is not a cue to leave by habit. Staying near the prototype keeps context alive and makes problem solving more likely.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch07-q07",
@@ -1933,8 +1826,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deep absorption can change felt time. Clock watching may fade when Sebastien's attention is fully held by the task.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "the-now-habit-ch07-q08",
@@ -1946,8 +1838,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flow is designed before it is felt. Waiting keeps Lana passive, while arranging conditions gives engagement a better chance.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch07-q09",
@@ -1959,8 +1850,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Harder is not always better. When challenge outruns perceived skill, anxiety rises and avoidance becomes more tempting.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2003,7 +1893,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Set the Flow Channel",
         "coreSkill": "Practice shaping a work session before judging your focus. Set the Flow Channel by naming one clear target, one feedback signal, and one challenge level that stretches without flooding you. Then guard the first roadblock from becoming an email escape.",
         "ifThenPlans": [
           {
@@ -2028,19 +1917,13 @@
       },
       "memorableLines": [
         {
-          "text": "Flow is designed before it is felt.",
-          "location": "breakdown.fastRead",
-          "why": "It reverses the habit of waiting for the right mood."
+          "text": "Flow is designed before it is felt."
         },
         {
-          "text": "A roadblock is a cue to reset, not a permit to flee.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the stuck moment a short rule the reader can use."
+          "text": "A roadblock is a cue to reset, not a permit to flee."
         },
         {
-          "text": "Do not turn flow into another standard you can fail.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the flow idea from becoming perfectionism in new clothes."
+          "text": "Do not turn flow into another standard you can fail."
         }
       ]
     },
@@ -2145,8 +2028,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The miss points to a cue or constraint that can be changed. Treating it as identity proof skips the evidence the system needs.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch08-q02",
@@ -2158,8 +2040,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deadline spacing can change when work starts. A final date alone often leaves effort packed near the finish.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch08-q03",
@@ -2171,8 +2052,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Weak self-imposed deadlines may not move action. The date needs spacing or credibility, not just a private promise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch08-q04",
@@ -2184,8 +2064,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Early relief can hide later burden. The strategy has to be judged across the whole arc, not only by comfort at the start.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch08-q05",
@@ -2197,8 +2076,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A recurring roadblock is a predictable cue. Changing the setup gives the next start a new path; guilt only repeats the old one.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch08-q06",
@@ -2210,8 +2088,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A reward teaches only when it is tied to the target behavior. Vague pleasure after work may not reinforce the habit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch08-q07",
@@ -2223,8 +2100,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Output matters, but depletion can make the next start harder. A useful review checks both work done and emotional cost.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch08-q08",
@@ -2236,8 +2112,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fine-tuning keeps tools realistic. If the plan becomes another threat, it can recreate the pressure that drives delay.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch08-q09",
@@ -2249,8 +2124,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Broad effort pledges are hard to use. The next adjustment should target a controllable variable the reader can change.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2293,7 +2167,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Tune the Nearest Variable",
         "coreSkill": "Practice treating each missed start as a small design report. Tune the Nearest Variable by naming the cue first, then changing one controllable part: time, threat, reward, task size, or distraction. The skill keeps review honest without turning it into self-attack.",
         "ifThenPlans": [
           {
@@ -2318,24 +2191,17 @@
       },
       "memorableLines": [
         {
-          "text": "A missed block is data, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It turns relapse into useful evidence without excusing it."
+          "text": "A missed block is data, not a verdict."
         },
         {
-          "text": "Change the nearest variable before you judge the person.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader the whole repair order in one sentence."
+          "text": "Change the nearest variable before you judge the person."
         },
         {
-          "text": "Relief is not the same as recovery.",
-          "location": "breakdown.deepRead",
-          "why": "It separates short comfort from a work system that lasts."
+          "text": "Relief is not the same as recovery."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-now-habit-ch09",
       "number": 9,
       "title": "The Procrastinator in Your Life",
@@ -2436,8 +2302,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A lazy label adds shame to an already hard task. A firm request can name the missed work without making Weston defend his character.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch09-q02",
@@ -2449,8 +2314,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful unit is a concrete start that can be seen. A broad promise or long lecture leaves the next action vague.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch09-q03",
@@ -2462,8 +2326,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Delay can cost other people time and trust. Compassion stays useful when it lowers shame while still naming the agreement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch09-q04",
@@ -2475,8 +2338,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Rescue can keep the pattern alive by removing the cost from the person who delayed. Relief alone does not teach a new start.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch09-q05",
@@ -2488,8 +2350,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The workplace anchor matters because shared work makes delay organizational. The issue is not just private study habits or stronger pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-now-habit-ch09-q06",
@@ -2501,8 +2362,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Non-shaming does not mean blurry. The cleaner move is to target the behavior and agreement without turning the person into the problem.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-now-habit-ch09-q07",
@@ -2514,8 +2374,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Past delay helps only when it points to a new cue. Replaying every miss spends energy without creating the next behavior.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-now-habit-ch09-q08",
@@ -2527,8 +2386,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Social pressure can add guilt, and guilt can feed avoidance. Clear action beats another round of shame about the late file.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-now-habit-ch09-q09",
@@ -2540,8 +2398,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The best helper combines empathy, clarity, and consequences. Removing the consequence or doing the task drops one of the needed parts.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2584,7 +2441,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Next Agreement",
         "coreSkill": "Practice changing the exchange before it turns into blame. Mark the next agreement on a surface you already see, then ask for one visible start. The skill is warm precision: less shame, more clarity, and no rescue that hides the cost.",
         "ifThenPlans": [
           {
@@ -2609,19 +2465,13 @@
       },
       "memorableLines": [
         {
-          "text": "Shame makes the task look bigger and the helper look unsafe.",
-          "location": "breakdown.fastRead",
-          "why": "It captures why blame often strengthens avoidance."
+          "text": "Shame makes the task look bigger and the helper look unsafe."
         },
         {
-          "text": "Kindness without an agreement can become a quiet rescue.",
-          "location": "breakdown.deepRead",
-          "why": "It keeps empathy tied to responsibility."
+          "text": "Kindness without an agreement can become a quiet rescue."
         },
         {
-          "text": "Warm help still names the harm.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's balance into one line."
+          "text": "Warm help still names the harm."
         }
       ]
     }

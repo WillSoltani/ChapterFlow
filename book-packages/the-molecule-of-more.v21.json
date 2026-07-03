@@ -22,1159 +22,8 @@
       "what-if-and-what-is-balance"
     ]
   },
-  "productionManifest": {
-    "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:edec4ed906025194448833c3fd32dc0e78ef16fb8f14d413f08be583307df793",
-    "payloadHash": "sha256:edec4ed906025194448833c3fd32dc0e78ef16fb8f14d413f08be583307df793",
-    "payload": {
-      "schemaVersion": "chapterflow-production-manifest-payload-v2",
-      "bookId": "the-molecule-of-more",
-      "packageSchemaVersion": "chapterflow-v21-authored",
-      "book": {
-        "title": "The Molecule of More: How a Single Chemical in Your Brain Drives Love, Sex, and Creativity-and Will Determine the Fate of the Human Race",
-        "author": "Daniel Z. Lieberman and Michael E. Long",
-        "categories": [
-          "Relationships",
-          "Leadership",
-          "Innovation"
-        ],
-        "tags": [
-          "anticipatory-wanting",
-          "pathological-wanting",
-          "control-dopamine",
-          "salience-without-sufficient-filtering",
-          "political-temperament",
-          "future-building-drive",
-          "what-if-and-what-is-balance"
-        ],
-        "contentOwner": "chapterflow"
-      },
-      "canonicalIndex": {
-        "path": "state/indexes/the-molecule-of-more.json",
-        "semanticHash": "sha256:3e06eb0535433ea7293247dfaa44e25b12a97c360535b447899fec2ab16dbd5d",
-        "chapters": [
-          {
-            "chapterId": "the-molecule-of-more-ch01",
-            "chapterNumber": 1,
-            "chapterTitle": "Love"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch02",
-            "chapterNumber": 2,
-            "chapterTitle": "Drugs"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch03",
-            "chapterNumber": 3,
-            "chapterTitle": "Domination"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch04",
-            "chapterNumber": 4,
-            "chapterTitle": "Creativity and Madness"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch05",
-            "chapterNumber": 5,
-            "chapterTitle": "Politics"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch06",
-            "chapterNumber": 6,
-            "chapterTitle": "Progress"
-          },
-          {
-            "chapterId": "the-molecule-of-more-ch07",
-            "chapterNumber": 7,
-            "chapterTitle": "Harmony"
-          }
-        ]
-      },
-      "chapters": [
-        {
-          "chapterId": "the-molecule-of-more-ch01",
-          "chapterNumber": 1,
-          "title": "Love",
-          "readerContentHash": "sha256:edd1504060f208e8873718eb43e61cf0db1aa709f5883ebbea1663d4ee6a3710",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch01.source.json",
-            "semanticHash": "sha256:31b4f311be3f11ce9fc6c03e4bf361f970d3e85d32f0d9531cdca24ee1d6dd54",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:9133d90fd3c947fb62eb855a393676c662e65e73fd8f07b529eb36907038e3f5",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:7a8cf59e44c575b8dc611cf0904d1319df1dfe8498bd30a03fcec465513675fc"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch01.qc.json",
-            "semanticHash": "sha256:c30e646150e91da65e2e48c3e40b51688f934d88b74363bb67eb72accf8636ae",
-            "roundId": "r20260625004957-81e8f5",
-            "contentHash": "1bf4af1ec417a72a",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625004957-81e8f5",
-            "reviewedAt": "2026-06-25T00:57:36.937Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch02",
-          "chapterNumber": 2,
-          "title": "Drugs",
-          "readerContentHash": "sha256:403ec814d02cb44d28349a0a23e18443870723ae66bb0f6954537d7fc5d26248",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch02.source.json",
-            "semanticHash": "sha256:fd71ff594c0acb757e44edd254f93f860e2e09d36d4e40f9f684653e6f0ac8f2",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:57c19b89c05ea0eedd9261330bbfaf30244278c28db3fbe909f1a5f0272708de",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "06e3029a11ab74bbe593d12d968153e42e5ee55d37c409828518c5c3cd3997f7"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch02.qc.json",
-            "semanticHash": "sha256:f433e9c2d8b701a71704d32d16a47bfb357dfba281c0d6f4094cf9e1d1cfb36c",
-            "roundId": "r20260625004957-81e8f5",
-            "contentHash": "6baab7d1d14de846",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625004957-81e8f5",
-            "reviewedAt": "2026-06-25T00:57:36.938Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch03",
-          "chapterNumber": 3,
-          "title": "Domination",
-          "readerContentHash": "sha256:4bbb81ab8d3e2ad2329cdbee0df6d28e64241a425709b9da0da2c36dcbc95090",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch03.source.json",
-            "semanticHash": "sha256:7a212c3e9a99a173aaf246e448633d9317e75014cb043270fb3db741817b2544",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:77d624acb038b24447522d294f7b564421e9c9146efcc0819db630c847a818d5",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "ef9b683bd97e999b90b9210568258d5b8015c13c6e3811a874bb5f84172fea29"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch03.qc.json",
-            "semanticHash": "sha256:88068760b3398f580ce5fd7ec968e1e541c82a2b750fdc10d07832fe3693f634",
-            "roundId": "r20260625011325-eed6d9",
-            "contentHash": "fc574702a7197d8c",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625011325-eed6d9",
-            "reviewedAt": "2026-06-25T01:18:28.512Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch04",
-          "chapterNumber": 4,
-          "title": "Creativity and Madness",
-          "readerContentHash": "sha256:45562286da7f2d8128aee104661772fce9c879c8a47a035de2f893092ec21adc",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch04.source.json",
-            "semanticHash": "sha256:a06b7dbcdea899a14165923f377e9de428c4eb4358aff7b19ab429a2ba7d8ce5",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:5246ece8530123f53698c73bb87d2362e21824726e5876b4282a8d97d049e2d8",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "d309705d19ad1540c81829e57431870bae6e135b0ecb1b540ede940dff4b0d13"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch04.qc.json",
-            "semanticHash": "sha256:b2b78a20cf97a24eae53172246ef7a88ff5dc3dfe436d15f692d2e29d8155680",
-            "roundId": "r20260625004957-81e8f5",
-            "contentHash": "635c6f0ab127096e",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625004957-81e8f5",
-            "reviewedAt": "2026-06-25T00:57:36.939Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch05",
-          "chapterNumber": 5,
-          "title": "Politics",
-          "readerContentHash": "sha256:275ffd6cec396eceecd4160a09eac7dc8892ff510f89c3d825aee6bbf54d7aac",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch05.source.json",
-            "semanticHash": "sha256:967baeb4fc21f49dffd457203c3b6ce35dfa39098a7ec877dc7af550c5046128",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch05.v21-native.chapter.json",
-            "semanticHash": "sha256:6518f3dd6cd4fbe3d4297eb862ef57dde2b867824903a6e7f2b8623725a9bdde",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "3d5740528cb1f5e8b78036f8bbed6239bb694425b6522f971967c82d2998a11a"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch05.qc.json",
-            "semanticHash": "sha256:f604f914008980208721113328f7b25ecc65bb159bc76263d09be9390e20dc26",
-            "roundId": "r20260625011325-eed6d9",
-            "contentHash": "294bbbf0ae470423",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625011325-eed6d9",
-            "reviewedAt": "2026-06-25T01:18:28.512Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch06",
-          "chapterNumber": 6,
-          "title": "Progress",
-          "readerContentHash": "sha256:efe268f16f6a20bb51899ff89f7ac439ca81bc8ca4d4eca0feec001b191dbaea",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch06.source.json",
-            "semanticHash": "sha256:d504db2192ea4098434e38c2133b0d11e56bb179f2a3c8cce09c520dca27998e",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch06.v21-native.chapter.json",
-            "semanticHash": "sha256:1d300e345ef88c7ed8edaa0ead234b83c59baed33289e88198c5bc8240719aa2",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:035e5b5517d03bfabccbbf86ac98717112a722b99013a51fb1720c321247211b"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch06.qc.json",
-            "semanticHash": "sha256:6f01753928f9e655da8286763e44fcb92fb343959aa72323d2933acd2e3dc73f",
-            "roundId": "r20260625004957-81e8f5",
-            "contentHash": "08e1321760ec5781",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625004957-81e8f5",
-            "reviewedAt": "2026-06-25T00:57:36.940Z"
-          }
-        },
-        {
-          "chapterId": "the-molecule-of-more-ch07",
-          "chapterNumber": 7,
-          "title": "Harmony",
-          "readerContentHash": "sha256:fc02db155ca3e1bebe283b920d85cc3f4ec23f682df6861bdd1b4929c89d1068",
-          "sourceEvidence": {
-            "path": ".chapterflow/runs/the-molecule-of-more/20260625T000804850Z-2d0e1eaa-2a6f-4c17-a846-16bdfcc7863b/sidecars/source/ch07.source.json",
-            "semanticHash": "sha256:9439d238115394c56bd4786ee14cec2c2b72ea57d4a311690ca8ce48f6fd3f01",
-            "schemaVersion": "source-v2"
-          },
-          "authoringEvidence": {
-            "path": "state/chapters/the-molecule-of-more-ch07.v21-native.chapter.json",
-            "semanticHash": "sha256:52f85bc79d416b595333e1dd8a3232949e6f40e89c40dd450e9d047bd74fe907",
-            "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "sha256:e60c6d19da53d90fd655171dcdfd13293f5927c0f9c3808cec2046b1cd2e449c"
-          },
-          "generationEvidence": null,
-          "qcAttestation": {
-            "path": "state/qc/the-molecule-of-more-ch07.qc.json",
-            "semanticHash": "sha256:5dfc915c7831511d4cf2d4dcfd14e3f1fb01552003d50d1f5e1108d004385e1b",
-            "roundId": "r20260625011325-eed6d9",
-            "contentHash": "5c70224f7f6fa6bd",
-            "hashVersion": "v2",
-            "reviewer": "codex-qc:auto:r20260625011325-eed6d9",
-            "reviewedAt": "2026-06-25T01:18:28.512Z"
-          }
-        }
-      ],
-      "sourceRealityEvidence": {
-        "bookId": "the-molecule-of-more",
-        "policyResult": "required-and-verified",
-        "classification": "new-source-v2",
-        "record": {
-          "path": ".chapterflow/source-verify-the-molecule-of-more.md",
-          "schemaVersion": "source-verify-record-v1",
-          "semanticHash": "sha256:1f2a9a56562cdfe0fb69af8754c6540aef0a14bf288f246e8ea3e41f78f4c448",
-          "bookId": "the-molecule-of-more",
-          "verifier": null,
-          "verifiedAt": null
-        },
-        "exemption": null
-      },
-      "evidencePolicy": {
-        "sourceEvidence": "required",
-        "authoringEvidence": "required-for-source-v2",
-        "sourceReality": "required-for-source-v2",
-        "qcAttestation": "required"
-      },
-      "versions": {
-        "canonicalJson": "canonical-json-sha256-v1",
-        "readerContentHash": "reader-content-canonical-sha256-v1",
-        "readerContentStripRules": "reader-content-strip-v2",
-        "promptBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:c9f449887aa2e167d9fd234ebd9e7a56ca1b684a04199c1f6651903501a6b4f1",
-          "fileCount": 36,
-          "files": [
-            {
-              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
-              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
-            },
-            {
-              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
-              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
-            },
-            {
-              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
-              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
-            },
-            {
-              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
-              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
-            },
-            {
-              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
-              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
-            },
-            {
-              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
-              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
-            },
-            {
-              "path": "agent-prompts/QC-CODEX-SESSION.md",
-              "sha256": "sha256:da1ebae297f359eb43f4bed9086bde53744679d6735e8abc0f7a1f5c0d8af1e3"
-            },
-            {
-              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:fc8ff25b7521265cad2f26c2bb154549b4821f0440ce33bfab39bd821e90c07e"
-            },
-            {
-              "path": "agent-prompts/QC-PLAYBOOK.md",
-              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
-            },
-            {
-              "path": "agent-prompts/QC-SESSION-PROMPT.md",
-              "sha256": "sha256:90738338baf67b39f9281a17f254c29ca3f27f88637755200814558e9454b74a"
-            },
-            {
-              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
-              "sha256": "sha256:bc83ac7db7d23ddccbf0ad3374629aea67434565425357bdd769d9b8ec8c3733"
-            },
-            {
-              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
-              "sha256": "sha256:600f58db777edaf51eee63e145b45dc1c8c4a6cfcde542c5f488fa14ed7554eb"
-            },
-            {
-              "path": "agent-prompts/RUN-A-BOOK.md",
-              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
-            },
-            {
-              "path": "agent-prompts/STEP-1-RESEARCH.md",
-              "sha256": "sha256:eb58ab247b68f8f4dcae8ceadad61b281a216b8a28fbe917d37bc7b51ce85eed"
-            },
-            {
-              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
-              "sha256": "sha256:69163b04cd39f147fa161e1498e40c31e26b6aaec9645e7f35e908ab0ad3fca0"
-            },
-            {
-              "path": "agent-prompts/STEP-3-FINALIZE.md",
-              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
-            },
-            {
-              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
-              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
-              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
-              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
-            },
-            {
-              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
-              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
-            },
-            {
-              "path": "prompts/categorizer.system.md",
-              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
-            },
-            {
-              "path": "prompts/curriculum-planner.system.md",
-              "sha256": "sha256:c325d544a978ed0d41d07b5d48cfea41cda31b32a369817dbd14eb08c8254359"
-            },
-            {
-              "path": "prompts/editor-in-chief.system.md",
-              "sha256": "sha256:5ea77e3745a0e41fd653dd1168865476abe3d2362623c670d318099cd48d11ba"
-            },
-            {
-              "path": "prompts/example-curator.system.md",
-              "sha256": "sha256:0d6ad29a3a1cdf494c489bc25a0a6b2e1ec3a043e4b093faede02cb0f2c70479"
-            },
-            {
-              "path": "prompts/line-editor.system.md",
-              "sha256": "sha256:6ea417c1ea9bdbae24d203053c3cac05b48c807efd677fc4afa0270347aca782"
-            },
-            {
-              "path": "prompts/memorable-lines.system.md",
-              "sha256": "sha256:b3d198c05bbe4e445ff1ecf5ea3704d62e79756086114a162cbd4cc5a6bf80c9"
-            },
-            {
-              "path": "prompts/researcher-bibliography.system.md",
-              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
-            },
-            {
-              "path": "prompts/researcher-chapter.system.md",
-              "sha256": "sha256:3ac00906eaa3263e8fdbd20ccc7e7a84b07fe1e992dec7dd24b245899dfaa550"
-            },
-            {
-              "path": "prompts/try-this-now.system.md",
-              "sha256": "sha256:944542af9172d409cf7094a52896c86af396ee51ab09e9ccf134c9706f3a23c7"
-            },
-            {
-              "path": "prompts/voice-pass.system.md",
-              "sha256": "sha256:8f8b3eebfde6f1f36b6a9c9cb3c9258ff95ed028ba93eb7422f25ef453507086"
-            },
-            {
-              "path": "prompts/writer-breakdown.system.md",
-              "sha256": "sha256:4178e7d4a70901f2f831b1d03150c39441d5dec5aaf30529ea6c48fc067322ef"
-            },
-            {
-              "path": "prompts/writer-cards.system.md",
-              "sha256": "sha256:ad966d203cf2f692b60b32fba51e4927214a32edfd2bee17ca068c72db3a9ace"
-            },
-            {
-              "path": "prompts/writer-example.system.md",
-              "sha256": "sha256:081ec998b478fda75a3437fb32ec34bcabadc8826c62e414116f734662a3a4b0"
-            },
-            {
-              "path": "prompts/writer-hook.system.md",
-              "sha256": "sha256:a25803598031232a7b9980bc3b7e02f8f4c924956c01050559eff6713f94f0fc"
-            },
-            {
-              "path": "prompts/writer-implementation-plan.system.md",
-              "sha256": "sha256:86fb5ef91f3c5f31d67dd3239056dc9ef2b27d548fc4c441adf89d570c5546a3"
-            },
-            {
-              "path": "prompts/writer-quiz.system.md",
-              "sha256": "sha256:ad873f44de1b73d94f9d2f79f0942f774adf8eea6fc08892db763b69f5508817"
-            }
-          ]
-        },
-        "configBundle": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:93da5488820722048c862828a6bad408882449687b48718584f970378eb24f1a",
-          "fileCount": 15,
-          "files": [
-            {
-              "path": "config/author-voice-profiles.json",
-              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
-            },
-            {
-              "path": "config/banned-connectives.json",
-              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
-            },
-            {
-              "path": "config/banned-phrases.json",
-              "sha256": "sha256:3de6d00688cf467a98d9645768585238ac63d7bde8c3b711a23d192f7352932d"
-            },
-            {
-              "path": "config/categories.json",
-              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
-            },
-            {
-              "path": "config/critic-rubric.json",
-              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
-            },
-            {
-              "path": "config/meta-patterns.json",
-              "sha256": "sha256:83adbb89df9dab39c9861866e1c17e4e2b1d5a56d41ea9d211e8cd20a9639c2f"
-            },
-            {
-              "path": "config/name-bank.json",
-              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
-            },
-            {
-              "path": "config/name-policy.json",
-              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
-            },
-            {
-              "path": "config/named-frameworks.json",
-              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
-            },
-            {
-              "path": "config/pedagogy-palettes.json",
-              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
-            },
-            {
-              "path": "config/scenario-openers.json",
-              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
-            },
-            {
-              "path": "config/scene-mechanisms.json",
-              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
-            },
-            {
-              "path": "config/scene-shapes.json",
-              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
-            },
-            {
-              "path": "config/stakes-palette.json",
-              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
-            },
-            {
-              "path": "config/venue-palette.json",
-              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
-            }
-          ]
-        },
-        "codeFingerprint": {
-          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:22b50945b704fe1b905f9e81787bef416bb5520574f26e9bb199ead9c2153447",
-          "fileCount": 157,
-          "files": [
-            {
-              "path": "package-lock.json",
-              "sha256": "sha256:d940ac6c961b3cccb57322ae2b67fa6eb53edcd0d767bb7e79db96e950c010ca"
-            },
-            {
-              "path": "package.json",
-              "sha256": "sha256:f1683aac5b4b7e865e138dfbb4532d458d0c7dd90f8944c0637b028d83ad5298"
-            },
-            {
-              "path": "src/agents/autoCategorize.ts",
-              "sha256": "sha256:8497cd1a40734f6bfe9fe59e4d1dd74f9f0fa1a90ad91becce2b7e5e7165fbb7"
-            },
-            {
-              "path": "src/agents/categorizer.ts",
-              "sha256": "sha256:c6686634332a0efcd6721801c77c351e78930c935f5f0dff65ff6146b1d3d765"
-            },
-            {
-              "path": "src/agents/curriculum-planner.ts",
-              "sha256": "sha256:b0838ebbf2d162b16ede327f09adc02074203daf4ccd16cc56e98af32d1b4984"
-            },
-            {
-              "path": "src/agents/editor-in-chief.ts",
-              "sha256": "sha256:90f9fc0958255c81ff2672458624c809f1455e3432c4c293e98e44f4e75afcbe"
-            },
-            {
-              "path": "src/agents/line-editor.ts",
-              "sha256": "sha256:c0f804e0bd940552b4a351b2528380f2e1c284173c96b44691e4570fd1646987"
-            },
-            {
-              "path": "src/agents/memorable-lines.ts",
-              "sha256": "sha256:5eca291142f6b015c1ac2e99c233c55dbf828dd6d664e1707e80fe1d09986573"
-            },
-            {
-              "path": "src/agents/researcher-bibliography.ts",
-              "sha256": "sha256:efd8474cd56bc643badeedd5bf427df4314a574d44eb84c52831fbd3970811fd"
-            },
-            {
-              "path": "src/agents/researcher-chapter.ts",
-              "sha256": "sha256:fabc0fd3a046aedd992c89b5f11267b5023db331396347bfc9fa942a25848e32"
-            },
-            {
-              "path": "src/agents/try-this-now.ts",
-              "sha256": "sha256:e14bb4063c4d66233331bacc9e993c44c8cace50abf83d17c0e06443ba631fbd"
-            },
-            {
-              "path": "src/agents/voice-pass.ts",
-              "sha256": "sha256:f46637ba9ea89f5080b0d7ed03954ec4562fb934ba2677c77ef5d74a8059e79e"
-            },
-            {
-              "path": "src/agents/writer-breakdown.ts",
-              "sha256": "sha256:157f87dc4ab5b501e9c348ce4b9cb4ef613e0e2610a6cb51e4412329330f135e"
-            },
-            {
-              "path": "src/agents/writer-cards.ts",
-              "sha256": "sha256:28f3e93b5e762fafa8f60c1cc9b6bc55e843367c69d63133cb6fcc824827fd2a"
-            },
-            {
-              "path": "src/agents/writer-example.ts",
-              "sha256": "sha256:22e27e23047110602252d5109306cf180a665e58843ba4c2707b4d09fd09f08b"
-            },
-            {
-              "path": "src/agents/writer-hook.ts",
-              "sha256": "sha256:88d1a25238ef9d84f6fd57c5f5185524fe11129763d1a4692843c4678035fc5b"
-            },
-            {
-              "path": "src/agents/writer-implementation-plan.ts",
-              "sha256": "sha256:2276512d7838e3eedf7906a5326c3c9915c275a4282cdf3c5cb5c92b5afacfac"
-            },
-            {
-              "path": "src/agents/writer-quiz.ts",
-              "sha256": "sha256:dc30ba5e073f133e485b64f6aed7319b7b6168186ac8da5f3f28fc4874194f39"
-            },
-            {
-              "path": "src/assembler.ts",
-              "sha256": "sha256:92e405e1d1b29433cd6e602799711a292dfe2575118b67209f4840b9d491ea42"
-            },
-            {
-              "path": "src/cache/stageCache.ts",
-              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
-            },
-            {
-              "path": "src/claudeClient.ts",
-              "sha256": "sha256:e5a29140ab757083a13e05833804ba2a93db5e572ed0cdc8381c370e19996338"
-            },
-            {
-              "path": "src/cli.ts",
-              "sha256": "sha256:2f7b364e9a509211d95a6aa3ac0e7c31345bb71c71bf953b0b2f9dc8212e7c87"
-            },
-            {
-              "path": "src/cost-tracker.ts",
-              "sha256": "sha256:9f6413f09ce238af382706b2e65ba71d4a3fed79e59bc636858c0615885405d6"
-            },
-            {
-              "path": "src/critics/antiSalting.ts",
-              "sha256": "sha256:c80540cbf5d5115f27443559298af0a8d8af743ee9331d17bbd3ed1bcbb0b0b1"
-            },
-            {
-              "path": "src/critics/authoringContract.ts",
-              "sha256": "sha256:4a7d5ddcb6e6c4f9ddc56dca0a5969beadf0e72fb3fadc3f3c5333570f86d4c8"
-            },
-            {
-              "path": "src/critics/bookGate.ts",
-              "sha256": "sha256:a9356298ff87d6d24fef42e68c985fcc62de83e72f8f54db625485b516109192"
-            },
-            {
-              "path": "src/critics/bookPatternAudit.ts",
-              "sha256": "sha256:dc5aeaf6abb63eda1eec60c92ae409fe1434a6ca2cb97bb0103f07b4dc4f5a5c"
-            },
-            {
-              "path": "src/critics/bookRepetition.ts",
-              "sha256": "sha256:e0c926d987466945ed50774b06e720a56320d8168b1c11871211af2bc03ff863"
-            },
-            {
-              "path": "src/critics/catalogAudit.ts",
-              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
-            },
-            {
-              "path": "src/critics/crossBookSignatureAudit.ts",
-              "sha256": "sha256:0c7f8ea7d9d9888d49ba7e0db0e8eb6ae0e25670257dd4a223f0ca0f574a3edb"
-            },
-            {
-              "path": "src/critics/experiencePlan.ts",
-              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
-            },
-            {
-              "path": "src/critics/finalGate.ts",
-              "sha256": "sha256:1a4e4f14a0aeac99af74f2228027754577f1a3f14c36ea0ff83399f569df8afc"
-            },
-            {
-              "path": "src/critics/integrity.ts",
-              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
-            },
-            {
-              "path": "src/critics/intraBook.ts",
-              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
-            },
-            {
-              "path": "src/critics/intraBookFieldSimilarity.ts",
-              "sha256": "sha256:701ec281ae7bd5445f195ce482304f413ac1e56e300b75c183a1e8dabc449444"
-            },
-            {
-              "path": "src/critics/intraBookQuizSimilarity.ts",
-              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
-            },
-            {
-              "path": "src/critics/narrative.ts",
-              "sha256": "sha256:a1ae1005df56930dac1607eb2bd8f52eeece441cc0da1dff6e312b1877a2c5be"
-            },
-            {
-              "path": "src/critics/pedagogy.ts",
-              "sha256": "sha256:e35577d41fe13a417e1fa39ba8aee5a1e3a84d65af859e7c1df46b67923b3ac0"
-            },
-            {
-              "path": "src/critics/plainLanguage.ts",
-              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
-            },
-            {
-              "path": "src/critics/prose.ts",
-              "sha256": "sha256:85ed4d61afa7c55f9f0c55cca69ca33cc7bf4d111b068c38553f76a894d70f08"
-            },
-            {
-              "path": "src/critics/qcAttestation.ts",
-              "sha256": "sha256:d27fca01c676f0d96d96cd7c567e54b1bdc9cbca377228e6d4bc358fb628bd1e"
-            },
-            {
-              "path": "src/critics/quizCorrectness.ts",
-              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
-            },
-            {
-              "path": "src/critics/quizKeyGate.ts",
-              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
-            },
-            {
-              "path": "src/critics/quizQuality.ts",
-              "sha256": "sha256:6f6a4ab2e05fb62935c88dc9bb7cbf9fc50d730c6dbcd6930e4f33f8ca5aec4f"
-            },
-            {
-              "path": "src/critics/readingLevel.ts",
-              "sha256": "sha256:a3c1b5fa9aaa1c56c1d5e950ce50e37818ea0d1c832a1c11e4721f18f44dcc40"
-            },
-            {
-              "path": "src/critics/register.ts",
-              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
-            },
-            {
-              "path": "src/critics/runAllCritics.ts",
-              "sha256": "sha256:fd473ae74bbc6041199ed42d9a766a53dedd1fa02ffc45b92831abbfd1a8212b"
-            },
-            {
-              "path": "src/critics/scaffoldLeak.ts",
-              "sha256": "sha256:93bf473a2636d7a8ec066ec116d149e1ab7db93de5ef1532f9a3cf8f269f3d42"
-            },
-            {
-              "path": "src/critics/schema.ts",
-              "sha256": "sha256:27e0908090aa280845cb2b3610e295eac388721def1b5840040c48d2a7bed00c"
-            },
-            {
-              "path": "src/critics/semantic/publishableBar.ts",
-              "sha256": "sha256:2577a0ac49108b95d0fb25a95e0d119709a13770a8cbf04dc8d776450514f0cb"
-            },
-            {
-              "path": "src/critics/semantic/quizKeyJudge.ts",
-              "sha256": "sha256:a6088b283c8e1065c71b936da16564548094a1f2bfc89fb10db5b24db9234cd6"
-            },
-            {
-              "path": "src/critics/shared.ts",
-              "sha256": "sha256:7f6fadcebe362b829f5f18e2392141993437ff754fde3e73c9737a1e82575d95"
-            },
-            {
-              "path": "src/critics/sourceCoherence.ts",
-              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
-            },
-            {
-              "path": "src/critics/sourceGrounding.ts",
-              "sha256": "sha256:55a7625d5f5021a8b8c42e475552560c38a7b4b7131e450d350a2f83fdfc94ae"
-            },
-            {
-              "path": "src/critics/sourceRealness.ts",
-              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
-            },
-            {
-              "path": "src/critics/sourceVerify.ts",
-              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
-            },
-            {
-              "path": "src/critics/supportSectionAudit.ts",
-              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
-            },
-            {
-              "path": "src/critics/textUtils.ts",
-              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
-            },
-            {
-              "path": "src/curator/exampleSelector.ts",
-              "sha256": "sha256:b87c8ea06c8f332af6b91a9e83a266b5e7397640aff600e513cd80cac291a08b"
-            },
-            {
-              "path": "src/diagnose.ts",
-              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
-            },
-            {
-              "path": "src/generateBook.ts",
-              "sha256": "sha256:b328e7fa5a3e36cd633a2911337ad83dc1bfaae457bfcf01cac1f601ef7f9cf9"
-            },
-            {
-              "path": "src/generateChapter.ts",
-              "sha256": "sha256:e5e3cddd9d58792ece72840572e06c7c5eaeb68050595818856540169024311c"
-            },
-            {
-              "path": "src/generationDegradation.ts",
-              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
-            },
-            {
-              "path": "src/lib/atomicWrite.ts",
-              "sha256": "sha256:cd4a80010b539604e8aff522d47ad6aed3cafba7a48193e5b92b0159aab79c3a"
-            },
-            {
-              "path": "src/lib/brief-sanitizer.ts",
-              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
-            },
-            {
-              "path": "src/lib/canonicalJson.ts",
-              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
-            },
-            {
-              "path": "src/lib/chapterPaths.ts",
-              "sha256": "sha256:ccc20df4f559e86d3926d69e3ee69d81dc16b96d4fbd4a6522e56da5508aa783"
-            },
-            {
-              "path": "src/lib/chapterSet.ts",
-              "sha256": "sha256:5d8bc25303a34830cc7d76bb90a4a4c1a71444fef55679493f3c2dbd3c65ba4f"
-            },
-            {
-              "path": "src/lib/coprime.ts",
-              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
-            },
-            {
-              "path": "src/lib/fnv1a.ts",
-              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
-            },
-            {
-              "path": "src/lib/pipelineFingerprint.ts",
-              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
-            },
-            {
-              "path": "src/lib/readerContent.ts",
-              "sha256": "sha256:e2b15b8bfd4d5a267e2bb1b3ff960d68a2fc2eceefa27e2b2bc75eaa53fa5de7"
-            },
-            {
-              "path": "src/lib/researchRunManifest.ts",
-              "sha256": "sha256:334eebac804ba1e7a1460a27861109d44589a2bd37cae9b880a06231ccfb4e8e"
-            },
-            {
-              "path": "src/lib/runDirs.ts",
-              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
-            },
-            {
-              "path": "src/lib/strictEnv.ts",
-              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
-            },
-            {
-              "path": "src/lib/tocContract.ts",
-              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
-            },
-            {
-              "path": "src/lib/voiceBible.ts",
-              "sha256": "sha256:2339dc3c959290788f091d3bf6efc817a73ac33b1df8cec06208a561fd12b109"
-            },
-            {
-              "path": "src/librarian/actionMechanismPlan.ts",
-              "sha256": "sha256:efe3a3c449b927e8f6c0d714b5703c143d45dac9fc1005bbf080a0fd81a86cef"
-            },
-            {
-              "path": "src/librarian/answerKeyPlan.ts",
-              "sha256": "sha256:00270cf59e9e4e5ff9fc1d66870f3725bf4ccad9b165530d3cb1b6b83d9f09a0"
-            },
-            {
-              "path": "src/librarian/authoringGuardrails.ts",
-              "sha256": "sha256:07312d442ea536fae75cebf3834a3f02c69657f7978645ac5f9811e36f153bdf"
-            },
-            {
-              "path": "src/librarian/callbackPlan.ts",
-              "sha256": "sha256:35fb7a7f106ab2b354725246074440faeae1fcaebb34b34ef78b55a691e09127"
-            },
-            {
-              "path": "src/librarian/chapterArchetypePlan.ts",
-              "sha256": "sha256:40343341c3a53981d043386615a680dd664a6de1f048747d699ed09df854c246"
-            },
-            {
-              "path": "src/librarian/exemplarPlan.ts",
-              "sha256": "sha256:4a290fff74cdb3b1d0ec9bbad58520a2f098e85005ecf42cc5d3bd67f45f2828"
-            },
-            {
-              "path": "src/librarian/fullReadSkeletonPlan.ts",
-              "sha256": "sha256:40c5d9e0543f8e235048e457c38782b511156d7927786c6a60f9a8b081e12ae8"
-            },
-            {
-              "path": "src/librarian/identityMigration.ts",
-              "sha256": "sha256:a1e7d5b4b8043c062fc998026dab29e43838456d0f4cdc48be7b34126e3d7528"
-            },
-            {
-              "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:b6dc3455f79f9cefe7961d832276ecc951ed9596e6ae7533d2f0a29506546f9d"
-            },
-            {
-              "path": "src/librarian/namePlan.ts",
-              "sha256": "sha256:bb9799027cbbd96211ab1949515b848373e9c2df493139202283494de6636b0a"
-            },
-            {
-              "path": "src/librarian/namePolicy.ts",
-              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
-            },
-            {
-              "path": "src/librarian/openerPlan.ts",
-              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
-            },
-            {
-              "path": "src/librarian/pedagogyPlan.ts",
-              "sha256": "sha256:958d6a675678ca723cba38c41cc8766d386d4c90a5f92f952a81c9b7ae0285c8"
-            },
-            {
-              "path": "src/librarian/rhetoricPlan.ts",
-              "sha256": "sha256:8d187af79f123d697e282aeb9820106aaebbf85c5fe4b7ee6835f803c41bfdea"
-            },
-            {
-              "path": "src/librarian/saturationGuard.ts",
-              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
-            },
-            {
-              "path": "src/librarian/sceneMechanismPlan.ts",
-              "sha256": "sha256:18b2ced6ab7dc7b724548b567aea483dbbcdf077c2bbc07d14189f3faa623dd6"
-            },
-            {
-              "path": "src/librarian/sceneModePlan.ts",
-              "sha256": "sha256:acccfc0fe8ed936e6410d7e6d5d16eec70a3ca8a8dd86690078298279c683cd4"
-            },
-            {
-              "path": "src/librarian/shapePlan.ts",
-              "sha256": "sha256:2a2e39775eee5b77354160550e9a6e7c42b711bf7ac306d9c75af4b7733d86a4"
-            },
-            {
-              "path": "src/librarian/sourceSidecars.ts",
-              "sha256": "sha256:0d7af1950a5476d7472d7f584024b74cb4c4f8c2d02a087127815076743de0b1"
-            },
-            {
-              "path": "src/librarian/stakesPlan.ts",
-              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
-            },
-            {
-              "path": "src/librarian/timingPlan.ts",
-              "sha256": "sha256:1a65c956cf1d261fc3b8286a61b865a943ad0cae2aa92fa307f8b7bd7a46c0f8"
-            },
-            {
-              "path": "src/librarian/venuePlan.ts",
-              "sha256": "sha256:ce859090d5e69410cc7a345969d710cc99f52f26ddd7961ff21ade0e97e84c3d"
-            },
-            {
-              "path": "src/librarian/weeklyPracticePlan.ts",
-              "sha256": "sha256:e95803dd4d01ba07e27f29781d0246c121ab14b8ac29ee712dddce8ec0b85be5"
-            },
-            {
-              "path": "src/lifecycle/bookStatus.ts",
-              "sha256": "sha256:ae301e7a500fa1cb865bcf1e28a6ade3eb48d08b7b16e66981c48fc41707d011"
-            },
-            {
-              "path": "src/lifecycle/doctor.ts",
-              "sha256": "sha256:e5c5b7bb44873eee0bbad478f34cab49ae36cf5744327bc97f99f92be54ce9c5"
-            },
-            {
-              "path": "src/next-task.ts",
-              "sha256": "sha256:1592b596e4d99b2bc0db2ae096f65445b71384a97ea582edb3d05bd3e3f26f8a"
-            },
-            {
-              "path": "src/orchestrator/autopilot.ts",
-              "sha256": "sha256:ab74255b55830116c9c5279c80b43950f947bc3ffd8fedbf5b82feaa831b910c"
-            },
-            {
-              "path": "src/orchestrator/codexAgent.ts",
-              "sha256": "sha256:61d65771db3574dd0b22238527f1764569339579efe95b12664f3830a4df34e4"
-            },
-            {
-              "path": "src/orchestrator/liveRun.ts",
-              "sha256": "sha256:7f7e2adec880c723802d1b7987a9fab5256c69af1c0e3329b95e7c1017ae4e23"
-            },
-            {
-              "path": "src/productionManifest.ts",
-              "sha256": "sha256:e33fdd7c1d4b0b7955d891b09d130c65b5a5787f4a08f77da4c3914b29defcaa"
-            },
-            {
-              "path": "src/promoteBook.ts",
-              "sha256": "sha256:a88f709d8e19ae2235bb8abcdbdbb432677f762fb86856fac30b59fada969cb7"
-            },
-            {
-              "path": "src/providers/anthropic-api.ts",
-              "sha256": "sha256:3cec61a5121f33ade6ad718af52f8b53a24751ef17a9501a6f79b65e8a346c84"
-            },
-            {
-              "path": "src/providers/cli.ts",
-              "sha256": "sha256:484d020fb9704086ea61c51833bac5cd4dda29843f78a18b283c9bb9e67a5b6c"
-            },
-            {
-              "path": "src/providers/openai-api.ts",
-              "sha256": "sha256:771063a3e9668792a801acc955563ab1a35db5b6891d91b9702686ce31c2a6a3"
-            },
-            {
-              "path": "src/providers/router.ts",
-              "sha256": "sha256:577da2d691ea0b951e1d9fe4e1784e33c2fd65fb84664a474f8d43dd8ba1bbc2"
-            },
-            {
-              "path": "src/providers/types.ts",
-              "sha256": "sha256:62b4f6c653701cabd78e0992e29c17dfba978b36132da0ceb2bf54f94398585e"
-            },
-            {
-              "path": "src/qc/auto/driver.ts",
-              "sha256": "sha256:e40f72d308d6b00f8a1f08cea7f13746b1f2b78cb15a853bcdbebd6377e9944a"
-            },
-            {
-              "path": "src/qc/auto/generateWorkflow.ts",
-              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
-            },
-            {
-              "path": "src/qc/auto/resolveBook.ts",
-              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
-            },
-            {
-              "path": "src/qc/barReview.ts",
-              "sha256": "sha256:a1fd21bab474f8fdc334acb95e9f651080618bff60294bd196e3895c22058c7e"
-            },
-            {
-              "path": "src/qc/majorDisposition.ts",
-              "sha256": "sha256:c611a7b12b3605dff443296e78080d7308b3f8ae50577191e215ea564e9bc62f"
-            },
-            {
-              "path": "src/qc/manualKeyJudge.ts",
-              "sha256": "sha256:f504121cd0a6a8d65ce8081bce10f12354b5a0021124bceeb119d90cf7a3c978"
-            },
-            {
-              "path": "src/qc/metrics.ts",
-              "sha256": "sha256:de46f137669ab02836e2c30adcb8cd8b9e0e7c859f4dd266aee0fb25674176bd"
-            },
-            {
-              "path": "src/qc/noApiMode.ts",
-              "sha256": "sha256:7611d7a8b3a871e3b817398019101b9572e479a2e315927eb3088d14a2abab33"
-            },
-            {
-              "path": "src/qc/orchestrator/artifacts.ts",
-              "sha256": "sha256:8b7e0e1c10a9a7f5ab7d6bc2f5485a923b3a3fd26deb93fe57e50f9055851ee3"
-            },
-            {
-              "path": "src/qc/orchestrator/deterministicGate.ts",
-              "sha256": "sha256:eab5f1e32c3e99c31ddd799fe40328f385cf9633daa1bcc10612a34f8bb8c82c"
-            },
-            {
-              "path": "src/qc/orchestrator/diagnose.ts",
-              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
-            },
-            {
-              "path": "src/qc/orchestrator/evidenceSource.ts",
-              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
-            },
-            {
-              "path": "src/qc/orchestrator/finalize.ts",
-              "sha256": "sha256:991ba361dea4cc0029ad3329052ad4eceb6ba64c90aa1d4fe4b2d3fed013e351"
-            },
-            {
-              "path": "src/qc/orchestrator/finalizerFindings.ts",
-              "sha256": "sha256:58192b3a433be92c5c6b8f1113155e557f53c465a3f1eb71bb246458e3e78d9b"
-            },
-            {
-              "path": "src/qc/orchestrator/findingGrouping.ts",
-              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
-            },
-            {
-              "path": "src/qc/orchestrator/findingValidity.ts",
-              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
-            },
-            {
-              "path": "src/qc/orchestrator/index.ts",
-              "sha256": "sha256:02d4ea59b78aa9c5b1de91298194b967262c8ad3e91831f46d95999de5e51179"
-            },
-            {
-              "path": "src/qc/orchestrator/ledger.ts",
-              "sha256": "sha256:2fd780c49316742ac5ae470458ae2553c378c6b20004139801de5963c1681646"
-            },
-            {
-              "path": "src/qc/orchestrator/repairBrief.ts",
-              "sha256": "sha256:0a3aea7d0f0d96a45a85b733d54126a41389b7753e23cdfdf7f28d2bcc7c629a"
-            },
-            {
-              "path": "src/qc/orchestrator/reviewPacket.ts",
-              "sha256": "sha256:731862ccc59ea6b50fc32dadc0298e6ae26751b2b1669f5eacb0c362a2e06275"
-            },
-            {
-              "path": "src/qc/orchestrator/schemas.ts",
-              "sha256": "sha256:1f0ab31ab21b24bb346771d8fdb2fc9e3baae094d7b46aa5e66583aff6b282f1"
-            },
-            {
-              "path": "src/qc/orchestrator/submissionSchemas.ts",
-              "sha256": "sha256:4eec9c0805948b68c8e972027b663850046055e4944a7d4f0a52670491a517e3"
-            },
-            {
-              "path": "src/qc/orchestrator/transaction.ts",
-              "sha256": "sha256:7d45f49d1c5a1049d8c3758c317e93fb535a7b9f1951126b847aaeb9240551e6"
-            },
-            {
-              "path": "src/qc/planEnforcement.ts",
-              "sha256": "sha256:5b0f5453b25c5b8f2ef992ec5fa958528049b3109af71d2c0987a79d3d2c0adf"
-            },
-            {
-              "path": "src/qc/pruneBookState.ts",
-              "sha256": "sha256:f6068133e511d6cccb02f0a4b235a7880b8e11c9d9d3d472cdd70e5561e328ca"
-            },
-            {
-              "path": "src/qc/publishAfterQc.ts",
-              "sha256": "sha256:40714d60bb2553bbce7151a18f8b9b3c7d4c3e91d81c48253029dd8a84263e8f"
-            },
-            {
-              "path": "src/qc/qcRound.ts",
-              "sha256": "sha256:b766a2039eeed5b9b6f307196077f478176324728049fa21298509231e3aa6f7"
-            },
-            {
-              "path": "src/qc/reviewerId.ts",
-              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
-            },
-            {
-              "path": "src/qc/sessionProvenance.ts",
-              "sha256": "sha256:bf3bd293a85c1c0a6dfb5938769fe4e64b9bfbee6703a76128dc005a177052c0"
-            },
-            {
-              "path": "src/qc/sourceRealityPolicy.ts",
-              "sha256": "sha256:8a61be1f77f912c0fe05f14183540f8eac63e0d59c2129c01ad46024ed8e657d"
-            },
-            {
-              "path": "src/qc/sourceV2Gate.ts",
-              "sha256": "sha256:f7c052fd8bbbe83cbd2b80eb75e06bc9f853ecf48b3ab93c8708fcb9a73da231"
-            },
-            {
-              "path": "src/qc/sweep.ts",
-              "sha256": "sha256:862bbfa4513e6a95cb2626108b27152afdcc9e908798c87d825fcca81b82e599"
-            },
-            {
-              "path": "src/researcher.ts",
-              "sha256": "sha256:5721c9a1b276fe4214c619ee54a2d098deafaa029a05a8f9cee77f3513b9909b"
-            },
-            {
-              "path": "src/roles.ts",
-              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
-            },
-            {
-              "path": "src/runbook.ts",
-              "sha256": "sha256:79b1bda5e43d511e031fea90969f2b046662fce252b849c101c744ffdf69ca24"
-            },
-            {
-              "path": "src/runtimeSchemas.ts",
-              "sha256": "sha256:53413931dc3525de0690a28ffaebf451b82288d5ad1ae191e722ba330be1014d"
-            },
-            {
-              "path": "src/source-loader.ts",
-              "sha256": "sha256:021d771a36dfc8edbeacb0e0f6e4fbaf68d1addae3433a6bc831f0e042fb87b4"
-            },
-            {
-              "path": "src/source/sidecarSchema.ts",
-              "sha256": "sha256:f3c8efa9a2e7ce5ba0429a811755ac54e6b459444cb327635faeb29055f93b8c"
-            },
-            {
-              "path": "src/source/sourceEvidence.ts",
-              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
-            },
-            {
-              "path": "src/source/sourceIntegrity.ts",
-              "sha256": "sha256:ee9b8019e48d3490a92c4f13ec090d7ba0d3210d7aa42fdb0a6de6085b5391b8"
-            },
-            {
-              "path": "src/sourceFit.ts",
-              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
-            },
-            {
-              "path": "src/sourceVerifyWorkbench.ts",
-              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
-            },
-            {
-              "path": "src/types.ts",
-              "sha256": "sha256:0793786d8a1d22ef511addfbe16c1b8a9c826ea2cdbd1b045a10f96a40404d22"
-            },
-            {
-              "path": "src/verifyProductionPackage.ts",
-              "sha256": "sha256:91eef894c0b8165c3da951fc58c67fb72a9a3f51442d9ea73f723a34955c55be"
-            }
-          ]
-        },
-        "labels": {
-          "promptSet": "chapterflow-v21-authored-prompts-v1",
-          "config": "chapterflow-v21-authored-config-v1",
-          "code": "chapterflow-v21-authored-production-package-v1"
-        }
-      }
-    },
-    "metadata": {
-      "createdAt": "2026-06-25T01:33:02.856Z",
-      "generator": "promoteBook",
-      "runId": "manual-promote",
-      "packagePath": "book-packages/the-molecule-of-more.v21.json"
-    }
-  },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch01",
       "number": 1,
       "title": "Love",
@@ -1275,8 +124,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Montagu's Runwell work places dopamine in lab biochemistry first. The pleasure shortcut came later and can hide that chemical history.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1288,8 +136,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cue shift is the key. Once food is expected, dopamine marks the prediction update rather than simple pleasure at the bite.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1301,8 +148,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Prediction error depends on a gap between forecast and outcome. A routine reward can still be good while carrying less surprise.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1314,8 +160,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Peripersonal present means within reach. Extrapersonal future names what lies outside reach and needs planning across space and time.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1327,8 +172,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Wanting and liking can come apart. The app can energize pursuit without making the obtained match equally satisfying.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -1340,8 +184,7 @@
             ],
             "correctIndex": 1,
             "explanation": "New romance is potent because one cue can stand for many possible futures. That intensity does not prove compatibility by itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1353,8 +196,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Familiarity can lower prediction error without lowering quality. The near miss is treating a smaller rush as proof the object got worse.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1366,8 +208,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A cue can motivate before the reward arrives. The dot gets force by pointing toward a possible future message.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q09",
@@ -1379,8 +220,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long love cannot run on novelty alone. The source points toward present bonds once dopamine's future charge quiets.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1423,7 +263,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Wanting Gap",
         "coreSkill": "Practice noticing when the chase is larger than the thing you get. Check the Wanting Gap by naming the cue, the future it promises, and the present contact you can test. The aim is not to kill desire. It is to stop desire from pretending it has already proved satisfaction.",
         "ifThenPlans": [
           {
@@ -1448,24 +287,17 @@
       },
       "memorableLines": [
         {
-          "text": "The rush is a scout, not a home.",
-          "location": "breakdown.fastRead",
-          "why": "It separates first pursuit from lasting attachment."
+          "text": "The rush is a scout, not a home."
         },
         {
-          "text": "A cue pulls harder when it still carries news.",
-          "location": "breakdown.deepRead",
-          "why": "It gives prediction error a plain image."
+          "text": "A cue pulls harder when it still carries news."
         },
         {
-          "text": "What cannot be reached must be imagined.",
-          "location": "breakdown.fullRead",
-          "why": "It makes far-space desire easy to remember."
+          "text": "What cannot be reached must be imagined."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch02",
       "number": 2,
       "title": "Drugs",
@@ -1566,8 +398,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Olds and Milner showed that stimulation itself could reinforce behavior. The lesson did not have to wait for scanners or ordinary food rewards.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q02",
@@ -1579,8 +410,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cocaine effects connect to dopamine transporters, and timing matters. A rapid shift helps the brain connect the act with reward.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q03",
@@ -1592,8 +422,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The split says dopamine is more tied to wanting than liking. The high can thin while pursuit remains strong.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q04",
@@ -1605,8 +434,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Cue salience can last after physical withdrawal fades. The old street can reactivate pursuit before any drug is taken.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q05",
@@ -1618,8 +446,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Addictive drugs differ, but many converge on mesolimbic dopamine activity. The shared pathway explains why diverse drugs can train pursuit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q06",
@@ -1631,8 +458,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Tolerance can reduce pleasure without removing sensitized wanting. A duller high can still leave cues with strong pull.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q07",
@@ -1644,8 +470,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fast onset strengthens learning because the act and chemical surge are close in time. Dose alone does not capture that risk.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q08",
@@ -1657,8 +482,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Drug cues can activate prediction and pursuit before use. Craving can help cause relapse rather than merely follow it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "the-molecule-of-more-ch02-q09",
@@ -1670,8 +494,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Obvious costs do not disable sensitized pursuit circuits. Treatment has to work with cues, stress, habits, and control together.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1714,7 +537,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Cut the Cue Chain",
         "coreSkill": "Practice spotting the cue before you debate the craving. Cut the Cue Chain by removing one link that predicts relief: a route, contact, stash spot, payment path, or empty stretch of time. The aim is not perfect willpower. It is a few more seconds for control to return.",
         "ifThenPlans": [
           {
@@ -1739,24 +561,17 @@
       },
       "memorableLines": [
         {
-          "text": "Wanting can outlive liking.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's reversal into one sentence."
+          "text": "Wanting can outlive liking."
         },
         {
-          "text": "A cue is a promise with teeth.",
-          "location": "breakdown.deepRead",
-          "why": "It makes cue-triggered relapse vivid without jargon."
+          "text": "A cue is a promise with teeth."
         },
         {
-          "text": "The price of protecting wanting is giving up some easy relief.",
-          "location": "breakdown.fullRead",
-          "why": "It names the cost of applying the idea."
+          "text": "The price of protecting wanting is giving up some easy relief."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch03",
       "number": 3,
       "title": "Domination",
@@ -1857,8 +672,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source frames winners cheating as one dopamine-linked puzzle. The near miss pushes cheating outside desire, but the dopamine frame treats domination as success-seeking extended too far.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03.quiz.2",
@@ -1870,8 +684,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The sanctions covered a broad pattern, not one isolated mistake. Seven titles and the 2012 USADA case make the repeated win-at-cost pattern concrete.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03.quiz.3",
@@ -1883,8 +696,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The Enron fact centers hidden debt and accounting abuse. Energy prices or messaging are tempting side stories, but the key mechanism is future value replacing reality.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03.quiz.4",
@@ -1896,8 +708,7 @@
             ],
             "correctIndex": 2,
             "explanation": "SDO is not just a hot mood or a single argument style. It measures a steadier preference for hierarchy and inequality between groups.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03.quiz.5",
@@ -1909,8 +720,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Winner and loser effects say prior outcomes can shape later engagement. The zero-reset reading misses how past contests alter perceived resource strength.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03.quiz.6",
@@ -1922,8 +732,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Control dopamine can support planning without immediate pleasure. The tempting error is to assume motivation must come from enjoying the current task.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03.quiz.7",
@@ -1935,8 +744,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The risk is not strategy itself. Domination starts when people become tools for later outcomes and immediate human feedback stops binding the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03.quiz.8",
@@ -1948,8 +756,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hard edge separates ambition from domination. Strong drive can stay healthy when rules, facts, and people still constrain the pursuit.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03.quiz.9",
@@ -1961,8 +768,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source points to organized patterns over time, as in Armstrong and Enron. One bad moment is the shortcut the evidence pushes against.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -1999,7 +805,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Cost Line",
         "coreSkill": "Practice catching the moment a future prize starts shrinking the present. Write the Cost Line by putting the prize in plain words, then writing the present cost beside it. If the cost must be hidden, renamed, or pushed onto someone weaker, the plan is drifting toward domination.",
         "ifThenPlans": [
           {
@@ -2020,24 +825,17 @@
       },
       "memorableLines": [
         {
-          "text": "A win can become a leash.",
-          "location": "breakdown.fastRead",
-          "why": "It makes domination feel like being held by the prize you chased."
+          "text": "A win can become a leash."
         },
         {
-          "text": "Paper success cannot pay real bills.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the Enron lesson into a sentence a reader can reuse."
+          "text": "Paper success cannot pay real bills."
         },
         {
-          "text": "Strategy needs a handrail of reality.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the boundary a physical image."
+          "text": "Strategy needs a handrail of reality."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch04",
       "number": 4,
       "title": "Creativity and Madness",
@@ -2138,8 +936,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Nobel fact anchors Nash's real work in game theory. The film story is not the evidence used here to establish his achievement.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2151,8 +948,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source places signs of illness in 1959 and describes later treatment and disruption. Calling it a harmless quirk erases the cost.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2164,8 +960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The finding is narrow. It links lower filtering to creative achievement in high-functioning people, not to unbounded distraction for everyone.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2177,8 +972,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Latent inhibition is reduced attention to familiar, once-irrelevant stimuli. A weaker filter lets more of those cues into awareness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2190,8 +984,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source ties positive symptoms to disturbed dopamine signaling, especially D2 systems. It does not make dopamine the whole disease.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2203,8 +996,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Psychosis is not ordinary preference. The salience frame says a perception or idea can feel important before the belief is tested.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2216,8 +1008,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Creative insight needs divergent association and convergent evaluation. Surprise starts the work; testing and craft make it usable.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2229,8 +1020,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Dopamine can help assign significance, but salience is not truth. A charged signal still needs a check.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2242,8 +1032,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source allows a narrow overlap in mechanisms, then rejects the romance. Mental illness is not a source or requirement of creative achievement.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2286,7 +1075,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Trace Before You Trust",
         "coreSkill": "Practice catching the moment an idea feels bright before you believe it. Trace Before You Trust by logging the cue, the story it suggests, and one test. The move keeps loosened input useful without treating salience as truth.",
         "ifThenPlans": [
           {
@@ -2311,24 +1099,17 @@
       },
       "memorableLines": [
         {
-          "text": "Importance is a feeling, not a verdict.",
-          "location": "breakdown.fastRead",
-          "why": "It separates salience from truth in one portable line."
+          "text": "Importance is a feeling, not a verdict."
         },
         {
-          "text": "A spark still needs a switch.",
-          "location": "breakdown.deepRead",
-          "why": "It makes creative control feel like a simple circuit."
+          "text": "A spark still needs a switch."
         },
         {
-          "text": "A wide gate still needs a guard.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the balance between openness and testing."
+          "text": "A wide gate still needs a guard."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch05",
       "number": 5,
       "title": "Politics",
@@ -2429,8 +1210,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The public frame names liberal-conservative brain differences among its dopamine puzzles. Calling politics unrelated repeats the error the fact rules out.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2442,8 +1222,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The M/W go/no-go task measures response conflict. A party survey alone would miss the key action: stopping a press when the rare W appears.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2455,8 +1234,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The anterior cingulate result concerns response conflict, not global intelligence or worth. The narrow reading preserves the finding without turning it into a partisan trophy.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -2468,8 +1246,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Kanai's work used MRI data from 90 young adult volunteers and linked it to self-rated politics. That supports a limited correlation, not a universal scan test.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2481,8 +1258,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The regions fit a possible mechanism: threat processing and conflict monitoring. They do not prove birth destiny or a healthier political brain.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -2494,8 +1270,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The later replication made the early pattern more modest. The right move is not denial or full retreat, but softer language about noisy brain-politics links.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2507,8 +1282,7 @@
             ],
             "correctIndex": 1,
             "explanation": "DRD4 work is conditional. It links a variant with novelty seeking in social context, so the direct-gene-to-vote story overclaims the evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -2520,8 +1294,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Novelty seeking is a temperament tilt toward new stimulation. It can make change attractive, but it is not the same as policy analysis.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2533,8 +1306,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Biology can help explain risk and possibility bias. It cannot settle values, institutions, history, or policy truth by naming a brain type.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2577,7 +1349,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Check the Threat Lens",
         "coreSkill": "Practice catching the body signal before you answer a political claim. Check the Threat Lens by asking what feels endangered and what feels possible. Then return to the facts instead of letting the first alarm write your whole reply.",
         "ifThenPlans": [
           {
@@ -2602,24 +1373,17 @@
       },
       "memorableLines": [
         {
-          "text": "A body can vote before a mouth explains.",
-          "location": "breakdown.fastRead",
-          "why": "It makes political feeling physical before the reader reaches for party labels."
+          "text": "A body can vote before a mouth explains."
         },
         {
-          "text": "Genes do not vote; people do.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the deterministic reading in six plain words."
+          "text": "Genes do not vote; people do."
         },
         {
-          "text": "A scan can hint at a bias, not settle an argument.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps brain evidence useful without letting it overrule civic reasoning."
+          "text": "A scan can hint at a bias, not settle an argument."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch06",
       "number": 6,
       "title": "Progress",
@@ -2720,8 +1484,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source frame includes discovery, prosperity, and progress. The near-miss is shrinking dopamine to private appetite only.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2733,8 +1496,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source scales dopamine from individual behavior to human history. A tool-only story misses that species-level claim.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2746,8 +1508,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The launch facts point to coordinated work before the Moon moment. The single-moment reading drops the crew roles and sequencing.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2759,8 +1520,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The audience detail shows a public future becoming shared memory. Calling it private ignores the scale of the televised event.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -2772,8 +1532,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Wright fact rests on control, repeatability, and embodied testing. The lucky-leap version erases the years of work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2785,8 +1544,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Novelty seeking is not random motion in the source. It has a patterned link to new stimulation, risk, and reward.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2798,8 +1556,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The source warns against single-gene certainty. The tempting headline makes DRD4 explain more than the evidence can hold.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -2811,8 +1568,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Future-building drive lets delayed rewards motivate action now. The immediate-reward choice is the common error this fact rejects.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2824,8 +1580,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge is not anti-progress. It says the drive for more can misprice harm to bodies, relationships, and environments.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2868,7 +1623,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Count the Cost Before More",
         "coreSkill": "Practice catching the moment a future promise starts to feel bigger than the present facts. Count the Cost Before More means naming one present cost before you add one future gain. Then remove the smallest barrier to the first honest step.",
         "ifThenPlans": [
           {
@@ -2893,24 +1647,17 @@
       },
       "memorableLines": [
         {
-          "text": "More needs a brake.",
-          "location": "breakdown.fastRead",
-          "why": "It keeps the chapter's warning short enough to recall before overcommitting."
+          "text": "More needs a brake."
         },
         {
-          "text": "A dream is useful only when it changes the next test.",
-          "location": "breakdown.deepRead",
-          "why": "It turns progress from fantasy into a concrete standard for action."
+          "text": "A dream is useful only when it changes the next test."
         },
         {
-          "text": "Progress gets cruel when tomorrow eats today.",
-          "location": "breakdown.fullRead",
-          "why": "It names the overcorrection without denying the value of ambition."
+          "text": "Progress gets cruel when tomorrow eats today."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-molecule-of-more-ch07",
       "number": 7,
       "title": "Harmony",
@@ -3011,8 +1758,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The frame balances chemical modes. The tempting error is to make dopamine the villain instead of pairing pursuit with present experience.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3024,8 +1770,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The study links oxytocin with human trust behavior. The near-miss keeps trust only in conscious values and misses the body.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3037,8 +1782,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The participant count and money-transfer design point to a controlled human experiment. The animal-only reading misses this setup.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -3050,8 +1794,7 @@
             ],
             "correctIndex": 1,
             "explanation": "MBSR has a documented 1979 clinical origin. Calling it recent wellness culture erases its medical setting and history.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q05",
@@ -3063,8 +1806,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Mindfulness changes attention mode; it does not erase planning. The no-goals version mistakes presence for giving up direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3076,8 +1818,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source names oxytocin, serotonin, opioids, and related systems alongside dopamine. One molecule cannot explain every good feeling.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -3089,8 +1830,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Without endpoints, dopamine can turn achievement into another starting line. The larger-target option feeds the same restlessness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3102,8 +1842,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The final balance keeps ambition and novelty. The wrong turn is making contentment the end of desire rather than regulated desire.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -3115,8 +1854,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source warns that achievement can become a new start line. Ranking the blocks only sharpens the chase without adding arrival.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3159,7 +1897,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Take the Arrival Step",
         "coreSkill": "Practice giving pursuit a real endpoint before it turns into another chase. The Arrival Step is the endpoint action, not the mark. When a win makes you reach again, close the next-task surface and do one arrival action: taste the meal, rest your eyes, call someone, or stop. A small written cue can help, but only if it points to the action.",
         "ifThenPlans": [
           {
@@ -3184,19 +1921,13 @@
       },
       "memorableLines": [
         {
-          "text": "Wanting needs an off-ramp.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the balance idea a short physical image."
+          "text": "Wanting needs an off-ramp."
         },
         {
-          "text": "Trust is bodily before it is lofty.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the oxytocin evidence into a portable trust line."
+          "text": "Trust is bodily before it is lofty."
         },
         {
-          "text": "Arrival is a skill, not a mood.",
-          "location": "breakdown.fullRead",
-          "why": "It makes contentment feel trainable rather than vague."
+          "text": "Arrival is a skill, not a mood."
         }
       ]
     }

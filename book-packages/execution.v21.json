@@ -41,13 +41,6 @@
             "warehouse",
             "launch"
           ],
-          "planSpec": {
-            "domain": "a dock lead finding a missing trailer seal before a launch shipment",
-            "audience": "a warehouse supervisor trying to keep a new fulfillment promise honest",
-            "stakes": "a national retailer launch that will fail before sunrise if ownership stays vague",
-            "format": "scene",
-            "requiredBeat": "he sees the plan marked green while the seal is gone and realizes the next move has no owner"
-          },
           "scenario": "At 5:42 a.m., Rufino pinches the torn plastic tail of a trailer seal between two gloved fingers at bay 11. The launch board above the time clock is still marked green in thick marker. Three pallets for the Albuquerque truck are staged, but no one knows who checked the count after the night picker left sick. The yard dog is already backing in. Rufino is about to wave him forward when he sees the blank owner box beside final verification.",
           "whatToDo": "Stop the load, write one name beside final verification, and have that person count the pallets before the trailer door closes.",
           "whyItMatters": "The launch promise is not real until the last handoff has an owner. A green board without a named check only hides the gap until the truck leaves."
@@ -60,13 +53,6 @@
             "clinic",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "a clinic supervisor facing a broken intake handoff during a new scheduling rollout",
-            "audience": "a supervisor with patients arriving and a calm implementation email in her inbox",
-            "stakes": "whether the first clinic morning teaches the staff to hide or surface weak handoffs",
-            "format": "dialogue",
-            "requiredBeat": "she asks who owns the broken label-printer handoff instead of repeating that the rollout is live"
-          },
           "scenario": "\"The printer jammed again,\" Zeynep says, sticky labels curled around her wrist while the intake desk backs up. The waiting room at Harbor Pediatric is filling. \"The rollout note says front desk owns intake,\" Marisol says. \"Front desk owns greeting,\" Zeynep answers, looking at the half-printed chart. \"Who owns labels when the printer stops?\" The room goes quiet. She has to decide whether to keep greeting patients or stop long enough to name the missing handoff.",
           "whatToDo": "Name the handoff out loud, assign one person to own labels for the morning, and update the rollout note before the next patient checks in.",
           "whyItMatters": "A process fails where ownership is assumed. Naming the broken handoff teaches the team that reality can edit the plan while it still matters."
@@ -79,13 +65,6 @@
             "parks",
             "festival"
           ],
-          "planSpec": {
-            "domain": "a parks director approving a festival plan with unnamed safety owners",
-            "audience": "a city department head under pressure to keep a popular weekend event alive",
-            "stakes": "public safety, council pressure, and a plan that looks complete until weather hits",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to approve the festival permit before naming safety owners"
-          },
           "scenario": "Rain dots the plastic cover of the Maple Street festival binder as Bronwyn spreads it across the hood of her city truck. The permit map has tents, food trucks, and a first-aid station drawn in neat boxes. The safety page says parks team beside crowd flow, generator checks, and storm calls. Her pen hovers over the approval line. The council chair is texting again. Bronwyn must decide whether a team name is enough to carry a thunderstorm.",
           "whatToDo": "Refuse the approval until each safety task has a named owner, a trigger for action, and a check-in time before gates open.",
           "whyItMatters": "A festival plan with team ownership feels polite and fails under weather. Safety work needs a person who knows when to act and can be found fast."
@@ -98,13 +77,6 @@
             "robotics",
             "students"
           ],
-          "planSpec": {
-            "domain": "a robotics coach reviewing why a competition robot failed inspection",
-            "audience": "a volunteer coach who praised effort but never assigned final verification",
-            "stakes": "students learning whether enthusiasm can replace ownership under pressure",
-            "format": "postmortem",
-            "requiredBeat": "he sees the exact missing owner that turned a strong build week into a failed inspection"
-          },
           "scenario": "It takes Cormac until the cold pizza is gone to see that the robot's loose left wheel was never assigned to anyone. The students had stayed late all week. The whiteboard still says drive team ready. He reads the checklist again and finds three initials beside wiring, two beside code, and nothing beside final bolt torque. That blank square is the moment the promise thinned out. He writes it on the margin before he locks the door.",
           "whatToDo": "Make final verification its own owned task, with one student signing the torque check before the robot leaves the shop.",
           "whyItMatters": "Effort can fill a room and still miss the last inch. The failure was not morale, it was a promise without a final owner."
@@ -117,13 +89,6 @@
             "bakery",
             "growth"
           ],
-          "planSpec": {
-            "domain": "a bakery owner turning a growth promise into operating checks after an oven failure",
-            "audience": "a small business owner who likes the new-account goal more than the support work",
-            "stakes": "whether six new wholesale accounts become revenue or missed deliveries",
-            "format": "before_after",
-            "requiredBeat": "the dead oven forces her to add names, checks, and dates to the expansion plan"
-          },
           "scenario": "Which promise breaks first when a dead oven meets six new wholesale accounts? Before tonight, the wholesale plan was a bright list on the fridge: six new cafes by June. After the silent oven, she pulls the list down and writes smaller lines under it. Who checks burners on Sunday. Who calls the repair tech. Which cafe gets frozen backup loaves if the second oven fails. The goal has not changed, but the paper finally starts to look like work.",
           "whatToDo": "Keep the growth target, but attach the maintenance owner, backup route, and weekly capacity check that let the promise survive a bad morning.",
           "whyItMatters": "Expansion fails when the attractive goal outruns the system beneath it. The oven turns ambition into visible operating duties."
@@ -136,13 +101,6 @@
             "school",
             "music"
           ],
-          "planSpec": {
-            "domain": "a band director testing whether rehearsal applause proves performance readiness",
-            "audience": "a teacher whose students confuse a good full run with a ready concert",
-            "stakes": "a spring concert that will expose the weak measure in front of families",
-            "format": "predict_reveal",
-            "requiredBeat": "he predicts the hard passage will fail when isolated and uses the reveal to reset practice"
-          },
           "scenario": "You hear the cracked metronome before Laszlo taps it on the piano after the seventh-grade band finishes a clean full run. The concert is Friday. He asks the trumpets what will happen if they start alone at measure 38. \"We'll be fine,\" Briar says, grinning. Laszlo counts them in. By beat three the back row is late and the melody sags. The applause drains out of the room. He has to decide what the next twenty minutes are for.",
           "whatToDo": "Treat the failed measure as the real status report. Spend the next block on the exposed passage, with one clear owner for counting the entrance.",
           "whyItMatters": "A clean full run can hide the weak link. Execution needs proof at the point of strain, not applause around the whole promise."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Turning aspiration into execution: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Turning aspiration into execution: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Turning aspiration into execution: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Turning aspiration into execution: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch01-q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Turning aspiration into execution: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch01-q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Turning aspiration into execution: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch01-q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Turning aspiration into execution: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch01-q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Turning aspiration into execution: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch01-q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Turning aspiration into execution: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -321,19 +270,13 @@
       },
       "memorableLines": [
         {
-          "text": ", Rufino finds a missing trailer seal on bay 11 while the launch poster still says green.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": ", Rufino finds a missing trailer seal on bay 11 while the launch poster still says green."
         },
         {
-          "text": "The room agreed, the poster smiled, and the hardest handoff never received a real owner.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The room agreed, the poster smiled, and the hardest handoff never received a real owner."
         },
         {
-          "text": "Put one name beside the next breakable step, name the assumption that could fail, and choose the first proof you will check.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Put one name beside the next breakable step, name the assumption that could fail, and choose the first proof you will check."
         }
       ]
     },
@@ -360,13 +303,6 @@
             "refinery",
             "truth"
           ],
-          "planSpec": {
-            "domain": "a refinery shift manager noticing a muted alarm beneath a clean morning report",
-            "audience": "a plant leader tempted to trust the summary more than the control room",
-            "stakes": "whether a pressure issue is corrected early or hidden until shutdown",
-            "format": "scene",
-            "requiredBeat": "he sees the report is green while panel C is telling a rougher truth"
-          },
           "scenario": "At 4:08 a.m., Mirek stands in the refinery control room with one hand on a Styrofoam cup and one ear turned toward panel C. The alarm has been muted twice. Upstairs, the morning report already says pressure stable, because the line has not crossed the red limit. Jessa, the board operator, keeps glancing at valve 14. Mirek is about to initial the shift handoff when the panel chirps again, softer than the coffee machine.",
           "whatToDo": "Delay the clean handoff, walk to the valve log with Jessa, and send the raw pressure pattern upstairs before the report is accepted.",
           "whyItMatters": "Strong execution notices the signal before it becomes a headline. A green report is useful only if it still listens to the floor."
@@ -379,13 +315,6 @@
             "hotel",
             "service"
           ],
-          "planSpec": {
-            "domain": "a hotel general manager finding a hidden housekeeping backlog",
-            "audience": "a manager whose readiness dashboard masks a staff shortage",
-            "stakes": "guest check-ins, staff trust, and whether bad news reaches the morning meeting",
-            "format": "dialogue",
-            "requiredBeat": "she makes the towel pile a live fact in the meeting instead of accepting the dashboard"
-          },
           "scenario": "\"Why are the towels still by the service elevator?\" Sanaa asks, pointing to the damp tower at the Wycliffe Hotel. \"The board says third floor is ready,\" the rooms director says. \"Then why is the third-floor linen here?\" Sanaa asks. A housekeeper named Brigit looks down and says the chute jammed at midnight. Sanaa can feel the meeting trying to move on. She must decide whether the towel pile enters the official status.",
           "whatToDo": "Bring Brigit and the towel backlog into the morning huddle, then change the ready count before guests arrive.",
           "whyItMatters": "A system improves when rough facts travel without shame. The pile is a better status signal than the clean board."
@@ -398,13 +327,6 @@
             "telecom",
             "field"
           ],
-          "planSpec": {
-            "domain": "a telecom field lead deciding whether to soften a bad network rollout update",
-            "audience": "a field manager trying to protect credibility while crews wait in the rain",
-            "stakes": "a delayed neighborhood activation and an executive room that may never hear the real blocker",
-            "format": "decision_point",
-            "requiredBeat": "he chooses between the clean update and the true update with the missing part named"
-          },
           "scenario": "Rain ticks against the orange cone crate while Keir sits in the splice van on Dunbar Street. Two crews are waiting on the same missing 432-count enclosure. His draft update says activation remains in progress, no customer impact yet. It is true in the smallest way. His phone camera is open on the open splice case and the empty bracket where the part should be. He has to decide which version reaches the regional call.",
           "whatToDo": "Send the photo, name the missing part, and ask for a decision on allocation before the regional call moves past rollout status.",
           "whyItMatters": "A softened update preserves comfort and destroys response time. The useful truth is the one that lets someone act."
@@ -417,13 +339,6 @@
             "school",
             "attendance"
           ],
-          "planSpec": {
-            "domain": "a school principal reviewing why attendance outreach did not change results",
-            "audience": "a principal whose team made many calls but did not close the right gap",
-            "stakes": "students staying chronically absent while the staff believes the process is active",
-            "format": "postmortem",
-            "requiredBeat": "she sees that motion was counted while the key families were never reached"
-          },
           "scenario": "It takes Yvette two attendance charts on the library wall to see the same missing families counted twice. The outreach log is full of call marks. The absence list has the same six families circled in blue both weeks. One number looked busy, the other did not move. She writes the names on a sticky note, then writes unreachable beside four of them. The postmortem is no longer about effort. It is about which truth the staff reviewed.",
           "whatToDo": "Change the review from call volume to reached families, then assign next actions for the names that stayed untouched.",
           "whyItMatters": "Activity can make a weak process look alive. Execution improves when the measure tracks the result that must actually change."
@@ -436,13 +351,6 @@
             "plant",
             "dashboard"
           ],
-          "planSpec": {
-            "domain": "a plant controller comparing dashboard calm with physical quality evidence",
-            "audience": "a finance-minded operator who needs floor truth before signing off output",
-            "stakes": "defective shipments and whether managers learn to trust only the screen",
-            "format": "before_after",
-            "requiredBeat": "he shifts from reviewing dashboard numbers to carrying the cracked tray into the meeting"
-          },
           "scenario": "What does a cracked tray say that the packaging dashboard refuses to show? Before the floor walk, he is ready to approve the shift summary. After he lifts a cracked sample tray from the reject bin and sees six more underneath, the number feels too smooth. He walks upstairs with the tray under his arm. The plant manager is already on slide two. Gwilym sets the tray on the table before he speaks.",
           "whatToDo": "Let the physical defect interrupt the meeting. Reconcile the dashboard with the reject bin before the shift summary becomes the accepted story.",
           "whyItMatters": "Clean numbers need contact with rough evidence. The tray forces the team to test whether the measure still matches the work."
@@ -455,13 +363,6 @@
             "product",
             "warning"
           ],
-          "planSpec": {
-            "domain": "a product lead testing whether beta warnings are reaching executives intact",
-            "audience": "a product leader with a cheerful launch narrative and a messy wall of unresolved blockers",
-            "stakes": "a beta release that can still be corrected if the warnings travel whole",
-            "format": "predict_reveal",
-            "requiredBeat": "she predicts which blocker will disappear in the executive summary and checks it against the draft"
-          },
           "scenario": "You press the yellow sticky note back onto the beta wall for the third time beside Noura. It says invoices fail after partial refunds. The launch summary on her laptop says payments testing continues. She asks the room which warning will vanish by the time the update reaches executives. No one answers. She opens the draft summary, reads the payments line aloud, and the designer beside her exhales. Noura has to decide whether to let the softer sentence stand.",
           "whatToDo": "Replace the soft payments line with the exact refund failure, the owner, and the date for a fix decision.",
           "whyItMatters": "Warnings lose value as they lose shape. Execution depends on bad news arriving with enough detail to change action."
@@ -480,8 +381,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reading the execution difference: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q02",
@@ -493,8 +393,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the execution difference: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q03",
@@ -506,8 +405,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reading the execution difference: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q04",
@@ -519,8 +417,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reading the execution difference: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch02-q05",
@@ -532,8 +429,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the execution difference: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch02-q06",
@@ -545,8 +441,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reading the execution difference: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch02-q07",
@@ -558,8 +453,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Reading the execution difference: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch02-q08",
@@ -571,8 +465,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Reading the execution difference: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch02-q09",
@@ -584,8 +477,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Reading the execution difference: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -640,19 +532,13 @@
       },
       "memorableLines": [
         {
-          "text": "Mirek hears a muted pressure alarm in the refinery control room while the upstairs summary still says normal.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Mirek hears a muted pressure alarm in the refinery control room while the upstairs summary still says normal."
         },
         {
-          "text": "The work is already speaking, but the report has learned a calmer language.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The work is already speaking, but the report has learned a calmer language."
         },
         {
-          "text": "Read execution quality by watching how truth travels.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Read execution quality by watching how truth travels."
         }
       ]
     },
@@ -679,13 +565,6 @@
             "hospital",
             "proximity"
           ],
-          "planSpec": {
-            "domain": "a hospital COO discovering a supply gap that the dashboard misses",
-            "audience": "an executive who needs to know the business by touching the work",
-            "stakes": "a surgery morning delayed by a supply truth hidden behind clean counts",
-            "format": "scene",
-            "requiredBeat": "she walks from dashboard certainty to the overflowing gown bin and changes the review"
-          },
           "scenario": "At 7:22 a.m., Fumiko steps around a blue bin outside pre-op with paper gowns puffing over the rim like blown insulation. Her tablet says stocked, because central supply scanned the case last night. A scrub tech named Willa is tearing open the last sleeve pack with her teeth. Fumiko has a finance review in eight minutes. She is about to keep walking when Willa says, not loud, \"We scan boxes, not rooms.\"",
           "whatToDo": "Stay in the hallway, ask Willa to show the gap between scanned stock and room stock, and move that fact into the finance review.",
           "whyItMatters": "Knowing the work means finding the place where the report stops seeing. Proximity lets the leader correct the measure before the delay spreads."
@@ -698,13 +577,6 @@
             "co-op",
             "realism"
           ],
-          "planSpec": {
-            "domain": "a farm co-op chair forcing realism before a tanker schedule vote",
-            "audience": "a chairperson balancing member pride with a quality problem",
-            "stakes": "a failed dairy pickup and whether members can speak plainly about bad test results",
-            "format": "dialogue",
-            "requiredBeat": "she makes the vial the fact everyone must face before voting"
-          },
           "scenario": "At 5:55 a.m. in the Grange hall co-op vote, \"The tanker route is fine,\" Eamon says while Orla holds a cloudy milk test vial under the fluorescent light. \"The tanker route is fine,\" Eamon says, arms folded over his feed-store jacket. \"Then tell me what this is,\" Orla says, setting the vial beside the vote slips. The room smells of wet wool and coffee. She can feel the members wanting loyalty more than truth. The vote is in four minutes, and she must decide whether to let pride set the schedule.",
           "whatToDo": "Put the test result in the center of the discussion, ask what it means for the route, and delay the vote until the quality fact is owned.",
           "whyItMatters": "Realism is a leadership behavior because people need permission to face the fact that embarrasses the group."
@@ -717,13 +589,6 @@
             "software",
             "priorities"
           ],
-          "planSpec": {
-            "domain": "a software director narrowing launch goals during a late deploy",
-            "audience": "a leader whose team cannot execute nine priorities with one release window",
-            "stakes": "a Friday launch at risk from scattered pressure",
-            "format": "decision_point",
-            "requiredBeat": "he chooses three priorities instead of pretending nine can all carry full force"
-          },
           "scenario": "The deploy console blinks amber behind Dinesh as nine launch goals fill the whiteboard. Two engineers are eating vending-machine crackers. The customer import, billing patch, and audit log all need the same reviewer before midnight. Dinesh has a marker cap between his teeth. He is about to say we need all of it when he sees the reviewer rubbing her eyes. He has to pick what the release will truly protect.",
           "whatToDo": "Erase the lower-priority goals, name the three that must survive tonight, and assign follow-through checks for those three only.",
           "whyItMatters": "Clear priorities turn pressure into action. Nine equal goals are not ambition, they are a refusal to choose."
@@ -736,13 +601,6 @@
             "coaching",
             "rewards"
           ],
-          "planSpec": {
-            "domain": "a youth soccer coach reviewing which players she rewarded after a poor tournament",
-            "audience": "a coach learning that praise can train the wrong behavior",
-            "stakes": "whether the team values delivery or visible confidence",
-            "format": "postmortem",
-            "requiredBeat": "she sees that her praise went to talkers while quiet doers made the team function"
-          },
           "scenario": "It takes Petra until 8:47 p.m. in the empty parking lot after the tournament loss to notice who really carried practice. She kept praising Ronan, the captain with the loud huddles. The drill sheets in her hand tell another story. Sibel arrived early, set every cone, paired the new players, and never once got the first shout-out. Petra writes reward the doer on the back of the lineup card before the field lights click off.",
           "whatToDo": "Open the next practice by naming Sibel's concrete contributions, then tie future praise to work that improves the team's execution.",
           "whyItMatters": "People copy what earns status. If visible talk gets the reward, quiet follow-through starts to look optional."
@@ -755,13 +613,6 @@
             "machine-shop",
             "coaching"
           ],
-          "planSpec": {
-            "domain": "a machine-shop owner coaching a foreman through a slipping queue",
-            "audience": "an owner who usually fixes the schedule himself and leaves capability unchanged",
-            "stakes": "a foreman who either learns the constraint or keeps waiting for rescue",
-            "format": "before_after",
-            "requiredBeat": "he shifts from correcting the queue to building the foreman's skill"
-          },
           "scenario": "What should Ilyas do when lathe four sits idle and the mill queue backs up? Before, he would grab the clipboard, reorder the jobs, and leave the foreman embarrassed. Today he points to the idle lathe and asks Halina what the queue is telling her. She starts with excuses, then notices the missing inspection stamp on the third job. Ilyas keeps his finger off the clipboard while she calls inspection herself.",
           "whatToDo": "Coach from the constraint. Ask the foreman to read the queue, identify the blocker, and make the call while you watch.",
           "whyItMatters": "Execution improves when leaders build capability, not only when they fix today's miss with their own hands."
@@ -774,13 +625,6 @@
             "newsroom",
             "self-knowledge"
           ],
-          "planSpec": {
-            "domain": "a newsroom editor noticing her own defensiveness when a junior reporter corrects her",
-            "audience": "a leader whose emotional reaction can make honesty expensive",
-            "stakes": "whether junior staff keep surfacing errors before publication",
-            "format": "reflection",
-            "requiredBeat": "she catches the private sting that could punish truth if she lets it drive her response"
-          },
           "scenario": "You see cold tea beside Solange's keyboard while a junior reporter's correction glows in the CMS. The reporter is right. The quote attribution is wrong. Solange feels heat rise in her neck before she feels relief. Her first draft reply is clipped enough to teach a lesson nobody should learn. She deletes it, stares at the blinking cursor, and writes thank you first.",
           "whatToDo": "Answer the correction with thanks, fix the line, and tell the reporter in the morning that catching errors early is valued.",
           "whyItMatters": "Self-knowledge is practical. A leader's unmanaged sting can train people to hide the exact truth the work needs."
@@ -799,8 +643,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Using leader behavior as execution discipline: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q02",
@@ -812,8 +655,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Using leader behavior as execution discipline: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q03",
@@ -825,8 +667,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Using leader behavior as execution discipline: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q04",
@@ -838,8 +679,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Using leader behavior as execution discipline: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch03-q05",
@@ -851,8 +691,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Using leader behavior as execution discipline: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch03-q06",
@@ -864,8 +703,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Using leader behavior as execution discipline: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch03-q07",
@@ -877,8 +715,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Using leader behavior as execution discipline: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch03-q08",
@@ -890,8 +727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Using leader behavior as execution discipline: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch03-q09",
@@ -903,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Using leader behavior as execution discipline: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -959,19 +794,13 @@
       },
       "memorableLines": [
         {
-          "text": ", Fumiko sees gowns spilling from a bin outside pre-op while the supply dashboard still says stocked.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": ", Fumiko sees gowns spilling from a bin outside pre-op while the supply dashboard still says stocked."
         },
         {
-          "text": "Leader behavior is execution when it keeps you close enough to act.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "Leader behavior is execution when it keeps you close enough to act."
         },
         {
-          "text": ", Orla holds a cloudy milk test vial at the farm co-op meeting while three members argue that the tanker schedule is fine.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": ", Orla holds a cloudy milk test vial at the farm co-op meeting while three members argue that the tanker schedule is fine."
         }
       ]
     },
@@ -998,13 +827,6 @@
             "sales",
             "reward"
           ],
-          "planSpec": {
-            "domain": "a sales VP correcting a reward signal before bonus payout",
-            "audience": "a leader whose incentive system praises bookings while ignoring follow-through",
-            "stakes": "a team learning whether unresolved renewals matter",
-            "format": "scene",
-            "requiredBeat": "she sees the wrong behavior about to receive the strongest signal"
-          },
           "scenario": "At 4:32 p.m., Hannelore stands beside the payroll cart with a cream bonus envelope between two fingers. The largest check is for a rep who booked new logos and left three renewals tangled in legal. Across the floor, Dov is still on the phone saving one of those accounts. The value poster says customer ownership in silver letters. The envelope says something else. Payroll closes in eighteen minutes, and Hannelore has to decide which lesson the floor gets tomorrow.",
           "whatToDo": "Hold the payout, add renewal follow-through to the bonus review, and explain the change with the two account files on the table.",
           "whyItMatters": "Culture follows consequence. If unfinished handoffs earn the biggest reward, the poster becomes decoration and the behavior spreads."
@@ -1017,13 +839,6 @@
             "factory",
             "candor"
           ],
-          "planSpec": {
-            "domain": "a factory safety lead challenging a manager who ignored a blocked aisle during a tour",
-            "audience": "a safety lead deciding whether candor survives a polished executive visit",
-            "stakes": "whether the crew learns to hide hazards for tours",
-            "format": "dialogue",
-            "requiredBeat": "he names the ignored blocked aisle in front of the manager after praise lands"
-          },
           "scenario": "\"The aisle is clear enough for the tour,\" someone says as Bosco stands by press seven with a broom in his hand. The plant manager has just told the visiting executives, \"Great housekeeping today.\" When they leave, the crew looks at the floor. Bosco says, \"Do we want the tour version or the aisle version?\" The manager's smile tightens. The pallet smells of warm oil. Bosco has to decide whether the question dies there.",
           "whatToDo": "Keep the blocked aisle in the conversation, ask who clears it by noon, and make the tour debrief include hazards that were skipped.",
           "whyItMatters": "Robust dialogue matters only if it changes what happens next. Otherwise people learn to polish the route and hide the risk."
@@ -1036,13 +851,6 @@
             "restaurant",
             "consequence"
           ],
-          "planSpec": {
-            "domain": "a restaurant owner deciding whether low labor cost excuses a bullying manager",
-            "audience": "an owner whose tolerated behavior is teaching the staff what counts",
-            "stakes": "runner turnover and whether respectful standards mean anything",
-            "format": "decision_point",
-            "requiredBeat": "she chooses whether to act on known behavior despite strong numbers"
-          },
           "scenario": "The iced tea glass sweats beside Amrita's payroll sheets in booth six. The night manager's labor cost is the best in the group. His runner turnover is also the worst, and everyone knows why. In the kitchen, a sixteen-year-old is wiping sauce from his sleeve and blinking hard. Amrita has a praise note drafted for the manager's numbers. Her thumb hovers over send. She must decide what the restaurant is really rewarding.",
           "whatToDo": "Cancel the praise note, meet the manager with the turnover facts, and tie his role to behavior standards as well as cost numbers.",
           "whyItMatters": "Tolerated behavior is also a reward. Staff read what leaders allow more closely than what leaders say."
@@ -1055,13 +863,6 @@
             "product",
             "dialogue"
           ],
-          "planSpec": {
-            "domain": "a product chief reviewing why bold ideas never became action",
-            "audience": "a leader whose meetings celebrate candor but do not absorb it",
-            "stakes": "a team learning whether challenge produces decisions or just theater",
-            "format": "postmortem",
-            "requiredBeat": "he sees that applause replaced ownership after hard ideas surfaced"
-          },
           "scenario": "It takes Merrill until 2:14 p.m. in the small conference room, replaying the product review alone, to hear what the applause failed to change. The team applauded Sorcha's pricing challenge. No one wrote an owner beside it. No date moved. No customer call was assigned. On the video replay, Merrill watches himself nod and say great thinking before sliding to the next agenda item. He pauses the frame on Sorcha closing her notebook. That is when the room learned what hard dialogue was worth.",
           "whatToDo": "Reopen the pricing issue, assign an owner and customer calls, and start future reviews by checking what changed after the last hard question.",
           "whyItMatters": "Candor dies when it produces applause but no action. People stop risking truth when the system cannot use it."
@@ -1074,13 +875,6 @@
             "warehouse",
             "standard"
           ],
-          "planSpec": {
-            "domain": "a warehouse manager exposing a hidden damaged-returns stack",
-            "audience": "a manager changing the standard from clean appearance to truthful flow",
-            "stakes": "inventory accuracy and whether teams hide problems before audits",
-            "format": "before_after",
-            "requiredBeat": "she changes the daily standard after finding physical proof of hidden drift"
-          },
           "scenario": "What do damaged mixers under shrink wrap teach at 6:41 a.m. in the returns cage before Svetla even opens the report? Damaged mixers are tucked under shrink wrap behind holiday display bins. Before today, the morning walk rewarded clean aisles. After she drags the hidden stack into the open, she adds one line to the huddle board: visible problems by 10. The crew watches her leave the stack where customers will not see it but every supervisor will.",
           "whatToDo": "Make hidden defects visible inside the operation, then reward teams for surfacing problems early instead of staging a clean-looking floor.",
           "whyItMatters": "A culture that hides defects protects appearance. A culture that exposes them can correct flow before the audit or customer finds the truth."
@@ -1093,13 +887,6 @@
             "finance",
             "truth"
           ],
-          "planSpec": {
-            "domain": "a finance director noticing analysts stop debating once a senior executive enters",
-            "audience": "a director trying to make truthful disagreement safe",
-            "stakes": "a forecast that may stay wrong because status shuts down challenge",
-            "format": "reflection",
-            "requiredBeat": "she notices the silence as the real culture signal and chooses how to respond"
-          },
           "scenario": "You hold a red pen over Paloma's demand forecast when the senior vice president steps into the room. Two analysts who were arguing about churn go quiet at once. The projector fan hums louder than anyone's voice. Paloma sees the old pattern settle over the table: debate below, agreement above. She feels the easy move, summarize and proceed. Instead she leaves the silence alone for five full seconds and looks back at the analysts.",
           "whatToDo": "Name the silence, invite the churn disagreement back into the room, and thank the first analyst who challenges the number.",
           "whyItMatters": "People learn whether truth is safe by watching small status moments. A leader can either seal the silence or reopen the work."
@@ -1118,8 +905,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Changing culture through consequence: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q02",
@@ -1131,8 +917,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Changing culture through consequence: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q03",
@@ -1144,8 +929,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Changing culture through consequence: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q04",
@@ -1157,8 +941,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Changing culture through consequence: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch04-q05",
@@ -1170,8 +953,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Changing culture through consequence: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch04-q06",
@@ -1183,8 +965,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Changing culture through consequence: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch04-q07",
@@ -1196,8 +977,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Changing culture through consequence: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch04-q08",
@@ -1209,8 +989,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Changing culture through consequence: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch04-q09",
@@ -1222,8 +1001,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Changing culture through consequence: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1278,19 +1056,13 @@
       },
       "memorableLines": [
         {
-          "text": "Hannelore sees the biggest bonus envelope go to the rep who left three renewals unresolved.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Hannelore sees the biggest bonus envelope go to the rep who left three renewals unresolved."
         },
         {
-          "text": "Make hard truth useful after someone says it out loud.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "Make hard truth useful after someone says it out loud."
         },
         {
-          "text": "People do not need to decode your stated values when your rewards, silences, and tolerated exceptions are already teaching them what counts.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "People do not need to decode your stated values when your rewards, silences, and tolerated exceptions are already teaching them what counts."
         }
       ]
     },
@@ -1317,13 +1089,6 @@
             "warehouse",
             "fit"
           ],
-          "planSpec": {
-            "domain": "an operations leader reviewing a promotion packet for a weak floor supervisor",
-            "audience": "a leader tempted to accept a comfortable promotion recommendation",
-            "stakes": "a pick line that will inherit the cost of a poor fit",
-            "format": "scene",
-            "requiredBeat": "he smells fresh toner on the packet and faces the fit truth the floor already knows"
-          },
           "scenario": "At 10:36 a.m., Beck lifts the promotion packet from the copier while the toner is still warm. The recommendation says Turlough is ready for pick-line supervisor. Ten feet away, packers are waiting for a slotting call Turlough has avoided since dawn. He is liked, punctual, and careful with reports. He also freezes when two leads disagree. Beck's pen is above the approval box. He must decide whether pleasant history is enough for a job that now needs fast calls.",
           "whatToDo": "Hold the promotion, write the role demands in plain language, and meet Turlough with a development path tied to real supervisor decisions.",
           "whyItMatters": "Fit is about the work now, not affection or tenure. A comfortable promotion can move the cost onto everyone the supervisor must lead."
@@ -1336,13 +1101,6 @@
             "hospital",
             "courage"
           ],
-          "planSpec": {
-            "domain": "a nursing director deciding whether a liked candidate can handle conflict-heavy manager work",
-            "audience": "a director balancing loyalty with patient safety",
-            "stakes": "missed medication checks and a unit that needs decisive leadership",
-            "format": "dialogue",
-            "requiredBeat": "she names the conflict gap instead of approving the liked candidate"
-          },
           "scenario": "\"Everyone trusts Calla,\" the clinic director says while Lirit grips the nurse manager file in the north stairwell. \"Everyone trusts Calla,\" the recruiter says through the phone. On the landing below, two charge nurses are still arguing about missed medication checks. Lirit says, \"Trust is not the whole job.\" The recruiter goes quiet. The file smells like printer ink. Lirit must decide whether to say the harder part: Calla has avoided every conflict this unit now needs her to face.",
           "whatToDo": "Name the conflict requirement, pause the appointment, and test Calla against that requirement with a clear coaching plan or a different role.",
           "whyItMatters": "Courage protects both the person and the work. Avoiding the fit truth lets a liked candidate fail in public later."
@@ -1355,13 +1113,6 @@
             "plant",
             "misfit"
           ],
-          "planSpec": {
-            "domain": "a plant leader judging a charismatic lead whose follow-through is weak",
-            "audience": "a leader who confuses customer charm with execution strength",
-            "stakes": "a maintenance backlog that can shut down a line",
-            "format": "decision_point",
-            "requiredBeat": "he must decide whether the charming tour changes the fit problem"
-          },
           "scenario": "The visitors laugh at Vale's safety-glasses joke while Nestor watches the maintenance board behind the curtain. The visitors laugh, and Nestor has to decide whether charm is hiding the role-fit failure. Behind the curtain, the maintenance board has fourteen overdue red tags, seven with Vale's initials beside first review. Nestor has been telling himself Vale energizes people. The customer lead asks if Vale is the permanent operations head. Nestor smiles, then sees the red tags through the window.",
           "whatToDo": "Separate charm from execution. Review Vale against follow-through, hard calls, and backlog ownership before making any role promise.",
           "whyItMatters": "A person can energize a room and still fail the job. Placement judgment has to match role demand, not the easiest visible strength."
@@ -1374,13 +1125,6 @@
             "retail",
             "cost"
           ],
-          "planSpec": {
-            "domain": "a retail district manager reviewing the hidden load caused by a poor store-manager fit",
-            "audience": "a leader who delayed a staffing decision in the name of patience",
-            "stakes": "burnout among stronger employees and a store that never stabilizes",
-            "format": "postmortem",
-            "requiredBeat": "she sees the cost of delay spread across four other people"
-          },
           "scenario": "It takes four printed resignation texts on Coralie's passenger seat to show who is carrying one misfit role. Each one mentions helping the manager catch up after close. She had called it patience. She had called it giving Huw time. Now she circles the same phrase in all four notes: doing his job too. The mall doors are still locked. Coralie writes the sentence she avoided for three months: this role is bigger than Huw can carry today.",
           "whatToDo": "Stop calling the delay development. Reassign the role, give Huw a smaller path he can win, and repair the load carried by the remaining team.",
           "whyItMatters": "Avoidance has a payroll. When one person is badly placed, stronger people quietly subsidize the decision until they leave."
@@ -1393,13 +1137,6 @@
             "succession",
             "bench"
           ],
-          "planSpec": {
-            "domain": "a logistics executive discovering a succession plan is only one name deep",
-            "audience": "a leader who mistook a favorite backup for real depth",
-            "stakes": "operational continuity after a warehouse emergency",
-            "format": "before_after",
-            "requiredBeat": "a fire drill exposes that the bench is not real"
-          },
           "scenario": "What does a sealed succession folder prove after a fire drill leaves thirty drivers waiting in the yard? Before the drill, the folder looked complete because one respected dispatcher was listed under site lead backup. After the drill, everyone learned he was on vacation and no second person knew the hazmat gate call tree. Rikke writes two columns on the folder flap: named backup and tested backup. Only one column has ink.",
           "whatToDo": "Build real depth by naming and testing second backups for critical roles, not just storing a favorite name in a folder.",
           "whyItMatters": "Succession depth is proved under absence. One admired backup is a hope, not a process that can carry the work."
@@ -1412,13 +1149,6 @@
             "nonprofit",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "a nonprofit director realizing he is avoiding a staff fit conversation",
-            "audience": "a mission-driven leader who dislikes hard personnel judgment",
-            "stakes": "program quality and a coordinator who may need a different role",
-            "format": "reflection",
-            "requiredBeat": "he catches the comforting word he has used to delay a clear fit call"
-          },
           "scenario": "You sit with Tavon in the after-school center while bead bins stay open and tomorrow's volunteer schedule is half filled. He hears himself tell the board chair, again, that Rowena needs more time as program coordinator. The phrase sounds kind until he looks at the parent complaints clipped under a magnet. Three late pickups, two missing allergy forms, one locked supply closet. Patience is not the word anymore. His mouth is dry when he picks up the phone.",
           "whatToDo": "Replace the vague promise of more time with a fit conversation: current role demands, observed misses, and the next role or support decision.",
           "whyItMatters": "Clear judgment is not the enemy of care. It is what lets care become a role that the person and the program can actually carry."
@@ -1437,8 +1167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owning role fit: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q02",
@@ -1450,8 +1179,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Owning role fit: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q03",
@@ -1463,8 +1191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Owning role fit: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q04",
@@ -1476,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owning role fit: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch05-q05",
@@ -1489,8 +1215,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Owning role fit: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch05-q06",
@@ -1502,8 +1227,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Owning role fit: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch05-q07",
@@ -1515,8 +1239,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owning role fit: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch05-q08",
@@ -1528,8 +1251,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Owning role fit: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch05-q09",
@@ -1541,8 +1263,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Owning role fit: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1597,19 +1318,13 @@
       },
       "memorableLines": [
         {
-          "text": "Beck lifts a promotion packet from the copier while the pick line waits for a supervisor nobody trusts.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Beck lifts a promotion packet from the copier while the pick line waits for a supervisor nobody trusts."
         },
         {
-          "text": "If the gap is real, choose coaching, a new seat, or a harder action before delay becomes the system.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "If the gap is real, choose coaching, a new seat, or a harder action before delay becomes the system."
         },
         {
-          "text": "A warm tie cannot carry a job built for a different kind of judgment.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "A warm tie cannot carry a job built for a different kind of judgment."
         }
       ]
     },
@@ -1636,13 +1351,6 @@
             "service",
             "succession"
           ],
-          "planSpec": {
-            "domain": "a service manager discovering that listed backups cannot cover a critical technician absence",
-            "audience": "a manager relying on a spreadsheet that has never been tested",
-            "stakes": "customer outages and whether succession depth is real",
-            "format": "scene",
-            "requiredBeat": "she finds two backup names but no usable backup capability"
-          },
           "scenario": "At 6:12 a.m., Winona stands beside the service board with a chipped radio in her hand while the only refrigeration tech calls in sick. The succession spreadsheet lists two backups. One has never opened the compressor panel. The other is on a school run until nine. Three grocery customers are already blinking red on the board. Winona's finger hovers over the dispatch button. She has to decide whether the backup list is a plan or a decoration.",
           "whatToDo": "Treat the absence as a bench-depth test, dispatch honestly, and open a same-day review on who can be trained to cover the role for real.",
           "whyItMatters": "A people process that lists names without tested capability only delays the shock. Real depth is proved when the role is empty."
@@ -1655,13 +1363,6 @@
             "dispatch",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "a logistics director linking a talent review to a new bilingual service contract",
-            "audience": "a leader who must make talent review answer a business need",
-            "stakes": "a contract launch that needs language coverage immediately",
-            "format": "dialogue",
-            "requiredBeat": "he asks what the grid changes by Monday"
-          },
           "scenario": "\"Bilingual dispatch by Monday,\" Arben says, sliding the talent grid beside the new service contract. \"We have high potentials,\" HR says. \"Which one can cover Spanish calls at six a.m.?\" Arben asks. The room smells of dry-erase ink and reheated pasta. The grid has colors, initials, and potential ratings. The contract has a start date. Arben must decide whether the meeting ranks people or staffs the work.",
           "whatToDo": "Force the grid to answer the contract: who covers Monday, who trains next, and what role movement must happen this week.",
           "whyItMatters": "Talent review matters when it changes business decisions. Ratings without movement are only vocabulary."
@@ -1674,13 +1375,6 @@
             "finance",
             "pipeline"
           ],
-          "planSpec": {
-            "domain": "a finance leader finding fake depth in a succession chart",
-            "audience": "a leader who sees one strong person named everywhere",
-            "stakes": "burnout and fragile continuity in finance operations",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether one familiar backup counts as depth"
-          },
           "scenario": "A blue highlighter hovers over the finance succession chart while Maribel sees the same analyst listed behind three jobs. The same analyst, Edda, is listed behind revenue, payables, and reporting. Edda has never led the month-end close alone. The CFO wants to call the bench stable before the board packet goes out. Maribel can hear Edda coughing in the next cubicle. She has to decide whether a repeated name is depth or a warning printed three times.",
           "whatToDo": "Flag the false depth, remove duplicate comfort from the chart, and assign real practice reps for second backups in each critical role.",
           "whyItMatters": "A pipeline cannot rest on one strong person. Repeating her name hides fragility and increases the chance of losing her."
@@ -1693,13 +1387,6 @@
             "HR",
             "nonperformance"
           ],
-          "planSpec": {
-            "domain": "an HR partner reviewing a complete file that did not address weak performance",
-            "audience": "a leader whose process documented drift without correcting it",
-            "stakes": "a team that endured weak performance while paperwork accumulated",
-            "format": "postmortem",
-            "requiredBeat": "she sees completion without decision as the failure"
-          },
           "scenario": "It takes Jorie a thick HR file and a calendar of missed handoffs to see that documentation has changed nothing. The file is complete. That is the problem. It records six months of weak performance by a procurement lead and no decision that changed the work. Jorie flips to the last page and sees the same next steps copied from April. In the quiet after HR leaves, she writes one question on a sticky note: what did this process move?",
           "whatToDo": "Convert the file into a decision: specific performance gap, support already tried, next role action, and date for closure.",
           "whyItMatters": "A people process that only documents nonperformance protects the process, not the team. Candor has to change action."
@@ -1712,13 +1399,6 @@
             "call-center",
             "capability"
           ],
-          "planSpec": {
-            "domain": "a call-center manager using live hold time to revise team-lead development",
-            "audience": "a manager whose talent labels do not match operating demand",
-            "stakes": "customer service misses and lead readiness",
-            "format": "before_after",
-            "requiredBeat": "live operation data changes the people review"
-          },
           "scenario": "What does the call-center wallboard reveal when three team leads wait for the same escalation answer? Before the rush, the people review called all three ready for larger roles. After twenty minutes of stalled calls, one lead calms the floor, one disappears into email, and one starts guessing policy. Cem takes the review packet from his bag and writes three different development actions beside three names.",
           "whatToDo": "Use the rush as evidence. Give each lead a development action based on observed behavior, not the old blanket rating.",
           "whyItMatters": "People judgment gets sharper when it is tied to operating reality. Same label, different behavior, different next move."
@@ -1731,13 +1411,6 @@
             "retention",
             "buyer"
           ],
-          "planSpec": {
-            "domain": "a retail executive noticing an unaddressed retention risk for a senior buyer",
-            "audience": "a leader whose process names risk but does not act on it",
-            "stakes": "losing a key buyer before a seasonal reset",
-            "format": "reflection",
-            "requiredBeat": "she turns a margin note into a real conversation"
-          },
           "scenario": "You read the tiny flight-risk note beside Renata's name in Elspeth's seasonal-goods talent packet. The words sit in the margin like a stain. Renata has asked twice about a broader category role. Nobody answered because the reset was busy. Elspeth can already imagine the resignation email landing in June. She closes the packet, looks at the toy samples covering her desk, and opens her calendar.",
           "whatToDo": "Schedule the retention conversation now, connect Renata's next work to the seasonal reset, and decide what role path is real.",
           "whyItMatters": "Risk named on paper is not retention. The process earns trust only when it starts the conversation before the person leaves."
@@ -1756,8 +1429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Making the people process live: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q02",
@@ -1769,8 +1441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Making the people process live: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q03",
@@ -1782,8 +1453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Making the people process live: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q04",
@@ -1795,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Making the people process live: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch06-q05",
@@ -1808,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Making the people process live: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch06-q06",
@@ -1821,8 +1489,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Making the people process live: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch06-q07",
@@ -1834,8 +1501,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Making the people process live: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch06-q08",
@@ -1847,8 +1513,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Making the people process live: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch06-q09",
@@ -1860,8 +1525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Making the people process live: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1916,19 +1580,13 @@
       },
       "memorableLines": [
         {
-          "text": "Winona sees the only trained refrigeration tech call in sick while the succession sheet lists two backups.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Winona sees the only trained refrigeration tech call in sick while the succession sheet lists two backups."
         },
         {
-          "text": "The names look ready until the work asks for proof.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The names look ready until the work asks for proof."
         },
         {
-          "text": "Test bench depth, retention risk, weak work, and growth plans against what operations must do next.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Test bench depth, retention risk, weak work, and growth plans against what operations must do next."
         }
       ]
     },
@@ -1955,13 +1613,6 @@
             "market",
             "economics"
           ],
-          "planSpec": {
-            "domain": "a strategy lead testing a market expansion claim against customer economics",
-            "audience": "a leader with a broad growth target and no first customer named",
-            "stakes": "a costly expansion into a market the company may not serve profitably",
-            "format": "scene",
-            "requiredBeat": "she asks for the first profitable customer while the map is still on the table"
-          },
           "scenario": "At 8:08 a.m., Oksana smooths a curling market map on the boardroom table with the heel of her hand. The shaded region for commercial kitchens looks huge. The room likes the number. A coffee ring cuts across three counties. Oksana asks who the first profitable customer is, not the tenth, not the total market. The sales lead looks down at his binder. She is about to decide whether the expansion is a strategy or only a large colored shape.",
           "whatToDo": "Hold the market claim until the team names the first buyer, the reason that buyer switches, and the margin after service costs.",
           "whyItMatters": "A market size number can flatter a weak plan. Strategy starts where a real customer, competitor, and profit path meet."
@@ -1974,13 +1625,6 @@
             "startup",
             "customer"
           ],
-          "planSpec": {
-            "domain": "an investor pressing a founder on a new customer segment",
-            "audience": "a strategist who needs customer reality under growth language",
-            "stakes": "funding a plan with no proven switching reason",
-            "format": "dialogue",
-            "requiredBeat": "he asks why a named buyer would switch now"
-          },
           "scenario": "\"Which buyer switches first?\" Hamza asks in the demo room while the enterprise expansion slide glows behind him. \"Which buyer switches first?\" he asks. The founder says, \"Mid-market operations teams.\" Hamza waits. The projector fan rattles. \"Name one,\" he says. The founder turns to the sales VP. Outside the glass, two engineers are watching. Hamza has to decide whether the segment is evidence or a phrase with a budget request attached.",
           "whatToDo": "Ask for a named buyer, the pain that makes switching urgent, and the sales motion that has already tested that claim.",
           "whyItMatters": "A customer segment is not a customer. Strategy needs a switching reason that can be heard from a real buyer."
@@ -1993,13 +1637,6 @@
             "competition",
             "pricing"
           ],
-          "planSpec": {
-            "domain": "a consumer-goods strategist testing a growth plan against competitor pricing",
-            "audience": "a leader whose plan ignores the rival response",
-            "stakes": "margin loss and a launch that may be copied in two weeks",
-            "format": "decision_point",
-            "requiredBeat": "she must decide whether to approve a plan that never named the competitor's likely move"
-          },
           "scenario": "The competitor price sheet lands over Rhea's growth plan and the paper edges line up almost perfectly. The new bundle wins only if the rival does not answer for ninety days. Last quarter the rival answered in twelve. The launch team is waiting for approval, pizza boxes open on the credenza. Rhea's pen rests on the signature line. She must decide whether a strategy that ignores the obvious response is ready.",
           "whatToDo": "Send the plan back with a competitor-response section, including price floor, margin impact, and the trigger for changing the offer.",
           "whyItMatters": "A strategy has to win against someone. If the competitor's likely move breaks the economics, the plan is only a hope."
@@ -2012,13 +1649,6 @@
             "capacity",
             "operations"
           ],
-          "planSpec": {
-            "domain": "an operations chief reviewing a strategic bet that lacked carrying capacity",
-            "audience": "a leader who heard future capability used as proof",
-            "stakes": "missed delivery after a strategic promise outran the operation",
-            "format": "postmortem",
-            "requiredBeat": "she identifies the moment capacity was waved away"
-          },
           "scenario": "It takes Plinio until 9:29 a.m. in the rollout postmortem, with a yellow legal pad open, to hear the word eventually as a warning. In the recording, he hears himself ask who would install the new units. Someone answered, \"We'll build that capacity eventually.\" He let the word pass. Now two customers are waiting, the installer bench is empty, and the pad smells of fresh ink. Plinio circles eventually until the paper dents.",
           "whatToDo": "Make capacity a gate for strategic approval: named roles, hiring or training path, and milestone evidence before volume promises expand.",
           "whyItMatters": "Future capacity cannot carry current strategy. The how must include the people and operating path that make growth possible."
@@ -2031,13 +1661,6 @@
             "manufacturing",
             "milestone"
           ],
-          "planSpec": {
-            "domain": "a manufacturing strategist replacing a smooth growth curve with milestones",
-            "audience": "a leader who needs proof points under a growth story",
-            "stakes": "adding a second shift without economic proof",
-            "format": "before_after",
-            "requiredBeat": "he changes the strategy from curve to testable milestones"
-          },
           "scenario": "What happens at 6:52 p.m. in the conference room when Wren's rising growth curve meets the scheduler's second-shift roster on the glass? Before the scheduler arrived, the curve made the growth plan feel clean. After she asks which week demand pays for the shift premium, Wren stops with the marker in midair. He wipes the curve into a gray smear and writes three dates instead: pilot orders, margin check, second-shift call.",
           "whatToDo": "Replace the smooth curve with milestones that test demand, margin, and capacity before the second shift is locked.",
           "whyItMatters": "Milestones make strategy answer reality in sequence. A curve can hide the week when economics must prove themselves."
@@ -2050,13 +1673,6 @@
             "customer",
             "market"
           ],
-          "planSpec": {
-            "domain": "a service strategist using customer complaints to test a market need",
-            "audience": "a strategist tempted by polished market language",
-            "stakes": "choosing a growth direction that may miss the customer's real pain",
-            "format": "reflection",
-            "requiredBeat": "she finds the real strategic need in rough customer language"
-          },
           "scenario": "You smell lemon cleaner on the conference table as Beata opens the customer complaint log. The strategy deck says integrated convenience. The complaints say missed pickup windows, wet boxes, no one called me back. She reads six in a row and feels the deck language loosen. The market is not asking for elegance. It is asking not to be stranded on Tuesdays. Beata copies one raw sentence into the plan.",
           "whatToDo": "Translate the strategy around the customer's real pain, then test whether the company can solve that pain better than the alternatives.",
           "whyItMatters": "Customer reality gives strategy its shape. Polished language can miss the job the buyer is actually trying to get done."
@@ -2075,8 +1691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Testing the strategy process: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q02",
@@ -2088,8 +1703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Testing the strategy process: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q03",
@@ -2101,8 +1715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Testing the strategy process: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q04",
@@ -2114,8 +1727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Testing the strategy process: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch07-q05",
@@ -2127,8 +1739,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Testing the strategy process: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch07-q06",
@@ -2140,8 +1751,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Testing the strategy process: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch07-q07",
@@ -2153,8 +1763,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Testing the strategy process: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch07-q08",
@@ -2166,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Testing the strategy process: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch07-q09",
@@ -2179,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Testing the strategy process: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2235,19 +1842,13 @@
       },
       "memorableLines": [
         {
-          "text": "Oksana holds a curling market map while no one can name the customer who will buy first at a profit.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Oksana holds a curling market map while no one can name the customer who will buy first at a profit."
         },
         {
-          "text": "The target is bold, but the path has not earned belief.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The target is bold, but the path has not earned belief."
         },
         {
-          "text": "Ask which buyer matters, who can block you, which skill must exist, which next marker proves progress, and how the money works.",
-          "location": "breakdown.fastRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Ask which buyer matters, who can block you, which skill must exist, which next marker proves progress, and how the money works."
         }
       ]
     },
@@ -2274,13 +1875,6 @@
             "competition",
             "review"
           ],
-          "planSpec": {
-            "domain": "a division president using a competitor sample to interrupt a polished strategy review",
-            "audience": "a leader who needs firsthand competitive knowledge",
-            "stakes": "a plan that may miss a rival's product improvement",
-            "format": "scene",
-            "requiredBeat": "he opens the sample instead of letting rehearsed slides carry the review"
-          },
           "scenario": "At 9:19 a.m., Frey cuts packing tape with a car key while his team rehearses slide six for the strategy review. Inside the box is the rival's new countertop unit, heavier than the photos made it look. The product lead keeps talking about our superior experience. Frey sets the sample on the table with a dull thud. A screw rolls from the packaging. He is about to decide whether the review stays with slides or starts with the thing customers will touch.",
           "whatToDo": "Put the competitor's product in the center of the review and ask what the plan changes after seeing it firsthand.",
           "whyItMatters": "Strategy review needs real competitive knowledge. A product on the table can expose assumptions a slide would protect."
@@ -2293,13 +1887,6 @@
             "focus",
             "review"
           ],
-          "planSpec": {
-            "domain": "a strategy review chair forcing focus from five ideas to two",
-            "audience": "a leader whose team has too many appealing ideas",
-            "stakes": "resources spread thin and no idea carried well",
-            "format": "dialogue",
-            "requiredBeat": "she asks which ideas can truly be staffed this quarter"
-          },
           "scenario": "\"They all have merit,\" the business lead says while Maelle stands beside five growth ideas stacked like a lunch menu. \"They all have merit,\" the business lead says. Maelle uncaps a black marker. \"Which two can we staff this quarter without stealing from service recovery?\" The room smells like marker and cooling coffee. No one moves. The finance lead looks at the operations lead. Maelle has to decide whether merit is enough to survive the review.",
           "whatToDo": "Force the choice in the room. Pick the two ideas with owners, capacity, and economics, then park the rest without pretending they remain active.",
           "whyItMatters": "Focus is an execution question. A review that blesses every good idea leaves the organization unable to carry any of them well."
@@ -2312,13 +1899,6 @@
             "customer",
             "review"
           ],
-          "planSpec": {
-            "domain": "a customer success leader bringing cancellation evidence into a retention review",
-            "audience": "a leader deciding whether rough customer evidence changes strategy",
-            "stakes": "retention spend aimed at the wrong problem",
-            "format": "decision_point",
-            "requiredBeat": "he decides whether a real cancellation email enters the strategy review"
-          },
           "scenario": "The cancellation email folds once in Tobin's hand before the retention review starts. The strategy slide says loyalty offers will reduce churn. The customer writes that no one fixed the first invoice error after four calls. Tobin can already hear the room saying anecdote. The paper is warm from the printer. He is about to leave it in his folder when the CFO asks whether the retention plan is ready.",
           "whatToDo": "Put the email beside the retention slide and ask whether the plan solves the actual reason customers are leaving.",
           "whyItMatters": "A review should let rough customer evidence challenge the chosen idea. Otherwise the team funds a fix for the wrong problem."
@@ -2331,13 +1911,6 @@
             "follow-through",
             "meeting"
           ],
-          "planSpec": {
-            "domain": "a chief of staff reviewing strategy action items with no accountable owners",
-            "audience": "a leader whose review produced notes but not management action",
-            "stakes": "a polished meeting that leaves execution unchanged",
-            "format": "postmortem",
-            "requiredBeat": "she sees that action items without in-room owners made the review hollow"
-          },
           "scenario": "It takes Ansel six action items and a quiet speakerphone to see that the review assigned no room owner. Every line starts with explore, assess, or revisit. None has a person in the room beside it. The deck was strong. The questions were sharper than last quarter. Still, nothing on the pad can change by Friday. He circles all six verbs and writes owner? so hard the pen tears the paper.",
           "whatToDo": "Rewrite each action as a named owner, a decision needed, and a date for proof before the meeting notes go out.",
           "whyItMatters": "Follow-through is the test of a review. If the questions do not turn into owned work, the meeting was only a better conversation."
@@ -2350,13 +1923,6 @@
             "market",
             "knowledge"
           ],
-          "planSpec": {
-            "domain": "a retail executive exposing weak competitor knowledge in a review",
-            "audience": "a leader whose team knows the category but missed the rival's new guarantee",
-            "stakes": "a service promise that may no longer be enough to win",
-            "format": "before_after",
-            "requiredBeat": "a missing competitor fact changes the review agenda"
-          },
           "scenario": "What does Ragna's clipped rival guarantee know that the market overview keeps skipping? Before the review, the team sounded confident about delivery speed. After Ragna asks where the guarantee appears in the plan, the room goes still. The marketing lead flips pages. The operations lead whispers that she has not seen the ad. Ragna moves the review from growth story to competitive facts.",
           "whatToDo": "Stop the overview and rebuild the review around what the rival changed, what customers now expect, and how the operation can answer.",
           "whyItMatters": "A strategy review cannot test a plan against competition it does not know. Missing facts make confident plans brittle."
@@ -2369,13 +1935,6 @@
             "capability",
             "strategy"
           ],
-          "planSpec": {
-            "domain": "a strategy chief bringing operations capability into the review room",
-            "audience": "a leader who wants strategy, people, and operations linked in the same review",
-            "stakes": "a plan approved without carrying strength",
-            "format": "reflection",
-            "requiredBeat": "she makes the operations lead name which promise cannot be staffed"
-          },
           "scenario": "You see Selene's same-day installation slide while the operations lead sits against the wall with no speaking slot. The operations lead is sitting against the wall, silent, with a staffing sheet folded into quarters. Selene asks him to stand beside the slide and mark the cities he can staff by July. He marks seven. The room exhales. Selene feels the old habit, smooth it over and revise later. Instead she lets the seven marks stay visible.",
           "whatToDo": "Keep capability in the room. Change the strategy to match staffed reality or make the staffing decision before approval.",
           "whyItMatters": "Strategy cannot be reviewed in one room and executed in an imaginary one. Capability has to challenge the plan while choices can still change."
@@ -2394,8 +1953,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pressuring the strategy review: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q02",
@@ -2407,8 +1965,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pressuring the strategy review: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q03",
@@ -2420,8 +1977,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pressuring the strategy review: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q04",
@@ -2433,8 +1989,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pressuring the strategy review: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch08-q05",
@@ -2446,8 +2001,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pressuring the strategy review: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch08-q06",
@@ -2459,8 +2013,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pressuring the strategy review: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch08-q07",
@@ -2472,8 +2025,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pressuring the strategy review: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch08-q08",
@@ -2485,8 +2037,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Pressuring the strategy review: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch08-q09",
@@ -2498,8 +2049,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Pressuring the strategy review: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2554,19 +2104,13 @@
       },
       "memorableLines": [
         {
-          "text": "Frey opens a competitor sample box while the team is still rehearsing slide six.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Frey opens a competitor sample box while the team is still rehearsing slide six."
         },
         {
-          "text": "The review can protect the plan, or it can test whether the plan deserves protection.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The review can protect the plan, or it can test whether the plan deserves protection."
         },
         {
-          "text": "Ask what skill is missing and what action will change next.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Ask what skill is missing and what action will change next."
         }
       ]
     },
@@ -2593,13 +2137,6 @@
             "budget",
             "dock"
           ],
-          "planSpec": {
-            "domain": "an operations director reconciling budget, dock capacity, and hiring reality",
-            "audience": "a leader whose budget line hides physical constraints",
-            "stakes": "a distribution plan that cannot move on the planned schedule",
-            "format": "scene",
-            "requiredBeat": "she sees resources collide in the real operation"
-          },
           "scenario": "At 6:37 a.m., Liora stands on the loading dock with a budget sheet rolled in her fist while twelve pallets crowd the yellow line. The plan funds a larger outbound push next week. The night-shift forklift role is still unfilled. A driver is tapping his pen against a clipboard. On paper, labor, shipping, and sales are separate rows. On the dock, they are the same blocked lane. Liora has to decide whether the budget is still honest.",
           "whatToDo": "Rework the operating plan with dock capacity, the open role, and outbound volume in the same room before the sales push starts.",
           "whyItMatters": "Operations links promises that budgets separate. A plan is grounded only when resources and flow fit together."
@@ -2612,13 +2149,6 @@
             "call-center",
             "sync"
           ],
-          "planSpec": {
-            "domain": "a customer support manager discovering marketing launched a promotion without staffing sync",
-            "audience": "a manager trying to synchronize parallel work",
-            "stakes": "customers waiting while departments each claim they are on plan",
-            "format": "dialogue",
-            "requiredBeat": "he names the missed synchronization between teams"
-          },
           "scenario": "\"The queue just jumped to 67,\" Matteo says as the free-installation banner goes live on the lobby screen. \"Marketing hit its date,\" the campaign lead says on speaker. \"Support did not see the date,\" Matteo says, one hand over his headset mic. The room is loud with hold music leaking from agents' phones. He must decide whether to treat the queue as support's problem or a synchronization failure.",
           "whatToDo": "Stop the launch review from staying departmental. Put marketing volume, support staffing, and install capacity into one operating decision.",
           "whyItMatters": "Parallel success can still create system failure. Operations makes separate teams move as one plan."
@@ -2631,13 +2161,6 @@
             "logistics",
             "assumptions"
           ],
-          "planSpec": {
-            "domain": "a logistics planner revising a quarterly delivery goal after a fuel assumption breaks",
-            "audience": "a planner whose goals depend on explicit premises",
-            "stakes": "margin loss from treating old assumptions as current truth",
-            "format": "decision_point",
-            "requiredBeat": "she decides whether the goal must change when the premise breaks"
-          },
           "scenario": "The diesel receipt bends under Odelia's thumbnail at pump 4 of the Pinedale truck stop. The quarterly delivery goal assumed fuel under $3.80. The pump reads $4.62. Her route plan still promises the rural same-day loop three times a week. A driver is waiting for the tablet. Odelia is about to approve the route when she sees the margin column turn red on her laptop.",
           "whatToDo": "Update the fuel assumption, recalc the route economics, and choose which service promise changes before the driver leaves.",
           "whyItMatters": "Goals are only as sound as the assumptions beneath them. When a premise breaks, operations has to revise the work."
@@ -2650,13 +2173,6 @@
             "trade-off",
             "maintenance"
           ],
-          "planSpec": {
-            "domain": "a fleet manager reviewing why two urgent priorities both slipped",
-            "audience": "a manager who avoided choosing under constraint",
-            "stakes": "vehicle uptime and a mechanic pulled in opposite directions",
-            "format": "postmortem",
-            "requiredBeat": "he sees that refusing the trade-off made both priorities weaker"
-          },
           "scenario": "It takes Peregrine until 10:40 a.m. in the fleet garage, sitting on an overturned bucket, to see that one mechanic cannot serve two priorities. The ambulance retrofit and the snowplow repair both said priority one. Both needed Tomas, the same mechanic. Peregrine had kept both promises alive because choosing felt political. Now the ambulance is still open and the plow is missing its test run. He writes one sentence on the work order: no trade-off was the trade-off.",
           "whatToDo": "Name the constraint, choose the order of work, and tell the affected owners what will wait and why.",
           "whyItMatters": "Operations requires choice under constraint. Pretending every priority stays first only hides the decision until delay makes it for you."
@@ -2669,13 +2185,6 @@
             "contingency",
             "grocery"
           ],
-          "planSpec": {
-            "domain": "a grocery operations lead creating a contingency trigger after a generator test fails",
-            "audience": "a manager who needs a usable fallback before the next outage",
-            "stakes": "thousands of dollars in frozen inventory",
-            "format": "before_after",
-            "requiredBeat": "she turns a vague contingency into a trigger people can use"
-          },
           "scenario": "Which freezer fails first when Ruzena holds the generator test sheet in the frozen aisle? Before the test, the outage plan said use backup generator if needed. After the generator coughs twice and dies, she writes on blue tape stuck to the freezer door: if temp hits 18 for ten minutes, call dry ice vendor, move seafood first. The assistant manager reads it twice and nods.",
           "whatToDo": "Turn the contingency into a trigger, a first call, and a first move so the team can act during the outage without debate.",
           "whyItMatters": "A fallback that depends on judgment under stress is thin. A clear trigger turns contingency into coordinated action."
@@ -2688,13 +2197,6 @@
             "resources",
             "quarterly"
           ],
-          "planSpec": {
-            "domain": "an operations planner reconciling a resource conflict before quarterly review",
-            "audience": "a planner trying to keep resource truth visible",
-            "stakes": "two projects missing because one asset was double-booked",
-            "format": "reflection",
-            "requiredBeat": "he treats the conflict as the point of the review, not an inconvenience"
-          },
           "scenario": "You lay budget sheets beside the shipping calendar with Quincy and notice forklift 3 promised to two jobs. The conference room is empty except for the tick of the wall clock and a bowl of stale mints. He wants to fix the conflict quietly before the quarterly review. Then he realizes the conflict is the review. The plan has finally shown where resources are telling the truth.",
           "whatToDo": "Bring the double-booking into the review and make the leaders choose which project gets the forklift first.",
           "whyItMatters": "Resource conflicts are not clutter. They are where operations reveals the choices a plan has been avoiding."
@@ -2713,8 +2215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Coordinating operations: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q02",
@@ -2726,8 +2227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coordinating operations: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q03",
@@ -2739,8 +2239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Coordinating operations: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q04",
@@ -2752,8 +2251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Coordinating operations: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch09-q05",
@@ -2765,8 +2263,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coordinating operations: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch09-q06",
@@ -2778,8 +2275,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Coordinating operations: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch09-q07",
@@ -2791,8 +2287,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coordinating operations: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch09-q08",
@@ -2804,8 +2299,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Coordinating operations: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch09-q09",
@@ -2817,8 +2311,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Coordinating operations: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2873,19 +2366,13 @@
       },
       "memorableLines": [
         {
-          "text": "Liora sees a neat budget line collide with a full loading dock and an unfilled night-shift role.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Liora sees a neat budget line collide with a full loading dock and an unfilled night-shift role."
         },
         {
-          "text": "The numbers look separate until the work tries to move.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The numbers look separate until the work tries to move."
         },
         {
-          "text": "Put people, money, bets, trade-offs, backup moves, and check dates in the same talk.",
-          "location": "breakdown.fastRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Put people, money, bets, trade-offs, backup moves, and check dates in the same talk."
         }
       ]
     },
@@ -2912,13 +2399,6 @@
             "new-leader",
             "realism"
           ],
-          "planSpec": {
-            "domain": "a new division leader choosing whether to open an uncomfortable status note first",
-            "audience": "a leader tempted to begin with vision instead of reality",
-            "stakes": "whether early signals teach the organization candor or performance",
-            "format": "scene",
-            "requiredBeat": "she opens the ugly note before polishing her first remarks"
-          },
           "scenario": "At 7:45 a.m., Saskia sets her bag under the new desk and sees the brass nameplate catching the window light. Beside it is a red folder from the service director marked urgent, written by hand. Her first welcome remarks are open on the laptop. The folder smells faintly of copier toner. She can start the day with the speech everyone expects, or open the folder and learn why three enterprise renewals are at risk before she says one public word.",
           "whatToDo": "Open the folder first, call the service director in, and let the first public remarks reflect the reality she has just learned.",
           "whyItMatters": "A new leader teaches the truth standard immediately. The first choice tells people whether reality comes before image."
@@ -2931,13 +2411,6 @@
             "integration",
             "customer"
           ],
-          "planSpec": {
-            "domain": "a new leader connecting credit, sales, and staffing issues during her first day",
-            "audience": "a leader learning that separate updates can be one execution problem",
-            "stakes": "a customer install at risk from disconnected decisions",
-            "format": "dialogue",
-            "requiredBeat": "she links the separate problems in one conversation"
-          },
           "scenario": "At 11:22 a.m. in the breakroom, Brenna lowers her paper plate of salad. \"Credit hold, resignation rumor, inspection delay,\" she reads from three messages. \"Finance has the credit issue,\" someone says. \"Sales has the promise,\" someone else adds. Brenna has to decide whether to stay at the welcome lunch or trace the three messages as one problem. She sets the plate down. \"No,\" she says. \"The customer has one problem.\" The room quiets around the plastic forks.",
           "whatToDo": "Pull finance, sales, and operations into one call and make one decision about the customer promise before any team sends its own answer.",
           "whyItMatters": "Leadership integrates what the organization splits apart. Customers feel the joined result, not the department labels."
@@ -2950,13 +2423,6 @@
             "all-hands",
             "follow-through"
           ],
-          "planSpec": {
-            "domain": "a new plant manager adding follow-through to his first all-hands promise",
-            "audience": "a leader tempted to make a strong declaration without inspection rhythm",
-            "stakes": "workers deciding whether the promise will be checked or forgotten",
-            "format": "decision_point",
-            "requiredBeat": "he adds the inspection date before speaking"
-          },
           "scenario": "The index card in Idris's palm bends behind the cafeteria curtain before the first all-hands starts. The first all-hands starts in four minutes. His card says safety fixes will not disappear. It sounds right. Then he hears a maintenance tech laugh on the other side of the curtain, not cruelly, just tired. Idris takes the pen clipped to his badge and writes Friday, 9 a.m., press guards under the promise. He must decide whether to say less and check more.",
           "whatToDo": "Make the promise with the check-back date attached, then show up Friday at the press guards and report what changed.",
           "whyItMatters": "Follow-through turns a new leader's words into a pattern. Workers trust the promise when the leader returns to it."
@@ -2969,13 +2435,6 @@
             "memo",
             "candor"
           ],
-          "planSpec": {
-            "domain": "a new nonprofit director revising her first board memo after dodging an uncomfortable fact",
-            "audience": "a leader who uses tone polishing to avoid realism",
-            "stakes": "board trust and a program gap that needs action",
-            "format": "postmortem",
-            "requiredBeat": "she sees that the memo hid the fact in careful language"
-          },
           "scenario": "It takes Yara three soft memo drafts at her kitchen table to admit she is polishing around the fact. The after-school program is short six tutors. Her memo says capacity pressure. She reads it aloud and hears the dodge. The stove clock clicks to 8:40. She deletes the phrase, types six tutor seats are empty for Monday, and feels the memo get less elegant and more useful.",
           "whatToDo": "Write the fact plainly, connect it to the decision needed, and send the board a memo that can be acted on.",
           "whyItMatters": "Realism is often lost in careful language. A leader protects trust by making the fact clear enough to change action."
@@ -2988,13 +2447,6 @@
             "dock",
             "truth"
           ],
-          "planSpec": {
-            "domain": "a new executive walking the receiving dock before his first leadership meeting",
-            "audience": "a leader choosing firsthand reality before formal review",
-            "stakes": "setting an early norm for how truth enters executive work",
-            "format": "before_after",
-            "requiredBeat": "the dock walk changes his first meeting question"
-          },
           "scenario": "What does Keiko learn at 6:18 a.m. on the receiving dock from unscanned cartons leaning against a bent rail before the executive meeting starts? Before the walk, her first executive meeting question was about quarterly growth. After a receiver shows her the scanner that dies in cold weather, Keiko writes a different first question in her notebook: what workarounds are we treating as normal? The meeting starts in forty-two minutes.",
           "whatToDo": "Use the dock fact to open the meeting, then ask each function which workaround has become invisible in its area.",
           "whyItMatters": "Firsthand truth changes the questions a new leader asks. Better questions change what the organization dares to report."
@@ -3007,13 +2459,6 @@
             "integration",
             "operations"
           ],
-          "planSpec": {
-            "domain": "a new regional leader linking hiring delay, strategy promise, and customer install miss",
-            "audience": "a leader practicing integrated thinking under pressure",
-            "stakes": "a strategic service promise failing through an ignored people gap",
-            "format": "reflection",
-            "requiredBeat": "she refuses to treat three updates as separate"
-          },
           "scenario": "You see Roshan draw three boxes on a legal pad: hiring, premium service, missed install. The updates arrived in three separate emails. The same empty technician role sits under all of them. His predecessor would have forwarded each note to a different owner. Roshan circles the vacancy until the ink bleeds. The service promise is not failing in service. It is failing where people, strategy, and operations meet.",
           "whatToDo": "Call one meeting with the three owners, make the vacancy the shared problem, and reset the customer promise around the staffing truth.",
           "whyItMatters": "New leaders add value by connecting the system. Separate updates can hide one cause until someone draws the links."
@@ -3032,8 +2477,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Carrying new-leader responsibility: the right answer names the missing owner before the message goes wider. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q02",
@@ -3045,8 +2489,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Carrying new-leader responsibility: the right answer tests the raw fact instead of accepting a clean summary. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q03",
@@ -3058,8 +2501,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Carrying new-leader responsibility: the right answer moves from comfort to evidence while change is still possible. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch10-q04",
@@ -3071,8 +2513,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Carrying new-leader responsibility: the right answer ties the decision to a visible proof point. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "ch10-q05",
@@ -3084,8 +2525,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Carrying new-leader responsibility: the right answer forces the hidden constraint into the room. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "ch10-q06",
@@ -3097,8 +2537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Carrying new-leader responsibility: the right answer protects the result from a polite but empty update. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "ch10-q07",
@@ -3110,8 +2549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Carrying new-leader responsibility: the right answer keeps the hard signal close to the person who can act. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "ch10-q08",
@@ -3123,8 +2561,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Carrying new-leader responsibility: the right answer turns a vague concern into the next concrete move. The tempting alternative about ask for a cleaner update and wait until the  leaves the operating weakness intact, and keep the old message for now so the te delays the moment when reality can change the plan.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "ch10-q09",
@@ -3136,8 +2573,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Carrying new-leader responsibility: the right answer chooses correction over a smoother story. The tempting alternative about keep the old message for now so the team doe leaves the operating weakness intact, and ask for a cleaner update and wait unti delays the moment when reality can change the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -3192,19 +2628,13 @@
       },
       "memorableLines": [
         {
-          "text": "Saskia sees her new nameplate shine beside an unopened status note marked urgent.",
-          "location": "breakdown.fastRead",
-          "why": "Concrete image anchors the operating problem."
+          "text": "Saskia sees her new nameplate shine beside an unopened status note marked urgent."
         },
         {
-          "text": "The work is already asking what kind of leader she will be.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the useful pressure point."
+          "text": "The work is already asking what kind of leader she will be."
         },
         {
-          "text": "Ask what is true, who carries it, which people, strategy, and operations links it touches, and when you will check again.",
-          "location": "breakdown.fullRead",
-          "why": "The line gives the reader a compact action standard."
+          "text": "Ask what is true, who carries it, which people, strategy, and operations links it touches, and when you will check again."
         }
       ]
     }

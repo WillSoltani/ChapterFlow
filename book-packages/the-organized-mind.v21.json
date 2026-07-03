@@ -25,7 +25,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-organized-mind-ch01",
       "number": 1,
       "title": "Too Much Information, Too Many Decisions",
@@ -126,8 +125,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 1 says overload lowers decision quality when inputs exceed processing capacity. Extra detail helps only when someone can compare it before acting.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -139,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 2 treats attention as an economic resource. The message costs selection time whether the person feels disciplined or not.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -152,8 +149,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 3 says active memory has a sharp limit. The safer design is to offload details instead of asking effort to remove the ceiling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -165,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 4 says modern estimates often put focused capacity near four chunks. The classic phrase is not permission to hold seven complex ideas.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -178,8 +173,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 5 says switching is not the same as parallel work. Executive control still has to reload goals and suppress the prior task.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -191,8 +185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 6 says cognitive overload is older than smartphones. Digital tools amplified an abundance problem that was already present.",
-            "bloomsLevel": "remember",
-            "depthLevel": "simple"
+            "bloomsLevel": "remember"
           },
           {
             "questionId": "q07",
@@ -204,8 +197,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fact 7 says decision fatigue should be used cautiously. Repeated choice burden is real enough to design around, but the simple fuel-tank mechanism is contested.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -217,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fact 8 says organizing starts with filtering, not storing everything. Retrieval without triage can force the same selection work later.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -230,8 +221,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fact 9 says external systems protect attention by pre-deciding where inputs go. The memo lowers future selection work; a bigger record may only store the overload.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -274,7 +264,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Filter Line",
         "coreSkill": "Practice writing the filter line before the stream takes over. Name the one decision that deserves attention now, then mark which inputs can wait. This is not tidiness; it is attention design.",
         "ifThenPlans": [
           {
@@ -299,19 +288,13 @@
       },
       "memorableLines": [
         {
-          "text": "Every extra input asks attention to pay rent.",
-          "location": "breakdown.fastRead",
-          "why": "It makes Simon's attention-cost idea compact and memorable."
+          "text": "Every extra input asks attention to pay rent."
         },
         {
-          "text": "A full inbox is not a full mind.",
-          "location": "breakdown.fastRead",
-          "why": "It separates information quantity from real understanding."
+          "text": "A full inbox is not a full mind."
         },
         {
-          "text": "A filter is useful only while judgment stays awake.",
-          "location": "breakdown.fullRead",
-          "why": "It preserves the chapter's boundary against over-filtering."
+          "text": "A filter is useful only while judgment stays awake."
         }
       ]
     },
@@ -416,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Posner and Petersen split attention into alerting, orienting, and executive control. The cue problem differs from the target problem, so one focus order is too blunt.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -429,8 +411,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Baddeley's model treats working memory as an active workbench. Holding and manipulating draw on that small space in different ways.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -442,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Long-term memory is cue-dependent. Forgetting can mean the path is missing, not that the stored material is gone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -455,8 +435,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Sridharan, Levitin, and Menon linked the right fronto-insular cortex to network switching. A cue helps the return, while blame misses the mechanism.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -468,8 +447,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Executive control is costly because it manages competition among goals or rules. Routine recall should not consume the control needed for conflict.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -481,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Chunking changes representation, not biology. A group can carry several details as one useful unit in working memory.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -494,8 +471,7 @@
             ],
             "correctIndex": 2,
             "explanation": "External cues help prospective remembering. The visible form moves the burden from fragile rehearsal to the place where action will happen.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -507,8 +483,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Automatic routines can free attention when paired with checks for exceptions. Autopilot is risky only when it replaces judgment where judgment is needed.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -520,8 +495,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recording and finding are separate problems. A note without retrieval cues can become clutter even when it was captured correctly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -564,7 +538,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Name the Mental Job",
         "coreSkill": "Practice naming the mental job before adding effort. Ask whether the task needs alerting, orienting, executive control, working memory, long-term retrieval, or a mode switch. The name points to the support: a signal, a clearer target, fewer rival rules, an external note, a cue, or a return mark.",
         "ifThenPlans": [
           {
@@ -589,24 +562,17 @@
       },
       "memorableLines": [
         {
-          "text": "Focus is a toolbox, not a spotlight.",
-          "location": "breakdown.fastRead",
-          "why": "It replaces the common one-power model with a portable sorting image."
+          "text": "Focus is a toolbox, not a spotlight."
         },
         {
-          "text": "A note is not found until a cue can find it.",
-          "location": "breakdown.fastRead",
-          "why": "It makes retrieval depend on design, not blame."
+          "text": "A note is not found until a cue can find it."
         },
         {
-          "text": "Willpower wastes itself when design can carry the cue.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the practical edge in one line."
+          "text": "Willpower wastes itself when design can carry the cue."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-organized-mind-ch03",
       "number": 3,
       "title": "Organizing Our Homes",
@@ -707,8 +673,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Clark and Chalmers support reliable artifacts as part of cognition. Calling the bowl only an aid keeps thinking sealed inside the head, which is the common error.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -720,8 +685,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A stable visible home cuts search by making location do cue work. A cleaner drawer may look orderly, but looks are not the main cognitive value.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -733,8 +697,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Norman's affordances and constraints make the rule visible at use time. Memorized rules and hidden boxes leave the same burden inside the person.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -746,8 +709,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Allen's open-loop move gets the commitment out of rehearsal. Repeating the date feels responsible, but interruption makes that internal loop fragile.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -759,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Functional categories follow retrieval paths and next actions. An abstract hierarchy can look elegant and still fail when Brett needs the receipt.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -772,8 +733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A low-value mixed container can be rational when precision costs more than it returns. The error is assuming every object deserves a precise home.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -785,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Risk and retrieval frequency set the organizing intensity. Treating all clutter alike wastes effort and under-protects bills or medicine.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -798,8 +757,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Labels help when category boundaries are easy to forget. They are retrieval cues and constraints, not decoration for an already neat shelf.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -811,8 +769,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Visible irrelevant objects compete for selection. This is not about liking neatness; it is about reducing needless bids for attention.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -855,7 +812,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Move the Memory Cue",
         "coreSkill": "Practice moving one object so the room carries a routine memory. Rank the household item by risk, search cost, and use frequency before you design its home. The skill is not tidying. It is making the next action easier to see.",
         "ifThenPlans": [
           {
@@ -880,19 +836,13 @@
       },
       "memorableLines": [
         {
-          "text": "A place can remember what a person will forget.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the extended-mind idea small enough to use at the door."
+          "text": "A place can remember what a person will forget."
         },
         {
-          "text": "Good order earns attention back.",
-          "location": "breakdown.deepRead",
-          "why": "It separates useful organization from neatness for its own sake."
+          "text": "Good order earns attention back."
         },
         {
-          "text": "Do not sort what should merely wait.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader permission to stop before precision wastes attention."
+          "text": "Do not sort what should merely wait."
         }
       ]
     },
@@ -997,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Human social tracking is bounded because ties require more than storage. Names help only when the system also carries context, obligation, and recent contact.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1010,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Weak ties can be valuable because they bridge clusters. Close friends often share the same information world, while acquaintances may hear different news.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1023,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A social network is not the same as a contact list. Without tie strength and context, more names can add noise without usable access.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1036,8 +983,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Small-world paths show that distant people can be reachable through chains. The value lies in traceable links, not direct access to everyone.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q05",
@@ -1049,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Channels should fit the message. Urgent, intimate, transactional, and broadcast notes carry different attention costs, so one fast lane erases priority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1062,8 +1007,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Remembering social obligations needs support. Good intentions can fail under interruption, so cues carry the promise when memory drops it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1075,8 +1019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Role categories reduce search because people often start from a purpose, not a name. Alphabetical storage helps only when the spelling is already known.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -1088,8 +1031,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Online networks can preserve weak ties and inflate noise at once. The mistake is seeing platforms as only opportunity or only clutter.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -1101,8 +1043,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Boundary rules reduce repeated micro-decisions. When channel and response norms are explicit, responsiveness stops becoming a hidden attention tax.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1145,7 +1086,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "The Reply Tally",
         "coreSkill": "Practice social sorting before the next message steals attention. Name the tie type, obligation, and channel before replying. The skill is not colder contact; it is better care with less guessing.",
         "ifThenPlans": [
           {
@@ -1166,24 +1106,17 @@
       },
       "memorableLines": [
         {
-          "text": "Names are cheap; attention is not.",
-          "location": "breakdown.fastRead",
-          "why": "It gives the chapter's capacity warning in one portable line."
+          "text": "Names are cheap; attention is not."
         },
         {
-          "text": "Weak ties need doors, not daily care.",
-          "location": "breakdown.deepRead",
-          "why": "It makes Granovetter's weak-tie lesson usable without over-maintaining every acquaintance."
+          "text": "Weak ties need doors, not daily care."
         },
         {
-          "text": "A rule can protect care from constant sorting.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why response norms can save attention without making relationships colder."
+          "text": "A rule can protect care from constant sorting."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-organized-mind-ch05",
       "number": 5,
       "title": "Organizing Our Time",
@@ -1284,8 +1217,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The source fact says conversation can impair driving attention even when eyes stay on the road. Hands-free removes the hand load, not the cognitive load.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1297,8 +1229,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Task switching carries a reorientation cost. A packed schedule can look efficient while forcing the mind to reload a new context again and again.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1310,8 +1241,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The 2011 PNAS study is a caution about decision conditions. Professional judgment still operates through hunger, fatigue, sequence, and defaults.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1323,8 +1253,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ego depletion story has faced failed replications and mixed effects. The timing pattern may matter, but one bad late choice does not prove depleted willpower.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q05",
@@ -1336,8 +1265,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Calendars work as external prospective memory. The cue carries the future intention until the right moment, which protects attention from rehearsal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1349,8 +1277,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Batching helps when it preserves context. It is not doing more things at once; it keeps the same rules and cues active for related work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1362,8 +1289,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Buffers are part of time design. Without them, ordinary transition costs and small disruptions cascade into later commitments.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -1375,8 +1301,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Default routines reduce low-value choices. They are useful when they preserve thought for unusual or high-stakes decisions.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1388,8 +1313,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Recovery protects future attention. Sustained control and switching raise fatigue and error risk, so rest changes later decisions.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -1432,7 +1356,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Mark the Next Block",
         "coreSkill": "Practice Mark the Next Block by moving one future intention onto a visible surface. Use one word or symbol to cue the next action, then batch similar work and leave a buffer where a switch usually spills. The skill is not making a prettier calendar; it is lowering the number of times your mind must reload the day.",
         "ifThenPlans": [
           {
@@ -1457,24 +1380,17 @@
       },
       "memorableLines": [
         {
-          "text": "A person can look at the road and still miss the road.",
-          "location": "breakdown.fastRead",
-          "why": "It makes divided attention concrete and memorable."
+          "text": "A person can look at the road and still miss the road."
         },
         {
-          "text": "A buffer is attention insurance.",
-          "location": "breakdown.deepRead",
-          "why": "It turns an abstract scheduling rule into a short practical claim."
+          "text": "A buffer is attention insurance."
         },
         {
-          "text": "A cue beats a private promise.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the external-memory rule in plain language."
+          "text": "A cue beats a private promise."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-organized-mind-ch06",
       "number": 6,
       "title": "Organizing Information for the Hardest Decisions",
@@ -1575,8 +1491,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Natural frequencies work by using counts with a shared denominator. A cleaner percentage or a vivid patient story can still hide the base-rate structure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1588,8 +1503,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The base rate gives the new evidence a starting point. The portfolio matters, but it should not erase the prior frequency for that field.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -1601,8 +1515,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Equivalent outcomes can pull different choices when shown as gains or losses. Matching the units lets the group judge the tradeoff, not the wording.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -1614,8 +1527,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Heuristics are useful shortcuts, not proof of irrationality. The photo can signal concern, but salience should be checked against probability.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1627,8 +1539,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A good display supports comparison. Better color or a cleaner title may help style, but the missing common scale blocks judgment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1640,8 +1551,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A raw count changes meaning with the denominator. Twelve errors in many cases may be safer than four errors in a small pool.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -1653,8 +1563,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Clear structure helps experts too. Work spent decoding a table is work not spent on the patient, the tradeoff, and the judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -1666,8 +1575,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Uncertainty should stay visible. A single confident number can make a fragile estimate look firmer than the evidence allows.",
-            "bloomsLevel": "create",
-            "depthLevel": "standard"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1679,8 +1587,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Anecdotes can dominate attention even when they are unusual. The story may matter, but it needs a base-rate check before policy changes.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1723,7 +1630,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Write the Decision Display",
         "coreSkill": "Practice turning a hard choice into a small written display before you argue about it. The display names the base rate, denominator, frame, and uncertainty. It does not decide for you; it keeps hidden math from stealing attention.",
         "ifThenPlans": [
           {
@@ -1748,24 +1654,17 @@
       },
       "memorableLines": [
         {
-          "text": "Counts make fear answerable.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses natural frequencies into one line the reader can use under pressure."
+          "text": "Counts make fear answerable."
         },
         {
-          "text": "A frame can move a choice without changing a fact.",
-          "location": "breakdown.deepRead",
-          "why": "It makes framing bias easy to spot in meetings, charts, and risk notes."
+          "text": "A frame can move a choice without changing a fact."
         },
         {
-          "text": "A display fails when it hides the denominator.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a simple test for charts, counts, and risk claims."
+          "text": "A display fails when it hides the denominator."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "the-organized-mind-ch07",
       "number": 7,
       "title": "Organizing the Business World",
@@ -1866,8 +1765,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The source fact supports the checklist as an external prompt. The novice-only reading fails because experts also omit routine steps under pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1879,8 +1777,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A stable process makes deviations easier to see. The mistake is thinking standard work kills thought; it can free judgment for exceptions.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1892,8 +1789,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Visible workflow helps when it reduces guessing and routes attention. A cleaner or fuller board can still fail if it guides no decision.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -1905,8 +1801,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The andon-style signal treats a defect as system information. Quiet repair or later review lets the same problem travel downstream.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1918,8 +1813,7 @@
             ],
             "correctIndex": 2,
             "explanation": "High-reliability work stays alert after success. The common error is relaxing too soon and missing small signs of latent risk.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q06",
@@ -1931,8 +1825,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Roles reduce coordination cost by naming ownership. Flat access feels open, but it can make every question a new routing problem.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1944,8 +1837,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Meetings should spend live attention on ambiguity, conflict, and commitment. Status without decisions becomes organized interruption.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1957,8 +1849,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Exception paths reserve expert attention for ambiguity. Equal review sounds fair, but it overloads experts and slows simple work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -1970,8 +1861,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Organizational memory should survive turnover. Relying on another person's memory repeats the same fragile design.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           }
         ]
       },
@@ -2014,7 +1904,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Route the Exception",
         "coreSkill": "Practice splitting routine flow from exception flow. Put repeatable steps in a visible tool, then name the signal that should leave the routine and reach an owner. Route the Exception keeps memory outside the head without pretending every case is the same.",
         "ifThenPlans": [
           {
@@ -2039,24 +1928,17 @@
       },
       "memorableLines": [
         {
-          "text": "Memory should live where the work can see it.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's external-memory rule into one portable sentence."
+          "text": "Memory should live where the work can see it."
         },
         {
-          "text": "Standard work is a baseline, not a blindfold.",
-          "location": "breakdown.deepRead",
-          "why": "It separates Toyota-style routines from the mistake that standardization kills judgment."
+          "text": "Standard work is a baseline, not a blindfold."
         },
         {
-          "text": "A useful dashboard points to an owner.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a simple test for whether a display routes attention."
+          "text": "A useful dashboard points to an owner."
         }
       ]
     },
     {
-      "schemaVersion": "v21",
       "chapterId": "the-organized-mind-ch08",
       "number": 8,
       "title": "What to Teach Our Children",
@@ -2157,8 +2039,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Sweller's load warning says the format can compete with the idea. More explanation may add extraneous load instead of helping working memory.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2170,8 +2051,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Some difficulty belongs to the concept, but some comes from presentation. Reducing extraneous load leaves capacity for the core schema.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2183,8 +2063,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Dweck's mindset work is not effort praise by itself. Belief in growth has to meet strategy, feedback, and revision.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2196,8 +2075,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Mischel's delay work shows attention can change temptation's pull. Staring harder treats self-control as raw force.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2209,8 +2087,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Recognition can hide weak recall. Retrieval practice strengthens access paths and shows what the familiar page did not prove.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2222,8 +2099,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Abundant information shifts the job from finding to judging. Search rank may reflect relevance or popularity, not truth.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2235,8 +2111,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Transfer improves when categories make the sorting features clear. Separate facts do not reliably connect themselves.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2248,8 +2123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A checklist can scaffold independence by lowering memory burden during practice. The risk is overreach, not the tool itself.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2261,8 +2135,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Metacognition includes noticing when a representation blocks reasoning. The format may be adding work before the content starts.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2305,7 +2178,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Draw the Learning Load",
         "coreSkill": "Practice making the hidden work of a task visible before you ask a child to push harder. Draw the Learning Load by naming the task, the cue, the display, and the check. The move replaces vague effort talk with a small map the child can use.",
         "ifThenPlans": [
           {
@@ -2330,24 +2202,17 @@
       },
       "memorableLines": [
         {
-          "text": "A child cannot organize what the lesson keeps hiding.",
-          "location": "breakdown.fastRead",
-          "why": "It makes the adult responsible for the display before judging the child."
+          "text": "A child cannot organize what the lesson keeps hiding."
         },
         {
-          "text": "Effort needs a map, not just applause.",
-          "location": "breakdown.deepRead",
-          "why": "It compresses the Dweck warning into a line a parent can use."
+          "text": "Effort needs a map, not just applause."
         },
         {
-          "text": "Willpower grows when the room helps it.",
-          "location": "breakdown.deepRead",
-          "why": "It turns Mischel's attention strategy into a practical design rule."
+          "text": "Willpower grows when the room helps it."
         }
       ]
     },
     {
-      "schemaVersion": "v21-native",
       "chapterId": "the-organized-mind-ch09",
       "number": 9,
       "title": "Everything Else",
@@ -2448,8 +2313,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stable categories help when people share the naming rule. Private nicknames may feel natural, but they make the next person's search harder.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2461,8 +2325,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Bush's trail idea keeps relationships made by use and sequence. A single parent folder may be neat, but it can hide why the items mattered together.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2474,8 +2337,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A bounded catchall can be efficient. The failure is not miscellany itself; the failure is an unlimited container that becomes another overload system.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q04",
@@ -2487,8 +2349,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Review timing changes deferral into managed ambiguity. Without a revisit point, the tray becomes a place where decisions go missing.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2500,8 +2361,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Precision has a cost. For low-value items, the sorting work can exceed any retrieval savings the team will ever get back.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2513,8 +2373,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Cheap storage does not make review cheap. Each saved item creates a later retrieval duty for the human who has to search and judge it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "standard"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q07",
@@ -2526,8 +2385,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Filtering and withdrawal can be legitimate under abundance. Ignoring a source is not automatically careless when attention cannot process everything.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2539,8 +2397,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Residual categories need boundaries. A vague catchall absorbs items that deserve real homes, even if its name sounds harmless.",
-            "bloomsLevel": "apply",
-            "depthLevel": "deep"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q09",
@@ -2552,8 +2409,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Deferring classification can be a decision skill. Some categories become clear only after use; a rushed label can create the wrong retrieval path.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2596,7 +2452,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build a Bounded Holding Pen",
         "coreSkill": "Practice deciding when not to decide yet. Build a Bounded Holding Pen by naming what may enter, when it gets reviewed, and what must never enter. The skill is not tidying; it is protecting attention from low-value sorting while keeping important items findable.",
         "ifThenPlans": [
           {
@@ -2621,19 +2476,13 @@
       },
       "memorableLines": [
         {
-          "text": "Precision should earn its keep.",
-          "location": "breakdown.fastRead",
-          "why": "It compresses the chapter's warning against over-classifying low-value ambiguity."
+          "text": "Precision should earn its keep."
         },
         {
-          "text": "Trails rescue what trees misplace.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader a compact contrast between associative trails and hierarchy."
+          "text": "Trails rescue what trees misplace."
         },
         {
-          "text": "A catchall without edges becomes a landfill.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the boundary on miscellaneous containers easy to remember."
+          "text": "A catchall without edges becomes a landfill."
         }
       ]
     }

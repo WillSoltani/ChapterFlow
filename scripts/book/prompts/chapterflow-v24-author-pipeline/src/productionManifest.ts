@@ -481,7 +481,18 @@ function gatherCommonPayload(
           message: `QC attestation for ${spec.chapterId} is missing roundId; production manifests require round-backed QC evidence.`,
         }));
       }
-      if (!isAttestationFresh(att, chapter)) {
+      // Freshness is checked against the LOOSE state chapter (authored.value)
+      // when it is readable, NOT against the packaged `chapter`. The reader-content
+      // strip (reader-content-strip-v3) removes fields that ARE inside the QC
+      // attestation hash's scope (implementationPlan.title, per-chapter
+      // schemaVersion, memorableLines[].location/why, depthLevel, …) but are NOT
+      // in the frozen V2_EXCLUDE set — hashing the stripped chapter would falsely
+      // stale every attestation. The loose state chapter carries exactly the bytes
+      // the reviewer attested. (If the state chapter is unreadable that is already
+      // an authoring-evidence failure; fall back to the packaged chapter so we
+      // never skip the freshness gate.)
+      const freshnessChapter = (authored.ok ? (authored.value as ChapterV21) : chapter);
+      if (!isAttestationFresh(att, freshnessChapter)) {
         findings.push(blocker({
           checkId: "PPKG.qc_stale",
           chapterNumber: spec.chapterNumber,

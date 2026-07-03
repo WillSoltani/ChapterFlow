@@ -47,13 +47,6 @@
             "evidence",
             "decision"
           ],
-          "planSpec": {
-            "domain": "county survivor benefits office processing an old violence file",
-            "audience": "an adult claimant whose history is real but whose next form cannot be filled out by rage alone",
-            "stakes": "whether the claim stalls because the file becomes identity instead of evidence",
-            "format": "decision_point",
-            "requiredBeat": "the claimant slides the stamped police report into the evidence tray, then writes one next action on the intake checklist without softening what happened"
-          },
           "scenario": "A torn manila file presses flat under the scratched plexiglass at 9:18 Monday morning. Sloane slides the stamped police report into the evidence tray and watches the clerk stamp the case number. Her jaw is tight enough to ache. The intake checklist still has a blank next-action line, and she has to decide whether the report will speak for everything or whether she will write the appointment she needs next.",
           "whatToDo": "Put the report where it belongs, as evidence, then write the next action in plain words. Do not soften the harm, and do not let it leave the form blank.",
           "whyItMatters": "The file proves the damage, but the claim moves only when a present action appears. Evidence can support the next step without becoming the whole identity."
@@ -66,13 +59,6 @@
             "safety",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "night janitorial crew orientation at an airport terminal",
-            "audience": "a supervisor training a teenager who is exhausted from a chaotic home",
-            "stakes": "whether fatigue becomes an excuse for unsafe shortcuts around locked gates",
-            "format": "vignette",
-            "requiredBeat": "the supervisor points to the sealed gate log, names the exhaustion as real, and still makes the trainee sign the safety sequence before the shift starts"
-          },
           "scenario": "The yellow gate log is clipped to a rolling supply cart near Terminal C, lit by fluorescent tubes at 11:42 p.m. Daniel's eyes keep closing while his supervisor explains the radio check and the wet-floor placards. She names the exhaustion once, then taps the sealed gate log. Before the shift starts, Daniel must choose whether chaos at home excuses a skipped safety sequence.",
           "whatToDo": "Name the fatigue without arguing with it, then sign the sequence and complete the radio check. Real exhaustion changes support needs, not the gate rule.",
           "whyItMatters": "The unsafe shortcut would let a real hardship control a new setting. The log gives the hardship a boundary and makes the next behavior visible."
@@ -85,13 +71,6 @@
             "restart",
             "practice"
           ],
-          "planSpec": {
-            "domain": "public library adult literacy desk after a housing move",
-            "audience": "a new resident carrying shame from a disrupted childhood",
-            "stakes": "whether past instability keeps him from entering the reading program he needs",
-            "format": "before_after",
-            "requiredBeat": "he writes the old address on the registration card, crosses it out once, and copies the new tutoring time without apologizing for either address"
-          },
           "scenario": "A blue library card sits beside a tutoring schedule on the adult literacy desk. Claire writes the old address from memory, stops, and crosses it out with one clean line. She copies the new address underneath and writes Tuesday, 6:30 p.m., beside the barcode sticker. The old line is still readable. The new tutoring time is readable too.",
           "whatToDo": "Leave both lines honest. Keep the crossed-out address on the card, then show up for the tutoring time written beside it.",
           "whyItMatters": "A disrupted past explains why reading help feels loaded. The appointment turns that explanation into a place and time instead of letting shame keep the chair empty."
@@ -104,13 +83,6 @@
             "anger",
             "standard"
           ],
-          "planSpec": {
-            "domain": "community boxing gym first weigh-in for a young fighter",
-            "audience": "a coach working with a fighter whose home chaos follows him into training",
-            "stakes": "whether anger becomes a permanent alibi for missing basic drills",
-            "format": "dialogue",
-            "requiredBeat": "the coach lets the fighter name the chaos, then taps the taped drill card and waits until he completes the first round exactly"
-          },
           "scenario": "\"My house was a mess again,\" Eli says at the heavy bag, hand wraps hanging loose at 5:10 p.m. Martin, the coach, nods once and lets the words stand. Then he taps the taped drill card curling from the bag chain. Eli must decide whether the chaos gets to excuse the skipped footwork or whether he starts round one exactly as written.",
           "whatToDo": "Let the fighter name the chaos, then point back to the card and wait for the exact first round. Mercy does not require dropping the standard.",
           "whyItMatters": "Anger becomes an alibi when nobody asks for behavior. The drill gives pain a place to go without letting it erase the work."
@@ -123,13 +95,6 @@
             "clinic",
             "rebuild"
           ],
-          "planSpec": {
-            "domain": "tenant legal clinic preparing a move-out packet",
-            "audience": "a volunteer helping someone leave a dangerous household",
-            "stakes": "whether escape is framed as the finish line rather than the start of hard rebuilding",
-            "format": "postmortem",
-            "requiredBeat": "after the emergency order is copied, the volunteer opens the benefits packet and circles the first appointment because safety did not solve rent"
-          },
           "scenario": "The photocopied emergency order is still warm on the copier tray when James staples it to the move-out packet. The client is safe tonight, but the rent question is untouched. James opens the benefits packet, circles Thursday at 2:00 p.m., and writes the bus route beside it. Escape ended one danger. It did not pay next month.",
           "whatToDo": "Treat the order as the first proof, not the finish line. Circle the practical appointment while the safety paperwork is still in hand.",
           "whyItMatters": "Leaving danger changes the problem. It does not remove the need for rent, transport, and follow-through, so the next rebuild step must be named immediately."
@@ -142,13 +107,6 @@
             "apprentice",
             "spec"
           ],
-          "planSpec": {
-            "domain": "rural apprentice mechanic rebuilding after foster placement",
-            "audience": "a foreman deciding whether to excuse missed steps or teach accountability",
-            "stakes": "whether compassion becomes lowered expectations that trap the apprentice",
-            "format": "reflection",
-            "requiredBeat": "the foreman reads the placement note, folds it once, and has the apprentice torque each lug nut again to the printed spec"
-          },
           "scenario": "A torque chart is taped beside a dented wheel rim in the back bay after lunch. Petra watches the foreman read the placement note, fold it once, and set it away from the sockets. He does not pretend the note is small. He points to the printed spec and has her torque each lug nut again until the wrench clicks where it should.",
           "whatToDo": "Hold the note and the torque chart in the same reality. Acknowledge the disruption, then repeat the exact mechanical step to spec.",
           "whyItMatters": "Lowering the standard would make the past a permanent ceiling. Repeating the task teaches Petra that care can include precision."
@@ -167,8 +125,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice keeps both truths: the fear has a source, and the housing action still has to happen. The other answers either shrink the pain into paperwork or pretend the past no longer affects the present.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -180,8 +137,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The makeup session respects the hardship while keeping the standard alive. Dismissing the strain is brittle, while removing the requirement lets the past keep controlling the next professional step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -193,8 +149,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The circled appointment marks the shift from immediate safety to rebuilding. Waiting leaves the next threat unnamed, while warning about laziness turns a real escape into a moral lecture.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -206,8 +161,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Repeating the safety step to spec keeps compassion tied to capability. Lowering expectations makes the note a ceiling, while ignoring it misses why she may need a clearer return path.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -219,8 +173,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The Tuesday session keeps the past visible but gives the next action the room. Asking for the story may feed shame, while saying the old address no longer matters erases real disruption.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -232,8 +185,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not kindness itself. It is kindness that removes the standard, which lets the chaos keep deciding. Public criticism would add shame, and winning is not the core issue.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -245,8 +197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The hardship may belong in the application, but the blank checklist shows the story has not been converted into action. The answer is not less truth, but a boundary around what truth must now do.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -258,8 +209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The move starts with honest inventory, not erasure. The supervisor's line skips the record of harm. The stronger path keeps support and accountability together instead of choosing one.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -271,8 +221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second mentor captures the double edge: full truth plus limited authority. The first mentor confuses toughness with erasure, and the two answers are not equal because denial weakens the inventory.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -333,19 +282,13 @@
       },
       "memorableLines": [
         {
-          "text": "Pain deserves a record. It does not deserve command.",
-          "location": "breakdown.fastRead",
-          "why": "The sentence makes the central boundary between truth and authority blunt enough to remember."
+          "text": "Pain deserves a record. It does not deserve command."
         },
         {
-          "text": "If your past becomes the only answer, every new choice has already lost.",
-          "location": "breakdown.fastRead",
-          "why": "It turns a common excuse pattern into a visible cost."
+          "text": "If your past becomes the only answer, every new choice has already lost."
         },
         {
-          "text": "The past can enter as evidence. It cannot leave as the sentence.",
-          "location": "breakdown.fullRead",
-          "why": "The line compresses the full chapter skill into a legal-feeling image."
+          "text": "The past can enter as evidence. It cannot leave as the sentence."
         }
       ]
     },
@@ -372,13 +315,6 @@
             "test",
             "calendar"
           ],
-          "planSpec": {
-            "domain": "fire academy written-test remediation after a failed entrance score",
-            "audience": "a recruit who blames nerves but cannot read the technical questions fast enough",
-            "stakes": "whether he earns a retest slot or keeps hiding behind a heroic dream",
-            "format": "before_after",
-            "requiredBeat": "he writes the failed score beside the retest date on the dorm door, then blocks the first two chapters of code study on the calendar"
-          },
           "scenario": "A red failed-score sheet is folded inside Graham's turnout-gear locker after Tuesday drill at 6:42 p.m. He has told three people it was nerves, but the fire code manual is still wrapped in plastic on the bunk shelf. That night he writes 61 in black marker beside the retest date on the dorm door, then blocks the first two code chapters on the shared calendar before he can retell the excuse to the dayroom crew.",
           "whatToDo": "Make the failed number public enough to guide behavior, then attach the first study block to the retest date. Do not let the dream stay cleaner than the work.",
           "whyItMatters": "The posted score turns embarrassment into a schedule. Nerves may explain the miss, but only reading the code answers it."
@@ -391,13 +327,6 @@
             "review",
             "trigger"
           ],
-          "planSpec": {
-            "domain": "hospital unit medication-error review",
-            "audience": "a nurse tempted to call a near miss a systems problem only",
-            "stakes": "whether a patient gets harmed next shift because the personal miss stays unnamed",
-            "format": "postmortem",
-            "requiredBeat": "she writes 'I skipped the barcode scan' on the review form before listing the staffing issue underneath it"
-          },
           "scenario": "Nora locks the review room door at 7:40 a.m. and lays the IV bag on the table with the medication label peeling halfway. She could write short staffing on the form and be mostly right. Instead she writes, I skipped the barcode scan, on the first line of the review form. Only then does she add the shift roster problem underneath it, then tapes a scan-before-hang reminder to the inside of the med room cabinet.",
           "whatToDo": "Name the personal miss before the system pressure. Then build the next-shift trigger around the exact skipped step.",
           "whyItMatters": "The staffing issue matters, but it cannot correct the behavior Nora hid. The scan line gives the next shift a precise action."
@@ -410,13 +339,6 @@
             "reading",
             "lab"
           ],
-          "planSpec": {
-            "domain": "community college placement exam retake",
-            "audience": "an adult learner embarrassed by the reading section",
-            "stakes": "whether embarrassment keeps her in a low track another semester",
-            "format": "decision_point",
-            "requiredBeat": "she copies the lowest subscore onto the study plan, circles vocabulary, and signs up for the lab before leaving campus"
-          },
           "scenario": "Tessa folds the placement printout under a vending-machine receipt outside the advising office at 2:15 p.m. She reads the low vocabulary subscore twice and feels heat climb into her face. The study lab sign-up sheet is ten steps away. She has to decide whether to fold the paper into her bag or copy the subscore onto the study plan, circle vocabulary, and sign the lab roster before shame gets a private room.",
           "whatToDo": "Copy the lowest number where it can guide the next action, circle the skill gap, and sign up before shame gets a private room.",
           "whyItMatters": "Embarrassment wants concealment. The copied subscore turns the weak spot into a lab appointment instead of another semester of avoidance."
@@ -429,13 +351,6 @@
             "deadline",
             "system"
           ],
-          "planSpec": {
-            "domain": "public defender arraignment prep after a missed deadline",
-            "audience": "a junior attorney protecting his image after a late filing",
-            "stakes": "whether a client pays for his ego next time",
-            "format": "dialogue",
-            "requiredBeat": "he tells the senior defender the exact missed calendar entry, then writes a new filing trigger into the case system while she watches"
-          },
           "scenario": "'The docket was a mess,' Thomas says in the public defender workroom at 4:55 p.m., holding an arraignment folder with one deadline highlighted in orange. The senior defender waits across the table. Thomas must tell her whether the case management system failed or whether he missed the calendar entry himself. His cursor is already blinking on the new alert field, and the next arraignment is two days out.",
           "whatToDo": "Say the exact missed entry, then create the filing trigger while the folder is open. Protect the client by making the truth operational.",
           "whyItMatters": "A vague docket story protects Thomas's image. A named calendar miss creates a safeguard that can fire before the next client pays for it."
@@ -448,13 +363,6 @@
             "weigh-in",
             "truth"
           ],
-          "planSpec": {
-            "domain": "youth boxing weigh-in after hidden diet slips",
-            "audience": "an amateur fighter who keeps joking about the scale",
-            "stakes": "whether he misses the bout because joking protects the lie",
-            "format": "predict_reveal",
-            "requiredBeat": "before stepping on, he predicts the number aloud, sees the miss, and writes the exact evening food cut on the gym board"
-          },
           "scenario": "A digital scale glows beside Reed's unlaced boxing shoes at 6:05 p.m. with twelve days to the regional weigh-in. He jokes that the cut will be close and predicts 152 before stepping on. The number lands at 156. He must choose, before the coach speaks, whether to laugh it off or write the exact evening food cut and water target on the gym whiteboard next to his meal log.",
           "whatToDo": "Say the prediction, face the miss, and write the specific food cut where training partners can see it. Let the number change the evening.",
           "whyItMatters": "The joke keeps the lie social and harmless. The board turns the miss into a visible correction before the bout is at risk."
@@ -467,13 +375,6 @@
             "call",
             "meeting"
           ],
-          "planSpec": {
-            "domain": "recovery sponsor call after a hidden relapse trigger",
-            "audience": "a person who says everything is fine while rearranging facts",
-            "stakes": "whether secrecy becomes the first step back into the old pattern",
-            "format": "reflection",
-            "requiredBeat": "he reads the exact receipt total into the phone, then pins tomorrow's meeting time above the apartment buzzer"
-          },
           "scenario": "A crumpled receipt lies beside Carmen's dead phone charger after dinner at 9:28 p.m. The total is small enough to minimize and specific enough to matter. On the sponsor call, she reads the exact amount instead of saying she had a rough day. Then she pins tomorrow's meeting time above the apartment buzzer and sets a 6 p.m. alarm before making tea and unrolling the recovery binder on the table.",
           "whatToDo": "Read the number exactly, then put the next meeting where you will have to see it leaving home. Secrecy loses power when it has a time and place.",
           "whyItMatters": "A vague rough day lets the trigger rearrange itself. The receipt total and posted meeting make the risk specific enough to interrupt."
@@ -492,8 +393,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful part is the conversion from fact to task. Posting for group embarrassment would feed shame, and ignoring causes would make the next assignment less precise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -505,8 +405,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The alert answers the exact missed behavior while still leaving room to address staffing. A promise is too soft, and documenting only overload hides the personal correction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -518,8 +417,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The failed domains and study block turn the complaint into a work plan. Telling him to study harder is vague, while rest may help later but does not answer the exposed gap.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -531,8 +429,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Prediction, reveal, and written correction make the lie visible and actionable. A joke ban polices tone, and the real-fighter line creates shame without a food plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -544,8 +441,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The copied subscore turns embarrassment into a targeted appointment. Explaining the history may matter later, and waiting gives shame time to hide the gap again.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -557,8 +453,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The docket context helps explain the miss, but it does not create a correction. The personal trigger, such as a case alert, is what protects the next client.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -570,8 +465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The exact receipt makes the trigger concrete enough to plan around. Waiting can deepen secrecy, and the issue is not dependence but the missing fact.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -583,8 +477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The missing standard is the problem. Comfort is not wrong by itself, but praise that avoids the failed behavior cannot produce a task or a deadline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -596,8 +489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first uses the score as a task generator. The second may look honest, but it stops at injury and can become another way to avoid the actual study.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -658,19 +550,13 @@
       },
       "memorableLines": [
         {
-          "text": "If the truth does not change the calendar, it is only pain with better lighting.",
-          "location": "breakdown.fastRead",
-          "why": "It separates confession from disciplined follow-through in one sharp test."
+          "text": "If the truth does not change the calendar, it is only pain with better lighting."
         },
         {
-          "text": "Confession protects the image; the calendar block protects the next shift.",
-          "location": "breakdown.deepRead",
-          "why": "It exposes the false comfort of confession without a posted next action."
+          "text": "Confession protects the image; the calendar block protects the next shift."
         },
         {
-          "text": "Truth that stays private can still flatter you.",
-          "location": "breakdown.fullRead",
-          "why": "It exposes how honesty can become another protected self-image."
+          "text": "Truth that stays private can still flatter you."
         }
       ]
     },
@@ -697,13 +583,6 @@
             "deadline",
             "study"
           ],
-          "planSpec": {
-            "domain": "commercial pest-control route with a certification deadline",
-            "audience": "a night-shift technician tired of the life his route has become",
-            "stakes": "whether the certification application becomes a fantasy or a priced calendar",
-            "format": "decision_point",
-            "requiredBeat": "he sets the certification deadline beside tomorrow's route sheet, cancels the overtime shift, and assigns the first study block before leaving the depot"
-          },
           "scenario": "A roach trap invoice is damp on the passenger-side floor of Blake's truck at 10:36 p.m. He lays the certification deadline beside tomorrow's pest-control route sheet on the depot counter. The overtime slip would cover rent faster, but the exam window closes Friday at 5 p.m. He has to decide whether the application stays a story or whether he cancels overtime and writes the first study block before leaving the lot.",
           "whatToDo": "Put the deadline against the route sheet, cancel the overtime shift, and schedule the first study block while the depot is still open.",
           "whyItMatters": "The dream becomes real only when it costs a current habit. Cancelling overtime makes the certification deadline stronger than the old route."
@@ -716,13 +595,6 @@
             "pool",
             "qualification"
           ],
-          "planSpec": {
-            "domain": "merchant marine swim qualification",
-            "audience": "an applicant who talks about sea work but avoids the pool test",
-            "stakes": "whether a dream job dies because the required distance stays abstract",
-            "format": "predict_reveal",
-            "requiredBeat": "she writes the required swim distance on a laminated lane card, times her first attempt, and crosses out two evening commitments to buy pool hours"
-          },
           "scenario": "Sofia grips a stopwatch lanyard beside the laminated lane card beading with pool water at the city pool timing table. She is a merchant marine applicant who predicts she can cover the required swim distance with a little practice, then times the first attempt and stops short. Before her towel is dry, she must choose between keeping two evening plans or crossing them out on the pool schedule to buy the hours the card now demands.",
           "whatToDo": "Write the distance, time the attempt, and cut the evening commitments before optimism can blur the result.",
           "whyItMatters": "The lane card turns sea work from identity into distance. The crossed-out plans show whether the qualification outranks comfort."
@@ -735,13 +607,6 @@
             "trial",
             "cost"
           ],
-          "planSpec": {
-            "domain": "restaurant line cook trying to pass a sous-chef knife trial",
-            "audience": "a cook who says he wants promotion but still leaves early",
-            "stakes": "whether ambition survives the exact cost of prep practice",
-            "format": "scene",
-            "requiredBeat": "he tapes the trial date above the prep sink, weighs the onion waste after practice, and stays until the cut pile meets the standard"
-          },
           "scenario": "A bin of uneven onion dice sits under the restaurant kitchen light at 11:18 p.m. while Luca, a culinary student, wipes down the station after service. Luca tapes the sous-chef trial date above the sink and weighs the onion waste in a plastic quart container. The last bus leaves in twenty minutes. He has to choose whether promotion remains dinner talk or whether he stays until the cut pile meets the posted standard on the trial sheet.",
           "whatToDo": "Tape the trial date where prep happens, measure the waste, and stay until the knife work meets the trial standard once.",
           "whyItMatters": "Promotion talk costs nothing after shift. The weighed waste prices the ambition in time, missed buses, and corrected cuts."
@@ -754,13 +619,6 @@
             "license",
             "drills"
           ],
-          "planSpec": {
-            "domain": "rail signal apprentice license exam",
-            "audience": "an apprentice who likes the badge more than the study load",
-            "stakes": "whether a dangerous trade admits someone who only wanted the title",
-            "format": "before_after",
-            "requiredBeat": "after failing a practice circuit diagram, he prices the mission by giving up weekend side jobs and logging two nightly wiring drills"
-          },
           "scenario": "Anders unfolds a graphite-smudged practice circuit diagram on the crew-house kitchen table at 9:12 p.m. He likes the rail badge, but the failed diagram shows the title is ahead of the skill by a wide margin. After dinner he crosses two weekend side jobs off the calendar and logs two nightly wiring drills in the license binder. The badge now has a price the rest of the week will pay.",
           "whatToDo": "Treat the failed diagram as the invoice. Give up the side jobs and log the wiring drills before the badge fantasy grows cleaner.",
           "whyItMatters": "A dangerous trade cannot admit someone who only wants the symbol. The cancelled side jobs buy the practice the license requires."
@@ -773,13 +631,6 @@
             "pack",
             "field"
           ],
-          "planSpec": {
-            "domain": "county search-and-rescue pack test",
-            "audience": "a volunteer who wants the uniform but not the pack weight",
-            "stakes": "whether she earns field eligibility before flood season",
-            "format": "reflection",
-            "requiredBeat": "she puts the required pack weight on the scale, sees the gap, and schedules hill repeats instead of another planning meeting"
-          },
           "scenario": "Isabelle stacks the canvas sandbag on the freight scale in the county search-and-rescue garage at 11:48 a.m. She has attended every planning meeting for two seasons and still avoids the pack test. She loads the required forty-pound weight, watches the dial show the gap, and writes hill repeats beside the field roster instead of adding one more meeting to the dispatch calendar.",
           "whatToDo": "Put the required pack weight on the scale and schedule hill repeats, not another planning conversation.",
           "whyItMatters": "Meetings let the uniform stay imaginary. The scale shows the exact physical cost of field eligibility before flood season arrives."
@@ -792,13 +643,6 @@
             "interpreter",
             "drill"
           ],
-          "planSpec": {
-            "domain": "court interpreter oral exam preparation",
-            "audience": "a bilingual clerk who keeps saying she will apply next year",
-            "stakes": "whether a better post remains imaginary because practice never becomes costly",
-            "format": "dialogue",
-            "requiredBeat": "she tells her supervisor the exam date aloud, trades two lunch shifts for recorded drills, and marks the first failed speed score in the prep log"
-          },
           "scenario": "'Maybe next year,' Kiran says at 4:48 p.m., coiling the court headset beside a half-filled prep log on the reporter's bench. Her supervisor asks for a date, not a mood. Kiran must decide whether to protect the fantasy or say the exam date aloud, trade two lunch shifts for recorded drills, and mark the first failed speed score in red where she can see it on the locker door.",
           "whatToDo": "Say the exam date, trade the lunch shifts, and record the first speed score in the prep log before the idea becomes vague again.",
           "whyItMatters": "Language ability is not the exam. The spoken date and lost lunch shifts make the better post costly enough to become real."
@@ -817,8 +661,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The key test is whether the goal has begun charging time, comfort, or money now. Fear and public accountability can be present, but they are not the core pricing mechanism.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -830,8 +673,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Cancelling the shift prices the mission immediately and protects the first study block. Coworker attention may help later, but it does not buy the time the deadline requires.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -843,8 +685,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The training card, timed attempt, and cancelled commitments expose the cost. Shoes and videos can decorate the wish while leaving the schedule unchanged.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -856,8 +697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The trial date and waste check put a price on the promotion in the exact place the skill fails. Belief and shadowing may feel useful but can still avoid practice cost.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -869,8 +709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The weighed pack and hill repeats address the actual gate. Reflection and meetings can keep the uniform emotionally alive while avoiding the physical requirement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -882,8 +721,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The unchanged weekend shows the old life is still protected. Prestige and difficulty are distractions; the missing signal is a concrete cost paid before the deadline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -895,8 +733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful part is priced clarity, not extremity for its own sake. A deadline that ignores safety or the actual standard becomes vanity, not discipline.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -908,8 +745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cancelled side jobs buy time for the exposed wiring gap. The point is not proving loyalty or creating hardship; it is paying the exact cost of the standard.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -921,8 +757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first candidate pays a real cost, so the mission has entered the day. The second has a dramatic date but no changed behavior, which leaves the wish protected.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -983,19 +818,13 @@
       },
       "memorableLines": [
         {
-          "text": "Someday protects the old life. A deadline attacks it.",
-          "location": "breakdown.fastRead",
-          "why": "The contrast makes the chapter's cost-based logic easy to retrieve."
+          "text": "Someday protects the old life. A deadline attacks it."
         },
         {
-          "text": "The deadline made drift expensive.",
-          "location": "breakdown.deepRead",
-          "why": "It turns drift into something with a price instead of a mood."
+          "text": "The deadline made drift expensive."
         },
         {
-          "text": "A wish lets the old life keep its furniture.",
-          "location": "breakdown.fullRead",
-          "why": "The image makes vague ambition feel like a room that has not changed."
+          "text": "A wish lets the old life keep its furniture."
         }
       ]
     },
@@ -1022,13 +851,6 @@
             "salvage",
             "tide"
           ],
-          "planSpec": {
-            "domain": "storm-damaged marina salvage crew hauling soaked dock sections",
-            "audience": "a new crew member watching the foreman and the tide at the same time",
-            "stakes": "whether the crew folds before the tide window closes",
-            "format": "scene",
-            "requiredBeat": "as the strongest worker groans and slows, the smallest crew member silently shoulders the next dock plank and walks first into the waist-deep water"
-          },
           "scenario": "A splintered dock plank is slick with brackish mud beside the tide chart at 6:20 a.m. Morgan watches the strongest worker groan, slow, and drop his end near the work gloves. The tide window is closing. Morgan has to decide whether to wait for the foreman or silently shoulder the next plank and walk first into the waist-deep water.",
           "whatToDo": "Lift the next plank without a speech and step into the water first. Let the visible act answer the crew's doubt.",
           "whyItMatters": "The tide is not moved by talk. A worker moving under the same load gives the crew a new signal about what is still possible."
@@ -1041,13 +863,6 @@
             "drill",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "hospital disaster drill moving patients down dead elevators",
-            "audience": "a transport team under observation by skeptical senior staff",
-            "stakes": "whether fatigue spreads through the drill and proves the unit unready",
-            "format": "decision_point",
-            "requiredBeat": "when the team pauses at the fourth stairwell landing, one orderly regrips the evacuation sled straps and starts the next descent without waiting for permission"
-          },
           "scenario": "An evacuation sled is wedged against the fourth stairwell door at 2:15 p.m., drill vest straps twisted under the mannequin. Senior staff are silent on the landing. Harper feels the transport team pause long enough for fatigue to spread. She has to decide whether to wait for permission or regrip the sled straps and start the next descent.",
           "whatToDo": "Reset the straps and begin the descent cleanly. Do not announce courage; give the team a moving example to follow.",
           "whyItMatters": "The pause is becoming permission to fail. One orderly moving with the sled changes the signal before skepticism hardens."
@@ -1060,13 +875,6 @@
             "race",
             "morale"
           ],
-          "planSpec": {
-            "domain": "rowing club dawn seat race against a favored crew",
-            "audience": "an underdog boat that can feel the other shell waiting for it to fade",
-            "stakes": "whether the favored crew relaxes into victory or starts questioning itself",
-            "format": "predict_reveal",
-            "requiredBeat": "the coxswain calls for a power ten after the blades are already ragged, and the underdog boat holds pace until the favorite's stroke rate breaks first"
-          },
           "scenario": "A wet oar blade feathers under gray dawn near the finish buoy as Ryan, the crew lead and coxswain, watches the lane markers blur. Ryan can hear the favored shell's cox box counting them down and predicts his underdog crew will fade first. The stroke rate is already ragged. He must decide whether to save breath or call a power ten now and see which boat's rhythm breaks.",
           "whatToDo": "Call the power ten while the boat is hurting and hold the count clean. Make the favored crew question its easy ending.",
           "whyItMatters": "The move works because both boats can see the suffering. Holding pace under strain turns the expected collapse into doubt for the other side."
@@ -1079,13 +887,6 @@
             "inventory",
             "rival"
           ],
-          "planSpec": {
-            "domain": "warehouse freezer inventory during a broken loading schedule",
-            "audience": "a night crew working beside a rival shift that expects them to miss count",
-            "stakes": "whether the rival shift's certainty becomes the crew's excuse",
-            "format": "vignette",
-            "requiredBeat": "the lead worker wipes ice from the scanner, calls the next pallet number, and keeps the count moving until the rival supervisor stops joking"
-          },
           "scenario": "A barcode scanner is crusted with freezer frost at 1:08 a.m., thermal sleeves stiff around Greta's wrists. The rival supervisor is joking by the inventory seal because the broken loading schedule has the night crew behind. Greta must choose whether to snap back or wipe the scanner, call the next pallet number, and keep the count moving until the joke dies.",
           "whatToDo": "Wipe the scanner and call the next pallet. Keep the count moving where the rival shift can see it.",
           "whyItMatters": "The rival's certainty becomes weaker when the work continues. Argument feeds the joke; visible pace removes its fuel."
@@ -1098,13 +899,6 @@
             "crew",
             "route"
           ],
-          "planSpec": {
-            "domain": "wildland trail crew clearing blowdowns for a medical evacuation route",
-            "audience": "a mixed crew with one member close to quitting",
-            "stakes": "whether the route opens before the rescue team needs it",
-            "format": "dialogue",
-            "requiredBeat": "instead of arguing, the crew lead takes the heavy saw fuel can, steps over the next trunk, and says only the next cut"
-          },
           "scenario": "\"We are not making the ridge before dark,\" someone says as Tomasz, the trail crew lead, stands beside a fallen cedar flagged in orange. Tomasz looks at the dented saw fuel can and the crew member whose hands are shaking. He must decide whether to argue about morale or pick up the heavy can, step over the next trunk, and say only, \"Next cut.\"",
           "whatToDo": "Take the fuel can, step over the trunk, and name the next cut. Keep the signal physical and small.",
           "whyItMatters": "The evacuation route needs motion more than debate. A quiet next cut gives the shaky crew member a behavior to borrow."
@@ -1117,13 +911,6 @@
             "fatigue",
             "prep"
           ],
-          "planSpec": {
-            "domain": "competitive debate team elimination round prep under sleep loss",
-            "audience": "a team whose rival expects them to fold after three late nights",
-            "stakes": "whether fatigue makes them sloppy before the decisive round",
-            "format": "reflection",
-            "requiredBeat": "the captain erases the complaint list, posts the next evidence block, and starts cross-exam drills while the rival room can still hear them"
-          },
           "scenario": "An evidence tub with bent tabs sits open outside the elimination-round prep room after three late nights. Celia hears the rival team laughing through the wall. She erases the complaint list, posts the next evidence block, and starts the cross-exam timer loud enough for both rooms to hear the drill begin.",
           "whatToDo": "Replace the complaint list with the next evidence block and start the drill where fatigue can hear it.",
           "whyItMatters": "The rival expects collapse, and the team is tempted to agree. A live drill changes the room's evidence before sloppiness spreads."
@@ -1142,8 +929,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The action gives the group new evidence about the load. It is not about proving others weak or using guilt; both would turn the shared standard into contempt.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1155,8 +941,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Starting the descent creates a visible signal that the drill is still alive. Shaming the team adds contempt, and asking observers for encouragement gives pressure more authority.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1168,8 +953,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The power sequence applies visible effort inside the shared race standard. Insults are theater, and conserving the loss accepts the other crew's story too early.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1181,8 +965,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Keeping count makes the rival's certainty less believable. Challenging him moves the focus to pride, while pausing gives the joke power over the work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1194,8 +977,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The fuel can and next cut give the group a physical cue. Arguing may be true but still feeds the debate, and a feelings round can deepen the stall at the wrong moment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1207,8 +989,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The useful signal serves the work and the team. When admiration becomes the goal, effort turns into theater and loses the clean leverage of shared pressure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1220,8 +1001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The move is about changing morale through visible effort, not degrading people. The issue is ethical and structural, not whether sarcasm or setting changes the tactic.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1233,8 +1013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The timed drill changes the room's behavior right away. Emotional language is not always weak, and fear of judgment is not the clean mechanism here.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1246,8 +1025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second lead uses visible effort to change the shared story. Mockery may create urgency, but it does so by attacking a person rather than strengthening the standard.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1308,19 +1086,13 @@
       },
       "memorableLines": [
         {
-          "text": "The work keeps going because someone made quitting feel less certain.",
-          "location": "breakdown.fastRead",
-          "why": "It captures psychological edge without turning it into cruelty."
+          "text": "The work keeps going because someone made quitting feel less certain."
         },
         {
-          "text": "The move is psychological, not sadistic.",
-          "location": "breakdown.deepRead",
-          "why": "The short contrast blocks the most dangerous misread."
+          "text": "The move is psychological, not sadistic."
         },
         {
-          "text": "A shared ordeal is always partly physical and partly social.",
-          "location": "breakdown.fullRead",
-          "why": "It explains why visible effort can change a group's interpretation of pain."
+          "text": "A shared ordeal is always partly physical and partly social."
         }
       ]
     },
@@ -1347,13 +1119,6 @@
             "rehab",
             "return"
           ],
-          "planSpec": {
-            "domain": "concert pianist recovering after a tendon strain",
-            "audience": "a musician humiliated by a cancelled recital",
-            "stakes": "whether injury becomes identity or a disciplined return protocol",
-            "format": "before_after",
-            "requiredBeat": "she sets the recital notice aside, opens the rehab chart, and plays only the prescribed five-note pattern without sneaking into the showpiece"
-          },
           "scenario": "A recital notice is folded beside a metronome with a cracked cover in Emily's practice room. The showpiece is open on the stand, but the rehab chart says five notes at half speed. She sets the notice aside, turns the page away from the showpiece, and plays only the prescribed pattern without sneaking into proof. She writes the five-note set on a sticky tab, records one clean pass on her phone, and leaves the showpiece closed until the chart is done.",
           "whatToDo": "Set the recital notice aside and follow the rehab chart exactly. Let the five-note pattern be enough return for today.",
           "whyItMatters": "The showpiece would protect pride. The prescribed pattern touches the injured skill without turning recovery into another performance."
@@ -1366,13 +1131,6 @@
             "simulation",
             "drill"
           ],
-          "planSpec": {
-            "domain": "apprentice electrician after failing a live-panel simulation",
-            "audience": "a trainee ashamed after freezing in front of the crew",
-            "stakes": "whether public humiliation makes him avoid the exact drill that exposed him",
-            "format": "postmortem",
-            "requiredBeat": "he marks the step where his hand froze, resets the breaker board, and runs that step slowly three times with the assessor present"
-          },
           "scenario": "Patrick stands beside a breaker board with one switch tagged in red tape after freezing during the live-panel simulation while his trainer watches. The assessor sheet is still on the bench, and the crew has gone quiet. Patrick marks the step where his hand stopped, resets the board, and runs that motion slowly three times with the assessor present. He asks the trainer to run the same hand motion twice at half speed, then signs the assessor sheet beside the exact step that broke.",
           "whatToDo": "Mark the frozen step and repeat that exact sequence slowly under observation. Do not protect the embarrassed hand from the drill it needs.",
           "whyItMatters": "Avoiding the switch would make humiliation the new instructor. Repeating the step turns public failure into a precise return point."
@@ -1385,13 +1143,6 @@
             "injury",
             "protocol"
           ],
-          "planSpec": {
-            "domain": "competitive swimmer after shoulder pain ends a heat",
-            "audience": "a swimmer who wants to quit the season because the pool now feels like shame",
-            "stakes": "whether the first controlled return happens or avoidance wins",
-            "format": "decision_point",
-            "requiredBeat": "he stops before pain spikes, logs the exact lap count, and returns the next morning for kick-only work instead of pretending he is fine"
-          },
           "scenario": "A lane rope drips onto a laminated rehab lane sheet after Adrian climbs out of the pool on Wednesday night. His shoulder pain ended the heat in front of everyone. He has to decide whether to call the season cursed or stop before the spike, log the exact lap count, and return at 6:00 a.m. for kick-only work. He writes the first pain-free lap time on the rehab sheet, circles the stroke that held, and leaves before pride turns the drill into a race.",
           "whatToDo": "Stop before the pain spike, record the lap count, and come back for the controlled kick set. Do not use shame as a season-ending diagnosis.",
           "whyItMatters": "The log separates real pain from the story that the pool is now forbidden. Kick-only work keeps contact without pretending the shoulder is fine."
@@ -1404,13 +1155,6 @@
             "trial",
             "precision"
           ],
-          "planSpec": {
-            "domain": "pastry apprentice whose laminated dough fails during a trial week",
-            "audience": "a baker embarrassed by a tray of ruined layers",
-            "stakes": "whether failure becomes a reason to hide from the lamination bench",
-            "format": "dialogue",
-            "requiredBeat": "she cuts the failed croissant open, names the butter break, and rolls one new test block under the chef's quiet count"
-          },
           "scenario": "\"The layers are gone,\" Giulia says, cutting open a split croissant on the steel bench at 4:30 p.m. Butter has pooled where the sheet broke. The chef says nothing, hand on the bench scraper. Giulia must decide whether to clear the tray fast or name the butter break and roll one new test block under his quiet count. She saves the split batch in a clear tub, labels the fold where the butter broke, and asks for one slower turn before starting a new tray.",
           "whatToDo": "Cut the failed piece open, name the break, and roll one test block slowly. Keep the failure on the bench until it teaches the hand.",
           "whyItMatters": "Hiding the tray would protect embarrassment. The test block returns to the exact failed layer while the correction is still visible."
@@ -1423,13 +1167,6 @@
             "radio",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "probationary paramedic after a botched radio report",
-            "audience": "a medic whose voice cracked during evaluation",
-            "stakes": "whether embarrassment keeps him from practicing the exact pressure point",
-            "format": "scene",
-            "requiredBeat": "he rewinds the radio recording, writes the missing blood pressure line, and repeats the report into a training handset until the sequence stays intact"
-          },
           "scenario": "A training handset lies beside Derek's crumpled run sheet in the ambulance bay after evaluation. His voice cracked on the radio report, and the missing blood pressure line is circled in blue. Derek has to choose whether to joke about nerves or rewind the recording, write the line, and repeat the report until the sequence holds. Derek copies the missing blood-pressure line onto the next run sheet, rehearses the radio report aloud, and refuses to call the crack in his voice the whole story.",
           "whatToDo": "Rewind the recording, write the missing line, and repeat the report into the handset until the order stays intact.",
           "whyItMatters": "The cracked voice exposed the pressure point. Repeating the exact radio sequence builds armor where the evaluation actually hit."
@@ -1442,13 +1179,6 @@
             "commission",
             "return"
           ],
-          "planSpec": {
-            "domain": "glassblower returning after a cracked commission",
-            "audience": "an artisan whose pride got hit in front of a buyer",
-            "stakes": "whether he protects his ego by avoiding the furnace",
-            "format": "reflection",
-            "requiredBeat": "he places the cracked vase shard on the bench, notes the temperature drop, and reheats a small gather rather than starting with a showpiece"
-          },
           "scenario": "A green glass shard catches light on Benoit's steel bench after the buyer leaves. The temperature log shows the drop he wanted to ignore. He places the shard beside the annealing shelf, notes the number, and reheats a small gather instead of starting a showpiece that would let pride pretend nothing cracked. He tapes the temperature number to the annealing shelf, repeats one smaller pour, and waits for the glass to cool before judging the day.",
           "whatToDo": "Keep the shard on the bench, note the temperature drop, and reheat a small gather. Return to the cause at a controllable size.",
           "whyItMatters": "The showpiece would turn repair into ego protection. The small gather tests the exposed failure without hiding from the buyer's rejection."
@@ -1467,8 +1197,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The important piece is accurate, controlled contact with the exposed point. Repeating pain for its own sake is denial, and not every return is simply a smaller duplicate.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1480,8 +1209,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The slow pattern returns to the skill without letting pride set the dose. The hard passage risks turning proof into injury, while avoidance lets fear claim the instrument.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1493,8 +1221,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The frozen step is the map. Repeating it slowly trains the exposed point, while switching drills or only watching protects him from the exact place that needs work.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1506,8 +1233,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The lap log and kick-only return separate real pain from a verdict on the season. Proving courage risks damage, while staying away lets shame define the pool.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1519,8 +1245,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cut-open piece makes the failure teach the next roll. Starting fresh too fast hides the cause, and calming down alone does not train the lamination step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1532,8 +1257,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The missed sequence should become practice material, not identity. Ease and confidence are secondary; the exact pressure point is what must be trained.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1545,8 +1269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pretending nothing happened skips the accurate return. The issue is not avoiding all discomfort or preserving emotion, but training the exposed point honestly.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1558,8 +1281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The small gather returns to the cause at a controllable size. Avoiding emotion is not the aim, and blaming buyers would protect the ego from the temperature log.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1571,8 +1293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The drill is stronger because it respects the setback and trains the precise point of failure. The speech may feel bold, but skipping limits can become fake invulnerability.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1633,19 +1354,13 @@
       },
       "memorableLines": [
         {
-          "text": "Armor is not a wall that never dents.",
-          "location": "breakdown.fastRead",
-          "why": "It corrects the false invulnerability reading in a compact image."
+          "text": "Armor is not a wall that never dents."
         },
         {
-          "text": "Pain denial is cheap theater that leaves the weak spot untrained.",
-          "location": "breakdown.deepRead",
-          "why": "The line sharply separates discipline from posturing."
+          "text": "Pain denial is cheap theater that leaves the weak spot untrained."
         },
         {
-          "text": "A setback is not proof the armor failed.",
-          "location": "breakdown.fullRead",
-          "why": "It turns setback into information without making it inspirational fluff."
+          "text": "A setback is not proof the armor failed."
         }
       ]
     },
@@ -1672,13 +1387,6 @@
             "inspection",
             "duty"
           ],
-          "planSpec": {
-            "domain": "overnight bridge inspection after a fatal collapse anniversary",
-            "audience": "a civil engineer whose team is cold, behind, and tired of checking bolts",
-            "stakes": "whether the work stays tied to public duty when nobody will applaud it",
-            "format": "scene",
-            "requiredBeat": "she pulls a photo of the closed memorial span from the inspection binder, then checks the next gusset plate instead of ending the shift early"
-          },
           "scenario": "A bridge inspection binder is spotted with river mist at 1:25 a.m. Rachel's headlamp is dim, and the team is behind on gusset plates. She pulls the memorial photo of the closed span from the binder. The crew is ready to end the shift early, and she has to decide whether the cold gets the vote or the next plate gets checked.",
           "whatToDo": "Open the memorial photo, then check the next gusset plate by headlamp. Tie the cold task to public duty, not applause.",
           "whyItMatters": "The photo gives the work a reason larger than fatigue. The plate still has to be checked by hand, where duty becomes behavior."
@@ -1691,13 +1399,6 @@
             "snow",
             "hospital"
           ],
-          "planSpec": {
-            "domain": "blood bank courier during a snow closure",
-            "audience": "a courier whose route has become painful and slow",
-            "stakes": "whether the hospital delivery happens before the surgical window closes",
-            "format": "decision_point",
-            "requiredBeat": "at the closed highway ramp, he touches the red transport seal, recalls the last completed emergency run, and chooses the plowed county detour"
-          },
           "scenario": "A red transport seal loops through the chilled blood cooler while courier Colin waits with a nurse at the closed highway ramp. Colin's back hurts, and the dispatch sheet says the surgical window closes in forty minutes. He touches the seal and remembers the last emergency run he finished. Now he must decide whether to call it blocked or take the plowed county detour.",
           "whatToDo": "Touch the seal, recall one completed hard run, and choose the safe detour that still serves the delivery window.",
           "whyItMatters": "The proof keeps the route from feeling impossible, and the surgical window keeps the task tied to someone else's need."
@@ -1710,13 +1411,6 @@
             "translation",
             "fatigue"
           ],
-          "planSpec": {
-            "domain": "long-haul interpreter relay for a disaster hotline",
-            "audience": "a volunteer translator fighting fatigue after hours of calls",
-            "stakes": "whether a displaced family reaches shelter instructions in their language",
-            "format": "reflection",
-            "requiredBeat": "she opens a saved thank-you transcript from an earlier call, reads one line, and takes the next headset handoff"
-          },
           "scenario": "A headset rests beside a printed shelter map after six hours of disaster hotline calls. Amelie sees the call queue refill and feels her words starting to blur. She opens a saved thank-you transcript from the last family who found shelter, reads one line, and takes the next headset handoff before fatigue becomes the only fact.",
           "whatToDo": "Read one saved line of proof, then take the next handoff. Use memory as evidence that the work reaches someone.",
           "whyItMatters": "The transcript does not remove fatigue. It reconnects the call queue to a displaced family instead of letting exhaustion make the work faceless."
@@ -1729,13 +1423,6 @@
             "transport",
             "clinic"
           ],
-          "planSpec": {
-            "domain": "animal rescue transport after a kennel fire",
-            "audience": "a driver whose back is spasming from loading crates",
-            "stakes": "whether the final group of animals reaches the overflow clinic",
-            "format": "before_after",
-            "requiredBeat": "before quitting, he reads the crate tags from the first successful load, then moves one more carrier onto the ramp with help"
-          },
           "scenario": "A scorched crate tag is clipped to a wire carrier beside the loading ramp. Mark's back is spasming after the first transport to the overflow clinic. Before quitting, he reads the tags from the successful load, asks for help on the next lift, and moves one more carrier onto the ramp instead of pretending pain is noble.",
           "whatToDo": "Read the completed crate tags, ask for help, and move one more carrier safely. Keep the duty connected to the clinic, not to solo proof.",
           "whyItMatters": "The tags are stored proof that the work reaches the clinic. Asking for help keeps service from turning into collapse worship."
@@ -1748,13 +1435,6 @@
             "bail",
             "unseen"
           ],
-          "planSpec": {
-            "domain": "public defender weekend bail review backlog",
-            "audience": "an attorney exhausted by cases no one sees",
-            "stakes": "whether a client sits in jail another day because the work has no trophy",
-            "format": "postmortem",
-            "requiredBeat": "she opens the prior release order that proved one review mattered, then finishes the next affidavit instead of polishing her complaint email"
-          },
           "scenario": "A release order is tucked under a half-empty staple strip on Julia's desk Sunday afternoon. The bail review queue is still long, and no one will see the extra hour. She opens the prior order that proved one review mattered, closes the complaint email, and finishes the next affidavit before the courthouse inbox locks.",
           "whatToDo": "Open the proof that one review mattered, then finish the next affidavit. Let the client need outrank the urge to be seen.",
           "whyItMatters": "The release order gives evidence that invisible work changes a day in jail. The affidavit turns that proof into one more case."
@@ -1767,13 +1447,6 @@
             "kitchen",
             "generator"
           ],
-          "planSpec": {
-            "domain": "shelter kitchen final meal service after a power outage",
-            "audience": "a cook whose feet hurt and who will not be thanked by name",
-            "stakes": "whether families get hot food before the generator fuel runs out",
-            "format": "dialogue",
-            "requiredBeat": "the cook points to the tally of meals already served, calls for the last rice pan, and plates the next tray while the generator coughs"
-          },
           "scenario": "\"Fuel gauge is dropping,\" someone says under the emergency lights. A steam table pan is dented at one corner, and Diego's feet hurt behind the shelter kitchen line. He points to the meal tally, calls for the last rice pan, and must choose whether to complain about being unseen or plate the next tray while the generator coughs.",
           "whatToDo": "Point to the meal tally, call the last rice pan, and plate the next tray before the generator quits.",
           "whyItMatters": "The tally proves the service is reaching families. The next tray keeps the reason larger than tired feet or missing credit."
@@ -1792,8 +1465,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The surgical window gives the task a duty beyond recognition. Pain has not disappeared, and fear of failure is not the cleaner motive driving the choice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -1805,8 +1477,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The photo reconnects the plate to public safety and the next check. Breakfast and embarrassment may move people briefly, but they keep the focus on reward or shame.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -1818,8 +1489,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The saved line is stored proof tied to the next handoff. Replaying every hard call can flood the moment, while ignoring proof leaves fatigue as the only evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1831,8 +1501,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The crate tags reconnect the work to the clinic, and asking for help respects the body. Solo lifting would romanticize damage, while stopping may ignore a safe assisted step.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -1844,8 +1513,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The release order is proof that one review matters, and the affidavit serves the client now. The complaint may be valid later, but polishing it first makes recognition the center.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1857,8 +1525,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The larger reason must stay attached to judgment. Ignoring danger misuses purpose, while the other choices either shrink purpose to winning or make pain too simple.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -1870,8 +1537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tally redirects attention from credit to service. It does not deny resentment, but it gives the next tray a better reason than being noticed.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1883,8 +1549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Stored proof should challenge the first bargain, not erase reality. The problem is not privacy or memory itself, but using proof to deny present risk.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -1896,8 +1561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second response does not deny fatigue; it gives the next step a service reason and keeps it bounded. Resentment may be honest, but it cannot choose the task alone.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1958,19 +1622,13 @@
       },
       "memorableLines": [
         {
-          "text": "Memory does not move your legs by magic.",
-          "location": "breakdown.fastRead",
-          "why": "It blocks the magical reading of stored proof in plain language."
+          "text": "Memory does not move your legs by magic."
         },
         {
-          "text": "Service can steady a step. It should not be used to worship collapse.",
-          "location": "breakdown.deepRead",
-          "why": "The line holds purpose and judgment together."
+          "text": "Service can steady a step. It should not be used to worship collapse."
         },
         {
-          "text": "A trophy would not be enough weight.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the difference between recognition and duty concrete."
+          "text": "A trophy would not be enough weight."
         }
       ]
     },
@@ -1997,13 +1655,6 @@
             "simulator",
             "callout"
           ],
-          "planSpec": {
-            "domain": "flight simulator engine-out certification",
-            "audience": "a pilot candidate whose panic signal arrives before the checklist is complete",
-            "stakes": "whether fear stops a controlled procedure that still has steps left",
-            "format": "decision_point",
-            "requiredBeat": "when her hands shake after the warning tone, she touches the laminated emergency checklist, slows the descent rate, and completes the next callout before deciding anything is unrecoverable"
-          },
           "scenario": "A simulator warning light reflects in Olivia's scratched throttle knob at 3:12 p.m. Her hands shake after the engine-out tone, and the laminated emergency checklist is still clipped beside her knee. She has to decide whether panic means unrecoverable or whether she touches the checklist, slows the descent rate, and completes the next callout.",
           "whatToDo": "Touch the checklist, slow the descent, and say the next callout before judging the whole simulation.",
           "whyItMatters": "Panic arrived before the procedure was finished. The checklist gives her a measured test instead of letting fear close the case."
@@ -2016,13 +1667,6 @@
             "ascent",
             "procedure"
           ],
-          "planSpec": {
-            "domain": "deep-sea research dive ascent with low air anxiety",
-            "audience": "a trainee diver who wants to bolt upward at the first pressure spike",
-            "stakes": "whether panic creates more danger than the remaining air calculation",
-            "format": "predict_reveal",
-            "requiredBeat": "the dive lead has him read the gauge, compare it to the ascent slate, and make the next slow fin kick rather than sprinting upward"
-          },
           "scenario": "An ascent slate is clipped to a buoy line in green water while Ethan's air gauge feels louder than it looks. He predicts he has almost nothing left and wants to sprint upward. The dive lead points to the gauge and slate. Ethan must decide whether to bolt or read the number, compare the ascent plan, and make one slow fin kick.",
           "whatToDo": "Read the gauge, match it to the slate, and take the next slow kick. Let the numbers slow the panic.",
           "whyItMatters": "Bolting can create the danger Ethan fears. The gauge and slate separate low-air anxiety from the actual ascent procedure."
@@ -2035,13 +1679,6 @@
             "fatigue",
             "accuracy"
           ],
-          "planSpec": {
-            "domain": "court stenographer speed test at the fatigue mark",
-            "audience": "a candidate whose fingers freeze when the dictation accelerates",
-            "stakes": "whether the first error cascade becomes proof she is finished",
-            "format": "before_after",
-            "requiredBeat": "after missing three words, she marks the minute stamp, resets posture, and holds accuracy for the next thirty seconds before judging the whole attempt"
-          },
           "scenario": "A stenotype paper strip curls onto a courtroom testing tray as Marie, the student reporting candidate, reaches the speed round. Marie misses three words when the dictation accelerates, and her fingers hover above the keys. She marks the minute stamp, resets her posture, and holds accuracy for the next thirty seconds before deciding whether the attempt is truly gone.",
           "whatToDo": "Mark the miss, reset posture, and test the next thirty seconds. Do not let the first error cascade write the verdict.",
           "whyItMatters": "The minute stamp contains the failure. The next measured interval shows whether fatigue is final or just loud."
@@ -2054,13 +1691,6 @@
             "pulley",
             "pacing"
           ],
-          "planSpec": {
-            "domain": "alpine rescue pulley drill on a steep snowfield",
-            "audience": "a rescuer whose lungs are burning before the loaded sled moves",
-            "stakes": "whether the team quits the haul because the first strain feels final",
-            "format": "scene",
-            "requiredBeat": "the lead calls a slower haul rhythm, checks the anchor, and has each rescuer take five measured pulls before reassessing the load"
-          },
           "scenario": "A snow anchor is half buried beside a red haul rope as rescue lead Henrik kneels on the steep drill field. Henrik's lungs burn before the loaded sled moves, and two rescuers look ready to call it. He has to choose whether the first strain is final or whether to check the anchor, slow the rhythm, and have each rescuer take five measured pulls.",
           "whatToDo": "Check the anchor, slow the haul rhythm, and take five measured pulls per rescuer before reassessing.",
           "whyItMatters": "The bounded test gives the team information. It avoids both surrendering to first strain and yanking unsafely against the load."
@@ -2073,13 +1703,6 @@
             "recording",
             "strain"
           ],
-          "planSpec": {
-            "domain": "voice actor recording a damaged-voice audiobook deadline",
-            "audience": "a narrator tempted to quit at the first hoarse take",
-            "stakes": "whether the deadline is met without turning strain into injury",
-            "format": "reflection",
-            "requiredBeat": "she listens to the cracked take, lowers the session pace, marks hydration breaks, and records one clean paragraph before deciding the voice is done"
-          },
           "scenario": "A waveform is frozen on Beatrice's studio monitor beside a glass straw at 8:50 p.m. The first hoarse take scares her because the audiobook deadline is close. She listens once, lowers the session pace, marks hydration breaks, and records one clean paragraph before deciding whether the voice is truly done.",
           "whatToDo": "Listen to the take, slow the pace, mark breaks, and test one clean paragraph. Do not turn strain into proof or panic.",
           "whyItMatters": "The paragraph test respects the voice while gathering better evidence than the first cracked take."
@@ -2092,13 +1715,6 @@
             "heat",
             "route"
           ],
-          "planSpec": {
-            "domain": "urban mail carrier heat-route adjustment",
-            "audience": "a carrier who wants to abandon the route when heat turns loud in his head",
-            "stakes": "whether he can tell true danger from a pacing problem before calling out",
-            "format": "dialogue",
-            "requiredBeat": "he reads the heat index, shifts the route order to shaded blocks, takes the measured water stop, and completes the next segment before reassessing"
-          },
           "scenario": "\"This route is done,\" mail carrier Sean says beside the curb, scanner pouch dark with sweat against his mail satchel. His route manager asks for the heat index, not a guess. Sean must decide whether to call out immediately or read the number, shift the route to shaded blocks, take the water stop, and complete one segment before reassessing.",
           "whatToDo": "Read the heat index, change the route order, take the water stop, and reassess after one shaded segment.",
           "whyItMatters": "The heat may be danger or bad pacing. The adjusted segment gives evidence without pretending heat is harmless."
@@ -2117,8 +1733,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The signal needs sorting. The other choices are too absolute: ignoring limits is reckless, and treating every limit as final danger stops useful testing.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2130,8 +1745,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The callout tests the signal with procedure. Ending early gives panic final authority, while skipping the checklist turns pride into the plan.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2143,8 +1757,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The gauge and slate convert panic into procedure. Bolting may create danger, and ignoring the gauge would be toughness without information.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2156,8 +1769,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The marked interval contains the error and gathers new evidence. Stopping may obey the first cascade, while speeding up denies the signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2169,8 +1781,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The anchor check and measured pulls create controlled overreach. Yelling removes judgment, while stopping treats first strain as the whole truth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2182,8 +1793,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The slow paragraph respects the warning while gathering information. It does not deny vocal risk, and distraction would not solve the strain question.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2195,8 +1805,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The useful frame challenges early quitting, but it does not erase danger or planning. Restricting it to elites or dismissing it as motivation misses the practical middle.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2208,8 +1817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The route adjustment treats heat as data. Toughing it out would ignore risk, while the other choices twist safety steps into productivity or psychology.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2221,8 +1829,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The measured segment keeps judgment active. It neither worships the first signal nor denies it, which is the core difference from both quitting and reckless pushing.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2283,19 +1890,13 @@
       },
       "memorableLines": [
         {
-          "text": "Do not quit at the first noise. Do not call every noise false.",
-          "location": "breakdown.fastRead",
-          "why": "The line captures the balanced discipline of testing signals."
+          "text": "Do not quit at the first noise. Do not call every noise false."
         },
         {
-          "text": "The most powerful weapon is not denial.",
-          "location": "breakdown.deepRead",
-          "why": "It blocks the reckless reading while keeping the chapter's edge."
+          "text": "The most powerful weapon is not denial."
         },
         {
-          "text": "Signals are read, not worshiped or ignored.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the whole 40% rule nuance into a practical sentence."
+          "text": "Signals are read, not worshiped or ignored."
         }
       ]
     },
@@ -2322,13 +1923,6 @@
             "route",
             "logs"
           ],
-          "planSpec": {
-            "domain": "mobile vaccination clinic missing rural stops",
-            "audience": "a clinic lead with willing staff but poor route design",
-            "stakes": "whether effort keeps failing families because fuel, timing, and cold storage were not solved",
-            "format": "postmortem",
-            "requiredBeat": "she spreads the missed-stop map beside the cooler-temperature logs and redraws the route before asking anyone to work longer hours"
-          },
           "scenario": "A county route map is pinned under two vaccine cooler logs on Natalie's clinic table Monday morning. The missed stops are circled in blue. Her staff worked hard, but the fuel window and cold storage failed the route. Natalie redraws the stops before asking anyone to work longer hours.",
           "whatToDo": "Put the missed-stop map beside the cooler logs and fix the route before adding labor.",
           "whyItMatters": "Longer hours would repeat the same failure. The logs show where effort leaked before it reached the families."
@@ -2341,13 +1935,6 @@
             "cue",
             "handoff"
           ],
-          "planSpec": {
-            "domain": "independent theater opening night with a failed cue sequence",
-            "audience": "a stage manager whose crew has heart but no technical run sheet",
-            "stakes": "whether the second performance fails the same way in front of paying guests",
-            "format": "before_after",
-            "requiredBeat": "after the missed blackout, he rewrites the cue sheet with exact handoffs and runs the hard scene twice instead of praising everyone's effort"
-          },
           "scenario": "A cue sheet is smudged with black gaffer tape residue as stage manager Peter stands under the booth light after the missed blackout. Peter's crew stayed late and cared, but the handoff line is vague. Before the second performance, he rewrites the cue sheet with exact handoffs and runs the hard scene twice instead of only praising effort.",
           "whatToDo": "Rewrite the handoff, then rehearse the failure point twice. Thank the crew once, but fix the sheet.",
           "whyItMatters": "Heart did not fail. The cue sequence did. The second performance needs precision more than another round of praise."
@@ -2360,13 +1947,6 @@
             "outage",
             "runbook"
           ],
-          "planSpec": {
-            "domain": "search-engineering outage response after an all-night scramble",
-            "audience": "an on-call lead whose team worked hard but restored service slowly",
-            "stakes": "whether fatigue hides the missing runbook and bad alert order",
-            "format": "dialogue",
-            "requiredBeat": "the lead thanks the team once, then opens the incident timeline and assigns runbook fixes before anyone celebrates endurance"
-          },
           "scenario": "\"That was a brutal save,\" someone says in the control room, the incident timeline glowing on a dark operations screen. Lin thanks the team once. Then she must decide whether to celebrate endurance or open the timeline, point to the alert order, and assign the missing runbook fixes before fatigue becomes a badge.",
           "whatToDo": "Thank the team once, then assign the runbook and alert-order fixes from the timeline.",
           "whyItMatters": "The scramble restored service slowly because the sequence failed. Celebrating endurance first would hide the fix the next outage needs."
@@ -2379,13 +1959,6 @@
             "winter",
             "ledger"
           ],
-          "planSpec": {
-            "domain": "beekeeping co-op losing hives during a cold snap",
-            "audience": "a co-op that worked constantly but skipped winterization details",
-            "stakes": "whether more labor repeats the same losses next season",
-            "format": "reflection",
-            "requiredBeat": "the lead opens the hive-loss ledger, checks insulation dates against feed weight, and assigns pre-freeze checks before buying more colonies"
-          },
           "scenario": "A hive-loss ledger is dusted with pale wax flakes as co-op lead Marta unlocks the shed after the cold snap. Marta sees plenty of work hours and late insulation dates. Before ordering more colonies, she checks feed weight against each date and assigns pre-freeze checks so the same labor does not meet the same winter mistake.",
           "whatToDo": "Read the loss ledger, compare feed weight to insulation dates, and schedule pre-freeze checks before buying replacements.",
           "whyItMatters": "More labor will not fix missed winterization. The ledger turns loss into logistics instead of a reason to repeat the season harder."
@@ -2398,13 +1971,6 @@
             "crate",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "museum installation crew missing a crate sequence",
-            "audience": "a crew chief proud of muscle but weak on staging order",
-            "stakes": "whether a fragile exhibit gets damaged because power replaced sequence",
-            "format": "decision_point",
-            "requiredBeat": "he stops the lift, reads the crate manifest, and reorders the next three pallets before anyone touches the glass case"
-          },
           "scenario": "A crate manifest is clipped to a foam-lined shipping case as loading manager Robert opens the museum loading-bay door. Robert's crew has muscle, but the glass case is staged behind the wrong pallets. He has to decide whether to power through the lift or stop, read the manifest, and reorder the next three pallets before anyone touches the case.",
           "whatToDo": "Stop the lift, read the manifest, and reorder the pallets before muscle gets near the glass.",
           "whyItMatters": "Strength cannot repair a bad sequence after damage. The manifest protects the exhibit by making effort wait for order."
@@ -2417,13 +1983,6 @@
             "timing",
             "entrance"
           ],
-          "planSpec": {
-            "domain": "community orchestra failing a difficult entrance despite practice hours",
-            "audience": "an amateur conductor whose players practiced volume but not entry timing",
-            "stakes": "whether the concert exposes effort without precision",
-            "format": "predict_reveal",
-            "requiredBeat": "the conductor isolates the two-bar entrance, taps the exact count-in with a pencil eraser, and has the section enter soft before adding force"
-          },
           "scenario": "A score page bristles with colored rehearsal tabs before Thursday concert. Clara predicts the brass entrance will land if the section plays with more force. It misses again. She must decide whether to demand volume or isolate the two-bar entrance, tap the exact count-in with a pencil eraser, and bring them in soft first.",
           "whatToDo": "Isolate the entrance, tap the count-in, and add force only after the timing lands softly.",
           "whyItMatters": "The section practiced hard but practiced the wrong variable. Timing has to be fixed before volume can help."
@@ -2442,8 +2001,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The effort is not dismissed; it is protected from waste by better logistics. Calling effort overrated or stopping at praise both avoid the route problem.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2455,8 +2013,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The map and logs reveal the actual leak in fuel, cold storage, and timing. Longer shifts or grit talk would pour effort into the same broken route.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2468,8 +2025,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cue sheet addresses the sequence that failed. Praise may be kind but insufficient, and shifting burden to actors avoids the technical handoff.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2481,8 +2037,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The timeline points to sequence defects that can be fixed. Celebrating endurance hides slowness, and delaying all review risks losing the fresh evidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2494,8 +2049,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The manifest fixes the sequence before force touches glass. Moving slowly still follows the bad order, and asking the client dodges the crew chief's responsibility.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2507,8 +2061,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Replacement without review repeats the logistics failure. The issue is not passion, and the ledger matters because it connects dates, feed, and loss.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2520,8 +2073,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Volume is the wrong variable if the count-in fails. Talent claims and full-run practice both avoid the timing defect.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2533,8 +2085,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Effort does not validate the plan. The route or handoff can still be broken even when people care and work late.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2546,8 +2097,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second team respects effort by stopping the leak first. The first may work harder and still repeat the same defect.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2608,19 +2158,13 @@
       },
       "memorableLines": [
         {
-          "text": "More hours would repeat the miss.",
-          "location": "breakdown.fastRead",
-          "why": "It states the chapter's core warning in a concrete operational way."
+          "text": "More hours would repeat the miss."
         },
         {
-          "text": "A bigger engine driven badly still misses the turn.",
-          "location": "breakdown.deepRead",
-          "why": "The image makes planning and effort feel linked rather than opposed."
+          "text": "A bigger engine driven badly still misses the turn."
         },
         {
-          "text": "Grit matters enough that it should not be poured into a cracked bucket.",
-          "location": "breakdown.fullRead",
-          "why": "It rejects the anti-grit misread while making waste visible."
+          "text": "Grit matters enough that it should not be poured into a cracked bucket."
         }
       ]
     },
@@ -2647,13 +2191,6 @@
             "cadre",
             "rookie"
           ],
-          "planSpec": {
-            "domain": "mountain rescue training cadre after a sleepless search",
-            "audience": "a senior trainee who could show off but sees the rookie shaking",
-            "stakes": "whether the exhausted team regains steadiness for the next grid",
-            "format": "scene",
-            "requiredBeat": "he silently repacks the rookie's beacon harness correctly, then starts the next grid at the agreed pace rather than announcing his own strength"
-          },
           "scenario": "A beacon harness is tangled on a snow-dusted tailgate as rescue trainer Andrew returns from a sleepless search. Andrew sees the rookie's hands shaking while the next search grid waits. He has to decide whether to show how fast he can fix it or silently repack the harness correctly and start the grid at the agreed pace. He leaves the buckle facing up, taps the order twice with a gloved finger, and lets the rookie copy it before the team moves.",
           "whatToDo": "Repack the harness in silence, leave the pattern visible, and start the next grid at pace.",
           "whyItMatters": "The team needs steadiness more than a display. Andrew's skill helps only if the rookie can rejoin the standard instead of shrink from it."
@@ -2666,13 +2203,6 @@
             "handoff",
             "calm"
           ],
-          "planSpec": {
-            "domain": "ICU night-charge handoff after three emergency admissions",
-            "audience": "a charge nurse who is the most experienced person in the unit",
-            "stakes": "whether the new nurses borrow calm or inherit panic",
-            "format": "dialogue",
-            "requiredBeat": "she lowers her voice, checks the ventilator settings aloud with the newest nurse, and gives the next task without mentioning how long she has been awake"
-          },
           "scenario": "Sophie hears the newest nurse say, \"I don't know which setting changed,\" hand on the handoff sheet in a dim ICU bay. The ventilator screen pulses blue. Sophie, the night-charge nurse, must decide whether to prove command with speed or lower her voice, check the settings aloud, and give the next task without naming her own exhaustion. Sophie points to the exact setting, asks the nurse to say the next two checks aloud, and keeps her own hand off the dial.",
           "whatToDo": "Lower your voice, check the settings aloud, and give the next task. Let the new nurse borrow your sequence.",
           "whyItMatters": "Experience steadies the bay when it becomes usable. Mentioning exhaustion would make Sophie's endurance the center instead of the handoff."
@@ -2685,13 +2215,6 @@
             "deck",
             "copy"
           ],
-          "planSpec": {
-            "domain": "commercial fishing deck in rough weather after a gear jam",
-            "audience": "a deck boss whose speed could shame the younger crew",
-            "stakes": "whether fear spreads while the nets are still live",
-            "format": "decision_point",
-            "requiredBeat": "he slows his hands just enough for the youngest deckhand to copy the knot, then points him to the next cleat while the boat rolls"
-          },
           "scenario": "A green deck light shines on a wet cleat while deck lead Nolan braces against the live net in rough weather. Nolan can clear the gear jam faster than the youngest deckhand can follow. He has to decide whether to shame the kid with speed or slow his hands just enough for the knot to be copied before pointing him to the next cleat. Nolan names the knot, slows one pull for the deckhand to mirror, and sends him to the next cleat before the lesson turns into a lecture.",
           "whatToDo": "Slow the knot once, let the deckhand copy it, then send him to the next cleat.",
           "whyItMatters": "The standard stays high, but it becomes transferable. Fear spreads when skill is used only to expose who is behind."
@@ -2704,13 +2227,6 @@
             "station",
             "pace"
           ],
-          "planSpec": {
-            "domain": "elite culinary prep team during a sold-out service",
-            "audience": "a sous-chef who can outwork everyone and knows it",
-            "stakes": "whether the line collapses because excellence becomes contempt",
-            "format": "before_after",
-            "requiredBeat": "after seeing a commis fall behind, he plates one perfect sample at her station and leaves the pacing notes where she can use them"
-          },
           "scenario": "Francesca sets a chilled tasting spoon beside six unfinished plates at the commis station. Francesca can outwork the whole line, and the sold-out service is already leaning hard. After seeing the commis fall behind, she plates one perfect sample at that station and leaves pacing notes where they can be used before moving back to her own work. She plates one example at service speed, slides the spoon to the commis, and makes him call the next garnish before taking another ticket.",
           "whatToDo": "Make one clean sample at the struggling station and leave notes that transfer the pace.",
           "whyItMatters": "Contempt would speed one person and weaken the line. A usable sample lets excellence steady the station that is slipping."
@@ -2723,13 +2239,6 @@
             "queue",
             "standard"
           ],
-          "planSpec": {
-            "domain": "forensic lab backlog after a major case surge",
-            "audience": "a senior analyst with the cleanest error record in the lab",
-            "stakes": "whether the backlog tempts juniors into shortcuts",
-            "format": "postmortem",
-            "requiredBeat": "he places his own checklist under the evidence tray and makes the team follow the boring sequence even as the queue grows"
-          },
           "scenario": "George seals an evidence tray with a white tamper strip while the case queue grows across the lab dashboard. George has the cleanest error record and could work from memory. Instead he places his own checklist under the tray and makes the team follow the boring sequence, including himself, while the surge keeps building. George reads the first three checklist lines out loud, signs his own initials, and makes the trainee watch him obey the same rule.",
           "whatToDo": "Put your own checklist under the tray and follow it where juniors can see the standard applied.",
           "whyItMatters": "Clean records can tempt shortcuts. The checklist shows that elite accuracy comes from obeying the boring sequence under pressure."
@@ -2742,13 +2251,6 @@
             "understudy",
             "status"
           ],
-          "planSpec": {
-            "domain": "professional ballet company understudy rehearsal",
-            "audience": "a principal dancer deciding whether to protect status or steady the understudy",
-            "stakes": "whether the understudy steps onstage terrified and unsupported",
-            "format": "reflection",
-            "requiredBeat": "the principal marks the turn sequence beside the understudy, counts the entrance softly, and steps back without making the correction about herself"
-          },
           "scenario": "Ingrid opens a rosin box beside the scuffed rehearsal floor before the understudy run. Ingrid knows the turn sequence so well that correction could become a status display. She marks the pattern beside the understudy, counts the entrance softly, and steps back without making the room watch her be the principal. Ingrid counts the turn once at half pace, lets the understudy mark it, and steps back before correction becomes a performance of rank.",
           "whatToDo": "Mark the turn sequence, count the entrance softly, and step back before the correction becomes about status.",
           "whyItMatters": "The understudy needs steadiness, not a reminder of hierarchy. Ingrid's mastery matters when it lowers the fear around the next entrance."
@@ -2767,8 +2269,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The senior trainee preserves the standard and transfers steadiness. Hiding mistakes or lowering standards would avoid the leadership work.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -2780,8 +2281,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The calm sequence lets the new nurse borrow competence. Mentioning hours centers status, and taking over blocks learning when the handoff needs transfer.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -2793,8 +2293,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Slowing the knot keeps the standard high and makes it usable. Solo speed would advertise skill, while a speech would not give the deckhand a next action.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2806,8 +2305,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sample and notes transfer the pace. Taking over may save the minute but teaches little, while calling her out turns the standard into humiliation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2819,8 +2317,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Following the checklist visibly shows that high standards are built from sequence, not genius. Memory and skipped steps would teach shortcuts under pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -2832,8 +2329,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The issue is not correction itself. The problem is that status display steals attention from the understudy's usable next step.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -2845,8 +2341,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Fear may produce compliance, but it does not necessarily build usable courage or skill. The standard should stay high and become reachable through example.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2858,8 +2353,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The line makes the leader's status the center. A useful example gives others a pattern to use, not a reminder that they are below the leader.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2871,8 +2365,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The second turns excellence into leadership. The first may keep a high standard, but it leaves the group with less usable steadiness.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -2933,19 +2426,13 @@
       },
       "memorableLines": [
         {
-          "text": "The higher standard is not a balcony.",
-          "location": "breakdown.fastRead",
-          "why": "It cuts against superiority in a memorable spatial image."
+          "text": "The higher standard is not a balcony."
         },
         {
-          "text": "Superiority is a cheap reward.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence names the tempting but lesser payoff."
+          "text": "Superiority is a cheap reward."
         },
         {
-          "text": "Uncommon is not the medal if nobody else can use the standard.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes elite performance as responsibility rather than decoration."
+          "text": "Uncommon is not the medal if nobody else can use the standard."
         }
       ]
     },
@@ -2972,13 +2459,6 @@
             "score",
             "retest"
           ],
-          "planSpec": {
-            "domain": "international pastry certification failed by one technique score",
-            "audience": "a chef whose pride wants to blame the judging table",
-            "stakes": "whether the next attempt repeats the same laminated-dough error",
-            "format": "postmortem",
-            "requiredBeat": "she pins the failed score sheet beside the practice tray, circles the lamination line, and schedules three cold-roll tests before entering again"
-          },
           "scenario": "A score sheet dusted with flour rests near Camille's chilled marble slab after the certification result. She wants to blame the judging table, but the lamination line is lowest. She pins the sheet beside the practice tray, circles that line, and schedules three cold-roll tests before entering again. Camille copies the lamination score onto a new tray card, sets butter temperature beside it, and schedules one narrow practice block before calling anyone.",
           "whatToDo": "Circle the failed technique line and schedule the cold-roll tests before discussing judges.",
           "whyItMatters": "The next attempt changes only if the weak line becomes practice. Blame protects pride but leaves the dough unchanged."
@@ -2991,13 +2471,6 @@
             "log",
             "rule"
           ],
-          "planSpec": {
-            "domain": "cybersecurity red-team exercise lost through a missed log",
-            "audience": "a security lead embarrassed after the blue team found the breach first",
-            "stakes": "whether ego hides the exact monitoring gap",
-            "format": "dialogue",
-            "requiredBeat": "he reads the missed log timestamp aloud, deletes the excuse slide, and rewrites the detection rule in front of the team"
-          },
           "scenario": "\"They got lucky,\" someone says in the review room, a log timestamp highlighted on the dark terminal window. Maxwell feels the excuse slide waiting in the deck. He must decide whether to protect the red team or read the missed timestamp aloud, delete the slide, and rewrite the detection rule in front of everyone. Maxwell reads the timestamp into the room, writes the missed detection step on the review board, and asks the red team to rerun only that minute.",
           "whatToDo": "Read the timestamp, delete the excuse slide, and rewrite the detection rule while the evidence is visible.",
           "whyItMatters": "The monitoring gap is the correction. Luck talk keeps ego intact and leaves the next exercise exposed."
@@ -3010,13 +2483,6 @@
             "recording",
             "mock"
           ],
-          "planSpec": {
-            "domain": "civil-service oral board rejection",
-            "audience": "a candidate who keeps telling friends the panel was political",
-            "stakes": "whether the next interview improves or resentment protects the miss",
-            "format": "decision_point",
-            "requiredBeat": "he listens to the practice recording, marks the rambling answer at minute six, and books a mock board before reapplying"
-          },
           "scenario": "A practice recording is paused at 06:12 on Rowan's cracked phone screen after the rejection email. He has told friends the panel was political. The rambling answer is still playing in his ear. He has to decide whether resentment protects him or whether he marks minute six and books a mock board before reapplying. Rowan transcribes the rambling answer into three lines, crosses out the filler, and records one clean version before replying to friends.",
           "whatToDo": "Mark the rambling answer and book a mock board. Let the recording correct the story before the next application.",
           "whyItMatters": "The panel story may feel safer, but the minute stamp gives Rowan a trainable flaw."
@@ -3029,13 +2495,6 @@
             "rule",
             "standard"
           ],
-          "planSpec": {
-            "domain": "open-water relay team disqualified for an exchange violation",
-            "audience": "a captain tempted to call the rule petty",
-            "stakes": "whether the team respects the standard enough to qualify next season",
-            "format": "before_after",
-            "requiredBeat": "he lays the disqualification notice beside the exchange-zone diagram and has every swimmer rehearse the tag sequence slowly"
-          },
           "scenario": "Stefan clips a disqualification notice to a waterproof clipboard after the open-water relay. Stefan wants to call the exchange rule petty, but the qualification standard is printed beside the zone diagram. He lays the notice next to the diagram and has every swimmer rehearse the tag sequence slowly. Stefan traces the exchange zone with a wet finger, marks the late handoff, and runs that ten-meter segment before arguing about the rule.",
           "whatToDo": "Put the notice beside the zone diagram and rehearse the tag sequence at slow speed.",
           "whyItMatters": "Calling the rule petty protects the wound. The slow tag rehearsal respects the standard the team must meet next season."
@@ -3048,13 +2507,6 @@
             "estimate",
             "bid"
           ],
-          "planSpec": {
-            "domain": "architecture bid rejected for weak cost assumptions",
-            "audience": "a small-firm principal whose concept boards looked beautiful",
-            "stakes": "whether aesthetics keep hiding a preventable estimating flaw",
-            "format": "reflection",
-            "requiredBeat": "she turns the rejection letter over, writes the three missed cost assumptions, and assigns a pre-bid estimate check before the next design sketch"
-          },
           "scenario": "A rejection letter rests across Lucia's glossy concept boards in the studio after lunch. The drawings were beautiful, and that makes the cost note sting more. She turns the letter over, writes the three missed cost assumptions, and assigns a pre-bid estimate check before allowing the next design sketch. Lucia pins the cost note beside the best drawing, adds the missing material prices, and redraws one corner before touching the concept board.",
           "whatToDo": "Write the missed assumptions on the letter and add an estimate check before the next sketch begins.",
           "whyItMatters": "Beauty can hide the preventable flaw. The estimate check changes the bid process instead of turning rejection into artistic injury."
@@ -3067,13 +2519,6 @@
             "grant",
             "method"
           ],
-          "planSpec": {
-            "domain": "laboratory grant rejected for a flawed methods section",
-            "audience": "a principal investigator wounded by a harsh reviewer note",
-            "stakes": "whether the next submission changes the method or only the wording",
-            "format": "predict_reveal",
-            "requiredBeat": "before opening a new document, he reads the reviewer note into the lab recorder, names the missing control, and redesigns that assay first"
-          },
           "scenario": "A reviewer note is taped above a rack of empty sample tubes as principal investigator Antoine turns off the centrifuge. Antoine predicts the next grant will pass if he rewrites the methods section more clearly. Before opening the new document, he reads the note into the lab recorder, names the missing control, and must decide whether the assay changes before the wording does. Antoine records the reviewer note in plain language, marks the weak control group, and blocks one lab hour for that correction before rewriting prose.",
           "whatToDo": "Read the note aloud, name the missing control, and redesign the assay before editing sentences.",
           "whyItMatters": "The rejection was not only wording. The missing control must alter the method or the next submission repeats the same flaw."
@@ -3092,8 +2537,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Pain alone does not teach. The useful lesson begins when the miss is tied to a standard, factual cause, and rehearsed correction.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3105,8 +2549,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The circled line and tests turn the miss into correction. Judge gossip protects pride, and rushing back repeats the same lamination weakness.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3118,8 +2561,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The timestamp and rule target the actual gap. A learning sentence can still hide the miss, and a rematch without correction repeats the exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3131,8 +2573,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The minute mark gives him a trainable correction. Avoiding the recording or changing panels protects the resentment story.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3144,8 +2585,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The diagram and slow tag turn the failure into a correction. Appeals and complaints may protect emotion but do not fix the violated standard.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3157,8 +2597,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The rejection points to a process flaw, not a rejection of beauty. Treating it as creative injury would hide the estimate check the next bid needs.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3170,8 +2609,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The missing control is the standard violation. Better prose cannot correct a flawed assay, so the next submission would carry the same defect.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3183,8 +2621,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Humility may be real, but without a changed tactic the standard has not been answered. The other choices either overvalue feeling or dodge cause.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3196,8 +2633,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The corrected retry has a changed tactic tied to the standard. Attitude may help, but it cannot repair an unnamed cause.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3258,19 +2694,13 @@
       },
       "memorableLines": [
         {
-          "text": "The failed line has to be circled before the lesson exists.",
-          "location": "breakdown.fastRead",
-          "why": "It makes honest review tactile and unavoidable."
+          "text": "The failed line has to be circled before the lesson exists."
         },
         {
-          "text": "Failure has no lesson until ego stops editing it.",
-          "location": "breakdown.deepRead",
-          "why": "The sentence captures the chapter's central condition."
+          "text": "Failure has no lesson until ego stops editing it."
         },
         {
-          "text": "The standard is more specific than your emotion.",
-          "location": "breakdown.fullRead",
-          "why": "It pushes readers from feeling toward correction."
+          "text": "The standard is more specific than your emotion."
         }
       ]
     },
@@ -3297,13 +2727,6 @@
             "identity",
             "stretch"
           ],
-          "planSpec": {
-            "domain": "retired shipyard welder relearning movement after a nerve condition",
-            "audience": "a worker whose identity was built on never sitting down",
-            "stakes": "whether forced stillness becomes bitterness or disciplined recovery",
-            "format": "reflection",
-            "requiredBeat": "he sets the old welding hood on the bench, opens the mobility card, and holds the first stretch without turning it into a story about what he used to lift"
-          },
           "scenario": "Arthur, a retired welder, sets his bench timer to ninety seconds beside the dust-covered welding hood and a laminated mobility card at 9:15 a.m. His trainer waits across the bay with a clipboard. He wants to tell the room what he used to lift at the shipyard last decade. Instead he opens the card, holds the first stretch, and lets the timer run without turning the session into a history speech.",
           "whatToDo": "Set the hood down, open the mobility card, and hold the first stretch without defending the old identity.",
           "whyItMatters": "The old proof cannot answer the current body. The stretch turns stillness into recovery rather than bitterness."
@@ -3316,13 +2739,6 @@
             "sister",
             "call"
           ],
-          "planSpec": {
-            "domain": "former prosecutor rebuilding a relationship with an estranged sister",
-            "audience": "a hard-driving professional who knows how to win arguments but not repair trust",
-            "stakes": "whether reconciliation becomes another case to prove",
-            "format": "dialogue",
-            "requiredBeat": "before dialing, she crosses out her prepared rebuttal notes and asks one plain question about the years she missed"
-          },
           "scenario": "'I just want to talk,' attorney Helen says to the silent phone at 8:11 p.m., legal pad open beside the kitchen mug and a printed deposition transcript. Her rebuttal notes are clean, numbered, and useless for trust. Before dialing her sister, she must decide whether to win the old case again or cross out the notes and ask one plain question about the missed years the rest of the call cannot avoid.",
           "whatToDo": "Cross out the rebuttals before dialing and ask one question you cannot use to win.",
           "whyItMatters": "Repair cannot start as another argument. The crossed-out notes remove the old courtroom reflex from the call."
@@ -3335,13 +2751,6 @@
             "diagnosis",
             "adaptation"
           ],
-          "planSpec": {
-            "domain": "ultrarunner sidelined into pool therapy after endocrine diagnosis",
-            "audience": "an athlete whose old proof no longer answers the current body",
-            "stakes": "whether identity adapts without inventing unsupported medical certainty",
-            "format": "decision_point",
-            "requiredBeat": "she leaves the race bib in the drawer, reads the doctor's restriction line, and completes the slow pool-walk set instead of testing herself with miles"
-          },
           "scenario": "A race bib is tucked under Kate's pool access band at 7:42 a.m. before the therapy session at the community pool. The doctor's restriction line is printed in black across the order sheet, and the pool-walk set looks embarrassingly slow next to last year's marathon split. She has to decide whether to test herself with five honest miles after diagnosis or leave the bib in the drawer and complete the slow set as written on the laminated card.",
           "whatToDo": "Read the restriction line, leave the bib in the drawer, and complete the pool-walk set without turning it into a mileage test.",
           "whyItMatters": "Old proof can become unsafe when the body changes. The pool set lets identity adapt without inventing medical certainty."
@@ -3354,13 +2763,6 @@
             "succession",
             "control"
           ],
-          "planSpec": {
-            "domain": "burned-out orchestra conductor stepping down from a youth program",
-            "audience": "a leader afraid retirement means disappearing",
-            "stakes": "whether the work continues through transfer rather than control",
-            "format": "before_after",
-            "requiredBeat": "he hands the annotated score to the assistant conductor and sits in the back row for one rehearsal without correcting the first rough entrance"
-          },
           "scenario": "An annotated score bound with a frayed black ribbon rests on music teacher Malcolm's stand at 4:35 p.m. before youth rehearsal at the community hall. He hands it to the assistant conductor and sits in the back row with his hands flat on the program and a pencil tucked behind his ear. The first entrance is rough. His hand rises, then drops. For one rehearsal, the work continues without his correction.",
           "whatToDo": "Hand over the score and sit through one rough entrance without taking control back.",
           "whyItMatters": "Retirement is not disappearance if the work transfers. The rough entrance tests whether Malcolm serves the music or his need to direct."
@@ -3373,13 +2775,6 @@
             "burnout",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "veteran emergency manager learning slow recovery after burnout leave",
-            "audience": "a responder who trusts urgency more than repair",
-            "stakes": "whether rest becomes avoidance or a new disciplined practice",
-            "format": "postmortem",
-            "requiredBeat": "she reviews the leave letter, builds a three-step return schedule, and refuses the extra drill slot that would prove nothing except old reflex"
-          },
           "scenario": "A leave letter is clipped beneath Theresa's faded incident-command vest on the locker door at 6:20 a.m. on Friday. She reviews the letter twice, builds a three-step return schedule on a fresh page, and refuses the extra drill slot offered by habit. The drill would prove she can still surge under siren and smoke. It would not prove she can recover, which is the part the new schedule has to answer.",
           "whatToDo": "Build the return schedule and refuse the extra drill that only feeds the old urgency reflex.",
           "whyItMatters": "Recovery becomes discipline when it has boundaries. The extra drill would make rest another performance test."
@@ -3392,13 +2787,6 @@
             "storage",
             "repair"
           ],
-          "planSpec": {
-            "domain": "estranged brothers sorting a late parent's storage unit",
-            "audience": "siblings with years of proof and grievance between them",
-            "stakes": "whether repair begins without pretending the past was smaller",
-            "format": "scene",
-            "requiredBeat": "one brother finds the old tackle box, stops preparing his defense, and asks which items the other wants to keep before dividing the unit"
-          },
           "scenario": "An old tackle box sits open on the concrete storage-unit floor as Simon kneels beside the storage-unit manager's map and the storage key at 10:04 a.m. on Saturday. Simon and his brother Eric have years of proof ready between them. Simon finds the box and starts preparing his defense. Then he has to decide whether to keep arguing or ask which items Eric wants in the keep pile before dividing the unit.",
           "whatToDo": "Stop preparing the defense and ask which items he wants to keep. Let repair begin without shrinking the past.",
           "whyItMatters": "The question does not solve the history. It interrupts the old trial long enough for one honest shared action."
@@ -3417,8 +2805,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The discipline continues, but the form changes. The old standard is not erased, and recovery is not limited to public endings.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q02",
@@ -3430,8 +2817,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The card turns stillness into disciplined recovery. The story may be true, but it can protect bitterness if it replaces the current stretch.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q03",
@@ -3443,8 +2829,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Crossing out the notes removes the win-the-case reflex. A factual opening may still be a weapon if it is built to prove rather than repair.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -3456,8 +2841,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The pool set respects the current body and keeps practice alive. Testing miles would force an old proof onto new limits, while quitting gives identity the final word.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -3469,8 +2853,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Sitting through one rough entrance tests transfer without abandoning the standard. Correcting keeps control, and leaving may dodge the repair practice.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -3482,8 +2865,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The extra drill answers the old identity, not the recovery standard. A return schedule can be useful, but only if it does not reward the same reflex.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q07",
@@ -3495,8 +2877,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The keep-pile question creates one shared action without pretending the past is small. Proving the case restarts the old trial, and avoiding items may avoid repair.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -3508,8 +2889,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question matters only when it changes the next act. Review and inspiration can both help, but neither replaces a concrete repair behavior.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -3521,8 +2901,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The repair action does not deny the loss. It asks what remains possible under the new terms, which is stronger than stopping at defeat.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -3583,19 +2962,13 @@
       },
       "memorableLines": [
         {
-          "text": "The first stretch looks too small to respect.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the humility of disciplined recovery visible."
+          "text": "The first stretch looks too small to respect."
         },
         {
-          "text": "The tone shifts, but the discipline stays.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the final chapter's reflective but unsentimental register."
+          "text": "The tone shifts, but the discipline stays."
         },
         {
-          "text": "A forward-looking question is only strong when it changes the next small act.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the closing question a practical test."
+          "text": "A forward-looking question is only strong when it changes the next small act."
         }
       ]
     }

@@ -41,13 +41,6 @@
             "comparison",
             "standards"
           ],
-          "planSpec": {
-            "domain": "Good to Great research screen",
-            "audience": "a reader learning why good needs a fair comparison",
-            "stakes": "a respectable result can be mistaken for greatness without a matched standard and time horizon",
-            "format": "step_by_step",
-            "requiredBeat": "show that the study started broad, narrowed to 11 sustained performers, then used comparison companies to test whether the leap was company-specific"
-          },
           "scenario": "Collins begins with 1,435 established companies, then narrows the set to 11 that made a sustained leap. The useful detail is the comparison step: each good-to-great company is held beside a similar company that had opportunity but did not make the leap. Good stops sounding final once the reference group is fair.",
           "whatToDo": "When a result looks good, name the comparison group, the time horizon, and the evidence that the engine is still strengthening.",
           "whyItMatters": "The comparison protects the idea from becoming generic ambition. It teaches readers how Collins distinguishes acceptable performance from compounding strength."
@@ -60,13 +53,6 @@
             "traffic",
             "loyalty"
           ],
-          "planSpec": {
-            "domain": "independent bookstore front-table economics",
-            "audience": "a store owner proud of steady monthly revenue",
-            "stakes": "steady sales hide the loss of browsing traffic that used to create loyal customers",
-            "format": "before_after",
-            "requiredBeat": "the owner pins last year's receipt roll beside this year's door-counter tape and sees that the same dollars now come from fewer, less curious buyers"
-          },
           "scenario": "It took Claire until the receipt roll curled over the checkout drawer to see what steady revenue had hidden. Last year, the front table pulled browsers past staff picks all Saturday. This year, she pins the receipt roll beside the door-counter tape and sees the same dollars coming from fewer, hurried buyers. The front display gap near the poetry shelf suddenly looks less like tidiness and more like lost loyalty.",
           "whatToDo": "Keep revenue on the page, but add browsing traffic and repeat discovery as the harder standard for the front table.",
           "whyItMatters": "Good sales can come from a shrinking base. The missing traffic shows whether the store is building loyal demand or merely harvesting the shoppers who still arrive."
@@ -79,13 +65,6 @@
             "service",
             "stadium"
           ],
-          "planSpec": {
-            "domain": "minor league stadium concession flow",
-            "audience": "an operations manager whose food stands score well on postgame surveys",
-            "stakes": "fans abandon long lines during the third inning and never show up in satisfaction averages",
-            "format": "scene",
-            "requiredBeat": "the manager stands behind the pretzel warmer and marks every fan who leaves the line before ordering, then compares that count with the cheerful survey score"
-          },
           "scenario": "Steam fogs the pretzel warmer while the home team comes to bat and Lukas stands behind the register with a pencil stub. The postgame surveys praise the food stands, but the third-inning horn sounds as nine fans leave the line before ordering. Lukas marks each exit on an abandoned-line tally and has to judge whether the cheerful survey score is measuring the people who stayed instead of the demand that walked away.",
           "whatToDo": "Pair the survey score with the abandoned-line tally, then redesign the stand around lost orders during pressure innings.",
           "whyItMatters": "Satisfied customers are only part of the evidence. The people who leave before buying never reach the survey, so good averages can hide broken flow."
@@ -98,13 +77,6 @@
             "access",
             "targets"
           ],
-          "planSpec": {
-            "domain": "county library digital access rollout",
-            "audience": "a library director whose e-card launch met its signup target",
-            "stakes": "rural patrons remain absent even though the rollout is being celebrated as successful",
-            "format": "postmortem",
-            "requiredBeat": "the director lays a zip-code heat map over the signup target sheet and sees the empty towns the target allowed everyone to ignore"
-          },
           "scenario": "You unlock the reference desk before opening and find Aanya smoothing a laminated county map under a coffee mug. The e-card launch hit its signup target, so the board packet calls it a success. Then she lays the zip-code heat map over the target sheet and sees three rural branch pins sitting in blank space. Her postmortem is not about effort. It is about the empty towns the target let everyone ignore.",
           "whatToDo": "Keep the signup target as one measure, but add rural coverage by zip code and assign outreach to the towns that disappeared from the average.",
           "whyItMatters": "A target can be met by the easiest audience. The heat map forces the good number to answer for who was excluded from the gain."
@@ -117,13 +89,6 @@
             "near misses",
             "outdoors"
           ],
-          "planSpec": {
-            "domain": "river outfitter safety review",
-            "audience": "an outfitter owner proud of a season with no reportable injuries",
-            "stakes": "near misses on one rapid show that no-injury status is hiding a fragile operation",
-            "format": "predict_reveal",
-            "requiredBeat": "the owner asks guides to sort wet incident cards by rapid and watches one rock garden form a pile that the official injury log never showed"
-          },
           "scenario": "Camille hears a guide ask, \"No injuries means the season was clean, right?\" as damp incident cards dry on the paddleboard rack. She predicts the official injury log will match the crew's memory. Then she has the guides sort the wet cards by rapid, and the rock-garden rapid forms its own swollen pile. She tests whether no reportable injuries is a safety result or a warning label written in quieter ink.",
           "whatToDo": "Treat near misses as part of the standard. Rework guide briefing and boat spacing for the rock-garden rapid before the clean injury log becomes an excuse.",
           "whyItMatters": "No injuries can hide repeated exposure to the same weak point. Near-miss evidence shows whether the operation is actually safer or merely lucky."
@@ -136,13 +101,6 @@
             "research",
             "caution"
           ],
-          "planSpec": {
-            "domain": "interpreting business research responsibly",
-            "audience": "a reader tempted to treat the 11 companies as permanently great",
-            "stakes": "some companies later struggled, so the framework must not be sold as a guarantee",
-            "format": "caution",
-            "requiredBeat": "separate a documented study-period leap from a promise of permanent greatness"
-          },
           "scenario": "A reader notices that some famous study companies later faced serious trouble. That does not erase the study-period pattern, but it does change the lesson. Good to Great is a way to inspect a leap, not a certificate that a company will stay great forever.",
           "whatToDo": "Use the framework as a diagnostic lens, then keep testing current facts instead of treating past selection as permanent proof.",
           "whyItMatters": "Later history keeps the framework honest: a past leap still has to answer to current discipline."
@@ -161,8 +119,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice makes the good metric argue with the ignored consequence. Celebrating the official window hides the gap, while throwing away all data loses a useful but incomplete signal.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -174,8 +131,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The membership decline is the missing evidence behind the good revenue. More display space or better messaging keeps attention on the flattering number instead of the weakening engine.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -187,8 +143,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct answer separates a bright event from cumulative momentum. Treating press as proof is too easy, and calling it total failure ignores that good signals can still be useful.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -200,8 +155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The shield is the problem: a broad average can make comfort look rational. The other choices put the good result under a tougher comparison instead of treating it as final.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -213,8 +167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "This keeps the honest win without letting it close the investigation. Hiding near misses protects comfort, while declaring total failure punishes progress instead of improving it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -226,8 +179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Repeat gifts and retention show whether the engine changed after the spike. Photos and the largest check may explain excitement, but they do not prove sustained results.",
-            "bloomsLevel": "apply",
-            "depthLevel": "simple"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -239,8 +191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reply uses both signals and asks what the score omits. The tempting extremes either replace one incomplete measure with another or let a good target end the inquiry.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q08",
@@ -252,8 +203,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question forces comparison, duration, and evidence of strength. Slide polish and investor fear both steer the room toward appearance instead of the quality of the result.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -265,8 +215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice separates appreciation from certification. Skipping celebration turns rigor into contempt, while waiting for perfect morale lets the good result harden into a ceiling.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -327,19 +276,13 @@
       },
       "memorableLines": [
         {
-          "text": "Comfort hates a fair comparison.",
-          "location": "breakdown.deepRead",
-          "why": "It turns the research logic into a short retrieval cue."
+          "text": "Comfort hates a fair comparison."
         },
         {
-          "text": "Good is not the enemy because it is bad. Good is the enemy because it can sound final.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the central paradox without slipping into generic ambition."
+          "text": "Good is not the enemy because it is bad. Good is the enemy because it can sound final."
         },
         {
-          "text": "Good work deserves a harder standard, not because it is worthless, but because it may be strong enough to carry one.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps rigor from sounding like contempt for solid work."
+          "text": "Good work deserves a harder standard, not because it is worthless, but because it may be strong enough to carry one."
         }
       ]
     },
@@ -366,13 +309,6 @@
             "Level 5",
             "will"
           ],
-          "planSpec": {
-            "domain": "Kimberly-Clark strategic shift",
-            "audience": "a reader learning Level 5 leadership from a real case",
-            "stakes": "the old paper-mill business is comfortable but does not meet the company-first standard",
-            "format": "source_anchor",
-            "requiredBeat": "Smith backs the consumer-products path and sells mills despite outside criticism"
-          },
           "scenario": "Darwin Smith and his team at Kimberly-Clark face a choice between the familiar paper-mill business and the consumer-products arena. Selling the mills is not a humble-looking move in the ordinary sense. It is professional will aimed at the institution, paired with a refusal to make the CEO the transformation story.",
           "whatToDo": "Separate the leader's style from the institutional decision. Ask whether the choice serves the company's future even when it costs comfort or praise.",
           "whyItMatters": "The real case prevents Level 5 from becoming a vague compliment for quiet leaders."
@@ -385,13 +321,6 @@
             "after-action",
             "will"
           ],
-          "planSpec": {
-            "domain": "harbor rescue crew after-action",
-            "audience": "a rescue boat captain whose team pulled three kayakers out before a squall",
-            "stakes": "praise could harden into bravado before the next dangerous call",
-            "format": "scene",
-            "requiredBeat": "the captain hands the commendation letter to the deckhand who spotted the current shift, then writes his own delayed launch call on the error board"
-          },
           "scenario": "It took James until the debrief to notice how quickly the rescue was becoming a legend. Salt had dried in white streaks on the rail, and the commendation letter still smelled faintly of printer toner. He hands it to the deckhand who spotted the current shift, then faces the error board. He chooses whether to write his delayed launch call before the crew starts believing bravery was the whole story.",
           "whatToDo": "Move the praise to the deckhand's observation and record the delayed launch as the captain's lesson for the next call.",
           "whyItMatters": "A rescue story can harden into swagger. The crew needs the exact judgment that worked and the exact command delay that must not repeat."
@@ -404,13 +333,6 @@
             "press",
             "institution"
           ],
-          "planSpec": {
-            "domain": "architecture firm public bid debrief",
-            "audience": "a managing partner whose firm just won a civic library project",
-            "stakes": "the win can become either a star-partner myth or a stronger design institution",
-            "format": "vignette",
-            "requiredBeat": "the partner sends the press quote to the junior modeler whose access ramp solved the bid, then rejects his own glass-atrium idea in the redesign markup"
-          },
           "scenario": "The basswood model smells of sawdust and glue, with a removable access ramp resting on two pins near the entrance. Ingrid reads the reporter's draft quote praising her vision, then forwards the quote to the junior modeler whose ramp solved the bid. In the redesign markup, her own glass-atrium idea is crossed out in red. She asks whether the firm's story will teach taste or feed a star myth.",
           "whatToDo": "Let the public quote identify the design move that won, and keep the rejected atrium visible in the markup as a learning artifact.",
           "whyItMatters": "The institution gets stronger when wins teach the actual source of quality. A star myth would hide the junior contribution and weaken future judgment."
@@ -423,13 +345,6 @@
             "budget",
             "responsibility"
           ],
-          "planSpec": {
-            "domain": "community college budget reset",
-            "audience": "a provost cutting programs after a failed enrollment bet",
-            "stakes": "students need a viable path more than administrators need a saved face",
-            "format": "decision_point",
-            "requiredBeat": "the provost opens the forum by showing the enrollment bet she approved, then protects the welding lab that outperformed her favored initiative"
-          },
           "scenario": "You sit three rows back as Antoine steps to the forum microphone, welding shields stacked beside a half-filled auditorium stage. The first slide is not a budget chart. It is the enrollment bet he approved, now short by 38 percent. The welding lab waitlist is printed beneath it. Antoine chooses whether to cut evenly to save face or protect the lab that proved the stronger path for students.",
           "whatToDo": "Open with the failed bet Antoine owns, then fund the welding lab according to student outcomes instead of administrative pride.",
           "whyItMatters": "Institution-first responsibility protects the working path even when it embarrasses the leader's favorite initiative."
@@ -442,13 +357,6 @@
             "postmortem",
             "truth"
           ],
-          "planSpec": {
-            "domain": "wildfire incident command handoff",
-            "audience": "an incident commander praised for saving a ridge town",
-            "stakes": "the next crew needs accurate learning, not a legend",
-            "format": "postmortem",
-            "requiredBeat": "the commander writes the dozer operator's fuel-road call in the win column and his own late evacuation trigger in the lesson column"
-          },
           "scenario": "\"You saved the ridge town,\" the county chair says as ash dust clings to Sofia's plastic incident map sleeve. In the handoff postmortem, she writes the dozer operator's fuel-road call in the win column. Then she adds her late evacuation trigger to the lesson column. The next crew is waiting for the map, and she asks whether they inherit a legend or a usable record.",
           "whatToDo": "Hand over both columns: the dozer call that worked and the evacuation trigger Sofia owns as late.",
           "whyItMatters": "Accurate learning needs praise and failure sorted by cause. A legend may flatter the commander, but it leaves the next crew less prepared."
@@ -461,13 +369,6 @@
             "comparison",
             "leadership"
           ],
-          "planSpec": {
-            "domain": "leader-centric transformation risk",
-            "audience": "a board impressed by a forceful public CEO",
-            "stakes": "people begin managing the leader instead of the facts",
-            "format": "caution",
-            "requiredBeat": "show why charisma can help communication but can also make the leader the reality everyone filters around"
-          },
           "scenario": "A forceful CEO can be useful in a crisis, but Collins warns that celebrity can turn the company into the story of one person. The partial result is subtle: meetings feel energized while bad news gets filtered because everyone is managing the leader's reaction.",
           "whatToDo": "Ask whether the organization is clearer about facts and standards after the leader leaves the room.",
           "whyItMatters": "It varies the outcome and explains the failure mode behind the Level 5 claim."
@@ -486,8 +387,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The first response sends credit through the window and keeps will attached to the next institutional step. Taking the praise or staying vague both hide the real source of improvement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -499,8 +399,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Level 5 requires force as well as modesty. Avoiding a hard standard is not humility; more visibility may still miss the institution-first decision patients need.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -512,8 +411,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The danger is not tone or attention; it is distorted learning. Celebrity behavior makes the leader the explanation, so the real support discipline becomes easier to ignore.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -525,8 +423,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Owning the failed decision makes the resource shift cleaner. Delay and softened data protect the principal's comfort at the expense of the institution's learning.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -538,8 +435,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The mirror means owning the command decision without stealing the crew's credit. Privacy and blame both trade learning for image protection.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -551,8 +447,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Style alone proves little. Level 5 is the combination of personal humility and professional will; politeness without hard choices is only temperament.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -564,8 +459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The right move corrects the institution's learning without pretending visibility is forbidden. Accepting the genius story distorts cause, while disappearing avoids useful credit.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q08",
@@ -577,8 +471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Professional will protects the institution over the leader's pride. Keeping the project or outsourcing the decision protects appearance instead of the work.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -590,8 +483,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The token admission leaves blame pointed downward. A real mirror move names the leader's decision clearly, then lets the room examine system learning without scapegoating.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           }
         ]
       },
@@ -652,19 +544,13 @@
       },
       "memorableLines": [
         {
-          "text": "Humility without will becomes manners.",
-          "location": "breakdown.deepRead",
-          "why": "It prevents the common misread that Level 5 is just niceness."
+          "text": "Humility without will becomes manners."
         },
         {
-          "text": "The mirror is not for shame. It is for ownership.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the blame side of the window-and-mirror pattern usable."
+          "text": "The mirror is not for shame. It is for ownership."
         },
         {
-          "text": "The spotlight just stops being confused with the standard.",
-          "location": "breakdown.fullRead",
-          "why": "It separates visible leadership from institution-first leadership in one sentence."
+          "text": "The spotlight just stops being confused with the standard."
         }
       ]
     },
@@ -691,13 +577,6 @@
             "people",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "Fannie Mae turnaround team sequence",
-            "audience": "a reader learning first who then what",
-            "stakes": "a severe financial problem tempts the board to demand strategy before team fit",
-            "format": "source_anchor",
-            "requiredBeat": "Maxwell focuses on the executive bus first and 14 of 26 executives leave"
-          },
           "scenario": "David Maxwell arrives at Fannie Mae with the board pressing for the rescue plan. Collins uses the case to show the sequence: before the route, Maxwell works on who is on the bus and who is in which seat. Fourteen of 26 executives leave, making the people decision concrete instead of sentimental.",
           "whatToDo": "Before debating the full strategy, ask which roles require people who can adapt, confront facts, and carry standards without constant external motivation.",
           "whyItMatters": "The real case teaches the sequence step by step and keeps the concept from becoming generic hiring advice."
@@ -710,13 +589,6 @@
             "operations",
             "ambiguity"
           ],
-          "planSpec": {
-            "domain": "farm cooperative packing shed leadership",
-            "audience": "a co-op board deciding whether to launch a winter subscription box",
-            "stakes": "the crop plan will change twice, so the shed leads must handle ambiguity without resentment",
-            "format": "postmortem",
-            "requiredBeat": "the board reviews a spoiled-spinach incident and sees that the quiet pallet lead redesigned the cold-room flow while the star salesperson blamed growers"
-          },
           "scenario": "It took Beatrice one spoiled-spinach log to see the winter box decision differently. Spinach bins beaded water on the cold-room scale while the board reconstructed the miss. The star salesperson had blamed growers by noon. The quiet pallet lead sketched a new cold-room flow before lunch and saved the next load. The postmortem turns from crop mix to who can carry a changing plan without resentment.",
           "whatToDo": "Delay the subscription launch until the shed lead roles match the work, then put the pallet lead where ambiguity and flow decisions meet.",
           "whyItMatters": "A winter box will change with weather and supply. The right person is the one who improves the system under ambiguity, not the one who sells the cleanest story."
@@ -729,13 +601,6 @@
             "team",
             "trust"
           ],
-          "planSpec": {
-            "domain": "newspaper investigative desk formation",
-            "audience": "an editor building a team before picking the first target of a yearlong investigation",
-            "stakes": "a brittle reporter can wreck source trust before the story direction is clear",
-            "format": "dialogue",
-            "requiredBeat": "the editor pauses topic selection and moves the court-records reporter into lead after hearing how she corrected a source without humiliating him"
-          },
           "scenario": "Sealed court-file envelopes sit under the desk lamp, edges soft from a wet commute. \"Which target first?\" the publisher asks. Tomasz looks at the topic board, then at the court-records reporter who corrected a source's date without making him feel foolish. \"Not yet,\" he says. He chooses whether to pick the story today or first move her into lead before a brittle reporter damages source trust.",
           "whatToDo": "Pause topic selection, put the court-records reporter in the lead seat, and choose the first investigation after the desk has the right judgment at the center.",
           "whyItMatters": "A yearlong investigation will change shape. Source trust depends on who carries uncertainty before the target is even chosen."
@@ -748,13 +613,6 @@
             "seat fit",
             "coverage"
           ],
-          "planSpec": {
-            "domain": "ambulance service shift redesign",
-            "audience": "an EMS director planning a new coverage model",
-            "stakes": "a map cannot compensate for medics who undermine each other at 3 a.m.",
-            "format": "scene",
-            "requiredBeat": "the director delays the coverage-map vote and first swaps a brilliant paramedic out of night command after watching dispatch audio where he leaves a trainee isolated"
-          },
           "scenario": "You hear the dispatch waveform freeze on the monitor before Julia says a word. The half-finished coverage map is tidy, but the audio from 3:12 a.m. is not: a brilliant paramedic leaves a trainee isolated during a chest-pain call. Julia chooses whether to let the board vote on zones or first move him out of night command, where his talent is sitting in the wrong seat.",
           "whatToDo": "Delay the coverage-map vote, change the night command seat, and then design the model around medics who improve each other's judgment under pressure.",
           "whyItMatters": "Coverage maps assume people will act well inside them. A seat mismatch at 3 a.m. can break the model faster than geography can fix it."
@@ -767,13 +625,6 @@
             "uncertainty",
             "seat"
           ],
-          "planSpec": {
-            "domain": "museum conservation lab exhibition planning",
-            "audience": "a chief conservator choosing staff before committing to a fragile textile exhibition",
-            "stakes": "the exhibition schedule depends on people who can admit uncertainty before damage is permanent",
-            "format": "reflection",
-            "requiredBeat": "she gives the lead seat to the assistant who stopped a dye test and asked for help, then postpones the exhibition theme until the lab team is right"
-          },
           "scenario": "\"The color is moving,\" the assistant said, and Lin still remembers how quickly she stopped the dye test. Now a silk fragment rests under the magnifying lamp beside the theme calendar. The exhibition committee wants a title by Friday, and donors are asking for dates. Lin chooses whether to give the lead seat to the assistant who asked for help before damage was permanent, then postpone the theme until the lab team is right.",
           "whatToDo": "Give the assistant the lead conservation seat and hold the theme calendar until the team can handle uncertainty without hiding it.",
           "whyItMatters": "Fragile work punishes confidence without judgment. The right seat belongs to the person who protects the object before protecting their image."
@@ -786,13 +637,6 @@
             "seats",
             "fit"
           ],
-          "planSpec": {
-            "domain": "role fit diagnosis",
-            "audience": "a manager tempted to equate skill with fit",
-            "stakes": "keeping a talented person in the wrong role creates drag and unfair expectations",
-            "format": "caution",
-            "requiredBeat": "show a partial outcome where talent is real but the seat does not match the work"
-          },
           "scenario": "Maya, the operations lead at a payments firm, keeps a brilliant data scientist in a client-escalation seat because his models are excellent. By Friday, support managers are routing around him because tense calls make him defensive. The talent is real; the seat is wrong.",
           "whatToDo": "Diagnose seat fit separately from personal worth. Ask what the role now demands and whether this person's judgment protects that work.",
           "whyItMatters": "The distinction protects rigor from becoming harsh sorting: talent can be real while the seat is still wrong."
@@ -811,8 +655,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first move follows people before route. Skill without fit can make the plan brittle, and rules alone cannot repair a seat that damages truth and trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -824,8 +667,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The correct reply is precise, not absolute. It does not demand perfect staffing; it says the roles that carry adaptation must be settled before the plan hardens.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -837,8 +679,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Rigor is early, clear, and tied to fit. Ignoring harm is avoidance, while public humiliation is cruelty theater instead of disciplined people judgment.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q04",
@@ -850,8 +691,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The careful reporter supplies the behavior the uncertain work needs. Strong clips are tempting, but a brittle source style can wreck the investigation before its route is fixed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -863,8 +703,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The triage-seat question protects clients before growth. Flyer polish and pressure on attorneys avoid the underlying fit issue that determines whether expansion is safe.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q06",
@@ -876,8 +715,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stopped test reveals judgment under uncertainty. Seniority and deadline pressure are weaker guides when the work can be damaged by hidden confidence.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -889,8 +727,7 @@
             ],
             "correctIndex": 0,
             "explanation": "This guards against culture-fit drift. The idea is about mission behavior and seat fit under uncertainty, not comfort, sameness, or easy agreement.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -902,8 +739,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A polished plan can hide a fatal seat problem. The other options may feel disruptive, but they address the human condition that determines whether the plan can adapt.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -915,8 +751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The prompt turns uncertainty into a seat-fit test. Inspiration and wishing the market still are weaker than choosing people who help the plan adjust cleanly.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -977,19 +812,13 @@
       },
       "memorableLines": [
         {
-          "text": "Talent can be the wrong seat wearing a medal.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the seat-fit distinction vivid without becoming generic hiring advice."
+          "text": "Talent can be the wrong seat wearing a medal."
         },
         {
-          "text": "A strong team does not make strategy unnecessary. It makes strategy survivable.",
-          "location": "breakdown.fullRead",
-          "why": "It balances people-first with the need for direction."
+          "text": "A strong team does not make strategy unnecessary. It makes strategy survivable."
         },
         {
-          "text": "Do not pick the route and then beg the wrong crew to love the weather.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the whole sequence into a concrete warning."
+          "text": "Do not pick the route and then beg the wrong crew to love the weather."
         }
       ]
     },
@@ -1016,13 +845,6 @@
             "brutal facts",
             "mechanism"
           ],
-          "planSpec": {
-            "domain": "wartime fact flow",
-            "audience": "a leader whose personality may filter bad news",
-            "stakes": "bad news gets softened before it reaches decision makers",
-            "format": "source_anchor",
-            "requiredBeat": "Churchill uses a separate statistical office so facts can arrive outside ordinary hierarchy"
-          },
           "scenario": "Collins uses Churchill to show why brutal facts need a mechanism. A powerful leader may believe he wants truth, while everyone around him quietly edits bad news. A separate statistical channel gives reality a route into the room.",
           "whatToDo": "Create one channel where facts can bypass status, mood, and optimism before decisions harden.",
           "whyItMatters": "The example defines brutal facts without turning the chapter into scolding."
@@ -1035,13 +857,6 @@
             "red flag",
             "faith"
           ],
-          "planSpec": {
-            "domain": "rural bank loan portfolio review",
-            "audience": "a bank president seeing early stress in farm equipment loans",
-            "stakes": "denial could damage borrowers and the bank before harvest receipts arrive",
-            "format": "decision_point",
-            "requiredBeat": "the president hands each lender a red card they can raise when optimism outruns evidence, then keeps the card raised for his own favorite borrower"
-          },
           "scenario": "It took Martin three late farm equipment payments to change the loan review. Red index cards sit beside stamped folders when he tells every lender to raise one when optimism outruns evidence. The first card up is his own, held over the file of a favorite borrower waiting on harvest receipts and a parts invoice already overdue. Martin tests whether the red flag is real if it embarrasses him first.",
           "whatToDo": "Keep the card raised and review the borrower with the same evidence standard as every other stressed loan.",
           "whyItMatters": "A red-flag mechanism works only if status cannot mute it. The president's favorite file proves whether facts outrank comfort."
@@ -1054,13 +869,6 @@
             "debate",
             "evidence"
           ],
-          "planSpec": {
-            "domain": "avalanche patrol snowpack briefing",
-            "audience": "a patrol leader deciding whether to open a high bowl after new snow",
-            "stakes": "ticket pressure is rising while a weak layer still sits under the slope",
-            "format": "predict_reveal",
-            "requiredBeat": "the leader asks each patroller what evidence would change their mind before slicing the snow pit and watching the slab shear cleanly"
-          },
           "scenario": "Petra lays a snow saw teeth-down across a blue shadow in the pit wall while ticket pressure builds at the lift office and radios crackle with guest complaints. She asks each patroller what evidence would change their mind before she slices the snow pit. Two predict the bowl will hold. The slab shears cleanly on the weak layer. Petra asks whether the ticket line or the revealed layer sets the opening call.",
           "whatToDo": "Let the weak-layer evidence decide, and use the pre-commitment questions to keep the patrol from treating changed minds as defeat.",
           "whyItMatters": "The team can face the snowpack honestly because the question came before the reveal. Evidence changes the call, not anyone's status."
@@ -1073,13 +881,6 @@
             "autopsy",
             "debate"
           ],
-          "planSpec": {
-            "domain": "regional theater subscription decline",
-            "audience": "an artistic director whose loyal patrons still praise the season",
-            "stakes": "applause hides a shrinking base that could close the second stage",
-            "format": "postmortem",
-            "requiredBeat": "the director runs an autopsy without blame by pinning empty-seat maps beside patron praise letters and asking what both can be true"
-          },
           "scenario": "You enter the rehearsal room and find Henry standing before a row map dotted with gray empty-seat stickers, with the second-stage rent notice folded in his pocket. Loyal patrons have sent praise letters, and the second stage is still at risk. In the postmortem, he pins both pages to the same cork strip and asks, \"What if both are true?\" The staff tests whether applause is evidence enough or only one fact in the autopsy.",
           "whatToDo": "Run the no-blame autopsy around both facts: real patron praise and real subscription decline.",
           "whyItMatters": "The theater needs truth without a taste war. Holding both facts lets the staff debate causes before the shrinking base closes options."
@@ -1092,13 +893,6 @@
             "red flag",
             "waitlist"
           ],
-          "planSpec": {
-            "domain": "food pantry waitlist mechanism",
-            "audience": "a pantry director who hears only the smooth weekly volunteer report",
-            "stakes": "families are being turned away quietly while volunteers protect the director from discouraging news",
-            "format": "before_after",
-            "requiredBeat": "the director installs a brass counter bell for every turned-away family and lets the sound interrupt the packing line until the waitlist is visible"
-          },
           "scenario": "\"The line moved fine,\" a volunteer says as a brass service bell sits beside torn produce boxes and a clipboard with three crossed-out family names. Before, Alice heard only the smooth weekly report. After learning families were being turned away quietly, she rings the bell once for every turned-away family and lets the sound interrupt the packing line. The team asks whether discouraging news belongs in the room while work is still moving.",
           "whatToDo": "Keep the bell at the counter and count each turned-away family in real time, even when the packing line is busy.",
           "whyItMatters": "A hidden waitlist lets good process reports replace reality. The bell makes the cost audible before denial becomes routine."
@@ -1111,13 +905,6 @@
             "accountability",
             "facts"
           ],
-          "planSpec": {
-            "domain": "fact review with repeated reckless behavior",
-            "audience": "a team applying autopsies without blame too broadly",
-            "stakes": "a useful learning norm can become avoidance when danger is hidden or repeated",
-            "format": "caution",
-            "requiredBeat": "separate the first search for facts from the later decision about consequences"
-          },
           "scenario": "Rina, the safety lead at a warehouse, runs an autopsy without blame after a forklift near miss. The first review improves aisle markings. The second review reveals that one driver has twice hidden a damaged horn. The mechanism still starts with facts, but standards now have to enter the room.",
           "whatToDo": "Start with system facts, then judge whether the evidence also requires accountability.",
           "whyItMatters": "The partial failure keeps the fact mechanism honest: learning comes first, but repeated hidden danger still requires standards."
@@ -1136,8 +923,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The red-flag log gives reality a path into the room. Positivity and waiting both keep the hidden fact outside the decision until damage grows.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1149,8 +935,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Questions before answers make hard evidence hearable. Selecting only supportive voices or waiting for perfection protects the leader's theory from useful pressure.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1162,8 +947,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The correct question starts a no-blame autopsy with system facts. Punishment first and hiding the miss both teach people to protect themselves instead of truth.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1175,8 +959,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The paradox keeps facts and faith together. Hiding churn is denial, while treating churn as doom drops resolve instead of making the fact usable.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1188,8 +971,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A red flag must interrupt decisions while action is possible. The issue is not anonymity itself; it is that the signal disappears without changing the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1201,8 +983,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Current evidence must outrank pressure and pride. Naming criteria before the cut helps the team change its mind without treating truth as embarrassment.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1214,8 +995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The better frame protects learning without removing standards. Canceling the review avoids facts, while urgency through blame makes future facts harder to surface.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1227,8 +1007,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The agenda pairs evidence with agency. A speech hides facts, while a named failure list makes defensiveness more likely than useful debate.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1240,8 +1019,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Candor is not theater. The useful test is whether truth can guide action; harshness can become cruelty, and softening facts becomes denial.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "standard"
+            "bloomsLevel": "evaluate"
           }
         ]
       },
@@ -1302,19 +1080,13 @@
       },
       "memorableLines": [
         {
-          "text": "Truth needs handles before it can change a decision.",
-          "location": "breakdown.deepRead",
-          "why": "It captures why mechanisms matter more than vague calls for honesty."
+          "text": "Truth needs handles before it can change a decision."
         },
         {
-          "text": "The brutal fact is not the ending. It is the first honest sentence in the plan.",
-          "location": "breakdown.fullRead",
-          "why": "It holds reality and resolve together in a memorable form."
+          "text": "The brutal fact is not the ending. It is the first honest sentence in the plan."
         },
         {
-          "text": "Faith gets stronger when it no longer has to pretend.",
-          "location": "breakdown.fullRead",
-          "why": "It names the Stockdale paradox without overexplaining it."
+          "text": "Faith gets stronger when it no longer has to pretend."
         }
       ]
     },
@@ -1341,13 +1113,6 @@
             "denominator",
             "Hedgehog Concept"
           ],
-          "planSpec": {
-            "domain": "banking economic engine",
-            "audience": "a reader learning the denominator step",
-            "stakes": "profit per loan hides the operating logic that could compound",
-            "format": "step_by_step",
-            "requiredBeat": "show why profit per employee changes the choices Wells Fargo makes"
-          },
           "scenario": "Wells Fargo had to stop thinking like a would-be global bank. Collins uses profit per employee as the economic denominator that made the strategy concrete. The measure pushed the bank toward focused geography, lean branches, electronic tools, and a culture that treated waste as the enemy.",
           "whatToDo": "Ask what per-x measure would change your choices, not merely decorate the dashboard.",
           "whyItMatters": "The denominator teaches the math instead of asserting that focus is good."
@@ -1360,13 +1125,6 @@
             "stop doing",
             "three circles"
           ],
-          "planSpec": {
-            "domain": "consumer products versus paper mills",
-            "audience": "a team with a profitable legacy business",
-            "stakes": "the legacy business is good but does not fit the great path",
-            "format": "source_anchor",
-            "requiredBeat": "Smith sells mills because consumer products better fit the three-circle understanding"
-          },
           "scenario": "Kimberly-Clark could have remained a good paper-mill company. The Hedgehog Concept pushed a harder conclusion: the consumer business fit the three circles better. Selling mills, including the namesake mill, turned the concept from language into commitment.",
           "whatToDo": "List the attractive work that must stop if the three circles are actually true.",
           "whyItMatters": "The costly no shows that a concept becomes real only when it changes what the organization stops doing."
@@ -1379,13 +1137,6 @@
             "denominator",
             "passion"
           ],
-          "planSpec": {
-            "domain": "seed cooperative regenerative trial plots",
-            "audience": "a co-op director deciding which seed lines to carry",
-            "stakes": "members need a clear economic denominator before passion for soil health becomes scattered advocacy",
-            "format": "reflection",
-            "requiredBeat": "the director kneels by the trial tags and changes the dashboard from revenue per bag to net yield per resilient acre"
-          },
           "scenario": "Plastic trial tags rattle in a dry wind over cover-crop stubble while Freya kneels beside two seed lines. Revenue per bag makes the flashy line look easy to carry. Net yield per resilient acre makes the soil-health promise accountable. She tests whether passion becomes advocacy scattered across too many lines or a dashboard that tells members which seeds improve the farm economics they actually live with.",
           "whatToDo": "Change the dashboard to net yield per resilient acre and carry only seed lines that fit that denominator and the co-op's best capability.",
           "whyItMatters": "Passion needs an economic engine or it becomes a speech. The new denominator ties soil commitment to member results."
@@ -1398,13 +1149,6 @@
             "discipline",
             "sponsor fit"
           ],
-          "planSpec": {
-            "domain": "documentary festival programming",
-            "audience": "a festival board tempted to broaden into celebrity premieres",
-            "stakes": "ticket sales could rise briefly while the festival loses its reason to exist",
-            "format": "dialogue",
-            "requiredBeat": "the programmer reads the donor offer aloud, then marks which films meet local investigative depth, community draw, and sponsor fit before saying no"
-          },
           "scenario": "You can hear the sponsor packets slide under the screening lanyards as Julien reads the donor offer aloud. \"A celebrity premiere could double Friday sales,\" a board member says. Julien marks three columns: local investigative depth, community draw, sponsor fit. The donor film clears only one. He asks whether a packed Friday is worth trading away the festival's narrow reason to exist.",
           "whatToDo": "Say no to the donor film unless it meets all three concept tests, then program the slate around the local investigative strength.",
           "whyItMatters": "Ticket heat alone is not a Hedgehog Concept. The festival protects its force by choosing films where capability, economics, and commitment meet."
@@ -1417,13 +1161,6 @@
             "niche",
             "referrals"
           ],
-          "planSpec": {
-            "domain": "marine battery corrosion diagnostics shop",
-            "audience": "a repair-shop owner considering full marine electronics installation",
-            "stakes": "bigger invoices may bury the one diagnostic skill boatyards trust",
-            "format": "postmortem",
-            "requiredBeat": "the owner reviews three warranty saves and sees that corrosion diagnosis per dock visit, not installation revenue, predicts repeat referrals"
-          },
           "scenario": "\"The electronics install would triple invoice size,\" the supplier says while green corrosion dust shines on a battery terminal under Catarina's headlamp. In the postmortem, she reviews three warranty saves and the repeat referrals that followed. Installation revenue looks bigger; corrosion diagnosis per dock visit predicts the boatyards that call again. She tests whether size or fit defines the shop's next service.",
           "whatToDo": "Keep corrosion diagnostics at the center and judge growth by repeat referrals per dock visit, not total installation revenue.",
           "whyItMatters": "Bigger invoices can bury the skill customers trust. The shop's best-at niche and economic engine are both in diagnosis."
@@ -1436,13 +1173,6 @@
             "scope",
             "retention"
           ],
-          "planSpec": {
-            "domain": "hospice volunteer bereavement program",
-            "audience": "a nonprofit director deciding whether to add broad wellness workshops",
-            "stakes": "families need consistent grief follow-up more than the organization needs a wider program menu",
-            "format": "vignette",
-            "requiredBeat": "the director crosses wellness workshops off the grant draft after matching trained-volunteer calls to family retention in the first ninety days"
-          },
           "scenario": "Which line in the grant draft will still matter to a family ninety days after the funeral? A call schedule sits under a smooth river stone on Samuel's quiet desk. He matches trained-volunteer calls with family retention in the first ninety days, then crosses wellness workshops off the draft. The wider menu looked generous, but the grief follow-up is the work the volunteers can sustain.",
           "whatToDo": "Fund the trained-volunteer call rhythm and leave broad wellness workshops outside the grant unless they pass the same three-circle test.",
           "whyItMatters": "A wider menu can dilute the service families rely on. The disciplined no protects the program's capability, funding logic, and care."
@@ -1461,8 +1191,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The three-circle test decides fit. Calendar fill and competitor moves may matter, but they do not prove the new work reinforces the clinic's concept.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1474,8 +1203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Passion is only one circle. The idea also needs evidence of best-at potential and an economic engine; inspiration cannot fill those gaps.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1487,8 +1215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The disciplined no protects the concept without becoming anti-commercial. Ticket sales matter only when they reinforce the capability and engine the festival is building.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1500,8 +1227,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The better denominator reveals the economic engine tied to the shop's rare capability. Total invoice size and service count can reward unfocused expansion.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1513,8 +1239,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The concept emerges through disciplined realism, not hopeful labels. Broad overlap and outside facilitation do not replace evidence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -1526,8 +1251,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The denominator connects passion to results members can use. Carrying every aligned-sounding line or relying only on testimonials scatters the concept.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -1539,8 +1263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "A real concept concentrates ambition; it does not worship smallness. The other choices turn discipline into fear or rigidity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1552,8 +1275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The hedgehog question looks for coherent concentration. Loud advocacy and avoiding noes keep the fox's variety without testing whether force can compound.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1565,8 +1287,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The call rhythm sits inside the concept. Popularity alone is not enough, while permanent refusal to learn would turn focus into rigidity.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1627,19 +1348,13 @@
       },
       "memorableLines": [
         {
-          "text": "One empty circle is a warning label.",
-          "location": "breakdown.deepRead",
-          "why": "It makes the three-circle test instantly retrievable."
+          "text": "One empty circle is a warning label."
         },
         {
-          "text": "A disciplined no is not a rejection of ambition. It is ambition refusing to leak.",
-          "location": "breakdown.fullRead",
-          "why": "It reframes no as concentration instead of timidity."
+          "text": "A disciplined no is not a rejection of ambition. It is ambition refusing to leak."
         },
         {
-          "text": "Revenue can flatter the wrong work.",
-          "location": "breakdown.fullRead",
-          "why": "It warns readers to choose the right economic denominator."
+          "text": "Revenue can flatter the wrong work."
         }
       ]
     },
@@ -1666,13 +1381,6 @@
             "discipline",
             "bureaucracy"
           ],
-          "planSpec": {
-            "domain": "growing company bureaucracy risk",
-            "audience": "a founder adding rules after growth creates mess",
-            "stakes": "rules built for the wrong people can drive out the right people",
-            "format": "source_anchor",
-            "requiredBeat": "Rathmann treats bureaucracy as compensation for incompetence and builds discipline instead"
-          },
           "scenario": "Collins uses George Rathmann of Amgen to show the alternative to bureaucracy. The issue is not whether growing companies need systems. They do. The danger is building rules for the least disciplined people and making the most disciplined people pay the cost.",
           "whatToDo": "Ask which rules compensate for unclear standards or wrong seats, then fix the people, frame, or responsibility before adding another layer.",
           "whyItMatters": "The real example defines culture of discipline without making it sound like more control."
@@ -1685,13 +1393,6 @@
             "freedom",
             "stop-doing"
           ],
-          "planSpec": {
-            "domain": "jazz festival stage-change crews",
-            "audience": "a festival producer managing five stages with volunteer crews",
-            "stakes": "late changeovers will wreck the day unless crews know exactly where freedom begins and ends",
-            "format": "scene",
-            "requiredBeat": "the producer gives crews full authority to solve cable routing inside a fixed twelve-minute changeover window and cancels side-stage decoration work"
-          },
           "scenario": "It took Ben one late trumpet set to stop approving every cable choice. Coiled XLR cables line the plywood stage lip before noon, and five volunteer crews wait for instructions. He sets one fixed boundary: a twelve-minute changeover window. Inside it, crews choose cable routing without calling him. He cancels side-stage decoration work and has to judge whether the day needs prettier corners or protected changeovers.",
           "whatToDo": "Give crews cable-routing authority inside the twelve-minute window and remove decoration work from the day's priorities.",
           "whyItMatters": "The framework is tight where timing matters and free where crew judgment belongs. The stop-doing choice protects the schedule."
@@ -1704,13 +1405,6 @@
             "priorities",
             "framework"
           ],
-          "planSpec": {
-            "domain": "trail restoration nonprofit project calendar",
-            "audience": "a field director whose volunteers keep adding attractive side projects",
-            "stakes": "erosion repairs will miss the rainy season if energy scatters",
-            "format": "before_after",
-            "requiredBeat": "the director posts a stop-doing list on the tool trailer and lets crew leads choose methods only inside the watershed-priority map"
-          },
           "scenario": "Orange trail flags are tucked into the latch of a muddy tool trailer when Nora finds another volunteer sketching a lookout bench. Before, every attractive side project found a Saturday. After the erosion calendar slipped, she posts a stop-doing list on the trailer and pins the watershed-priority map below it. Crew leads can choose repair methods, but only inside the map. The rain will not wait for enthusiasm to sort itself.",
           "whatToDo": "Use the watershed map as the framework, let crew leads choose repair methods inside it, and stop side projects until erosion work is safe.",
           "whyItMatters": "Volunteer energy is valuable only when pointed. The stop-doing list keeps freedom from scattering before the rainy season closes."
@@ -1723,13 +1417,6 @@
             "judgment",
             "constraints"
           ],
-          "planSpec": {
-            "domain": "ferry maintenance tide-window planning",
-            "audience": "a maintenance superintendent balancing crew judgment and tide constraints",
-            "stakes": "over-approval will miss low-tide repair windows, but loose work will strand commuters",
-            "format": "dialogue",
-            "requiredBeat": "the superintendent states the fixed tide window and safety boundary, then lets the hull crew choose the patch sequence without calling the office"
-          },
           "scenario": "You stand below the ferry hull at low tide, barnacle scrape marks still wet on the steel. \"Call before each patch?\" the crew lead asks. Erik points to the tide chart and the safety boundary painted on the work order. \"Those do not move. The patch sequence is yours.\" He chooses whether to pull every choice back to the office or trust the hull crew inside the fixed window.",
           "whatToDo": "State the tide window and safety boundary, then let the hull crew choose the patch sequence without office approval.",
           "whyItMatters": "The crew's expertise is useful only if it can act before the tide turns. The boundary prevents drift while preserving judgment."
@@ -1742,13 +1429,6 @@
             "quality",
             "stop authority"
           ],
-          "planSpec": {
-            "domain": "medical-device packaging line",
-            "audience": "a plant manager deciding whether to add inspectors after label rework",
-            "stakes": "inspection layers may hide the real need for disciplined operators at the source",
-            "format": "postmortem",
-            "requiredBeat": "the manager traces a mislabeled tray back to a confusing SKU rack, fixes the framework, and gives operators authority to stop the conveyor"
-          },
           "scenario": "\"Add inspectors,\" the supervisor says as foil-sealed trays click under the barcode reader. Isabelle's postmortem follows one mislabeled tray back to a confusing SKU rack, not careless hands. She fixes the rack, updates the label boundary, and gives operators authority to stop the conveyor. She tests whether quality lives at the source or in another inspection layer after the source fails.",
           "whatToDo": "Repair the SKU framework and give operators stop authority instead of adding inspection layers as the main fix.",
           "whyItMatters": "End-stage inspection can hide weak source discipline. Operators need the framework and authority to prevent errors before they travel."
@@ -1761,13 +1441,6 @@
             "freedom",
             "framework"
           ],
-          "planSpec": {
-            "domain": "over-controlled organization",
-            "audience": "a leader proud that everyone follows procedure",
-            "stakes": "compliance can hide weak thinking and slow responsibility",
-            "format": "caution",
-            "requiredBeat": "show a partial failure where rules produce obedience but not disciplined judgment"
-          },
           "scenario": "Priya, a regional clinic manager, celebrates that every nurse follows the new approval checklist. Then a vaccine fridge alarm waits forty minutes because the checklist says only supervisors can pause intake. The team obeyed, but the framework slowed responsibility.",
           "whatToDo": "Measure whether the framework increases responsible action at the work, not whether it creates more visible compliance.",
           "whyItMatters": "The failure mode shows why freedom needs a framework that speeds responsibility instead of merely producing compliance."
@@ -1786,8 +1459,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The first choice tightens the true boundary and gives judgment room. More signatures may slow work without fixing technique, while no procedure turns freedom into drift.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -1799,8 +1471,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The framework creates room for responsible action. No rules and selective leader approval both miss the balance between boundary and freedom.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -1812,8 +1483,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stop-doing list protects the essential work from attractive drift. More options and passion language would add energy without direction.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -1825,8 +1495,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The tide and safety boundaries are the framework; sequence judgment belongs with the crew. Over-approval wastes the window, while ignoring constraints invites failure.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -1838,8 +1507,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fixing the source framework and stop authority prevents errors earlier. Inspectors alone can turn quality into someone else's job.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q06",
@@ -1851,8 +1519,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The clear intake framework protects the cases the clinic can win. Universal yeses dilute service, and approval bottlenecks slow necessary decisions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q07",
@@ -1864,8 +1531,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Bureaucracy often compensates for unclear frameworks or weak fit. A longer form treats the symptom, and assuming people dislike responsibility avoids the real diagnosis.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -1877,8 +1543,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The third option sets a boundary, gives authority, and creates learning. The others choose either bottleneck control or rule-free drift.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "q09",
@@ -1890,8 +1555,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The stop question turns focus into action. Calendar stuffing and extra hours let attractive work drain the discipline the concept requires.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1952,19 +1616,13 @@
       },
       "memorableLines": [
         {
-          "text": "Bureaucracy often arrives wearing a safety vest.",
-          "location": "breakdown.deepRead",
-          "why": "It warns that control can look responsible while hiding weak discipline."
+          "text": "Bureaucracy often arrives wearing a safety vest."
         },
         {
-          "text": "Permission stops being the bottleneck because responsibility has already been placed where the work happens.",
-          "location": "breakdown.fullRead",
-          "why": "It defines the practical outcome of freedom within a framework."
+          "text": "Permission stops being the bottleneck because responsibility has already been placed where the work happens."
         },
         {
-          "text": "Saying no is not a mood. It is the framework becoming visible.",
-          "location": "breakdown.fullRead",
-          "why": "It makes stop-doing discipline concrete and memorable."
+          "text": "Saying no is not a mood. It is the framework becoming visible."
         }
       ]
     },
@@ -1991,13 +1649,6 @@
             "technology",
             "sequence"
           ],
-          "planSpec": {
-            "domain": "steel technology and culture",
-            "audience": "a reader tempted to make technology the cause",
-            "stakes": "thin-slab casting looks like the whole explanation from outside",
-            "format": "source_anchor",
-            "requiredBeat": "show that Nucor used technology but Collins reads it as an accelerator of existing discipline"
-          },
           "scenario": "Nucor looks like a technology story from the outside because steelmaking technology mattered. Collins's interview with Ken Iverson complicates that reading. Iverson emphasized culture, people, and discipline; the technology accelerated a company already built to use it.",
           "whatToDo": "Before buying or celebrating a tool, name the discipline it will amplify and the measure it should move.",
           "whyItMatters": "The case teaches sequence: a tool has power when a disciplined company is already built to use it."
@@ -2010,13 +1661,6 @@
             "comparison",
             "judgment"
           ],
-          "planSpec": {
-            "domain": "dairy herd-health sensor rollout",
-            "audience": "a herd manager with a proven fresh-cow protocol",
-            "stakes": "sensor tags should speed early illness detection, not replace stockmanship the farm already relies on",
-            "format": "predict_reveal",
-            "requiredBeat": "the manager compares sensor alerts against the existing fresh-cow notebook for two weeks before expanding, proving the tags accelerate a discipline already working"
-          },
           "scenario": "It took Vera two weeks to learn whether the yellow sensor tags were useful. Before sunrise, they clicked against the feed rail while the fresh-cow notebook stayed open on the hood of the utility cart, pages damp from barn air. She predicted the tags would catch illness sooner, then compared every alert with the existing protocol. The reveal is narrow: the tags help when they speed the stockmanship already working, not when they replace it.",
           "whatToDo": "Expand the tags only where the two-week comparison shows earlier detection inside the fresh-cow protocol.",
           "whyItMatters": "The farm is not buying data for prestige. The tool must accelerate a discipline the herd team already understands."
@@ -2029,13 +1673,6 @@
             "access",
             "OCR"
           ],
-          "planSpec": {
-            "domain": "county archive OCR access project",
-            "audience": "an archivist whose concept is fast family-history access for local residents",
-            "stakes": "OCR matters only if it shortens the path from a surname question to a usable record",
-            "format": "scene",
-            "requiredBeat": "the archivist times one patron's search through handwritten deed indexes, then repeats it with OCR and approves only the pages that serve the access concept"
-          },
           "scenario": "Powdery deed books lie open under a foam cradle when Chloe starts the timer. A patron asks for one surname, and the handwritten index takes eleven minutes to reach a usable record. Chloe repeats the search with an OCR batch and gets three minutes on only part of the collection. She chooses whether to digitize everything or approve the pages that actually serve fast family-history access.",
           "whatToDo": "Approve OCR batches that shorten surname-to-record time and leave low-use pages out until they fit the access concept.",
           "whyItMatters": "Digitizing everything sounds modern, but the archive's promise is faster local records. The tool should shorten that path."
@@ -2048,13 +1685,6 @@
             "vendor",
             "measure"
           ],
-          "planSpec": {
-            "domain": "emergency dispatch map procurement",
-            "audience": "a dispatch director pitched a predictive heat-map system",
-            "stakes": "a prestigious map could distract from the center's proven strength in call-triage speed",
-            "format": "dialogue",
-            "requiredBeat": "the director asks the vendor to show seconds saved in triage handoff, not map beauty, and stops the purchase when the tool cannot move that measure"
-          },
           "scenario": "You see the heat map reflected in the dark dispatch console before the vendor says, \"It will change how the city sees risk.\" Amir asks, \"How many triage handoff seconds does it save?\" The demo jumps to prettier colors and a mayoral dashboard mockup. He asks again. The answer is none yet. Amir tests whether prestige outranks the center's proven strength in fast call triage.",
           "whatToDo": "Pause the purchase until the system can show measurable triage handoff seconds saved.",
           "whyItMatters": "The map's beauty is not acceleration. A dispatch tool must strengthen the center's core speed measure or stay outside the system."
@@ -2067,13 +1697,6 @@
             "coaching",
             "product"
           ],
-          "planSpec": {
-            "domain": "climbing gym route-progression app",
-            "audience": "a gym owner whose concept is measurable skill progression for intermediate climbers",
-            "stakes": "the app should deepen member progression instead of becoming a novelty leaderboard",
-            "format": "before_after",
-            "requiredBeat": "the owner hides global rankings and keeps only route-attempt notes after seeing which feature helps coaches move climbers through the skill ladder"
-          },
           "scenario": "\"The rankings will get people talking,\" the app rep says as colored route tags snap onto the plywood overhang. Before the trial, Giulia expects the leaderboard to drive energy. After three coaching sessions, route-attempt notes are what move intermediate climbers through the skill ladder. She hides global rankings and keeps the notes, deciding the app should deepen progression instead of create novelty noise.",
           "whatToDo": "Keep route-attempt notes, hide global rankings, and judge the app by coachable progression through the skill ladder.",
           "whyItMatters": "The gym's concept is measurable skill growth. A leaderboard can distract from the coaching loop the tool should accelerate."
@@ -2086,13 +1709,6 @@
             "failure",
             "technology"
           ],
-          "planSpec": {
-            "domain": "technology adopted before strategy",
-            "audience": "a team buying software to look current",
-            "stakes": "the tool creates activity without a named concept or useful measure",
-            "format": "caution",
-            "requiredBeat": "show a partial failure where dashboards and launch energy rise while the underlying discipline remains vague"
-          },
           "scenario": "Noah, the sales director at a regional parts distributor, buys a new forecasting platform because competitors mention similar tools. Launch emails, dashboards, and training sessions create motion. Three months later nobody can say which Hedgehog measure improved. The tool exposed the missing concept.",
           "whatToDo": "Pause new rollout scope until the team can state the concept, the practice being accelerated, and the measure that should change.",
           "whyItMatters": "The failure mode is technology frenzy: activity rises while the measure tied to the concept stays unnamed."
@@ -2111,8 +1727,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The smaller device has a measure tied to the concept. Status is a weak test, and rejecting technology on principle is as undisciplined as chasing it.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2124,8 +1739,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The comparison would show whether the tool improves an existing discipline. More alerts or replacing judgment can create motion without better herd health.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2137,8 +1751,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The seconds-saved question ties the tool to the center's concept. Political appeal and training speed may matter later, but they do not prove acceleration.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2150,8 +1763,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The notes accelerate the chosen progression concept. Rankings may create chatter, and using every feature can dilute the tool's purpose.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2163,8 +1775,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Fear-driven adoption is technology frenzy. Training and dashboards are secondary until the team can name the concept and measure the acceleration.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2176,8 +1787,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The narrow OCR batch accelerates the archive's access promise. Complete digitization and perfect-delay thinking both avoid the fit test.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2189,8 +1799,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Technology belongs after disciplined thought. Buying first lets a tool substitute for strategy, while permanent rejection treats uncertainty as a fixed state.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q08",
@@ -2202,8 +1811,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Partial fit is enough when it strengthens the concept. Spreading it everywhere or rejecting it entirely ignores the niche evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q09",
@@ -2215,8 +1823,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sentence names both the discipline and the measure. Appearance and timing may create urgency, but they do not prove the tool belongs.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2277,19 +1884,13 @@
       },
       "memorableLines": [
         {
-          "text": "A tool cannot clarify a concept it was hired to avoid.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the danger of buying technology before disciplined thought."
+          "text": "A tool cannot clarify a concept it was hired to avoid."
         },
         {
-          "text": "A strong wheel can use a motor. A missing wheel cannot be motorized.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the accelerator logic concrete."
+          "text": "A strong wheel can use a motor. A missing wheel cannot be motorized."
         },
         {
-          "text": "Acceleration means a clear wheel turns faster.",
-          "location": "breakdown.fullRead",
-          "why": "It gives readers a direct test for tool fit."
+          "text": "Acceleration means a clear wheel turns faster."
         }
       ]
     },
@@ -2316,13 +1917,6 @@
             "flywheel",
             "momentum"
           ],
-          "planSpec": {
-            "domain": "grocery transformation",
-            "audience": "a reader learning why breakthrough is cumulative",
-            "stakes": "a large organization cannot be moved by slogans alone",
-            "format": "source_anchor",
-            "requiredBeat": "Jim Herring builds confidence through step-by-step accomplishments instead of a big change program"
-          },
           "scenario": "Collins uses Kroger to show the flywheel from the inside. Jim Herring and his team did not try to make thousands of people believe through a launch event. They built tangible accomplishments so confidence came from evidence, one turn at a time.",
           "whatToDo": "Trace how this push makes the next push easier and what evidence people can see before asking for more belief.",
           "whyItMatters": "The real company example gives the flywheel concrete sequence."
@@ -2335,13 +1929,6 @@
             "doom loop",
             "failure"
           ],
-          "planSpec": {
-            "domain": "comparison-company strategic resets",
-            "audience": "a leader tempted to relaunch after slow results",
-            "stakes": "new direction keeps destroying accumulated momentum",
-            "format": "failure_case",
-            "requiredBeat": "Warner-Lambert changes direction repeatedly and loses continuity"
-          },
           "scenario": "Warner-Lambert is Collins's caution beside Gillette. The company shifted direction repeatedly, with successive CEOs bringing new programs. Each reset could be framed as decisive. Together they formed a doom loop: reaction, new direction, no stored momentum, disappointing results.",
           "whatToDo": "Before relaunching, ask what momentum would be destroyed and whether the facts show a broken wheel or merely an unglamorous early turn.",
           "whyItMatters": "The contrast shows how repeated resets destroy stored force, even when each reset sounds decisive."
@@ -2354,13 +1941,6 @@
             "retention",
             "method"
           ],
-          "planSpec": {
-            "domain": "adult language school retention system",
-            "audience": "a language-school director urged to scrap the curriculum after modest enrollment",
-            "stakes": "switching methods every term prevents learners from compounding confidence",
-            "format": "reflection",
-            "requiredBeat": "the director tracks phone-practice completions for six cohorts and keeps the method when retention rises before new enrollment does"
-          },
           "scenario": "Headset cords loop beside a wall of small progress stamps while Helene studies six cohorts. New enrollment is modest, and the board wants a fresh method. Phone-practice completions tell a quieter story: retention rises before enrollment does. Helene tests whether the curriculum is failing because outsiders have not noticed it or whether the first turns of learner confidence are finally taking hold.",
           "whatToDo": "Keep the phone-practice method and keep tracking retention through another cohort before changing the curriculum.",
           "whyItMatters": "Confidence compounds inside retention first. Scrapping the method now would break the chain before new enrollment can reflect it."
@@ -2373,13 +1953,6 @@
             "maintenance",
             "public"
           ],
-          "planSpec": {
-            "domain": "city bike-lane maintenance cadence",
-            "audience": "a transportation planner pressured to announce a new mobility initiative",
-            "stakes": "residents need dependable cleared lanes more than a new slogan",
-            "format": "decision_point",
-            "requiredBeat": "the planner points to traffic-counter gains after six months of weekly sweeping and declines the mayor's request to relaunch under a new name"
-          },
           "scenario": "You can still smell wet paint near the curbside traffic counter when David opens the mayor's relaunch request. Six months of weekly sweeping have lifted bike-lane counts on the worst corridor. The new mobility name would photograph well. David points to the traffic-counter gains and must judge whether a fresh banner is worth interrupting the maintenance cadence residents are finally trusting.",
           "whatToDo": "Decline the relaunch name and keep the weekly sweeping cadence tied to traffic-counter gains.",
           "whyItMatters": "The sweep schedule is making the next ride more likely. A slogan reset may steal attention from the push that is compounding."
@@ -2392,13 +1965,6 @@
             "referrals",
             "system"
           ],
-          "planSpec": {
-            "domain": "legal aid eviction-defense referral loop",
-            "audience": "a legal aid director deciding whether to pivot programs after slow early outcomes",
-            "stakes": "tenants benefit when court clerks, shelters, and attorneys trust one repeat path",
-            "format": "scene",
-            "requiredBeat": "the director draws arrows from clerk referrals to shelter intake to hearing representation and shows that each push makes the next referral easier"
-          },
           "scenario": "\"The numbers are still small,\" a board member says while pink hearing notices sit beside a courthouse intake stamp. Yusuf draws arrows from clerk referrals to shelter intake to hearing representation. Each represented hearing makes the next clerk referral easier. He asks whether slow early outcomes mean the program should pivot or whether the referral loop is beginning to turn.",
           "whatToDo": "Keep strengthening the clerk-to-shelter-to-hearing path and measure whether each link makes the next referral easier.",
           "whyItMatters": "The wheel is trust across repeated handoffs. Pivoting too soon would reset relationships just as they begin to reduce friction."
@@ -2411,13 +1977,6 @@
             "product",
             "tuning"
           ],
-          "planSpec": {
-            "domain": "indie game studio build stability",
-            "audience": "a studio lead facing pressure to rewrite the game after a quiet playtest",
-            "stakes": "a reset would destroy months of tuning that is only now improving player return",
-            "format": "predict_reveal",
-            "requiredBeat": "the lead compares crash reports, tutorial completions, and second-session returns, then keeps the engine and adds the next small tuning pass"
-          },
           "scenario": "Which is more honest, a new engine announcement or the small numbers glowing on the QA monitor? Robert predicts the quiet playtest will pressure him into a rewrite. Then he compares crash reports, tutorial completions, and second-session returns. The reveal is a chain: fewer crashes, more tutorials completed, more players returning. He chooses whether to reset the engine or add the next tuning pass.",
           "whatToDo": "Keep the engine, continue tuning the stability chain, and judge progress by second-session returns before considering a rewrite.",
           "whyItMatters": "A reset would destroy stored learning. The improving chain shows the next aligned push is more valuable than a dramatic restart."
@@ -2436,8 +1995,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The repeat site connects to the prior turns and makes future donations easier. The campaign may help later, but visibility alone does not prove compounding.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2449,8 +2007,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The sample cadence is making the next sale easier. A rebrand resets trust, and waiting for certainty would stop the wheel before it gains weight.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q03",
@@ -2462,8 +2019,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Retention can show momentum before outside demand catches up. Replacing the routine every term prevents confidence and evidence from compounding.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q04",
@@ -2475,8 +2031,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The risk is trading a working push for a fresh story. The issue is not communication itself; it is interrupting the turn that creates reliability.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q05",
@@ -2488,8 +2043,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question distinguishes a flywheel from a rut. Slogans and hiding results both avoid the evidence of whether momentum is actually building.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2501,8 +2055,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The handoff chain is the wheel. Pivoting or broadening would reset the trust that is beginning to make each next referral easier.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2514,8 +2067,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The metrics form an aligned sequence. A rewrite would destroy stored tuning, while ignoring the chain lets mood outrank evidence.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2527,8 +2079,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Connected pushes and improving evidence separate compounding from vanity. Excitement and outsider labels arrive too late or too unevenly to guide the work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2540,8 +2091,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The question makes the cost of reset visible. Announcement quality and blame avoidance pull attention away from the momentum already earned.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2602,19 +2152,13 @@
       },
       "memorableLines": [
         {
-          "text": "Momentum is quiet before it is obvious.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the reader patience without turning the idea into generic persistence."
+          "text": "Momentum is quiet before it is obvious."
         },
         {
-          "text": "Breakthrough is often a name people give the wheel after it is already heavy.",
-          "location": "breakdown.fullRead",
-          "why": "It captures why outsiders misread cumulative momentum as a sudden event."
+          "text": "Breakthrough is often a name people give the wheel after it is already heavy."
         },
         {
-          "text": "Momentum deserves protection before it deserves celebration.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the leader's next action clear during slow progress."
+          "text": "Momentum deserves protection before it deserves celebration."
         }
       ]
     },
@@ -2641,13 +2185,6 @@
             "Circuit City",
             "Fannie Mae"
           ],
-          "planSpec": {
-            "domain": "interpreting Good to Great after later company trouble",
-            "audience": "a reader tempted to treat the study list as permanent proof",
-            "stakes": "a past leap can become a misleading badge if current discipline fades",
-            "format": "caution",
-            "requiredBeat": "name that some study companies later struggled and separate study-period evidence from permanent guarantee"
-          },
           "scenario": "Circuit City and Fannie Mae belong in the conversation because later history complicates any easy success story. Their later trouble does not erase the Good to Great study period. It does remind readers that a leap is not a permanent license. Discipline has to keep renewing itself.",
           "whatToDo": "After any win, ask which mechanisms still force facts, standards, and stop-doing choices into current decisions.",
           "whyItMatters": "The caution keeps the ending honest: a study-period leap still has to be renewed by present discipline."
@@ -2660,13 +2197,6 @@
             "protocol",
             "standards"
           ],
-          "planSpec": {
-            "domain": "public radio newsroom after an investigative award",
-            "audience": "a news director whose team just won its first national prize",
-            "stakes": "the award can either harden standards or become a story the newsroom tells about itself",
-            "format": "before_after",
-            "requiredBeat": "the director leaves the award unopened until the source-check protocol from the winning series is added to every new investigation kickoff"
-          },
           "scenario": "It took Fiona one sealed award box to see the newsroom's next risk. Before the prize, marked source logs made the investigation strong. After the national award arrived, she leaves the box unopened beside those logs until the source-check protocol is added to every new kickoff. The team can celebrate later; first it must judge whether the award becomes a standard or only a story.",
           "whatToDo": "Install the source-check protocol in every investigation kickoff before making the award the center of the room.",
           "whyItMatters": "The prize is temporary evidence. The protocol turns the discipline that earned it into newsroom life."
@@ -2679,13 +2209,6 @@
             "growth",
             "member trust"
           ],
-          "planSpec": {
-            "domain": "regional credit union post-growth member discipline",
-            "audience": "a credit union CEO after a merger doubles branch count",
-            "stakes": "growth can dilute the lending discipline that earned member trust",
-            "format": "postmortem",
-            "requiredBeat": "the CEO compares the merger announcement with three declined loans that protected members, then makes that review part of branch-manager training"
-          },
           "scenario": "New branch keys click against declined-loan summaries as Thomas begins the merger postmortem. The announcement doubled the branch count, and the board wants a growth story. He places three declined loans beside it, each one protecting a member from a payment they could not carry. Thomas asks whether branch-manager training begins with expansion pride or the lending discipline that made members trust the credit union.",
           "whatToDo": "Make declined-loan review part of branch-manager training so growth carries the original member discipline into new locations.",
           "whyItMatters": "Scale can dilute the judgment that earned trust. Durable growth teaches the noes as carefully as the wins."
@@ -2698,13 +2221,6 @@
             "debate",
             "funding"
           ],
-          "planSpec": {
-            "domain": "medical research institute debate routines",
-            "audience": "an institute director after a breakthrough grant",
-            "stakes": "funding success can silence the debate routines that made the lab worth funding",
-            "format": "dialogue",
-            "requiredBeat": "the director opens the grant meeting by assigning a junior scientist to challenge the flagship hypothesis before any spending plan is approved"
-          },
           "scenario": "You see the grant notice projected over labeled tissue slides before the spending plan appears. \"Can we approve equipment first?\" a senior investigator asks. Alma turns to a junior scientist and assigns her to challenge the flagship hypothesis. The room goes quiet. Alma tests whether breakthrough funding will protect debate routines or silence them because the institute now feels proven.",
           "whatToDo": "Put the hypothesis challenge before spending approval and keep junior dissent in the grant routine.",
           "whyItMatters": "The grant rewards past discipline, but durability requires the debate habit to survive the money."
@@ -2717,13 +2233,6 @@
             "stewardship",
             "attention"
           ],
-          "planSpec": {
-            "domain": "botanical garden seed-bank operating rhythm",
-            "audience": "a garden director after a popular new conservatory opens",
-            "stakes": "visitor attention could pull resources from the quiet seed-bank discipline that gives the institution its lasting value",
-            "format": "reflection",
-            "requiredBeat": "the director moves the conservatory ribbon photo below the germination-failure log in the board packet and funds the seed-bank freezer first"
-          },
           "scenario": "\"The conservatory photo should open the packet,\" a trustee says while frost crystals cling to the seed-bank freezer handle. Niamh moves the ribbon photo below the germination-failure log and funds the freezer first. Visitors love the new glasshouse, but she tests whether popularity will pull the garden away from the seed-bank rhythm that gives the institution lasting value.",
           "whatToDo": "Lead the board packet with the germination-failure log, fund the seed-bank freezer, and let the ribbon photo follow the operating discipline.",
           "whyItMatters": "Public attention is useful only if it does not starve the quiet practice that makes the garden matter over time."
@@ -2736,13 +2245,6 @@
             "clock building",
             "durability"
           ],
-          "planSpec": {
-            "domain": "turning a win into institutional practice",
-            "audience": "a team celebrating a breakthrough",
-            "stakes": "the practices that created the win may fade into nostalgia",
-            "format": "step_by_step",
-            "requiredBeat": "turn the win into a recurring mechanism instead of a commemorative story"
-          },
           "scenario": "Elena, the plant manager, ends a record year with a framed award on her desk and a skipped defect-review meeting on the calendar. She catches the danger and moves the award to the hallway only after the review cadence is written into supervisor training.",
           "whatToDo": "Convert one success habit into a recurring review, boundary, or training routine before turning the win into a story.",
           "whyItMatters": "Clock building preserves the practice that earned the win before display turns it into nostalgia."
@@ -2761,8 +2263,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The ritual transfers judgment into institutional practice. A plaque or informal mystique leaves the capability dependent on one person.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q02",
@@ -2774,8 +2275,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Durability requires the method to become routine. The issue is not celebration; it is whether recognition replaces the discipline that earned it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "q03",
@@ -2787,8 +2287,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The declined loans carry the discipline into scale. Growth pride and sales energy can dilute the judgment that created member trust.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q04",
@@ -2800,8 +2299,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The challenge protects the disciplined thought that made the institute worth funding. Quick spending and proof language let success silence debate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q05",
@@ -2813,8 +2311,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Durability asks what practice must survive popularity. Impressive photos and hiding quiet work both let attention outrank institutional value.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q06",
@@ -2826,8 +2323,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The impact review turns success into stewardship. The issue is not whether people may celebrate, but whether donors receive disciplined follow-through.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "q07",
@@ -2839,8 +2335,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The warning targets complacency, not success itself. Durable greatness needs practiced standards after the leap, not slogans about identity.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "q08",
@@ -2852,8 +2347,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Durability is not empty preservation. A routine must keep shaping decisions; otherwise discipline has turned into paperwork with history.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "q09",
@@ -2865,8 +2359,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The question turns the win into a practice test. Storytelling alone can become display, and moving on too fast may skip the transfer of discipline.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           }
         ]
       },
@@ -2927,19 +2420,13 @@
       },
       "memorableLines": [
         {
-          "text": "The win is safest before it becomes a story about itself.",
-          "location": "breakdown.deepRead",
-          "why": "It warns against victory-lap thinking without attacking celebration."
+          "text": "The win is safest before it becomes a story about itself."
         },
         {
-          "text": "A win becomes durable when it teaches the institution how to keep earning it.",
-          "location": "breakdown.fullRead",
-          "why": "It captures the closing move in one practical sentence."
+          "text": "A win becomes durable when it teaches the institution how to keep earning it."
         },
         {
-          "text": "The plaque can wait until the practice can stand without it.",
-          "location": "breakdown.fullRead",
-          "why": "It gives the reader a concrete image for choosing practice before display."
+          "text": "The plaque can wait until the practice can stand without it."
         }
       ]
     }

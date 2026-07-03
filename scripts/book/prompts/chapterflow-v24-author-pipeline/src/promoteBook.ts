@@ -53,7 +53,7 @@ import { evaluateMajorCleanliness } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 import { normSlug } from "./lib/chapterPaths.js";
 import { stripInternalFields } from "./lib/readerContent.js";
-import { buildProductionManifest, type ProductionManifestFinding } from "./productionManifest.js";
+import { buildProductionManifest, type ProductionManifestFinding, type ProductionPackageManifest } from "./productionManifest.js";
 import { verifyProductionPackage } from "./verifyProductionPackage.js";
 import { evaluateGenerationDebt } from "./generationDegradation.js";
 import {
@@ -70,6 +70,65 @@ const REPO_ROOT = resolve(__dirname, "..");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const QUARANTINE_DIR = resolve(STATE, "books", "_blocked");
 const PROMOTION_TX_DIR = resolve(STATE, "books", "_transactions");
+
+/** The production manifest now ships as a STATE-SIDE SIDECAR (WS1 / K1): the
+ *  distribution package carries reader content only, and the manifest (hashes,
+ *  attestation evidence, internal run paths, code inventory) lives next to the
+ *  gate report. Gitignored like the other state/books/*.json artifacts. */
+export const PRODUCTION_MANIFEST_SIDECAR_SCHEMA = "chapterflow-production-manifest-sidecar-v1" as const;
+
+export function productionManifestSidecarPath(bookId: string): string {
+  return resolve(STATE, "books", `${normSlug(bookId)}.production-manifest.json`);
+}
+
+/** State-side manifest sidecar. `packageId`/`createdAt` mirror the shipped
+ *  package's identity fields so the verifier can bind the two without re-deriving
+ *  them, and `manifest` is the full production manifest that used to be embedded
+ *  in the package. */
+export type ProductionManifestSidecar = {
+  schemaVersion: typeof PRODUCTION_MANIFEST_SIDECAR_SCHEMA;
+  bookId: string;
+  packageId: string;
+  createdAt: string;
+  manifest: ProductionPackageManifest;
+};
+
+/** Best-effort read of a prior manifest sidecar for identity carry-over. A
+ *  missing/unreadable sidecar => treat as a fresh promote (stamp new identity). */
+function readSidecarIfPresent(path: string): Partial<ProductionManifestSidecar> | null {
+  if (!existsSync(path)) return null;
+  try {
+    return JSON.parse(readFileSync(path, "utf8")) as Partial<ProductionManifestSidecar>;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * K1 identity decision (pure). Given the recomputed manifest contentId and the
+ * prior sidecar's identity, decide the shipped package's {packageId, createdAt}:
+ *   - content UNCHANGED vs the prior sidecar's contentId ⇒ PRESERVE the prior
+ *     packageId + createdAt (a byte-stable no-op re-promote never moves the date).
+ *   - content CHANGED, or no prior sidecar ⇒ STAMP a fresh createdAt = now and a
+ *     human-readable packageId `<bookId>-v21-<epochMs>` (epochMs from the same
+ *     instant as createdAt; a sha256 is a hash the owner asked to remove).
+ * Exported so the semantics are unit-testable without a full gate-clean promote.
+ */
+export function decidePackageIdentity(args: {
+  bookId: string;
+  recomputedContentId: string;
+  priorContentId: string | null;
+  priorPackageId: string | null;
+  priorCreatedAt: string | null;
+  now: Date;
+}): { packageId: string; createdAt: string; freshStamp: boolean } {
+  const contentUnchanged = args.priorContentId !== null && args.priorContentId === args.recomputedContentId;
+  if (contentUnchanged && args.priorCreatedAt && args.priorPackageId) {
+    return { packageId: args.priorPackageId, createdAt: args.priorCreatedAt, freshStamp: false };
+  }
+  const createdAt = args.now.toISOString();
+  return { packageId: `${normSlug(args.bookId)}-v21-${Date.parse(createdAt)}`, createdAt, freshStamp: true };
+}
 
 export type PromotionFaultPoint =
   | "beforeStaging"
@@ -303,6 +362,10 @@ function publishPackageTransactionally(args: {
   bookId: string;
   packagePath: string;
   candidatePackage: BookPackageV21;
+  /** The state-side manifest sidecar bytes to publish alongside the package. Both
+   *  go live via a single pair of atomic renames — either both land or neither
+   *  does. */
+  sidecar: ProductionManifestSidecar;
   contentId: string | null;
   options: PromotionOptions;
   /** Owner identity stamped into the staging directory, so a crash leaves
@@ -316,6 +379,8 @@ function publishPackageTransactionally(args: {
   const txId = args.txId;
   const txDir = transactionDir(args.bookId, txId);
   const stagedPackagePath = resolve(txDir, "package.v21.json");
+  const stagedSidecarPath = resolve(txDir, "production-manifest.json");
+  const sidecarPath = productionManifestSidecarPath(args.bookId);
 
   // Create + owner-stamp the transaction directory before the first journal, so
   // even a crash one instruction later leaves recoverable, owner-attributed
@@ -326,11 +391,18 @@ function publishPackageTransactionally(args: {
   writeJournal({ bookId: args.bookId, txId, state: "started", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
   injectFault(args.options, "beforeStaging");
 
+  // Stage BOTH artifacts before verifying. The sidecar is staged first so the
+  // verifier (which reads the manifest from the sidecar) can validate the staged
+  // pair against the same on-disk state the final publish will expose.
+  writeFileAtomic(stagedSidecarPath, JSON.stringify(args.sidecar, null, 2) + "\n");
   writeFileAtomic(stagedPackagePath, JSON.stringify(args.candidatePackage, null, 2));
   writeJournal({ bookId: args.bookId, txId, state: "staged", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
   injectFault(args.options, "afterStaging");
 
-  const verification = verifyProductionPackage({ packagePath: stagedPackagePath, compareLooseState: true });
+  // Verify the staged package against its staged sidecar (manifestPath override)
+  // — the same fail-closed PPKG.* checks, now reading the manifest from the
+  // sidecar instead of an embedded field.
+  const verification = verifyProductionPackage({ packagePath: stagedPackagePath, manifestPath: stagedSidecarPath, compareLooseState: true });
   if (!verification.ok) {
     throw new Error(`Staged package verification failed: ${verification.findings.map((f) => f.message).join("; ")}`);
   }
@@ -341,10 +413,15 @@ function publishPackageTransactionally(args: {
   // pre-visibility point before any caller can safely run a registry update.
   injectFault(args.options, "beforeRegistryUpdate");
 
-  // FINAL PUBLICATION — a single atomic rename. The fault seams above are
-  // preserved exactly, and the staged package is independently verified before
-  // it goes live, so a pre-rename fault leaves the prior package byte-stable.
+  // FINAL PUBLICATION — a pair of atomic renames. The sidecar is renamed FIRST so
+  // that if the process dies between the two renames the package is never visible
+  // without its manifest sidecar (a package-without-sidecar fails verification;
+  // a sidecar-without-package is inert). The fault seams above are preserved, and
+  // the staged pair is independently verified, so a pre-rename fault leaves the
+  // prior package + sidecar byte-stable.
   args.options.onBeforeFinalRename?.();
+  mkdirSync(dirname(sidecarPath), { recursive: true });
+  renameSync(stagedSidecarPath, sidecarPath);
   mkdirSync(dirname(args.packagePath), { recursive: true });
   renameSync(stagedPackagePath, args.packagePath);
   writeJournal({ bookId: args.bookId, txId, state: "published", stagedPackagePath, packagePath: args.packagePath, contentId: args.contentId, now });
@@ -628,63 +705,107 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
 
   mkdirSync(BOOK_PACKAGES_DIR, { recursive: true });
   const packagePath = resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`);
-  let existingPkg: Partial<BookPackageV21> | null = null;
-  if (existsSync(packagePath)) {
-    try { existingPkg = JSON.parse(readFileSync(packagePath, "utf8")) as Partial<BookPackageV21>; } catch { existingPkg = null; }
-  }
-  const existingManifest = existingPkg?.productionManifest;
-  const createdAt = typeof existingPkg?.createdAt === "string" ? existingPkg.createdAt : now().toISOString();
-  const priorRunId = typeof existingManifest?.metadata?.runId === "string" ? existingManifest.metadata.runId : undefined;
+
+  // Prior identity + content id come from the state-side SIDECAR (K1). The prior
+  // sidecar contentId decides whether this promote reuses the prior identity
+  // (byte-stable content) or stamps a fresh packageId + createdAt. runId is
+  // carried from the prior sidecar so an unchanged re-promote reproduces the same
+  // manifest bytes.
+  const priorSidecar = readSidecarIfPresent(productionManifestSidecarPath(bookId));
+  const priorContentId = typeof priorSidecar?.manifest?.contentId === "string" ? priorSidecar.manifest.contentId : null;
+  const priorPackageId = typeof priorSidecar?.packageId === "string" ? priorSidecar.packageId : null;
+  const priorCreatedAt = typeof priorSidecar?.createdAt === "string" ? priorSidecar.createdAt
+    : (typeof priorSidecar?.manifest?.metadata?.createdAt === "string" ? priorSidecar.manifest.metadata.createdAt : null);
+  const priorRunId = typeof priorSidecar?.manifest?.metadata?.runId === "string" ? priorSidecar.manifest.metadata.runId : undefined;
   const contentOwner = input.contentOwner ?? "chapterflow";
   const shippedChapters = loadedChapters.map((c) => stripInternalFields(c));
 
+  // The promote instant. epochMs derives the human-readable packageId from the
+  // SAME instant as createdAt (K1) — a package stamped fresh carries a packageId
+  // and createdAt that agree on when it was published.
+  const nowInstant = now();
+
   let candidatePackage: BookPackageV21 | null = null;
+  let candidateSidecar: ProductionManifestSidecar | null = null;
   let productionManifestFindings: ProductionManifestFinding[] = [];
   let verificationFindings: ProductionManifestFinding[] = [];
   let manifestContentId: string | null = null;
 
   if (preManifestBlockerCount === 0) {
-    const manifestResult = buildProductionManifest({
-      bookId,
-      title,
-      author,
-      contentOwner,
+    // First build the manifest with a PROVISIONAL createdAt to learn the content
+    // id. contentId excludes createdAt/packageId (it is the canonical payload
+    // hash over content + evidence), so the provisional value never affects it.
+    const probe = buildProductionManifest({
+      bookId, title, author, contentOwner,
       categories: input.categories,
       tags: input.tags,
       chapters: shippedChapters,
-      createdAt,
+      createdAt: priorCreatedAt ?? nowInstant.toISOString(),
       runId: priorRunId,
       packagePath,
-      // Build the v2 source-reality evidence against the SAME instant the
-      // source-reality gate (Step 3) evaluated, so a stale-exemption boundary
-      // cannot flip between the gate verdict and the bound evidence.
       now: sourceRealityNow,
     });
-    if (!manifestResult.ok) {
-      productionManifestFindings = manifestResult.findings;
+    if (!probe.ok) {
+      productionManifestFindings = probe.findings;
     } else {
-      manifestContentId = manifestResult.manifest.contentId;
-      candidatePackage = {
-        schemaVersion: V21_SCHEMA_VERSION,
-        packageId: manifestResult.manifest.contentId,
-        createdAt: manifestResult.manifest.metadata.createdAt,
-        contentOwner,
-        book: {
-          bookId,
-          title,
-          author,
-          categories: input.categories,
-          tags: input.tags,
-        },
-        productionManifest: manifestResult.manifest,
-        chapters: shippedChapters,
-      };
-      const verification = verifyProductionPackage({
-        packagePath,
-        packageData: candidatePackage,
-        compareLooseState: true,
+      // K1 identity: stamp a fresh packageId + createdAt whenever the recomputed
+      // content id differs from the prior sidecar's (or none exists); preserve the
+      // prior identity on a byte-stable no-op re-promote. This replaces the old
+      // always-preserve-createdAt (which made a later publish carry an earlier
+      // run's date).
+      const { packageId, createdAt } = decidePackageIdentity({
+        bookId,
+        recomputedContentId: probe.manifest.contentId,
+        priorContentId,
+        priorPackageId,
+        priorCreatedAt,
+        now: nowInstant,
       });
-      if (!verification.ok) verificationFindings = verification.findings;
+
+      const manifestResult = buildProductionManifest({
+        bookId, title, author, contentOwner,
+        categories: input.categories,
+        tags: input.tags,
+        chapters: shippedChapters,
+        createdAt,
+        runId: priorRunId,
+        packagePath,
+        now: sourceRealityNow,
+      });
+      if (!manifestResult.ok) {
+        productionManifestFindings = manifestResult.findings;
+      } else {
+        manifestContentId = manifestResult.manifest.contentId;
+        candidatePackage = {
+          schemaVersion: V21_SCHEMA_VERSION,
+          packageId,
+          createdAt,
+          contentOwner,
+          book: {
+            bookId,
+            title,
+            author,
+            categories: input.categories,
+            tags: input.tags,
+          },
+          // Reader content ONLY — the manifest moves to the sidecar (K1).
+          chapters: shippedChapters,
+        };
+        candidateSidecar = {
+          schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
+          bookId,
+          packageId,
+          createdAt,
+          manifest: manifestResult.manifest,
+        };
+        const verification = verifyProductionPackage({
+          packagePath,
+          packageData: candidatePackage,
+          manifestData: candidateSidecar,
+          compareLooseState: true,
+        });
+        if (!verification.ok) verificationFindings = verification.findings;
+      }
     }
   }
   const productionManifestBlockerCount = productionManifestFindings.length + verificationFindings.length;
@@ -752,7 +873,7 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // Step 5: Promote only if EVERY gate passes blocker-clean — deterministic
   // gates (per-chapter + intra-book + book), the QC-attestation gate, AND the
   // quiz answer-key judge gate.
-  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage) {
+  if (preManifestBlockerCount > 0 || productionManifestBlockerCount > 0 || !candidatePackage || !candidateSidecar) {
     mkdirSync(QUARANTINE_DIR, { recursive: true });
     const quarantinePath = resolve(QUARANTINE_DIR, `${bookId}.${now().getTime()}.report.json`);
     writeFileAtomic(quarantinePath, JSON.stringify(fullReport, null, 2) + "\n");
@@ -807,14 +928,16 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
     };
   }
 
-  // Step 6: Write the independently verified BookPackageV21 to the library.
-  // The packageId is the manifest content ID, so timestamp metadata no longer
-  // defines production identity. createdAt remains metadata and is preserved
-  // from the prior package to keep unchanged re-promotes byte-stable.
+  // Step 6: Write the independently verified BookPackageV21 to the library and
+  // its production-manifest SIDECAR to state/books/, transactionally (both or
+  // neither). The shipped package carries reader content only; the packageId is
+  // human-readable `<bookId>-v21-<epochMs>` and createdAt is stamped fresh only
+  // when the recomputed content id differs from the prior sidecar's (K1).
   publishPackageTransactionally({
     bookId,
     packagePath,
     candidatePackage,
+    sidecar: candidateSidecar,
     contentId: manifestContentId,
     options,
     owner,

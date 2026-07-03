@@ -23,7 +23,6 @@
   },
   "chapters": [
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch01",
       "number": 1,
       "title": "The Matthew Effect",
@@ -46,13 +45,6 @@
             "selection",
             "cutoff"
           ],
-          "planSpec": {
-            "domain": "youth hockey selection meeting",
-            "audience": "coaches sorting children early",
-            "stakes": "late-born players may lose elite coaching for a full season",
-            "format": "decision_point",
-            "requiredBeat": "Use the Medicine Hat Tigers roster to question an early hockey selection decision."
-          },
           "scenario": "At 6:40 p.m. in the rink office, coach Renee studies a clipboard of ten-year-old tryout scores. A parent has circled the Medicine Hat Tigers roster in a printed article, then marked every January birthday in yellow. Renee must decide whether the top line gets all six extra development slots or whether the December skaters receive a second look after growth and balance catch up.",
           "whatToDo": "Split the ranking into birth-window groups before awarding scarce coaching. Keep the standard high, but compare children against peers who have had a similar development clock.",
           "whyItMatters": "The Medicine Hat pattern shows how an early label can become the reason for later skill. A fairer first gate protects talent that needs more time to show."
@@ -65,13 +57,6 @@
             "testing",
             "readiness"
           ],
-          "planSpec": {
-            "domain": "elementary gifted placement",
-            "audience": "school leaders using one test score",
-            "stakes": "younger students may be tracked away from richer instruction",
-            "format": "audit",
-            "requiredBeat": "Use fourth-grade standardized test gaps to audit gifted placement."
-          },
           "scenario": "Monday at 8:15 a.m., principal Nolan reviews fourth-grade standardized tests on a conference room screen. The youngest children in the grade are clustered just below the gifted cutoff, and the oldest students fill the first page. Before letters go home, Nolan has to choose between treating the score as final or adding age-adjusted review and teacher notes.",
           "whatToDo": "Add a cohort-age column to the placement file and flag students near the cutoff for review. A single score should not decide access to the richest instruction.",
           "whyItMatters": "The classroom version of accumulative advantage begins when readiness earns opportunity, then opportunity raises later scores. The audit catches that loop early."
@@ -84,13 +69,6 @@
             "academy",
             "pipeline"
           ],
-          "planSpec": {
-            "domain": "regional soccer academy",
-            "audience": "talent scouts designing tryouts",
-            "stakes": "smaller children may leave the pipeline before growth catches up",
-            "format": "dilemma",
-            "requiredBeat": "Apply the January 1 cutoff lesson to a soccer academy."
-          },
           "scenario": "Inside a community center gym on Saturday morning, scout Sasha watches twelve-year-olds sprint between cones while a wall chart lists birth months. The Canadian hockey January 1 cutoff story sits in her binder. She faces a choice: publish the academy list tonight, or hold back two places for late-born players whose touch is sharp but whose bodies have not caught up.",
           "whatToDo": "Reserve a developmental lane for late-born or late-maturing players and review them after another training block. Do not let current size absorb the whole talent judgment.",
           "whyItMatters": "Early sport pipelines often reward visible maturity. Keeping a lane open lets practice reveal ability instead of letting the first body-size gap end the search."
@@ -103,13 +81,6 @@
             "mentoring",
             "practice"
           ],
-          "planSpec": {
-            "domain": "middle-school robotics league",
-            "audience": "teachers assigning advanced practice time",
-            "stakes": "students with early exposure may monopolize the best mentor hours",
-            "format": "planning_choice",
-            "requiredBeat": "Translate accumulative advantage into mentor scheduling."
-          },
           "scenario": "Thursday after school, teacher Gideon stands beside a robotics table covered with batteries, wheels, and a sign-up sheet. Three students with older siblings already know the software. The Medicine Hat Tigers example is on his mind as mentor hours are assigned. Gideon must pick between rewarding the polished teams first or rotating expert help toward the beginners who arrived without a head start.",
           "whatToDo": "Treat early polish as a clue, not a verdict. Give novice teams scheduled mentor time so access to instruction does not merely follow prior exposure.",
           "whyItMatters": "Accumulative advantage can start outside school and then look like natural talent inside school. Deliberate scheduling keeps the club from widening that gap."
@@ -122,13 +93,6 @@
             "screening",
             "cohort age"
           ],
-          "planSpec": {
-            "domain": "clinic developmental screening",
-            "audience": "clinicians interpreting child readiness",
-            "stakes": "a young child may be labeled delayed from cohort timing alone",
-            "format": "postmortem",
-            "requiredBeat": "Use cohort timing to interpret a child readiness review."
-          },
           "scenario": "In a clinic chart room at 1:30 p.m., pediatric coordinator Helene rereads a readiness file after a worried call from a family. The child is among the youngest in the preschool cohort, and the fourth-grade standardized tests research makes the old label look too blunt. Helene reviews whether the clinic confused younger age with a stable delay.",
           "whatToDo": "Recheck borderline findings against exact birth month and cohort placement. When the risk is labeling, build in a second measurement point before the label hardens.",
           "whyItMatters": "A timing gap can become a story adults keep repeating about a child. Revisiting the file prevents a temporary lag from becoming an identity."
@@ -141,13 +105,6 @@
             "coaching",
             "late starters"
           ],
-          "planSpec": {
-            "domain": "youth orchestra placement",
-            "audience": "music directors assigning scarce coaching",
-            "stakes": "older beginners may receive the lessons that create future advantage",
-            "format": "scene",
-            "requiredBeat": "Use the Matthew Effect to distribute music coaching."
-          },
           "scenario": "At 4:55 p.m. in the practice room, director Iris listens while the youth orchestra's first-chair candidates tune under fluorescent lights. A note about Roger Barnsley and the Medicine Hat Tigers is taped to her folder. Minutes before assigning private coaching vouchers, she notices that the most confident players all began lessons two years earlier.",
           "whatToDo": "Separate present performance from prior access. Award some coaching vouchers to promising players who have had fewer lessons, then measure growth after instruction.",
           "whyItMatters": "The point is not to punish early starters. It is to avoid giving all new resources to the students who already received the old ones."
@@ -166,8 +123,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The birthday cluster matters because early maturity can win selection, and selection brings more practice. The claim preserves talent while exposing the system around it.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch01-q02",
@@ -179,8 +135,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Fourth-grade test gaps show that cohort age can masquerade as aptitude. Near-cutoff students deserve a design that checks timing before opportunity is removed.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch01-q03",
@@ -192,8 +147,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The remedy is not to abandon standards. It is to reduce premature sorting so more players can receive development before being judged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch01-q04",
@@ -205,8 +159,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Accumulative advantage turns a first selection into more chances to improve. Later performance may partly reflect the resources attached to the first label.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch01-q05",
@@ -218,8 +171,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Matthew Effect warns against making early differences harden into identity. Rechecking borderline cases keeps measurement useful without treating it as destiny.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch01-q06",
@@ -231,8 +183,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A better pipeline keeps standards while widening the resources that help ability develop. Prior access should not monopolize all future access.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch01-q07",
@@ -244,8 +195,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The cutoff matters when it changes coaching, competition, confidence, and expectations. Similar timing effects can appear wherever children are sorted early.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch01-q08",
@@ -257,8 +207,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Rotating or narrowing age bands changes who receives the initial advantage. The aim is to avoid tying opportunity to the same birth months.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch01-q09",
@@ -270,8 +219,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gladwell does not erase ability. He shows that visible ability depends on the developmental resources distributed by ordinary institutional rules.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -302,7 +250,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Audit Early Advantage",
         "coreSkill": "Learn to separate performance from the opportunity trail behind it. The practical skill is to ask what resource, cutoff, or cohort rule helped create the visible result before treating the result as pure merit.",
         "ifThenPlans": [
           {
@@ -323,19 +270,14 @@
       },
       "memorableLines": [
         {
-          "text": "The door is not neutral.",
-          "location": "breakdown.fullRead",
-          "why": "It compresses the chapter's institutional critique into a plain image."
+          "text": "The door is not neutral."
         },
         {
-          "text": "The calendar is easy to ignore because it looks too ordinary to matter.",
-          "location": "breakdown.fullRead",
-          "why": "It makes the hidden rule memorable without overstating it."
+          "text": "The calendar is easy to ignore because it looks too ordinary to matter."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch02",
       "number": 2,
       "title": "The 10,000-Hour Rule",
@@ -358,13 +300,6 @@
             "tools",
             "access"
           ],
-          "planSpec": {
-            "domain": "community college coding lab",
-            "audience": "program leads allocating scarce equipment",
-            "stakes": "working students may never build enough practice hours",
-            "format": "decision_point",
-            "requiredBeat": "Use Bill Joy at Michigan to allocate scarce coding lab access."
-          },
           "scenario": "At 7:05 p.m. in a community college lab, director Leonie checks a reservation sheet taped beside eight old monitors. A note about Bill Joy at Michigan is tucked under her laptop. The day students have taken the best slots again. Leonie must decide whether to reward the fastest coders with more machine time or open late sessions for working students who can practice only after shifts.",
           "whatToDo": "Move the lab schedule toward unused learners, not just proven learners. Protect blocks of machine time where feedback is fast and beginners can return often.",
           "whyItMatters": "Joy's hours depended on a responsive system he could actually use. Practice talk is hollow when the tool is available only to those already inside."
@@ -377,13 +312,6 @@
             "repetition",
             "stage"
           ],
-          "planSpec": {
-            "domain": "student band rehearsal schedule",
-            "audience": "arts mentors designing practice volume",
-            "stakes": "a band may miss the hard stage hours that build skill",
-            "format": "planning_choice",
-            "requiredBeat": "Translate the Beatles in Hamburg into a rehearsal design."
-          },
           "scenario": "Friday at 9:20 p.m., Brielle stands in a school auditorium while a student band packs up after three polished songs. The Beatles in Hamburg are written across her notebook beside the phrase long sets. She has to choose between another showcase with applause or a month of rough two-hour gigs in the cafeteria where the band must stretch, recover, and hold a room.",
           "whatToDo": "Design practice that creates stamina and adjustment, not only polish. Give the band repeated live sets where mistakes have to be solved in motion.",
           "whyItMatters": "Hamburg mattered because the hours were demanding. Volume plus pressure taught skills that a tidy short rehearsal could not force."
@@ -396,13 +324,6 @@
             "technology",
             "timing"
           ],
-          "planSpec": {
-            "domain": "private-school scholarship fund",
-            "audience": "donors choosing access over prizes",
-            "stakes": "students without rare tools may never find their skill early",
-            "format": "dilemma",
-            "requiredBeat": "Use Bill Gates and Lakeside to choose access over awards."
-          },
           "scenario": "Inside a school boardroom after lunch, donor Cedric studies two proposals: trophies for top science students or a shared terminal in the library. The Bill Gates and Lakeside story keeps troubling him. Before the vote, he needs to decide whether the fund should celebrate winners who already surfaced or buy the scarce tool that lets hidden students discover whether coding grips them.",
           "whatToDo": "Spend on access before applause. A prize recognizes existing performance, while a working tool can create the first serious hours that reveal skill.",
           "whyItMatters": "Lakeside's terminal mattered because it arrived early. Timely access can turn curiosity into a practice path before a student has a resume."
@@ -415,13 +336,6 @@
             "feedback",
             "mentors"
           ],
-          "planSpec": {
-            "domain": "after-school chess club",
-            "audience": "coaches managing limited boards and mentors",
-            "stakes": "new players may be kept from the feedback that grows mastery",
-            "format": "audit",
-            "requiredBeat": "Apply practice opportunity to mentor time in chess."
-          },
           "scenario": "Wednesday at 4:10 p.m., coach Sorrel walks between chess tables in the library and sees the same three children getting every post-game review. A poster about Bill Joy at Michigan hangs near the door for career week. Sorrel counts mentor minutes, then must decide whether elite players keep the analysis board or beginners receive structured feedback before they quit.",
           "whatToDo": "Track feedback minutes, not just attendance. Rotate analysis toward newer players so mistakes become lessons instead of quiet reasons to leave.",
           "whyItMatters": "Mastery needs corrected repetitions. If feedback follows only the already skilled, the club converts an early lead into a lasting one."
@@ -434,13 +348,6 @@
             "apprentice",
             "reps"
           ],
-          "planSpec": {
-            "domain": "restaurant training program",
-            "audience": "owners designing work reps",
-            "stakes": "new cooks may get praise without enough hard repetitions",
-            "format": "before_after",
-            "requiredBeat": "Use the volume lesson to redesign kitchen practice."
-          },
           "scenario": "Before dinner service, owner Daphne watches a new cook slice herbs once, receive praise, and move aside. After reading about the Beatles in Hamburg, she sees the flaw in her kitchen's training. By closing time, she compares two prep logs: one full of brief demonstrations, the other built around repeated timed stations with a chef correcting every pass.",
           "whatToDo": "Convert demonstrations into repeated stations with quick correction. Praise matters less than enough attempts to make knife work, timing, and recovery ordinary.",
           "whyItMatters": "The Hamburg lesson is volume under real demands. Skill grows when repetitions are numerous enough and tough enough to change behavior."
@@ -453,13 +360,6 @@
             "maker-space",
             "equity"
           ],
-          "planSpec": {
-            "domain": "public library maker-space",
-            "audience": "librarians widening tool access",
-            "stakes": "confident users may crowd out first-time builders",
-            "format": "scene",
-            "requiredBeat": "Use practice opportunity to widen maker-space access."
-          },
           "scenario": "At 10:30 a.m. in the public library maker-space, librarian Marcel watches confident hobbyists line up at the 3D printers before the doors fully open. A display mentions Bill Gates and Lakeside beside an old computer terminal. Minutes before posting new rules, Marcel must decide whether open signup is fair or whether first-time builders need protected practice hours.",
           "whatToDo": "Hold beginner blocks with staff nearby, then reserve advanced blocks later. Access should create new practice histories, not merely extend old ones.",
           "whyItMatters": "The tool is part of the opportunity. When confident users occupy every slot, the library repeats the scarcity that Gladwell is asking us to notice."
@@ -478,8 +378,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Joy's environment shortened the loop between attempt and correction. The hours mattered because they were useful, repeated, and available early.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch02-q02",
@@ -491,8 +390,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hamburg gave the Beatles difficult volume. The club setting demanded endurance and adjustment that short showcase practice would not create.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch02-q03",
@@ -504,8 +402,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gates still had to practice intensely. The point is that rare early access gave his intensity a place to accumulate.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch02-q04",
@@ -517,8 +414,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Gladwell shifts attention from motivation to access. A lab schedule can give more learners the conditions that mastery requires.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch02-q05",
@@ -530,8 +426,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The number is tied to the ecology around practice. Without useful conditions, hours may be unavailable or poorly spent.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch02-q06",
@@ -543,8 +438,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Both stories show early, repeated, tool-rich access. The program should make practice possible before a polished identity has formed.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch02-q07",
@@ -556,8 +450,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Hamburg was not a quiet tally of time. The environment forced adaptation, breadth, and endurance while the hours accumulated.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch02-q08",
@@ -569,8 +462,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not that strong players should receive no help. It is that all help flowing to them can enlarge an initial gap.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch02-q09",
@@ -582,8 +474,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The rule joins practice and access. It is about the conditions that let effort compound, not about a magic number by itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -614,7 +505,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build Practice Access",
         "coreSkill": "Look for the missing practice infrastructure behind a desired skill. Instead of asking only whether someone is motivated, ask whether the setting supplies repeated attempts, fast feedback, and enough protected time.",
         "ifThenPlans": [
           {
@@ -635,19 +525,14 @@
       },
       "memorableLines": [
         {
-          "text": "The hours are real, but the story begins before the stopwatch starts.",
-          "location": "breakdown.fullRead",
-          "why": "It rescues the famous rule from slogan form."
+          "text": "The hours are real, but the story begins before the stopwatch starts."
         },
         {
-          "text": "If mastery depends on enormous repetition, then access to repetition is not a perk.",
-          "location": "breakdown.fullRead",
-          "why": "It turns the famous hour count into an institutional design test."
+          "text": "If mastery depends on enormous repetition, then access to repetition is not a perk."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch03",
       "number": 3,
       "title": "The Trouble with Geniuses, Part 1",
@@ -670,13 +555,6 @@
             "IQ",
             "threshold"
           ],
-          "planSpec": {
-            "domain": "data-science hiring panel",
-            "audience": "hiring managers over-weighting test scores",
-            "stakes": "tiny score gaps may hide better evidence of fit",
-            "format": "decision_point",
-            "requiredBeat": "Use Chris Langan to challenge a score-heavy hiring decision."
-          },
           "scenario": "At 2:25 p.m. in a glass interview room, hiring lead Vera compares data-science test scores on a laptop. The top three candidates are all strong, but one score is slightly higher. A note about Chris Langan sits beside the rubric. Vera must decide whether the tiny gap controls the offer or whether the panel now weighs project evidence, collaboration, and support needs.",
           "whatToDo": "Set a qualified score range, then stop ranking inside it by decimals. Move attention to samples of work, feedback behavior, and fit with the team's real problems.",
           "whyItMatters": "Langan's case warns that a dazzling number does not explain achievement. Once the bar is cleared, other conditions deserve serious weight."
@@ -689,13 +567,6 @@
             "gifted",
             "policy"
           ],
-          "planSpec": {
-            "domain": "district gifted policy",
-            "audience": "educators designing enrichment access",
-            "stakes": "a child may be judged by one early score for years",
-            "format": "audit",
-            "requiredBeat": "Use Terman's Termites to audit high-IQ selection."
-          },
           "scenario": "Tuesday morning in the district office, superintendent Pavel opens a binder labeled enrichment review. The current policy admits children by one test score and then locks the group for years. Lewis Terman's Termites appear in the research packet. Pavel faces a choice: let one high mark define the program, or let teachers nominate late bloomers after harder classroom work.",
           "whatToDo": "Keep testing as one signal, but add reentry points and evidence from real learning tasks. A child should not be trapped outside enrichment by one early measure.",
           "whyItMatters": "Terman found smart children, not a complete destiny machine. A fair policy treats IQ as useful evidence while leaving room for growth and context."
@@ -708,13 +579,6 @@
             "recruiting",
             "analogy"
           ],
-          "planSpec": {
-            "domain": "college basketball recruiting",
-            "audience": "scouts evaluating elite athletes",
-            "stakes": "teams may keep ranking a trait after it has served its purpose",
-            "format": "dilemma",
-            "requiredBeat": "Use the basketball height analogy to rank recruits."
-          },
           "scenario": "Inside a college gym at 11:50 a.m., scout Ari studies a whiteboard of forwards sorted by height. Everyone on the short list is tall enough to play the position. The basketball height analogy from Outliers is written in his margin. Ari faces a choice: keep chasing the extra inch, or watch film for footwork, passing, court sense, and response under pressure.",
           "whatToDo": "Name the minimum physical bar, then evaluate the traits that matter after the bar. Do not let an easy measurement crowd out game evidence.",
           "whyItMatters": "The analogy shows why more of a useful trait can stop adding much. After eligibility, the winning evidence often lives elsewhere."
@@ -727,13 +591,6 @@
             "ranking",
             "equity"
           ],
-          "planSpec": {
-            "domain": "city scholarship committee",
-            "audience": "grant panels ranking high achievers",
-            "stakes": "marginal score differences may decide life-changing support",
-            "format": "planning_choice",
-            "requiredBeat": "Apply threshold reasoning to scholarship awards."
-          },
           "scenario": "At 5:35 p.m. in city hall, committee chair Maren stacks scholarship files beside a cooling coffee. Two finalists have scores that differ by a sliver. Chris Langan's profile is quoted in the meeting packet. Before the vote, Maren must choose whether the higher number wins or whether the committee considers work history, family duties, and evidence of turning chances into output.",
           "whatToDo": "Create a threshold for academic readiness, then judge finalists through broader evidence. Let the score open the door without letting it own the room.",
           "whyItMatters": "A scholarship can change the conditions around a capable person. Threshold thinking keeps the committee from worshiping a difference too small to bear that burden."
@@ -746,13 +603,6 @@
             "coaching",
             "rank"
           ],
-          "planSpec": {
-            "domain": "high-school math team",
-            "audience": "coaches sorting gifted students",
-            "stakes": "students may be trained to chase rank instead of harder growth",
-            "format": "postmortem",
-            "requiredBeat": "Use the Termites to review gifted-team sorting."
-          },
           "scenario": "After a regional contest, coach Oksana sits at her classroom desk with answer sheets spread beside a copy of the Lewis Terman study summary. Her team spent the semester ranking the already gifted by tiny speed differences. Looking back, she sees students avoiding hard proofs because rankings rewarded quick known tricks, not deeper mathematical growth.",
           "whatToDo": "Review what the ranking trained students to value. Add tasks where all qualified students must explain, revise, and persist beyond speed.",
           "whyItMatters": "The Termites remind us that identifying brightness is not the same as cultivating achievement. The next environment still matters."
@@ -765,13 +615,6 @@
             "promotion",
             "output"
           ],
-          "planSpec": {
-            "domain": "research-lab promotion review",
-            "audience": "lab leaders mentoring brilliant staff",
-            "stakes": "a gifted researcher may stall without conditions for output",
-            "format": "reflection",
-            "requiredBeat": "Use the threshold effect to mentor a brilliant researcher."
-          },
           "scenario": "In the lab conference room before lunch, director Julien reviews a promotion file for a brilliant researcher whose raw problem-solving is admired by everyone. A card about Chris Langan and the threshold effect sits in the folder. Julien reflects on whether the review should praise intellect alone or ask what mentoring, deadlines, and collaboration would turn that capacity into finished papers.",
           "whatToDo": "Treat brilliance as readiness for demanding work, then build the supports that convert readiness into output. Pair the researcher with deadlines and useful peers.",
           "whyItMatters": "Past the threshold, achievement depends on the surrounding system. Admiration without structure can leave real ability underused."
@@ -790,8 +633,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Langan's intelligence is not denied. His life challenges the idea that raw score alone can explain institutional success.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch03-q02",
@@ -803,8 +645,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Threshold thinking uses the test to establish readiness, then refuses to overread marginal differences among qualified people.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch03-q03",
@@ -816,8 +657,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Terman's group did well in many ways, but not as the pure genius theory predicted. The study exposes what the score misses.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch03-q04",
@@ -829,8 +669,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Height matters for basketball, but after a player is tall enough, other traits separate performance. IQ can work similarly.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch03-q05",
@@ -842,8 +681,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The risk is overvaluing marginal score differences. A broader view asks what helps qualified students turn ability into achievement.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch03-q06",
@@ -855,8 +693,7 @@
             ],
             "correctIndex": 1,
             "explanation": "A threshold bar protects standards, while the second step recognizes that achievement depends on more than extra points at the top.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch03-q07",
@@ -868,8 +705,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The claim is narrow. Intelligence matters, but its explanatory power changes after a person is smart enough for demanding work.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch03-q08",
@@ -881,8 +717,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The threshold effect pushes attention to the environment around ability. Finished achievement requires more than admiration for raw intelligence.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch03-q09",
@@ -894,8 +729,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The threshold argument limits overinterpretation without discarding intelligence. It changes how selection systems treat the high end.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -926,7 +760,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Find The Threshold",
         "coreSkill": "Use scores to identify readiness, then stop pretending that every extra point at the high end has the same meaning. The skill is to name the bar and then look for the factors that turn readiness into achievement.",
         "ifThenPlans": [
           {
@@ -947,19 +780,14 @@
       },
       "memorableLines": [
         {
-          "text": "The test was a gate, not a map of the whole terrain.",
-          "location": "breakdown.fullRead",
-          "why": "It frames the threshold concept in one visual sentence."
+          "text": "The test was a gate, not a map of the whole terrain."
         },
         {
-          "text": "A score can help find the pool. It should not become a religion.",
-          "location": "breakdown.deepRead",
-          "why": "It captures the chapter's respect for tests and warning against worship."
+          "text": "A score can help find the pool. It should not become a religion."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch04",
       "number": 4,
       "title": "The Trouble with Geniuses, Part 2",
@@ -982,13 +810,6 @@
             "financial aid",
             "appeal"
           ],
-          "planSpec": {
-            "domain": "college advising office",
-            "audience": "advisors helping first-generation students",
-            "stakes": "a student may lose aid because no one taught the appeal script",
-            "format": "decision_point",
-            "requiredBeat": "Use Langan at Reed and Montana State to teach an appeal script."
-          },
           "scenario": "At 3:18 p.m. in the advising office, Celeste reads a student's financial-aid email on a shared screen. The file reminds her of Chris Langan at Reed, where one form helped derail a path. Before the student leaves, Celeste must decide whether to say the deadline is final or walk through the exact appeal, names, documents, and follow-up call.",
           "whatToDo": "Teach the request as a script, not as a vague encouragement. Name the office, write the ask, gather proof, and schedule the next contact.",
           "whyItMatters": "Practical intelligence is often invisible until someone lacks it. Making the script explicit gives ability a better chance against paperwork."
@@ -1001,13 +822,6 @@
             "class codes",
             "review"
           ],
-          "planSpec": {
-            "domain": "research fellowship review",
-            "audience": "committee chairs judging forceful candidates",
-            "stakes": "confidence may be rewarded as merit when it is partly trained status",
-            "format": "analysis",
-            "requiredBeat": "Use Oppenheimer to question confidence as merit."
-          },
           "scenario": "In a fellowship review at 10:05 a.m., chair Hollis watches one candidate handle questions with Oppenheimer-like ease and another answer carefully from notes. The committee is about to equate polish with promise. Hollis must tell the room whether confidence is evidence of better work or partly a class-trained comfort with elite authority.",
           "whatToDo": "Separate the candidate's actual record from the performance style. Ask which questions reveal research quality and which merely reward familiarity with the room.",
           "whyItMatters": "Oppenheimer's case shows how institutions can read belonging as merit. A review that notices the code becomes less captive to it."
@@ -1020,13 +834,6 @@
             "parents",
             "authority"
           ],
-          "planSpec": {
-            "domain": "middle-school parent meeting",
-            "audience": "teachers interpreting family styles",
-            "stakes": "a teacher may reward one family code while misreading another",
-            "format": "scene",
-            "requiredBeat": "Use Annette Lareau's studies to interpret parent meetings."
-          },
           "scenario": "Thursday evening in a middle-school classroom, teacher Blythe holds two conference forms. One parent questions every grade like the middle-class families in Annette Lareau's studies. Another nods quietly and leaves fast. Minutes before updating support plans, Blythe must decide whether the quieter family is unconcerned or simply trained to treat school authority differently.",
           "whatToDo": "Do not make advocacy style the measure of care. Offer both families the same menu of options, deadlines, and ways to ask for help.",
           "whyItMatters": "Lareau's work shows that family routines teach different comfort levels with institutions. Equal support has to reach beyond the loudest request."
@@ -1039,13 +846,6 @@
             "mentoring",
             "scripts"
           ],
-          "planSpec": {
-            "domain": "internship mentoring program",
-            "audience": "mentors teaching institutional know-how",
-            "stakes": "quiet interns may miss chances because they lack the asking code",
-            "format": "planning_choice",
-            "requiredBeat": "Turn practical intelligence into internship practice."
-          },
           "scenario": "At 8:45 a.m. beside a whiteboard, mentor Quentin sketches the internship curriculum. Several talented interns never ask for stretch work. Chris Langan's Montana State dispute is in the training packet. Quentin has to choose between another technical workshop and a drill where interns practice asking managers for feedback, deadlines, and exceptions.",
           "whatToDo": "Rehearse the social move directly. Let interns practice a clear request, a respectful challenge, and a follow-up note before the real moment arrives.",
           "whyItMatters": "People cannot use institutional routes they have never been shown. The drill turns hidden navigation into a teachable skill."
@@ -1058,13 +858,6 @@
             "gatekeeping",
             "review"
           ],
-          "planSpec": {
-            "domain": "graduate lab review",
-            "audience": "faculty examining unequal second chances",
-            "stakes": "some students may receive grace because they know elite codes",
-            "format": "postmortem",
-            "requiredBeat": "Use Oppenheimer to review unequal grace."
-          },
           "scenario": "After a failed grant deadline, professor Signe reviews lab notes in a quiet conference room. One student received a long private repair conversation; another got a terse warning. Robert Oppenheimer's survivable disasters come to mind. Signe looks back and asks whether the lab offered second chances based on potential or on who already knew how to sound salvageable.",
           "whatToDo": "Audit grace. Write a visible repair path for missed deadlines so second chances depend on the problem and the plan, not on social fluency.",
           "whyItMatters": "Practical intelligence can make one mistake look manageable and another look fatal. A repair path keeps class-coded ease from deciding who recovers."
@@ -1077,13 +870,6 @@
             "advocacy",
             "deference"
           ],
-          "planSpec": {
-            "domain": "pediatric clinic advocacy",
-            "audience": "health workers serving mixed-class families",
-            "stakes": "parents may leave without answers because deference is mistaken for agreement",
-            "format": "before_after",
-            "requiredBeat": "Apply Lareau's authority research in a clinic."
-          },
           "scenario": "Before lunch in a pediatric clinic, nurse Imani watches a parent leave with a folded pamphlet and no questions. After rereading Annette Lareau's family studies, she changes the next visit. Instead of waiting for advocacy, she asks the parent to repeat the plan, choose one concern, and name what would make returning easier.",
           "whatToDo": "Invite the question before interpreting silence. Build a short prompt into the visit so deference is not mistaken for understanding.",
           "whyItMatters": "When institutions expect people to demand help, they reward the families trained to demand. Good service makes the route visible."
@@ -1102,8 +888,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Langan's story separates intellectual ability from bureaucratic navigation. The next useful support is a concrete route through the institution.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch04-q02",
@@ -1115,8 +900,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Oppenheimer's ease shows how class-coded confidence can be read as merit. Reviewers should test substance apart from style.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch04-q03",
@@ -1128,8 +912,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Lareau traces practical intelligence to everyday family routines. Children practice questioning, negotiating, or deferring long before high-stakes gates appear.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch04-q04",
@@ -1141,8 +924,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Practical intelligence can be taught as a set of social moves. Rehearsal helps people use channels they may not know exist.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch04-q05",
@@ -1154,8 +936,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Temperament matters, but the structural point is about hidden preparation for authority. Different childhood lessons become institutional advantages.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch04-q06",
@@ -1167,8 +948,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Silence may reflect deference, not comprehension. The institution can make the asking route visible instead of waiting for assertiveness.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch04-q07",
@@ -1180,8 +960,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The concept names navigation skill, not raw cognition or passive manners. It helps people move through real offices and gatekeepers.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch04-q08",
@@ -1193,8 +972,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Oppenheimer's survivability warns that second chances can follow social legibility. Clear repair paths make recovery less dependent on style.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch04-q09",
@@ -1206,8 +984,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The skill gap is partly created before the institution sees it. Making the route explicit gives more capable people a chance to continue.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1238,7 +1015,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Teach The Hidden Script",
         "coreSkill": "Turn institutional navigation into explicit steps. Practical intelligence grows when people rehearse how to ask, whom to ask, what evidence to bring, and when to return.",
         "ifThenPlans": [
           {
@@ -1259,19 +1035,14 @@
       },
       "memorableLines": [
         {
-          "text": "The goal is not to replace intellect with smooth talk.",
-          "location": "breakdown.fullRead",
-          "why": "It keeps the argument from becoming cynical about skill."
+          "text": "The goal is not to replace intellect with smooth talk."
         },
         {
-          "text": "Practical intelligence works in moments when abstract reasoning is not enough.",
-          "location": "breakdown.deepRead",
-          "why": "It gives the concept a concrete operating zone."
+          "text": "Practical intelligence works in moments when abstract reasoning is not enough."
         }
       ]
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch05",
       "number": 5,
       "title": "The Three Lessons of Joe Flom",
@@ -1294,13 +1065,6 @@
             "niche",
             "staffing"
           ],
-          "planSpec": {
-            "domain": "law-firm staffing meeting",
-            "audience": "junior lawyers choosing practice areas",
-            "stakes": "a low-status desk may become tomorrow's core skill",
-            "format": "decision_point",
-            "requiredBeat": "Use Joe Flom and Skadden Arps to choose practice work."
-          },
           "scenario": "At 6:10 p.m. in a law-firm staffing room, associate Graham looks at a whiteboard where glamorous merger work is full and the messy restructuring desk is open. Joe Flom and Skadden, Arps sit in the case packet from orientation. Graham must decide whether to chase the crowded prestige path or take the unwanted desk that may teach rare judgment.",
           "whatToDo": "Evaluate the work for learning density, not status. If the neglected desk offers real repetitions in hard problems, treat it as an apprenticeship.",
           "whyItMatters": "Flom's path shows that exclusion can concentrate practice in a niche. The task is to spot skill-building work before the market applauds it."
@@ -1313,13 +1077,6 @@
             "service",
             "market shift"
           ],
-          "planSpec": {
-            "domain": "startup advisory service",
-            "audience": "founders choosing neglected services",
-            "stakes": "a company may miss a market shift because the work looks ugly",
-            "format": "audit",
-            "requiredBeat": "Apply hostile takeover work to neglected startup services."
-          },
           "scenario": "Tuesday at 9:00 a.m., founder Noelle scrolls through customer requests in a warehouse office. The fashionable product line gets all the praise, but the ugly compliance service keeps growing. The hostile takeover work in Flom's story is circled in her notebook. The live question: is low-status demand noise, or is it a signal of coming value?",
           "whatToDo": "Audit the rejected service for repeatable complexity and rising demand. If both are present, assign strong people before competitors decide it looks prestigious.",
           "whyItMatters": "Outsider expertise becomes powerful when a market turns. The unlovely backlog may be where tomorrow's core capability is being built."
@@ -1332,13 +1089,6 @@
             "garments",
             "habits"
           ],
-          "planSpec": {
-            "domain": "family retail shop",
-            "audience": "owners using inherited work habits",
-            "stakes": "family skill may be missed because it looks ordinary",
-            "format": "scene",
-            "requiredBeat": "Use Louis and Regina Borgenicht to see family work habits."
-          },
           "scenario": "In a narrow retail shop before opening, Ansel sorts children's aprons beside a handwritten price list. His grandmother tells the Louis and Regina Borgenicht story as if it were just common sense: notice demand, use what the family can make, and keep the link between effort and reward visible. Ansel must decide whether to dismiss that habit or build the new online line around it.",
           "whatToDo": "Name the family skill in operational terms. Turn inherited know-how into a deliberate process for spotting demand, testing supply, and learning from sales.",
           "whyItMatters": "The Borgenichts matter because work culture travels. Ordinary family habits can become strategic assets when the environment rewards them."
@@ -1351,13 +1101,6 @@
             "mentoring",
             "outsiders"
           ],
-          "planSpec": {
-            "domain": "bar association program",
-            "audience": "professional groups mentoring outsiders",
-            "stakes": "young lawyers may be steered only toward already crowded prestige paths",
-            "format": "postmortem",
-            "requiredBeat": "Use Flom to review mentorship for outsider lawyers."
-          },
           "scenario": "After a mentoring dinner, attorney Rhea reviews feedback forms in a hotel lobby. Every speaker told young lawyers to chase the same polished practice areas. Joe Flom's Skadden path makes the advice look thin. Rhea looks back and asks whether the program helped outsiders find overlooked skill niches or merely taught them to crowd the old gates.",
           "whatToDo": "Add sessions on neglected practice areas, market change, and skill compounding. Mentoring should reveal hidden apprenticeships, not only familiar prestige routes.",
           "whyItMatters": "Flom's opportunity came partly from work the insiders ignored. Outsider mentoring should include paths where practice can accumulate before status arrives."
@@ -1370,13 +1113,6 @@
             "legal reps",
             "practice"
           ],
-          "planSpec": {
-            "domain": "regional law firm training",
-            "audience": "partners designing apprenticeship reps",
-            "stakes": "associates may avoid the practice area that will teach durable skills",
-            "format": "planning_choice",
-            "requiredBeat": "Use hostile takeover practice to design legal training."
-          },
           "scenario": "At 7:30 a.m. in a regional firm's training room, partner Tobias lays case files across a conference table. Associates avoid the contentious takeover simulations because clients are difficult and hours are long. The hostile takeover work from Flom's story is on the first slide. Tobias must choose whether to soften training for morale or build a lab around hard, repeatable contests.",
           "whatToDo": "Create supervised repetitions in the hard niche and explain why they matter. Apprentices need to know when difficulty is building rare judgment.",
           "whyItMatters": "Low-status practice became high-value expertise for Flom because it was repeated before demand surged. Training should preserve that learning curve."
@@ -1389,13 +1125,6 @@
             "family know-how",
             "timing"
           ],
-          "planSpec": {
-            "domain": "manufacturing strategy review",
-            "audience": "leaders judging family know-how",
-            "stakes": "a firm may overlook old skills just as demand returns",
-            "format": "reflection",
-            "requiredBeat": "Use historical fit to judge family manufacturing knowledge."
-          },
           "scenario": "During a plant strategy review, Kestrel stands beside idle sewing machines and a forecast for local textile demand. The Louis and Regina Borgenicht example changes how she reads the room. What looked like outdated family know-how may fit a new market for small custom runs. She must decide whether to sell the equipment or test the skill against demand.",
           "whatToDo": "Look for a current market that matches old capability. Do a small paid test before discarding inherited tools as nostalgia.",
           "whyItMatters": "Historical fit can make old preparation newly useful. The value appears when background and timing meet a live need."
@@ -1414,8 +1143,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flom's advantage came from difficult neglected work that later became central. Low status alone is not enough; the work must build useful expertise.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch05-q02",
@@ -1427,8 +1155,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The hard edge preserves moral clarity. The advantage came from a painful constraint meeting talent, timing, and market change.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch05-q03",
@@ -1440,8 +1167,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rejected practice area became central when corporate conditions changed. Flom was prepared because the niche had already trained him.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch05-q04",
@@ -1453,8 +1179,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The takeover example warns that low-status demand can contain future advantage. Status is a poor guide when markets are shifting.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch05-q05",
@@ -1466,8 +1191,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The Borgenicht example supplies inherited habits, not destiny. Those habits fit Flom's later opportunities.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch05-q06",
@@ -1479,8 +1203,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flom's path suggests mentoring should teach people how to read overlooked practice areas, not merely chase old status markers.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch05-q07",
@@ -1492,8 +1215,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The case joins social exclusion, a market moment, and family work culture. Those parts create the historical fit.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch05-q08",
@@ -1505,8 +1227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Flom's expertise grew in difficult work before it gained status. Hard practice is worth preserving when it creates future capability.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch05-q09",
@@ -1518,8 +1239,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The story explains a conversion of constraint into advantage for some people. It does not excuse the harm of the constraint itself.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1550,7 +1270,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Read Historical Fit",
         "coreSkill": "Look past present status and ask what hard practice a role creates. Historical fit emerges when an overlooked niche teaches skills that a changing market later needs.",
         "ifThenPlans": [
           {
@@ -1571,7 +1290,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch06",
       "number": 6,
       "title": "Harlan, Kentucky",
@@ -1594,13 +1312,6 @@
             "discipline",
             "insult"
           ],
-          "planSpec": {
-            "domain": "factory discipline meeting",
-            "audience": "supervisors handling public insult",
-            "stakes": "a public correction may turn a policy issue into a status fight",
-            "format": "decision_point",
-            "requiredBeat": "Use culture of honor to handle public correction."
-          },
           "scenario": "At 2:12 p.m. on the factory floor, supervisor Dorian sees a safety violation beside a loud packing line. The Harlan family feuds are fresh from a training article on honor codes. Dorian must decide whether to correct the worker publicly in front of the crew or move the warning into a private office where the issue stays about safety instead of status.",
           "whatToDo": "Separate correction from humiliation. Address the rule firmly, but avoid turning the moment into a public reputation contest.",
           "whyItMatters": "Honor cultures treat insult as a social threat. Private correction lowers the chance that a fixable mistake becomes a status fight."
@@ -1613,13 +1324,6 @@
             "land",
             "reputation"
           ],
-          "planSpec": {
-            "domain": "county land mediation",
-            "audience": "mediators hearing reputation claims",
-            "stakes": "a fence dispute may hide an honor threat",
-            "format": "scene",
-            "requiredBeat": "Use Harlan feuds to interpret mediation."
-          },
           "scenario": "In a county mediation room after lunch, Marta listens as two neighbors argue over a fence line. The legal map is simple, but the words sound like Harlan County: respect, family name, everybody watching. Before drafting a settlement, Marta faces a choice: resolve inches of land only, or also address the honor wound driving the refusal.",
           "whatToDo": "Name both layers. Resolve the boundary with documents, then give each side a face-saving way to accept the outcome publicly.",
           "whyItMatters": "A culture of honor can hide inside a property dispute. Settlement lasts longer when reputation is repaired along with the fence."
@@ -1632,13 +1336,6 @@
             "coaching",
             "retaliation"
           ],
-          "planSpec": {
-            "domain": "high-school basketball program",
-            "audience": "coaches reducing retaliation",
-            "stakes": "a taunt may trigger a public honor contest",
-            "format": "planning_choice",
-            "requiredBeat": "Apply Southern insult experiments to a sports program."
-          },
           "scenario": "Friday at 5:00 p.m. in the gym, coach Luca reviews video of a player shoving back after a bench taunt. The Southern insult experiments are taped to his clipboard. He must choose between punishing only the shove or redesigning practice so players rehearse what to do when an insult tries to turn a game into a public honor test.",
           "whatToDo": "Practice the response before the next game. Give players a script, a reset signal, and a way to preserve dignity without retaliation.",
           "whyItMatters": "The insult experiments show that the body can react before reflection catches up. Rehearsal creates a new response path under pressure."
@@ -1651,13 +1348,6 @@
             "moderation",
             "status"
           ],
-          "planSpec": {
-            "domain": "online forum moderation",
-            "audience": "community leads handling public disrespect",
-            "stakes": "visible insults may push users into retaliatory spirals",
-            "format": "audit",
-            "requiredBeat": "Use honor triggers to audit online moderation."
-          },
           "scenario": "At 10:40 p.m., moderator Greta watches an online forum thread turn from a technical disagreement into public name-calling. The Scots-Irish herder example is in her notes from a culture workshop. Her next moderation call is sharp: delete only the last threat, or change the rule that lets visible insults sit long enough to demand an answer.",
           "whatToDo": "Intervene at the first public contempt cue. Move disputes into structured channels before the audience becomes part of the reward.",
           "whyItMatters": "Honor responses grow stronger when spectators are present. Moderation that reduces public insult can prevent a cycle from becoming entertainment."
@@ -1670,13 +1360,6 @@
             "security",
             "families"
           ],
-          "planSpec": {
-            "domain": "hospital security review",
-            "audience": "clinicians managing volatile families",
-            "stakes": "staff may misread an honor trigger as random aggression",
-            "format": "postmortem",
-            "requiredBeat": "Use culture of honor to review a hospital incident."
-          },
           "scenario": "After a tense night in the emergency waiting room, clinician Felicia reviews the incident report beside a stack of visitor badges. A family member exploded after being corrected in front of cousins. Harlan's honor code gives the event a different shape. Felicia asks whether staff treated the reaction as random aggression while missing the public shame trigger.",
           "whatToDo": "Update the de-escalation protocol to move corrections away from family audiences. Keep limits clear while reducing the status threat.",
           "whyItMatters": "Understanding an honor trigger does not excuse threats. It helps staff design safer moments before pride and fear fuse."
@@ -1689,13 +1372,6 @@
             "teaching",
             "fatalism"
           ],
-          "planSpec": {
-            "domain": "college psychology class",
-            "audience": "teachers explaining culture without fatalism",
-            "stakes": "students may turn culture into stereotype",
-            "format": "before_after",
-            "requiredBeat": "Teach cultural legacy without determinism."
-          },
           "scenario": "Before class, professor Nico deletes a slide that made Southern honor culture sound like a permanent flaw. After rereading the Scots-Irish herders and Southern insult experiments, he rebuilds the lesson around ecology, learned norms, and change. By afternoon, students compare old survival codes with modern settings where different responses can be practiced.",
           "whatToDo": "Teach origin, mechanism, and choice together. Pair every cultural pattern with the conditions that produced it and the practices that can alter it.",
           "whyItMatters": "Historical explanation should widen agency. Without that guardrail, culture talk becomes stereotype instead of understanding."
@@ -1714,8 +1390,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A culture of honor makes public disrespect volatile. Private correction preserves the standard while reducing a reputation threat.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch06-q02",
@@ -1727,8 +1402,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Herders needed a public signal of toughness because their wealth could be stolen. The code had a practical origin.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch06-q03",
@@ -1740,8 +1414,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The experiments measured stronger reactions to insult without claiming destiny. Culture appears as learned readiness.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch06-q04",
@@ -1753,8 +1426,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Honor disputes often involve status beneath the surface issue. Repairing dignity can help the practical agreement hold.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch06-q05",
@@ -1766,8 +1438,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The careful reading names cultural force while preserving change. Explanation should not become fatalism.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch06-q06",
@@ -1779,8 +1450,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The experiments suggest insult can trigger fast responses. Rehearsal builds an alternative before the heated moment.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch06-q07",
@@ -1792,8 +1462,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The pattern matters. Harlan helps reveal a social code beneath separate incidents.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch06-q08",
@@ -1805,8 +1474,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Honor reactions intensify when reputation is at stake before witnesses. The audience can become part of the trigger.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch06-q09",
@@ -1818,8 +1486,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The point is safer design and better interpretation. Naming the origin makes change more available, not less.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -1850,7 +1517,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Defuse Honor Triggers",
         "coreSkill": "Read conflicts for reputation stakes before responding to the surface behavior. The skill is to keep standards firm while reducing public insult, humiliation, and audience pressure.",
         "ifThenPlans": [
           {
@@ -1871,7 +1537,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch07",
       "number": 7,
       "title": "The Ethnic Theory of Plane Crashes",
@@ -1894,13 +1559,6 @@
             "training",
             "warning"
           ],
-          "planSpec": {
-            "domain": "airline simulator training",
-            "audience": "flight instructors teaching direct warnings",
-            "stakes": "a mild hint may fail to stop a dangerous descent",
-            "format": "decision_point",
-            "requiredBeat": "Use Korean Air Flight 801 to teach direct cockpit warnings."
-          },
           "scenario": "At 6:55 a.m. inside an airline simulator, instructor Edda watches a trainee first officer say, 'Weather looks tricky,' while the captain continues descent. Korean Air Flight 801 is printed on the training card. Edda must decide whether to praise politeness or stop the session and require the phrase, 'Go around now; approach is unsafe.'",
           "whatToDo": "Train the exact escalation sentence before the emergency. Make the safe phrase short, direct, and legitimate for a junior crew member to use.",
           "whyItMatters": "Flight 801 shows that hints can fail under hierarchy. A rehearsed command gives concern enough force to change action."
@@ -1913,13 +1571,6 @@
             "dispatch",
             "urgency"
           ],
-          "planSpec": {
-            "domain": "rail dispatch center",
-            "audience": "operators clarifying urgent language",
-            "stakes": "a vague fuel or power warning may be treated as routine",
-            "format": "audit",
-            "requiredBeat": "Use Avianca Flight 052 to audit emergency language."
-          },
           "scenario": "At 1:40 p.m. in a rail dispatch center, supervisor Bastien reviews transcripts after a train lost power outside the city. Operators used mild language, and no one heard emergency. Avianca Flight 052 sits in the safety binder. Bastien's decision is to keep the old script or add one unmistakable word that triggers priority handling.",
           "whatToDo": "Define the emergency word and the required response. Do not let operators improvise urgency when time, fuel, or power is nearly gone.",
           "whyItMatters": "Avianca's crew needed the system to understand their margin. Ambiguous language can make a crisis sound routine until the margin disappears."
@@ -1932,13 +1583,6 @@
             "hierarchy",
             "huddle"
           ],
-          "planSpec": {
-            "domain": "operating-room safety huddle",
-            "audience": "medical teams managing rank",
-            "stakes": "junior staff may stay vague while a patient declines",
-            "format": "scene",
-            "requiredBeat": "Apply power distance to an operating-room huddle."
-          },
           "scenario": "Inside an operating room at 8:25 a.m., resident Livia notices the patient's pressure falling while a senior surgeon continues. The power distance note from aviation safety training is clipped to the huddle sheet. Seconds before the next incision, Livia must choose between another soft hint and the direct line the team agreed to practice.",
           "whatToDo": "Use the agreed safety phrase and state the requested action. The huddle rule should make direct challenge sound professional, not rude.",
           "whyItMatters": "Power distance is not limited to cockpits. Any ranked team needs language that lets the person with data interrupt the person with authority."
@@ -1951,13 +1595,6 @@
             "handoff",
             "defect"
           ],
-          "planSpec": {
-            "domain": "aircraft maintenance shift change",
-            "audience": "maintenance leads reducing hierarchy risk",
-            "stakes": "a defect note may be softened until no one owns it",
-            "format": "planning_choice",
-            "requiredBeat": "Use Korean Air reform to improve maintenance handoffs."
-          },
           "scenario": "At midnight in an aircraft maintenance bay, lead Orson reads a handoff note that says a vibration is 'probably worth watching.' Korean Air's safety reform is on the training poster beside the tool cart. Orson must decide whether that wording can release the next crew or whether the note has to state the defect, risk, and grounding decision plainly.",
           "whatToDo": "Replace watchful wording with accountable wording. The handoff should name the defect, the risk, the test needed, and who can clear it.",
           "whyItMatters": "Korean Air improved by redesigning professional speech. Maintenance handoffs need the same escape from deferential ambiguity."
@@ -1970,13 +1607,6 @@
             "command",
             "challenge"
           ],
-          "planSpec": {
-            "domain": "wildfire command training",
-            "audience": "incident leaders hearing junior warnings",
-            "stakes": "a crew may keep deference while conditions worsen",
-            "format": "before_after",
-            "requiredBeat": "Use direct cockpit speech in wildfire command."
-          },
           "scenario": "Before a wildfire drill, crew chief Saskia hears a junior spotter say the wind is 'getting interesting.' After reviewing Suren Ratwatte's clear emergency coordination, she changes the drill. By afternoon, spotters must state wind shift, route risk, and requested withdrawal in one breath, even when the incident commander is moving fast.",
           "whatToDo": "Turn observations into action requests. Train juniors to name the changing condition and the decision they need from command.",
           "whyItMatters": "Ratwatte's contrast shows that crisis leadership includes listening to direct signals. Clear upward speech protects the whole crew."
@@ -1989,13 +1619,6 @@
             "risk",
             "challenge"
           ],
-          "planSpec": {
-            "domain": "financial risk meeting",
-            "audience": "executives designing challenge norms",
-            "stakes": "junior analysts may hint at danger while senior leaders keep momentum",
-            "format": "reflection",
-            "requiredBeat": "Apply power distance to financial risk meetings."
-          },
           "scenario": "In a boardroom at 4:05 p.m., analyst Hale watches executives celebrate a fast-growing portfolio. His model shows a dangerous liquidity squeeze, but the last meeting punished bad news. Avianca Flight 052 is in a case-study packet on the table. Hale reflects on whether a warning hidden in cautious language will be heard before the firm runs out of options.",
           "whatToDo": "Create a challenge round where risk owners must state concern, evidence, and requested action. Senior leaders should ask for plain warnings before momentum wins.",
           "whyItMatters": "Power distance can make analysts protect rank instead of capital. A formal challenge norm gives bad news a safe path upward."
@@ -2014,8 +1637,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The cockpit problem was partly that concern stayed too soft. Safety requires speech that can interrupt hierarchy.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch07-q02",
@@ -2027,8 +1649,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Urgency has to be unmistakable in a shared system. Ambiguous wording can leave listeners acting as if the problem is routine.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch07-q03",
@@ -2040,8 +1661,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Power distance names a social default around rank. In high-stakes work, that default can shape whether warnings are direct.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch07-q04",
@@ -2053,8 +1673,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The lesson is operational. Teams need a clear phrase that authorizes challenge when danger appears.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch07-q05",
@@ -2066,8 +1685,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The cases take culture seriously without making it destiny. Training can redesign how people speak under pressure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch07-q06",
@@ -2079,8 +1697,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The reform matters because it produced change. Culture shaped risk, but institutional practice changed the cockpit environment.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch07-q07",
@@ -2092,8 +1709,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Ratwatte shows that crisis expertise includes communication. Technical competence must be paired with explicit leadership and listening.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch07-q08",
@@ -2105,8 +1721,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Ambiguous handoffs recreate the same hierarchy risk. Accountable wording gives the next crew usable information.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch07-q09",
@@ -2118,8 +1733,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The problem is not rank itself. The danger comes when rank prevents clear correction during a deteriorating situation.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2150,7 +1764,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Train Direct Warnings",
         "coreSkill": "Create speech rules for danger before danger appears. The skill is to give lower-rank people a legitimate, practiced way to state risk and request action.",
         "ifThenPlans": [
           {
@@ -2171,7 +1784,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch08",
       "number": 8,
       "title": "Rice Paddies and Math Tests",
@@ -2194,13 +1806,6 @@
             "number words",
             "place value"
           ],
-          "planSpec": {
-            "domain": "first-grade math lesson",
-            "audience": "teachers introducing number structure",
-            "stakes": "children may mistake confusing words for math weakness",
-            "format": "decision_point",
-            "requiredBeat": "Use Chinese number system transparency in a math lesson."
-          },
           "scenario": "At 9:15 a.m. in a first-grade classroom, teacher Meilin watches two children stumble over eleven and twelve while the base-ten blocks sit untouched. The Chinese number system example is on her lesson card. Her choice is concrete: push more memorization, or show ten-one and ten-two with blocks before returning to English labels.",
           "whatToDo": "Expose the structure before drilling the irregular word. Let students see tens and ones with objects, then connect the clear pattern back to vocabulary.",
           "whyItMatters": "Transparent number language reduces early friction. A child should not confuse awkward words with weak mathematical sense."
@@ -2213,13 +1818,6 @@
             "persistence",
             "feedback"
           ],
-          "planSpec": {
-            "domain": "middle-school project lab",
-            "audience": "teachers linking effort to feedback",
-            "stakes": "students may quit before effort shows a return",
-            "format": "scene",
-            "requiredBeat": "Apply rice-paddy effort beliefs to project feedback."
-          },
           "scenario": "In a middle-school project lab at 2:50 p.m., Ronan watches students abandon a bridge prototype after the first collapse. A photo of South China rice paddies appears in the day's reading. Before cleanup, Ronan must decide whether to call the failure final or make students adjust one variable, retest, and see effort change the load score.",
           "whatToDo": "Make the payoff of revision visible. Ask students to change one controllable factor and measure the result before they decide the task is beyond them.",
           "whyItMatters": "Rice farming taught a link between careful effort and yield. Learners persist longer when the return on adjustment becomes concrete."
@@ -2232,13 +1830,6 @@
             "persistence",
             "testing"
           ],
-          "planSpec": {
-            "domain": "education research lab",
-            "audience": "test designers interpreting persistence",
-            "stakes": "a long task may reveal effort habits, not just content skill",
-            "format": "audit",
-            "requiredBeat": "Use questionnaire persistence to interpret math scores."
-          },
           "scenario": "At 11:20 a.m. in an education research lab, analyst Petra compares math scores with completion times from a tedious student survey. The questionnaire persistence finding from Outliers is written on the board. Petra must classify the long form: administrative clutter, or a behavioral clue about staying with hard work.",
           "whatToDo": "Treat persistence data as a separate signal, then test it carefully. Do not confuse it with content mastery, but do not throw it away as noise.",
           "whyItMatters": "The questionnaire link suggests that endurance under boredom can shape math outcomes. It reveals a habit that ordinary tests may hide."
@@ -2251,13 +1842,6 @@
             "product",
             "math"
           ],
-          "planSpec": {
-            "domain": "math learning app",
-            "audience": "product teams reducing quit points",
-            "stakes": "learners may leave before repetition can pay off",
-            "format": "planning_choice",
-            "requiredBeat": "Use effortful persistence to reduce quit points."
-          },
           "scenario": "At 4:45 p.m. in a product studio, designer Daphne studies a dashboard showing students quitting after one wrong fraction answer. The South China rice-paddy story is taped near the sprint board. Daphne must choose between adding flashier rewards or changing the app so each error invites a small, clear adjustment and immediate retest.",
           "whatToDo": "Design the second attempt. Show what changed, why it matters, and how the learner can try again before frustration hardens.",
           "whyItMatters": "Effortful persistence grows when effort has a visible route. A learner who sees improvement is more likely to stay with the next hard problem."
@@ -2270,13 +1854,6 @@
             "music",
             "effort"
           ],
-          "planSpec": {
-            "domain": "home music practice",
-            "audience": "parents shaping effort beliefs",
-            "stakes": "a child may hear effort as punishment rather than payoff",
-            "format": "before_after",
-            "requiredBeat": "Apply rice-paddy effort beliefs to home practice."
-          },
           "scenario": "Before dinner, parent Calder hears a child sigh through the same violin measure for the sixth time. After reading about South China rice paddies, he stops saying, 'Try harder.' By the next practice, he asks the child to change bow pressure once, listen for the cleaner note, and mark the improvement on a sticky note.",
           "whatToDo": "Attach effort to a specific adjustment and a heard result. Replace general pressure with a small experiment the child can feel improving.",
           "whyItMatters": "The rice-paddy lesson is not endurance for its own sake. It is the belief that careful changes can produce a better yield."
@@ -2289,13 +1866,6 @@
             "avoidance",
             "diagnosis"
           ],
-          "planSpec": {
-            "domain": "after-school tutoring center",
-            "audience": "tutors diagnosing math avoidance",
-            "stakes": "a student's early exit may be misread as lack of ability",
-            "format": "postmortem",
-            "requiredBeat": "Use persistence to diagnose math avoidance."
-          },
           "scenario": "After tutoring, director Yuna reviews a sign-out sheet and notices one student leaving whenever multi-step problems begin. The questionnaire persistence study sits in the training binder. Looking back at the session, Yuna asks whether tutors labeled the student unable when the immediate issue was stamina, boredom, and no visible reward for staying.",
           "whatToDo": "Diagnose the exit point. Build a shorter persistence ladder with quick feedback before concluding the student lacks the underlying math ability.",
           "whyItMatters": "Math avoidance can hide a broken effort loop. If tutors repair the loop, ability may have enough time to appear."
@@ -2314,8 +1884,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Transparent number words reduce early friction. They help children see structure sooner without replacing practice.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch08-q02",
@@ -2327,8 +1896,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The rice-paddy claim is about learned habits around effort and reward. It is historical, not biological.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch08-q03",
@@ -2340,8 +1908,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Persistence grows when effort has a path back into progress. Small feedback loops help learners stay engaged.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch08-q04",
@@ -2353,8 +1920,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The questionnaire was a behavioral clue, not math content. It measured patience under boredom.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch08-q05",
@@ -2366,8 +1932,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The careful claim is cultural and learned. It rejects biology while still taking environment seriously.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch08-q06",
@@ -2379,8 +1944,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The number-language lesson is about reducing friction. Structure can be shown even when vocabulary is messy.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch08-q07",
@@ -2392,8 +1956,7 @@
             ],
             "correctIndex": 2,
             "explanation": "Effortful persistence depends on a trusted link between careful work and improvement. The payoff makes endurance rational.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch08-q08",
@@ -2405,8 +1968,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The app should make effort productive. Clear second attempts help learners believe staying with the task can work.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch08-q09",
@@ -2418,8 +1980,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Gladwell's account joins language, work culture, and persistence. It is learned, which keeps change possible.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2450,7 +2011,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Build Effort Loops",
         "coreSkill": "Make effort feel trustworthy. The skill is to expose structure, shorten the path to a second attempt, and show how careful adjustment changes the result.",
         "ifThenPlans": [
           {
@@ -2471,7 +2031,6 @@
       }
     },
     {
-      "schemaVersion": "chapterflow-v21-authored",
       "chapterId": "outliers-ch09",
       "number": 9,
       "title": "Marita's Bargain",
@@ -2494,13 +2053,6 @@
             "calendar",
             "summer"
           ],
-          "planSpec": {
-            "domain": "middle-school calendar review",
-            "audience": "principals designing learning time",
-            "stakes": "students may lose school-year gains during long breaks",
-            "format": "decision_point",
-            "requiredBeat": "Use KIPP and summer learning loss to review the calendar."
-          },
           "scenario": "At 7:50 a.m. in a middle-school office, principal Adele circles twelve empty summer weeks on a wall calendar. KIPP Academy in the Bronx and summer learning loss data sit in her packet. She must decide whether next year's plan adds structured July learning or leaves low-income students to rebuild lost ground each September.",
           "whatToDo": "Treat the break as part of the learning design. Add targeted summer time where the data show students lose ground, and plan staff support early.",
           "whyItMatters": "The gap can grow while school is closed. Calendar design is a lever precisely because learning time is not evenly supplied outside school."
@@ -2513,13 +2065,6 @@
             "data",
             "class gaps"
           ],
-          "planSpec": {
-            "domain": "district achievement report",
-            "audience": "analysts explaining class gaps",
-            "stakes": "leaders may blame motivation while missing calendar inequality",
-            "format": "audit",
-            "requiredBeat": "Use summer learning-loss data to explain gaps."
-          },
           "scenario": "In a district data room at 3:05 p.m., analyst Vaughn separates school-year growth from summer change on a large monitor. The summer learning loss data from Outliers change the story. Before the superintendent briefing, Vaughn must decide whether to present one annual gap or show leaders exactly when children separate.",
           "whatToDo": "Break the data by season. Show school-year learning and summer change separately so leaders target the calendar rather than blaming vague motivation.",
           "whyItMatters": "When the annual number hides summer loss, the solution points in the wrong direction. Seasonal data make the opportunity gap visible."
@@ -2532,13 +2077,6 @@
             "onboarding",
             "cost"
           ],
-          "planSpec": {
-            "domain": "family onboarding meeting",
-            "audience": "school staff explaining demanding programs",
-            "stakes": "families may accept a bargain without hearing its real cost",
-            "format": "scene",
-            "requiredBeat": "Use Marita to explain the cost of extra time."
-          },
           "scenario": "At 6:30 p.m. in a school cafeteria, counselor Simone faces families considering a KIPP-like schedule. Marita's story is printed on the table beside sample homework logs. Simone must choose whether to sell only college dreams or explain the early mornings, late nights, Saturday classes, and family tradeoffs before anyone signs.",
           "whatToDo": "Name the benefit and the cost in the same conversation. Families deserve a clear picture of the time bargain, not a polished promise.",
           "whyItMatters": "Marita's opportunity is real because it changes her future chances. It is also real because it asks her to give up something now."
@@ -2551,13 +2089,6 @@
             "civic",
             "enrichment"
           ],
-          "planSpec": {
-            "domain": "public library learning program",
-            "audience": "civic staff replacing missing enrichment",
-            "stakes": "optional fun may not reach the students losing ground",
-            "format": "planning_choice",
-            "requiredBeat": "Apply time-on-task opportunity to library programming."
-          },
           "scenario": "At 10:15 a.m. in the public library, coordinator Hana reviews a cheerful summer flyer full of optional events. The summer learning loss chart is open beside it. She must decide whether to keep scattered drop-ins or build a daily reading and math block that reaches the children least likely to receive enrichment at home.",
           "whatToDo": "Move from occasional events to dependable learning hours. Use outreach, transport help, and simple routines so the students who need time can actually attend.",
           "whyItMatters": "Affluent families often supply enrichment privately. Civic programs matter when they replace missing time rather than waiting for optional attendance."
@@ -2570,13 +2101,6 @@
             "funding",
             "hours"
           ],
-          "planSpec": {
-            "domain": "nonprofit tutoring contract",
-            "audience": "funders comparing enrichment models",
-            "stakes": "money may fund pleasant programs that do not add enough learning time",
-            "format": "dilemma",
-            "requiredBeat": "Use time-on-task to compare tutoring models."
-          },
           "scenario": "During a nonprofit grant meeting, Otto compares two tutoring contracts on a spreadsheet. One offers inspiring monthly workshops; the other funds four steady afternoons a week. KIPP Academy in the Bronx is written in the margin. Otto must decide whether the grant buys a pleasant signal or enough time-on-task for effort to compound.",
           "whatToDo": "Fund the model that creates recurring, structured practice. Inspiration can help, but the contract should purchase enough hours to change learning exposure.",
           "whyItMatters": "KIPP's calendar works by adding serious time. A program with too few hours may feel generous while leaving the mechanism untouched."
@@ -2589,13 +2113,6 @@
             "burden",
             "schedule"
           ],
-          "planSpec": {
-            "domain": "school wellness review",
-            "audience": "leaders balancing opportunity and burden",
-            "stakes": "a longer day may help learning while straining a child's life",
-            "format": "reflection",
-            "requiredBeat": "Balance Marita's bargain with wellness."
-          },
           "scenario": "After a wellness survey, assistant principal Rosalie reads comments from students exhausted by a longer day. Marita's bargain sits at the center of the review. Rosalie reflects on whether the school can preserve added learning time while protecting sleep, meals, movement, and family contact instead of treating sacrifice as proof of seriousness.",
           "whatToDo": "Keep the learning-time lever, then design humane supports around it. Add rest, food, counseling, and honest feedback loops before fatigue becomes invisible.",
           "whyItMatters": "More time can widen opportunity, but the child pays part of the bill. A better bargain measures burden as carefully as achievement."
@@ -2614,8 +2131,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The data shift attention to the calendar. Separation can happen when school is closed and private enrichment differs.",
-            "bloomsLevel": "understand",
-            "depthLevel": "simple"
+            "bloomsLevel": "understand"
           },
           {
             "questionId": "outliers-ch09-q02",
@@ -2627,8 +2143,7 @@
             ],
             "correctIndex": 1,
             "explanation": "KIPP uses time as an opportunity lever. The longer schedule substitutes for unequal enrichment outside school.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch09-q03",
@@ -2640,8 +2155,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The opportunity is meaningful, but it has a cost. The story forces both sides into view.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "deep"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch09-q04",
@@ -2653,8 +2167,7 @@
             ],
             "correctIndex": 1,
             "explanation": "Seasonal data show when the gap grows. That points leaders toward calendar and enrichment interventions.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch09-q05",
@@ -2666,8 +2179,7 @@
             ],
             "correctIndex": 0,
             "explanation": "The mechanism is recurring structured learning time. One-time encouragement does not replace missing exposure.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           },
           {
             "questionId": "outliers-ch09-q06",
@@ -2679,8 +2191,7 @@
             ],
             "correctIndex": 2,
             "explanation": "The harder point is unequal opportunity, not a discipline sermon. More time is a lever because enrichment is already uneven.",
-            "bloomsLevel": "create",
-            "depthLevel": "deep"
+            "bloomsLevel": "create"
           },
           {
             "questionId": "outliers-ch09-q07",
@@ -2692,8 +2203,7 @@
             ],
             "correctIndex": 0,
             "explanation": "Time-on-task requires enough hours to matter. Pleasant signals do not change exposure if they are too rare.",
-            "bloomsLevel": "analyze",
-            "depthLevel": "standard"
+            "bloomsLevel": "analyze"
           },
           {
             "questionId": "outliers-ch09-q08",
@@ -2705,8 +2215,7 @@
             ],
             "correctIndex": 2,
             "explanation": "A humane bargain holds opportunity and cost together. Extra time should be supported, not romanticized.",
-            "bloomsLevel": "evaluate",
-            "depthLevel": "deep"
+            "bloomsLevel": "evaluate"
           },
           {
             "questionId": "outliers-ch09-q09",
@@ -2718,8 +2227,7 @@
             ],
             "correctIndex": 1,
             "explanation": "The calendar lens turns a vague deficit story into a concrete opportunity problem. Time can be designed, funded, and debated.",
-            "bloomsLevel": "apply",
-            "depthLevel": "standard"
+            "bloomsLevel": "apply"
           }
         ]
       },
@@ -2750,7 +2258,6 @@
         }
       ],
       "implementationPlan": {
-        "title": "Design Learning Time",
         "coreSkill": "Look for where learning exposure is missing, then add structured hours with support. The skill is to treat time as an opportunity resource, not as a moral lecture.",
         "ifThenPlans": [
           {
