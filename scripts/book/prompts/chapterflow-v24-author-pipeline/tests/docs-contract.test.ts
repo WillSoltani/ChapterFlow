@@ -34,7 +34,11 @@ function testDocContract(name: string, docRel: string, fn: () => void | Promise<
 function codeFloors(): { quiz: number; cards: number; examples: number } {
   const quiz = FINAL_GATE.match(/quizCount < (\d+)/);
   const cards = FINAL_GATE.match(/cardCount < (\d+)/);
-  const examples = FINAL_GATE.match(/exampleCount < (\d+)/);
+  // B15 (STIER-2, documented rebase): the examples floor is dealt-aware — a v3 brief
+  // binds its dealt count (4..6) per chapter. This scans the DEFAULT that binds
+  // legacy chapters and every fail-closed fallback — which is what STEP-2 (a
+  // legacy-path doc) teaches.
+  const examples = FINAL_GATE.match(/A16_EXAMPLES_DEFAULT_FLOOR = (\d+)/);
   assert.ok(quiz && cards && examples, "could not source-scan the A16 floors from finalGate.ts");
   return { quiz: Number(quiz![1]), cards: Number(cards![1]), examples: Number(examples![1]) };
 }

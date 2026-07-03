@@ -263,6 +263,23 @@ export function authorWriteContractFindings(
 ): string[] {
   const complaints: string[] = [];
 
+  // B15 — the dealt example count is EXACT (v3 briefs only). The A16 gate floor
+  // honors the dealt count; this contract closes the other side — 5/8 round-1
+  // writers padded a 4/5-deal up to 6 examples (the gate loop coached them to),
+  // and the padded slots carried NO dealt arc: the house pattern leaking back in
+  // through exactly the lever built to stop it.
+  if (typeof brief?.exampleCount === "number" && brief.rotationSchemaVersion) {
+    const wrote = chapter.examples?.length ?? 0;
+    if (wrote !== brief.exampleCount) {
+      complaints.push(
+        `example count: your brief deals EXACTLY ${brief.exampleCount} examples — you wrote ${wrote}. ` +
+        (wrote > brief.exampleCount
+          ? `Cut ${wrote - brief.exampleCount}: fold any teaching they carry into the dealt slots (extra examples have no dealt arc and read as padding — the density defect).`
+          : `Add ${brief.exampleCount - wrote}, following the dealt arc rows for those slots.`),
+      );
+    }
+  }
+
   // D7 — lead-thread presence (v3 briefs only; legacy briefs skip by construction).
   const lead = brief?.leadThread;
   if (lead?.name) {

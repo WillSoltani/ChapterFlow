@@ -15,6 +15,7 @@ import { resolve } from "path";
 
 import { ChapterV21, CriticFinding, ExampleV21 } from "../types.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
+import { chapterBriefPath } from "../artifacts/artifactStore.js";
 import { checkBannedPhrases, checkNoChapterNumberLiteral, checkNoEmDash, checkNoMetaReference } from "./register.js";
 import { checkAlphabetCyclingNames, checkDecisionPoint, checkExampleTemplating, checkExampleSettingStamping, checkExampleProtagonistReuse, checkCastSize, checkExampleQuizNameConsistency, checkNameCommonality, checkNamedProtagonist, checkSpecificScene } from "./narrative.js";
 import { checkCapitalization, checkExampleTitleVerbShell, checkMaxWordCount, checkSentenceSanity, checkTryThisNowComplexity } from "./integrity.js";
@@ -565,6 +566,33 @@ function checkTierLengthFloors(chapter: ChapterV21): CriticFinding[] {
  *   reviewCards        >= 4 (most books ship 5; floor of 4 matches atomic-habits)
  *   examples           >= 6
  */
+/** STIER-2 B15 (live-caught, rerun round 2): the example floor honors the brief's
+ *  DEALT count when the chapter was authored under a v3 deal. The hardcoded 6
+ *  contradicted the dealt exampleCount ∈ {4,5,6} — the in-session gate loop coached
+ *  writers dealt 4-5 into padding up to 6 (5/8 chapters shipped 6-on-a-4/5-deal,
+ *  re-minting the example-padding density defect), and circuit-broke the ONE writer
+ *  who obeyed (ch09). Unreadable/absent/unstamped brief or out-of-range count →
+ *  the historical floor 6 (fail-closed: A16's partial-generation purpose stands;
+ *  the EXACT-count contract is enforced write-side in authorWriteContractFindings). */
+/** The historical/default A16 examples floor — binds legacy and non-v3 chapters, and
+ *  every fail-closed fallback below. Docs-contract source-scans this name. */
+export const A16_EXAMPLES_DEFAULT_FLOOR = 6;
+
+export function dealtExampleFloor(chapter: ChapterV21, stateRoot?: string): number {
+  try {
+    const parsed = parseChapterId(chapter.chapterId ?? "");
+    if (!parsed) return A16_EXAMPLES_DEFAULT_FLOOR;
+    const raw = readFileSync(chapterBriefPath(parsed.bookId, parsed.num, stateRoot ? { stateRoot } : {}), "utf8");
+    const brief = JSON.parse(raw) as { rotationSchemaVersion?: unknown; exampleCount?: unknown };
+    const count = brief?.exampleCount;
+    if (typeof brief?.rotationSchemaVersion === "string" && brief.rotationSchemaVersion.length > 0 &&
+        typeof count === "number" && Number.isInteger(count) && count >= 4 && count <= 6) {
+      return count;
+    }
+  } catch { /* no readable brief → historical floor */ }
+  return A16_EXAMPLES_DEFAULT_FLOOR;
+}
+
 function checkSupportCountFloors(chapter: ChapterV21): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const quizCount = chapter.quiz?.questions?.length ?? 0;
@@ -587,12 +615,13 @@ function checkSupportCountFloors(chapter: ChapterV21): CriticFinding[] {
       `${cardCount}/4`,
     ));
   }
-  if (exampleCount < 6) {
+  const exampleFloor = dealtExampleFloor(chapter);
+  if (exampleCount < exampleFloor) {
     findings.push(finding(
       "A16.examples_count_floor" as any,
       "blocker",
-      `examples has ${exampleCount} entries (floor 6). Chapter is missing examples — likely a partial generation.`,
-      `${exampleCount}/6`,
+      `examples has ${exampleCount} entries (floor ${exampleFloor}${exampleFloor !== 6 ? ", the brief's dealt count" : ""}). Chapter is missing examples — likely a partial generation.`,
+      `${exampleCount}/${exampleFloor}`,
     ));
   }
   return findings;
