@@ -184,11 +184,14 @@ test("P3/P5/P7: QUALITY BAR rule 5 + band protocol + stem ban; PREMIUM block and
   assert.ok(AUTHOR_QUALITY_BAR.includes("TRANSFORM it"), "key-first transform derivation named");
   assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
   assert.ok(AUTHOR_QUALITY_BAR.includes("NEVER a fixed stem"), "#16 explanation-stem ban");
-  // B12 rebase (STIER-2 rerun round 1, documented): "longest in at most 3"
-  // CONTRADICTED the binding tellRate gate (≤0.2 → at most ONE uniquely-longest
-  // key per 9). The card now states the gate's real constraint.
+  // B12+B14 rebase (STIER-2 rerun rounds 1-3, documented): "longest in at most 3"
+  // CONTRADICTED the binding tellRate gate (≤0.2 → at most ONE uniquely-longest key
+  // per 9); the first fix then swung 3 chapters into the SHORTEST-side tell
+  // (lenTell 5-6 vs W2 shortestMax 4). The card now states BOTH gates as hard caps
+  // with the anti-pendulum instruction.
   assert.ok(AUTHOR_QUALITY_BAR.includes("AT MOST ONE of the 9 questions"), "#18/B12 the longest-key band matches the tellRate gate");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("Uniquely shortest is fine in up to 4"), "#18 shortest band matches W2 shortestMax");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("uniquely SHORTEST in AT MOST FOUR"), "#18/B14 the shortest-key cap matches W2 shortestMax as a GATE");
+  assert.ok(AUTHOR_QUALITY_BAR.includes("Do not fix one tell by minting the other"), "#18/B14 anti-pendulum instruction present");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("REVERSE a default"), "insight demand");
   assert.ok(AUTHOR_PREMIUM_BLOCK.includes("does NOT apply"), "limits demand");
   const card = buildAuthorCard({
