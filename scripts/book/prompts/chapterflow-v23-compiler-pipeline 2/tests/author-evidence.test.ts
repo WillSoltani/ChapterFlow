@@ -619,3 +619,31 @@ test("doAuthorReview E2E: a wrong stored quiz key halts CONTENT via the key-judg
     cleanup();
   }
 });
+test("runSweepEvidence: a validator REJECTION triggers exactly ONE format-retry with the errors in the task (live finding 2026-07-03)", async () => {
+  const { chapters, round } = setup();
+  try {
+    let sweepSpawns = 0;
+    const { deps } = mkDeps((o) => {
+      if (!o.sessionId.includes("author-sweep")) return {};
+      sweepSpawns++;
+      if (sweepSpawns === 1) {
+        // A finding with an EMPTY chapters array — the real validator rejects it.
+        if (o.task.includes("YOUR PREVIOUS SUBMISSION WAS REJECTED")) throw new Error("attempt 1 must not carry a rejection note");
+        return {
+          finalMessage: sweepReply({
+            verdict: "PASS",
+            findings: [{ family: "repeated_unit", severity: "advisory", chapters: [], unitId: "examples[0].scenario", repairClass: "repeated_unit", quote: "shell", problem: "shell reuse across chapters", expectedFix: "vary it" }],
+          }),
+        };
+      }
+      if (!o.task.includes("YOUR PREVIOUS SUBMISSION WAS REJECTED")) throw new Error("attempt 2 must carry the validator errors");
+      return { finalMessage: sweepReply() };
+    });
+    const r = await runSweepEvidence(BOOK, chapters, deps, mkEvIo(), round);
+    assert.ok(r.ok, `retry must converge (got ${JSON.stringify(r)})`);
+    assert.equal(sweepSpawns, 2, "exactly one format retry");
+    assert.equal(loadSweepRecord(BOOK)!.verdict, "PASS", "the retried clean submission became the record");
+  } finally {
+    cleanup();
+  }
+});
