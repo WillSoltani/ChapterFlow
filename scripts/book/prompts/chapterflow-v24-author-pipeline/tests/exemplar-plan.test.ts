@@ -6,7 +6,7 @@
 
 import assert from "node:assert/strict";
 import { mkdirSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { dirname, resolve } from "path";
 
 import { formatExemplarPlan, formatExemplarForbidden, planExemplars, writeExemplarPlan } from "../src/librarian/exemplarPlan.js";
 import { checkPlanEnforcement } from "../src/qc/planEnforcement.js";
@@ -228,6 +228,10 @@ test("C7 plan-skip honors FRESH deals only — carried (already-authored) alloca
   const { makeChapter } = require("./helpers.js") as typeof import("./helpers.js");
   const NAME_PLAN = resolve(PIPELINE_DIR, "state", "name-plans", "zz-fixture-cseven.name-plan.json");
   try {
+    // Hermetic: create the fixture's own target dir (a purged/bare checkout has no
+    // state/name-plans/ yet — the test wrote its fixture assuming a prior run had
+    // populated state/). mkdirSync makes the test self-provisioning.
+    mkdirSync(dirname(NAME_PLAN), { recursive: true });
     writeFileSync(
       NAME_PLAN,
       JSON.stringify({

@@ -12,12 +12,32 @@ const ROUND = "r-git";
 const PACKAGE = resolve(REPO_ROOT, "book-packages", `${BOOK}.v21.json`);
 const REGISTRY = resolve(REPO_ROOT, "app/book/data/bookPackages.ts");
 
+// The web registry (app/book/data/bookPackages.ts, relative to the pipeline REPO_ROOT)
+// is the DELETED sandbox registry — untracked and absent in a bare worktree / post-purge
+// canonical checkout. These tests only need it to EXIST (stagingPlan is a pure path
+// function; register-web fails package-verification and exits BEFORE ever reading the
+// registry). Provision a minimal fixture, and remove ONLY what this test created so we
+// never clobber a real registry that a web-app checkout legitimately ships.
+const REGISTRY_FIXTURE =
+  "// zz test fixture registry — auto-created by publish-after-qc-git.test.ts (do not commit)\n" +
+  "export const BOOK_PACKAGES: unknown[] = [];\n";
+
+/** Ensure REGISTRY exists for the fixture. Returns true iff THIS call created it
+ *  (so cleanup only removes a file we planted). */
+function ensureRegistryFixture(): boolean {
+  if (existsSync(REGISTRY)) return false;
+  mkdirSync(dirname(REGISTRY), { recursive: true });
+  writeFileSync(REGISTRY, REGISTRY_FIXTURE, "utf8");
+  return true;
+}
+
 function cleanup(): void {
   rmSync(PACKAGE, { force: true });
 }
 
 test("publish-after-qc staging plan includes only package unless register-web changed files", () => {
   cleanup();
+  const createdRegistry = ensureRegistryFixture();
   try {
     mkdirSync(dirname(PACKAGE), { recursive: true });
     writeFileSync(PACKAGE, JSON.stringify({ schemaVersion: "chapterflow-book-v21", book: { bookId: BOOK }, chapters: [] }) + "\n", "utf8");
@@ -30,6 +50,7 @@ test("publish-after-qc staging plan includes only package unless register-web ch
     assert.deepEqual(withRegistry, [REGISTRY, PACKAGE].sort());
   } finally {
     cleanup();
+    if (createdRegistry) rmSync(REGISTRY, { force: true });
   }
 });
 
@@ -76,6 +97,7 @@ test("stagingPlan: the default promote set now includes books.json (so a dirty r
 
 test("register-web refuses to update registries for an unverified package", () => {
   cleanup();
+  const createdRegistry = ensureRegistryFixture();
   const before = readFileSync(REGISTRY, "utf8");
   try {
     mkdirSync(dirname(PACKAGE), { recursive: true });
@@ -91,6 +113,7 @@ test("register-web refuses to update registries for an unverified package", () =
     assert.equal(readFileSync(REGISTRY, "utf8"), before, "registry bytes must stay untouched when package verification fails");
   } finally {
     cleanup();
+    if (createdRegistry) rmSync(REGISTRY, { force: true });
   }
 });
 

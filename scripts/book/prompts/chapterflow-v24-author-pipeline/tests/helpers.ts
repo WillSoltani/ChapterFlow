@@ -20,6 +20,8 @@ import {
 } from "../src/lib/researchRunManifest.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { collectSourceVerifyItems } from "../src/qc/sourceRealityPolicy.js";
+import { loadNameBank } from "../src/librarian/namePlan.js";
+import { CHAPTERS_DIR } from "../src/lib/chapterPaths.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -847,4 +849,76 @@ export function makeGateCleanChapter(bookId: string, n: number): ChapterV21 {
     { text: line3, location: "fullRead", why: "It ties ownership to evidence." },
   ];
   return chapter;
+}
+
+/** A planted-corpus handle: the on-disk chapter files this fixture created in the REAL
+ *  state/chapters/ dir, plus a cleanup() that removes ONLY those files (never a file the
+ *  fixture found already present). */
+export type PlantedCorpus = { files: string[]; bankNames: string[]; cleanup: () => void };
+
+/** Plant a synthetic multi-book corpus directly into the canonical state/chapters/ dir —
+ *  the SAME directory the catalog-audit CLI (loadCatalog) and namePlan
+ *  (bankNamesUsedByOtherBooks / usedNamesByChapter) read. The real gold corpus is not in
+ *  git (fixture policy) and is purged from bare worktrees, which turned these two audits'
+ *  "runs on the real corpus" assertions into env-dependent ENOENT/empty failures. Planting
+ *  a deterministic synthetic corpus makes them HERMETIC: the same fixture on every checkout.
+ *
+ *  Each planted book gets `chaptersPerBook` chapters. Across the corpus we distribute
+ *  `distinctBankNames` DISTINCT name-bank members into example scenarios (so
+ *  bankNamesUsedByOtherBooks sees > that many), plus the "The point is" house tic and a
+ *  must-decide deadline scenario in ch01 of the first book so the fingerprint meters read
+ *  non-empty. Files are written create-only: if a target path already exists (a real corpus
+ *  IS present) it is left untouched and NOT scheduled for cleanup. */
+export function plantSyntheticChapterCorpus(opts: {
+  books: string[];
+  chaptersPerBook?: number;
+  distinctBankNames?: number;
+} = { books: ["zz-fixture-corpus-alpha", "zz-fixture-corpus-beta"] }): PlantedCorpus {
+  const books = opts.books;
+  const chaptersPerBook = opts.chaptersPerBook ?? 2;
+  const want = opts.distinctBankNames ?? 140;
+  const bank = loadNameBank();
+  const names = bank.slice(0, Math.min(want, bank.length));
+  mkdirSync(CHAPTERS_DIR, { recursive: true });
+
+  const created: string[] = [];
+  // Round-robin the distinct bank names across every (book, chapter, example) scenario so
+  // the whole set appears somewhere in the corpus.
+  let nameCursor = 0;
+  const nextName = (): string => names.length ? names[(nameCursor++) % names.length] : "Alex";
+
+  books.forEach((bookId, bookIdx) => {
+    for (let n = 1; n <= chaptersPerBook; n++) {
+      const chapter = makeChapter(bookId, n);
+      // Inject two distinct bank names into each example scenario, preserving the rest of
+      // the (gate-agnostic — these files are only READ by the audit/name loaders, never
+      // gated) synthetic prose.
+      chapter.examples = chapter.examples.map((ex, i) => {
+        const a = nextName();
+        const b = nextName();
+        return {
+          ...ex,
+          scenario: `${a} reviews the intake queue with ${b} while the record drifts, and ${a} must decide before the next arrival reaches the desk today. ${ex.scenario}`,
+        };
+      });
+      // Plant the house tic + a deadline scenario in the very first chapter so the
+      // catalog-audit fingerprint lines ("the point is", deadline tic) read non-zero.
+      if (bookIdx === 0 && n === 1) {
+        chapter.breakdown.fastRead += " The point is simple. The point is repeated so the meter has something to read.";
+      }
+      const path = resolve(CHAPTERS_DIR, `${chapter.chapterId}.v21-native.chapter.json`);
+      if (!existsSync(path)) {
+        writeFileSync(path, `${JSON.stringify(chapter, null, 2)}\n`, "utf8");
+        created.push(path);
+      }
+    }
+  });
+
+  return {
+    files: created,
+    bankNames: names,
+    cleanup: () => {
+      for (const p of created) rmSync(p, { force: true });
+    },
+  };
 }

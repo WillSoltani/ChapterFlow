@@ -16,7 +16,7 @@ import {
 } from "../src/critics/catalogAudit.js";
 import { loadNameBank } from "../src/librarian/namePlan.js";
 import { test } from "./harness.js";
-import { makeChapter, runCli } from "./helpers.js";
+import { makeChapter, plantSyntheticChapterCorpus, runCli } from "./helpers.js";
 
 test("hook classification distinguishes the shapes the palette will deal", () => {
   assert.equal(classifyHook("Why does the calendar lie to you?"), "question");
@@ -71,15 +71,26 @@ test("auditCatalog finds cross-book name collisions and scores monoculture lower
 });
 
 test("cli: catalog-audit runs on the real corpus and reports the known fingerprints", () => {
-  const { status, out } = runCli(["catalog-audit"]);
-  assert.equal(status, 0, out.slice(-500));
-  assert.match(out, /variety score:/);
-  assert.match(out, /cross-book name collisions:/);
-  // The 2026-06-10 review hand-counted these; the meter must see the same
-  // catalog. Exact numbers drift as books are refreshed — assert presence,
-  // not magnitude.
-  assert.match(out, /"the point is":\d+/);
-  assert.match(out, /deadline tic: \d+%/);
+  // HERMETIC: the real gold corpus is not in git (fixture policy) and is absent in a bare
+  // worktree / post-purge canonical checkout, which made this "runs on the real corpus"
+  // audit exit 2 ("No chapters in state/chapters/"). Plant a deterministic synthetic corpus
+  // — carrying the house tic + deadline scenario + bank names — so the CLI reads a populated
+  // catalog and the fingerprint lines print on every checkout. The assertions below are
+  // unchanged: presence of the meter lines, not magnitude.
+  const corpus = plantSyntheticChapterCorpus({ books: ["zz-fixture-audit-alpha", "zz-fixture-audit-beta"] });
+  try {
+    const { status, out } = runCli(["catalog-audit"]);
+    assert.equal(status, 0, out.slice(-500));
+    assert.match(out, /variety score:/);
+    assert.match(out, /cross-book name collisions:/);
+    // The 2026-06-10 review hand-counted these; the meter must see the same
+    // catalog. Exact numbers drift as books are refreshed — assert presence,
+    // not magnitude.
+    assert.match(out, /"the point is":\d+/);
+    assert.match(out, /deadline tic: \d+%/);
+  } finally {
+    corpus.cleanup();
+  }
 });
 
 test("name-plan: names are unique within a book and report catalog overlap diagnostics", () => {
@@ -95,8 +106,23 @@ test("name-plan: names are unique within a book and report catalog overlap diagn
 
   // The raw cross-book scan is still exposed as an informational audit count.
   assert.equal(typeof plan.diagnostics.crossBookReused, "number", "diagnostics must expose the cross-book reuse count");
-  const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
-  assert.ok(taken.size > 100, `cross-book scan should still see the real catalog (got ${taken.size})`);
+
+  // HERMETIC: bankNamesUsedByOtherBooks reads OTHER books' chapters from state/chapters/ —
+  // the real corpus is not in git (fixture policy) and is purged from bare worktrees, which
+  // made the ">100 distinct bank names in use" assertion env-dependent (got 0). Plant a
+  // synthetic OTHER-book corpus carrying >100 distinct bank names so the cross-book scan has
+  // a deterministic catalog to see, regardless of checkout.
+  const corpus = plantSyntheticChapterCorpus({
+    books: ["zz-fixture-corpus-other-1", "zz-fixture-corpus-other-2"],
+    chaptersPerBook: 8, // 2 books × 8 ch × 6 examples × 2 names = 192 name-slots ≥ 140 distinct
+    distinctBankNames: 140,
+  });
+  try {
+    const taken = bankNamesUsedByOtherBooks("zz-fixture-fresh-names");
+    assert.ok(taken.size > 100, `cross-book scan should still see the catalog (got ${taken.size})`);
+  } finally {
+    corpus.cleanup();
+  }
 });
 
 test("plainness meters: abstraction-dense prose scores higher nominalization than concrete prose", () => {
