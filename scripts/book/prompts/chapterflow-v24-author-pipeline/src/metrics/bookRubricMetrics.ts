@@ -61,6 +61,7 @@ import {
   transferRatio,
 } from "./rubricMetrics.js";
 import { loadRubricThresholds, type MetricBand, type RubricThresholds } from "./rubricThresholds.js";
+import { cardQualityChapter, type CardQualityChapterResult } from "./cardQualityGates.js";
 
 export const RUBRIC_METRICS_SCHEMA_VERSION = "rubric-metrics-v1" as const;
 
@@ -81,11 +82,20 @@ export type ChapterRubricMetrics = {
     memorableClean: MetricResult;
     houseTicDensity: MetricResult;
     nominalizationRate: MetricResult;
+    /** W2 echo-tell gate (per-question KEY prose lift). */
+    echoTell: MetricResult;
+    /** W2 symmetric length-tell gate (key uniquely shortest/longest cap). */
+    lengthTell: MetricResult;
+    /** W2 practice-floor gate (imperative + concrete number/timebox). */
+    practiceFloor: MetricResult;
   };
   /** Worst verdict across the GATE metrics (advisory/warn-only excluded from fail). */
   verdict: MetricVerdict;
   /** GATE-metric keys currently at `fail`. */
   failing: string[];
+  /** W2 card-quality raw result (echo flags, length counts, practice items) and
+   *  human-readable repair reasons — the strings the author retry card carries. */
+  cardQuality: CardQualityChapterResult;
 };
 
 export type BookRubricMetricsReport = {
@@ -144,6 +154,24 @@ function warnOnlyBandVerdict(value: number, band: MetricBand, label: string): Me
   return { value: r.value, verdict: "warn", note: `${label} outside [${band.min},${band.max}] (advisory — ease band is the gate)` };
 }
 
+/** A binary gate verdict: `ok` → pass, else fail with `note`. Used by the W2
+ *  card-quality gates that BLOCK (lengthTell, practiceFloor). */
+function boolVerdict(ok: boolean, value: number, note: string): MetricResult {
+  return ok ? { value, verdict: "pass" } : { value, verdict: "fail", note };
+}
+
+/** A binary ADVISORY verdict: `ok` → pass, else WARN (never fail). Used for
+ *  echo-tell, which the calibration corpus proved is NOT a clean defect
+ *  discriminator — the top-5 owner books (85.3) carry ≥5-token key echoes at the
+ *  same rate/field/coverage as the-power-of-moments v24 (74.7), so a BLOCKING
+ *  echo gate would fail 4 of the 5 books the spec REQUIRES to pass. It surfaces
+ *  the exact lifts as a paraphrase advisory (and the writer card's W1 rule 2 asks
+ *  for a paraphrased key up front), but it cannot force a whole-chapter rewrite.
+ *  See docs/v24/w2-card-preflight-calibration.md. */
+function advisoryBoolVerdict(ok: boolean, value: number, note: string): MetricResult {
+  return ok ? { value, verdict: "pass" } : { value, verdict: "warn", note };
+}
+
 function round(n: number): number {
   return Number.isFinite(n) ? Math.round(n * 1000) / 1000 : n;
 }
@@ -170,6 +198,40 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
   const houseTic = warnOnlyMaxVerdict(houseTicDensity(chapterProse(chapter)), thresholds.houseTicDensityWarnMax, "house-tic density");
   const nominal = warnOnlyMaxVerdict(nominalizationRate(breakdownProse(chapter)), thresholds.nominalizationRateWarnMax, "nominalization rate");
 
+  // W2 (plan §WS5) card-quality gates, fed the SAME retry card as tellRate. Values
+  // encode the signal: echoTell.value = #flagged questions; lengthTell.value =
+  // worse-side count; practiceFloor.value = #items that satisfied the floor.
+  //   - lengthTell (shortest side) + practiceFloor BLOCK — the calibration corpus
+  //     proves they cleanly separate the top-5 (pass) from POM v24 (fail).
+  //   - echoTell is ADVISORY (warn, never fail) — the same corpus proves ≥5-token
+  //     key echoes are within-norm for 85.3 books, so it cannot force a rewrite.
+  const cq = cardQualityChapter(chapter, {
+    keyThreshold: thresholds.cardQuality.echoKeyThreshold,
+    distractorCeiling: thresholds.cardQuality.echoDistractorCeiling,
+    shortestMax: thresholds.cardQuality.lengthTellShortestMax,
+    longestMax: thresholds.cardQuality.lengthTellLongestMax,
+  });
+  const echoTell = advisoryBoolVerdict(
+    !cq.echo.fail,
+    cq.echo.flagged.length,
+    cq.echo.fail ? `echo-tell (advisory): ${cq.echo.flagged.length} question(s) lift a key phrase (${cq.echo.flagged.join(", ")}) — prefer a paraphrased key` : "",
+  );
+  const lengthTell = boolVerdict(
+    !cq.length.fail,
+    Math.max(cq.length.uniquelyShortest, cq.length.uniquelyLongest),
+    cq.length.fail
+      ? [
+          cq.length.shortestFail ? `key uniquely-shortest in ${cq.length.uniquelyShortest}/${cq.length.questionCount}` : "",
+          cq.length.longestFail ? `key uniquely-longest in ${cq.length.uniquelyLongest}/${cq.length.questionCount}` : "",
+        ].filter(Boolean).join("; ")
+      : "",
+  );
+  const practiceFloor = boolVerdict(
+    !cq.practice.fail,
+    cq.practice.passingItems.length,
+    cq.practice.fail ? "no practice item is imperative-led with a concrete number/timebox" : "",
+  );
+
   // Whole-chapter readability is ADVISORY (score.py measures breakdown-only, so the
   // rubric band is calibrated there); FK grade, house-tic + nominalization are
   // warn-only. Only the GATE metrics below can drive a chapter to `fail` — and of
@@ -183,6 +245,10 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
     memorableClean,
     houseTicDensity: houseTic,
     nominalizationRate: nominal,
+    // W2 card-quality gates are fail-capable (boolean pass/fail).
+    echoTell,
+    lengthTell,
+    practiceFloor,
   };
   let verdict: MetricVerdict = "pass";
   const failing: string[] = [];
@@ -204,9 +270,13 @@ export function computeChapterRubricMetrics(chapter: ChapterV21, thresholds: Rub
       memorableClean,
       houseTicDensity: roundResult(houseTic),
       nominalizationRate: roundResult(nominal),
+      echoTell,
+      lengthTell,
+      practiceFloor,
     },
     verdict,
     failing,
+    cardQuality: cq,
   };
 }
 
@@ -288,9 +358,14 @@ export function formatRubricMetrics(report: BookRubricMetricsReport): string {
     lines.push(
       `  ch${String(ch.chapterNumber).padStart(2, "0")}: ${verdictTag(ch.verdict).padEnd(4)} ` +
         `ease=${fmt(m.fleschEase)} fk=${fmt(m.fkGrade)} tell=${fmt(m.tellRate)} transfer=${fmt(m.transferRatio)} ` +
-        `memClean=${fmt(m.memorableClean)} tic=${fmt(m.houseTicDensity)} nom=${fmt(m.nominalizationRate)}` +
+        `memClean=${fmt(m.memorableClean)} tic=${fmt(m.houseTicDensity)} nom=${fmt(m.nominalizationRate)} ` +
+        `echo=${fmt(m.echoTell)} lenTell=${fmt(m.lengthTell)} practice=${fmt(m.practiceFloor)}` +
         (ch.failing.length ? ` — FAIL: ${ch.failing.join(", ")}` : ""),
     );
+    // The card-quality repair reasons ride on the SAME chNN line-block so the
+    // author retry card (which slices the `chNN:` line + follow-on) carries the
+    // concrete fix instruction verbatim, not just the failing metric key.
+    for (const reason of ch.cardQuality.reasons) lines.push(`    ch${String(ch.chapterNumber).padStart(2, "0")} fix: ${reason}`);
   }
   for (const f of report.findings) lines.push(`  [FINDING] ${f}`);
   return lines.join("\n");

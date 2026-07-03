@@ -29,6 +29,29 @@ export type MetricBand = {
   warnTolerance: number;
 };
 
+/** W2 (plan §WS5) card-quality gate caps — see src/metrics/cardQualityGates.ts.
+ *  All are BLOCKING; calibrated in docs/v24/w2-card-preflight-calibration.md. */
+export type CardQualityThresholds = {
+  /** Min KEY content-n-gram to flag an echo-tell (calibrated zero-FP tier = 5). */
+  echoKeyThreshold: number;
+  /** A flag also requires EVERY distractor strictly below this n-gram (= 4). */
+  echoDistractorCeiling: number;
+  /** Max questions/chapter where the key may be the uniquely-shortest choice (= 4). */
+  lengthTellShortestMax: number;
+  /** Max questions/chapter where the key may be the uniquely-longest choice (= 9). */
+  lengthTellLongestMax: number;
+};
+
+/** Fail-closed defaults used when a legacy config omits the `cardQuality` block.
+ *  These are the CALIBRATED caps (top-5 pass, POM v24 fails), so an absent block
+ *  keeps the gates ON at their intended strength — never silently disabled. */
+export const DEFAULT_CARD_QUALITY_THRESHOLDS: CardQualityThresholds = {
+  echoKeyThreshold: 5,
+  echoDistractorCeiling: 4,
+  lengthTellShortestMax: 4,
+  lengthTellLongestMax: 9,
+};
+
 export type RubricThresholds = {
   schemaVersion: "rubric-thresholds-v1";
   /** Flesch Reading Ease band (RUBRIC §11 beginner-friendliness: 72–84). */
@@ -45,6 +68,8 @@ export type RubricThresholds = {
   houseTicDensityWarnMax: number;
   /** Diagnostic (WARN-only) ceiling for nominalization rate (percent of words). */
   nominalizationRateWarnMax: number;
+  /** W2 per-chapter card-quality gate caps (defaults applied when the block is absent). */
+  cardQuality: CardQualityThresholds;
 };
 
 function fail(msg: string): never {
@@ -55,6 +80,30 @@ function num(obj: Record<string, unknown>, key: string, where: string): number {
   const v = obj[key];
   if (typeof v !== "number" || !Number.isFinite(v)) fail(`${where}.${key} must be a finite number (got ${JSON.stringify(v)})`);
   return v as number;
+}
+
+/** Validate the optional `cardQuality` block. Absent → calibrated defaults
+ *  (fail-closed: the gates stay ON at their intended strength). Present but wrong
+ *  shape → THROW (no silent partial). */
+function cardQuality(raw: unknown): CardQualityThresholds {
+  if (raw === undefined) return { ...DEFAULT_CARD_QUALITY_THRESHOLDS };
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) fail("cardQuality must be an object");
+  const obj = raw as Record<string, unknown>;
+  const t: CardQualityThresholds = {
+    echoKeyThreshold: num(obj, "echoKeyThreshold", "cardQuality"),
+    echoDistractorCeiling: num(obj, "echoDistractorCeiling", "cardQuality"),
+    lengthTellShortestMax: num(obj, "lengthTellShortestMax", "cardQuality"),
+    lengthTellLongestMax: num(obj, "lengthTellLongestMax", "cardQuality"),
+  };
+  for (const [k, v] of Object.entries(t)) {
+    if (!Number.isInteger(v) || v < 0) fail(`cardQuality.${k} must be a non-negative integer (got ${JSON.stringify(v)})`);
+  }
+  // The distractor ceiling MUST stay strictly below the key threshold, or the
+  // echo gate can never distinguish key-only lifts from all-choice echoes.
+  if (t.echoDistractorCeiling >= t.echoKeyThreshold) {
+    fail(`cardQuality.echoDistractorCeiling (${t.echoDistractorCeiling}) must be < echoKeyThreshold (${t.echoKeyThreshold})`);
+  }
+  return t;
 }
 
 function band(raw: unknown, where: string): MetricBand {
@@ -81,6 +130,7 @@ export function validateRubricThresholds(raw: unknown): RubricThresholds {
     memorableCleanMin: num(obj, "memorableCleanMin", "root"),
     houseTicDensityWarnMax: num(obj, "houseTicDensityWarnMax", "root"),
     nominalizationRateWarnMax: num(obj, "nominalizationRateWarnMax", "root"),
+    cardQuality: cardQuality(obj.cardQuality),
   };
   if (t.tellRateMax < 0 || t.tellRateMax > 1) fail(`tellRateMax must be a fraction in [0,1] (got ${t.tellRateMax})`);
   if (t.transferMin < 0 || t.transferMin > 1) fail(`transferMin must be a fraction in [0,1] (got ${t.transferMin})`);

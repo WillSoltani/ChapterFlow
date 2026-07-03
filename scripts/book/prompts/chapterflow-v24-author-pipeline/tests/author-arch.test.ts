@@ -28,6 +28,7 @@ import {
 import {
   AUTHOR_CARD_MAX_CHARS,
   AUTHOR_HOUSE_RULES,
+  AUTHOR_QUALITY_BAR,
   authorChapterRelPath,
   authorSchemaHint,
   authorSelfVerify,
@@ -357,6 +358,31 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
   assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1200, "self-verify stays <= 1200 chars");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
+});
+
+// ── W1: the QUALITY BAR travels in the ALWAYS-SENT card ────────────────────────
+test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT card, not just the retry", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  // FIRST-ATTEMPT card (no complaints): the four rules must already be present, so
+  // a compliant first draft clears the W2 preflight without the ~19-min retry.
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(card.includes(AUTHOR_QUALITY_BAR), "the QUALITY BAR block is embedded verbatim on the first attempt");
+  // Rule 1 — distractor parity (symmetric: neither longest nor shortest).
+  assert.match(card, /NEITHER the longest NOR the shortest/i, "rule 1 distractor parity is symmetric");
+  // Rule 2 — key paraphrase incl. review cards + implementation plan.
+  assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
+  assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
+  // Rule 3 — practice concreteness, no option menus.
+  assert.match(card, /number or a timebox AND the exact sentence to say or the exact object to touch/i, "rule 3 concreteness");
+  assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
+  // Rule 4 — plain language / ease band from sentence one.
+  assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");
+
+  // Length budget: the WHOLE card stays <= 15,000 chars (W1 spec). The variable
+  // parts (brief md + packet projection) are represented by the golden fixture.
+  assert.ok(card.length <= 15000, `W1 card length budget: card must be <= 15,000 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 15,000)`);
 });
 
 test("author card: complaints section appears ONLY on regeneration, with the review's bullets", () => {
@@ -753,6 +779,42 @@ test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a
   assert.ok(spawns[1].task.includes("RUBRIC PREFLIGHT FAILURES"), "retry card carries the rubric framing");
   assert.ok(spawns[1].task.includes("tell=0.778"), "the verbatim metrics line reaches the writer");
   assert.ok(spawns[1].task.includes("balance distractor lengths"), "the how-to-read guidance is attached");
+});
+
+test("authorWriteOneChapter: a W2 card-quality FAIL carries its `chNN fix:` repair line VERBATIM into the retry card", async () => {
+  // Verifier fix (2026-07-03): the retry grep must capture the follow-on
+  // `chNN fix:` lines formatRubricMetrics emits beneath the verdict line, or the
+  // W2 length-tell / practice-floor repair instruction never reaches the writer.
+  let rubricCalls = 0;
+  const { deps, spawns } = mkDeps(
+    () => ({}),
+    (args) => {
+      if (args[0] === "rubric-metrics") {
+        rubricCalls++;
+        return rubricCalls === 1
+          ? {
+              code: 1,
+              // The real formatRubricMetrics block: a verdict line + an indented
+              // `chNN fix:` reason line (length-tell shortest-side).
+              stdout:
+                "  ch01: FAIL ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=5✗ practice=2 — FAIL: lengthTell\n" +
+                "    ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9 questions (max 4) — lengthen keys / balance distractors",
+              stderr: "",
+            }
+          : { code: 0, stdout: "  ch01: PASS ease=80 fk=5~ tell=0 transfer=1 memClean=3 echo=0 lenTell=2 practice=2", stderr: "" };
+      }
+      return { code: 0, stdout: "PASS", stderr: "" };
+    },
+  );
+  const r = await authorWriteOneChapter("zz", 1, deps, { io: mkIo() });
+  assert.ok(r.ok, "retry converged after the card-quality complaint");
+  assert.equal(spawns.length, 2, "the length-tell FAIL consumed the single retry");
+  assert.ok(spawns[1].task.includes("FAIL: lengthTell"), "the verdict line reaches the writer");
+  assert.ok(
+    spawns[1].task.includes("ch01 fix: length-tell: key is the uniquely-SHORTEST choice in 5/9"),
+    "the concrete `chNN fix:` repair line is carried VERBATIM into the retry card",
+  );
+  assert.ok(spawns[1].task.includes("uniquely shortest choice"), "the how-to-read guidance now decodes lenTell for the writer");
 });
 
 // ── Book-acceptance bar calibration (owner decision 2026-07-03) ───────────────

@@ -153,6 +153,23 @@ export const AUTHOR_HOUSE_RULES =
   "(correctIndex per question, in order). Respect the brief's length budget — density beats coverage; cut " +
   "before padding. Never transcribe scaffold vocabulary (slot names, shape labels, anchor ids) into reader prose.";
 
+/**
+ * W1 (plan §WS5) QUALITY BAR — the four write-time rules that the deterministic
+ * preflight (W2) enforces after the fact. These live in the ALWAYS-SENT card, not
+ * only the retry card: shipping them on the FIRST draft is what stops every draft
+ * from paying a ~19-minute whole-chapter retry (first-draft preflight pass rate
+ * was 40% — 10/10 first drafts failed tellRate). Each rule is stated as a concrete
+ * write-time self-check, not an abstract goal, and is SYMMETRIC where a one-sided
+ * fix would just mint the next detectable artifact (the longest-key tell v24 fixed
+ * became a shortest-key tell). Verbatim; do not reword.
+ */
+export const AUTHOR_QUALITY_BAR =
+  "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces all four; missing any forces a full rewrite):\n" +
+  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. (A right answer that is always the tersest choice is as much a tell as one that is always the wordiest; balance both directions across the 9 questions.)\n" +
+  "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
+  "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox AND the exact sentence to say or the exact object to touch. No \"a, b, or c\" option menus — give the single concrete move, not a menu of categories.\n" +
+  "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.";
+
 /** Compact ChapterV21 schema hint — field names + types only, one line, the same
  *  style sectionTasks.ts uses for section artifacts. */
 export function authorSchemaHint(bookId: string, chapterNumber: number): string {
@@ -207,6 +224,10 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     if (register) styleLines.push(`Register: ${register}`);
   }
   styleLines.push(AUTHOR_HOUSE_RULES);
+  // W1: the QUALITY BAR travels in the ALWAYS-SENT card so first drafts clear the
+  // W2 preflight without a retry (the retry card carried these before, which is
+  // why every first draft paid a rewrite).
+  styleLines.push("", AUTHOR_QUALITY_BAR);
   sections.push(...styleLines);
 
   sections.push(
@@ -342,11 +363,20 @@ export async function authorWriteOneChapter(
       // transfer ratio, memorable lines) are as binding as the ship gate in
       // the author arch — a FAIL feeds the retry card like a gate blocker.
       const rubric = await deps.runVerb(["rubric-metrics", bookId]);
-      const rubricLine = [rubric.stdout, rubric.stderr].join("\n").split("\n").find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
-      if (rubricLine.includes("FAIL")) {
-        lastReason = `ch${nn}: rubric preflight FAIL — ${rubricLine.trim()}`;
+      // Capture THIS chapter's `chNN:` verdict line AND its follow-on
+      // `chNN fix: …` reason lines. formatRubricMetrics emits the W2 card-quality
+      // repair instructions (length-tell / practice-floor) as indented `chNN fix:`
+      // lines beneath the verdict line; grabbing only the single `chNN:` line
+      // would drop those concrete repairs, leaving the writer with an opaque
+      // `lenTell=5✗` and no instruction on how to clear it.
+      const rubricAll = [rubric.stdout, rubric.stderr].join("\n").split("\n");
+      const rubricVerdictLine = rubricAll.find((l) => l.trim().startsWith(`ch${nn}:`)) ?? "";
+      const rubricFixLines = rubricAll.filter((l) => l.trim().startsWith(`ch${nn} fix:`));
+      const rubricBlock = [rubricVerdictLine.trim(), ...rubricFixLines.map((l) => l.trim())].filter(Boolean).join("\n");
+      if (rubricVerdictLine.includes("FAIL")) {
+        lastReason = `ch${nn}: rubric preflight FAIL — ${rubricBlock}`;
         deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
-        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricLine.trim()}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines).`;
+        card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (the keyed answer must NOT be the longest/most-hedged choice — balance distractor lengths); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the keyed answer must NOT be the uniquely shortest choice (nor uniquely longest); give each key a middle length; practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
         continue;
       }
       // Success: bind author provenance to the authored content (create-once per
