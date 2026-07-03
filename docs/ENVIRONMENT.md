@@ -184,6 +184,34 @@ These power the legally-required footer + one-click unsubscribe on commercial
 > origin (§3.B) is reused to build absolute unsubscribe links; the cron receives
 > it as `APP_BASE_URL`.
 
+### G. iOS Universal Links / shared web credentials (AASA)
+
+Consumed by the App Site Association route
+[`app/.well-known/apple-app-site-association/route.ts`](../app/.well-known/apple-app-site-association/route.ts)
+(via the pure core
+[`app/_lib/apple-app-site-association.ts`](../app/_lib/apple-app-site-association.ts)),
+which serves `GET /.well-known/apple-app-site-association` as pure
+`application/json` (no redirect, cacheable). Apple fetches it from the prod apex
+to enable **Universal Links** (deep-link `/book/*`, `/pair/accept/*`, `/gift/*`,
+`/ref/*`, `/review` into the app, with the web pages as fallback) and **shared
+web credentials** (password autofill/save for the app).
+
+The route builds the app identifier `"<Team ID>.<bundle id>"`. Both values are
+read from **raw `process.env` at request time** — injected into the server
+Lambda via a conditional spread in
+[`infra/bin/app.ts`](../infra/bin/app.ts) `serverEnv` (§3.B pattern). Both are
+**optional**: when unset the route still serves a structurally-valid document
+using the placeholder Team ID `TEAMID` and the default bundle id
+`com.chapterflow.ios`, so the shape is testable/deployable before the real Team
+ID is known. iOS only matches a real signed app against the real Team ID, so
+shipping the placeholder is harmless.
+
+| Variable | Req | Source | Purpose |
+|---|---|---|---|
+| `IOS_APP_TEAM_ID` | **R (for live Universal Links)** | secret (env → `serverEnv`) | The 10-char Apple Developer **Team ID** / App ID Prefix (e.g. `ABCDE12345`). Until set, the AASA file carries the placeholder `TEAMID` and no device will associate — set it before shipping the iOS app. Not secret, but supply it as a per-env value so staging/prod can differ. |
+| `IOS_APP_BUNDLE_ID` | O | env → `serverEnv` | iOS bundle identifier. Defaults to `com.chapterflow.ios`; only set to override (e.g. a beta/enterprise bundle). |
+| `NEXT_PUBLIC_IOS_APP_STORE_URL` | O | local/build | App Store URL rendered as an "Open in the App Store" CTA on the web fallback interstitials (`/pair/accept/*`, `/gift/*`, `/review`). Inlined at build (`NEXT_PUBLIC_*`); when unset the interstitials show a quiet "coming soon" line instead. |
+
 ---
 
 ## 4) Per-environment guidance
