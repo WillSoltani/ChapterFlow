@@ -10,6 +10,7 @@ import {
   recordOpsFailure,
 } from "@/app/app/api/book/_lib/ops-failure-repo";
 import { revokeUserSessions } from "@/app/app/api/book/_lib/cognito-admin";
+import { revokeAppleIdentityOnDelete } from "@/app/app/api/book/_lib/apple-auth";
 
 export const runtime = "nodejs";
 
@@ -83,6 +84,23 @@ export async function POST(req: Request) {
         errorMessage: error instanceof Error ? error.message : String(error),
       });
     });
+
+    // Sign in with Apple: App Review REQUIRES that deleting an account also
+    // revokes the user's Apple token. Best-effort and non-blocking — the
+    // authoritative soft-delete above has already committed. Skips cleanly when
+    // the user has no linked Apple identity or no revocable token is held; a
+    // genuine revoke failure (Apple-linked + token present + Apple returned an
+    // error) is recorded as an ops-failure for operator follow-up. See
+    // docs/ios/APPLE-AUTH.md.
+    const appleRevoke = await revokeAppleIdentityOnDelete(tableName, user.sub);
+    if (appleRevoke.status === "failed") {
+      await recordOpsFailure(tableName, {
+        kind: "apple_token_revoke",
+        context: "account_delete",
+        userId: user.sub,
+        errorMessage: appleRevoke.error,
+      });
+    }
 
     // Cancel Stripe subscription immediately if active. A failure must NOT block
     // the deletion, but it must NOT be swallowed either — record it for operator

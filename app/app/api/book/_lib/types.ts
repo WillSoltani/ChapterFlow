@@ -311,8 +311,8 @@ export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
   proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for paid subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire (see getUserEntitlement). */
-  proSource?: "stripe" | "license" | "flow_points" | "gift_code" | "admin";
+  /** How the user obtained PRO — "stripe" for a paid Stripe subscription, "apple" for an App Store / StoreKit in-app subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire at read time; stripe/apple are driven by webhooks/notifications (see getUserEntitlement). */
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin";
   freeBookSlots: number;
   unlockedBookIds: string[];
   stripeCustomerId?: string;
@@ -346,6 +346,17 @@ export type BookUserEntitlement = {
    * stripe-entitlement-write-core.ts. Dispute writes do not touch it.
    */
   lastStripeEventAt?: number;
+  /** Apple `originalTransactionId` — stable identity of the App Store subscription (if proSource === "apple") */
+  appleOriginalTransactionId?: string;
+  /** Apple product id of the current App Store subscription (if proSource === "apple") */
+  appleProductId?: string;
+  /**
+   * High-water mark of the most recent Apple `signedDate` (epoch MILLISECONDS)
+   * applied to this entitlement. Set by updateUserEntitlementFromApple to reject
+   * out-of-order App Store Server Notifications / re-verifications; see
+   * apple-entitlement-write-core.ts. The Apple mirror of lastStripeEventAt.
+   */
+  lastAppleSignedDate?: number;
   updatedAt: string;
 };
 
@@ -817,7 +828,11 @@ export type OpsFailureKind =
   | "cognito_delete"
   // Step-up session revocation (AdminUserGlobalSignOut) on self-delete /
   // deactivate failed — sessions may NOT have been revoked. Operator follow-up.
-  | "cognito_global_signout";
+  | "cognito_global_signout"
+  // Sign in with Apple token revocation on account delete failed for an
+  // Apple-linked user that held a revocable token — Apple's /auth/revoke errored
+  // after retries. Operator follow-up (App Review requires the token be revoked).
+  | "apple_token_revoke";
 
 /**
  * A recorded operational failure that a human operator should follow up on.

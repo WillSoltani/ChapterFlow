@@ -102,6 +102,10 @@ the ones that are present.
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | O | secret | Client publishable key. **Caveat:** as a `NEXT_PUBLIC_*` var it is inlined at **build**; it is currently passed on the `cdk deploy` step (after `open-next build`), so confirm it is present during the build if you rely on client-side inlining. |
 | `ANTHROPIC_API_KEY` | R (AI) | secret | Powers all three Claude features — "Ask the Book", reflection feedback, and community-scenario validation. **All degrade gracefully when unset:** Ask/feedback return `503 ai_unavailable`; scenario submissions skip validation and land in the human moderation queue (`queue_for_review`) rather than being auto-approved. See §6 for the model/tuning knobs. |
 | `ELEVENLABS_API_KEY` | O | secret | Chapter audio / TTS narration. Audio routes 4xx without it. |
+| `APPLE_ISSUER_ID` | R (SIWA) | secret | Apple Developer **Team ID** — the `iss` of the Apple client-secret JWT. Shared by B3 (Apple IAP) and B8 (revoke-on-delete). |
+| `APPLE_BUNDLE_ID` | R (SIWA) | secret | Services ID / bundle id used as the Apple OAuth **client** (`sub`/`client_id`). |
+| `APPLE_KEY_ID` | R (SIWA) | secret | Key id of the `.p8` private key (JWT header `kid`). |
+| `APPLE_PRIVATE_KEY` | R (SIWA) | secret | PKCS#8 PEM of the `.p8` AuthKey. Literal `\n` is tolerated. Used to sign the revoke client-secret JWT. **When any `APPLE_*` is unset, delete silently skips the Apple revoke (`apple_revoke_skip reason=not_configured`).** See [ios/APPLE-AUTH.md](./ios/APPLE-AUTH.md). |
 
 ### C. Infra / CI secrets — used at deploy time only (not app runtime)
 
@@ -216,6 +220,61 @@ shipping the placeholder is harmless.
 | `IOS_APP_TEAM_ID` | **R (for live Universal Links)** | secret (env → `serverEnv`) | The 10-char Apple Developer **Team ID** / App ID Prefix (e.g. `ABCDE12345`). Until set, the AASA file carries the placeholder `TEAMID` and no device will associate — set it before shipping the iOS app. Not secret, but supply it as a per-env value so staging/prod can differ. |
 | `IOS_APP_BUNDLE_ID` | O | env → `serverEnv` | iOS bundle identifier. Defaults to `com.chapterflow.ios`; only set to override (e.g. a beta/enterprise bundle). |
 | `NEXT_PUBLIC_IOS_APP_STORE_URL` | O | local/build | App Store URL rendered as an "Open in the App Store" CTA on the web fallback interstitials (`/pair/accept/*`, `/gift/*`, `/review`). Inlined at build (`NEXT_PUBLIC_*`); when unset the interstitials show a quiet "coming soon" line instead. |
+
+---
+
+### H. Apple StoreKit / In-App Purchase (App Store subscriptions → Pro entitlement)
+
+Consumed by the Apple IAP entitlement path — the verify endpoint
+[`app/app/api/book/me/billing/apple/verify/route.ts`](../app/app/api/book/me/billing/apple/verify/route.ts)
+and the App Store Server Notifications V2 webhook
+[`app/app/api/book/me/billing/apple/notifications/route.ts`](../app/app/api/book/me/billing/apple/notifications/route.ts),
+via the pure cores `apple-jws-verify-core.ts` (chain verification against the
+**pinned Apple Root CA - G3**), `apple-notification-core.ts` (the notification
+state machine), and `apple-entitlement-write-core.ts` (the DynamoDB write with
+the `lastAppleSignedDate` ordering guard). Config is read via
+[`apple-env.ts`](../app/app/api/book/_lib/apple-env.ts).
+
+Verifying StoreKit transaction JWSs and App Store Server Notifications requires
+**no network call to Apple** — authenticity comes entirely from the pinned root.
+So the only variable this path strictly needs is `APPLE_BUNDLE_ID` (to confirm a
+payload is for our app). `APPLE_ISSUER_ID` / `APPLE_KEY_ID` / `APPLE_PRIVATE_KEY`
+are the App Store Connect **API key** credentials, reserved for signing outbound
+App Store Server API calls (used by the Sign-in-with-Apple revoke flow, and
+available for future transaction/status lookups).
+
+| Variable | Req | Source | Purpose |
+|---|---|---|---|
+| `APPLE_BUNDLE_ID` | **R (for IAP)** | secret (env → `serverEnv`) | The app bundle id (e.g. `com.chapterflow.app`). Every verified StoreKit transaction / notification `bundleId` must match this, or it's rejected as not-for-this-app. **Shared with Sign-in-with-Apple (B8) — defined there; reused here, not redefined.** |
+| `APPLE_ISSUER_ID` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API **Issuer ID** (a UUID, from *Users and Access → Integrations → App Store Connect API*). Signs outbound App Store Server API requests. Not needed for local JWS verification, so the verify/notifications endpoints work without it. |
+| `APPLE_KEY_ID` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API **Key ID**. **Shared with Sign-in-with-Apple (B8) — defined there; reused here.** |
+| `APPLE_PRIVATE_KEY` | O (R for App Store Server API) | secret (env → `serverEnv`) | App Store Connect API private key (PKCS#8 `.p8`). **Shared with Sign-in-with-Apple (B8) — defined there; reused here.** |
+
+**App Store Connect setup**
+
+1. **Create the auto-renewable subscription.** In App Store Connect → your app →
+   *Subscriptions*, create a subscription group and the Pro product(s). Note each
+   **Product ID** (e.g. `chapterflow.pro.monthly`) — the native app buys these,
+   and the `productId` is persisted on the entitlement (`appleProductId`).
+2. **App Store Server Notifications V2.** In *App Information → App Store Server
+   Notifications*, set the **Production** (and **Sandbox**) **V2** URL to
+   `https://<prod-apex>/app/api/book/me/billing/apple/notifications`. Apple posts
+   `{ signedPayload }`; the webhook verifies the JWS chain against the pinned root
+   (no shared secret needed) and applies `SUBSCRIBED` / `DID_RENEW` / `EXPIRED` /
+   `DID_CHANGE_RENEWAL_STATUS` / `REFUND`. Out-of-order/redelivered events are
+   rejected by the `signedDate` high-water mark.
+3. **App Store Connect API key (optional here).** *Users and Access →
+   Integrations → App Store Connect API* → generate an **In-App Purchase** key.
+   Download the `.p8` once → `APPLE_PRIVATE_KEY`; record the **Key ID** →
+   `APPLE_KEY_ID` and the **Issuer ID** → `APPLE_ISSUER_ID`.
+4. **Set `APPLE_BUNDLE_ID`** to the app's bundle identifier so payload
+   `bundleId`s validate.
+
+The native app calls `POST /app/api/book/me/billing/apple/verify` with
+`{ transactionJWS }` (the StoreKit 2 signed transaction) after purchase to grant
+the shared Pro entitlement (`proSource: "apple"`); the web billing surfaces then
+show "Managed via the App Store on your iPhone" instead of the Stripe portal, and
+never offer Stripe checkout while the Apple subscription is active.
 
 ---
 
