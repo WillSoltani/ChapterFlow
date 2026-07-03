@@ -134,11 +134,15 @@ export async function createNotification(
     }
   }
 
-  // Push notification (if enabled — looks up device tokens from DDB).
+  // Push notification (if enabled — looks up device tokens from DDB). Branches
+  // per device on platform: web-push (VAPID) for browser rows, APNs for iOS
+  // rows. Both emit the documented payload (push-payload-core / PUSH-CONTRACT.md).
   let pushSent = false;
   if (notifPrefs.channels?.push === true) {
     try {
-      const { sendPushNotification } = await import("@/app/app/api/book/_lib/push-service");
+      const { sendPushNotification, sendApnsNotification } = await import(
+        "@/app/app/api/book/_lib/push-service"
+      );
       // Bound the fan-out (E4): cap how many device rows we POST to per
       // notification. The register route caps a user at MAX_DEVICES_PER_USER
       // rows, but legacy partitions may still hold more (a register only prunes
@@ -156,15 +160,32 @@ export async function createNotification(
         })
       );
       const devices = (deviceRes.Items ?? []).slice(0, MAX_PUSH_FANOUT);
-      for (const device of devices) {
-        const endpoint = device.endpoint as string;
-        const keys = device.keys as { p256dh: string; auth: string };
-        if (endpoint && keys?.p256dh && keys?.auth) {
-          const result = await sendPushNotification(
-            { endpoint, keys },
-            { title: params.title, body: params.body }
-          );
-          if (result.sent) pushSent = true;
+      if (devices.length > 0) {
+        // Badge = unread inbox count (the notification just created is already
+        // counted). Best-effort: a count failure must not block the push.
+        const badge = await countUnreadNotifications(tableName, params.userId).catch(() => undefined);
+        const message = {
+          type: params.type,
+          title: params.title,
+          body: params.body,
+          metadata: params.metadata,
+          badge,
+        };
+        for (const device of devices) {
+          if (device.platform === "ios") {
+            const apnsToken = device.apnsToken as string;
+            if (apnsToken) {
+              const result = await sendApnsNotification(apnsToken, message);
+              if (result.sent) pushSent = true;
+            }
+          } else {
+            const endpoint = device.endpoint as string;
+            const keys = device.keys as { p256dh: string; auth: string };
+            if (endpoint && keys?.p256dh && keys?.auth) {
+              const result = await sendPushNotification({ endpoint, keys }, message);
+              if (result.sent) pushSent = true;
+            }
+          }
         }
       }
     } catch (e) {

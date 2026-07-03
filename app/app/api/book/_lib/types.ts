@@ -618,11 +618,34 @@ export type BookUserNotificationItem = {
 
 // ── Device Token (Push Notifications) ──────────────────────────────────────
 
+/**
+ * Push transport a device row targets. `"web"` = a browser Web-Push
+ * subscription (VAPID); `"ios"` = an Apple Push Notification service (APNs)
+ * device token from the native iOS app. The send path (notifications-repo →
+ * push-service) branches on this to pick web-push vs APNs.
+ */
+export type DevicePlatform = "web" | "ios";
+
+/**
+ * A registered push target for one user+device.
+ *
+ * Web-Push rows carry `endpoint` + `keys` (p256dh/auth) and `platform:"web"`.
+ * iOS/APNs rows carry `apnsToken` (the hex device token) and `platform:"ios"`;
+ * the web-push `endpoint`/`keys` are absent. Fields are optional at the type
+ * level because the two platforms populate disjoint subsets — the register
+ * route validates that the right subset is present for the declared platform
+ * (see device-register-core.ts). The DynamoDB SK is a hash of the endpoint
+ * (web) or the apnsToken (ios), so distinct devices never collide.
+ */
 export type BookUserDeviceTokenItem = {
   userId: string;
-  endpoint: string;
-  keys: { p256dh: string; auth: string };
-  platform: "web";
+  /** Web-Push service endpoint URL. Present only when platform === "web". */
+  endpoint?: string;
+  /** Web-Push encryption keys. Present only when platform === "web". */
+  keys?: { p256dh: string; auth: string };
+  /** APNs device token (lowercase hex). Present only when platform === "ios". */
+  apnsToken?: string;
+  platform: DevicePlatform;
   createdAt: string;
   lastSeenAt: string;
 };

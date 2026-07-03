@@ -124,6 +124,11 @@ These are consumed by the app via `getServerEnv` but are **not** in
 |---|---|---|---|
 | `VAPID_PUBLIC_KEY` | R (web push) | ssm | Web-push public VAPID key. Push routes throw "VAPID keys not configured" without it. |
 | `VAPID_PRIVATE_KEY` | R (web push) | ssm (SecureString) | Web-push private VAPID key. |
+| `APNS_KEY_ID` | R (iOS push) | ssm | Apple Push (APNs) token-auth `.p8` **Key ID** (10 chars) → provider-JWT `kid`. |
+| `APNS_TEAM_ID` | R (iOS push) | ssm | Apple Developer **Team ID** (10 chars) → provider-JWT `iss`. |
+| `APNS_AUTH_KEY` | R (iOS push) | ssm (SecureString) | The APNs `.p8` private key **PEM** (PKCS#8). Literal `\n` escapes are accepted and unescaped at load. Signs the ES256 provider JWT (`jose`). All four `APNS_*` must be set or iOS push is a best-effort no-op (`sendApnsNotification` returns `apns_not_configured`); web-push + registration keep working. |
+| `APNS_BUNDLE_ID` | R (iOS push) | ssm | The iOS app bundle id → APNs `apns-topic` header. |
+| `APNS_HOST` | O | ssm | APNs host override. Default `api.push.apple.com` (production); set `api.sandbox.push.apple.com` for debug/TestFlight builds signed with a sandbox APS entitlement. |
 | `SES_SENDER_EMAIL` | R (email) | ssm | From-address for transactional/notification email — **honored only by the app server Lambda** (`notifications-repo.ts`, via SSM). ⚠ The backend **reminder-cron Lambda ignores this param** and sends from a hardcoded `info@chapterflow.ca` (`chapterflow-backend-stack.ts`); the SES IAM identity is scoped to the `chapterflow.ca` domain. The real launch action is to **verify the sender's domain identity in SES**, not just set this param. |
 | `BOOK_ADMIN_GROUP` | O | ssm | Cognito group that grants admin (default `admin`). |
 | `BOOK_FREE_SLOTS_DEFAULT` | O | ssm | Free-tier book slots (default `2`). |
