@@ -223,6 +223,7 @@ export function buildSweepReaderTask(bookId: string, roundId: string, packRelPat
     "- Check ALL FOUR families and list every family you actually checked in checkedFamilies.",
     "- verdict PASS only when no family gates the book; REVISE/CORRUPTION require at least one finding.",
     '- Each finding: {"family","severity" ("blocker"|"advisory"),"chapters":[..],"unitId":"<field, e.g. examples[0].scenario>","repairClass":"<the family id>","quote":"<VERBATIM distinctive quote from the pack>","problem":"...","expectedFix":"..."}.',
+    '- MANDATORY: every finding\'s "chapters" is a NON-EMPTY array of the affected chapter NUMBERS (a cross-chapter pattern names every chapter it appears in). A finding you cannot attribute to specific chapters is not reportable — attribute it or drop it. The validator REJECTS findings with a missing/empty chapters array.',
     "- Quotes must be verbatim and DISTINCTIVE (a generic common phrase cannot prove structural reuse).",
   ].join("\n");
 }
@@ -444,54 +445,73 @@ export async function runSweepEvidence(
   }
   const packRelPath = `state/qc-packs/${bookId}/${round.roundId}/sweep-pack.json`;
 
-  const read = await spawnJsonReader({
-    bookId,
-    label: "author-sweep",
-    task: buildSweepReaderTask(bookId, round.roundId, packRelPath),
-    deps,
-    authorSessions: authorSessionsOf(ordered, io),
-    reasoningEffort: "medium",
-  });
-  if (!read.ok) return infra(`sweep evidence: ${read.reason}`);
+  // Read → submit with ONE format-retry: a validator REJECTION (a format
+  // defect, e.g. a finding missing its chapters attribution — hit live
+  // 2026-07-03) re-spawns the reader once with the validator's errors appended.
+  // Judgments are never conductor-patched; the reader must fix its own format.
+  let read!: Awaited<ReturnType<typeof spawnJsonReader>> & { ok: true };
+  let submitted!: ReturnType<typeof submitQcArtifact>;
+  let rejectionNote = "";
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const attemptRead = await spawnJsonReader({
+      bookId,
+      label: attempt === 1 ? "author-sweep" : "author-sweep-retry",
+      task: buildSweepReaderTask(bookId, round.roundId, packRelPath) + rejectionNote,
+      deps,
+      authorSessions: authorSessionsOf(ordered, io),
+      reasoningEffort: "medium",
+    });
+    if (!attemptRead.ok) return infra(`sweep evidence: ${attemptRead.reason}`);
+    read = attemptRead;
 
-  // Normalize ONLY the envelope (identity/routing fields the conductor owns —
-  // same precedent as writeAuthorAcceptance's reviewer strings). The reader's
-  // JUDGMENT (verdict, checkedFamilies, findings) is passed through verbatim
-  // into the real validator.
-  const submission = {
-    ...read.parsed,
-    schemaVersion: SWEEP_SUBMISSION_SCHEMA_ID,
-    bookId,
-    roundId: round.roundId,
-    role: "sweep",
-    reviewer: `codex-qc:author-sweep:${round.roundId}`,
-  };
-  const { absPath } = io.writeReviewDoc(bookId, `sweep-submission-${round.roundId}.json`, JSON.stringify(submission, null, 2));
+    // Normalize ONLY the envelope (identity/routing fields the conductor owns —
+    // same precedent as writeAuthorAcceptance's reviewer strings). The reader's
+    // JUDGMENT (verdict, checkedFamilies, findings) is passed through verbatim
+    // into the real validator.
+    const submission = {
+      ...read.parsed,
+      schemaVersion: SWEEP_SUBMISSION_SCHEMA_ID,
+      bookId,
+      roundId: round.roundId,
+      role: "sweep",
+      reviewer: `codex-qc:author-sweep:${round.roundId}`,
+    };
+    const { absPath } = io.writeReviewDoc(bookId, `sweep-submission-${round.roundId}-a${attempt}.json`, JSON.stringify(submission, null, 2));
 
-  // THE real submission path (qc-submit): token check, schema validation,
-  // immutable raw-submission storage, reviewerSessionId stamped from the
-  // reader session (taken from the env, never the file — a reader cannot
-  // claim another session's identity).
-  const submitted = withSessionId(read.sessionId, () => submitQcArtifact(bookId, round.roundId, "sweep", absPath, token));
-  if (submitted.errors.length > 0 || !submitted.path) {
-    return infra(`sweep qc-submit rejected the reader's submission: ${submitted.errors.join("; ") || "no stored path"}`);
+    // THE real submission path (qc-submit): token check, schema validation,
+    // immutable raw-submission storage, reviewerSessionId stamped from the
+    // reader session (taken from the env, never the file — a reader cannot
+    // claim another session's identity).
+    submitted = withSessionId(read.sessionId, () => submitQcArtifact(bookId, round.roundId, "sweep", absPath, token));
+    if (submitted.errors.length > 0 || !submitted.path) {
+      const errs = submitted.errors.join("; ") || "no stored path";
+      if (attempt === 1) {
+        deps.log(`[autopilot] author evidence: sweep submission rejected (retrying once with the validator errors): ${errs}`);
+        rejectionNote = `\n\nYOUR PREVIOUS SUBMISSION WAS REJECTED BY THE VALIDATOR\n${errs}\nFix the FORMAT precisely — every finding needs a non-empty "chapters" array of affected chapter numbers and every required field filled. Keep your judgments the same unless the errors demand structural attribution.`;
+        continue;
+      }
+      return infra(`sweep qc-submit rejected the reader's submission after the format retry: ${errs}`);
+    }
+    break;
   }
 
   // Write the durable sweep record from the stored submission — the exact
   // call the QC collect path makes (validate the stored bytes, then
   // writeSweepRecordFromSubmission with the raw file as evidence source).
+  const storedPath = submitted.path;
+  if (!storedPath) return infra("sweep submission accepted but no stored path — cannot continue");
   let storedRaw: unknown;
   try {
-    storedRaw = JSON.parse(readFileSync(submitted.path, "utf8"));
+    storedRaw = JSON.parse(readFileSync(storedPath, "utf8"));
   } catch (err) {
-    return infra(`stored sweep submission unreadable at ${submitted.path}: ${(err as Error).message}`);
+    return infra(`stored sweep submission unreadable at ${storedPath}: ${(err as Error).message}`);
   }
   const validation = validateSubmission(bookId, round.roundId, "sweep", storedRaw);
   if (validation.ok === false) {
     return infra(`stored sweep submission failed validation: ${validation.errors.join("; ")}`);
   }
   try {
-    writeSweepRecordFromSubmission(validation.submission as ValidatedSweepSubmission, submitted.path);
+    writeSweepRecordFromSubmission(validation.submission as ValidatedSweepSubmission, storedPath);
   } catch (err) {
     return infra(`sweep record write failed: ${(err as Error).message}`);
   }
