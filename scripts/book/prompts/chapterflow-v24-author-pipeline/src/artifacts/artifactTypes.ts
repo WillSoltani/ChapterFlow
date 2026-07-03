@@ -454,6 +454,25 @@ export type ChapterReviewV1 = {
   /** chapterContentHash (v2) of the reviewed chapter — same helper autopilot uses. */
   contentHash: string;
   reviewerSessionId: string;
+  // ── E2 review-carry binding fields (ADDITIVE, all OPTIONAL) ────────────────
+  // These bind a persisted review to the EXACT bytes+conditions it was produced
+  // under, so doAuthorReview can REUSE it (spawn nothing) only when every one of
+  // them still matches at reuse time. Optional so legacy records (written before
+  // E2) stay PARSEABLE — but a record MISSING any of them is NEVER reusable (the
+  // carry predicate requires all present + matching → fail-closed on absence).
+  /** The ship bar (opts.bar) this review was adjudicated against. A carry hits
+   *  only when the current phase bar equals this. */
+  bar?: number;
+  /** sha256 (full hex) of the EXACT rendered reader doc the reader scored —
+   *  ensureTrailingNewline(renderChapterReaderDoc(chapter)) — hashed at the
+   *  write site. A doc-render drift (even one that leaves contentHash equal)
+   *  invalidates the carry. */
+  docHash?: string;
+  /** Which docHash algorithm produced docHash. "v2" = sha256 over the trailing-
+   *  newline-terminated rendered doc. A mismatch (or absence) blocks reuse. */
+  hashVersion?: "v2";
+  /** ISO timestamp the review was adjudicated. Audit only (never gates reuse). */
+  reviewedAt?: string;
   scores: Record<ReviewFactor, number>;
   /** Weighted composite = sum(weight * score) / 100, rounded to 1 decimal. */
   composite: number;

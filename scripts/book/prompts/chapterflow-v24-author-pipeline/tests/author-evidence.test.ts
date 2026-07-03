@@ -175,6 +175,10 @@ function mkEvIo(over: Partial<AuthorReviewIo> = {}): AuthorReviewIo {
     // CANONICAL_STATE (its default target). The record's own unit coverage lives
     // in author-arch.test.ts.
     persistAcceptance: (bookId, record) => join(dir, `${bookId}-acceptance.${record.roundLabel || "round1"}.json`),
+    // AUTO control-read + E2 regen-cap stubbed hermetic (no git / no real ledger).
+    resolveBeatShipped: async () => ({ ok: true as const, composite: null, source: "none" as const }),
+    regenConsumedFor: () => 0,
+    recordRegenConsumed: () => {},
     ...over,
   });
 }

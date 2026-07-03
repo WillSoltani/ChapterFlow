@@ -101,6 +101,17 @@ import {
   resolveAuthorIo,
   type AuthorIo,
 } from "./authorRun.js";
+import {
+  appendReviewHistory,
+  carryReviewFor,
+  writeReviewClearsLedger,
+} from "./authorReviewLedger.js";
+import {
+  loadAuthorRegenLedger,
+  recordRegenConsumed,
+  regenConsumedFor,
+} from "./authorRegenLedger.js";
+import { resolveBeatShippedBar, type BeatShippedResult } from "./shippedControl.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -169,7 +180,30 @@ export type AuthorReviewIo = AuthorIo & {
   persistAcceptance: (bookId: string, record: AuthorAcceptanceRecord) => string;
   acceptance: AcceptanceWriters;
   evidence: EvidenceRunners;
+  /** AUTO control-read: resolve the beat-shipped bar (env override / git-pinned
+   *  shipped-package 3-reader control read / none). Injectable so tests never
+   *  spawn a real reader or shell out to git. */
+  resolveBeatShipped: (bookId: string, deps: AutopilotDeps, io: AuthorReviewIo) => Promise<BeatShippedResult>;
+  /** E2 regen-cap persistence — how many REGENERATIONS a chapter has consumed
+   *  across prior conductor entries (durable). Injectable so tests exercise the
+   *  GLOBAL cap without leaking into real state/. Default reads the on-disk
+   *  ledger. */
+  regenConsumedFor: (bookId: string, chapterNumber: number) => number;
+  /** Record ONE more consumed regeneration for a chapter (durable). Injectable;
+   *  default appends to the on-disk ledger. */
+  recordRegenConsumed: (bookId: string, chapterNumber: number) => void;
 };
+
+/** Thrown when the AUTO control-read is required (a shipped package exists, no
+ *  env override) but cannot be produced — a fail-closed infra halt, never a
+ *  silent drop of the beat-shipped protection. Caught by doAuthorReview like
+ *  DocIntegrityError. */
+export class ControlReadError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ControlReadError";
+  }
+}
 
 export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorReviewIo {
   const base = resolveAuthorIo(over);
@@ -185,7 +219,20 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       writeFileAtomic(absPath, ensureTrailingNewline(text));
       return { absPath, relPath };
     }),
-    persistReview: over?.persistReview ?? ((bookId, review) => writeChapterReview(bookId, review)),
+    persistReview: over?.persistReview ?? ((bookId, review) => {
+      // Latest-pointer artifact (state/reviews/<book>/ch<NN>.review.json) — the
+      // existing per-chapter review file every prior consumer reads.
+      const path = writeChapterReview(bookId, review);
+      // E2: append to the immutable content-keyed history + rebuild the
+      // materialized clears cache. Best-effort — a ledger write must never
+      // convert a valid review into a halt; the reuse predicate reverifies the
+      // history bytes anyway and the cache is rebuildable.
+      try {
+        appendReviewHistory(bookId, review);
+        writeReviewClearsLedger(bookId);
+      } catch { /* forensic ledger; never fail the review on it */ }
+      return path;
+    }),
     persistAcceptance: over?.persistAcceptance ?? ((bookId, record) => {
       const path = acceptanceRecordPath(bookId, record.roundLabel);
       mkdirSync(dirname(path), { recursive: true });
@@ -205,6 +252,9 @@ export function resolveAuthorReviewIo(over?: Partial<AuthorReviewIo>): AuthorRev
       runKeyJudge: runKeyJudgeEvidence,
       runSweep: runSweepEvidence,
     },
+    resolveBeatShipped: over?.resolveBeatShipped ?? ((bookId, deps, io) => resolveBeatShippedBar(bookId, deps, io)),
+    regenConsumedFor: over?.regenConsumedFor ?? ((bookId, n) => regenConsumedFor(loadAuthorRegenLedger(bookId), n)),
+    recordRegenConsumed: over?.recordRegenConsumed ?? ((bookId, n) => { recordRegenConsumed(bookId, n); }),
   };
 }
 
@@ -408,13 +458,6 @@ export type BookAcceptanceResult = {
  *  never be accepted below the book it replaces. */
 export const AUTHOR_BOOK_ACCEPT_BAR = 80;
 
-function beatShippedComposite(): number | null {
-  const raw = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
-  if (!raw) return null;
-  const n = Number(raw);
-  return Number.isFinite(n) ? n : null;
-}
-
 async function runBookAcceptance(
   bookId: string,
   chapters: ChapterV21[],
@@ -423,6 +466,16 @@ async function runBookAcceptance(
   bar: number,
   roundLabel: string,
 ): Promise<BookAcceptanceResult> {
+  // AUTO control-read: resolve the beat-shipped bar BEFORE spawning any reader,
+  // so a regen's acceptance is judged against the book it replaces on the same
+  // instrument. Env override → that value; a tracked shipped package with no
+  // override → the git-pinned 3-reader control read (cached by pin); no shipped
+  // package → null (bar-80-only). A required control read that cannot be
+  // produced throws ControlReadError → doAuthorReview halts infra (never a silent
+  // drop of the beat-shipped protection).
+  const beat = await io.resolveBeatShipped(bookId, deps, io);
+  if (!beat.ok) throw new ControlReadError(beat.reason);
+  const shipped = beat.composite;
   const sampled = selectSeededChapters(bookId, chapters, 4);
   const docText = renderBookSampleDoc(sampled);
   // Q2 — doc-integrity postcondition: certify the rendered bytes BEFORE any
@@ -485,7 +538,6 @@ async function runBookAcceptance(
   );
 
   const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
-  const shipped = beatShippedComposite();
   const comp = verdict.medianComposite ?? 0;
   // Q4 — valid-count QUORUM (fail-closed): a book is NEVER accepted below full
   // panel. composeBookVerdict happily composes over even ONE valid reader, so
@@ -636,6 +688,9 @@ export async function doAuthorReview(
     return await doAuthorReviewInner(bookId, deps, opts);
   } catch (err) {
     if (err instanceof DocIntegrityError) return halt(bookId, "infra", `author review: ${err.message}`);
+    // A required AUTO control-read that cannot be produced is a fail-closed infra
+    // halt — never a silent drop of the beat-shipped protection.
+    if (err instanceof ControlReadError) return halt(bookId, "infra", `author acceptance beat-shipped control read: ${err.message}`);
     throw err;
   }
 }
@@ -657,27 +712,60 @@ async function doAuthorReviewInner(
   }
   if (chapters.length === 0) return halt(bookId, "infra", `author review: no chapters on disk for ${bookId}`);
 
-  // ── 1. One blinded reader per chapter. ─────────────────────────────────────
+  // ── 1. One blinded reader per chapter — UNLESS a durable review can be
+  //       CARRIED for the current bytes (E2). A carry hits only when a persisted
+  //       PASS+valid review binds to this chapter's CURRENT content AND the exact
+  //       reader-doc bytes AND the current bar AND schema/hash versions, with a
+  //       reviewer that is not the chapter's current author. A carry spawns
+  //       NOTHING; any miss falls through to a fresh independent read. ─────────
   deps.log(`[autopilot] author review: ${chapters.length} chapter(s), one blinded reader each (parallel ≤${opts.maxParallel}, bar ${bar})`);
   const reviews = new Map<number, ChapterReviewV1>();
+  let carryHits = 0;
   await mapPool(chapters, opts.maxParallel, async (chapter) => {
     heartbeat();
+    const carry = carryReviewFor(bookId, chapter, bar, io.authorSessionOf(chapter.chapterId));
+    if (carry.hit) {
+      carryHits++;
+      const nn = String(chapter.number).padStart(2, "0");
+      deps.log(`[autopilot] author review ch${nn}: CARRIED durable review (composite ${carry.review.composite}, reviewer ${carry.review.reviewerSessionId}) — no reader spawned`);
+      reviews.set(chapter.number, carry.review);
+      return;
+    }
     reviews.set(chapter.number, await reviewOneChapter(bookId, chapter, deps, io, bar));
   });
+  if (carryHits > 0) deps.log(`[autopilot] author review: carried ${carryHits}/${chapters.length} chapter review(s) unchanged — spawned ${chapters.length - carryHits} fresh reader(s)`);
   if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during author review — halting to avoid two conductors on the same book.`);
 
   // ── 2. Regenerate failing chapters WITH the review complaints (cap: the
   //       original + ONE regen = AUTHOR_REGEN_CAP total write attempts). ──────
+  // E2 regen-cap PERSISTENCE: the in-memory `regenerated` set is created fresh
+  // every conductor entry, so a re-entry used to silently RESET each chapter's
+  // regen budget. Load the durable per-chapter consumed-regen ledger and treat a
+  // chapter that already consumed AUTHOR_REGEN_CAP-1 regens (across prior entries)
+  // as exhausted, so the GLOBAL cap survives re-entry. A carried PASS is not a
+  // regen and never touches the ledger.
+  const regenExhausted = (n: number): boolean => io.regenConsumedFor(bookId, n) >= (AUTHOR_REGEN_CAP - 1);
   const failing = chapters.filter((chapter) => !reviews.get(chapter.number)!.pass);
-  const regenerated = new Set<number>(); // chapters that consumed their single regen (AUTHOR_REGEN_CAP is GLOBAL across the review round and the book-rejection round)
+  const regenerated = new Set<number>(); // chapters that consumed their single regen THIS entry (unioned with the durable ledger for the GLOBAL cap)
   if (failing.length > 0) {
-    deps.log(`[autopilot] author review: ${failing.length} chapter(s) failed independent review — regenerating with complaints (1 regen each; ${AUTHOR_REGEN_CAP} total attempts/chapter)`);
+    // A failing chapter that already exhausted its durable regen budget cannot be
+    // written again — that is a fail-closed content halt (the cap is global).
+    const exhaustedFailing = failing.filter((c) => regenExhausted(c.number));
+    if (exhaustedFailing.length > 0) {
+      const table = exhaustedFailing
+        .sort((a, b) => a.number - b.number)
+        .map((c) => `  ch${String(c.number).padStart(2, "0")} — ${complaintsOf(reviews.get(c.number)!).join("; ").slice(0, 400)}`)
+        .join("\n");
+      return halt(bookId, "content", `author review: ${exhaustedFailing.length} chapter(s) fail independent review and have ALREADY consumed their durable regen budget across prior entries (cap ${AUTHOR_REGEN_CAP} write attempts/chapter, global):\n${table}`);
+    }
+    deps.log(`[autopilot] author review: ${failing.length} chapter(s) failed independent review — regenerating with complaints (1 regen each; ${AUTHOR_REGEN_CAP} total attempts/chapter, durable ledger loaded)`);
     const stillFailing: Array<{ chapterNumber: number; summary: string }> = [];
     await mapPool(failing, opts.maxParallel, async (chapter) => {
       heartbeat();
       const nn = String(chapter.number).padStart(2, "0");
       const complaints = complaintsOf(reviews.get(chapter.number)!);
       regenerated.add(chapter.number);
+      io.recordRegenConsumed(bookId, chapter.number); // durable: this write attempt counts across re-entries
       const regen = await authorWriteOneChapter(bookId, chapter.number, deps, { complaints, io: opts.io });
       if (!regen.ok) {
         stillFailing.push({ chapterNumber: chapter.number, summary: regen.reason });
@@ -717,8 +805,11 @@ async function doAuthorReviewInner(
     // ONE targeted regen round: the book readers' complaints mapped to their
     // chapters (cap 3), re-review, then re-run acceptance ONCE.
     const allTargets = mapBookComplaintsToChapters(acceptance.readers, acceptance.sampledNumbers);
-    const targets = new Map([...allTargets.entries()].filter(([n]) => !regenerated.has(n)));
-    const skipped = [...allTargets.keys()].filter((n) => regenerated.has(n));
+    // A chapter is skipped when it consumed its regen THIS entry (in-memory set)
+    // OR across a prior entry (durable ledger) — the GLOBAL cap survives re-entry.
+    const consumedGlobally = (n: number): boolean => regenerated.has(n) || regenExhausted(n);
+    const targets = new Map([...allTargets.entries()].filter(([n]) => !consumedGlobally(n)));
+    const skipped = [...allTargets.keys()].filter((n) => consumedGlobally(n));
     if (skipped.length > 0) {
       deps.log(`[autopilot] author acceptance: ${skipped.length} target chapter(s) already consumed their regen (${AUTHOR_REGEN_CAP} total write attempts is a GLOBAL cap): ${skipped.map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     }
@@ -733,6 +824,8 @@ async function doAuthorReviewInner(
     await mapPool([...targets.entries()], opts.maxParallel, async ([chapterNumber, complaints]) => {
       heartbeat();
       const nn = String(chapterNumber).padStart(2, "0");
+      regenerated.add(chapterNumber);
+      io.recordRegenConsumed(bookId, chapterNumber); // durable: the acceptance-round regen also counts against the global cap
       const regen = await authorWriteOneChapter(bookId, chapterNumber, deps, { complaints, io: opts.io });
       if (!regen.ok) {
         regenFailures.push(regen.reason);

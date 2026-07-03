@@ -25,6 +25,7 @@
  * reader cannot self-attest a pass.
  */
 
+import { createHash } from "crypto";
 import { resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
@@ -39,8 +40,27 @@ import {
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
+import { renderChapterReaderDoc } from "./renderReaderDoc.js";
 
 export type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
+
+// ── E2 doc hash (the carry-forward doc-binding) ───────────────────────────────
+
+/** The E2 docHash version — sha256 (full hex) over the EXACT bytes a reader
+ *  scores. Bumping this frozen constant is how the doc-hash ALGORITHM evolves:
+ *  a new value re-stales every carried review the moment it is recomputed, so it
+ *  MUST NOT be edited in place (add a new version + branch, like the v2 exclude
+ *  set). Persisted on each ChapterReviewV1 as hashVersion. */
+export const REVIEW_DOC_HASH_VERSION = "v2" as const;
+
+/** sha256 of the EXACT rendered reader doc a reader scores — the
+ *  trailing-newline-terminated renderChapterReaderDoc output. This is the ONE
+ *  source of truth for docHash both at the write site (adjudicateReview) and at
+ *  the reuse site (doAuthorReview), so a doc-render drift that leaves the chapter
+ *  contentHash unchanged still invalidates a carried review. */
+export function chapterReaderDocHash(chapter: ChapterV21): string {
+  return createHash("sha256").update(ensureTrailingNewline(renderChapterReaderDoc(chapter))).digest("hex");
+}
 
 // ── Doc-integrity error (shared by the chapter + book review paths) ───────────
 
@@ -404,6 +424,13 @@ export function adjudicateReview(
     complaints: parsed.complaints.map((c) => ({ ...c })),
     oneParagraphVerdict: parsed.oneParagraphVerdict,
     structuralScreen,
+    // E2 carry-binding fields: the bar this was judged at + the sha256 of the
+    // exact rendered doc bytes + the hash version + the timestamp. doAuthorReview
+    // reuses this record only when EVERY one still matches at reuse time.
+    bar,
+    docHash: chapterReaderDocHash(chapter),
+    hashVersion: REVIEW_DOC_HASH_VERSION,
+    reviewedAt: new Date().toISOString(),
   };
 }
 

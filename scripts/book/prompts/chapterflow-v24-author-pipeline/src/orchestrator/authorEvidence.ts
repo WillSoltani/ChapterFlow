@@ -73,6 +73,8 @@ import { submitQcArtifact } from "../qc/orchestrator/index.js";
 import { sourceHashFor } from "../qc/sourceV2Gate.js";
 import { renderChapterReaderDoc } from "../review/renderReaderDoc.js";
 import type { QcRoundRole } from "../qc/qcRound.js";
+import { reverifiedFreshChapters, writeKeyEvidenceClearsLedger } from "./keyEvidenceLedger.js";
+import { persistRejectedSweep } from "./sweepRejectedRecord.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -306,43 +308,69 @@ export async function runKeyJudgeEvidence(
   if (chapters.length === 0) return infra(`key-judge evidence: no chapters for ${bookId}`);
   const ordered = [...chapters].sort((a, b) => a.number - b.number);
 
-  // Idempotency: the promote predicate ITSELF decides "already satisfied" —
-  // fresh PASS records over the current content+source need no new evidence.
-  try {
-    if (ordered.every((ch) => checkManualKeyJudge(ch, true).length === 0)) {
-      deps.log(`[autopilot] author evidence: manual key-judge already PASS for all ${ordered.length} chapter(s) — skipping`);
-      return { ok: true, skipped: true };
-    }
-  } catch { /* unreadable prior records → rebuild the evidence below */ }
-
   const authorSessions = authorSessionsOf(ordered, io);
 
-  // Key packs for THIS round. Packs and derivations are book-level (one
-  // keyA/keyB answers file covers every pack), so partial reuse cannot help:
-  // if ANY pack is missing or stale on the current content/source, rewrite
-  // them all via the real key-pack writer and re-derive both keys.
-  const allPacksFresh = ordered.every((ch) => {
+  // E3 — PER-CHAPTER key-evidence production. The stale subset = the chapters
+  // that need fresh keys; the rest carry their older-round evidence (writeKeyPacks
+  // accepts subsets; resolveManualKeyJudges stitches fresh chapters from their
+  // older rounds via derivationForChapter). This kills the observed all-or-nothing
+  // re-derivation of every unchanged chapter because one changed.
+  //
+  // E4 — a chapter is skippable (fresh, carry its keys) ONLY when BOTH hold:
+  //   (a) the promote-side per-chapter predicate checkManualKeyJudge PASSES
+  //       (the content-bound truth promote itself enforces); AND
+  //   (b) its key-evidence-clears ledger entry REVERIFIES against the
+  //       round-token-anchored derivation/pack artifacts (reverifiedFreshChapters
+  //       — hard keyA≠keyB≠author independence, pack projection + answer-key hash
+  //       recomputed from the CURRENT bytes).
+  // The ledger is a CACHE, never the evidence: the reverification reads the
+  // round-anchored artifacts, so a missing/stale/tampered ledger clear can only
+  // ADD a chapter to the stale set (fail-closed — MORE derivation), never mask a
+  // real failure. A chapter missing/failing EITHER check is stale → fresh keys.
+  // Empty subset → nothing to derive (skip, spawning nothing).
+  let reverifiedFresh: Set<number>;
+  try {
+    reverifiedFresh = reverifiedFreshChapters(bookId, ordered, io.authorSessionOf);
+  } catch {
+    reverifiedFresh = new Set(); // ledger unreadable → trust nothing (re-derive)
+  }
+  let staleChapters: ChapterV21[];
+  try {
+    staleChapters = ordered.filter((ch) => checkManualKeyJudge(ch, true).length > 0 || !reverifiedFresh.has(ch.number));
+  } catch {
+    staleChapters = ordered; // unreadable prior records → re-derive everything (fail-closed)
+  }
+  if (staleChapters.length === 0) {
+    deps.log(`[autopilot] author evidence: manual key-judge already PASS + ledger-reverified for all ${ordered.length} chapter(s) — skipping`);
+    return { ok: true, skipped: true };
+  }
+  deps.log(`[autopilot] author evidence: ${staleChapters.length}/${ordered.length} chapter(s) need fresh keys (${staleChapters.map((c) => `ch${c.number}`).join(", ")}) — deriving ONLY those (per-chapter production, E3)`);
+
+  // Key packs for THIS round — for the STALE subset ONLY. A pack for a stale
+  // chapter is (re)written when missing or stale on the current content/source;
+  // fresh chapters keep their older-round evidence (the resolver stitches it).
+  const stalePacksFresh = staleChapters.every((ch) => {
     const pack = loadKeyPack(bookId, round.roundId, ch.number);
     return !!pack
       && pack.contentHash === chapterContentHash(ch)
       && pack.sourceHash === (sourceHashFor(bookId, ch.number) ?? "");
   });
-  if (!allPacksFresh) {
+  if (!stalePacksFresh) {
     try {
-      writeKeyPacks(bookId, round.roundId, ordered);
+      writeKeyPacks(bookId, round.roundId, staleChapters); // subset — manualKeyJudge.ts:174 accepts it
     } catch (err) {
       return infra(`key-pack failed for ${bookId} round ${round.roundId}: ${(err as Error).message}`);
     }
   }
   const packs = new Map<number, KeyPack>();
-  for (const ch of ordered) {
+  for (const ch of staleChapters) {
     const pack = loadKeyPack(bookId, round.roundId, ch.number);
     if (!pack) return infra(`key pack missing for ${bookId} ch${ch.number} after key-pack`);
     packs.set(ch.number, pack);
   }
 
-  // ONE blinded doc, read by BOTH independent key readers.
-  const docText = buildKeyJudgeDoc(bookId, round.roundId, ordered, packs);
+  // ONE blinded doc over the STALE subset, read by BOTH independent key readers.
+  const docText = buildKeyJudgeDoc(bookId, round.roundId, staleChapters, packs);
   const { relPath } = io.writeReviewDoc(bookId, `key-judge-${round.roundId}.txt`, docText);
 
   const usedSessions = new Set<string>();
@@ -362,17 +390,18 @@ export async function runKeyJudgeEvidence(
     if (!read.ok) return infra(`key-judge evidence (${role}): ${read.reason}`);
     usedSessions.add(read.sessionId);
 
-    // Normalize into the exact answers-file shape key-derive expects. The
-    // packHash is stamped from the pack the doc was BUILT from (the reader
-    // read exactly that pack; echo-transcription must not flake the binding).
-    // Answers are the reader's verbatim output — a missing/partial chapter
-    // fails closed in the real validator below.
+    // Normalize into the exact answers-file shape key-derive expects, scoped to
+    // the STALE subset (key-derive validates against the round's packs, which are
+    // exactly the stale subset). The packHash is stamped from the pack the doc was
+    // BUILT from (the reader read exactly that pack; echo-transcription must not
+    // flake the binding). Answers are the reader's verbatim output — a
+    // missing/partial chapter fails closed in the real validator below.
     const byNumber = new Map<number, any>();
     if (Array.isArray(read.parsed?.chapters)) {
       for (const entry of read.parsed.chapters) byNumber.set(Number(entry?.chapterNumber), entry);
     }
     const answersFileObj = {
-      chapters: ordered.map((ch) => ({
+      chapters: staleChapters.map((ch) => ({
         chapterNumber: ch.number,
         packHash: packs.get(ch.number)!.packHash,
         answers: Array.isArray(byNumber.get(ch.number)?.answers) ? byNumber.get(ch.number).answers : [],
@@ -387,7 +416,7 @@ export async function runKeyJudgeEvidence(
     if (derived.errors.length > 0) {
       return infra(`key-derive (${role}) rejected the reader's derivation: ${derived.errors.slice(0, 6).join("; ")}${derived.errors.length > 6 ? ` (+${derived.errors.length - 6} more)` : ""}`);
     }
-    deps.log(`[autopilot] author evidence: ${role} derivation written by session ${read.sessionId} (${ordered.length} chapter(s))`);
+    deps.log(`[autopilot] author evidence: ${role} derivation written by session ${read.sessionId} (${staleChapters.length} stale chapter(s))`);
   }
 
   // THE real key-resolve: per-chapter manual-keyjudge records. A non-PASS
@@ -400,6 +429,14 @@ export async function runKeyJudgeEvidence(
   }
   if (resolved.errors.length > 0) {
     return content(`manual key-judge did not PASS — the independent blind keys dispute the stored keys (records persisted; promote will block): ${resolved.errors.join("; ")}`);
+  }
+  // E4: rebuild the key-evidence-clears cache from the now-PASSing round-anchored
+  // artifacts (best-effort — a cache write must never fail a valid resolution;
+  // the cache is rebuildable and the reverification reads the artifacts, not this).
+  try {
+    writeKeyEvidenceClearsLedger(bookId, ordered);
+  } catch (err) {
+    deps.log(`[autopilot] author evidence: WARNING key-evidence-clears ledger write failed (advisory cache): ${(err as Error).message}`);
   }
   deps.log(`[autopilot] author evidence: manual key-judge PASS for all ${ordered.length} chapter(s) (round ${round.roundId})`);
   return { ok: true };
@@ -485,12 +522,23 @@ export async function runSweepEvidence(
     submitted = withSessionId(read.sessionId, () => submitQcArtifact(bookId, round.roundId, "sweep", absPath, token));
     if (submitted.errors.length > 0 || !submitted.path) {
       const errs = submitted.errors.join("; ") || "no stored path";
+      // E5 — persist the rejected submission + validator errors as ADVISORY
+      // forensic history (never read by checkSweep or any clears ledger). A
+      // rejected read no longer vanishes without a trace. Best-effort.
+      const rejPath = persistRejectedSweep({
+        bookId,
+        roundId: round.roundId,
+        attempt,
+        errors: submitted.errors.length > 0 ? submitted.errors : ["no stored path"],
+        submission,
+        reviewerSessionId: read.sessionId,
+      });
       if (attempt === 1) {
-        deps.log(`[autopilot] author evidence: sweep submission rejected (retrying once with the validator errors): ${errs}`);
+        deps.log(`[autopilot] author evidence: sweep submission rejected (retrying once with the validator errors): ${errs}${rejPath ? ` — forensic record ${rejPath}` : ""}`);
         rejectionNote = `\n\nYOUR PREVIOUS SUBMISSION WAS REJECTED BY THE VALIDATOR\n${errs}\nFix the FORMAT precisely — every finding needs a non-empty "chapters" array of affected chapter numbers and every required field filled. Keep your judgments the same unless the errors demand structural attribution.`;
         continue;
       }
-      return infra(`sweep qc-submit rejected the reader's submission after the format retry: ${errs}`);
+      return infra(`sweep qc-submit rejected the reader's submission after the format retry: ${errs}${rejPath ? ` (forensic record ${rejPath})` : ""}`);
     }
     break;
   }
