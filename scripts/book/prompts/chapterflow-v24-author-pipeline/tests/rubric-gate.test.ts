@@ -33,6 +33,7 @@ const STRICT: RubricThresholds = {
   memorableCleanMin: 2,
   houseTicDensityWarnMax: 1,
   nominalizationRateWarnMax: 8,
+  cardQuality: { echoKeyThreshold: 5, echoDistractorCeiling: 4, lengthTellShortestMax: 4, lengthTellLongestMax: 9 },
 };
 
 const LOOSE: RubricThresholds = {
@@ -45,6 +46,8 @@ const LOOSE: RubricThresholds = {
   memorableCleanMin: 0,
   houseTicDensityWarnMax: 100,
   nominalizationRateWarnMax: 100,
+  // Wide enough that the W2 card-quality gates never trip under LOOSE.
+  cardQuality: { echoKeyThreshold: 999, echoDistractorCeiling: 998, lengthTellShortestMax: 9, lengthTellLongestMax: 9 },
 };
 
 const DENSE =
@@ -115,6 +118,22 @@ test("rubric-thresholds: shipped config loads, validates, and defaults are shado
   assert.throws(() => validateRubricThresholds({ ...t, tellRateMax: 20 }), /fraction in \[0,1\]/);
   assert.throws(() => validateRubricThresholds({ ...t, schemaVersion: "nope" }), /schemaVersion/);
   assert.throws(() => validateRubricThresholds({ ...t, fleschEase: { min: 84, max: 72, warnTolerance: 4 } }), /min .* must be <=/);
+  // W2 cardQuality block: shipped config carries the calibrated caps.
+  assert.deepEqual(t.cardQuality, { echoKeyThreshold: 5, echoDistractorCeiling: 4, lengthTellShortestMax: 4, lengthTellLongestMax: 9 });
+});
+
+test("rubric-thresholds: cardQuality defaults-when-absent (fail-closed) and validates on drift", () => {
+  const t = loadRubricThresholds();
+  // A legacy config with NO cardQuality block → calibrated defaults (gates stay ON).
+  const legacy = { ...t } as Record<string, unknown>;
+  delete legacy.cardQuality;
+  const filled = validateRubricThresholds(legacy);
+  assert.deepEqual(filled.cardQuality, { echoKeyThreshold: 5, echoDistractorCeiling: 4, lengthTellShortestMax: 4, lengthTellLongestMax: 9 }, "absent block → calibrated defaults, not disabled");
+  // Wrong shape / negative / non-integer throws.
+  assert.throws(() => validateRubricThresholds({ ...t, cardQuality: { echoKeyThreshold: 5, echoDistractorCeiling: 4, lengthTellShortestMax: -1, lengthTellLongestMax: 9 } }), /non-negative integer/);
+  assert.throws(() => validateRubricThresholds({ ...t, cardQuality: { echoKeyThreshold: 5, echoDistractorCeiling: 4, lengthTellShortestMax: 1.5, lengthTellLongestMax: 9 } }), /non-negative integer/);
+  // The echo distractor ceiling must stay strictly below the key threshold.
+  assert.throws(() => validateRubricThresholds({ ...t, cardQuality: { echoKeyThreshold: 5, echoDistractorCeiling: 5, lengthTellShortestMax: 4, lengthTellLongestMax: 9 } }), /must be < echoKeyThreshold/);
 });
 
 // ── 2. extraction covers every enumerated reader-visible field ───────────────

@@ -28,6 +28,7 @@ import {
 import {
   AUTHOR_CARD_MAX_CHARS,
   AUTHOR_HOUSE_RULES,
+  AUTHOR_QUALITY_BAR,
   authorChapterRelPath,
   authorSchemaHint,
   authorSelfVerify,
@@ -357,6 +358,31 @@ test("author card: brief md verbatim + writer projection + schema hint + self-ve
   assert.ok(card.length <= AUTHOR_CARD_MAX_CHARS, `card must be <= ${AUTHOR_CARD_MAX_CHARS} chars, got ${card.length}`);
   assert.ok(authorSelfVerify("zz-fixture-fact-ranking", 3).length <= 1200, "self-verify stays <= 1200 chars");
   console.log(`  [measure] author card on the golden fixture packet: ${card.length} chars`);
+});
+
+// ── W1: the QUALITY BAR travels in the ALWAYS-SENT card ────────────────────────
+test("author card: W1 QUALITY BAR (all four house rules) rides the ALWAYS-SENT card, not just the retry", () => {
+  const brief = mkBrief(3, { chapterId: "zz-fixture-fact-ranking-ch03", chapterNumber: 3, title: "Deliberate Practice" });
+  const briefMd = renderBriefMd(brief);
+  // FIRST-ATTEMPT card (no complaints): the four rules must already be present, so
+  // a compliant first draft clears the W2 preflight without the ~19-min retry.
+  const card = buildAuthorCard({ bookId: "zz-fixture-fact-ranking", chapterNumber: 3, briefMd, packet: GOLDEN_PACKET, voice: null });
+  assert.ok(card.includes(AUTHOR_QUALITY_BAR), "the QUALITY BAR block is embedded verbatim on the first attempt");
+  // Rule 1 — distractor parity (symmetric: neither longest nor shortest).
+  assert.match(card, /NEITHER the longest NOR the shortest/i, "rule 1 distractor parity is symmetric");
+  // Rule 2 — key paraphrase incl. review cards + implementation plan.
+  assert.match(card, /never reuse 5 or more consecutive content words/i, "rule 2 key-paraphrase 5-word rule");
+  assert.match(card, /review cards and the implementation plan/i, "rule 2 names review cards + implementation plan explicitly");
+  // Rule 3 — practice concreteness, no option menus.
+  assert.match(card, /number or a timebox AND the exact sentence to say or the exact object to touch/i, "rule 3 concreteness");
+  assert.match(card, /No "a, b, or c" option menus/i, "rule 3 bans option menus");
+  // Rule 4 — plain language / ease band from sentence one.
+  assert.match(card, /Flesch ease 72-84/i, "rule 4 names the ease band");
+
+  // Length budget: the WHOLE card stays <= 15,000 chars (W1 spec). The variable
+  // parts (brief md + packet projection) are represented by the golden fixture.
+  assert.ok(card.length <= 15000, `W1 card length budget: card must be <= 15,000 chars, got ${card.length}`);
+  console.log(`  [measure] W1 card with QUALITY BAR: ${card.length} chars (budget 15,000)`);
 });
 
 test("author card: complaints section appears ONLY on regeneration, with the review's bullets", () => {

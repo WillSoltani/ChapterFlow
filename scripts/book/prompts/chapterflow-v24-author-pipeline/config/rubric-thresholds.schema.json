@@ -17,13 +17,26 @@
     "$schema": { "type": "string" },
     "schemaVersion": { "const": "rubric-thresholds-v1" },
     "_comment": { "type": "string" },
+    "_cardQualityComment": { "type": "string" },
     "fleschEase": { "$ref": "#/$defs/band" },
     "fkGrade": { "$ref": "#/$defs/band" },
     "tellRateMax": { "type": "number", "minimum": 0, "maximum": 1 },
     "transferMin": { "type": "number", "minimum": 0, "maximum": 1 },
     "memorableCleanMin": { "type": "integer", "minimum": 0 },
     "houseTicDensityWarnMax": { "type": "number", "minimum": 0 },
-    "nominalizationRateWarnMax": { "type": "number", "minimum": 0 }
+    "nominalizationRateWarnMax": { "type": "number", "minimum": 0 },
+    "cardQuality": {
+      "type": "object",
+      "description": "W2 (plan §WS5) per-chapter card-quality gate caps. Optional: absent → calibrated defaults (gates stay ON). See docs/v24/w2-card-preflight-calibration.md.",
+      "required": ["echoKeyThreshold", "echoDistractorCeiling", "lengthTellShortestMax", "lengthTellLongestMax"],
+      "properties": {
+        "echoKeyThreshold": { "type": "integer", "minimum": 0 },
+        "echoDistractorCeiling": { "type": "integer", "minimum": 0 },
+        "lengthTellShortestMax": { "type": "integer", "minimum": 0 },
+        "lengthTellLongestMax": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false,
   "$defs": {

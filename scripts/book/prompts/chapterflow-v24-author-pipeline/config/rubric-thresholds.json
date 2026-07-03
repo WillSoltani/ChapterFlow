@@ -8,5 +8,12 @@
   "transferMin": 0.70,
   "memorableCleanMin": 2,
   "houseTicDensityWarnMax": 1,
-  "nominalizationRateWarnMax": 8
+  "nominalizationRateWarnMax": 8,
+  "_cardQualityComment": "W2 (plan §WS5) deterministic per-chapter CARD-QUALITY gates, calibrated against the top-5 owner-scored packages (all pass) and the-power-of-moments v24 (echo flags 4 known lifts; shortest length-tell FAILs at 51%). echoKeyThreshold=5 is the zero-FP tier (the >=4 tier admits canonical-principle-key FPs); echoDistractorCeiling=4 requires all distractors below a 4-token echo. lengthTellShortestMax=4 and lengthTellLongestMax=9 are per-chapter caps out of 9 questions; the shortest cap is the active gate (top-5 peak at 4/9, POM v24 runs 5-8/9), the longest cap is calibrated to pass the top-5 (whose keys are the uniquely-longest choice up to 9/9 by long-standing house norm) while keeping the symmetric mechanism in place. See docs/v24/w2-card-preflight-calibration.md.",
+  "cardQuality": {
+    "echoKeyThreshold": 5,
+    "echoDistractorCeiling": 4,
+    "lengthTellShortestMax": 4,
+    "lengthTellLongestMax": 9
+  }
 }
