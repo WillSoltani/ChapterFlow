@@ -86,7 +86,15 @@ export type RegistrationProbe = { state: "found" | "not-found" | "unknown"; regi
 export function probeRegistration(outerRoot: string, bookId: string): RegistrationProbe {
   const registryPath = resolve(outerRoot, OUTER_REGISTRY_REL);
   if (!existsSync(registryPath)) return { state: "unknown", registryPath };
-  return { state: readFileSync(registryPath, "utf8").includes(bookId) ? "found" : "not-found", registryPath };
+  // Boundary-safe: match the EXACT import path the writer/register-web emits, not a bare
+  // substring. A bare `.includes(bookId)` would false-positive "found" when the target id
+  // is a substring of an already-registered id (e.g. probe "why" against "start-with-why",
+  // or "stoic" against "the-daily-stoic") → publishFinal would then SKIP append-register and
+  // the book would ship a committed package that the reader never bundles. The import-path
+  // marker (`from "@/book-packages/<id>.v21.json"`) is what the register-web writer keys on.
+  const src = readFileSync(registryPath, "utf8");
+  const marker = `from "@/book-packages/${bookId}.v21.json"`;
+  return { state: src.includes(marker) ? "found" : "not-found", registryPath };
 }
 
 async function defaultVerify(pkgPath: string): Promise<boolean> {

@@ -24,7 +24,7 @@ import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
-import { publishToLive } from "../src/publish/publishToLive.js";
+import { publishToLive, probeRegistration } from "../src/publish/publishToLive.js";
 
 const BOOK = "zz-fixture-publish-to-live";
 const PKG_CONTENT = JSON.stringify({ formatVersion: "v21", bookId: BOOK, chapters: [{ number: 1 }] }, null, 2);
@@ -269,6 +269,25 @@ test("probe-path FIX (v24 F1): the registry is app/book/data/bookPackages.ts —
     assert.equal(res.ok, true, res.error);
     assert.ok(res.steps.some((s) => s.startsWith("registration: UNKNOWN")), `a lib/ registry must be ignored; app/book/data/ is the real registry\nsteps: ${res.steps.join(" | ")}`);
     assert.ok(!res.steps.some((s) => s === "registration: FOUND"), "the legacy lib/ registry must not satisfy the probe");
+  } finally {
+    fx.cleanup();
+  }
+});
+
+test("probe is boundary-safe: a book id that is a SUBSTRING of a registered id is NOT-FOUND (not a false FOUND)", () => {
+  // The registry names full slugs (start-with-why, the-daily-stoic). Probing a book whose id
+  // is a bare substring of a registered id must report NOT-FOUND — otherwise publishFinal would
+  // skip append-register and the book would ship a committed-but-unregistered package.
+  const fx = makeFixture("probe-boundary", {
+    registry: `import a from "@/book-packages/start-with-why.v21.json";\nimport b from "@/book-packages/the-daily-stoic.v21.json";\n`,
+  });
+  try {
+    for (const substr of ["why", "stoic", "daily", "start-with"]) {
+      assert.equal(probeRegistration(fx.outerRoot, substr).state, "not-found", `"${substr}" is only a substring of a registered id — must be NOT-FOUND`);
+    }
+    // the exact registered ids ARE found.
+    assert.equal(probeRegistration(fx.outerRoot, "start-with-why").state, "found");
+    assert.equal(probeRegistration(fx.outerRoot, "the-daily-stoic").state, "found");
   } finally {
     fx.cleanup();
   }
