@@ -102,6 +102,10 @@ the ones that are present.
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | O | secret | Client publishable key. **Caveat:** as a `NEXT_PUBLIC_*` var it is inlined at **build**; it is currently passed on the `cdk deploy` step (after `open-next build`), so confirm it is present during the build if you rely on client-side inlining. |
 | `ANTHROPIC_API_KEY` | R (AI) | secret | Powers all three Claude features — "Ask the Book", reflection feedback, and community-scenario validation. **All degrade gracefully when unset:** Ask/feedback return `503 ai_unavailable`; scenario submissions skip validation and land in the human moderation queue (`queue_for_review`) rather than being auto-approved. See §6 for the model/tuning knobs. |
 | `ELEVENLABS_API_KEY` | O | secret | Chapter audio / TTS narration. Audio routes 4xx without it. |
+| `APPLE_ISSUER_ID` | R (SIWA) | secret | Apple Developer **Team ID** — the `iss` of the Apple client-secret JWT. Shared by B3 (Apple IAP) and B8 (revoke-on-delete). |
+| `APPLE_BUNDLE_ID` | R (SIWA) | secret | Services ID / bundle id used as the Apple OAuth **client** (`sub`/`client_id`). |
+| `APPLE_KEY_ID` | R (SIWA) | secret | Key id of the `.p8` private key (JWT header `kid`). |
+| `APPLE_PRIVATE_KEY` | R (SIWA) | secret | PKCS#8 PEM of the `.p8` AuthKey. Literal `\n` is tolerated. Used to sign the revoke client-secret JWT. **When any `APPLE_*` is unset, delete silently skips the Apple revoke (`apple_revoke_skip reason=not_configured`).** See [ios/APPLE-AUTH.md](./ios/APPLE-AUTH.md). |
 
 ### C. Infra / CI secrets — used at deploy time only (not app runtime)
 

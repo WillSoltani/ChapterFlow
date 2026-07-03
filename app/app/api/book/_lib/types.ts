@@ -817,7 +817,11 @@ export type OpsFailureKind =
   | "cognito_delete"
   // Step-up session revocation (AdminUserGlobalSignOut) on self-delete /
   // deactivate failed — sessions may NOT have been revoked. Operator follow-up.
-  | "cognito_global_signout";
+  | "cognito_global_signout"
+  // Sign in with Apple token revocation on account delete failed for an
+  // Apple-linked user that held a revocable token — Apple's /auth/revoke errored
+  // after retries. Operator follow-up (App Review requires the token be revoked).
+  | "apple_token_revoke";
 
 /**
  * A recorded operational failure that a human operator should follow up on.
