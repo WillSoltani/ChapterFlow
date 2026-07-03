@@ -411,17 +411,21 @@ test("E2 integration: doAuthorReview CARRIES a durable per-chapter review — sp
 
 test("E2: regen counts PERSIST across a simulated re-entry (a carried PASS never resets the budget)", () => {
   const root = mkdtempSync(join(tmpdir(), "e2-regen-"));
+  const LIN = "abc123def456"; // fixed design lineage for the simulated entries
   try {
-    assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1), 0, "starts empty");
+    assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1, LIN), 0, "starts empty");
     // "Entry 1" consumes ch1's regen.
-    recordRegenConsumed(BOOK, 1, root);
+    recordRegenConsumed(BOOK, 1, LIN, root);
     assert.ok(existsSync(authorRegenLedgerPath(BOOK, root)), "ledger persisted");
     // "Entry 2" (a fresh conductor invocation) LOADS the ledger — the count survived.
     const reloaded = loadAuthorRegenLedger(BOOK, root);
-    assert.equal(regenConsumedFor(reloaded, 1), 1, "consumed count survived the re-entry");
-    assert.equal(regenConsumedFor(reloaded, 2), 0, "an untouched chapter has a full budget");
+    assert.equal(regenConsumedFor(reloaded, 1, LIN), 1, "consumed count survived the re-entry");
+    assert.equal(regenConsumedFor(reloaded, 2, LIN), 0, "an untouched chapter has a full budget");
     // Consuming again grows monotonically (never decrements).
-    recordRegenConsumed(BOOK, 1, root);
-    assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1), 2, "monotonic growth");
+    recordRegenConsumed(BOOK, 1, LIN, root);
+    assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1, LIN), 2, "monotonic growth");
+    // v2 lineage semantics: the SAME design keeps its cap; a NEW design (fresh
+    // research / re-dealt brief) is a new original authoring with a fresh budget.
+    assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1, "fresh-design1"), 0, "a new lineage has a fresh budget");
   } finally { rmSync(root, { recursive: true, force: true }); }
 });

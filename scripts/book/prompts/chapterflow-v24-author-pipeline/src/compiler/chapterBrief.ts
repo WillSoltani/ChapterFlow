@@ -37,14 +37,18 @@ import {
 import {
   CHALLENGE_FRAMES,
   CHALLENGE_INSTRUCTION,
+  EXAMPLE_LENSES,
+  LENS_INSTRUCTION,
   OPENER_INSTRUCTION,
   OPENER_TYPES,
   PRACTICE_INSTRUCTION,
   PRACTICE_SHAPES,
+  PRACTICE_VERBS,
   dealBriefRotations,
   oneThirdCap,
   twoThirdsCap,
   type BriefRotation,
+  type ExampleLens,
 } from "./briefRotation.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
@@ -161,11 +165,74 @@ function siblingOpenerSignature(chapterId: string, chaptersDir: string): string 
 /** Defensive rotation for a chapter number the whole-book deal did not cover (e.g. an index whose
  *  numbers are non-contiguous). Deterministic single-chapter deal — never throws, never Math.random. */
 function fallbackRotation(n: number): BriefRotation {
+  const i = Math.max(1, n) - 1;
   return {
-    openerType: OPENER_TYPES[(Math.max(1, n) - 1) % OPENER_TYPES.length],
-    challengeFrame: CHALLENGE_FRAMES[(Math.max(1, n) - 1) % CHALLENGE_FRAMES.length],
-    practiceShape: PRACTICE_SHAPES[(Math.max(1, n) - 1) % PRACTICE_SHAPES.length],
+    openerType: OPENER_TYPES[i % OPENER_TYPES.length],
+    challengeFrame: CHALLENGE_FRAMES[i % CHALLENGE_FRAMES.length],
+    practiceShape: PRACTICE_SHAPES[i % PRACTICE_SHAPES.length],
+    exampleLenses: [0, 1, 2].map((k) => EXAMPLE_LENSES[(i * 3 + k) % EXAMPLE_LENSES.length]),
+    practiceVerb: PRACTICE_VERBS[i % PRACTICE_VERBS.length],
+    requireFrictionExample: true, // degraded path: prefer the requirement over the ritual concern
   };
+}
+
+/**
+ * v24 S-tier P1 — the book's hot FRAMEWORK NOUNS, computed deterministically from the
+ * source packets (available before any chapter exists; stable across regens). The halted
+ * `execution` run saturated its framework vocabulary ('review' 246×/9ch, 'owner' 121×,
+ * all 9/9 chapters) because nine parallel writers each taught the full framework at full
+ * strength with no vocabulary plan. Each brief lists these nouns WITH a usage budget; the
+ * overflow valve is the chapter's case-concrete referents, never invented synonyms.
+ *
+ * Ranking: content words (len>3, generic-English stoplisted) by packet SPREAD first (a
+ * framework noun is one every chapter's packet carries), then total frequency, then alpha
+ * for determinism. Top 6. Pure.
+ */
+const FRAMEWORK_NOUN_STOP = new Set([
+  // ≥4-char FUNCTION words (the tokenizer only drops ≤3-char words, so these must be
+  // listed explicitly — live sanity check caught "that"/"because"/"into" ranking as
+  // "framework nouns", which would have made the vocabulary budget a laughingstock).
+  "that", "this", "these", "those", "with", "from", "into", "onto", "over", "under",
+  "when", "then", "than", "they", "them", "their", "there", "here", "what", "whether",
+  "where", "which", "while", "would", "could", "should", "must", "might", "shall",
+  "about", "after", "before", "during", "between", "through", "against", "because",
+  "every", "each", "some", "other", "another", "same", "such", "only", "even", "still",
+  "also", "just", "very", "much", "many", "more", "most", "less", "least", "have",
+  "does", "done", "been", "being", "will", "your", "yours", "ours", "theirs", "itself",
+  "again", "once", "never", "always", "often", "cannot", "does", "gets", "goes",
+  // structural words that recur in any packet regardless of the book's framework
+  "chapter", "book", "reader", "people", "person", "work", "make", "makes", "making",
+  "time", "thing", "things", "way", "ways", "place", "good", "better", "best", "real",
+  "clear", "small", "large", "high", "moment", "moments", "example", "point", "part",
+  "well", "right", "wrong", "keep", "keeps", "turn", "turns", "help", "helps", "need",
+  "needs", "want", "wants", "know", "knows", "come", "comes", "take", "takes", "give",
+  "gives", "used", "uses", "using", "instead", "without", "within", "become", "becomes",
+]);
+
+export function hotFrameworkNouns(packets: SourcePacketV1[], top = 6): string[] {
+  const freq = new Map<string, number>();
+  const spread = new Map<string, Set<number>>();
+  for (const packet of packets) {
+    const text = (packet.facts ?? [])
+      .flatMap((f) => [f.claim, f.mechanism, f.commonError, f.whyWrong])
+      .filter((s): s is string => typeof s === "string" && s.length > 0)
+      .join("\n")
+      .toLowerCase();
+    for (const w of text.replace(/[^a-z'\s-]/g, " ").split(/\s+/)) {
+      if (w.length <= 3 || FRAMEWORK_NOUN_STOP.has(w)) continue;
+      freq.set(w, (freq.get(w) ?? 0) + 1);
+      if (!spread.has(w)) spread.set(w, new Set());
+      spread.get(w)!.add(packet.chapterNumber);
+    }
+  }
+  const majority = Math.max(2, Math.ceil(packets.length / 2));
+  return [...freq.keys()]
+    .filter((w) => (spread.get(w)?.size ?? 0) >= majority)
+    .sort((a, b) =>
+      (spread.get(b)!.size - spread.get(a)!.size)
+      || (freq.get(b)! - freq.get(a)!)
+      || (a < b ? -1 : a > b ? 1 : 0))
+    .slice(0, top);
 }
 
 export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsOpts = {}): CompileChapterBriefsResult {
@@ -245,6 +312,9 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
   // canonical chapter count, not just the readable-packet subset, so the deal is stable even if a
   // packet is transiently missing). Every brief gets its dealt reservation.
   const rotations = dealBriefRotations(normalized, totalChapters);
+  // v24 S-tier P1: one book-wide hot-noun list, computed from every readable packet so all
+  // chapters share the SAME budget list (per-chapter lists would let a noun saturate anyway).
+  const frameworkNouns = hotFrameworkNouns(chapters.map((c) => c.packet));
 
   const briefs: ChapterBriefV1[] = [];
   for (const { spec, packet } of chapters) {
@@ -291,6 +361,10 @@ export function compileChapterBriefs(bookId: string, opts: CompileChapterBriefsO
       openerType: (rotations.get(n) ?? fallbackRotation(n)).openerType,
       challengeFrame: (rotations.get(n) ?? fallbackRotation(n)).challengeFrame,
       practiceShape: (rotations.get(n) ?? fallbackRotation(n)).practiceShape,
+      exampleLenses: (rotations.get(n) ?? fallbackRotation(n)).exampleLenses,
+      practiceVerb: (rotations.get(n) ?? fallbackRotation(n)).practiceVerb,
+      requireFrictionExample: (rotations.get(n) ?? fallbackRotation(n)).requireFrictionExample,
+      frameworkNouns,
     });
   }
 
@@ -305,11 +379,34 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   const opener = OPENER_INSTRUCTION[brief.openerType] ?? `Open the hook in "${brief.openerType}" mode.`;
   const frame = CHALLENGE_INSTRUCTION[brief.challengeFrame] ?? `frame it as "${brief.challengeFrame}"`;
   const practice = PRACTICE_INSTRUCTION[brief.practiceShape] ?? `Shape tryThisNow as "${brief.practiceShape}".`;
-  return [
+  const lines = [
     `- OPENER: ${opener} Carry the SAME mode into the fastRead opening sentence.`,
     `- 24-HOUR CHALLENGE: Frame it as ${brief.challengeFrame} — ${frame} Do NOT use the "In the next 24 hours," stem.`,
     `- PRACTICE: ${practice}`,
   ];
+  // v24 S-tier P2/P4/P1 — optional fields; briefs compiled before 2026-07-03 render the
+  // original three lines unchanged.
+  if (brief.exampleLenses && brief.exampleLenses.length > 0) {
+    // #14 (adversarial round 2): the friction-example requirement is DEALT to ceil(2N/3)
+    // chapters, not stamped on all — a dutiful failure-example ×9 is the next ritual.
+    const friction = brief.requireFrictionExample
+      ? " At least ONE of your examples must show the move failing or only partially working — real friction, not another frictionless win."
+      : "";
+    lines.push(`- EXAMPLE SCENES: your 6 examples must cover all three dealt lenses below; at most 2 examples may be a person-handling-a-document scene.${friction}`);
+    for (const lens of brief.exampleLenses) {
+      const instruction = LENS_INSTRUCTION[lens as ExampleLens] ?? `use the "${lens}" scene class.`;
+      lines.push(`    * ${lens}: ${instruction}`);
+    }
+  }
+  if (brief.practiceVerb) {
+    lines.push(`- PRACTICE VERB: build the physical actions in tryThisNow and the 24-hour challenge around "${brief.practiceVerb}" — not "touch" or "open" (other chapters own other verbs; a shared verb becomes a book-wide tic).`);
+  }
+  if (brief.frameworkNouns && brief.frameworkNouns.length > 0) {
+    lines.push(
+      `- FRAMEWORK VOCABULARY BUDGET: the book's framework nouns are: ${brief.frameworkNouns.join(", ")}. Every chapter leans on them, so they saturate book-wide. Your budget: the single noun you need most ≤15 uses in this chapter; every other listed noun ≤10. The same budget applies to any generic role-noun you find yourself repeating (owner, leader, manager) even if unlisted — name people by their case names and titles instead. When the budget is spent, use YOUR cases' concrete referents — the person's name, the artifact, the number — never an invented formal synonym ("the accountable party" is worse than the budget).`,
+    );
+  }
+  return lines;
 }
 
 /** The compact human page the writer card embeds. Aim well under ~2,200 chars for a typical

@@ -36,6 +36,7 @@ import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
+import { RegenLedgerError, migrateLegacyRegenCounts } from "./authorRegenLedger.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -154,21 +155,44 @@ export const AUTHOR_HOUSE_RULES =
   "before padding. Never transcribe scaffold vocabulary (slot names, shape labels, anchor ids) into reader prose.";
 
 /**
- * W1 (plan §WS5) QUALITY BAR — the four write-time rules that the deterministic
+ * W1 (plan §WS5) QUALITY BAR — the write-time rules that the deterministic
  * preflight (W2) enforces after the fact. These live in the ALWAYS-SENT card, not
  * only the retry card: shipping them on the FIRST draft is what stops every draft
  * from paying a ~19-minute whole-chapter retry (first-draft preflight pass rate
  * was 40% — 10/10 first drafts failed tellRate). Each rule is stated as a concrete
  * write-time self-check, not an abstract goal, and is SYMMETRIC where a one-sided
  * fix would just mint the next detectable artifact (the longest-key tell v24 fixed
- * became a shortest-key tell). Verbatim; do not reword.
+ * became a shortest-key tell).
+ *
+ * S-TIER CHANGE (2026-07-03, plan docs/v24/STIER-PLAN-2026-07-03.md): rule 1 gains
+ * the mechanical length-audit protocol (the halted `execution` run still paid 5/9
+ * first-draft tellRate rewrites — B7) and rule 5 (DISTRACTOR CRAFT) is new — 12.3%
+ * of that run's distractors were tone-rejectable strawmen vs 0.5-4.8% in the top-5
+ * corpus (B3). Verbatim; do not reword outside a documented plan change.
  */
 export const AUTHOR_QUALITY_BAR =
-  "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces all four; missing any forces a full rewrite):\n" +
-  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. (A right answer that is always the tersest choice is as much a tell as one that is always the wordiest; balance both directions across the 9 questions.)\n" +
+  "QUALITY BAR — hit these on the FIRST draft (a deterministic preflight enforces them; missing any forces a full rewrite):\n" +
+  "1. DISTRACTOR PARITY. Write every distractor as substantial as the key. The keyed answer must be NEITHER the longest NOR the shortest choice — aim for the middle length. (A right answer that is always the tersest choice is as much a tell as one that is always the wordiest; balance both directions across the 9 questions.) Before you declare done: list the 9 keys' character lengths beside their distractors; across the 9 questions the key should be uniquely shortest in about 2-4 and uniquely longest in at most 3 — outside those bands, rewrite the worst offenders (driving either count to zero just mints the opposite tell).\n" +
   "2. KEY PARAPHRASE. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
   "3. PRACTICE CONCRETENESS. Each tryThisNow and each 24-hour challenge names ONE action with a number or a timebox AND the exact sentence to say or the exact object to touch. No \"a, b, or c\" option menus — give the single concrete move, not a menu of categories.\n" +
-  "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.";
+  "4. PLAIN LANGUAGE FROM SENTENCE ONE. Target whole-chapter Flesch ease 72-84: short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
+  "5. DISTRACTOR CRAFT. Build wrong answers from the source packet's commonError material first — real misconceptions a competent practitioner would defend out loud. Every distractor must be wrong for a specific reason YOUR prose settles, and each explanation must name why the most tempting wrong answer fails — in your own varied words each time; NEVER a fixed stem like \"If you chose (b):\" repeated across questions (162 identical stems is its own template). Never a tone giveaway: no distractor a reader could reject WITHOUT reading the chapter (polish the deck, announce it louder, wait and see, boost morale) — unless the chapter explicitly teaches against that named move.";
+
+/**
+ * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
+ * writer. The blinded reviewers score insight/limits/density/tone/quizzes against
+ * RUBRIC.md definitions the writer otherwise never sees: the halted `execution`
+ * run scored insight 66 / density 62 / tone 67 while every chapter individually
+ * passed — writers were graded on rules they were never given. Compact on purpose
+ * (rule-count dilution is real — B7); every line is checkable while writing.
+ */
+export const AUTHOR_PREMIUM_BLOCK =
+  "WHAT PREMIUM MEANS — the independent reviewers score exactly these; hit them in the draft, not the retry:\n" +
+  "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. At least one example ends in failure or partial success — a chapter of frictionless wins reads as fiction and scores as one.\n" +
+  "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest paragraph in the deep or full read. Overselling is a scored defect.\n" +
+  "- DENSITY: every paragraph adds NEW information. Never restate the previous paragraph in fresh words; never reuse a sentence across fastRead/deepRead/fullRead — each tier must ADD, not re-say.\n" +
+  "- TONE: this book's voice, not a house voice. If a sentence could sit unchanged in any business book, sharpen it until it could only belong to this one.\n" +
+  "- QUIZZES: a reader who skipped the chapter should score ~33%, not 60% — wrong answers must tempt someone who half-read. Explanations teach why the wrong answer fails, not only why the right one is right.";
 
 /** Compact ChapterV21 schema hint — field names + types only, one line, the same
  *  style sectionTasks.ts uses for section artifacts. */
@@ -243,12 +267,15 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   // W2 preflight without a retry (the retry card carried these before, which is
   // why every first draft paid a rewrite).
   styleLines.push("", AUTHOR_QUALITY_BAR);
+  // S-tier P5: the rubric's premium demands, in the same always-sent position.
+  styleLines.push("", AUTHOR_PREMIUM_BLOCK);
   sections.push(...styleLines);
 
   sections.push(
     "",
     "SOURCE PACKET (writer projection)",
     "This is the ONLY allowed factual material. Every claim, number, name, and case detail must trace to it. Invent connective narration, not facts.",
+    "Facts marked \"sharedSpine\" are the book's shared framework — EVERY chapter carries them. Reference them briefly through this chapter's own angle; never re-derive them at full length (nine chapters each re-teaching the spine is how a book becomes one stamped template). Your chapter's OWN core move is never spine-marked: teach it in full — the fast read alone must still leave the core idea.",
     JSON.stringify(writerPacketProjection(packet), null, 1),
   );
 
@@ -466,6 +493,19 @@ export async function doAuthorWrite(
 ): Promise<AutopilotOutcome | null> {
   const io = resolveAuthorIo(opts.io);
   const heartbeat = opts.heartbeat ?? (() => true);
+
+  // C1 (#7): stamp v1 legacy regen counts onto their design lineages NOW — while
+  // the briefs/packets on disk are still the design those writes were consumed
+  // against. The compile verbs below may re-deal the briefs (new rotation
+  // schema), which legitimately re-keys budgets; migrating first keeps the old
+  // counts bound to the old design instead of leaking onto the new one.
+  // Idempotent; a book with no v1 ledger is a no-op.
+  try {
+    migrateLegacyRegenCounts(bookId, undefined, deps.log);
+  } catch (err) {
+    if (err instanceof RegenLedgerError) return halt(bookId, "infra", `author write regen ledger: ${err.message}`);
+    throw err;
+  }
 
   for (const [args, label] of AUTHOR_WRITE_VERBS) {
     if (!heartbeat()) return halt(bookId, "infra", `lost the run lock for ${bookId} during author ${label} — halting to avoid two conductors on the same book.`);

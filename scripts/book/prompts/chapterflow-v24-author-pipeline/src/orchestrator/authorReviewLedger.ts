@@ -102,6 +102,47 @@ export function appendReviewHistory(bookId: string, review: ChapterReviewV1, sta
   return p;
 }
 
+// ── C3 tiebreak notes (S-tier plan, adversarial round-2 #4) ───────────────────
+
+export type TiebreakNote = {
+  chapterNumber: number;
+  contentHash: string;
+  at: string;
+  outcome: "converted-to-pass" | "fail-stands";
+  /** The must-fix complaints of the read(s) the majority overrode — preserved so
+   *  a later churn-HIGH acceptance reject can still target them (the early
+   *  signal stays aggregatable instead of dying with the overridden read). */
+  overriddenComplaints: string[];
+  reads: Array<{ reviewerSessionId: string; composite: number; ship: boolean; valid: boolean }>;
+};
+
+export function tiebreakNotesPath(bookId: string, stateRoot: string = CANONICAL_STATE): string {
+  return resolve(reviewDir(bookId, stateRoot), "tiebreak-notes.json");
+}
+
+/** Append one tiebreak note (read-modify-write; the file is small and single-
+ *  writer by the run lock). Best-effort caller: a note failure never converts a
+ *  decided review into a halt. */
+export function appendTiebreakNote(bookId: string, note: TiebreakNote, stateRoot: string = CANONICAL_STATE): string {
+  const p = tiebreakNotesPath(bookId, stateRoot);
+  mkdirSync(dirname(p), { recursive: true });
+  const notes = loadTiebreakNotes(bookId, stateRoot);
+  notes.push(note);
+  writeFileAtomic(p, JSON.stringify(notes, null, 2) + "\n");
+  return p;
+}
+
+export function loadTiebreakNotes(bookId: string, stateRoot: string = CANONICAL_STATE): TiebreakNote[] {
+  const p = tiebreakNotesPath(bookId, stateRoot);
+  if (!existsSync(p)) return [];
+  try {
+    const parsed = JSON.parse(readFileSync(p, "utf8"));
+    return Array.isArray(parsed) ? (parsed as TiebreakNote[]) : [];
+  } catch {
+    return [];
+  }
+}
+
 /** Load every history record for a book (newest-mtime-independent; we key on
  *  content, not time). Skips unparseable/mismatched files. */
 export function loadReviewHistory(bookId: string, stateRoot: string = CANONICAL_STATE): ChapterReviewV1[] {

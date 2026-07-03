@@ -61,6 +61,11 @@
 import { fnv1a } from "../lib/fnv1a.js";
 import { normSlug } from "../lib/chapterPaths.js";
 
+/** Bumped whenever the SET of dealt rotation fields changes — part of the regen-cap
+ *  lineage hash, so a rotation redesign re-keys chapters' write budgets honestly.
+ *  v2 = the S-tier deal (exampleLenses + practiceVerb + requireFrictionExample). */
+export const ROTATION_SCHEMA_VERSION = "brief-rotation-v2";
+
 export const OPENER_TYPES = ["question", "scene", "claim", "statistic"] as const;
 export type OpenerType = (typeof OPENER_TYPES)[number];
 
@@ -85,6 +90,59 @@ export const PRACTICE_SHAPES = [
   "measure-one-number",
 ] as const;
 export type PracticeShape = (typeof PRACTICE_SHAPES)[number];
+
+/**
+ * v24 S-tier P2 — example DRAMATURGY lenses. The halted `execution` run shipped
+ * 54/54 examples in ONE class (named proxy + prop gesture + business document +
+ * meeting furniture) and the acceptance readers named the "same named-proxy
+ * scenes… same skeleton" directly. Each chapter is dealt THREE lenses; its 6
+ * examples must cover all three, with the house default (prop-tableau) capped
+ * at 2 scenes per chapter by the card instruction. Lens instructions carry
+ * their own fabrication guardrails (dialogue only for invented proxy
+ * characters; counterfactuals framed as reasoning, never as events) because a
+ * dramaturgy that invites invented quotes from real people would trade churn
+ * for an EW1 invented-witness defect.
+ */
+export const EXAMPLE_LENSES = [
+  "prop-tableau",
+  "dialogue-beat",
+  "before-after-ledger",
+  "postmortem",
+  "walkthrough",
+  "counterfactual",
+  "outsider-witness",
+  "numbers-detective",
+] as const;
+export type ExampleLens = (typeof EXAMPLE_LENSES)[number];
+
+export const LENS_INSTRUCTION: Record<ExampleLens, string> = {
+  "prop-tableau": "a person mid-moment with one physical artifact (the classic scene — use it, but in AT MOST 2 of your 6 examples).",
+  "dialogue-beat": "a short spoken exchange carries the turn. Quoted lines ONLY from your invented cast; real source people are paraphrased, never given invented quotes.",
+  "before-after-ledger": "show the same numbers or facts BEFORE and AFTER the move — the delta is the story.",
+  "postmortem": "a past-tense autopsy: the decision already played out; trace why it went the way it went.",
+  "walkthrough": "a step-by-step trace of someone applying the move, decision by decision.",
+  "counterfactual": "reason out loud what would have followed WITHOUT the move — framed explicitly as reasoning ('had they not…'), never narrated as events that happened.",
+  "outsider-witness": "the scene through the eyes of someone downstream — a customer, a junior, a partner — who feels the consequences without attending the meeting.",
+  "numbers-detective": "start from one number or fact that does not add up, and trace it back to the cause.",
+};
+
+/** v24 S-tier P4 — practice VERB registers. The halted run opened practice items
+ *  with "touch the …" on 5/9 chapters and "Open …" on 5/9 — mid-sentence tics
+ *  that the first-4-words scaffold family cannot see. One dealt verb register
+ *  per chapter keeps the physical-action vocabulary from saturating book-wide. */
+export const PRACTICE_VERBS = [
+  "write",
+  "say",
+  "mark",
+  "count",
+  "ask",
+  "circle",
+  "schedule",
+  "read-aloud",
+  "cross-out",
+  "move",
+] as const;
+export type PracticeVerb = (typeof PRACTICE_VERBS)[number];
 
 /** Human, one-line writer instruction for each opener type — rendered verbatim
  *  into the brief md so the writer gets an EXPLICIT mode, not a label. */
@@ -172,10 +230,69 @@ export function dealRotation<T>(
   return result;
 }
 
+/** Deal each chapter a TRIPLE of distinct example lenses. Same determinism
+ *  contract as dealRotation (fnv1a-seeded, ascending walk, pure): per chapter,
+ *  walk the rotated pool from an advancing offset picking 3 DISTINCT lenses,
+ *  each under the global two-thirds cap where possible (cap relaxes only when
+ *  every lens is at cap — 8×cap ≥ 3N for every real book size, so in practice
+ *  the cap binds, never breaks). Adjacent chapters start from different
+ *  offsets, so triples shift chapter to chapter. */
+export function dealLensTriples(bookId: string, totalChapters: number): ExampleLens[][] {
+  const n = Math.max(0, totalChapters);
+  if (n === 0) return [];
+  const cap = twoThirdsCap(n);
+  const start = fnv1a(`${normSlug(bookId)}:brief-example-lens`) % EXAMPLE_LENSES.length;
+  const rotated: ExampleLens[] = [];
+  for (let i = 0; i < EXAMPLE_LENSES.length; i++) rotated.push(EXAMPLE_LENSES[(start + i) % EXAMPLE_LENSES.length]);
+  const counts = new Map<ExampleLens, number>();
+  const result: ExampleLens[][] = [];
+  for (let chapter = 0; chapter < n; chapter++) {
+    // Advance 3 per chapter so consecutive chapters' triples are offset, not nested.
+    const offset = (chapter * 3) % rotated.length;
+    const triple: ExampleLens[] = [];
+    for (let k = 0; k < rotated.length && triple.length < 3; k++) {
+      const cand = rotated[(offset + k) % rotated.length];
+      if (triple.includes(cand)) continue;
+      if ((counts.get(cand) ?? 0) >= cap) continue;
+      triple.push(cand);
+    }
+    // All-at-cap fallback (unreachable for 4..30-chapter books; kept for purity).
+    for (let k = 0; triple.length < 3 && k < rotated.length; k++) {
+      const cand = rotated[(offset + k) % rotated.length];
+      if (!triple.includes(cand)) triple.push(cand);
+    }
+    for (const lens of triple) counts.set(lens, (counts.get(lens) ?? 0) + 1);
+    result.push(triple);
+  }
+  return result;
+}
+
+/** Deal the friction-example requirement to all but min(3, floor(N/3)) chapters —
+ *  enough that ANY 4-chapter acceptance sample contains at least one marked chapter
+ *  (unmarked < 4), without stamping the requirement on every chapter (a dutiful
+ *  failure-example ×N is the next detectable ritual — adversarial round-2 #14).
+ *  Unmarked chapters are spread every-third from an fnv1a-seeded start. Pure. */
+export function dealFrictionFlags(bookId: string, totalChapters: number): boolean[] {
+  const n = Math.max(0, totalChapters);
+  if (n === 0) return [];
+  const excludeCount = Math.min(3, Math.floor(n / 3));
+  const start = fnv1a(`${normSlug(bookId)}:brief-friction-example`) % n;
+  const flags = new Array<boolean>(n).fill(true);
+  for (let k = 0; k < excludeCount; k++) flags[(start + k * 3) % n] = false;
+  return flags;
+}
+
 export type BriefRotation = {
   openerType: OpenerType;
   challengeFrame: ChallengeFrame;
   practiceShape: PracticeShape;
+  /** v24 S-tier P2: the three dramaturgy lenses this chapter's 6 examples must cover. */
+  exampleLenses: ExampleLens[];
+  /** v24 S-tier P4: the physical-action verb register for practice items. */
+  practiceVerb: PracticeVerb;
+  /** v24 S-tier P2 (#14): whether THIS chapter must include a failed/partial-outcome
+   *  example (dealt to ~2/3 of chapters so any 4-chapter sample sees one). */
+  requireFrictionExample: boolean;
 };
 
 /** Deal all three rotations for a book and return them keyed by 1-based chapter
@@ -190,13 +307,27 @@ export function dealBriefRotations(bookId: string, totalChapters: number): Map<n
   // spread ceiling (never below 1, so a short book still deals cleanly).
   const frameCap = n <= CHALLENGE_FRAMES.length ? 1 : Math.max(1, oneThirdCap(n));
 
+  // Practice-verb registers: no-repeat until the pool is exhausted, then the
+  // one-third spread ceiling on wrap (same policy as challengeFrame).
+  const verbCap = n <= PRACTICE_VERBS.length ? 1 : Math.max(1, oneThirdCap(n));
+
   const openers = dealRotation(bookId, "brief-opener", OPENER_TYPES, n, openerCap);
   const frames = dealRotation(bookId, "brief-challenge-frame", CHALLENGE_FRAMES, n, frameCap);
   const shapes = dealRotation(bookId, "brief-practice-shape", PRACTICE_SHAPES, n, practiceCap);
+  const lenses = dealLensTriples(bookId, n);
+  const verbs = dealRotation(bookId, "brief-practice-verb", PRACTICE_VERBS, n, verbCap);
+  const frictions = dealFrictionFlags(bookId, n);
 
   const out = new Map<number, BriefRotation>();
   for (let i = 0; i < n; i++) {
-    out.set(i + 1, { openerType: openers[i], challengeFrame: frames[i], practiceShape: shapes[i] });
+    out.set(i + 1, {
+      openerType: openers[i],
+      challengeFrame: frames[i],
+      practiceShape: shapes[i],
+      exampleLenses: lenses[i],
+      practiceVerb: verbs[i],
+      requireFrictionExample: frictions[i],
+    });
   }
   return out;
 }

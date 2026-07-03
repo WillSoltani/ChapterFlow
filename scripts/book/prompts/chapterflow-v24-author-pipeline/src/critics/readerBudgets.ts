@@ -1123,6 +1123,348 @@ function checkPracticeBudgets(chapters: ChapterV21[]): BudgetFinding[] {
   return findings;
 }
 
+// ── CHB10–CHB13: S-tier cross-chapter checks (plan docs/v24/STIER-PLAN-2026-07-03.md) ──
+//
+// The halted `execution` run passed CHB1–CHB9 with one advisory while three
+// blinded acceptance readers ×2 rounds unanimously called it "one template
+// stamped repeatedly". The sameness lived one level below these checks: lexical
+// saturation (zero repeated 6-grams — echo-blind), one example dramaturgy in
+// 54/54 examples, and tone-rejectable strawman distractors. CHB10–CHB13 measure
+// exactly those three surfaces.
+//
+// CALIBRATION (2026-07-03, measured this campaign; table in
+// docs/v24/CHB10-13-calibration.md): top-5 owner-scored books
+// (games-people-play / crucial-conversations / atomic-habits 85.3,
+// thinking-in-bets 85.2, difficult-conversations 84.9):
+//   CHB10 band words (≥12 uses/ch AND ≥85% chapter spread): top-5 carry 0–2;
+//     halted execution 10 ('review' 27.3/ch). Hottest single top-5 word:
+//     'evidence' 20.6/ch (title concepts legitimately run hot). Catalog scan
+//     (135 books): 24 exceed band>3 — clustered on the known-templated
+//     execution-genre regen candidates (playing-to-win 13, extreme-ownership
+//     10). → two-tier: ADVISORY at band>3, BLOCKER at band>6 or any word
+//     >24/ch (top-5 zero-FP with ≥3× band / 17% ceiling headroom).
+//   CHB12 strawman rate: top-5 0.5–4.8%; halted execution 12.3%; 9/135 catalog
+//     books >7%. → BLOCKER at >7% (zero-FP on top-5 with 45% headroom).
+//   CHB11/CHB13 are heuristic classifiers (scene anatomy, verb families) →
+//     ADVISORY permanently unless a later spotless calibration promotes them.
+//
+// SURFACE NOTE: CHB10/CHB12 measure the FULL reader-visible surface (hook,
+// breakdown tiers, examples, quiz, cards, plan, memorable lines) — the same
+// surface the calibration script measured — NOT chapterReadingSurface (which
+// deliberately excludes examples/quiz for CHB1's anchor-repetition semantics).
+// The thresholds are only valid on the calibration surface.
+
+/** Every reader-visible string of a chapter, joined. Mirrors the calibration
+ *  script byte-for-byte in field coverage; keep the two in sync. */
+function fullReaderSurface(chapter: ChapterV21): string {
+  const parts: Array<string | undefined> = [
+    asText(chapter.hook),
+    asText(chapter.breakdown?.fastRead),
+    asText(chapter.breakdown?.deepRead),
+    asText(chapter.breakdown?.fullRead),
+    asText(chapter.keyTakeaway),
+    asText(chapter.tryThisNow),
+  ];
+  for (const e of chapter.examples ?? []) {
+    parts.push(asText(e.title), asText(e.scenario), asText(e.whatToDo), asText(e.whyItMatters));
+  }
+  for (const q of chapter.quiz?.questions ?? []) {
+    parts.push(asText(q.prompt), asText(q.explanation));
+    for (const c of q.choices ?? []) parts.push(asText(c));
+  }
+  for (const c of chapter.reviewCards ?? []) parts.push(asText(c.front), asText(c.back));
+  const plan = chapter.implementationPlan;
+  if (plan) {
+    parts.push(asText(plan.title), asText(plan.coreSkill), asText(plan.twentyFourHourChallenge), asText(plan.weeklyPractice));
+    for (const it of plan.ifThenPlans ?? []) parts.push(asText(it.context), asText(it.plan));
+  }
+  for (const m of chapter.memorableLines ?? []) parts.push(asText((m as { text?: unknown }).text ?? m));
+  return parts.filter((s): s is string => !!s).join("\n");
+}
+
+/** The calibration tokenizer: lowercase, letters/apostrophes/hyphens only, length>3,
+ *  stopword-dropped. The CHB10 thresholds were measured with EXACTLY this set —
+ *  do not swap in FUNCTION_WORDS/contentTokens (different list → different counts). */
+const SATURATION_STOP = new Set(("the a an and or but if then else when while of to in on at by for with from as is are was " +
+  "were be been being do does did done have has had having it its this that these those you your yours we our us they them " +
+  "their he she his her not no yes so than too very can could will would should may might must one two three first second " +
+  "third more most less least much many few each every all any some other another same new old good bad big small into over " +
+  "under out up down off about after before during between through against because where which who whom whose what why how " +
+  "there here also just only even still yet again once twice never always often sometimes usually").split(/\s+/));
+
+function saturationTokens(text: string): string[] {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z'\s-]/g, " ")
+    .split(/\s+/)
+    .filter((w) => w.length > 3 && !SATURATION_STOP.has(w));
+}
+
+export const CHB10_BAND_DENSITY = 12; // uses per chapter
+export const CHB10_BAND_SPREAD = 0.85; // fraction of chapters
+export const CHB10_BAND_ADVISORY = 3; // band words > this → advisory
+export const CHB10_BAND_BLOCKER = 6; // band words > this → blocker
+export const CHB10_WORD_CEILING = 24; // any single band word above this density → blocker
+
+/** CHB10.lexical_saturation — the book teaches through one saturated vocabulary. */
+function checkLexicalSaturation(chapters: ChapterV21[]): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  const N = chapters.length;
+  if (N < 4) return findings; // spread math is meaningless on tiny books
+  const freq = new Map<string, number>();
+  const spread = new Map<string, Set<number>>();
+  const perChapter = new Map<string, Map<number, number>>();
+  chapters.forEach((chapter) => {
+    for (const w of saturationTokens(fullReaderSurface(chapter))) {
+      freq.set(w, (freq.get(w) ?? 0) + 1);
+      if (!spread.has(w)) spread.set(w, new Set());
+      spread.get(w)!.add(chapter.number);
+      if (!perChapter.has(w)) perChapter.set(w, new Map());
+      const pc = perChapter.get(w)!;
+      pc.set(chapter.number, (pc.get(chapter.number) ?? 0) + 1);
+    }
+  });
+  const band = [...freq.entries()]
+    .filter(([w, n]) => n / N >= CHB10_BAND_DENSITY && (spread.get(w)?.size ?? 0) >= CHB10_BAND_SPREAD * N)
+    .map(([w, n]) => ({ w, n }))
+    .sort((a, b) => b.n - a.n || (a.w < b.w ? -1 : 1));
+  if (band.length === 0) return findings;
+  // Anchor findings on the chapter that uses the hottest band word most (tie → lowest number).
+  const hot = band[0];
+  const anchor = [...(perChapter.get(hot.w) ?? new Map<number, number>()).entries()]
+    .sort((a, b) => b[1] - a[1] || a[0] - b[0])[0]?.[0] ?? chapters[0].number;
+  const describe = band.slice(0, 8).map((b) => `'${b.w}' ${(b.n / N).toFixed(1)}/ch`).join(", ");
+  const over = band.filter((b) => b.n / N > CHB10_WORD_CEILING);
+  if (band.length > CHB10_BAND_BLOCKER || over.length > 0) {
+    findings.push({
+      checkId: "CHB10.lexical_saturation",
+      severity: "blocker",
+      chapterNumber: anchor,
+      message:
+        `${band.length} content word(s) saturate the book (≥${CHB10_BAND_DENSITY} uses/chapter across ≥${Math.round(CHB10_BAND_SPREAD * 100)}% of chapters)` +
+        `${over.length > 0 ? `, ${over.length} above the ${CHB10_WORD_CEILING}/ch ceiling` : ""} — top-5 owner books carry at most 2: ${describe}. ` +
+        `The framework is being re-taught at full strength in every chapter; teach through each chapter's case-concrete referents instead.`,
+    });
+  } else if (band.length > CHB10_BAND_ADVISORY) {
+    findings.push({
+      checkId: "CHB10.lexical_saturation",
+      severity: "advisory",
+      chapterNumber: anchor,
+      message:
+        `${band.length} content word(s) saturate the book (≥${CHB10_BAND_DENSITY}/ch across ≥${Math.round(CHB10_BAND_SPREAD * 100)}% of chapters): ${describe} — ` +
+        `above the top-5 profile (≤2, advisory >${CHB10_BAND_ADVISORY}); watch the framework-vocabulary budget.`,
+    });
+  }
+  return findings;
+}
+
+/** Sentence starters that mean the scenario did NOT open on a bare actor name. */
+const NON_ACTOR_OPENERS = new Set([
+  "the", "a", "an", "in", "at", "on", "when", "during", "after", "before", "what", "which",
+  "why", "how", "who", "it", "if", "one", "two", "three", "for", "from", "by", "with", "every",
+  "each", "some", "most", "this", "that", "there", "imagine", "picture", "consider", "suppose",
+]);
+
+export const CHB11_ACTOR_OPENER_CAP = 0.75; // fraction of all examples
+
+/** CHB11.scene_class — one dramaturgy (actor-opener scene) owns the book's examples.
+ *  Heuristic classifier → ADVISORY permanently unless a spotless calibration promotes it. */
+function checkSceneClassSpread(chapters: ChapterV21[]): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  let examples = 0;
+  let actorOpeners = 0;
+  let anchor = chapters[0]?.number ?? 1;
+  let anchorMax = -1;
+  for (const chapter of chapters) {
+    let chapterActor = 0;
+    for (const e of chapter.examples ?? []) {
+      const scenario = asText(e.scenario).trim();
+      if (!scenario) continue;
+      examples++;
+      const first = (scenario.split(/\s+/)[0] ?? "").replace(/[^A-Za-z'-]/g, "");
+      const isActor = /^[A-Z]/.test(first) && !NON_ACTOR_OPENERS.has(first.toLowerCase());
+      if (isActor) { actorOpeners++; chapterActor++; }
+    }
+    if (chapterActor > anchorMax) { anchorMax = chapterActor; anchor = chapter.number; }
+  }
+  if (examples < 8) return findings;
+  const rate = actorOpeners / examples;
+  if (rate > CHB11_ACTOR_OPENER_CAP) {
+    findings.push({
+      checkId: "CHB11.scene_class",
+      severity: "advisory",
+      chapterNumber: anchor,
+      message:
+        `${actorOpeners}/${examples} (${Math.round(rate * 100)}%) example scenarios open on a bare actor name — ` +
+        `one dramaturgy class is carrying the book (cap ${Math.round(CHB11_ACTOR_OPENER_CAP * 100)}%). ` +
+        `Cover the dealt example lenses: ledgers, postmortems, walkthroughs, dialogue, counterfactuals.`,
+    });
+  }
+  return findings;
+}
+
+/** The strawman giveaway lexicon — distractors rejectable by TONE without reading the
+ *  chapter. Mirrors the calibration regex exactly. */
+const STRAWMAN_LEXICON =
+  /\b(announce|announcement|slide|slides|deck|polish|polished|morale|optics|sound sharper|look impressive|louder|prettier|fancier|inspir\w*|motivat\w*|slogan|poster)\b/i;
+
+export const CHB12_STRAWMAN_RATE_CAP = 0.07;
+
+/** CHB12.strawman_rate — tone-rejectable distractors above the calibrated book rate. */
+function checkStrawmanRate(chapters: ChapterV21[]): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  let total = 0;
+  let straw = 0;
+  const samples: string[] = [];
+  let anchor = chapters[0]?.number ?? 1;
+  let anchorMax = -1;
+  for (const chapter of chapters) {
+    let chapterStraw = 0;
+    for (const q of chapter.quiz?.questions ?? []) {
+      const choices = (q.choices ?? []).map((c) => asText(c));
+      const k = q.correctIndex;
+      const keyShares = typeof k === "number" && choices[k] ? STRAWMAN_LEXICON.test(choices[k]) : false;
+      choices.forEach((c, i) => {
+        if (i === k || !c) return;
+        total++;
+        if (!keyShares && STRAWMAN_LEXICON.test(c)) {
+          straw++;
+          chapterStraw++;
+          if (samples.length < 3) samples.push(`ch${String(chapter.number).padStart(2, "0")}: "${c.slice(0, 70)}"`);
+        }
+      });
+    }
+    if (chapterStraw > anchorMax) { anchorMax = chapterStraw; anchor = chapter.number; }
+  }
+  if (total < 30) return findings; // too few distractors for a stable rate
+  const rate = straw / total;
+  if (rate > CHB12_STRAWMAN_RATE_CAP) {
+    findings.push({
+      checkId: "CHB12.strawman_rate",
+      severity: "blocker",
+      chapterNumber: anchor,
+      message:
+        `${straw}/${total} (${(rate * 100).toFixed(1)}%) distractors are tone-giveaway strawmen (cap ${Math.round(CHB12_STRAWMAN_RATE_CAP * 100)}%; ` +
+        `top-5 owner books run 0.5–4.8%): e.g. ${samples.join("; ")}. ` +
+        `Build wrong answers from the packet's commonError material — operational alternatives a practitioner would defend.`,
+    });
+  }
+  return findings;
+}
+
+/** Words that LEAD a practice clause without being its action verb — temporal
+ *  adverbs, quantifiers, and connective glue the clause-walker must step past
+ *  (calibration: "once"/"within"/"tonight" firing as verbs on top-5 books). */
+const PRACTICE_NON_VERBS = new Set([
+  "your", "you", "then", "and", "todays", "today", "tonight", "tomorrow", "once", "twice",
+  "within", "until", "while", "over", "next", "first", "last", "later", "now", "right",
+  "just", "whenever", "wherever", "anytime", "sometime", "morning", "evening",
+]);
+
+/** First imperative-ish verb of a practice field. A clause whose LEAD word is a
+ *  subordinator/temporal ("When…", "Before…", "Within the next 24 hours…",
+ *  "Once you sit down…") is skipped WHOLE — walking into it returns its subject
+ *  noun, not a verb (calibration bug: "once"/"within"/"tonight" fired as verbs). */
+function practiceLeadVerb(text: string): string | null {
+  const cleaned = asText(text).trim();
+  if (!cleaned) return null;
+  const clauses = cleaned.split(/[,:;—]\s*/);
+  for (const clause of clauses) {
+    const first = (clause.trim().split(/\s+/)[0] ?? "").toLowerCase().replace(/[^a-z-]/g, "");
+    if (!first) continue;
+    if (NON_ACTOR_OPENERS.has(first) || PRACTICE_NON_VERBS.has(first) || /^\d/.test(clause.trim())) continue;
+    return first;
+  }
+  return null;
+}
+
+export const CHB13_VERB_FAMILY_CAP_FRACTION = 3; // family cap = ceil(N/3)
+
+/** CHB13.practice_verb_family — one physical-action verb saturating practice items
+ *  book-wide ("touch the…" ×5/9 in the halted run — invisible to CHB7's
+ *  first-4-words family because the tic sits mid-sentence). ADVISORY (uncalibrated
+ *  heuristic; P4's dealt verb registers are the prevention). */
+function checkPracticeVerbFamily(chapters: ChapterV21[]): BudgetFinding[] {
+  const findings: BudgetFinding[] = [];
+  const N = chapters.length;
+  if (N < 4) return findings;
+  const cap = Math.ceil(N / CHB13_VERB_FAMILY_CAP_FRACTION);
+  const byVerb = new Map<string, Set<number>>();
+  for (const chapter of chapters) {
+    const fields = [chapter.tryThisNow, chapter.implementationPlan?.twentyFourHourChallenge, chapter.implementationPlan?.weeklyPractice];
+    for (const f of fields) {
+      const verb = practiceLeadVerb(asText(f));
+      if (!verb) continue;
+      if (!byVerb.has(verb)) byVerb.set(verb, new Set());
+      byVerb.get(verb)!.add(chapter.number);
+    }
+  }
+  for (const [verb, chapterSet] of [...byVerb.entries()].sort()) {
+    if (chapterSet.size > cap) {
+      const nums = [...chapterSet].sort((a, b) => a - b);
+      findings.push({
+        checkId: "CHB13.practice_verb_family",
+        severity: "advisory",
+        chapterNumber: nums[0],
+        message:
+          `practice items lead with "${verb}" in ${chapterSet.size}/${N} chapters (cap ${cap}) — ` +
+          `a shared action verb is a book-wide tic; use each chapter's dealt practice verb register.`,
+      });
+    }
+  }
+  return findings;
+}
+
+/** C2: the deterministic churn-evidence report the acceptance-reject repair
+ *  round hands to targeted writers — the CHB10–13 measurements over the CURRENT
+ *  bytes, formatted as complaint lines. Cross-chapter context is deliberately
+ *  allowed HERE (and only here): this is the post-acceptance repair round, and
+ *  the leak IS the repair signal (plan §Round-2 #22). */
+export function buildChurnEvidenceReport(chapters: ChapterV21[]): string[] {
+  const ordered = [...chapters].sort((a, b) => a.number - b.number);
+  const findings = [
+    ...checkLexicalSaturation(ordered),
+    ...checkSceneClassSpread(ordered),
+    ...checkStrawmanRate(ordered),
+    ...checkPracticeVerbFamily(ordered),
+  ];
+  if (findings.length === 0) return ["measured churn evidence: none of the deterministic cross-chapter meters fire — the sameness the readers named is in surfaces the meters cannot see; diverge on rhetoric, scene texture, and sentence rhythm."];
+  return findings.map((f) => `measured (${f.checkId}): ${f.message}`);
+}
+
+/** C2/#21: rank chapters by their contribution to the book's lexical saturation
+ *  (per-chapter usage of the book's band words; ties → lower chapter number).
+ *  Used to pick evidence-driven regen targets among the sampled chapters. */
+export function rankSaturationContributors(chapters: ChapterV21[]): number[] {
+  const ordered = [...chapters].sort((a, b) => a.number - b.number);
+  const N = ordered.length;
+  if (N === 0) return [];
+  const freq = new Map<string, number>();
+  const spread = new Map<string, Set<number>>();
+  const perChapterTokens = new Map<number, string[]>();
+  for (const chapter of ordered) {
+    const tokens = saturationTokens(fullReaderSurface(chapter));
+    perChapterTokens.set(chapter.number, tokens);
+    for (const w of tokens) {
+      freq.set(w, (freq.get(w) ?? 0) + 1);
+      if (!spread.has(w)) spread.set(w, new Set());
+      spread.get(w)!.add(chapter.number);
+    }
+  }
+  const band = new Set(
+    [...freq.entries()]
+      .filter(([w, n]) => n / N >= CHB10_BAND_DENSITY && (spread.get(w)?.size ?? 0) >= CHB10_BAND_SPREAD * N)
+      .map(([w]) => w),
+  );
+  const score = new Map<number, number>();
+  for (const chapter of ordered) {
+    score.set(chapter.number, (perChapterTokens.get(chapter.number) ?? []).filter((w) => band.has(w)).length);
+  }
+  return ordered
+    .map((c) => c.number)
+    .sort((a, b) => (score.get(b)! - score.get(a)!) || (a - b));
+}
+
 // ── entry point ──────────────────────────────────────────────────────────────
 
 export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOptions): BudgetFinding[] {
@@ -1140,6 +1482,10 @@ export function checkReaderBudgets(chapters: ChapterV21[], opts?: ReaderBudgetOp
     ...checkScaffoldAndPhraseSpread(ordered, opts?.packets),
     ...checkTellDistribution(ordered, opts?.packets),
     ...checkPracticeBudgets(ordered),
+    ...checkLexicalSaturation(ordered),
+    ...checkSceneClassSpread(ordered),
+    ...checkStrawmanRate(ordered),
+    ...checkPracticeVerbFamily(ordered),
   ];
 }
 

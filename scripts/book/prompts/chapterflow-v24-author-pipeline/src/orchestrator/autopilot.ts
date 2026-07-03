@@ -191,6 +191,11 @@ export type AutopilotDeps = {
   submissionPresent: (bookId: string, roundId: string, card: string) => boolean;
   /** Persist one agent session's outcome (durable per-agent log) for walk-away forensics. */
   logSession: (bookId: string, label: string, r: CodexAgentResult) => void;
+  /** C5 (S-tier): per-chapter REVIEW-carry telemetry — the cost report's `carry` tally
+   *  tracks only the once-per-run acceptance-carry decision, which read "0 hit / 1 miss"
+   *  on an entry that carried 7/9 reviews. Optional (tests/manual drivers omit it);
+   *  wired to the run ledger by runAutopilot. Must never throw. */
+  noteReviewCarry?: (hit: boolean) => void;
   /** Persist one BROKERED reviewer's structured outcome (agent/extract/submit success) to a
    *  durable sibling log, so a codex-exit-0-but-qc-submit-rejected reviewer is diagnosable
    *  (the session log alone would look healthy). Best-effort: must not throw. */
@@ -992,6 +997,9 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
     logSession: (bookId: string, label: string, r: CodexAgentResult) => {
       try { ledger.record(r); } catch { /* telemetry never halts a run */ }
       base.logSession(bookId, label, r);
+    },
+    noteReviewCarry: (hit: boolean) => {
+      try { if (hit) ledger.reviewCarryHit(); else ledger.reviewCarryMiss(); } catch { /* telemetry never halts a run */ }
     },
   };
   let outcome: AutopilotOutcome;
