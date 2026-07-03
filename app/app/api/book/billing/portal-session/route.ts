@@ -31,6 +31,13 @@ export async function POST(req: Request) {
     const entitlement = await getUserEntitlement(tableName, user.sub);
     if (!entitlement?.stripeCustomerId) {
       const source = entitlement?.proSource;
+      if (source === "apple") {
+        throw new BookApiError(
+          400,
+          "not_stripe_subscriber",
+          "Your Pro access is managed through the App Store — manage or cancel it from Settings on your iPhone, not here."
+        );
+      }
       if (source === "license") {
         throw new BookApiError(
           400,

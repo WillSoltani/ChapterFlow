@@ -53,6 +53,8 @@ import {
   settingsSk,
   stripeCustomerPk,
   stripeCustomerSk,
+  appleOriginalTransactionPk,
+  appleOriginalTransactionSk,
   webhookPk,
   webhookSk,
   emailSuppressionPk,
@@ -116,6 +118,10 @@ import {
   buildEntitlementUpdateFromStripe,
   buildDisputeMarkerUpdate,
 } from "./stripe-entitlement-write-core";
+import {
+  buildEntitlementUpdateFromApple,
+  type AppleEntitlementWriteParams,
+} from "./apple-entitlement-write-core";
 import {
   buildBookMetaAndCatalogItems,
   planMetaCatalogRollback,
@@ -749,15 +755,17 @@ export async function getUserEntitlement(
   const proSource =
     item.proSource === "stripe"
       ? "stripe"
-      : item.proSource === "license"
-        ? "license"
-        : item.proSource === "flow_points"
-          ? "flow_points"
-          : item.proSource === "gift_code"
-            ? "gift_code"
-            : item.proSource === "admin"
-              ? "admin"
-              : undefined;
+      : item.proSource === "apple"
+        ? "apple"
+        : item.proSource === "license"
+          ? "license"
+          : item.proSource === "flow_points"
+            ? "flow_points"
+            : item.proSource === "gift_code"
+              ? "gift_code"
+              : item.proSource === "admin"
+                ? "admin"
+                : undefined;
   const licenseKey = readStr(item.licenseKey);
   const licenseExpiresAt = readStr(item.licenseExpiresAt);
   const currentPeriodEnd = readStr(item.currentPeriodEnd);
@@ -799,6 +807,9 @@ export async function getUserEntitlement(
     licenseKey,
     licenseExpiresAt,
     lastStripeEventAt: readNum(item.lastStripeEventAt),
+    appleOriginalTransactionId: readStr(item.appleOriginalTransactionId),
+    appleProductId: readStr(item.appleProductId),
+    lastAppleSignedDate: readNum(item.lastAppleSignedDate),
     updatedAt: readStr(item.updatedAt) || "",
   };
 }
@@ -870,7 +881,7 @@ async function reserveBookEntitlementOnce(
           "SET #plan = if_not_exists(#plan, :freePlan), freeBookSlots = if_not_exists(freeBookSlots, :freeSlots), updatedAt = :updatedAt ADD unlockedBookIds :bookSet",
         // A user may bypass the slot limit only when they are PRO with a non-expired entitlement.
         ConditionExpression: [
-          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :adminSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
+          "(#plan = :proPlan AND (attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :appleSource OR proSource = :adminSource OR (proSource = :licenseSource AND licenseExpiresAt >= :now) OR (proSource = :flowPointsSource AND currentPeriodEnd >= :now) OR (proSource = :giftSource AND currentPeriodEnd >= :now)))",
           "OR contains(unlockedBookIds, :bookId)",
           "OR attribute_not_exists(unlockedBookIds)",
           "OR attribute_not_exists(freeBookSlots)",
@@ -883,6 +894,7 @@ async function reserveBookEntitlementOnce(
           ":freePlan": "FREE",
           ":proPlan": "PRO",
           ":stripeSource": "stripe",
+          ":appleSource": "apple",
           ":adminSource": "admin",
           ":licenseSource": "license",
           ":flowPointsSource": "flow_points",
@@ -900,15 +912,17 @@ async function reserveBookEntitlementOnce(
     const proSource =
       item.proSource === "stripe"
         ? "stripe"
-        : item.proSource === "license"
-          ? "license"
-          : item.proSource === "flow_points"
-            ? "flow_points"
-            : item.proSource === "gift_code"
-              ? "gift_code"
-              : item.proSource === "admin"
-                ? "admin"
-                : undefined;
+        : item.proSource === "apple"
+          ? "apple"
+          : item.proSource === "license"
+            ? "license"
+            : item.proSource === "flow_points"
+              ? "flow_points"
+              : item.proSource === "gift_code"
+                ? "gift_code"
+                : item.proSource === "admin"
+                  ? "admin"
+                  : undefined;
     return {
       userId: params.userId,
       plan: item.plan === "PRO" ? "PRO" : "FREE",
@@ -2464,6 +2478,100 @@ export async function getUserIdByStripeCustomer(
   );
   const userId = readStr(res.Item?.userId);
   return userId || null;
+}
+
+/**
+ * Claim the reverse map from an Apple `originalTransactionId` to the owning
+ * userId. Written by the /apple/verify route (where the authenticated user
+ * proves ownership of the StoreKit transaction) so the App Store Server
+ * Notifications webhook — which carries no userId — can later resolve the
+ * account. The Apple analogue of {@link mapStripeCustomerToUser}, but
+ * CONDITIONAL: the map is created only if unowned, and re-claiming by the same
+ * user is idempotent. A transaction already owned by a DIFFERENT user is
+ * refused (returns false) so a replayed transaction JWS cannot hijack another
+ * account's purchase.
+ */
+export async function claimAppleTransactionForUser(
+  tableName: string,
+  originalTransactionId: string,
+  userId: string
+): Promise<boolean> {
+  try {
+    await ddbDoc.send(
+      new PutCommand({
+        TableName: tableName,
+        Item: {
+          PK: appleOriginalTransactionPk(originalTransactionId),
+          SK: appleOriginalTransactionSk(),
+          entity: "BOOK_APPLE_TXN_MAP",
+          originalTransactionId,
+          userId,
+          updatedAt: nowIso(),
+        },
+        ConditionExpression: "attribute_not_exists(PK) OR userId = :userId",
+        ExpressionAttributeValues: { ":userId": userId },
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
+export async function getUserIdByAppleOriginalTransaction(
+  tableName: string,
+  originalTransactionId: string
+): Promise<string | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: appleOriginalTransactionPk(originalTransactionId),
+        SK: appleOriginalTransactionSk(),
+      },
+    })
+  );
+  const userId = readStr(res.Item?.userId);
+  return userId || null;
+}
+
+/**
+ * Apply an Apple StoreKit / App Store Server Notification entitlement mutation.
+ * The Apple mirror of {@link updateUserEntitlementFromStripe}: all
+ * UpdateExpression / ConditionExpression building lives in the pure
+ * apple-entitlement-write-core module (unit-tested without the AWS SDK),
+ * including the `lastAppleSignedDate` ordering guard and the cross-source
+ * arbitration guard. A refused conditional write (stale event, wrong source, or
+ * downgrade of a non-apple entitlement) is swallowed — there is nothing to
+ * retry. Returns whether the write applied.
+ */
+export async function updateUserEntitlementFromApple(
+  tableName: string,
+  params: AppleEntitlementWriteParams & { userId: string }
+): Promise<boolean> {
+  const built = buildEntitlementUpdateFromApple(params, nowIso());
+  try {
+    await ddbDoc.send(
+      new UpdateCommand({
+        TableName: tableName,
+        Key: {
+          PK: bookUserPk(params.userId),
+          SK: entitlementSk(),
+        },
+        ConditionExpression: built.conditionExpression,
+        UpdateExpression: built.updateExpression,
+        ExpressionAttributeNames: built.expressionAttributeNames,
+        ExpressionAttributeValues: built.expressionAttributeValues,
+      })
+    );
+    return true;
+  } catch (error: unknown) {
+    if (isConditionalCheckFailed(error)) {
+      return false;
+    }
+    throw error;
+  }
 }
 
 export async function updateUserEntitlementFromStripe(

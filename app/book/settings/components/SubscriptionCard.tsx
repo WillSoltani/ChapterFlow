@@ -4,15 +4,26 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, CheckCircle2, XCircle, Check, Sparkles } from "lucide-react";
 import { Button } from "@/app/book/components/ui/Button";
-import type { BillingInterval, PricingTier } from "@/app/book/hooks/useBookEntitlements";
+import type {
+  BillingInterval,
+  EntitlementsResponse,
+  PricingTier,
+} from "@/app/book/hooks/useBookEntitlements";
 import { ANNUAL_SAVINGS_BADGE, TRIAL_CTA_LABEL, PRO_FEATURES } from "@/lib/pricing";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
+import {
+  APPLE_MANAGE_SUBSCRIPTIONS_URL,
+  APPLE_MANAGED_SUBSCRIPTION_LABEL,
+} from "@/lib/apple-billing";
 
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
   freeBookSlots: number;
   currentPeriodEnd?: string;
   cancelAtPeriodEnd?: boolean;
+  /** How the user obtained Pro — drives whether we show the Stripe portal or the
+   *  App Store management link for a Pro subscriber. */
+  proSource?: EntitlementsResponse["entitlement"]["proSource"];
   price: string;
   pricingTiers?: PricingTier[];
   /** Billing interval to pre-select (e.g. carried from the landing "Annual"
@@ -35,6 +46,7 @@ export function SubscriptionCard({
   freeBookSlots,
   currentPeriodEnd,
   cancelAtPeriodEnd,
+  proSource,
   price,
   pricingTiers,
   initialInterval,
@@ -133,19 +145,38 @@ export function SubscriptionCard({
             Your Pro access will end on the date above and won&apos;t auto-renew.
           </p>
         )}
-        <Button
-          variant="secondary"
-          size="sm"
-          className="mt-4"
-          disabled={actionLoading}
-          onClick={handleManage}
-        >
-          {actionLoading ? (
-            <Loader2 className="h-4 w-4 animate-spin" />
-          ) : (
-            "Manage subscription"
-          )}
-        </Button>
+        {proSource === "apple" ? (
+          // App Store subscriptions can only be managed by Apple — there is no
+          // Stripe portal to open. Point the user at Apple's management page
+          // instead of the (server-minted) Stripe portal CTA.
+          <>
+            <p className="mt-2 text-xs text-(--cf-text-soft)">
+              {APPLE_MANAGED_SUBSCRIPTION_LABEL}.
+            </p>
+            <a
+              href={APPLE_MANAGE_SUBSCRIPTIONS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-4 inline-flex h-(--cf-control-height-sm) items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3 text-sm font-semibold text-(--cf-text-1) transition-colors hover:border-(--cf-text-soft)"
+            >
+              Manage in the App Store
+            </a>
+          </>
+        ) : (
+          <Button
+            variant="secondary"
+            size="sm"
+            className="mt-4"
+            disabled={actionLoading}
+            onClick={handleManage}
+          >
+            {actionLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Manage subscription"
+            )}
+          </Button>
+        )}
         {actionError && (
           <div className="mt-2 flex items-center gap-2 text-xs text-(--cf-danger-text)">
             <XCircle className="h-3.5 w-3.5" />
