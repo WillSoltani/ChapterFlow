@@ -731,3 +731,29 @@ test("authorWriteOneChapter: a rubric-preflight FAIL feeds the retry card like a
   assert.ok(spawns[1].task.includes("tell=0.778"), "the verbatim metrics line reaches the writer");
   assert.ok(spawns[1].task.includes("balance distractor lengths"), "the how-to-read guidance is attached");
 });
+
+// ── Book-acceptance bar calibration (owner decision 2026-07-03) ───────────────
+
+test("book acceptance: composite 80.3 with gate PASS passes the calibrated bar 80; 79 rejects; beat-shipped binds when set", async () => {
+  const run = async (score: number, shipped?: string) => {
+    if (shipped === undefined) delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+    else process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = shipped;
+    try {
+      const { deps } = mkDeps((o) => {
+        if (o.sessionId.includes("author-book-reader")) return { finalMessage: bookReply(FIXTURE_CHAPTERS, { score }) };
+        const m = o.sessionId.match(/author-review-ch0*(\d+)/);
+        if (m) return { finalMessage: reviewReply(Number(m[1]) === 1 ? CH1 : CH2) };
+        return {};
+      });
+      return await doAuthorReview("zz", deps, { maxParallel: 2, io: mkIo() });
+    } finally {
+      delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+    }
+  };
+  assert.equal(await run(81), null, "81 >= bar 80 → accepted (run completes)");
+  const rejected = await run(79);
+  assert.ok(rejected && rejected.status === "halt", "79 < bar 80 → rejected → regen round → halt in this stub");
+  const belowShipped = await run(81, "82.5");
+  assert.ok(belowShipped && belowShipped.status === "halt", "81 < shipped-control 82.5 → rejected despite clearing the bar");
+  assert.equal(await run(83, "82.5"), null, "83 beats both the bar and the shipped control");
+});
