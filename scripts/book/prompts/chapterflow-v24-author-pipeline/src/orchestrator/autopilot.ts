@@ -68,6 +68,7 @@ import { researchFreshnessViolation } from "./researchFreshness.js";
 import { doCompilerWrite } from "./compilerRun.js";
 import { doAuthorWrite } from "./authorRun.js";
 import { doAuthorReview, type AuthorReviewIo } from "./authorReview.js";
+import { deriveDurableAcceptance } from "./authorAcceptanceState.js";
 import { runRoutedRedeals, runArtifactSync } from "./repairRouting.js";
 import { bookRiskPath } from "../artifacts/artifactStore.js";
 import { RISK_SCORE_SCHEMA_VERSION, type BookRiskScoreV1, type ChapterRiskScoreV1 } from "../artifacts/artifactTypes.js";
@@ -155,6 +156,14 @@ export type AutopilotDeps = {
    *  stochastic sweep read; it requires this cross-round corroboration first. Fail-safe → false
    *  (an unconfirmed book just runs one more confirming round; a read error never force-ships). */
   sweepConfirmed: (bookId: string) => boolean;
+  /** E1 — v24 author arch DURABLE acceptance. True iff book acceptance still holds
+   *  at the book's CURRENT on-disk bytes: EVERY chapter carries a FRESH PUBLISHABLE
+   *  attestation with dimensions.bookAcceptance===true AND the newest persisted
+   *  acceptance record is accepted at valid-reader quorum (deriveDurableAcceptance).
+   *  This replaces the memory-only `authorBookAccepted` flag that reset on every
+   *  conductor re-entry (routing a fully-accepted book back to "qc"). Fail-safe →
+   *  false (a re-run of the acceptance phase is always correct; any doubt re-runs). */
+  authorAccepted: (bookId: string) => boolean;
   /** The stable keys of every MAJOR-tier deterministic finding over the whole book
    *  (ship-gate majors + book-gate majors: A13 commas, C23 dup protagonist, BP28/29/31
    *  templating, …). These are INVISIBLE to qc-converge (it gates on blockers only), so a
@@ -561,6 +570,16 @@ function defaultSweepConfirmed(bookId: string): boolean {
   }
 }
 
+/** E1 — durable author-arch acceptance (deriveDurableAcceptance). Fail-safe →
+ *  false: any read error / doubt re-runs the acceptance phase (never force-ships). */
+function defaultAuthorAccepted(bookId: string): boolean {
+  try {
+    return deriveDurableAcceptance(bookId).accepted;
+  } catch {
+    return false;
+  }
+}
+
 /** All MAJOR-tier deterministic finding keys for the book — ship-gate majors (per-chapter,
  *  e.g. A13/C23) keyed by chapter+catalogId+unit, plus book-gate majors (e.g. BP28/29/31)
  *  keyed by catalogId+named-chapters. Fail-safe → empty set. The keys must be STABLE across
@@ -907,6 +926,7 @@ export function resolveDeps(d?: Partial<AutopilotDeps>): AutopilotDeps {
     chapterHashes: d?.chapterHashes ?? defaultChapterHashes,
     anyCarryable: d?.anyCarryable ?? defaultAnyCarryable,
     sweepConfirmed: d?.sweepConfirmed ?? defaultSweepConfirmed,
+    authorAccepted: d?.authorAccepted ?? defaultAuthorAccepted,
     majorFindingKeys: d?.majorFindingKeys ?? defaultMajorFindingKeys,
     blockingMajors: d?.blockingMajors ?? defaultBlockingMajors,
     bookRisk: d?.bookRisk ?? defaultBookRisk,
@@ -1013,7 +1033,15 @@ export async function runAutopilot(opts: AutopilotOptions): Promise<AutopilotOut
         return mkHalt(bookId, safePhase(bookId, deps, regen), "infra", `lost the run lock for ${bookId} mid-run (ownership taken over OR heartbeat write failed) — halting to avoid two conductors on the same book.`);
       }
       const status = deps.statusOf(bookId);
-      const sweepConfirmed = architecture === "author" ? authorBookAccepted : deps.sweepConfirmed(bookId);
+      // E1 — durable acceptance: the author branch treats the book as accepted when
+      // EITHER this run just accepted it (in-memory flag) OR the durable evidence
+      // still holds at the current bytes (deps.authorAccepted: fresh PUBLISHABLE
+      // bookAcceptance attestations on every chapter + a quorum-met acceptance
+      // record). A fully-accepted book RE-ENTERING the conductor over unchanged
+      // content now routes straight to READY (0 sessions) instead of back to "qc".
+      const sweepConfirmed = architecture === "author"
+        ? (authorBookAccepted || deps.authorAccepted(bookId))
+        : deps.sweepConfirmed(bookId);
       const phase = decidePhase(status, sweepConfirmed, regen);
       // sweepConfirmed is in the signature so a confirming round (which leaves the chapter counts
       // unchanged but flips confirmation) counts as PROGRESS, not a no-progress halt.

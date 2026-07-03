@@ -248,6 +248,7 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
   const bars: ValidatedBarReadSubmission[] = [];
   const confirms: ValidatedConfirmReadSubmission[] = [];
   const acceptanceRecords: AuthorAcceptanceRecord[] = [];
+  const regenLedger = new Map<number, number>(); // in-memory E2 regen-cap tracking, per io instance
   const acceptance: AcceptanceWriters = {
     openRound: () => ({ roundId: "r20260101000000-abcdef", tokens: {} }),
     writeBar: (s) => { bars.push(s); return "/tmp/bar.json"; },
@@ -279,6 +280,23 @@ function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { a
       runKeyJudge: async () => ({ ok: true as const }),
       runSweep: async () => ({ ok: true as const }),
     },
+    // AUTO control-read stubbed: honor the env override exactly as the real
+    // resolver does (env-first), else bar-80-only (no shipped package / no git in
+    // these unit tests). This keeps the beat-shipped-when-set contract testable
+    // without shelling out to git or spawning a control reader.
+    resolveBeatShipped: async () => {
+      const raw = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+      if (raw !== undefined && raw !== "") {
+        const n = Number(raw);
+        return { ok: true as const, composite: Number.isFinite(n) ? n : null, source: "env" as const };
+      }
+      return { ok: true as const, composite: null, source: "none" as const };
+    },
+    // E2 regen-cap: in-memory per-io so a test's GLOBAL cap is exercised WITHOUT
+    // leaking a durable ledger into real state/ (and without one test's ledger
+    // contaminating the next's — the fixture book id is shared).
+    regenConsumedFor: (_b, n) => regenLedger.get(n) ?? 0,
+    recordRegenConsumed: (_b, n) => { regenLedger.set(n, (regenLedger.get(n) ?? 0) + 1); },
     ...over,
   };
   return Object.assign(io, { attestations, bars, confirms, acceptanceRecords });
