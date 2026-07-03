@@ -1383,7 +1383,7 @@ test("default blind workspace falls OPEN to the pipeline dir when a role's packs
   await brokerReviewer("zz-no-such-book", "r1", "/t/00-sweep.md", { sweep: "SW" }, deps);
   assert.match(
     spawnCwd.replace(/\\/g, "/"),
-    /chapterflow-v(?:21-authored|22-optimized-autonomous|23-compiler-pipeline(?: \d+)?)$/,
+    /chapterflow-v(?:21-authored|22-optimized-autonomous|23-compiler-pipeline(?: \d+)?|24-author-pipeline)$/,
     "no packs on disk → cwd falls open to the pipeline dir",
   );
 });

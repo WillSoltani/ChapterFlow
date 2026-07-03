@@ -13,7 +13,8 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 - `components/` — the live route UIs (`library/`, `progress/`, `onboarding/`, `landing/`, `sections/`, `ui/`). Live routes render `components/*`; the older `app/book/*Client.tsx` are largely dead — confirm a component is actually mounted before editing it.
 - `lib/` — shared app code.
 - `infra/` — AWS CDK (its own `package.json`).
-- `scripts/book/prompts/chapterflow-v21-authored/` — the v21 book pipeline (gates, critics, generators). Background tooling, not the web app.
+- `scripts/book/prompts/chapterflow-v24-author-pipeline/` — the ACTIVE (v24 author-first) book pipeline: briefs → whole-chapter writers → reader reviews → publish-final. Background tooling, not the web app.
+- `scripts/book/prompts/chapterflow-v21-authored/` — the LEGACY v21 pipeline; its `state/` is the tracked gold regression corpus (never delete).
 - `docs/` — architecture & audit docs.
 
 ## Commands (Node 20 — currently 20.20.2)
@@ -27,5 +28,5 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 - `scripts/book/**/state/**.json` — ~4,150 tracked generated book-state files (~78% of tracked files). They bloat grep/glob and waste tokens; scope searches to `app/`, `components/`, `lib/`. Open a specific state file only when working on it directly.
 
 ## Pipeline traps (only when touching `scripts/book/`)
-- **Dual state dirs:** repo-root `/state/` is a forbidden shadow (gitignored); the gates read the pipeline copy at `scripts/book/prompts/chapterflow-v21-authored/state/`. Don't let repair output land in the root copy.
+- **Dual state dirs:** repo-root `/state/` is a forbidden shadow (gitignored); each pipeline reads its own `state/` under its dir (`chapterflow-v24-author-pipeline/state/` for active work). Don't let repair output land in the root copy.
 - Gates can pass structurally-valid but content-corrupt output (templated cards, wrong quiz keys). Read the actual content before any ship/GREEN verdict.

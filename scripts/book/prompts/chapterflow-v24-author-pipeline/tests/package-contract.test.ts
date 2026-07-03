@@ -6,7 +6,7 @@ import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 
 const REPO_ROOT = PIPELINE_DIR;
-const PACKAGE_NAME = "@chapterflow/v23-compiler-pipeline";
+const PACKAGE_NAME = "@chapterflow/v24-author-pipeline";
 const NODE_ENGINE = ">=20.20.0 <21";
 const PACKAGE_MANAGER = "npm@10.8.2";
 

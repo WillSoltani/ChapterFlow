@@ -14,7 +14,7 @@ Writes tests/fixtures/rubric-metrics-parity.json.
 import json, os, importlib.util
 
 SCORE_PY = "/Users/radinsoltani/ChapterFlow-books/.claude/skills/book-score/score.py"
-PKG_DIR = "/Users/radinsoltani/wt-v23-p01/book-packages"
+PKG_DIR = "/Users/radinsoltani/ChapterFlow-books/book-packages"
 OUT = os.path.join(os.path.dirname(__file__), "..", "tests", "fixtures", "rubric-metrics-parity.json")
 
 # --- load the canonical scorer as a module (absolute path, never the worktree copy) ---

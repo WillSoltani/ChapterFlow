@@ -21,7 +21,7 @@ import { readdirSync } from "fs";
 import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url)); // .../chapterflow-v23-compiler-pipeline/src/lib
+const __dirname = dirname(fileURLToPath(import.meta.url)); // .../chapterflow-v24-author-pipeline/src/lib
 
 /** The git-tracked, canonical pipeline state dir (what gates/promote read). */
 export const CANONICAL_STATE = resolve(__dirname, "../../state");

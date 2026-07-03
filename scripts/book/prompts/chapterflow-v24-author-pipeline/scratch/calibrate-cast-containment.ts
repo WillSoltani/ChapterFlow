@@ -140,7 +140,7 @@ for (const h of actionHits.slice(0, 40)) console.log(`| ${h.book} | ${h.chapter}
 
 // ── live-defect proof (POM ch01 section artifacts) ───────────────────────────
 console.log("\n=== SEC119 LIVE-DEFECT PROOF (the-power-of-moments ch01) ===");
-const base = resolve(CANONICAL, "scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/state/books/the-power-of-moments/runs/v23-current");
+const base = resolve(CANONICAL, "scripts/book/prompts/chapterflow-v24-author-pipeline/state/books/the-power-of-moments/runs/v23-current");
 const bpPath = resolve(base, "blueprints/ch01.blueprint.json");
 const secDir = resolve(base, "sections/ch01");
 if (!existsSync(bpPath) || !existsSync(secDir)) {
