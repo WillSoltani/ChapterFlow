@@ -29,6 +29,11 @@ new ChapterFlowBackendStack(app, cfg.backendStackId, {
   removalPolicy: cfg.removalPolicy,
   deletionProtection: cfg.deletionProtection,
   pointInTimeRecovery: cfg.pointInTimeRecovery,
+  // The Cognito user pool is external (created outside this CDK, referenced by
+  // secret). When its id is known at synth, the backend stack provisions the
+  // Sign-in-with-Apple PreSignUp linking Lambda + scoped IAM. Omitted → no
+  // trigger resources (dev/staging without the secret synth cleanly).
+  cognitoUserPoolId: process.env.COGNITO_USER_POOL_ID?.trim() || undefined,
 });
 
 // Backend resource names are the single source of truth published by the

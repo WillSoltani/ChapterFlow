@@ -122,6 +122,14 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
    * sender address + SendEmail grant to the env's verified domain.
    */
   readonly domainName?: string;
+  /**
+   * Id of the EXTERNAL Cognito user pool (created outside this CDK, provided via
+   * the COGNITO_USER_POOL_ID secret). When set, the stack provisions the
+   * Sign-in-with-Apple PreSignUp account-linking Lambda with IAM scoped to this
+   * pool, and grants Cognito permission to invoke it. Undefined → no trigger
+   * resources (so a dev/staging synth without the secret stays clean).
+   */
+  readonly cognitoUserPoolId?: string;
 }
 
 export class ChapterFlowBackendStack extends cdk.Stack {
@@ -655,6 +663,93 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       parameterName: `${this.ssmPrefix}/SES_CONFIGURATION_SET`,
       stringValue: emailConfigSetName,
     });
+
+    // -------------------------------------------------------------------
+    // Cognito PreSignUp trigger — Sign-in-with-Apple account linking (B8)
+    // -------------------------------------------------------------------
+    // A federated Apple sign-in for an email that already exists as a native
+    // (email/password) Cognito user otherwise creates a SECOND user with a
+    // different `sub`, splitting the person's books/progress/entitlement. This
+    // Lambda (lambda/cognito-pre-signup.ts) links the Apple identity into the
+    // existing user via AdminLinkProviderForUser when the emails match and Apple
+    // asserts the email is VERIFIED.
+    //
+    // The user pool is EXTERNAL to this CDK (referenced by the COGNITO_USER_POOL_ID
+    // secret), so CDK provisions the function + its scoped IAM + the Cognito invoke
+    // permission here, but the pool's PreSignUp trigger ARN must be wired ONCE with
+    // `aws cognito-idp update-user-pool --lambda-config PreSignUp=<fnArn>` (see
+    // docs/ios/APPLE-AUTH.md). Only created when the pool id is known at synth.
+    if (props.cognitoUserPoolId) {
+      const userPoolArn = cdk.Arn.format(
+        {
+          service: "cognito-idp",
+          resource: "userpool",
+          resourceName: props.cognitoUserPoolId,
+        },
+        this
+      );
+
+      // Pre-bundled with esbuild (same pattern as the crons above):
+      //   npx esbuild lambda/cognito-pre-signup.ts --bundle --platform=node \
+      //     --target=node20 --outfile=lambda/dist/cognito-pre-signup.js \
+      //     --external:@aws-sdk/client-cognito-identity-provider
+      const preSignUpFn = new lambda.Function(this, "CognitoPreSignUpLinker", {
+        functionName: `ChapterFlowCognitoPreSignUp${suffix}`,
+        runtime: lambda.Runtime.NODEJS_20_X,
+        handler: "cognito-pre-signup.handler",
+        code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+        memorySize: 256,
+        // A sign-in trigger runs inline on the auth path — keep it short so a
+        // hung ListUsers/AdminLink can never wedge the user's sign-in.
+        timeout: cdk.Duration.seconds(10),
+      });
+
+      // Least privilege: ONLY the two calls the linker makes, scoped to THIS pool.
+      preSignUpFn.addToRolePolicy(
+        new iam.PolicyStatement({
+          actions: [
+            "cognito-idp:ListUsers",
+            "cognito-idp:AdminLinkProviderForUser",
+          ],
+          resources: [userPoolArn],
+        })
+      );
+
+      // Let Cognito (this pool only) invoke the trigger. SourceArn scopes the
+      // permission so no other pool/account can invoke the function.
+      preSignUpFn.addPermission("CognitoInvokePreSignUp", {
+        principal: new iam.ServicePrincipal("cognito-idp.amazonaws.com"),
+        action: "lambda:InvokeFunction",
+        sourceArn: userPoolArn,
+        sourceAccount: cdk.Aws.ACCOUNT_ID,
+      });
+
+      // Page operators if the linker errors (it fails CLOSED — a persistent error
+      // blocks the affected Apple sign-in rather than silently splitting accounts).
+      const preSignUpErrorsAlarm = new cloudwatch.Alarm(
+        this,
+        "ChapterFlowCognitoPreSignUpErrorsAlarm",
+        {
+          metric: preSignUpFn.metricErrors({ period: cdk.Duration.minutes(5) }),
+          threshold: 1,
+          evaluationPeriods: 1,
+          datapointsToAlarm: 1,
+          comparisonOperator:
+            cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+          treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+          alarmDescription:
+            "The Cognito PreSignUp (Sign-in-with-Apple linking) Lambda is erroring. It fails closed, so a persistent error blocks the affected Apple sign-in — inspect its logs (AdminLinkProviderForUser / ListUsers failures).",
+        }
+      );
+      preSignUpErrorsAlarm.addAlarmAction(opsAlarmAction);
+
+      // The pool is external, so surface the ARN operators must wire to it.
+      new cdk.CfnOutput(this, "CognitoPreSignUpFunctionArn", {
+        value: preSignUpFn.functionArn,
+        description:
+          "Wire this ARN to the Cognito user pool's PreSignUp trigger: aws cognito-idp update-user-pool --user-pool-id <id> --lambda-config PreSignUp=<thisArn>",
+      });
+    }
 
     // -------------------------------------------------------------------
     // Stack outputs
