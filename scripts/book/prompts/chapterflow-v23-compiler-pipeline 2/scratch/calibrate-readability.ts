@@ -61,10 +61,10 @@ function selectIdxs(bookId: string, N: number, n = 4): number[] {
   const hex = createHash("md5").update(bookId).digest("hex");
   let seed = BigInt("0x" + hex);
   const MOD = BigInt(N);
-  const K = 2654435761n;
+  const K = BigInt("2654435761");
   const idxs = new Set<number>();
-  let i = 0n;
-  while (idxs.size < Math.min(n, N)) { idxs.add(Number(((seed + i * K) % MOD + MOD) % MOD)); i += 1n; }
+  let i = BigInt("0");
+  while (idxs.size < Math.min(n, N)) { idxs.add(Number(((seed + i * K) % MOD + MOD) % MOD)); i += BigInt("1"); }
   return [...idxs].sort((a, b) => a - b);
 }
 
