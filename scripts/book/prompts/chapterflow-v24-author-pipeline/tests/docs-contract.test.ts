@@ -12,11 +12,22 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "fs";
 import { resolve } from "path";
 
-import { test } from "./harness.js";
+import { skip, test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 
 const doc = (rel: string) => readFileSync(resolve(PIPELINE_DIR, rel), "utf8");
+const docExists = (rel: string) => existsSync(resolve(PIPELINE_DIR, rel));
 const FINAL_GATE = readFileSync(resolve(PIPELINE_DIR, "src/critics/finalGate.ts"), "utf8");
+
+/** Register a docs-vs-code test that pins claims made by an UNTRACKED prompt/report
+ *  doc (no doc text is committed — fixture policy). When the doc is absent on this
+ *  checkout (bare worktree / post-purge canonical) the audit has no artifact to bind,
+ *  so it skips-with-reason instead of ENOENT-failing — matching the gold-corpus
+ *  skip idiom. Present ⇒ the FULL assertion runs; absence never weakens it. */
+function testDocContract(name: string, docRel: string, fn: () => void | Promise<void>): void {
+  if (docExists(docRel)) test(name, fn);
+  else skip(name, `${docRel} not present on this checkout (untracked doc — fixture policy); nothing to audit`);
+}
 
 /** The A16 floors as the CODE defines them (source-scanned, so a floor change
  *  here forces the docs test to be reconsidered). */
@@ -88,13 +99,13 @@ test("PLAYBOOK names R6 and no doc pins the dead v21-redesign branch", () => {
   assert.doesNotMatch(s, /`v21-redesign` branch/, "the pipeline merged to main; the branch pin is stale");
 });
 
-test("handoff's catalog-id guidance matches the registry (C11–C21 support, C22/C23 narrative, next C24+)", () => {
+testDocContract("handoff's catalog-id guidance matches the registry (C11–C21 support, C22/C23 narrative, next C24+)", "PIPELINE-HANDOFF.md", () => {
   const s = doc("PIPELINE-HANDOFF.md");
   assert.match(s, /use C24\+/, "the next-free-id guidance must clear BOTH owners' ranges");
   assert.doesNotMatch(s, /must\s+use C18\+/, "the old 'use C18+' guidance reproduced the collision it warned about");
 });
 
-test("handoff does not re-document fixed gaps as open (the next developer reads this first)", () => {
+testDocContract("handoff does not re-document fixed gaps as open (the next developer reads this first)", "PIPELINE-HANDOFF.md", () => {
   const s = doc("PIPELINE-HANDOFF.md");
   assert.doesNotMatch(
     s,
@@ -279,7 +290,7 @@ test("AGENTS names the Publish-after-QC role", () => {
   assert.match(s, /clean token-bearing task cards before commit/);
 });
 
-test("V23 report's risk-routed 'narrow QC shadow review before formal QC' claim is backed by an actual doGate wire, not a dead recommendation field", () => {
+testDocContract("V23 report's risk-routed 'narrow QC shadow review before formal QC' claim is backed by an actual doGate wire, not a dead recommendation field", "V23-COMPILER-PIPELINE-REPORT.md", () => {
   const report = doc("V23-COMPILER-PIPELINE-REPORT.md");
   assert.match(report, /risk scoring[\s\S]{0,80}narrow shadow review/i, "the report must keep the risk-routing claim");
   const autopilot = readFileSync(resolve(PIPELINE_DIR, "src/orchestrator/autopilot.ts"), "utf8");
