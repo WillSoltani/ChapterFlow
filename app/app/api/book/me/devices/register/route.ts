@@ -2,8 +2,9 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { selectDevicesToEvict, type DeviceRowRef } from "@/app/app/api/book/_lib/device-cap-core";
+import { parseDeviceRegistration } from "@/app/app/api/book/_lib/device-register-core";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { bookErr, bookOk, requireBodyObject, requireString, withBookApiErrors } from "@/app/app/api/book/_lib/http";
+import { bookErr, bookOk, requireBodyObject, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { bookUserPk, deviceTokenSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { isAllowedPushEndpoint } from "@/app/app/api/book/_lib/push-endpoint-allowlist";
 import { DeleteCommand, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
@@ -15,40 +16,66 @@ export async function POST(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const body = requireBodyObject(await req.json());
-    const endpoint = requireString(body.endpoint, "endpoint", { maxLength: 2000 });
-    // SSRF/abuse defense: only persist endpoints that point at a known browser
-    // push service over HTTPS. This mirrors the send-time guard in push-service.ts
-    // so non-allowlisted URLs never enter the device table (and never inflate the
-    // per-notification fanout loop).
-    if (!isAllowedPushEndpoint(endpoint)) {
-      return bookErr(req, 400, "invalid_endpoint", "Push endpoint is not an allowed push service.");
+
+    // Discriminate web-push vs iOS/APNs and validate the matching shape. Pure —
+    // see device-register-core.ts. `identifier` is the endpoint (web) or the
+    // apnsToken (ios); it is hashed into the device SK so both platforms key the
+    // same way and unregister can delete by the same value.
+    const parsed = parseDeviceRegistration(body);
+    if (!parsed.ok) {
+      // A web subscription missing its encryption keys stays a soft 200 (the old
+      // behavior) so browser clients can distinguish "not persisted" from an error.
+      if ("soft" in parsed) {
+        return bookOk({ registered: false, reason: parsed.reason });
+      }
+      const message =
+        parsed.reason === "invalid_apns_token"
+          ? "apnsToken must be a hex APNs device token."
+          : parsed.reason === "invalid_platform"
+            ? "platform must be \"web\" or \"ios\"."
+            : "endpoint is required.";
+      return bookErr(req, 400, parsed.reason, message);
     }
-    const keys = body.keys as { p256dh: string; auth: string } | undefined;
-    if (!keys?.p256dh || !keys?.auth) {
-      return bookOk({ registered: false, reason: "missing_keys" });
+
+    // SSRF/abuse defense (web only): only persist endpoints that point at a known
+    // browser push service over HTTPS. This mirrors the send-time guard in
+    // push-service.ts so non-allowlisted URLs never enter the device table (and
+    // never inflate the per-notification fanout loop). iOS tokens never touch a
+    // URL, so the allowlist does not apply to them.
+    if (parsed.platform === "web" && !isAllowedPushEndpoint(parsed.endpoint)) {
+      return bookErr(req, 400, "invalid_endpoint", "Push endpoint is not an allowed push service.");
     }
 
     const tableName = await getBookTableName();
     const now = nowIso();
     const pk = bookUserPk(user.sub);
-    const sk = deviceTokenSk(endpoint);
+    const sk = deviceTokenSk(parsed.identifier);
 
-    await ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: pk,
-          SK: sk,
-          entity: "BOOK_USER_DEVICE_TOKEN",
-          userId: user.sub,
-          endpoint,
-          keys: { p256dh: keys.p256dh, auth: keys.auth },
-          platform: "web",
-          createdAt: now,
-          lastSeenAt: now,
-        },
-      })
-    );
+    const item =
+      parsed.platform === "ios"
+        ? {
+            PK: pk,
+            SK: sk,
+            entity: "BOOK_USER_DEVICE_TOKEN",
+            userId: user.sub,
+            apnsToken: parsed.apnsToken,
+            platform: "ios",
+            createdAt: now,
+            lastSeenAt: now,
+          }
+        : {
+            PK: pk,
+            SK: sk,
+            entity: "BOOK_USER_DEVICE_TOKEN",
+            userId: user.sub,
+            endpoint: parsed.endpoint,
+            keys: { p256dh: parsed.keys.p256dh, auth: parsed.keys.auth },
+            platform: "web",
+            createdAt: now,
+            lastSeenAt: now,
+          };
+
+    await ddbDoc.send(new PutCommand({ TableName: tableName, Item: item }));
 
     // Cap registered devices per user (E4): without a bound, distinct push
     // endpoints accumulate one DEVICE# row each (the SK is a hash of the
