@@ -153,11 +153,11 @@ function stubDeps(opts: { rewriteToPass?: boolean } = {}): {
 
 // ── 1. env mode parsing ──────────────────────────────────────────────────────
 test("compilerPolishMode: defaults to risk; only literal never/always override", () => {
-  assert.equal(compilerPolishMode({}), "risk");
-  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "risk" }), "risk");
-  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "1" }), "risk");
-  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "never" }), "never");
-  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "always" }), "always");
+  assert.equal(compilerPolishMode({} as unknown as NodeJS.ProcessEnv), "risk");
+  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "risk" } as unknown as NodeJS.ProcessEnv), "risk");
+  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "1" } as unknown as NodeJS.ProcessEnv), "risk");
+  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "never" } as unknown as NodeJS.ProcessEnv), "never");
+  assert.equal(compilerPolishMode({ CHAPTERFLOW_COMPILER_POLISH: "always" } as unknown as NodeJS.ProcessEnv), "always");
 });
 
 // ── 2. metrics: dense fails, easy passes ─────────────────────────────────────

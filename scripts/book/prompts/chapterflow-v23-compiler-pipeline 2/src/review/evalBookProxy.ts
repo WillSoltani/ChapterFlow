@@ -42,13 +42,15 @@ const READER_CONCURRENCY = 4;
  *  values computed by the python original. */
 export function selectSeededIdxs(bookId: string, chapterCount: number, n = 4): number[] {
   const seed = BigInt("0x" + createHash("md5").update(bookId).digest("hex"));
-  const step = 2654435761n;
+  // BigInt() constructor calls, not literals: the OUTER repo's tsconfig sweeps
+  // this dir with a pre-ES2020 target where 123n is a syntax-level error.
+  const step = BigInt("2654435761");
   const N = BigInt(Math.max(1, chapterCount));
   const idxs = new Set<number>();
-  let i = 0n;
+  let i = BigInt(0);
   while (idxs.size < Math.min(n, chapterCount)) {
     idxs.add(Number((seed + i * step) % N));
-    i += 1n;
+    i += BigInt(1);
   }
   return [...idxs].sort((a, b) => a - b);
 }

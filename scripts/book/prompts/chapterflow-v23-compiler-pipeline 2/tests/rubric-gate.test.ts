@@ -277,10 +277,10 @@ function stubDeps(result: VerbResult): { deps: AutopilotDeps; calls: string[][];
 }
 
 test("rubricGateMode: defaults to shadow; only literal 'enforce' enables enforce", () => {
-  assert.equal(rubricGateMode({}), "shadow");
-  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "shadow" }), "shadow");
-  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "1" }), "shadow");
-  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "enforce" }), "enforce");
+  assert.equal(rubricGateMode({} as unknown as NodeJS.ProcessEnv), "shadow");
+  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "shadow" } as unknown as NodeJS.ProcessEnv), "shadow");
+  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "1" } as unknown as NodeJS.ProcessEnv), "shadow");
+  assert.equal(rubricGateMode({ CHAPTERFLOW_RUBRIC_GATE: "enforce" } as unknown as NodeJS.ProcessEnv), "enforce");
 });
 
 test("runRubricPreflight: shadow NEVER halts (even on gate-fail verb exit) and omits --gate", async () => {
