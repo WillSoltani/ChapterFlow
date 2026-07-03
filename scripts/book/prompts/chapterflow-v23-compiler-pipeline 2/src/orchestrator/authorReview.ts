@@ -323,6 +323,25 @@ export type BookAcceptanceResult = {
   sampledNumbers: number[];
 };
 
+/** Book-acceptance bar, CALIBRATED separately from the 84 chapter-review bar
+ *  (owner decision 2026-07-03): the book-level instrument reads ~4-5 points
+ *  harsher than the owner's own scores — Phase-0: atomic-habits (owner 85.3,
+ *  #1 of 131) scores 80.2; the LIVE shipped POM scores 80.0 with a unanimous
+ *  correctness-gate FAIL; no real book has ever scored >=84 on this read. 80
+ *  therefore corresponds to an owner-84/85 book. Additionally, when
+ *  CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE is set (regens of published books: the
+ *  operator runs the same-instrument control read over the shipped package and
+ *  exports its composite), acceptance ALSO requires meeting it — the regen must
+ *  never be accepted below the book it replaces. */
+export const AUTHOR_BOOK_ACCEPT_BAR = 80;
+
+function beatShippedComposite(): number | null {
+  const raw = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
+  if (!raw) return null;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : null;
+}
+
 async function runBookAcceptance(
   bookId: string,
   chapters: ChapterV21[],
@@ -386,8 +405,12 @@ async function runBookAcceptance(
   );
 
   const verdict = composeBookVerdict(bookId, sampled.map((c) => c.number), readers);
-  const accepted = verdict.gate === "PASS" && verdict.churn !== "HIGH" && (verdict.medianComposite ?? 0) >= bar;
-  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} → ${accepted ? "ACCEPT" : "REJECT"}`);
+  const shipped = beatShippedComposite();
+  const comp = verdict.medianComposite ?? 0;
+  const accepted = verdict.gate === "PASS" && verdict.churn !== "HIGH"
+    && comp >= AUTHOR_BOOK_ACCEPT_BAR
+    && (shipped === null || comp >= shipped);
+  deps.log(`[autopilot] author acceptance${roundLabel}: composite ${verdict.medianComposite ?? "n/a"} gate ${verdict.gate ?? "?"} (${verdict.gateVotes}) churn ${verdict.churn} vs bar ${AUTHOR_BOOK_ACCEPT_BAR}${shipped === null ? "" : ` + beat-shipped ${shipped}`} → ${accepted ? "ACCEPT" : "REJECT"}`);
   return { accepted, verdict, readers, readerSessionIds, sampledNumbers: sampled.map((c) => c.number) };
 }
 
@@ -595,7 +618,7 @@ export async function doAuthorReview(
       const readerLines = acceptance.readers
         .map((r) => `  reader ${r.reviewerSessionId}: comp=${r.composite} gate=${r.gateVerdict} churn=${r.churn} valid=${r.valid ? "yes" : `NO (${r.invalidReason})`} — ${r.oneParagraphVerdict.slice(0, 300)}`)
         .join("\n");
-      return halt(bookId, "content", `author acceptance still REJECTED after the one targeted regen round (composite ${acceptance.verdict.medianComposite ?? "n/a"}, gate ${acceptance.verdict.gate ?? "?"}, churn ${acceptance.verdict.churn}, bar ${bar}):\n${readerLines}`);
+      return halt(bookId, "content", `author acceptance still REJECTED after the one targeted regen round (composite ${acceptance.verdict.medianComposite ?? "n/a"}, gate ${acceptance.verdict.gate ?? "?"}, churn ${acceptance.verdict.churn}, bar ${AUTHOR_BOOK_ACCEPT_BAR}):\n${readerLines}`);
     }
   }
 
