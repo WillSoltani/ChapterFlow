@@ -1527,6 +1527,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 freeBookSlots={freeBookSlots}
                 currentPeriodEnd={billingState.payload?.entitlement.currentPeriodEnd}
                 cancelAtPeriodEnd={billingState.payload?.entitlement.cancelAtPeriodEnd}
+                proSource={billingState.payload?.entitlement.proSource}
                 price={price}
                 pricingTiers={billingState.payload?.paywall.pricingTiers}
                 initialInterval={initialUpgradeInterval}

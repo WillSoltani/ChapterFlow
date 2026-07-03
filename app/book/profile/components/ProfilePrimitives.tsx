@@ -9,6 +9,10 @@ import {
 } from "react";
 import Image from "next/image";
 import { MONTHLY_PRICE_WITH_CURRENCY, TRIAL_CTA_LABEL } from "@/lib/pricing";
+import {
+  APPLE_MANAGE_SUBSCRIPTIONS_URL,
+  APPLE_MANAGED_SUBSCRIPTION_LABEL,
+} from "@/lib/apple-billing";
 import { LEARNING_LOOP_STEPS as STEP_LABELS } from "@/lib/learning-loop";
 import {
   ArrowUpRight,
@@ -1188,11 +1192,15 @@ export function ProStatusCard({
   renewalDate,
   booksAccessedCount,
   proSinceLabel,
+  proSource,
   onManage,
 }: {
   renewalDate: string;
   booksAccessedCount: number;
   proSinceLabel: string;
+  /** When "apple", subscription is billed through the App Store — show Apple's
+   *  management link rather than the Stripe billing portal. */
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code";
   onManage: () => void;
 }) {
   return (
@@ -1218,7 +1226,21 @@ export function ProStatusCard({
           </div>
         </div>
         <p className="mt-4 text-sm text-(--cf-text-2)">Thanks for being a Pro reader. Your support keeps ChapterFlow growing.</p>
-        <Button variant="secondary" onClick={onManage} className="mt-4">Manage subscription</Button>
+        {proSource === "apple" ? (
+          <>
+            <p className="mt-4 text-xs text-(--cf-text-soft)">{APPLE_MANAGED_SUBSCRIPTION_LABEL}.</p>
+            <a
+              href={APPLE_MANAGE_SUBSCRIPTIONS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex h-(--cf-control-height-sm) items-center justify-center rounded-xl border border-(--cf-border) bg-(--cf-surface) px-4 text-sm font-semibold text-(--cf-text-1) transition-colors hover:border-(--cf-text-soft)"
+            >
+              Manage in the App Store
+            </a>
+          </>
+        ) : (
+          <Button variant="secondary" onClick={onManage} className="mt-4">Manage subscription</Button>
+        )}
       </div>
     </div>
   );

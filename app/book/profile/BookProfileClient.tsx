@@ -1181,6 +1181,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                 }
                 booksAccessedCount={billingState.payload?.entitlement.unlockedBooksCount ?? 0}
                 proSinceLabel={profile.createdAt ? `Pro since ${new Date(profile.createdAt).toLocaleDateString(undefined, { month: "short", year: "numeric" })}` : "Pro member"}
+                proSource={billingState.payload?.entitlement.proSource}
                 onManage={() => handleBillingAction("portal")}
               />
             ) : !isPro ? (

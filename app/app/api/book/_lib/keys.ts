@@ -262,6 +262,20 @@ export function stripeCustomerSk(): string {
   return "USER";
 }
 
+/**
+ * Reverse map from an Apple `originalTransactionId` to the owning userId, so the
+ * App Store Server Notifications webhook (which carries no userId) can resolve
+ * the account. The Apple analogue of stripeCustomerPk. Written by the
+ * /apple/verify route when a user first proves ownership of the transaction.
+ */
+export function appleOriginalTransactionPk(originalTransactionId: string): string {
+  return `BOOKBILLING#APPLETXN#${originalTransactionId}`;
+}
+
+export function appleOriginalTransactionSk(): string {
+  return "USER";
+}
+
 /** PK for a license key record. Code is stored uppercase for case-insensitive lookups. */
 export function licenseKeyPk(code: string): string {
   return `BOOKLICENSE#KEY#${code.toUpperCase()}`;
